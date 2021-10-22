@@ -82,6 +82,71 @@ __vt__Q24Game6CPlate:
 	.4byte "getAt__27Container<Q24Game8Creature>Fi"
 	.4byte "getTo__27Container<Q24Game8Creature>Fv"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518EF0
+lbl_80518EF0:
+	.4byte 0x418C0000
+.global lbl_80518EF4
+lbl_80518EF4:
+	.4byte 0x00000000
+.global lbl_80518EF8
+lbl_80518EF8:
+	.4byte 0x42C80000
+.global lbl_80518EFC
+lbl_80518EFC:
+	.4byte 0x43020000
+.global lbl_80518F00
+lbl_80518F00:
+	.4byte 0x41200000
+.global lbl_80518F04
+lbl_80518F04:
+	.4byte 0x447A0000
+.global lbl_80518F08
+lbl_80518F08:
+	.4byte 0x40C00000
+.global lbl_80518F0C
+lbl_80518F0C:
+	.float 1.0
+.global lbl_80518F10
+lbl_80518F10:
+	.4byte 0x42480000
+.global lbl_80518F14
+lbl_80518F14:
+	.4byte 0x40A00000
+.global lbl_80518F18
+lbl_80518F18:
+	.4byte 0x43A2F983
+.global lbl_80518F1C
+lbl_80518F1C:
+	.4byte 0xC3A2F983
+.global lbl_80518F20
+lbl_80518F20:
+	.float 0.5
+.global lbl_80518F24
+lbl_80518F24:
+	.4byte 0x40490FDB
+.global lbl_80518F28
+lbl_80518F28:
+	.4byte 0x40066666
+.global lbl_80518F2C
+lbl_80518F2C:
+	.4byte 0x3FF33333
+.global lbl_80518F30
+lbl_80518F30:
+	.4byte 0x40800000
+	.4byte 0x00000000
+.global lbl_80518F38
+lbl_80518F38:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518F40
+lbl_80518F40:
+	.4byte 0x40000000
+.global lbl_80518F44
+lbl_80518F44:
+	.float 0.1
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global get__Q24Game6CPlateFPv
 get__Q24Game6CPlateFPv:

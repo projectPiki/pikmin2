@@ -814,6 +814,163 @@ mDebug__Q24Game9PelletMgr:
 disableDynamics__Q24Game9PelletMgr:
 	.skip 0x3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518910
+lbl_80518910:
+	.float 1.0
+.global lbl_80518914
+lbl_80518914:
+	.4byte 0x00000000
+.global lbl_80518918
+lbl_80518918:
+	.float 0.5
+.global lbl_8051891C
+lbl_8051891C:
+	.4byte 0x3E4CCCCD
+.global lbl_80518920
+lbl_80518920:
+	.4byte 0x42B40000
+.global lbl_80518924
+lbl_80518924:
+	.4byte 0xBF000000
+.global lbl_80518928
+lbl_80518928:
+	.4byte 0x41F00000
+	.4byte 0x00000000
+.global lbl_80518930
+lbl_80518930:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518938
+lbl_80518938:
+	.4byte 0x40800000
+.global lbl_8051893C
+lbl_8051893C:
+	.float 0.25
+.global lbl_80518940
+lbl_80518940:
+	.4byte 0x47000000
+.global lbl_80518944
+lbl_80518944:
+	.4byte 0x40400000
+.global lbl_80518948
+lbl_80518948:
+	.4byte 0x6E756D62
+	.4byte 0x65723100
+.global lbl_80518950
+lbl_80518950:
+	.4byte 0x6E756D62
+	.4byte 0x65723500
+.global lbl_80518958
+lbl_80518958:
+	.4byte 0x47FA0000
+.global lbl_8051895C
+lbl_8051895C:
+	.4byte 0x3C23D70A
+.global lbl_80518960
+lbl_80518960:
+	.4byte 0x6C6F6F7A
+	.4byte 0x79000000
+.global lbl_80518968
+lbl_80518968:
+	.4byte 0x6F72696D
+	.4byte 0x61000000
+.global lbl_80518970
+lbl_80518970:
+	.4byte 0x40000000
+.global lbl_80518974
+lbl_80518974:
+	.4byte 0x6E657665
+	.4byte 0x72000000
+.global lbl_8051897C
+lbl_8051897C:
+	.4byte 0x6C6F6400
+.global lbl_80518980
+lbl_80518980:
+	.4byte 0x73696D70
+	.4byte 0x6C650000
+.global lbl_80518988
+lbl_80518988:
+	.4byte 0x40C90FDB
+.global lbl_8051898C
+lbl_8051898C:
+	.4byte 0x43A2F983
+.global lbl_80518990
+lbl_80518990:
+	.4byte 0xC3A2F983
+.global lbl_80518994
+lbl_80518994:
+	.4byte 0x41200000
+.global lbl_80518998
+lbl_80518998:
+	.float 0.1
+.global lbl_8051899C
+lbl_8051899C:
+	.4byte 0x41400000
+.global lbl_805189A0
+lbl_805189A0:
+	.float -1.0
+.global lbl_805189A4
+lbl_805189A4:
+	.4byte 0x40490FDB
+.global lbl_805189A8
+lbl_805189A8:
+	.4byte 0x447FE000
+.global lbl_805189AC
+lbl_805189AC:
+	.4byte 0x3FC90FDB
+.global lbl_805189B0
+lbl_805189B0:
+	.4byte 0x3F19999A
+.global lbl_805189B4
+lbl_805189B4:
+	.4byte 0x42C80000
+.global lbl_805189B8
+lbl_805189B8:
+	.4byte 0x706D6F74
+	.4byte 0x696F6E00
+.global lbl_805189C0
+lbl_805189C0:
+	.4byte 0x46480000
+.global lbl_805189C4
+lbl_805189C4:
+	.4byte 0x80000000
+.global lbl_805189C8
+lbl_805189C8:
+	.4byte 0x6A706E00
+.global lbl_805189CC
+lbl_805189CC:
+	.4byte 0x75730000
+.global lbl_805189D0
+lbl_805189D0:
+	.4byte 0x70616C00
+.global lbl_805189D4
+lbl_805189D4:
+	.4byte 0x6E756C6C
+	.4byte 0x00000000
+.global lbl_805189DC
+lbl_805189DC:
+	.4byte 0x25732573
+	.4byte 0x00000000
+.global lbl_805189E4
+lbl_805189E4:
+	.4byte 0x25730000
+.global lbl_805189E8
+lbl_805189E8:
+	.4byte 0x25732F25
+	.4byte 0x73000000
+.global lbl_805189F0
+lbl_805189F0:
+	.4byte 0x6D616E64
+	.4byte 0x61210A00
+.global lbl_805189F8
+lbl_805189F8:
+	.4byte 0x79657300
+.global lbl_805189FC
+lbl_805189FC:
+	.4byte 0x428C0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCreatureName__Q24Game6PelletFv
 getCreatureName__Q24Game6PelletFv:

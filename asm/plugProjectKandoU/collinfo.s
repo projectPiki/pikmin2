@@ -248,6 +248,41 @@ __vt__8Platform:
 mDebug__8CollTree:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518208
+lbl_80518208:
+	.4byte 0x47000000
+.global lbl_8051820C
+lbl_8051820C:
+	.4byte 0xC7000000
+.global lbl_80518210
+lbl_80518210:
+	.4byte 0x00000000
+.global lbl_80518214
+lbl_80518214:
+	.4byte 0x47FA0000
+.global lbl_80518218
+lbl_80518218:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518220
+lbl_80518220:
+	.4byte 0x3A83126F
+.global lbl_80518224
+lbl_80518224:
+	.float 1.0
+.global lbl_80518228
+lbl_80518228:
+	.float 0.3
+.global lbl_8051822C
+lbl_8051822C:
+	.float 0.1
+.global lbl_80518230
+lbl_80518230:
+	.4byte 0x0D0A0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8PlatformFv
 __ct__8PlatformFv:

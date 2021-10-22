@@ -824,6 +824,195 @@ pikiMgr__4Game:
 mBirthMode__Q24Game7PikiMgr:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518758
+lbl_80518758:
+	.4byte 0x70696B69
+	.4byte 0x4D677200
+.global lbl_80518760
+lbl_80518760:
+	.float 0.1
+.global lbl_80518764
+lbl_80518764:
+	.4byte 0x3F4CCCCD
+.global lbl_80518768
+lbl_80518768:
+	.4byte 0x3E0F5C29
+.global lbl_8051876C
+lbl_8051876C:
+	.4byte 0x42A80000
+.global lbl_80518770
+lbl_80518770:
+	.4byte 0x00000000
+.global lbl_80518774
+lbl_80518774:
+	.4byte 0x43FA0000
+.global lbl_80518778
+lbl_80518778:
+	.4byte 0x42F00000
+.global lbl_8051877C
+lbl_8051877C:
+	.4byte 0x432A0000
+.global lbl_80518780
+lbl_80518780:
+	.4byte 0x430C0000
+.global lbl_80518784
+lbl_80518784:
+	.float 1.0
+.global lbl_80518788
+lbl_80518788:
+	.4byte 0x41200000
+.global lbl_8051878C
+lbl_8051878C:
+	.4byte 0x42C80000
+.global lbl_80518790
+lbl_80518790:
+	.4byte 0x447A0000
+.global lbl_80518794
+lbl_80518794:
+	.4byte 0x43160000
+.global lbl_80518798
+lbl_80518798:
+	.4byte 0x43480000
+.global lbl_8051879C
+lbl_8051879C:
+	.4byte 0x41700000
+.global lbl_805187A0
+lbl_805187A0:
+	.4byte 0x41F00000
+.global lbl_805187A4
+lbl_805187A4:
+	.4byte 0x40000000
+.global lbl_805187A8
+lbl_805187A8:
+	.4byte 0x3FC00000
+.global lbl_805187AC
+lbl_805187AC:
+	.4byte 0x3F99999A
+.global lbl_805187B0
+lbl_805187B0:
+	.4byte 0x40A00000
+.global lbl_805187B4
+lbl_805187B4:
+	.4byte 0x40400000
+.global lbl_805187B8
+lbl_805187B8:
+	.4byte 0x94678E9E
+	.4byte 0x8AD40000
+.global lbl_805187C0
+lbl_805187C0:
+	.4byte 0x42200000
+.global lbl_805187C4
+lbl_805187C4:
+	.4byte 0x420C0000
+.global lbl_805187C8
+lbl_805187C8:
+	.4byte 0x428C0000
+.global lbl_805187CC
+lbl_805187CC:
+	.4byte 0x43200000
+.global lbl_805187D0
+lbl_805187D0:
+	.4byte 0x43960000
+.global lbl_805187D4
+lbl_805187D4:
+	.4byte 0x42700000
+.global lbl_805187D8
+lbl_805187D8:
+	.4byte 0x40C00000
+.global lbl_805187DC
+lbl_805187DC:
+	.4byte 0x44FA0000
+.global lbl_805187E0
+lbl_805187E0:
+	.4byte 0x41000000
+.global lbl_805187E4
+lbl_805187E4:
+	.4byte 0x44160000
+.global lbl_805187E8
+lbl_805187E8:
+	.4byte 0x461C4000
+.global lbl_805187EC
+lbl_805187EC:
+	.4byte 0x44480000
+.global lbl_805187F0
+lbl_805187F0:
+	.4byte 0x3F19999A
+.global lbl_805187F4
+lbl_805187F4:
+	.4byte 0x44870000
+.global lbl_805187F8
+lbl_805187F8:
+	.float 0.7
+.global lbl_805187FC
+lbl_805187FC:
+	.4byte 0x3C23D70A
+.global lbl_80518800
+lbl_80518800:
+	.4byte 0x40800000
+.global lbl_80518804
+lbl_80518804:
+	.4byte 0x42480000
+.global lbl_80518808
+lbl_80518808:
+	.4byte 0x443F4000
+.global lbl_8051880C
+lbl_8051880C:
+	.4byte 0x459C4000
+.global lbl_80518810
+lbl_80518810:
+	.4byte 0x437A0000
+.global lbl_80518814
+lbl_80518814:
+	.4byte 0x42DC0000
+.global lbl_80518818
+lbl_80518818:
+	.4byte 0x3F266666
+.global lbl_8051881C
+lbl_8051881C:
+	.float 0.5
+.global lbl_80518820
+lbl_80518820:
+	.4byte 0x3EB33333
+.global lbl_80518824
+lbl_80518824:
+	.4byte 0x41C80000
+.global lbl_80518828
+lbl_80518828:
+	.4byte 0x433E0000
+.global lbl_8051882C
+lbl_8051882C:
+	.4byte 0x435C0000
+.global lbl_80518830
+lbl_80518830:
+	.4byte 0x41800000
+.global lbl_80518834
+lbl_80518834:
+	.4byte 0x646F6150
+	.4byte 0x494B4900
+.global lbl_8051883C
+lbl_8051883C:
+	.4byte 0x47000000
+.global lbl_80518840
+lbl_80518840:
+	.4byte 0x40C90FDB
+	.4byte 0x00000000
+.global lbl_80518848
+lbl_80518848:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518850
+lbl_80518850:
+	.4byte 0x42040000
+.global lbl_80518854
+lbl_80518854:
+	.4byte 0x48089900
+.global lbl_80518858
+lbl_80518858:
+	.4byte 0x50696B69
+	.4byte 0x4D677200
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7PikiMgrFv
 __ct__Q24Game7PikiMgrFv:

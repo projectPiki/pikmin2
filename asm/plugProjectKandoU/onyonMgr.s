@@ -872,6 +872,208 @@ mgr__Q24Game9ItemOnyon:
 sVolveFlag:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518A28
+lbl_80518A28:
+	.float -1.0
+.global lbl_80518A2C
+lbl_80518A2C:
+	.4byte 0x00000000
+.global lbl_80518A30
+lbl_80518A30:
+	.4byte 0x41F00000
+.global lbl_80518A34
+lbl_80518A34:
+	.4byte 0x73746172
+	.4byte 0x74310000
+.global lbl_80518A3C
+lbl_80518A3C:
+	.4byte 0x696E3100
+.global lbl_80518A40
+lbl_80518A40:
+	.4byte 0x6F757400
+.global lbl_80518A44
+lbl_80518A44:
+	.4byte 0x706F745F
+	.4byte 0x63747200
+.global lbl_80518A4C
+lbl_80518A4C:
+	.4byte 0x42A00000
+.global lbl_80518A50
+lbl_80518A50:
+	.4byte 0x42C80000
+.global lbl_80518A54
+lbl_80518A54:
+	.4byte 0x41D80000
+.global lbl_80518A58
+lbl_80518A58:
+	.float 1.0
+.global lbl_80518A5C
+lbl_80518A5C:
+	.4byte 0x41A00000
+.global lbl_80518A60
+lbl_80518A60:
+	.4byte 0x43A2F983
+.global lbl_80518A64
+lbl_80518A64:
+	.4byte 0xC3A2F983
+.global lbl_80518A68
+lbl_80518A68:
+	.4byte 0x42EA0000
+.global lbl_80518A6C
+lbl_80518A6C:
+	.4byte 0x626F6479
+	.4byte 0x5F310000
+.global lbl_80518A74
+lbl_80518A74:
+	.4byte 0x6B657900
+.global lbl_80518A78
+lbl_80518A78:
+	.4byte 0x40000000
+.global lbl_80518A7C
+lbl_80518A7C:
+	.float 0.5
+.global lbl_80518A80
+lbl_80518A80:
+	.4byte 0x43C80000
+.global lbl_80518A84
+lbl_80518A84:
+	.4byte 0x79657300
+.global lbl_80518A88
+lbl_80518A88:
+	.4byte 0xC1A00000
+.global lbl_80518A8C
+lbl_80518A8C:
+	.4byte 0x40A00000
+.global lbl_80518A90
+lbl_80518A90:
+	.4byte 0x42200000
+.global lbl_80518A94
+lbl_80518A94:
+	.4byte 0x41200000
+.global lbl_80518A98
+lbl_80518A98:
+	.float 0.7
+.global lbl_80518A9C
+lbl_80518A9C:
+	.4byte 0x676F616C
+	.4byte 0x00000000
+.global lbl_80518AA4
+lbl_80518AA4:
+	.4byte 0x42BE0000
+.global lbl_80518AA8
+lbl_80518AA8:
+	.4byte 0x43070000
+.global lbl_80518AAC
+lbl_80518AAC:
+	.4byte 0x43480000
+.global lbl_80518AB0
+lbl_80518AB0:
+	.4byte 0x3E4CCCCD
+.global lbl_80518AB4
+lbl_80518AB4:
+	.4byte 0x40400000
+.global lbl_80518AB8
+lbl_80518AB8:
+	.4byte 0x3ECCCCCD
+.global lbl_80518ABC
+lbl_80518ABC:
+	.4byte 0x41000000
+.global lbl_80518AC0
+lbl_80518AC0:
+	.4byte 0x437A0000
+.global lbl_80518AC4
+lbl_80518AC4:
+	.4byte 0x43FA0000
+.global lbl_80518AC8
+lbl_80518AC8:
+	.4byte 0x43960000
+.global lbl_80518ACC
+lbl_80518ACC:
+	.4byte 0x447A0000
+.global lbl_80518AD0
+lbl_80518AD0:
+	.4byte 0x43C30000
+.global lbl_80518AD4
+lbl_80518AD4:
+	.float 0.25
+.global lbl_80518AD8
+lbl_80518AD8:
+	.float 0.3
+	.4byte 0x00000000
+.global lbl_80518AE0
+lbl_80518AE0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80518AE8
+lbl_80518AE8:
+	.float 110.0
+.global lbl_80518AEC
+lbl_80518AEC:
+	.float 32768.0
+.global lbl_80518AF0
+lbl_80518AF0:
+	.float 1.5707964
+.global lbl_80518AF4
+lbl_80518AF4:
+	.float 0.7853982
+.global lbl_80518AF8
+lbl_80518AF8:
+	.float 6.2831855
+.global lbl_80518AFC
+lbl_80518AFC:
+	.float 130.0
+.global lbl_80518B00
+lbl_80518B00:
+	.float 700.0
+	.skip 0x4
+.global lbl_80518B08
+lbl_80518B08:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518B10
+lbl_80518B10:
+	.float 0.05
+.global lbl_80518B14
+lbl_80518B14:
+	.float 0.1
+.global lbl_80518B18
+lbl_80518B18:
+	.float 0.8
+.global lbl_80518B1C
+lbl_80518B1C:
+	.asciz "flow"
+	.skip 0x3
+.global lbl_80518B24
+lbl_80518B24:
+	.float 900.0
+.global lbl_80518B28
+lbl_80518B28:
+	.float 7.0
+.global lbl_80518B2C
+lbl_80518B2C:
+	.float 90.0
+.global lbl_80518B30
+lbl_80518B30:
+	.asciz "Onyon"
+	.skip 0x2
+.global lbl_80518B38
+lbl_80518B38:
+	.asciz "pot.bmd"
+.global lbl_80518B40
+lbl_80518B40:
+	.asciz "ufo.bmd"
+.global lbl_80518B48
+lbl_80518B48:
+	.asciz "ufo.brk"
+.global lbl_80518B50
+lbl_80518B50:
+	.asciz "ArgType"
+.global lbl_80518B58
+lbl_80518B58:
+	.float 128000.0
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E60
 lbl_80520E60:

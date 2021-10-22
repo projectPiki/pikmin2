@@ -64,6 +64,41 @@ lbl_80515A40:
 lbl_80515A44:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519278
+lbl_80519278:
+	.4byte 0x90460000
+.global lbl_8051927C
+lbl_8051927C:
+	.4byte 0x90940000
+.global lbl_80519280
+lbl_80519280:
+	.4byte 0x00000000
+.global lbl_80519284
+lbl_80519284:
+	.4byte 0x47000000
+.global lbl_80519288
+lbl_80519288:
+	.4byte 0x40C90FDB
+.global lbl_8051928C
+lbl_8051928C:
+	.4byte 0x41200000
+.global lbl_80519290
+lbl_80519290:
+	.4byte 0x43A2F983
+.global lbl_80519294
+lbl_80519294:
+	.4byte 0xC3A2F983
+.global lbl_80519298
+lbl_80519298:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805192A0
+lbl_805192A0:
+	.4byte 0x64616D65
+	.4byte 0x0A000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeObjectPiki__Fv
 makeObjectPiki__Fv:

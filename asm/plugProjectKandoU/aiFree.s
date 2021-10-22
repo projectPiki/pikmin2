@@ -44,6 +44,29 @@ __vt__Q26PikiAI7ActFree:
 	.4byte 0
 	.4byte "@32@4@onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519058
+lbl_80519058:
+	.asciz "Free"
+	.skip 3
+.global lbl_80519060
+lbl_80519060:
+	.float 0.0
+.global lbl_80519064
+lbl_80519064:
+	.float 32768.0
+.global lbl_80519068
+lbl_80519068:
+	.float 30.0
+.global lbl_8051906C
+lbl_8051906C:
+	.float 0.5
+.global lbl_80519070
+lbl_80519070:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActFreeFPQ24Game4Piki
 __ct__Q26PikiAI7ActFreeFPQ24Game4Piki:

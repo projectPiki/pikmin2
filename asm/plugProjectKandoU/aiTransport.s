@@ -80,6 +80,44 @@ __vt__Q26PikiAI12ActTransport:
 	.4byte "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805190D0
+lbl_805190D0:
+	.ascii "SLOT"
+	.skip 4
+.global lbl_805190D8
+lbl_805190D8:
+	.ascii "LIFT"
+	.skip 4
+.global lbl_805190E0
+lbl_805190E0:
+	.ascii "MOVE"
+	.skip 4
+.global lbl_805190E8
+lbl_805190E8:
+	.asciz "Carry"
+	.skip 2
+.global lbl_805190F0
+lbl_805190F0:
+	.float 0.0
+.global lbl_805190F4
+lbl_805190F4:
+	.float 32768.0
+.global lbl_805190F8
+lbl_805190F8:
+	.float 5.0
+.global lbl_805190FC
+lbl_805190FC:
+	.float 3.0
+.global lbl_80519100
+lbl_80519100:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519108
+lbl_80519108:
+	.float 11.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getInfo__Q26PikiAI12ActTransportFPc
 getInfo__Q26PikiAI12ActTransportFPc:

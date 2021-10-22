@@ -239,6 +239,39 @@ lbl_80515A50:
 lbl_80515A54:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519320
+lbl_80519320:
+	.4byte 0x47000000
+.global lbl_80519324
+lbl_80519324:
+	.4byte 0xC7000000
+.global lbl_80519328
+lbl_80519328:
+	.4byte 0x00000000
+.global lbl_8051932C
+lbl_8051932C:
+	.4byte 0x40A00000
+.global lbl_80519330
+lbl_80519330:
+	.float 0.5
+.global lbl_80519334
+lbl_80519334:
+	.float 1.0
+.global lbl_80519338
+lbl_80519338:
+	.4byte 0x41F00000
+.global lbl_8051933C
+lbl_8051933C:
+	.4byte 0x40400000
+.global lbl_80519340
+lbl_80519340:
+	.4byte 0x447A0000
+.global lbl_80519344
+lbl_80519344:
+	.4byte 0x42C80000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global startDown__Q24Game12AABBWaterBoxFf
 startDown__Q24Game12AABBWaterBoxFf:

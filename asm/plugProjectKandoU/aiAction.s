@@ -33,6 +33,23 @@ lbl_805159D8:
 lbl_805159DC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518F48
+lbl_80518F48:
+	.4byte 0x41637469
+	.4byte 0x6F6E0000
+.global lbl_80518F50
+lbl_80518F50:
+	.4byte 0x25730000
+.global lbl_80518F54
+lbl_80518F54:
+	.4byte 0x43960000
+.global lbl_80518F58
+lbl_80518F58:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI6ActionFPQ24Game4Piki
 __ct__Q26PikiAI6ActionFPQ24Game4Piki:

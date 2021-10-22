@@ -82,6 +82,55 @@ __vt__Q24Game11CaveOtakara:
 stageList__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805192C8
+lbl_805192C8:
+	.4byte 0x6E6F6E61
+	.4byte 0x6D650000
+.global lbl_805192D0
+lbl_805192D0:
+	.4byte 0x00000000
+.global lbl_805192D4
+lbl_805192D4:
+	.4byte 0x6E616D65
+	.4byte 0x00000000
+.global lbl_805192DC
+lbl_805192DC:
+	.4byte 0x666F6C64
+	.4byte 0x65720000
+.global lbl_805192E4
+lbl_805192E4:
+	.4byte 0x6D6F6465
+	.4byte 0x6C000000
+.global lbl_805192EC
+lbl_805192EC:
+	.4byte 0x6D617063
+	.4byte 0x6F646500
+.global lbl_805192F4
+lbl_805192F4:
+	.4byte 0x6661726D
+	.4byte 0x00000000
+.global lbl_805192FC
+lbl_805192FC:
+	.4byte 0x726F7574
+	.4byte 0x65000000
+.global lbl_80519304
+lbl_80519304:
+	.4byte 0x73746172
+	.4byte 0x74000000
+.global lbl_8051930C
+lbl_8051930C:
+	.4byte 0x40490FDB
+.global lbl_80519310
+lbl_80519310:
+	.4byte 0x3BB60B61
+.global lbl_80519314
+lbl_80519314:
+	.4byte 0x25732F25
+	.4byte 0x73000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q24Game11CaveOtakaraFv
 __dt__Q24Game11CaveOtakaraFv:

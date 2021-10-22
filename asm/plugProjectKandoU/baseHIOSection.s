@@ -82,6 +82,13 @@ lbl_80515990:
 lbl_80515994:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805188D8
+lbl_805188D8:
+	.4byte 0x73797374
+	.4byte 0x656D0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14BaseHIOSectionFP7JKRHeap
 __ct__Q24Game14BaseHIOSectionFP7JKRHeap:

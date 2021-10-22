@@ -69,6 +69,57 @@ __vt__13DynamicsParms:
 mInstance__13DynamicsParms:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518238
+lbl_80518238:
+	.4byte 0x430C0000
+.global lbl_8051823C
+lbl_8051823C:
+	.4byte 0x00000000
+.global lbl_80518240
+lbl_80518240:
+	.4byte 0x459C4000
+.global lbl_80518244
+lbl_80518244:
+	.4byte 0x53746174
+	.4byte 0x69630000
+.global lbl_8051824C
+lbl_8051824C:
+	.4byte 0x41200000
+.global lbl_80518250
+lbl_80518250:
+	.4byte 0x3C75C28F
+.global lbl_80518254
+lbl_80518254:
+	.float 0.3
+.global lbl_80518258
+lbl_80518258:
+	.float 1.0
+.global lbl_8051825C
+lbl_8051825C:
+	.4byte 0x96808E43
+	.4byte 0x00000000
+.global lbl_80518264
+lbl_80518264:
+	.4byte 0x42C80000
+.global lbl_80518268
+lbl_80518268:
+	.4byte 0x461C4000
+.global lbl_8051826C
+lbl_8051826C:
+	.float 0.05
+.global lbl_80518270
+lbl_80518270:
+	.float 0.5
+.global lbl_80518274
+lbl_80518274:
+	.4byte 0x447A0000
+.global lbl_80518278
+lbl_80518278:
+	.4byte 0x448C0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13DynamicsParmsFv
 __ct__13DynamicsParmsFv:

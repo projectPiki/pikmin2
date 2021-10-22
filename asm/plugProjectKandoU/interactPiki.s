@@ -249,6 +249,53 @@ lbl_805159C8:
 lbl_805159CC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518EB0
+lbl_80518EB0:
+	.4byte 0x47FA0000
+.global lbl_80518EB4
+lbl_80518EB4:
+	.4byte 0x00000000
+.global lbl_80518EB8
+lbl_80518EB8:
+	.4byte 0x3F99999A
+.global lbl_80518EBC
+lbl_80518EBC:
+	.float 1.0
+.global lbl_80518EC0
+lbl_80518EC0:
+	.4byte 0xC7FA0000
+.global lbl_80518EC4
+lbl_80518EC4:
+	.float -1.0
+.global lbl_80518EC8
+lbl_80518EC8:
+	.4byte 0xC1200000
+.global lbl_80518ECC
+lbl_80518ECC:
+	.4byte 0x43A2F983
+.global lbl_80518ED0
+lbl_80518ED0:
+	.4byte 0xC3A2F983
+.global lbl_80518ED4
+lbl_80518ED4:
+	.4byte 0x47000000
+.global lbl_80518ED8
+lbl_80518ED8:
+	.float 0.1
+.global lbl_80518EDC
+lbl_80518EDC:
+	.4byte 0x42C80000
+.global lbl_80518EE0
+lbl_80518EE0:
+	.4byte 0x42480000
+	.4byte 0x00000000
+.global lbl_80518EE8
+lbl_80518EE8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki
 actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki:

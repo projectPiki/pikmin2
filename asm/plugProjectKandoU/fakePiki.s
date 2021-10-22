@@ -211,6 +211,119 @@ sCurrNeckTheta__Q24Game8FakePiki:
 sCurrNeckPhi__Q24Game8FakePiki:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805182B0
+lbl_805182B0:
+	.4byte 0x41080000
+.global lbl_805182B4
+lbl_805182B4:
+	.4byte 0x00000000
+.global lbl_805182B8
+lbl_805182B8:
+	.4byte 0x41F00000
+.global lbl_805182BC
+lbl_805182BC:
+	.4byte 0x41200000
+.global lbl_805182C0
+lbl_805182C0:
+	.4byte 0x3C23D70A
+.global lbl_805182C4
+lbl_805182C4:
+	.4byte 0x42700000
+.global lbl_805182C8
+lbl_805182C8:
+	.4byte 0xC3A2F983
+.global lbl_805182CC
+lbl_805182CC:
+	.4byte 0x43A2F983
+.global lbl_805182D0
+lbl_805182D0:
+	.4byte 0x3E4CCCCD
+.global lbl_805182D4
+lbl_805182D4:
+	.float 0.1
+.global lbl_805182D8
+lbl_805182D8:
+	.4byte 0x40490FDB
+.global lbl_805182DC
+lbl_805182DC:
+	.4byte 0x40C90FDB
+.global lbl_805182E0
+lbl_805182E0:
+	.float -1.0
+.global lbl_805182E4
+lbl_805182E4:
+	.4byte 0x3E20D97C
+.global lbl_805182E8
+lbl_805182E8:
+	.float 0.05
+.global lbl_805182EC
+lbl_805182EC:
+	.4byte 0x3EA0D97C
+.global lbl_805182F0
+lbl_805182F0:
+	.4byte 0xBEA0D97C
+.global lbl_805182F4
+lbl_805182F4:
+	.4byte 0x40060A92
+.global lbl_805182F8
+lbl_805182F8:
+	.4byte 0x40860A92
+.global lbl_805182FC
+lbl_805182FC:
+	.4byte 0x3F860A92
+.global lbl_80518300
+lbl_80518300:
+	.4byte 0x40A78D36
+.global lbl_80518304
+lbl_80518304:
+	.float 1.0
+.global lbl_80518308
+lbl_80518308:
+	.4byte 0x40200000
+.global lbl_8051830C
+lbl_8051830C:
+	.4byte 0x40800000
+.global lbl_80518310
+lbl_80518310:
+	.4byte 0x3F4CCCCD
+.global lbl_80518314
+lbl_80518314:
+	.4byte 0x3F19999A
+.global lbl_80518318
+lbl_80518318:
+	.4byte 0x3D088889
+.global lbl_8051831C
+lbl_8051831C:
+	.4byte 0xBCCCCCCE
+.global lbl_80518320
+lbl_80518320:
+	.4byte 0x42C80000
+.global lbl_80518324
+lbl_80518324:
+	.4byte 0x47000000
+.global lbl_80518328
+lbl_80518328:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518330
+lbl_80518330:
+	.4byte 0x646F6131
+	.4byte 0x00000000
+.global lbl_80518338
+lbl_80518338:
+	.4byte 0x3C1374BC
+.global lbl_8051833C
+lbl_8051833C:
+	.4byte 0x40000000
+.global lbl_80518340
+lbl_80518340:
+	.4byte 0x43160000
+.global lbl_80518344
+lbl_80518344:
+	.4byte 0x3F8CCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8FakePikiFv
 __ct__Q24Game8FakePikiFv:

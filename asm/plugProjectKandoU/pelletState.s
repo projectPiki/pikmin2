@@ -285,6 +285,135 @@ lbl_80515A08:
 lbl_80515A0C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519188
+lbl_80519188:
+	.4byte 0x00000000
+.global lbl_8051918C
+lbl_8051918C:
+	.4byte 0x3FC00000
+.global lbl_80519190
+lbl_80519190:
+	.float 1.0
+.global lbl_80519194
+lbl_80519194:
+	.4byte 0x6B657900
+.global lbl_80519198
+lbl_80519198:
+	.4byte 0x6C6F6F7A
+	.4byte 0x79000000
+.global lbl_805191A0
+lbl_805191A0:
+	.4byte 0x47FA0000
+.global lbl_805191A4
+lbl_805191A4:
+	.4byte 0x42B40000
+.global lbl_805191A8
+lbl_805191A8:
+	.4byte 0x42700000
+.global lbl_805191AC
+lbl_805191AC:
+	.4byte 0xC3A2F983
+.global lbl_805191B0
+lbl_805191B0:
+	.4byte 0x43A2F983
+.global lbl_805191B4
+lbl_805191B4:
+	.4byte 0x41000000
+.global lbl_805191B8
+lbl_805191B8:
+	.4byte 0x40C90FDB
+.global lbl_805191BC
+lbl_805191BC:
+	.4byte 0x3CF5C28F
+.global lbl_805191C0
+lbl_805191C0:
+	.4byte 0x44340000
+.global lbl_805191C4
+lbl_805191C4:
+	.4byte 0x6F72696D
+	.4byte 0x61000000
+.global lbl_805191CC
+lbl_805191CC:
+	.4byte 0x41F00000
+.global lbl_805191D0
+lbl_805191D0:
+	.4byte 0x3C23D70A
+.global lbl_805191D4
+lbl_805191D4:
+	.4byte 0x47000000
+.global lbl_805191D8
+lbl_805191D8:
+	.4byte 0x3F20D97C
+.global lbl_805191DC
+lbl_805191DC:
+	.float 0.3
+.global lbl_805191E0
+lbl_805191E0:
+	.4byte 0x3ECCCCCD
+.global lbl_805191E4
+lbl_805191E4:
+	.4byte 0x3FE66666
+.global lbl_805191E8
+lbl_805191E8:
+	.4byte 0x3F4CCCCD
+.global lbl_805191EC
+lbl_805191EC:
+	.float 0.7
+.global lbl_805191F0
+lbl_805191F0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805191F8
+lbl_805191F8:
+	.4byte 0x3E4CCCCD
+.global lbl_805191FC
+lbl_805191FC:
+	.4byte 0x4196CBE4
+.global lbl_80519200
+lbl_80519200:
+	.float 0.1
+.global lbl_80519204
+lbl_80519204:
+	.float 0.05
+.global lbl_80519208
+lbl_80519208:
+	.4byte 0x3F19999A
+.global lbl_8051920C
+lbl_8051920C:
+	.4byte 0x40490FDB
+.global lbl_80519210
+lbl_80519210:
+	.4byte 0x42C80000
+.global lbl_80519214
+lbl_80519214:
+	.4byte 0xC47A0000
+.global lbl_80519218
+lbl_80519218:
+	.4byte 0x41200000
+.global lbl_8051921C
+lbl_8051921C:
+	.4byte 0x41700000
+.global lbl_80519220
+lbl_80519220:
+	.float 0.5
+.global lbl_80519224
+lbl_80519224:
+	.4byte 0x3F666666
+.global lbl_80519228
+lbl_80519228:
+	.4byte 0x42480000
+.global lbl_8051922C
+lbl_8051922C:
+	.4byte 0x3F000001
+.global lbl_80519230
+lbl_80519230:
+	.4byte 0x3DCCCCD0
+.global lbl_80519234
+lbl_80519234:
+	.4byte 0x43480000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24Game9PelletFSMFPQ24Game6Pellet
 init__Q24Game9PelletFSMFPQ24Game6Pellet:

@@ -76,6 +76,75 @@ infos:
 	.4byte 0xFFFF0000
 	.4byte lbl_80518BDC
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518B60
+lbl_80518B60:
+	.asciz "piki"
+	.skip 0x3
+.global lbl_80518B68
+lbl_80518B68:
+	.asciz "navi"
+	.skip 0x3
+.global lbl_80518B70
+lbl_80518B70:
+	.asciz "teki"
+	.skip 0x3
+.global lbl_80518B78
+lbl_80518B78:
+	.asciz "pellet"
+	.skip 0x1
+.global lbl_80518B80
+lbl_80518B80:
+	.asciz "onyon"
+	.skip 0x2
+.global lbl_80518B88
+lbl_80518B88:
+	.asciz "ufo"
+.global lbl_80518B8C
+lbl_80518B8C:
+	.asciz "gate"
+	.skip 0x3
+.global lbl_80518B94
+lbl_80518B94:
+	.asciz "hole"
+	.skip 0x3
+.global lbl_80518B9C
+lbl_80518B9C:
+	.asciz "honey"
+	.skip 0x2
+.global lbl_80518BA4
+lbl_80518BA4:
+	.asciz "plant"
+	.skip 0x2
+.global lbl_80518BAC
+lbl_80518BAC:
+	.asciz "rock"
+	.skip 0x3
+.global lbl_80518BB4
+lbl_80518BB4:
+	.asciz "cave"
+	.skip 0x3
+.global lbl_80518BBC
+lbl_80518BBC:
+	.asciz "bridge"
+	.skip 0x1
+.global lbl_80518BC4
+lbl_80518BC4:
+	.asciz "weed"
+	.skip 0x3
+.global lbl_80518BCC
+lbl_80518BCC:
+	.asciz "ball"
+	.skip 0x3
+.global lbl_80518BD4
+lbl_80518BD4:
+	.asciz "undef"
+	.skip 0x2
+.global lbl_80518BDC
+lbl_80518BDC:
+	.asciz "end"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getName__Q24Game7ObjTypeFUs
 getName__Q24Game7ObjTypeFUs:

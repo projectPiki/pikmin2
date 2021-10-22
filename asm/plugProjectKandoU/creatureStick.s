@@ -60,6 +60,25 @@ mutex__Q24Game8Stickers:
 buffer__Q24Game8Stickers:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519040
+lbl_80519040:
+	.float 1.0
+.global lbl_80519044
+lbl_80519044:
+	.4byte 0x3FA66666
+.global lbl_80519048
+lbl_80519048:
+	.4byte 0x3FC00000
+.global lbl_8051904C
+lbl_8051904C:
+	.4byte 0x00000000
+.global lbl_80519050
+lbl_80519050:
+	.4byte 0x3FC90FDB
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearStick__Q24Game8CreatureFv
 clearStick__Q24Game8CreatureFv:

@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805188E0
+lbl_805188E0:
+	.4byte 0x41200000
+.global lbl_805188E4
+lbl_805188E4:
+	.4byte 0x00000000
+.global lbl_805188E8
+lbl_805188E8:
+	.float 0.5
+.global lbl_805188EC
+lbl_805188EC:
+	.4byte 0x43A2F983
+.global lbl_805188F0
+lbl_805188F0:
+	.4byte 0xC3A2F983
+.global lbl_805188F4
+lbl_805188F4:
+	.4byte 0x47FA0000
+.global lbl_805188F8
+lbl_805188F8:
+	.4byte 0xC7FA0000
+.global lbl_805188FC
+lbl_805188FC:
+	.float 1.0
+.global lbl_80518900
+lbl_80518900:
+	.4byte 0x437F0000
+.global lbl_80518904
+lbl_80518904:
+	.4byte 0xC32F0000
+.global lbl_80518908
+lbl_80518908:
+	.4byte 0x42F00000
+.global lbl_8051890C
+lbl_8051890C:
+	.4byte 0xC2DC0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11NaviWhistleFPQ24Game4Navi

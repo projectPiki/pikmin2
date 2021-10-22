@@ -76,6 +76,77 @@ __vt__Q26PikiAI8ActEnter:
 	.4byte 0
 	.4byte "@96@4@onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519110
+lbl_80519110:
+	.4byte 0x456E7465
+	.4byte 0x72000000
+.global lbl_80519118
+lbl_80519118:
+	.4byte 0x00000000
+.global lbl_8051911C
+lbl_8051911C:
+	.4byte 0x47000000
+.global lbl_80519120
+lbl_80519120:
+	.4byte 0x42080000
+.global lbl_80519124
+lbl_80519124:
+	.4byte 0x40C90FDB
+.global lbl_80519128
+lbl_80519128:
+	.4byte 0x43A2F983
+.global lbl_8051912C
+lbl_8051912C:
+	.4byte 0xC3A2F983
+.global lbl_80519130
+lbl_80519130:
+	.4byte 0x41A00000
+.global lbl_80519134
+lbl_80519134:
+	.4byte 0x40400000
+.global lbl_80519138
+lbl_80519138:
+	.4byte 0x41200000
+	.4byte 0x00000000
+.global lbl_80519140
+lbl_80519140:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519148
+lbl_80519148:
+	.4byte 0x42480000
+.global lbl_8051914C
+lbl_8051914C:
+	.float 0.25
+.global lbl_80519150
+lbl_80519150:
+	.4byte 0x3FA66666
+.global lbl_80519154
+lbl_80519154:
+	.float 1.0
+.global lbl_80519158
+lbl_80519158:
+	.4byte 0x42DC0000
+.global lbl_8051915C
+lbl_8051915C:
+	.float 0.05
+.global lbl_80519160
+lbl_80519160:
+	.4byte 0x45786974
+	.4byte 0x00000000
+.global lbl_80519168
+lbl_80519168:
+	.4byte 0x42C80000
+.global lbl_8051916C
+lbl_8051916C:
+	.4byte 0x43700000
+.global lbl_80519170
+lbl_80519170:
+	.4byte 0x42700000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI8ActEnterFPQ24Game4Piki
 __ct__Q26PikiAI8ActEnterFPQ24Game4Piki:

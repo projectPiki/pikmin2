@@ -181,6 +181,43 @@ lbl_805158F4:
 currOp__Q24Game8Creature:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518280
+lbl_80518280:
+	.4byte 0x42C80000
+.global lbl_80518284
+lbl_80518284:
+	.float 1.0
+.global lbl_80518288
+lbl_80518288:
+	.4byte 0x00000000
+.global lbl_8051828C
+lbl_8051828C:
+	.float 0.5
+.global lbl_80518290
+lbl_80518290:
+	.4byte 0x41200000
+.global lbl_80518294
+lbl_80518294:
+	.4byte 0x40800000
+.global lbl_80518298
+lbl_80518298:
+	.4byte 0xC3FA0000
+.global lbl_8051829C
+lbl_8051829C:
+	.4byte 0xC3960000
+.global lbl_805182A0
+lbl_805182A0:
+	.4byte 0x43480000
+.global lbl_805182A4
+lbl_805182A4:
+	.float 0.1
+.global lbl_805182A8
+lbl_805182A8:
+	.4byte 0x40000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8CreatureFv
 __ct__Q24Game8CreatureFv:

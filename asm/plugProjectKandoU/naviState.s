@@ -871,6 +871,217 @@ lbl_805159B8:
 lbl_805159BC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518BE0
+lbl_80518BE0:
+	.float 0.0
+.global lbl_80518BE4
+lbl_80518BE4:
+	.float 17.0
+.global lbl_80518BE8
+lbl_80518BE8:
+	.float 325.9493
+.global lbl_80518BEC
+lbl_80518BEC:
+	.float -325.9493
+.global lbl_80518BF0
+lbl_80518BF0:
+	.float 4.8
+.global lbl_80518BF4
+lbl_80518BF4:
+	.float 260.0
+.global lbl_80518BF8
+lbl_80518BF8:
+	.float 340.0
+.global lbl_80518BFC
+lbl_80518BFC:
+	.float 0.45
+.global lbl_80518C00
+lbl_80518C00:
+	.float 0.3
+.global lbl_80518C04
+lbl_80518C04:
+	.float 0.5
+.global lbl_80518C08
+lbl_80518C08:
+	.float 32768.0
+.global lbl_80518C0C
+lbl_80518C0C:
+	.float 0.05
+.global lbl_80518C10
+lbl_80518C10:
+	.float 120.0
+.global lbl_80518C14
+lbl_80518C14:
+	.float 100.0
+.global lbl_80518C18
+lbl_80518C18:
+	.float -1000.0
+.global lbl_80518C1C
+lbl_80518C1C:
+	.float 0.1
+.global lbl_80518C20
+lbl_80518C20:
+	.float 0.9424779
+.global lbl_80518C24
+lbl_80518C24:
+	.float 5.0
+.global lbl_80518C28
+lbl_80518C28:
+	.float 0.2
+	.skip 0x4
+.global lbl_80518C30
+lbl_80518C30:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518C38
+lbl_80518C38:
+	.4byte 0x40400000
+.global lbl_80518C3C
+lbl_80518C3C:
+	.4byte 0x40000000
+.global lbl_80518C40
+lbl_80518C40:
+	.4byte 0x41100000
+.global lbl_80518C44
+lbl_80518C44:
+	.4byte 0x461C4000
+.global lbl_80518C48
+lbl_80518C48:
+	.float 1.0
+.global lbl_80518C4C
+lbl_80518C4C:
+	.4byte 0x41200000
+.global lbl_80518C50
+lbl_80518C50:
+	.4byte 0x420C0000
+.global lbl_80518C54
+lbl_80518C54:
+	.4byte 0x41700000
+.global lbl_80518C58
+lbl_80518C58:
+	.4byte 0x41000000
+.global lbl_80518C5C
+lbl_80518C5C:
+	.4byte 0x41A00000
+.global lbl_80518C60
+lbl_80518C60:
+	.4byte 0x3FB4F4AB
+.global lbl_80518C64
+lbl_80518C64:
+	.4byte 0x41F00000
+.global lbl_80518C68
+lbl_80518C68:
+	.4byte 0x42700000
+.global lbl_80518C6C
+lbl_80518C6C:
+	.4byte 0x43D70000
+.global lbl_80518C70
+lbl_80518C70:
+	.4byte 0x40F00000
+.global lbl_80518C74
+lbl_80518C74:
+	.4byte 0x40200000
+.global lbl_80518C78
+lbl_80518C78:
+	.4byte 0x41C80000
+.global lbl_80518C7C
+lbl_80518C7C:
+	.4byte 0x43160000
+.global lbl_80518C80
+lbl_80518C80:
+	.4byte 0x40C00000
+.global lbl_80518C84
+lbl_80518C84:
+	.4byte 0x3EA0D97C
+.global lbl_80518C88
+lbl_80518C88:
+	.float -1.0
+.global lbl_80518C8C
+lbl_80518C8C:
+	.4byte 0x3EB33333
+.global lbl_80518C90
+lbl_80518C90:
+	.4byte 0x3F266666
+.global lbl_80518C94
+lbl_80518C94:
+	.4byte 0x428C0000
+.global lbl_80518C98
+lbl_80518C98:
+	.4byte 0x40800000
+.global lbl_80518C9C
+lbl_80518C9C:
+	.4byte 0xC3C80000
+.global lbl_80518CA0
+lbl_80518CA0:
+	.4byte 0xC2C80000
+.global lbl_80518CA4
+lbl_80518CA4:
+	.4byte 0x40490FDB
+.global lbl_80518CA8
+lbl_80518CA8:
+	.4byte 0x3F666666
+.global lbl_80518CAC
+lbl_80518CAC:
+	.4byte 0x41B00000
+.global lbl_80518CB0
+lbl_80518CB0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80518CB8
+lbl_80518CB8:
+	.4byte 0x42A00000
+.global lbl_80518CBC
+lbl_80518CBC:
+	.4byte 0xBDCCCCCD
+.global lbl_80518CC0
+lbl_80518CC0:
+	.4byte 0x42020000
+.global lbl_80518CC4
+lbl_80518CC4:
+	.4byte 0x430C0000
+.global lbl_80518CC8
+lbl_80518CC8:
+	.4byte 0x6F72696D
+	.4byte 0x61000000
+.global lbl_80518CD0
+lbl_80518CD0:
+	.4byte 0x3FA66666
+.global lbl_80518CD4
+lbl_80518CD4:
+	.4byte 0x3FC00000
+.global lbl_80518CD8
+lbl_80518CD8:
+	.4byte 0x44610000
+.global lbl_80518CDC
+lbl_80518CDC:
+	.4byte 0x3F400000
+.global lbl_80518CE0
+lbl_80518CE0:
+	.4byte 0x44340000
+.global lbl_80518CE4
+lbl_80518CE4:
+	.4byte 0x46480000
+.global lbl_80518CE8
+lbl_80518CE8:
+	.4byte 0x451C4000
+.global lbl_80518CEC
+lbl_80518CEC:
+	.4byte 0x43700000
+.global lbl_80518CF0
+lbl_80518CF0:
+	.4byte 0x3C23D70A
+.global lbl_80518CF4
+lbl_80518CF4:
+	.4byte 0xBFC90FDB
+.global lbl_80518CF8
+lbl_80518CF8:
+	.float 0.7
+.global lbl_80518CFC
+lbl_80518CFC:
+	.4byte 0x40C90FDB
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
 draw2d__Q24Game9NaviStateFR14J2DGrafContextRi:

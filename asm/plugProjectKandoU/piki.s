@@ -271,6 +271,95 @@ lbl_80515920:
 lbl_80515924:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518410
+lbl_80518410:
+	.4byte 0x40800000
+.global lbl_80518414
+lbl_80518414:
+	.4byte 0x50535069
+	.4byte 0x6B690000
+.global lbl_8051841C
+lbl_8051841C:
+	.4byte 0x00000000
+.global lbl_80518420
+lbl_80518420:
+	.4byte 0x41A00000
+.global lbl_80518424
+lbl_80518424:
+	.4byte 0x41700000
+.global lbl_80518428
+lbl_80518428:
+	.4byte 0x70752D31
+	.4byte 0x00000000
+.global lbl_80518430
+lbl_80518430:
+	.4byte 0x70752D34
+	.4byte 0x00000000
+.global lbl_80518438
+lbl_80518438:
+	.float 0.1
+.global lbl_8051843C
+lbl_8051843C:
+	.4byte 0x42C80000
+.global lbl_80518440
+lbl_80518440:
+	.float 1.0
+.global lbl_80518444
+lbl_80518444:
+	.4byte 0x47FA0000
+.global lbl_80518448
+lbl_80518448:
+	.4byte 0xC7FA0000
+.global lbl_8051844C
+lbl_8051844C:
+	.float 0.5
+.global lbl_80518450
+lbl_80518450:
+	.4byte 0x41200000
+.global lbl_80518454
+lbl_80518454:
+	.4byte 0x40000000
+.global lbl_80518458
+lbl_80518458:
+	.4byte 0x40A00000
+.global lbl_8051845C
+lbl_8051845C:
+	.4byte 0x47000000
+.global lbl_80518460
+lbl_80518460:
+	.4byte 0x3E4CCCCD
+	.4byte 0x00000000
+.global lbl_80518468
+lbl_80518468:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518470
+lbl_80518470:
+	.4byte 0x3F99999A
+.global lbl_80518474
+lbl_80518474:
+	.4byte 0x3F4CCCCD
+.global lbl_80518478
+lbl_80518478:
+	.4byte 0x40E00000
+.global lbl_8051847C
+lbl_8051847C:
+	.4byte 0x68656164
+	.4byte 0x6A6E7400
+.global lbl_80518484
+lbl_80518484:
+	.4byte 0x43480000
+.global lbl_80518488
+lbl_80518488:
+	.4byte 0x40400000
+.global lbl_8051848C
+lbl_8051848C:
+	.4byte 0x70696B6D
+	.4byte 0x696E0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game4PikiFv
 __ct__Q24Game4PikiFv:

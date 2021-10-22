@@ -125,6 +125,36 @@ lbl_80515A58:
 lbl_80515A5C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519348
+lbl_80519348:
+	.4byte 0x43C80000
+.global lbl_8051934C
+lbl_8051934C:
+	.4byte 0x43960000
+.global lbl_80519350
+lbl_80519350:
+	.4byte 0x428C0000
+.global lbl_80519354
+lbl_80519354:
+	.4byte 0x430C0000
+.global lbl_80519358
+lbl_80519358:
+	.4byte 0x43000000
+.global lbl_8051935C
+lbl_8051935C:
+	.4byte 0x00000000
+.global lbl_80519360
+lbl_80519360:
+	.4byte 0x41F00000
+.global lbl_80519364
+lbl_80519364:
+	.4byte 0x42C80000
+.global lbl_80519368
+lbl_80519368:
+	.4byte 0x3E4CCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global graspSituation_Fast__Q24Game4PikiFPPQ24Game8Creature
 graspSituation_Fast__Q24Game4PikiFPPQ24Game8Creature:

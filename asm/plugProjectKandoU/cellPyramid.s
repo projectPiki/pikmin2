@@ -97,6 +97,44 @@ sCurrCellMgr__Q24Game4Cell:
 sCellBugID__Q24Game11CellPyramid:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518628
+lbl_80518628:
+	.float 0.0
+.global lbl_8051862C
+lbl_8051862C:
+	.4byte 0x47C35000
+.global lbl_80518630
+lbl_80518630:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_80518638
+lbl_80518638:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80518640
+lbl_80518640:
+	.asciz "none"
+	.skip 3
+.global lbl_80518648
+lbl_80518648:
+	.float 2.0
+	.4byte 0x00000000
+.global lbl_80518650
+lbl_80518650:
+	.double 2.0
+.global lbl_80518658
+lbl_80518658:
+	.float 1.0
+.global lbl_8051865C
+lbl_8051865C:
+	.float 1.5
+.global lbl_80518660
+lbl_80518660:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
 "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>":

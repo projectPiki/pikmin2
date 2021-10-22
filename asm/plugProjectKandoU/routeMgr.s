@@ -158,6 +158,39 @@ __vt__Q34Game8WayPoint8RoomList:
 	.4byte __dt__Q34Game8WayPoint8RoomListFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518A00
+lbl_80518A00:
+	.float 1.0
+.global lbl_80518A04
+lbl_80518A04:
+	.4byte 0x0D0A0000
+.global lbl_80518A08
+lbl_80518A08:
+	.4byte 0x00000000
+.global lbl_80518A0C
+lbl_80518A0C:
+	.4byte 0x47FA0000
+.global lbl_80518A10
+lbl_80518A10:
+	.4byte 0xC7FA0000
+.global lbl_80518A14
+lbl_80518A14:
+	.4byte 0x41C80000
+.global lbl_80518A18
+lbl_80518A18:
+	.float 0.1
+.global lbl_80518A1C
+lbl_80518A1C:
+	.4byte 0x40800000
+.global lbl_80518A20
+lbl_80518A20:
+	.4byte 0x499C4000
+.global lbl_80518A24
+lbl_80518A24:
+	.4byte 0x43960000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb
 __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb:

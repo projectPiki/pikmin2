@@ -251,6 +251,105 @@ lbl_805159E0:
 lbl_805159E4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518F60
+lbl_80518F60:
+	.4byte 0x00000000
+.global lbl_80518F64
+lbl_80518F64:
+	.float 1.0
+.global lbl_80518F68
+lbl_80518F68:
+	.4byte 0x41A00000
+.global lbl_80518F6C
+lbl_80518F6C:
+	.4byte 0xBF000000
+.global lbl_80518F70
+lbl_80518F70:
+	.4byte 0x40C00000
+.global lbl_80518F74
+lbl_80518F74:
+	.4byte 0x3C23D70A
+.global lbl_80518F78
+lbl_80518F78:
+	.float 0.5
+.global lbl_80518F7C
+lbl_80518F7C:
+	.4byte 0x3EA0D97C
+.global lbl_80518F80
+lbl_80518F80:
+	.4byte 0x41200000
+.global lbl_80518F84
+lbl_80518F84:
+	.4byte 0x3E4CCCCD
+.global lbl_80518F88
+lbl_80518F88:
+	.4byte 0x40400000
+.global lbl_80518F8C
+lbl_80518F8C:
+	.4byte 0x42200000
+.global lbl_80518F90
+lbl_80518F90:
+	.float -1.0
+.global lbl_80518F94
+lbl_80518F94:
+	.4byte 0x40490FDB
+.global lbl_80518F98
+lbl_80518F98:
+	.4byte 0x447FE000
+.global lbl_80518F9C
+lbl_80518F9C:
+	.4byte 0x3FC90FDB
+.global lbl_80518FA0
+lbl_80518FA0:
+	.4byte 0x42C80000
+	.4byte 0x00000000
+.global lbl_80518FA8
+lbl_80518FA8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80518FB0
+lbl_80518FB0:
+	.4byte 0x2E2E2E00
+.global lbl_80518FB4
+lbl_80518FB4:
+	.4byte 0x43200000
+.global lbl_80518FB8
+lbl_80518FB8:
+	.4byte 0x40C90FDB
+.global lbl_80518FBC
+lbl_80518FBC:
+	.4byte 0x43A2F983
+.global lbl_80518FC0
+lbl_80518FC0:
+	.4byte 0xC3A2F983
+.global lbl_80518FC4
+lbl_80518FC4:
+	.4byte 0x442F0000
+.global lbl_80518FC8
+lbl_80518FC8:
+	.4byte 0x42480000
+.global lbl_80518FCC
+lbl_80518FCC:
+	.float 0.3
+.global lbl_80518FD0
+lbl_80518FD0:
+	.4byte 0x40000000
+.global lbl_80518FD4
+lbl_80518FD4:
+	.4byte 0x43020000
+.global lbl_80518FD8
+lbl_80518FD8:
+	.4byte 0x47000000
+.global lbl_80518FDC
+lbl_80518FDC:
+	.4byte 0x40A00000
+.global lbl_80518FE0
+lbl_80518FE0:
+	.4byte 0x3F19999A
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
 __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki:

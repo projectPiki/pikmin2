@@ -107,6 +107,71 @@ lbl_805159E8:
 lbl_805159EC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518FE8
+lbl_80518FE8:
+	.4byte 0x00000000
+.global lbl_80518FEC
+lbl_80518FEC:
+	.4byte 0x41200000
+.global lbl_80518FF0
+lbl_80518FF0:
+	.4byte 0x3F747AE1
+.global lbl_80518FF4
+lbl_80518FF4:
+	.4byte 0x42700000
+.global lbl_80518FF8
+lbl_80518FF8:
+	.float 1.0
+.global lbl_80518FFC
+lbl_80518FFC:
+	.4byte 0x41A00000
+.global lbl_80519000
+lbl_80519000:
+	.4byte 0x42C80000
+.global lbl_80519004
+lbl_80519004:
+	.4byte 0x42DC0000
+.global lbl_80519008
+lbl_80519008:
+	.4byte 0x47000000
+.global lbl_8051900C
+lbl_8051900C:
+	.4byte 0x3F7D70A4
+.global lbl_80519010
+lbl_80519010:
+	.float 0.7
+.global lbl_80519014
+lbl_80519014:
+	.4byte 0x40000000
+.global lbl_80519018
+lbl_80519018:
+	.4byte 0x42200000
+.global lbl_8051901C
+lbl_8051901C:
+	.float 0.3
+.global lbl_80519020
+lbl_80519020:
+	.4byte 0x40E00000
+.global lbl_80519024
+lbl_80519024:
+	.4byte 0x41700000
+.global lbl_80519028
+lbl_80519028:
+	.float 0.1
+.global lbl_8051902C
+lbl_8051902C:
+	.float 0.5
+.global lbl_80519030
+lbl_80519030:
+	.4byte 0x41000000
+	.4byte 0x00000000
+.global lbl_80519038
+lbl_80519038:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI12ActFormationFPQ24Game4Piki
 __ct__Q26PikiAI12ActFormationFPQ24Game4Piki:

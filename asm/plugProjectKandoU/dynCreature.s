@@ -297,6 +297,31 @@ __vt__Q24Game11DynParticle:
 dynParticleMgr__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519238
+lbl_80519238:
+	.4byte 0x00000000
+.global lbl_8051923C
+lbl_8051923C:
+	.float 1.0
+.global lbl_80519240
+lbl_80519240:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519248
+lbl_80519248:
+	.4byte 0xC7FA0000
+.global lbl_8051924C
+lbl_8051924C:
+	.4byte 0x47FA0000
+.global lbl_80519250
+lbl_80519250:
+	.4byte 0x42480000
+.global lbl_80519254
+lbl_80519254:
+	.4byte 0x3F19999A
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14DynParticleMgrFi
 __ct__Q24Game14DynParticleMgrFi:

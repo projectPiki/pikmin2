@@ -182,6 +182,25 @@ dayGeneratorMgr__4Game:
 cursorCallback__Q24Game12GeneratorMgr:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519258
+lbl_80519258:
+	.4byte 0x00000000
+.global lbl_8051925C
+lbl_8051925C:
+	.4byte 0x756E7365
+	.4byte 0x74000000
+	.4byte 0x00000000
+.global lbl_80519268
+lbl_80519268:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519270
+lbl_80519270:
+	.4byte 0x67656E4D
+	.4byte 0x67720000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7GenBaseFUlPcPc
 __ct__Q24Game7GenBaseFUlPcPc:

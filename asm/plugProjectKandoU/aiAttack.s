@@ -91,6 +91,71 @@ __vt__Q26PikiAI9ActAttack:
 	.4byte "@56@4@onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519078
+lbl_80519078:
+	.asciz "SA"
+	.skip 1
+.global lbl_8051907C
+lbl_8051907C:
+	.asciz "AJ"
+	.skip 1
+.global lbl_80519080
+lbl_80519080:
+	.asciz "JA"
+	.skip 1
+.global lbl_80519084
+lbl_80519084:
+	.asciz "JP"
+	.skip 1
+.global lbl_80519088
+lbl_80519088:
+	.asciz "LT"
+	.skip 1
+.global lbl_8051908C
+lbl_8051908C:
+	.asciz "Attack"
+	.skip 1
+.global lbl_80519094
+lbl_80519094:
+	.float 32768.0
+.global lbl_80519098
+lbl_80519098:
+	.float 0.8
+	.skip 4
+.global lbl_805190A0
+lbl_805190A0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805190A8
+lbl_805190A8:
+	.4byte 0x41200000
+.global lbl_805190AC
+lbl_805190AC:
+	.float -1.0
+.global lbl_805190B0
+lbl_805190B0:
+	.4byte 0x40000000
+.global lbl_805190B4
+lbl_805190B4:
+	.4byte 0x41A00000
+.global lbl_805190B8
+lbl_805190B8:
+	.4byte 0x00000000
+.global lbl_805190BC
+lbl_805190BC:
+	.float 1.0
+.global lbl_805190C0
+lbl_805190C0:
+	.4byte 0x42C80000
+.global lbl_805190C4
+lbl_805190C4:
+	.4byte 0x43480000
+.global lbl_805190C8
+lbl_805190C8:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getInfo__Q26PikiAI9ActAttackFPc
 getInfo__Q26PikiAI9ActAttackFPc:
