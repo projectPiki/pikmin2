@@ -316,6 +316,37 @@ __vt__Q34Game3Mar5Parms:
 "cMatAnimBrkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
 	.4byte lbl_80487458
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B618
+lbl_8051B618:
+	.4byte 0x42B40000
+.global lbl_8051B61C
+lbl_8051B61C:
+	.4byte 0x00000000
+.global lbl_8051B620
+lbl_8051B620:
+	.4byte 0x43160000
+.global lbl_8051B624
+lbl_8051B624:
+	.float 1.0
+.global lbl_8051B628
+lbl_8051B628:
+	.4byte 0x41200000
+.global lbl_8051B62C
+lbl_8051B62C:
+	.4byte 0x40400000
+.global lbl_8051B630
+lbl_8051B630:
+	.4byte 0x40200000
+.global lbl_8051B634
+lbl_8051B634:
+	.4byte 0x40A00000
+.global lbl_8051B638
+lbl_8051B638:
+	.4byte 0x6D617431
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game3Mar3MgrFiUc
 __ct__Q34Game3Mar3MgrFiUc:

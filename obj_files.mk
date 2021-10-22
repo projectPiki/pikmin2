@@ -687,6 +687,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sarai.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankMgr.o\
@@ -736,7 +737,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappy.o\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiMgr.o\

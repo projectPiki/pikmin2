@@ -302,6 +302,25 @@ __vt__Q34Game5Queen5Parms:
 "cMatAnimBtkTexName__Q34Game5Queen22@unnamed@QueenMgr_cpp@":
 	.4byte lbl_80487C68
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B800
+lbl_8051B800:
+	.4byte 0x41200000
+.global lbl_8051B804
+lbl_8051B804:
+	.4byte 0x00000000
+.global lbl_8051B808
+lbl_8051B808:
+	.4byte 0x42C80000
+.global lbl_8051B80C
+lbl_8051B80C:
+	.4byte 0x451C4000
+.global lbl_8051B810
+lbl_8051B810:
+	.4byte 0x461C4000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Queen3MgrFiUc
 __ct__Q34Game5Queen3MgrFiUc:

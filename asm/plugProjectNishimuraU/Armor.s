@@ -263,6 +263,71 @@ __vt__Q34Game5Armor3Obj:
 	.4byte "@740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B540
+lbl_8051B540:
+	.4byte 0x00000000
+.global lbl_8051B544
+lbl_8051B544:
+	.4byte 0x42480000
+.global lbl_8051B548
+lbl_8051B548:
+	.4byte 0x40200000
+.global lbl_8051B54C
+lbl_8051B54C:
+	.4byte 0x41C80000
+.global lbl_8051B550
+lbl_8051B550:
+	.float 1.0
+.global lbl_8051B554
+lbl_8051B554:
+	.4byte 0xC47A0000
+.global lbl_8051B558
+lbl_8051B558:
+	.4byte 0x6B616D75
+	.4byte 0x6A6E7400
+.global lbl_8051B560
+lbl_8051B560:
+	.4byte 0x47000000
+.global lbl_8051B564
+lbl_8051B564:
+	.float 0.5
+.global lbl_8051B568
+lbl_8051B568:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B570
+lbl_8051B570:
+	.4byte 0x40A00000
+.global lbl_8051B574
+lbl_8051B574:
+	.4byte 0xC2480000
+.global lbl_8051B578
+lbl_8051B578:
+	.4byte 0x437A0000
+.global lbl_8051B57C
+lbl_8051B57C:
+	.4byte 0x3F400000
+.global lbl_8051B580
+lbl_8051B580:
+	.4byte 0x40490FDB
+.global lbl_8051B584
+lbl_8051B584:
+	.4byte 0x3BB60B61
+.global lbl_8051B588
+lbl_8051B588:
+	.float 0.7
+.global lbl_8051B58C
+lbl_8051B58C:
+	.4byte 0xC1C80000
+.global lbl_8051B590
+lbl_8051B590:
+	.4byte 0x443B8000
+.global lbl_8051B594
+lbl_8051B594:
+	.4byte 0x3F666666
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Armor3ObjFv
 __ct__Q34Game5Armor3ObjFv:

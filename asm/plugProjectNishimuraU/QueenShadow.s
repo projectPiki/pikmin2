@@ -8,6 +8,91 @@ __vt__Q34Game5Queen15QueenShadowNode:
 	.4byte __dt__Q34Game5Queen15QueenShadowNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B948
+lbl_8051B948:
+	.4byte 0x00000000
+.global lbl_8051B94C
+lbl_8051B94C:
+	.4byte 0x40400000
+.global lbl_8051B950
+lbl_8051B950:
+	.4byte 0x3FC00000
+.global lbl_8051B954
+lbl_8051B954:
+	.4byte 0x42AA0000
+.global lbl_8051B958
+lbl_8051B958:
+	.4byte 0x428C0000
+.global lbl_8051B95C
+lbl_8051B95C:
+	.4byte 0xBE99999A
+.global lbl_8051B960
+lbl_8051B960:
+	.4byte 0x6E65636B
+	.4byte 0x31000000
+.global lbl_8051B968
+lbl_8051B968:
+	.4byte 0x42940000
+.global lbl_8051B96C
+lbl_8051B96C:
+	.4byte 0x426C0000
+.global lbl_8051B970
+lbl_8051B970:
+	.4byte 0xC02CCCCD
+.global lbl_8051B974
+lbl_8051B974:
+	.4byte 0x6E65636B
+	.4byte 0x33000000
+.global lbl_8051B97C
+lbl_8051B97C:
+	.4byte 0x42500000
+.global lbl_8051B980
+lbl_8051B980:
+	.4byte 0x42140000
+.global lbl_8051B984
+lbl_8051B984:
+	.4byte 0xC19F3333
+.global lbl_8051B988
+lbl_8051B988:
+	.4byte 0x6E65636B
+	.4byte 0x35000000
+.global lbl_8051B990
+lbl_8051B990:
+	.4byte 0x41B00000
+.global lbl_8051B994
+lbl_8051B994:
+	.4byte 0x68656164
+	.4byte 0x00000000
+.global lbl_8051B99C
+lbl_8051B99C:
+	.4byte 0x429C0000
+.global lbl_8051B9A0
+lbl_8051B9A0:
+	.4byte 0x427C0000
+.global lbl_8051B9A4
+lbl_8051B9A4:
+	.4byte 0x3FF33333
+.global lbl_8051B9A8
+lbl_8051B9A8:
+	.4byte 0x626F6479
+	.4byte 0x33000000
+.global lbl_8051B9B0
+lbl_8051B9B0:
+	.4byte 0x42800000
+.global lbl_8051B9B4
+lbl_8051B9B4:
+	.4byte 0x42440000
+.global lbl_8051B9B8
+lbl_8051B9B8:
+	.4byte 0x419CCCCD
+.global lbl_8051B9BC
+lbl_8051B9BC:
+	.4byte 0x626F6479
+	.4byte 0x34000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeShadowSRT__Q34Game5Queen15QueenShadowNodeFv
 makeShadowSRT__Q34Game5Queen15QueenShadowNodeFv:

@@ -210,6 +210,43 @@ __vt__Q34Game7Catfish3Obj:
 	.4byte "@728@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B358
+lbl_8051B358:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051B360
+lbl_8051B360:
+	.4byte 0x41200000
+.global lbl_8051B364
+lbl_8051B364:
+	.4byte 0x00000000
+.global lbl_8051B368
+lbl_8051B368:
+	.float 1.0
+.global lbl_8051B36C
+lbl_8051B36C:
+	.4byte 0x42480000
+.global lbl_8051B370
+lbl_8051B370:
+	.4byte 0x41700000
+.global lbl_8051B374
+lbl_8051B374:
+	.4byte 0x6B616D75
+	.4byte 0x31000000
+.global lbl_8051B37C
+lbl_8051B37C:
+	.4byte 0x6B616D75
+	.4byte 0x32000000
+.global lbl_8051B384
+lbl_8051B384:
+	.4byte 0x41A00000
+.global lbl_8051B388
+lbl_8051B388:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Catfish3ObjFv
 __ct__Q34Game7Catfish3ObjFv:

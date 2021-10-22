@@ -277,6 +277,37 @@ __vt__Q34Game9SnakeCrow5Parms:
 	.4byte read__Q34Game9SnakeCrow5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BA68
+lbl_8051BA68:
+	.4byte 0x3F4CCCCD
+.global lbl_8051BA6C
+lbl_8051BA6C:
+	.4byte 0x00000000
+.global lbl_8051BA70
+lbl_8051BA70:
+	.float 1.0
+.global lbl_8051BA74
+lbl_8051BA74:
+	.4byte 0x40000000
+.global lbl_8051BA78
+lbl_8051BA78:
+	.4byte 0x41200000
+.global lbl_8051BA7C
+lbl_8051BA7C:
+	.4byte 0x43960000
+.global lbl_8051BA80
+lbl_8051BA80:
+	.4byte 0x461C4000
+.global lbl_8051BA84
+lbl_8051BA84:
+	.4byte 0x45EA6000
+.global lbl_8051BA88
+lbl_8051BA88:
+	.4byte 0x47C34F80
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9SnakeCrow3MgrFiUc
 __ct__Q34Game9SnakeCrow3MgrFiUc:

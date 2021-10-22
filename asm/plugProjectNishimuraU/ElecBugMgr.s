@@ -259,6 +259,25 @@ __vt__Q34Game7ElecBug3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B4C8
+lbl_8051B4C8:
+	.4byte 0x40A00000
+.global lbl_8051B4CC
+lbl_8051B4CC:
+	.4byte 0x00000000
+.global lbl_8051B4D0
+lbl_8051B4D0:
+	.4byte 0x41200000
+.global lbl_8051B4D4
+lbl_8051B4D4:
+	.4byte 0x3FC00000
+.global lbl_8051B4D8
+lbl_8051B4D8:
+	.4byte 0x40400000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7ElecBug3MgrFiUc
 __ct__Q34Game7ElecBug3MgrFiUc:

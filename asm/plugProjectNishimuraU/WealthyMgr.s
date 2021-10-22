@@ -307,6 +307,43 @@ __vt__Q34Game7Wealthy3Mgr:
 "cKoganeChangeTexName__Q34Game7Wealthy24@unnamed@WealthyMgr_cpp@":
 	.4byte lbl_80487848
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B6C0
+lbl_8051B6C0:
+	.4byte 0x41700000
+.global lbl_8051B6C4
+lbl_8051B6C4:
+	.4byte 0x00000000
+.global lbl_8051B6C8
+lbl_8051B6C8:
+	.4byte 0x42C80000
+.global lbl_8051B6CC
+lbl_8051B6CC:
+	.4byte 0x41F00000
+.global lbl_8051B6D0
+lbl_8051B6D0:
+	.float 0.5
+.global lbl_8051B6D4
+lbl_8051B6D4:
+	.4byte 0x41200000
+.global lbl_8051B6D8
+lbl_8051B6D8:
+	.4byte 0x40000000
+.global lbl_8051B6DC
+lbl_8051B6DC:
+	.4byte 0x42340000
+.global lbl_8051B6E0
+lbl_8051B6E0:
+	.4byte 0x42B40000
+.global lbl_8051B6E4
+lbl_8051B6E4:
+	.4byte 0x3F4CCCCD
+.global lbl_8051B6E8
+lbl_8051B6E8:
+	.4byte 0x40A00000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Wealthy3MgrFiUc
 __ct__Q34Game7Wealthy3MgrFiUc:

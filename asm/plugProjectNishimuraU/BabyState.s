@@ -86,6 +86,45 @@ __vt__Q34Game4Baby3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B888
+lbl_8051B888:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051B890
+lbl_8051B890:
+	.4byte 0x70726573
+	.4byte 0x73000000
+.global lbl_8051B898
+lbl_8051B898:
+	.4byte 0x626F726E
+	.4byte 0x00000000
+.global lbl_8051B8A0
+lbl_8051B8A0:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051B8A8
+lbl_8051B8A8:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051B8B0
+lbl_8051B8B0:
+	.4byte 0x00000000
+.global lbl_8051B8B4
+lbl_8051B8B4:
+	.4byte 0x3F733333
+.global lbl_8051B8B8
+lbl_8051B8B8:
+	.4byte 0x40490FDB
+.global lbl_8051B8BC
+lbl_8051B8BC:
+	.4byte 0x3BB60B61
+.global lbl_8051B8C0
+lbl_8051B8C0:
+	.float 0.25
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game4Baby3FSMFPQ24Game9EnemyBase
 init__Q34Game4Baby3FSMFPQ24Game9EnemyBase:

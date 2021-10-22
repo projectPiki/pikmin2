@@ -88,6 +88,21 @@ __vt__Q34Game4Tank3Mgr:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B2D8
+lbl_8051B2D8:
+	.4byte 0x00000018
+.global lbl_8051B2DC
+lbl_8051B2DC:
+	.4byte 0x00000019
+.global lbl_8051B2E0
+lbl_8051B2E0:
+	.4byte 0x00000018
+.global lbl_8051B2E4
+lbl_8051B2E4:
+	.4byte 0x00000019
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Tank3MgrFiUc
 __ct__Q34Game4Tank3MgrFiUc:

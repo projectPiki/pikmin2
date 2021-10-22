@@ -90,6 +90,75 @@ __vt__Q34Game7Tadpole3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B390
+lbl_8051B390:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051B398
+lbl_8051B398:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051B3A0
+lbl_8051B3A0:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051B3A8
+lbl_8051B3A8:
+	.4byte 0x616D617A
+	.4byte 0x65000000
+.global lbl_8051B3B0
+lbl_8051B3B0:
+	.4byte 0x65736361
+	.4byte 0x70650000
+.global lbl_8051B3B8
+lbl_8051B3B8:
+	.4byte 0x6C656170
+	.4byte 0x00000000
+.global lbl_8051B3C0
+lbl_8051B3C0:
+	.4byte 0x00000000
+.global lbl_8051B3C4
+lbl_8051B3C4:
+	.4byte 0x40400000
+.global lbl_8051B3C8
+lbl_8051B3C8:
+	.4byte 0x42C80000
+.global lbl_8051B3CC
+lbl_8051B3CC:
+	.4byte 0xC47A0000
+.global lbl_8051B3D0
+lbl_8051B3D0:
+	.float 1.0
+.global lbl_8051B3D4
+lbl_8051B3D4:
+	.4byte 0x47000000
+.global lbl_8051B3D8
+lbl_8051B3D8:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_8051B3E0
+lbl_8051B3E0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B3E8
+lbl_8051B3E8:
+	.4byte 0x41700000
+.global lbl_8051B3EC
+lbl_8051B3EC:
+	.4byte 0x41200000
+.global lbl_8051B3F0
+lbl_8051B3F0:
+	.float 0.15
+.global lbl_8051B3F4
+lbl_8051B3F4:
+	.4byte 0x40C90FDB
+.global lbl_8051B3F8
+lbl_8051B3F8:
+	.float 0.1
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7Tadpole3FSMFPQ24Game9EnemyBase
 init__Q34Game7Tadpole3FSMFPQ24Game9EnemyBase:

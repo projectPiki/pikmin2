@@ -214,6 +214,53 @@ __vt__Q34Game7Tadpole3Obj:
 	.4byte "@728@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B410
+lbl_8051B410:
+	.4byte 0x00000000
+.global lbl_8051B414
+lbl_8051B414:
+	.4byte 0x40200000
+.global lbl_8051B418
+lbl_8051B418:
+	.float 1.0
+.global lbl_8051B41C
+lbl_8051B41C:
+	.4byte 0x42480000
+.global lbl_8051B420
+lbl_8051B420:
+	.4byte 0x40F00000
+.global lbl_8051B424
+lbl_8051B424:
+	.4byte 0x47000000
+.global lbl_8051B428
+lbl_8051B428:
+	.4byte 0x40490FDB
+.global lbl_8051B42C
+lbl_8051B42C:
+	.4byte 0x3FC90FDB
+.global lbl_8051B430
+lbl_8051B430:
+	.4byte 0x43A2F983
+.global lbl_8051B434
+lbl_8051B434:
+	.4byte 0xC3A2F983
+.global lbl_8051B438
+lbl_8051B438:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B440
+lbl_8051B440:
+	.4byte 0x41B00000
+.global lbl_8051B444
+lbl_8051B444:
+	.4byte 0x3F99999A
+.global lbl_8051B448
+lbl_8051B448:
+	.float 0.3
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Tadpole3ObjFv
 __ct__Q34Game7Tadpole3ObjFv:
