@@ -4,6 +4,73 @@
 zero:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517248
+lbl_80517248:
+	.4byte 0xC3500000
+	.4byte 0x00000000
+.global lbl_80517250
+lbl_80517250:
+	.4byte 0x43500000
+	.4byte 0x00000000
+.global lbl_80517258
+lbl_80517258:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_80517260
+lbl_80517260:
+	.4byte 0x3FE62E42
+	.4byte 0xFEE00000
+.global lbl_80517268
+lbl_80517268:
+	.4byte 0x3DEA39EF
+	.4byte 0x35793C76
+.global lbl_80517270
+lbl_80517270:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80517278
+lbl_80517278:
+	.4byte 0x3FD55555
+	.4byte 0x55555555
+.global lbl_80517280
+lbl_80517280:
+	.4byte 0x40000000
+	.4byte 0x00000000
+.global lbl_80517288
+lbl_80517288:
+	.4byte 0x3FE55555
+	.4byte 0x55555593
+.global lbl_80517290
+lbl_80517290:
+	.4byte 0x3FD24924
+	.4byte 0x94229359
+.global lbl_80517298
+lbl_80517298:
+	.4byte 0x3FC74664
+	.4byte 0x96CB03DE
+.global lbl_805172A0
+lbl_805172A0:
+	.4byte 0x3FC2F112
+	.4byte 0xDF3E5244
+.global lbl_805172A8
+lbl_805172A8:
+	.4byte 0x3FD99999
+	.4byte 0x9997FA04
+.global lbl_805172B0
+lbl_805172B0:
+	.4byte 0x3FCC71C5
+	.4byte 0x1D8E78AF
+.global lbl_805172B8
+lbl_805172B8:
+	.4byte 0x3FC39A09
+	.4byte 0xD078C69F
+.global lbl_805172C0
+lbl_805172C0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_log
 __ieee754_log:

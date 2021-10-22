@@ -735,6 +735,15 @@ WidthTable:
 CharsInSheet:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517750
+lbl_80517750:
+	.4byte 0x2ABE003D
+.global lbl_80517754
+lbl_80517754:
+	.4byte 0x003D003D
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GetFontCode
 GetFontCode:

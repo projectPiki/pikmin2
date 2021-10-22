@@ -30,6 +30,37 @@ T:
 	.4byte 0x3EFB2A70
 	.4byte 0x74BF7AD4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517520
+lbl_80517520:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_80517528
+lbl_80517528:
+	.4byte 0xBFF00000
+	.4byte 0x00000000
+.global lbl_80517530
+lbl_80517530:
+	.4byte 0x3FE921FB
+	.4byte 0x54442D18
+.global lbl_80517538
+lbl_80517538:
+	.4byte 0x3C81A626
+	.4byte 0x33145C07
+.global lbl_80517540
+lbl_80517540:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80517548
+lbl_80517548:
+	.4byte 0x40000000
+	.4byte 0x00000000
+.global lbl_80517550
+lbl_80517550:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __kernel_tan
 __kernel_tan:

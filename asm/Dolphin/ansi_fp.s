@@ -157,6 +157,33 @@ lbl_804A6AC8:
 	.4byte lbl_800C5ADC
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517098
+lbl_80517098:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805170A0
+lbl_805170A0:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_805170A8
+lbl_805170A8:
+	.4byte 0xBFF00000
+	.4byte 0x00000000
+.global lbl_805170B0
+lbl_805170B0:
+	.4byte 0x40140000
+	.4byte 0x00000000
+.global lbl_805170B8
+lbl_805170B8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805170C0
+lbl_805170C0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dec2num
 __dec2num:

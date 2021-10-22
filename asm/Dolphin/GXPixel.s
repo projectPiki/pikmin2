@@ -12,6 +12,59 @@ p2f$362:
 	.4byte 0x00000004
 	.4byte 0x00000005
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805176A0
+lbl_805176A0:
+	.4byte 0x00000000
+.global lbl_805176A4
+lbl_805176A4:
+	.float 1.0
+.global lbl_805176A8
+lbl_805176A8:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_805176B0
+lbl_805176B0:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_805176B8
+lbl_805176B8:
+	.4byte 0x40000000
+	.4byte 0x00000000
+.global lbl_805176C0
+lbl_805176C0:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_805176C8
+lbl_805176C8:
+	.4byte 0x4B00001E
+	.4byte 0x00000000
+.global lbl_805176D0
+lbl_805176D0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805176D8
+lbl_805176D8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805176E0
+lbl_805176E0:
+	.4byte 0x3FDDB3D0
+	.4byte 0x00000000
+.global lbl_805176E8
+lbl_805176E8:
+	.4byte 0x40080000
+	.4byte 0x00000000
+.global lbl_805176F0
+lbl_805176F0:
+	.4byte 0x43800000
+	.4byte 0x00000000
+.global lbl_805176F8
+lbl_805176F8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXSetFog
 GXSetFog:

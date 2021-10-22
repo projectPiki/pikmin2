@@ -101,6 +101,29 @@ __THPInfo:
 __THPInitFlag:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517778
+lbl_80517778:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80517780
+lbl_80517780:
+	.4byte 0x3FB504F3
+.global lbl_80517784
+lbl_80517784:
+	.4byte 0x3FEC835E
+.global lbl_80517788
+lbl_80517788:
+	.4byte 0x3F8A8BD4
+.global lbl_8051778C
+lbl_8051778C:
+	.4byte 0xC0273D75
+.global lbl_80517790
+lbl_80517790:
+	.4byte 0x44800000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global THPVideoDecode
 THPVideoDecode:

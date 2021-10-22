@@ -104,6 +104,53 @@ npio2_hw:
 	.4byte 0x404858EB
 	.4byte 0x404921FB
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517408
+lbl_80517408:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80517410
+lbl_80517410:
+	.4byte 0x3FF921FB
+	.4byte 0x54400000
+.global lbl_80517418
+lbl_80517418:
+	.4byte 0x3DD0B461
+	.4byte 0x1A626331
+.global lbl_80517420
+lbl_80517420:
+	.4byte 0x3DD0B461
+	.4byte 0x1A600000
+.global lbl_80517428
+lbl_80517428:
+	.4byte 0x3BA3198A
+	.4byte 0x2E037073
+.global lbl_80517430
+lbl_80517430:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80517438
+lbl_80517438:
+	.4byte 0x3FE45F30
+	.4byte 0x6DC9C883
+.global lbl_80517440
+lbl_80517440:
+	.4byte 0x3BA3198A
+	.4byte 0x2E000000
+.global lbl_80517448
+lbl_80517448:
+	.4byte 0x397B839A
+	.4byte 0x252049C1
+.global lbl_80517450
+lbl_80517450:
+	.4byte 0x41700000
+	.4byte 0x00000000
+.global lbl_80517458
+lbl_80517458:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_rem_pio2
 __ieee754_rem_pio2:

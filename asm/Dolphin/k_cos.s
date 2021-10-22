@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517460
+lbl_80517460:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_80517468
+lbl_80517468:
+	.4byte 0x3FA55555
+	.4byte 0x5555554C
+.global lbl_80517470
+lbl_80517470:
+	.4byte 0xBF56C16C
+	.4byte 0x16C15177
+.global lbl_80517478
+lbl_80517478:
+	.4byte 0x3EFA01A0
+	.4byte 0x19CB1590
+.global lbl_80517480
+lbl_80517480:
+	.4byte 0xBE927E4F
+	.4byte 0x809C52AD
+.global lbl_80517488
+lbl_80517488:
+	.4byte 0x3E21EE9E
+	.4byte 0xBDB4B1C4
+.global lbl_80517490
+lbl_80517490:
+	.4byte 0xBDA8FAE9
+	.4byte 0xBE8838D4
+.global lbl_80517498
+lbl_80517498:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_805174A0
+lbl_805174A0:
+	.4byte 0x3FD20000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __kernel_cos

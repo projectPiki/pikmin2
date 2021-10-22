@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517730
+lbl_80517730:
+	.float 1.0
+.global lbl_80517734
+lbl_80517734:
+	.4byte 0x40000000
+.global lbl_80517738
+lbl_80517738:
+	.4byte 0x00000000
+.global lbl_8051773C
+lbl_8051773C:
+	.float -1.0
+.global lbl_80517740
+lbl_80517740:
+	.float 0.5
+.global lbl_80517744
+lbl_80517744:
+	.4byte 0x3C8EFA35
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global C_MTXPerspective

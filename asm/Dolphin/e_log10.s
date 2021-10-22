@@ -4,6 +4,33 @@
 zero:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805172C8
+lbl_805172C8:
+	.4byte 0xC3500000
+	.4byte 0x00000000
+.global lbl_805172D0
+lbl_805172D0:
+	.4byte 0x43500000
+	.4byte 0x00000000
+.global lbl_805172D8
+lbl_805172D8:
+	.4byte 0x3D59FEF3
+	.4byte 0x11F12B36
+.global lbl_805172E0
+lbl_805172E0:
+	.4byte 0x3FDBCB7B
+	.4byte 0x1526E50E
+.global lbl_805172E8
+lbl_805172E8:
+	.4byte 0x3FD34413
+	.4byte 0x509F6000
+.global lbl_805172F0
+lbl_805172F0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_log10
 __ieee754_log10:

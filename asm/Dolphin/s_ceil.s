@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517580
+lbl_80517580:
+	.4byte 0x7E37E43C
+	.4byte 0x8800759C
+.global lbl_80517588
+lbl_80517588:
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ceil

@@ -1,4 +1,50 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517178
+lbl_80517178:
+	.4byte 0x400921FB
+	.4byte 0x54442D18
+.global lbl_80517180
+lbl_80517180:
+	.4byte 0xC00921FB
+	.4byte 0x54442D18
+.global lbl_80517188
+lbl_80517188:
+	.4byte 0xBFF921FB
+	.4byte 0x54442D18
+.global lbl_80517190
+lbl_80517190:
+	.4byte 0x3FF921FB
+	.4byte 0x54442D18
+.global lbl_80517198
+lbl_80517198:
+	.4byte 0x3FE921FB
+	.4byte 0x54442D18
+.global lbl_805171A0
+lbl_805171A0:
+	.4byte 0xBFE921FB
+	.4byte 0x54442D18
+.global lbl_805171A8
+lbl_805171A8:
+	.4byte 0x4002D97C
+	.4byte 0x7F3321D2
+.global lbl_805171B0
+lbl_805171B0:
+	.4byte 0xC002D97C
+	.4byte 0x7F3321D2
+.global lbl_805171B8
+lbl_805171B8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805171C0
+lbl_805171C0:
+	.4byte 0x80000000
+	.4byte 0x00000000
+.global lbl_805171C8
+lbl_805171C8:
+	.4byte 0x3CA1A626
+	.4byte 0x33145C07
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_atan2

@@ -26,6 +26,37 @@ PIo2:
 	.4byte 0x3569F31D
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805174A8
+lbl_805174A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805174B0
+lbl_805174B0:
+	.4byte 0x3E700000
+	.4byte 0x00000000
+.global lbl_805174B8
+lbl_805174B8:
+	.4byte 0x41700000
+	.4byte 0x00000000
+.global lbl_805174C0
+lbl_805174C0:
+	.double 8.0
+.global lbl_805174C8
+lbl_805174C8:
+	.double 0.125
+.global lbl_805174D0
+lbl_805174D0:
+	.double 0.5
+.global lbl_805174D8
+lbl_805174D8:
+	.double 1.0
+.global lbl_805174E0
+lbl_805174E0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __kernel_rem_pio2
 __kernel_rem_pio2:

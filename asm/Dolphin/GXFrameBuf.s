@@ -88,6 +88,17 @@ GXEurgb60Hz480IntDf:
 	.4byte 0x08000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517618
+lbl_80517618:
+	.4byte 0x43800000
+	.4byte 0x00000000
+.global lbl_80517620
+lbl_80517620:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXSetDispCopySrc
 GXSetDispCopySrc:

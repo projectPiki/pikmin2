@@ -181,6 +181,35 @@ GX2HWFiltConv_1:
 	.4byte 0x00040105
 	.4byte 0x02060000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517670
+lbl_80517670:
+	.4byte 0x41800000
+	.4byte 0x00000000
+.global lbl_80517678
+lbl_80517678:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80517680
+lbl_80517680:
+	.4byte 0xC0800000
+.global lbl_80517684
+lbl_80517684:
+	.4byte 0x40800000
+.global lbl_80517688
+lbl_80517688:
+	.4byte 0x407F5C29
+.global lbl_8051768C
+lbl_8051768C:
+	.4byte 0x42000000
+.global lbl_80517690
+lbl_80517690:
+	.4byte 0x00000000
+.global lbl_80517694
+lbl_80517694:
+	.4byte 0x41200000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXGetTexBufferSize
 GXGetTexBufferSize:
