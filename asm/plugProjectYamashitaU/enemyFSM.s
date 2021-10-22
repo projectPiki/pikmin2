@@ -24,6 +24,13 @@ __vt__Q24Game13EnemyFSMState:
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518148
+lbl_80518148:
+	.4byte 0x6E6F206E
+	.4byte 0x616D6500
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg:

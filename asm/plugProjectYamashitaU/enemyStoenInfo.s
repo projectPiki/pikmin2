@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517FB8
+lbl_80517FB8:
+	.4byte 0x40490FDB
+.global lbl_80517FBC
+lbl_80517FBC:
+	.4byte 0x3BB60B61
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setup__Q34Game10EnemyStone4InfoFR6Stream

@@ -88,6 +88,13 @@ __vt__Q34Game10ChappyBase3Mgr:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518050
+lbl_80518050:
+	.4byte 0x6174616D
+	.4byte 0x615F3200
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10ChappyBase3MgrFiUc
 __ct__Q34Game10ChappyBase3MgrFiUc:

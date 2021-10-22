@@ -69,6 +69,51 @@ __vt__Q24Game7TimeMgr:
 	.4byte __dt__Q24Game7TimeMgrFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517F50
+lbl_80517F50:
+	.float 1.0
+.global lbl_80517F54
+lbl_80517F54:
+	.4byte 0x40E00000
+.global lbl_80517F58
+lbl_80517F58:
+	.4byte 0x00000000
+.global lbl_80517F5C
+lbl_80517F5C:
+	.4byte 0x41C00000
+.global lbl_80517F60
+lbl_80517F60:
+	.4byte 0x41980000
+.global lbl_80517F64
+lbl_80517F64:
+	.4byte 0x44C30000
+.global lbl_80517F68
+lbl_80517F68:
+	.4byte 0x45610000
+.global lbl_80517F6C
+lbl_80517F6C:
+	.4byte 0x40A80000
+.global lbl_80517F70
+lbl_80517F70:
+	.4byte 0x41000000
+.global lbl_80517F74
+lbl_80517F74:
+	.4byte 0x41700000
+.global lbl_80517F78
+lbl_80517F78:
+	.4byte 0x41780000
+.global lbl_80517F7C
+lbl_80517F7C:
+	.4byte 0x41940000
+.global lbl_80517F80
+lbl_80517F80:
+	.4byte 0x41900000
+.global lbl_80517F84
+lbl_80517F84:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7TimeMgrFv
 __ct__Q24Game7TimeMgrFv:

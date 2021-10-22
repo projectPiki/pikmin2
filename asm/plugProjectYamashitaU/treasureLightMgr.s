@@ -48,6 +48,39 @@ lbl_805158D8:
 lbl_805158DC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805181D0
+lbl_805181D0:
+	.4byte 0x43960000
+.global lbl_805181D4
+lbl_805181D4:
+	.4byte 0x43A50000
+.global lbl_805181D8
+lbl_805181D8:
+	.4byte 0x00000000
+.global lbl_805181DC
+lbl_805181DC:
+	.float -1.0
+.global lbl_805181E0
+lbl_805181E0:
+	.4byte 0x42200000
+.global lbl_805181E4
+lbl_805181E4:
+	.4byte 0x40490FDB
+.global lbl_805181E8
+lbl_805181E8:
+	.4byte 0x3BB60B61
+.global lbl_805181EC
+lbl_805181EC:
+	.4byte 0x453B8000
+.global lbl_805181F0
+lbl_805181F0:
+	.float 1.0
+.global lbl_805181F4
+lbl_805181F4:
+	.4byte 0x3F59999A
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q213TreasureLight3MgrFv
 __ct__Q213TreasureLight3MgrFv:

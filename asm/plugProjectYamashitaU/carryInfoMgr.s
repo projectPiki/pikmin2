@@ -131,6 +131,109 @@ lbl_80515894:
 carryInfoMgr:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517B60
+lbl_80517B60:
+	.4byte 0x00000000
+.global lbl_80517B64
+lbl_80517B64:
+	.float 0.04
+.global lbl_80517B68
+lbl_80517B68:
+	.4byte 0x3F6147AE
+.global lbl_80517B6C
+lbl_80517B6C:
+	.float 1.0
+.global lbl_80517B70
+lbl_80517B70:
+	.4byte 0x437F0000
+.global lbl_80517B74
+lbl_80517B74:
+	.float 0.5
+.global lbl_80517B78
+lbl_80517B78:
+	.4byte 0x3F666666
+.global lbl_80517B7C
+lbl_80517B7C:
+	.4byte 0x3F400000
+.global lbl_80517B80
+lbl_80517B80:
+	.4byte 0x3F8CCCCD
+.global lbl_80517B84
+lbl_80517B84:
+	.4byte 0x40F66667
+.global lbl_80517B88
+lbl_80517B88:
+	.4byte 0xC1226667
+.global lbl_80517B8C
+lbl_80517B8C:
+	.4byte 0x41226667
+.global lbl_80517B90
+lbl_80517B90:
+	.4byte 0xC0F66667
+.global lbl_80517B94
+lbl_80517B94:
+	.4byte 0x40C90FDB
+.global lbl_80517B98
+lbl_80517B98:
+	.4byte 0x3D000000
+.global lbl_80517B9C
+lbl_80517B9C:
+	.4byte 0xC3A2F983
+.global lbl_80517BA0
+lbl_80517BA0:
+	.4byte 0x43A2F983
+.global lbl_80517BA4
+lbl_80517BA4:
+	.4byte 0x431B0000
+.global lbl_80517BA8
+lbl_80517BA8:
+	.4byte 0x426C0000
+.global lbl_80517BAC
+lbl_80517BAC:
+	.4byte 0x40E00000
+.global lbl_80517BB0
+lbl_80517BB0:
+	.4byte 0x40400000
+	.4byte 0x00000000
+.global lbl_80517BB8
+lbl_80517BB8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80517BC0
+lbl_80517BC0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80517BC8
+lbl_80517BC8:
+	.4byte 0x40B33333
+.global lbl_80517BCC
+lbl_80517BCC:
+	.4byte 0x40000000
+.global lbl_80517BD0
+lbl_80517BD0:
+	.4byte 0x41499999
+.global lbl_80517BD4
+lbl_80517BD4:
+	.4byte 0x40C00000
+.global lbl_80517BD8
+lbl_80517BD8:
+	.4byte 0x3DAAAAAB
+.global lbl_80517BDC
+lbl_80517BDC:
+	.4byte 0x41C80000
+.global lbl_80517BE0
+lbl_80517BE0:
+	.4byte 0x3FC00000
+.global lbl_80517BE4
+lbl_80517BE4:
+	.4byte 0x00000000
+.global lbl_80517BE8
+lbl_80517BE8:
+	.4byte 0x42480000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global disappear__9CarryInfoFv
 disappear__9CarryInfoFv:

@@ -213,6 +213,89 @@ sZukanState__Q34Game15IllustratedBook5Parms:
 sCamera__Q34Game15IllustratedBook5Parms:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518150
+lbl_80518150:
+	.4byte 0x904690DD
+	.4byte 0x92E80000
+.global lbl_80518158
+lbl_80518158:
+	.float 0.5
+.global lbl_8051815C
+lbl_8051815C:
+	.4byte 0x40000000
+.global lbl_80518160
+lbl_80518160:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80518168
+lbl_80518168:
+	.4byte 0x00000000
+.global lbl_8051816C
+lbl_8051816C:
+	.4byte 0xC61C4000
+.global lbl_80518170
+lbl_80518170:
+	.4byte 0x461C4000
+.global lbl_80518174
+lbl_80518174:
+	.4byte 0x00000000
+.global lbl_80518178
+lbl_80518178:
+	.4byte 0x91E582AB
+	.4byte 0x82B30000
+.global lbl_80518180
+lbl_80518180:
+	.4byte 0x41200000
+.global lbl_80518184
+lbl_80518184:
+	.4byte 0x447A0000
+.global lbl_80518188
+lbl_80518188:
+	.4byte 0x8F6F8CBB
+	.4byte 0x90940000
+.global lbl_80518190
+lbl_80518190:
+	.4byte 0x94BC8C61
+	.4byte 0x00000000
+.global lbl_80518198
+lbl_80518198:
+	.4byte 0x43AF0000
+.global lbl_8051819C
+lbl_8051819C:
+	.4byte 0x44FA0000
+.global lbl_805181A0
+lbl_805181A0:
+	.4byte 0x43FA0000
+.global lbl_805181A4
+lbl_805181A4:
+	.4byte 0x442F0000
+.global lbl_805181A8
+lbl_805181A8:
+	.4byte 0xC3FA0000
+.global lbl_805181AC
+lbl_805181AC:
+	.4byte 0x41F00000
+.global lbl_805181B0
+lbl_805181B0:
+	.4byte 0x42B40000
+.global lbl_805181B4
+lbl_805181B4:
+	.float 0.1
+.global lbl_805181B8
+lbl_805181B8:
+	.4byte 0x43B40000
+.global lbl_805181BC
+lbl_805181BC:
+	.4byte 0x9347907D
+	.4byte 0x8AD30000
+.global lbl_805181C4
+lbl_805181C4:
+	.4byte 0x90DD92E8
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook12ColorSettingFv
 __ct__Q34Game15IllustratedBook12ColorSettingFv:

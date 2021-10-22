@@ -221,6 +221,41 @@ mCullCount__Q24Game15GeneralEnemyMgr:
 mTotalCount__Q24Game15GeneralEnemyMgr:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805179A0
+lbl_805179A0:
+	.4byte 0x646F6154
+	.4byte 0x454B4900
+.global lbl_805179A8
+lbl_805179A8:
+	.4byte 0x47000000
+.global lbl_805179AC
+lbl_805179AC:
+	.4byte 0x40C90FDB
+.global lbl_805179B0
+lbl_805179B0:
+	.4byte 0x00000000
+.global lbl_805179B4
+lbl_805179B4:
+	.4byte 0x43A2F983
+.global lbl_805179B8
+lbl_805179B8:
+	.4byte 0xC3A2F983
+.global lbl_805179BC
+lbl_805179BC:
+	.4byte 0x40400000
+.global lbl_805179C0
+lbl_805179C0:
+	.float 0.5
+.global lbl_805179C4
+lbl_805179C4:
+	.4byte 0x40E00000
+.global lbl_805179C8
+lbl_805179C8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
 createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:

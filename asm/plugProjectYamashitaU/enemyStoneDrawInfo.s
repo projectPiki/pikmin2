@@ -136,6 +136,97 @@ __vt__Q34Game10EnemyStone12StateMachine:
 sOwnerEnemy__Q34Game10EnemyStone8DrawInfo:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517FC0
+lbl_80517FC0:
+	.4byte 0x41200000
+.global lbl_80517FC4
+lbl_80517FC4:
+	.float 0.1
+.global lbl_80517FC8
+lbl_80517FC8:
+	.4byte 0x00000000
+.global lbl_80517FCC
+lbl_80517FCC:
+	.float 1.0
+.global lbl_80517FD0
+lbl_80517FD0:
+	.4byte 0xC3A2F983
+.global lbl_80517FD4
+lbl_80517FD4:
+	.4byte 0x43A2F983
+.global lbl_80517FD8
+lbl_80517FD8:
+	.4byte 0x3FC90FDB
+.global lbl_80517FDC
+lbl_80517FDC:
+	.4byte 0x3D088889
+.global lbl_80517FE0
+lbl_80517FE0:
+	.4byte 0x40E00000
+.global lbl_80517FE4
+lbl_80517FE4:
+	.4byte 0x3D8F5C29
+.global lbl_80517FE8
+lbl_80517FE8:
+	.4byte 0x3E0F5C29
+.global lbl_80517FEC
+lbl_80517FEC:
+	.4byte 0x3EB33333
+.global lbl_80517FF0
+lbl_80517FF0:
+	.float 0.3
+.global lbl_80517FF4
+lbl_80517FF4:
+	.4byte 0x42C80000
+.global lbl_80517FF8
+lbl_80517FF8:
+	.4byte 0x40C90FDB
+.global lbl_80517FFC
+lbl_80517FFC:
+	.4byte 0x427B53D2
+.global lbl_80518000
+lbl_80518000:
+	.4byte 0x41F00000
+.global lbl_80518004
+lbl_80518004:
+	.4byte 0x3FC00000
+.global lbl_80518008
+lbl_80518008:
+	.4byte 0x42FB53D2
+.global lbl_8051800C
+lbl_8051800C:
+	.4byte 0x40200000
+.global lbl_80518010
+lbl_80518010:
+	.4byte 0x40490FDB
+.global lbl_80518014
+lbl_80518014:
+	.float 0.15
+.global lbl_80518018
+lbl_80518018:
+	.4byte 0x43490FDB
+.global lbl_8051801C
+lbl_8051801C:
+	.4byte 0x40800000
+.global lbl_80518020
+lbl_80518020:
+	.4byte 0x3BB60B61
+.global lbl_80518024
+lbl_80518024:
+	.4byte 0x41733333
+.global lbl_80518028
+lbl_80518028:
+	.4byte 0x3E4CCCCD
+.global lbl_8051802C
+lbl_8051802C:
+	.4byte 0x00000000
+.global lbl_80518030
+lbl_80518030:
+	.4byte 0x40400000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo
 init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo:

@@ -777,6 +777,191 @@ farmMgr__Q24Game4Farm:
 sCurrentObj__Q34Game8Pelplant3Obj:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517850
+lbl_80517850:
+	.4byte 0xC3A2F983
+.global lbl_80517854
+lbl_80517854:
+	.4byte 0x43A2F983
+.global lbl_80517858
+lbl_80517858:
+	.4byte 0x40C90FDB
+.global lbl_8051785C
+lbl_8051785C:
+	.4byte 0x40400000
+.global lbl_80517860
+lbl_80517860:
+	.4byte 0x00000000
+.global lbl_80517864
+lbl_80517864:
+	.float 0.5
+.global lbl_80517868
+lbl_80517868:
+	.float 1.0
+.global lbl_8051786C
+lbl_8051786C:
+	.4byte 0x68656164
+	.4byte 0x6A6E7400
+.global lbl_80517874
+lbl_80517874:
+	.4byte 0x42C80000
+.global lbl_80517878
+lbl_80517878:
+	.4byte 0x6F6E0000
+.global lbl_8051787C
+lbl_8051787C:
+	.4byte 0x6F666600
+.global lbl_80517880
+lbl_80517880:
+	.4byte 0x41800000
+.global lbl_80517884
+lbl_80517884:
+	.4byte 0x40000000
+.global lbl_80517888
+lbl_80517888:
+	.4byte 0x42480000
+.global lbl_8051788C
+lbl_8051788C:
+	.4byte 0x41000000
+.global lbl_80517890
+lbl_80517890:
+	.4byte 0x40600000
+.global lbl_80517894
+lbl_80517894:
+	.4byte 0x4099999A
+.global lbl_80517898
+lbl_80517898:
+	.4byte 0x3FC00000
+.global lbl_8051789C
+lbl_8051789C:
+	.4byte 0x3F59999A
+.global lbl_805178A0
+lbl_805178A0:
+	.4byte 0x3F400000
+.global lbl_805178A4
+lbl_805178A4:
+	.4byte 0x7A616D61
+	.4byte 0x00000000
+.global lbl_805178AC
+lbl_805178AC:
+	.4byte 0x41400000
+.global lbl_805178B0
+lbl_805178B0:
+	.4byte 0x3FC90FDB
+.global lbl_805178B4
+lbl_805178B4:
+	.4byte 0xBFC90FDB
+.global lbl_805178B8
+lbl_805178B8:
+	.4byte 0x42F00000
+.global lbl_805178BC
+lbl_805178BC:
+	.4byte 0x43960000
+.global lbl_805178C0
+lbl_805178C0:
+	.4byte 0x40A00000
+.global lbl_805178C4
+lbl_805178C4:
+	.float 0.25
+.global lbl_805178C8
+lbl_805178C8:
+	.4byte 0x61636365
+	.4byte 0x6C000000
+.global lbl_805178D0
+lbl_805178D0:
+	.float 0.1
+.global lbl_805178D4
+lbl_805178D4:
+	.4byte 0x3C23D70A
+.global lbl_805178D8
+lbl_805178D8:
+	.float 0.3
+.global lbl_805178DC
+lbl_805178DC:
+	.4byte 0x83898343
+	.4byte 0x83740000
+.global lbl_805178E4
+lbl_805178E4:
+	.4byte 0x47C34F80
+.global lbl_805178E8
+lbl_805178E8:
+	.4byte 0x447A0000
+.global lbl_805178EC
+lbl_805178EC:
+	.4byte 0x41F00000
+.global lbl_805178F0
+lbl_805178F0:
+	.4byte 0x42200000
+.global lbl_805178F4
+lbl_805178F4:
+	.4byte 0x43FA0000
+.global lbl_805178F8
+lbl_805178F8:
+	.4byte 0x4C4F4494
+	.4byte 0xBC8C6100
+.global lbl_80517900
+lbl_80517900:
+	.4byte 0x3E4CCCCD
+.global lbl_80517904
+lbl_80517904:
+	.4byte 0x3EB33333
+.global lbl_80517908
+lbl_80517908:
+	.4byte 0x8EBF97CA
+	.4byte 0x00000000
+.global lbl_80517910
+lbl_80517910:
+	.4byte 0x91AC9378
+	.4byte 0x00000000
+.global lbl_80517918
+lbl_80517918:
+	.4byte 0x42A00000
+.global lbl_8051791C
+lbl_8051791C:
+	.4byte 0x41200000
+.global lbl_80517920
+lbl_80517920:
+	.4byte 0x43B40000
+.global lbl_80517924
+lbl_80517924:
+	.4byte 0x43480000
+.global lbl_80517928
+lbl_80517928:
+	.4byte 0x41700000
+.global lbl_8051792C
+lbl_8051792C:
+	.4byte 0x428C0000
+.global lbl_80517930
+lbl_80517930:
+	.4byte 0x8E8B8A45
+	.4byte 0x8D820000
+.global lbl_80517938
+lbl_80517938:
+	.4byte 0x42B40000
+.global lbl_8051793C
+lbl_8051793C:
+	.4byte 0x43340000
+.global lbl_80517940
+lbl_80517940:
+	.4byte 0x92548DF5
+	.4byte 0x8D820000
+.global lbl_80517948
+lbl_80517948:
+	.4byte 0x8D558C82
+	.4byte 0x97CD0000
+.global lbl_80517950
+lbl_80517950:
+	.4byte 0x42C60000
+.global lbl_80517954
+lbl_80517954:
+	.4byte 0x42700000
+.global lbl_80517958
+lbl_80517958:
+	.float 0.05
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getValue__Q34Game8Pelplant21BlendAccelerationFuncFf
 getValue__Q34Game8Pelplant21BlendAccelerationFuncFf:

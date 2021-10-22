@@ -43,6 +43,45 @@ lbl_80515884:
 lifeGaugeMgr:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517B28
+lbl_80517B28:
+	.4byte 0x00000000
+.global lbl_80517B2C
+lbl_80517B2C:
+	.float 0.5
+.global lbl_80517B30
+lbl_80517B30:
+	.4byte 0x43160000
+.global lbl_80517B34
+lbl_80517B34:
+	.4byte 0x3ECCCCCD
+.global lbl_80517B38
+lbl_80517B38:
+	.float 1.0
+.global lbl_80517B3C
+lbl_80517B3C:
+	.4byte 0x3E4CCCCD
+.global lbl_80517B40
+lbl_80517B40:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80517B48
+lbl_80517B48:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80517B50
+lbl_80517B50:
+	.4byte 0xBFC90FDB
+.global lbl_80517B54
+lbl_80517B54:
+	.4byte 0x40C90FDB
+.global lbl_80517B58
+lbl_80517B58:
+	.4byte 0x3FA00000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9LifeGaugeFv
 __ct__9LifeGaugeFv:
