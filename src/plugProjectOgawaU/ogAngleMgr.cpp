@@ -11,12 +11,12 @@ namespace Screen {
 	 */
 	AngleMgr::AngleMgr()
 	{
-		_00     = 0.0f;
-		_04     = 0.0f;
-		_08     = 0.0f;
-		_0C     = 0.3f;
-		_10     = 1.0f;
-		m_state = AGM_Start;
+		_00          = 0.0f;
+		_04          = 0.0f;
+		_08          = 0.0f;
+		m_interpRate = 0.3f;
+		m_scale      = 1.0f;
+		m_state      = AGM_Start;
 	}
 
 	/*
@@ -26,9 +26,9 @@ namespace Screen {
 	 */
 	void AngleMgr::init(float f1, float f2, float f3)
 	{
-		_00 = f1;
-		_0C = f2;
-		_10 = f3;
+		_00          = f1;
+		m_interpRate = f2;
+		m_scale      = f3;
 	}
 
 	/*
@@ -38,7 +38,7 @@ namespace Screen {
 	 */
 	void AngleMgr::chase(float f1, float f2)
 	{
-
+		// Wrap _08 angle to (0, TAU)
 		_08 = f1;
 		while (_08 < 0.0f) {
 			_08 += TAU;
@@ -48,6 +48,7 @@ namespace Screen {
 			_08 -= TAU;
 		}
 
+		// Wrap _04 angle to (-HALF_PI, HALF_PI)
 		_04 = f2;
 		if (_04 > HALF_PI) {
 			_04 = HALF_PI;
@@ -79,20 +80,20 @@ namespace Screen {
 			if (FABS(f1) > PI) {
 				float f2 = TAU - FABS(f1);
 				if (f1 > 0.0f) {
-					if ((_04 > 0.0f) && (f2 > FABS(_04 * _10))) {
-						_04 = (-_04 * _0C);
+					if ((_04 > 0.0f) && (f2 > FABS(_04 * m_scale))) {
+						_04 = (-_04 * m_interpRate);
 					}
-				} else if ((_04 < 0.0f) && (f2 > FABS(_04 * _10))) {
-					_04 = (-_04 * _0C);
+				} else if ((_04 < 0.0f) && (f2 > FABS(_04 * m_scale))) {
+					_04 = (-_04 * m_interpRate);
 				}
 			} else {
 				float f2 = FABS(f1);
 				if (f1 > 0.0f) {
-					if ((_04 < 0.0f) && (f2 > FABS(_04 * _10))) {
-						_04 = (-_04 * _0C);
+					if ((_04 < 0.0f) && (f2 > FABS(_04 * m_scale))) {
+						_04 = (-_04 * m_interpRate);
 					}
-				} else if ((_04 > 0.0f) && (f2 > FABS(_04 * _10))) {
-					_04 = (-_04 * _0C);
+				} else if ((_04 > 0.0f) && (f2 > FABS(_04 * m_scale))) {
+					_04 = (-_04 * m_interpRate);
 				}
 			}
 

@@ -13,12 +13,12 @@ namespace Screen {
 		void chase(float, float);
 		float calc(void);
 
-		f32 _00;     // _00
-		f32 _04;     // _04
-		f32 _08;     // _08
-		f32 _0C;     // _0C
-		f32 _10;     // _10
-		s32 m_state; // _14
+		f32 _00;          // _00
+		f32 _04;          // _04
+		f32 _08;          // _08
+		f32 m_interpRate; // _0C, guessed name
+		f32 m_scale;      // _10, guessed name
+		s32 m_state;      // _14
 	};
 } // namespace Screen
 } // namespace og
