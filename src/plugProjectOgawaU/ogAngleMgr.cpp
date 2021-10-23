@@ -1,4 +1,5 @@
 #include "og/Screen/AngleMgr.h"
+
 namespace og {
 namespace Screen {
 
@@ -39,17 +40,17 @@ namespace Screen {
 		{
 			_08 = f1;
 			while (_08 < 0.0f) {
-				_08 = _08 + 6.2831855f;
+				_08 = _08 + TAU;
 			}
-			while (_08 > 6.2831855f) {
-				_08 = _08 - 6.2831855f;
+			while (_08 > TAU) {
+				_08 = _08 - TAU;
 			}
 			_04 = f2;
-			if (1.5707964f < _04) {
-				_04 = 1.5707964f;
+			if (HPI < _04) {
+				_04 = HPI;
 			}
-			if (_04 < -1.5707964f) {
-				_04 = -1.5707964f;
+			if (_04 < NEG_HPI) {
+				_04 = NEG_HPI;
 			}
 			_14 = 1;
 		}
