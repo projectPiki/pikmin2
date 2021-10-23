@@ -40,13 +40,13 @@ namespace Screen {
 		{
 			_08 = f1;
 			while (_08 < 0.0f) {
-				_08 = _08 + TAU;
+				_08 += TAU;
 			}
 			while (_08 > TAU) {
-				_08 = _08 - TAU;
+				_08 -= TAU;
 			}
 			_04 = f2;
-			if (HPI < _04) {
+			if (_04 > HPI) {
 				_04 = HPI;
 			}
 			if (_04 < NEG_HPI) {
