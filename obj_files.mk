@@ -934,7 +934,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDrawAfter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogOtakaraSensor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAngleMgr.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuCont.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
 
