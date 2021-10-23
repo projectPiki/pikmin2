@@ -1,24 +1,24 @@
 #ifndef _OG_SCREEN_ANGLEMGR_H
 #define _OG_SCREEN_ANGLEMGR_H
-#define TAU     6.2831855f
-#define PI      3.1415927f
-#define HPI     1.5707964f
-#define NEG_HPI -1.5707964f
+
+#include "types.h"
+
 namespace og {
 namespace Screen {
 	struct AngleMgr {
+		enum State { AGM_Start = 0, AGM_Chase, AGM_Finish };
+
 		AngleMgr();
 		void init(float, float, float);
 		void chase(float, float);
-		void reverseSpeed(float);
 		float calc(void);
 
-		float _00;
-		float _04;
-		float _08;
-		float _0C;
-		float _10;
-		int _14;
+		f32 _00;     // _00
+		f32 _04;     // _04
+		f32 _08;     // _08
+		f32 _0C;     // _0C
+		f32 _10;     // _10
+		s32 m_state; // _14
 	};
 } // namespace Screen
 } // namespace og
