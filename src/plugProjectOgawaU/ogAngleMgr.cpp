@@ -79,12 +79,12 @@ namespace Screen {
 		if (_14 == 1) {
 			_00 += _04;
 			f1 = _00;
-			if (0.0f <= f1) {
-				if (TAU <= f1) {
+			if (f1 < 0.0f) {
+				_00 = (TAU + f1);
+			} else {
+				if (f1 >= TAU) {
 					_00 = (f1 - TAU);
 				}
-			} else {
-				_00 = (f1 + TAU);
 			}
 			f1 = (_08 - _00);
 			f2 = __fabs(f1);
