@@ -11,7 +11,7 @@ namespace Screen {
 		void init(float, float, float);
 		void chase(float, float);
 		void reverseSpeed(float);
-		double calc(void);
+		float calc(void);
 
 		float _00;
 		float _04;

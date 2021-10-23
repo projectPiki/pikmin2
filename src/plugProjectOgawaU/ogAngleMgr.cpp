@@ -71,7 +71,7 @@ namespace Screen {
 	 * Address:	80330348
 	 * Size:	0001A8
 	 */
-	double AngleMgr::calc(void)
+	float AngleMgr::calc(void)
 	{
 		float f1;
 		float f2;
@@ -113,13 +113,13 @@ namespace Screen {
 					}
 				}
 			}
-			if (__fabs(_04) < 0.001f) {
+			if (float(__fabs(_04)) < 0.001f) {
 				_14 = 2;
 				_00 = _08;
 				_04 = 0.0f;
 			}
 		}
-		return double (_00);
+		return _00;
 	}
 } // namespace Screen
 } // namespace og
