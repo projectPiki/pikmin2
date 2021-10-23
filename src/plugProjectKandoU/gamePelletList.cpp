@@ -5,9 +5,12 @@
 namespace Game {
 struct PelletList {
 	enum cKind {
-		Unk0 = 1,
-		Unk1 = 3,
-		Unk2 = 4,
+		NUMBER_PELLET = 0,
+		CARCASS,
+		FRUIT,
+		OTAKARA,
+		ITEM,
+		SIZE,
 
 		// Force the compiler to use an int to represent the enum
 		DONT_USE_1 = -1,
