@@ -59,7 +59,7 @@ struct PelletConfig : public CNode {
 	TParms m_params; // _04
 };
 
-class PelletConfigList : public CNode {
+struct PelletConfigList : public CNode {
 	PelletConfigList();
 	virtual ~PelletConfigList() {};
 
