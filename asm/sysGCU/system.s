@@ -247,7 +247,50 @@ lbl_80520438:
 	.4byte 0x43300000
 	.4byte 0x80000000
 
-.section .text, "ax"  # 0x800056C0 - 0x80472F00 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global Pikmin2DefaultMemoryErrorRoutine__FPvUli
+Pikmin2DefaultMemoryErrorRoutine__FPvUli:
+/* 80421EC4 0041EE04  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 80421EC8 0041EE08  7C 08 02 A6 */	mflr r0
+/* 80421ECC 0041EE0C  90 01 00 24 */	stw r0, 0x24(r1)
+/* 80421ED0 0041EE10  93 E1 00 1C */	stw r31, 0x1c(r1)
+/* 80421ED4 0041EE14  93 C1 00 18 */	stw r30, 0x18(r1)
+/* 80421ED8 0041EE18  7C BE 2B 78 */	mr r30, r5
+/* 80421EDC 0041EE1C  93 A1 00 14 */	stw r29, 0x14(r1)
+/* 80421EE0 0041EE20  7C 9D 23 78 */	mr r29, r4
+/* 80421EE4 0041EE24  93 81 00 10 */	stw r28, 0x10(r1)
+/* 80421EE8 0041EE28  7C 7C 1B 78 */	mr r28, r3
+/* 80421EEC 0041EE2C  4B C0 18 C9 */	bl getFreeSize__7JKRHeapFv
+/* 80421EF0 0041EE30  7C 7F 1B 78 */	mr r31, r3
+/* 80421EF4 0041EE34  7F 83 E3 78 */	mr r3, r28
+/* 80421EF8 0041EE38  4B C0 18 E9 */	bl getTotalFreeSize__7JKRHeapFv
+/* 80421EFC 0041EE3C  3C A0 80 4A */	lis r5, gStrSystem_CPP@ha
+/* 80421F00 0041EE40  3C 80 80 4A */	lis r4, gStrSystem_MemoryAllocError@ha
+/* 80421F04 0041EE44  7C 69 1B 78 */	mr r9, r3
+/* 80421F08 0041EE48  7F 86 E3 78 */	mr r6, r28
+/* 80421F0C 0041EE4C  38 65 97 C8 */	addi r3, r5, gStrSystem_CPP@l
+/* 80421F10 0041EE50  38 A4 97 D4 */	addi r5, r4, gStrSystem_MemoryAllocError@l
+/* 80421F14 0041EE54  7F A7 EB 78 */	mr r7, r29
+/* 80421F18 0041EE58  7F C8 F3 78 */	mr r8, r30
+/* 80421F1C 0041EE5C  7F EA FB 78 */	mr r10, r31
+/* 80421F20 0041EE60  38 80 00 63 */	li r4, 0x63
+/* 80421F24 0041EE64  4C C6 31 82 */	crclr 6
+/* 80421F28 0041EE68  4B C0 87 19 */	bl panic_f__12JUTExceptionFPCciPCce
+/* 80421F2C 0041EE6C  3C 60 80 4A */	lis r3, gStrSystem_CPP@ha
+/* 80421F30 0041EE70  38 80 00 65 */	li r4, 0x65
+/* 80421F34 0041EE74  38 63 97 C8 */	addi r3, r3, gStrSystem_CPP@l
+/* 80421F38 0041EE78  38 A2 20 A0 */	addi r5, r2, gStrSystem_Abort@sda21
+/* 80421F3C 0041EE7C  4C C6 31 82 */	crclr 6
+/* 80421F40 0041EE80  4B CC B8 2D */	bl OSPanic
+/* 80421F44 0041EE84  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 80421F48 0041EE88  83 E1 00 1C */	lwz r31, 0x1c(r1)
+/* 80421F4C 0041EE8C  83 C1 00 18 */	lwz r30, 0x18(r1)
+/* 80421F50 0041EE90  83 A1 00 14 */	lwz r29, 0x14(r1)
+/* 80421F54 0041EE94  83 81 00 10 */	lwz r28, 0x10(r1)
+/* 80421F58 0041EE98  7C 08 03 A6 */	mtlr r0
+/* 80421F5C 0041EE9C  38 21 00 20 */	addi r1, r1, 0x20
+/* 80421F60 0041EEA0  4E 80 00 20 */	blr 
+
 .global kando_panic_f__FbPCciPCce
 kando_panic_f__FbPCciPCce:
 /* 80421F64 0041EEA4  94 21 FB A0 */	stwu r1, -0x460(r1)

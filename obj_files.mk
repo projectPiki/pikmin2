@@ -1109,7 +1109,6 @@ COMMON:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
 
 GC:=\
-	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\
 	$(BUILD_DIR)/asm/sysGCU/gameflow.o\

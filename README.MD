@@ -90,7 +90,6 @@ When compiling the project, this patch is automatically applied, if it fails to 
 ### WIP
 - sysBootupU
 - sysGCU
-	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/system.cpp">sysGCU/system.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/THPDraw.c">sysGCU/THPDraw.c</a>
 - sysCommonU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/id32.cpp">sysCommonU/id32.cpp</a>
