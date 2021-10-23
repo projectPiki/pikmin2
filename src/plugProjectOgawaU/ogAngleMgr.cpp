@@ -73,130 +73,53 @@ namespace Screen {
 	 */
 	double AngleMgr::calc(void)
 	{
-		return 1.0;
-		/*
-		.loc_0x0:
-		  lwz       r0, 0x14(r3)
-		  cmpwi     r0, 0x1
-		  bne-      .loc_0x1A0
-		  lfs       f2, 0x0(r3)
-		  lfs       f1, 0x4(r3)
-		  lfs       f0, -0x2F0(r2)
-		  fadds     f1, f2, f1
-		  stfs      f1, 0x0(r3)
-		  lfs       f1, 0x0(r3)
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x3C
-		  lfs       f0, -0x2E4(r2)
-		  fadds     f0, f1, f0
-		  stfs      f0, 0x0(r3)
-		  b         .loc_0x54
+		float f1;
+		float f2;
 
-		.loc_0x3C:
-		  lfs       f0, -0x2E4(r2)
-		  fcmpo     cr0, f1, f0
-		  cror      2, 0x1, 0x2
-		  bne-      .loc_0x54
-		  fsubs     f0, f1, f0
-		  stfs      f0, 0x0(r3)
-
-		.loc_0x54:
-		  lfs       f2, 0x8(r3)
-		  lfs       f1, 0x0(r3)
-		  lfs       f0, -0x2D8(r2)
-		  fsubs     f3, f2, f1
-		  fabs      f1, f3
-		  frsp      f2, f1
-		  fcmpo     cr0, f2, f0
-		  ble-      .loc_0xF8
-		  lfs       f1, -0x2E4(r2)
-		  lfs       f0, -0x2F0(r2)
-		  fsubs     f2, f1, f2
-		  fcmpo     cr0, f3, f0
-		  ble-      .loc_0xC0
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  ble-      .loc_0x170
-		  lfs       f0, 0x10(r3)
-		  fmuls     f0, f1, f0
-		  fabs      f0, f0
-		  frsp      f0, f0
-		  fcmpo     cr0, f2, f0
-		  ble-      .loc_0x170
-		  fneg      f1, f1
-		  lfs       f0, 0xC(r3)
-		  fmuls     f0, f1, f0
-		  stfs      f0, 0x4(r3)
-		  b         .loc_0x170
-
-		.loc_0xC0:
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x170
-		  lfs       f0, 0x10(r3)
-		  fmuls     f0, f1, f0
-		  fabs      f0, f0
-		  frsp      f0, f0
-		  fcmpo     cr0, f2, f0
-		  ble-      .loc_0x170
-		  fneg      f1, f1
-		  lfs       f0, 0xC(r3)
-		  fmuls     f0, f1, f0
-		  stfs      f0, 0x4(r3)
-		  b         .loc_0x170
-
-		.loc_0xF8:
-		  lfs       f0, -0x2F0(r2)
-		  fcmpo     cr0, f3, f0
-		  ble-      .loc_0x13C
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x170
-		  lfs       f0, 0x10(r3)
-		  fmuls     f0, f1, f0
-		  fabs      f0, f0
-		  frsp      f0, f0
-		  fcmpo     cr0, f2, f0
-		  ble-      .loc_0x170
-		  fneg      f1, f1
-		  lfs       f0, 0xC(r3)
-		  fmuls     f0, f1, f0
-		  stfs      f0, 0x4(r3)
-		  b         .loc_0x170
-
-		.loc_0x13C:
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  ble-      .loc_0x170
-		  lfs       f0, 0x10(r3)
-		  fmuls     f0, f1, f0
-		  fabs      f0, f0
-		  frsp      f0, f0
-		  fcmpo     cr0, f2, f0
-		  ble-      .loc_0x170
-		  fneg      f1, f1
-		  lfs       f0, 0xC(r3)
-		  fmuls     f0, f1, f0
-		  stfs      f0, 0x4(r3)
-
-		.loc_0x170:
-		  lfs       f1, 0x4(r3)
-		  lfs       f0, -0x2D4(r2)
-		  fabs      f1, f1
-		  frsp      f1, f1
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x1A0
-		  li        r0, 0x2
-		  lfs       f0, -0x2F0(r2)
-		  stw       r0, 0x14(r3)
-		  lfs       f1, 0x8(r3)
-		  stfs      f1, 0x0(r3)
-		  stfs      f0, 0x4(r3)
-
-		.loc_0x1A0:
-		  lfs       f1, 0x0(r3)
-		  blr
-		*/
+		if (_14 == 1) {
+			_00 += _04;
+			f1 = _00;
+			if (0.0f <= f1) {
+				if (TAU <= f1) {
+					_00 = (f1 - TAU);
+				}
+			} else {
+				_00 = (f1 + TAU);
+			}
+			f1 = (_08 - _00);
+			f2 = __fabs(f1);
+			if (f2 <= PI) {
+				if (f1 <= 0.0f) {
+					f1 = _04;
+					if ((0.0f < f1) && (__fabs(f1 * _10) < f2)) {
+						_04 = (-f1 * _0C);
+					}
+				} else {
+					f1 = _04;
+					if ((f1 < 0.0f) && (__fabs(f1 * _10) < f2)) {
+						_04 = (-f1 * _0C);
+					}
+				}
+			} else {
+				if (f1 <= 0.0f) {
+					f1 = _04;
+					if ((f1 < 0.0f) && (__fabs(f1 * _10) < (TAU - f2))){
+						_04 = (-f1 * _0C);
+					}
+				} else {
+				f1 = _04;
+					if ((0.0f < f1) && (__fabs(f1 * _10) < (TAU - f2))) {
+					_04 = (-f1 * _0C);
+					}
+				}
+			}
+			if (__fabs(_04) < 0.001f) {
+				_14 = 2;
+				_00 = _08;
+				_04 = 0.0f;
+			}
+		}
+		return double (_00);
 	}
 } // namespace Screen
 } // namespace og
