@@ -457,6 +457,59 @@ lbl_804A4318:
 	.4byte lbl_8009E48C
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516D30
+lbl_80516D30:
+	.4byte 0x43A3D5C3
+	.4byte 0x00000000
+.global lbl_80516D38
+lbl_80516D38:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516D40
+lbl_80516D40:
+	.4byte 0x00000001
+.global lbl_80516D44
+lbl_80516D44:
+	.2byte 0x0102
+.global lbl_80516D46
+lbl_80516D46:
+	.2byte 0x0200
+.global lbl_80516D48
+lbl_80516D48:
+	.4byte 0x00010200
+.global lbl_80516D4C
+lbl_80516D4C:
+	.2byte 0x0200
+.global lbl_80516D4E
+lbl_80516D4E:
+	.2byte 0x0200
+.global lbl_80516D50
+lbl_80516D50:
+	.4byte 0x48BFFE80
+	.4byte 0x00000000
+.global lbl_80516D58
+lbl_80516D58:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516D60
+lbl_80516D60:
+	.4byte 0x488FFEE0
+.global lbl_80516D64
+lbl_80516D64:
+	.4byte 0x47000000
+.global lbl_80516D68
+lbl_80516D68:
+	.4byte 0x00000000
+.global lbl_80516D6C
+lbl_80516D6C:
+	.float 1.0
+.global lbl_80516D70
+lbl_80516D70:
+	.4byte 0x46FFFE00
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global cmdOpenTrack__12JASSeqParserFP8JASTrackPUl
 cmdOpenTrack__12JASSeqParserFP8JASTrackPUl:

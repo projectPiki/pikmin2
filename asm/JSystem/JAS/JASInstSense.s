@@ -8,6 +8,23 @@ __vt__12JASInstSense:
 	.4byte getY__12JASInstSenseCFii
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516CF8
+lbl_80516CF8:
+	.4byte 0x42FE0000
+.global lbl_80516CFC
+lbl_80516CFC:
+	.float 1.0
+.global lbl_80516D00
+lbl_80516D00:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516D08
+lbl_80516D08:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getY__12JASInstSenseCFii
 getY__12JASInstSenseCFii:

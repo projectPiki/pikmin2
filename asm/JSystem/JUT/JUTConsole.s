@@ -20,6 +20,43 @@ sReportConsole:
 sWarningConsole:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516568
+lbl_80516568:
+	.4byte 0x40000000
+.global lbl_8051656C
+lbl_8051656C:
+	.4byte 0x00000000
+.global lbl_80516570
+lbl_80516570:
+	.4byte 0x44200000
+.global lbl_80516574
+lbl_80516574:
+	.4byte 0x43F00000
+.global lbl_80516578
+lbl_80516578:
+	.float -1.0
+.global lbl_8051657C
+lbl_8051657C:
+	.float 1.0
+.global lbl_80516580
+lbl_80516580:
+	.4byte 0x40800000
+	.4byte 0x00000000
+.global lbl_80516588
+lbl_80516588:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516590
+lbl_80516590:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516598
+lbl_80516598:
+	.4byte 0x25730000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__10JUTConsoleFUiUiP7JKRHeap
 create__10JUTConsoleFUiUiP7JKRHeap:

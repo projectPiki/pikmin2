@@ -8,6 +8,27 @@ init$484:
 oRandom$483:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global cEqualCSlope__7JALCalc
+cEqualCSlope__7JALCalc:
+	.float 1.0
+.global cEqualPSlope__7JALCalc
+cEqualPSlope__7JALCalc:
+	.float 0.5
+.global lbl_80517080
+lbl_80517080:
+	.4byte 0x00000000
+.global lbl_80517084
+lbl_80517084:
+	.float 1.0
+.global lbl_80517088
+lbl_80517088:
+	.4byte 0x40000000
+.global lbl_8051708C
+lbl_8051708C:
+	.4byte 0xC0000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign

@@ -44,6 +44,13 @@ __vt__Q37JStudio3stb7TObject:
 	.4byte do_wait__Q37JStudio3stb7TObjectFUl
 	.4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
+gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data:
+	.4byte 0xFF000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
 __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object:

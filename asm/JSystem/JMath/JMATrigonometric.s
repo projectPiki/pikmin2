@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516738
+lbl_80516738:
+	.4byte 0x00000000
+.global lbl_8051673C
+lbl_8051673C:
+	.4byte 0x3FC90FDB
+.global lbl_80516740
+lbl_80516740:
+	.float 0.5
+.global lbl_80516744
+lbl_80516744:
+	.4byte 0x44800000
+.global lbl_80516748
+lbl_80516748:
+	.4byte 0xBFC90FDB
+.global lbl_8051674C
+lbl_8051674C:
+	.4byte 0x40490FDB
+.global lbl_80516750
+lbl_80516750:
+	.4byte 0xC0490FDB
+	.4byte 0x00000000
+.global lbl_80516758
+lbl_80516758:
+	.4byte 0x401921FB
+	.4byte 0x60000000
+.global lbl_80516760
+lbl_80516760:
+	.4byte 0x40A00000
+	.4byte 0x00000000
+.global lbl_80516768
+lbl_80516768:
+	.4byte 0x3F500000
+	.4byte 0x00000000
+.global lbl_80516770
+lbl_80516770:
+	.4byte 0x3F490FDB
+	.4byte 0x00000000
+.global lbl_80516778
+lbl_80516778:
+	.4byte 0x43300000
+	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "atan2___Q25JMath18TAtanTable<1024,f>CFff"

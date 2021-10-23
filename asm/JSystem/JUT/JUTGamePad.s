@@ -86,6 +86,39 @@ sResetOccurred__Q210JUTGamePad13C3ButtonReset:
 sResetOccurredPort__Q210JUTGamePad13C3ButtonReset:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516660
+lbl_80516660:
+	.4byte 0x43160000
+	.4byte 0x00000000
+.global lbl_80516668
+lbl_80516668:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516670
+lbl_80516670:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516678
+lbl_80516678:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80516680
+lbl_80516680:
+	.4byte 0x40080000
+	.4byte 0x00000000
+.global lbl_80516688
+lbl_80516688:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516690
+lbl_80516690:
+	.float 1.0
+.global lbl_80516694
+lbl_80516694:
+	.4byte 0x4622F984
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
 __ct__10JUTGamePadFQ210JUTGamePad8EPadPort:

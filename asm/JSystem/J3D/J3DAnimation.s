@@ -86,6 +86,39 @@ __vt__15J3DAnmTransform:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516A18
+lbl_80516A18:
+	.float 1.0
+.global lbl_80516A1C
+lbl_80516A1C:
+	.4byte 0x00000000
+.global lbl_80516A20
+lbl_80516A20:
+	.4byte 0x3A83126F
+	.4byte 0x00000000
+.global lbl_80516A28
+lbl_80516A28:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516A30
+lbl_80516A30:
+	.float 0.5
+.global lbl_80516A34
+lbl_80516A34:
+	.4byte 0x437F0000
+.global lbl_80516A38
+lbl_80516A38:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516A40
+lbl_80516A40:
+	.4byte 0xC4800000
+.global lbl_80516A44
+lbl_80516A44:
+	.4byte 0x447FC000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__12J3DFrameCtrlFs
 init__12J3DFrameCtrlFs:

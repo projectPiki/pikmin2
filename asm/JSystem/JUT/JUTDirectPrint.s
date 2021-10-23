@@ -194,6 +194,57 @@ twiceBit$379:
 sDirectPrint__14JUTDirectPrint:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805165B0
+lbl_805165B0:
+	.4byte 0x25730000
+	.4byte 0x00000000
+.global lbl_805165B8
+lbl_805165B8:
+	.4byte 0x40600000
+	.4byte 0x00000000
+.global lbl_805165C0
+lbl_805165C0:
+	.4byte 0x3FDC1893
+	.4byte 0x74BC6A7F
+.global lbl_805165C8
+lbl_805165C8:
+	.4byte 0xBFC2F1A9
+	.4byte 0xFBE76C8B
+.global lbl_805165D0
+lbl_805165D0:
+	.4byte 0x3FD29FBE
+	.4byte 0x76C8B439
+.global lbl_805165D8
+lbl_805165D8:
+	.4byte 0x3FD78D4F
+	.4byte 0xDF3B645A
+.global lbl_805165E0
+lbl_805165E0:
+	.4byte 0x3FB22D0E
+	.4byte 0x56041893
+.global lbl_805165E8
+lbl_805165E8:
+	.4byte 0x40300000
+	.4byte 0x00000000
+.global lbl_805165F0
+lbl_805165F0:
+	.4byte 0x3FB91687
+	.4byte 0x2B020C4A
+.global lbl_805165F8
+lbl_805165F8:
+	.4byte 0x3FD072B0
+	.4byte 0x20C49BA6
+.global lbl_80516600
+lbl_80516600:
+	.4byte 0x3FE020C4
+	.4byte 0x9BA5E354
+.global lbl_80516608
+lbl_80516608:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global start__14JUTDirectPrintFv
 start__14JUTDirectPrintFv:

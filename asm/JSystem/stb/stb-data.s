@@ -10,3 +10,10 @@ gauDataSize_TEParagraph_data__Q37JStudio3stb4data:
 	.4byte 0x00000010
 	.4byte 0x00000020
 	.4byte 0x00000040
+
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global ga4cSignature__Q37JStudio3stb4data
+ga4cSignature__Q37JStudio3stb4data:
+	.4byte 0x53544200
+	.4byte 0x00000000

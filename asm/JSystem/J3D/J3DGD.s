@@ -88,6 +88,45 @@ J3DTexImage2Ids:
 	.4byte 0x90919293
 	.4byte 0xb0b1b2b3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516A98
+lbl_80516A98:
+	.4byte 0x42000000
+.global lbl_80516A9C
+lbl_80516A9C:
+	.4byte 0x41800000
+.global lbl_80516AA0
+lbl_80516AA0:
+	.4byte 0x44800000
+.global lbl_80516AA4
+lbl_80516AA4:
+	.4byte 0x00000000
+.global lbl_80516AA8
+lbl_80516AA8:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_80516AB0
+lbl_80516AB0:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_80516AB8
+lbl_80516AB8:
+	.4byte 0x40000000
+	.4byte 0x00000000
+.global lbl_80516AC0
+lbl_80516AC0:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80516AC8
+lbl_80516AC8:
+	.4byte 0x4B00001E
+	.4byte 0x00000000
+.global lbl_80516AD0
+lbl_80516AD0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DGDSetGenMode__FUcUcUcUc11_GXCullMode
 J3DGDSetGenMode__FUcUcUcUc11_GXCullMode:

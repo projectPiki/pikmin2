@@ -106,6 +106,25 @@ old_time$446:
 init$447:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516E80
+lbl_80516E80:
+	.4byte 0x3F8CCCCD
+	.4byte 0x00000000
+.global lbl_80516E88
+lbl_80516E88:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516E90
+lbl_80516E90:
+	.4byte 0x4453504D
+	.4byte 0x49580000
+.global lbl_80516E98
+lbl_80516E98:
+	.4byte 0x4D495849
+	.4byte 0x4E470000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initAI__9JASDriverFPFv_v
 initAI__9JASDriverFPFv_v:

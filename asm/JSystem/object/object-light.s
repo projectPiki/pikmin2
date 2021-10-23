@@ -20,6 +20,31 @@ __vt__Q214JStudio_JStage14TAdaptor_light:
 	.4byte adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516480
+lbl_80516480:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516488
+lbl_80516488:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80516490
+lbl_80516490:
+	.4byte 0x40080000
+	.4byte 0x00000000
+.global lbl_80516498
+lbl_80516498:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805164A0
+lbl_805164A0:
+	.4byte 0x42652EE1
+.global lbl_805164A4
+lbl_805164A4:
+	.4byte 0x3C8EFA35
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight
 __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight:

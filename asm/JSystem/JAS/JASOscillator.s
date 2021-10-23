@@ -64,6 +64,41 @@ oscTableForceStop__13JASOscillator:
 	.4byte 0x0000000F
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516DD8
+lbl_80516DD8:
+	.4byte 0x00000000
+.global lbl_80516DDC
+lbl_80516DDC:
+	.float 1.0
+.global lbl_80516DE0
+lbl_80516DE0:
+	.4byte 0x42A00000
+.global lbl_80516DE4
+lbl_80516DE4:
+	.4byte 0x44160000
+.global lbl_80516DE8
+lbl_80516DE8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516DF0
+lbl_80516DF0:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_80516DF8
+lbl_80516DF8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516E00
+lbl_80516E00:
+	.4byte 0x41800000
+	.4byte 0x00000000
+.global lbl_80516E08
+lbl_80516E08:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__13JASOscillatorFv
 init__13JASOscillatorFv:

@@ -25,6 +25,13 @@ sInterruptFlag$1728:
 init$1729:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805169A8
+lbl_805169A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__8J3DShapeFv
 initialize__8J3DShapeFv:

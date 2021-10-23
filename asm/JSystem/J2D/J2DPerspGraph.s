@@ -14,6 +14,31 @@ __vt__13J2DPerspGraph:
 	.4byte getGrafType__13J2DPerspGraphCFv
 	.4byte setLookat__13J2DPerspGraphFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516788
+lbl_80516788:
+	.4byte 0x00000000
+.global lbl_8051678C
+lbl_8051678C:
+	.float 1.0
+.global lbl_80516790
+lbl_80516790:
+	.4byte 0x43330000
+.global lbl_80516794
+lbl_80516794:
+	.4byte 0x40490FDB
+.global lbl_80516798
+lbl_80516798:
+	.4byte 0x43B40000
+.global lbl_8051679C
+lbl_8051679C:
+	.float 0.5
+.global lbl_805167A0
+lbl_805167A0:
+	.float -1.0
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13J2DPerspGraphFv
 __ct__13J2DPerspGraphFv:

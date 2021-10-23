@@ -5,6 +5,23 @@
 sProbes:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516E68
+lbl_80516E68:
+	.4byte 0x426FC28F
+.global lbl_80516E6C
+lbl_80516E6C:
+	.4byte 0x3F75C28F
+.global lbl_80516E70
+lbl_80516E70:
+	.float 0.04
+	.4byte 0x00000000
+.global lbl_80516E78
+lbl_80516E78:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global probeStart__9JASKernelFlPc
 probeStart__9JASKernelFlPc:

@@ -59,6 +59,15 @@ __vt__12JUTCacheFont:
 	.4byte setBlock__12JUTCacheFontFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516720
+lbl_80516720:
+	.4byte 0x25730000
+.global lbl_80516724
+lbl_80516724:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
 __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap:

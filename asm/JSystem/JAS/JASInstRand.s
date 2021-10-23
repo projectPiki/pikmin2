@@ -17,6 +17,15 @@ init$644:
 oRandom$643:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516CF0
+lbl_80516CF0:
+	.4byte 0x40000000
+.global lbl_80516CF4
+lbl_80516CF4:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getY__11JASInstRandCFii
 getY__11JASInstRandCFii:

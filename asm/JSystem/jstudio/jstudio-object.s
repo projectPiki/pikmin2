@@ -1135,6 +1135,35 @@ lbl_8049F4E8:
 soOutput_none___Q27JStudio14TVariableValue:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516408
+lbl_80516408:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516410
+lbl_80516410:
+	.4byte 0x00000000
+.global lbl_80516414
+lbl_80516414:
+	.4byte 0x437F0000
+.global sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera
+sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera:
+	.4byte 0x00000008
+	.4byte 0x00000009
+.global sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog
+sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog:
+	.4byte 0x00000004
+	.4byte 0x00000005
+.global sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light
+sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light:
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+.global lbl_80516430
+lbl_80516430:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q37JStudio14TVariableValue7TOutputFv
 __dt__Q37JStudio14TVariableValue7TOutputFv:

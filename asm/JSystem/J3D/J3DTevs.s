@@ -171,6 +171,68 @@ lbl_804A1900:
 	.4byte lbl_80065150
 	.4byte lbl_80065048
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805169B0
+lbl_805169B0:
+	.4byte 0x3E000000
+.global lbl_805169B4
+lbl_805169B4:
+	.4byte 0x3C23D70A
+.global lbl_805169B8
+lbl_805169B8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global j3dDefaultColInfo
+j3dDefaultColInfo:
+	.4byte 0xFFFFFFFF
+.global j3dDefaultAmbInfo
+j3dDefaultAmbInfo:
+	.4byte 0x32323232
+.global j3dDefaultColorChanNum
+j3dDefaultColorChanNum:
+	.4byte 0x01000000
+.global j3dDefaultTevOrderInfoNull
+j3dDefaultTevOrderInfoNull:
+	.4byte 0xFFFFFF00
+.global j3dDefaultIndTexOrderNull
+j3dDefaultIndTexOrderNull:
+	.4byte 0xFFFF0000
+.global j3dDefaultTevColor
+j3dDefaultTevColor:
+	.4byte 0x00FF00FF
+.global lbl_805169D8
+lbl_805169D8:
+	.4byte 0x00FF00FF
+.global j3dDefaultIndTexCoordScaleInfo
+j3dDefaultIndTexCoordScaleInfo:
+	.4byte 0x00000000
+.global j3dDefaultTevKColor
+j3dDefaultTevKColor:
+	.4byte 0xFFFFFFFF
+.global j3dDefaultTevSwapMode
+j3dDefaultTevSwapMode:
+	.4byte 0x00000000
+.global j3dDefaultTevSwapModeTable
+j3dDefaultTevSwapModeTable:
+	.4byte 0x00010203
+.global j3dDefaultBlendInfo
+j3dDefaultBlendInfo:
+	.4byte 0x01040505
+.global j3dDefaultColorChanInfo
+j3dDefaultColorChanInfo:
+	.4byte 0x00000002
+	.4byte 0x0200FFFF
+.global j3dDefaultTevSwapTableID
+j3dDefaultTevSwapTableID:
+	.2byte 0x1B00
+.global j3dDefaultAlphaCmpID
+j3dDefaultAlphaCmpID:
+	.2byte 0x00E7
+.global j3dDefaultZModeID
+j3dDefaultZModeID:
+	.4byte 0x00170000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__11J3DLightObjCFUl
 load__11J3DLightObjCFUl:

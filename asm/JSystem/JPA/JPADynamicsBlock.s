@@ -12,6 +12,31 @@ lbl_804A3248:
 	.4byte lbl_8008FA8C
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516B78
+lbl_80516B78:
+	.4byte 0x00000000
+.global lbl_80516B7C
+lbl_80516B7C:
+	.float 1.0
+.global lbl_80516B80
+lbl_80516B80:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_80516B88
+lbl_80516B88:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516B90
+lbl_80516B90:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_80516B98
+lbl_80516B98:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global JPAVolumePoint__FP18JPAEmitterWorkData
 JPAVolumePoint__FP18JPAEmitterWorkData:

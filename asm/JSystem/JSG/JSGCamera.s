@@ -42,6 +42,13 @@ __vt__Q26JStage7TCamera:
 	.4byte JSGSetViewRoll__Q26JStage7TCameraFf
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516C70
+lbl_80516C70:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q26JStage7TCameraFv
 __dt__Q26JStage7TCameraFv:

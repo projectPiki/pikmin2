@@ -160,6 +160,20 @@ interfaceHeapSize__18JAIGlobalParameter:
 minDistanceVolume__18JAIGlobalParameter:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516F28
+lbl_80516F28:
+	.asciz "Banks/"
+	.skip 1
+.global lbl_80516F30
+lbl_80516F30:
+	.asciz "Seqs/"
+	.skip 2
+.global lbl_80516F38
+lbl_80516F38:
+	.asciz "Stream/"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParamInitDataPointer__18JAIGlobalParameterFPv
 setParamInitDataPointer__18JAIGlobalParameterFPv:

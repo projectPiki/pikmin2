@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516708
+lbl_80516708:
+	.4byte 0x3E000000
+.global lbl_8051670C
+lbl_8051670C:
+	.4byte 0x42C80000
+.global lbl_80516710
+lbl_80516710:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516718
+lbl_80516718:
+	.4byte 0x43300000
+	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTTextureFii9_GXTexFmt

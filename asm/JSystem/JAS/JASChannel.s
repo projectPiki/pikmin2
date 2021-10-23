@@ -63,6 +63,49 @@ __vt__10JASChannel:
 	.4byte "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516E10
+lbl_80516E10:
+	.float 1.0
+.global lbl_80516E14
+lbl_80516E14:
+	.float 0.5
+.global lbl_80516E18
+lbl_80516E18:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516E20
+lbl_80516E20:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80516E28
+lbl_80516E28:
+	.4byte 0x45800000
+.global lbl_80516E2C
+lbl_80516E2C:
+	.4byte 0x42FF0000
+.global lbl_80516E30
+lbl_80516E30:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516E38
+lbl_80516E38:
+	.4byte 0xC3A2F983
+.global lbl_80516E3C
+lbl_80516E3C:
+	.4byte 0x43A2F983
+.global lbl_80516E40
+lbl_80516E40:
+	.4byte 0x3FC90FDB
+.global lbl_80516E44
+lbl_80516E44:
+	.4byte 0x3EA6F933
+.global lbl_80516E48
+lbl_80516E48:
+	.4byte 0x3EB20D99
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:

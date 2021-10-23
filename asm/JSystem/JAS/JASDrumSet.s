@@ -19,6 +19,23 @@ oscp$640:
 init$641:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516CD8
+lbl_80516CD8:
+	.float 1.0
+.global lbl_80516CDC
+lbl_80516CDC:
+	.4byte 0x00000000
+.global lbl_80516CE0
+lbl_80516CE0:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+.global lbl_80516CE8
+lbl_80516CE8:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getParam__10JASDrumSetCFiiP12JASInstParam
 getParam__10JASDrumSetCFiiP12JASInstParam:

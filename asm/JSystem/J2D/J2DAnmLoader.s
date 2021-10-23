@@ -50,6 +50,13 @@ __vt__10J2DAnmBase:
 	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805168C0
+lbl_805168C0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__20J2DAnmLoaderDataBaseFPCv
 load__20J2DAnmLoaderDataBaseFPCv:

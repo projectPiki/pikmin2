@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516B70
+lbl_80516B70:
+	.4byte 0x437F0000
+.global lbl_80516B74
+lbl_80516B74:
+	.float 1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global JPARegistChildPrmEnv__FP18JPAEmitterWorkData

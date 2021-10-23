@@ -72,6 +72,13 @@ __vt__Q214JStudio_JAudio14TAdaptor_sound:
 init$1257:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805164B0
+lbl_805164B0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem
 __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem:

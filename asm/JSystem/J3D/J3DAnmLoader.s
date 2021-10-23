@@ -54,6 +54,13 @@ __vt__18J3DAnmTransformKey:
 	.4byte getKind__18J3DAnmTransformKeyCFv
 	.4byte getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516A90
+lbl_80516A90:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__20J3DAnmLoaderDataBaseFPCv
 load__20J3DAnmLoaderDataBaseFPCv:

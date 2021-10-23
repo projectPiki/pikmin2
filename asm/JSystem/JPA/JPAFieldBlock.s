@@ -84,6 +84,27 @@ __vt__15JPAFieldGravity:
 	.4byte calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516BF8
+lbl_80516BF8:
+	.float 1.0
+.global lbl_80516BFC
+lbl_80516BFC:
+	.4byte 0x00000000
+.global lbl_80516C00
+lbl_80516C00:
+	.4byte 0x42000000
+.global lbl_80516C04
+lbl_80516C04:
+	.float 0.5
+.global lbl_80516C08
+lbl_80516C08:
+	.4byte 0x40400000
+.global lbl_80516C0C
+lbl_80516C0C:
+	.4byte 0x41200000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
 prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock:

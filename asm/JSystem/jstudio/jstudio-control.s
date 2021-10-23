@@ -39,6 +39,15 @@ __vt__Q27JStudio8TControl:
 	.4byte 0
 	.4byte __dt__Q27JStudio8TControlFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805163F8
+lbl_805163F8:
+	.4byte 0x00000000
+.global lbl_805163FC
+lbl_805163FC:
+	.4byte 0x3C8EFA35
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q27JStudio8TControlFv
 __ct__Q27JStudio8TControlFv:

@@ -50,6 +50,29 @@ __vt__9J2DScreen:
 mDataManage__9J2DScreen:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516840
+lbl_80516840:
+	.4byte 0x00000000
+.global lbl_80516844
+lbl_80516844:
+	.4byte 0x44200000
+.global lbl_80516848
+lbl_80516848:
+	.4byte 0x43F00000
+	.4byte 0x00000000
+.global lbl_80516850
+lbl_80516850:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516858
+lbl_80516858:
+	.float -1.0
+.global lbl_8051685C
+lbl_8051685C:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9J2DScreenFv
 __ct__9J2DScreenFv:

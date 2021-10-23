@@ -5,19 +5,21 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
 	$(BUILD_DIR)/asm/bss.o\
-	$(BUILD_DIR)/asm/sdata2.o\
 
 JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/control.o\
 	$(BUILD_DIR)/asm/JSystem/resource.o\
+	$(BUILD_DIR)/asm/JSystem/data.o\
 	$(BUILD_DIR)/asm/JSystem/processor.o\
 	$(BUILD_DIR)/asm/JSystem/control.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb-data-parse.o\
 	$(BUILD_DIR)/asm/JSystem/functionvalue.o\
 	$(BUILD_DIR)/asm/JSystem/fvb/fvb.o\
+	$(BUILD_DIR)/asm/JSystem/fvb/fvb-data.o\
 	$(BUILD_DIR)/asm/JSystem/fvb/fvb-data-parse.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-control.o\
+	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-data.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-object.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb.o\

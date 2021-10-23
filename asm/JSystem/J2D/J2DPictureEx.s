@@ -119,6 +119,23 @@ __vt__12J2DPictureEx:
 	.4byte getUsableTlut__12J2DPictureExFUc
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805168E0
+lbl_805168E0:
+	.float 1.0
+.global lbl_805168E4
+lbl_805168E4:
+	.4byte 0x00000000
+.global lbl_805168E8
+lbl_805168E8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805168F0
+lbl_805168F0:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12J2DPictureExFv
 __ct__12J2DPictureExFv:

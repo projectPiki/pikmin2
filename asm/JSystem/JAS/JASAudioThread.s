@@ -35,6 +35,13 @@ snIntCount__14JASAudioThread:
 sbPauseFlag__14JASAudioThread:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516E60
+lbl_80516E60:
+	.4byte 0x5346525F
+	.4byte 0x44535000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__14JASAudioThreadFl
 create__14JASAudioThreadFl:

@@ -71,6 +71,39 @@ __vt__Q27JStudio17TAdaptor_particle:
 init$1233:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516360
+lbl_80516360:
+	.4byte 0x00000000
+.global lbl_80516364
+lbl_80516364:
+	.float 1.0
+.global lbl_80516368
+lbl_80516368:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+.global lbl_80516370
+lbl_80516370:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_80516378
+lbl_80516378:
+	.4byte 0x40F00000
+	.4byte 0x00000000
+.global lbl_80516380
+lbl_80516380:
+	.4byte 0x40768000
+	.4byte 0x00000000
+.global lbl_80516388
+lbl_80516388:
+	.4byte 0x406FE000
+	.4byte 0x00000000
+.global lbl_80516390
+lbl_80516390:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem
 __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem:

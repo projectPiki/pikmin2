@@ -54,6 +54,19 @@ spFontHeader___10JUTRomFont:
 suFontHeaderRefered___10JUTRomFont:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805166F8
+lbl_805166F8:
+	.4byte 0x00000000
+.global lbl_805166FC
+lbl_805166FC:
+	.float 0.5
+.global lbl_80516700
+lbl_80516700:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTRomFontFP7JKRHeap
 __ct__10JUTRomFontFP7JKRHeap:

@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516BB8
+lbl_80516BB8:
+	.4byte 0x00000000
+.global lbl_80516BBC
+lbl_80516BBC:
+	.4byte 0x42000000
+.global lbl_80516BC0
+lbl_80516BC0:
+	.float 0.5
+.global lbl_80516BC4
+lbl_80516BC4:
+	.4byte 0x40400000
+.global lbl_80516BC8
+lbl_80516BC8:
+	.float 1.0
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc

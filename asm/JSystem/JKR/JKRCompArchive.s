@@ -49,6 +49,13 @@ __vt__14JKRCompArchive:
 	.4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
 	.4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805164E8
+lbl_805164E8:
+	.4byte 0x25730000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection
 __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection:

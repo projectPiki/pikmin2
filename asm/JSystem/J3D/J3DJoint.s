@@ -89,6 +89,15 @@ mJoint__10J3DMtxCalc:
 mCurrentMtxCalc__8J3DJoint:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516A78
+lbl_80516A78:
+	.float 1.0
+.global lbl_80516A7C
+lbl_80516A7C:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
 init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf:

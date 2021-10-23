@@ -61,6 +61,69 @@ sFreeList__8JASTrack:
 sFreeListEnd__8JASTrack:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516D78
+lbl_80516D78:
+	.4byte 0x00000000
+.global lbl_80516D7C
+lbl_80516D7C:
+	.float 1.0
+.global lbl_80516D80
+lbl_80516D80:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516D88
+lbl_80516D88:
+	.float 0.5
+.global lbl_80516D8C
+lbl_80516D8C:
+	.4byte 0x46FFFE00
+.global lbl_80516D90
+lbl_80516D90:
+	.4byte 0x43000000
+.global lbl_80516D94
+lbl_80516D94:
+	.4byte 0x3FAAAAAB
+.global lbl_80516D98
+lbl_80516D98:
+	.4byte 0x42C80000
+.global lbl_80516D9C
+lbl_80516D9C:
+	.4byte 0x42F00000
+.global lbl_80516DA0
+lbl_80516DA0:
+	.4byte 0x41200000
+	.4byte 0x00000000
+.global lbl_80516DA8
+lbl_80516DA8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516DB0
+lbl_80516DB0:
+	.4byte 0x3D638E39
+	.4byte 0x00000000
+.global lbl_80516DB8
+lbl_80516DB8:
+	.4byte 0x40100000
+	.4byte 0x00000000
+.global lbl_80516DC0
+lbl_80516DC0:
+	.4byte 0x40800000
+.global lbl_80516DC4
+lbl_80516DC4:
+	.4byte 0x3FC90FDB
+.global lbl_80516DC8
+lbl_80516DC8:
+	.4byte 0xC3A2F983
+.global lbl_80516DCC
+lbl_80516DCC:
+	.4byte 0x43A2F983
+.global lbl_80516DD0
+lbl_80516DD0:
+	.4byte 0x41400000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JASTrackFv
 __ct__8JASTrackFv:

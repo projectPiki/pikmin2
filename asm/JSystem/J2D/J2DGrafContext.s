@@ -14,6 +14,23 @@ __vt__14J2DGrafContext:
 	.4byte getGrafType__14J2DGrafContextCFv
 	.4byte setLookat__14J2DGrafContextFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805167A8
+lbl_805167A8:
+	.4byte 0x00000000
+.global lbl_805167AC
+lbl_805167AC:
+	.float 1.0
+.global lbl_805167B0
+lbl_805167B0:
+	.4byte 0x44800000
+	.4byte 0x00000000
+.global lbl_805167B8
+lbl_805167B8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__14J2DGrafContextFffff
 __ct__14J2DGrafContextFffff:

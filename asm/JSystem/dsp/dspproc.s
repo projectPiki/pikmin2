@@ -11,6 +11,13 @@ DSP_MIXERLEVEL:
 flag:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516ED0
+lbl_80516ED0:
+	.4byte 0x45800000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DSPReleaseHalt2__FUl
 DSPReleaseHalt2__FUl:

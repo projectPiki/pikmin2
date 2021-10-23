@@ -279,6 +279,33 @@ DBnewFreeBlock:
 DBnewUsedBlock:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805164F0
+lbl_805164F0:
+	.4byte 0x204E4F4E
+	.4byte 0x450A0000
+.global lbl_805164F8
+lbl_805164F8:
+	.4byte 0x2074656D
+	.4byte 0x70000000
+.global lbl_80516500
+lbl_80516500:
+	.4byte 0x616C6C6F
+	.4byte 0x63000000
+.global lbl_80516508
+lbl_80516508:
+	.4byte 0x20667265
+	.4byte 0x65000000
+.global lbl_80516510
+lbl_80516510:
+	.4byte 0x42C80000
+	.4byte 0x00000000
+.global lbl_80516518
+lbl_80516518:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createRoot__10JKRExpHeapFib
 createRoot__10JKRExpHeapFib:

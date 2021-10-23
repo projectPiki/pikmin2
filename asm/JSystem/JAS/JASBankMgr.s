@@ -31,6 +31,29 @@ sVir2PhyTable__10JASBankMgr:
 "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>":
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516C88
+lbl_80516C88:
+	.float 1.0
+.global lbl_80516C8C
+lbl_80516C8C:
+	.float 0.5
+.global lbl_80516C90
+lbl_80516C90:
+	.4byte 0x00000000
+.global lbl_80516C94
+lbl_80516C94:
+	.4byte 0x42FE0000
+.global lbl_80516C98
+lbl_80516C98:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516CA0
+lbl_80516CA0:
+	.4byte 0x4682C008
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__10JASBankMgrFi
 init__10JASBankMgrFi:

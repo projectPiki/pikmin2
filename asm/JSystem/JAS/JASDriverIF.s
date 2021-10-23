@@ -148,6 +148,17 @@ MAX_AUTOMIXERLEVEL__9JASDriver:
 JAS_SYSTEM_OUTPUT_MODE__9JASDriver:
 	.4byte 1
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516E50
+lbl_80516E50:
+	.4byte 0x467FFE00
+	.4byte 0x00000000
+.global lbl_80516E58
+lbl_80516E58:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global key2pitch_c5__9JASDriverFi
 key2pitch_c5__9JASDriverFi:

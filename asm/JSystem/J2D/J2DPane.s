@@ -52,6 +52,39 @@ __vt__7J2DPane:
 	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805167C0
+lbl_805167C0:
+	.4byte 0x00000000
+.global lbl_805167C4
+lbl_805167C4:
+	.float 1.0
+.global lbl_805167C8
+lbl_805167C8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805167D0
+lbl_805167D0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805167D8
+lbl_805167D8:
+	.float 0.5
+.global lbl_805167DC
+lbl_805167DC:
+	.4byte 0x3C8EFA35
+.global lbl_805167E0
+lbl_805167E0:
+	.4byte 0x437F0000
+.global lbl_805167E4
+lbl_805167E4:
+	.4byte 0x43B40000
+.global lbl_805167E8
+lbl_805167E8:
+	.4byte 0x477FFF00
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7J2DPaneFv
 __ct__7J2DPaneFv:

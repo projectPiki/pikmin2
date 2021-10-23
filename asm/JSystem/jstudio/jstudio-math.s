@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516448
+lbl_80516448:
+	.4byte 0x3C8EFA35
+.global lbl_8051644C
+lbl_8051644C:
+	.4byte 0x00000000
+.global lbl_80516450
+lbl_80516450:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516458
+lbl_80516458:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_80516460
+lbl_80516460:
+	.4byte 0x42000000
+	.4byte 0x00000000
+.global lbl_80516468
+lbl_80516468:
+	.4byte 0xBFF921FB
+	.4byte 0x54442D18
+.global lbl_80516470
+lbl_80516470:
+	.4byte 0x3FF921FB
+	.4byte 0x54442D18
+.global lbl_80516478
+lbl_80516478:
+	.4byte 0x404CA5DC
+	.4byte 0x1A63C1F8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec

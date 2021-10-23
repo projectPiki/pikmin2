@@ -85,6 +85,27 @@ __vt__9J2DWindow:
 	.4byte "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516880
+lbl_80516880:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516888
+lbl_80516888:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516890
+lbl_80516890:
+	.4byte 0x00000000
+.global lbl_80516894
+lbl_80516894:
+	.float 1.0
+.global lbl_80516898
+lbl_80516898:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9J2DWindowFv
 __ct__9J2DWindowFv:

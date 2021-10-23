@@ -1,4 +1,14 @@
 .include "macros.inc"
+
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805168D8
+lbl_805168D8:
+	.4byte 0xFFFFFFFF
+.global lbl_805168DC
+lbl_805168DC:
+	.4byte 0xFFFFFFFF
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E40
 lbl_80520E40:

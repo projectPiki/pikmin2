@@ -22,6 +22,37 @@ __vt__13JAIAnimeSound:
 	.4byte startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
 	.4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516ED8
+lbl_80516ED8:
+	.4byte 0x00000000
+.global lbl_80516EDC
+lbl_80516EDC:
+	.float -1.0
+.global lbl_80516EE0
+lbl_80516EE0:
+	.4byte 0x42FE0000
+.global lbl_80516EE4
+lbl_80516EE4:
+	.float 1.0
+.global lbl_80516EE8
+lbl_80516EE8:
+	.4byte 0x3D000000
+	.4byte 0x00000000
+.global lbl_80516EF0
+lbl_80516EF0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516EF8
+lbl_80516EF8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516F00
+lbl_80516F00:
+	.4byte 0x40000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global handleStop__13JAIAnimeSoundFUcUl
 handleStop__13JAIAnimeSoundFUcUl:

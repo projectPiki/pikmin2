@@ -77,6 +77,13 @@ mMemorySize__7JKRHeap:
 bVerbose___Q27JKRHeap6TState:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516530
+lbl_80516530:
+	.4byte 0x61626F72
+	.4byte 0x740A0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7JKRHeapFPvUlP7JKRHeapb
 __ct__7JKRHeapFPvUlP7JKRHeapb:

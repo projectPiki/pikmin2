@@ -158,6 +158,19 @@ __vt__17J3DColorBlockNull:
 	.4byte __dt__17J3DColorBlockNullFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516A80
+lbl_80516A80:
+	.4byte 0xFFFFFFFF
+.global lbl_80516A84
+lbl_80516A84:
+	.4byte 0x32323232
+.global lbl_80516A88
+lbl_80516A88:
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E48
 lbl_80520E48:

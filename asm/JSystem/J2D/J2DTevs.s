@@ -44,6 +44,64 @@ j2dDefaultIndTevStageInfo:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805168F8
+lbl_805168F8:
+	.4byte 0x40490FDB
+.global lbl_805168FC
+lbl_805168FC:
+	.4byte 0x43340000
+.global lbl_80516900
+lbl_80516900:
+	.4byte 0x00000000
+.global lbl_80516904
+lbl_80516904:
+	.float 1.0
+.global lbl_80516908
+lbl_80516908:
+	.float 0.5
+.global j2dDefaultColInfo
+j2dDefaultColInfo:
+	.4byte 0xFFFFFFFF
+.global j2dDefaultTevOrderInfoNull
+j2dDefaultTevOrderInfoNull:
+	.4byte 0xFFFFFF00
+.global j2dDefaultIndTexOrderNull
+j2dDefaultIndTexOrderNull:
+	.4byte 0xFFFF0000
+.global j2dDefaultTevColor
+j2dDefaultTevColor:
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+.global j2dDefaultIndTexCoordScaleInfo
+j2dDefaultIndTexCoordScaleInfo:
+	.4byte 0x00000000
+.global j2dDefaultTevKColor
+j2dDefaultTevKColor:
+	.4byte 0xFFFFFFFF
+.global j2dDefaultTevSwapMode
+j2dDefaultTevSwapMode:
+	.4byte 0x00000000
+.global j2dDefaultTevSwapModeTable
+j2dDefaultTevSwapModeTable:
+	.4byte 0x00010203
+.global j2dDefaultBlendInfo
+j2dDefaultBlendInfo:
+	.4byte 0x01040505
+.global j2dDefaultDither
+j2dDefaultDither:
+	.4byte 0x00000000
+.global j2dDefaultColorChanInfo
+j2dDefaultColorChanInfo:
+	.4byte 0x00030000
+.global j2dDefaultTevSwapTable
+j2dDefaultTevSwapTable:
+	.2byte 0x1B00
+.global j2dDefaultAlphaCmp
+j2dDefaultAlphaCmp:
+	.2byte 0x00E7
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__9J2DTexMtxFUl
 load__9J2DTexMtxFUl:

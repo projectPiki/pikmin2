@@ -71,6 +71,27 @@ __vt__12J2DTextBoxEx:
 	.4byte getMaterial__12J2DTextBoxExCFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516940
+lbl_80516940:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516948
+lbl_80516948:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516950
+lbl_80516950:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516958
+lbl_80516958:
+	.4byte 0x38D1B717
+.global lbl_8051695C
+lbl_8051695C:
+	.4byte 0x25730000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
 __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:

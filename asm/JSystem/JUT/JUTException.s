@@ -209,6 +209,52 @@ msr__12JUTException:
 fpscr__12JUTException:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516610
+lbl_80516610:
+	.asciz "DSI"
+.global lbl_80516614
+lbl_80516614:
+	.asciz "ISI"
+.global lbl_80516618
+lbl_80516618:
+	.asciz "PROGRAM"
+.global lbl_80516620
+lbl_80516620:
+	.asciz "TRACE"
+	.skip 2
+.global lbl_80516628
+lbl_80516628:
+	.float 0.0
+.global lbl_8051662C
+lbl_8051662C:
+	.4byte 0x20000000
+.global lbl_80516630
+lbl_80516630:
+	.4byte 0x0A000000
+.global lbl_80516634
+lbl_80516634:
+	.4byte 0x20534E61
+	.4byte 0x4E0A0000
+.global lbl_8051663C
+lbl_8051663C:
+	.4byte 0x2030202F
+	.4byte 0x20300A00
+.global lbl_80516644
+lbl_80516644:
+	.4byte 0x00000000
+.global lbl_80516648
+lbl_80516648:
+	.asciz ".map"
+	.skip 3
+.global lbl_80516650
+lbl_80516650:
+	.float 10.0
+.global lbl_80516654
+lbl_80516654:
+	.float 6.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__12JUTExceptionFP14JUTDirectPrint
 create__12JUTExceptionFP14JUTDirectPrint:

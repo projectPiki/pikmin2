@@ -58,6 +58,29 @@ sSystemPauseFlag__13JASAramStream:
 sFatalErrorFlag__13JASAramStream:
 	.skip 0x7
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516EB0
+lbl_80516EB0:
+	.4byte 0x00000000
+.global lbl_80516EB4
+lbl_80516EB4:
+	.float 1.0
+.global lbl_80516EB8
+lbl_80516EB8:
+	.float 0.5
+.global lbl_80516EBC
+lbl_80516EBC:
+	.4byte 0x42FE0000
+.global lbl_80516EC0
+lbl_80516EC0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global one$870
+one$870:
+	.4byte 0x00000001
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initSystem__13JASAramStreamFUlUl
 initSystem__13JASAramStreamFUlUl:

@@ -141,6 +141,43 @@ p_dl:
 	.4byte jpa_dl
 	.4byte jpa_dl_x
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516B38
+lbl_80516B38:
+	.4byte 0x41C80000
+	.4byte 0x00000000
+.global lbl_80516B40
+lbl_80516B40:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516B48
+lbl_80516B48:
+	.float 0.5
+.global lbl_80516B4C
+lbl_80516B4C:
+	.float 1.0
+.global lbl_80516B50
+lbl_80516B50:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80516B58
+lbl_80516B58:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516B60
+lbl_80516B60:
+	.4byte 0x3EAAAA9F
+.global lbl_80516B64
+lbl_80516B64:
+	.4byte 0x3F13CD36
+.global lbl_80516B68
+lbl_80516B68:
+	.4byte 0x42000000
+.global lbl_80516B6C
+lbl_80516B6C:
+	.4byte 0x40400000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global JPASetPointSize__FP18JPAEmitterWorkData
 JPASetPointSize__FP18JPAEmitterWorkData:

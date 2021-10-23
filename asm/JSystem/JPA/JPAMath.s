@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516C18
+lbl_80516C18:
+	.float 1.0
+.global lbl_80516C1C
+lbl_80516C1C:
+	.4byte 0x00000000
+.global lbl_80516C20
+lbl_80516C20:
+	.float 0.5
+.global lbl_80516C24
+lbl_80516C24:
+	.4byte 0x40400000
+.global lbl_80516C28
+lbl_80516C28:
+	.4byte 0x42000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f"

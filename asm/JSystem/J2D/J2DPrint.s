@@ -49,6 +49,33 @@ mStrBuffSize__8J2DPrint:
 mBufferNotEnough__8J2DPrint:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516818
+lbl_80516818:
+	.4byte 0x00000000
+.global lbl_8051681C
+lbl_8051681C:
+	.4byte 0x42000000
+.global lbl_80516820
+lbl_80516820:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80516828
+lbl_80516828:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_80516830
+lbl_80516830:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80516838
+lbl_80516838:
+	.4byte 0x461C4000
+.global lbl_8051683C
+lbl_8051683C:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8J2DPrintFP7JUTFontf
 __ct__8J2DPrintFP7JUTFontf:

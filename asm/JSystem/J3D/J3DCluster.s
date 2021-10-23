@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516A48
+lbl_80516A48:
+	.float 1.0
+.global lbl_80516A4C
+lbl_80516A4C:
+	.float 1.0
+.global lbl_80516A50
+lbl_80516A50:
+	.float -1.0
+.global lbl_80516A54
+lbl_80516A54:
+	.4byte 0x00000000
+.global lbl_80516A58
+lbl_80516A58:
+	.float -1.0
+.global lbl_80516A5C
+lbl_80516A5C:
+	.4byte 0x40490FDB
+.global lbl_80516A60
+lbl_80516A60:
+	.4byte 0x447FE000
+.global lbl_80516A64
+lbl_80516A64:
+	.4byte 0x3FC90FDB
+.global lbl_80516A68
+lbl_80516A68:
+	.4byte 0x42652EE0
+.global lbl_80516A6C
+lbl_80516A6C:
+	.4byte 0x43340000
+.global lbl_80516A70
+lbl_80516A70:
+	.4byte 0x43300000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global deform__13J3DDeformDataFP8J3DModel

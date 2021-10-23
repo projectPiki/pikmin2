@@ -43,6 +43,19 @@ Unit01:
 	.skip 4
 	.float 1.0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516998
+lbl_80516998:
+	.4byte 0x00000000
+.global lbl_8051699C
+lbl_8051699C:
+	.float 1.0
+.global lbl_805169A0
+lbl_805169A0:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DCalcBBoardMtx__FPA4_f
 J3DCalcBBoardMtx__FPA4_f:

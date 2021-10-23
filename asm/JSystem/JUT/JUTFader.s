@@ -10,6 +10,13 @@ __vt__8JUTFader:
 	.4byte startFadeOut__8JUTFaderFi
 	.4byte draw__8JUTFaderFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516658
+lbl_80516658:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JUTFaderFiiiiQ28JUtility6TColor
 __ct__8JUTFaderFiiiiQ28JUtility6TColor:

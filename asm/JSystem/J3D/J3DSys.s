@@ -98,6 +98,19 @@ ColorWhite:
 j3dDefaultViewNo:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80516988
+lbl_80516988:
+	.4byte 0x00000000
+.global lbl_8051698C
+lbl_8051698C:
+	.float 1.0
+.global lbl_80516990
+lbl_80516990:
+	.float 0.1
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__6J3DSysFv
 __ct__6J3DSysFv:
