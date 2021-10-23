@@ -31,6 +31,13 @@ struct PelletList {
 
 PelletList::Mgr* PelletList::Mgr::mInstance;
 
+inline void checkKindValidity(PelletList::cKind kind)
+{
+	bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
+#line 16
+	P2ASSERT(isValid);
+}
+
 /*
  * --INFO--
  * Address:	80227D5C
@@ -38,10 +45,7 @@ PelletList::Mgr* PelletList::Mgr::mInstance;
  */
 PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
 {
-	bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
-#line 16
-	P2ASSERT(isValid);
-
+	checkKindValidity(kind);
 	return &PelletList::Mgr::mInstance->m_configList[kind];
 }
 
@@ -52,9 +56,7 @@ PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
  */
 s32 PelletList::Mgr::getCount(PelletList::cKind kind)
 {
-	bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
-#line 16
-	P2ASSERT(isValid);
+	checkKindValidity(kind);
 
 	PelletConfigList& list = PelletList::Mgr::mInstance->m_configList[kind];
 	return list.m_configCnt;
@@ -69,9 +71,7 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
                                                 PelletList::cKind& kind)
 {
 	for (s32 i = 0; i < 5; i++) {
-		bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
-#line 16
-		P2ASSERT(isValid);
+		checkKindValidity(kind);
 
 		PelletConfig* list
 		    = PelletList::Mgr::mInstance->m_configList[kind].getPelletConfig(
