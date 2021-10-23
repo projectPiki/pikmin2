@@ -1,7 +1,7 @@
 #ifndef _OG_SCREEN_ANGLEMGR_H
 #define _OG_SCREEN_ANGLEMGR_H
 #define TAU     6.2831855f
-#define PI      3.1415927
+#define PI      3.1415927f
 #define HPI     1.5707964f
 #define NEG_HPI -1.5707964f
 namespace og {
