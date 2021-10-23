@@ -184,24 +184,3 @@ __init_cpp_exceptions_reference:
 	.4byte __sinit_blackManState_cpp
 	.4byte __sinit_blackMan_cpp
 	.4byte __sinit_tyre_cpp
-	.4byte __sinit_efxBase_cpp
-	.4byte __sinit_particle2dMgr_cpp
-	.4byte __sinit_particleMgr_cpp
-	.4byte __sinit_ebiP2Title_cpp
-	.4byte __sinit_ebiP2TitleUnit_cpp
-	.4byte __sinit_ebiP2TitleCamera_cpp
-	.4byte __sinit_ebiP2TitleLight_cpp
-	.4byte __sinit_ebiP2TitlePikmin_cpp
-	.4byte __sinit_ebiP2TitleKogane_cpp
-	.4byte __sinit_ebiP2TitleChappy_cpp
-	.4byte __sinit_ebiMainTitleMgr_cpp
-	.4byte __sinit_ebiP2TitleFog_cpp
-	.4byte __sinit_khWorldMap_cpp
-	.4byte __sinit_khCaveResult_cpp
-	.4byte __sinit_khReadyGo_cpp
-	.4byte __sinit_khFinalFloor_cpp
-	.4byte __sinit_khDayEndResult_cpp
-	.4byte __sinit_khFinalResult_cpp
-	.4byte __sinit_khPayDept_cpp
-	.4byte __sinit_khWinLose_cpp
-	.4byte __sinit_khWinLoseReason_cpp

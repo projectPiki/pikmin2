@@ -180,7 +180,8 @@ void ID32::sprint(char* str)
 	str[3] = static_cast<u8>(m_id.raw);
 	str[4] = '\0';
 }
-
+#pragma ipa file
+ID32 ID32::eof('_eof');
 // TODO: Figure out how to do sinit in this style
 
 // extern "C" void __sinit_id32_cpp(){
