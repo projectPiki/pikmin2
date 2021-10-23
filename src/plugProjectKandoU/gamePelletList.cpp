@@ -20,7 +20,9 @@ struct PelletList {
 
 		static PelletConfig* getConfigAndKind(char* config, cKind& kind);
 
-		int _00;                        // _00
+		inline Mgr() { } // TODO: figure out contents
+		virtual ~Mgr();
+
 		PelletConfigList* m_configList; // _04
 
 		static Mgr* mInstance;
@@ -81,123 +83,14 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
 
 	return nullptr;
 }
+
+/*
+ * --INFO--
+ * Address:	80227F00
+ * Size:	000070
+ */
+PelletList::Mgr::~Mgr() { delete[] m_configList; }
 } // namespace Game
-
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x20(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x24(r1)
-// 	  stw       r31, 0x1C(r1)
-// 	  stw       r30, 0x18(r1)
-// 	  li        r30, 0
-// 	  stw       r29, 0x14(r1)
-// 	  mr        r29, r4
-// 	  stw       r28, 0x10(r1)
-// 	  mr        r28, r3
-
-// 	.loc_0x28:
-// 	  stw       r30, 0x0(r29)
-// 	  li        r0, 0
-// 	  lwz       r31, 0x0(r29)
-// 	  cmpwi     r31, 0
-// 	  blt-      .loc_0x48
-// 	  cmpwi     r31, 0x5
-// 	  bge-      .loc_0x48
-// 	  li        r0, 0x1
-
-// 	.loc_0x48:
-// 	  rlwinm.   r0,r0,0,24,31
-// 	  bne-      .loc_0x6C
-// 	  lis       r3, 0x8048
-// 	  lis       r5, 0x8048
-// 	  addi      r3, r3, 0x3330
-// 	  li        r4, 0x10
-// 	  addi      r5, r5, 0x3344
-// 	  crclr     6, 0x6
-// 	  bl        -0x1FD868
-
-// 	.loc_0x6C:
-// 	  lwz       r3, -0x6A28(r13)
-// 	  rlwinm    r0,r31,5,0,26
-// 	  mr        r4, r28
-// 	  lwz       r3, 0x4(r3)
-// 	  add       r3, r3, r0
-// 	  bl        -0x73A9C
-// 	  cmplwi    r3, 0
-// 	  beq-      .loc_0x90
-// 	  b         .loc_0xA0
-
-// 	.loc_0x90:
-// 	  addi      r30, r30, 0x1
-// 	  cmpwi     r30, 0x5
-// 	  blt+      .loc_0x28
-// 	  li        r3, 0
-
-// 	.loc_0xA0:
-// 	  lwz       r0, 0x24(r1)
-// 	  lwz       r31, 0x1C(r1)
-// 	  lwz       r30, 0x18(r1)
-// 	  lwz       r29, 0x14(r1)
-// 	  lwz       r28, 0x10(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x20
-// 	  blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000068
-//  */
-// void Game::PelletList::Mgr::__ct(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80227F00
-//  * Size:	000070
-//  */
-// void Game::PelletList::Mgr::__dt(void)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  stw       r31, 0xC(r1)
-// 	  mr        r31, r4
-// 	  stw       r30, 0x8(r1)
-// 	  mr.       r30, r3
-// 	  beq-      .loc_0x54
-// 	  lis       r4, 0x804C
-// 	  lis       r3, 0x801B
-// 	  addi      r0, r4, 0xDD8
-// 	  stw       r0, 0x0(r30)
-// 	  addi      r4, r3, 0x4734
-// 	  lwz       r3, 0x4(r30)
-// 	  bl        -0x1667F0
-// 	  li        r3, 0
-// 	  extsh.    r0, r31
-// 	  stw       r3, 0x4(r30)
-// 	  ble-      .loc_0x54
-// 	  mr        r3, r30
-// 	  bl        -0x203E9C
-
-// 	.loc_0x54:
-// 	  lwz       r0, 0x14(r1)
-// 	  mr        r3, r30
-// 	  lwz       r31, 0xC(r1)
-// 	  lwz       r30, 0x8(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
 
 // /*
 //  * --INFO--

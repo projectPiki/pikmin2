@@ -50,15 +50,6 @@ lbl_804833A4:
 lbl_8048344C:
 	.asciz "dictNo:%d \n"
 
-.section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global __vt__Q34Game10PelletList3Mgr
-__vt__Q34Game10PelletList3Mgr:
-	.4byte 0
-	.4byte 0
-	.4byte __dt__Q34Game10PelletList3MgrFv
-	.4byte 0
-
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global mInstance__Q34Game10PelletList3Mgr
