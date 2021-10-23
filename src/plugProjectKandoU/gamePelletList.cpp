@@ -74,7 +74,10 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
                                                 PelletList::cKind& kind)
 {
 	for (s32 i = 0; i < 5; i++) {
-		checkKindValidity(kind);
+		kind         = (PelletList::cKind)i;
+		bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
+#line 16
+		P2ASSERT(isValid);
 
 		PelletConfig* list
 		    = PelletList::Mgr::mInstance->m_configList[kind].getPelletConfig(
