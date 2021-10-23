@@ -65,7 +65,7 @@ namespace Screen {
 	 * Address:	80330348
 	 * Size:	0001A8
 	 */
-	float AngleMgr::calc(void)
+	float AngleMgr::calc()
 	{
 		if (m_state == AGM_Chase) {
 			_00 += _04;
@@ -76,9 +76,9 @@ namespace Screen {
 				_00 = (_00 - TAU);
 			}
 
-			float f1 = (_08 - _00);
+			f32 f1 = (_08 - _00);
 			if (FABS(f1) > PI) {
-				float f2 = TAU - FABS(f1);
+				f32 f2 = TAU - FABS(f1);
 				if (f1 > 0.0f) {
 					if ((_04 > 0.0f) && (f2 > FABS(_04 * m_scale))) {
 						_04 = (-_04 * m_interpRate);
@@ -87,7 +87,7 @@ namespace Screen {
 					_04 = (-_04 * m_interpRate);
 				}
 			} else {
-				float f2 = FABS(f1);
+				f32 f2 = FABS(f1);
 				if (f1 > 0.0f) {
 					if ((_04 < 0.0f) && (f2 > FABS(_04 * m_scale))) {
 						_04 = (-_04 * m_interpRate);

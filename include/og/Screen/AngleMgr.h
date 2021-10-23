@@ -11,7 +11,7 @@ namespace Screen {
 		AngleMgr();
 		void init(float, float, float);
 		void chase(float, float);
-		float calc(void);
+		float calc();
 
 		f32 _00;          // _00
 		f32 _04;          // _04
