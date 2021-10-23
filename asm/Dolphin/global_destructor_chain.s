@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .dtors, "wa"  # 0x804732C0 - 0x804732E0
+__destroy_global_chain_reference:
+	.4byte __destroy_global_chain
+	.skip 0x10
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global __global_destructor_chain

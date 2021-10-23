@@ -6,7 +6,3 @@ __destroy_global_chain_reference:
 .global __fini_cpp_exceptions_reference
 __fini_cpp_exceptions_reference:
 	.4byte __fini_cpp_exceptions
-.global __destroy_global_chain_reference2
-__destroy_global_chain_reference2:
-	.4byte __destroy_global_chain
-	.skip 0x10
