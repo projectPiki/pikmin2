@@ -22,6 +22,8 @@ struct PelletList {
 		static s32 getCount(cKind);
 
 		static PelletConfig* getConfigAndKind(char* config, cKind& kind);
+		static void globalInstance();
+		void loadResource();
 
 		inline Mgr()
 		{
@@ -29,7 +31,6 @@ struct PelletList {
 			loadResource();
 		}
 		virtual ~Mgr();
-		void loadResource();
 
 		PelletConfigList* m_configList; // _04
 
@@ -105,7 +106,6 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
  * Size:	000070
  */
 PelletList::Mgr::~Mgr() { delete[] m_configList; }
-} // namespace Game
 
 // /*
 //  * --INFO--
@@ -389,60 +389,16 @@ PelletList::Mgr::~Mgr() { delete[] m_configList; }
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	802282A8
-//  * Size:	000080
-//  */
-// void Game::PelletList::Mgr::globalInstance(void)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  stw       r31, 0xC(r1)
-// 	  lwz       r0, -0x6A28(r13)
-// 	  cmplwi    r0, 0
-// 	  bne-      .loc_0x6C
-// 	  li        r3, 0x8
-// 	  bl        -0x204424
-// 	  mr.       r31, r3
-// 	  beq-      .loc_0x68
-// 	  lis       r4, 0x804C
-// 	  li        r3, 0xB0
-// 	  addi      r0, r4, 0xDD8
-// 	  stw       r0, 0x0(r31)
-// 	  bl        -0x204338
-// 	  lis       r4, 0x801B
-// 	  lis       r5, 0x801B
-// 	  addi      r4, r4, 0x3EEC
-// 	  li        r6, 0x20
-// 	  addi      r5, r5, 0x4734
-// 	  li        r7, 0x5
-// 	  bl        -0x166910
-// 	  stw       r3, 0x4(r31)
-// 	  mr        r3, r31
-// 	  bl        -0x39C
+/*
+ * --INFO--
+ * Address:	802282A8
+ * Size:	000080
+ */
+void PelletList::Mgr::globalInstance()
+{
+	if (!PelletList::Mgr::mInstance) {
+		PelletList::Mgr::mInstance = new PelletList::Mgr();
+	}
+}
 
-// 	.loc_0x68:
-// 	  stw       r31, -0x6A28(r13)
-
-// 	.loc_0x6C:
-// 	  lwz       r0, 0x14(r1)
-// 	  lwz       r31, 0xC(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000048
-//  */
-// void Game::PelletList::Mgr::deleteInstance(void)
-// {
-// 	// UNUSED FUNCTION
-// }
+} // namespace Game
