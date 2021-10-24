@@ -49,8 +49,8 @@ InitMetroTRK:
 /* 800BFE2C 000BCD6C  38 00 00 00 */	li r0, 0
 /* 800BFE30 000BCD70  7C 12 FB A6 */	mtspr 0x3f2, r0
 /* 800BFE34 000BCD74  7C 15 FB A6 */	mtspr 0x3f5, r0
-/* 800BFE38 000BCD78  3C 20 80 53 */	lis r1, 0x80532ED8@h
-/* 800BFE3C 000BCD7C  60 21 2E D8 */	ori r1, r1, 0x80532ED8@l
+/* 800BFE38 000BCD78  3C 20 80 53 */	lis r1, _db_stack_addr@h
+/* 800BFE3C 000BCD7C  60 21 2E D8 */	ori r1, r1, _db_stack_addr@l
 /* 800BFE40 000BCD80  7C A3 2B 78 */	mr r3, r5
 /* 800BFE44 000BCD84  48 00 08 D5 */	bl InitMetroTRKCommTable
 /* 800BFE48 000BCD88  2C 03 00 01 */	cmpwi r3, 1
@@ -90,8 +90,8 @@ InitMetroTRK_BBA:
 /* 800BFEC0 000BCE00  38 00 00 00 */	li r0, 0
 /* 800BFEC4 000BCE04  7C 12 FB A6 */	mtspr 0x3f2, r0
 /* 800BFEC8 000BCE08  7C 15 FB A6 */	mtspr 0x3f5, r0
-/* 800BFECC 000BCE0C  3C 20 80 53 */	lis r1, 0x80532ED8@h
-/* 800BFED0 000BCE10  60 21 2E D8 */	ori r1, r1, 0x80532ED8@l
+/* 800BFECC 000BCE0C  3C 20 80 53 */	lis r1, _db_stack_addr@h
+/* 800BFED0 000BCE10  60 21 2E D8 */	ori r1, r1, _db_stack_addr@l
 /* 800BFED4 000BCE14  38 60 00 02 */	li r3, 2
 /* 800BFED8 000BCE18  48 00 08 41 */	bl InitMetroTRKCommTable
 /* 800BFEDC 000BCE1C  2C 03 00 01 */	cmpwi r3, 1
