@@ -15,7 +15,7 @@ namespace Screen {
 			DONT_USE_2 = 0xFFFFFFFF
 		};
 
-		~ScaleMgr() {}
+		~ScaleMgr() { }
 		ScaleMgr();
 		void up();
 		void down();
@@ -28,7 +28,8 @@ namespace Screen {
 		float m_elapsedSeconds;    // _04
 		float m_scale;             // _08
 		float _0C;                 // _0C
-		float m_periodModifier;    // _10 sin(elapsedSeconds*periodModifier). Larger = shorter periods.
+		float m_periodModifier;    // _10 sin(elapsedSeconds*periodModifier).
+		                           // Larger = shorter periods.
 		float m_durationInSeconds; // _14
 		float _18;                 // _18
 	};
