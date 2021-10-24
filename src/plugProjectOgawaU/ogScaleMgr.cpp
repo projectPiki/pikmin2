@@ -110,7 +110,7 @@ float ScaleMgr::calc()
 			m_scale = 1.0f;
 			break;
 		case SCM_Growing:
-			m_elapsedSeconds = m_elapsedSeconds + sys->m_secondsPerFrame;
+			m_elapsedSeconds += sys->m_secondsPerFrame;
 			fVar1 = m_elapsedSeconds;
 			if (fVar1 <= m_durationInSeconds) {
 				fVar2 = fVar1 * m_periodModifier;
@@ -131,7 +131,7 @@ float ScaleMgr::calc()
 			}
 			break;
 		case SCM_Shrinking:
-			m_elapsedSeconds = m_elapsedSeconds + sys->m_secondsPerFrame;
+			m_elapsedSeconds += sys->m_secondsPerFrame;
 			fVar1 = m_elapsedSeconds;
 			if (fVar1 <= m_durationInSeconds) {
 				fVar2 = fVar1 * m_periodModifier;
