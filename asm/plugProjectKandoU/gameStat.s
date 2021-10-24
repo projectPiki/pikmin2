@@ -21,6 +21,23 @@ __vt__Q34Game8GameStat11PikiCounter:
 	.4byte __opi__Q34Game8GameStat11PikiCounterFv
 	.4byte __cl__Q34Game8GameStat11PikiCounterFi
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global formationPikis__Q24Game8GameStat
+formationPikis__Q24Game8GameStat:
+	.skip 0x220
+.global workPikis__Q24Game8GameStat
+workPikis__Q24Game8GameStat:
+	.skip 0xE0
+.global alivePikis__Q24Game8GameStat
+alivePikis__Q24Game8GameStat:
+	.skip 0x20
+.global mePikis__Q24Game8GameStat
+mePikis__Q24Game8GameStat:
+	.skip 0x20
+.global zikatuPikis__Q24Game8GameStat
+zikatuPikis__Q24Game8GameStat:
+	.skip 0x20
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game8GameStatFv
 clear__Q24Game8GameStatFv:

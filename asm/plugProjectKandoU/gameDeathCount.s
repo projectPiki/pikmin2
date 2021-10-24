@@ -25,6 +25,26 @@ lbl_80483920:
 	.4byte 0x746E6572
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global mToday__Q24Game8BirthMgr
+mToday__Q24Game8BirthMgr:
+	.skip 0xC0
+.global mCave__Q24Game8BirthMgr
+mCave__Q24Game8BirthMgr:
+	.skip 0x1C
+.global mTotal__Q24Game8BirthMgr
+mTotal__Q24Game8BirthMgr:
+	.skip 0x1C
+.global mToday__Q24Game8DeathMgr
+mToday__Q24Game8DeathMgr:
+	.skip 0x24
+.global mCave__Q24Game8DeathMgr
+mCave__Q24Game8DeathMgr:
+	.skip 0x24
+.global mTotal__Q24Game8DeathMgr
+mTotal__Q24Game8DeathMgr:
+	.skip 0x24
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global mSoundDeathCount__Q24Game8DeathMgr

@@ -373,6 +373,11 @@ __vt__Q32og9newScreen10ObjAnaDemo:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32og9newScreen10ObjAnaDemo
+msVal__Q32og9newScreen10ObjAnaDemo:
+	.skip 0x10
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051DC10

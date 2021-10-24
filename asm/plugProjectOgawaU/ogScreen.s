@@ -134,6 +134,11 @@ __vt__Q29P2DScreen4Node:
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global PikiIconTextureResTIMG__Q22og6Screen
+PikiIconTextureResTIMG__Q22og6Screen:
+	.skip 0x4C
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global wkPtr$3542

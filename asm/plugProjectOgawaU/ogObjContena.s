@@ -129,6 +129,11 @@ __vt__Q32og9newScreen10ObjContena:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32og9newScreen10ObjContena
+msVal__Q32og9newScreen10ObjContena:
+	.skip 0x44
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global angle$4147
