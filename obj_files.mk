@@ -272,7 +272,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/global_destructor_chain.o\
 	$(BUILD_DIR)/asm/Dolphin/CPlusLibPPC.o\
 	$(BUILD_DIR)/asm/Dolphin/NMWException.o\
-	$(BUILD_DIR)/asm/Dolphin/ptmf.o\
+	$(BUILD_DIR)/src/Dolphin/ptmf.o\
 	$(BUILD_DIR)/asm/Dolphin/runtime.o\
 	$(BUILD_DIR)/asm/Dolphin/__init_cpp_exceptions.o\
 	$(BUILD_DIR)/asm/Dolphin/Gecko_ExceptionPPC.o\
