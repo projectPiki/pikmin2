@@ -1,32 +1,31 @@
+#include "og/Screen/ScaleMgr.h"
+#include "sysMath.h"
+#include "System.h"
 
+extern const float lbl_8051DE68;
+extern const float lbl_8051DE6C;
+extern const float lbl_8051DE70;
+extern const float lbl_8051DE74;
+extern const float lbl_8051DE78;
+extern const float lbl_8051DE7C;
+extern const float lbl_8051DE80;
+extern const float lbl_8051DE84;
+
+System* const sys = (System*)0x8051616c;
+
+
+namespace og {
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	80328E04
  * Size:	000044
  */
-void og::Screen::ScaleMgr::__ct(void)
+ScaleMgr::ScaleMgr()
+	: m_state(SCM_Unknown_0)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, -0x4F8(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  fmr       f2, f1
-	  stw       r31, 0xC(r1)
-	  fmr       f3, f1
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  bl        0x138
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	setParam(lbl_8051DE68, lbl_8051DE68, lbl_8051DE68);
 }
 
 /*
@@ -34,29 +33,11 @@ void og::Screen::ScaleMgr::__ct(void)
  * Address:	80328E48
  * Size:	000048
  */
-void og::Screen::ScaleMgr::up(void)
+void ScaleMgr::up()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, -0x4F4(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  lfs       f2, -0x4F0(r2)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lfs       f3, -0x4EC(r2)
-	  stw       r0, 0x0(r3)
-	  bl        0xF4
-	  lfs       f0, -0x4E8(r2)
-	  stfs      f0, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_state = SCM_Growing;
+	setParam(lbl_8051DE6C, lbl_8051DE70, lbl_8051DE74);
+	_18 = lbl_8051DE78;
 }
 
 /*
@@ -64,29 +45,11 @@ void og::Screen::ScaleMgr::up(void)
  * Address:	80328E90
  * Size:	000048
  */
-void og::Screen::ScaleMgr::down(void)
+void ScaleMgr::down()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, -0x4E4(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x2
-	  lfs       f2, -0x4E0(r2)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lfs       f3, -0x4EC(r2)
-	  stw       r0, 0x0(r3)
-	  bl        0xAC
-	  lfs       f0, -0x4E8(r2)
-	  stfs      f0, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_state = SCM_Shrinking;
+	setParam(lbl_8051DE7C, lbl_8051DE80, lbl_8051DE74);
+	_18 = lbl_8051DE78;
 }
 
 /*
@@ -94,50 +57,25 @@ void og::Screen::ScaleMgr::down(void)
  * Address:	........
  * Size:	0000A0
  */
-void og::Screen::ScaleMgr::up((float))
-{
-	// UNUSED FUNCTION
-}
+// void og::Screen::ScaleMgr::up(float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80328ED8
  * Size:	000064
  */
-void og::Screen::ScaleMgr::up((float, float, float, float))
+void ScaleMgr::up(float p1, float periodModifier, float durationInSeconds, float p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  fmr       f31, f4
-	  bl        0x6C
-	  lfs       f0, -0x4DC(r2)
-	  stfs      f31, 0x18(r31)
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x40
-	  li        r0, 0x1
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x48
-
-	.loc_0x40:
-	  li        r0, 0x3
-	  stw       r0, 0x0(r31)
-
-	.loc_0x48:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	setParam(p1, periodModifier, durationInSeconds);
+	_18 = p4;
+	if (p4 < lbl_8051DE84) {
+		m_state = SCM_Growing;
+	} else {
+		m_state = SCM_OtherGrowingMaybe;
+	}
 }
 
 /*
@@ -145,23 +83,10 @@ void og::Screen::ScaleMgr::up((float, float, float, float))
  * Address:	80328F3C
  * Size:	000028
  */
-void og::Screen::ScaleMgr::down((float, float, float))
+void ScaleMgr::down(float p1, float periodModifier, float durationInSeconds)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x2
-	  stw       r0, 0x0(r3)
-	  bl        .loc_0x28
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x28:
-	*/
+	m_state = SCM_Shrinking;
+	setParam(p1, periodModifier, durationInSeconds);
 }
 
 /*
@@ -169,19 +94,13 @@ void og::Screen::ScaleMgr::down((float, float, float))
  * Address:	80328F64
  * Size:	000020
  */
-void og::Screen::ScaleMgr::setParam((float, float, float))
+void ScaleMgr::setParam(float p1, float periodModifier, float durationInSeconds)
 {
-	/*
-	.loc_0x0:
-	  lfs       f4, -0x4E8(r2)
-	  lfs       f0, -0x4F8(r2)
-	  stfs      f4, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  stfs      f1, 0xC(r3)
-	  stfs      f2, 0x10(r3)
-	  stfs      f3, 0x14(r3)
-	  blr
-	*/
+	m_elapsedSeconds = lbl_8051DE78;
+	m_scale = lbl_8051DE68;
+	_0C = p1;
+	m_periodModifier = periodModifier;
+	m_durationInSeconds = durationInSeconds;
 }
 
 /*
@@ -189,8 +108,70 @@ void og::Screen::ScaleMgr::setParam((float, float, float))
  * Address:	80328F84
  * Size:	00020C
  */
-void og::Screen::ScaleMgr::calc(void)
+float ScaleMgr::calc()
 {
+	float fVar1;
+	float fVar2;
+	State SVar3;
+
+	switch (m_state) {
+		case SCM_Unknown_0:
+			m_scale = lbl_8051DE68;
+			break;
+		case SCM_Growing:
+			m_elapsedSeconds = m_elapsedSeconds + sys->m_secondsPerFrame;
+			fVar1 = m_elapsedSeconds;
+			if (fVar1 <= m_durationInSeconds) {
+				fVar2 = fVar1 * m_periodModifier;
+				pikmin2_sinf(fVar2);
+				// if (0.0 <= fVar2) {
+				// 	fVar2 = JSystem::sincosTable___5JMath[(int)(fVar2 * 325.9493) & 0x7ff].sine;
+				// }
+				// else {
+				// 	fVar2 = -JSystem::sincosTable___5JMath[(int)(fVar2 * -325.9493) & 0x7ff].sine;
+				// }
+				m_scale = (m_durationInSeconds - fVar1) *
+							(_0C * fVar2 + _0C) + lbl_8051DE68;
+			}
+			else {
+				m_state = SCM_Unknown_0;
+				m_scale = lbl_8051DE68;
+				m_elapsedSeconds = lbl_8051DE78;
+			}
+			break;
+		case SCM_Shrinking:
+			m_elapsedSeconds = m_elapsedSeconds + sys->m_secondsPerFrame;
+			fVar1 = m_elapsedSeconds;
+			if (fVar1 <= m_durationInSeconds) {
+				fVar2 = fVar1 * m_periodModifier;
+				pikmin2_sinf(fVar2); // This should get inlined...
+				// if (0.0 <= fVar2) {
+				// 	fVar2 = JMath::sincosTable_[(int)(fVar2 * 325.9493) & 0x7ff].sine;
+				// }
+				// else {
+				// 	fVar2 = -JMath::sincosTable___5JMath[(int)(fVar2 * -325.9493) & 0x7ff].sine;
+				// }
+				m_scale = -((m_durationInSeconds - fVar1) *
+						(_0C * fVar2 + _0C) - lbl_8051DE68);
+			} else {
+				m_state = SCM_Unknown_0;
+				m_scale = lbl_8051DE68;
+				m_elapsedSeconds = lbl_8051DE78;
+			}
+			break;
+		case SCM_OtherGrowingMaybe:
+			m_scale = lbl_8051DE68;
+			_18 = _18 - sys->m_secondsPerFrame;
+			if (_18 < lbl_8051DE78) {
+				m_state = SCM_Growing;
+				_18 = lbl_8051DE78;
+			}
+
+			break;
+		default:
+			m_scale = lbl_8051DE68;
+	}
+	return m_scale;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -352,3 +333,6 @@ void og::Screen::ScaleMgr::calc(void)
 	  blr
 	*/
 }
+
+} // namespace Screen
+} // namespace og

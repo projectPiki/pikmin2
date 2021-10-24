@@ -78,7 +78,9 @@ struct System {
 
 	u8 _00[0x3C]; // _00
 	u32* _3C;     // _3C
-	u8 _40[0xA0]; // _40
+	u8 _40[0x14]; // _40
+	float m_secondsPerFrame; // _54
+	u8 _58[0x88]; // _58
 };
 
 #endif
