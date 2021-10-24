@@ -78,15 +78,19 @@ s32 PelletList::Mgr::getCount(PelletList::cKind kind)
 PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
                                                 PelletList::cKind& kind)
 {
+	// Need to pre-define these variables due to register ordering issues
+	bool isValid;
+	PelletList::cKind kindCopy;
+
 	for (s32 i = 0; i < 5; i++) {
-		kind         = (PelletList::cKind)i;
-		bool isValid = i >= 0 && i < 5;
+		kind     = (PelletList::cKind)i;
+		kindCopy = kind;
+		isValid  = kind >= 0 && kindCopy < 5;
 #line 16
 		P2ASSERT(isValid);
 
-		PelletConfig* list
-		    = PelletList::Mgr::mInstance->m_configList[kind].getPelletConfig(
-		        config);
+		PelletConfig* list = PelletList::Mgr::mInstance->m_configList[kindCopy]
+		                         .getPelletConfig(config);
 		if (list) {
 			return list;
 		}
