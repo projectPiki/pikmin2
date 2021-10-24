@@ -1,5 +1,6 @@
-
-
+#include "types.h"
+#define K1 0x80808080
+#define K2 0xFEFEFEFF
 /*
  * --INFO--
  * Address:	........
@@ -75,35 +76,21 @@ void strpbrk(void)
  * Address:	800CA608
  * Size:	000048
  */
-void strrchr(void)
+char* strrchr(const char* str, int chr)
 {
-/*
-.loc_0x0:
-  subi      r5, r3, 0x1
-  rlwinm    r0,r4,0,24,31
-  li        r3, 0
-  b         .loc_0x1C
+	const uchar* p = (uchar*)str - 1;
+	const uchar* q = 0;
+	ulong c = (chr & 0xFF);
+	ulong ch;
 
-.loc_0x10:
-  cmplw     r4, r0
-  bne-      .loc_0x1C
-  mr        r3, r5
+	while (ch = *++p)
+		if (ch == c)
+			q = p;
 
-.loc_0x1C:
-  lbzu      r4, 0x1(r5)
-  cmplwi    r4, 0
-  bne+      .loc_0x10
-  cmplwi    r3, 0
-  bnelr-    
-  cmplwi    r0, 0
-  beq-      .loc_0x40
-  li        r3, 0
-  blr       
+	if (q)
+		return ((char*)q);
 
-.loc_0x40:
-  mr        r3, r5
-  blr
-*/
+	return (c ? 0 : (char*)p);
 }
 
 /*
@@ -131,27 +118,17 @@ void strcoll(void)
  * Address:	800CA650
  * Size:	000030
  */
-void strchr(void)
+char* strchr(const char* str, int chr)
 {
-/*
-.loc_0x0:
-  subi      r3, r3, 0x1
-  rlwinm    r0,r4,0,24,31
-  b         .loc_0x14
+	const uchar* p = (uchar*)str - 1;
+	ulong c        = (chr & 0xFF);
+	ulong ch;
 
-.loc_0xC:
-  cmplw     r4, r0
-  beqlr-    
+	while (ch = *++p)
+		if (ch == c)
+			return ((char*)p);
 
-.loc_0x14:
-  lbzu      r4, 0x1(r3)
-  cmplwi    r4, 0
-  bne+      .loc_0xC
-  cmplwi    r0, 0
-  beqlr-    
-  li        r3, 0
-  blr
-*/
+	return (c ? 0 : (char*)p);
 }
 
 /*
@@ -159,35 +136,20 @@ void strchr(void)
  * Address:	800CA680
  * Size:	000040
  */
-void strncmp(void)
+int strncmp(const char* str1, const char* str2, size_t n)
 {
-/*
-.loc_0x0:
-  subi      r3, r3, 0x1
-  subi      r4, r4, 0x1
-  addi      r6, r5, 0x1
-  b         .loc_0x30
+	const uchar* p1 = (uchar*)str1 - 1;
+	const uchar* p2 = (uchar*)str2 - 1;
+	ulong c1, c2;
 
-.loc_0x10:
-  lbzu      r0, 0x1(r3)
-  lbzu      r5, 0x1(r4)
-  cmplw     r0, r5
-  beq-      .loc_0x28
-  sub       r3, r0, r5
-  blr       
+	n++;
 
-.loc_0x28:
-  cmplwi    r0, 0
-  beq-      .loc_0x38
-
-.loc_0x30:
-  subic.    r6, r6, 0x1
-  bne+      .loc_0x10
-
-.loc_0x38:
-  li        r3, 0
-  blr
-*/
+	while (--n)
+		if ((c1 = *++p1) != (c2 = *++p2))
+			return (c1 - c2);
+		else if (!c1)
+			break;
+	return 0;
 }
 
 /*
@@ -195,111 +157,79 @@ void strncmp(void)
  * Address:	800CA6C0
  * Size:	000128
  */
-void strcmp(void)
+int strcmp(const char* str1, const char* str2)
 {
-/*
-.loc_0x0:
-  lbz       r5, 0x0(r3)
-  lbz       r0, 0x0(r4)
-  sub.      r0, r5, r0
-  beq-      .loc_0x18
-  mr        r3, r0
-  blr       
+	// bless metrowerks for this implementation
 
-.loc_0x18:
-  rlwinm    r0,r4,0,30,31
-  rlwinm    r6,r3,0,30,31
-  cmplw     r0, r6
-  bne-      .loc_0xF0
-  cmplwi    r6, 0
-  beq-      .loc_0x84
-  cmplwi    r5, 0
-  bne-      .loc_0x40
-  li        r3, 0
-  blr       
+	register uchar* left  = (uchar*)str1;
+	register uchar* right = (uchar*)str2;
+	uint align, l1, r1, x;
 
-.loc_0x40:
-  subfic    r0, r6, 0x3
-  mtctr     r0
-  cmplwi    r0, 0
-  beq-      .loc_0x7C
+	l1 = *left;
+	r1 = *right;
+	if (l1 - r1) {
+		return (l1 - r1);
+	}
 
-.loc_0x50:
-  lbzu      r5, 0x1(r3)
-  lbzu      r0, 0x1(r4)
-  sub.      r0, r5, r0
-  beq-      .loc_0x68
-  mr        r3, r0
-  blr       
+	if ((align = ((int)left & 3)) != ((int)right & 3)) {
+		goto bytecopy;
+	}
+	if (align) {
+		if (l1 == 0) {
+			return 0;
+		}
+		for (align = 3 - align; align; align--) {
+			l1 = *(++left);
+			r1 = *(++right);
+			if (l1 - r1) {
+				return (l1 - r1);
+			}
+			if (l1 == 0) {
+				return 0;
+			}
+		}
+		left++;
+		right++;
+	}
 
-.loc_0x68:
-  cmplwi    r5, 0
-  bne-      .loc_0x78
-  li        r3, 0
-  blr       
+	l1 = *(int*)left;
+	r1 = *(int*)right;
+	x = l1 + K2;
+	if (x & K1) {
+		goto adjust;
+	}
+	while (l1 == r1) {
+		l1 = *(++((int*)(left)));
+		r1 = *(++((int*)(right)));
+		x  = l1 + K2;
+		if (x & K1) {
+			goto adjust;
+		}
+	}
+	if (l1 > r1)
+		return 1;
+	return -1;
 
-.loc_0x78:
-  bdnz+     .loc_0x50
-
-.loc_0x7C:
-  addi      r3, r3, 0x1
-  addi      r4, r4, 0x1
-
-.loc_0x84:
-  lwz       r7, 0x0(r3)
-  lis       r5, 0x8081
-  subi      r6, r5, 0x7F80
-  lwz       r8, 0x0(r4)
-  subis     r5, r7, 0x101
-  subi      r0, r5, 0x101
-  and.      r0, r0, r6
-  bne-      .loc_0xD8
-  b         .loc_0xC0
-
-.loc_0xA8:
-  lwzu      r7, 0x4(r3)
-  lwzu      r8, 0x4(r4)
-  subis     r5, r7, 0x101
-  subi      r0, r5, 0x101
-  and.      r0, r0, r6
-  bne-      .loc_0xD8
-
-.loc_0xC0:
-  cmplw     r7, r8
-  beq+      .loc_0xA8
-  li        r3, -0x1
-  blelr-    
-  li        r3, 0x1
-  blr       
-
-.loc_0xD8:
-  lbz       r5, 0x0(r3)
-  lbz       r0, 0x0(r4)
-  sub.      r0, r5, r0
-  beq-      .loc_0xF0
-  mr        r3, r0
-  blr       
-
-.loc_0xF0:
-  cmplwi    r5, 0
-  bne-      .loc_0x100
-  li        r3, 0
-  blr       
-
-.loc_0x100:
-  lbzu      r5, 0x1(r3)
-  lbzu      r0, 0x1(r4)
-  sub.      r0, r5, r0
-  beq-      .loc_0x118
-  mr        r3, r0
-  blr       
-
-.loc_0x118:
-  cmplwi    r5, 0
-  bne+      .loc_0x100
-  li        r3, 0
-  blr
-*/
+adjust:
+	l1 = *left;
+	r1 = *right;
+	if (l1 - r1) {
+		return (l1 - r1);
+	}
+bytecopy:
+	if (l1 == 0) {
+		return 0;
+	}
+	do {
+		l1 = *(++left);
+		r1 = *(++right);
+		if (l1 - r1) {
+			return (l1 - r1);
+		}
+		if (l1 == 0) {
+			return 0;
+		}
+	} while (1);
 }
 
 /*
@@ -317,26 +247,18 @@ void strncat(void)
  * Address:	800CA7E8
  * Size:	00002C
  */
-void strcat(void)
+char* strcat(char* dst, const char* src)
 {
-/*
-.loc_0x0:
-  subi      r4, r4, 0x1
-  subi      r5, r3, 0x1
+	const uchar* p = (uchar*)src - 1;
+	uchar* q       = (uchar*)dst - 1;
 
-.loc_0x8:
-  lbzu      r0, 0x1(r5)
-  cmplwi    r0, 0
-  bne+      .loc_0x8
-  subi      r5, r5, 0x1
+	while (*++q);
 
-.loc_0x18:
-  lbzu      r0, 0x1(r4)
-  cmplwi    r0, 0
-  stbu      r0, 0x1(r5)
-  bne+      .loc_0x18
-  blr
-*/
+	q--;
+
+	while (*++q = *++p);
+
+	return (dst);
 }
 
 /*
@@ -344,36 +266,21 @@ void strcat(void)
  * Address:	800CA814
  * Size:	000044
  */
-void strncpy(void)
+char* strncpy(char* dst, const char* src, size_t n)
 {
-/*
-.loc_0x0:
-  subi      r4, r4, 0x1
-  subi      r6, r3, 0x1
-  addi      r5, r5, 0x1
-  b         .loc_0x38
+	const unsigned char* p = (const unsigned char*)src - 1;
+	unsigned char* q       = (unsigned char*)dst - 1;
+	unsigned char zero     = 0;
 
-.loc_0x10:
-  lbzu      r0, 0x1(r4)
-  cmplwi    r0, 0
-  stbu      r0, 0x1(r6)
-  bne-      .loc_0x38
-  li        r0, 0
-  b         .loc_0x2C
+	n++;
 
-.loc_0x28:
-  stbu      r0, 0x1(r6)
-
-.loc_0x2C:
-  subic.    r5, r5, 0x1
-  bne+      .loc_0x28
-  blr       
-
-.loc_0x38:
-  subic.    r5, r5, 0x1
-  bne+      .loc_0x10
-  blr
-*/
+	while (--n)
+		if (!(*++q = *++p)) {
+			while (--n)
+				*++q = 0;
+			break;
+		}
+	return (dst);
 }
 
 /*
@@ -381,69 +288,59 @@ void strncpy(void)
  * Address:	800CA858
  * Size:	0000B8
  */
-void strcpy(void)
+char*(strcpy)(char* dst, const char* src)
 {
-/*
-.loc_0x0:
-  rlwinm    r0,r3,0,30,31
-  rlwinm    r5,r4,0,30,31
-  cmplw     r0, r5
-  mr        r7, r3
-  bne-      .loc_0x94
-  cmplwi    r5, 0
-  beq-      .loc_0x58
-  lbz       r0, 0x0(r4)
-  cmplwi    r0, 0
-  stb       r0, 0x0(r7)
-  beqlr-    
-  subfic    r0, r5, 0x3
-  mtctr     r0
-  cmplwi    r0, 0
-  beq-      .loc_0x50
+	register uchar *destb, *fromb;
+	register uint w, t, align;
 
-.loc_0x3C:
-  lbzu      r0, 0x1(r4)
-  cmplwi    r0, 0
-  stbu      r0, 0x1(r7)
-  beqlr-    
-  bdnz+     .loc_0x3C
+	fromb = (uchar*)src;
+	destb = (uchar*)dst;
 
-.loc_0x50:
-  addi      r7, r7, 0x1
-  addi      r4, r4, 0x1
+	if ((align = ((int)fromb & 3)) != ((int)destb & 3)) {
+		goto bytecopy;
+	}
 
-.loc_0x58:
-  lwz       r8, 0x0(r4)
-  lis       r5, 0x8081
-  subi      r6, r5, 0x7F80
-  subis     r5, r8, 0x101
-  subi      r0, r5, 0x101
-  and.      r0, r0, r6
-  bne-      .loc_0x94
-  subi      r7, r7, 0x4
+	if (align) {
+		if ((*destb = *fromb) == 0)
+			return (dst);
+		for (align = 3 - align; align; align--) {
+			if ((*(++destb) = *(++fromb)) == 0)
+				return (dst);
+		}
+		++destb;
+		++fromb;
+	}
 
-.loc_0x78:
-  stwu      r8, 0x4(r7)
-  lwzu      r8, 0x4(r4)
-  subis     r5, r8, 0x101
-  subi      r0, r5, 0x101
-  and.      r0, r0, r6
-  beq+      .loc_0x78
-  addi      r7, r7, 0x4
+	w = *((int*)(fromb));
 
-.loc_0x94:
-  lbz       r0, 0x0(r4)
-  cmplwi    r0, 0
-  stb       r0, 0x0(r7)
-  beqlr-    
+	t = w + K2;
 
-.loc_0xA4:
-  lbzu      r0, 0x1(r4)
-  cmplwi    r0, 0
-  stbu      r0, 0x1(r7)
-  bne+      .loc_0xA4
-  blr
-*/
+	t &= K1;
+	if (t)
+		goto bytecopy;
+	--((int*)(destb));
+
+	do {
+		*(++((int*)(destb))) = w;
+		w = *(++((int*)(fromb)));
+
+		t = w + K2;
+		t &= K1;
+		if (t)
+			goto adjust;
+	} while (1);
+
+adjust:
+	++((int*)(destb));
+bytecopy:
+	if ((*destb = *fromb) == 0)
+		return dst;
+	do {
+		if ((*(++destb) = *(++fromb)) == 0)
+			return dst;
+	} while (1);
+	
+	return dst;
 }
 
 /*
@@ -451,18 +348,13 @@ void strcpy(void)
  * Address:	800CA910
  * Size:	00001C
  */
-void strlen(void)
+size_t(strlen)(const char* str)
 {
-/*
-.loc_0x0:
-  subi      r4, r3, 0x1
-  li        r3, -0x1
+	size_t len = -1;
+	uchar* p = (uchar*)str - 1;
 
-.loc_0x8:
-  lbzu      r0, 0x1(r4)
-  addi      r3, r3, 0x1
-  cmplwi    r0, 0
-  bne+      .loc_0x8
-  blr
-*/
+	do
+		len++;
+	while (*++p);
+	return (len);
 }

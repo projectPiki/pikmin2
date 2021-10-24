@@ -298,7 +298,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/rand.o\
 	$(BUILD_DIR)/asm/Dolphin/float.o\
 	$(BUILD_DIR)/asm/Dolphin/scanf.o\
-	$(BUILD_DIR)/asm/Dolphin/string.o\
+	$(BUILD_DIR)/src/Dolphin/string.o\
 	$(BUILD_DIR)/asm/Dolphin/strtold.o\
 	$(BUILD_DIR)/asm/Dolphin/strtoul.o\
 	$(BUILD_DIR)/asm/Dolphin/wchar_io.o\
