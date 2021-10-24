@@ -276,7 +276,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/runtime.o\
 	$(BUILD_DIR)/asm/Dolphin/__init_cpp_exceptions.o\
 	$(BUILD_DIR)/asm/Dolphin/Gecko_ExceptionPPC.o\
-	$(BUILD_DIR)/asm/Dolphin/GCN_mem_alloc.o\
+	$(BUILD_DIR)/src/Dolphin/GCN_mem_alloc.o\
 	$(BUILD_DIR)/asm/Dolphin/abort_exit.o\
 	$(BUILD_DIR)/asm/Dolphin/alloc.o\
 	$(BUILD_DIR)/asm/Dolphin/ansi_files.o\
