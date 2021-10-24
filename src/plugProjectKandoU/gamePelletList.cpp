@@ -23,8 +23,13 @@ struct PelletList {
 
 		static PelletConfig* getConfigAndKind(char* config, cKind& kind);
 
-		inline Mgr() { } // TODO: figure out contents
+		inline Mgr()
+		{
+			m_configList = new PelletConfigList[5];
+			loadResource();
+		}
 		virtual ~Mgr();
+		void loadResource();
 
 		PelletConfigList* m_configList; // _04
 
