@@ -2,15 +2,6 @@
 #include "sysMath.h"
 #include "System.h"
 
-extern const float lbl_8051DE68;
-extern const float lbl_8051DE6C;
-extern const float lbl_8051DE70;
-extern const float lbl_8051DE74;
-extern const float lbl_8051DE78;
-extern const float lbl_8051DE7C;
-extern const float lbl_8051DE80;
-extern const float lbl_8051DE84;
-
 System* const sys = (System*)0x8051616c;
 
 
@@ -25,7 +16,7 @@ namespace Screen {
 ScaleMgr::ScaleMgr()
 	: m_state(SCM_Unknown_0)
 {
-	setParam(lbl_8051DE68, lbl_8051DE68, lbl_8051DE68);
+	setParam(1.0f, 1.0f, 1.0f);
 }
 
 /*
@@ -36,8 +27,8 @@ ScaleMgr::ScaleMgr()
 void ScaleMgr::up()
 {
 	m_state = SCM_Growing;
-	setParam(lbl_8051DE6C, lbl_8051DE70, lbl_8051DE74);
-	_18 = lbl_8051DE78;
+	setParam(0.5f, 30.0f, 0.8f);
+	_18 = 0.0f;
 }
 
 /*
@@ -48,8 +39,8 @@ void ScaleMgr::up()
 void ScaleMgr::down()
 {
 	m_state = SCM_Shrinking;
-	setParam(lbl_8051DE7C, lbl_8051DE80, lbl_8051DE74);
-	_18 = lbl_8051DE78;
+	setParam(0.25f, 35.0f, 0.8f);
+	_18 = 0.0f;
 }
 
 /*
@@ -71,7 +62,7 @@ void ScaleMgr::up(float p1, float periodModifier, float durationInSeconds, float
 {
 	setParam(p1, periodModifier, durationInSeconds);
 	_18 = p4;
-	if (p4 < lbl_8051DE84) {
+	if (p4 < 0.01f) {
 		m_state = SCM_Growing;
 	} else {
 		m_state = SCM_OtherGrowingMaybe;
@@ -96,8 +87,8 @@ void ScaleMgr::down(float p1, float periodModifier, float durationInSeconds)
  */
 void ScaleMgr::setParam(float p1, float periodModifier, float durationInSeconds)
 {
-	m_elapsedSeconds = lbl_8051DE78;
-	m_scale = lbl_8051DE68;
+	m_elapsedSeconds = 0.0f;
+	m_scale = 1.0f;
 	_0C = p1;
 	m_periodModifier = periodModifier;
 	m_durationInSeconds = durationInSeconds;
@@ -116,7 +107,7 @@ float ScaleMgr::calc()
 
 	switch (m_state) {
 		case SCM_Unknown_0:
-			m_scale = lbl_8051DE68;
+			m_scale = 1.0f;
 			break;
 		case SCM_Growing:
 			m_elapsedSeconds = m_elapsedSeconds + sys->m_secondsPerFrame;
@@ -131,12 +122,12 @@ float ScaleMgr::calc()
 				// 	fVar2 = -JSystem::sincosTable___5JMath[(int)(fVar2 * -325.9493) & 0x7ff].sine;
 				// }
 				m_scale = (m_durationInSeconds - fVar1) *
-							(_0C * fVar2 + _0C) + lbl_8051DE68;
+							(_0C * fVar2 + _0C) + 1.0f;
 			}
 			else {
 				m_state = SCM_Unknown_0;
-				m_scale = lbl_8051DE68;
-				m_elapsedSeconds = lbl_8051DE78;
+				m_scale = 1.0f;
+				m_elapsedSeconds = 0.0f;
 			}
 			break;
 		case SCM_Shrinking:
@@ -152,24 +143,24 @@ float ScaleMgr::calc()
 				// 	fVar2 = -JMath::sincosTable___5JMath[(int)(fVar2 * -325.9493) & 0x7ff].sine;
 				// }
 				m_scale = -((m_durationInSeconds - fVar1) *
-						(_0C * fVar2 + _0C) - lbl_8051DE68);
+						(_0C * fVar2 + _0C) - 1.0f);
 			} else {
 				m_state = SCM_Unknown_0;
-				m_scale = lbl_8051DE68;
-				m_elapsedSeconds = lbl_8051DE78;
+				m_scale = 1.0f;
+				m_elapsedSeconds = 0.0f;
 			}
 			break;
 		case SCM_OtherGrowingMaybe:
-			m_scale = lbl_8051DE68;
+			m_scale = 1.0f;
 			_18 = _18 - sys->m_secondsPerFrame;
-			if (_18 < lbl_8051DE78) {
+			if (_18 < 0.0f) {
 				m_state = SCM_Growing;
-				_18 = lbl_8051DE78;
+				_18 = 0.0f;
 			}
 
 			break;
 		default:
-			m_scale = lbl_8051DE68;
+			m_scale = 1.0f;
 	}
 	return m_scale;
 	/*
