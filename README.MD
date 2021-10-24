@@ -100,6 +100,7 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectKonoU
 - plugProjectOgawaU
 - plugProjectKandoU
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp">plugProjectKandoU/gamePlatMgr.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/interactBattle.cpp">plugProjectKandoU/interactBattle.cpp</a>
 - plugProjectHikinoU
 - plugProjectEbisawaU
