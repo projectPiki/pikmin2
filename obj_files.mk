@@ -284,7 +284,6 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/arith.o\
 	$(BUILD_DIR)/asm/Dolphin/buffer_io.o\
 	$(BUILD_DIR)/src/Dolphin/critical_regions.gamecube.o\
-	$(BUILD_DIR)/asm/Dolphin/ctype.o\
 	$(BUILD_DIR)/src/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/asm/Dolphin/errno.o\
