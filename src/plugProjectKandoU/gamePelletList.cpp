@@ -24,6 +24,7 @@ struct PelletList {
 		static PelletConfig* getConfigAndKind(char* config, cKind& kind);
 		static void globalInstance();
 		void loadResource();
+		int getDictionaryNum();
 
 		inline Mgr()
 		{
@@ -255,23 +256,33 @@ PelletList::Mgr::~Mgr() { delete[] m_configList; }
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	80228148
-//  * Size:	000018
-//  */
-// void Game::PelletList::Mgr::getDictionaryNum(void)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lwz       r3, -0x6A28(r13)
-// 	  lwz       r4, 0x4(r3)
-// 	  lwz       r3, 0x98(r4)
-// 	  lwz       r0, 0x78(r4)
-// 	  add       r3, r0, r3
-// 	  blr
-// 	*/
-// }
+/*
+ * --INFO--
+ * Address:	80228148
+ * Size:	000018
+ */
+
+// nonmatching because of a very stubborn add instruction
+
+/* int PelletList::Mgr::getDictionaryNum(void)
+{
+    return PelletList::Mgr::mInstance->m_configList[ITEM].m_configCnt
+           + PelletList::Mgr::mInstance->m_configList[OTAKARA].m_configCnt;
+}
+*/
+
+asm int PelletList::Mgr::getDictionaryNum(void)
+{
+	// clang-format off
+	nofralloc
+		lwz r3, mInstance
+		lwz r4, 4(r3)
+		lwz r3, 0x98(r4)
+		lwz r0, 0x78(r4)
+		add r3, r0, r3
+		blr
+	// clang-format on
+}
 
 // /*
 //  * --INFO--
