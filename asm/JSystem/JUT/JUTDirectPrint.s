@@ -91,7 +91,7 @@ sFontData__14JUTDirectPrint:
 	.4byte 0x10840400
 	.4byte 0x20040470
 	.4byte 0x40840400
-	.4byte lbl_80020800
+	.4byte 0x80020800
 	.4byte 0xF8011000
 	.4byte 0x70800000
 	.4byte 0x88822200
