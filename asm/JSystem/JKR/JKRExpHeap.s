@@ -3,234 +3,59 @@
 .balign 0x8
 .global lbl_804736E8
 lbl_804736E8:
-	.4byte 0x3A3A3A63
-	.4byte 0x616E6E6F
-	.4byte 0x7420616C
-	.4byte 0x6C6F6320
-	.4byte 0x6D656D6F
-	.4byte 0x72792028
-	.4byte 0x30782578
-	.4byte 0x20627974
-	.4byte 0x65292E0A
-	.4byte 0x00000000
+	.asciz ":::cannot alloc memory (0x%x byte).\n"
+	.skip 3
 .global lbl_80473710
 lbl_80473710:
-	.4byte 0x4A4B5245
-	.4byte 0x78704865
-	.4byte 0x61702E63
-	.4byte 0x70700000
+	.asciz "JKRExpHeap.cpp"
+	.skip 1
 .global lbl_80473720
 lbl_80473720:
-	.4byte 0x3A3A3A45
-	.4byte 0x52524F52
-	.4byte 0x21206170
-	.4byte 0x70656E64
-	.4byte 0x55736564
-	.4byte 0x4C697374
-	.4byte 0x0A000000
-	.4byte 0x3A3A3A48
-	.4byte 0x65617020
-	.4byte 0x6D617920
-	.4byte 0x62652062
-	.4byte 0x726F6B65
-	.4byte 0x6E2E2028
-	.4byte 0x626C6F63
-	.4byte 0x6B203D20
-	.4byte 0x25782900
-	.4byte 0x3A3A3A3A
-	.4byte 0x20426164
-	.4byte 0x20426C6F
-	.4byte 0x636B0A00
-	.4byte 0x3A3A3A61
-	.4byte 0x64647220
-	.4byte 0x25303878
-	.4byte 0x3A206261
-	.4byte 0x64206865
-	.4byte 0x61702073
-	.4byte 0x69676E61
-	.4byte 0x74757265
-	.4byte 0x2E202825
-	.4byte 0x63256329
-	.4byte 0x0A000000
-	.4byte 0x3A3A3A61
-	.4byte 0x64647220
-	.4byte 0x25303878
-	.4byte 0x3A206261
-	.4byte 0x64206E65
-	.4byte 0x78742070
-	.4byte 0x6F696E74
-	.4byte 0x65722028
-	.4byte 0x25303878
-	.4byte 0x290A6162
-	.4byte 0x6F72740A
-	.4byte 0x00000000
-	.4byte 0x3A3A3A61
-	.4byte 0x64647220
-	.4byte 0x25303878
-	.4byte 0x3A206261
-	.4byte 0x64207072
-	.4byte 0x6576696F
-	.4byte 0x75732070
-	.4byte 0x6F696E74
-	.4byte 0x65722028
-	.4byte 0x25303878
-	.4byte 0x290A0000
-	.4byte 0x3A3A3A61
-	.4byte 0x64647220
-	.4byte 0x25303878
-	.4byte 0x3A206261
-	.4byte 0x64207573
-	.4byte 0x6564206C
-	.4byte 0x69737428
-	.4byte 0x52455629
-	.4byte 0x20282530
-	.4byte 0x3878290A
-	.4byte 0x00000000
-	.4byte 0x3A3A3A61
-	.4byte 0x64647220
-	.4byte 0x25303878
-	.4byte 0x3A206261
-	.4byte 0x6420626C
-	.4byte 0x6F636B20
-	.4byte 0x73697A65
-	.4byte 0x20282530
-	.4byte 0x3878290A
-	.4byte 0x00000000
-	.4byte 0x3A3A3A62
-	.4byte 0x61642074
-	.4byte 0x6F74616C
-	.4byte 0x206D656D
-	.4byte 0x6F727920
-	.4byte 0x626C6F63
-	.4byte 0x6B207369
-	.4byte 0x7A652028
-	.4byte 0x25303858
-	.4byte 0x2C202530
-	.4byte 0x3858290A
-	.4byte 0x00000000
-	.4byte 0x3A3A3A74
-	.4byte 0x68657265
-	.4byte 0x20697320
-	.4byte 0x736F6D65
-	.4byte 0x20657272
-	.4byte 0x6F722069
-	.4byte 0x6E207468
-	.4byte 0x69732068
-	.4byte 0x65617021
-	.4byte 0x0A000000
-	.4byte 0x20617474
-	.4byte 0x72202061
-	.4byte 0x64647265
-	.4byte 0x73733A20
-	.4byte 0x20207369
-	.4byte 0x7A652020
-	.4byte 0x20206769
-	.4byte 0x6420616C
-	.4byte 0x6E202020
-	.4byte 0x70726576
-	.4byte 0x5F707472
-	.4byte 0x206E6578
-	.4byte 0x745F7074
-	.4byte 0x720A0000
-	.4byte 0x28557365
-	.4byte 0x6420426C
-	.4byte 0x6F636B73
-	.4byte 0x290A0000
-	.4byte 0x78787878
-	.4byte 0x78202530
-	.4byte 0x38783A20
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20202D2D
-	.4byte 0x2D202D2D
-	.4byte 0x2D202028
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x202D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D290A61
-	.4byte 0x626F7274
-	.4byte 0x0A000000
-	.4byte 0x25732025
-	.4byte 0x3038783A
-	.4byte 0x20253038
-	.4byte 0x78202025
-	.4byte 0x33642025
-	.4byte 0x33642020
-	.4byte 0x28253038
-	.4byte 0x78202530
-	.4byte 0x3878290A
-	.4byte 0x00000000
-	.4byte 0x28467265
-	.4byte 0x6520426C
-	.4byte 0x6F636B73
-	.4byte 0x290A0000
-	.4byte 0x2564202F
-	.4byte 0x20256420
-	.4byte 0x62797465
-	.4byte 0x73202825
-	.4byte 0x362E3266
-	.4byte 0x25252920
-	.4byte 0x75736564
-	.4byte 0x2028553A
-	.4byte 0x25642046
-	.4byte 0x3A256429
-	.4byte 0x0A000000
-	.4byte 0x2B2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x4A4B5245
-	.4byte 0x78704865
-	.4byte 0x61700A00
-	.4byte 0x7C202020
-	.4byte 0x20202020
-	.4byte 0x2020416C
-	.4byte 0x69676E20
-	.4byte 0x47726F75
-	.4byte 0x70202073
-	.4byte 0x697A6520
-	.4byte 0x20202028
-	.4byte 0x20707265
-	.4byte 0x76202C20
-	.4byte 0x6E657874
-	.4byte 0x20290A00
-	.4byte 0x7C202D2D
-	.4byte 0x2D2D2046
-	.4byte 0x72656546
-	.4byte 0x69727374
-	.4byte 0x0A000000
-	.4byte 0x7C202530
-	.4byte 0x38782020
-	.4byte 0x00000000
-	.4byte 0x25327820
-	.4byte 0x20253364
-	.4byte 0x20202536
-	.4byte 0x78202028
-	.4byte 0x25303878
-	.4byte 0x20253038
-	.4byte 0x78290A00
-	.4byte 0x7C202D2D
-	.4byte 0x2D2D2046
-	.4byte 0x7265654C
-	.4byte 0x6173740A
-	.4byte 0x00000000
-	.4byte 0x7C202D2D
-	.4byte 0x2D2D2055
-	.4byte 0x73656446
-	.4byte 0x69727374
-	.4byte 0x0A000000
-	.4byte 0x7C202D2D
-	.4byte 0x2D2D2055
-	.4byte 0x7365644C
-	.4byte 0x6173740A
-	.4byte 0x00000000
-	.4byte 0x2B2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x456E640A
-	.4byte 0x00000000
+	.asciz ":::ERROR! appendUsedList\n"
+	.skip 2
+	.asciz ":::Heap may be broken. (block = %x)"
+	.asciz ":::: Bad Block\n"
+	.asciz ":::addr %08x: bad heap signature. (%c%c)\n"
+	.skip 2
+	.asciz ":::addr %08x: bad next pointer (%08x)\nabort\n"
+	.skip 3
+	.asciz ":::addr %08x: bad previous pointer (%08x)\n"
+	.skip 1
+	.asciz ":::addr %08x: bad used list(REV) (%08x)\n"
+	.skip 3
+	.asciz ":::addr %08x: bad block size (%08x)\n"
+	.skip 3
+	.asciz ":::bad total memory block size (%08X, %08X)\n"
+	.skip 3
+	.asciz ":::there is some error in this heap!\n"
+	.skip 2
+	.asciz " attr  address:   size    gid aln   prev_ptr next_ptr\n"
+	.skip 1
+	.asciz "(Used Blocks)\n"
+	.skip 1
+	.asciz "xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n"
+	.skip 2
+	.asciz "%s %08x: %08x  %3d %3d  (%08x %08x)\n"
+	.skip 3
+	.asciz "(Free Blocks)\n"
+	.skip 1
+	.asciz "%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n"
+	.skip 2
+	.asciz "+---------------JKRExpHeap\n"
+	.asciz "|         Align Group  size    ( prev , next )\n"
+	.asciz "| ---- FreeFirst\n"
+	.skip 2
+	.asciz "| %08x  "
+	.skip 3
+	.asciz "%2x  %3d  %6x  (%08x %08x)\n"
+	.asciz "| ---- FreeLast\n"
+	.skip 3
+	.asciz "| ---- UsedFirst\n"
+	.skip 2
+	.asciz "| ---- UsedLast\n"
+	.skip 3
+	.asciz "+---------------End\n"
+	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -283,24 +108,24 @@ DBnewUsedBlock:
 .balign 0x8
 .global lbl_805164F0
 lbl_805164F0:
-	.4byte 0x204E4F4E
-	.4byte 0x450A0000
+	.asciz " NONE\n"
+	.skip 1
 .global lbl_805164F8
 lbl_805164F8:
-	.4byte 0x2074656D
-	.4byte 0x70000000
+	.asciz " temp"
+	.skip 2
 .global lbl_80516500
 lbl_80516500:
-	.4byte 0x616C6C6F
-	.4byte 0x63000000
+	.asciz "alloc"
+	.skip 2
 .global lbl_80516508
 lbl_80516508:
-	.4byte 0x20667265
-	.4byte 0x65000000
+	.asciz " free"
+	.skip 2
 .global lbl_80516510
 lbl_80516510:
-	.4byte 0x42C80000
-	.4byte 0x00000000
+	.float 100.0
+	.skip 4
 .global lbl_80516518
 lbl_80516518:
 	.4byte 0x43300000
