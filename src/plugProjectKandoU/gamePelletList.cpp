@@ -25,6 +25,7 @@ struct PelletList {
 		static void globalInstance();
 		void loadResource();
 		int getDictionaryNum();
+		PelletConfig* getConfigFromDictionaryNo(int);
 
 		inline Mgr()
 		{
@@ -38,6 +39,10 @@ struct PelletList {
 		static Mgr* mInstance;
 	};
 };
+
+#define DICT_OTAKARA                          \
+	mInstance->m_configList[ITEM].m_configCnt \
+	    + mInstance->m_configList[OTAKARA].m_configCnt
 
 PelletList::Mgr* PelletList::Mgr::mInstance;
 
@@ -264,12 +269,8 @@ PelletList::Mgr::~Mgr() { delete[] m_configList; }
 
 // nonmatching because of a very stubborn add instruction
 
-/* int PelletList::Mgr::getDictionaryNum(void)
-{
-    return PelletList::Mgr::mInstance->m_configList[ITEM].m_configCnt
-           + PelletList::Mgr::mInstance->m_configList[OTAKARA].m_configCnt;
-}
-*/
+// int PelletList::Mgr::getDictionaryNum(void) { return DICT_OTAKARA; }
+
 
 asm int PelletList::Mgr::getDictionaryNum(void)
 {
@@ -284,64 +285,30 @@ asm int PelletList::Mgr::getDictionaryNum(void)
 	// clang-format on
 }
 
-// /*
-//  * --INFO--
-//  * Address:	80228160
-//  * Size:	0000A4
-//  */
-// void Game::PelletList::Mgr::getConfigFromDictionaryNo((int))
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  li        r4, 0
-// 	  stw       r0, 0x14(r1)
-// 	  stw       r31, 0xC(r1)
-// 	  mr.       r31, r3
-// 	  blt-      .loc_0x3C
-// 	  lwz       r3, -0x6A28(r13)
-// 	  lwz       r5, 0x4(r3)
-// 	  lwz       r3, 0x98(r5)
-// 	  lwz       r0, 0x78(r5)
-// 	  add       r0, r0, r3
-// 	  cmpw      r31, r0
-// 	  bge-      .loc_0x3C
-// 	  li        r4, 0x1
-
-// 	.loc_0x3C:
-// 	  rlwinm.   r0,r4,0,24,31
-// 	  bne-      .loc_0x60
-// 	  lis       r3, 0x8048
-// 	  lis       r5, 0x8048
-// 	  addi      r3, r3, 0x3330
-// 	  li        r4, 0xBC
-// 	  addi      r5, r5, 0x3344
-// 	  crclr     6, 0x6
-// 	  bl        -0x1FDB7C
-
-// 	.loc_0x60:
-// 	  lwz       r3, -0x6A28(r13)
-// 	  mr        r4, r31
-// 	  lwz       r3, 0x4(r3)
-// 	  addi      r3, r3, 0x60
-// 	  bl        -0x73CAC
-// 	  cmplwi    r3, 0
-// 	  bne-      .loc_0x90
-// 	  lwz       r3, -0x6A28(r13)
-// 	  mr        r4, r31
-// 	  lwz       r3, 0x4(r3)
-// 	  addi      r3, r3, 0x80
-// 	  bl        -0x73CC8
-
-// 	.loc_0x90:
-// 	  lwz       r0, 0x14(r1)
-// 	  lwz       r31, 0xC(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
+/*
+ * --INFO--
+ * Address:	80228160
+ * Size:	0000A4
+ */
+ PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int num)
+ {
+	//PelletConfig* result;
+	bool flag = false;
+	 if (-1 < num) {
+		if (num < DICT_OTAKARA) {
+			flag = true;
+		}
+	}
+	#line 188
+	P2ASSERT(!flag);
+	PelletConfig* result = PelletConfigList::getPelletConfig_ByDictionaryNo(
+	    mInstance->m_configList[OTAKARA]);
+	if (result = nullptr) {
+		 result = PelletConfigList::getPelletConfig_ByDictionaryNo(
+		    mInstance->m_configList[ITEM]);
+	}
+	return result;
+ }
 
 // /*
 //  * --INFO--
