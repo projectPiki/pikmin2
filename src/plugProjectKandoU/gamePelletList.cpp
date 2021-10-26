@@ -290,25 +290,25 @@ asm int PelletList::Mgr::getDictionaryNum(void)
  * Address:	80228160
  * Size:	0000A4
  */
- PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int num)
- {
-	//PelletConfig* result;
+PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int num)
+{
+	// PelletConfig* result;
 	bool flag = false;
-	 if (-1 < num) {
-		if (num < DICT_OTAKARA) {
+	if (-1 < num) {
+		if (num > DICT_OTAKARA) {
 			flag = true;
 		}
 	}
-	#line 188
+#line 188
 	P2ASSERT(!flag);
-	PelletConfig* result = PelletConfigList::getPelletConfig_ByDictionaryNo(
-	    mInstance->m_configList[OTAKARA]);
-	if (result = nullptr) {
-		 result = PelletConfigList::getPelletConfig_ByDictionaryNo(
-		    mInstance->m_configList[ITEM]);
+	PelletConfig* result
+	    = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(num);
+	if (result == nullptr) {
+		result
+		    = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(num);
 	}
 	return result;
- }
+}
 
 // /*
 //  * --INFO--
