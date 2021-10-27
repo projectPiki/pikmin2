@@ -15,8 +15,10 @@ void _Print(char*, ...)
  * Address:	801A04CC
  * Size:	000070
  */
-void PikiAI::ActAttack::getInfo((char*))
+void PikiAI::ActAttack::getInfo(char* dest)
 {
+	char* actions[] = { "SA", "AJ", "JA", "JP", "LT" };
+	sprintf(dest, "attack %s", actions[_18]);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

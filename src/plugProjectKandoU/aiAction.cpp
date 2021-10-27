@@ -15,8 +15,10 @@ void _Print(char*, ...)
  * Address:	80196A18
  * Size:	00001C
  */
-void PikiAI::Action::__ct((Game::Piki*))
+void PikiAI::Action::Action(Game::Piki* piki)
 {
+	_04 = piki;
+	_08 = "Action";
 	/*
 	.loc_0x0:
 	  lis       r5, 0x804B
@@ -34,8 +36,10 @@ void PikiAI::Action::__ct((Game::Piki*))
  * Address:	80196A34
  * Size:	000030
  */
-void PikiAI::Action::getInfo((char*))
+void PikiAI::Action::getInfo(char* dest)
 {
+	// dest = Action
+	sprintf(dest, "%s", _08);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
