@@ -9,7 +9,7 @@ struct ISection {
 	virtual void draw(struct Graphics&) = 0;
 };
 
-struct Section : public ISection {
+struct Section : public ISection /*, public JKRDisposer*/ {
 	enum EDrawInitMode { One };
 
 	virtual ~Section();
