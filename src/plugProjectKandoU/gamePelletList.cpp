@@ -118,8 +118,34 @@ PelletList::Mgr::~Mgr() { delete[] m_configList; }
 //  * Address:	80227F70
 //  * Size:	0001D8
 //  */
-// void Game::PelletList::Mgr::loadResource(void)
-// {
+static int gLoadedPelletData;
+void PelletList::Mgr::loadResource(void)
+{
+	JKRArchive* archive;
+	if (gLoadedPelletData) {
+		char path[0x200];
+		sprintf(path, "/user/Abe/Pellet/%s/pelletlist_%s.szs",
+		        sys._D4 == 4 ? "jpn" : "us",
+		        sys._D4 == 4 ? "jpn" : "us"); // Language , *(sys + 0xD4)
+		archive = JKRArchive::mount(path, true, JKRHeap::sCurrentHeap, 2);
+	} else {
+		JUT_PANIC("don't use this !\n");
+		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", true,
+		                            JKRHeap::sCurrentHeap, 2);
+	}
+
+	JUT_ASSERT(archiveData, "no pelletlist.szs\n");
+
+	const char* configs[]
+	    = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt",
+		    "otakara_config.txt", "item_config.txt" };
+	for (int i = 0; i < 5; i++) {
+		void* data = archive->getResource(configs[i]);
+		RamStream stream(data, -1);
+		m_configList[i].read(stream);
+	}
+	archive->unmount();
+}
 // 	/*
 // 	.loc_0x0:
 // 	  stwu      r1, -0x660(r1)
@@ -271,9 +297,7 @@ PelletList::Mgr::~Mgr() { delete[] m_configList; }
 
 // int PelletList::Mgr::getDictionaryNum(void) { return DICT_OTAKARA; }
 
-
-asm int PelletList::Mgr::getDictionaryNum(void)
-{
+asm int PelletList::Mgr::getDictionaryNum(void) {
 	// clang-format off
 	nofralloc
 		lwz r3, mInstance
@@ -290,22 +314,17 @@ asm int PelletList::Mgr::getDictionaryNum(void)
  * Address:	80228160
  * Size:	0000A4
  */
-PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int num)
+PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
 {
-	// PelletConfig* result;
-	bool flag = false;
-	if (-1 < num) {
-		if (num > DICT_OTAKARA) {
-			flag = true;
-		}
-	}
+	bool isValid = dictNo >= 0 && dictNo < DICT_OTAKARA;
 #line 188
-	P2ASSERT(!flag);
+	P2ASSERT(isValid);
 	PelletConfig* result
-	    = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(num);
-	if (result == nullptr) {
-		result
-		    = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(num);
+	    = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(
+	        dictNo);
+	if (!result) {
+		result = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(
+		    dictNo);
 	}
 	return result;
 }
