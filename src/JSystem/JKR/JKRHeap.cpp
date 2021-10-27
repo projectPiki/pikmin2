@@ -7,15 +7,16 @@
  * Address:	800232B4
  * Size:	000124
  */
-JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap, bool shouldSetErrorHandlerMaybe)
-	: _40()
-	, _4C(this)
-	, _5C()
+JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
+                 bool shouldSetErrorHandlerMaybe)
+    : _40()
+    , _4C(this)
+    , _5C()
 {
 	OSInitMutex(&m_mutex);
-	m_heapSize = size;
+	m_heapSize     = size;
 	m_startAddress = startPtr;
-	m_endAddress = ((u8*)startPtr + size);
+	m_endAddress   = ((u8*)startPtr + size);
 
 	if (parentHeap != nullptr) {
 		JSUPtrLink* pJVar1 = _40.m_head;
@@ -29,8 +30,7 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap, bool shouldSet
 		if (JKRHeap::sCurrentHeap == JKRHeap::sRootHeap) {
 			becomeCurrentHeap();
 		}
-	}
-	else {
+	} else {
 		becomeSystemHeap();
 		becomeCurrentHeap();
 	}
@@ -38,9 +38,9 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap, bool shouldSet
 	if ((_68) && (JKRHeap::mErrorHandler == nullptr)) {
 		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
 	}
-	m_fillFlag = JKRHeap::sDefaultFillFlag;
+	m_fillFlag      = JKRHeap::sDefaultFillFlag;
 	m_fillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
-	_69 = 0;
+	_69             = 0;
 	return;
 	/*
 	.loc_0x0:
@@ -1143,10 +1143,7 @@ void JSUTree<JKRHeap>::getFirstChild() const
  * Address:	80023C20
  * Size:	000008
  */
-JSUPtrLink* JSUPtrList::getFirstLink() const
-{
-	return m_head;
-}
+JSUPtrLink* JSUPtrList::getFirstLink() const { return m_head; }
 
 /*
  * --INFO--
@@ -2046,10 +2043,7 @@ void JKRHeap::TState::dump() const
  * Address:	80024544
  * Size:	000008
  */
-bool JKRHeap::TState::isVerbose()
-{
-	return bVerbose;
-}
+bool JKRHeap::TState::isVerbose() { return bVerbose; }
 
 /*
  * --INFO--
@@ -2155,29 +2149,21 @@ JKRHeap::TState::TArgument::TArgument(const JKRHeap*, ulong, bool)
  * Address:	80024608
  * Size:	000008
  */
-JKRHeap* JKRHeap::TState::getHeap() const
-{
-	return m_heap;
-}
+JKRHeap* JKRHeap::TState::getHeap() const { return m_heap; }
 
 /*
  * --INFO--
  * Address:	80024610
  * Size:	000008
  */
-u32 JKRHeap::TState::getId() const
-{
-	return m_id;
-}
+u32 JKRHeap::TState::getId() const { return m_id; }
 
 /*
  * --INFO--
  * Address:	80024618
  * Size:	000004
  */
-void JKRHeap::state_register(JKRHeap::TState*, ulong) const
-{
-}
+void JKRHeap::state_register(JKRHeap::TState*, ulong) const { }
 
 /*
  * --INFO--
@@ -2217,16 +2203,11 @@ void JKRHeap::state_dumpDifference(const JKRHeap::TState&,
  * Address:	80024638
  * Size:	000004
  */
-void JKRHeap::state_dump(const JKRHeap::TState&) const
-{
-}
+void JKRHeap::state_dump(const JKRHeap::TState&) const { }
 
 /*
  * --INFO--
  * Address:	8002463C
  * Size:	000008
  */
-bool JKRHeap::dump_sort()
-{
-	return true;
-}
+bool JKRHeap::dump_sort() { return true; }

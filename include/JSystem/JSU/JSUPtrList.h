@@ -17,7 +17,6 @@ struct JSUPtrList {
 	bool remove(JSUPtrLink*);
 	JSUPtrLink* getNthLink(ulong) const;
 
-
 	JSUPtrLink* m_head; // _00
 	JSUPtrLink* m_tail; // _04
 	int m_linkCount;    // _08

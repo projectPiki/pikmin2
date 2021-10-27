@@ -312,7 +312,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/e_pow.o\
 	$(BUILD_DIR)/asm/Dolphin/e_rem_pio2.o\
 	$(BUILD_DIR)/asm/Dolphin/k_cos.o\
-	$(BUILD_DIR)/asm/Dolphin/k_rem_pio2.o\
+	$(BUILD_DIR)/src/Dolphin/k_rem_pio2.o\
 	$(BUILD_DIR)/asm/Dolphin/k_sin.o\
 	$(BUILD_DIR)/asm/Dolphin/k_tan.o\
 	$(BUILD_DIR)/asm/Dolphin/s_atan.o\

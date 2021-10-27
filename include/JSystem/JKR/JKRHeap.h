@@ -34,15 +34,15 @@ struct JKRHeap : public JKRDisposer {
 			bool _08;        // _08
 		};
 
-		u32 _00; // _00
-		u32 _04; // _04
-		u8 _08[0x8]; // _08
-		JKRHeap* m_heap; // _10
-		u32 m_id;        // _14
+		u32 _00;                      // _00
+		u32 _04;                      // _04
+		u8 _08[0x8];                  // _08
+		JKRHeap* m_heap;              // _10
+		u32 m_id;                     // _14
 		bool m_isCompareOnDestructed; // _18
-		u8 _19[3]; // _19
-		u32 _1C;   // _1C
-		int _20;   // _20
+		u8 _19[3];                    // _19
+		u32 _1C;                      // _1C
+		int _20;                      // _20
 
 		static bool bVerbose;
 	};
@@ -81,19 +81,18 @@ struct JKRHeap : public JKRDisposer {
 	void state_dump(const TState&) const;
 	bool dump_sort();
 
-
-	OSMutexObject m_mutex;  // _18
-	void* m_startAddress;   // _30
-	void* m_endAddress;     // _34
-	ulong m_heapSize;       // _38
-	u8 m_fillFlag;          // _3C
-	u8 m_fillCheckFlag;     // _3D
-	u8 _3E[2];              // _3E
-	JSUPtrList _40;         // _40
-	JSUPtrLink _4C;         // _4C
-	JSUPtrList _5C;         // _5C
-	bool _68;               // _68
-	u8 _69;                 // _69
+	OSMutexObject m_mutex; // _18
+	void* m_startAddress;  // _30
+	void* m_endAddress;    // _34
+	ulong m_heapSize;      // _38
+	u8 m_fillFlag;         // _3C
+	u8 m_fillCheckFlag;    // _3D
+	u8 _3E[2];             // _3E
+	JSUPtrList _40;        // _40
+	JSUPtrLink _4C;        // _4C
+	JSUPtrList _5C;        // _5C
+	bool _68;              // _68
+	u8 _69;                // _69
 
 	static u8 sDefaultFillFlag;
 	static u8 sDefaultFillCheckFlag;

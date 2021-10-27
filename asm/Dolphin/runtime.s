@@ -52,18 +52,18 @@ __save_fpr:
 /* 800C1BC8 000BEB08  DA CB FF B0 */	stfd f22, -0x50(r11)
 /* 800C1BCC 000BEB0C  DA EB FF B8 */	stfd f23, -0x48(r11)
 
-.global func_800C1BD0
-func_800C1BD0:
+.global _savefpr_24
+_savefpr_24:
 /* 800C1BD0 000BEB10  DB 0B FF C0 */	stfd f24, -0x40(r11)
 
-.global func_800C1BD4
-func_800C1BD4:
+.global _savefpr_25
+_savefpr_25:
 /* 800C1BD4 000BEB14  DB 2B FF C8 */	stfd f25, -0x38(r11)
 /* 800C1BD8 000BEB18  DB 4B FF D0 */	stfd f26, -0x30(r11)
 /* 800C1BDC 000BEB1C  DB 6B FF D8 */	stfd f27, -0x28(r11)
 
-.global func_800C1BE0
-func_800C1BE0:
+.global _savefpr_28
+_savefpr_28:
 /* 800C1BE0 000BEB20  DB 8B FF E0 */	stfd f28, -0x20(r11)
 /* 800C1BE4 000BEB24  DB AB FF E8 */	stfd f29, -0x18(r11)
 /* 800C1BE8 000BEB28  DB CB FF F0 */	stfd f30, -0x10(r11)
@@ -83,18 +83,18 @@ __restore_fpr:
 /* 800C1C14 000BEB54  CA CB FF B0 */	lfd f22, -0x50(r11)
 /* 800C1C18 000BEB58  CA EB FF B8 */	lfd f23, -0x48(r11)
 
-.global func_800C1C1C
-func_800C1C1C:
+.global _restfpr_24
+_restfpr_24:
 /* 800C1C1C 000BEB5C  CB 0B FF C0 */	lfd f24, -0x40(r11)
 
-.global func_800C1C20
-func_800C1C20:
+.global _restfpr_25
+_restfpr_25:
 /* 800C1C20 000BEB60  CB 2B FF C8 */	lfd f25, -0x38(r11)
 /* 800C1C24 000BEB64  CB 4B FF D0 */	lfd f26, -0x30(r11)
 /* 800C1C28 000BEB68  CB 6B FF D8 */	lfd f27, -0x28(r11)
 
-.global func_800C1C2C
-func_800C1C2C:
+.global _restfpr_28
+_restfpr_28:
 /* 800C1C2C 000BEB6C  CB 8B FF E0 */	lfd f28, -0x20(r11)
 /* 800C1C30 000BEB70  CB AB FF E8 */	lfd f29, -0x18(r11)
 /* 800C1C34 000BEB74  CB CB FF F0 */	lfd f30, -0x10(r11)
@@ -116,8 +116,8 @@ __save_gpr:
 /* 800C1C68 000BEBA8  93 0B FF E0 */	stw r24, -0x20(r11)
 /* 800C1C6C 000BEBAC  93 2B FF E4 */	stw r25, -0x1c(r11)
 
-.global func_800C1C70
-func_800C1C70:
+.global _savegpr_26
+_savegpr_26:
 /* 800C1C70 000BEBB0  93 4B FF E8 */	stw r26, -0x18(r11)
 /* 800C1C74 000BEBB4  93 6B FF EC */	stw r27, -0x14(r11)
 /* 800C1C78 000BEBB8  93 8B FF F0 */	stw r28, -0x10(r11)
@@ -141,8 +141,8 @@ __restore_gpr:
 /* 800C1CB4 000BEBF4  83 0B FF E0 */	lwz r24, -0x20(r11)
 /* 800C1CB8 000BEBF8  83 2B FF E4 */	lwz r25, -0x1c(r11)
 
-.global func_800C1CBC
-func_800C1CBC:
+.global _restgpr_26
+_restgpr_26:
 /* 800C1CBC 000BEBFC  83 4B FF E8 */	lwz r26, -0x18(r11)
 /* 800C1CC0 000BEC00  83 6B FF EC */	lwz r27, -0x14(r11)
 /* 800C1CC4 000BEC04  83 8B FF F0 */	lwz r28, -0x10(r11)
