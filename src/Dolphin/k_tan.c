@@ -1,162 +1,148 @@
-
+#pragma ident "@(#)k_tan.c 1.5 04/04/22 SMI"
 
 /*
- * --INFO--
- * Address:	800CED1C
- * Size:	000214
+ * ====================================================
+ * Copyright 2004 Sun Microsystems, Inc.  All Rights Reserved.
+ *
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
  */
-void __kernel_tan(void)
-{
-/*
-.loc_0x0:
-  stwu      r1, -0x40(r1)
-  stfd      f31, 0x30(r1)
-  psq_st    f31,0x38(r1),0,0
-  stfd      f1, 0x8(r1)
-  lis       r0, 0x3E30
-  lwz       r7, 0x8(r1)
-  rlwinm    r6,r7,0,1,31
-  cmpw      r6, r0
-  bge-      .loc_0x74
-  fctiwz    f0, f1
-  stfd      f0, 0x20(r1)
-  lwz       r0, 0x24(r1)
-  cmpwi     r0, 0
-  bne-      .loc_0x74
-  lwz       r0, 0xC(r1)
-  addi      r4, r3, 0x1
-  or        r0, r6, r0
-  or.       r0, r4, r0
-  bne-      .loc_0x5C
-  fabs      f1, f1
-  lfd       f0, -0x6E40(r2)
-  fdiv      f1, f0, f1
-  b         .loc_0x204
 
-.loc_0x5C:
-  cmpwi     r3, 0x1
-  bne-      .loc_0x68
-  b         .loc_0x204
+/* INDENT OFF */
+/* __kernel_tan( x, y, k )
+ * kernel tan function on [-pi/4, pi/4], pi/4 ~ 0.7854
+ * Input x is assumed to be bounded by ~pi/4 in magnitude.
+ * Input y is the tail of x.
+ * Input k indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned.
+ *
+ * Algorithm
+ *	1. Since tan(-x) = -tan(x), we need only to consider positive x.
+ *	2. if x < 2^-28 (hx<0x3e300000 0), return x with inexact if x!=0.
+ *	3. tan(x) is approximated by a odd polynomial of degree 27 on
+ *	   [0,0.67434]
+ *		  	         3             27
+ *	   	tan(x) ~ x + T1*x + ... + T13*x
+ *	   where
+ *
+ * 	        |tan(x)         2     4            26   |     -59.2
+ * 	        |----- - (1+T1*x +T2*x +.... +T13*x    )| <= 2
+ * 	        |  x 					|
+ *
+ *	   Note: tan(x+y) = tan(x) + tan'(x)*y
+ *		          ~ tan(x) + (1+x*x)*y
+ *	   Therefore, for better accuracy in computing tan(x+y), let
+ *		     3      2      2       2       2
+ *		r = x *(T2+x *(T3+x *(...+x *(T12+x *T13))))
+ *	   then
+ *		 		    3    2
+ *		tan(x+y) = x + (T1*x + (x *(r+y)+y))
+ *
+ *      4. For x in [0.67434,pi/4],  let y = pi/4 - x, then
+ *		tan(x) = tan(pi/4-y) = (1-tan(y))/(1+tan(y))
+ *		       = 1 - 2*(tan(y) - (tan(y)^2)/(1+tan(y)))
+ */
 
-.loc_0x68:
-  lfd       f0, -0x6E38(r2)
-  fdiv      f1, f0, f1
-  b         .loc_0x204
+#include "fdlibm.h"
 
-.loc_0x74:
-  lis       r4, 0x3FE6
-  subi      r0, r4, 0x6BD8
-  cmpw      r6, r0
-  blt-      .loc_0xC0
-  cmpwi     r7, 0
-  bge-      .loc_0x9C
-  lfd       f0, 0x8(r1)
-  fneg      f2, f2
-  fneg      f0, f0
-  stfd      f0, 0x8(r1)
+static const double xxx[] = {
+		 3.33333333333334091986e-01,	/* 3FD55555, 55555563 */
+		 1.33333333333201242699e-01,	/* 3FC11111, 1110FE7A */
+		 5.39682539762260521377e-02,	/* 3FABA1BA, 1BB341FE */
+		 2.18694882948595424599e-02,	/* 3F9664F4, 8406D637 */
+		 8.86323982359930005737e-03,	/* 3F8226E3, E96E8493 */
+		 3.59207910759131235356e-03,	/* 3F6D6D22, C9560328 */
+		 1.45620945432529025516e-03,	/* 3F57DBC8, FEE08315 */
+		 5.88041240820264096874e-04,	/* 3F4344D8, F2F26501 */
+		 2.46463134818469906812e-04,	/* 3F3026F7, 1A8D1068 */
+		 7.81794442939557092300e-05,	/* 3F147E88, A03792A6 */
+		 7.14072491382608190305e-05,	/* 3F12B80F, 32F0A7E9 */
+		-1.85586374855275456654e-05,	/* BEF375CB, DB605373 */
+		 2.59073051863633712884e-05,	/* 3EFB2A70, 74BF7AD4 */
+/* one */	 1.00000000000000000000e+00,	/* 3FF00000, 00000000 */
+/* pio4 */	 7.85398163397448278999e-01,	/* 3FE921FB, 54442D18 */
+/* pio4lo */	 3.06161699786838301793e-17	/* 3C81A626, 33145C07 */
+};
+#define	one	xxx[13]
+#define	pio4	xxx[14]
+#define	pio4lo	xxx[15]
+#define	T	xxx
+/* INDENT ON */
 
-.loc_0x9C:
-  lfd       f0, -0x6E28(r2)
-  lfd       f3, -0x6E30(r2)
-  lfd       f1, 0x8(r1)
-  fsub      f0, f0, f2
-  lfd       f2, -0x6E20(r2)
-  fsub      f1, f3, f1
-  fadd      f0, f1, f0
-  stfd      f1, 0x18(r1)
-  stfd      f0, 0x8(r1)
+double
+__kernel_tan(double x, double y, int iy) {
+	double z, r, v, w, s;
+	int ix, hx;
 
-.loc_0xC0:
-  lfd       f0, 0x8(r1)
-  lis       r4, 0x8048
-  subi      r5, r4, 0x5C80
-  lis       r4, 0x3FE6
-  fmul      f13, f0, f0
-  subi      r0, r4, 0x6BD8
-  lfd       f5, 0x60(r5)
-  cmpw      r6, r0
-  lfd       f4, 0x50(r5)
-  lfd       f9, 0x58(r5)
-  fmul      f31, f13, f13
-  lfd       f8, 0x48(r5)
-  lfd       f3, 0x40(r5)
-  lfd       f11, 0x38(r5)
-  fmul      f1, f13, f0
-  lfd       f6, 0x30(r5)
-  fmadd     f7, f31, f5, f4
-  lfd       f10, 0x28(r5)
-  lfd       f5, 0x20(r5)
-  fmadd     f12, f31, f9, f8
-  lfd       f9, 0x18(r5)
-  lfd       f4, 0x10(r5)
-  fmadd     f7, f31, f7, f3
-  lfd       f8, 0x8(r5)
-  lfd       f3, 0x0(r5)
-  fmadd     f11, f31, f12, f11
-  stfd      f13, 0x18(r1)
-  fmadd     f6, f31, f7, f6
-  fmadd     f7, f31, f11, f10
-  fmadd     f5, f31, f6, f5
-  fmadd     f6, f31, f7, f9
-  fmadd     f4, f31, f5, f4
-  fmadd     f5, f31, f6, f8
-  fmul      f4, f13, f4
-  fadd      f4, f5, f4
-  fmadd     f4, f1, f4, f2
-  fmadd     f6, f13, f4, f2
-  fmadd     f6, f3, f1, f6
-  fadd      f1, f0, f6
-  blt-      .loc_0x1BC
-  lis       r4, 0x4330
-  xoris     r0, r3, 0x8000
-  stw       r0, 0x24(r1)
-  rlwinm    r0,r7,2,30,30
-  subfic    r0, r0, 0x1
-  lfd       f5, -0x6E10(r2)
-  stw       r4, 0x20(r1)
-  xoris     r0, r0, 0x8000
-  fmul      f2, f1, f1
-  lfd       f3, -0x6E18(r2)
-  lfd       f4, 0x20(r1)
-  stw       r0, 0x2C(r1)
-  fsub      f7, f4, f5
-  stw       r4, 0x28(r1)
-  fadd      f1, f1, f7
-  lfd       f4, 0x28(r1)
-  fsub      f4, f4, f5
-  fdiv      f1, f2, f1
-  fsub      f1, f1, f6
-  fsub      f0, f0, f1
-  fnmsub    f0, f3, f0, f7
-  fmul      f1, f4, f0
-  b         .loc_0x204
+	hx = __HI(x);		/* high word of x */
+	ix = hx & 0x7fffffff;			/* high word of |x| */
+	if (ix < 0x3e300000) {			/* x < 2**-28 */
+		if ((int) x == 0) {		/* generate inexact */
+			if (((ix | __LO(x)) | (iy + 1)) == 0)
+				return one / __fabs(x);
+			else {
+				if (iy == 1)
+					return x;
+				else {	/* compute -1 / (x+y) carefully */
+					double a, t;
 
-.loc_0x1BC:
-  cmpwi     r3, 0x1
-  bne-      .loc_0x1C8
-  b         .loc_0x204
-
-.loc_0x1C8:
-  lfd       f2, -0x6E38(r2)
-  li        r0, 0
-  stfd      f1, 0x18(r1)
-  fdiv      f4, f2, f1
-  lfd       f1, -0x6E40(r2)
-  stw       r0, 0x1C(r1)
-  lfd       f2, 0x18(r1)
-  stfd      f4, 0x10(r1)
-  fsub      f0, f2, f0
-  stw       r0, 0x14(r1)
-  fsub      f0, f6, f0
-  lfd       f3, 0x10(r1)
-  fmadd     f1, f3, f2, f1
-  fmadd     f0, f3, f0, f1
-  fmadd     f1, f4, f0, f3
-
-.loc_0x204:
-  psq_l     f31,0x38(r1),0,0
-  lfd       f31, 0x30(r1)
-  addi      r1, r1, 0x40
-  blr
-*/
+					z = w = x + y;
+					__LO(z) = 0;
+					v = y - (z - x);
+					t = a = -one / w;
+					__LO(t) = 0;
+					s = one + t * z;
+					return t + a * (s + t * v);
+				}
+			}
+		}
+	}
+	if (ix >= 0x3FE59428) {	/* |x| >= 0.6744 */
+		if (hx < 0) {
+			x = -x;
+			y = -y;
+		}
+		z = pio4 - x;
+		w = pio4lo - y;
+		x = z + w;
+		y = 0.0;
+	}
+	z = x * x;
+	w = z * z;
+	/*
+	 * Break x^5*(T[1]+x^2*T[2]+...) into
+	 * x^5(T[1]+x^4*T[3]+...+x^20*T[11]) +
+	 * x^5(x^2*(T[2]+x^4*T[4]+...+x^22*[T12]))
+	 */
+	r = T[1] + w * (T[3] + w * (T[5] + w * (T[7] + w * (T[9] +
+		w * T[11]))));
+	v = z * (T[2] + w * (T[4] + w * (T[6] + w * (T[8] + w * (T[10] +
+		w * T[12])))));
+	s = z * x;
+	r = y + z * (s * (r + v) + y);
+	r += T[0] * s;
+	w = x + r;
+	if (ix >= 0x3FE59428) {
+		v = (double) iy;
+		return (double) (1 - ((hx >> 30) & 2)) *
+			(v - 2.0 * (x - (w * w / (w + v) - r)));
+	}
+	if (iy == 1)
+		return w;
+	else {
+		/*
+		 * if allow error up to 2 ulp, simply return
+		 * -1.0 / (x+r) here
+		 */
+		/* compute -1.0 / (x+r) accurately */
+		double a, t;
+		z = w;
+		__LO(z) = 0;
+		v = r - (z - x);	/* z+v = r+x */
+		t = a = -1.0 / w;	/* a = -1.0/w */
+		__LO(t) = 0;
+		s = 1.0 + t * z;
+		return t + a * (s + t * v);
+	}
 }

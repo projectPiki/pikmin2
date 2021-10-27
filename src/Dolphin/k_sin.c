@@ -1,59 +1,74 @@
 
-
+/* @(#)k_sin.c 1.3 95/01/18 */
 /*
- * --INFO--
- * Address:	800CEC7C
- * Size:	0000A0
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
  */
-void __kernel_sin(void)
+
+/* __kernel_sin( x, y, iy)
+ * kernel sin function on [-pi/4, pi/4], pi/4 ~ 0.7854
+ * Input x is assumed to be bounded by ~pi/4 in magnitude.
+ * Input y is the tail of x.
+ * Input iy indicates whether y is 0. (if iy=0, y assume to be 0). 
+ *
+ * Algorithm
+ *	1. Since sin(-x) = -sin(x), we need only to consider positive x. 
+ *	2. if x < 2^-27 (hx<0x3e400000 0), return x with inexact if x!=0.
+ *	3. sin(x) is approximated by a polynomial of degree 13 on
+ *	   [0,pi/4]
+ *		  	         3            13
+ *	   	sin(x) ~ x + S1*x + ... + S6*x
+ *	   where
+ *	
+ * 	|sin(x)         2     4     6     8     10     12  |     -58
+ * 	|----- - (1+S1*x +S2*x +S3*x +S4*x +S5*x  +S6*x   )| <= 2
+ * 	|  x 					           | 
+ * 
+ *	4. sin(x+y) = sin(x) + sin'(x')*y
+ *		    ~ sin(x) + (1-x*x/2)*y
+ *	   For better accuracy, let 
+ *		     3      2      2      2      2
+ *		r = x *(S2+x *(S3+x *(S4+x *(S5+x *S6))))
+ *	   then                   3    2
+ *		sin(x) = x + (S1*x + (x *(r-y/2)+y))
+ */
+
+#include "fdlibm.h"
+
+#ifdef __STDC__
+static const double 
+#else
+static double 
+#endif
+half =  5.00000000000000000000e-01, /* 0x3FE00000, 0x00000000 */
+S1  = -1.66666666666666324348e-01, /* 0xBFC55555, 0x55555549 */
+S2  =  8.33333333332248946124e-03, /* 0x3F811111, 0x1110F8A6 */
+S3  = -1.98412698298579493134e-04, /* 0xBF2A01A0, 0x19C161D5 */
+S4  =  2.75573137070700676789e-06, /* 0x3EC71DE3, 0x57B1FE7D */
+S5  = -2.50507602534068634195e-08, /* 0xBE5AE5E6, 0x8A2B9CEB */
+S6  =  1.58969099521155010221e-10; /* 0x3DE5D93A, 0x5ACFD57C */
+
+#ifdef __STDC__
+	double __kernel_sin(double x, double y, int iy)
+#else
+	double __kernel_sin(x, y, iy)
+	double x,y; int iy;		/* iy=0 if y is zero */
+#endif
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  lis       r0, 0x3E40
-  stfd      f1, 0x8(r1)
-  lwz       r4, 0x8(r1)
-  rlwinm    r4,r4,0,1,31
-  cmpw      r4, r0
-  bge-      .loc_0x34
-  fctiwz    f0, f1
-  stfd      f0, 0x10(r1)
-  lwz       r0, 0x14(r1)
-  cmpwi     r0, 0
-  bne-      .loc_0x34
-  b         .loc_0x98
-
-.loc_0x34:
-  lfd       f6, 0x8(r1)
-  cmpwi     r3, 0
-  lfd       f5, -0x6E58(r2)
-  fmul      f7, f6, f6
-  lfd       f4, -0x6E60(r2)
-  lfd       f3, -0x6E68(r2)
-  lfd       f1, -0x6E70(r2)
-  lfd       f0, -0x6E78(r2)
-  fmadd     f4, f5, f7, f4
-  fmul      f5, f7, f6
-  fmadd     f3, f7, f4, f3
-  fmadd     f1, f7, f3, f1
-  fmadd     f1, f7, f1, f0
-  bne-      .loc_0x7C
-  lfd       f0, -0x6E50(r2)
-  fmadd     f0, f7, f1, f0
-  fmadd     f1, f5, f0, f6
-  b         .loc_0x98
-
-.loc_0x7C:
-  fmul      f0, f5, f1
-  lfd       f1, -0x6E48(r2)
-  lfd       f3, -0x6E50(r2)
-  fmsub     f0, f1, f2, f0
-  fmsub     f0, f7, f0, f2
-  fnmsub    f0, f3, f5, f0
-  fsub      f1, f6, f0
-
-.loc_0x98:
-  addi      r1, r1, 0x20
-  blr
-*/
+	double z,r,v;
+	int ix;
+	ix = __HI(x)&0x7fffffff;	/* high word of x */
+	if(ix<0x3e400000)			/* |x| < 2**-27 */
+	   {if((int)x==0) return x;}		/* generate inexact */
+	z	=  x*x;
+	v	=  z*x;
+	r	=  S2+z*(S3+z*(S4+z*(S5+z*S6)));
+	if(iy==0) return x+v*(S1+z*r);
+	else      return x-((z*(half*y-v*r)-y)-v*S1);
 }
