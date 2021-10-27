@@ -15,8 +15,9 @@ void _Print(char*, ...)
  * Address:	801B6468
  * Size:	000024
  */
-void Game::MapUnitInterface::getDoor((int))
+void Game::MapUnitInterface::getDoor(int idx)
 {
+	return this->_118.getChildAt(idx)
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -106,8 +107,31 @@ void Game::Door::write((Stream&))
  * Address:	801B64CC
  * Size:	000104
  */
-void Game::Door::read((Stream&))
+void Game::Door::read(Stream& stream)
 {
+	_18 = stream.readInt();
+	_44 = stream.readInt();
+	_48 = stream.readInt();
+	_4C = stream.readInt();
+	_1C = stream.readInt();
+	for (int i = 0; i < _1C; i++) {
+		// inlined constructor
+		Game::DoorLink* link = new Game::DoorLink();
+		link->_18            = stream.readFloat();
+		link->_1C            = stream.readInt();
+		int v0               = stream.readInt();
+
+		// TODO: WTF does this evaluate to?
+		// neg       r0, r3 <-- -stream.readInt()
+		// mr        r4, r31
+		// or        r0, r0, r3 <-- (r0 | r3) aka (-v0 | v0)
+		// addi      r3, r28, 0x20 # ' '
+		// srwi      r0, r0, 31 <-- conversion to byte
+		// stb       r0, 0x20(r31)
+		link->_20 = (-v0 | v0); // < 0?
+		// _20 = CNode
+		_20.add(link);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -288,8 +312,10 @@ void Game::MapUnit::save((Stream&))
  * Address:	801B66AC
  * Size:	00004C
  */
-void Game::MapUnit::load((Stream&))
+void Game::MapUnit::load(Stream& stream)
 {
+	_94 = stream.readShort();
+	_96 = stream.readShort();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -646,8 +672,67 @@ void Game::MapUnitMgr::loadShape((char*))
  * Address:	801B69EC
  * Size:	000440
  */
-void Game::MapUnitMgr::makeUnit((Game::MapUnit*, char*))
+void Game::MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path)
 {
+	char path[512];
+	sprintf(path, "%s/arc.szs", path);
+	JKRArchive* archive = JKRArchive::mount(path, 1, nullptr, 1);
+#line 651
+	P2ASSERT(archive);
+
+	void* viewModelData = archive.getResource("view.bmd");
+#line 657
+	P2ASSERT(viewModelData);
+
+	// unit->_0C = J3DModelData*
+	unit->_0C = J3DModelLoaderDataBase::load(
+	    viewModelData, 0x20000000); // 0x20000000 is some flag
+	unit->_0C->newSharedDisplayList(0x40000);
+	unit->makeSharedDL();
+
+	void* textureData = archive.getResource("texture.bti");
+	if (textureData) {
+		unit->_30 = textureData;
+		unit->_2C = 0;
+	}
+	SysShape::Model::enableMaterialAnim(unit->_0C, 0);
+
+	int foundFiles = 0;
+	unit->_E8      = 0;
+	for (int i = 0; 0 < 100; i++) {
+		sprintf(path, "%s_%d.btk", path, i + 1);
+
+		int pathLen   = strlen(path);
+		char* strIter = &path[pathLen];
+		if (pathLen) {
+			// Backtrack to the last instance of /
+			while (*strIter != '/') {
+				strIter--;
+				pathLen--;
+				if (!pathLen) {
+					// Once we've reached the start of the string, check if
+					// there was a file available
+					if (!archive.getResource(strIter)) {
+						break;
+					}
+
+					foundFiles++;
+				}
+			}
+		}
+
+		if (!archive.getResource(strIter)) {
+			break;
+		}
+
+		foundFiles++;
+	}
+
+	if (foundFiles) {
+		unit->_E8 = foundFiles;
+		unit->_EC = new Sys::MatTexAnimation[foundFiles];
+		// TODO: Finish first draft of function
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x12B0(r1)
