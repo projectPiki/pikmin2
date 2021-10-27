@@ -1,176 +1,156 @@
 
-
+/* @(#)e_exp.c 1.6 04/04/22 */
 /*
- * --INFO--
- * Address:	800CC878
- * Size:	000224
+ * ====================================================
+ * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
  */
-void __ieee754_exp(void)
+
+/* __ieee754_exp(x)
+ * Returns the exponential of x.
+ *
+ * Method
+ *   1. Argument reduction:
+ *      Reduce x to an r so that |r| <= 0.5*ln2 ~ 0.34658.
+ *	Given x, find r and integer k such that
+ *
+ *               x = k*ln2 + r,  |r| <= 0.5*ln2.  
+ *
+ *      Here r will be represented as r = hi-lo for better 
+ *	accuracy.
+ *
+ *   2. Approximation of exp(r) by a special rational function on
+ *	the interval [0,0.34658]:
+ *	Write
+ *	    R(r**2) = r*(exp(r)+1)/(exp(r)-1) = 2 + r*r/6 - r**4/360 + ...
+ *      We use a special Remes algorithm on [0,0.34658] to generate 
+ * 	a polynomial of degree 5 to approximate R. The maximum error 
+ *	of this polynomial approximation is bounded by 2**-59. In
+ *	other words,
+ *	    R(z) ~ 2.0 + P1*z + P2*z**2 + P3*z**3 + P4*z**4 + P5*z**5
+ *  	(where z=r*r, and the values of P1 to P5 are listed below)
+ *	and
+ *	    |                  5          |     -59
+ *	    | 2.0+P1*z+...+P5*z   -  R(z) | <= 2 
+ *	    |                             |
+ *	The computation of exp(r) thus becomes
+ *                             2*r
+ *		exp(r) = 1 + -------
+ *		              R - r
+ *                                 r*R1(r)	
+ *		       = 1 + r + ----------- (for better accuracy)
+ *		                  2 - R1(r)
+ *	where
+ *			         2       4             10
+ *		R1(r) = r - (P1*r  + P2*r  + ... + P5*r   ).
+ *	
+ *   3. Scale back to obtain exp(x):
+ *	From step 1, we have
+ *	   exp(x) = 2^k * exp(r)
+ *
+ * Special cases:
+ *	exp(INF) is INF, exp(NaN) is NaN;
+ *	exp(-INF) is 0, and
+ *	for finite argument, only exp(0)=1 is exact.
+ *
+ * Accuracy:
+ *	according to an error analysis, the error is always less than
+ *	1 ulp (unit in the last place).
+ *
+ * Misc. info.
+ *	For IEEE double 
+ *	    if x >  7.09782712893383973096e+02 then exp(x) overflow
+ *	    if x < -7.45133219101941108420e+02 then exp(x) underflow
+ *
+ * Constants:
+ * The hexadecimal values are the intended ones for the following 
+ * constants. The decimal values may be used, provided that the 
+ * compiler will convert from decimal to binary accurately enough
+ * to produce the hexadecimal values shown.
+ */
+
+#include "fdlibm.h"
+
+#ifdef __STDC__
+static const double
+#else
+static double
+#endif
+one	= 1.0,
+halF[2]	= {0.5,-0.5,},
+huge	= 1.0e+300,
+twom1000= 9.33263618503218878990e-302,     /* 2**-1000=0x01700000,0*/
+o_threshold=  7.09782712893383973096e+02,  /* 0x40862E42, 0xFEFA39EF */
+u_threshold= -7.45133219101941108420e+02,  /* 0xc0874910, 0xD52D3051 */
+ln2HI[2]   ={ 6.93147180369123816490e-01,  /* 0x3fe62e42, 0xfee00000 */
+	     -6.93147180369123816490e-01,},/* 0xbfe62e42, 0xfee00000 */
+ln2LO[2]   ={ 1.90821492927058770002e-10,  /* 0x3dea39ef, 0x35793c76 */
+	     -1.90821492927058770002e-10,},/* 0xbdea39ef, 0x35793c76 */
+invln2 =  1.44269504088896338700e+00, /* 0x3ff71547, 0x652b82fe */
+P1   =  1.66666666666666019037e-01, /* 0x3FC55555, 0x5555553E */
+P2   = -2.77777777770155933842e-03, /* 0xBF66C16C, 0x16BEBD93 */
+P3   =  6.61375632143793436117e-05, /* 0x3F11566A, 0xAF25DE2C */
+P4   = -1.65339022054652515390e-06, /* 0xBEBBBD41, 0xC5D26BF1 */
+P5   =  4.13813679705723846039e-08; /* 0x3E663769, 0x72BEA4D0 */
+
+
+#ifdef __STDC__
+	double __ieee754_exp(double x)	/* default IEEE double exp */
+#else
+	double __ieee754_exp(x)	/* default IEEE double exp */
+	double x;
+#endif
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  lis       r3, 0x4086
-  lis       r4, 0x8048
-  stfd      f1, 0x8(r1)
-  addi      r0, r3, 0x2E42
-  subi      r5, r4, 0x5EC8
-  lwz       r8, 0x8(r1)
-  rlwinm    r4,r8,0,1,31
-  rlwinm    r7,r8,1,31,31
-  cmplw     r4, r0
-  blt-      .loc_0x8C
-  lis       r0, 0x7FF0
-  cmplw     r4, r0
-  blt-      .loc_0x64
-  lwz       r0, 0xC(r1)
-  rlwinm    r3,r8,0,12,31
-  or.       r0, r3, r0
-  beq-      .loc_0x50
-  fadd      f1, f1, f1
-  b         .loc_0x21C
+	double y,hi,lo,c,t;
+	int k,xsb;
+	unsigned hx;
 
-.loc_0x50:
-  cmpwi     r7, 0
-  bne-      .loc_0x5C
-  b         .loc_0x21C
+	hx  = __HI(x);	/* high word of x */
+	xsb = (hx>>31)&1;		/* sign bit of x */
+	hx &= 0x7fffffff;		/* high word of |x| */
 
-.loc_0x5C:
-  lfd       f1, -0x7190(r2)
-  b         .loc_0x21C
+    /* filter out non-finite argument */
+	if(hx >= 0x40862E42) {			/* if |x|>=709.78... */
+            if(hx>=0x7ff00000) {
+		if(((hx&0xfffff)|__LO(x))!=0) 
+		     return x+x; 		/* NaN */
+		else return (xsb==0)? x:0.0;	/* exp(+-inf)={inf,0} */
+	    }
+	    if(x > o_threshold) return huge*huge; /* overflow */
+	    if(x < u_threshold) return twom1000*twom1000; /* underflow */
+	}
 
-.loc_0x64:
-  lfd       f0, -0x7188(r2)
-  fcmpo     cr0, f1, f0
-  ble-      .loc_0x78
-  lfd       f1, -0x7180(r2)
-  b         .loc_0x21C
+    /* argument reduction */
+	if(hx > 0x3fd62e42) {		/* if  |x| > 0.5 ln2 */ 
+	    if(hx < 0x3FF0A2B2) {	/* and |x| < 1.5 ln2 */
+		hi = x-ln2HI[xsb]; lo=ln2LO[xsb]; k = 1-xsb-xsb;
+	    } else {
+		k  = (int)(invln2*x+halF[xsb]);
+		t  = k;
+		hi = x - t*ln2HI[0];	/* t*ln2HI is exact here */
+		lo = t*ln2LO[0];
+	    }
+	    x  = hi - lo;
+	} 
+	else if(hx < 0x3e300000)  {	/* when |x|<2**-28 */
+	    if(huge+x>one) return one+x;/* trigger inexact */
+	}
+	else k = 0;
 
-.loc_0x78:
-  lfd       f0, -0x7178(r2)
-  fcmpo     cr0, f1, f0
-  bge-      .loc_0x8C
-  lfd       f1, -0x7190(r2)
-  b         .loc_0x21C
-
-.loc_0x8C:
-  lis       r3, 0x3FD6
-  addi      r0, r3, 0x2E42
-  cmplw     r4, r0
-  ble-      .loc_0x130
-  lis       r3, 0x3FF1
-  subi      r0, r3, 0x5D4E
-  cmplw     r4, r0
-  bge-      .loc_0xD4
-  rlwinm    r6,r7,3,0,28
-  addi      r4, r5, 0x10
-  lfd       f1, 0x8(r1)
-  addi      r3, r5, 0x20
-  lfdx      f0, r4, r6
-  subfic    r0, r7, 0x1
-  lfdx      f8, r3, r6
-  sub       r6, r0, r7
-  fsub      f7, f1, f0
-  b         .loc_0x124
-
-.loc_0xD4:
-  rlwinm    r4,r7,3,0,28
-  addi      r3, r5, 0
-  lfd       f1, -0x7170(r2)
-  lis       r0, 0x4330
-  lfd       f4, 0x8(r1)
-  lfdx      f0, r3, r4
-  stw       r0, 0x20(r1)
-  fmadd     f2, f1, f4, f0
-  lfd       f3, -0x7120(r2)
-  lfd       f1, 0x10(r5)
-  lfd       f0, 0x20(r5)
-  fctiwz    f2, f2
-  stfd      f2, 0x18(r1)
-  lwz       r6, 0x1C(r1)
-  xoris     r0, r6, 0x8000
-  stw       r0, 0x24(r1)
-  lfd       f2, 0x20(r1)
-  fsub      f2, f2, f3
-  fnmsub    f7, f2, f1, f4
-  fmul      f8, f2, f0
-
-.loc_0x124:
-  fsub      f0, f7, f8
-  stfd      f0, 0x8(r1)
-  b         .loc_0x160
-
-.loc_0x130:
-  lis       r0, 0x3E30
-  cmplw     r4, r0
-  bge-      .loc_0x15C
-  lfd       f1, -0x7168(r2)
-  lfd       f2, 0x8(r1)
-  lfd       f0, -0x7160(r2)
-  fadd      f1, f1, f2
-  fcmpo     cr0, f1, f0
-  ble-      .loc_0x160
-  fadd      f1, f0, f2
-  b         .loc_0x21C
-
-.loc_0x15C:
-  li        r6, 0
-
-.loc_0x160:
-  lfd       f5, 0x8(r1)
-  cmpwi     r6, 0
-  lfd       f4, -0x7138(r2)
-  fmul      f6, f5, f5
-  lfd       f3, -0x7140(r2)
-  lfd       f2, -0x7148(r2)
-  lfd       f1, -0x7150(r2)
-  lfd       f0, -0x7158(r2)
-  fmadd     f3, f4, f6, f3
-  fmadd     f2, f6, f3, f2
-  fmadd     f1, f6, f2, f1
-  fmadd     f0, f6, f1, f0
-  fnmsub    f3, f6, f0, f5
-  bne-      .loc_0x1B8
-  lfd       f0, -0x7130(r2)
-  fmul      f1, f5, f3
-  lfd       f2, -0x7160(r2)
-  fsub      f0, f3, f0
-  fdiv      f0, f1, f0
-  fsub      f0, f0, f5
-  fsub      f1, f2, f0
-  b         .loc_0x21C
-
-.loc_0x1B8:
-  lfd       f0, -0x7130(r2)
-  fmul      f1, f5, f3
-  lfd       f2, -0x7160(r2)
-  cmpwi     r6, -0x3FD
-  fsub      f0, f0, f3
-  fdiv      f0, f1, f0
-  fsub      f0, f8, f0
-  fsub      f0, f0, f7
-  fsub      f0, f2, f0
-  stfd      f0, 0x10(r1)
-  blt-      .loc_0x1FC
-  lwz       r3, 0x10(r1)
-  rlwinm    r0,r6,20,0,11
-  add       r0, r3, r0
-  stw       r0, 0x10(r1)
-  lfd       f1, 0x10(r1)
-  b         .loc_0x21C
-
-.loc_0x1FC:
-  addi      r0, r6, 0x3E8
-  lwz       r3, 0x10(r1)
-  rlwinm    r0,r0,20,0,11
-  lfd       f1, -0x7128(r2)
-  add       r0, r3, r0
-  stw       r0, 0x10(r1)
-  lfd       f0, 0x10(r1)
-  fmul      f1, f1, f0
-
-.loc_0x21C:
-  addi      r1, r1, 0x30
-  blr
-*/
+    /* x is now in primary range */
+	t  = x*x;
+	c  = x - t*(P1+t*(P2+t*(P3+t*(P4+t*P5))));
+	if(k==0) 	return one-((x*c)/(c-2.0)-x); 
+	else 		y = one-((lo-(x*c)/(2.0-c))-hi);
+	if(k >= -1021) {
+	    __HI(y) += (k<<20);	/* add k to y's exponent */
+	    return y;
+	} else {
+	    __HI(y) += ((k+1000)<<20);/* add k to y's exponent */
+	    return y*twom1000;
+	}
 }

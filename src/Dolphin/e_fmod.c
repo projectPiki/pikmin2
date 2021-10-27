@@ -1,304 +1,140 @@
 
-
+/* @(#)e_fmod.c 1.3 95/01/18 */
 /*
- * --INFO--
- * Address:	800CCA9C
- * Size:	00033C
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
  */
-void __ieee754_fmod(void)
+
+/* 
+ * __ieee754_fmod(x,y)
+ * Return x mod y in exact arithmetic
+ * Method: shift and subtract
+ */
+
+#include "fdlibm.h"
+
+#ifdef __STDC__
+static const double one = 1.0, Zero[] = {0.0, -0.0,};
+#else
+static double one = 1.0, Zero[] = {0.0, -0.0,};
+#endif
+
+#ifdef __STDC__
+	double __ieee754_fmod(double x, double y)
+#else
+	double __ieee754_fmod(x,y)
+	double x,y ;
+#endif
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  stfd      f2, 0x10(r1)
-  stfd      f1, 0x8(r1)
-  lwz       r10, 0x10(r1)
-  lwz       r6, 0x8(r1)
-  lwz       r5, 0x14(r1)
-  rlwinm    r8,r10,0,1,31
-  rlwinm    r0,r6,0,0,0
-  lwz       r4, 0xC(r1)
-  or.       r3, r8, r5
-  xor       r7, r6, r0
-  beq-      .loc_0x54
-  lis       r6, 0x7FF0
-  cmpw      r7, r6
-  bge-      .loc_0x54
-  neg       r3, r5
-  or        r3, r5, r3
-  rlwinm    r3,r3,1,31,31
-  or        r3, r8, r3
-  cmplw     r3, r6
-  ble-      .loc_0x68
+	int n,hx,hy,hz,ix,iy,sx,i;
+	unsigned lx,ly,lz;
 
-.loc_0x54:
-  lfd       f1, 0x8(r1)
-  lfd       f0, 0x10(r1)
-  fmul      f0, f1, f0
-  fdiv      f1, f0, f0
-  b         .loc_0x334
+	hx = __HI(x);		/* high word of x */
+	lx = __LO(x);		/* low  word of x */
+	hy = __HI(y);		/* high word of y */
+	ly = __LO(y);		/* low  word of y */
+	sx = hx&0x80000000;		/* sign of x */
+	hx ^=sx;		/* |x| */
+	hy &= 0x7fffffff;	/* |y| */
 
-.loc_0x68:
-  cmpw      r7, r8
-  bgt-      .loc_0x9C
-  blt-      .loc_0x7C
-  cmplw     r4, r5
-  bge-      .loc_0x84
+    /* purge off exception values */
+	if((hy|ly)==0||(hx>=0x7ff00000)||	/* y=0,or x not finite */
+	  ((hy|((ly|-ly)>>31))>0x7ff00000))	/* or y is NaN */
+	    return (x*y)/(x*y);
+	if(hx<=hy) {
+	    if((hx<hy)||(lx<ly)) return x;	/* |x|<|y| return x */
+	    if(lx==ly) 
+		return Zero[(unsigned)sx>>31];	/* |x|=|y| return x*0*/
+	}
 
-.loc_0x7C:
-  lfd       f1, 0x8(r1)
-  b         .loc_0x334
+    /* determine ix = ilogb(x) */
+	if(hx<0x00100000) {	/* subnormal x */
+	    if(hx==0) {
+		for (ix = -1043, i=lx; i>0; i<<=1) ix -=1;
+	    } else {
+		for (ix = -1022,i=(hx<<11); i>0; i<<=1) ix -=1;
+	    }
+	} else ix = (hx>>20)-1023;
 
-.loc_0x84:
-  bne-      .loc_0x9C
-  lis       r3, 0x8048
-  rlwinm    r0,r0,4,28,28
-  subi      r3, r3, 0x5E98
-  lfdx      f1, r3, r0
-  b         .loc_0x334
+    /* determine iy = ilogb(y) */
+	if(hy<0x00100000) {	/* subnormal y */
+	    if(hy==0) {
+		for (iy = -1043, i=ly; i>0; i<<=1) iy -=1;
+	    } else {
+		for (iy = -1022,i=(hy<<11); i>0; i<<=1) iy -=1;
+	    }
+	} else iy = (hy>>20)-1023;
 
-.loc_0x9C:
-  lis       r3, 0x10
-  cmpw      r7, r3
-  bge-      .loc_0xF0
-  cmpwi     r7, 0
-  bne-      .loc_0xD0
-  mr        r3, r4
-  li        r11, -0x413
-  b         .loc_0xC4
+    /* set up {hx,lx}, {hy,ly} and align y to x */
+	if(ix >= -1022) 
+	    hx = 0x00100000|(0x000fffff&hx);
+	else {		/* subnormal x, shift x to normal */
+	    n = -1022-ix;
+	    if(n<=31) {
+	        hx = (hx<<n)|(lx>>(32-n));
+	        lx <<= n;
+	    } else {
+		hx = lx<<(n-32);
+		lx = 0;
+	    }
+	}
+	if(iy >= -1022) 
+	    hy = 0x00100000|(0x000fffff&hy);
+	else {		/* subnormal y, shift y to normal */
+	    n = -1022-iy;
+	    if(n<=31) {
+	        hy = (hy<<n)|(ly>>(32-n));
+	        ly <<= n;
+	    } else {
+		hy = ly<<(n-32);
+		ly = 0;
+	    }
+	}
 
-.loc_0xBC:
-  rlwinm    r3,r3,1,0,30
-  subi      r11, r11, 0x1
+    /* fix point fmod */
+	n = ix - iy;
+	while(n--) {
+	    hz=hx-hy;lz=lx-ly; if(lx<ly) hz -= 1;
+	    if(hz<0){hx = hx+hx+(lx>>31); lx = lx+lx;}
+	    else {
+	    	if((hz|lz)==0) 		/* return sign(x)*0 */
+		    return Zero[(unsigned)sx>>31];
+	    	hx = hz+hz+(lz>>31); lx = lz+lz;
+	    }
+	}
+	hz=hx-hy;lz=lx-ly; if(lx<ly) hz -= 1;
+	if(hz>=0) {hx=hz;lx=lz;}
 
-.loc_0xC4:
-  cmpwi     r3, 0
-  bgt+      .loc_0xBC
-  b         .loc_0xF8
-
-.loc_0xD0:
-  rlwinm    r3,r7,11,0,20
-  li        r11, -0x3FE
-  b         .loc_0xE4
-
-.loc_0xDC:
-  rlwinm    r3,r3,1,0,30
-  subi      r11, r11, 0x1
-
-.loc_0xE4:
-  cmpwi     r3, 0
-  bgt+      .loc_0xDC
-  b         .loc_0xF8
-
-.loc_0xF0:
-  srawi     r3, r7, 0x14
-  subi      r11, r3, 0x3FF
-
-.loc_0xF8:
-  lis       r3, 0x10
-  cmpw      r8, r3
-  bge-      .loc_0x14C
-  cmpwi     r8, 0
-  bne-      .loc_0x12C
-  mr        r6, r5
-  li        r3, -0x413
-  b         .loc_0x120
-
-.loc_0x118:
-  rlwinm    r6,r6,1,0,30
-  subi      r3, r3, 0x1
-
-.loc_0x120:
-  cmpwi     r6, 0
-  bgt+      .loc_0x118
-  b         .loc_0x154
-
-.loc_0x12C:
-  rlwinm    r6,r8,11,0,20
-  li        r3, -0x3FE
-  b         .loc_0x140
-
-.loc_0x138:
-  rlwinm    r6,r6,1,0,30
-  subi      r3, r3, 0x1
-
-.loc_0x140:
-  cmpwi     r6, 0
-  bgt+      .loc_0x138
-  b         .loc_0x154
-
-.loc_0x14C:
-  srawi     r3, r8, 0x14
-  subi      r3, r3, 0x3FF
-
-.loc_0x154:
-  cmpwi     r11, -0x3FE
-  blt-      .loc_0x168
-  rlwinm    r6,r7,0,12,31
-  oris      r9, r6, 0x10
-  b         .loc_0x198
-
-.loc_0x168:
-  subfic    r9, r11, -0x3FE
-  cmpwi     r9, 0x1F
-  bgt-      .loc_0x18C
-  subfic    r6, r9, 0x20
-  slw       r7, r7, r9
-  srw       r6, r4, r6
-  slw       r4, r4, r9
-  or        r9, r7, r6
-  b         .loc_0x198
-
-.loc_0x18C:
-  subi      r6, r9, 0x20
-  slw       r9, r4, r6
-  li        r4, 0
-
-.loc_0x198:
-  cmpwi     r3, -0x3FE
-  blt-      .loc_0x1AC
-  rlwinm    r6,r10,0,12,31
-  oris      r7, r6, 0x10
-  b         .loc_0x1DC
-
-.loc_0x1AC:
-  subfic    r10, r3, -0x3FE
-  cmpwi     r10, 0x1F
-  bgt-      .loc_0x1D0
-  subfic    r6, r10, 0x20
-  slw       r7, r8, r10
-  srw       r6, r5, r6
-  slw       r5, r5, r10
-  or        r7, r7, r6
-  b         .loc_0x1DC
-
-.loc_0x1D0:
-  subi      r6, r10, 0x20
-  slw       r7, r5, r6
-  li        r5, 0
-
-.loc_0x1DC:
-  sub.      r6, r11, r3
-  mtctr     r6
-  beq-      .loc_0x248
-
-.loc_0x1E8:
-  cmplw     r4, r5
-  sub       r8, r9, r7
-  sub       r10, r4, r5
-  bge-      .loc_0x1FC
-  subi      r8, r8, 0x1
-
-.loc_0x1FC:
-  cmpwi     r8, 0
-  bge-      .loc_0x218
-  rlwinm    r6,r4,1,31,31
-  add       r4, r4, r4
-  add       r6, r9, r6
-  add       r9, r9, r6
-  b         .loc_0x244
-
-.loc_0x218:
-  or.       r4, r8, r10
-  bne-      .loc_0x234
-  lis       r3, 0x8048
-  rlwinm    r0,r0,4,28,28
-  subi      r3, r3, 0x5E98
-  lfdx      f1, r3, r0
-  b         .loc_0x334
-
-.loc_0x234:
-  rlwinm    r6,r10,1,31,31
-  add       r4, r10, r10
-  add       r9, r8, r6
-  add       r9, r8, r9
-
-.loc_0x244:
-  bdnz+     .loc_0x1E8
-
-.loc_0x248:
-  cmplw     r4, r5
-  sub       r6, r9, r7
-  sub       r5, r4, r5
-  bge-      .loc_0x25C
-  subi      r6, r6, 0x1
-
-.loc_0x25C:
-  cmpwi     r6, 0
-  blt-      .loc_0x26C
-  mr        r9, r6
-  mr        r4, r5
-
-.loc_0x26C:
-  or.       r5, r9, r4
-  bne-      .loc_0x288
-  lis       r3, 0x8048
-  rlwinm    r0,r0,4,28,28
-  subi      r3, r3, 0x5E98
-  lfdx      f1, r3, r0
-  b         .loc_0x334
-
-.loc_0x288:
-  lis       r5, 0x10
-  b         .loc_0x2A4
-
-.loc_0x290:
-  rlwinm    r6,r4,1,31,31
-  add       r4, r4, r4
-  add       r6, r9, r6
-  subi      r3, r3, 0x1
-  add       r9, r9, r6
-
-.loc_0x2A4:
-  cmpw      r9, r5
-  blt+      .loc_0x290
-  cmpwi     r3, -0x3FE
-  blt-      .loc_0x2D4
-  addi      r3, r3, 0x3FF
-  subis     r5, r9, 0x10
-  rlwinm    r3,r3,20,0,11
-  stw       r4, 0xC(r1)
-  or        r3, r5, r3
-  or        r0, r3, r0
-  stw       r0, 0x8(r1)
-  b         .loc_0x330
-
-.loc_0x2D4:
-  subfic    r6, r3, -0x3FE
-  cmpwi     r6, 0x14
-  bgt-      .loc_0x2F8
-  subfic    r3, r6, 0x20
-  srw       r4, r4, r6
-  slw       r3, r9, r3
-  sraw      r9, r9, r6
-  or        r3, r4, r3
-  b         .loc_0x324
-
-.loc_0x2F8:
-  cmpwi     r6, 0x1F
-  bgt-      .loc_0x318
-  subfic    r5, r6, 0x20
-  srw       r3, r4, r6
-  slw       r4, r9, r5
-  mr        r9, r0
-  or        r3, r4, r3
-  b         .loc_0x324
-
-.loc_0x318:
-  subi      r3, r6, 0x20
-  sraw      r3, r9, r3
-  mr        r9, r0
-
-.loc_0x324:
-  or        r0, r9, r0
-  stw       r3, 0xC(r1)
-  stw       r0, 0x8(r1)
-
-.loc_0x330:
-  lfd       f1, 0x8(r1)
-
-.loc_0x334:
-  addi      r1, r1, 0x20
-  blr
-*/
+    /* convert back to floating value and restore the sign */
+	if((hx|lx)==0) 			/* return sign(x)*0 */
+	    return Zero[(unsigned)sx>>31];	
+	while(hx<0x00100000) {		/* normalize x */
+	    hx = hx+hx+(lx>>31); lx = lx+lx;
+	    iy -= 1;
+	}
+	if(iy>= -1022) {	/* normalize output */
+	    hx = ((hx-0x00100000)|((iy+1023)<<20));
+	    __HI(x) = hx|sx;
+	    __LO(x) = lx;
+	} else {		/* subnormal output */
+	    n = -1022 - iy;
+	    if(n<=20) {
+		lx = (lx>>n)|((unsigned)hx<<(32-n));
+		hx >>= n;
+	    } else if (n<=31) {
+		lx = (hx<<(32-n))|(lx>>n); hx = sx;
+	    } else {
+		lx = hx>>(n-32); hx = sx;
+	    }
+	    __HI(x) = hx|sx;
+	    __LO(x) = lx;
+	    x *= one;		/* create necessary signal */
+	}
+	return x;		/* exact output */
 }
