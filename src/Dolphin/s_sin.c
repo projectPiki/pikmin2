@@ -1,83 +1,78 @@
 
-
+/* @(#)s_sin.c 1.3 95/01/18 */
 /*
- * --INFO--
- * Address:	800CF81C
- * Size:	0000D8
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
  */
-void sin(void)
+
+/* sin(x)
+ * Return sine function of x.
+ *
+ * kernel function:
+ *	__kernel_sin		... sine function on [-pi/4,pi/4]
+ *	__kernel_cos		... cose function on [-pi/4,pi/4]
+ *	__ieee754_rem_pio2	... argument reduction routine
+ *
+ * Method.
+ *      Let S,C and T denote the sin, cos and tan respectively on 
+ *	[-PI/4, +PI/4]. Reduce the argument x to y1+y2 = x-k*pi/2 
+ *	in [-pi/4 , +pi/4], and let n = k mod 4.
+ *	We have
+ *
+ *          n        sin(x)      cos(x)        tan(x)
+ *     ----------------------------------------------------------
+ *	    0	       S	   C		 T
+ *	    1	       C	  -S		-1/T
+ *	    2	      -S	  -C		 T
+ *	    3	      -C	   S		-1/T
+ *     ----------------------------------------------------------
+ *
+ * Special cases:
+ *      Let trig be any of sin, cos, or tan.
+ *      trig(+-INF)  is NaN, with signals;
+ *      trig(NaN)    is that NaN;
+ *
+ * Accuracy:
+ *	TRIG(x) returns trig(x) nearly rounded 
+ */
+
+#include "fdlibm.h"
+
+#ifdef __STDC__
+	double sin(double x)
+#else
+	double sin(x)
+	double x;
+#endif
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r3, 0x3FE9
-  stfd      f1, 0x8(r1)
-  stw       r0, 0x24(r1)
-  addi      r0, r3, 0x21FB
-  lwz       r3, 0x8(r1)
-  rlwinm    r3,r3,0,1,31
-  cmpw      r3, r0
-  bgt-      .loc_0x38
-  lfd       f2, -0x6D88(r2)
-  li        r3, 0
-  bl        -0xBD0
-  b         .loc_0xC8
+	double y[2],z=0.0;
+	int n, ix;
 
-.loc_0x38:
-  lis       r0, 0x7FF0
-  cmpw      r3, r0
-  blt-      .loc_0x4C
-  fsub      f1, f1, f1
-  b         .loc_0xC8
+    /* High word of x. */
+	ix = __HI(x);
 
-.loc_0x4C:
-  addi      r3, r1, 0x10
-  bl        -0x1ED8
-  rlwinm    r0,r3,0,30,31
-  cmpwi     r0, 0x1
-  beq-      .loc_0x90
-  bge-      .loc_0x70
-  cmpwi     r0, 0
-  bge-      .loc_0x7C
-  b         .loc_0xB8
+    /* |x| ~< pi/4 */
+	ix &= 0x7fffffff;
+	if(ix <= 0x3fe921fb) return __kernel_sin(x,z,0);
 
-.loc_0x70:
-  cmpwi     r0, 0x3
-  bge-      .loc_0xB8
-  b         .loc_0xA0
+    /* sin(Inf or NaN) is NaN */
+	else if (ix>=0x7ff00000) return x-x;
 
-.loc_0x7C:
-  lfd       f1, 0x10(r1)
-  li        r3, 0x1
-  lfd       f2, 0x18(r1)
-  bl        -0xC28
-  b         .loc_0xC8
-
-.loc_0x90:
-  lfd       f1, 0x10(r1)
-  lfd       f2, 0x18(r1)
-  bl        -0x1B80
-  b         .loc_0xC8
-
-.loc_0xA0:
-  lfd       f1, 0x10(r1)
-  li        r3, 0x1
-  lfd       f2, 0x18(r1)
-  bl        -0xC4C
-  fneg      f1, f1
-  b         .loc_0xC8
-
-.loc_0xB8:
-  lfd       f1, 0x10(r1)
-  lfd       f2, 0x18(r1)
-  bl        -0x1BA8
-  fneg      f1, f1
-
-.loc_0xC8:
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+    /* argument reduction needed */
+	else {
+	    n = __ieee754_rem_pio2(x,y);
+	    switch(n&3) {
+		case 0: return  __kernel_sin(y[0],y[1],1);
+		case 1: return  __kernel_cos(y[0],y[1]);
+		case 2: return -__kernel_sin(y[0],y[1],1);
+		default:
+			return -__kernel_cos(y[0],y[1]);
+	    }
+	}
 }

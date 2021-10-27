@@ -1,629 +1,309 @@
 
+#ifndef lint
+static  char sccsid[] = "@(#)e_pow.c 1.5 04/04/22 SMI"; 
+#endif
 
 /*
- * --INFO--
- * Address:	800CD164
- * Size:	000830
+ * ====================================================
+ * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
  */
-void __ieee754_pow(void)
+
+/* __ieee754_pow(x,y) return x**y
+ *
+ *		      n
+ * Method:  Let x =  2   * (1+f)
+ *	1. Compute and return log2(x) in two pieces:
+ *		log2(x) = w1 + w2,
+ *	   where w1 has 53-24 = 29 bit trailing zeros.
+ *	2. Perform y*log2(x) = n+y' by simulating muti-precision 
+ *	   arithmetic, where |y'|<=0.5.
+ *	3. Return x**y = 2**n*exp(y'*log2)
+ *
+ * Special cases:
+ *	1.  (anything) ** 0  is 1
+ *	2.  (anything) ** 1  is itself
+ *	3.  (anything) ** NAN is NAN
+ *	4.  NAN ** (anything except 0) is NAN
+ *	5.  +-(|x| > 1) **  +INF is +INF
+ *	6.  +-(|x| > 1) **  -INF is +0
+ *	7.  +-(|x| < 1) **  +INF is +0
+ *	8.  +-(|x| < 1) **  -INF is +INF
+ *	9.  +-1         ** +-INF is NAN
+ *	10. +0 ** (+anything except 0, NAN)               is +0
+ *	11. -0 ** (+anything except 0, NAN, odd integer)  is +0
+ *	12. +0 ** (-anything except 0, NAN)               is +INF
+ *	13. -0 ** (-anything except 0, NAN, odd integer)  is +INF
+ *	14. -0 ** (odd integer) = -( +0 ** (odd integer) )
+ *	15. +INF ** (+anything except 0,NAN) is +INF
+ *	16. +INF ** (-anything except 0,NAN) is +0
+ *	17. -INF ** (anything)  = -0 ** (-anything)
+ *	18. (-anything) ** (integer) is (-1)**(integer)*(+anything**integer)
+ *	19. (-anything except 0 and inf) ** (non-integer) is NAN
+ *
+ * Accuracy:
+ *	pow(x,y) returns x**y nearly rounded. In particular
+ *			pow(integer,integer)
+ *	always returns the correct integer provided it is 
+ *	representable.
+ *
+ * Constants :
+ * The hexadecimal values are the intended ones for the following 
+ * constants. The decimal values may be used, provided that the 
+ * compiler will convert from decimal to binary accurately enough 
+ * to produce the hexadecimal values shown.
+ */
+
+#include "fdlibm.h"
+
+#ifdef __STDC__
+static const double 
+#else
+static double 
+#endif
+bp[] = {1.0, 1.5,},
+dp_h[] = { 0.0, 5.84962487220764160156e-01,}, /* 0x3FE2B803, 0x40000000 */
+dp_l[] = { 0.0, 1.35003920212974897128e-08,}, /* 0x3E4CFDEB, 0x43CFD006 */
+zero    =  0.0,
+one	=  1.0,
+two	=  2.0,
+two53	=  9007199254740992.0,	/* 0x43400000, 0x00000000 */
+huge	=  1.0e300,
+tiny    =  1.0e-300,
+	/* poly coefs for (3/2)*(log(x)-2s-2/3*s**3 */
+L1  =  5.99999999999994648725e-01, /* 0x3FE33333, 0x33333303 */
+L2  =  4.28571428578550184252e-01, /* 0x3FDB6DB6, 0xDB6FABFF */
+L3  =  3.33333329818377432918e-01, /* 0x3FD55555, 0x518F264D */
+L4  =  2.72728123808534006489e-01, /* 0x3FD17460, 0xA91D4101 */
+L5  =  2.30660745775561754067e-01, /* 0x3FCD864A, 0x93C9DB65 */
+L6  =  2.06975017800338417784e-01, /* 0x3FCA7E28, 0x4A454EEF */
+P1   =  1.66666666666666019037e-01, /* 0x3FC55555, 0x5555553E */
+P2   = -2.77777777770155933842e-03, /* 0xBF66C16C, 0x16BEBD93 */
+P3   =  6.61375632143793436117e-05, /* 0x3F11566A, 0xAF25DE2C */
+P4   = -1.65339022054652515390e-06, /* 0xBEBBBD41, 0xC5D26BF1 */
+P5   =  4.13813679705723846039e-08, /* 0x3E663769, 0x72BEA4D0 */
+lg2  =  6.93147180559945286227e-01, /* 0x3FE62E42, 0xFEFA39EF */
+lg2_h  =  6.93147182464599609375e-01, /* 0x3FE62E43, 0x00000000 */
+lg2_l  = -1.90465429995776804525e-09, /* 0xBE205C61, 0x0CA86C39 */
+ovt =  8.0085662595372944372e-0017, /* -(1024-log2(ovfl+.5ulp)) */
+cp    =  9.61796693925975554329e-01, /* 0x3FEEC709, 0xDC3A03FD =2/(3ln2) */
+cp_h  =  9.61796700954437255859e-01, /* 0x3FEEC709, 0xE0000000 =(float)cp */
+cp_l  = -7.02846165095275826516e-09, /* 0xBE3E2FE0, 0x145B01F5 =tail of cp_h*/
+ivln2    =  1.44269504088896338700e+00, /* 0x3FF71547, 0x652B82FE =1/ln2 */
+ivln2_h  =  1.44269502162933349609e+00, /* 0x3FF71547, 0x60000000 =24b 1/ln2*/
+ivln2_l  =  1.92596299112661746887e-08; /* 0x3E54AE0B, 0xF85DDF44 =1/ln2 tail*/
+
+#ifdef __STDC__
+	double __ieee754_pow(double x, double y)
+#else
+	double __ieee754_pow(x,y)
+	double x, y;
+#endif
 {
-/*
-.loc_0x0:
-  stwu      r1, -0xB0(r1)
-  mflr      r0
-  stw       r0, 0xB4(r1)
-  stfd      f31, 0xA0(r1)
-  psq_st    f31,0xA8(r1),0,0
-  stfd      f30, 0x90(r1)
-  psq_st    f30,0x98(r1),0,0
-  stfd      f29, 0x80(r1)
-  psq_st    f29,0x88(r1),0,0
-  stfd      f28, 0x70(r1)
-  psq_st    f28,0x78(r1),0,0
-  stfd      f27, 0x60(r1)
-  psq_st    f27,0x68(r1),0,0
-  stfd      f2, 0x10(r1)
-  lis       r3, 0x8048
-  subi      r3, r3, 0x5E88
-  lwz       r5, 0x10(r1)
-  stfd      f1, 0x8(r1)
-  lwz       r11, 0x14(r1)
-  rlwinm    r7,r5,0,1,31
-  lwz       r0, 0x8(r1)
-  or.       r4, r7, r11
-  lwz       r10, 0xC(r1)
-  rlwinm    r6,r0,0,1,31
-  bne-      .loc_0x6C
-  lfd       f1, -0x7068(r2)
-  b         .loc_0x7F8
+	double z,ax,z_h,z_l,p_h,p_l;
+	double y1,t1,t2,r,s,t,u,v,w;
+	int i0,i1,i,j,k,yisint,n;
+	int hx,hy,ix,iy;
+	unsigned lx,ly;
 
-.loc_0x6C:
-  lis       r4, 0x7FF0
-  cmpw      r6, r4
-  bgt-      .loc_0xAC
-  subis     r4, r6, 0x7FF0
-  cmplwi    r4, 0
-  bne-      .loc_0x8C
-  cmplwi    r10, 0
-  bne-      .loc_0xAC
+	i0 = ((*(int*)&one)>>29)^1; i1=1-i0;
+	hx = __HI(x); lx = __LO(x);
+	hy = __HI(y); ly = __LO(y);
+	ix = hx&0x7fffffff;  iy = hy&0x7fffffff;
 
-.loc_0x8C:
-  lis       r4, 0x7FF0
-  cmpw      r7, r4
-  bgt-      .loc_0xAC
-  subis     r4, r7, 0x7FF0
-  cmplwi    r4, 0
-  bne-      .loc_0xBC
-  cmplwi    r11, 0
-  beq-      .loc_0xBC
+    /* y==zero: x**0 = 1 */
+	if((iy|ly)==0) return one; 	
 
-.loc_0xAC:
-  lfd       f1, 0x8(r1)
-  lfd       f0, 0x10(r1)
-  fadd      f1, f1, f0
-  b         .loc_0x7F8
+    /* +-NaN return x+y */
+	if(ix > 0x7ff00000 || ((ix==0x7ff00000)&&(lx!=0)) ||
+	   iy > 0x7ff00000 || ((iy==0x7ff00000)&&(ly!=0))) 
+		return x+y;	
 
-.loc_0xBC:
-  cmpwi     r0, 0
-  li        r4, 0
-  bge-      .loc_0x13C
-  lis       r8, 0x4340
-  cmpw      r7, r8
-  blt-      .loc_0xDC
-  li        r4, 0x2
-  b         .loc_0x13C
+    /* determine if y is an odd int when x < 0
+     * yisint = 0	... y is not an integer
+     * yisint = 1	... y is an odd int
+     * yisint = 2	... y is an even int
+     */
+	yisint  = 0;
+	if(hx<0) {	
+	    if(iy>=0x43400000) yisint = 2; /* even integer y */
+	    else if(iy>=0x3ff00000) {
+		k = (iy>>20)-0x3ff;	   /* exponent */
+		if(k>20) {
+		    j = ly>>(52-k);
+		    if((j<<(52-k))==ly) yisint = 2-(j&1);
+		} else if(ly==0) {
+		    j = iy>>(20-k);
+		    if((j<<(20-k))==iy) yisint = 2-(j&1);
+		}
+	    }		
+	} 
 
-.loc_0xDC:
-  lis       r8, 0x3FF0
-  cmpw      r7, r8
-  blt-      .loc_0x13C
-  srawi     r8, r7, 0x14
-  subi      r8, r8, 0x3FF
-  cmpwi     r8, 0x14
-  ble-      .loc_0x118
-  subfic    r8, r8, 0x34
-  srw       r9, r11, r8
-  slw       r8, r9, r8
-  cmplw     r11, r8
-  bne-      .loc_0x13C
-  rlwinm    r4,r9,0,31,31
-  subfic    r4, r4, 0x2
-  b         .loc_0x13C
+    /* special value of y */
+	if(ly==0) { 	
+	    if (iy==0x7ff00000) {	/* y is +-inf */
+	        if(((ix-0x3ff00000)|lx)==0)
+		    return  y - y;	/* inf**+-1 is NaN */
+	        else if (ix >= 0x3ff00000)/* (|x|>1)**+-inf = inf,0 */
+		    return (hy>=0)? y: zero;
+	        else			/* (|x|<1)**-,+inf = inf,0 */
+		    return (hy<0)?-y: zero;
+	    } 
+	    if(iy==0x3ff00000) {	/* y is  +-1 */
+		if(hy<0) return one/x; else return x;
+	    }
+	    if(hy==0x40000000) return x*x; /* y is  2 */
+	    if(hy==0x3fe00000) {	/* y is  0.5 */
+		if(hx>=0)	/* x >= +0 */
+		return sqrt(x);	
+	    }
+	}
 
-.loc_0x118:
-  cmplwi    r11, 0
-  bne-      .loc_0x13C
-  subfic    r8, r8, 0x14
-  sraw      r9, r7, r8
-  slw       r8, r9, r8
-  cmpw      r7, r8
-  bne-      .loc_0x13C
-  rlwinm    r4,r9,0,31,31
-  subfic    r4, r4, 0x2
+	ax   = fabs(x);
+    /* special value of x */
+	if(lx==0) {
+	    if(ix==0x7ff00000||ix==0||ix==0x3ff00000){
+		z = ax;			/*x is +-0,+-inf,+-1*/
+		if(hy<0) z = one/z;	/* z = (1/|x|) */
+		if(hx<0) {
+		    if(((ix-0x3ff00000)|yisint)==0) {
+			z = (z-z)/(z-z); /* (-1)**non-int is NaN */
+		    } else if(yisint==1) 
+			z = -z;		/* (x<0)**odd = -(|x|**odd) */
+		}
+		return z;
+	    }
+	}
+    
+	n = (hx>>31)+1;
 
-.loc_0x13C:
-  cmplwi    r11, 0
-  bne-      .loc_0x20C
-  subis     r8, r7, 0x7FF0
-  cmplwi    r8, 0
-  bne-      .loc_0x1A8
-  subis     r0, r6, 0x3FF0
-  or.       r0, r0, r10
-  bne-      .loc_0x168
-  lfd       f0, 0x10(r1)
-  fsub      f1, f0, f0
-  b         .loc_0x7F8
+    /* (x<0)**(non-int) is NaN */
+	if((n|yisint)==0) return (x-x)/(x-x);
 
-.loc_0x168:
-  lis       r0, 0x3FF0
-  cmpw      r6, r0
-  blt-      .loc_0x18C
-  cmpwi     r5, 0
-  blt-      .loc_0x184
-  lfd       f1, 0x10(r1)
-  b         .loc_0x7F8
+	s = one; /* s (sign of result -ve**odd) = -1 else = 1 */
+	if((n|(yisint-1))==0) s = -one;/* (-ve)**(odd int) */
 
-.loc_0x184:
-  lfd       f1, -0x7060(r2)
-  b         .loc_0x7F8
+    /* |y| is huge */
+	if(iy>0x41e00000) { /* if |y| > 2**31 */
+	    if(iy>0x43f00000){	/* if |y| > 2**64, must o/uflow */
+		if(ix<=0x3fefffff) return (hy<0)? huge*huge:tiny*tiny;
+		if(ix>=0x3ff00000) return (hy>0)? huge*huge:tiny*tiny;
+	    }
+	/* over/underflow if x is not close to one */
+	    if(ix<0x3fefffff) return (hy<0)? s*huge*huge:s*tiny*tiny;
+	    if(ix>0x3ff00000) return (hy>0)? s*huge*huge:s*tiny*tiny;
+	/* now |1-x| is tiny <= 2**-20, suffice to compute 
+	   log(x) by x-x^2/2+x^3/3-x^4/4 */
+	    t = ax-one;		/* t has 20 trailing zeros */
+	    w = (t*t)*(0.5-t*(0.3333333333333333333333-t*0.25));
+	    u = ivln2_h*t;	/* ivln2_h has 21 sig. bits */
+	    v = t*ivln2_l-w*ivln2;
+	    t1 = u+v;
+	    __LO(t1) = 0;
+	    t2 = v-(t1-u);
+	} else {
+	    double ss,s2,s_h,s_l,t_h,t_l;
+	    n = 0;
+	/* take care subnormal number */
+	    if(ix<0x00100000)
+		{ax *= two53; n -= 53; ix = __HI(ax); }
+	    n  += ((ix)>>20)-0x3ff;
+	    j  = ix&0x000fffff;
+	/* determine interval */
+	    ix = j|0x3ff00000;		/* normalize ix */
+	    if(j<=0x3988E) k=0;		/* |x|<sqrt(3/2) */
+	    else if(j<0xBB67A) k=1;	/* |x|<sqrt(3)   */
+	    else {k=0;n+=1;ix -= 0x00100000;}
+	    __HI(ax) = ix;
 
-.loc_0x18C:
-  cmpwi     r5, 0
-  bge-      .loc_0x1A0
-  lfd       f0, 0x10(r1)
-  fneg      f1, f0
-  b         .loc_0x7F8
+	/* compute ss = s_h+s_l = (x-1)/(x+1) or (x-1.5)/(x+1.5) */
+	    u = ax-bp[k];		/* bp[0]=1.0, bp[1]=1.5 */
+	    v = one/(ax+bp[k]);
+	    ss = u*v;
+	    s_h = ss;
+	    __LO(s_h) = 0;
+	/* t_h=ax+bp[k] High */
+	    t_h = zero;
+	    __HI(t_h)=((ix>>1)|0x20000000)+0x00080000+(k<<18); 
+	    t_l = ax - (t_h-bp[k]);
+	    s_l = v*((u-s_h*t_h)-s_h*t_l);
+	/* compute log(ax) */
+	    s2 = ss*ss;
+	    r = s2*s2*(L1+s2*(L2+s2*(L3+s2*(L4+s2*(L5+s2*L6)))));
+	    r += s_l*(s_h+ss);
+	    s2  = s_h*s_h;
+	    t_h = 3.0+s2+r;
+	    __LO(t_h) = 0;
+	    t_l = r-((t_h-3.0)-s2);
+	/* u+v = ss*(1+...) */
+	    u = s_h*t_h;
+	    v = s_l*t_h+t_l*ss;
+	/* 2/(3log2)*(ss+...) */
+	    p_h = u+v;
+	    __LO(p_h) = 0;
+	    p_l = v-(p_h-u);
+	    z_h = cp_h*p_h;		/* cp_h+cp_l = 2/(3*log2) */
+	    z_l = cp_l*p_h+p_l*cp+dp_l[k];
+	/* log2(ax) = (ss+..)*2/(3*log2) = n + dp_h + z_h + z_l */
+	    t = (double)n;
+	    t1 = (((z_h+z_l)+dp_h[k])+t);
+	    __LO(t1) = 0;
+	    t2 = z_l-(((t1-t)-dp_h[k])-z_h);
+	}
 
-.loc_0x1A0:
-  lfd       f1, -0x7060(r2)
-  b         .loc_0x7F8
-
-.loc_0x1A8:
-  subis     r8, r7, 0x3FF0
-  cmplwi    r8, 0
-  bne-      .loc_0x1D4
-  cmpwi     r5, 0
-  bge-      .loc_0x1CC
-  lfd       f1, -0x7068(r2)
-  lfd       f0, 0x8(r1)
-  fdiv      f1, f1, f0
-  b         .loc_0x7F8
-
-.loc_0x1CC:
-  lfd       f1, 0x8(r1)
-  b         .loc_0x7F8
-
-.loc_0x1D4:
-  subis     r8, r5, 0x4000
-  cmplwi    r8, 0
-  bne-      .loc_0x1EC
-  lfd       f0, 0x8(r1)
-  fmul      f1, f0, f0
-  b         .loc_0x7F8
-
-.loc_0x1EC:
-  subis     r8, r5, 0x3FE0
-  cmplwi    r8, 0
-  bne-      .loc_0x20C
-  cmpwi     r0, 0
-  blt-      .loc_0x20C
-  lfd       f1, 0x8(r1)
-  bl        0x2954
-  b         .loc_0x7F8
-
-.loc_0x20C:
-  lfd       f0, 0x8(r1)
-  cmplwi    r10, 0
-  fabs      f1, f0
-  stfd      f1, 0x48(r1)
-  bne-      .loc_0x29C
-  subis     r8, r6, 0x7FF0
-  cmplwi    r8, 0
-  beq-      .loc_0x240
-  cmpwi     r6, 0
-  beq-      .loc_0x240
-  subis     r8, r6, 0x3FF0
-  cmplwi    r8, 0
-  bne-      .loc_0x29C
-
-.loc_0x240:
-  cmpwi     r5, 0
-  stfd      f1, 0x50(r1)
-  bge-      .loc_0x258
-  lfd       f0, -0x7068(r2)
-  fdiv      f0, f0, f1
-  stfd      f0, 0x50(r1)
-
-.loc_0x258:
-  cmpwi     r0, 0
-  bge-      .loc_0x294
-  subis     r0, r6, 0x3FF0
-  or.       r0, r0, r4
-  bne-      .loc_0x280
-  lfd       f0, 0x50(r1)
-  fsub      f0, f0, f0
-  fdiv      f0, f0, f0
-  stfd      f0, 0x50(r1)
-  b         .loc_0x294
-
-.loc_0x280:
-  cmpwi     r4, 0x1
-  bne-      .loc_0x294
-  lfd       f0, 0x50(r1)
-  fneg      f0, f0
-  stfd      f0, 0x50(r1)
-
-.loc_0x294:
-  lfd       f1, 0x50(r1)
-  b         .loc_0x7F8
-
-.loc_0x29C:
-  srawi     r8, r0, 0x1F
-  addi      r0, r8, 0x1
-  or.       r8, r0, r4
-  bne-      .loc_0x2C0
-  lis       r3, 0x8051
-  li        r0, 0x21
-  stw       r0, -0x7340(r13)
-  lfs       f1, 0x48B0(r3)
-  b         .loc_0x7F8
-
-.loc_0x2C0:
-  lis       r8, 0x41E0
-  cmpw      r7, r8
-  ble-      .loc_0x3CC
-  lis       r3, 0x43F0
-  cmpw      r7, r3
-  ble-      .loc_0x320
-  lis       r3, 0x3FF0
-  subi      r7, r3, 0x1
-  cmpw      r6, r7
-  bgt-      .loc_0x300
-  cmpwi     r5, 0
-  bge-      .loc_0x2F8
-  lfd       f1, -0x7058(r2)
-  b         .loc_0x7F8
-
-.loc_0x2F8:
-  lfd       f1, -0x7060(r2)
-  b         .loc_0x7F8
-
-.loc_0x300:
-  cmpw      r6, r3
-  blt-      .loc_0x320
-  cmpwi     r5, 0
-  ble-      .loc_0x318
-  lfd       f1, -0x7058(r2)
-  b         .loc_0x7F8
-
-.loc_0x318:
-  lfd       f1, -0x7060(r2)
-  b         .loc_0x7F8
-
-.loc_0x320:
-  lis       r3, 0x3FF0
-  subi      r7, r3, 0x1
-  cmpw      r6, r7
-  bge-      .loc_0x348
-  cmpwi     r5, 0
-  bge-      .loc_0x340
-  lfd       f1, -0x7058(r2)
-  b         .loc_0x7F8
-
-.loc_0x340:
-  lfd       f1, -0x7060(r2)
-  b         .loc_0x7F8
-
-.loc_0x348:
-  cmpw      r6, r3
-  ble-      .loc_0x368
-  cmpwi     r5, 0
-  ble-      .loc_0x360
-  lfd       f1, -0x7058(r2)
-  b         .loc_0x7F8
-
-.loc_0x360:
-  lfd       f1, -0x7060(r2)
-  b         .loc_0x7F8
-
-.loc_0x368:
-  lfd       f2, 0x8(r1)
-  li        r3, 0
-  lfd       f0, -0x7068(r2)
-  lfd       f1, -0x7040(r2)
-  fsub      f6, f2, f0
-  lfd       f0, -0x7048(r2)
-  lfd       f2, -0x7038(r2)
-  lfd       f3, -0x7050(r2)
-  fnmsub    f4, f1, f6, f0
-  lfd       f0, -0x7028(r2)
-  lfd       f1, -0x7030(r2)
-  fmul      f5, f6, f6
-  stfd      f6, 0x28(r1)
-  fnmsub    f3, f6, f4, f3
-  fmul      f2, f2, f6
-  fmul      f3, f5, f3
-  fmul      f0, f0, f3
-  fmsub     f1, f1, f6, f0
-  fadd      f0, f2, f1
-  stfd      f0, 0x30(r1)
-  stw       r3, 0x34(r1)
-  lfd       f0, 0x30(r1)
-  fsub      f0, f0, f2
-  fsub      f0, f1, f0
-  b         .loc_0x5B4
-
-.loc_0x3CC:
-  lis       r5, 0x10
-  li        r10, 0
-  cmpw      r6, r5
-  bge-      .loc_0x3F4
-  lfd       f1, 0x48(r1)
-  li        r10, -0x35
-  lfd       f0, -0x7020(r2)
-  fmul      f0, f1, f0
-  stfd      f0, 0x48(r1)
-  lwz       r6, 0x48(r1)
-
-.loc_0x3F4:
-  lis       r5, 0x4
-  rlwinm    r8,r6,0,12,31
-  subi      r5, r5, 0x6772
-  srawi     r6, r6, 0x14
-  cmpw      r8, r5
-  oris      r7, r8, 0x3FF0
-  add       r10, r6, r10
-  subi      r10, r10, 0x3FF
-  bgt-      .loc_0x420
-  li        r11, 0
-  b         .loc_0x444
-
-.loc_0x420:
-  lis       r5, 0xC
-  subi      r5, r5, 0x4986
-  cmpw      r8, r5
-  bge-      .loc_0x438
-  li        r11, 0x1
-  b         .loc_0x444
-
-.loc_0x438:
-  subis     r7, r7, 0x10
-  li        r11, 0
-  addi      r10, r10, 0x1
-
-.loc_0x444:
-  stw       r7, 0x48(r1)
-  srawi     r5, r7, 0x1
-  rlwinm    r9,r11,3,0,28
-  addi      r6, r3, 0
-  lfd       f30, 0x48(r1)
-  oris      r8, r5, 0x2000
-  lfdx      f5, r6, r9
-  addi      r7, r3, 0x20
-  lfd       f1, -0x7060(r2)
-  xoris     r6, r10, 0x8000
-  fadd      f0, f30, f5
-  lfd       f2, -0x7068(r2)
-  lis       r5, 0x4330
-  addi      r10, r3, 0x10
-  fsub      f31, f30, f5
-  lfd       f4, -0x6FF0(r2)
-  fdiv      f28, f2, f0
-  lfd       f0, -0x6FF8(r2)
-  lfd       f3, -0x7000(r2)
-  addis     r8, r8, 0x8
-  rlwinm    r3,r11,18,0,13
-  stfd      f1, 0x18(r1)
-  fmul      f1, f31, f28
-  add       r3, r8, r3
-  stw       r3, 0x18(r1)
-  li        r3, 0
-  lfd       f2, -0x7008(r2)
-  lfd       f12, 0x18(r1)
-  fmul      f27, f1, f1
-  stfd      f1, 0x20(r1)
-  lfd       f11, -0x7010(r2)
-  stw       r3, 0x24(r1)
-  fsub      f13, f12, f5
-  lfd       f9, -0x7018(r2)
-  fmadd     f4, f4, f27, f0
-  lfd       f29, 0x20(r1)
-  lfd       f10, -0x6FE8(r2)
-  fmul      f0, f29, f29
-  lfd       f5, -0x6FD0(r2)
-  lfd       f6, -0x6FD8(r2)
-  fmadd     f3, f27, f4, f3
-  lfd       f8, -0x6FE0(r2)
-  lfdx      f7, r7, r9
-  fnmsub    f31, f29, f12, f31
-  stw       r6, 0x5C(r1)
-  lfd       f4, -0x6F60(r2)
-  fmadd     f12, f27, f3, f2
-  stw       r5, 0x58(r1)
-  lfdx      f2, r10, r9
-  fsub      f30, f30, f13
-  lfd       f3, 0x58(r1)
-  fmul      f13, f27, f27
-  fmadd     f11, f27, f12, f11
-  fnmsub    f12, f29, f30, f31
-  fmadd     f9, f27, f11, f9
-  fmul      f27, f28, f12
-  fmul      f12, f13, f9
-  fadd      f11, f29, f1
-  fadd      f9, f10, f0
-  fsub      f3, f3, f4
-  fmadd     f12, f27, f11, f12
-  stfd      f3, 0x28(r1)
-  fadd      f4, f9, f12
-  stfd      f4, 0x18(r1)
-  stw       r3, 0x1C(r1)
-  lfd       f9, 0x18(r1)
-  fsub      f4, f9, f10
-  fmul      f10, f29, f9
-  fsub      f0, f4, f0
-  fsub      f0, f12, f0
-  fmul      f0, f0, f1
-  fmadd     f4, f27, f9, f0
-  fadd      f0, f10, f4
-  stfd      f0, 0x40(r1)
-  stw       r3, 0x44(r1)
-  lfd       f1, 0x40(r1)
-  fsub      f0, f1, f10
-  fmul      f8, f8, f1
-  fsub      f0, f4, f0
-  fmul      f0, f5, f0
-  fmadd     f0, f6, f1, f0
-  fadd      f1, f7, f0
-  fadd      f0, f8, f1
-  fadd      f0, f0, f2
-  fadd      f0, f3, f0
-  stfd      f0, 0x30(r1)
-  stw       r3, 0x34(r1)
-  lfd       f0, 0x30(r1)
-  fsub      f0, f0, f3
-  fsub      f0, f0, f2
-  fsub      f0, f0, f8
-  fsub      f0, f1, f0
-
-.loc_0x5B4:
-  subi      r3, r4, 0x1
-  lfd       f31, -0x7068(r2)
-  or.       r0, r0, r3
-  bne-      .loc_0x5C8
-  lfd       f31, -0x6FC8(r2)
-
-.loc_0x5C8:
-  lfd       f1, 0x10(r1)
-  li        r3, 0
-  lfd       f3, 0x30(r1)
-  lis       r0, 0x4090
-  stfd      f1, 0x38(r1)
-  fmul      f0, f1, f0
-  stw       r3, 0x3C(r1)
-  lfd       f2, 0x38(r1)
-  fsub      f1, f1, f2
-  fmul      f2, f2, f3
-  fmadd     f12, f3, f1, f0
-  stfd      f2, 0x40(r1)
-  fadd      f0, f12, f2
-  stfd      f0, 0x50(r1)
-  lwz       r6, 0x50(r1)
-  lwz       r5, 0x54(r1)
-  cmpw      r6, r0
-  blt-      .loc_0x650
-  subis     r0, r6, 0x4090
-  or.       r0, r0, r5
-  beq-      .loc_0x62C
-  lfd       f1, -0x6FC0(r2)
-  fmul      f0, f1, f31
-  fmul      f1, f1, f0
-  b         .loc_0x7F8
-
-.loc_0x62C:
-  lfd       f1, -0x6FB8(r2)
-  fsub      f0, f0, f2
-  fadd      f1, f1, f12
-  fcmpo     cr0, f1, f0
-  ble-      .loc_0x6A4
-  lfd       f1, -0x6FC0(r2)
-  fmul      f0, f1, f31
-  fmul      f1, f1, f0
-  b         .loc_0x7F8
-
-.loc_0x650:
-  lis       r3, 0x4091
-  rlwinm    r4,r6,0,1,31
-  subi      r0, r3, 0x3400
-  cmpw      r4, r0
-  blt-      .loc_0x6A4
-  addis     r3, r6, 0x3F6F
-  addi      r0, r3, 0x3400
-  or.       r0, r0, r5
-  beq-      .loc_0x684
-  lfd       f1, -0x6FB0(r2)
-  fmul      f0, f1, f31
-  fmul      f1, f1, f0
-  b         .loc_0x7F8
-
-.loc_0x684:
-  fsub      f0, f0, f2
-  fcmpo     cr0, f12, f0
-  cror      2, 0, 0x2
-  bne-      .loc_0x6A4
-  lfd       f1, -0x6FB0(r2)
-  fmul      f0, f1, f31
-  fmul      f1, f1, f0
-  b         .loc_0x7F8
-
-.loc_0x6A4:
-  rlwinm    r3,r6,0,1,31
-  lis       r0, 0x3FE0
-  cmpw      r3, r0
-  rlwinm    r4,r6,12,21,31
-  li        r3, 0
-  ble-      .loc_0x71C
-  lis       r3, 0x10
-  subi      r0, r4, 0x3FE
-  sraw      r0, r3, r0
-  lfd       f0, -0x7060(r2)
-  add       r7, r6, r0
-  subi      r3, r3, 0x1
-  rlwinm    r0,r7,0,1,31
-  stfd      f0, 0x28(r1)
-  srawi     r4, r0, 0x14
-  rlwinm    r0,r7,0,12,31
-  subi      r5, r4, 0x3FF
-  cmpwi     r6, 0
-  sraw      r4, r3, r5
-  oris      r3, r0, 0x10
-  andc      r4, r7, r4
-  subfic    r0, r5, 0x14
-  stw       r4, 0x28(r1)
-  sraw      r3, r3, r0
-  bge-      .loc_0x70C
-  neg       r3, r3
-
-.loc_0x70C:
-  lfd       f1, 0x40(r1)
-  lfd       f0, 0x28(r1)
-  fsub      f0, f1, f0
-  stfd      f0, 0x40(r1)
-
-.loc_0x71C:
-  lfd       f2, 0x40(r1)
-  li        r0, 0
-  lfd       f1, -0x6F98(r2)
-  rlwinm    r4,r3,20,0,11
-  fadd      f0, f12, f2
-  lfd       f10, -0x6FA8(r2)
-  lfd       f9, -0x6FA0(r2)
-  lfd       f6, -0x6F70(r2)
-  stfd      f0, 0x28(r1)
-  lfd       f5, -0x6F78(r2)
-  stw       r0, 0x2C(r1)
-  lfd       f0, -0x6F80(r2)
-  lfd       f11, 0x28(r1)
-  lfd       f4, -0x6F88(r2)
-  fsub      f8, f11, f2
-  lfd       f3, -0x6F90(r2)
-  fmul      f7, f1, f11
-  lfd       f2, -0x6F68(r2)
-  lfd       f1, -0x7068(r2)
-  fsub      f8, f12, f8
-  fmul      f10, f10, f11
-  fmadd     f11, f9, f8, f7
-  fadd      f9, f10, f11
-  fmul      f7, f9, f9
-  stfd      f9, 0x50(r1)
-  fsub      f8, f9, f10
-  fmadd     f5, f6, f7, f5
-  stfd      f7, 0x28(r1)
-  fsub      f6, f11, f8
-  fmadd     f5, f7, f5, f0
-  fmadd     f0, f9, f6, f6
-  fmadd     f4, f7, f5, f4
-  fmadd     f3, f7, f4, f3
-  fmul      f3, f7, f3
-  fsub      f4, f9, f3
-  fmul      f3, f9, f4
-  stfd      f4, 0x30(r1)
-  fsub      f2, f4, f2
-  fdiv      f2, f3, f2
-  fsub      f0, f2, f0
-  fsub      f0, f0, f9
-  fsub      f1, f1, f0
-  stfd      f1, 0x50(r1)
-  lwz       r0, 0x50(r1)
-  add       r0, r0, r4
-  srawi.    r0, r0, 0x14
-  bgt-      .loc_0x7E4
-  bl        0x1C20
-  stfd      f1, 0x50(r1)
-  b         .loc_0x7F0
-
-.loc_0x7E4:
-  lwz       r0, 0x50(r1)
-  add       r0, r0, r4
-  stw       r0, 0x50(r1)
-
-.loc_0x7F0:
-  lfd       f0, 0x50(r1)
-  fmul      f1, f31, f0
-
-.loc_0x7F8:
-  psq_l     f31,0xA8(r1),0,0
-  lfd       f31, 0xA0(r1)
-  psq_l     f30,0x98(r1),0,0
-  lfd       f30, 0x90(r1)
-  psq_l     f29,0x88(r1),0,0
-  lfd       f29, 0x80(r1)
-  psq_l     f28,0x78(r1),0,0
-  lfd       f28, 0x70(r1)
-  psq_l     f27,0x68(r1),0,0
-  lwz       r0, 0xB4(r1)
-  lfd       f27, 0x60(r1)
-  mtlr      r0
-  addi      r1, r1, 0xB0
-  blr
-*/
+    /* split up y into y1+y2 and compute (y1+y2)*(t1+t2) */
+	y1  = y;
+	__LO(y1) = 0;
+	p_l = (y-y1)*t1+y*t2;
+	p_h = y1*t1;
+	z = p_l+p_h;
+	j = __HI(z);
+	i = __LO(z);
+	if (j>=0x40900000) {				/* z >= 1024 */
+	    if(((j-0x40900000)|i)!=0)			/* if z > 1024 */
+		return s*huge*huge;			/* overflow */
+	    else {
+		if(p_l+ovt>z-p_h) return s*huge*huge;	/* overflow */
+	    }
+	} else if((j&0x7fffffff)>=0x4090cc00 ) {	/* z <= -1075 */
+	    if(((j-0xc090cc00)|i)!=0) 		/* z < -1075 */
+		return s*tiny*tiny;		/* underflow */
+	    else {
+		if(p_l<=z-p_h) return s*tiny*tiny;	/* underflow */
+	    }
+	}
+    /*
+     * compute 2**(p_h+p_l)
+     */
+	i = j&0x7fffffff;
+	k = (i>>20)-0x3ff;
+	n = 0;
+	if(i>0x3fe00000) {		/* if |z| > 0.5, set n = [z+0.5] */
+	    n = j+(0x00100000>>(k+1));
+	    k = ((n&0x7fffffff)>>20)-0x3ff;	/* new k for n */
+	    t = zero;
+	    __HI(t) = (n&~(0x000fffff>>k));
+	    n = ((n&0x000fffff)|0x00100000)>>(20-k);
+	    if(j<0) n = -n;
+	    p_h -= t;
+	} 
+	t = p_l+p_h;
+	__LO(t) = 0;
+	u = t*lg2_h;
+	v = (p_l-(t-p_h))*lg2+t*lg2_l;
+	z = u+v;
+	w = v-(z-u);
+	t  = z*z;
+	t1  = z - t*(P1+t*(P2+t*(P3+t*(P4+t*P5))));
+	r  = (z*t1)/(t1-two)-(w+z*w);
+	z  = one-(r-z);
+	j  = __HI(z);
+	j += (n<<20);
+	if((j>>20)<=0) z = ldexp(z,n);	/* subnormal output */
+	else __HI(z) += (n<<20);
+	return s*z;
 }

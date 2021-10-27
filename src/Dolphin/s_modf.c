@@ -1,88 +1,80 @@
 
-
+/* @(#)s_modf.c 1.3 95/01/18 */
 /*
- * --INFO--
- * Address:	800CF720
- * Size:	0000FC
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
  */
-void modf(void)
-{
+
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  stfd      f1, 0x8(r1)
-  lwz       r5, 0x8(r1)
-  lwz       r6, 0xC(r1)
-  rlwinm    r4,r5,12,21,31
-  subi      r7, r4, 0x3FF
-  cmpwi     r7, 0x14
-  bge-      .loc_0x8C
-  cmpwi     r7, 0
-  bge-      .loc_0x3C
-  rlwinm    r4,r5,0,0,0
-  li        r0, 0
-  stw       r4, 0x0(r3)
-  stw       r0, 0x4(r3)
-  b         .loc_0xF4
+ * modf(double x, double *iptr) 
+ * return fraction part of x, and return x's integral part in *iptr.
+ * Method:
+ *	Bit twiddling.
+ *
+ * Exception:
+ *	No exception.
+ */
 
-.loc_0x3C:
-  lis       r4, 0x10
-  subi      r0, r4, 0x1
-  sraw      r4, r0, r7
-  and       r0, r5, r4
-  or.       r0, r6, r0
-  bne-      .loc_0x70
-  rlwinm    r4,r5,0,0,0
-  li        r0, 0
-  stw       r4, 0x8(r1)
-  stw       r0, 0xC(r1)
-  stfd      f1, 0x0(r3)
-  lfd       f1, 0x8(r1)
-  b         .loc_0xF4
+#include "fdlibm.h"
 
-.loc_0x70:
-  andc      r4, r5, r4
-  li        r0, 0
-  stw       r4, 0x0(r3)
-  stw       r0, 0x4(r3)
-  lfd       f0, 0x0(r3)
-  fsub      f1, f1, f0
-  b         .loc_0xF4
+#ifdef __STDC__
+static const double one = 1.0;
+#else
+static double one = 1.0;
+#endif
 
-.loc_0x8C:
-  cmpwi     r7, 0x33
-  ble-      .loc_0xB0
-  rlwinm    r4,r5,0,0,0
-  li        r0, 0
-  stw       r4, 0x8(r1)
-  stw       r0, 0xC(r1)
-  stfd      f1, 0x0(r3)
-  lfd       f1, 0x8(r1)
-  b         .loc_0xF4
-
-.loc_0xB0:
-  subi      r0, r7, 0x14
-  li        r4, -0x1
-  srw       r4, r4, r0
-  and.      r0, r6, r4
-  bne-      .loc_0xE0
-  rlwinm    r4,r5,0,0,0
-  li        r0, 0
-  stw       r4, 0x8(r1)
-  stw       r0, 0xC(r1)
-  stfd      f1, 0x0(r3)
-  lfd       f1, 0x8(r1)
-  b         .loc_0xF4
-
-.loc_0xE0:
-  stw       r5, 0x0(r3)
-  andc      r0, r6, r4
-  stw       r0, 0x4(r3)
-  lfd       f0, 0x0(r3)
-  fsub      f1, f1, f0
-
-.loc_0xF4:
-  addi      r1, r1, 0x10
-  blr
-*/
+#ifdef __STDC__
+	double modf(double x, double *iptr)
+#else
+	double modf(x, iptr)
+	double x,*iptr;
+#endif
+{
+	int i0,i1,j0;
+	unsigned i;
+	i0 =  __HI(x);		/* high x */
+	i1 =  __LO(x);		/* low  x */
+	j0 = ((i0>>20)&0x7ff)-0x3ff;	/* exponent of x */
+	if(j0<20) {			/* integer part in high x */
+	    if(j0<0) {			/* |x|<1 */
+		__HIp(iptr) = i0&0x80000000;
+		__LOp(iptr) = 0;		/* *iptr = +-0 */
+		return x;
+	    } else {
+		i = (0x000fffff)>>j0;
+		if(((i0&i)|i1)==0) {		/* x is integral */
+		    *iptr = x;
+		    __HI(x) &= 0x80000000;
+		    __LO(x)  = 0;	/* return +-0 */
+		    return x;
+		} else {
+		    __HIp(iptr) = i0&(~i);
+		    __LOp(iptr) = 0;
+		    return x - *iptr;
+		}
+	    }
+	} else if (j0>51) {		/* no fraction part */
+	    *iptr = x*one;
+	    __HI(x) &= 0x80000000;
+	    __LO(x)  = 0;	/* return +-0 */
+	    return x;
+	} else {			/* fraction part in low x */
+	    i = ((unsigned)(0xffffffff))>>(j0-20);
+	    if((i1&i)==0) { 		/* x is integral */
+		*iptr = x;
+		__HI(x) &= 0x80000000;
+		__LO(x)  = 0;	/* return +-0 */
+		return x;
+	    } else {
+		__HIp(iptr) = i0;
+		__LOp(iptr) = i1&(~i);
+		return x - *iptr;
+	    }
+	}
 }

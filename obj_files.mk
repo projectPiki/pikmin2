@@ -315,16 +315,16 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/k_rem_pio2.o\
 	$(BUILD_DIR)/src/Dolphin/k_sin.o\
 	$(BUILD_DIR)/asm/Dolphin/k_tan.o\
-	$(BUILD_DIR)/asm/Dolphin/s_atan.o\
-	$(BUILD_DIR)/asm/Dolphin/s_ceil.o\
+	$(BUILD_DIR)/src/Dolphin/s_atan.o\
+	$(BUILD_DIR)/src/Dolphin/s_ceil.o\
 	$(BUILD_DIR)/src/Dolphin/s_copysign.o\
-	$(BUILD_DIR)/asm/Dolphin/s_cos.o\
-	$(BUILD_DIR)/asm/Dolphin/s_floor.o\
-	$(BUILD_DIR)/asm/Dolphin/s_frexp.o\
+	$(BUILD_DIR)/src/Dolphin/s_cos.o\
+	$(BUILD_DIR)/src/Dolphin/s_floor.o\
+	$(BUILD_DIR)/src/Dolphin/s_frexp.o\
 	$(BUILD_DIR)/asm/Dolphin/s_ldexp.o\
-	$(BUILD_DIR)/asm/Dolphin/s_modf.o\
-	$(BUILD_DIR)/asm/Dolphin/s_sin.o\
-	$(BUILD_DIR)/asm/Dolphin/s_tan.o\
+	$(BUILD_DIR)/src/Dolphin/s_modf.o\
+	$(BUILD_DIR)/src/Dolphin/s_sin.o\
+	$(BUILD_DIR)/src/Dolphin/s_tan.o\
 	$(BUILD_DIR)/src/Dolphin/w_asin.o\
 	$(BUILD_DIR)/src/Dolphin/w_atan2.o\
 	$(BUILD_DIR)/src/Dolphin/w_exp.o\
