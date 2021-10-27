@@ -25,6 +25,11 @@ typedef struct OSThread {
 	char filler2[68];
 } OSThread;
 
+typedef struct OSThreadQueue {
+	OSThread* _00; // _00
+	OSThread* _04; // _04
+} OSThreadQueue;
+
 OSThread* OSGetCurrentThread(void);
 int OSSuspendThread(OSThread* thread);
 
@@ -51,6 +56,20 @@ extern void* OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps);
 extern int OSCreateHeap(void* start, void* end);
 extern int OSSetCurrentHeap(int);
 extern void OSFreeToHeap(int, void*);
+
+// OSMutex
+typedef struct OSMutexObject {
+	char filler[0x18];
+} OSMutexObject;
+
+extern void OSInitMutex(OSMutexObject*);
+extern void OSLockMutex(OSMutexObject*);
+extern void OSUnlockMutex(OSMutexObject*);
+extern void __OSUnlockAllMutex(OSThread*);
+extern BOOL OSTryLockMutex(OSMutexObject*);
+extern void OSInitCond(OSThreadQueue*);
+extern u32 OSWaitCond(OSThreadQueue*, OSMutexObject*);
+extern void OSSignalCond(OSThreadQueue*);
 
 #ifdef __cplusplus
 };

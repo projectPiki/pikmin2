@@ -1,12 +1,47 @@
-
+#include "JSystem/JKR/JKRHeap.h"
+#include "Dolphin/os.h"
+#include "JSystem/JKR/JKRDisposer.h"
 
 /*
  * --INFO--
  * Address:	800232B4
  * Size:	000124
  */
-void JKRHeap::JKRHeap(void*, unsigned long, JKRHeap*, bool)
+JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap, bool shouldSetErrorHandlerMaybe)
+	: _40()
+	, _4C(this)
+	, _5C()
 {
+	OSInitMutex(&m_mutex);
+	m_heapSize = size;
+	m_startAddress = startPtr;
+	m_endAddress = ((u8*)startPtr + size);
+
+	if (parentHeap != nullptr) {
+		JSUPtrLink* pJVar1 = _40.m_head;
+		if (pJVar1 != nullptr) {
+			pJVar1 = &_4C;
+		}
+		parentHeap->_40.append(pJVar1);
+		if (JKRHeap::sSystemHeap == JKRHeap::sRootHeap) {
+			becomeSystemHeap();
+		}
+		if (JKRHeap::sCurrentHeap == JKRHeap::sRootHeap) {
+			becomeCurrentHeap();
+		}
+	}
+	else {
+		becomeSystemHeap();
+		becomeCurrentHeap();
+	}
+	_68 = shouldSetErrorHandlerMaybe;
+	if ((_68) && (JKRHeap::mErrorHandler == nullptr)) {
+		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
+	}
+	m_fillFlag = JKRHeap::sDefaultFillFlag;
+	m_fillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
+	_69 = 0;
+	return;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -100,7 +135,7 @@ void JKRHeap::JKRHeap(void*, unsigned long, JKRHeap*, bool)
  * Address:	800233D8
  * Size:	000114
  */
-void JKRHeap::~JKRHeap()
+JKRHeap::~JKRHeap()
 {
 	/*
 	.loc_0x0:
@@ -205,7 +240,7 @@ void JKRHeap::~JKRHeap()
  * Address:	800234EC
  * Size:	0000A8
  */
-void JKRHeap::initArena(char**, unsigned long*, int)
+bool JKRHeap::initArena(char**, unsigned long*, int)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +298,7 @@ void JKRHeap::initArena(char**, unsigned long*, int)
  * Address:	80023594
  * Size:	000010
  */
-void JKRHeap::becomeSystemHeap()
+JKRHeap* JKRHeap::becomeSystemHeap()
 {
 	/*
 	.loc_0x0:
@@ -279,7 +314,7 @@ void JKRHeap::becomeSystemHeap()
  * Address:	800235A4
  * Size:	000010
  */
-void JKRHeap::becomeCurrentHeap()
+JKRHeap* JKRHeap::becomeCurrentHeap()
 {
 	/*
 	.loc_0x0:
@@ -318,7 +353,7 @@ void JKRHeap::destroy()
  * Address:	800235E0
  * Size:	000060
  */
-void JKRHeap::alloc(unsigned long, int, JKRHeap*)
+void* JKRHeap::alloc(unsigned long, int, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +397,7 @@ void JKRHeap::alloc(unsigned long, int, JKRHeap*)
  * Address:	80023640
  * Size:	00002C
  */
-void JKRHeap::alloc(unsigned long, int)
+void* JKRHeap::alloc(unsigned long, int)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +584,7 @@ void JKRHeap::resize(void*, unsigned long)
  * Address:	800237B4
  * Size:	00002C
  */
-void JKRHeap::getFreeSize()
+ulong JKRHeap::getFreeSize()
 {
 	/*
 	.loc_0x0:
@@ -572,7 +607,7 @@ void JKRHeap::getFreeSize()
  * Address:	800237E0
  * Size:	00002C
  */
-void JKRHeap::getTotalFreeSize()
+uint JKRHeap::getTotalFreeSize()
 {
 	/*
 	.loc_0x0:
@@ -618,7 +653,7 @@ void JKRHeap::changeGroupID(unsigned char)
  * Address:	80023838
  * Size:	000008
  */
-void JKRHeap::do_changeGroupID(unsigned char)
+u8 JKRHeap::do_changeGroupID(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -632,7 +667,7 @@ void JKRHeap::do_changeGroupID(unsigned char)
  * Address:	80023840
  * Size:	00002C
  */
-void JKRHeap::getCurrentGroupId()
+u8 JKRHeap::getCurrentGroupId()
 {
 	/*
 	.loc_0x0:
@@ -655,7 +690,7 @@ void JKRHeap::getCurrentGroupId()
  * Address:	8002386C
  * Size:	000008
  */
-void JKRHeap::do_getCurrentGroupId()
+u8 JKRHeap::do_getCurrentGroupId()
 {
 	/*
 	.loc_0x0:
@@ -669,7 +704,7 @@ void JKRHeap::do_getCurrentGroupId()
  * Address:	80023874
  * Size:	000080
  */
-void JKRHeap::getMaxAllocatableSize(int)
+uint JKRHeap::getMaxAllocatableSize(int)
 {
 	/*
 	.loc_0x0:
@@ -713,7 +748,7 @@ void JKRHeap::getMaxAllocatableSize(int)
  * Address:	800238F4
  * Size:	00003C
  */
-void JKRHeap::findFromRoot(void*)
+u32* JKRHeap::findFromRoot(void*)
 {
 	/*
 	.loc_0x0:
@@ -746,7 +781,7 @@ void JKRHeap::findFromRoot(void*)
  * Address:	80023930
  * Size:	000270
  */
-void JKRHeap::find(void*) const
+u32* JKRHeap::find(void*) const
 {
 	/*
 	.loc_0x0:
@@ -1108,13 +1143,9 @@ void JSUTree<JKRHeap>::getFirstChild() const
  * Address:	80023C20
  * Size:	000008
  */
-void JSUPtrList::getFirstLink() const
+JSUPtrLink* JSUPtrList::getFirstLink() const
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x0(r3)
-	  blr
-	*/
+	return m_head;
 }
 
 /*
@@ -1122,7 +1153,7 @@ void JSUPtrList::getFirstLink() const
  * Address:	80023C28
  * Size:	0000A8
  */
-void JKRHeap::dispose(void*, unsigned long)
+u32 JKRHeap::dispose(void*, ulong)
 {
 	/*
 	.loc_0x0:
@@ -1655,7 +1686,7 @@ void operator delete[](void*)
  * Address:	800240FC
  * Size:	000414
  */
-void JKRHeap::TState::~TState()
+JKRHeap::TState::~TState()
 {
 	/*
 	.loc_0x0:
@@ -2015,13 +2046,9 @@ void JKRHeap::TState::dump() const
  * Address:	80024544
  * Size:	000008
  */
-void JKRHeap::TState::isVerbose()
+bool JKRHeap::TState::isVerbose()
 {
-	/*
-	.loc_0x0:
-	  lbz       r3, -0x77B0(r13)
-	  blr
-	*/
+	return bVerbose;
 }
 
 /*
@@ -2029,7 +2056,7 @@ void JKRHeap::TState::isVerbose()
  * Address:	8002454C
  * Size:	000080
  */
-void JKRHeap::TState::TState(const JKRHeap*, unsigned long, bool)
+JKRHeap::TState::TState(const JKRHeap*, ulong, bool)
 {
 	/*
 	.loc_0x0:
@@ -2077,13 +2104,9 @@ void JKRHeap::TState::TState(const JKRHeap*, unsigned long, bool)
  * Address:	800245CC
  * Size:	000008
  */
-void JKRHeap::TState::isCompareOnDestructed() const
+bool JKRHeap::TState::isCompareOnDestructed() const
 {
-	/*
-	.loc_0x0:
-	  lbz       r3, 0x18(r3)
-	  blr
-	*/
+	return m_isCompareOnDestructed;
 }
 
 /*
@@ -2091,7 +2114,7 @@ void JKRHeap::TState::isCompareOnDestructed() const
  * Address:	800245D4
  * Size:	000014
  */
-void JKRHeap::TState::TLocation::TLocation()
+JKRHeap::TState::TLocation::TLocation()
 {
 	/*
 	.loc_0x0:
@@ -2108,7 +2131,7 @@ void JKRHeap::TState::TLocation::TLocation()
  * Address:	800245E8
  * Size:	000020
  */
-void JKRHeap::TState::TArgument::TArgument(const JKRHeap*, unsigned long, bool)
+JKRHeap::TState::TArgument::TArgument(const JKRHeap*, ulong, bool)
 {
 	/*
 	.loc_0x0:
@@ -2132,13 +2155,9 @@ void JKRHeap::TState::TArgument::TArgument(const JKRHeap*, unsigned long, bool)
  * Address:	80024608
  * Size:	000008
  */
-void JKRHeap::TState::getHeap() const
+JKRHeap* JKRHeap::TState::getHeap() const
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x10(r3)
-	  blr
-	*/
+	return m_heap;
 }
 
 /*
@@ -2146,13 +2165,9 @@ void JKRHeap::TState::getHeap() const
  * Address:	80024610
  * Size:	000008
  */
-void JKRHeap::TState::getId() const
+u32 JKRHeap::TState::getId() const
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x14(r3)
-	  blr
-	*/
+	return m_id;
 }
 
 /*
@@ -2160,12 +2175,8 @@ void JKRHeap::TState::getId() const
  * Address:	80024618
  * Size:	000004
  */
-void JKRHeap::state_register(JKRHeap::TState*, unsigned long) const
+void JKRHeap::state_register(JKRHeap::TState*, ulong) const
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2173,9 +2184,13 @@ void JKRHeap::state_register(JKRHeap::TState*, unsigned long) const
  * Address:	8002461C
  * Size:	000018
  */
-void JKRHeap::state_compare(const JKRHeap::TState&,
-                            const JKRHeap::TState&) const
+bool JKRHeap::state_compare(const JKRHeap::TState& state1,
+                            const JKRHeap::TState& state2) const
 {
+	if (state1._00 == state2._00) {
+		return (state1._04 == state2._04);
+	}
+	return false;
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x4(r4)
@@ -2195,10 +2210,6 @@ void JKRHeap::state_compare(const JKRHeap::TState&,
 void JKRHeap::state_dumpDifference(const JKRHeap::TState&,
                                    const JKRHeap::TState&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2208,10 +2219,6 @@ void JKRHeap::state_dumpDifference(const JKRHeap::TState&,
  */
 void JKRHeap::state_dump(const JKRHeap::TState&) const
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2219,11 +2226,7 @@ void JKRHeap::state_dump(const JKRHeap::TState&) const
  * Address:	8002463C
  * Size:	000008
  */
-void JKRHeap::dump_sort()
+bool JKRHeap::dump_sort()
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return true;
 }

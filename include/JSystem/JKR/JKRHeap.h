@@ -2,9 +2,10 @@
 #define _JSYSTEM_JKRHEAP_H
 
 #include "types.h"
+#include "Dolphin/os.h"
 #include "JSystem/JKR/JKRDisposer.h"
-// #include "JSystem/JSU/JSUPtrLink.h"
-// #include "JSystem/JSU/JSUPtrList.h"
+#include "JSystem/JSU/JSUPtrLink.h"
+#include "JSystem/JSU/JSUPtrList.h"
 
 typedef void JKRHeapErrorHandler(void*, ulong, int);
 
@@ -12,8 +13,12 @@ struct JKRHeap : public JKRDisposer {
 
 	struct TState {
 		~TState();
+		void dump() const;
 		static bool isVerbose();
-		TState(JKRHeap*, ulong, bool);
+		TState(const JKRHeap*, ulong, bool);
+		bool isCompareOnDestructed() const;
+		JKRHeap* getHeap() const;
+		u32 getId() const;
 
 		struct TLocation {
 			TLocation();
@@ -22,7 +27,7 @@ struct JKRHeap : public JKRDisposer {
 			int _04; // _04
 		};
 		struct TArgument {
-			TArgument(JKRHeap*, ulong, bool);
+			TArgument(const JKRHeap*, ulong, bool);
 
 			JKRHeap* m_heap; // _00
 			ulong _04;       // _04
@@ -61,30 +66,32 @@ struct JKRHeap : public JKRDisposer {
 	void changeGroupID(uchar);
 	u8 do_changeGroupID(uchar);
 	u8 getCurrentGroupId();
+	u8 do_getCurrentGroupId();
 	uint getMaxAllocatableSize(int);
 	static u32* findFromRoot(void*);
+	u32* find(void*) const;
 	u32 dispose(void*, ulong);
 	void dispose(void*, void*);
 	void dispose();
 	static void copyMemory(void*, void*, ulong);
 	static void setErrorHandler(JKRHeapErrorHandler*);
-	static void state_dumpDifference(TState const&, TState const&);
+	void state_register(TState*, ulong) const;
+	bool state_compare(const TState&, const TState&) const;
+	static void state_dumpDifference(const TState&, const TState&);
+	void state_dump(const TState&) const;
 	bool dump_sort();
 
 
-	u8 m_mutexObject[0x18]; // _18
+	OSMutexObject m_mutex;  // _18
 	void* m_startAddress;   // _30
 	void* m_endAddress;     // _34
 	ulong m_heapSize;       // _38
 	u8 m_fillFlag;          // _3C
 	u8 m_fillCheckFlag;     // _3D
 	u8 _3E[2];              // _3E
-	// JSUPtrList<JKRHeap> _40; // _40
-	u8 _40[0xC];            // _40
-	// JSUPtrLink<JKRHeap> _4C; // _4C
-	u8 _4C[0x10];           // _4C
-	// JSUPtrList<JKRHeap> _5C; // _5C
-	u8 _5C[0xC];            // _5C
+	JSUPtrList _40;         // _40
+	JSUPtrLink _4C;         // _4C
+	JSUPtrList _5C;         // _5C
 	bool _68;               // _68
 	u8 _69;                 // _69
 
