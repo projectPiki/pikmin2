@@ -139,8 +139,8 @@ getZikatuPikmins__Q24Game8GameStatFi:
 /* 801D0EF4 001CDE34  2C 03 FF FF */	cmpwi r3, -1
 /* 801D0EF8 001CDE38  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D0EFC 001CDE3C  40 82 00 1C */	bne lbl_801D0F18
-/* 801D0F00 001CDE40  3C 60 80 51 */	lis r3, 0x8051
-/* 801D0F04 001CDE44  85 83 26 2C */	lwzu r12, 0x262c(r3)
+/* 801D0F00 001CDE40  3C 60 80 51 */	lis r3, zikatuPikis__Q24Game8GameStat@ha
+/* 801D0F04 001CDE44  85 83 26 2C */	lwzu r12, zikatuPikis__Q24Game8GameStat@l(r3)
 /* 801D0F08 001CDE48  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0F0C 001CDE4C  7D 89 03 A6 */	mtctr r12
 /* 801D0F10 001CDE50  4E 80 04 21 */	bctrl 

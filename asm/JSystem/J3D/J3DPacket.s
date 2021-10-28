@@ -678,7 +678,7 @@ lbl_8006003C:
 calcDifferedBufferSize__14J3DShapePacketFUl:
 /* 80060054 0005CF94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80060058 0005CF98  7C 08 02 A6 */	mflr r0
-/* 8006005C 0005CF9C  3C C0 80 4A */	lis r6, 0x804a
+/* 8006005C 0005CF9C  3C C0 80 4A */	lis r6, sDifferedRegister@ha
 /* 80060060 0005CFA0  3C A0 80 4A */	lis r5, sSizeOfDiffered@ha
 /* 80060064 0005CFA4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80060068 0005CFA8  93 E1 00 1C */	stw r31, 0x1c(r1)
@@ -689,7 +689,7 @@ calcDifferedBufferSize__14J3DShapePacketFUl:
 /* 8006007C 0005CFBC  7C 7D 1B 78 */	mr r29, r3
 /* 80060080 0005CFC0  38 65 14 F4 */	addi r3, r5, sSizeOfDiffered@l
 /* 80060084 0005CFC4  93 81 00 10 */	stw r28, 0x10(r1)
-/* 80060088 0005CFC8  84 06 14 D8 */	lwzu r0, 0x14d8(r6)
+/* 80060088 0005CFC8  84 06 14 D8 */	lwzu r0, sDifferedRegister@l(r6)
 /* 8006008C 0005CFCC  7F C0 00 39 */	and. r0, r30, r0
 /* 80060090 0005CFD0  41 82 00 08 */	beq lbl_80060098
 /* 80060094 0005CFD4  83 E3 00 00 */	lwz r31, 0(r3)

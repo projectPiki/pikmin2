@@ -4570,8 +4570,8 @@ lbl_801558FC:
 /* 8015590C 0015284C  41 82 00 08 */	beq lbl_80155914
 /* 80155910 00152850  A3 E3 02 DC */	lhz r31, 0x2dc(r3)
 lbl_80155914:
-/* 80155914 00152854  3C 60 80 51 */	lis r3, 0x8051
-/* 80155918 00152858  85 83 22 EC */	lwzu r12, 0x22ec(r3)
+/* 80155914 00152854  3C 60 80 51 */	lis r3, formationPikis__Q24Game8GameStat@ha
+/* 80155918 00152858  85 83 22 EC */	lwzu r12, formationPikis__Q24Game8GameStat@l(r3)
 /* 8015591C 0015285C  81 8C 00 08 */	lwz r12, 8(r12)
 /* 80155920 00152860  7D 89 03 A6 */	mtctr r12
 /* 80155924 00152864  4E 80 04 21 */	bctrl 
@@ -4900,8 +4900,8 @@ lbl_80155DD8:
 /* 80155DE8 00152D28  41 82 00 08 */	beq lbl_80155DF0
 /* 80155DEC 00152D2C  A3 A3 02 DC */	lhz r29, 0x2dc(r3)
 lbl_80155DF0:
-/* 80155DF0 00152D30  3C 60 80 51 */	lis r3, 0x8051
-/* 80155DF4 00152D34  85 83 22 EC */	lwzu r12, 0x22ec(r3)
+/* 80155DF0 00152D30  3C 60 80 51 */	lis r3, formationPikis__Q24Game8GameStat@ha
+/* 80155DF4 00152D34  85 83 22 EC */	lwzu r12, formationPikis__Q24Game8GameStat@l(r3)
 /* 80155DF8 00152D38  81 8C 00 08 */	lwz r12, 8(r12)
 /* 80155DFC 00152D3C  7D 89 03 A6 */	mtctr r12
 /* 80155E00 00152D40  4E 80 04 21 */	bctrl 
