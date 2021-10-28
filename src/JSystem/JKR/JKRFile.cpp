@@ -5,8 +5,14 @@
  * Address:	80022E1C
  * Size:	00007C
  */
-void JKRFile::read(void*, long, long)
+void JKRFile::read(void* param_1, long param_2, long param_3)
 {
+	unsigned char bVar1;
+	while (bVar1 = (*this->__vt->readData)(this, param_1, param_2, param_3),
+	       param_2 != (unsigned int)bVar1) {
+		VIWaitForRetrace();
+	}
+	return;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
