@@ -789,12 +789,12 @@ lbl_8044E6C4:
 /* 8044E708 0044B648  48 00 02 DC */	b lbl_8044E9E4
 lbl_8044E70C:
 /* 8044E70C 0044B64C  3C 80 80 51 */	lis r4, ActivePlayer@ha
-/* 8044E710 0044B650  3C 60 80 50 */	lis r3, lbl_80500004@ha
+/* 8044E710 0044B650  3C 60 80 50 */	lis r3, WorkBuffer@ha
 /* 8044E714 0044B654  38 A4 44 90 */	addi r5, r4, ActivePlayer@l
-/* 8044E718 0044B658  84 E3 31 00 */	lwzu r7, 0x3100(r3)
+/* 8044E718 0044B658  84 E3 31 00 */	lwzu r7, WorkBuffer@l(r3)
 /* 8044E71C 0044B65C  80 85 00 64 */	lwz r4, 0x64(r5)
 /* 8044E720 0044B660  38 C0 00 00 */	li r6, 0
-/* 8044E724 0044B664  80 03 00 04 */	lwz r0, lbl_80500004@l(r3)
+/* 8044E724 0044B664  80 03 00 04 */	lwz r0, 4(r3)
 /* 8044E728 0044B668  7C 64 3A 14 */	add r3, r4, r7
 /* 8044E72C 0044B66C  98 CD 9C 50 */	stb r6, gTHPReaderDvdAccess@sda21(r13)
 /* 8044E730 0044B670  7C 07 00 50 */	subf r0, r7, r0

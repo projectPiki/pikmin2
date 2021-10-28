@@ -404,10 +404,7 @@ str$673:
 	.skip 0x110
 .global sCardWorkArea
 sCardWorkArea:
-	.skip 0x8284
-.global lbl_80500004
-lbl_80500004:
-	.skip 0x1D7C
+	.skip 0xA000
 .global AudioDecodeThread
 AudioDecodeThread:
 	.skip 0x318
