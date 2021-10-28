@@ -87,6 +87,7 @@ lbl_804B04E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_804B04EC:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject
@@ -2362,15 +2363,15 @@ sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
 /* 80140FDC 0013DF1C  40 82 00 70 */	bne lbl_8014104C
 /* 80140FE0 0013DF20  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80140FE4 0013DF24  3C C0 80 4B */	lis r6, "__vt__32IDelegate1<PQ24Game10CellObject>"@ha
-/* 80140FE8 0013DF28  3C 60 80 4B */	lis r3, lbl_804B0004@ha
-/* 80140FEC 0013DF2C  84 E3 04 EC */	lwzu r7, 0x4ec(r3)
+/* 80140FE8 0013DF28  3C 60 80 4B */	lis r3, lbl_804B04EC@ha
+/* 80140FEC 0013DF2C  84 E3 04 EC */	lwzu r7, lbl_804B04EC@l(r3)
 /* 80140FF0 0013DF30  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 80140FF4 0013DF34  39 26 05 84 */	addi r9, r6, "__vt__32IDelegate1<PQ24Game10CellObject>"@l
 /* 80140FF8 0013DF38  3C 80 80 4B */	lis r4, "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>"@ha
 /* 80140FFC 0013DF3C  C0 02 A0 1C */	lfs f0, lbl_8051837C@sda21(r2)
 /* 80141000 0013DF40  C0 25 00 04 */	lfs f1, 4(r5)
 /* 80141004 0013DF44  39 04 05 78 */	addi r8, r4, "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>"@l
-/* 80141008 0013DF48  80 C3 00 04 */	lwz r6, lbl_804B0004@l(r3)
+/* 80141008 0013DF48  80 C3 00 04 */	lwz r6, 4(r3)
 /* 8014100C 0013DF4C  38 81 00 24 */	addi r4, r1, 0x24
 /* 80141010 0013DF50  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 80141014 0013DF54  80 03 00 08 */	lwz r0, 8(r3)

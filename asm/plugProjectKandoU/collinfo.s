@@ -210,8 +210,6 @@ __vt__Q23Sys12TriIndexList:
 	.4byte "getNext__28ArrayContainer<10Vector3<f>>FPv"
 	.4byte "getStart__28ArrayContainer<10Vector3<f>>Fv"
 	.4byte "getEnd__28ArrayContainer<10Vector3<f>>Fv"
-.global lbl_804B0004
-lbl_804B0004:
 	.4byte "get__28ArrayContainer<10Vector3<f>>FPv"
 	.4byte "getAt__28ArrayContainer<10Vector3<f>>Fi"
 	.4byte "getTo__28ArrayContainer<10Vector3<f>>Fv"
