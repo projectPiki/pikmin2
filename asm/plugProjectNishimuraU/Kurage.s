@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x8
-.global lbl_80489DA8
 lbl_80489DA8:
 	.4byte 0x00000000
 	.4byte 0x41F00000
@@ -10,7 +9,6 @@ lbl_80489DA8:
 	.4byte 0x42BE0000
 	.4byte 0x42D80000
 	.4byte 0x42F00000
-.global lbl_80489DC4
 lbl_80489DC4:
 	.4byte 0x00000000
 	.4byte 0xC1A00000
@@ -19,6 +17,7 @@ lbl_80489DC4:
 	.4byte 0x00000000
 	.4byte 0xC1C80000
 	.4byte 0x00000000
+lbl_80489DE0:
 	.4byte 0x00000000
 	.4byte 0x41200000
 	.4byte 0x41700000
@@ -26,7 +25,6 @@ lbl_80489DC4:
 	.4byte 0x41F00000
 	.4byte 0x42200000
 	.4byte 0x42700000
-.global lbl_80489DFC
 lbl_80489DFC:
 	.4byte 0x00000000
 	.4byte 0xC2480000
@@ -35,19 +33,18 @@ lbl_80489DFC:
 	.4byte 0x41A00000
 	.4byte 0xC1A00000
 	.4byte 0x00000000
+lbl_80489E18:
 	.4byte 0x42000000
 	.4byte 0x42200000
 	.4byte 0x42500000
 	.4byte 0x428C0000
 	.4byte 0x42A00000
-.global lbl_80489E2C
 lbl_80489E2C:
 	.4byte 0x00000000
 	.4byte 0xC2340000
 	.4byte 0xC2700000
 	.4byte 0xC1200000
 	.4byte 0xC1200000
-.global lbl_80489E40
 lbl_80489E40:
 	.4byte 0x40E00000
 	.4byte 0x41880000
@@ -57,7 +54,6 @@ lbl_80489E40:
 	.4byte 0x42640000
 	.4byte 0x42860000
 	.4byte 0x429A0000
-.global lbl_80489E60
 lbl_80489E60:
 	.4byte 0xC1A00000
 	.4byte 0xC1700000
@@ -1128,13 +1124,13 @@ getAttackPitchOffset__Q34Game6Kurage3ObjFv:
 /* 802AE064 002AAFA4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802AE068 002AAFA8  7C 08 02 A6 */	mflr r0
 /* 802AE06C 002AAFAC  3C 80 80 49 */	lis r4, lbl_80489DC4@ha
-/* 802AE070 002AAFB0  3C A0 80 49 */	lis r5, lbl_80490004@ha
+/* 802AE070 002AAFB0  3C A0 80 49 */	lis r5, lbl_80489DA8@ha
 /* 802AE074 002AAFB4  90 01 00 64 */	stw r0, 0x64(r1)
 /* 802AE078 002AAFB8  39 44 9D C4 */	addi r10, r4, lbl_80489DC4@l
 /* 802AE07C 002AAFBC  BF 61 00 4C */	stmw r27, 0x4c(r1)
-/* 802AE080 002AAFC0  87 65 9D A8 */	lwzu r27, -0x6258(r5)
+/* 802AE080 002AAFC0  87 65 9D A8 */	lwzu r27, lbl_80489DA8@l(r5)
 /* 802AE084 002AAFC4  81 2A 00 00 */	lwz r9, 0(r10)
-/* 802AE088 002AAFC8  83 85 00 04 */	lwz r28, lbl_80490004@l(r5)
+/* 802AE088 002AAFC8  83 85 00 04 */	lwz r28, 4(r5)
 /* 802AE08C 002AAFCC  83 A5 00 08 */	lwz r29, 8(r5)
 /* 802AE090 002AAFD0  83 C5 00 0C */	lwz r30, 0xc(r5)
 /* 802AE094 002AAFD4  83 E5 00 10 */	lwz r31, 0x10(r5)
@@ -1241,13 +1237,13 @@ getFlickPitchOffset__Q34Game6Kurage3ObjFv:
 /* 802AE20C 002AB14C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802AE210 002AB150  7C 08 02 A6 */	mflr r0
 /* 802AE214 002AB154  3C 80 80 49 */	lis r4, lbl_80489DFC@ha
-/* 802AE218 002AB158  3C A0 80 49 */	lis r5, lbl_80490004@ha
+/* 802AE218 002AB158  3C A0 80 49 */	lis r5, lbl_80489DE0@ha
 /* 802AE21C 002AB15C  90 01 00 64 */	stw r0, 0x64(r1)
 /* 802AE220 002AB160  39 44 9D FC */	addi r10, r4, lbl_80489DFC@l
 /* 802AE224 002AB164  BF 61 00 4C */	stmw r27, 0x4c(r1)
-/* 802AE228 002AB168  87 65 9D E0 */	lwzu r27, -0x6220(r5)
+/* 802AE228 002AB168  87 65 9D E0 */	lwzu r27, lbl_80489DE0@l(r5)
 /* 802AE22C 002AB16C  81 2A 00 00 */	lwz r9, 0(r10)
-/* 802AE230 002AB170  83 85 00 04 */	lwz r28, lbl_80490004@l(r5)
+/* 802AE230 002AB170  83 85 00 04 */	lwz r28, 4(r5)
 /* 802AE234 002AB174  83 A5 00 08 */	lwz r29, 8(r5)
 /* 802AE238 002AB178  83 C5 00 0C */	lwz r30, 0xc(r5)
 /* 802AE23C 002AB17C  83 E5 00 10 */	lwz r31, 0x10(r5)
@@ -1354,13 +1350,13 @@ getTakeOffPitchOffset__Q34Game6Kurage3ObjFv:
 /* 802AE3B4 002AB2F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802AE3B8 002AB2F8  7C 08 02 A6 */	mflr r0
 /* 802AE3BC 002AB2FC  3C 80 80 49 */	lis r4, lbl_80489E2C@ha
-/* 802AE3C0 002AB300  3C A0 80 49 */	lis r5, lbl_80490004@ha
+/* 802AE3C0 002AB300  3C A0 80 49 */	lis r5, lbl_80489E18@ha
 /* 802AE3C4 002AB304  90 01 00 44 */	stw r0, 0x44(r1)
 /* 802AE3C8 002AB308  39 04 9E 2C */	addi r8, r4, lbl_80489E2C@l
 /* 802AE3CC 002AB30C  93 E1 00 3C */	stw r31, 0x3c(r1)
-/* 802AE3D0 002AB310  87 E5 9E 18 */	lwzu r31, -0x61e8(r5)
+/* 802AE3D0 002AB310  87 E5 9E 18 */	lwzu r31, lbl_80489E18@l(r5)
 /* 802AE3D4 002AB314  80 E8 00 00 */	lwz r7, 0(r8)
-/* 802AE3D8 002AB318  81 85 00 04 */	lwz r12, lbl_80490004@l(r5)
+/* 802AE3D8 002AB318  81 85 00 04 */	lwz r12, 4(r5)
 /* 802AE3DC 002AB31C  81 65 00 08 */	lwz r11, 8(r5)
 /* 802AE3E0 002AB320  81 45 00 0C */	lwz r10, 0xc(r5)
 /* 802AE3E4 002AB324  81 25 00 10 */	lwz r9, 0x10(r5)

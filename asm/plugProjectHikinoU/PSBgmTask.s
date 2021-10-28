@@ -52,8 +52,6 @@ lbl_8048FFF0:
 .global lbl_80490000
 lbl_80490000:
 	.4byte 0x50324173
-.global lbl_80490004
-lbl_80490004:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
