@@ -38,8 +38,6 @@ lbl_8047FFF4:
 	.4byte 0x6D655365
 	.4byte 0x6374696F
 	.4byte 0x6E2E6370
-.global lbl_80480004
-lbl_80480004:
 	.4byte 0x70000000
 .global lbl_80480008
 lbl_80480008:

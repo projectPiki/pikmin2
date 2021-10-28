@@ -5,6 +5,7 @@
 lbl_8047F2A0:
 	.asciz "actAttack"
 	.skip 2
+lbl_8047F2AC:
 	.4byte lbl_80519078
 	.4byte lbl_8051907C
 	.4byte lbl_80519080
@@ -161,12 +162,12 @@ lbl_805190C8:
 getInfo__Q26PikiAI9ActAttackFPc:
 /* 801A04CC 0019D40C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A04D0 0019D410  7C 08 02 A6 */	mflr r0
-/* 801A04D4 0019D414  3C A0 80 48 */	lis r5, lbl_80480004@ha
+/* 801A04D4 0019D414  3C A0 80 48 */	lis r5, lbl_8047F2AC@ha
 /* 801A04D8 0019D418  90 01 00 24 */	stw r0, 0x24(r1)
-/* 801A04DC 0019D41C  85 65 F2 AC */	lwzu r11, -0xd54(r5)
+/* 801A04DC 0019D41C  85 65 F2 AC */	lwzu r11, lbl_8047F2AC@l(r5)
 /* 801A04E0 0019D420  A0 03 00 18 */	lhz r0, 0x18(r3)
 /* 801A04E4 0019D424  3C 60 80 48 */	lis r3, lbl_8047F2C0@ha
-/* 801A04E8 0019D428  81 45 00 04 */	lwz r10, lbl_80480004@l(r5)
+/* 801A04E8 0019D428  81 45 00 04 */	lwz r10, 4(r5)
 /* 801A04EC 0019D42C  38 C3 F2 C0 */	addi r6, r3, lbl_8047F2C0@l
 /* 801A04F0 0019D430  81 25 00 08 */	lwz r9, 8(r5)
 /* 801A04F4 0019D434  7C 83 23 78 */	mr r3, r4

@@ -11,6 +11,7 @@ lbl_804807C8:
 lbl_804807D8:
 	.asciz "P2Assert"
 	.skip 3
+lbl_804807E4:
 	.4byte lbl_80519758
 	.4byte lbl_80519760
 	.4byte lbl_80519764
@@ -401,10 +402,10 @@ lbl_801D7BB8:
 /* 801D7C68 001D4BA8  80 9E 02 5C */	lwz r4, 0x25c(r30)
 /* 801D7C6C 001D4BAC  48 24 FC 3D */	bl initPerspPrintf__8GraphicsFP8Viewport
 /* 801D7C70 001D4BB0  88 1D 00 D8 */	lbz r0, 0xd8(r29)
-/* 801D7C74 001D4BB4  3C 60 80 48 */	lis r3, lbl_80480004@ha
-/* 801D7C78 001D4BB8  84 A3 07 E4 */	lwzu r5, 0x7e4(r3)
+/* 801D7C74 001D4BB4  3C 60 80 48 */	lis r3, lbl_804807E4@ha
+/* 801D7C78 001D4BB8  84 A3 07 E4 */	lwzu r5, lbl_804807E4@l(r3)
 /* 801D7C7C 001D4BBC  54 00 07 BE */	clrlwi r0, r0, 0x1e
-/* 801D7C80 001D4BC0  80 83 00 04 */	lwz r4, lbl_80480004@l(r3)
+/* 801D7C80 001D4BC0  80 83 00 04 */	lwz r4, 4(r3)
 /* 801D7C84 001D4BC4  2C 00 00 01 */	cmpwi r0, 1
 /* 801D7C88 001D4BC8  80 63 00 08 */	lwz r3, 8(r3)
 /* 801D7C8C 001D4BCC  90 A1 00 24 */	stw r5, 0x24(r1)
