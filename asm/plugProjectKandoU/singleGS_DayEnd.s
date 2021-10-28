@@ -1402,13 +1402,13 @@ cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
 /* 8023B4A0 002383E0  4B FA E9 DD */	bl setPikminCounts_Today__Q24Game8PlayDataFv
 /* 8023B4A4 002383E4  38 60 FF FF */	li r3, -1
 /* 8023B4A8 002383E8  4B F9 59 B9 */	bl getMapPikmins__Q24Game8GameStatFi
-/* 8023B4AC 002383EC  3C 60 80 51 */	lis r3, 0x8051
-/* 8023B4B0 002383F0  85 83 25 EC */	lwzu r12, 0x25ec(r3)
+/* 8023B4AC 002383EC  3C 60 80 51 */	lis r3, alivePikis__Q24Game8GameStat@ha
+/* 8023B4B0 002383F0  85 83 25 EC */	lwzu r12, alivePikis__Q24Game8GameStat@l(r3)
 /* 8023B4B4 002383F4  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8023B4B8 002383F8  7D 89 03 A6 */	mtctr r12
 /* 8023B4BC 002383FC  4E 80 04 21 */	bctrl 
-/* 8023B4C0 00238400  3C 60 80 51 */	lis r3, 0x8051
-/* 8023B4C4 00238404  85 83 26 0C */	lwzu r12, 0x260c(r3)
+/* 8023B4C0 00238400  3C 60 80 51 */	lis r3, mePikis__Q24Game8GameStat@ha
+/* 8023B4C4 00238404  85 83 26 0C */	lwzu r12, mePikis__Q24Game8GameStat@l(r3)
 /* 8023B4C8 00238408  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8023B4CC 0023840C  7D 89 03 A6 */	mtctr r12
 /* 8023B4D0 00238410  4E 80 04 21 */	bctrl 

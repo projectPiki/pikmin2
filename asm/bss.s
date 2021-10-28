@@ -584,10 +584,7 @@ sGDLObj__17J3DDisplayListObj:
 	.skip 0x10
 .global j3dTexCoordTable
 j3dTexCoordTable:
-	.skip 0xB94
-.global lbl_80510000
-lbl_80510000:
-	.skip 0x1994
+	.skip 0x2528
 .global j3dTevSwapTableTable
 j3dTevSwapTableTable:
 	.skip 0x400

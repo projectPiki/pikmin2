@@ -74,8 +74,8 @@ getMapPikmins_exclude_Me__Q24Game8GameStatFi:
 /* 801D0E18 001CDD58  2C 03 FF FF */	cmpwi r3, -1
 /* 801D0E1C 001CDD5C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D0E20 001CDD60  40 82 00 1C */	bne lbl_801D0E3C
-/* 801D0E24 001CDD64  3C 60 80 51 */	lis r3, 0x8051
-/* 801D0E28 001CDD68  85 83 25 EC */	lwzu r12, 0x25ec(r3)
+/* 801D0E24 001CDD64  3C 60 80 51 */	lis r3, alivePikis__Q24Game8GameStat@ha
+/* 801D0E28 001CDD68  85 83 25 EC */	lwzu r12, alivePikis__Q24Game8GameStat@l(r3)
 /* 801D0E2C 001CDD6C  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0E30 001CDD70  7D 89 03 A6 */	mtctr r12
 /* 801D0E34 001CDD74  4E 80 04 21 */	bctrl 
@@ -100,15 +100,15 @@ getMapPikmins__Q24Game8GameStatFi:
 /* 801D0E6C 001CDDAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D0E70 001CDDB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801D0E74 001CDDB4  40 82 00 3C */	bne lbl_801D0EB0
-/* 801D0E78 001CDDB8  3C 60 80 51 */	lis r3, lbl_80510000@ha
-/* 801D0E7C 001CDDBC  85 83 26 0C */	lwzu r12, 0x260c(r3)
+/* 801D0E78 001CDDB8  3C 60 80 51 */	lis r3, mePikis__Q24Game8GameStat@ha
+/* 801D0E7C 001CDDBC  85 83 26 0C */	lwzu r12, mePikis__Q24Game8GameStat@l(r3)
 /* 801D0E80 001CDDC0  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0E84 001CDDC4  7D 89 03 A6 */	mtctr r12
 /* 801D0E88 001CDDC8  4E 80 04 21 */	bctrl 
 /* 801D0E8C 001CDDCC  3C 80 80 51 */	lis r4, alivePikis__Q24Game8GameStat@ha
 /* 801D0E90 001CDDD0  7C 7F 1B 78 */	mr r31, r3
 /* 801D0E94 001CDDD4  38 64 25 EC */	addi r3, r4, alivePikis__Q24Game8GameStat@l
-/* 801D0E98 001CDDD8  81 83 00 00 */	lwz r12, lbl_80510000@l(r3)
+/* 801D0E98 001CDDD8  81 83 00 00 */	lwz r12, 0(r3)
 /* 801D0E9C 001CDDDC  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0EA0 001CDDE0  7D 89 03 A6 */	mtctr r12
 /* 801D0EA4 001CDDE4  4E 80 04 21 */	bctrl 
@@ -167,15 +167,15 @@ getAllPikmins__Q24Game8GameStatFi:
 /* 801D0F50 001CDE90  7C 7E 1B 78 */	mr r30, r3
 /* 801D0F54 001CDE94  2C 1E FF FF */	cmpwi r30, -1
 /* 801D0F58 001CDE98  40 82 00 4C */	bne lbl_801D0FA4
-/* 801D0F5C 001CDE9C  3C 60 80 51 */	lis r3, lbl_80510000@ha
-/* 801D0F60 001CDEA0  85 83 26 0C */	lwzu r12, 0x260c(r3)
+/* 801D0F5C 001CDE9C  3C 60 80 51 */	lis r3, mePikis__Q24Game8GameStat@ha
+/* 801D0F60 001CDEA0  85 83 26 0C */	lwzu r12, mePikis__Q24Game8GameStat@l(r3)
 /* 801D0F64 001CDEA4  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0F68 001CDEA8  7D 89 03 A6 */	mtctr r12
 /* 801D0F6C 001CDEAC  4E 80 04 21 */	bctrl 
 /* 801D0F70 001CDEB0  3C 80 80 51 */	lis r4, alivePikis__Q24Game8GameStat@ha
 /* 801D0F74 001CDEB4  7C 7F 1B 78 */	mr r31, r3
 /* 801D0F78 001CDEB8  38 64 25 EC */	addi r3, r4, alivePikis__Q24Game8GameStat@l
-/* 801D0F7C 001CDEBC  81 83 00 00 */	lwz r12, lbl_80510000@l(r3)
+/* 801D0F7C 001CDEBC  81 83 00 00 */	lwz r12, 0(r3)
 /* 801D0F80 001CDEC0  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0F84 001CDEC4  7D 89 03 A6 */	mtctr r12
 /* 801D0F88 001CDEC8  4E 80 04 21 */	bctrl 
@@ -187,15 +187,15 @@ getAllPikmins__Q24Game8GameStatFi:
 /* 801D0FA0 001CDEE0  48 00 00 7C */	b lbl_801D101C
 lbl_801D0FA4:
 /* 801D0FA4 001CDEE4  40 82 00 3C */	bne lbl_801D0FE0
-/* 801D0FA8 001CDEE8  3C 60 80 51 */	lis r3, lbl_80510000@ha
-/* 801D0FAC 001CDEEC  85 83 26 0C */	lwzu r12, 0x260c(r3)
+/* 801D0FA8 001CDEE8  3C 60 80 51 */	lis r3, mePikis__Q24Game8GameStat@ha
+/* 801D0FAC 001CDEEC  85 83 26 0C */	lwzu r12, mePikis__Q24Game8GameStat@l(r3)
 /* 801D0FB0 001CDEF0  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0FB4 001CDEF4  7D 89 03 A6 */	mtctr r12
 /* 801D0FB8 001CDEF8  4E 80 04 21 */	bctrl 
 /* 801D0FBC 001CDEFC  3C 80 80 51 */	lis r4, alivePikis__Q24Game8GameStat@ha
 /* 801D0FC0 001CDF00  7C 7F 1B 78 */	mr r31, r3
 /* 801D0FC4 001CDF04  38 64 25 EC */	addi r3, r4, alivePikis__Q24Game8GameStat@l
-/* 801D0FC8 001CDF08  81 83 00 00 */	lwz r12, lbl_80510000@l(r3)
+/* 801D0FC8 001CDF08  81 83 00 00 */	lwz r12, 0(r3)
 /* 801D0FCC 001CDF0C  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801D0FD0 001CDF10  7D 89 03 A6 */	mtctr r12
 /* 801D0FD4 001CDF14  4E 80 04 21 */	bctrl 

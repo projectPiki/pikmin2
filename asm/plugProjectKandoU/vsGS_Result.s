@@ -243,8 +243,8 @@ prepareMorimuraInfo__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection:
 /* 8022C9E4 00229924  C0 02 BF 60 */	lfs f0, lbl_8051A2C0@sda21(r2)
 /* 8022C9E8 00229928  D0 1D 03 C0 */	stfs f0, 0x3c0(r29)
 lbl_8022C9EC:
-/* 8022C9EC 0022992C  3C 60 80 51 */	lis r3, 0x8051
-/* 8022C9F0 00229930  85 83 25 EC */	lwzu r12, 0x25ec(r3)
+/* 8022C9EC 0022992C  3C 60 80 51 */	lis r3, alivePikis__Q24Game8GameStat@ha
+/* 8022C9F0 00229930  85 83 25 EC */	lwzu r12, alivePikis__Q24Game8GameStat@l(r3)
 /* 8022C9F4 00229934  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8022C9F8 00229938  7D 89 03 A6 */	mtctr r12
 /* 8022C9FC 0022993C  4E 80 04 21 */	bctrl 

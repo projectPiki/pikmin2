@@ -3908,8 +3908,8 @@ lbl_8014A6A0:
 /* 8014A6B8 001475F8  38 63 25 EC */	addi r3, r3, alivePikis__Q24Game8GameStat@l
 /* 8014A6BC 001475FC  48 08 69 D9 */	bl inc__Q34Game8GameStat11PikiCounterFPQ24Game4Piki
 lbl_8014A6C0:
-/* 8014A6C0 00147600  3C 60 80 51 */	lis r3, 0x8051
-/* 8014A6C4 00147604  85 83 25 EC */	lwzu r12, 0x25ec(r3)
+/* 8014A6C0 00147600  3C 60 80 51 */	lis r3, alivePikis__Q24Game8GameStat@ha
+/* 8014A6C4 00147604  85 83 25 EC */	lwzu r12, alivePikis__Q24Game8GameStat@l(r3)
 /* 8014A6C8 00147608  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8014A6CC 0014760C  7D 89 03 A6 */	mtctr r12
 /* 8014A6D0 00147610  4E 80 04 21 */	bctrl 

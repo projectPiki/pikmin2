@@ -7404,8 +7404,8 @@ bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018E5B8 0018B4F8  80 0D 94 70 */	lwz r0, mgr__Q24Game12ItemPikihead@sda21(r13)
 /* 8018E5BC 0018B4FC  28 00 00 00 */	cmplwi r0, 0
 /* 8018E5C0 0018B500  41 82 02 54 */	beq lbl_8018E814
-/* 8018E5C4 0018B504  3C 60 80 51 */	lis r3, 0x8051
-/* 8018E5C8 0018B508  85 83 26 0C */	lwzu r12, 0x260c(r3)
+/* 8018E5C4 0018B504  3C 60 80 51 */	lis r3, mePikis__Q24Game8GameStat@ha
+/* 8018E5C8 0018B508  85 83 26 0C */	lwzu r12, mePikis__Q24Game8GameStat@l(r3)
 /* 8018E5CC 0018B50C  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8018E5D0 0018B510  7D 89 03 A6 */	mtctr r12
 /* 8018E5D4 0018B514  4E 80 04 21 */	bctrl 
@@ -7572,8 +7572,8 @@ lbl_8018E814:
 /* 8018E83C 0018B77C  80 0D 94 70 */	lwz r0, mgr__Q24Game12ItemPikihead@sda21(r13)
 /* 8018E840 0018B780  28 00 00 00 */	cmplwi r0, 0
 /* 8018E844 0018B784  41 82 02 50 */	beq lbl_8018EA94
-/* 8018E848 0018B788  3C 60 80 51 */	lis r3, 0x8051
-/* 8018E84C 0018B78C  85 83 26 0C */	lwzu r12, 0x260c(r3)
+/* 8018E848 0018B788  3C 60 80 51 */	lis r3, mePikis__Q24Game8GameStat@ha
+/* 8018E84C 0018B78C  85 83 26 0C */	lwzu r12, mePikis__Q24Game8GameStat@l(r3)
 /* 8018E850 0018B790  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8018E854 0018B794  7D 89 03 A6 */	mtctr r12
 /* 8018E858 0018B798  4E 80 04 21 */	bctrl 
