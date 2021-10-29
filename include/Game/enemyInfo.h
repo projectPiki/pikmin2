@@ -132,7 +132,7 @@ typedef enum EEnemyTypeID {
 
 // clang-format off
 	struct EnemyInfo gEnemyInfo[100] = {
-		//  name                   ID   pID     members flags   model           anim            animgr          texture     param       collision       stone           childID chNum   droptype
+        //  name                   ID   pID     members flags   model           anim            animgr          texture     param       collision       stone           childID chNum   droptype
 			{"Pelplant",           0,   -1,     1,      0x0007, "Pelplant",     "Pelplant",     "Pelplant",     "Pelplant", "Pelplant", "Pelplant",     "Pelplant",     -1,     0,      4},
 			{"Kochappy",           1,   -1,     1,      0x0117, "",             "",             "",             "",         "",         "",             "",             -1,     0,      1},
 			{"BlueKochappy",       44,  -1,     1,      0x0117, "Kochappy",     "Kochappy",     "Kochappy",     "",         "",         "Kochappy",     "Kochappy",     -1,     0,      1},
