@@ -23,7 +23,7 @@ namespace Game {
 			{"Fart",              0xb,   -1,   1,      0x0007,  "Kogane",   "Kogane",   "Kogane",   "",         "",         "Kogane",   "Kogane",   -1,       0,    4},
 	};
 // clang-format on
-extern int gEnemyInfoNum = sizeof gEnemyInfo;
+extern int gEnemyInfoNum = 100;
 namespace EnemyInfoFunc {
 	EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 	{
