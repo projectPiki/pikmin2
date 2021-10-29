@@ -10,17 +10,17 @@
 .balign 0x8
 .global __lconv
 __lconv:
-	.4byte 0x8047A0A8
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
-	.4byte 0x8047A0AA
+	.4byte "@stringBase0_2"
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
+	.4byte "@stringBase0_2"+2
 	.4byte 0x7F7F7F7F
 	.4byte 0x7F7F7F00
-	.4byte 0x8047A0AA
+	.4byte "@stringBase0_2"+2
 	.4byte 0x7F7F7F7F
 	.4byte 0x7F7F7F00
