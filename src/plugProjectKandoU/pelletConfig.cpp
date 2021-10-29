@@ -153,12 +153,10 @@ void PelletConfigList::read(Stream& stream)
 		// Set indirect state
 		if (!strcmp("yes", m_configs[i].m_params.m_indirect.m_data)) {
 			m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_YES;
+		} else if (!strcmp("use", m_configs[i].m_params.m_indirect.m_data)) {
+			m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_USE;
 		} else {
-			if (!strcmp("use", m_configs[i].m_params.m_indirect.m_data)) {
-				m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_USE;
-			} else {
-				m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_NO;
-			}
+			m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_NO;
 		}
 	}
 }

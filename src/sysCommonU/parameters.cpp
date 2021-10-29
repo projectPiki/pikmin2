@@ -77,12 +77,10 @@ void Parameters::read(Stream& stream)
 		currentParm  = findParm(currentID.m_id.raw);
 		if (currentParm != nullptr) {
 			currentParm->read(stream);
+		} else if (parmSize != -1) {
+			stream.skipReading(parmSize);
 		} else {
-			if (parmSize != -1) {
-				stream.skipReading(parmSize);
-			} else {
-				stream.skipReadingText();
-			}
+			stream.skipReadingText();
 		}
 	}
 }
