@@ -1,8 +1,7 @@
 #include "Game/enemyInfo.h"
 namespace Game {
-const int gEnemyInfoNum = 100;
 // clang-format off
-	const struct EnemyInfo gEnemyInfo[100] = {
+	struct EnemyInfo gEnemyInfo[100] = {
 		//  name                    ID    pID  members flags    model       anim        animgr      texture     param        collision  stone     childID  childNum droptype
 			{"Pelplant",          0x0,   -1,   1,      0x0007,  "Pelplant", "Pelplant", "Pelplant", "Pelplant", "Pelplant", "Pelplant", "Pelplant", -1,       0,    4},
 			{"Kochappy",          0x1,   -1,   1,      0x0117,  "",         "",         "",         "",         "",         "",         "",         -1,       0,    1},
@@ -24,7 +23,7 @@ const int gEnemyInfoNum = 100;
 			{"Fart",              0xb,   -1,   1,      0x0007,  "Kogane",   "Kogane",   "Kogane",   "",         "",         "Kogane",   "Kogane",   -1,       0,    4},
 	};
 // clang-format on
-
+extern int gEnemyInfoNum = sizeof gEnemyInfo;
 namespace EnemyInfoFunc {
 	EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 	{
@@ -40,7 +39,7 @@ namespace EnemyInfoFunc {
 				if ((enemyID == current_enemyInfo.ID)
 				    && ((enemyFlags & (unsigned int)current_enemyInfo.flags)
 				        != 0)) {
-					return gEnemyInfo[slot];
+					return &gEnemyInfo[slot];
 				}
 				slot      = slot + 1;
 				enemy_num = enemy_num + -1;

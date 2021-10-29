@@ -1,6 +1,8 @@
 #ifndef GAME_ENEMYINFO_H
 #define GAME_ENEMYINFO_H
 
+#include "types.h"
+
 namespace Game {
 
 // Epoch's Structs
@@ -80,8 +82,8 @@ typedef enum EEnemyTypeID {
 	MaroFrog       = 18,
 	MiniHoudai     = 78,
 	Miulin         = 54,
-	NULL           = 39,
-	NULL2          = 64,
+	INVALID        = 39,
+	INVALID2       = 64,
 	Nekojarashi    = 88,
 	OniKurage      = 72,
 	OoPanModoki    = 40,
