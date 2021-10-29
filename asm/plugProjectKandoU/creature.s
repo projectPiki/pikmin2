@@ -6,10 +6,8 @@
 .balign 0x8
 .global lbl_8047C6E8
 lbl_8047C6E8:
-	.4byte 0x63726561
-	.4byte 0x74757265
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "creature.cpp"
+	.skip 3
 .global lbl_8047C6F8
 lbl_8047C6F8:
 	.asciz "P2Assert"
