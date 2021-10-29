@@ -130,8 +130,6 @@ typedef enum EEnemyTypeID {
 	Zenmai         = 90
 } EEnemyTypeID;
 
-extern int gEnemyInfoNum = 100;
-
 // clang-format off
 	struct EnemyInfo gEnemyInfo[100] = {
 		//  name                   ID	pID		members	flags	model			anim			animgr			texture		param		collision		stone			childID chNum	droptype
@@ -237,6 +235,8 @@ extern int gEnemyInfoNum = 100;
 			{"DangoMushi",		   94,	-1,		1,		0x0007,	"",				"",				"",				"",			"",			"",				"",				-1,		0,		7},
 	};
 // clang-format on
+
+extern int gEnemyInfoNum = sizeof gEnemyInfo / sizeof gEnemyInfo[0];
 
 namespace EnemyInfoFunc {
 	EnemyInfo* getEnemyInfo(int, int);
