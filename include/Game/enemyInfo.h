@@ -12,7 +12,7 @@ struct EnemyInfo {
 	char ID;
 	char parentID;
 	char members;
-	short flags;
+	ushort flags;
 	char* model_name;
 	char* anim_name;
 	char* animmgr_name;
