@@ -45,6 +45,7 @@
  */
 
 #include "fdlibm.h"
+#include "errno.h"
 
 #ifdef __STDC__
 static const double
@@ -74,9 +75,12 @@ static double zero   =  0.0;
 
         k=0;
         if (hx < 0x00100000) {                  /* x < 2**-1022  */
-            if (((hx&0x7fffffff)|lx)==0)
+		    if (((hx & 0x7fffffff) | lx) == 0)
                 return -two54/zero;             /* log(+-0)=-inf */
-            if (hx<0) return (x-x)/zero;        /* log(-#) = NaN */
+		    if (hx < 0) {
+			    errno = 33;
+			    return (x - x) / zero;
+		    } /* log(-#) = NaN */
             k -= 54; x *= two54; /* subnormal number, scale up x */
             hx = __HI(x);                /* high word of x */
         }
