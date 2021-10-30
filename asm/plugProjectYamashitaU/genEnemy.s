@@ -3,14 +3,11 @@
 .balign 0x8
 .global lbl_8047B750
 lbl_8047B750:
-	.4byte 0x67656E45
-	.4byte 0x6E656D79
-	.4byte 0x00000000
+	.asciz "genEnemy"
+	.skip 3
 .global lbl_8047B75C
 lbl_8047B75C:
-	.4byte 0x6F626A65
-	.4byte 0x63742074
-	.4byte 0x79706500
+	.asciz "object type"
 .global lbl_8047B768
 lbl_8047B768:
 	.4byte 0x934782F0
@@ -21,36 +18,21 @@ lbl_8047B774:
 	.4byte 0x934782F0
 	.4byte 0x94AD90B6
 	.4byte 0x00000000
-	.4byte 0x09092320
-	.4byte 0x2573200D
-	.4byte 0x0A000000
-	.4byte 0x74656B69
-	.4byte 0x5F626972
-	.4byte 0x74685F74
-	.4byte 0x79706500
-	.4byte 0x74656B69
-	.4byte 0x5F6E756D
-	.4byte 0x00000000
-	.4byte 0x66616365
-	.4byte 0x20646972
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x303A706F
-	.4byte 0x696E7420
-	.4byte 0x313A6369
-	.4byte 0x72636C65
-	.4byte 0x00000000
-	.4byte 0x61707065
-	.4byte 0x61722072
-	.4byte 0x61646975
-	.4byte 0x73000000
-	.4byte 0x656E656D
-	.4byte 0x79207369
-	.4byte 0x7A650000
-	.4byte 0x09092320
-	.4byte 0x56657273
-	.4byte 0x696F6E20
-	.4byte 0x0D0A0000
+	.asciz "\t\t# %s \r\n"
+	.skip 2
+	.asciz "teki_birth_type"
+	.asciz "teki_num"
+	.skip 3
+	.asciz "face direction"
+	.skip 1
+	.asciz "0:point 1:circle"
+	.skip 3
+	.asciz "appear radius"
+	.skip 2
+	.asciz "enemy size"
+	.skip 1
+	.asciz "\t\t# Version \r\n"
+	.skip 1
 	.4byte 0x90D48352
 	.4byte 0x83608383
 	.4byte 0x83628373

@@ -214,40 +214,40 @@ __vt__Q34Game12KochappyBase3Obj:
 .balign 0x8
 .global lbl_805180E0
 lbl_805180E0:
-	.4byte 0x61676F00
+	.asciz "ago"
 .global lbl_805180E4
 lbl_805180E4:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_805180E8
 lbl_805180E8:
-	.4byte 0x40000000
+	.float 2.0
 .global lbl_805180EC
 lbl_805180EC:
 	.float 1.0
 .global lbl_805180F0
 lbl_805180F0:
-	.4byte 0x42C80000
+	.float 100.0
 .global lbl_805180F4
 lbl_805180F4:
-	.4byte 0x41200000
+	.float 10.0
 .global lbl_805180F8
 lbl_805180F8:
-	.4byte 0x6B616D75
-	.4byte 0x00000000
+	.asciz "kamu"
+	.skip 3
 .global lbl_80518100
 lbl_80518100:
-	.4byte 0x41700000
+	.float 15.0
 .global lbl_80518104
 lbl_80518104:
-	.4byte 0x6173694C
-	.4byte 0x00000000
+	.asciz "asiL"
+	.skip 3
 .global lbl_8051810C
 lbl_8051810C:
-	.4byte 0x61736952
-	.4byte 0x00000000
+	.asciz "asiR"
+	.skip 3
 .global lbl_80518114
 lbl_80518114:
-	.4byte 0x40800000
+	.float 4.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12KochappyBase3ObjFv

@@ -3,10 +3,10 @@
 .balign 0x8
 .global lbl_80517FB8
 lbl_80517FB8:
-	.4byte 0x40490FDB
+	.float 3.1415927
 .global lbl_80517FBC
 lbl_80517FBC:
-	.4byte 0x3BB60B61
+	.float 0.0055555557
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setup__Q34Game10EnemyStone4InfoFR6Stream
