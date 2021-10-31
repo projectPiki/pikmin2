@@ -335,7 +335,10 @@ ParmString::ParmString(Parameters* parameters, char* value, int length,
  * Address:	80413C68
  * Size:	00002C
  */
-void ParmString::write(Stream& stream) { Stream::writeString(stream, this->m_value); }
+void ParmString::write(Stream& stream)
+{
+	Stream::writeString(stream, this->m_value);
+}
 
 /*
  * --INFO--

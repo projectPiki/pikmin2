@@ -1,7 +1,6 @@
 # Linker order for every file, passed to the Metrowerks linker.
 
 GROUP_0_FILES:=\
-	$(BUILD_DIR)/asm/init.o\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
 	$(BUILD_DIR)/asm/bss.o\
@@ -256,6 +255,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/targimpl.o\
 	$(BUILD_DIR)/asm/Dolphin/targsupp.o\
 	$(BUILD_DIR)/asm/Dolphin/mpc_7xx_603e.o\
+	$(BUILD_DIR)/asm/Dolphin/__exception.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk.o\
 	$(BUILD_DIR)/asm/Dolphin/main_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk_glue.o\
@@ -412,8 +412,9 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/OSSync.o\
 	$(BUILD_DIR)/asm/Dolphin/OSThread.o\
 	$(BUILD_DIR)/asm/Dolphin/OSTime.o\
-	$(BUILD_DIR)/asm/Dolphin/__ppc_eabi_init.o\
+	$(BUILD_DIR)/asm/Dolphin/__mem.o\
 	$(BUILD_DIR)/asm/Dolphin/__start.o\
+	$(BUILD_DIR)/asm/Dolphin/__ppc_eabi_init.o\
 	$(BUILD_DIR)/asm/Dolphin/Padclamp.o\
 	$(BUILD_DIR)/asm/Dolphin/Pad.o\
 	$(BUILD_DIR)/asm/Dolphin/SIBios.o\

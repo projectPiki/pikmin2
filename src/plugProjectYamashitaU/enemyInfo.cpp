@@ -6,13 +6,12 @@ namespace EnemyInfoFunc {
 	EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 	{
 		EnemyInfo* result = nullptr;
-		int slot = 0;
-		int enemy_num = gEnemyInfoNum;
+		int slot          = 0;
+		int enemy_num     = gEnemyInfoNum;
 
 		while (enemy_num > 0) {
 			if ((enemyID == gEnemyInfo[slot].ID)
-				&& ((enemyFlags & (uint)gEnemyInfo[slot].flags)
-					!= 0)) {
+			    && ((enemyFlags & (uint)gEnemyInfo[slot].flags) != 0)) {
 				result = gEnemyInfo + slot;
 				break;
 			}
@@ -25,11 +24,13 @@ namespace EnemyInfoFunc {
 	/**
 	 * Common loop used by at least getEnemyName.
 	 */
-	inline EnemyInfo* getInfo(int enemyID, int enemyFlags) {
+	inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
+	{
 		EnemyInfo* result = nullptr;
-		for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0; --enemy_num) {
+		for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0;
+		     --enemy_num) {
 			if ((enemyID == gEnemyInfo[slot].ID)
-				&& ((enemyFlags & (uint)gEnemyInfo[slot].flags) != 0)) {
+			    && ((enemyFlags & (uint)gEnemyInfo[slot].flags) != 0)) {
 				result = &gEnemyInfo[slot];
 				break;
 			}
@@ -44,33 +45,36 @@ namespace EnemyInfoFunc {
 		return (result) ? result->name : nullptr;
 	}
 
-	char* getEnemyResName(int enemyID, int enemyFlags) {
+	char* getEnemyResName(int enemyID, int enemyFlags)
+	{
 		switch (enemyID) {
-			case FireOtakara:
-			case WaterOtakara:
-			case GasOtakara:
-			case ElecOtakara:
-				return "Otakara";
-				break;
-			default:
-				if ((enemyID == INVALID) || (enemyID == INVALID2)) {
-					enemyID = PanHouse;
-				}
-				EnemyInfo* result = getInfo(enemyID, enemyFlags);
-				return (result->anim_name == "") ? result->name : result->anim_name;
+		case FireOtakara:
+		case WaterOtakara:
+		case GasOtakara:
+		case ElecOtakara:
+			return "Otakara";
+			break;
+		default:
+			if ((enemyID == INVALID) || (enemyID == INVALID2)) {
+				enemyID = PanHouse;
+			}
+			EnemyInfo* result = getInfo(enemyID, enemyFlags);
+			return (result->anim_name == "") ? result->name : result->anim_name;
 		}
 	}
 
-	char getEnemyMember(int enemyID, int enemyFlags) {
+	char getEnemyMember(int enemyID, int enemyFlags)
+	{
 		EnemyInfo* result = getInfo(enemyID, enemyFlags);
 		return (result) ? result->members : '\0';
 	}
 
-	int getEnemyID(char * name, int enemyFlags) {
+	int getEnemyID(char* name, int enemyFlags)
+	{
 		EnemyInfo* result = nullptr;
 		for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
 			if ((stricmp(gEnemyInfo[slot].name, name) == 0)
-				&& ((enemyFlags & (uint)gEnemyInfo[slot].flags) != 0)) {
+			    && ((enemyFlags & (uint)gEnemyInfo[slot].flags) != 0)) {
 				result = &gEnemyInfo[slot];
 				break;
 			}

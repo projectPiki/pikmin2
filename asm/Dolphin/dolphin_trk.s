@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .init, "ax"  # 0x80003100 - 0x80005600
+
+.global __TRK_reset
+__TRK_reset:
+/* 80005088 00002088  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8000508C 0000208C  7C 08 02 A6 */	mflr r0
+/* 80005090 00002090  38 60 00 00 */	li r3, 0
+/* 80005094 00002094  38 80 00 00 */	li r4, 0
+/* 80005098 00002098  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8000509C 0000209C  38 A0 00 00 */	li r5, 0
+/* 800050A0 000020A0  48 0E B3 41 */	bl OSResetSystem
+/* 800050A4 000020A4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 800050A8 000020A8  7C 08 03 A6 */	mtlr r0
+/* 800050AC 000020AC  38 21 00 10 */	addi r1, r1, 0x10
+/* 800050B0 000020B0  4E 80 00 20 */	blr 
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global TRK_ISR_OFFSETS
@@ -416,9 +432,9 @@ lbl_800C0344:
 /* 800C0344 000BD284  54 C0 00 BE */	clrlwi r0, r6, 2
 /* 800C0348 000BD288  64 1B 80 00 */	oris r27, r0, 0x8000
 lbl_800C034C:
-/* 800C034C 000BD28C  3C 80 80 00 */	lis r4, metro@ha
+/* 800C034C 000BD28C  3C 80 80 00 */	lis r4, gTRKInterruptVectorTable@ha
 /* 800C0350 000BD290  7F 63 DB 78 */	mr r3, r27
-/* 800C0354 000BD294  38 04 31 54 */	addi r0, r4, metro@l
+/* 800C0354 000BD294  38 04 31 54 */	addi r0, r4, gTRKInterruptVectorTable@l
 /* 800C0358 000BD298  38 A0 01 00 */	li r5, 0x100
 /* 800C035C 000BD29C  7C 80 32 14 */	add r4, r0, r6
 /* 800C0360 000BD2A0  4B F4 2D D1 */	bl TRK_memcpy
