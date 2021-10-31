@@ -31,6 +31,11 @@ lbl_80473688:
 	.4byte 0x65742072
 	.4byte 0x65616400
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sDvdAsyncList__12JKRDvdRipper
+sDvdAsyncList__12JKRDvdRipper:
+	.skip 0xC
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global errorRetry__12JKRDvdRipper

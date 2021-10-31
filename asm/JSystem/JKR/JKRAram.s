@@ -70,6 +70,11 @@ __vt__7JKRAram:
 	.4byte __dt__7JKRAramFv
 	.4byte run__7JKRAramFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sAramCommandList__7JKRAram
+sAramCommandList__7JKRAram:
+	.skip 0xC
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sSZSBufferSize__7JKRAram

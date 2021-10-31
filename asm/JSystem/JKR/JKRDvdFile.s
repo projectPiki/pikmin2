@@ -34,6 +34,11 @@ __vt__10JKRDvdFile:
 	.4byte open__10JKRDvdFileFl
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sDvdList__10JKRDvdFile
+sDvdList__10JKRDvdFile:
+	.skip 0xC
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JKRDvdFileFv
 __ct__10JKRDvdFileFv:

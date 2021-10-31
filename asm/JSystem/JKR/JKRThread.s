@@ -17,6 +17,14 @@ __vt__9JKRThread:
 	.4byte __dt__9JKRThreadFv
 	.4byte run__9JKRThreadFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sThreadList__9JKRThread
+sThreadList__9JKRThread:
+	.skip 0x38
+.global sTaskList__7JKRTask
+sTaskList__7JKRTask:
+	.skip 0xC
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global sManager__15JKRThreadSwitch

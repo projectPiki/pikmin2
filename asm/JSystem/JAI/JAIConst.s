@@ -21,6 +21,23 @@ sCInfos_0__Q27JAInter5Const:
 	.4byte 0x04020402
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global nullCamera__Q27JAInter5Const
+nullCamera__Q27JAInter5Const:
+	.skip 0x68
+.global nullActor__Q27JAInter5Const
+nullActor__Q27JAInter5Const:
+	.skip 0x14
+.global camMtx__Q27JAInter5Const
+camMtx__Q27JAInter5Const:
+	.skip 0x30
+.global camTrans__Q27JAInter5Const
+camTrans__Q27JAInter5Const:
+	.skip 0xC
+.global camPreTrans__Q27JAInter5Const
+camPreTrans__Q27JAInter5Const:
+	.skip 0xC
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global random__Q27JAInter5Const

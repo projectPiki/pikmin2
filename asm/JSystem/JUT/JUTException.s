@@ -179,6 +179,11 @@ __vt__12JUTException:
 	.4byte run__12JUTExceptionFv
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sMapFileList__12JUTException
+sMapFileList__12JUTException:
+	.skip 0xC
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sMessageBuffer__12JUTException

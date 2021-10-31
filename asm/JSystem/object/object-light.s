@@ -23,6 +23,11 @@ __vt__Q214JStudio_JStage14TAdaptor_light:
 	.4byte adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light
+saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light:
+	.skip 0x48
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80516480

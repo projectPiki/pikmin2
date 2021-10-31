@@ -217,6 +217,11 @@ __vt__11J3DShapeMtx:
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sMtxLoadCache__11J3DShapeMtx
+sMtxLoadCache__11J3DShapeMtx:
+	.skip 0x14
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global sCurrentPipeline__11J3DShapeMtx

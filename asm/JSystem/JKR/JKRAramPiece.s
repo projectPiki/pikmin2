@@ -29,6 +29,14 @@ lbl_80473540:
 	.4byte 0x2E637070
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sAramPieceCommandList__12JKRAramPiece
+sAramPieceCommandList__12JKRAramPiece:
+	.skip 0x24
+.global mMutex__12JKRAramPiece
+mMutex__12JKRAramPiece:
+	.skip 0x18
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805164D8

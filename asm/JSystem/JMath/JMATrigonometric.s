@@ -2,6 +2,17 @@
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
 .4byte __sinit_JMATrigonometric_cpp
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sincosTable___5JMath
+sincosTable___5JMath:
+	.skip 0x6040
+.global atanTable___5JMath
+atanTable___5JMath:
+	.skip 0x1020
+.global asinAcosTable___5JMath
+asinAcosTable___5JMath:
+	.skip 0x1020
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80516738

@@ -11,6 +11,11 @@ __vt__11JKRAramHeap:
 	.4byte __dt__11JKRAramHeapFv
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sAramList__11JKRAramHeap
+sAramList__11JKRAramHeap:
+	.skip 0xC
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11JKRAramHeapFUlUl
 __ct__11JKRAramHeapFUlUl:

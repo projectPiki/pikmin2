@@ -86,6 +86,23 @@ IndMtx:
 	.float 0.5
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global j3dSys
+j3dSys:
+	.skip 0x1A4
+.global mCurrentMtx__6J3DSys
+mCurrentMtx__6J3DSys:
+	.skip 0x30
+.global mCurrentS__6J3DSys
+mCurrentS__6J3DSys:
+	.skip 0xC
+.global mParentS__6J3DSys
+mParentS__6J3DSys:
+	.skip 0xC
+.global sTexCoordScaleTable__6J3DSys
+sTexCoordScaleTable__6J3DSys:
+	.skip 0x40
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global ColorBlack

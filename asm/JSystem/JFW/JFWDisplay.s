@@ -110,6 +110,11 @@ __vt__10JFWDisplay:
 	.4byte 0
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sList__8JFWAlarm
+sList__8JFWAlarm:
+	.skip 0xC
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
 .global sManager__10JFWDisplay

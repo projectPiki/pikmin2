@@ -23,6 +23,11 @@ __vt__13JKRFileLoader:
 	.4byte 0
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sVolumeList__13JKRFileLoader
+sVolumeList__13JKRFileLoader:
+	.skip 0xC
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global rootPath$2747

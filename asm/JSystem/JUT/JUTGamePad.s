@@ -23,6 +23,26 @@ __vt__10JUTGamePad:
 	.4byte __dt__10JUTGamePadFv
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global mPadList__10JUTGamePad
+mPadList__10JUTGamePad:
+	.skip 0x188
+.global mPadStatus__10JUTGamePad
+mPadStatus__10JUTGamePad:
+	.skip 0x30
+.global mPadButton__10JUTGamePad
+mPadButton__10JUTGamePad:
+	.skip 0xC0
+.global mPadMStick__10JUTGamePad
+mPadMStick__10JUTGamePad:
+	.skip 0x40
+.global mPadSStick__10JUTGamePad
+mPadSStick__10JUTGamePad:
+	.skip 0x40
+.global sPatternList__19JUTGamePadLongPress
+sPatternList__19JUTGamePadLongPress:
+	.skip 0x28
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sStickMode__10JUTGamePad

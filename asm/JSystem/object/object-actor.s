@@ -103,6 +103,14 @@ __vt__Q214JStudio_JStage14TAdaptor_actor:
 	.4byte 0
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global saoVVOutput___Q214JStudio_JStage14TAdaptor_actor
+saoVVOutput___Q214JStudio_JStage14TAdaptor_actor:
+	.skip 0xD0
+.global saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor
+saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor:
+	.skip 0x90
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805164A8
