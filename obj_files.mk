@@ -445,7 +445,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/carryInfoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInfo.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/farm.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/farmMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o\

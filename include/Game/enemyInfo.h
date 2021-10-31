@@ -127,7 +127,8 @@ typedef enum EEnemyTypeID {
 	YellowChappy   = 43,
 	YellowKochappy = 45,
 	YellowPom      = 5,
-	Zenmai         = 90
+	Zenmai         = 90,
+	// DO_NOT_USE     = 0x7FFFFFFF
 } EEnemyTypeID;
 
 // clang-format off
@@ -158,12 +159,12 @@ struct EnemyInfo gEnemyInfo[100] = {
    {"Armor",              15,  -1,     1,      0x0097, "",             "",             "",             "",         "",         "",             "",             -1,     0,      2},
    {"Tobi",               14,  -1,     1,      0x0117, "",             "",             "",             "",         "",         "",             "",             -1,     0,      0},
    {"Imomushi",           65,  -1,     1,      0x0007, "",             "",             "",             "",         "",         "",             "",             -1,     0,      0},
-   {"Qurione",            16,  -1,     1,      0x0007, "",             "",             "",             "",         "",         "",             "",             25,     1,      4},
+   {"Qurione",            16,  -1,     1,      0x0007, "",             "",             "",             "",         "",         "",             "",             37,     1,      4},
    {"Rock",               19,  -1,     1,      0x0207, "",             "",             "",             "",         "",         "",             "",             -1,     0,      4},
-   {"Stone",              74,  13,     1,      0x0206, "Rock",         "Rock",         "Rock",         "Rock",     "Rock",     "Rock",         "Rock",         -1,     0,      4},
+   {"Stone",              74,  19,     1,      0x0206, "Rock",         "Rock",         "Rock",         "Rock",     "Rock",     "Rock",         "Rock",         -1,     0,      4},
    {"Kabuto",             75,  -1,     1,      0x0097, "",             "",             "",             "",         "",         "",             "",             74,     5,      1},
-   {"RKabuto",            95,  -1,     1,      0x0097, "Kabuto",       "Kabuto",       "Kabuto",       "",         "",         "Kabuto",       "Kabuto",       74,     5,      1},
-   {"FKabuto",            96,  -1,     1,      0x0097, "Kabuto",       "Kabuto",       "Kabuto",       "",         "",         "Kabuto",       "Kabuto",       74,     5,      1},
+   {"Rkabuto",            95,  -1,     1,      0x0097, "Kabuto",       "Kabuto",       "Kabuto",       "",         "",         "Kabuto",       "Kabuto",       74,     5,      1},
+   {"Fkabuto",            96,  -1,     1,      0x0097, "Kabuto",       "Kabuto",       "Kabuto",       "",         "",         "Kabuto",       "Kabuto",       74,     5,      1},
    {"Hiba",               20,  -1,     1,      0x0207, "",             "",             "",             "",         "",         "",             "",             -1,     0,      4},
    {"GasHiba",            21,  -1,     1,      0x0207, "",             "",             "",             "",         "",         "",             "",             -1,     0,      4},
    {"ElecHiba",           22,  -1,     2,      0x0207, "",             "",             "",             "",         "",         "",             "",             -1,     0,      4},
