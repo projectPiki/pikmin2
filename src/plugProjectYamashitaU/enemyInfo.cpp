@@ -1,4 +1,5 @@
 #include "Game/enemyInfo.h"
+#include "Dolphin/string.h"
 #include "types.h"
 namespace Game {
 namespace EnemyInfoFunc {
@@ -63,6 +64,18 @@ namespace EnemyInfoFunc {
 	char getEnemyMember(int enemyID, int enemyFlags) {
 		EnemyInfo* result = getInfo(enemyID, enemyFlags);
 		return (result) ? result->members : '\0';
+	}
+
+	int getEnemyID(char * name, int enemyFlags) {
+		EnemyInfo* result = nullptr;
+		for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
+			if ((stricmp(gEnemyInfo[slot].name, name) == 0)
+				&& ((enemyFlags & (uint)gEnemyInfo[slot].flags) != 0)) {
+				result = &gEnemyInfo[slot];
+				break;
+			}
+		}
+		return result->ID;
 	}
 } // namespace EnemyInfoFunc
 } // namespace Game
