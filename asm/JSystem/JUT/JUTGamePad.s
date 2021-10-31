@@ -1,4 +1,7 @@
 .include "macros.inc"
+.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+.4byte __sinit_JUTGamePad_cpp
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global sChannelMask__Q210JUTGamePad7CRumble

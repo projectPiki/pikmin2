@@ -1,4 +1,7 @@
 .include "macros.inc"
+.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+.4byte __sinit_JKRDvdAramRipper_cpp
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global errorRetry__16JKRDvdAramRipper

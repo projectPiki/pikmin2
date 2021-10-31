@@ -1,4 +1,7 @@
 .include "macros.inc"
+.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+.4byte __sinit_JAISystemInterface_cpp
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80517050

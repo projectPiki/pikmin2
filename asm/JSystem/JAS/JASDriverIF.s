@@ -1,4 +1,7 @@
 .include "macros.inc"
+.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+.4byte __sinit_JASDriverIF_cpp
+
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x8
 .global C5BASE_PITCHTABLE__9JASDriver

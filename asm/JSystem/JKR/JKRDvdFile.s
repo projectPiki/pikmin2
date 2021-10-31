@@ -1,4 +1,7 @@
 .include "macros.inc"
+.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+.4byte __sinit_JKRDvdFile_cpp
+
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x8
 .global lbl_80473608

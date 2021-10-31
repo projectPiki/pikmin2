@@ -1,4 +1,6 @@
 .include "macros.inc"
+.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+.4byte __sinit_JASCmdStack_cpp
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global addPortCmdOnce__10JASPortCmdFv
