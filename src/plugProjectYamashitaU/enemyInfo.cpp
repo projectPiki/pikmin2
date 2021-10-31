@@ -43,19 +43,26 @@ namespace EnemyInfoFunc {
 		return (result) ? result->name : nullptr;
 	}
 
-
-	// TODO: Not Matching.
 	char* getEnemyResName(int enemyID, int enemyFlags) {
-		if (enemyID < 0x3f) {
-			if (0x3b < enemyID) {
+		switch (enemyID) {
+			case FireOtakara:
+			case WaterOtakara:
+			case GasOtakara:
+			case ElecOtakara:
 				return "Otakara";
-			}
+				break;
+			default:
+				if ((enemyID == INVALID) || (enemyID == INVALID2)) {
+					enemyID = PanHouse;
+				}
+				EnemyInfo* result = getInfo(enemyID, enemyFlags);
+				return (result->anim_name == "") ? result->name : result->anim_name;
 		}
-		if ((enemyID == 0x27) || (enemyID == 0x40)) {
-			enemyID = PanHouse;
-		}
+	}
+
+	char getEnemyMember(int enemyID, int enemyFlags) {
 		EnemyInfo* result = getInfo(enemyID, enemyFlags);
-		return (result->anim_name == "") ? result->name : result->anim_name;
+		return (result) ? result->members : '\0';
 	}
 } // namespace EnemyInfoFunc
 } // namespace Game
