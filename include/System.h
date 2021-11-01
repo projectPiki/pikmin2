@@ -83,4 +83,6 @@ struct System {
 	u8 _58[0x88];            // _58
 };
 
+extern System* const sys;
+
 #endif

@@ -2,8 +2,6 @@
 #include "sysMath.h"
 #include "System.h"
 
-System* const sys = (System*)0x8051616c;
-
 namespace og {
 namespace Screen {
 

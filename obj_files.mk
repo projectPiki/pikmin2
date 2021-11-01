@@ -605,7 +605,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameHighscore.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayCommonData.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletCarry.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pelletCarry.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameChallenge2D.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsTekiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsCardMgr.o\

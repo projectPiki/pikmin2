@@ -1,61 +1,27 @@
+#include "Game/PelletCarry.h"
+#include "System.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
+namespace Game {
 /*
  * --INFO--
  * Address:	80234EF8
  * Size:	000030
  */
-void Game::PelletCarry::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        .loc_0x30
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x30:
-	*/
-}
+PelletCarry::PelletCarry() { reset(); }
 
 /*
  * --INFO--
  * Address:	80234F28
  * Size:	000028
  */
-void Game::PelletCarry::reset(void)
+void PelletCarry::reset()
 {
-	/*
-	.loc_0x0:
-	  lis       r4, 0x1
-	  lfs       f0, -0x3FB0(r2)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x0(r3)
-	  stfs      f0, 0x8(r3)
-	  stfs      f0, 0xC(r3)
-	  stfs      f0, 0x10(r3)
-	  stfs      f0, 0x14(r3)
-	  stfs      f0, 0x4(r3)
-	  blr
-	*/
+	m_state         = PelletCarry_Unk0;
+	m_position.x    = 0.0f;
+	m_position.y    = 0.0f;
+	m_position.z    = 0.0f;
+	m_timer         = 0.0f;
+	m_carryStrength = 0.0f;
 }
 
 /*
@@ -63,50 +29,28 @@ void Game::PelletCarry::reset(void)
  * Address:	80234F50
  * Size:	000084
  */
-void pull__Q24Game11PelletCarryFUsR10Vector3<float> f(void)
+bool PelletCarry::pull(u16 state, Vector3f& newPos, f32 carryAmt)
 {
-	/*
-	.loc_0x0:
-	  lhz       r6, 0x0(r3)
-	  cmplwi    r6, 0xFFFF
-	  beq-      .loc_0x18
-	  rlwinm    r0,r4,0,16,31
-	  cmplw     r6, r0
-	  bne-      .loc_0x40
+	if (m_state == PelletCarry_Unk0 || m_state == state) {
+		m_state         = state;
+		m_position.x    = newPos.x;
+		m_position.y    = newPos.y;
+		m_position.z    = newPos.z;
+		m_carryStrength = carryAmt;
 
-	.loc_0x18:
-	  sth       r4, 0x0(r3)
-	  lfs       f0, 0x0(r5)
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0x4(r5)
-	  stfs      f0, 0xC(r3)
-	  lfs       f0, 0x8(r5)
-	  stfs      f0, 0x10(r3)
-	  stfs      f1, 0x4(r3)
-	  li        r3, 0x1
-	  blr
+		return true;
+	} else if (carryAmt > m_carryStrength) {
+		m_state         = state;
+		m_position.x    = newPos.x;
+		m_position.y    = newPos.y;
+		m_position.z    = newPos.z;
+		m_carryStrength = carryAmt;
+		m_timer         = 0.5f;
 
-	.loc_0x40:
-	  lfs       f0, 0x4(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x7C
-	  sth       r4, 0x0(r3)
-	  lfs       f0, -0x3FAC(r2)
-	  lfs       f2, 0x0(r5)
-	  stfs      f2, 0x8(r3)
-	  lfs       f2, 0x4(r5)
-	  stfs      f2, 0xC(r3)
-	  lfs       f2, 0x8(r5)
-	  stfs      f2, 0x10(r3)
-	  stfs      f1, 0x4(r3)
-	  stfs      f0, 0x14(r3)
-	  li        r3, 0x1
-	  blr
+		return true;
+	}
 
-	.loc_0x7C:
-	  li        r3, 0
-	  blr
-	*/
+	return false;
 }
 
 /*
@@ -114,28 +58,13 @@ void pull__Q24Game11PelletCarryFUsR10Vector3<float> f(void)
  * Address:	80234FD4
  * Size:	000034
  */
-void Game::PelletCarry::pullable((unsigned short, float))
+bool PelletCarry::pullable(u16 state, f32 carryAmt)
 {
-	/*
-	.loc_0x0:
-	  lhz       r5, 0x0(r3)
-	  cmplwi    r5, 0xFFFF
-	  beq-      .loc_0x18
-	  rlwinm    r0,r4,0,16,31
-	  cmplw     r5, r0
-	  bne-      .loc_0x20
+	if (m_state == PelletCarry_Unk0 || m_state == state) {
+		return true;
+	}
 
-	.loc_0x18:
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x20:
-	  lfs       f0, 0x4(r3)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,2,31,31
-	  blr
-	*/
+	return carryAmt > m_carryStrength;
 }
 
 /*
@@ -143,24 +72,17 @@ void Game::PelletCarry::pullable((unsigned short, float))
  * Address:	80235008
  * Size:	000034
  */
-void Game::PelletCarry::giveup((unsigned short))
+void PelletCarry::giveup(u16 state)
 {
-	/*
-	.loc_0x0:
-	  lhz       r5, 0x0(r3)
-	  rlwinm    r0,r4,0,16,31
-	  cmplw     r5, r0
-	  bnelr-
-	  lis       r4, 0x1
-	  lfs       f0, -0x3FB0(r2)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x0(r3)
-	  stfs      f0, 0x8(r3)
-	  stfs      f0, 0xC(r3)
-	  stfs      f0, 0x10(r3)
-	  stfs      f0, 0x4(r3)
-	  blr
-	*/
+	if (m_state != state) {
+		return;
+	}
+
+	m_state         = PelletCarry_Unk0;
+	m_position.x    = 0.0f;
+	m_position.y    = 0.0f;
+	m_position.z    = 0.0f;
+	m_carryStrength = 0.0f;
 }
 
 /*
@@ -168,40 +90,23 @@ void Game::PelletCarry::giveup((unsigned short))
  * Address:	8023503C
  * Size:	000064
  */
-void frameWork__Q24Game11PelletCarryFR10Vector3<float>(void)
+bool PelletCarry::frameWork(Vector3f& newPos)
 {
-	/*
-	.loc_0x0:
-	  lhz       r0, 0x0(r3)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x5C
-	  lfs       f2, 0x14(r3)
-	  lfs       f1, -0x3FB0(r2)
-	  fcmpo     cr0, f2, f1
-	  ble-      .loc_0x3C
-	  lwz       r5, -0x6514(r13)
-	  lfs       f0, 0x54(r5)
-	  fsubs     f0, f2, f0
-	  stfs      f0, 0x14(r3)
-	  stfs      f1, 0x0(r4)
-	  stfs      f1, 0x4(r4)
-	  stfs      f1, 0x8(r4)
-	  b         .loc_0x54
+	if (m_state != PelletCarry_Unk0) {
+		if (m_timer > 0.0f) {
+			m_timer -= sys->m_secondsPerFrame;
+			newPos.x = 0.0f;
+			newPos.y = 0.0f;
+			newPos.z = 0.0f;
+		} else {
+			newPos.x = m_position.x;
+			newPos.y = m_position.y;
+			newPos.z = m_position.z;
+		}
 
-	.loc_0x3C:
-	  lfs       f0, 0x8(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0xC(r3)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x10(r3)
-	  stfs      f0, 0x8(r4)
+		return true;
+	}
 
-	.loc_0x54:
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x5C:
-	  li        r3, 0
-	  blr
-	*/
+	return false;
 }
+} // namespace Game
