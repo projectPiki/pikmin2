@@ -1,9 +1,5 @@
 #include "ebi/title/TTitleCameraMgr.h"
 
-extern float lbl_8051F890; // 0.0
-extern float lbl_8051F894; // -1.0
-extern float lbl_8051F898; // 1.0
-
 namespace ebi {
 namespace title {
 	/*
@@ -11,20 +7,20 @@ namespace title {
 	 * Address:	803C1EBC
 	 * Size:	000074
 	 */
-	// TODO: match
-	// void TTitleCameraMgr::update()
-	// {
-	// 	float178 += float1BC;
-	// 	float18C = lbl_8051F890;
-	// 	float190 = lbl_8051F890;
-	// 	float194 = lbl_8051F894;
-	// 	float180 = float174;
-	// 	float184 = float178;
-	// 	float188 = float17C;
-	// 	float184 -= lbl_8051F898;
-	// 	float28 = float1E4;
-	// 	Camera::update();
-	// }
+
+	void TTitleCameraMgr::update()
+	{
+		float178 += float1BC;
+		float18C = 0.0f;
+		float190 = 0.0f;
+		float194 = -1.0f;
+		float180 = float174;
+		float184 = float178;
+		float188 = float17C;
+		float184 -= 1.0f;
+		float28 = float1E4;
+		Camera::update();
+	}
 
 } // namespace title
 } // namespace ebi
