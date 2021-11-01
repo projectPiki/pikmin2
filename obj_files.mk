@@ -296,7 +296,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/misc_io.o\
 	$(BUILD_DIR)/asm/Dolphin/printf.o\
 	$(BUILD_DIR)/src/Dolphin/rand.o\
-	$(BUILD_DIR)/asm/Dolphin/float.o\
+	$(BUILD_DIR)/src/Dolphin/float.o\
 	$(BUILD_DIR)/asm/Dolphin/scanf.o\
 	$(BUILD_DIR)/src/Dolphin/string.o\
 	$(BUILD_DIR)/asm/Dolphin/strtold.o\
