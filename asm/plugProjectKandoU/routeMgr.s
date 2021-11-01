@@ -192,60 +192,6 @@ lbl_80518A24:
 	.4byte 0x43960000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb
-__ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb:
-/* 80172520 0016F460  90 83 00 04 */	stw r4, 4(r3)
-/* 80172524 0016F464  38 00 00 00 */	li r0, 0
-/* 80172528 0016F468  98 A3 00 08 */	stb r5, 8(r3)
-/* 8017252C 0016F46C  90 03 00 00 */	stw r0, 0(r3)
-/* 80172530 0016F470  4E 80 00 20 */	blr 
-
-.global first__Q24Game16WayPointIteratorFv
-first__Q24Game16WayPointIteratorFv:
-/* 80172534 0016F474  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80172538 0016F478  7C 08 02 A6 */	mflr r0
-/* 8017253C 0016F47C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80172540 0016F480  38 00 00 00 */	li r0, 0
-/* 80172544 0016F484  90 03 00 00 */	stw r0, 0(r3)
-/* 80172548 0016F488  48 00 00 B1 */	bl forward__Q24Game16WayPointIteratorFv
-/* 8017254C 0016F48C  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80172550 0016F490  7C 08 03 A6 */	mtlr r0
-/* 80172554 0016F494  38 21 00 10 */	addi r1, r1, 0x10
-/* 80172558 0016F498  4E 80 00 20 */	blr 
-
-.global next__Q24Game16WayPointIteratorFv
-next__Q24Game16WayPointIteratorFv:
-/* 8017255C 0016F49C  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80172560 0016F4A0  7C 08 02 A6 */	mflr r0
-/* 80172564 0016F4A4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80172568 0016F4A8  80 83 00 00 */	lwz r4, 0(r3)
-/* 8017256C 0016F4AC  38 04 00 01 */	addi r0, r4, 1
-/* 80172570 0016F4B0  90 03 00 00 */	stw r0, 0(r3)
-/* 80172574 0016F4B4  48 00 00 85 */	bl forward__Q24Game16WayPointIteratorFv
-/* 80172578 0016F4B8  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8017257C 0016F4BC  7C 08 03 A6 */	mtlr r0
-/* 80172580 0016F4C0  38 21 00 10 */	addi r1, r1, 0x10
-/* 80172584 0016F4C4  4E 80 00 20 */	blr 
-
-.global isDone__Q24Game16WayPointIteratorFv
-isDone__Q24Game16WayPointIteratorFv:
-/* 80172588 0016F4C8  88 03 00 08 */	lbz r0, 8(r3)
-/* 8017258C 0016F4CC  28 00 00 00 */	cmplwi r0, 0
-/* 80172590 0016F4D0  41 82 00 18 */	beq lbl_801725A8
-/* 80172594 0016F4D4  80 03 00 00 */	lwz r0, 0(r3)
-/* 80172598 0016F4D8  2C 00 00 10 */	cmpwi r0, 0x10
-/* 8017259C 0016F4DC  41 80 00 20 */	blt lbl_801725BC
-/* 801725A0 0016F4E0  38 60 00 01 */	li r3, 1
-/* 801725A4 0016F4E4  4E 80 00 20 */	blr 
-lbl_801725A8:
-/* 801725A8 0016F4E8  80 03 00 00 */	lwz r0, 0(r3)
-/* 801725AC 0016F4EC  2C 00 00 08 */	cmpwi r0, 8
-/* 801725B0 0016F4F0  41 80 00 0C */	blt lbl_801725BC
-/* 801725B4 0016F4F4  38 60 00 01 */	li r3, 1
-/* 801725B8 0016F4F8  4E 80 00 20 */	blr 
-lbl_801725BC:
-/* 801725BC 0016F4FC  38 60 00 00 */	li r3, 0
-/* 801725C0 0016F500  4E 80 00 20 */	blr 
 
 .global __ml__Q24Game16WayPointIteratorFv
 __ml__Q24Game16WayPointIteratorFv:

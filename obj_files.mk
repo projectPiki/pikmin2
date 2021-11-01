@@ -498,6 +498,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseHIOSection.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/naviWhistle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/routeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/routeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/onyonMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/objectTypes.o\
