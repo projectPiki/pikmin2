@@ -16,7 +16,7 @@ struct UpdateContext {
 };
 
 struct UpdateMgr {
-	static bool updatable(UpdateContext*);
+	bool updatable(UpdateContext*);
 };
 } // namespace Game
 
@@ -35,61 +35,27 @@ UpdateContext::UpdateContext()
     , _09(0)
 {
 }
-
+} // namespace Game
+#ifdef NONMATCHING
 /*
  * --INFO--
  * Address:	80196688
  * Size:	00005C
  */
-// bool UpdateContext::updatable()
-// {
-// 	if (_09 != 0) {
-// 		return true;
-// 	}
+bool UpdateContext::updatable()
+{
+	if (_09 != 0) {
+		return true;
+	}
 
-// 	if (_00 == 0) {
-// 		return false;
-// 	}
+	if (_00 == 0) {
+		return false;
+	}
 
-// 	return (u32)UpdateMgr::updatable(this);
-// }
+	return (bool)UpdateMgr().updatable(this);
+}
 } // namespace Game
-
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  mr        r4, r3
-// 	  stw       r0, 0x14(r1)
-// 	  lbz       r0, 0x9(r3)
-// 	  cmplwi    r0, 0
-// 	  beq-      .loc_0x24
-// 	  li        r3, 0x1
-// 	  b         .loc_0x4C
-
-// 	.loc_0x24:
-// 	  lwz       r3, 0x0(r4)
-// 	  cmplwi    r3, 0
-// 	  bne-      .loc_0x38
-// 	  li        r3, 0
-// 	  b         .loc_0x4C
-
-// 	.loc_0x38:
-// 	  bl        0xF8
-// 	  rlwinm    r3,r3,0,24,31
-// 	  neg       r0, r3
-// 	  or        r0, r0, r3
-// 	  rlwinm    r3,r0,1,31,31
-
-// 	.loc_0x4C:
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
-
+#endif
 // /*
 //  * --INFO--
 //  * Address:	801966E4

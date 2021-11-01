@@ -76,6 +76,7 @@ When compiling the project, this patch is automatically applied, if it fails to 
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectOgawaU/ogAngleMgr.cpp">plugProjectOgawaU/ogAngleMgr.cpp</a>
 - plugProjectKandoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gameSoundEvent.cpp">plugProjectKandoU/gameSoundEvent.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/objectTypes.cpp">plugProjectKandoU/objectTypes.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/pelletCarry.cpp">plugProjectKandoU/pelletCarry.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/pelletConfig.cpp">plugProjectKandoU/pelletConfig.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/vsCoinOtakaraName.cpp">plugProjectKandoU/vsCoinOtakaraName.cpp</a>
@@ -105,7 +106,6 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectKandoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp">plugProjectKandoU/gamePlatMgr.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/interactBattle.cpp">plugProjectKandoU/interactBattle.cpp</a>
-	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/objectTypes.cpp">plugProjectKandoU/objectTypes.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/routeMgr.cpp">plugProjectKandoU/routeMgr.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/updateMgr.cpp">plugProjectKandoU/updateMgr.cpp</a>
 - plugProjectHikinoU
