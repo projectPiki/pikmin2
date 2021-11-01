@@ -18,7 +18,7 @@ struct PelletCarry {
 	bool pull(u16, Vector3f&, f32);
 	bool pullable(u16, f32);
 	void giveup(u16);
-	bool frameWork(Vector3f&);
+	bool frameWork(Vector3f&); // work done in a frame (pellet displacement)
 
 	u16 m_state;         // _00
 	f32 m_carryStrength; // _04, the amount of pikmin pulling force (amt of

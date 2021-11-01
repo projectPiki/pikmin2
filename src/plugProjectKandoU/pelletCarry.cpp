@@ -91,6 +91,7 @@ void PelletCarry::giveup(u16 state)
  * Size:	000064
  */
 bool PelletCarry::frameWork(Vector3f& newPos)
+// work done in a frame (pellet displacement)
 {
 	if (m_state != PelletCarry_Idle) {
 		if (m_timer > 0.0f) {
