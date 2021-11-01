@@ -1,20 +1,29 @@
+#ifndef _CARRYINFO_H
+#define _CARRYINFO_H
 
+#include "types.h"
+
+struct CarryInfo {
+	float _00;   // _00
+	float _04;   // _04
+	float _08;   // _08
+	bool hidden; // _0C
+	uchar alpha; // _0D
+	uchar _0E;   // _0E
+	uchar _0F;   // _0F
+
+	void disappear();
+};
+
+#endif
 
 /*
  * --INFO--
  * Address:	8011AFD0
  * Size:	00000C
  */
-void CarryInfo::disappear()
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0xC(r3)
-	  blr
-	*/
-}
-
+void CarryInfo::disappear() { hidden = true; }
+#ifdef UNFINISHED
 /*
  * --INFO--
  * Address:	8011AFDC
@@ -2536,3 +2545,4 @@ void PokoInfoOwner::@4 @__dt()
 	  b         -0xF74
 	*/
 }
+#endif

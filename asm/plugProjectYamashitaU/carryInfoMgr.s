@@ -4,36 +4,16 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x8
-.global lbl_8047B268
 lbl_8047B268:
-	.4byte 0x63617272
-	.4byte 0x79496E66
-	.4byte 0x6F4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8047B27C
+	.asciz "carryInfoMgr.cpp"
+	.skip 3
 lbl_8047B27C:
-	.4byte 0x496C6C65
-	.4byte 0x67616C20
-	.4byte 0x75736554
-	.4byte 0x79706520
-	.4byte 0x25640A00
-.global lbl_8047B290
+	.asciz "Illegal useType %d\n"
 lbl_8047B290:
-	.4byte 0x2F757365
-	.4byte 0x722F5961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x6172632F
-	.4byte 0x67616D65
-	.4byte 0x5465782E
-	.4byte 0x737A7300
-.global lbl_8047B2B0
+	.asciz "/user/Yamashita/arc/gameTex.szs"
 lbl_8047B2B0:
-	.4byte 0x6974656D
-	.4byte 0x5F305F39
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "item_0_9.bti"
+	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -136,113 +116,76 @@ carryInfoMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
-.global lbl_80517B60
 lbl_80517B60:
-	.4byte 0x00000000
-.global lbl_80517B64
+	.float 0.0
 lbl_80517B64:
 	.float 0.04
-.global lbl_80517B68
 lbl_80517B68:
-	.4byte 0x3F6147AE
-.global lbl_80517B6C
+	.float 0.88
 lbl_80517B6C:
 	.float 1.0
-.global lbl_80517B70
 lbl_80517B70:
-	.4byte 0x437F0000
-.global lbl_80517B74
+	.float 255.0
 lbl_80517B74:
 	.float 0.5
-.global lbl_80517B78
 lbl_80517B78:
-	.4byte 0x3F666666
-.global lbl_80517B7C
+	.float 0.9
 lbl_80517B7C:
-	.4byte 0x3F400000
-.global lbl_80517B80
+	.float 0.75
 lbl_80517B80:
-	.4byte 0x3F8CCCCD
-.global lbl_80517B84
+	.float 1.1
 lbl_80517B84:
-	.4byte 0x40F66667
-.global lbl_80517B88
+	.float 7.7000003
 lbl_80517B88:
-	.4byte 0xC1226667
-.global lbl_80517B8C
+	.float -10.150001
 lbl_80517B8C:
-	.4byte 0x41226667
-.global lbl_80517B90
+	.float 10.150001
 lbl_80517B90:
-	.4byte 0xC0F66667
-.global lbl_80517B94
+	.float -7.7000003
 lbl_80517B94:
-	.4byte 0x40C90FDB
-.global lbl_80517B98
+	.float 6.2831855
 lbl_80517B98:
-	.4byte 0x3D000000
-.global lbl_80517B9C
+	.float 0.03125
 lbl_80517B9C:
-	.4byte 0xC3A2F983
-.global lbl_80517BA0
+	.float -325.9493
 lbl_80517BA0:
-	.4byte 0x43A2F983
-.global lbl_80517BA4
+	.float 325.9493
 lbl_80517BA4:
-	.4byte 0x431B0000
-.global lbl_80517BA8
+	.float 155.0
 lbl_80517BA8:
-	.4byte 0x426C0000
-.global lbl_80517BAC
+	.float 59.0
 lbl_80517BAC:
-	.4byte 0x40E00000
-.global lbl_80517BB0
+	.float 7.0
 lbl_80517BB0:
-	.4byte 0x40400000
-	.4byte 0x00000000
-.global lbl_80517BB8
+	.float 3.0
+	.skip 4
 lbl_80517BB8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80517BC0
 lbl_80517BC0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80517BC8
 lbl_80517BC8:
-	.4byte 0x40B33333
-.global lbl_80517BCC
+	.float 5.6
 lbl_80517BCC:
-	.4byte 0x40000000
-.global lbl_80517BD0
+	.float 2.0
 lbl_80517BD0:
-	.4byte 0x41499999
-.global lbl_80517BD4
+	.float 12.599999
 lbl_80517BD4:
-	.4byte 0x40C00000
-.global lbl_80517BD8
+	.float 6.0
 lbl_80517BD8:
-	.4byte 0x3DAAAAAB
-.global lbl_80517BDC
+	.float 0.083333336
 lbl_80517BDC:
-	.4byte 0x41C80000
-.global lbl_80517BE0
+	.float 25.0
 lbl_80517BE0:
-	.4byte 0x3FC00000
-.global lbl_80517BE4
+	.float 1.5
 lbl_80517BE4:
-	.4byte 0x00000000
-.global lbl_80517BE8
+	.asciz ""
+	.skip 3
 lbl_80517BE8:
-	.4byte 0x42480000
-	.4byte 0x00000000
+	.float 50.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global disappear__9CarryInfoFv
-disappear__9CarryInfoFv:
-/* 8011AFD0 00117F10  38 00 00 01 */	li r0, 1
-/* 8011AFD4 00117F14  98 03 00 0C */	stb r0, 0xc(r3)
-/* 8011AFD8 00117F18  4E 80 00 20 */	blr 
 
 .global update__9CarryInfoFRC14CarryInfoParam
 update__9CarryInfoFRC14CarryInfoParam:

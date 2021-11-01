@@ -114,5 +114,6 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectMorimuraU
 - plugProjectNishimuraU
 - plugProjectYamashitaU
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">plugProjectYamashitaU/carryInfoMgr.cpp</a>
 - JSystem
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAL/JALCalc.cpp">JSystem/JAL/JALCalc.cpp</a>
