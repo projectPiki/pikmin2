@@ -5,27 +5,25 @@
 
 namespace Game {
 
-// Epoch's Structs
-// size 0x34, alignment 0x1
 struct EnemyInfo {
-	char* name;
-	char ID;
-	char parentID;
-	char members;
-	ushort flags;
-	char* model_name;
-	char* anim_name;
-	char* animmgr_name;
-	char* texture_name;
-	char* param_name;
-	char* collision_name;
-	char* stone_name;
-	int childID;
-	int childNum;
-	char bitter_drops;
+	char* m_name;        // _00
+	char m_id;           // _04
+	char m_parentID;     // _05
+	char m_members;      // _06
+	u16 m_flags;         // _07
+	char* m_modelName;   // _0C
+	char* m_animName;    // _10
+	char* m_animMgrName; // _14
+	char* m_textureName; // _18
+	char* m_paramName;   // _1C
+	char* m_collName;    // _20
+	char* m_stoneName;   // _24
+	s32 m_childID;       // _28
+	s32 m_childNum;      // _2C
+	char m_bitterDrops;  // _30
 };
 
-typedef enum EEnemyTypeID {
+enum EEnemyTypeID {
 	Armor          = 15,
 	Baby           = 31,
 	BigFoot        = 69,
@@ -128,8 +126,7 @@ typedef enum EEnemyTypeID {
 	YellowKochappy = 45,
 	YellowPom      = 5,
 	Zenmai         = 90,
-	// DO_NOT_USE     = 0x7FFFFFFF
-} EEnemyTypeID;
+};
 
 // clang-format off
 struct EnemyInfo gEnemyInfo[100] = {
@@ -237,15 +234,14 @@ struct EnemyInfo gEnemyInfo[100] = {
 };
 // clang-format on
 
-extern int gEnemyInfoNum = sizeof gEnemyInfo / sizeof gEnemyInfo[0];
+s32 gEnemyInfoNum = sizeof(gEnemyInfo) / sizeof(gEnemyInfo[0]);
 
 namespace EnemyInfoFunc {
-	EnemyInfo* getEnemyInfo(int, int);
-	char* getEnemyName(int, int);
-	char* getEnemyResName(int, int);
-	char getEnemyMember(int, int);
-	int getEnemyID(char*, int);
-
+	EnemyInfo* getEnemyInfo(s32, s32);
+	char* getEnemyName(s32, s32);
+	char* getEnemyResName(s32, s32);
+	char getEnemyMember(s32, s32);
+	s32 getEnemyID(char*, s32);
 } // namespace EnemyInfoFunc
 } // namespace Game
 #endif
