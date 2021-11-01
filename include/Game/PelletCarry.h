@@ -6,7 +6,7 @@
 
 namespace Game {
 enum PelletCarryState {
-	PelletCarry_Unk0 = 0xFFFF,
+	PelletCarry_Idle = 0xFFFF,
 	PelletCarry_Unk1 = 1,
 	PelletCarry_Unk2 = 2
 };
