@@ -1,21 +1,51 @@
+#ifndef _MORIMURA_TESTBASE_H
+#define _MORIMURA_TESTBASE_H
 
+#include "types.h"
+#include "Vector3.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "Dolphin/string.h"
+#include "JSystem/JKR/JKRDisposer.h"
+
+namespace Screen {
+struct ObjBase;
+} // namespace Screen
+
+namespace Morimura {
+struct TTestBase {
+	// virtual functions go here
+
+	// _00 vtbl
+	ObjBase* _04;         // _04
+	ObjBase* _08;         // _08
+	ObjBase* _0C;         // _0C
+	ObjBase* _10;         // _10
+	char* name;           // _14
+	JKRDisposer disposer; // _18
+	int _30;              // _30
+	SceneBase* pOwner;    // _34
+	float _38;            // _38
+	float _3C;            // _3C
+	float _40;            // _40
+	uchar _44;            // _44
+	uchar _45;            // _45
+	char* new_name;       // _46
+
+	TTestBase(char*);
+}; // tentatively size 0x4A
+
+} // namespace Morimura
+
+#endif
+
+namespace Morimura {
 
 /*
  * --INFO--
  * Address:	803491C8
  * Size:	000084
  */
-void Morimura::TTestBase::__ct((char*))
+void TTestBase::TTestBase(char*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +90,7 @@ void Morimura::TTestBase::__ct((char*))
  * Address:	8034924C
  * Size:	000020
  */
-void Morimura::TTestBase::doStart((Screen::StartSceneArg const*))
+void TTestBase::doStart((Screen::StartSceneArg const*))
 {
 	/*
 	.loc_0x0:
@@ -80,7 +110,7 @@ void Morimura::TTestBase::doStart((Screen::StartSceneArg const*))
  * Address:	8034926C
  * Size:	000010
  */
-void Morimura::TTestBase::doEnd((Screen::EndSceneArg const*))
+void TTestBase::doEnd((Screen::EndSceneArg const*))
 {
 	/*
 	.loc_0x0:
@@ -96,7 +126,7 @@ void Morimura::TTestBase::doEnd((Screen::EndSceneArg const*))
  * Address:	8034927C
  * Size:	0000B0
  */
-void Morimura::TTestBase::doUpdateFadein(void)
+void TTestBase::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -158,7 +188,7 @@ void Morimura::TTestBase::doUpdateFadein(void)
  * Address:	8034932C
  * Size:	00000C
  */
-void Morimura::TTestBase::doUpdateFinish(void)
+void TTestBase::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +203,7 @@ void Morimura::TTestBase::doUpdateFinish(void)
  * Address:	80349338
  * Size:	0000B8
  */
-void Morimura::TTestBase::doUpdateFadeout(void)
+void TTestBase::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -245,3 +275,4 @@ void @24 @Morimura::TTestBase::__dt(void)
 	  b         -0x528C
 	*/
 }
+} // namespace Morimura
