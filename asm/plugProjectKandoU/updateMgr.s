@@ -23,14 +23,6 @@ collisionUpdateMgr__4Game:
 	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game13UpdateContextFv
-__ct__Q24Game13UpdateContextFv:
-/* 80196670 001935B0  38 80 00 00 */	li r4, 0
-/* 80196674 001935B4  38 00 FF FF */	li r0, -1
-/* 80196678 001935B8  90 83 00 00 */	stw r4, 0(r3)
-/* 8019667C 001935BC  90 03 00 04 */	stw r0, 4(r3)
-/* 80196680 001935C0  98 83 00 09 */	stb r4, 9(r3)
-/* 80196684 001935C4  4E 80 00 20 */	blr 
 
 .global updatable__Q24Game13UpdateContextFv
 updatable__Q24Game13UpdateContextFv:

@@ -506,6 +506,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiState.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/interactPiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameCPlate.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/updateMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/updateMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiAction.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o\
