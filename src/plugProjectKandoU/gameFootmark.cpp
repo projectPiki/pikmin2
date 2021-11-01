@@ -1,32 +1,45 @@
+#ifndef _GAME_FOOTMARK_H
+#define _GAME_FOOTMARK_H
 
+#include "types.h"
+#include "Vector3.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
+struct Footmark {
+	Vector3f position; // _00
+	u32 flag;          // _0C
+
+	Footmark();
+};
+struct Footmarks {
+	Footmark* footmarkArray; // _00
+	u32 _04;                 // _04
+	u32 _08;                 // _08
+	int footmarkCount;       // _0C
+	u32 _10;                 // _10
+	u32 _14;                 // _14
+	u32 _18;                 // _18
+	u32 _1C;                 // _1C
+
+	Footmarks();
+};
+
+} // namespace Game
+
+#endif
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801B4794
  * Size:	00001C
  */
-void Game::Footmark::__ct(void)
+Footmark::Footmark(void)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x4F48(r2)
-	  li        r0, 0
-	  stfs      f0, 0x0(r3)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  blr
-	*/
+	position.x = 0.0f;
+	position.y = 0.0f;
+	position.z = 0.0f;
+	flag       = 0;
 }
 
 /*
@@ -34,19 +47,16 @@ void Game::Footmark::__ct(void)
  * Address:	801B47B0
  * Size:	00001C
  */
-void Game::Footmarks::__ct(void)
+Footmarks::Footmarks(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x10(r3)
-	  blr
-	*/
+	footmarkArray = nullptr;
+	footmarkCount = 0;
+	_08           = 0;
+	_04           = 0;
+	_10           = 0;
 }
+} // namespace Game
+#ifdef UNFINISHED
 
 /*
  * --INFO--
@@ -310,3 +320,4 @@ void Game::Footmarks::draw((Graphics&))
 {
 	// UNUSED FUNCTION
 }
+#endif
