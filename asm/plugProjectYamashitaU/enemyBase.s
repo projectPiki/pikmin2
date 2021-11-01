@@ -4,112 +4,57 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x8
-.global lbl_8047A520
 lbl_8047A520:
 	.skip 0xC
 	.asciz "enemyBase"
 	.skip 2
-.global lbl_8047A538
 lbl_8047A538:
 	.asciz "e-upd-do"
 	.skip 3
-.global lbl_8047A544
 lbl_8047A544:
 	.asciz "enemyBase.cpp"
 	.skip 2
-.global lbl_8047A554
 lbl_8047A554:
 	.asciz "P2Assert"
 	.skip 3
-	.4byte 0x42697274
-	.4byte 0x68547970
-	.4byte 0x6544726F
-	.4byte 0x70000000
-	.4byte 0x42697274
-	.4byte 0x68547970
-	.4byte 0x6544726F
-	.4byte 0x7050696B
-	.4byte 0x6D696E00
-	.4byte 0x42697274
-	.4byte 0x68547970
-	.4byte 0x6544726F
-	.4byte 0x704F6C69
-	.4byte 0x6D617200
-	.4byte 0x42697274
-	.4byte 0x68547970
-	.4byte 0x6544726F
-	.4byte 0x70547265
-	.4byte 0x61737572
-	.4byte 0x65000000
-	.4byte 0x42697274
-	.4byte 0x68547970
-	.4byte 0x6544726F
-	.4byte 0x70456172
-	.4byte 0x74687175
-	.4byte 0x616B6500
-	.4byte 0x45617274
-	.4byte 0x68717561
-	.4byte 0x6B650000
-.global lbl_8047A5D4
+	.asciz "BirthTypeDrop"
+	.skip 2
+	.asciz "BirthTypeDropPikmin"
+	.asciz "BirthTypeDropOlimar"
+	.asciz "BirthTypeDropTreasure"
+	.skip 2
+	.asciz "BirthTypeDropEarthquake"
+	.asciz "Earthquake"
+	.skip 1
 lbl_8047A5D4:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x62697274
-	.4byte 0x68207479
-	.4byte 0x70653A25
-	.4byte 0x64000000
-.global lbl_8047A5EC
+	.asciz "Unknown birth type:%d"
+	.skip 2
 lbl_8047A5EC:
-	.4byte 0x456E656D
-	.4byte 0x794B696C
-	.4byte 0x6C417267
-	.4byte 0x00000000
-.global lbl_8047A5FC
+	.asciz "EnemyKillArg"
+	.skip 3
 lbl_8047A5FC:
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-.global lbl_8047A60C
+	.asciz "CreatureKillArg"
 lbl_8047A60C:
-	.4byte 0x61626F6C
-	.4byte 0x69736865
-	.4byte 0x64207479
-	.4byte 0x70650A00
-.global lbl_8047A61C
+	.asciz "abolished type\n"
 lbl_8047A61C:
-	.4byte 0x50656C6C
-	.4byte 0x6574496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-.global lbl_8047A62C
+	.asciz "PelletInitArg"
+	.skip 2
 lbl_8047A62C:
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
-.global lbl_8047A638
+	.asciz "ArgScale"
+	.skip 3
 lbl_8047A638:
-	.4byte 0x4974656D
-	.4byte 0x486F6E65
-	.4byte 0x793A3A49
-	.4byte 0x6E697441
-	.4byte 0x72670000
-.global lbl_8047A64C
+	.asciz "ItemHoney::InitArg"
+	.skip 1
 lbl_8047A64C:
-	.4byte 0x41726745
-	.4byte 0x6E656D79
-	.4byte 0x54797065
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "ArgEnemyType"
+	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
-.global lbl_804AA150
 lbl_804AA150:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_804AA15C
 lbl_804AA15C:
 	.4byte lbl_80105D00
 	.4byte lbl_80105CE4
@@ -132,7 +77,6 @@ lbl_804AA15C:
 	.4byte lbl_80105D00
 	.4byte lbl_80105D00
 	.4byte lbl_80105CFC
-.global lbl_804AA1B0
 lbl_804AA1B0:
 	.4byte lbl_80106E04
 	.4byte lbl_80106E50
@@ -747,128 +691,90 @@ gParmArc__4Game:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
-.global lbl_80517798
 lbl_80517798:
-	.4byte 0x43960000
-.global lbl_8051779C
+	.float 300.0
 lbl_8051779C:
-	.4byte 0x47000000
-.global lbl_805177A0
+	.float 32768.0
 lbl_805177A0:
-	.4byte 0x40C90FDB
-.global lbl_805177A4
+	.float 6.2831855
 lbl_805177A4:
-	.4byte 0x42480000
-.global lbl_805177A8
+	.float 50.0
 lbl_805177A8:
-	.4byte 0xC3A2F983
-.global lbl_805177AC
+	.float -325.9493
 lbl_805177AC:
-	.4byte 0x43A2F983
-.global lbl_805177B0
+	.float 325.9493
 lbl_805177B0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_805177B8
+	.float 0.0
+	.skip 4
 lbl_805177B8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805177C0
 lbl_805177C0:
-	.4byte 0x40000000
-.global lbl_805177C4
-lbl_805177C4:
+	.float 2.0
+PELLETVIEW_BASE_SCALE:
 	.float 1.0
-.global lbl_805177C8
 lbl_805177C8:
-	.4byte 0x3E4CCCCD
-.global lbl_805177CC
+	.float 0.2
 lbl_805177CC:
-	.4byte 0x40490FDB
-.global lbl_805177D0
+	.float 3.1415927
 lbl_805177D0:
-	.4byte 0x40800000
-.global lbl_805177D4
+	.float 4.0
 lbl_805177D4:
 	.float 0.25
-.global lbl_805177D8
 lbl_805177D8:
-	.4byte 0x3C8EFA36
-	.4byte 0x00000000
-.global lbl_805177E0
+	.float 0.017453294
+	.skip 4
 lbl_805177E0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805177E8
 lbl_805177E8:
-	.4byte 0x41707065
-	.4byte 0x61720000
-.global lbl_805177F0
+	.asciz "Appear"
+	.skip 1
 lbl_805177F0:
-	.4byte 0x4C697669
-	.4byte 0x6E670000
-.global lbl_805177F8
+	.asciz "Living"
+	.skip 1
 lbl_805177F8:
-	.4byte 0x53746F6E
-	.4byte 0x65000000
-.global lbl_80517800
+	.asciz "Stone"
+	.skip 2
 lbl_80517800:
-	.4byte 0x46697400
-.global lbl_80517804
+	.asciz "Fit"
 lbl_80517804:
-	.4byte 0x40200000
-.global lbl_80517808
+	.float 2.5
 lbl_80517808:
-	.4byte 0x3F7D70A4
-.global lbl_8051780C
+	.float 0.99
 lbl_8051780C:
-	.4byte 0x3F666666
-.global lbl_80517810
+	.float 0.9
 lbl_80517810:
-	.4byte 0x3F59999A
-.global lbl_80517814
+	.float 0.85
 lbl_80517814:
 	.float 0.5
-.global lbl_80517818
 lbl_80517818:
-	.4byte 0x41200000
-.global lbl_8051781C
+	.float 10.0
 lbl_8051781C:
-	.4byte 0x437A0000
-.global lbl_80517820
+	.float 250.0
 lbl_80517820:
-	.4byte 0x652D6361
-	.4byte 0x6C630000
-.global lbl_80517828
+	.asciz "e-calc"
+	.skip 1
 lbl_80517828:
-	.4byte 0x40400000
-.global lbl_8051782C
+	.float 3.0
 lbl_8051782C:
-	.4byte 0x3F19999A
-.global lbl_80517830
+	.float 0.6
 lbl_80517830:
-	.4byte 0x3D0EFA36
-.global lbl_80517834
+	.float 0.03490659
 lbl_80517834:
-	.4byte 0x3D32B8C3
-.global lbl_80517838
+	.float 0.043633234
 lbl_80517838:
-	.4byte 0x43480000
-.global lbl_8051783C
+	.float 200.0
 lbl_8051783C:
-	.4byte 0x41000000
-.global lbl_80517840
+	.float 8.0
 lbl_80517840:
-	.4byte 0x43160000
-.global lbl_80517844
+	.float 150.0
 lbl_80517844:
-	.4byte 0x42C80000
-.global lbl_80517848
+	.float 100.0
 lbl_80517848:
-	.4byte 0x3FC00000
-.global lbl_8051784C
+	.float 1.5
 lbl_8051784C:
-	.4byte 0x41726700
+	.asciz "Arg"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
@@ -1677,7 +1583,7 @@ update__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase:
 /* 800FFDF0 000FCD30  7C 08 02 A6 */	mflr r0
 /* 800FFDF4 000FCD34  C0 62 94 60 */	lfs f3, lbl_805177C0@sda21(r2)
 /* 800FFDF8 000FCD38  90 01 00 24 */	stw r0, 0x24(r1)
-/* 800FFDFC 000FCD3C  C0 22 94 64 */	lfs f1, lbl_805177C4@sda21(r2)
+/* 800FFDFC 000FCD3C  C0 22 94 64 */	lfs f1, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 800FFE00 000FCD40  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 800FFE04 000FCD44  7C 9F 23 78 */	mr r31, r4
 /* 800FFE08 000FCD48  80 AD 9A EC */	lwz r5, sys@sda21(r13)
@@ -1757,7 +1663,7 @@ lbl_800FFF08:
 
 .global cleanup__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase
 cleanup__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase:
-/* 800FFF1C 000FCE5C  C0 22 94 64 */	lfs f1, lbl_805177C4@sda21(r2)
+/* 800FFF1C 000FCE5C  C0 22 94 64 */	lfs f1, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 800FFF20 000FCE60  C0 02 94 50 */	lfs f0, lbl_805177B0@sda21(r2)
 /* 800FFF24 000FCE64  D0 24 01 68 */	stfs f1, 0x168(r4)
 /* 800FFF28 000FCE68  D0 24 01 6C */	stfs f1, 0x16c(r4)
@@ -2012,7 +1918,7 @@ lbl_80100258:
 /* 80100288 000FD1C8  40 81 00 2C */	ble lbl_801002B4
 /* 8010028C 000FD1CC  C0 3F 02 04 */	lfs f1, 0x204(r31)
 /* 80100290 000FD1D0  7F E3 FB 78 */	mr r3, r31
-/* 80100294 000FD1D4  C0 42 94 64 */	lfs f2, lbl_805177C4@sda21(r2)
+/* 80100294 000FD1D4  C0 42 94 64 */	lfs f2, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80100298 000FD1D8  48 00 5D 95 */	bl addDamage__Q24Game9EnemyBaseFff
 /* 8010029C 000FD1DC  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
 /* 801002A0 000FD1E0  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
@@ -2246,7 +2152,7 @@ lbl_801005CC:
 /* 801005EC 000FD52C  7C 03 04 2E */	lfsx f0, r3, r0
 lbl_801005F0:
 /* 801005F0 000FD530  EC A1 00 32 */	fmuls f5, f1, f0
-/* 801005F4 000FD534  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 801005F4 000FD534  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 801005F8 000FD538  FC 05 00 40 */	fcmpo cr0, f5, f0
 /* 801005FC 000FD53C  40 81 00 08 */	ble lbl_80100604
 /* 80100600 000FD540  FC A0 00 90 */	fmr f5, f0
@@ -2498,7 +2404,7 @@ bounceProcedure__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBasePQ23Sys8Tri
 /* 80100974 000FD8B4  48 00 31 DD */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 80100978 000FD8B8  C0 22 94 50 */	lfs f1, lbl_805177B0@sda21(r2)
 /* 8010097C 000FD8BC  7F E3 FB 78 */	mr r3, r31
-/* 80100980 000FD8C0  C0 42 94 64 */	lfs f2, lbl_805177C4@sda21(r2)
+/* 80100980 000FD8C0  C0 42 94 64 */	lfs f2, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80100984 000FD8C4  48 00 56 A9 */	bl addDamage__Q24Game9EnemyBaseFff
 /* 80100988 000FD8C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8010098C 000FD8CC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -3328,7 +3234,7 @@ lbl_801013E0:
 /* 8010154C 000FE48C  C0 22 94 50 */	lfs f1, lbl_805177B0@sda21(r2)
 /* 80101550 000FE490  38 C0 00 00 */	li r6, 0
 /* 80101554 000FE494  38 00 00 02 */	li r0, 2
-/* 80101558 000FE498  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80101558 000FE498  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 8010155C 000FE49C  D0 3F 02 A8 */	stfs f1, 0x2a8(r31)
 /* 80101560 000FE4A0  7F E4 FB 78 */	mr r4, r31
 /* 80101564 000FE4A4  38 7F 00 A8 */	addi r3, r31, 0xa8
@@ -4200,10 +4106,10 @@ lbl_8010214C:
 /* 80102150 000FF090  3B 60 00 0A */	li r27, 0xa
 /* 80102154 000FF094  48 00 00 0C */	b lbl_80102160
 lbl_80102158:
-/* 80102158 000FF098  C3 82 94 64 */	lfs f28, lbl_805177C4@sda21(r2)
+/* 80102158 000FF098  C3 82 94 64 */	lfs f28, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 8010215C 000FF09C  3B 60 00 00 */	li r27, 0
 lbl_80102160:
-/* 80102160 000FF0A0  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80102160 000FF0A0  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80102164 000FF0A4  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureInitArg@ha
 /* 80102168 000FF0A8  3C 60 80 4B */	lis r3, __vt__Q34Game9ItemHoney7InitArg@ha
 /* 8010216C 000FF0AC  C0 22 94 B4 */	lfs f1, lbl_80517814@sda21(r2)
@@ -4276,7 +4182,7 @@ lbl_801021D4:
 /* 80102268 000FF1A8  C0 82 94 40 */	lfs f4, lbl_805177A0@sda21(r2)
 /* 8010226C 000FF1AC  C8 41 00 D0 */	lfd f2, 0xd0(r1)
 /* 80102270 000FF1B0  EC C3 00 24 */	fdivs f6, f3, f0
-/* 80102274 000FF1B4  C0 62 94 64 */	lfs f3, lbl_805177C4@sda21(r2)
+/* 80102274 000FF1B4  C0 62 94 64 */	lfs f3, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80102278 000FF1B8  C0 02 94 50 */	lfs f0, lbl_805177B0@sda21(r2)
 /* 8010227C 000FF1BC  EC C4 01 B2 */	fmuls f6, f4, f6
 /* 80102280 000FF1C0  EC 42 28 28 */	fsubs f2, f2, f5
@@ -4884,7 +4790,7 @@ lbl_801029E8:
 /* 80102AFC 000FFA3C  80 6D 92 08 */	lwz r3, lifeGaugeMgr@sda21(r13)
 /* 80102B00 000FFA40  28 03 00 00 */	cmplwi r3, 0
 /* 80102B04 000FFA44  41 82 00 10 */	beq lbl_80102B14
-/* 80102B08 000FFA48  C0 22 94 64 */	lfs f1, lbl_805177C4@sda21(r2)
+/* 80102B08 000FFA48  C0 22 94 64 */	lfs f1, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80102B0C 000FFA4C  7F C4 F3 78 */	mr r4, r30
 /* 80102B10 000FFA50  48 01 7F 85 */	bl activeLifeGauge__12LifeGaugeMgrFPQ24Game8Creaturef
 lbl_80102B14:
@@ -5936,7 +5842,7 @@ updateSpheres__Q24Game9EnemyBaseFv:
 /* 80103950 00100890  F3 E1 00 38 */	psq_st f31, 56(r1), 0, qr0
 /* 80103954 00100894  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80103958 00100898  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
-/* 8010395C 0010089C  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 8010395C 0010089C  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80103960 001008A0  38 05 A7 F8 */	addi r0, r5, __vt__Q23efx5TBase@l
 /* 80103964 001008A4  3C A0 80 4E */	lis r5, __vt__Q23efx8TSimple1@ha
 /* 80103968 001008A8  90 01 00 08 */	stw r0, 8(r1)
@@ -6151,7 +6057,7 @@ lbl_80103BD4:
 /* 80103C84 00100BC4  48 00 00 80 */	b lbl_80103D04
 lbl_80103C88:
 /* 80103C88 00100BC8  3C 60 80 4B */	lis r3, __vt__Q23efx5TBase@ha
-/* 80103C8C 00100BCC  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80103C8C 00100BCC  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80103C90 00100BD0  38 03 A7 F8 */	addi r0, r3, __vt__Q23efx5TBase@l
 /* 80103C94 00100BD4  3C 60 80 4E */	lis r3, __vt__Q23efx8TSimple1@ha
 /* 80103C98 00100BD8  90 01 00 18 */	stw r0, 0x18(r1)
@@ -6402,7 +6308,7 @@ finishDropping__Q24Game9EnemyBaseFb:
 /* 8010402C 00100F6C  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80104030 00100F70  41 82 02 30 */	beq lbl_80104260
 /* 80104034 00100F74  C0 22 94 50 */	lfs f1, lbl_805177B0@sda21(r2)
-/* 80104038 00100F78  C0 42 94 64 */	lfs f2, lbl_805177C4@sda21(r2)
+/* 80104038 00100F78  C0 42 94 64 */	lfs f2, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 8010403C 00100F7C  48 00 1F F1 */	bl addDamage__Q24Game9EnemyBaseFff
 /* 80104040 00100F80  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
 /* 80104044 00100F84  7F E3 FB 78 */	mr r3, r31
@@ -6507,7 +6413,7 @@ lbl_80104114:
 /* 801041C4 00101104  48 00 00 80 */	b lbl_80104244
 lbl_801041C8:
 /* 801041C8 00101108  3C 60 80 4B */	lis r3, __vt__Q23efx5TBase@ha
-/* 801041CC 0010110C  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 801041CC 0010110C  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 801041D0 00101110  38 03 A7 F8 */	addi r0, r3, __vt__Q23efx5TBase@l
 /* 801041D4 00101114  3C 60 80 4E */	lis r3, __vt__Q23efx8TSimple1@ha
 /* 801041D8 00101118  90 01 00 18 */	stw r0, 0x18(r1)
@@ -6786,7 +6692,7 @@ lbl_801045B8:
 /* 801045B8 001014F8  C0 02 94 50 */	lfs f0, lbl_805177B0@sda21(r2)
 /* 801045BC 001014FC  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 801045C0 00101500  40 81 00 34 */	ble lbl_801045F4
-/* 801045C4 00101504  C0 22 94 64 */	lfs f1, lbl_805177C4@sda21(r2)
+/* 801045C4 00101504  C0 22 94 64 */	lfs f1, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 801045C8 00101508  C0 1F 01 C8 */	lfs f0, 0x1c8(r31)
 /* 801045CC 0010150C  EC 21 20 24 */	fdivs f1, f1, f4
 /* 801045D0 00101510  EC 00 00 72 */	fmuls f0, f0, f1
@@ -7548,7 +7454,7 @@ lbl_8010503C:
 lbl_80105040:
 /* 80105040 00101F80  80 7F 01 84 */	lwz r3, 0x184(r31)
 /* 80105044 00101F84  38 80 00 00 */	li r4, 0
-/* 80105048 00101F88  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80105048 00101F88  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 8010504C 00101F8C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80105050 00101F90  54 00 00 3A */	rlwinm r0, r0, 0, 0, 0x1d
 /* 80105054 00101F94  90 03 00 0C */	stw r0, 0xc(r3)
@@ -7845,7 +7751,7 @@ lbl_8010542C:
 /* 80105440 00102380  C3 C2 94 A4 */	lfs f30, lbl_80517804@sda21(r2)
 /* 80105444 00102384  48 00 00 08 */	b lbl_8010544C
 lbl_80105448:
-/* 80105448 00102388  C3 C2 94 64 */	lfs f30, lbl_805177C4@sda21(r2)
+/* 80105448 00102388  C3 C2 94 64 */	lfs f30, PELLETVIEW_BASE_SCALE@sda21(r2)
 lbl_8010544C:
 /* 8010544C 0010238C  54 80 04 63 */	rlwinm. r0, r4, 0, 0x11, 0x11
 /* 80105450 00102390  41 82 00 20 */	beq lbl_80105470
@@ -7874,7 +7780,7 @@ lbl_80105484:
 /* 801054A4 001023E4  48 00 00 10 */	b lbl_801054B4
 lbl_801054A8:
 /* 801054A8 001023E8  EC 00 18 24 */	fdivs f0, f0, f3
-/* 801054AC 001023EC  C0 22 94 64 */	lfs f1, lbl_805177C4@sda21(r2)
+/* 801054AC 001023EC  C0 22 94 64 */	lfs f1, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 801054B0 001023F0  EF E1 00 28 */	fsubs f31, f1, f0
 lbl_801054B4:
 /* 801054B4 001023F4  C0 22 94 40 */	lfs f1, lbl_805177A0@sda21(r2)
@@ -7985,7 +7891,7 @@ lbl_80105620:
 /* 8010563C 0010257C  54 00 1C B8 */	rlwinm r0, r0, 3, 0x12, 0x1c
 /* 80105640 00102580  7C 23 04 2E */	lfsx f1, r3, r0
 lbl_80105644:
-/* 80105644 00102584  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80105644 00102584  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80105648 00102588  EC 00 10 28 */	fsubs f0, f0, f2
 /* 8010564C 0010258C  EF E0 00 72 */	fmuls f31, f0, f1
 lbl_80105650:
@@ -8739,7 +8645,7 @@ damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart:
 /* 80106088 00102FC8  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 8010608C 00102FCC  41 82 00 14 */	beq lbl_801060A0
 /* 80106090 00102FD0  C0 23 02 0C */	lfs f1, 0x20c(r3)
-/* 80106094 00102FD4  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80106094 00102FD4  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80106098 00102FD8  EC 01 00 2A */	fadds f0, f1, f0
 /* 8010609C 00102FDC  D0 03 02 0C */	stfs f0, 0x20c(r3)
 lbl_801060A0:
@@ -8783,7 +8689,7 @@ hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart:
 /* 8010610C 0010304C  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80106110 00103050  41 82 00 14 */	beq lbl_80106124
 /* 80106114 00103054  C0 3F 02 0C */	lfs f1, 0x20c(r31)
-/* 80106118 00103058  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80106118 00103058  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 8010611C 0010305C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80106120 00103060  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 lbl_80106124:
@@ -8879,7 +8785,7 @@ lbl_80106268:
 /* 80106278 001031B8  90 01 00 08 */	stw r0, 8(r1)
 /* 8010627C 001031BC  3C 60 80 4F */	lis r3, __vt__Q23efx15TEnemyDownSmoke@ha
 /* 80106280 001031C0  39 05 A7 F8 */	addi r8, r5, __vt__Q23efx5TBase@l
-/* 80106284 001031C4  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80106284 001031C4  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80106288 001031C8  C0 3F 01 8C */	lfs f1, 0x18c(r31)
 /* 8010628C 001031CC  38 E4 6A 78 */	addi r7, r4, __vt__Q23efx8TSimple1@l
 /* 80106290 001031D0  38 03 86 10 */	addi r0, r3, __vt__Q23efx15TEnemyDownSmoke@l
@@ -9131,7 +9037,7 @@ farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef:
 /* 801065E4 00103524  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 801065E8 00103528  41 82 00 14 */	beq lbl_801065FC
 /* 801065EC 0010352C  C0 23 02 0C */	lfs f1, 0x20c(r3)
-/* 801065F0 00103530  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 801065F0 00103530  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 801065F4 00103534  EC 01 00 2A */	fadds f0, f1, f0
 /* 801065F8 00103538  D0 03 02 0C */	stfs f0, 0x20c(r3)
 lbl_801065FC:
@@ -9241,7 +9147,7 @@ startCarcassMotion__Q24Game9EnemyBaseFv:
 lbl_80106734:
 /* 80106734 00103674  80 7F 01 84 */	lwz r3, 0x184(r31)
 /* 80106738 00103678  38 80 00 00 */	li r4, 0
-/* 8010673C 0010367C  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 8010673C 0010367C  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80106740 00103680  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80106744 00103684  54 00 00 3A */	rlwinm r0, r0, 0, 0, 0x1d
 /* 80106748 00103688  90 03 00 0C */	stw r0, 0xc(r3)
@@ -10020,7 +9926,7 @@ lbl_801071E8:
 .global startMotion__Q24Game9EnemyBaseFv
 startMotion__Q24Game9EnemyBaseFv:
 /* 80107204 00104144  80 63 01 84 */	lwz r3, 0x184(r3)
-/* 80107208 00104148  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80107208 00104148  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 8010720C 0010414C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80107210 00104150  54 00 00 3A */	rlwinm r0, r0, 0, 0, 0x1d
 /* 80107214 00104154  90 03 00 0C */	stw r0, 0xc(r3)
@@ -10655,7 +10561,7 @@ doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv:
 /* 801079FC 0010493C  60 00 00 10 */	ori r0, r0, 0x10
 /* 80107A00 00104940  90 1F 01 E4 */	stw r0, 0x1e4(r31)
 /* 80107A04 00104944  48 00 00 6D */	bl setDroppingMassZero__Q24Game9EnemyBaseFv
-/* 80107A08 00104948  C0 02 94 64 */	lfs f0, lbl_805177C4@sda21(r2)
+/* 80107A08 00104948  C0 02 94 64 */	lfs f0, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80107A0C 0010494C  D0 1F 01 68 */	stfs f0, 0x168(r31)
 /* 80107A10 00104950  D0 1F 01 6C */	stfs f0, 0x16c(r31)
 /* 80107A14 00104954  D0 1F 01 70 */	stfs f0, 0x170(r31)
@@ -11083,7 +10989,7 @@ getCarcassArgHeight__Q24Game9EnemyBaseFv:
 
 .global viewGetBaseScale__Q24Game10PelletViewFv
 viewGetBaseScale__Q24Game10PelletViewFv:
-/* 80107EB4 00104DF4  C0 22 94 64 */	lfs f1, lbl_805177C4@sda21(r2)
+/* 80107EB4 00104DF4  C0 22 94 64 */	lfs f1, PELLETVIEW_BASE_SCALE@sda21(r2)
 /* 80107EB8 00104DF8  4E 80 00 20 */	blr 
 
 .global viewGetCollTreeJointIndex__Q24Game10PelletViewFv
