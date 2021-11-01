@@ -2,14 +2,14 @@
 #define _GAME_UPDATEMGR_H
 
 #include "types.h"
-
+typedef struct UpdateMgr;
 namespace Game {
 struct UpdateContext {
 	UpdateContext();
 
 	bool updatable();
 
-	u32 _00;
+	UpdateMgr* _00;
 	s32 _04;
 	u8 _08;
 	u8 _09;
@@ -48,14 +48,14 @@ bool UpdateContext::updatable()
 		return true;
 	}
 
-	if (_00 == 0) {
+	if (_00 == nullptr) {
 		return false;
 	}
 
 	return (bool)UpdateMgr().updatable(this);
 }
 } // namespace Game
-#endif
+
 // /*
 //  * --INFO--
 //  * Address:	801966E4
@@ -412,3 +412,4 @@ bool UpdateContext::updatable()
 // {
 // 	// UNUSED FUNCTION
 // }
+#endif
