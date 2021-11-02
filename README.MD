@@ -113,6 +113,7 @@ When compiling the project, this patch is automatically applied, if it fails to 
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleCamera.cpp">plugProjectEbisawaU/ebiP2TitleCamera.cpp</a>
 - plugProjectMorimuraU
 - plugProjectNishimuraU
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectNishimuraU/RumbleData.cpp">plugProjectNishimuraU/RumbleData.cpp</a>
 - plugProjectYamashitaU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">plugProjectYamashitaU/carryInfoMgr.cpp</a>
 - JSystem

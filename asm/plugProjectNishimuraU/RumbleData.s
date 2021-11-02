@@ -1,17 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game10RumbleDataFv
-__ct__Q24Game10RumbleDataFv:
-/* 802613C0 0025E300  38 00 00 00 */	li r0, 0
-/* 802613C4 0025E304  90 03 00 00 */	stw r0, 0(r3)
-/* 802613C8 0025E308  4E 80 00 20 */	blr 
-
-.global __ct__Q24Game13RumbleDataMgrFv
-__ct__Q24Game13RumbleDataMgrFv:
-/* 802613CC 0025E30C  38 00 00 00 */	li r0, 0
-/* 802613D0 0025E310  90 03 00 00 */	stw r0, 0(r3)
-/* 802613D4 0025E314  4E 80 00 20 */	blr 
 
 .global getRumbleData__Q24Game13RumbleDataMgrFi
 getRumbleData__Q24Game13RumbleDataMgrFi:
