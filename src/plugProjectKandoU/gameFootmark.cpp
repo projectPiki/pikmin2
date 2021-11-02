@@ -12,16 +12,17 @@ struct Footmark {
 	Footmark();
 };
 struct Footmarks {
-	Footmark* footmarkArray; // _00
-	u32 _04;                 // _04
-	u32 _08;                 // _08
-	int footmarkCount;       // _0C
-	u32 _10;                 // _10
-	u32 _14;                 // _14
-	u32 _18;                 // _18
-	u32 _1C;                 // _1C
+	Footmark* m_marks; // _00
+	u32 _04;           // _04
+	u32 _08;           // _08
+	int m_count;       // _0C
+	u32 _10;           // _10
+	u32 _14;           // _14
+	u32 _18;           // _18
+	u32 _1C;           // _1C
 
 	Footmarks();
+	void alloc(int);
 };
 
 } // namespace Game
@@ -49,53 +50,27 @@ Footmark::Footmark(void)
  */
 Footmarks::Footmarks(void)
 {
-	footmarkArray = nullptr;
-	footmarkCount = 0;
-	_08           = 0;
-	_04           = 0;
-	_10           = 0;
+	m_marks = nullptr;
+	m_count = 0;
+	_08     = 0;
+	_04     = 0;
+	_10     = 0;
 }
-} // namespace Game
-#ifdef UNFINISHED
 
 /*
  * --INFO--
  * Address:	801B47CC
  * Size:	00006C
  */
-void Game::Footmarks::alloc((int))
+void Footmarks::alloc(int amt)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  rlwinm    r3,r4,4,0,27
-	  addi      r3, r3, 0x10
-	  bl        -0x190844
-	  lis       r4, 0x801B
-	  mr        r7, r31
-	  addi      r4, r4, 0x4794
-	  li        r5, 0
-	  li        r6, 0x10
-	  bl        -0xF2E18
-	  stw       r3, 0x0(r30)
-	  li        r0, 0
-	  stw       r31, 0xC(r30)
-	  stw       r0, 0x8(r30)
-	  stw       r0, 0x4(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_marks = new Footmark[amt];
+	m_count = amt;
+	_08     = 0;
+	_04     = 0;
 }
+} // namespace Game
+#ifdef UNFINISHED
 
 /*
  * --INFO--
