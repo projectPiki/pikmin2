@@ -22,9 +22,16 @@ typedef enum EPikiHappa {
 	Flower_Red = 4,
 } EPikiHappa;
 
-namespace Game {
-	struct PikiFSM;
-} // namespace Game
+struct StateArg {
+	u16 _00[4];
+};
+
+struct PikiFSM {
+	virtual void init(struct Game::Piki*);                   // _00
+	virtual void start(Game::Piki*, int, Game::StateArg*);   // _04
+	virtual void exec(Game::Piki*);                          // _08
+	virtual void transit(Game::Piki*, int, Game::StateArg*); // _0C
+};
 
 struct Piki {
 	u8 _00[0x28C];
