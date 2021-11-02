@@ -6,11 +6,18 @@
 
 namespace P2DScreen {
 
+struct Node : public CNode {
+	virtual ~Node() { }
+	virtual void update();
+	virtual void draw(struct Graphics&, struct J2DGrafContext&);
+	virtual void doInit();
+};
+
 struct Mgr : public J2DScreen {
 	virtual ~Mgr();
 
-	char _00[0x118]; // _00
-	CNode _118;      // _118
+	char _00[0x114]; // _00
+	Node _118;       // _118
 };
 
 } // namespace P2DScreen
