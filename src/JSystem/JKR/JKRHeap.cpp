@@ -247,26 +247,27 @@ JKRHeap::~JKRHeap()
  * Address:	800234EC
  * Size:	0000A8
  */
-bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize, int numHeaps)
+bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize,
+                        int numHeaps)
 {
-	void* arenaLo = OSGetArenaLo();
-	void* arenaHi = OSGetArenaHi();
+	void* arenaLo    = OSGetArenaLo();
+	void* arenaHi    = OSGetArenaHi();
 	bool sanityCheck = (arenaLo != arenaHi);
 	if (sanityCheck) {
 		OSInitAlloc(arenaLo, arenaHi, numHeaps);
-		u8* userRamEnd = (u8*)((ulong)arenaHi & ~0x1f);
+		u8* userRamEnd   = (u8*)((ulong)arenaHi & ~0x1f);
 		u8* userRamStart = (u8*)(((ulong)arenaLo + 0x1f) & ~0x1f);
 		// TODO: Remove hardcoding of start of memory?
 		mCodeStart = (u8*)0x80000000;
 		// TODO: Remove hardcoding of what I've called OS::PhysicalMemorySize.
-		mMemorySize = *((u32*)0x80000028);
-		mCodeEnd = userRamStart;
+		mMemorySize   = *((u32*)0x80000028);
+		mCodeEnd      = userRamStart;
 		mUserRamStart = userRamStart;
-		mUserRamEnd = userRamEnd;
+		mUserRamEnd   = userRamEnd;
 		OSSetArenaLo(userRamEnd);
 		OSSetArenaHi(userRamEnd);
 		*outUserRamStart = (char*)userRamStart;
-		*outUserRamSize = (ulong)userRamEnd - (ulong)userRamStart;
+		*outUserRamSize  = (ulong)userRamEnd - (ulong)userRamStart;
 	}
 	return sanityCheck;
 	/*
@@ -328,7 +329,7 @@ bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize, int numHe
 JKRHeap* JKRHeap::becomeSystemHeap()
 {
 	JKRHeap* old = sSystemHeap;
-	sSystemHeap = this;
+	sSystemHeap  = this;
 	return old;
 	/*
 	.loc_0x0:
@@ -773,7 +774,9 @@ ulong JKRHeap::getMaxAllocatableSize(int p1)
 {
 	// u8* maxFreeBlock = do_getMaxFreeBlock();
 	// ulong freeSize = do_getFreeSize();
-	return ~(p1 - 1) & do_getFreeSize() - (p1 - 1 & p1 - ((ulong)do_getMaxFreeBlock() & 0xf));
+	return ~(p1 - 1)
+	       & do_getFreeSize()
+	             - (p1 - 1 & p1 - ((ulong)do_getMaxFreeBlock() & 0xf));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1101,7 +1104,7 @@ JKRHeap* JKRHeap::find(void* memory) const
  * Address:	80023BA0
  * Size:	000014
  */
-template<> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
+template <> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
 {
 	JSUPtrLink* next = m_link.m_next;
 	return (next) ? (JKRHeap*)next[-1].m_list : nullptr;
@@ -1120,7 +1123,8 @@ template<> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
  * Address:	80023BB4
  * Size:	000018
  */
-template<> bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
+template <>
+bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
 {
 	/*
 	.loc_0x0:
@@ -1138,17 +1142,14 @@ template<> bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) co
  * Address:	80023BCC
  * Size:	000008
  */
-template<> JKRHeap* JSUTree<JKRHeap>::getEndChild() const
-{
-	return nullptr;
-}
+template <> JKRHeap* JSUTree<JKRHeap>::getEndChild() const { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80023BD4
  * Size:	00001C
  */
-template<> void JSUTreeIterator<JKRHeap>::operator++()
+template <> void JSUTreeIterator<JKRHeap>::operator++()
 {
 	/*
 	.loc_0x0:
@@ -1169,7 +1170,7 @@ template<> void JSUTreeIterator<JKRHeap>::operator++()
  * Address:	80023BF0
  * Size:	00000C
  */
-template<> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
+template <> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
 {
 	return (JKRHeap*)m_tree->m_link.m_value;
 }
@@ -1179,8 +1180,9 @@ template<> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
  * Address:	80023BFC
  * Size:	000008
  */
-template<> JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
-	: m_tree(tree)
+template <>
+JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
+    : m_tree(tree)
 {
 }
 
@@ -1189,7 +1191,7 @@ template<> JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
  * Address:	80023C04
  * Size:	000008
  */
-template<> int JSUTree<JKRHeap>::getNumChildren() const
+template <> int JSUTree<JKRHeap>::getNumChildren() const
 {
 	return m_list.m_linkCount;
 }
@@ -1199,7 +1201,7 @@ template<> int JSUTree<JKRHeap>::getNumChildren() const
  * Address:	80023C0C
  * Size:	000014
  */
-template<> JKRHeap* JSUTree<JKRHeap>::getFirstChild() const
+template <> JKRHeap* JSUTree<JKRHeap>::getFirstChild() const
 {
 	/*
 	.loc_0x0:
@@ -1225,7 +1227,7 @@ JSUPtrLink* JSUPtrList::getFirstLink() const { return m_head; }
  */
 u32 JKRHeap::dispose(void* memory, ulong p2)
 {
-	int returnValue = 0;
+	int returnValue   = 0;
 	JSUPtrLink* link1 = _5C.m_head;
 	JSUPtrLink* link2;
 	JSUPtrLink* link3;
@@ -1512,7 +1514,9 @@ JKRHeapErrorHandler* JKRHeap::setErrorHandler(JKRHeapErrorHandler* newHandler)
  */
 void* operator new(ulong byteCount)
 {
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
+	return (JKRHeap::sCurrentHeap)
+	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4)
+	           : nullptr;
 	// void* memory;
 	// if (JKRHeap::sCurrentHeap) {
 	// 	memory = JKRHeap::sCurrentHeap->do_alloc(byteCount, 4);
@@ -1555,7 +1559,9 @@ void* operator new(ulong byteCount)
  */
 void* operator new(ulong byteCount, int p2)
 {
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
+	return (JKRHeap::sCurrentHeap)
+	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2)
+	           : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1595,7 +1601,9 @@ void* operator new(ulong byteCount, JKRHeap* heap, int p3)
 	if (heap) {
 		return heap->do_alloc(byteCount, p3);
 	} else {
-		return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3) : nullptr;
+		return (JKRHeap::sCurrentHeap)
+		           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3)
+		           : nullptr;
 	}
 	/*
 	.loc_0x0:
@@ -1642,7 +1650,9 @@ void* operator new(ulong byteCount, JKRHeap* heap, int p3)
  */
 void* operator new[](ulong byteCount)
 {
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
+	return (JKRHeap::sCurrentHeap)
+	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4)
+	           : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1678,7 +1688,9 @@ void* operator new[](ulong byteCount)
  */
 void* operator new[](ulong byteCount, int p2)
 {
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
+	return (JKRHeap::sCurrentHeap)
+	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2)
+	           : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1718,7 +1730,9 @@ void* operator new[](ulong byteCount, JKRHeap* heap, int p3)
 	if (heap) {
 		return heap->do_alloc(byteCount, p3);
 	} else {
-		return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3) : nullptr;
+		return (JKRHeap::sCurrentHeap)
+		           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3)
+		           : nullptr;
 	}
 	/*
 	.loc_0x0:
@@ -2175,14 +2189,15 @@ bool JKRHeap::TState::isVerbose() { return bVerbose; }
  * Address:	8002454C
  * Size:	000080
  */
-JKRHeap::TState::TState(const JKRHeap* heap, ulong id, bool isCompareOnDestructed)
-	: _00(0)
-	, _04(0)
-	, m_heap(heap ? heap : sCurrentHeap)
-	, m_id(id)
-	, m_isCompareOnDestructed(isCompareOnDestructed)
-	, _1C(0)
-	, _20(-1)
+JKRHeap::TState::TState(const JKRHeap* heap, ulong id,
+                        bool isCompareOnDestructed)
+    : _00(0)
+    , _04(0)
+    , m_heap(heap ? heap : sCurrentHeap)
+    , m_id(id)
+    , m_isCompareOnDestructed(isCompareOnDestructed)
+    , _1C(0)
+    , _20(-1)
 {
 	m_heap->state_register(this, m_id);
 	/*
@@ -2242,8 +2257,8 @@ bool JKRHeap::TState::isCompareOnDestructed() const
  * Size:	000014
  */
 JKRHeap::TState::TLocation::TLocation()
-	: _00(0)
-	, _04(-1)
+    : _00(0)
+    , _04(-1)
 {
 }
 
@@ -2253,9 +2268,9 @@ JKRHeap::TState::TLocation::TLocation()
  * Size:	000020
  */
 JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, ulong p2, bool p3)
-	: m_heap((heap) ? heap : JKRHeap::sCurrentHeap)
-	, _04(p2)
-	, _08(p3)
+    : m_heap((heap) ? heap : JKRHeap::sCurrentHeap)
+    , _04(p2)
+    , _08(p3)
 {
 	/*
 	.loc_0x0:

@@ -19,7 +19,8 @@ namespace Game {
  */
 // void mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<
 //     CellObject*>()
-void CellPyramid::mapSearch(Sys::Sphere& sphere, IDelegate1<CellObject*>* delegate)
+void CellPyramid::mapSearch(Sys::Sphere& sphere,
+                            IDelegate1<CellObject*>* delegate)
 {
 	/*
 	.loc_0x0:
@@ -1820,7 +1821,7 @@ void Cell::rec_resolveColl()
  * Address:	801577CC
  * Size:	000008
  */
-template<> void Parm<bool>::operator()()
+template <> void Parm<bool>::operator()()
 {
 	/*
 	.loc_0x0:

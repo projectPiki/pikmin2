@@ -14,7 +14,8 @@ template <typename T> struct Container : public CNode {
 	virtual int getEnd();
 	// Gets the object at the given slot index (or null if not occupied).
 	virtual T* get(int);
-	// Gets the object at the given slot index (or null if not occupied) (actually constrained to taking an int argument, instead of void*).
+	// Gets the object at the given slot index (or null if not occupied)
+	// (actually constrained to taking an int argument, instead of void*).
 	virtual T* getAt(void*);
 	// Gets the slot count.
 	virtual int getTo();

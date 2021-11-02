@@ -9,7 +9,7 @@
  * Size:	000068
  */
 JKRDisposer::JKRDisposer()
-	: m_link(this)
+    : m_link(this)
 {
 	p_heap = JKRHeap::findFromRoot(this);
 	if (p_heap) {

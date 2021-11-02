@@ -45,9 +45,9 @@ struct ParmEnum : public BaseParm {
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
-	ulong  m_value; // _18
-	int    _1C;     // _1C
-	char** _20;     // _20
+	ulong m_value; // _18
+	int _1C;       // _1C
+	char** _20;    // _20
 };
 
 #endif

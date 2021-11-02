@@ -78,7 +78,7 @@ struct JKRHeap : public JKRDisposer {
 	virtual bool dump_sort();
 	virtual bool dump();
 	virtual void do_destroy();
-	virtual void* do_alloc(ulong,int);
+	virtual void* do_alloc(ulong, int);
 	virtual void do_free(void*);
 	virtual void do_freeAll();
 	virtual void do_freeTail();

@@ -9,7 +9,7 @@ struct Node {
 	Node* m_prev;    // _04
 	Node* m_next;    // _08
 	Node* m_current; // _0C
-	uint  m_flags;   // _10
+	uint m_flags;    // _10
 };
 
 struct Object {
@@ -23,6 +23,5 @@ struct World {
 	u8 _00[0x24]; // _00
 };
 } // namespace SweepPrune
-
 
 #endif

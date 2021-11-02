@@ -10,7 +10,6 @@
 #include "Rect.h"
 #include "Vector2.h"
 
-
 namespace Game {
 struct CellObject;
 
@@ -18,7 +17,7 @@ struct CollNode {
 	CollNode();
 
 	CellObject* m_cellObject; // _00
-	float       _04;          // _04
+	float _04;                // _04
 };
 
 struct CollisionBuffer {
@@ -108,10 +107,10 @@ struct CellLayer {
 
 	ushort m_sizeX;
 	ushort m_sizeY;
-	short  _04;
-	short  _06;
-	Cell*  m_cells; // _08
-	u8 _0C[0x2C];   // _0C // maybe this is a Cell?
+	short _04;
+	short _06;
+	Cell* m_cells; // _08
+	u8 _0C[0x2C];  // _0C // maybe this is a Cell?
 };
 
 struct CellPyramid : public SweepPrune::World {
@@ -141,7 +140,7 @@ struct CellPyramid : public SweepPrune::World {
 	float _38;
 	float _3C;
 	float _40;
-	uint  _44;
+	uint _44;
 };
 } // namespace Game
 
