@@ -2,11 +2,10 @@
 Pikmin 2 decompilation to C++/C
 
 ```diff
-- WARNING! -
+- INFORMATION! -
 
-The ROM this repository builds cannot be 'shifted', primarily due to some hardcoded pointers which have yet
-to be dumped. Thus this repository is currently in an experimental and research phase and cannot yet be used
-traditionally as a source code base for general changes.
+The ROM this repository builds can be shifted! Meaning you are able to now
+add and remove code as you see fit, for modding or research purposes.
 ```
 
 It builds the following DOL:
