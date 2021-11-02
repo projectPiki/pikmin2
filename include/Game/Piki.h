@@ -22,8 +22,14 @@ typedef enum EPikiHappa {
 	Flower_Red = 4,
 } EPikiHappa;
 
+namespace Game {
+	struct PikiFSM;
+} // namespace Game
+
 struct Piki {
-	u8 filler[0x2C8]; // _00
+	u8 _00[0x28C];
+	Game::PikiFSM* m_fsm; // _28C
+	u8 _290[0x38];        // _290
 };
 } // namespace Game
 

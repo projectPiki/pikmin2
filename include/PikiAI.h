@@ -1,5 +1,5 @@
-#ifndef _GAME_PIKIAI_H
-#define _GAME_PIKIAI_H
+#ifndef _PIKIAI_H
+#define _PIKIAI_H
 
 #include "types.h"
 #include "Vector3.h"
@@ -10,6 +10,7 @@ struct Triangle;
 
 namespace SysShape {
 struct KeyEvent;
+struct MotionListener;
 } // namespace SysShape
 
 namespace Game {
@@ -76,6 +77,15 @@ struct PikiAI {
 		void initApproach();
 		void initBattle();
 		void onKeyEvent(const SysShape::KeyEvent&);
+
+		Game::Piki* m_piki;
+		char* m_name;
+		SysShape::MotionListener* m_listener;
+		Game::Piki* m_vsBattlePiki;
+		s8 _14;
+		ActApproachPos* m_approachPos;
+		s8 _1C;
+		s8 _1D;
 	};
 
 	struct ActBore {
