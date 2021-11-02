@@ -17,17 +17,19 @@ struct Footmarks {
 	u32 _08;           // _08
 	int m_count;       // _0C
 	u32 _10;           // _10
-	u32 _14;           // _14
-	u32 _18;           // _18
-	u32 _1C;           // _1C
+	Vector3f _14;      // _14
 
 	Footmarks();
 	void alloc(int);
+	void add(Footmark& mark);
 };
 
 } // namespace Game
 
 #endif
+
+#include "Game/GameSystem.h"
+
 namespace Game {
 
 /*
@@ -69,14 +71,54 @@ void Footmarks::alloc(int amt)
 	_08     = 0;
 	_04     = 0;
 }
-} // namespace Game
-#ifdef UNFINISHED
 
 /*
  * --INFO--
  * Address:	801B4838
  * Size:	000134
  */
+void Footmarks::add(Footmark& mark)
+{
+	_14.x = mark.position.x;
+	_14.y = mark.position.y;
+	_14.z = mark.position.z;
+	Footmark* v2;
+	float v3;
+	float v4;
+	float v5;
+	float v6;
+	if (this->_08 < 2
+	    || ((v2 = &this->m_marks[this->_04 + this->m_count - 1
+	                             - (this->_04 + this->m_count - 1)
+	                                   / this->m_count * this->m_count],
+	         v3 = (v2->position.x - mark.position.y),
+	         v4 = (v2->position.z - mark.position.z),
+	         v5 = ((v4 * v4)
+	               + (((v2->position.x - mark.position.x)
+	                   * (v2->position.x - mark.position.x))
+	                  + (v3 * v3))),
+	         v5 <= 0.0f)
+	            ? (v6 = 0.0f)
+	            : (v6 = (__frsqrte(v5)
+	                     * ((v4 * v4)
+	                        + (((v2->position.x - mark.position.x)
+	                            * (v2->position.x - mark.position.x))
+	                           + (v3 * v3))))),
+	        v6 >= 20.0f)) {
+		this->m_marks[this->_04].position = mark.position;
+		this->m_marks[this->_04].flag     = Game::gameSystem->_50;
+		this->_04
+		    = this->_04 + 1 - (this->_04 + 1) / this->m_count * this->m_count;
+
+		u32 v8 = this->_08;
+		if (v8 < this->m_count)
+			this->_08 = v8 + 1;
+		this->_10 = Game::gameSystem->_50;
+	}
+}
+
+} // namespace Game
+#ifdef UNFINISHED
 void Game::Footmarks::add((Game::Footmark&))
 {
 	/*
