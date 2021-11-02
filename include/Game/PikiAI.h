@@ -1,15 +1,24 @@
 #ifndef _GAME_PIKIAI_H
 #define _GAME_PIKIAI_H
 
+#include "types.h"
+#include "Vector3.h"
+
 namespace Sys {
 struct Triangle;
-struct KeyEvent;
 } // namespace Sys
+
+namespace SysShape {
+struct KeyEvent;
+} // namespace SysShape
 
 namespace Game {
 struct Piki;
 struct CollEvent;
+struct PlatEvent;
 } // namespace Game
+
+struct Graphics;
 
 struct PikiAI {
 	struct ActionArg;
@@ -216,7 +225,7 @@ struct PikiAI {
 		void resumable();
 		void setFormed();
 		void startSort();
-		void wallCallback(Vector3<float>&);
+		void wallCallback(Vector3f&);
 	};
 
 	struct ActFreeArg {
@@ -269,7 +278,7 @@ struct PikiAI {
 		void exec();
 		void init(PikiAI::ActionArg*);
 		void resetTimers();
-		void wallCallback(Vector3<float>&);
+		void wallCallback(Vector3f&);
 	};
 
 	struct ActionArg {
@@ -277,7 +286,7 @@ struct PikiAI {
 	};
 
 	struct Action {
-		void Action(Game::Piki*);
+		Action(Game::Piki*);
 
 		void applicable();
 		void bounceCallback(Game::Piki*, Sys::Triangle*);
@@ -291,7 +300,7 @@ struct PikiAI {
 		void getNextAIType();
 		void init(PikiAI::ActionArg*);
 		void platCallback(Game::Piki*, Game::PlatEvent&);
-		void wallCallback(Vector3<float>&);
+		void wallCallback(Vector3f&);
 	};
 
 	struct ActOneshot {
@@ -311,7 +320,7 @@ struct PikiAI {
 	struct ActPathMove {
 		ActPathMove(Game::Piki*);
 
-		void carry(Vector3<float>&);
+		void carry(Vector3f&);
 		void cleanup();
 		void contextCheck(int);
 		void crGetPoint(int);
@@ -443,6 +452,11 @@ struct PikiAI {
 		void getCurrAction();
 		void searchOrima();
 		void start(int, PikiAI::ActionArg*);
+
+		Action* m_actions;  // _00
+		int m_actionCnt;    // _04
+		int m_actionId;     // _08
+		Game::Piki* m_piki; // _0C
 	};
 };
 

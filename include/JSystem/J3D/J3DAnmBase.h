@@ -1,5 +1,7 @@
-#ifndef _JSYSTEM_J3DANM_H
-#define _JSYSTEM_J3DANM_H
+#ifndef _JSYSTEM_J3DANMBASE_H
+#define _JSYSTEM_J3DANMBASE_H
+
+#include "types.h"
 
 typedef enum J3DAnmKind {
 	CLUSTER         = 3,
@@ -20,11 +22,16 @@ typedef enum J3DAnmKind {
 	VTX_COLOR_KEY   = 15
 };
 
-struct J3DAnmBase { /* PlaceHolder Class Structure */
-	virtual void unk00() = 0;
-	virtual void unk04() = 0;
+struct J3DAnmBase {
+	virtual void getKind() const   = 0;
+	virtual void getColour() const = 0;
 	virtual ~J3DAnmBase();
 	virtual J3DAnmKind getKind();
+
+	// vtbl
+	s16 _04;     // _04
+	s16 m_time;  // _08
+	f32 m_fTime; // _0C
 };
 
 #endif

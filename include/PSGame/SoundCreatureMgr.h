@@ -1,7 +1,9 @@
 #ifndef _PSGAME_SOUNDCREATUREMGR_H
 #define _PSGAME_SOUNDCREATUREMGR_H
 
-#include "jsystem/j3danm.h"
+#include "types.h"
+
+struct J3DAnmBase;
 
 namespace PSGame {
 class SoundCreatureMgr {

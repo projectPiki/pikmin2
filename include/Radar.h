@@ -1,6 +1,7 @@
 #ifndef _RADAR_H
 #define _RADAR_H
 
+#include "types.h"
 #include "Vector3.h"
 
 namespace Game {
