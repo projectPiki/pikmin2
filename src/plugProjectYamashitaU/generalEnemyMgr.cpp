@@ -1,4 +1,4 @@
-
+#include "Game/generalEnemyMgr.h"
 
 /*
  * --INFO--

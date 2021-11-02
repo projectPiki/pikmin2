@@ -1,12 +1,20 @@
-
+#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKR/JKRHeap.h"
 
 /*
+ * __ct
+ *
  * --INFO--
  * Address:	8001CFCC
  * Size:	000068
  */
-void JKRDisposer::JKRDisposer()
+JKRDisposer::JKRDisposer()
+	: m_link(this)
 {
+	p_heap = JKRHeap::findFromRoot(this);
+	if (p_heap) {
+		p_heap->_5C.append(&m_link);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -41,12 +49,16 @@ void JKRDisposer::JKRDisposer()
 }
 
 /*
+ * _dt
  * --INFO--
  * Address:	8001D034
  * Size:	000084
  */
-void JKRDisposer::~JKRDisposer()
+JKRDisposer::~JKRDisposer()
 {
+	if (p_heap) {
+		p_heap->_5C.remove(&m_link);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

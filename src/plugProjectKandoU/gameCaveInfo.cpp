@@ -1,43 +1,29 @@
+#include "Game/Cave/Info.h"
+#include "Dolphin/string.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/PelletMgr.h"
 
+#pragma auto_inline on
 
+namespace Game {
+namespace Cave {
 /*
+ * __ct__Q34Game4Cave7BaseGenFv
  * --INFO--
  * Address:	801D60A4
  * Size:	000070
  */
-void Game::Cave::BaseGen::BaseGen()
+BaseGen::BaseGen()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x23B2D8
-	  lis       r3, 0x804C
-	  subi      r5, r2, 0x4CA0
-	  subi      r0, r3, 0x7A0C
-	  lfs       f0, -0x4C98(r2)
-	  stw       r0, 0x0(r31)
-	  li        r4, 0x1
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r5, 0x14(r31)
-	  stfs      f0, 0x1C(r31)
-	  stfs      f0, 0x20(r31)
-	  stfs      f0, 0x24(r31)
-	  stfs      f0, 0x2C(r31)
-	  stfs      f0, 0x28(r31)
-	  stw       r4, 0x30(r31)
-	  stw       r4, 0x34(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_name = "BaseGen";
+	m_position.x = 0.0f;
+	m_position.y = 0.0f;
+	m_position.z = 0.0f;
+	m_radius = 0.0f;
+	m_angle = 0.0f;
+	m_minimum = 1;
+	m_maximum = 1;
+	m_spawnType = TekiA__Easy;
 }
 
 /*
@@ -45,78 +31,19 @@ void Game::Cave::BaseGen::BaseGen()
  * Address:	801D6114
  * Size:	0000F4
  */
-void Game::Cave::BaseGen::read(Stream&)
+void BaseGen::read(Stream& stream)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  mr        r3, r28
-	  bl        0x23E960
-	  mr        r31, r3
-	  li        r29, 0
-	  b         .loc_0xD8
-
-	.loc_0x2C:
-	  li        r3, 0x38
-	  bl        -0x1B22A0
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  bl        0x23B240
-	  lis       r3, 0x804C
-	  subi      r4, r2, 0x4CA0
-	  subi      r0, r3, 0x7A0C
-	  lfs       f0, -0x4C98(r2)
-	  stw       r0, 0x0(r30)
-	  li        r3, 0x1
-	  li        r0, 0
-	  stw       r4, 0x14(r30)
-	  stfs      f0, 0x1C(r30)
-	  stfs      f0, 0x20(r30)
-	  stfs      f0, 0x24(r30)
-	  stfs      f0, 0x2C(r30)
-	  stfs      f0, 0x28(r30)
-	  stw       r3, 0x30(r30)
-	  stw       r3, 0x34(r30)
-	  stw       r0, 0x18(r30)
-
-	.loc_0x80:
-	  mr        r3, r28
-	  bl        0x23E8F8
-	  stw       r3, 0x18(r30)
-	  mr        r4, r28
-	  addi      r3, r30, 0x1C
-	  bl        0x23B7E8
-	  mr        r3, r28
-	  bl        0x23EBFC
-	  stfs      f1, 0x28(r30)
-	  mr        r3, r28
-	  bl        0x23EBF0
-	  stfs      f1, 0x2C(r30)
-	  mr        r3, r28
-	  bl        0x23E8C8
-	  stw       r3, 0x30(r30)
-	  mr        r3, r28
-	  bl        0x23E8BC
-	  stw       r3, 0x34(r30)
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0x23B224
-	  addi      r29, r29, 0x1
-
-	.loc_0xD8:
-	  cmpw      r29, r31
-	  blt+      .loc_0x2C
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	int childCount = stream.readInt();
+	for (int i = 0; i < childCount; i++) {
+		BaseGen* child = new BaseGen();
+		child->m_spawnType = (BaseGen::Type)stream.readInt();
+		child->m_position.read(stream);
+		child->m_angle = stream.readFloat();
+		child->m_radius = stream.readFloat();
+		child->m_minimum = stream.readInt();
+		child->m_maximum = stream.readInt();
+		add(child);
+	}
 }
 
 /*
@@ -124,21 +51,83 @@ void Game::Cave::BaseGen::read(Stream&)
  * Address:	801D6208
  * Size:	000004
  */
-void Game::Cave::BaseGen::draw(Graphics&, Matrixf*)
+void BaseGen::draw(Graphics&, Matrixf*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
+ * read__Q34Game4Cave8TekiInfoFR6Stream
+ *
  * --INFO--
  * Address:	801D620C
  * Size:	0001A8
  */
-void Game::Cave::TekiInfo::read(Stream&)
+void TekiInfo::read(Stream& stream)
 {
+	char buffer1[128];
+	char buffer2[128];
+	char* inputString = stream.readString(nullptr, 0);
+	if (*inputString == '$') {
+		char rawDropMode = inputString[1];
+		if ((rawDropMode < '1') || ('9' < rawDropMode)) {
+			inputString++;
+			m_dropMode = DropOnPikminOrLeader;
+		} else {
+			inputString += 2;
+			m_dropMode = DropMode(rawDropMode - '0');
+		}
+	} else {
+		m_dropMode = NoDrop;
+	}
+	buffer1[0] = '\0';
+	char* _s2 = buffer2;
+	int iVar10 = 0;
+	uint uVar9 = 0;
+	char* pcVar7 = inputString;
+	do {
+		size_t sVar4 = strlen(inputString);
+		if (sVar4 <= uVar9) {
+			_s2[iVar10] = '\0';
+			m_enemyID = generalEnemyMgr->getEnemyID(buffer2, 4);
+			if (buffer1[0] != '\0') {
+				pelletMgr->makeOtakaraItemCode
+									(buffer1,m_otakaraItemCode);
+			}
+			uVar9 = stream.readInt();
+			m_weight = uVar9;
+			m_type = (BaseGen::Type)stream.readInt();
+			pcVar7 = generalEnemyMgr->getEnemyName(m_enemyID,4);
+			m_name = pcVar7;
+			return;
+		}
+		bool bVar2 = false;
+		if (*pcVar7 == '_') {
+			if (_s2 == buffer2) {
+				_s2[iVar10] = '\0';
+				EnemyInfo* pEVar11 = gEnemyInfo;
+				int iVar8 = 0;
+				while( true ) {
+					if (gEnemyInfoNum <= iVar8) break;
+					if (strcmp(pEVar11->m_name,_s2) == 0) {
+						bVar2 = true;
+						break;
+					}
+					pEVar11 = pEVar11 + 1;
+					iVar8 += 1;
+				}
+			}
+		}
+		if (bVar2) {
+			_s2 = buffer1;
+			iVar10 = 0;
+		}
+		else {
+			_s2[iVar10] = *pcVar7;
+			iVar10 += 1;
+		}
+		uVar9 += 1;
+		pcVar7 = pcVar7 + 1;
+	} while( true );
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x130(r1)
@@ -279,7 +268,7 @@ void Game::Cave::TekiInfo::read(Stream&)
  * Address:	801D63B4
  * Size:	0000A8
  */
-void Game::Cave::ItemInfo::read(Stream&)
+void ItemInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +324,7 @@ void Game::Cave::ItemInfo::read(Stream&)
  * Address:	801D645C
  * Size:	00008C
  */
-void Game::Cave::GateInfo::read(Stream&)
+void GateInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -382,28 +371,19 @@ void Game::Cave::GateInfo::read(Stream&)
  * Address:	801D64E8
  * Size:	00001C
  */
-void Game::Cave::CapInfo::getTekiInfo()
+TekiInfo* CapInfo::getTekiInfo()
 {
-	/*
-	.loc_0x0:
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x14
-	  lwz       r3, 0x1C(r3)
-	  blr
-
-	.loc_0x14:
-	  li        r3, 0
-	  blr
-	*/
+	return (!m_doesNotHaveTeki ? m_tekiInfo : nullptr);
 }
+
+#ifdef NOPE
 
 /*
  * --INFO--
  * Address:	801D6504
  * Size:	0000C8
  */
-void Game::Cave::CapInfo::read(Stream&)
+void CapInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +453,7 @@ void Game::Cave::CapInfo::read(Stream&)
  * Address:	801D65CC
  * Size:	000174
  */
-void Game::Cave::FloorInfo::FloorInfo()
+FloorInfo::FloorInfo()
 {
 	/*
 	.loc_0x0:
@@ -578,7 +558,7 @@ void Game::Cave::FloorInfo::FloorInfo()
  * Address:	801D6740
  * Size:	000060
  */
-void Game::Cave::CapInfo::~CapInfo()
+CapInfo::~CapInfo()
 {
 	/*
 	.loc_0x0:
@@ -616,7 +596,7 @@ void Game::Cave::CapInfo::~CapInfo()
  * Address:	801D67A0
  * Size:	000060
  */
-void Game::Cave::GateInfo::~GateInfo()
+GateInfo::~GateInfo()
 {
 	/*
 	.loc_0x0:
@@ -654,7 +634,7 @@ void Game::Cave::GateInfo::~GateInfo()
  * Address:	801D6800
  * Size:	000060
  */
-void Game::Cave::ItemInfo::~ItemInfo()
+ItemInfo::~ItemInfo()
 {
 	/*
 	.loc_0x0:
@@ -692,7 +672,7 @@ void Game::Cave::ItemInfo::~ItemInfo()
  * Address:	801D6860
  * Size:	000060
  */
-void Game::Cave::TekiInfo::~TekiInfo()
+TekiInfo::~TekiInfo()
 {
 	/*
 	.loc_0x0:
@@ -730,7 +710,7 @@ void Game::Cave::TekiInfo::~TekiInfo()
  * Address:	801D68C0
  * Size:	000410
  */
-void Game::Cave::FloorInfo::Parms::Parms()
+FloorInfo::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -1004,7 +984,7 @@ void Game::Cave::FloorInfo::Parms::Parms()
  * Address:	801D6CD0
  * Size:	000014
  */
-void Game::Cave::FloorInfo::hasHiddenCollision()
+bool FloorInfo::hasHiddenCollision()
 {
 	/*
 	.loc_0x0:
@@ -1021,7 +1001,7 @@ void Game::Cave::FloorInfo::hasHiddenCollision()
  * Address:	801D6CE4
  * Size:	000008
  */
-void Game::Cave::FloorInfo::getTekiMax()
+int FloorInfo::getTekiMax()
 {
 	/*
 	.loc_0x0:
@@ -1035,7 +1015,7 @@ void Game::Cave::FloorInfo::getTekiMax()
  * Address:	801D6CEC
  * Size:	00002C
  */
-void Game::Cave::FloorInfo::getTekiInfoNum()
+int FloorInfo::getTekiInfoNum()
 {
 	/*
 	.loc_0x0:
@@ -1058,7 +1038,7 @@ void Game::Cave::FloorInfo::getTekiInfoNum()
  * Address:	801D6D18
  * Size:	000094
  */
-void Game::Cave::FloorInfo::getTekiInfo(int)
+TekiInfo* FloorInfo::getTekiInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -1111,7 +1091,7 @@ void Game::Cave::FloorInfo::getTekiInfo(int)
  * Address:	801D6DAC
  * Size:	000024
  */
-void Game::Cave::FloorInfo::getTekiWeightSum()
+int FloorInfo::getTekiWeightSum()
 {
 	/*
 	.loc_0x0:
@@ -1136,7 +1116,7 @@ void Game::Cave::FloorInfo::getTekiWeightSum()
  * Address:	801D6DD0
  * Size:	000008
  */
-void Game::Cave::FloorInfo::getItemMax()
+int FloorInfo::getItemMax()
 {
 	/*
 	.loc_0x0:
@@ -1150,7 +1130,7 @@ void Game::Cave::FloorInfo::getItemMax()
  * Address:	801D6DD8
  * Size:	00002C
  */
-void Game::Cave::FloorInfo::getItemInfoNum()
+int FloorInfo::getItemInfoNum()
 {
 	/*
 	.loc_0x0:
@@ -1173,7 +1153,7 @@ void Game::Cave::FloorInfo::getItemInfoNum()
  * Address:	801D6E04
  * Size:	000094
  */
-void Game::Cave::FloorInfo::getItemInfo(int)
+ItemInfo* FloorInfo::getItemInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -1226,7 +1206,7 @@ void Game::Cave::FloorInfo::getItemInfo(int)
  * Address:	801D6E98
  * Size:	000024
  */
-void Game::Cave::FloorInfo::getItemWeightSum()
+int FloorInfo::getItemWeightSum()
 {
 	/*
 	.loc_0x0:
@@ -1251,7 +1231,7 @@ void Game::Cave::FloorInfo::getItemWeightSum()
  * Address:	801D6EBC
  * Size:	000008
  */
-void Game::Cave::FloorInfo::getGateMax()
+int FloorInfo::getGateMax()
 {
 	/*
 	.loc_0x0:
@@ -1265,7 +1245,7 @@ void Game::Cave::FloorInfo::getGateMax()
  * Address:	801D6EC4
  * Size:	00002C
  */
-void Game::Cave::FloorInfo::getGateInfoNum()
+int FloorInfo::getGateInfoNum()
 {
 	/*
 	.loc_0x0:
@@ -1288,7 +1268,7 @@ void Game::Cave::FloorInfo::getGateInfoNum()
  * Address:	801D6EF0
  * Size:	000094
  */
-void Game::Cave::FloorInfo::getGateInfo(int)
+GateInfo* FloorInfo::getGateInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -1341,7 +1321,7 @@ void Game::Cave::FloorInfo::getGateInfo(int)
  * Address:	801D6F84
  * Size:	000024
  */
-void Game::Cave::FloorInfo::getGateWeightSum()
+int FloorInfo::getGateWeightSum()
 {
 	/*
 	.loc_0x0:
@@ -1366,7 +1346,7 @@ void Game::Cave::FloorInfo::getGateWeightSum()
  * Address:	801D6FA8
  * Size:	000008
  */
-void Game::Cave::FloorInfo::getCapMax()
+int FloorInfo::getCapMax()
 {
 	/*
 	.loc_0x0:
@@ -1380,7 +1360,7 @@ void Game::Cave::FloorInfo::getCapMax()
  * Address:	801D6FB0
  * Size:	00002C
  */
-void Game::Cave::FloorInfo::getCapInfoNum()
+int FloorInfo::getCapInfoNum()
 {
 	/*
 	.loc_0x0:
@@ -1403,7 +1383,7 @@ void Game::Cave::FloorInfo::getCapInfoNum()
  * Address:	801D6FDC
  * Size:	000094
  */
-void Game::Cave::FloorInfo::getCapInfo(int)
+CapInfo* FloorInfo::getCapInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -1456,7 +1436,7 @@ void Game::Cave::FloorInfo::getCapInfo(int)
  * Address:	801D7070
  * Size:	000008
  */
-void Game::Cave::FloorInfo::getRoomNum()
+int FloorInfo::getRoomNum()
 {
 	/*
 	.loc_0x0:
@@ -1470,7 +1450,7 @@ void Game::Cave::FloorInfo::getRoomNum()
  * Address:	801D7078
  * Size:	000008
  */
-void Game::Cave::FloorInfo::getRouteRatio()
+float FloorInfo::getRouteRatio()
 {
 	/*
 	.loc_0x0:
@@ -1484,7 +1464,7 @@ void Game::Cave::FloorInfo::getRouteRatio()
  * Address:	801D7080
  * Size:	000044
  */
-void Game::Cave::FloorInfo::hasEscapeFountain(int)
+bool FloorInfo::hasEscapeFountain(int)
 {
 	/*
 	.loc_0x0:
@@ -1517,7 +1497,7 @@ void Game::Cave::FloorInfo::hasEscapeFountain(int)
  * Address:	801D70C4
  * Size:	000014
  */
-void Game::Cave::FloorInfo::useKaidanBarrel()
+bool FloorInfo::useKaidanBarrel()
 {
 	/*
 	.loc_0x0:
@@ -1534,7 +1514,7 @@ void Game::Cave::FloorInfo::useKaidanBarrel()
  * Address:	801D70D8
  * Size:	000224
  */
-void Game::Cave::FloorInfo::read(Stream&)
+void FloorInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1709,7 +1689,7 @@ void Game::Cave::FloorInfo::read(Stream&)
  * Address:	801D72FC
  * Size:	0000D0
  */
-void Game::Cave::CaveInfo::CaveInfo()
+CaveInfo::CaveInfo()
 {
 	/*
 	.loc_0x0:
@@ -1773,7 +1753,7 @@ void Game::Cave::CaveInfo::CaveInfo()
  * Address:	801D73CC
  * Size:	0000E4
  */
-void Game::Cave::FloorInfo::~FloorInfo()
+FloorInfo::~FloorInfo()
 {
 	/*
 	.loc_0x0:
@@ -1852,7 +1832,7 @@ void Game::Cave::FloorInfo::~FloorInfo()
  * Address:	801D74B0
  * Size:	000040
  */
-void Game::Cave::CaveInfo::disablePelplant()
+void CaveInfo::disablePelplant()
 {
 	/*
 	.loc_0x0:
@@ -1890,7 +1870,7 @@ void Game::Cave::CaveInfo::disablePelplant()
  * Address:	801D74F0
  * Size:	000008
  */
-void Game::Cave::CaveInfo::getFloorMax()
+int CaveInfo::getFloorMax()
 {
 	/*
 	.loc_0x0:
@@ -1904,7 +1884,7 @@ void Game::Cave::CaveInfo::getFloorMax()
  * Address:	801D74F8
  * Size:	000034
  */
-void Game::Cave::CaveInfo::getFloorInfo(int)
+FloorInfo* CaveInfo::getFloorInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -1935,7 +1915,7 @@ void Game::Cave::CaveInfo::getFloorInfo(int)
  * Address:	801D752C
  * Size:	0000F8
  */
-void Game::Cave::CaveInfo::load(char*)
+void CaveInfo::load(char*)
 {
 	/*
 	.loc_0x0:
@@ -2015,7 +1995,7 @@ void Game::Cave::CaveInfo::load(char*)
  * Address:	801D7624
  * Size:	000090
  */
-void Game::Cave::CaveInfo::read(Stream&)
+void CaveInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2069,7 +2049,7 @@ void Game::Cave::CaveInfo::read(Stream&)
  * Address:	801D76B4
  * Size:	0000F4
  */
-void Game::Cave::CaveInfo::~CaveInfo()
+CaveInfo::~CaveInfo()
 {
 	/*
 	.loc_0x0:
@@ -2154,7 +2134,7 @@ void Game::Cave::CaveInfo::~CaveInfo()
  * Address:	801D77A8
  * Size:	000060
  */
-void Game::Cave::BaseGen::~BaseGen()
+BaseGen::~BaseGen()
 {
 	/*
 	.loc_0x0:
@@ -2186,3 +2166,8 @@ void Game::Cave::BaseGen::~BaseGen()
 	  blr
 	*/
 }
+#endif
+} // namespace Cave
+} // namespace Game
+
+#pragma auto_inline reset

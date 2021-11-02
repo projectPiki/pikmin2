@@ -1,4 +1,4 @@
-
+#include "Game/PelletMgr.h"
 
 /*
  * --INFO--
