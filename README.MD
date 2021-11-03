@@ -86,6 +86,7 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectMorimuraU
 - plugProjectNishimuraU
 - plugProjectYamashitaU
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/chappyAnimator.cpp">plugProjectYamashitaU/chappyAnimator.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInfo.cpp">plugProjectYamashitaU/enemyInfo.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyPelletInfo.cpp">plugProjectYamashitaU/enemyPelletInfo.cpp</a>
 - JSystem

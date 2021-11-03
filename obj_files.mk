@@ -440,7 +440,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyAnimator.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/lifeGaugeMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/carryInfoMgr.o\
