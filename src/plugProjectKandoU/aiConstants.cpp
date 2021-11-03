@@ -18,8 +18,8 @@ AIConstants::AIConstants()
     , m_cameraAngle(this, "camera_angle")
 
 {
-	m_dopeCount.m_data   = 2;
 	m_debt.m_data        = 10000;
+	m_dopeCount.m_data   = 2;
 	m_cameraAngle.m_data = 180.0f;
 
 	void* handle = JKRDvdRipper::loadToMainRAM(
@@ -33,7 +33,7 @@ AIConstants::AIConstants()
 
 		this->read(stream);
 
-		delete handle;
+		delete[] handle;
 	}
 }
 
