@@ -32,4 +32,29 @@ struct J3DShape {
 	s32* _60;              // _60
 };
 
+struct J3DShapeMtx {
+	int getType() const;
+	int getUseMtxNum() const;
+	u16 getUseMtxIndex(u16) const;
+
+	int _00;           // _00
+	u16 m_useMtxIndex; // _04
+};
+
+struct J3DShapeDraw {
+	J3DShapeDraw(const u8*, u32);
+	virtual ~J3DShapeDraw();
+
+	void draw() const;
+
+	virtual void _04() = 0;
+	virtual void _08() = 0;
+	virtual void _0C() = 0;
+	virtual void _10() = 0;
+	virtual void _14() = 0;
+
+	u32 m_dlSize;            // _04
+	const u8* m_displayList; // _08
+};
+
 #endif

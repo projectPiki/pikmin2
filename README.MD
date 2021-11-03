@@ -91,6 +91,10 @@ When compiling the project, this patch is automatically applied, if it fails to 
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyPelletInfo.cpp">plugProjectYamashitaU/enemyPelletInfo.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyAnimator.cpp">plugProjectYamashitaU/kochappyAnimator.cpp</a>
 - JSystem
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DBinaryFormat.cpp">JSystem/J3D/J3DBinaryFormat.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DModelSaver.cpp">JSystem/J3D/J3DModelSaver.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DShapeDraw.cpp">JSystem/J3D/J3DShapeDraw.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DUDL.cpp">JSystem/J3D/J3DUDL.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAD/JADHioNode.cpp">JSystem/JAD/JADHioNode.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JUT/JUTFontData_Ascfont_fix12.cpp">JSystem/JUT/JUTFontData_Ascfont_fix12.cpp</a>
 ### WIP

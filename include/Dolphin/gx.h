@@ -7,15 +7,19 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-void GXSetZMode(uint, uint, uint);
-void GXSetBlendMode(uint, uint, uint, uint);
-void GXSetNumTexGens(uint);
-void GXSetNumChans(uint);
-void GXSetNumTevStages(uint);
-void GXSetTevOrder(uint, uint, uint, int);
-void GXSetTevOp(int, int);
-void GXSetTevSwapMode(int, uint, uint);
-void GXSetTevSwapModeTable(int, uint, uint, uint, uint);
+void GXSetZMode(u32, u32, u32);
+void GXSetBlendMode(u32, u32, u32, u32);
+void GXSetNumTexGens(u32);
+void GXSetNumChans(u32);
+void GXSetNumTevStages(u32);
+void GXSetTevOrder(u32, u32, u32, s32);
+void GXSetTevOp(s32, s32);
+void GXSetTevSwapMode(s32, u32, u32);
+void GXSetTevSwapModeTable(s32, u32, u32, u32, u32);
+
+void GXBeginDisplayList(void*, u32 dlSize);
+u32 GXEndDisplayList(void);
+void GXCallDisplayList(void*, u32 byteCnt);
 
 #ifdef __cplusplus
 };

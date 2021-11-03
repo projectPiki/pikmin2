@@ -35,7 +35,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/object/control.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-sound.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/control.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DUDL.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DUDL.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMotion.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DUShadow.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMtxCache.o\
@@ -130,12 +130,12 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DCluster.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DJoint.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterialFactory.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DBinaryFormat.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DBinaryFormat.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelLoader.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DJointFactory.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeFactory.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DAnmLoader.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelSaver.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DModelSaver.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DGD.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMatBlock.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelData.o\
@@ -145,7 +145,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelLoaderCalcSize.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DJointTree.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DSkinDeform.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeDraw.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeDraw.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMtxBuffer.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeTable.o\
 	$(BUILD_DIR)/asm/JSystem/JFW/JFWSystem.o\
