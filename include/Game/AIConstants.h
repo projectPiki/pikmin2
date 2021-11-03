@@ -13,6 +13,7 @@ struct AIConstants : public TagParameters {
 	PrimTagParm<s32> m_debt;        // _3C
 	PrimTagParm<f32> m_cameraAngle; // _4C
 };
+static AIConstants* _aiConstants;
 } // namespace Game
 
 #endif
