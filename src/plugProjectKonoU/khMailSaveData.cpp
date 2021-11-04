@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80410FE0
  * Size:	00009C
  */
-void kh::Screen::MailSaveData::clear(void)
+void kh::Screen::MailSaveData::clear()
 {
 	/*
 	.loc_0x0:
@@ -66,7 +56,7 @@ void kh::Screen::MailSaveData::clear(void)
  * Address:	8041107C
  * Size:	000088
  */
-void kh::Screen::MailSaveData::read((Stream&))
+void kh::Screen::MailSaveData::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -116,7 +106,7 @@ void kh::Screen::MailSaveData::read((Stream&))
  * Address:	80411104
  * Size:	000088
  */
-void kh::Screen::MailSaveData::write((Stream&))
+void kh::Screen::MailSaveData::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +156,7 @@ void kh::Screen::MailSaveData::write((Stream&))
  * Address:	8041118C
  * Size:	000028
  */
-void kh::Screen::MailSaveData::set_history((signed char))
+void kh::Screen::MailSaveData::set_history(char)
 {
 	/*
 	.loc_0x0:

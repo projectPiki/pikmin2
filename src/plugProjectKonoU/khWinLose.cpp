@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8040FCE8
  * Size:	0000B8
  */
-void kh::Screen::ObjWinLose::__ct(void)
+void kh::Screen::ObjWinLose::ObjWinLose()
 {
 	/*
 	.loc_0x0:
@@ -73,7 +63,7 @@ void kh::Screen::ObjWinLose::__ct(void)
  * Address:	8040FDA0
  * Size:	000418
  */
-void kh::Screen::ObjWinLose::doCreate((JKRArchive*))
+void kh::Screen::ObjWinLose::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -381,7 +371,7 @@ void kh::Screen::ObjWinLose::doCreate((JKRArchive*))
  * Address:	804101B8
  * Size:	000020
  */
-void kh::Screen::ObjWinLose::doUpdate(void)
+void kh::Screen::ObjWinLose::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +391,7 @@ void kh::Screen::ObjWinLose::doUpdate(void)
  * Address:	804101D8
  * Size:	0000B8
  */
-void kh::Screen::ObjWinLose::doDraw((Graphics&))
+void kh::Screen::ObjWinLose::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -465,7 +455,7 @@ void kh::Screen::ObjWinLose::doDraw((Graphics&))
  * Address:	80410290
  * Size:	00038C
  */
-void kh::Screen::ObjWinLose::updateAnimation(void)
+void kh::Screen::ObjWinLose::updateAnimation()
 {
 	/*
 	.loc_0x0:
@@ -730,7 +720,7 @@ void kh::Screen::ObjWinLose::updateAnimation(void)
  * Address:	8041061C
  * Size:	0000AC
  */
-void kh::Screen::ObjWinLose::__dt(void)
+void kh::Screen::ObjWinLose::~ObjWinLose()
 {
 	/*
 	.loc_0x0:
@@ -818,7 +808,7 @@ void __sinit_khWinLose_cpp(void)
  * Address:	8041070C
  * Size:	000008
  */
-void @24 @kh::Screen::ObjWinLose::__dt(void)
+void kh::Screen::ObjWinLose::@24 @__dt()
 {
 	/*
 	.loc_0x0:

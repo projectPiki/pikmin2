@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000088
- */
-void kh::Screen::ObjFinalFloor::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80401D38
  * Size:	00021C
  */
-void kh::Screen::ObjFinalFloor::doCreate((JKRArchive*))
+void kh::Screen::ObjFinalFloor::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -182,7 +172,7 @@ void kh::Screen::ObjFinalFloor::doCreate((JKRArchive*))
  * Address:	80401F54
  * Size:	000020
  */
-void kh::Screen::ObjFinalFloor::doUpdate(void)
+void kh::Screen::ObjFinalFloor::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -202,7 +192,7 @@ void kh::Screen::ObjFinalFloor::doUpdate(void)
  * Address:	80401F74
  * Size:	0000DC
  */
-void kh::Screen::ObjFinalFloor::doDraw((Graphics&))
+void kh::Screen::ObjFinalFloor::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -273,7 +263,7 @@ void kh::Screen::ObjFinalFloor::doDraw((Graphics&))
  * Address:	80402050
  * Size:	000038
  */
-void kh::Screen::ObjFinalFloor::doUpdateFadein(void)
+void kh::Screen::ObjFinalFloor::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -299,7 +289,7 @@ void kh::Screen::ObjFinalFloor::doUpdateFadein(void)
  * Address:	80402088
  * Size:	0001F8
  */
-void kh::Screen::ObjFinalFloor::doUpdateFadeout(void)
+void kh::Screen::ObjFinalFloor::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -451,7 +441,7 @@ void kh::Screen::ObjFinalFloor::doUpdateFadeout(void)
  * Address:	80402280
  * Size:	000034
  */
-void kh::Screen::ObjFinalFloor::doUpdateFadeoutFinish(void)
+void kh::Screen::ObjFinalFloor::doUpdateFadeoutFinish()
 {
 	/*
 	.loc_0x0:
@@ -476,7 +466,7 @@ void kh::Screen::ObjFinalFloor::doUpdateFadeoutFinish(void)
  * Address:	804022B4
  * Size:	0001C8
  */
-void kh::Screen::ObjFinalFloor::updateAnimation(void)
+void kh::Screen::ObjFinalFloor::updateAnimation()
 {
 	/*
 	.loc_0x0:
@@ -616,7 +606,7 @@ void kh::Screen::ObjFinalFloor::updateAnimation(void)
  * Address:	8040247C
  * Size:	000040
  */
-void kh::Screen::ObjFinalFloor::stopSound(void)
+void kh::Screen::ObjFinalFloor::stopSound()
 {
 	/*
 	.loc_0x0:
@@ -646,7 +636,7 @@ void kh::Screen::ObjFinalFloor::stopSound(void)
  * Address:	804024BC
  * Size:	00015C
  */
-void kh::Screen::ObjFinalFloor::restartSound(void)
+void kh::Screen::ObjFinalFloor::restartSound()
 {
 	/*
 	.loc_0x0:
@@ -757,7 +747,7 @@ void kh::Screen::ObjFinalFloor::restartSound(void)
  * Address:	80402618
  * Size:	000040
  */
-void kh::Screen::SceneFinalFloor::doConfirmSetScene((Screen::SetSceneArg&))
+void kh::Screen::SceneFinalFloor::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -785,7 +775,7 @@ void kh::Screen::SceneFinalFloor::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	80402658
  * Size:	00000C
  */
-void kh::Screen::SceneFinalFloor::getResName( const
+void kh::Screen::SceneFinalFloor::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -800,7 +790,7 @@ void kh::Screen::SceneFinalFloor::getResName( const
  * Address:	80402664
  * Size:	000008
  */
-void kh::Screen::SceneFinalFloor::isUseBackupSceneInfo(void)
+void kh::Screen::SceneFinalFloor::isUseBackupSceneInfo()
 {
 	/*
 	.loc_0x0:
@@ -814,7 +804,7 @@ void kh::Screen::SceneFinalFloor::isUseBackupSceneInfo(void)
  * Address:	8040266C
  * Size:	000008
  */
-void kh::Screen::SceneFinalFloor::getSceneType(void)
+void kh::Screen::SceneFinalFloor::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -828,7 +818,7 @@ void kh::Screen::SceneFinalFloor::getSceneType(void)
  * Address:	80402674
  * Size:	000008
  */
-void kh::Screen::SceneFinalFloor::getOwnerID(void)
+void kh::Screen::SceneFinalFloor::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -842,7 +832,7 @@ void kh::Screen::SceneFinalFloor::getOwnerID(void)
  * Address:	8040267C
  * Size:	000014
  */
-void kh::Screen::SceneFinalFloor::getMemberID(void)
+void kh::Screen::SceneFinalFloor::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -859,7 +849,7 @@ void kh::Screen::SceneFinalFloor::getMemberID(void)
  * Address:	80402690
  * Size:	0000BC
  */
-void kh::Screen::SceneFinalFloor::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneFinalFloor::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -920,7 +910,7 @@ void kh::Screen::SceneFinalFloor::doCreateObj( (JKRArchive *))
  * Address:	8040274C
  * Size:	0000AC
  */
-void kh::Screen::ObjFinalFloor::__dt(void)
+void kh::Screen::ObjFinalFloor::~ObjFinalFloor()
 {
 	/*
 	.loc_0x0:
@@ -1010,7 +1000,7 @@ void __sinit_khFinalFloor_cpp(void)
  * Address:	80402844
  * Size:	000008
  */
-void @24@kh::Screen::ObjFinalFloor::__dt(void)
+void kh::Screen::ObjFinalFloor::@24 @__dt()
 {
 	/*
 	.loc_0x0:

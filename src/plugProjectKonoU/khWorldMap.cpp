@@ -2,31 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void kh::Screen::khUtilFadePaneWM::create((P2DScreen::Mgr*, unsigned long long,
-                                           unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803F1B04
  * Size:	00009C
  */
-void kh::Screen::khUtilFadePane::__dt(void)
+void kh::Screen::khUtilFadePane::~khUtilFadePane()
 {
 	/*
 	.loc_0x0:
@@ -80,21 +59,10 @@ void kh::Screen::khUtilFadePane::__dt(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void kh::Screen::khUtilFadePaneWM::create((P2DScreen::Mgr*, J2DPane*,
-                                           unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803F1BA0
  * Size:	000058
  */
-void kh::Screen::khUtilFadePaneWM::fadeout_finish(void)
+void kh::Screen::khUtilFadePaneWM::fadeout_finish()
 {
 	/*
 	.loc_0x0:
@@ -129,21 +97,10 @@ void kh::Screen::khUtilFadePaneWM::fadeout_finish(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000060
- */
-void kh::Screen::khUtilColorAnmWM::__ct((P2DScreen::Mgr*, unsigned long long,
-                                         int, int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803F1BF8
  * Size:	000080
  */
-void kh::Screen::khUtilColorAnm::__dt(void)
+void kh::Screen::khUtilColorAnm::~khUtilColorAnm()
 {
 	/*
 	.loc_0x0:
@@ -188,41 +145,10 @@ void kh::Screen::khUtilColorAnm::__dt(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00010C
- */
-void kh::Screen::khUtilColorAnmWM::my_init((J2DPicture**,
-                                            og::Screen::CallBack_CounterRV**))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
- */
-void kh::Screen::khUtilColorAnmWM::effect_on((unsigned long))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void kh::Screen::khUtilColorAnmWM::effect_off(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803F1C78
  * Size:	00007C
  */
-void kh::Screen::khUtilColorAnmWM::do_update(void)
+void kh::Screen::khUtilColorAnmWM::do_update()
 {
 	/*
 	.loc_0x0:
@@ -267,7 +193,7 @@ void kh::Screen::khUtilColorAnmWM::do_update(void)
  * Address:	803F1CF4
  * Size:	0001E8
  */
-void kh::Screen::WorldMap::__ct(void)
+void kh::Screen::WorldMap::WorldMap()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +327,7 @@ void kh::Screen::WorldMap::__ct(void)
  * Address:	803F1EDC
  * Size:	000060
  */
-void Game::WorldMap::Base::__dt(void)
+void Game::WorldMap::Base::~Base()
 {
 	/*
 	.loc_0x0:
@@ -439,7 +365,7 @@ void Game::WorldMap::Base::__dt(void)
  * Address:	803F1F3C
  * Size:	0000CC
  */
-void kh::Screen::WorldMap::init((Game::WorldMap::InitArg&))
+void kh::Screen::WorldMap::init(Game::WorldMap::InitArg&)
 {
 	/*
 	.loc_0x0:
@@ -504,7 +430,7 @@ void kh::Screen::WorldMap::init((Game::WorldMap::InitArg&))
  * Address:	803F2008
  * Size:	001790
  */
-void kh::Screen::WorldMap::loadResource(void)
+void kh::Screen::WorldMap::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -2126,7 +2052,7 @@ void kh::Screen::WorldMap::loadResource(void)
  * Address:	803F3798
  * Size:	00003C
  */
-void kh::Screen::WorldMap::OnyonDynamics::__dt(void)
+void kh::Screen::WorldMap::OnyonDynamics::~OnyonDynamics()
 {
 	/*
 	.loc_0x0:
@@ -2155,7 +2081,7 @@ void kh::Screen::WorldMap::OnyonDynamics::__dt(void)
  * Address:	803F37D4
  * Size:	001C20
  */
-void kh::Screen::WorldMap::update((Game::WorldMap::UpdateArg&))
+void kh::Screen::WorldMap::update(Game::WorldMap::UpdateArg&)
 {
 	/*
 	.loc_0x0:
@@ -4123,7 +4049,7 @@ void kh::Screen::WorldMap::update((Game::WorldMap::UpdateArg&))
  * Address:	803F53F4
  * Size:	000198
  */
-void kh::Screen::WorldMap::draw1st((Graphics&))
+void kh::Screen::WorldMap::draw1st(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4237,7 +4163,7 @@ void kh::Screen::WorldMap::draw1st((Graphics&))
  * Address:	803F558C
  * Size:	000064
  */
-void kh::Screen::WorldMap::draw2nd((Graphics&))
+void kh::Screen::WorldMap::draw2nd(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4274,7 +4200,7 @@ void kh::Screen::WorldMap::draw2nd((Graphics&))
  * Address:	803F55F0
  * Size:	0002A0
  */
-void kh::Screen::WorldMap::draw3rd((Graphics&))
+void kh::Screen::WorldMap::draw3rd(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4456,7 +4382,7 @@ void kh::Screen::WorldMap::draw3rd((Graphics&))
  * Address:	803F5890
  * Size:	000110
  */
-void kh::Screen::WorldMap::draw4th((Graphics&))
+void kh::Screen::WorldMap::draw4th(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4538,7 +4464,7 @@ void kh::Screen::WorldMap::draw4th((Graphics&))
  * Address:	803F59A0
  * Size:	000330
  */
-void kh::Screen::WorldMap::rocketMove((J2DPane*, bool))
+void kh::Screen::WorldMap::rocketMove(J2DPane*, bool)
 {
 	/*
 	.loc_0x0:
@@ -4784,7 +4710,7 @@ void kh::Screen::WorldMap::rocketMove((J2DPane*, bool))
  * Address:	803F5CD0
  * Size:	000404
  */
-void kh::Screen::WorldMap::rocketUpdate((J2DPane*))
+void kh::Screen::WorldMap::rocketUpdate(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -5053,7 +4979,7 @@ void kh::Screen::WorldMap::rocketUpdate((J2DPane*))
  * Address:	803F60D4
  * Size:	000090
  */
-void kh::Screen::WorldMap::onyonMove(void)
+void kh::Screen::WorldMap::onyonMove()
 {
 	/*
 	.loc_0x0:
@@ -5105,7 +5031,7 @@ void kh::Screen::WorldMap::onyonMove(void)
  * Address:	803F6164
  * Size:	000068
  */
-void kh::Screen::WorldMap::onyonUpdate(void)
+void kh::Screen::WorldMap::onyonUpdate()
 {
 	/*
 	.loc_0x0:
@@ -5147,7 +5073,7 @@ void kh::Screen::WorldMap::onyonUpdate(void)
  * Address:	803F61CC
  * Size:	0001F4
  */
-void kh::Screen::WorldMap::postureControl((J2DPane*))
+void kh::Screen::WorldMap::postureControl(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -5296,7 +5222,7 @@ void kh::Screen::WorldMap::postureControl((J2DPane*))
  * Address:	803F63C0
  * Size:	000230
  */
-void kh::Screen::WorldMap::changeState(void)
+void kh::Screen::WorldMap::changeState()
 {
 	/*
 	.loc_0x0:
@@ -5464,7 +5390,7 @@ void kh::Screen::WorldMap::changeState(void)
  * Address:	803F65F0
  * Size:	0000C0
  */
-void kh::Screen::WorldMap::tag2num((unsigned long long))
+void kh::Screen::WorldMap::tag2num(unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -5526,7 +5452,7 @@ void kh::Screen::WorldMap::tag2num((unsigned long long))
  * Address:	803F66B0
  * Size:	00008C
  */
-void kh::Screen::WorldMap::finish(void)
+void kh::Screen::WorldMap::finish()
 {
 	/*
 	.loc_0x0:
@@ -5577,7 +5503,7 @@ void kh::Screen::WorldMap::finish(void)
  * Address:	803F673C
  * Size:	00007C
  */
-void kh::Screen::WorldMap::newMapOpen(void)
+void kh::Screen::WorldMap::newMapOpen()
 {
 	/*
 	.loc_0x0:
@@ -5624,7 +5550,7 @@ void kh::Screen::WorldMap::newMapOpen(void)
  * Address:	803F67B8
  * Size:	00013C
  */
-void kh::Screen::WorldMap::getTarget(void)
+void kh::Screen::WorldMap::getTarget()
 {
 	/*
 	.loc_0x0:
@@ -5737,7 +5663,7 @@ void kh::Screen::WorldMap::getTarget(void)
  * Address:	803F68F4
  * Size:	000174
  */
-void getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<float> f(void)
+void kh::Screen::WorldMap::getRotDir(const JGeometry::TVec2<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -5866,7 +5792,7 @@ void getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<float> f(void)
  * Address:	803F6A68
  * Size:	000A4C
  */
-void kh::Screen::WorldMap::changeInfo(void)
+void kh::Screen::WorldMap::changeInfo()
 {
 	/*
 	.loc_0x0:
@@ -6587,7 +6513,7 @@ void kh::Screen::WorldMap::changeInfo(void)
  * Address:	803F74B4
  * Size:	000550
  */
-void kh::Screen::WorldMap::effectFirstTime(void)
+void kh::Screen::WorldMap::effectFirstTime()
 {
 	/*
 	.loc_0x0:
@@ -6969,7 +6895,7 @@ void kh::Screen::WorldMap::effectFirstTime(void)
  * Address:	803F7A04
  * Size:	000044
  */
-void kh::Screen::WorldMap::OnyonDynamics::__ct(void)
+void kh::Screen::WorldMap::OnyonDynamics::OnyonDynamics()
 {
 	/*
 	.loc_0x0:
@@ -6998,7 +6924,7 @@ void kh::Screen::WorldMap::OnyonDynamics::__ct(void)
  * Address:	803F7A48
  * Size:	0000F8
  */
-void kh::Screen::WorldMap::OnyonDynamics::initPtcl(void)
+void kh::Screen::WorldMap::OnyonDynamics::initPtcl()
 {
 	/*
 	.loc_0x0:
@@ -7074,8 +7000,8 @@ void kh::Screen::WorldMap::OnyonDynamics::initPtcl(void)
  * Address:	803F7B40
  * Size:	000458
  */
-void move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<
-    float>(void)
+void kh::Screen::WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*,
+                                               const JGeometry::TVec2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -7403,7 +7329,7 @@ void move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeom
  * Address:	803F7F98
  * Size:	00012C
  */
-void kh::Screen::WorldMap::OnyonDynamics::update((kh::Screen::WorldMap*))
+void kh::Screen::WorldMap::OnyonDynamics::update(kh::Screen::WorldMap*)
 {
 	/*
 	.loc_0x0:
@@ -7490,7 +7416,7 @@ void kh::Screen::WorldMap::OnyonDynamics::update((kh::Screen::WorldMap*))
  * Address:	803F80C4
  * Size:	000030
  */
-void kh::Screen::WorldMap::OnyonDynamics::kill(void)
+void kh::Screen::WorldMap::OnyonDynamics::kill()
 {
 	/*
 	.loc_0x0:
@@ -7514,7 +7440,7 @@ void kh::Screen::WorldMap::OnyonDynamics::kill(void)
  * Address:	803F80F4
  * Size:	00000C
  */
-void efx2d::WorldMap::ArgDirScale::getName(void)
+void efx2d::WorldMap::ArgDirScale::getName()
 {
 	/*
 	.loc_0x0:
@@ -7529,7 +7455,7 @@ void efx2d::WorldMap::ArgDirScale::getName(void)
  * Address:	803F8100
  * Size:	00009C
  */
-void efx2d::WorldMap::T2DShstar1::__dt(void)
+void efx2d::WorldMap::T2DShstar1::~T2DShstar1()
 {
 	/*
 	.loc_0x0:
@@ -7584,7 +7510,7 @@ void efx2d::WorldMap::T2DShstar1::__dt(void)
  * Address:	803F819C
  * Size:	00009C
  */
-void efx2d::WorldMap::T2DMapFlare::__dt(void)
+void efx2d::WorldMap::T2DMapFlare::~T2DMapFlare()
 {
 	/*
 	.loc_0x0:
@@ -7639,7 +7565,7 @@ void efx2d::WorldMap::T2DMapFlare::__dt(void)
  * Address:	803F8238
  * Size:	00009C
  */
-void efx2d::WorldMap::T2DRocketGlow::__dt(void)
+void efx2d::WorldMap::T2DRocketGlow::~T2DRocketGlow()
 {
 	/*
 	.loc_0x0:
@@ -7694,7 +7620,7 @@ void efx2d::WorldMap::T2DRocketGlow::__dt(void)
  * Address:	803F82D4
  * Size:	000070
  */
-void kh::Screen::WorldMap::__dt(void)
+void kh::Screen::WorldMap::~WorldMap()
 {
 	/*
 	.loc_0x0:
@@ -7738,7 +7664,7 @@ void kh::Screen::WorldMap::__dt(void)
  * Address:	803F8344
  * Size:	000004
  */
-void Game::WorldMap::Base::draw((Graphics&))
+void Game::WorldMap::Base::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -7751,7 +7677,7 @@ void Game::WorldMap::Base::draw((Graphics&))
  * Address:	803F8348
  * Size:	000090
  */
-void kh::Screen::khUtilColorAnmWM::__dt(void)
+void kh::Screen::khUtilColorAnmWM::~khUtilColorAnmWM()
 {
 	/*
 	.loc_0x0:
@@ -7803,7 +7729,7 @@ void kh::Screen::khUtilColorAnmWM::__dt(void)
  * Address:	803F83D8
  * Size:	0000AC
  */
-void kh::Screen::khUtilFadePaneWM::__dt(void)
+void kh::Screen::khUtilFadePaneWM::~khUtilFadePaneWM()
 {
 	/*
 	.loc_0x0:
@@ -7864,7 +7790,7 @@ void kh::Screen::khUtilFadePaneWM::__dt(void)
  * Address:	803F8484
  * Size:	000004
  */
-void kh::Screen::khUtilFadePane::fadein_finish(void)
+void kh::Screen::khUtilFadePane::fadein_finish()
 {
 	/*
 	.loc_0x0:
@@ -7877,7 +7803,7 @@ void kh::Screen::khUtilFadePane::fadein_finish(void)
  * Address:	803F8488
  * Size:	000048
  */
-void kh::Screen::khUtilFadePane::khPaneNode::__dt(void)
+void kh::Screen::khUtilFadePane::khPaneNode::~khPaneNode()
 {
 	/*
 	.loc_0x0:
@@ -8027,7 +7953,7 @@ void __sinit_khWorldMap_cpp(void)
  * Address:	803F8678
  * Size:	000004
  */
-void __ct__Q29JGeometry8TVec2<float> Fv(void)
+void JGeometry::TVec2<float>::TVec2()
 {
 	/*
 	.loc_0x0:
@@ -8040,7 +7966,7 @@ void __ct__Q29JGeometry8TVec2<float> Fv(void)
  * Address:	803F867C
  * Size:	000008
  */
-void @8 @efx2d::WorldMap::T2DRocketGlow::__dt(void)
+void efx2d::WorldMap::T2DRocketGlow::@8 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8054,7 +7980,7 @@ void @8 @efx2d::WorldMap::T2DRocketGlow::__dt(void)
  * Address:	803F8684
  * Size:	000008
  */
-void @8 @efx2d::WorldMap::T2DMapFlare::__dt(void)
+void efx2d::WorldMap::T2DMapFlare::@8 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8068,7 +7994,7 @@ void @8 @efx2d::WorldMap::T2DMapFlare::__dt(void)
  * Address:	803F868C
  * Size:	000008
  */
-void @8 @efx2d::WorldMap::T2DShstar1::__dt(void)
+void efx2d::WorldMap::T2DShstar1::@8 @__dt()
 {
 	/*
 	.loc_0x0:

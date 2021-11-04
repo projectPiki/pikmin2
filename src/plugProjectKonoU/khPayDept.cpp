@@ -2,20 +2,11 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8040F1E0
  * Size:	00002C
  */
-void kh::Screen::DispPayDept::__ct((kh::Screen::DispPayDept::PayDeptType, int))
+void kh::Screen::DispPayDept::DispPayDept(kh::Screen::DispPayDept::PayDeptType,
+                                          int)
 {
 	/*
 	.loc_0x0:
@@ -35,20 +26,10 @@ void kh::Screen::DispPayDept::__ct((kh::Screen::DispPayDept::PayDeptType, int))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000060
- */
-void kh::Screen::ObjPayDept::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8040F20C
  * Size:	00025C
  */
-void kh::Screen::ObjPayDept::doCreate((JKRArchive*))
+void kh::Screen::ObjPayDept::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +218,7 @@ void kh::Screen::ObjPayDept::doCreate((JKRArchive*))
  * Address:	8040F468
  * Size:	0000CC
  */
-void kh::Screen::ObjPayDept::doUpdateFadein(void)
+void kh::Screen::ObjPayDept::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -314,7 +295,7 @@ void kh::Screen::ObjPayDept::doUpdateFadein(void)
  * Address:	8040F534
  * Size:	000020
  */
-void kh::Screen::ObjPayDept::doUpdate(void)
+void kh::Screen::ObjPayDept::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +315,7 @@ void kh::Screen::ObjPayDept::doUpdate(void)
  * Address:	8040F554
  * Size:	0000C0
  */
-void kh::Screen::ObjPayDept::doUpdateFadeoutFinish(void)
+void kh::Screen::ObjPayDept::doUpdateFadeoutFinish()
 {
 	/*
 	.loc_0x0:
@@ -398,7 +379,7 @@ void kh::Screen::ObjPayDept::doUpdateFadeoutFinish(void)
  * Address:	8040F614
  * Size:	000064
  */
-void kh::Screen::ObjPayDept::doDraw((Graphics&))
+void kh::Screen::ObjPayDept::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -435,7 +416,7 @@ void kh::Screen::ObjPayDept::doDraw((Graphics&))
  * Address:	8040F678
  * Size:	0000DC
  */
-void kh::Screen::ObjPayDept::updateAnimation(void)
+void kh::Screen::ObjPayDept::updateAnimation()
 {
 	/*
 	.loc_0x0:
@@ -506,7 +487,7 @@ void kh::Screen::ObjPayDept::updateAnimation(void)
  * Address:	8040F754
  * Size:	00031C
  */
-void kh::Screen::ObjPayDept::searchNumPane((J2DPane*, int, int))
+void kh::Screen::ObjPayDept::searchNumPane(J2DPane*, int, int)
 {
 	/*
 	.loc_0x0:
@@ -753,7 +734,7 @@ void kh::Screen::ObjPayDept::searchNumPane((J2DPane*, int, int))
  * Address:	8040FA70
  * Size:	00015C
  */
-void kh::Screen::ScenePayDept::doUserCallBackFunc((Resource::MgrCommand*))
+void kh::Screen::ScenePayDept::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -870,7 +851,7 @@ void kh::Screen::ScenePayDept::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	8040FBCC
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::getResName( const
+void kh::Screen::ScenePayDept::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -884,7 +865,7 @@ void kh::Screen::ScenePayDept::getResName( const
  * Address:	8040FBD4
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::isUseBackupSceneInfo(void)
+void kh::Screen::ScenePayDept::isUseBackupSceneInfo()
 {
 	/*
 	.loc_0x0:
@@ -898,7 +879,7 @@ void kh::Screen::ScenePayDept::isUseBackupSceneInfo(void)
  * Address:	8040FBDC
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::getSceneType(void)
+void kh::Screen::ScenePayDept::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -912,7 +893,7 @@ void kh::Screen::ScenePayDept::getSceneType(void)
  * Address:	8040FBE4
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::getOwnerID(void)
+void kh::Screen::ScenePayDept::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -926,7 +907,7 @@ void kh::Screen::ScenePayDept::getOwnerID(void)
  * Address:	8040FBEC
  * Size:	000014
  */
-void kh::Screen::ScenePayDept::getMemberID(void)
+void kh::Screen::ScenePayDept::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -943,7 +924,7 @@ void kh::Screen::ScenePayDept::getMemberID(void)
  * Address:	8040FC00
  * Size:	000004
  */
-void kh::Screen::ScenePayDept::doCreateObj( (JKRArchive *))
+void kh::Screen::ScenePayDept::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -956,7 +937,7 @@ void kh::Screen::ScenePayDept::doCreateObj( (JKRArchive *))
  * Address:	8040FC04
  * Size:	0000AC
  */
-void kh::Screen::ObjPayDept::__dt(void)
+void kh::Screen::ObjPayDept::~ObjPayDept()
 {
 	/*
 	.loc_0x0:
@@ -1015,7 +996,7 @@ void kh::Screen::ObjPayDept::__dt(void)
  * Address:	8040FCB0
  * Size:	000008
  */
-void kh::Screen::DispPayDept::getSize(void)
+void kh::Screen::DispPayDept::getSize()
 {
 	/*
 	.loc_0x0:
@@ -1029,7 +1010,7 @@ void kh::Screen::DispPayDept::getSize(void)
  * Address:	8040FCB8
  * Size:	000008
  */
-void kh::Screen::DispPayDept::getOwnerID(void)
+void kh::Screen::DispPayDept::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -1043,7 +1024,7 @@ void kh::Screen::DispPayDept::getOwnerID(void)
  * Address:	8040FCC0
  * Size:	000014
  */
-void kh::Screen::DispPayDept::getMemberID(void)
+void kh::Screen::DispPayDept::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -1075,7 +1056,7 @@ void __sinit_khPayDept_cpp(void)
  * Address:	8040FCE0
  * Size:	000008
  */
-void @24@kh::Screen::ObjPayDept::__dt(void)
+void kh::Screen::ObjPayDept::@24 @__dt()
 {
 	/*
 	.loc_0x0:

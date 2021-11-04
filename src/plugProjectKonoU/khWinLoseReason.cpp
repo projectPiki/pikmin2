@@ -2,30 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void kh::Screen::ObjWinLoseReason::__ct((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80410714
  * Size:	0000CC
  */
-void kh::Screen::ObjWinLoseReason::doCreate((JKRArchive*))
+void kh::Screen::ObjWinLoseReason::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -90,7 +70,7 @@ void kh::Screen::ObjWinLoseReason::doCreate((JKRArchive*))
  * Address:	804107E0
  * Size:	000008
  */
-void kh::Screen::ObjWinLoseReason::doUpdate(void)
+void kh::Screen::ObjWinLoseReason::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -104,7 +84,7 @@ void kh::Screen::ObjWinLoseReason::doUpdate(void)
  * Address:	804107E8
  * Size:	000004
  */
-void kh::Screen::ObjWinLoseReason::doDraw((Graphics&))
+void kh::Screen::ObjWinLoseReason::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -114,20 +94,10 @@ void kh::Screen::ObjWinLoseReason::doDraw((Graphics&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000174
- */
-void kh::Screen::ObjWinLoseReason::updateAnimation(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804107EC
  * Size:	000060
  */
-void kh::Screen::SceneWinLoseReason::__ct(void)
+void kh::Screen::SceneWinLoseReason::SceneWinLoseReason()
 {
 	/*
 	.loc_0x0:
@@ -163,7 +133,7 @@ void kh::Screen::SceneWinLoseReason::__ct(void)
  * Address:	8041084C
  * Size:	000588
  */
-void kh::Screen::SceneWinLoseReason::doCreateObj((JKRArchive*))
+void kh::Screen::SceneWinLoseReason::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -615,7 +585,7 @@ void kh::Screen::SceneWinLoseReason::doCreateObj((JKRArchive*))
  * Address:	80410DD4
  * Size:	0000CC
  */
-void kh::Screen::SceneWinLoseReason::doUpdateActive(void)
+void kh::Screen::SceneWinLoseReason::doUpdateActive()
 {
 	/*
 	.loc_0x0:
@@ -688,7 +658,7 @@ void kh::Screen::SceneWinLoseReason::doUpdateActive(void)
  * Address:	80410EA0
  * Size:	000020
  */
-void kh::Screen::SceneWinLoseReason::doEnd((Screen::EndSceneArg*))
+void kh::Screen::SceneWinLoseReason::doEnd(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +678,7 @@ void kh::Screen::SceneWinLoseReason::doEnd((Screen::EndSceneArg*))
  * Address:	80410EC0
  * Size:	00000C
  */
-void kh::Screen::SceneWinLoseReason::getResName( const
+void kh::Screen::SceneWinLoseReason::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -723,7 +693,7 @@ void kh::Screen::SceneWinLoseReason::getResName( const
  * Address:	80410ECC
  * Size:	000008
  */
-void kh::Screen::SceneWinLoseReason::getSceneType(void)
+void kh::Screen::SceneWinLoseReason::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -737,7 +707,7 @@ void kh::Screen::SceneWinLoseReason::getSceneType(void)
  * Address:	80410ED4
  * Size:	000008
  */
-void kh::Screen::SceneWinLoseReason::getOwnerID(void)
+void kh::Screen::SceneWinLoseReason::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -751,7 +721,7 @@ void kh::Screen::SceneWinLoseReason::getOwnerID(void)
  * Address:	80410EDC
  * Size:	000010
  */
-void kh::Screen::SceneWinLoseReason::getMemberID(void)
+void kh::Screen::SceneWinLoseReason::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -767,7 +737,7 @@ void kh::Screen::SceneWinLoseReason::getMemberID(void)
  * Address:	80410EEC
  * Size:	0000AC
  */
-void kh::Screen::ObjWinLoseReason::__dt(void)
+void kh::Screen::ObjWinLoseReason::~ObjWinLoseReason()
 {
 	/*
 	.loc_0x0:
@@ -854,7 +824,7 @@ void __sinit_khWinLoseReason_cpp(void)
  * Address:	80410FD8
  * Size:	000008
  */
-void @24@kh::Screen::ObjWinLoseReason::__dt(void)
+void kh::Screen::ObjWinLoseReason::@24 @__dt()
 {
 	/*
 	.loc_0x0:

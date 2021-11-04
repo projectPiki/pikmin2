@@ -2,22 +2,13 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803F8694
  * Size:	00007C
  */
-void kh::Screen::DispCaveResult::__ct((Game::Result::TNode*, unsigned long,
-                                       unsigned long, unsigned long,
-                                       unsigned long, bool, JKRHeap*, bool))
+void kh::Screen::DispCaveResult::DispCaveResult(Game::Result::TNode*,
+                                                unsigned long, unsigned long,
+                                                unsigned long, unsigned long,
+                                                bool, JKRHeap*, bool)
 {
 	/*
 	.loc_0x0:
@@ -62,8 +53,7 @@ void kh::Screen::DispCaveResult::__ct((Game::Result::TNode*, unsigned long,
  * Address:	803F8710
  * Size:	0000AC
  */
-void kh::Screen::DispCaveResult::init((Game::Result::TNode*, unsigned long,
-                                       bool))
+void kh::Screen::DispCaveResult::init(Game::Result::TNode*, unsigned long, bool)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +120,7 @@ void kh::Screen::DispCaveResult::init((Game::Result::TNode*, unsigned long,
  * Address:	803F87BC
  * Size:	000134
  */
-void kh::Screen::ObjCaveResult::__ct(void)
+void kh::Screen::ObjCaveResult::ObjCaveResult()
 {
 	/*
 	.loc_0x0:
@@ -219,7 +209,7 @@ void kh::Screen::ObjCaveResult::__ct(void)
  * Address:	803F88F0
  * Size:	000B08
  */
-void kh::Screen::ObjCaveResult::doCreate((JKRArchive*))
+void kh::Screen::ObjCaveResult::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -977,7 +967,7 @@ void kh::Screen::ObjCaveResult::doCreate((JKRArchive*))
  * Address:	803F93F8
  * Size:	00034C
  */
-void kh::Screen::ObjCaveResult::doUpdate(void)
+void kh::Screen::ObjCaveResult::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -1230,7 +1220,7 @@ void kh::Screen::ObjCaveResult::doUpdate(void)
  * Address:	803F9744
  * Size:	000760
  */
-void kh::Screen::ObjCaveResult::doDraw((Graphics&))
+void kh::Screen::ObjCaveResult::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1758,7 +1748,7 @@ void kh::Screen::ObjCaveResult::doDraw((Graphics&))
  * Address:	803F9EA4
  * Size:	000068
  */
-void kh::Screen::ObjCaveResult::doUpdateFadein(void)
+void kh::Screen::ObjCaveResult::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -1800,7 +1790,7 @@ void kh::Screen::ObjCaveResult::doUpdateFadein(void)
  * Address:	803F9F0C
  * Size:	000014
  */
-void kh::Screen::ObjCaveResult::doUpdateFadeinFinish(void)
+void kh::Screen::ObjCaveResult::doUpdateFadeinFinish()
 {
 	/*
 	.loc_0x0:
@@ -1817,7 +1807,7 @@ void kh::Screen::ObjCaveResult::doUpdateFadeinFinish(void)
  * Address:	803F9F20
  * Size:	00006C
  */
-void kh::Screen::ObjCaveResult::doUpdateFadeout(void)
+void kh::Screen::ObjCaveResult::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -1860,7 +1850,7 @@ void kh::Screen::ObjCaveResult::doUpdateFadeout(void)
  * Address:	803F9F8C
  * Size:	0001DC
  */
-void kh::Screen::ObjCaveResult::statusNormal(void)
+void kh::Screen::ObjCaveResult::statusNormal()
 {
 	/*
 	.loc_0x0:
@@ -2017,7 +2007,7 @@ void kh::Screen::ObjCaveResult::statusNormal(void)
  * Address:	803FA168
  * Size:	0000F4
  */
-void kh::Screen::ObjCaveResult::statusScrollUp(void)
+void kh::Screen::ObjCaveResult::statusScrollUp()
 {
 	/*
 	.loc_0x0:
@@ -2092,7 +2082,7 @@ void kh::Screen::ObjCaveResult::statusScrollUp(void)
  * Address:	803FA25C
  * Size:	0000F4
  */
-void kh::Screen::ObjCaveResult::statusScrollDown(void)
+void kh::Screen::ObjCaveResult::statusScrollDown()
 {
 	/*
 	.loc_0x0:
@@ -2167,7 +2157,7 @@ void kh::Screen::ObjCaveResult::statusScrollDown(void)
  * Address:	803FA350
  * Size:	0002F0
  */
-void kh::Screen::ObjCaveResult::statusForceScroll(void)
+void kh::Screen::ObjCaveResult::statusForceScroll()
 {
 	/*
 	.loc_0x0:
@@ -2399,7 +2389,7 @@ void kh::Screen::ObjCaveResult::statusForceScroll(void)
  * Address:	803FA640
  * Size:	00001C
  */
-void kh::Screen::ObjCaveResult::statusDrumRoll(void)
+void kh::Screen::ObjCaveResult::statusDrumRoll()
 {
 	/*
 	.loc_0x0:
@@ -2418,7 +2408,7 @@ void kh::Screen::ObjCaveResult::statusDrumRoll(void)
  * Address:	803FA65C
  * Size:	0000C0
  */
-void kh::Screen::ObjCaveResult::statusAllMoney(void)
+void kh::Screen::ObjCaveResult::statusAllMoney()
 {
 	/*
 	.loc_0x0:
@@ -2484,7 +2474,7 @@ void kh::Screen::ObjCaveResult::statusAllMoney(void)
  * Address:	803FA71C
  * Size:	0000E8
  */
-void kh::Screen::ObjCaveResult::statusDecP(void)
+void kh::Screen::ObjCaveResult::statusDecP()
 {
 	/*
 	.loc_0x0:
@@ -2564,7 +2554,7 @@ void kh::Screen::ObjCaveResult::statusDecP(void)
  * Address:	803FA804
  * Size:	000110
  */
-void kh::Screen::ObjCaveResult::statusLost(void)
+void kh::Screen::ObjCaveResult::statusLost()
 {
 	/*
 	.loc_0x0:
@@ -2654,7 +2644,7 @@ void kh::Screen::ObjCaveResult::statusLost(void)
  * Address:	803FA914
  * Size:	0001D4
  */
-void kh::Screen::ObjCaveResult::statusEffect(void)
+void kh::Screen::ObjCaveResult::statusEffect()
 {
 	/*
 	.loc_0x0:
@@ -2789,7 +2779,7 @@ void kh::Screen::ObjCaveResult::statusEffect(void)
  * Address:	803FAAE8
  * Size:	000564
  */
-void kh::Screen::ObjCaveResult::updateAnimation(void)
+void kh::Screen::ObjCaveResult::updateAnimation()
 {
 	/*
 	.loc_0x0:
@@ -3164,7 +3154,7 @@ void kh::Screen::ObjCaveResult::updateAnimation(void)
  * Address:	803FB04C
  * Size:	000078
  */
-void kh::Screen::ObjCaveResult::setAlpha((int, unsigned char))
+void kh::Screen::ObjCaveResult::setAlpha(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -3206,7 +3196,7 @@ void kh::Screen::ObjCaveResult::setAlpha((int, unsigned char))
  * Address:	803FB0C4
  * Size:	0000C4
  */
-void kh::Screen::ObjCaveResult::pikminSE(void)
+void kh::Screen::ObjCaveResult::pikminSE()
 {
 	/*
 	.loc_0x0:
@@ -3275,7 +3265,7 @@ void kh::Screen::ObjCaveResult::pikminSE(void)
  * Address:	803FB188
  * Size:	000038
  */
-void kh::Screen::LostItem::__ct(void)
+void kh::Screen::LostItem::LostItem()
 {
 	/*
 	.loc_0x0:
@@ -3298,20 +3288,10 @@ void kh::Screen::LostItem::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void kh::Screen::LostItem::update(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803FB1C0
  * Size:	000080
  */
-void kh::Screen::LostItemMgr::__ct((int))
+void kh::Screen::LostItemMgr::LostItemMgr(int)
 {
 	/*
 	.loc_0x0:
@@ -3359,7 +3339,7 @@ void kh::Screen::LostItemMgr::__ct((int))
  * Address:	803FB240
  * Size:	0003EC
  */
-void init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<float> b(void)
+void kh::Screen::LostItemMgr::init(const JGeometry::TVec2<float>&, bool)
 {
 	/*
 	.loc_0x0:
@@ -3634,7 +3614,7 @@ void init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<float> b(void)
  * Address:	803FB62C
  * Size:	000108
  */
-void kh::Screen::LostItemMgr::update(void)
+void kh::Screen::LostItemMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -3724,8 +3704,8 @@ void kh::Screen::LostItemMgr::update(void)
  * Address:	803FB734
  * Size:	000170
  */
-void kh::Screen::LostItemMgr::draw((P2DScreen::Mgr_tuning*, unsigned long long,
-                                    ResTIMG const*, Graphics&))
+void kh::Screen::LostItemMgr::draw(P2DScreen::Mgr_tuning*, unsigned long long,
+                                   const ResTIMG*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -3835,7 +3815,7 @@ void kh::Screen::LostItemMgr::draw((P2DScreen::Mgr_tuning*, unsigned long long,
  * Address:	803FB8A4
  * Size:	0000A4
  */
-void kh::Screen::SceneCaveResult::doUserCallBackFunc((Resource::MgrCommand*))
+void kh::Screen::SceneCaveResult::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -3894,7 +3874,7 @@ void kh::Screen::SceneCaveResult::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	803FB948
  * Size:	000008
  */
-void kh::Screen::SceneCaveResult::getResName( const
+void kh::Screen::SceneCaveResult::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -3908,7 +3888,7 @@ void kh::Screen::SceneCaveResult::getResName( const
  * Address:	803FB950
  * Size:	000008
  */
-void kh::Screen::SceneCaveResult::getSceneType(void)
+void kh::Screen::SceneCaveResult::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -3922,7 +3902,7 @@ void kh::Screen::SceneCaveResult::getSceneType(void)
  * Address:	803FB958
  * Size:	000008
  */
-void kh::Screen::SceneCaveResult::getOwnerID(void)
+void kh::Screen::SceneCaveResult::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -3936,7 +3916,7 @@ void kh::Screen::SceneCaveResult::getOwnerID(void)
  * Address:	803FB960
  * Size:	000010
  */
-void kh::Screen::SceneCaveResult::getMemberID(void)
+void kh::Screen::SceneCaveResult::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -3952,7 +3932,7 @@ void kh::Screen::SceneCaveResult::getMemberID(void)
  * Address:	803FB970
  * Size:	000004
  */
-void kh::Screen::SceneCaveResult::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneCaveResult::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -3965,7 +3945,7 @@ void kh::Screen::SceneCaveResult::doCreateObj( (JKRArchive *))
  * Address:	803FB974
  * Size:	0000AC
  */
-void kh::Screen::ObjCaveResult::__dt(void)
+void kh::Screen::ObjCaveResult::~ObjCaveResult()
 {
 	/*
 	.loc_0x0:
@@ -4024,7 +4004,7 @@ void kh::Screen::ObjCaveResult::__dt(void)
  * Address:	803FBA20
  * Size:	000008
  */
-void kh::Screen::DispCaveResult::getSize(void)
+void kh::Screen::DispCaveResult::getSize()
 {
 	/*
 	.loc_0x0:
@@ -4038,7 +4018,7 @@ void kh::Screen::DispCaveResult::getSize(void)
  * Address:	803FBA28
  * Size:	000008
  */
-void kh::Screen::DispCaveResult::getOwnerID(void)
+void kh::Screen::DispCaveResult::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -4052,7 +4032,7 @@ void kh::Screen::DispCaveResult::getOwnerID(void)
  * Address:	803FBA30
  * Size:	000010
  */
-void kh::Screen::DispCaveResult::getMemberID(void)
+void kh::Screen::DispCaveResult::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -4115,7 +4095,7 @@ void __sinit_khCaveResult_cpp(void)
  * Address:	803FBACC
  * Size:	000008
  */
-void @24@kh::Screen::ObjCaveResult::__dt(void)
+void kh::Screen::ObjCaveResult::@24 @__dt()
 {
 	/*
 	.loc_0x0:

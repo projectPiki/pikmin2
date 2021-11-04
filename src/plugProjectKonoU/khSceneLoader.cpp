@@ -5,7 +5,7 @@
  * Address:	803FBAD4
  * Size:	0001F8
  */
-void kh::Screen::createScene_Koono((long))
+void kh::Screen::createScene_Koono(long)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +167,7 @@ void kh::Screen::createScene_Koono((long))
  * Address:	803FBCCC
  * Size:	00000C
  */
-void kh::Screen::SceneDayEndResultTitl::getResName( const
+void kh::Screen::SceneDayEndResultTitl::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -182,7 +182,7 @@ void kh::Screen::SceneDayEndResultTitl::getResName( const
  * Address:	803FBCD8
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultTitl::getSceneType(void)
+void kh::Screen::SceneDayEndResultTitl::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -196,7 +196,7 @@ void kh::Screen::SceneDayEndResultTitl::getSceneType(void)
  * Address:	803FBCE0
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultTitl::getOwnerID(void)
+void kh::Screen::SceneDayEndResultTitl::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -210,7 +210,7 @@ void kh::Screen::SceneDayEndResultTitl::getOwnerID(void)
  * Address:	803FBCE8
  * Size:	000014
  */
-void kh::Screen::SceneDayEndResultTitl::getMemberID(void)
+void kh::Screen::SceneDayEndResultTitl::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -227,7 +227,7 @@ void kh::Screen::SceneDayEndResultTitl::getMemberID(void)
  * Address:	803FBCFC
  * Size:	000058
  */
-void kh::Screen::SceneDayEndResultTitl::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneDayEndResultTitl::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +263,7 @@ void kh::Screen::SceneDayEndResultTitl::doCreateObj( (JKRArchive *))
  * Address:	803FBD54
  * Size:	00000C
  */
-void kh::Screen::SceneWinLose::getResName( const
+void kh::Screen::SceneWinLose::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -278,7 +278,7 @@ void kh::Screen::SceneWinLose::getResName( const
  * Address:	803FBD60
  * Size:	000008
  */
-void kh::Screen::SceneWinLose::getSceneType(void)
+void kh::Screen::SceneWinLose::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -292,7 +292,7 @@ void kh::Screen::SceneWinLose::getSceneType(void)
  * Address:	803FBD68
  * Size:	000008
  */
-void kh::Screen::SceneWinLose::getOwnerID(void)
+void kh::Screen::SceneWinLose::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -306,7 +306,7 @@ void kh::Screen::SceneWinLose::getOwnerID(void)
  * Address:	803FBD70
  * Size:	000014
  */
-void kh::Screen::SceneWinLose::getMemberID(void)
+void kh::Screen::SceneWinLose::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -323,7 +323,7 @@ void kh::Screen::SceneWinLose::getMemberID(void)
  * Address:	803FBD84
  * Size:	000058
  */
-void kh::Screen::SceneWinLose::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneWinLose::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -359,7 +359,7 @@ void kh::Screen::SceneWinLose::doCreateObj( (JKRArchive *))
  * Address:	803FBDDC
  * Size:	00000C
  */
-void kh::Screen::SceneDayEndResultIncP::getResName( const
+void kh::Screen::SceneDayEndResultIncP::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -374,7 +374,7 @@ void kh::Screen::SceneDayEndResultIncP::getResName( const
  * Address:	803FBDE8
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultIncP::getSceneType(void)
+void kh::Screen::SceneDayEndResultIncP::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -388,7 +388,7 @@ void kh::Screen::SceneDayEndResultIncP::getSceneType(void)
  * Address:	803FBDF0
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultIncP::getOwnerID(void)
+void kh::Screen::SceneDayEndResultIncP::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -402,7 +402,7 @@ void kh::Screen::SceneDayEndResultIncP::getOwnerID(void)
  * Address:	803FBDF8
  * Size:	000014
  */
-void kh::Screen::SceneDayEndResultIncP::getMemberID(void)
+void kh::Screen::SceneDayEndResultIncP::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -419,7 +419,7 @@ void kh::Screen::SceneDayEndResultIncP::getMemberID(void)
  * Address:	803FBE0C
  * Size:	000058
  */
-void kh::Screen::SceneDayEndResultIncP::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneDayEndResultIncP::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +455,7 @@ void kh::Screen::SceneDayEndResultIncP::doCreateObj( (JKRArchive *))
  * Address:	803FBE64
  * Size:	00000C
  */
-void kh::Screen::SceneDayEndResultItem::getResName( const
+void kh::Screen::SceneDayEndResultItem::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -470,7 +470,7 @@ void kh::Screen::SceneDayEndResultItem::getResName( const
  * Address:	803FBE70
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultItem::getSceneType(void)
+void kh::Screen::SceneDayEndResultItem::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -484,7 +484,7 @@ void kh::Screen::SceneDayEndResultItem::getSceneType(void)
  * Address:	803FBE78
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultItem::getOwnerID(void)
+void kh::Screen::SceneDayEndResultItem::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -498,7 +498,7 @@ void kh::Screen::SceneDayEndResultItem::getOwnerID(void)
  * Address:	803FBE80
  * Size:	000014
  */
-void kh::Screen::SceneDayEndResultItem::getMemberID(void)
+void kh::Screen::SceneDayEndResultItem::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -515,7 +515,7 @@ void kh::Screen::SceneDayEndResultItem::getMemberID(void)
  * Address:	803FBE94
  * Size:	000058
  */
-void kh::Screen::SceneDayEndResultItem::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneDayEndResultItem::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:

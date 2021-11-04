@@ -2,21 +2,11 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8040284C
  * Size:	00008C
  */
-void kh::Screen::DispDayEndResultItem::__ct((Game::Result::TNode*, int, int,
-                                             bool))
+void kh::Screen::DispDayEndResultItem::DispDayEndResultItem(
+    Game::Result::TNode*, int, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -67,7 +57,7 @@ void kh::Screen::DispDayEndResultItem::__ct((Game::Result::TNode*, int, int,
  * Address:	804028D8
  * Size:	000294
  */
-void kh::Screen::IncP::__ct(void)
+void kh::Screen::IncP::IncP()
 {
 	/*
 	.loc_0x0:
@@ -244,7 +234,8 @@ void kh::Screen::IncP::__ct(void)
  * Address:	80402B6C
  * Size:	000030
  */
-void kh::Screen::DispDayEndResultIncP::__ct((kh::Screen::IncP const*))
+void kh::Screen::DispDayEndResultIncP::DispDayEndResultIncP(
+    const kh::Screen::IncP*)
 {
 	/*
 	.loc_0x0:
@@ -268,8 +259,8 @@ void kh::Screen::DispDayEndResultIncP::__ct((kh::Screen::IncP const*))
  * Address:	80402B9C
  * Size:	000050
  */
-void kh::Screen::DispDayEndResultMail::__ct((JKRHeap*,
-                                             kh::Screen::MailCategory))
+void kh::Screen::DispDayEndResultMail::DispDayEndResultMail(
+    JKRHeap*, kh::Screen::MailCategory)
 {
 	/*
 	.loc_0x0:
@@ -298,20 +289,10 @@ void kh::Screen::DispDayEndResultMail::__ct((JKRHeap*,
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void kh::Screen::ObjDayEndResultBase::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80402BEC
  * Size:	0000FC
  */
-void kh::Screen::ObjDayEndResultBase::doCreate((JKRArchive*))
+void kh::Screen::ObjDayEndResultBase::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -388,7 +369,7 @@ void kh::Screen::ObjDayEndResultBase::doCreate((JKRArchive*))
  * Address:	80402CE8
  * Size:	000098
  */
-void kh::Screen::ObjDayEndResultBase::doStart((Screen::StartSceneArg const*))
+void kh::Screen::ObjDayEndResultBase::doStart(const Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -442,7 +423,7 @@ void kh::Screen::ObjDayEndResultBase::doStart((Screen::StartSceneArg const*))
  * Address:	80402D80
  * Size:	000044
  */
-void kh::Screen::ObjDayEndResultBase::doUpdateFinish(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFinish()
 {
 	/*
 	.loc_0x0:
@@ -471,7 +452,7 @@ void kh::Screen::ObjDayEndResultBase::doUpdateFinish(void)
  * Address:	80402DC4
  * Size:	0000F4
  */
-void kh::Screen::ObjDayEndResultBase::doUpdateFadein(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -544,7 +525,7 @@ void kh::Screen::ObjDayEndResultBase::doUpdateFadein(void)
  * Address:	80402EB8
  * Size:	000010
  */
-void kh::Screen::ObjDayEndResultBase::doUpdateFadeinFinish(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFadeinFinish()
 {
 	/*
 	.loc_0x0:
@@ -560,7 +541,7 @@ void kh::Screen::ObjDayEndResultBase::doUpdateFadeinFinish(void)
  * Address:	80402EC8
  * Size:	0000FC
  */
-void kh::Screen::ObjDayEndResultBase::doUpdateFadeout(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -635,7 +616,7 @@ void kh::Screen::ObjDayEndResultBase::doUpdateFadeout(void)
  * Address:	80402FC4
  * Size:	000118
  */
-void kh::Screen::ObjDayEndResultBase::doDraw((Graphics&))
+void kh::Screen::ObjDayEndResultBase::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -717,7 +698,7 @@ void kh::Screen::ObjDayEndResultBase::doDraw((Graphics&))
  * Address:	804030DC
  * Size:	000280
  */
-void kh::Screen::ObjDayEndResultBase::updateCommon(void)
+void kh::Screen::ObjDayEndResultBase::updateCommon()
 {
 	/*
 	.loc_0x0:
@@ -901,7 +882,7 @@ void kh::Screen::ObjDayEndResultBase::updateCommon(void)
  * Address:	8040335C
  * Size:	000098
  */
-void kh::Screen::ObjDayEndResultBase::setFadeinFrm(void)
+void kh::Screen::ObjDayEndResultBase::setFadeinFrm()
 {
 	/*
 	.loc_0x0:
@@ -955,7 +936,7 @@ void kh::Screen::ObjDayEndResultBase::setFadeinFrm(void)
  * Address:	804033F4
  * Size:	000098
  */
-void kh::Screen::ObjDayEndResultBase::setFadeoutFrm(void)
+void kh::Screen::ObjDayEndResultBase::setFadeoutFrm()
 {
 	/*
 	.loc_0x0:
@@ -1009,7 +990,7 @@ void kh::Screen::ObjDayEndResultBase::setFadeoutFrm(void)
  * Address:	8040348C
  * Size:	000144
  */
-void kh::Screen::ObjDayEndResultItem::__ct(void)
+void kh::Screen::ObjDayEndResultItem::ObjDayEndResultItem()
 {
 	/*
 	.loc_0x0:
@@ -1102,7 +1083,7 @@ void kh::Screen::ObjDayEndResultItem::__ct(void)
  * Address:	804035D0
  * Size:	0000AC
  */
-void kh::Screen::ObjDayEndResultBase::__dt(void)
+void kh::Screen::ObjDayEndResultBase::~ObjDayEndResultBase()
 {
 	/*
 	.loc_0x0:
@@ -1161,7 +1142,7 @@ void kh::Screen::ObjDayEndResultBase::__dt(void)
  * Address:	8040367C
  * Size:	0007AC
  */
-void kh::Screen::ObjDayEndResultItem::doCreate((JKRArchive*))
+void kh::Screen::ObjDayEndResultItem::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1684,7 +1665,7 @@ void kh::Screen::ObjDayEndResultItem::doCreate((JKRArchive*))
  * Address:	80403E28
  * Size:	000108
  */
-void kh::Screen::ObjDayEndResultItem::doStart((Screen::StartSceneArg const*))
+void kh::Screen::ObjDayEndResultItem::doStart(const Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -1770,7 +1751,7 @@ void kh::Screen::ObjDayEndResultItem::doStart((Screen::StartSceneArg const*))
  * Address:	80403F30
  * Size:	00011C
  */
-void kh::Screen::ObjDayEndResultItem::doUpdateFadein(void)
+void kh::Screen::ObjDayEndResultItem::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -1857,7 +1838,7 @@ void kh::Screen::ObjDayEndResultItem::doUpdateFadein(void)
  * Address:	8040404C
  * Size:	0002CC
  */
-void kh::Screen::ObjDayEndResultItem::doUpdate(void)
+void kh::Screen::ObjDayEndResultItem::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -2072,7 +2053,7 @@ void kh::Screen::ObjDayEndResultItem::doUpdate(void)
  * Address:	80404318
  * Size:	000124
  */
-void kh::Screen::ObjDayEndResultItem::doUpdateFadeout(void)
+void kh::Screen::ObjDayEndResultItem::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -2161,7 +2142,7 @@ void kh::Screen::ObjDayEndResultItem::doUpdateFadeout(void)
  * Address:	8040443C
  * Size:	0006C4
  */
-void kh::Screen::ObjDayEndResultItem::doDraw((Graphics&))
+void kh::Screen::ObjDayEndResultItem::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2632,7 +2613,7 @@ void kh::Screen::ObjDayEndResultItem::doDraw((Graphics&))
  * Address:	80404B00
  * Size:	0001D4
  */
-void kh::Screen::ObjDayEndResultItem::statusNormal(void)
+void kh::Screen::ObjDayEndResultItem::statusNormal()
 {
 	/*
 	.loc_0x0:
@@ -2787,7 +2768,7 @@ void kh::Screen::ObjDayEndResultItem::statusNormal(void)
  * Address:	80404CD4
  * Size:	0000F4
  */
-void kh::Screen::ObjDayEndResultItem::statusScrollUp(void)
+void kh::Screen::ObjDayEndResultItem::statusScrollUp()
 {
 	/*
 	.loc_0x0:
@@ -2862,7 +2843,7 @@ void kh::Screen::ObjDayEndResultItem::statusScrollUp(void)
  * Address:	80404DC8
  * Size:	0000F4
  */
-void kh::Screen::ObjDayEndResultItem::statusScrollDown(void)
+void kh::Screen::ObjDayEndResultItem::statusScrollDown()
 {
 	/*
 	.loc_0x0:
@@ -2937,7 +2918,7 @@ void kh::Screen::ObjDayEndResultItem::statusScrollDown(void)
  * Address:	80404EBC
  * Size:	0001D4
  */
-void kh::Screen::ObjDayEndResultItem::statusForceScroll(void)
+void kh::Screen::ObjDayEndResultItem::statusForceScroll()
 {
 	/*
 	.loc_0x0:
@@ -3080,7 +3061,7 @@ void kh::Screen::ObjDayEndResultItem::statusForceScroll(void)
  * Address:	80405090
  * Size:	00001C
  */
-void kh::Screen::ObjDayEndResultItem::statusDrumRoll(void)
+void kh::Screen::ObjDayEndResultItem::statusDrumRoll()
 {
 	/*
 	.loc_0x0:
@@ -3099,7 +3080,7 @@ void kh::Screen::ObjDayEndResultItem::statusDrumRoll(void)
  * Address:	804050AC
  * Size:	0000C8
  */
-void kh::Screen::ObjDayEndResultItem::statusTotalValue(void)
+void kh::Screen::ObjDayEndResultItem::statusTotalValue()
 {
 	/*
 	.loc_0x0:
@@ -3167,7 +3148,7 @@ void kh::Screen::ObjDayEndResultItem::statusTotalValue(void)
  * Address:	80405174
  * Size:	0003C8
  */
-void kh::Screen::ObjDayEndResultItem::updateCommon(void)
+void kh::Screen::ObjDayEndResultItem::updateCommon()
 {
 	/*
 	.loc_0x0:
@@ -3435,7 +3416,7 @@ void kh::Screen::ObjDayEndResultItem::updateCommon(void)
  * Address:	8040553C
  * Size:	00019C
  */
-void kh::Screen::ObjDayEndResultIncP::__ct(void)
+void kh::Screen::ObjDayEndResultIncP::ObjDayEndResultIncP()
 {
 	/*
 	.loc_0x0:
@@ -3550,7 +3531,7 @@ void kh::Screen::ObjDayEndResultIncP::__ct(void)
  * Address:	804056D8
  * Size:	001374
  */
-void kh::Screen::ObjDayEndResultIncP::doCreate((JKRArchive*))
+void kh::Screen::ObjDayEndResultIncP::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -4875,7 +4856,7 @@ void kh::Screen::ObjDayEndResultIncP::doCreate((JKRArchive*))
  * Address:	80406A4C
  * Size:	00017C
  */
-void kh::Screen::ObjDayEndResultIncP::doUpdateFadein(void)
+void kh::Screen::ObjDayEndResultIncP::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -4988,7 +4969,7 @@ void kh::Screen::ObjDayEndResultIncP::doUpdateFadein(void)
  * Address:	80406BC8
  * Size:	00047C
  */
-void kh::Screen::ObjDayEndResultIncP::doUpdate(void)
+void kh::Screen::ObjDayEndResultIncP::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -5335,7 +5316,7 @@ void kh::Screen::ObjDayEndResultIncP::doUpdate(void)
  * Address:	80407044
  * Size:	000184
  */
-void kh::Screen::ObjDayEndResultIncP::doUpdateFadeout(void)
+void kh::Screen::ObjDayEndResultIncP::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -5450,7 +5431,7 @@ void kh::Screen::ObjDayEndResultIncP::doUpdateFadeout(void)
  * Address:	804071C8
  * Size:	000148
  */
-void kh::Screen::ObjDayEndResultIncP::doDraw((Graphics&))
+void kh::Screen::ObjDayEndResultIncP::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -5544,7 +5525,7 @@ void kh::Screen::ObjDayEndResultIncP::doDraw((Graphics&))
  * Address:	80407310
  * Size:	000050
  */
-void kh::Screen::ObjDayEndResultIncP::statusNormal(void)
+void kh::Screen::ObjDayEndResultIncP::statusNormal()
 {
 	/*
 	.loc_0x0:
@@ -5578,7 +5559,7 @@ void kh::Screen::ObjDayEndResultIncP::statusNormal(void)
  * Address:	80407360
  * Size:	000100
  */
-void kh::Screen::ObjDayEndResultIncP::statusFadeout(void)
+void kh::Screen::ObjDayEndResultIncP::statusFadeout()
 {
 	/*
 	.loc_0x0:
@@ -5664,7 +5645,7 @@ void kh::Screen::ObjDayEndResultIncP::statusFadeout(void)
  * Address:	80407460
  * Size:	000050
  */
-void kh::Screen::ObjDayEndResultIncP::statusDecP(void)
+void kh::Screen::ObjDayEndResultIncP::statusDecP()
 {
 	/*
 	.loc_0x0:
@@ -5698,7 +5679,7 @@ void kh::Screen::ObjDayEndResultIncP::statusDecP(void)
  * Address:	804074B0
  * Size:	000064
  */
-void kh::Screen::ObjDayEndResultIncP::statusFadein(void)
+void kh::Screen::ObjDayEndResultIncP::statusFadein()
 {
 	/*
 	.loc_0x0:
@@ -5739,7 +5720,7 @@ void kh::Screen::ObjDayEndResultIncP::statusFadein(void)
  * Address:	80407514
  * Size:	000140
  */
-void kh::Screen::ObjDayEndResultIncP::statusSlot(void)
+void kh::Screen::ObjDayEndResultIncP::statusSlot()
 {
 	/*
 	.loc_0x0:
@@ -5845,7 +5826,7 @@ void kh::Screen::ObjDayEndResultIncP::statusSlot(void)
  * Address:	80407654
  * Size:	00019C
  */
-void kh::Screen::ObjDayEndResultIncP::statusDecPSlot(void)
+void kh::Screen::ObjDayEndResultIncP::statusDecPSlot()
 {
 	/*
 	.loc_0x0:
@@ -5976,7 +5957,7 @@ void kh::Screen::ObjDayEndResultIncP::statusDecPSlot(void)
  * Address:	804077F0
  * Size:	000088
  */
-void kh::Screen::ObjDayEndResultIncP::callIncPSE((int))
+void kh::Screen::ObjDayEndResultIncP::callIncPSE(int)
 {
 	/*
 	.loc_0x0:
@@ -6030,7 +6011,7 @@ void kh::Screen::ObjDayEndResultIncP::callIncPSE((int))
  * Address:	80407878
  * Size:	00004C
  */
-void kh::Screen::ObjDayEndResultIncP::callDecPSE((int))
+void kh::Screen::ObjDayEndResultIncP::callDecPSE(int)
 {
 	/*
 	.loc_0x0:
@@ -6063,7 +6044,7 @@ void kh::Screen::ObjDayEndResultIncP::callDecPSE((int))
  * Address:	804078C4
  * Size:	000188
  */
-void kh::Screen::ObjDayEndResultIncP::effectCommon(void)
+void kh::Screen::ObjDayEndResultIncP::effectCommon()
 {
 	/*
 	.loc_0x0:
@@ -6187,7 +6168,7 @@ void kh::Screen::ObjDayEndResultIncP::effectCommon(void)
  * Address:	80407A4C
  * Size:	00036C
  */
-void kh::Screen::ObjDayEndResultIncP::updateCommon(void)
+void kh::Screen::ObjDayEndResultIncP::updateCommon()
 {
 	/*
 	.loc_0x0:
@@ -6431,20 +6412,10 @@ void kh::Screen::ObjDayEndResultIncP::updateCommon(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000134
- */
-void kh::Screen::ObjDayEndResultMail::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80407DB8
  * Size:	0008B4
  */
-void kh::Screen::ObjDayEndResultMail::doCreate((JKRArchive*))
+void kh::Screen::ObjDayEndResultMail::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -7047,7 +7018,7 @@ void kh::Screen::ObjDayEndResultMail::doCreate((JKRArchive*))
  * Address:	8040866C
  * Size:	000010
  */
-void kh::Screen::ObjDayEndResultMail::MailIconAnm::__ct(void)
+void kh::Screen::ObjDayEndResultMail::MailIconAnm::MailIconAnm()
 {
 	/*
 	.loc_0x0:
@@ -7063,7 +7034,7 @@ void kh::Screen::ObjDayEndResultMail::MailIconAnm::__ct(void)
  * Address:	8040867C
  * Size:	000170
  */
-void kh::Screen::ObjDayEndResultMail::doStart((Screen::StartSceneArg const*))
+void kh::Screen::ObjDayEndResultMail::doStart(const Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -7179,7 +7150,7 @@ void kh::Screen::ObjDayEndResultMail::doStart((Screen::StartSceneArg const*))
  * Address:	804087EC
  * Size:	0001B8
  */
-void kh::Screen::ObjDayEndResultMail::doUpdateFadein(void)
+void kh::Screen::ObjDayEndResultMail::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -7305,7 +7276,7 @@ void kh::Screen::ObjDayEndResultMail::doUpdateFadein(void)
  * Address:	804089A4
  * Size:	000280
  */
-void kh::Screen::ObjDayEndResultMail::doUpdate(void)
+void kh::Screen::ObjDayEndResultMail::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -7495,7 +7466,7 @@ void kh::Screen::ObjDayEndResultMail::doUpdate(void)
  * Address:	80408C24
  * Size:	0001B4
  */
-void kh::Screen::ObjDayEndResultMail::doUpdateFadeout(void)
+void kh::Screen::ObjDayEndResultMail::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -7620,7 +7591,7 @@ void kh::Screen::ObjDayEndResultMail::doUpdateFadeout(void)
  * Address:	80408DD8
  * Size:	000214
  */
-void kh::Screen::ObjDayEndResultMail::statusNormal(void)
+void kh::Screen::ObjDayEndResultMail::statusNormal()
 {
 	/*
 	.loc_0x0:
@@ -7775,7 +7746,7 @@ void kh::Screen::ObjDayEndResultMail::statusNormal(void)
  * Address:	80408FEC
  * Size:	0000A8
  */
-void kh::Screen::ObjDayEndResultMail::statusFadeoutToLeft(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeoutToLeft()
 {
 	/*
 	.loc_0x0:
@@ -7837,7 +7808,7 @@ void kh::Screen::ObjDayEndResultMail::statusFadeoutToLeft(void)
  * Address:	80409094
  * Size:	000038
  */
-void kh::Screen::ObjDayEndResultMail::statusFadeinFromLeft(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeinFromLeft()
 {
 	/*
 	.loc_0x0:
@@ -7865,7 +7836,7 @@ void kh::Screen::ObjDayEndResultMail::statusFadeinFromLeft(void)
  * Address:	804090CC
  * Size:	0000B8
  */
-void kh::Screen::ObjDayEndResultMail::statusFadeoutToRight(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeoutToRight()
 {
 	/*
 	.loc_0x0:
@@ -7933,7 +7904,7 @@ void kh::Screen::ObjDayEndResultMail::statusFadeoutToRight(void)
  * Address:	80409184
  * Size:	000038
  */
-void kh::Screen::ObjDayEndResultMail::statusFadeinFromRight(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeinFromRight()
 {
 	/*
 	.loc_0x0:
@@ -7961,7 +7932,7 @@ void kh::Screen::ObjDayEndResultMail::statusFadeinFromRight(void)
  * Address:	804091BC
  * Size:	00012C
  */
-void kh::Screen::ObjDayEndResultMail::statusWaitOpen(void)
+void kh::Screen::ObjDayEndResultMail::statusWaitOpen()
 {
 	/*
 	.loc_0x0:
@@ -8068,7 +8039,7 @@ void kh::Screen::ObjDayEndResultMail::statusWaitOpen(void)
  * Address:	804092E8
  * Size:	0000D4
  */
-void kh::Screen::ObjDayEndResultMail::statusOpenW(void)
+void kh::Screen::ObjDayEndResultMail::statusOpenW()
 {
 	/*
 	.loc_0x0:
@@ -8137,7 +8108,7 @@ void kh::Screen::ObjDayEndResultMail::statusOpenW(void)
  * Address:	804093BC
  * Size:	0000CC
  */
-void kh::Screen::ObjDayEndResultMail::statusOpenH(void)
+void kh::Screen::ObjDayEndResultMail::statusOpenH()
 {
 	/*
 	.loc_0x0:
@@ -8204,7 +8175,7 @@ void kh::Screen::ObjDayEndResultMail::statusOpenH(void)
  * Address:	80409488
  * Size:	000480
  */
-void kh::Screen::ObjDayEndResultMail::changeMail(void)
+void kh::Screen::ObjDayEndResultMail::changeMail()
 {
 	/*
 	.loc_0x0:
@@ -8508,7 +8479,7 @@ void kh::Screen::ObjDayEndResultMail::changeMail(void)
  * Address:	80409908
  * Size:	000064
  */
-void kh::Screen::ObjDayEndResultMail::changeAlpha(void)
+void kh::Screen::ObjDayEndResultMail::changeAlpha()
 {
 	/*
 	.loc_0x0:
@@ -8545,7 +8516,7 @@ void kh::Screen::ObjDayEndResultMail::changeAlpha(void)
  * Address:	8040996C
  * Size:	0001C4
  */
-void kh::Screen::ObjDayEndResultMail::doDraw((Graphics&))
+void kh::Screen::ObjDayEndResultMail::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -8672,7 +8643,7 @@ void kh::Screen::ObjDayEndResultMail::doDraw((Graphics&))
  * Address:	80409B30
  * Size:	000288
  */
-void kh::Screen::ObjDayEndResultMail::updateCommon(void)
+void kh::Screen::ObjDayEndResultMail::updateCommon()
 {
 	/*
 	.loc_0x0:
@@ -8858,8 +8829,8 @@ void kh::Screen::ObjDayEndResultMail::updateCommon(void)
  * Address:	80409DB8
  * Size:	0003BC
  */
-void kh::Screen::ObjDayEndResultMail::setCallBackMessage((P2DScreen::Mgr*,
-                                                          J2DPane*))
+void kh::Screen::ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr*,
+                                                         J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -9144,7 +9115,7 @@ void kh::Screen::ObjDayEndResultMail::setCallBackMessage((P2DScreen::Mgr*,
  * Address:	8040A174
  * Size:	000024
  */
-void kh::Screen::ObjDayEndResultMail::setCallBackMessage((P2DScreen::Mgr*))
+void kh::Screen::ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr*)
 {
 	/*
 	.loc_0x0:
@@ -9165,7 +9136,7 @@ void kh::Screen::ObjDayEndResultMail::setCallBackMessage((P2DScreen::Mgr*))
  * Address:	8040A198
  * Size:	00005C
  */
-void kh::Screen::ObjDayEndResultMail::skipped( const
+void kh::Screen::ObjDayEndResultMail::skipped() const
 {
 	/*
 	.loc_0x0:
@@ -9200,7 +9171,7 @@ void kh::Screen::ObjDayEndResultMail::skipped( const
  * Address:	8040A1F4
  * Size:	000068
  */
-void kh::Screen::ObjDayEndResultTitl::__ct(void)
+void kh::Screen::ObjDayEndResultTitl::ObjDayEndResultTitl()
 {
 	/*
 	.loc_0x0:
@@ -9238,7 +9209,7 @@ void kh::Screen::ObjDayEndResultTitl::__ct(void)
  * Address:	8040A25C
  * Size:	0001BC
  */
-void kh::Screen::ObjDayEndResultTitl::doCreate( (JKRArchive *))
+void kh::Screen::ObjDayEndResultTitl::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -9367,7 +9338,7 @@ void kh::Screen::ObjDayEndResultTitl::doCreate( (JKRArchive *))
  * Address:	8040A418
  * Size:	000078
  */
-void kh::Screen::ObjDayEndResultTitl::doUpdateFadein(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdateFadein()
 {
 	/*
 	.loc_0x0:
@@ -9413,7 +9384,7 @@ void kh::Screen::ObjDayEndResultTitl::doUpdateFadein(void)
  * Address:	8040A490
  * Size:	000064
  */
-void kh::Screen::ObjDayEndResultTitl::doUpdate(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -9456,7 +9427,7 @@ void kh::Screen::ObjDayEndResultTitl::doUpdate(void)
  * Address:	8040A4F4
  * Size:	000074
  */
-void kh::Screen::ObjDayEndResultTitl::doUpdateFadeout(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdateFadeout()
 {
 	/*
 	.loc_0x0:
@@ -9501,7 +9472,7 @@ void kh::Screen::ObjDayEndResultTitl::doUpdateFadeout(void)
  * Address:	8040A568
  * Size:	0000CC
  */
-void kh::Screen::ObjDayEndResultTitl::doUpdateFadeoutFinish(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdateFadeoutFinish()
 {
 	/*
 	.loc_0x0:
@@ -9566,7 +9537,7 @@ void kh::Screen::ObjDayEndResultTitl::doUpdateFadeoutFinish(void)
  * Address:	8040A634
  * Size:	000144
  */
-void kh::Screen::ObjDayEndResultTitl::doDraw( (Graphics &))
+void kh::Screen::ObjDayEndResultTitl::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -9659,7 +9630,7 @@ void kh::Screen::ObjDayEndResultTitl::doDraw( (Graphics &))
  * Address:	8040A778
  * Size:	0000E0
  */
-void kh::Screen::ObjDayEndResultTitl::updateCommon(void)
+void kh::Screen::ObjDayEndResultTitl::updateCommon()
 {
 	/*
 	.loc_0x0:
@@ -9731,7 +9702,7 @@ void kh::Screen::ObjDayEndResultTitl::updateCommon(void)
  * Address:	8040A858
  * Size:	000048
  */
-void kh::Screen::SceneDayEndResultMail::__ct(void)
+void kh::Screen::SceneDayEndResultMail::SceneDayEndResultMail()
 {
 	/*
 	.loc_0x0:
@@ -9761,7 +9732,8 @@ void kh::Screen::SceneDayEndResultMail::__ct(void)
  * Address:	8040A8A0
  * Size:	00058C
  */
-void kh::Screen::SceneDayEndResultMail::doUserCallBackFunc( (Resource::MgrCommand *))
+void kh::Screen::SceneDayEndResultMail::doUserCallBackFunc(
+    Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -10180,7 +10152,7 @@ void kh::Screen::SceneDayEndResultMail::doUserCallBackFunc( (Resource::MgrComman
  * Address:	8040AE2C
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultMail::getResName( const
+void kh::Screen::SceneDayEndResultMail::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -10194,7 +10166,7 @@ void kh::Screen::SceneDayEndResultMail::getResName( const
  * Address:	8040AE34
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultMail::getSceneType(void)
+void kh::Screen::SceneDayEndResultMail::getSceneType()
 {
 	/*
 	.loc_0x0:
@@ -10208,7 +10180,7 @@ void kh::Screen::SceneDayEndResultMail::getSceneType(void)
  * Address:	8040AE3C
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultMail::getOwnerID(void)
+void kh::Screen::SceneDayEndResultMail::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -10222,7 +10194,7 @@ void kh::Screen::SceneDayEndResultMail::getOwnerID(void)
  * Address:	8040AE44
  * Size:	000014
  */
-void kh::Screen::SceneDayEndResultMail::getMemberID(void)
+void kh::Screen::SceneDayEndResultMail::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -10239,7 +10211,7 @@ void kh::Screen::SceneDayEndResultMail::getMemberID(void)
  * Address:	8040AE58
  * Size:	000004
  */
-void kh::Screen::SceneDayEndResultMail::doCreateObj( (JKRArchive *))
+void kh::Screen::SceneDayEndResultMail::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -10252,7 +10224,7 @@ void kh::Screen::SceneDayEndResultMail::doCreateObj( (JKRArchive *))
  * Address:	8040AE5C
  * Size:	0000AC
  */
-void kh::Screen::ObjDayEndResultTitl::__dt(void)
+void kh::Screen::ObjDayEndResultTitl::~ObjDayEndResultTitl()
 {
 	/*
 	.loc_0x0:
@@ -10311,7 +10283,7 @@ void kh::Screen::ObjDayEndResultTitl::__dt(void)
  * Address:	8040AF08
  * Size:	0000C4
  */
-void kh::Screen::ObjDayEndResultMail::__dt(void)
+void kh::Screen::ObjDayEndResultMail::~ObjDayEndResultMail()
 {
 	/*
 	.loc_0x0:
@@ -10376,7 +10348,7 @@ void kh::Screen::ObjDayEndResultMail::__dt(void)
  * Address:	8040AFCC
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeinUpMinFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeinUpMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10390,7 +10362,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeinUpMinFrm( const
  * Address:	8040AFD4
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeinUpMaxFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeinUpMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10404,7 +10376,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeinUpMaxFrm( const
  * Address:	8040AFDC
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeoutUpMinFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeoutUpMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10418,7 +10390,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeoutUpMinFrm( const
  * Address:	8040AFE4
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeoutUpMaxFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeoutUpMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10432,7 +10404,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeoutUpMaxFrm( const
  * Address:	8040AFEC
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeinDownMinFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeinDownMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10446,7 +10418,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeinDownMinFrm( const
  * Address:	8040AFF4
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeinDownMaxFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeinDownMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10460,7 +10432,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeinDownMaxFrm( const
  * Address:	8040AFFC
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeoutDownMinFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeoutDownMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10474,7 +10446,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeoutDownMinFrm( const
  * Address:	8040B004
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getFadeoutDownMaxFrm( const
+void kh::Screen::ObjDayEndResultMail::getFadeoutDownMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10488,7 +10460,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeoutDownMaxFrm( const
  * Address:	8040B00C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getStarWTagNum( const
+void kh::Screen::ObjDayEndResultMail::getStarWTagNum() const
 {
 	/*
 	.loc_0x0:
@@ -10502,7 +10474,7 @@ void kh::Screen::ObjDayEndResultMail::getStarWTagNum( const
  * Address:	8040B014
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getPStarWMinFrm( const
+void kh::Screen::ObjDayEndResultMail::getPStarWMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10516,7 +10488,7 @@ void kh::Screen::ObjDayEndResultMail::getPStarWMinFrm( const
  * Address:	8040B01C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getPStarWMaxFrm( const
+void kh::Screen::ObjDayEndResultMail::getPStarWMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10530,7 +10502,7 @@ void kh::Screen::ObjDayEndResultMail::getPStarWMaxFrm( const
  * Address:	8040B024
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultItem::getClassSize(void)
+void kh::Screen::SArgDayEndResultItem::getClassSize()
 {
 	/*
 	.loc_0x0:
@@ -10544,7 +10516,7 @@ void kh::Screen::SArgDayEndResultItem::getClassSize(void)
  * Address:	8040B02C
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultItem::getSceneType( const
+void kh::Screen::SArgDayEndResultItem::getSceneType() const
 {
 	/*
 	.loc_0x0:
@@ -10558,7 +10530,7 @@ void kh::Screen::SArgDayEndResultItem::getSceneType( const
  * Address:	8040B034
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultMail::getClassSize(void)
+void kh::Screen::SArgDayEndResultMail::getClassSize()
 {
 	/*
 	.loc_0x0:
@@ -10572,7 +10544,7 @@ void kh::Screen::SArgDayEndResultMail::getClassSize(void)
  * Address:	8040B03C
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultMail::getSceneType( const
+void kh::Screen::SArgDayEndResultMail::getSceneType() const
 {
 	/*
 	.loc_0x0:
@@ -10586,7 +10558,7 @@ void kh::Screen::SArgDayEndResultMail::getSceneType( const
  * Address:	8040B044
  * Size:	0000C4
  */
-void kh::Screen::ObjDayEndResultIncP::__dt(void)
+void kh::Screen::ObjDayEndResultIncP::~ObjDayEndResultIncP()
 {
 	/*
 	.loc_0x0:
@@ -10651,7 +10623,7 @@ void kh::Screen::ObjDayEndResultIncP::__dt(void)
  * Address:	8040B108
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeinUpMinFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeinUpMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10665,7 +10637,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeinUpMinFrm( const
  * Address:	8040B110
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeinUpMaxFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeinUpMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10679,7 +10651,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeinUpMaxFrm( const
  * Address:	8040B118
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMinFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10693,7 +10665,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMinFrm( const
  * Address:	8040B120
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMaxFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10707,7 +10679,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMaxFrm( const
  * Address:	8040B128
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeinDownMinFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeinDownMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10721,7 +10693,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeinDownMinFrm( const
  * Address:	8040B130
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeinDownMaxFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeinDownMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10735,7 +10707,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeinDownMaxFrm( const
  * Address:	8040B138
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMinFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10749,7 +10721,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMinFrm( const
  * Address:	8040B140
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMaxFrm( const
+void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10763,7 +10735,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMaxFrm( const
  * Address:	8040B148
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getStarWTagNum( const
+void kh::Screen::ObjDayEndResultIncP::getStarWTagNum() const
 {
 	/*
 	.loc_0x0:
@@ -10777,7 +10749,7 @@ void kh::Screen::ObjDayEndResultIncP::getStarWTagNum( const
  * Address:	8040B150
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getPStarWMinFrm( const
+void kh::Screen::ObjDayEndResultIncP::getPStarWMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10791,7 +10763,7 @@ void kh::Screen::ObjDayEndResultIncP::getPStarWMinFrm( const
  * Address:	8040B158
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getPStarWMaxFrm( const
+void kh::Screen::ObjDayEndResultIncP::getPStarWMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10805,7 +10777,7 @@ void kh::Screen::ObjDayEndResultIncP::getPStarWMaxFrm( const
  * Address:	8040B160
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultIncP::getClassSize(void)
+void kh::Screen::SArgDayEndResultIncP::getClassSize()
 {
 	/*
 	.loc_0x0:
@@ -10819,7 +10791,7 @@ void kh::Screen::SArgDayEndResultIncP::getClassSize(void)
  * Address:	8040B168
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultIncP::getSceneType( const
+void kh::Screen::SArgDayEndResultIncP::getSceneType() const
 {
 	/*
 	.loc_0x0:
@@ -10833,7 +10805,7 @@ void kh::Screen::SArgDayEndResultIncP::getSceneType( const
  * Address:	8040B170
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultBase::getClassSize(void)
+void kh::Screen::SArgDayEndResultBase::getClassSize()
 {
 	/*
 	.loc_0x0:
@@ -10847,7 +10819,7 @@ void kh::Screen::SArgDayEndResultBase::getClassSize(void)
  * Address:	8040B178
  * Size:	0000C4
  */
-void kh::Screen::ObjDayEndResultItem::__dt(void)
+void kh::Screen::ObjDayEndResultItem::~ObjDayEndResultItem()
 {
 	/*
 	.loc_0x0:
@@ -10912,7 +10884,7 @@ void kh::Screen::ObjDayEndResultItem::__dt(void)
  * Address:	8040B23C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeinUpMinFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeinUpMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10926,7 +10898,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeinUpMinFrm( const
  * Address:	8040B244
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeinUpMaxFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeinUpMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10940,7 +10912,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeinUpMaxFrm( const
  * Address:	8040B24C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeoutUpMinFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeoutUpMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10954,7 +10926,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeoutUpMinFrm( const
  * Address:	8040B254
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeoutUpMaxFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeoutUpMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10968,7 +10940,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeoutUpMaxFrm( const
  * Address:	8040B25C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeinDownMinFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeinDownMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10982,7 +10954,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeinDownMinFrm( const
  * Address:	8040B264
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeinDownMaxFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeinDownMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -10996,7 +10968,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeinDownMaxFrm( const
  * Address:	8040B26C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeoutDownMinFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeoutDownMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -11010,7 +10982,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeoutDownMinFrm( const
  * Address:	8040B274
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getFadeoutDownMaxFrm( const
+void kh::Screen::ObjDayEndResultItem::getFadeoutDownMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -11024,7 +10996,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeoutDownMaxFrm( const
  * Address:	8040B27C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getStarWTagNum( const
+void kh::Screen::ObjDayEndResultItem::getStarWTagNum() const
 {
 	/*
 	.loc_0x0:
@@ -11038,7 +11010,7 @@ void kh::Screen::ObjDayEndResultItem::getStarWTagNum( const
  * Address:	8040B284
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getPStarWMinFrm( const
+void kh::Screen::ObjDayEndResultItem::getPStarWMinFrm() const
 {
 	/*
 	.loc_0x0:
@@ -11052,7 +11024,7 @@ void kh::Screen::ObjDayEndResultItem::getPStarWMinFrm( const
  * Address:	8040B28C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getPStarWMaxFrm( const
+void kh::Screen::ObjDayEndResultItem::getPStarWMaxFrm() const
 {
 	/*
 	.loc_0x0:
@@ -11066,7 +11038,7 @@ void kh::Screen::ObjDayEndResultItem::getPStarWMaxFrm( const
  * Address:	8040B294
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultMail::getSize(void)
+void kh::Screen::DispDayEndResultMail::getSize()
 {
 	/*
 	.loc_0x0:
@@ -11080,7 +11052,7 @@ void kh::Screen::DispDayEndResultMail::getSize(void)
  * Address:	8040B29C
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultMail::getOwnerID(void)
+void kh::Screen::DispDayEndResultMail::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -11094,7 +11066,7 @@ void kh::Screen::DispDayEndResultMail::getOwnerID(void)
  * Address:	8040B2A4
  * Size:	000014
  */
-void kh::Screen::DispDayEndResultMail::getMemberID(void)
+void kh::Screen::DispDayEndResultMail::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -11111,7 +11083,7 @@ void kh::Screen::DispDayEndResultMail::getMemberID(void)
  * Address:	8040B2B8
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultIncP::getSize(void)
+void kh::Screen::DispDayEndResultIncP::getSize()
 {
 	/*
 	.loc_0x0:
@@ -11125,7 +11097,7 @@ void kh::Screen::DispDayEndResultIncP::getSize(void)
  * Address:	8040B2C0
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultIncP::getOwnerID(void)
+void kh::Screen::DispDayEndResultIncP::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -11139,7 +11111,7 @@ void kh::Screen::DispDayEndResultIncP::getOwnerID(void)
  * Address:	8040B2C8
  * Size:	000014
  */
-void kh::Screen::DispDayEndResultIncP::getMemberID(void)
+void kh::Screen::DispDayEndResultIncP::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -11156,7 +11128,7 @@ void kh::Screen::DispDayEndResultIncP::getMemberID(void)
  * Address:	8040B2DC
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultItem::getSize(void)
+void kh::Screen::DispDayEndResultItem::getSize()
 {
 	/*
 	.loc_0x0:
@@ -11170,7 +11142,7 @@ void kh::Screen::DispDayEndResultItem::getSize(void)
  * Address:	8040B2E4
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultItem::getOwnerID(void)
+void kh::Screen::DispDayEndResultItem::getOwnerID()
 {
 	/*
 	.loc_0x0:
@@ -11184,7 +11156,7 @@ void kh::Screen::DispDayEndResultItem::getOwnerID(void)
  * Address:	8040B2EC
  * Size:	000014
  */
-void kh::Screen::DispDayEndResultItem::getMemberID(void)
+void kh::Screen::DispDayEndResultItem::getMemberID()
 {
 	/*
 	.loc_0x0:
@@ -11264,7 +11236,7 @@ void __sinit_khDayEndResult_cpp(void)
  * Address:	8040B3CC
  * Size:	000008
  */
-void @24@kh::Screen::ObjDayEndResultBase::__dt(void)
+void kh::Screen::ObjDayEndResultBase::@24 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -11278,7 +11250,7 @@ void @24@kh::Screen::ObjDayEndResultBase::__dt(void)
  * Address:	8040B3D4
  * Size:	000008
  */
-void @24@kh::Screen::ObjDayEndResultItem::__dt(void)
+void kh::Screen::ObjDayEndResultItem::@24 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -11292,7 +11264,7 @@ void @24@kh::Screen::ObjDayEndResultItem::__dt(void)
  * Address:	8040B3DC
  * Size:	000008
  */
-void @24@kh::Screen::ObjDayEndResultIncP::__dt(void)
+void kh::Screen::ObjDayEndResultIncP::@24 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -11306,7 +11278,7 @@ void @24@kh::Screen::ObjDayEndResultIncP::__dt(void)
  * Address:	8040B3E4
  * Size:	000008
  */
-void @24@kh::Screen::ObjDayEndResultMail::__dt(void)
+void kh::Screen::ObjDayEndResultMail::@24 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -11320,7 +11292,7 @@ void @24@kh::Screen::ObjDayEndResultMail::__dt(void)
  * Address:	8040B3EC
  * Size:	000008
  */
-void @24@kh::Screen::ObjDayEndResultTitl::__dt(void)
+void kh::Screen::ObjDayEndResultTitl::@24 @__dt()
 {
 	/*
 	.loc_0x0:
