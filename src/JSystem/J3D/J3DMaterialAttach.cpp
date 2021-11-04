@@ -81,16 +81,6 @@ void J3DMaterialTable::~J3DMaterialTable()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0001AC
- */
-void J3DMaterialTable::allocMatColorAnimator(J3DAnmColor*, J3DMatColorAnm**)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80083CF0
  * Size:	000018
  */
@@ -105,16 +95,6 @@ void J3DMatColorAnm::J3DMatColorAnm()
 	  stw       r4, 0x4(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001BC
- */
-void J3DMaterialTable::allocTexNoAnimator(J3DAnmTexPattern*, J3DTexNoAnm**)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -575,26 +555,6 @@ void J3DTevColorAnm::J3DTevColorAnm()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000078
- */
-void J3DMaterialTable::removeMatColorAnimator(J3DAnmColor*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80084264
  * Size:	0000AC
  */
@@ -769,16 +729,6 @@ void J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000204
- */
-void J3DMaterialTable::createTexMtxForAnimator(J3DAnmTextureSRTKey*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8008442C
  * Size:	0000BC
  */
@@ -852,16 +802,6 @@ void J3DMaterialTable::entryMatColorAnimator(J3DAnmColor*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
- */
-void J3DMaterialTable::entryTexNoAnimator(J3DAnmTexPattern*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

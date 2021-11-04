@@ -86,16 +86,6 @@ void J2DMaterial::J2DMaterial()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void J2DPEBlock::~J2DPEBlock()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80051FC4
  * Size:	000020
  */
@@ -745,16 +735,6 @@ void J2DIndTexOrder::J2DIndTexOrder()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000084
- */
-void J2DMaterial::J2DMaterialAnmPointer::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800526C8
  * Size:	0000C8
  */
@@ -817,16 +797,6 @@ void J2DMaterial::makeAnmPointer()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void J2DMaterial::setAnimation(J2DAnmBase*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1685,16 +1655,6 @@ void J2DMaterial::animation()
 	  addi      r1, r1, 0x110
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void J2DTexMtx::~J2DTexMtx()
-{
-	// UNUSED FUNCTION
 }
 
 /*

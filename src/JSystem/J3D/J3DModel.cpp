@@ -452,16 +452,6 @@ void J3DModel::newDifferedTexMtx(J3DTexDiffFlag)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void J3DModel::ptrToIndex()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800667F4
  * Size:	000130
  */
@@ -554,16 +544,6 @@ void J3DModel::lock()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
- */
-void J3DModel::unlock()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -854,16 +834,6 @@ void J3DModel::calcDiffTexMtx()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000098
- */
-void J3DModel::patch()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80066C6C
  * Size:	00009C
  */
@@ -919,26 +889,6 @@ void J3DModel::diff()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void J3DModel::setDeformData(J3DDeformData*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000134
- */
-void J3DModel::setSkinDeform(J3DSkinDeform*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80066D08
  * Size:	000034
  */
@@ -962,26 +912,6 @@ void J3DModel::setVtxColorCalc(J3DVtxColorCalc*, J3DDeformAttachFlag)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void J3DModel::setVtxShader(J3DVtxShader*, J3DDeformAttachFlag)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void J3DModel::calcAnmMtx()
-{
-	// UNUSED FUNCTION
 }
 
 /*

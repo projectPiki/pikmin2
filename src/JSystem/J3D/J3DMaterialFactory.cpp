@@ -246,26 +246,6 @@ void J3DMaterialFactory::countUniqueMaterials()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DMaterialFactory::countTexGens(int) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void J3DMaterialFactory::countStages(int) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006C6BC
  * Size:	00007C
  */
@@ -2937,16 +2917,6 @@ void J3DMaterialFactory::newAmbColor(int, int) const
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000108
- */
-void J3DMaterialFactory::newLight(int, int) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006E65C
  * Size:	000038
  */
@@ -3779,16 +3749,6 @@ void J3DMaterialFactory::newIndTexCoordScale(int, int) const
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void J3DMaterialFactory::getMaterialInitData(unsigned short) const
-{
-	// UNUSED FUNCTION
 }
 
 /*

@@ -33,28 +33,6 @@ void J2DPerspGraph::J2DPerspGraph()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void J2DPerspGraph::J2DPerspGraph(const JGeometry::TBox2<float>&, float, float,
-                                  float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void J2DPerspGraph::J2DPerspGraph(float, float, float, float, float, float,
-                                  float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80035E14
  * Size:	000060
  */
@@ -114,16 +92,6 @@ void J2DPerspGraph::setFovy(float)
 	  stfs      f0, 0xBC(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void J2DPerspGraph::getMatrix(float (*)[4]) const
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -202,16 +170,6 @@ void J2DPerspGraph::setLookat()
 
 	.loc_0x68:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void J2DPerspGraph::setDistance(float)
-{
-	// UNUSED FUNCTION
 }
 
 /*

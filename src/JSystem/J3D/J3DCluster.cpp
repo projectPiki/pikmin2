@@ -2,56 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000020
- */
-void J3DDeformData::clear()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DDeformData::J3DDeformData()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void J3DDeformData::onAllFlag(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void J3DDeformData::offAllFlag(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void J3DDeformData::base(J3DModel*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006A59C
  * Size:	000024
  */
@@ -71,16 +21,6 @@ void J3DDeformData::deform(J3DModel*)
 
 	.loc_0x24:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void J3DDeformData::base(J3DVertexBuffer*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -152,36 +92,6 @@ void J3DDeformData::deform(J3DVertexBuffer*)
 
 	.loc_0xD4:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DDeformData::setAnm(J3DAnmCluster*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void J3DDeformer::J3DDeformer(J3DDeformData*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void J3DDeformer::clear()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -978,16 +888,6 @@ void J3DDeformer::deform(J3DVertexBuffer*, unsigned short, float*)
 
 	.loc_0x1CC:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000500
- */
-void J3DDeformer::base(J3DVertexBuffer*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

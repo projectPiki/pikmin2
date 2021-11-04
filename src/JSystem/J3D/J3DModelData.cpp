@@ -64,16 +64,6 @@ void J3DModelData::J3DModelData()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void J3DVertexData::~J3DVertexData()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8008382C
  * Size:	000048
  */
@@ -317,36 +307,6 @@ void J3DModelData::makeSharedDL()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000058
- */
-void J3DModelData::isDeformableNormalFormat() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void J3DModelData::isCpuSkinningNormalFormat() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void J3DModelData::setMaterialTable(J3DMaterialTable*, J3DMaterialCopyFlag)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80083AB0
  * Size:	0000C8
  */
@@ -421,26 +381,6 @@ void J3DModelData::simpleCalcMaterial(unsigned short, float (*)[4])
 
 	.loc_0xC8:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void J3DModelData::simpleDraw(unsigned short) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void J3DModelData::syncJ3DSysPointers() const
-{
-	// UNUSED FUNCTION
 }
 
 /*

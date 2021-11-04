@@ -173,26 +173,6 @@ void J3DMaterialFactory_v21::countUniqueMaterials()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DMaterialFactory_v21::countTexGens(int) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void J3DMaterialFactory_v21::countStages(int) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80084C2C
  * Size:	000838
  */
@@ -1521,16 +1501,6 @@ void J3DMaterialFactory_v21::newTevSwapModeTable(int, int) const
 	  stb       r0, 0x0(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void J3DMaterialFactory_v21::getMaterialInitData_v21(unsigned short) const
-{
-	// UNUSED FUNCTION
 }
 
 /*

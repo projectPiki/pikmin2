@@ -76,67 +76,6 @@ void J2DWindow::J2DWindow()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000F8
- */
-void J2DWindow::J2DWindow(unsigned long long, const JGeometry::TBox2<float>&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000184
- */
-void J2DWindow::J2DWindow(const ResTIMG*, const ResTIMG*, const ResTIMG*,
-                          const ResTIMG*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A4
- */
-void J2DWindow::J2DWindow(const char*, const char*, const char*, const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000180
- */
-void J2DWindow::J2DWindow(const ResTIMG*, J2DTextureBase)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
- */
-void J2DWindow::J2DWindow(const char*, J2DTextureBase)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
- */
-void J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8004263C
  * Size:	0000AC
  */
@@ -566,64 +505,6 @@ void J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J2DWindow::J2DWindow(unsigned long long, const JGeometry::TBox2<float>&,
-                          const ResTIMG*, const ResTIMG*, const ResTIMG*,
-                          const ResTIMG*, const ResTLUT*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void J2DWindow::J2DWindow(unsigned long long, const JGeometry::TBox2<float>&,
-                          const char*, const char*, const char*, const char*,
-                          const ResTLUT*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J2DWindow::J2DWindow(unsigned long long, const JGeometry::TBox2<float>&,
-                          const ResTIMG*, J2DTextureBase, const ResTLUT*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
- */
-void J2DWindow::J2DWindow(unsigned long long, const JGeometry::TBox2<float>&,
-                          const char*, J2DTextureBase, const ResTLUT*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000268
- */
-void J2DWindow::initiate(const ResTIMG*, const ResTIMG*, const ResTIMG*,
-                         const ResTIMG*, const ResTLUT*, J2DWindowMirror,
-                         const JGeometry::TBox2<float>&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80042C48
  * Size:	0004E4
  */
@@ -981,16 +862,6 @@ void J2DWindow::private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void J2DWindow::initinfo()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8004312C
  * Size:	00027C
  */
@@ -1172,16 +1043,6 @@ void J2DWindow::initinfo2()
 	  stb       r0, 0x145(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void J2DWindow::convertMirror(J2DTextureBase)
-{
-	// UNUSED FUNCTION
 }
 
 /*

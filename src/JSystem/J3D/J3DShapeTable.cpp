@@ -2,26 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000144
- */
-void J3DShapeTable::hide()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000144
- */
-void J3DShapeTable::show()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80089664
  * Size:	000064
  */
@@ -118,24 +98,4 @@ void J3DShapeTable::sortVcdVatCmd()
 	  addi      r1, r1, 0x30
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void J3DShapeTable::addTexMtxIndex(_GXAttr, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void J3DShapeTable::isDeformableVcd() const
-{
-	// UNUSED FUNCTION
 }

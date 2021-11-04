@@ -119,36 +119,6 @@ void J2DPane::makeMatrix(float, float)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void JSUTree<J2DPane>::~JSUTree()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<J2DPane>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSUList<J2DPane>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80036C2C
  * Size:	000088
  */
@@ -1121,16 +1091,6 @@ void J2DPane::prependChild(J2DPane*)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void J2DPane::insertChild(J2DPane*, J2DPane*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -2136,16 +2096,6 @@ void J2DPane::rotate(float)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000030
- */
-void J2DPane::getRotate() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80038488
  * Size:	00007C
  */
@@ -2706,17 +2656,6 @@ void J2DPane::searchUserInfo(unsigned long long)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000310
- */
-void J2DPane::gatherUserInfo(J2DPane**, unsigned long long, unsigned long long,
-                             int, int&)
-{
-	// UNUSED FUNCTION
 }
 
 /*

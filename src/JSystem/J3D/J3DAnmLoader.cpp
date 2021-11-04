@@ -641,16 +641,6 @@ void J3DAnmLoaderDataBase::load(const void*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000320
- */
-void J3DAnmLoaderDataBase::setResource(J3DAnmBase*, const void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80072E64
  * Size:	00001C
  */

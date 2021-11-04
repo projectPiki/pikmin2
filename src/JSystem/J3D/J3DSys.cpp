@@ -126,16 +126,6 @@ void J3DSys::loadNrmMtxIndx(int, unsigned short) const
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000198
- */
-void J3DSys::setTexCacheRegion(_GXTexCacheSize)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005DC0C
  * Size:	0007B8
  */

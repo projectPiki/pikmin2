@@ -2,46 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __MTGQR7(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DGQRSetup7(unsigned long, unsigned long, unsigned long, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __MTGQR6(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DGQRSetup6(unsigned long, unsigned long, unsigned long, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005EE78
  * Size:	0000F0
  */
@@ -781,26 +741,6 @@ void J3DMtxProjConcat(float (*)[4], float (*)[4], float (*)[4])
 	  psq_st    f0,0x28(r5),0,0
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void J3DCalcHalfAngleVec(Vec*, Vec*, Vec*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
- */
-void J3DCalcHalfAngleMtx(Vec*, Vec*, float (*)[4])
-{
-	// UNUSED FUNCTION
 }
 
 /*

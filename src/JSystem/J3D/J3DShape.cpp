@@ -42,36 +42,6 @@ void J3DShape::initialize()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000048
- */
-void J3DShape::~J3DShape()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
- */
-void J3DShape::addTexMtxIndexInDL(_GXAttr, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void J3DShape::addTexMtxIndexInVcd(_GXAttr)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800608C0
  * Size:	000078
  */
@@ -162,36 +132,6 @@ void J3DShape::countBumpMtxNum() const
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-void J3DLoadCPCmd(unsigned char, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void J3DLoadArrayBasePtr(_GXAttr, void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void J3DShape::loadVtxArray() const
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -584,16 +524,6 @@ void J3DShape::makeVcdVatCmd()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void J3DShape::loadCurrentMtx() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80060E40
  * Size:	0000A0
  */
@@ -644,16 +574,6 @@ void J3DShape::loadPreDrawSetting() const
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void J3DShape::setArrayAndBindPipeline() const
-{
-	// UNUSED FUNCTION
 }
 
 /*

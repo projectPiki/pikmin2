@@ -112,16 +112,6 @@ void J3DDisplayListObj::single_To_Double()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000078
- */
-void J3DDisplayListObj::setDisplayList(void*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005F94C
  * Size:	000020
  */
@@ -138,16 +128,6 @@ void J3DDisplayListObj::setSingleDisplayList(void*, unsigned long)
 	  stw       r5, 0x8(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void J3DDisplayListObj::swapBuffer()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -171,16 +151,6 @@ void J3DDisplayListObj::callDL() const
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void J3DDisplayListObj::fifoWrite() const
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -319,16 +289,6 @@ void J3DDisplayListObj::endPatch()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J3DPacket::isSame(J3DMatPacket*) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005FAF0
  * Size:	000008
  */
@@ -365,16 +325,6 @@ void J3DPacket::addChildPacket(J3DPacket*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void J3DCallBackPacket::draw()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005FB18
  * Size:	000004
  */
@@ -384,16 +334,6 @@ void J3DPacket::draw()
 	.loc_0x0:
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void J3DDrawPacket::J3DDrawPacket()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1331,16 +1271,6 @@ void J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void J3DShapePacket::prepareDraw() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800604A8
  * Size:	0001B0
  */
@@ -1645,14 +1575,4 @@ void J3DMatPacket::entry(J3DDrawBuffer*)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void J3DCallBackPacket::~J3DCallBackPacket()
-{
-	// UNUSED FUNCTION
 }

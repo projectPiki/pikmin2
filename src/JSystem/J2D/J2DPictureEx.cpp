@@ -32,26 +32,6 @@ void J2DPictureEx::J2DPictureEx()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void J2DPictureEx::J2DPictureEx(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void J2DPictureEx::J2DPictureEx(unsigned char, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80054B38
  * Size:	00007C
  */
@@ -119,16 +99,6 @@ void J2DPictureEx::append(const ResTIMG*, float)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void J2DPictureEx::J2DPictureEx(const char*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80054BE4
  * Size:	000030
  */
@@ -149,16 +119,6 @@ void J2DPictureEx::append(const char*, float)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void J2DPictureEx::J2DPictureEx(JUTTexture*, unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*

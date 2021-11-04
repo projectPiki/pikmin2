@@ -26,16 +26,6 @@ void J3DFrameCtrl::init(short)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0005A0
- */
-void J3DFrameCtrl::checkPass(float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800676A8
  * Size:	000474
  */
@@ -1187,17 +1177,6 @@ void J3DAnmTextureSRTKey::calcTransform(float, unsigned short,
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000274
- */
-void J3DAnmTextureSRTKey::calcPostTransform(float, unsigned short,
-                                            J3DTextureSRTInfo*) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80068504
  * Size:	000094
  */
@@ -1676,16 +1655,6 @@ void J3DAnmVtxColorKey::getColor(unsigned char, unsigned short, _GXColor*) const
 	  addi      r1, r1, 0x40
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
- */
-void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -2172,46 +2141,6 @@ void J3DAnmTexPattern::getTexNo(unsigned short, unsigned short*) const
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void J3DAnmVisibilityFull::getVisibility(unsigned short, unsigned char*) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
- */
-void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
- */
-void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
- */
-void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -2791,16 +2720,6 @@ void J3DAnmTevRegKey::getTevKonstReg(unsigned short, _GXColor*) const
 	  addi      r1, r1, 0x40
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
- */
-void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

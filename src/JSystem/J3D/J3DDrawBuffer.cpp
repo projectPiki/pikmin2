@@ -87,16 +87,6 @@ void J3DDrawBuffer::allocBuffer(unsigned long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000060
- */
-void J3DDrawBuffer::~J3DDrawBuffer()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80065A90
  * Size:	0000EC
  */
@@ -650,16 +640,6 @@ void J3DDrawBuffer::entryNonSort(J3DMatPacket*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000020
- */
-void J3DDrawBuffer::entryImm(J3DPacket*, unsigned short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800660BC
  * Size:	000054
  */
@@ -795,16 +775,6 @@ void J3DDrawBuffer::drawTail() const
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void J3DDrawBuffer::setCallBackPacket(J3DCallBackPacket*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

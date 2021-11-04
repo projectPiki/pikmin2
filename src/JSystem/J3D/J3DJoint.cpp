@@ -542,26 +542,6 @@ void J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0001F4
- */
-void J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DMtxCalcFlag)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
- */
-void J3DSharedMotionConfig(const J3DJointTree*, J3DJointTree*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006B888
  * Size:	000034
  */
@@ -589,16 +569,6 @@ void J3DJoint::appendChild(J3DJoint*)
 	  stw       r4, 0x10(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void J3DJoint::initialize()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -674,16 +644,6 @@ void J3DJoint::J3DJoint()
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
- */
-void J3DJoint::J3DJoint(unsigned short, const J3DTransformInfo&)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -987,42 +947,6 @@ void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformMaya>,
-    J3DMtxCalcJ3DSysInitMaya>::~J3DMtxCalcAnimation()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformMaya>,
-    J3DMtxCalcJ3DSysInitMaya>::init(const Vec&, const float (&)[3][4])
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformMaya>,
-    J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(J3DAnmTransform*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006BD0C
  * Size:	00006C
  */
@@ -1135,42 +1059,6 @@ void J3DMtxCalcAnimation<
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformSoftimage>,
-    J3DMtxCalcJ3DSysInitSoftimage>::~J3DMtxCalcAnimation()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformSoftimage>,
-    J3DMtxCalcJ3DSysInitSoftimage>::init(const Vec&, const float (&)[3][4])
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformSoftimage>,
-    J3DMtxCalcJ3DSysInitSoftimage>::setAnmTransform(J3DAnmTransform*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006BE14
  * Size:	00006C
  */
@@ -1261,42 +1149,6 @@ void J3DMtxCalcAnimation<
 	  stw       r4, 0x4(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformBasic>,
-    J3DMtxCalcJ3DSysInitBasic>::~J3DMtxCalcAnimation()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformBasic>,
-    J3DMtxCalcJ3DSysInitBasic>::init(const Vec&, const float (&)[3][4])
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformBasic>,
-    J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(J3DAnmTransform*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1534,18 +1386,6 @@ void J3DMtxCalcAnimation<
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0001AC
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformBasic>,
-    J3DMtxCalcJ3DSysInitBasic>::calc()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006C158
  * Size:	0001C4
  */
@@ -1685,18 +1525,6 @@ void J3DMtxCalcAnimation<
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0001F8
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformSoftimage>,
-    J3DMtxCalcJ3DSysInitSoftimage>::calc()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006C31C
  * Size:	000088
  */
@@ -1745,16 +1573,4 @@ void J3DMtxCalcAnimation<
 	  addi      r1, r1, 0x30
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void J3DMtxCalcAnimation<
-    J3DMtxCalcAnimationAdaptorSharedMotionT<J3DMtxCalcCalcTransformMaya>,
-    J3DMtxCalcJ3DSysInitMaya>::calc()
-{
-	// UNUSED FUNCTION
 }

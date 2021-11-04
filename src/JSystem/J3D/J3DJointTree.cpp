@@ -47,16 +47,6 @@ void J3DJointTree::J3DJointTree()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000044
- */
-void J3DJointTree::clear()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80088310
  * Size:	00015C
  */

@@ -2,36 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000050
- */
-void J2DDataManage::~J2DDataManage()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
- */
-void J2DDataManage::clear()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
- */
-void J2DDataManage::set(const void*, const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8004985C
  * Size:	000064
  */
@@ -145,26 +115,6 @@ void J2DDataManage::get(JSUInputStream*)
 	  addi      r1, r1, 0x120
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void J2DDataManage::remove(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void J2DDataManage::remove(const void*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

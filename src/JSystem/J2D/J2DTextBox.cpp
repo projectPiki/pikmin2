@@ -44,46 +44,6 @@ void J2DTextBox::J2DTextBox()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000078
- */
-void J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void J2DTextBox::J2DTextBox(const ResFONT*, const char*, short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
- */
-void J2DTextBox::J2DTextBox(const char*, const char*, short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80040FEC
  * Size:	000094
  */
@@ -514,18 +474,6 @@ void J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&,
 
 	.loc_0x8C:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&,
-                            const char*, const char*, short, J2DTextBoxHBinding,
-                            J2DTextBoxVBinding)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -990,16 +938,6 @@ void J2DTextBox::~J2DTextBox()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void J2DTextBox::setFontSize()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80041B88
  * Size:	000008
  */
@@ -1054,16 +992,6 @@ void J2DTextBox::setFont(JUTFont*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void J2DTextBox::setLineSpace()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1341,26 +1269,6 @@ void J2DTextBox::draw(float, float, float, J2DTextBoxHBinding)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void J2DTextBox::getString(char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J2DTextBox::getStringPtr() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80041F74
  * Size:	0000F4
  */
@@ -1436,16 +1344,6 @@ void J2DTextBox::setString(const char*, ...)
 	  addi      r1, r1, 0x90
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void J2DTextBox::setString(short, const char*, ...)
-{
-	// UNUSED FUNCTION
 }
 
 /*

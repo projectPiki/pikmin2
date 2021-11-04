@@ -219,16 +219,6 @@ void J3DModelLoader::~J3DModelLoader()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J3DModelLoaderDataBase::loadMaterialTable(const void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8006FAE8
  * Size:	0000BC
  */
@@ -1168,16 +1158,6 @@ void J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void getFmtType(_GXVtxAttrFmtList*, _GXAttr)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -2891,16 +2871,16 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
 {
 	/*
 	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x7674(r13)
-	  addi      r3, r3, 0x18
-	  bl        -0x6318
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	  subi      r3, r3, 0x10
+	  b         -0x3D64
+	  subi      r3, r3, 0x30
+	  b         -0x3D6C
+	  subi      r3, r3, 0x10
+	  b         -0x36F0
+	  subi      r3, r3, 0x30
+	  b         -0x36F8
+	  subi      r3, r3, 0x10
+	  b         -0x3510
 	*/
 }
 

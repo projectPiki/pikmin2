@@ -70,16 +70,6 @@ void J2DGrafContext::~J2DGrafContext()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void J2DOrthoGraph::J2DOrthoGraph(const JGeometry::TBox2<float>&, float, float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800355D8
  * Size:	0000E4
  */
@@ -204,16 +194,6 @@ void J2DOrthoGraph::setOrtho(const JGeometry::TBox2<float>&, float, float)
 	  stfs      f0, 0xD0(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void J2DOrthoGraph::setOrigin(float, float)
-{
-	// UNUSED FUNCTION
 }
 
 /*

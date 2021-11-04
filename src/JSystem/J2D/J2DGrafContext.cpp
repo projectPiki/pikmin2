@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void J2DGrafContext::J2DGrafContext(const JGeometry::TBox2<float>&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80036074
  * Size:	0000AC
  */
@@ -778,16 +768,6 @@ void J2DGrafContext::drawFrame(const JGeometry::TBox2<float>&)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void J2DGrafContext::line(JGeometry::TVec2<float>, JGeometry::TVec2<float>)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800369E0
  * Size:	000104
  */
@@ -861,46 +841,6 @@ void J2DGrafContext::lineTo(JGeometry::TVec2<float>)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000210
- */
-void J2DGrafContext::polyline(JGeometry::TVec2<float>*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000178
- */
-void J2DGrafContext::polyline(float*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000240
- */
-void J2DGrafContext::polylineTo(JGeometry::TVec2<float>*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A8
- */
-void J2DGrafContext::polylineTo(float*, int)
-{
-	// UNUSED FUNCTION
 }
 
 /*

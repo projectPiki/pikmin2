@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void J3DModelLoaderDataBase::countMaterialNum(const void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80087900
  * Size:	000040
  */
@@ -42,37 +32,6 @@ void J3DModelLoader::countMaterialNum(const void*)
 	  li        r3, 0
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
- */
-void J3DModelLoaderDataBase::calcLoadSize(const void*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J3DModelLoaderDataBase::calcLoadMaterialTableSize(const void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void J3DModelLoaderDataBase::calcLoadBinaryDisplayListSize(const void*,
-                                                           unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*

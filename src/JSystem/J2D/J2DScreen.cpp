@@ -260,26 +260,6 @@ void J2DScreen::set(JSURandomInputStream*, unsigned long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000114
- */
-void J2DScreen::setPriority(const char*, unsigned long, JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void J2DScreen::setPriority(JSURandomInputStream*, unsigned long, JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8003F74C
  * Size:	000140
  */
@@ -1470,17 +1450,6 @@ void J2DScreen::searchUserInfo(unsigned long long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000030
- */
-void J2DScreen::gatherUserInfo(J2DPane**, unsigned long long,
-                               unsigned long long, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80040528
  * Size:	000158
  */
@@ -1959,26 +1928,6 @@ void J2DScreen::isUsed(const ResFONT*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void J2DScreen::isTextureInScreen(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void J2DScreen::isFontInScreen(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80040ADC
  * Size:	000050
  */
@@ -2360,46 +2309,6 @@ void J2DScreen::setAnimation(J2DAnmVisibilityFull*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void J2DScreen::clearAnmColor()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void J2DScreen::clearAnmTextureSRTKey()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void J2DScreen::clearAnmTexPattern()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void J2DScreen::clearAnmTevRegKey()
-{
-	// UNUSED FUNCTION
 }
 
 /*

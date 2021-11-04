@@ -40,46 +40,6 @@ void J3DVertexData::J3DVertexData()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void J3DVertexData::isDeformablePositionFormat() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void J3DVertexData::isDeformableNormalFormat() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void J3DVertexData::isCpuSkinningPositionFormat() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void J3DVertexData::isCpuSkinningNormalFormat() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005EBE8
  * Size:	000060
  */
@@ -200,76 +160,6 @@ void J3DVertexBuffer::setArray() const
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000FC
- */
-void J3DVertexBuffer::copyLocalVtxPosArray(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
- */
-void J3DVertexBuffer::copyLocalVtxNrmArray(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001F0
- */
-void J3DVertexBuffer::copyLocalVtxArray(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void J3DVertexBuffer::allocTransformedVtxPosArray()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void J3DVertexBuffer::allocTransformedVtxNrmArray()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
- */
-void J3DVertexBuffer::allocTransformedVtxArray(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000178
- */
-void J3DVertexBuffer::copyTransformedVtxArray()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8005ED00
  * Size:	000128
  */
@@ -366,16 +256,6 @@ void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void J3DVertexBuffer::resetVtxColorArray()
-{
-	// UNUSED FUNCTION
 }
 
 /*

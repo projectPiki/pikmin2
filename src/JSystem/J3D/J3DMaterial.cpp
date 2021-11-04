@@ -1496,16 +1496,6 @@ void J3DMaterial::createPEBlock(unsigned long, unsigned long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void J3DFog::~J3DFog()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80062610
  * Size:	000048
  */
@@ -1867,16 +1857,6 @@ void J3DPEBlock::countDLSize()
 	  li        r3, 0
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0002D4
- */
-void J3DMaterial::makeDisplayList_private(J3DDisplayListObj*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -2972,16 +2952,6 @@ void J3DTexGenBlock::getTexCoord(unsigned long)
 	  li        r3, 0
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void J3DMaterial::copy(J3DMaterial*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

@@ -131,16 +131,6 @@ void J2DMaterialFactory::J2DMaterialFactory(const J2DMaterialBlock&)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void J2DMaterialFactory::countStages(int) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800534AC
  * Size:	0009C8
  */
@@ -1834,16 +1824,6 @@ void J2DMaterialFactory::newIndTexCoordScale(int, int) const
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void J2DMaterialFactory::getMaterialInitData(unsigned short) const
-{
-	// UNUSED FUNCTION
 }
 
 /*

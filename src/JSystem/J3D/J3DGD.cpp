@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000018
- */
-void J3DCallDisplayList(void*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80074440
  * Size:	000170
  */
@@ -216,26 +206,6 @@ void J3DGDSetGenMode_3Param(unsigned char, unsigned char, unsigned char)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
- */
-void J3DGDSetTevStageNum(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void J3DGDSetIndTexStageNum(unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1314,16 +1284,6 @@ void J3DGDSetTexCoordGen(_GXTexGenType, _GXTexGenSrc)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000240
- */
-void J3DGDSetTexCoordScale(_GXTexCoordID, unsigned short, unsigned short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80075624
  * Size:	0001FC
  */
@@ -1993,19 +1953,6 @@ void J3DGDLoadTlut(void*, unsigned long, _GXTlutSize)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void J3DGDSetTevIndirect(_GXTevStageID, _GXIndTexStageID, _GXIndTexFormat,
-                         _GXIndTexBiasSel, _GXIndTexMtxID, _GXIndTexWrap,
-                         _GXIndTexWrap, unsigned char, unsigned char,
-                         _GXIndTexAlphaSel)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -3292,16 +3239,6 @@ void J3DFifoLoadNrmMtxImm3x3(float (*)[3], unsigned long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000080
- */
-void J3DFifoLoadPosMtxToTexMtx(float (*)[4], unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80077010
  * Size:	000098
  */
@@ -3398,16 +3335,6 @@ void J3DFifoLoadNrmMtxToTexMtx3x3(float (*)[3], unsigned long)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void J3DFifoLoadTexMtxImm3x3(float (*)[3], unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*

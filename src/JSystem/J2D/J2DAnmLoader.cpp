@@ -718,16 +718,6 @@ void J2DAnmBase::~J2DAnmBase()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0002C8
- */
-void J2DAnmLoaderDataBase::setResource(J2DAnmBase*, const void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8004822C
  * Size:	00001C
  */

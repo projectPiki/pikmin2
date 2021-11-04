@@ -63,7 +63,7 @@ void J2DPicture::J2DPicture()
  * Address:	80039B94
  * Size:	00000C
  */
-void JUtility::TColor::__ct(void)
+void JUtility::TColor::TColor()
 {
 	/*
 	.loc_0x0:
@@ -78,32 +78,12 @@ void JUtility::TColor::__ct(void)
  * Address:	80039BA0
  * Size:	000004
  */
-void __ct__Q29JGeometry8TVec2<short> Fv(void)
+void JGeometry::TVec2<short>::TVec2()
 {
 	/*
 	.loc_0x0:
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void J2DPicture::J2DPicture(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
- */
-void J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -975,28 +955,6 @@ void J2DPicture::append(JUTTexture*, float)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void J2DPicture::J2DPicture(unsigned long long, const JGeometry::TBox2<float>&,
-                            const ResTIMG*, const ResTLUT*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
- */
-void J2DPicture::J2DPicture(unsigned long long, const JGeometry::TBox2<float>&,
-                            const char*, const ResTLUT*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -3842,76 +3800,6 @@ void J2DPicture::setTevMode()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000014
- */
-void J2DPicture::swap(float&, float&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J2DPicture::setBinding(J2DBinding)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void J2DPicture::getBinding() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
- */
-void J2DPicture::setMirror(J2DMirror)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void J2DPicture::getMirror() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A0
- */
-void J2DPicture::setTumble(bool)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void J2DPicture::isTumble() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8003CA00
  * Size:	000030
  */
@@ -4300,16 +4188,6 @@ void J2DPicture::setTexCoord(const JGeometry::TVec2<short>*)
 	  sth       r0, 0x120(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void J2DPicture::setTexCoord(const JGeometry::TVec2<float>*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

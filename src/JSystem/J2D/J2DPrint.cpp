@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void J2DPrint_print_alpha_va(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8003D750
  * Size:	000094
  */
@@ -57,16 +47,6 @@ void J2DPrint::J2DPrint(JUTFont*, float)
 	  addi      r1, r1, 0x30
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void J2DPrint::J2DPrint(JUTFont*, float, float)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -117,17 +97,6 @@ void J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
 	  addi      r1, r1, 0x30
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor,
-                        JUtility::TColor)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -432,16 +401,6 @@ void J2DPrint::setFont(JUTFont*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000068
- */
-void J2DPrint::setBuffer(char*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8003DBD8
  * Size:	00006C
  */
@@ -550,46 +509,6 @@ void J2DPrint::locate(float, float)
 	  stfs      f0, 0x34(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void J2DPrint::putChar(int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
- */
-void J2DPrint::putChar(float, float, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
- */
-void J2DPrint::print(const char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
- */
-void J2DPrint::print(unsigned char, const char*, ...)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -775,16 +694,6 @@ void J2DPrint::print(float, float, unsigned char, const char*, ...)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-void J2DPrint::getSize(J2DPrint::TSize&, const char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8003DF2C
  * Size:	0000EC
  */
@@ -858,16 +767,6 @@ void J2DPrint::getWidth(const char*, ...)
 	  addi      r1, r1, 0x90
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
- */
-void J2DPrint::getHeight(const char*, ...)
-{
-	// UNUSED FUNCTION
 }
 
 /*

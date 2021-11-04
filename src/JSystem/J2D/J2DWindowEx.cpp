@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void J2DWindowEx::J2DWindowEx()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80044E34
  * Size:	0002E8
  */
@@ -213,109 +203,6 @@ void J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long,
 	  addi      r1, r1, 0xB0
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J2DWindowEx::J2DWindowEx(const ResTIMG*, const ResTIMG*, const ResTIMG*,
-                              const ResTIMG*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
- */
-void J2DWindowEx::J2DWindowEx(const char*, const char*, const char*,
-                              const char*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void J2DWindowEx::J2DWindowEx(const ResTIMG*, J2DTextureBase, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
- */
-void J2DWindowEx::J2DWindowEx(const char*, J2DTextureBase, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void J2DWindowEx::J2DWindowEx(unsigned long long,
-                              const JGeometry::TBox2<float>&, const ResTIMG*,
-                              const ResTIMG*, const ResTIMG*, const ResTIMG*,
-                              unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
- */
-void J2DWindowEx::J2DWindowEx(unsigned long long,
-                              const JGeometry::TBox2<float>&, const char*,
-                              const char*, const char*, const char*,
-                              unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void J2DWindowEx::J2DWindowEx(unsigned long long,
-                              const JGeometry::TBox2<float>&, const ResTIMG*,
-                              J2DTextureBase, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void J2DWindowEx::J2DWindowEx(unsigned long long,
-                              const JGeometry::TBox2<float>&, const char*,
-                              J2DTextureBase, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000600
- */
-void J2DWindowEx::initialize(unsigned long, const ResTIMG**,
-                             const JGeometry::TBox2<float>*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1818,16 +1705,6 @@ void J2DWindowEx::draw(const JGeometry::TBox2<float>&,
 	  addi      r1, r1, 0x60
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
- */
-void J2DWindowEx::setTevOrder(bool)
-{
-	// UNUSED FUNCTION
 }
 
 /*
