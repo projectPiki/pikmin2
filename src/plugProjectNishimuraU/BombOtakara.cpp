@@ -1,11 +1,14 @@
 #include "types.h"
+#include "Game/enemyInfo.h"
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F9624
  * Size:	000090
  */
-void Game::BombOtakara::Obj::Obj()
+BombOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +58,7 @@ void Game::BombOtakara::Obj::Obj()
  * Address:	802F96B4
  * Size:	0001A4
  */
-void Game::BombOtakara::Obj::changeMaterial()
+void BombOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -176,7 +179,7 @@ void Game::BombOtakara::Obj::changeMaterial()
  * Address:	802F9858
  * Size:	0000B4
  */
-void Game::BombOtakara::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void BombOtakara::Obj::damageCallBack(Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +244,7 @@ void Game::BombOtakara::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	802F990C
  * Size:	00002C
  */
-void Game::BombOtakara::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void BombOtakara::Obj::hipdropCallBack(Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -264,7 +267,7 @@ void Game::BombOtakara::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	802F9938
  * Size:	00007C
  */
-void Game::BombOtakara::Obj::earthquakeCallBack(Game::Creature*, float)
+void BombOtakara::Obj::earthquakeCallBack(Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -309,7 +312,7 @@ void Game::BombOtakara::Obj::earthquakeCallBack(Game::Creature*, float)
  * Address:	802F99B4
  * Size:	000030
  */
-void Game::BombOtakara::Obj::bombCallBack(Game::Creature*, Vector3<float>&,
+void BombOtakara::Obj::bombCallBack(Creature*, Vector3<float>&,
                                           float)
 {
 	/*
@@ -334,7 +337,7 @@ void Game::BombOtakara::Obj::bombCallBack(Game::Creature*, Vector3<float>&,
  * Address:	802F99E4
  * Size:	00007C
  */
-void Game::BombOtakara::Obj::startEscapeSE()
+void BombOtakara::Obj::startEscapeSE()
 {
 	/*
 	.loc_0x0:
@@ -381,67 +384,67 @@ void Game::BombOtakara::Obj::startEscapeSE()
  * Address:	802F9A60
  * Size:	000008
  */
-u32 Game::BombOtakara::Obj::getEnemyTypeID() { return 0x5D; }
+int BombOtakara::Obj::getEnemyTypeID() { return BombOtakara; }
 
 /*
  * --INFO--
  * Address:	802F9A68
  * Size:	000004
  */
-void Game::BombOtakara::Obj::interactCreature(Game::Creature*) { }
+void BombOtakara::Obj::interactCreature(Creature*) { }
 
 /*
  * --INFO--
  * Address:	802F9A6C
  * Size:	000004
  */
-void Game::BombOtakara::Obj::createEffect() { }
+void BombOtakara::Obj::createEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A70
  * Size:	000004
  */
-void Game::BombOtakara::Obj::setupEffect() { }
+void BombOtakara::Obj::setupEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A74
  * Size:	000004
  */
-void Game::BombOtakara::Obj::startChargeEffect() { }
+void BombOtakara::Obj::startChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A78
  * Size:	000004
  */
-void Game::BombOtakara::Obj::finishChargeEffect() { }
+void BombOtakara::Obj::finishChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A7C
  * Size:	000004
  */
-void Game::BombOtakara::Obj::createDisChargeEffect() { }
+void BombOtakara::Obj::createDisChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A80
  * Size:	000004
  */
-void Game::BombOtakara::Obj::effectDrawOn() { }
-
+void BombOtakara::Obj::effectDrawOn() { }
 /*
  * --INFO--
  * Address:	802F9A84
  * Size:	000004
  */
-void Game::BombOtakara::Obj::effectDrawOff() { }
+void BombOtakara::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
  * Address:	802F9A88
  * Size:	000004
  */
-void Game::BombOtakara::Obj::startDisChargeSE() { }
+void BombOtakara::Obj::startDisChargeSE() { }
+} // namespace Game
