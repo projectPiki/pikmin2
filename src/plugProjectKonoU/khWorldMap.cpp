@@ -5566,112 +5566,47 @@ namespace Screen {
 	 * Address:	803F67B8
 	 * Size:	00013C
 	 */
-	void WorldMap::getTarget()
+	int WorldMap::getTarget()
 	{
-		/*
-		.loc_0x0:
-		  lwz       r4, 0xF8(r3)
-		  li        r0, -0x1
-		  cmpwi     r4, 0x2
-		  beq-      .loc_0xB4
-		  bge-      .loc_0x24
-		  cmpwi     r4, 0
-		  beq-      .loc_0x30
-		  bge-      .loc_0x68
-		  b         .loc_0x134
+		switch (m_currentMap) {
+		case 0:
+			return !(this->Controls->buttons & 0x2000002)
+			               && this->Controls->buttons & 0x8000008
+			           ? 2
+			           : 1;
+			break;
+		case 1:
+			if ((this->Controls->buttons & 0x1000001) == 0
+			    && this->Controls->buttons & 0x8000008) {
+				if (this->maxMap == 3) {
+					return 2;
+				} else if (this->maxMap > 3) {
+					return 3;
+				}
+			} else if (this->Controls->buttons & 0x1000001) {
+				return 0;
+			}
+			break;
 
-		.loc_0x24:
-		  cmpwi     r4, 0x4
-		  bge-      .loc_0x134
-		  b         .loc_0x100
+		case 2:
+			if (!(this->Controls->buttons & 0x2000002)
+			    && this->Controls->buttons & 0x4000004) {
+				return 0;
+			}
 
-		.loc_0x30:
-		  lwz       r4, 0x20(r3)
-		  lis       r3, 0x200
-		  addi      r3, r3, 0x2
-		  lwz       r4, 0x18(r4)
-		  and.      r3, r4, r3
-		  beq-      .loc_0x50
-		  li        r0, 0x1
-		  b         .loc_0x134
+			return this->maxMap == 3 ? 1 : 3;
+			break;
 
-		.loc_0x50:
-		  lis       r3, 0x800
-		  addi      r3, r3, 0x8
-		  and.      r3, r4, r3
-		  beq-      .loc_0x134
-		  li        r0, 0x2
-		  b         .loc_0x134
+		case 3:
+			return (!(this->Controls->buttons & 0x1000001)
+			        && this->Controls->buttons & 0x4000004)
+			           ? 1
+			           : 2;
+			break;
 
-		.loc_0x68:
-		  lwz       r5, 0x20(r3)
-		  lis       r4, 0x100
-		  addi      r4, r4, 0x1
-		  lwz       r5, 0x18(r5)
-		  and.      r4, r5, r4
-		  beq-      .loc_0x88
-		  li        r0, 0
-		  b         .loc_0x134
-
-		.loc_0x88:
-		  lis       r4, 0x800
-		  addi      r4, r4, 0x8
-		  and.      r4, r5, r4
-		  beq-      .loc_0x134
-		  lbz       r4, 0x181(r3)
-		  subi      r3, r4, 0x3
-		  subfic    r0, r4, 0x3
-		  nor       r0, r3, r0
-		  srawi     r3, r0, 0x1F
-		  addi      r0, r3, 0x3
-		  b         .loc_0x134
-
-		.loc_0xB4:
-		  lwz       r5, 0x20(r3)
-		  lis       r4, 0x200
-		  addi      r4, r4, 0x2
-		  lwz       r5, 0x18(r5)
-		  and.      r4, r5, r4
-		  beq-      .loc_0xE8
-		  lbz       r0, 0x181(r3)
-		  li        r3, 0x3
-		  cmplwi    r0, 0x3
-		  bne-      .loc_0xE0
-		  li        r3, 0x1
-
-		.loc_0xE0:
-		  mr        r0, r3
-		  b         .loc_0x134
-
-		.loc_0xE8:
-		  lis       r3, 0x400
-		  addi      r3, r3, 0x4
-		  and.      r3, r5, r3
-		  beq-      .loc_0x134
-		  li        r0, 0
-		  b         .loc_0x134
-
-		.loc_0x100:
-		  lwz       r4, 0x20(r3)
-		  lis       r3, 0x100
-		  addi      r3, r3, 0x1
-		  lwz       r4, 0x18(r4)
-		  and.      r3, r4, r3
-		  beq-      .loc_0x120
-		  li        r0, 0x2
-		  b         .loc_0x134
-
-		.loc_0x120:
-		  lis       r3, 0x400
-		  addi      r3, r3, 0x4
-		  and.      r3, r4, r3
-		  beq-      .loc_0x134
-		  li        r0, 0x1
-
-		.loc_0x134:
-		  mr        r3, r0
-		  blr
-		*/
+		default:
+			return -1;
+		}
 	}
 
 	/*
