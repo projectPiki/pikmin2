@@ -458,7 +458,7 @@ void Demo::initiate(PSM::DemoArg, unsigned char*)
 //				if (pellet_name == (char*)0x0) {
 //					is_key = false;
 //				} else {
-//					OSReport("Appraising pellet: %s\n", pellet_name);
+//					// OSReport("Appraising pellet: %s\n", pellet_name);
 //					comp = strcmp(pellet_name, "key");
 //					if (comp == 0) {
 //						is_key = true;
@@ -772,30 +772,6 @@ void Demo::initiate(PSM::DemoArg, unsigned char*)
 //		}
 //		if ((!isSongChosen)
 //		    && (comp = strcmp(demo_name, "g05_find_cave_f_04"), comp == 0)) {
-//			*unk         = 0xff;
-//			isSongChosen = true;
-//			AST_ID       = 0xc0011029;
-//		}
-//		if ((!isSongChosen)
-//		    && (comp = strcmp(demo_name, "g05_find_cave_n_01"), comp == 0)) {
-//			*unk         = 0xff;
-//			isSongChosen = true;
-//			AST_ID       = 0xc0011029;
-//		}
-//		if ((!isSongChosen)
-//		    && (comp = strcmp(demo_name, "g05_find_cave_n_02"), comp == 0)) {
-//			*unk         = 0xff;
-//			isSongChosen = true;
-//			AST_ID       = 0xc0011029;
-//		}
-//		if ((!isSongChosen)
-//		    && (comp = strcmp(demo_name, "g05_find_cave_n_03"), comp == 0)) {
-//			*unk         = 0xff;
-//			isSongChosen = true;
-//			AST_ID       = 0xc0011029;
-//		}
-//		if ((!isSongChosen)
-//		    && (comp = strcmp(demo_name, "g05_find_cave_n_04"), comp == 0)) {
 //			*unk         = 0xff;
 //			isSongChosen = true;
 //			AST_ID       = 0xc0011029;
