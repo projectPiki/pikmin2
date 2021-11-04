@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8020508C
  * Size:	000114
  */
-void Game::ShapeMapMgr::traceMove((Game::MoveInfo&, float))
+void ShapeMapMgr::traceMove(Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -110,7 +102,7 @@ void Game::ShapeMapMgr::traceMove((Game::MoveInfo&, float))
  * Address:	802051A0
  * Size:	000020
  */
-void Game::MapMgr::traceMove((MapCollision&, Game::MoveInfo&, float))
+void MapMgr::traceMove(MapCollision&, Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -132,7 +124,7 @@ void Game::MapMgr::traceMove((MapCollision&, Game::MoveInfo&, float))
  * Address:	........
  * Size:	00030C
  */
-void Game::MapMgr::traceMove_test1030_1((MapCollision&, Game::MoveInfo&, float))
+void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -142,8 +134,7 @@ void Game::MapMgr::traceMove_test1030_1((MapCollision&, Game::MoveInfo&, float))
  * Address:	802051C0
  * Size:	0003BC
  */
-void Game::MapMgr::traceMove_test1203_cylinder((MapCollision&, Game::MoveInfo&,
-                                                float))
+void MapMgr::traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +417,7 @@ void Game::MapMgr::traceMove_test1203_cylinder((MapCollision&, Game::MoveInfo&,
  * Address:	........
  * Size:	000464
  */
-void Game::MapMgr::traceMove_test((MapCollision&, Game::MoveInfo&, float))
+void MapMgr::traceMove_test(MapCollision&, Game::MoveInfo&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -436,10 +427,12 @@ void Game::MapMgr::traceMove_test((MapCollision&, Game::MoveInfo&, float))
  * Address:	........
  * Size:	000464
  */
-void Game::MapMgr::traceMove_original((MapCollision&, Game::MoveInfo&, float))
+void MapMgr::traceMove_original(MapCollision&, Game::MoveInfo&, float)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--

@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802580AC
  * Size:	000008
  */
-void Game::Frog::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Frog::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Frog::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802580B4
  * Size:	000008
  */
-void Game::Frog::ProperAnimator::getAnimator(int)
+void Frog::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Frog::ProperAnimator::getAnimator(int)
  * Address:	802580BC
  * Size:	00005C
  */
-void Game::Frog::ProperAnimator::~ProperAnimator()
+Frog::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Frog::ProperAnimator::~ProperAnimator()
  * Address:	80258118
  * Size:	000008
  */
-void Game::Frog::ProperAnimator::getAnimator()
+void Frog::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Frog::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

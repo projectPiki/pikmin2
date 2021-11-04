@@ -5,7 +5,7 @@
  * Address:	8013286C
  * Size:	000150
  */
-void TreasureLight::Mgr::Mgr()
+TreasureLight::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -303,7 +303,7 @@ void TreasureLight::Mgr::drawDebugInfo(Graphics&)
  * Address:	80132BEC
  * Size:	0000A0
  */
-void TreasureLight::Mgr::~Mgr()
+TreasureLight::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:

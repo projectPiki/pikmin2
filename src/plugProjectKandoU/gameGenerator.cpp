@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801AA6E4
  * Size:	000050
  */
-void Game::GenBase::__ct((unsigned long, char*, char*))
+GenBase::GenBase(unsigned long, char*, char*)
 {
 	/*
 	.loc_0x0:
@@ -49,7 +41,7 @@ void Game::GenBase::__ct((unsigned long, char*, char*))
  * Address:	........
  * Size:	000054
  */
-void Game::GenBase::writeVersion((Stream&))
+void GenBase::writeVersion(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -59,7 +51,7 @@ void Game::GenBase::writeVersion((Stream&))
  * Address:	801AA734
  * Size:	00000C
  */
-void Game::GenBase::getLatestVersion(void)
+void GenBase::getLatestVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -74,7 +66,7 @@ void Game::GenBase::getLatestVersion(void)
  * Address:	........
  * Size:	0000DC
  */
-void Game::GenBase::write((Stream&))
+void GenBase::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -84,14 +76,14 @@ void Game::GenBase::write((Stream&))
  * Address:	801AA740
  * Size:	000004
  */
-void Game::GenBase::doWrite((Stream&)) { }
+void GenBase::doWrite(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801AA744
  * Size:	000020
  */
-void Game::GenBase::ramSaveParameters((Stream&))
+void GenBase::ramSaveParameters(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -111,7 +103,7 @@ void Game::GenBase::ramSaveParameters((Stream&))
  * Address:	801AA764
  * Size:	000020
  */
-void Game::GenBase::ramLoadParameters((Stream&))
+void GenBase::ramLoadParameters(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +123,7 @@ void Game::GenBase::ramLoadParameters((Stream&))
  * Address:	........
  * Size:	000050
  */
-void Game::GenBase::readVersion((Stream&))
+void GenBase::readVersion(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -141,7 +133,7 @@ void Game::GenBase::readVersion((Stream&))
  * Address:	........
  * Size:	0000C0
  */
-void Game::GenBase::read((Stream&))
+void GenBase::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -151,14 +143,14 @@ void Game::GenBase::read((Stream&))
  * Address:	801AA784
  * Size:	000004
  */
-void Game::GenBase::doRead((Stream&)) { }
+void GenBase::doRead(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801AA788
  * Size:	000050
  */
-void Game::GenObject::getLatestVersion(void)
+void GenObject::getLatestVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +186,7 @@ void Game::GenObject::getLatestVersion(void)
  * Address:	........
  * Size:	000060
  */
-void Game::GenObjectFactory::createInstance(void)
+void GenObjectFactory::createInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -204,7 +196,7 @@ void Game::GenObjectFactory::createInstance(void)
  * Address:	801AA7D8
  * Size:	00000C
  */
-void Game::Generator::initialiseSystem(void)
+void Generator::initialiseSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -219,7 +211,7 @@ void Game::Generator::initialiseSystem(void)
  * Address:	801AA7E4
  * Size:	0000DC
  */
-void Game::Generator::__ct(void)
+Generator::Generator(void)
 {
 	/*
 	.loc_0x0:
@@ -286,7 +278,7 @@ void Game::Generator::__ct(void)
  * Address:	........
  * Size:	0000D0
  */
-void Game::Generator::__ct((int))
+Generator::Generator(int)
 {
 	// UNUSED FUNCTION
 }
@@ -296,7 +288,7 @@ void Game::Generator::__ct((int))
  * Address:	801AA8C0
  * Size:	000068
  */
-void Game::Generator::__dt(void)
+Generator::~Generator(void)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +328,7 @@ void Game::Generator::__dt(void)
  * Address:	801AA928
  * Size:	000058
  */
-void Game::Generator::updateUseList(void)
+void Generator::updateUseList(void)
 {
 	/*
 	.loc_0x0:
@@ -372,14 +364,14 @@ void Game::Generator::updateUseList(void)
  * Address:	801AA980
  * Size:	000004
  */
-void Game::GenObject::updateUseList((Game::Generator*, int)) { }
+void GenObject::updateUseList(Game::Generator*, int) { }
 
 /*
  * --INFO--
  * Address:	801AA984
  * Size:	000034
  */
-void Game::Generator::isExpired(void)
+void Generator::isExpired(void)
 {
 	/*
 	.loc_0x0:
@@ -406,7 +398,7 @@ void Game::Generator::isExpired(void)
  * Address:	801AA9B8
  * Size:	0000B8
  */
-void Game::Generator::loadCreature((Stream&))
+void Generator::loadCreature(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -474,14 +466,14 @@ void Game::Generator::loadCreature((Stream&))
  * Address:	801AAA70
  * Size:	000008
  */
-u32 Game::GenObject::generate((Game::Generator*)) { return 0x0; }
+u32 GenObject::generate(Game::Generator*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801AAA78
  * Size:	00007C
  */
-void Game::Generator::need_saveCreature(void)
+void Generator::need_saveCreature(void)
 {
 	/*
 	.loc_0x0:
@@ -530,7 +522,7 @@ void Game::Generator::need_saveCreature(void)
  * Address:	801AAAF4
  * Size:	0000C8
  */
-void Game::Generator::saveCreature((Stream&))
+void Generator::saveCreature(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -598,7 +590,7 @@ void Game::Generator::saveCreature((Stream&))
  * Address:	801AABBC
  * Size:	000138
  */
-void Game::Generator::generate(void)
+void Generator::generate(void)
 {
 	/*
 	.loc_0x0:
@@ -704,7 +696,7 @@ void Game::Generator::generate(void)
  * Address:	801AACF4
  * Size:	000024
  */
-void Game::Generator::informDeath((Game::Creature*))
+void Generator::informDeath(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -727,7 +719,7 @@ void Game::Generator::informDeath((Game::Creature*))
  * Address:	........
  * Size:	000004
  */
-void Game::Generator::update(void)
+void Generator::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -737,7 +729,7 @@ void Game::Generator::update(void)
  * Address:	........
  * Size:	000004
  */
-void Game::Generator::render((Graphics&))
+void Generator::render(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -747,7 +739,7 @@ void Game::Generator::render((Graphics&))
  * Address:	801AAD18
  * Size:	0003A4
  */
-void Game::Generator::read((Stream&))
+void Generator::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1044,7 +1036,7 @@ void Game::Generator::read((Stream&))
  * Address:	801AB0BC
  * Size:	00039C
  */
-void Game::Generator::write((Stream&))
+void Generator::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1305,7 +1297,7 @@ void Game::Generator::write((Stream&))
  * Address:	801AB458
  * Size:	000120
  */
-void Game::GeneratorMgr::__ct(void)
+GeneratorMgr::GeneratorMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1393,7 +1385,7 @@ void Game::GeneratorMgr::__ct(void)
  * Address:	801AB578
  * Size:	00003C
  */
-void Game::GeneratorMgr::addMgr((Game::GeneratorMgr*))
+void GeneratorMgr::addMgr(Game::GeneratorMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1426,7 +1418,7 @@ void Game::GeneratorMgr::addMgr((Game::GeneratorMgr*))
  * Address:	........
  * Size:	000028
  */
-void Game::GeneratorMgr::isRootMgr(void)
+void GeneratorMgr::isRootMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1436,7 +1428,7 @@ void Game::GeneratorMgr::isRootMgr(void)
  * Address:	801AB5B4
  * Size:	000148
  */
-void Game::GeneratorMgr::generate(void)
+void GeneratorMgr::generate(void)
 {
 	/*
 	.loc_0x0:
@@ -1550,7 +1542,7 @@ void Game::GeneratorMgr::generate(void)
  * Address:	801AB6FC
  * Size:	00001C
  */
-void Game::GeneratorMgr::setDayLimit((int))
+void GeneratorMgr::setDayLimit(int)
 {
 	/*
 	.loc_0x0:
@@ -1573,7 +1565,7 @@ void Game::GeneratorMgr::setDayLimit((int))
  * Address:	801AB718
  * Size:	000098
  */
-void Game::GeneratorMgr::updateUseList(void)
+void GeneratorMgr::updateUseList(void)
 {
 	/*
 	.loc_0x0:
@@ -1635,7 +1627,7 @@ void Game::GeneratorMgr::updateUseList(void)
  * Address:	........
  * Size:	000018
  */
-void Game::GeneratorMgr::update(void)
+void GeneratorMgr::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1645,7 +1637,7 @@ void Game::GeneratorMgr::update(void)
  * Address:	........
  * Size:	00055C
  */
-void Game::GeneratorMgr::render((Graphics&))
+void GeneratorMgr::render(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1655,7 +1647,7 @@ void Game::GeneratorMgr::render((Graphics&))
  * Address:	801AB7B0
  * Size:	000008
  */
-void Game::GeneratorMgr::getNext(void)
+void GeneratorMgr::getNext(void)
 {
 	/*
 	.loc_0x0:
@@ -1669,7 +1661,7 @@ void Game::GeneratorMgr::getNext(void)
  * Address:	801AB7B8
  * Size:	000008
  */
-void Game::GeneratorMgr::getChild(void)
+void GeneratorMgr::getChild(void)
 {
 	/*
 	.loc_0x0:
@@ -1678,12 +1670,14 @@ void Game::GeneratorMgr::getChild(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801AB7C0
  * Size:	00043C
  */
-void updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<float>(void)
+void updateCursorPos__Q24Game12GeneratorMgrFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2000,7 +1994,7 @@ void updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<float>(void)
  * Address:	801ABBFC
  * Size:	00001C
  */
-void Vector3<float>::operator=(const Vector3<float>&)
+void Vector3f::operator=(const Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2014,12 +2008,14 @@ void Vector3<float>::operator=(const Vector3<float>&)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801ABC18
  * Size:	0002F0
  */
-void Game::GeneratorMgr::read((Stream&, bool))
+void GeneratorMgr::read(Stream&, bool)
 {
 	/*
 	.loc_0x0:
@@ -2241,7 +2237,7 @@ void Game::GeneratorMgr::read((Stream&, bool))
  * Address:	........
  * Size:	000118
  */
-void Game::GeneratorMgr::write((Stream&))
+void GeneratorMgr::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -2251,7 +2247,7 @@ void Game::GeneratorMgr::write((Stream&))
  * Address:	801ABF08
  * Size:	0000D8
  */
-void Game::Generator::doAnimation(void)
+void Generator::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -2321,7 +2317,7 @@ void Game::Generator::doAnimation(void)
  * Address:	801ABFE0
  * Size:	000070
  */
-void Game::Generator::doEntry(void)
+void Generator::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -2365,7 +2361,7 @@ void Game::Generator::doEntry(void)
  * Address:	801AC050
  * Size:	000070
  */
-void Game::Generator::doSetView((int))
+void Generator::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -2409,7 +2405,7 @@ void Game::Generator::doSetView((int))
  * Address:	801AC0C0
  * Size:	000060
  */
-void Game::Generator::doViewCalc(void)
+void Generator::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -2449,7 +2445,7 @@ void Game::Generator::doViewCalc(void)
  * Address:	801AC120
  * Size:	00007C
  */
-void Game::GeneratorMgr::doAnimation(void)
+void GeneratorMgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -2498,7 +2494,7 @@ void Game::GeneratorMgr::doAnimation(void)
  * Address:	801AC19C
  * Size:	00007C
  */
-void Game::GeneratorMgr::doEntry(void)
+void GeneratorMgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -2547,7 +2543,7 @@ void Game::GeneratorMgr::doEntry(void)
  * Address:	801AC218
  * Size:	000090
  */
-void Game::GeneratorMgr::doSetView((int))
+void GeneratorMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -2601,7 +2597,7 @@ void Game::GeneratorMgr::doSetView((int))
  * Address:	801AC2A8
  * Size:	00007C
  */
-void Game::GeneratorMgr::doViewCalc(void)
+void GeneratorMgr::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -2650,7 +2646,7 @@ void Game::GeneratorMgr::doViewCalc(void)
  * Address:	801AC324
  * Size:	000060
  */
-void Game::GeneratorMgr::__dt(void)
+GeneratorMgr::~GeneratorMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2688,28 +2684,30 @@ void Game::GeneratorMgr::__dt(void)
  * Address:	801AC384
  * Size:	000004
  */
-void Game::GenObject::render((Graphics&, Game::Generator*)) { }
+void GenObject::render(Graphics&, Game::Generator*) { }
 
 /*
  * --INFO--
  * Address:	801AC388
  * Size:	000008
  */
-u32 Game::GenBase::getShape(void) { return 0x0; }
+u32 GenBase::getShape(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801AC390
  * Size:	000004
  */
-void Game::GenBase::update((Game::Generator*)) { }
+void GenBase::update(Game::Generator*) { }
 
 /*
  * --INFO--
  * Address:	801AC394
  * Size:	000004
  */
-void Game::GenBase::render((Graphics&, Game::Generator*)) { }
+void GenBase::render(Graphics&, Game::Generator*) { }
+
+} // namespace Game
 
 /*
  * --INFO--

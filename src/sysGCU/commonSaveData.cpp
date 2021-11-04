@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80446C68
  * Size:	000044
  */
-void Game::CommonSaveData::Mgr::__ct(void)
+CommonSaveData::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -46,7 +38,7 @@ void Game::CommonSaveData::Mgr::__ct(void)
  * Address:	80446CAC
  * Size:	000078
  */
-void Game::CommonSaveData::Mgr::setDefault(void)
+void CommonSaveData::Mgr::setDefault(void)
 {
 	/*
 	.loc_0x0:
@@ -88,7 +80,7 @@ void Game::CommonSaveData::Mgr::setDefault(void)
  * Address:	80446D24
  * Size:	000018
  */
-void Game::CommonSaveData::Mgr::setCardSerialNo((unsigned long long))
+void CommonSaveData::Mgr::setCardSerialNo(unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +98,7 @@ void Game::CommonSaveData::Mgr::setCardSerialNo((unsigned long long))
  * Address:	80446D3C
  * Size:	000020
  */
-void Game::CommonSaveData::Mgr::resetCardSerialNo(void)
+void CommonSaveData::Mgr::resetCardSerialNo(void)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +118,7 @@ void Game::CommonSaveData::Mgr::resetCardSerialNo(void)
  * Address:	80446D5C
  * Size:	0000AC
  */
-void Game::CommonSaveData::Mgr::write((Stream&))
+void CommonSaveData::Mgr::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +175,7 @@ void Game::CommonSaveData::Mgr::write((Stream&))
  * Address:	80446E08
  * Size:	0000AC
  */
-void Game::CommonSaveData::Mgr::read((Stream&))
+void CommonSaveData::Mgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -240,7 +232,7 @@ void Game::CommonSaveData::Mgr::read((Stream&))
  * Address:	80446EB4
  * Size:	000100
  */
-void Game::CommonSaveData::Mgr::setup(void)
+void CommonSaveData::Mgr::setup(void)
 {
 	/*
 	.loc_0x0:
@@ -328,7 +320,7 @@ void Game::CommonSaveData::Mgr::setup(void)
  * Address:	80446FB4
  * Size:	000014
  */
-void Game::CommonSaveData::Mgr::resetPlayer((signed char))
+void CommonSaveData::Mgr::resetPlayer(signed char)
 {
 	/*
 	.loc_0x0:
@@ -345,7 +337,7 @@ void Game::CommonSaveData::Mgr::resetPlayer((signed char))
  * Address:	80446FC8
  * Size:	000030
  */
-void Game::CommonSaveData::Mgr::setDeflicker(void)
+void CommonSaveData::Mgr::setDeflicker(void)
 {
 	/*
 	.loc_0x0:
@@ -371,7 +363,7 @@ void Game::CommonSaveData::Mgr::setDeflicker(void)
  * Address:	80446FF8
  * Size:	0000D0
  */
-void Game::CommonSaveData::Mgr::setDeflicker((bool))
+void CommonSaveData::Mgr::setDeflicker(bool)
 {
 	/*
 	.loc_0x0:
@@ -441,7 +433,7 @@ void Game::CommonSaveData::Mgr::setDeflicker((bool))
  * Address:	804470C8
  * Size:	000034
  */
-void Game::CommonSaveData::Mgr::setSoundModeMono(void)
+void CommonSaveData::Mgr::setSoundModeMono(void)
 {
 	/*
 	.loc_0x0:
@@ -466,7 +458,7 @@ void Game::CommonSaveData::Mgr::setSoundModeMono(void)
  * Address:	804470FC
  * Size:	000034
  */
-void Game::CommonSaveData::Mgr::setSoundModeStereo(void)
+void CommonSaveData::Mgr::setSoundModeStereo(void)
 {
 	/*
 	.loc_0x0:
@@ -491,7 +483,7 @@ void Game::CommonSaveData::Mgr::setSoundModeStereo(void)
  * Address:	80447130
  * Size:	000034
  */
-void Game::CommonSaveData::Mgr::setSoundModeSurround(void)
+void CommonSaveData::Mgr::setSoundModeSurround(void)
 {
 	/*
 	.loc_0x0:
@@ -516,7 +508,7 @@ void Game::CommonSaveData::Mgr::setSoundModeSurround(void)
  * Address:	80447164
  * Size:	00012C
  */
-void Game::CommonSaveData::Mgr::setBgmVolume((float))
+void CommonSaveData::Mgr::setBgmVolume(float)
 {
 	/*
 	.loc_0x0:
@@ -615,7 +607,7 @@ void Game::CommonSaveData::Mgr::setBgmVolume((float))
  * Address:	80447290
  * Size:	00012C
  */
-void Game::CommonSaveData::Mgr::setSeVolume((float))
+void CommonSaveData::Mgr::setSeVolume(float)
 {
 	/*
 	.loc_0x0:
@@ -714,7 +706,7 @@ void Game::CommonSaveData::Mgr::setSeVolume((float))
  * Address:	........
  * Size:	000024
  */
-void Game::CommonSaveData::Mgr::setLanguage(void)
+void CommonSaveData::Mgr::setLanguage(void)
 {
 	// UNUSED FUNCTION
 }
@@ -724,7 +716,8 @@ void Game::CommonSaveData::Mgr::setLanguage(void)
  * Address:	........
  * Size:	000010
  */
-void Game::CommonSaveData::Mgr::setLanguage((ELanguage))
+void CommonSaveData::Mgr::setLanguage(ELanguage)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Game

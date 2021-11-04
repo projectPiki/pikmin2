@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "og/Screen/ScaleMgr.h"
 #include "sysMath.h"
 #include "System.h"

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8028D0C0
  * Size:	000050
  */
-void Game::Baby::Mgr::Mgr(int, unsigned char)
+Baby::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Baby::Mgr::Mgr(int, unsigned char)
  * Address:	8028D110
  * Size:	000048
  */
-void Game::Baby::Mgr::doAlloc()
+void Baby::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Baby::Mgr::doAlloc()
  * Address:	8028D158
  * Size:	0000DC
  */
-void Game::Baby::Parms::Parms()
+Baby::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -138,7 +140,7 @@ void Game::Baby::Parms::Parms()
  * Address:	8028D234
  * Size:	000060
  */
-void Game::Baby::Mgr::createObj(int)
+void Baby::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +176,7 @@ void Game::Baby::Mgr::createObj(int)
  * Address:	8028D294
  * Size:	0000BC
  */
-void Game::Baby::Obj::~Obj()
+Baby::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -237,7 +239,7 @@ void Game::Baby::Obj::~Obj()
  * Address:	8028D350
  * Size:	000010
  */
-void Game::Baby::Mgr::getEnemy(int)
+void Baby::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -253,7 +255,7 @@ void Game::Baby::Mgr::getEnemy(int)
  * Address:	8028D360
  * Size:	000050
  */
-void Game::Baby::Parms::read(Stream&)
+void Baby::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +287,7 @@ void Game::Baby::Parms::read(Stream&)
  * Address:	8028D3B0
  * Size:	0000B0
  */
-void Game::Baby::Mgr::~Mgr()
+Baby::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -345,14 +347,14 @@ void Game::Baby::Mgr::~Mgr()
  * Address:	8028D460
  * Size:	000008
  */
-u32 Game::Baby::Mgr::getEnemyTypeID() { return 0x1F; }
+u32 Baby::Mgr::getEnemyTypeID() { return 0x1F; }
 
 /*
  * --INFO--
  * Address:	8028D468
  * Size:	000008
  */
-void Game::Baby::Mgr::@4 @__dt()
+Baby::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -360,3 +362,4 @@ void Game::Baby::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

@@ -89,7 +89,7 @@ void PikiAI::ActBattle::emotion_success(void)
 //  * Address:	8022EDB0
 //  * Size:	000300
 //  */
-// void PikiAI::ActBattle::init((PikiAI::ActionArg*))
+// void PikiAI::ActBattle::init(PikiAI::ActionArg*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -419,7 +419,7 @@ void PikiAI::ActBattle::emotion_success(void)
 //  * Address:	8022F1A8
 //  * Size:	000004
 //  */
-// void PikiAI::ActBattle::collisionCallback((Game::Piki*, Game::CollEvent&))
+// void PikiAI::ActBattle::collisionCallback(Game::Piki*, Game::CollEvent&)
 // {
 // }
 
@@ -428,7 +428,7 @@ void PikiAI::ActBattle::emotion_success(void)
 //  * Address:	8022F1AC
 //  * Size:	000484
 //  */
-// void PikiAI::ActBattle::onKeyEvent((SysShape::KeyEvent const&))
+// void PikiAI::ActBattle::onKeyEvent(SysShape::KeyEvent const&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1085,7 +1085,7 @@ void PikiAI::ActBattle::emotion_success(void)
 //  * Address:	8022F9E8
 //  * Size:	000014
 //  */
-// void @32 @4 @PikiAI::ActBattle::onKeyEvent((SysShape::KeyEvent const&))
+// void @32 @4 @PikiAI::ActBattle::onKeyEvent(SysShape::KeyEvent const&)
 // {
 // 	/*
 // 	.loc_0x0:

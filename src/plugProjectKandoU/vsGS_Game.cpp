@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802292A4
  * Size:	0000A4
  */
-void Game::VsGame::GameState::__ct(void)
+VsGame::GameState::GameState(void)
 {
 	/*
 	.loc_0x0:
@@ -65,6 +57,8 @@ void Game::VsGame::GameState::__ct(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80229348
@@ -72,20 +66,18 @@ void Game::VsGame::GameState::__ct(void)
  */
 void BitFlag<unsigned char>::BitFlag()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x0(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x0(r3)
+	_00 = 0;
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80229354
  * Size:	0001AC
  */
-void Game::VsGame::GameState::init((Game::VsGameSection*, Game::StateArg*))
+void VsGame::GameState::init(Game::VsGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -220,7 +212,7 @@ void Game::VsGame::GameState::init((Game::VsGameSection*, Game::StateArg*))
  * Address:	80229500
  * Size:	000014
  */
-void Game::VsGame::GameState::clearLoseCauses(void)
+void VsGame::GameState::clearLoseCauses(void)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +229,7 @@ void Game::VsGame::GameState::clearLoseCauses(void)
  * Address:	80229514
  * Size:	0001D4
  */
-void Game::VsGame::GameState::do_init((Game::VsGameSection*))
+void VsGame::GameState::do_init(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -376,7 +368,7 @@ void Game::VsGame::GameState::do_init((Game::VsGameSection*))
  * Address:	802296E8
  * Size:	00000C
  */
-void Game::VsGame::GameState::goingToCave((Game::VsGameSection*))
+void VsGame::GameState::goingToCave(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -391,7 +383,7 @@ void Game::VsGame::GameState::goingToCave((Game::VsGameSection*))
  * Address:	802296F4
  * Size:	0008FC
  */
-void Game::VsGame::GameState::exec((Game::VsGameSection*))
+void VsGame::GameState::exec(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1076,7 +1068,7 @@ void Game::VsGame::GameState::exec((Game::VsGameSection*))
  * Address:	80229FF0
  * Size:	000388
  */
-void Game::VsGame::GameState::checkFindKeyDemo((Game::VsGameSection*))
+void VsGame::GameState::checkFindKeyDemo(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1336,7 +1328,7 @@ void Game::VsGame::GameState::checkFindKeyDemo((Game::VsGameSection*))
  * Address:	8022A378
  * Size:	0003E4
  */
-void Game::VsGame::GameState::checkSMenu((Game::VsGameSection*))
+void VsGame::GameState::checkSMenu(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1631,7 +1623,7 @@ void Game::VsGame::GameState::checkSMenu((Game::VsGameSection*))
  * Address:	8022A75C
  * Size:	000050
  */
-void Game::VsGame::GameState::pre2dDraw((Graphics&, Game::VsGameSection*))
+void VsGame::GameState::pre2dDraw(Graphics&, Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1665,7 +1657,7 @@ void Game::VsGame::GameState::pre2dDraw((Graphics&, Game::VsGameSection*))
  * Address:	8022A7AC
  * Size:	000034
  */
-void Game::VsGame::GameState::draw((Game::VsGameSection*, Graphics&))
+void VsGame::GameState::draw(Game::VsGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1692,7 +1684,7 @@ void Game::VsGame::GameState::draw((Game::VsGameSection*, Graphics&))
  * Address:	8022A7E0
  * Size:	000044
  */
-void Game::VsGame::GameState::cleanup((Game::VsGameSection*))
+void VsGame::GameState::cleanup(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1721,8 +1713,7 @@ void Game::VsGame::GameState::cleanup((Game::VsGameSection*))
  * Address:	8022A824
  * Size:	000034
  */
-void Game::VsGame::GameState::onBattleFinished((Game::VsGameSection*, int,
-                                                bool))
+void VsGame::GameState::onBattleFinished(Game::VsGameSection*, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1747,7 +1738,7 @@ void Game::VsGame::GameState::onBattleFinished((Game::VsGameSection*, int,
  * Address:	8022A858
  * Size:	000010
  */
-void Game::VsGame::GameState::isCardUsable((Game::VsGameSection*))
+void VsGame::GameState::isCardUsable(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1763,8 +1754,7 @@ void Game::VsGame::GameState::isCardUsable((Game::VsGameSection*))
  * Address:	8022A868
  * Size:	00014C
  */
-void Game::VsGame::GameState::onRedOrBlueSuckStart((Game::VsGameSection*, int,
-                                                    bool))
+void VsGame::GameState::onRedOrBlueSuckStart(Game::VsGameSection*, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1865,7 +1855,7 @@ void Game::VsGame::GameState::onRedOrBlueSuckStart((Game::VsGameSection*, int,
  * Address:	8022A9B4
  * Size:	000188
  */
-void Game::VsGame::GameState::checkPikminZero((Game::VsGameSection*))
+void VsGame::GameState::checkPikminZero(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1981,9 +1971,8 @@ void Game::VsGame::GameState::checkPikminZero((Game::VsGameSection*))
  * Address:	8022AB3C
  * Size:	000474
  */
-void Game::VsGame::GameState::onMovieStart((Game::VsGameSection*,
-                                            Game::MovieConfig*, unsigned long,
-                                            unsigned long))
+void VsGame::GameState::onMovieStart(Game::VsGameSection*, Game::MovieConfig*,
+                                     unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2328,9 +2317,8 @@ void Game::VsGame::GameState::onMovieStart((Game::VsGameSection*,
  * Address:	8022AFB0
  * Size:	0009D0
  */
-void Game::VsGame::GameState::onMovieDone((Game::VsGameSection*,
-                                           Game::MovieConfig*, unsigned long,
-                                           unsigned long))
+void VsGame::GameState::onMovieDone(Game::VsGameSection*, Game::MovieConfig*,
+                                    unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3070,8 +3058,7 @@ void Game::VsGame::GameState::onMovieDone((Game::VsGameSection*,
  * Address:	8022B980
  * Size:	0000E4
  */
-void Game::VsGame::GameState::onNextFloor((Game::VsGameSection*,
-                                           Game::ItemHole::Item*))
+void VsGame::GameState::onNextFloor(Game::VsGameSection*, Game::ItemHole::Item*)
 {
 	/*
 	.loc_0x0:
@@ -3140,7 +3127,7 @@ void Game::VsGame::GameState::onNextFloor((Game::VsGameSection*,
  * Address:	8022BA64
  * Size:	00019C
  */
-void Game::VsGame::GameState::onOrimaDown((Game::VsGameSection*, int))
+void VsGame::GameState::onOrimaDown(Game::VsGameSection*, int)
 {
 	/*
 	.loc_0x0:
@@ -3267,7 +3254,7 @@ void Game::VsGame::GameState::onOrimaDown((Game::VsGameSection*, int))
  * Address:	8022BC00
  * Size:	00033C
  */
-void Game::VsGame::GameState::open_GameChallenge((Game::VsGameSection*, int))
+void VsGame::GameState::open_GameChallenge(Game::VsGameSection*, int)
 {
 	/*
 	.loc_0x0:
@@ -3496,7 +3483,7 @@ void Game::VsGame::GameState::open_GameChallenge((Game::VsGameSection*, int))
  * Address:	8022BF3C
  * Size:	0007D0
  */
-void Game::VsGame::GameState::update_GameChallenge((Game::VsGameSection*))
+void VsGame::GameState::update_GameChallenge(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -4040,188 +4027,208 @@ void Game::VsGame::GameState::update_GameChallenge((Game::VsGameSection*))
  * Address:	8022C70C
  * Size:	000004
  */
-void Game::VsGame::GameState::drawStatus((Graphics&, Game::VsGameSection*)) { }
+void VsGame::GameState::drawStatus(Graphics&, Game::VsGameSection*) { }
 
-/*
- * --INFO--
- * Address:	8022C710
- * Size:	000008
- */
-u32 og::Screen::DispMemberVs::getSize(void) { return 0x74; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	8022C718
- * Size:	00000C
- */
-void og::Screen::DispMemberVs::getOwnerID(void)
-{
+namespace og {
+
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C710
+	 * Size:	000008
+	 */
+	u32 DispMemberVs::getSize(void) { return 0x74; }
 
-/*
- * --INFO--
- * Address:	8022C724
- * Size:	00000C
- */
-void og::Screen::DispMemberVs::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  li        r4, 0x5653
-	  li        r3, 0
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C718
+	 * Size:	00000C
+	 */
+	void DispMemberVs::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8022C730
- * Size:	000008
- */
-u32 og::Screen::DispMemberChallenge1P::getSize(void) { return 0x78; }
-
-/*
- * --INFO--
- * Address:	8022C738
- * Size:	00000C
- */
-void og::Screen::DispMemberChallenge1P::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C724
+	 * Size:	00000C
+	 */
+	void DispMemberVs::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  li        r4, 0x5653
+		  li        r3, 0
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8022C744
- * Size:	000010
- */
-void og::Screen::DispMemberChallenge1P::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x414C
-	  li        r3, 0x4348
-	  addi      r4, r4, 0x3150
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C730
+	 * Size:	000008
+	 */
+	u32 DispMemberChallenge1P::getSize(void) { return 0x78; }
 
-/*
- * --INFO--
- * Address:	8022C754
- * Size:	000008
- */
-u32 kh::Screen::DispWinLoseReason::getSize(void) { return 0x10; }
-
-/*
- * --INFO--
- * Address:	8022C75C
- * Size:	000008
- */
-u32 kh::Screen::DispWinLoseReason::getOwnerID(void) { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8022C764
- * Size:	000010
- */
-void kh::Screen::DispWinLoseReason::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5F52
-	  li        r3, 0x574C
-	  addi      r4, r4, 0x534E
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C738
+	 * Size:	00000C
+	 */
+	void DispMemberChallenge1P::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8022C774
- * Size:	000008
- */
-u32 kh::Screen::DispWinLose::getSize(void) { return 0x10; }
-
-/*
- * --INFO--
- * Address:	8022C77C
- * Size:	000008
- */
-u32 kh::Screen::DispWinLose::getOwnerID(void) { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8022C784
- * Size:	000014
- */
-void kh::Screen::DispWinLose::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4C4F
-	  lis       r3, 0x5749
-	  addi      r4, r4, 0x5345
-	  addi      r3, r3, 0x4E5F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C744
+	 * Size:	000010
+	 */
+	void DispMemberChallenge1P::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x414C
+		  li        r3, 0x4348
+		  addi      r4, r4, 0x3150
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8022C798
- * Size:	000008
- */
-u32 og::Screen::DispMemberChallenge2P::getSize(void) { return 0x78; }
+	namespace kh {
 
-/*
- * --INFO--
- * Address:	8022C7A0
- * Size:	00000C
- */
-void og::Screen::DispMemberChallenge2P::getOwnerID(void)
-{
+	} // namespace kh
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C754
+	 * Size:	000008
+	 */
+	u32 DispWinLoseReason::getSize(void) { return 0x10; }
 
-/*
- * --INFO--
- * Address:	8022C7AC
- * Size:	000010
- */
-void og::Screen::DispMemberChallenge2P::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x414C
-	  li        r3, 0x4348
-	  addi      r4, r4, 0x3250
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022C75C
+	 * Size:	000008
+	 */
+	u32 DispWinLoseReason::getOwnerID(void) { return 0x4B48; }
+
+	/*
+	 * --INFO--
+	 * Address:	8022C764
+	 * Size:	000010
+	 */
+	void DispWinLoseReason::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5F52
+		  li        r3, 0x574C
+		  addi      r4, r4, 0x534E
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8022C774
+	 * Size:	000008
+	 */
+	u32 DispWinLose::getSize(void) { return 0x10; }
+
+	/*
+	 * --INFO--
+	 * Address:	8022C77C
+	 * Size:	000008
+	 */
+	u32 DispWinLose::getOwnerID(void) { return 0x4B48; }
+
+	/*
+	 * --INFO--
+	 * Address:	8022C784
+	 * Size:	000014
+	 */
+	void DispWinLose::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4C4F
+		  lis       r3, 0x5749
+		  addi      r4, r4, 0x5345
+		  addi      r3, r3, 0x4E5F
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+namespace og {
+
+	/*
+	 * --INFO--
+	 * Address:	8022C798
+	 * Size:	000008
+	 */
+	u32 DispMemberChallenge2P::getSize(void) { return 0x78; }
+
+	/*
+	 * --INFO--
+	 * Address:	8022C7A0
+	 * Size:	00000C
+	 */
+	void DispMemberChallenge2P::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8022C7AC
+	 * Size:	000010
+	 */
+	void DispMemberChallenge2P::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x414C
+		  li        r3, 0x4348
+		  addi      r4, r4, 0x3250
+		  blr
+		*/
+	}
+
+	namespace Game {
+
+	} // namespace Game
+
+} // namespace og
 
 /*
  * --INFO--
  * Address:	8022C7BC
  * Size:	000010
  */
-void Game::VsGame::GameState::on_section_fadeout((Game::VsGameSection*))
+void VsGame::GameState::on_section_fadeout(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -4231,6 +4238,8 @@ void Game::VsGame::GameState::on_section_fadeout((Game::VsGameSection*))
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--

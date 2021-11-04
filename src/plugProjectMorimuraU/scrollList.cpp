@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	803A2154
  * Size:	00004C
  */
-void Morimura::TIndexGroup::__ct(void)
+Morimura::TIndexGroup::TIndexGroup(void)
 {
 	/*
 	.loc_0x0:
@@ -134,7 +124,7 @@ void Morimura::TIndexGroup::downIndex(void)
  * Address:	........
  * Size:	000064
  */
-void Morimura::TIndexGroup::speedUpdate((bool))
+void Morimura::TIndexGroup::speedUpdate(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -144,7 +134,7 @@ void Morimura::TIndexGroup::speedUpdate((bool))
  * Address:	........
  * Size:	000088
  */
-void Morimura::TIndexGroup::offsetUpdate((float))
+void Morimura::TIndexGroup::offsetUpdate(float)
 {
 	// UNUSED FUNCTION
 }
@@ -237,7 +227,7 @@ void Morimura::TIndexPane::update(void)
  * Address:	803A2344
  * Size:	000094
  */
-void Morimura::TIndexPane::createIconInfo((int, int))
+void Morimura::TIndexPane::createIconInfo(int, int)
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Morimura::TIndexPane::createIconInfo((int, int))
  * Address:	803A23D8
  * Size:	0001E4
  */
-void Morimura::TIndexPane::setIndex((int))
+void Morimura::TIndexPane::setIndex(int)
 {
 	/*
 	.loc_0x0:
@@ -582,7 +572,7 @@ void Morimura::TIndexPane::doIconOffsetY(void)
  * Address:	803A2710
  * Size:	000068
  */
-void Morimura::TIconInfo::__ct(void)
+Morimura::TIconInfo::TIconInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -622,7 +612,7 @@ void Morimura::TIconInfo::__ct(void)
  * Address:	803A2778
  * Size:	0000D0
  */
-void Morimura::TIconInfo::init((Morimura::TScaleUpCounter*, J2DPane*, J2DPane*))
+void Morimura::TIconInfo::init(Morimura::TScaleUpCounter*, J2DPane*, J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -692,7 +682,7 @@ void Morimura::TIconInfo::init((Morimura::TScaleUpCounter*, J2DPane*, J2DPane*))
  * Address:	803A2848
  * Size:	000198
  */
-void Morimura::TIconInfo::update((float))
+void Morimura::TIconInfo::update(float)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +802,7 @@ void Morimura::TIconInfo::update((float))
  * Address:	803A29E0
  * Size:	0001B4
  */
-void Morimura::TIconInfo::setInfo((int, ResTIMG const*))
+void Morimura::TIconInfo::setInfo(int, ResTIMG const*)
 {
 	/*
 	.loc_0x0:
@@ -963,7 +953,7 @@ void Morimura::TIconInfo::setInfo((int, ResTIMG const*))
  * Address:	803A2B94
  * Size:	000040
  */
-void Morimura::TIconInfo::startScaleUp((float))
+void Morimura::TIconInfo::startScaleUp(float)
 {
 	/*
 	.loc_0x0:
@@ -993,7 +983,7 @@ void Morimura::TIconInfo::startScaleUp((float))
  * Address:	803A2BD4
  * Size:	0000E4
  */
-void Morimura::TListScreen::create((char const*, unsigned long))
+void Morimura::TListScreen::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1066,7 +1056,7 @@ void Morimura::TListScreen::create((char const*, unsigned long))
  * Address:	803A2CB8
  * Size:	000090
  */
-void Morimura::TScrollList::__ct((char*))
+Morimura::TScrollList::TScrollList(char*)
 {
 	/*
 	.loc_0x0:
@@ -1114,7 +1104,7 @@ void Morimura::TScrollList::__ct((char*))
  * Address:	803A2D48
  * Size:	000428
  */
-void Morimura::TScrollList::updateIndex((bool))
+void Morimura::TScrollList::updateIndex(bool)
 {
 	/*
 	.loc_0x0:
@@ -1428,7 +1418,7 @@ void Morimura::TScrollList::updateIndex((bool))
  * Address:	803A3170
  * Size:	0000DC
  */
-void Morimura::TScrollList::getUpdateIndex((int&, bool))
+void Morimura::TScrollList::getUpdateIndex(int&, bool)
 {
 	/*
 	.loc_0x0:
@@ -1827,7 +1817,7 @@ void Morimura::TScrollList::changeIndex(void)
  * Address:	803A363C
  * Size:	000008
  */
-void @24 @Morimura::TScrollList::__dt(void)
+@24 @Morimura::TScrollList::~TScrollList(void)
 {
 	/*
 	.loc_0x0:

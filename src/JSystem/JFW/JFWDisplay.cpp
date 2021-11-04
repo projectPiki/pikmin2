@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,7 +15,7 @@ void JFWDisplay::ctor_subroutine(bool)
  * Address:	........
  * Size:	0000E0
  */
-void JFWDisplay::JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool)
+JFWDisplay::JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void JFWDisplay::JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool)
  * Address:	........
  * Size:	0000D0
  */
-void JFWDisplay::JFWDisplay(void*, bool)
+JFWDisplay::JFWDisplay(void*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void JFWDisplay::JFWDisplay(void*, bool)
  * Address:	........
  * Size:	0000E0
  */
-void JFWDisplay::JFWDisplay(void*, void*, bool)
+JFWDisplay::JFWDisplay(void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void JFWDisplay::JFWDisplay(void*, void*, bool)
  * Address:	........
  * Size:	0000F0
  */
-void JFWDisplay::JFWDisplay(void*, void*, void*, bool)
+JFWDisplay::JFWDisplay(void*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void JFWDisplay::JFWDisplay(void*, void*, void*, bool)
  * Address:	80089AAC
  * Size:	00007C
  */
-void JFWDisplay::~JFWDisplay()
+JFWDisplay::~JFWDisplay()
 {
 	/*
 	.loc_0x0:
@@ -1289,7 +1289,7 @@ void JFWDisplay::threadSleep(long long)
  * Address:	........
  * Size:	000060
  */
-void JFWAlarm::~JFWAlarm()
+JFWAlarm::~JFWAlarm()
 {
 	// UNUSED FUNCTION
 }

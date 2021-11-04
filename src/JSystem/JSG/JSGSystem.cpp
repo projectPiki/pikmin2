@@ -5,7 +5,7 @@
  * Address:	8009876C
  * Size:	000060
  */
-void JStage::TSystem::__dt(void)
+JStage::TSystem::~TSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -43,17 +43,15 @@ void JStage::TSystem::__dt(void)
  * Address:	800987CC
  * Size:	000008
  */
-u32  JStage::TSystem::JSGFGetType( const
-{
-	return 0x1;
-}
+u32 JStage::TSystem::JSGFGetType() const { return 0x1; }
 
 /*
  * --INFO--
  * Address:	800987D4
  * Size:	000008
  */
-u32  JStage::TSystem::JSGFindObject( const(JStage::TObject **, char const *, JStage::TEObject))
+u32 JStage::TSystem::JSGFindObject(const(JStage::TObject**, char const*,
+                                         JStage::TEObject))
 {
 	return 0x1;
 }
@@ -63,7 +61,8 @@ u32  JStage::TSystem::JSGFindObject( const(JStage::TObject **, char const *, JSt
  * Address:	800987DC
  * Size:	000008
  */
-u32  JStage::TSystem::JSGCreateObject( (char const *, JStage::TEObject, unsigned long))
+u32 JStage::TSystem::JSGCreateObject(char const*, JStage::TEObject,
+                                     unsigned long)
 {
 	return 0x0;
 }
@@ -73,25 +72,18 @@ u32  JStage::TSystem::JSGCreateObject( (char const *, JStage::TEObject, unsigned
  * Address:	800987E4
  * Size:	000004
  */
-void JStage::TSystem::JSGDestroyObject( (JStage::TObject *))
-{
-}
+void JStage::TSystem::JSGDestroyObject(JStage::TObject*) { }
 
 /*
  * --INFO--
  * Address:	800987E8
  * Size:	000008
  */
-u32  JStage::TSystem::JSGGetSystemData( (unsigned long))
-{
-	return 0x0;
-}
+u32 JStage::TSystem::JSGGetSystemData(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800987F0
  * Size:	000004
  */
-void JStage::TSystem::JSGSetSystemData( (unsigned long, unsigned long))
-{
-}
+void JStage::TSystem::JSGSetSystemData(unsigned long, unsigned long) { }

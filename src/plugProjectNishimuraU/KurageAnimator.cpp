@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802AD090
  * Size:	000008
  */
-void Game::Kurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Kurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Kurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802AD098
  * Size:	000008
  */
-void Game::Kurage::ProperAnimator::getAnimator(int)
+void Kurage::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Kurage::ProperAnimator::getAnimator(int)
  * Address:	802AD0A0
  * Size:	00005C
  */
-void Game::Kurage::ProperAnimator::~ProperAnimator()
+Kurage::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Kurage::ProperAnimator::~ProperAnimator()
  * Address:	802AD0FC
  * Size:	000008
  */
-void Game::Kurage::ProperAnimator::getAnimator()
+void Kurage::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Kurage::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802AD104
  * Size:	000050
  */
-void Game::Kurage::Mgr::Mgr(int, unsigned char)
+Kurage::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Kurage::Mgr::Mgr(int, unsigned char)
  * Address:	802AD154
  * Size:	000048
  */
-void Game::Kurage::Mgr::doAlloc()
+void Kurage::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Kurage::Mgr::doAlloc()
  * Address:	802AD19C
  * Size:	000048
  */
-void Game::Kurage::Parms::Parms()
+Kurage::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Kurage::Parms::Parms()
  * Address:	802AD1E4
  * Size:	00023C
  */
-void Game::Kurage::Parms::ProperParms::ProperParms()
+Kurage::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::Kurage::Parms::ProperParms::ProperParms()
  * Address:	802AD420
  * Size:	000060
  */
-void Game::Kurage::Mgr::createObj(int)
+void Kurage::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::Kurage::Mgr::createObj(int)
  * Address:	802AD480
  * Size:	0000BC
  */
-void Game::Kurage::Obj::~Obj()
+Kurage::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -359,7 +361,7 @@ void Game::Kurage::Obj::~Obj()
  * Address:	802AD53C
  * Size:	000010
  */
-void Game::Kurage::Mgr::getEnemy(int)
+void Kurage::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -375,7 +377,7 @@ void Game::Kurage::Mgr::getEnemy(int)
  * Address:	802AD54C
  * Size:	000068
  */
-void Game::Kurage::Mgr::loadModelData()
+void Kurage::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -417,7 +419,7 @@ void Game::Kurage::Mgr::loadModelData()
  * Address:	802AD5B4
  * Size:	0000B0
  */
-void Game::Kurage::Mgr::~Mgr()
+Kurage::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -477,14 +479,14 @@ void Game::Kurage::Mgr::~Mgr()
  * Address:	802AD664
  * Size:	000008
  */
-u32 Game::Kurage::Mgr::getEnemyTypeID() { return 0x39; }
+u32 Kurage::Mgr::getEnemyTypeID() { return 0x39; }
 
 /*
  * --INFO--
  * Address:	802AD66C
  * Size:	00002C
  */
-void Game::Kurage::Mgr::doLoadBmd(void*)
+void Kurage::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +509,7 @@ void Game::Kurage::Mgr::doLoadBmd(void*)
  * Address:	802AD698
  * Size:	000050
  */
-void Game::Kurage::Parms::read(Stream&)
+void Kurage::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +541,7 @@ void Game::Kurage::Parms::read(Stream&)
  * Address:	802AD6E8
  * Size:	000008
  */
-void Game::Kurage::Mgr::@4 @__dt()
+Kurage::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -547,3 +549,4 @@ void Game::Kurage::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

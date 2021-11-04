@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace og {
 
 /*
  * --INFO--
  * Address:	80317F28
  * Size:	000024
  */
-void og::newScreen::checkMovieActive(void)
+void newScreen::checkMovieActive(void)
 {
 	/*
 	.loc_0x0:
@@ -26,7 +28,7 @@ void og::newScreen::checkMovieActive(void)
  * Address:	........
  * Size:	000004
  */
-void og::newScreen::drawObjName((Graphics&, char*))
+void newScreen::drawObjName(Graphics&, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -36,7 +38,7 @@ void og::newScreen::drawObjName((Graphics&, char*))
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::getLanguageDir((char*))
+void newScreen::getLanguageDir(char*)
 {
 	// UNUSED FUNCTION
 }
@@ -46,7 +48,7 @@ void og::newScreen::getLanguageDir((char*))
  * Address:	80317F4C
  * Size:	0000DC
  */
-void og::newScreen::makeLanguageResName((char*, char const*))
+void newScreen::makeLanguageResName(char*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -115,6 +117,8 @@ void og::newScreen::makeLanguageResName((char*, char const*))
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--

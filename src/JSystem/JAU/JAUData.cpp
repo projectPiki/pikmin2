@@ -5,7 +5,7 @@
  * Address:	800BA564
  * Size:	0000AC
  */
-void JADUtility::PrmSetBase::__ct((bool))
+JADUtility::PrmSetBase::PrmSetBase(bool)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +60,7 @@ void JADUtility::PrmSetBase::__ct((bool))
  * Address:	........
  * Size:	000094
  */
-void JADUtility::PrmSetTree::__dt(void)
+JADUtility::PrmSetTree::~PrmSetTree(void)
 {
 	// UNUSED FUNCTION
 }
@@ -120,7 +120,7 @@ void JSUList<JADUtility::PrmBase>::~JSUList()
  * Address:	........
  * Size:	000014
  */
-void JADUtility::PrmSetBase::appendDummy((unsigned char))
+void JADUtility::PrmSetBase::appendDummy(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -130,7 +130,7 @@ void JADUtility::PrmSetBase::appendDummy((unsigned char))
  * Address:	800BA610
  * Size:	000098
  */
-void JADUtility::PrmSetBase::load((JSUMemoryInputStream&))
+void JADUtility::PrmSetBase::load(JSUMemoryInputStream&)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +184,7 @@ void JADUtility::PrmSetBase::load((JSUMemoryInputStream&))
  * Address:	800BA6A8
  * Size:	000040
  */
-void JADUtility::PrmBase::load((JSUMemoryInputStream&))
+void JADUtility::PrmBase::load(JSUMemoryInputStream&)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +214,7 @@ void JADUtility::PrmBase::load((JSUMemoryInputStream&))
  * Address:	800BA6E8
  * Size:	0000E8
  */
-void JADUtility::PrmSetBase::__dt(void)
+JADUtility::PrmSetBase::~PrmSetBase(void)
 {
 	/*
 	.loc_0x0:
@@ -303,7 +303,7 @@ void JADUtility::PrmSetBase::appendAfter(void) { }
  * Address:	800BA7D4
  * Size:	000004
  */
-void JADUtility::PrmSetBase::afterRemovingChildButton((JADUtility::PrmSetBase*))
+void JADUtility::PrmSetBase::afterRemovingChildButton(JADUtility::PrmSetBase*)
 {
 }
 
@@ -312,8 +312,7 @@ void JADUtility::PrmSetBase::afterRemovingChildButton((JADUtility::PrmSetBase*))
  * Address:	800BA7D8
  * Size:	000004
  */
-void JADUtility::PrmSetBase::afterRemovingThisButton((JADUtility::PrmSetBase*))
-{
+void JADUtility::PrmSetBase::afterRemovingThisButton(JADUtility::PrmSetBase*) {
 }
 
 /*

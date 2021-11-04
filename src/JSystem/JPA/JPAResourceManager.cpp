@@ -1,12 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000074
  */
-void JPAResourceManager::JPAResourceManager(unsigned short, unsigned short,
-                                            JKRHeap*)
+JPAResourceManager::JPAResourceManager(unsigned short, unsigned short, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -16,7 +15,7 @@ void JPAResourceManager::JPAResourceManager(unsigned short, unsigned short,
  * Address:	800984D0
  * Size:	000058
  */
-void JPAResourceManager::JPAResourceManager(const void*, JKRHeap*)
+JPAResourceManager::JPAResourceManager(const void*, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -70,7 +69,7 @@ void JPAResourceManager::load(const void*, unsigned short)
  * Address:	........
  * Size:	00003C
  */
-void JPAResourceLoader::~JPAResourceLoader()
+JPAResourceLoader::~JPAResourceLoader()
 {
 	// UNUSED FUNCTION
 }

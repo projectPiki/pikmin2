@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8026EA08
  * Size:	00008C
  */
-void Game::ElecHiba::Generator::Generator()
+ElecHiba::Generator::Generator()
 {
 	/*
 	.loc_0x0:
@@ -52,7 +54,7 @@ void Game::ElecHiba::Generator::Generator()
  * Address:	8026EA94
  * Size:	00000C
  */
-void Game::ElecHiba::Generator::getLatestVersion()
+void ElecHiba::Generator::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -67,7 +69,7 @@ void Game::ElecHiba::Generator::getLatestVersion()
  * Address:	8026EAA0
  * Size:	000074
  */
-void Game::ElecHiba::Generator::doRead(Stream&)
+void ElecHiba::Generator::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -112,7 +114,7 @@ void Game::ElecHiba::Generator::doRead(Stream&)
  * Address:	8026EB14
  * Size:	000060
  */
-void Game::ElecHiba::Generator::doWrite(Stream&)
+void ElecHiba::Generator::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -148,7 +150,7 @@ void Game::ElecHiba::Generator::doWrite(Stream&)
  * Address:	8026EB74
  * Size:	000034
  */
-void Game::ElecHiba::Generator::doReadLatestVersion(Stream&)
+void ElecHiba::Generator::doReadLatestVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -173,14 +175,14 @@ void Game::ElecHiba::Generator::doReadLatestVersion(Stream&)
  * Address:	8026EBA8
  * Size:	000004
  */
-void Game::ElecHiba::Generator::doReadOldVersion(Stream&) { }
+void ElecHiba::Generator::doReadOldVersion(Stream&) { }
 
 /*
  * --INFO--
  * Address:	8026EBAC
  * Size:	000064
  */
-void Game::ElecHiba::Mgr::Mgr(int, unsigned char)
+ElecHiba::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::ElecHiba::Mgr::Mgr(int, unsigned char)
  * Address:	8026EC10
  * Size:	000048
  */
-void Game::ElecHiba::Mgr::doAlloc()
+void ElecHiba::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -251,7 +253,7 @@ void Game::ElecHiba::Mgr::doAlloc()
  * Address:	8026EC58
  * Size:	0001CC
  */
-void Game::ElecHiba::Parms::Parms()
+ElecHiba::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -378,7 +380,7 @@ void Game::ElecHiba::Parms::Parms()
  * Address:	8026EE24
  * Size:	000060
  */
-void Game::ElecHiba::Mgr::createObj(int)
+void ElecHiba::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +416,7 @@ void Game::ElecHiba::Mgr::createObj(int)
  * Address:	8026EE84
  * Size:	0000E0
  */
-void Game::ElecHiba::Obj::~Obj()
+ElecHiba::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -488,7 +490,7 @@ void Game::ElecHiba::Obj::~Obj()
  * Address:	8026EF64
  * Size:	000010
  */
-void Game::ElecHiba::Mgr::getEnemy(int)
+void ElecHiba::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -504,7 +506,7 @@ void Game::ElecHiba::Mgr::getEnemy(int)
  * Address:	8026EF74
  * Size:	0000E4
  */
-void Game::ElecHiba::Mgr::birth(Game::EnemyBirthArg&)
+void ElecHiba::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -575,7 +577,7 @@ void Game::ElecHiba::Mgr::birth(Game::EnemyBirthArg&)
  * Address:	8026F058
  * Size:	0000C8
  */
-void Game::ElecHiba::Mgr::~Mgr()
+ElecHiba::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -641,14 +643,14 @@ void Game::ElecHiba::Mgr::~Mgr()
  * Address:	8026F120
  * Size:	000008
  */
-u32 Game::ElecHiba::Mgr::getEnemyTypeID() { return 0x16; }
+u32 ElecHiba::Mgr::getEnemyTypeID() { return 0x16; }
 
 /*
  * --INFO--
  * Address:	8026F128
  * Size:	000060
  */
-void Game::ElecHiba::TeamList::~TeamList()
+ElecHiba::TeamList::~TeamList()
 {
 	/*
 	.loc_0x0:
@@ -686,7 +688,7 @@ void Game::ElecHiba::TeamList::~TeamList()
  * Address:	8026F188
  * Size:	000050
  */
-void Game::ElecHiba::Parms::read(Stream&)
+void ElecHiba::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -718,7 +720,7 @@ void Game::ElecHiba::Parms::read(Stream&)
  * Address:	8026F1D8
  * Size:	000070
  */
-void Game::ElecHiba::Generator::~Generator()
+ElecHiba::Generator::~Generator()
 {
 	/*
 	.loc_0x0:
@@ -762,7 +764,7 @@ void Game::ElecHiba::Generator::~Generator()
  * Address:	8026F248
  * Size:	000008
  */
-void Game::ElecHiba::Generator::getInitialParam()
+void ElecHiba::Generator::getInitialParam()
 {
 	/*
 	.loc_0x0:
@@ -776,7 +778,7 @@ void Game::ElecHiba::Generator::getInitialParam()
  * Address:	8026F250
  * Size:	000008
  */
-void Game::ElecHiba::Mgr::@4 @__dt()
+ElecHiba::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -784,3 +786,4 @@ void Game::ElecHiba::Mgr::@4 @__dt()
 	  b         -0x1FC
 	*/
 }
+} // namespace Game

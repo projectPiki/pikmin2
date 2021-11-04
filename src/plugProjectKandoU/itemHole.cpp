@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D1738
  * Size:	000134
  */
-void Game::ItemHole::FSM::init(Game::CFSMItem*)
+void ItemHole::FSM::init(Game::CFSMItem*)
 {
 	/*
 	.loc_0x0:
@@ -100,7 +102,7 @@ void Game::ItemHole::FSM::init(Game::CFSMItem*)
  * Address:	801D186C
  * Size:	00003C
  */
-void Game::ItemHole::NormalState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHole::NormalState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -127,21 +129,21 @@ void Game::ItemHole::NormalState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D18A8
  * Size:	000004
  */
-void Game::ItemHole::NormalState::exec(Game::CFSMItem*) { }
+void ItemHole::NormalState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D18AC
  * Size:	000004
  */
-void Game::ItemHole::NormalState::cleanup(Game::CFSMItem*) { }
+void ItemHole::NormalState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D18B0
  * Size:	00005C
  */
-void Game::ItemHole::AppearState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHole::AppearState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +178,7 @@ void Game::ItemHole::AppearState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D190C
  * Size:	000118
  */
-void Game::ItemHole::AppearState::exec(Game::CFSMItem*)
+void ItemHole::AppearState::exec(Game::CFSMItem*)
 {
 	/*
 	.loc_0x0:
@@ -260,8 +262,7 @@ void Game::ItemHole::AppearState::exec(Game::CFSMItem*)
  * Address:	801D1A24
  * Size:	000030
  */
-void Game::FSMState<Game::CFSMItem>::transit(Game::CFSMItem*, int,
-                                             Game::StateArg*)
+void FSMState<Game::CFSMItem>::transit(Game::CFSMItem*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -285,14 +286,14 @@ void Game::FSMState<Game::CFSMItem>::transit(Game::CFSMItem*, int,
  * Address:	801D1A54
  * Size:	000004
  */
-void Game::ItemHole::AppearState::cleanup(Game::CFSMItem*) { }
+void ItemHole::AppearState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D1A58
  * Size:	00003C
  */
-void Game::ItemHole::CloseState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHole::CloseState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -319,7 +320,7 @@ void Game::ItemHole::CloseState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D1A94
  * Size:	000014
  */
-void Game::ItemHole::CloseState::exec(Game::CFSMItem*)
+void ItemHole::CloseState::exec(Game::CFSMItem*)
 {
 	/*
 	.loc_0x0:
@@ -336,14 +337,14 @@ void Game::ItemHole::CloseState::exec(Game::CFSMItem*)
  * Address:	801D1AA8
  * Size:	000004
  */
-void Game::ItemHole::CloseState::cleanup(Game::CFSMItem*) { }
+void ItemHole::CloseState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D1AAC
  * Size:	00025C
  */
-void Game::ItemHole::Item::movieUserCommand(unsigned long, Game::MoviePlayer*)
+void ItemHole::Item::movieUserCommand(unsigned long, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +525,7 @@ void Game::ItemHole::Item::movieUserCommand(unsigned long, Game::MoviePlayer*)
  * Address:	801D1D08
  * Size:	000108
  */
-void Game::ItemHole::Item::interactGotKey(Game::InteractGotKey&)
+void ItemHole::Item::interactGotKey(Game::InteractGotKey&)
 {
 	/*
 	.loc_0x0:
@@ -606,7 +607,7 @@ void Game::ItemHole::Item::interactGotKey(Game::InteractGotKey&)
  * Address:	801D1E10
  * Size:	000008
  */
-void Game::ItemHole::Item::getFaceDir()
+void ItemHole::Item::getFaceDir()
 {
 	/*
 	.loc_0x0:
@@ -620,7 +621,7 @@ void Game::ItemHole::Item::getFaceDir()
  * Address:	801D1E18
  * Size:	0000C0
  */
-void Game::ItemHole::Item::onInit(Game::CreatureInitArg*)
+void ItemHole::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -684,8 +685,7 @@ void Game::ItemHole::Item::onInit(Game::CreatureInitArg*)
  * Address:	801D1ED8
  * Size:	000078
  */
-void Game::StateMachine<Game::CFSMItem>::start(Game::CFSMItem*, int,
-                                               Game::StateArg*)
+void StateMachine<Game::CFSMItem>::start(Game::CFSMItem*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -727,7 +727,7 @@ void Game::StateMachine<Game::CFSMItem>::start(Game::CFSMItem*, int,
  * Address:	801D1F50
  * Size:	000050
  */
-void Game::ItemHole::Item::changeMaterial()
+void ItemHole::Item::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -759,7 +759,7 @@ void Game::ItemHole::Item::changeMaterial()
  * Address:	801D1FA0
  * Size:	0001DC
  */
-void Game::ItemHole::Item::onSetPosition()
+void ItemHole::Item::onSetPosition()
 {
 	/*
 	.loc_0x0:
@@ -894,7 +894,7 @@ void Game::ItemHole::Item::onSetPosition()
  * Address:	801D217C
  * Size:	000314
  */
-void Game::ItemHole::Item::initDependency()
+void ItemHole::Item::initDependency()
 {
 	/*
 	.loc_0x0:
@@ -1131,7 +1131,7 @@ void Game::ItemHole::Item::initDependency()
  * Address:	801D2490
  * Size:	000068
  */
-void Game::ItemHole::Item::makeTrMatrix()
+void ItemHole::Item::makeTrMatrix()
 {
 	/*
 	.loc_0x0:
@@ -1169,7 +1169,7 @@ void Game::ItemHole::Item::makeTrMatrix()
  * Address:	801D24F8
  * Size:	000030
  */
-void Game::ItemHole::Item::canRide()
+void ItemHole::Item::canRide()
 {
 	/*
 	.loc_0x0:
@@ -1193,14 +1193,14 @@ void Game::ItemHole::Item::canRide()
  * Address:	801D2528
  * Size:	000008
  */
-u32 Game::ItemHole::State::canRide() { return 0x0; }
+u32 ItemHole::State::canRide() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D2530
  * Size:	000014
  */
-void Game::ItemHole::Item::do_setLODParm(Game::AILODParm&)
+void ItemHole::Item::do_setLODParm(Game::AILODParm&)
 {
 	/*
 	.loc_0x0:
@@ -1217,14 +1217,14 @@ void Game::ItemHole::Item::do_setLODParm(Game::AILODParm&)
  * Address:	801D2544
  * Size:	000008
  */
-u32 Game::ItemHole::Item::sound_culling() { return 0x0; }
+u32 ItemHole::Item::sound_culling() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D254C
  * Size:	0000E4
  */
-void Game::ItemHole::Item::doAI()
+void ItemHole::Item::doAI()
 {
 	/*
 	.loc_0x0:
@@ -1297,7 +1297,7 @@ void Game::ItemHole::Item::doAI()
  * Address:	801D2630
  * Size:	0000BC
  */
-void Game::ItemHole::Item::doDirectDraw(Graphics&)
+void ItemHole::Item::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1356,7 +1356,7 @@ void Game::ItemHole::Item::doDirectDraw(Graphics&)
  * Address:	801D26EC
  * Size:	000058
  */
-void Game::ItemHole::Item::createFSM()
+void ItemHole::Item::createFSM()
 {
 	/*
 	.loc_0x0:
@@ -1392,7 +1392,7 @@ void Game::ItemHole::Item::createFSM()
  * Address:	801D2744
  * Size:	00007C
  */
-void Game::ItemHole::Mgr::Mgr()
+ItemHole::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -1437,7 +1437,7 @@ void Game::ItemHole::Mgr::Mgr()
  * Address:	801D27C0
  * Size:	000100
  */
-void Game::ItemHole::Mgr::onLoadResources()
+void ItemHole::Mgr::onLoadResources()
 {
 	/*
 	.loc_0x0:
@@ -1513,7 +1513,7 @@ void Game::ItemHole::Mgr::onLoadResources()
  * Address:	801D28C0
  * Size:	0000BC
  */
-void Game::ItemHole::Mgr::setup(Game::BaseItem*)
+void ItemHole::Mgr::setup(Game::BaseItem*)
 {
 	/*
 	.loc_0x0:
@@ -1574,8 +1574,7 @@ void Game::ItemHole::Mgr::setup(Game::BaseItem*)
  * Address:	801D297C
  * Size:	000054
  */
-void Game::ItemHole::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
-                                         Game::GenItemParm*)
+void ItemHole::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -1608,7 +1607,7 @@ void Game::ItemHole::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
  * Address:	801D29D0
  * Size:	000134
  */
-void Game::ItemHole::Mgr::~Mgr()
+ItemHole::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -1705,7 +1704,7 @@ void Game::ItemHole::Mgr::~Mgr()
  * Address:	801D2B04
  * Size:	000074
  */
-void Game::ItemHole::Mgr::doNew()
+void ItemHole::Mgr::doNew()
 {
 	/*
 	.loc_0x0:
@@ -1748,7 +1747,7 @@ void Game::ItemHole::Mgr::doNew()
  * Address:	801D2B78
  * Size:	00000C
  */
-void Game::ItemHole::Mgr::generatorGetID()
+void ItemHole::Mgr::generatorGetID()
 {
 	/*
 	.loc_0x0:
@@ -1763,7 +1762,7 @@ void Game::ItemHole::Mgr::generatorGetID()
  * Address:	801D2B84
  * Size:	000008
  */
-void Game::ItemHole::Item::getCreatureName()
+void ItemHole::Item::getCreatureName()
 {
 	/*
 	.loc_0x0:
@@ -1777,49 +1776,49 @@ void Game::ItemHole::Item::getCreatureName()
  * Address:	801D2B8C
  * Size:	000004
  */
-void Game::CItemState::onDamage(Game::CFSMItem*, float) { }
+void CItemState::onDamage(Game::CFSMItem*, float) { }
 
 /*
  * --INFO--
  * Address:	801D2B90
  * Size:	000008
  */
-u32 Game::ItemHole::NormalState::canRide() { return 0x1; }
+u32 ItemHole::NormalState::canRide() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801D2B98
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::init(Game::CFSMItem*, Game::StateArg*) { }
+void FSMState<Game::CFSMItem>::init(Game::CFSMItem*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801D2B9C
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::cleanup(Game::CFSMItem*) { }
+void FSMState<Game::CFSMItem>::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA0
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::resume(Game::CFSMItem*) { }
+void FSMState<Game::CFSMItem>::resume(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA4
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::restart(Game::CFSMItem*) { }
+void FSMState<Game::CFSMItem>::restart(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA8
  * Size:	000064
  */
-void Game::StateMachine<Game::CFSMItem>::create(int)
+void StateMachine<Game::CFSMItem>::create(int)
 {
 	/*
 	.loc_0x0:
@@ -1856,8 +1855,8 @@ void Game::StateMachine<Game::CFSMItem>::create(int)
  * Address:	801D2C0C
  * Size:	0000AC
  */
-void Game::StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int,
-                                                 Game::StateArg*)
+void StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int,
+                                           Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1918,7 +1917,7 @@ void Game::StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int,
  * Address:	801D2CB8
  * Size:	000084
  */
-void Game::StateMachine<Game::CFSMItem>::registerState(
+void StateMachine<Game::CFSMItem>::registerState(
     Game::FSMState<Game::CFSMItem>*)
 {
 	/*
@@ -1965,6 +1964,8 @@ void Game::StateMachine<Game::CFSMItem>::registerState(
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801D2D3C
@@ -1987,12 +1988,14 @@ void __sinit_itemHole_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D2D64
  * Size:	000008
  */
-void Game::ItemHole::Mgr::@48 @__dt()
+ItemHole::Mgr::@48 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -2000,3 +2003,4 @@ void Game::ItemHole::Mgr::@48 @__dt()
 	  b         -0x398
 	*/
 }
+} // namespace Game

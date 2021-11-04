@@ -3,16 +3,6 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	000044
  */
 void check_fragmentation()
@@ -20,12 +10,14 @@ void check_fragmentation()
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80164BF0
  * Size:	0000C0
  */
-void Game::BaseHIOSection::__ct((JKRHeap*))
+BaseHIOSection::BaseHIOSection(JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -89,7 +81,7 @@ void Game::BaseHIOSection::__ct((JKRHeap*))
  * Address:	80164CB0
  * Size:	0000C4
  */
-void Game::BaseHIOSection::__dt(void)
+BaseHIOSection::~BaseHIOSection(void)
 {
 	/*
 	.loc_0x0:
@@ -156,7 +148,7 @@ void Game::BaseHIOSection::__dt(void)
  * Address:	80164D74
  * Size:	000060
  */
-void Game::HIORootNode::__dt(void)
+HIORootNode::~HIORootNode(void)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +186,7 @@ void Game::HIORootNode::__dt(void)
  * Address:	80164DD4
  * Size:	000150
  */
-void Game::BaseHIOSection::setDisplay((JFWDisplay*, int))
+void BaseHIOSection::setDisplay(JFWDisplay*, int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +288,7 @@ void Game::BaseHIOSection::setDisplay((JFWDisplay*, int))
  * Address:	80164F24
  * Size:	000080
  */
-void Game::BaseHIOSection::initHIO((Game::HIORootNode*))
+void BaseHIOSection::initHIO(Game::HIORootNode*)
 {
 	/*
 	.loc_0x0:
@@ -348,21 +340,21 @@ void Game::BaseHIOSection::initHIO((Game::HIORootNode*))
  * Address:	80164FA4
  * Size:	000004
  */
-void Game::BaseHIOSection::createScreenRootNode(void) { }
+void BaseHIOSection::createScreenRootNode(void) { }
 
 /*
  * --INFO--
  * Address:	80164FA8
  * Size:	000008
  */
-u32 Game::BaseHIOSection::doUpdate(void) { return 0x1; }
+u32 BaseHIOSection::doUpdate(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80164FB0
  * Size:	000024
  */
-void Game::BaseHIOSection::addGenNode((CNode*))
+void BaseHIOSection::addGenNode(CNode*)
 {
 	/*
 	.loc_0x0:
@@ -383,14 +375,14 @@ void Game::BaseHIOSection::addGenNode((CNode*))
  * Address:	80164FD4
  * Size:	000004
  */
-void Game::BaseHIOSection::refreshHIO(void) { }
+void BaseHIOSection::refreshHIO(void) { }
 
 /*
  * --INFO--
  * Address:	80164FD8
  * Size:	000054
  */
-void Game::HIORootNode::__ct((Section*))
+HIORootNode::HIORootNode(Section*)
 {
 	/*
 	.loc_0x0:
@@ -417,6 +409,8 @@ void Game::HIORootNode::__ct((Section*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

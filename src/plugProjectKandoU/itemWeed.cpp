@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8020F280
  * Size:	000038
  */
-void Game::ItemWeed::Weed::__ct(void)
+ItemWeed::Weed::Weed(void)
 {
 	/*
 	.loc_0x0:
@@ -36,40 +28,47 @@ void Game::ItemWeed::Weed::__ct(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000038
  */
-void init__Q34Game8ItemWeed4WeedFPQ34Game8ItemWeed7WeedMgrR10Vector3<float>(
-    void)
+void init__Q34Game8ItemWeed4WeedFPQ34Game8ItemWeed7WeedMgrR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8020F2B8
  * Size:	000008
  */
-u32 Game::ItemWeed::Weed::damaged((float)) { return 0x1; }
+u32 ItemWeed::Weed::damaged(float) { return 0x1; }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000044
  */
-void setPosition__Q34Game8ItemWeed4WeedFR10Vector3<float>(void)
+void setPosition__Q34Game8ItemWeed4WeedFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8020F2C0
  * Size:	0000AC
  */
-void Game::ItemWeed::Weed::makeMatrix(void)
+void ItemWeed::Weed::makeMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +123,7 @@ void Game::ItemWeed::Weed::makeMatrix(void)
  * Address:	........
  * Size:	000004
  */
-void Game::ItemWeed::Weed::update(void)
+void ItemWeed::Weed::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -134,10 +133,12 @@ void Game::ItemWeed::Weed::update(void)
  * Address:	........
  * Size:	0000E8
  */
-void Game::ItemWeed::WeedMgr::__ct((int))
+ItemWeed::WeedMgr::WeedMgr(int)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -321,12 +322,14 @@ void Container<Game::ItemWeed::Weed>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00005C
  */
-void Game::ItemWeed::WeedMgr::init((Sys::Sphere&, Game::ItemWeed::cWeedType))
+void ItemWeed::WeedMgr::init(Sys::Sphere&, Game::ItemWeed::cWeedType)
 {
 	// UNUSED FUNCTION
 }
@@ -336,10 +339,12 @@ void Game::ItemWeed::WeedMgr::init((Sys::Sphere&, Game::ItemWeed::cWeedType))
  * Address:	........
  * Size:	00022C
  */
-void Game::ItemWeed::WeedMgr::createWeeds((Game::ItemWeed::cWeedType))
+void ItemWeed::WeedMgr::createWeeds(Game::ItemWeed::cWeedType)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -355,19 +360,21 @@ void getMaxObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8020F584
  * Size:	000004
  */
-void Game::ItemWeed::WeedMgr::do_update_boundSphere(void) { }
+void ItemWeed::WeedMgr::do_update_boundSphere(void) { }
 
 /*
  * --INFO--
  * Address:	8020F588
  * Size:	000018
  */
-void Game::ItemWeed::WeedMgr::do_update(void)
+void ItemWeed::WeedMgr::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +392,7 @@ void Game::ItemWeed::WeedMgr::do_update(void)
  * Address:	8020F5A0
  * Size:	000084
  */
-void Game::ItemWeed::FSM::init((Game::ItemWeed::Item*))
+void ItemWeed::FSM::init(Game::ItemWeed::Item*)
 {
 	/*
 	.loc_0x0:
@@ -432,7 +439,7 @@ void Game::ItemWeed::FSM::init((Game::ItemWeed::Item*))
  * Address:	........
  * Size:	00013C
  */
-void Game::ItemWeed::Item::__ct(void)
+ItemWeed::Item::Item(void)
 {
 	// UNUSED FUNCTION
 }
@@ -442,7 +449,7 @@ void Game::ItemWeed::Item::__ct(void)
  * Address:	8020F624
  * Size:	00015C
  */
-void Game::ItemWeed::Item::onInit((Game::CreatureInitArg*))
+void ItemWeed::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +578,7 @@ FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
  * Address:	8020F7B4
  * Size:	000268
  */
-void Game::ItemWeed::Item::onSetPosition(void)
+void ItemWeed::Item::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -753,7 +760,7 @@ void Game::ItemWeed::Item::onSetPosition(void)
  * Address:	8020FA1C
  * Size:	00003C
  */
-void Game::ItemWeed::Item::ignoreAtari((Game::Creature*))
+void ItemWeed::Item::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -780,7 +787,7 @@ void Game::ItemWeed::Item::ignoreAtari((Game::Creature*))
  * Address:	8020FA58
  * Size:	000078
  */
-void Game::ItemWeed::Item::updateBoundSphere(void)
+void ItemWeed::Item::updateBoundSphere(void)
 {
 	/*
 	.loc_0x0:
@@ -824,7 +831,7 @@ void Game::ItemWeed::Item::updateBoundSphere(void)
  * Address:	8020FAD0
  * Size:	0002E0
  */
-void Game::ItemWeed::Item::interactFlockAttack((Game::InteractFlockAttack&))
+void ItemWeed::Item::interactFlockAttack(Game::InteractFlockAttack&)
 {
 	/*
 	.loc_0x0:
@@ -1029,6 +1036,8 @@ void Game::ItemWeed::Item::interactFlockAttack((Game::InteractFlockAttack&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8020FDB0
@@ -1068,12 +1077,14 @@ void MonoObjectMgr<Game::ItemWeed::Weed>::getAt(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8020FDEC
  * Size:	000084
  */
-void Game::ItemWeed::Item::doAI(void)
+void ItemWeed::Item::doAI(void)
 {
 	/*
 	.loc_0x0:
@@ -1115,6 +1126,8 @@ void Game::ItemWeed::Item::doAI(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8020FE70
@@ -1129,12 +1142,14 @@ void getNumObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8020FE78
  * Size:	00003C
  */
-void Game::ItemWeed::Item::doSimpleDraw((Viewport*))
+void ItemWeed::Item::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -1161,7 +1176,7 @@ void Game::ItemWeed::Item::doSimpleDraw((Viewport*))
  * Address:	8020FEB4
  * Size:	00013C
  */
-void Game::ItemWeed::Mgr::__ct(void)
+ItemWeed::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1256,7 +1271,7 @@ void Game::ItemWeed::Mgr::__ct(void)
  * Address:	8020FFF0
  * Size:	000200
  */
-void Game::ItemWeed::Mgr::doSimpleDraw((Viewport*))
+void ItemWeed::Mgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -1414,14 +1429,14 @@ void Game::ItemWeed::Mgr::doSimpleDraw((Viewport*))
  * Address:	802101F0
  * Size:	000004
  */
-void Game::ItemWeed::Mgr::onLoadResources(void) { }
+void ItemWeed::Mgr::onLoadResources(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000160
  */
-void Game::ItemWeed::Mgr::birth(void)
+void ItemWeed::Mgr::birth(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1431,7 +1446,7 @@ void Game::ItemWeed::Mgr::birth(void)
  * Address:	802101F4
  * Size:	000008
  */
-void Game::ItemWeed::Mgr::getCaveName((int))
+void ItemWeed::Mgr::getCaveName(int)
 {
 	/*
 	.loc_0x0:
@@ -1445,7 +1460,7 @@ void Game::ItemWeed::Mgr::getCaveName((int))
  * Address:	802101FC
  * Size:	00004C
  */
-void Game::ItemWeed::Mgr::getCaveID((char*))
+void ItemWeed::Mgr::getCaveID(char*)
 {
 	/*
 	.loc_0x0:
@@ -1476,30 +1491,28 @@ void Game::ItemWeed::Mgr::getCaveID((char*))
  * Address:	80210248
  * Size:	000004
  */
-void Game::ItemWeed::WaitState::init((Game::ItemWeed::Item*, Game::StateArg*))
-{
-}
+void ItemWeed::WaitState::init(Game::ItemWeed::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	8021024C
  * Size:	000004
  */
-void Game::ItemWeed::WaitState::exec((Game::ItemWeed::Item*)) { }
+void ItemWeed::WaitState::exec(Game::ItemWeed::Item*) { }
 
 /*
  * --INFO--
  * Address:	80210250
  * Size:	000004
  */
-void Game::ItemWeed::WaitState::cleanup((Game::ItemWeed::Item*)) { }
+void ItemWeed::WaitState::cleanup(Game::ItemWeed::Item*) { }
 
 /*
  * --INFO--
  * Address:	80210254
  * Size:	000054
  */
-void Game::ItemWeed::Mgr::generatorNewItemParm(void)
+void ItemWeed::Mgr::generatorNewItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1534,7 +1547,7 @@ void Game::ItemWeed::Mgr::generatorNewItemParm(void)
  * Address:	802102A8
  * Size:	0000B0
  */
-void Game::ItemWeed::Mgr::generatorWrite((Stream&, Game::GenItemParm*))
+void ItemWeed::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -1592,8 +1605,7 @@ void Game::ItemWeed::Mgr::generatorWrite((Stream&, Game::GenItemParm*))
  * Address:	80210358
  * Size:	00008C
  */
-void Game::ItemWeed::Mgr::generatorRead((Stream&, Game::GenItemParm*,
-                                         unsigned long))
+void ItemWeed::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1644,7 +1656,7 @@ void Game::ItemWeed::Mgr::generatorRead((Stream&, Game::GenItemParm*,
  * Address:	802103E4
  * Size:	0001DC
  */
-void generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3<float> R10Vector3<float>
+void generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3f R10Vector3f
 PQ24Game11GenItemParm(void)
 {
 	/*
@@ -1784,7 +1796,7 @@ PQ24Game11GenItemParm(void)
  * Address:	802105C0
  * Size:	00000C
  */
-void Game::ItemWeed::InitArg::getName(void)
+void ItemWeed::InitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -1799,7 +1811,7 @@ void Game::ItemWeed::InitArg::getName(void)
  * Address:	802105CC
  * Size:	000134
  */
-void Game::ItemWeed::Mgr::__dt(void)
+ItemWeed::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1896,7 +1908,7 @@ void Game::ItemWeed::Mgr::__dt(void)
  * Address:	80210700
  * Size:	000148
  */
-void Game::ItemWeed::Mgr::doNew(void)
+void ItemWeed::Mgr::doNew(void)
 {
 	/*
 	.loc_0x0:
@@ -1996,7 +2008,7 @@ void Game::ItemWeed::Mgr::doNew(void)
  * Address:	80210848
  * Size:	00000C
  */
-void Game::ItemWeed::Mgr::generatorGetID(void)
+void ItemWeed::Mgr::generatorGetID(void)
 {
 	/*
 	.loc_0x0:
@@ -2011,7 +2023,7 @@ void Game::ItemWeed::Mgr::generatorGetID(void)
  * Address:	80210854
  * Size:	00000C
  */
-void Game::ItemWeed::Mgr::generatorLocalVersion(void)
+void ItemWeed::Mgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -2026,7 +2038,7 @@ void Game::ItemWeed::Mgr::generatorLocalVersion(void)
  * Address:	80210860
  * Size:	000008
  */
-void Game::ItemWeed::Item::getCreatureName(void)
+void ItemWeed::Item::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -2040,7 +2052,7 @@ void Game::ItemWeed::Item::getCreatureName(void)
  * Address:	80210868
  * Size:	000008
  */
-void Game::ItemWeed::Item::getFlockMgr(void)
+void ItemWeed::Item::getFlockMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2054,14 +2066,14 @@ void Game::ItemWeed::Item::getFlockMgr(void)
  * Address:	80210870
  * Size:	000004
  */
-void Game::ItemWeed::Item::makeTrMatrix(void) { }
+void ItemWeed::Item::makeTrMatrix(void) { }
 
 /*
  * --INFO--
  * Address:	80210874
  * Size:	000008
  */
-void Game::ItemWeed::Item::DummyShape::getMatrix((int))
+void ItemWeed::Item::DummyShape::getMatrix(int)
 {
 	/*
 	.loc_0x0:
@@ -2102,7 +2114,7 @@ Fv(void)
  * Address:	802108B0
  * Size:	000118
  */
-void Game::ItemWeed::WeedMgr::__dt(void)
+ItemWeed::WeedMgr::~WeedMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2185,6 +2197,8 @@ void Game::ItemWeed::WeedMgr::__dt(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802109C8
@@ -2235,12 +2249,14 @@ void ObjectMgr<Game::ItemWeed::Weed>::~ObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80210A50
  * Size:	000010
  */
-void Game::ItemWeed::Weed::isWeed(void)
+void ItemWeed::Weed::isWeed(void)
 {
 	/*
 	.loc_0x0:
@@ -2250,6 +2266,8 @@ void Game::ItemWeed::Weed::isWeed(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4884,7 +4902,7 @@ void @32 @get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv(void)
  * Address:	80212270
  * Size:	000008
  */
-void @32 @Game::ItemWeed::WeedMgr::__dt(void)
+@32 @Game::ItemWeed::WeedMgr::~WeedMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -4915,7 +4933,7 @@ void @376
  * Address:	80212280
  * Size:	000008
  */
-void @48 @Game::ItemWeed::Mgr::__dt(void)
+@48 @Game::ItemWeed::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

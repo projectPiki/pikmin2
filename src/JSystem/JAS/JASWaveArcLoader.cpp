@@ -88,7 +88,7 @@ void JASWaveArcLoader::getCurrentDir()
  * Address:	8009BA94
  * Size:	00006C
  */
-void JASWaveArc::JASWaveArc()
+JASWaveArc::JASWaveArc()
 {
 	/*
 	.loc_0x0:
@@ -127,7 +127,7 @@ void JASWaveArc::JASWaveArc()
  * Address:	8009BB00
  * Size:	000078
  */
-void JASHeap::~JASHeap()
+JASHeap::~JASHeap()
 {
 	/*
 	.loc_0x0:

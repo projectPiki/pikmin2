@@ -1,190 +1,192 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
- */
-void og::Screen::setBlendPane((J2DBlendInfo, J2DScreen*, unsigned long long*))
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
 
-/*
- * --INFO--
- * Address:	8014ADA0
- * Size:	00021C
- */
-void Game::BaseGameSection::__ct((JKRHeap*))
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  bl        0x19E38
-	  lis       r4, 0x804B
-	  addi      r3, r31, 0x5C
-	  addi      r0, r4, 0xF0C
-	  stw       r0, 0x0(r31)
-	  bl        0x2D9A4C
-	  li        r0, 0
-	  li        r3, 0
-	  stb       r0, 0x164(r31)
-	  li        r5, 0x2
-	  li        r6, 0x1
-	  lwz       r4, 0x1C(r31)
-	  bl        -0xC12C0
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x1
-	  bl        0x19FDC
-	  li        r3, 0x2
-	  li        r0, 0
-	  stw       r3, 0x114(r31)
-	  li        r3, 0x14
-	  stw       r0, 0x13C(r31)
-	  stw       r0, 0x14C(r31)
-	  bl        -0x126F70
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804B
-	  lis       r5, 0x804B
-	  addi      r8, r4, 0xC8C
-	  lis       r4, 0x804B
-	  lwz       r7, 0x0(r8)
-	  addi      r5, r5, 0x1064
-	  lwz       r6, 0x4(r8)
-	  addi      r0, r4, 0x1058
-	  lwz       r4, 0x8(r8)
-	  stw       r7, 0x14(r1)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r31, 0x4(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0xC(r3)
-	  stw       r6, 0x18(r1)
-	  stw       r4, 0x1C(r1)
-	  stw       r4, 0x10(r3)
+	 * --INFO--
+	 * Address:	........
+	 * Size:	0000CC
+	 */
+	void setBlendPane(J2DBlendInfo, J2DScreen*, unsigned long long*)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0xC8:
-	  stw       r3, 0x148(r31)
-	  li        r3, 0x14
-	  bl        -0x126FCC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  lis       r4, 0x804B
-	  lis       r5, 0x804B
-	  addi      r8, r4, 0xC98
-	  lis       r4, 0x804B
-	  lwz       r7, 0x0(r8)
-	  addi      r5, r5, 0x104C
-	  lwz       r6, 0x4(r8)
-	  addi      r0, r4, 0x1040
-	  lwz       r4, 0x8(r8)
-	  stw       r7, 0x8(r1)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r31, 0x4(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0xC(r3)
-	  stw       r6, 0xC(r1)
-	  stw       r4, 0x10(r1)
-	  stw       r4, 0x10(r3)
+	namespace Game {
 
-	.loc_0x124:
-	  stw       r3, -0x6D50(r13)
-	  li        r0, 0
-	  li        r3, 0x2C
-	  stw       r0, 0x50(r31)
-	  stw       r0, -0x6960(r13)
-	  stw       r0, -0x6958(r13)
-	  stw       r0, -0x6980(r13)
-	  stw       r0, -0x6DF8(r13)
-	  stw       r0, -0x6DE8(r13)
-	  stw       r0, 0x128(r31)
-	  stw       r0, 0x118(r31)
-	  stw       r0, 0xFC(r31)
-	  stw       r0, -0x6D4C(r13)
-	  stw       r0, 0x100(r31)
-	  stw       r0, 0x168(r31)
-	  stw       r0, 0x158(r31)
-	  stw       r0, 0x154(r31)
-	  stw       r0, 0x15C(r31)
-	  stw       r0, 0x160(r31)
-	  stw       r0, 0x170(r31)
-	  stw       r0, 0x16C(r31)
-	  stw       r0, 0xE0(r31)
-	  bl        -0x127078
-	  mr.       r0, r3
-	  beq-      .loc_0x190
-	  bl        0x2E149C
-	  mr        r0, r3
+		/*
+		 * --INFO--
+		 * Address:	8014ADA0
+		 * Size:	00021C
+		 */
+		BaseGameSection::BaseGameSection(JKRHeap*)
+		{
+			/*
+			.loc_0x0:
+			  stwu      r1, -0x30(r1)
+			  mflr      r0
+			  stw       r0, 0x34(r1)
+			  stw       r31, 0x2C(r1)
+			  mr        r31, r3
+			  stw       r30, 0x28(r1)
+			  bl        0x19E38
+			  lis       r4, 0x804B
+			  addi      r3, r31, 0x5C
+			  addi      r0, r4, 0xF0C
+			  stw       r0, 0x0(r31)
+			  bl        0x2D9A4C
+			  li        r0, 0
+			  li        r3, 0
+			  stb       r0, 0x164(r31)
+			  li        r5, 0x2
+			  li        r6, 0x1
+			  lwz       r4, 0x1C(r31)
+			  bl        -0xC12C0
+			  mr        r4, r3
+			  mr        r3, r31
+			  li        r5, 0x1
+			  bl        0x19FDC
+			  li        r3, 0x2
+			  li        r0, 0
+			  stw       r3, 0x114(r31)
+			  li        r3, 0x14
+			  stw       r0, 0x13C(r31)
+			  stw       r0, 0x14C(r31)
+			  bl        -0x126F70
+			  cmplwi    r3, 0
+			  beq-      .loc_0xC8
+			  lis       r4, 0x804B
+			  lis       r5, 0x804B
+			  addi      r8, r4, 0xC8C
+			  lis       r4, 0x804B
+			  lwz       r7, 0x0(r8)
+			  addi      r5, r5, 0x1064
+			  lwz       r6, 0x4(r8)
+			  addi      r0, r4, 0x1058
+			  lwz       r4, 0x8(r8)
+			  stw       r7, 0x14(r1)
+			  stw       r5, 0x0(r3)
+			  stw       r0, 0x0(r3)
+			  stw       r31, 0x4(r3)
+			  stw       r7, 0x8(r3)
+			  stw       r6, 0xC(r3)
+			  stw       r6, 0x18(r1)
+			  stw       r4, 0x1C(r1)
+			  stw       r4, 0x10(r3)
 
-	.loc_0x190:
-	  stw       r0, 0xD0(r31)
-	  li        r3, 0x28
-	  bl        -0x127094
-	  mr.       r0, r3
-	  beq-      .loc_0x1AC
-	  bl        0x2E0F74
-	  mr        r0, r3
+			.loc_0xC8:
+			  stw       r3, 0x148(r31)
+			  li        r3, 0x14
+			  bl        -0x126FCC
+			  cmplwi    r3, 0
+			  beq-      .loc_0x124
+			  lis       r4, 0x804B
+			  lis       r5, 0x804B
+			  addi      r8, r4, 0xC98
+			  lis       r4, 0x804B
+			  lwz       r7, 0x0(r8)
+			  addi      r5, r5, 0x104C
+			  lwz       r6, 0x4(r8)
+			  addi      r0, r4, 0x1040
+			  lwz       r4, 0x8(r8)
+			  stw       r7, 0x8(r1)
+			  stw       r5, 0x0(r3)
+			  stw       r0, 0x0(r3)
+			  stw       r31, 0x4(r3)
+			  stw       r7, 0x8(r3)
+			  stw       r6, 0xC(r3)
+			  stw       r6, 0xC(r1)
+			  stw       r4, 0x10(r1)
+			  stw       r4, 0x10(r3)
 
-	.loc_0x1AC:
-	  stw       r0, 0xD4(r31)
-	  li        r3, 0x28
-	  bl        -0x1270B0
-	  mr.       r0, r3
-	  beq-      .loc_0x1C8
-	  bl        0x2E1114
-	  mr        r0, r3
+			.loc_0x124:
+			  stw       r3, -0x6D50(r13)
+			  li        r0, 0
+			  li        r3, 0x2C
+			  stw       r0, 0x50(r31)
+			  stw       r0, -0x6960(r13)
+			  stw       r0, -0x6958(r13)
+			  stw       r0, -0x6980(r13)
+			  stw       r0, -0x6DF8(r13)
+			  stw       r0, -0x6DE8(r13)
+			  stw       r0, 0x128(r31)
+			  stw       r0, 0x118(r31)
+			  stw       r0, 0xFC(r31)
+			  stw       r0, -0x6D4C(r13)
+			  stw       r0, 0x100(r31)
+			  stw       r0, 0x168(r31)
+			  stw       r0, 0x158(r31)
+			  stw       r0, 0x154(r31)
+			  stw       r0, 0x15C(r31)
+			  stw       r0, 0x160(r31)
+			  stw       r0, 0x170(r31)
+			  stw       r0, 0x16C(r31)
+			  stw       r0, 0xE0(r31)
+			  bl        -0x127078
+			  mr.       r0, r3
+			  beq-      .loc_0x190
+			  bl        0x2E149C
+			  mr        r0, r3
 
-	.loc_0x1C8:
-	  stw       r0, 0xD8(r31)
-	  li        r3, 0x78
-	  bl        -0x1270CC
-	  mr.       r30, r3
-	  beq-      .loc_0x1FC
-	  bl        0x2E0D90
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x24
-	  subi      r0, r4, 0x40F4
-	  stw       r0, 0x0(r30)
-	  bl        0x2E10E4
-	  addi      r3, r30, 0x4C
-	  bl        0x2E0F20
+			.loc_0x190:
+			  stw       r0, 0xD0(r31)
+			  li        r3, 0x28
+			  bl        -0x127094
+			  mr.       r0, r3
+			  beq-      .loc_0x1AC
+			  bl        0x2E0F74
+			  mr        r0, r3
 
-	.loc_0x1FC:
-	  stw       r30, 0xDC(r31)
-	  mr        r3, r31
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
+			.loc_0x1AC:
+			  stw       r0, 0xD4(r31)
+			  li        r3, 0x28
+			  bl        -0x1270B0
+			  mr.       r0, r3
+			  beq-      .loc_0x1C8
+			  bl        0x2E1114
+			  mr        r0, r3
+
+			.loc_0x1C8:
+			  stw       r0, 0xD8(r31)
+			  li        r3, 0x78
+			  bl        -0x1270CC
+			  mr.       r30, r3
+			  beq-      .loc_0x1FC
+			  bl        0x2E0D90
+			  lis       r4, 0x804F
+			  addi      r3, r30, 0x24
+			  subi      r0, r4, 0x40F4
+			  stw       r0, 0x0(r30)
+			  bl        0x2E10E4
+			  addi      r3, r30, 0x4C
+			  bl        0x2E0F20
+
+			.loc_0x1FC:
+			  stw       r30, 0xDC(r31)
+			  mr        r3, r31
+			  lwz       r0, 0x34(r1)
+			  lwz       r31, 0x2C(r1)
+			  lwz       r30, 0x28(r1)
+			  mtlr      r0
+			  addi      r1, r1, 0x30
+			  blr
+			*/
+		}
+
+	} // namespace Game
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--
  * Address:	8014AFBC
  * Size:	000070
  */
-void WipeInFader::~WipeInFader()
+WipeInFader::~WipeInFader()
 {
 	/*
 	.loc_0x0:
@@ -228,7 +230,7 @@ void WipeInFader::~WipeInFader()
  * Address:	8014B02C
  * Size:	000070
  */
-void WipeOutFader::~WipeOutFader()
+WipeOutFader::~WipeOutFader()
 {
 	/*
 	.loc_0x0:
@@ -272,7 +274,7 @@ void WipeOutFader::~WipeOutFader()
  * Address:	8014B09C
  * Size:	000060
  */
-void WipeBase::~WipeBase()
+WipeBase::~WipeBase()
 {
 	/*
 	.loc_0x0:
@@ -310,17 +312,19 @@ void WipeBase::~WipeBase()
  * Address:	........
  * Size:	000060
  */
-void DvdThreadCommand::~DvdThreadCommand()
+DvdThreadCommand::~DvdThreadCommand()
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8014B0FC
  * Size:	000074
  */
-void Game::BaseGameSection::useSpecificFBTexture((JUTTexture*))
+void BaseGameSection::useSpecificFBTexture(JUTTexture*)
 {
 	/*
 	.loc_0x0:
@@ -363,7 +367,7 @@ void Game::BaseGameSection::useSpecificFBTexture((JUTTexture*))
  * Address:	8014B170
  * Size:	00006C
  */
-void Game::BaseGameSection::restoreFBTexture(void)
+void BaseGameSection::restoreFBTexture(void)
 {
 	/*
 	.loc_0x0:
@@ -404,7 +408,7 @@ void Game::BaseGameSection::restoreFBTexture(void)
  * Address:	8014B1DC
  * Size:	000114
  */
-void Game::BaseGameSection::__dt(void)
+BaseGameSection::~BaseGameSection(void)
 {
 	/*
 	.loc_0x0:
@@ -493,7 +497,7 @@ void Game::BaseGameSection::__dt(void)
  * Address:	8014B2F0
  * Size:	000050
  */
-void Game::BaseGameSection::loadSync((IDelegate*, bool))
+void BaseGameSection::loadSync(IDelegate*, bool)
 {
 	/*
 	.loc_0x0:
@@ -527,7 +531,7 @@ void Game::BaseGameSection::loadSync((IDelegate*, bool))
  * Address:	8014B340
  * Size:	000120
  */
-void Game::BaseGameSection::waitSyncLoad((bool))
+void BaseGameSection::waitSyncLoad(bool)
 {
 	/*
 	.loc_0x0:
@@ -621,7 +625,7 @@ void Game::BaseGameSection::waitSyncLoad((bool))
  * Address:	8014B460
  * Size:	000050
  */
-void Game::BaseGameSection::dvdloadGameSystem(void)
+void BaseGameSection::dvdloadGameSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -655,7 +659,7 @@ void Game::BaseGameSection::dvdloadGameSystem(void)
  * Address:	8014B4B0
  * Size:	000390
  */
-void Game::BaseGameSection::init(void)
+void BaseGameSection::init(void)
 {
 	/*
 	.loc_0x0:
@@ -909,14 +913,14 @@ void Game::BaseGameSection::init(void)
  * Address:	8014B840
  * Size:	000004
  */
-void Game::BaseGameSection::onInit(void) { }
+void BaseGameSection::onInit(void) { }
 
 /*
  * --INFO--
  * Address:	8014B844
  * Size:	000034
  */
-void Game::BaseGameSection::drawInit((Graphics&, Section::EDrawInitMode))
+void BaseGameSection::drawInit(Graphics&, Section::EDrawInitMode)
 {
 	/*
 	.loc_0x0:
@@ -943,14 +947,14 @@ void Game::BaseGameSection::drawInit((Graphics&, Section::EDrawInitMode))
  * Address:	8014B878
  * Size:	000004
  */
-void Game::BaseGameSection::section_fadeout(void) { }
+void BaseGameSection::section_fadeout(void) { }
 
 /*
  * --INFO--
  * Address:	8014B87C
  * Size:	0003A8
  */
-void Game::BaseGameSection::doUpdate(void)
+void BaseGameSection::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1234,14 +1238,14 @@ void Game::BaseGameSection::doUpdate(void)
  * Address:	8014BC24
  * Size:	000004
  */
-void Game::BaseGameSection::onUpdate(void) { }
+void BaseGameSection::onUpdate(void) { }
 
 /*
  * --INFO--
  * Address:	8014BC28
  * Size:	000170
  */
-void Game::BaseGameSection::doDraw((Graphics&))
+void BaseGameSection::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1355,15 +1359,15 @@ void Game::BaseGameSection::doDraw((Graphics&))
  * Address:	8014BD98
  * Size:	000004
  */
-void Game::BaseGameSection::pre2dDraw((Graphics&)) { }
+void BaseGameSection::pre2dDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8014BD9C
  * Size:	000078
  */
-void Game::BaseGameSection::movieDone((Game::MovieConfig*, unsigned long,
-                                       unsigned long))
+void BaseGameSection::movieDone(Game::MovieConfig*, unsigned long,
+                                unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1407,8 +1411,8 @@ void Game::BaseGameSection::movieDone((Game::MovieConfig*, unsigned long,
  * Address:	8014BE14
  * Size:	000004
  */
-void Game::BaseGameSection::onMovieDone((Game::MovieConfig*, unsigned long,
-                                         unsigned long))
+void BaseGameSection::onMovieDone(Game::MovieConfig*, unsigned long,
+                                  unsigned long)
 {
 }
 
@@ -1417,7 +1421,7 @@ void Game::BaseGameSection::onMovieDone((Game::MovieConfig*, unsigned long,
  * Address:	8014BE18
  * Size:	00008C
  */
-void Game::BaseGameSection::onMovieCommand((int))
+void BaseGameSection::onMovieCommand(int)
 {
 	/*
 	.loc_0x0:
@@ -1472,7 +1476,7 @@ void Game::BaseGameSection::onMovieCommand((int))
  * Address:	8014BEA4
  * Size:	000450
  */
-void Game::BaseGameSection::initJ3D(void)
+void BaseGameSection::initJ3D(void)
 {
 	/*
 	.loc_0x0:
@@ -1764,7 +1768,7 @@ void Game::BaseGameSection::initJ3D(void)
  * Address:	8014C2F4
  * Size:	000034
  */
-void Game::BaseGameSection::initResources(void)
+void BaseGameSection::initResources(void)
 {
 	/*
 	.loc_0x0:
@@ -1789,7 +1793,7 @@ void Game::BaseGameSection::initResources(void)
  * Address:	8014C328
  * Size:	0001E4
  */
-void Game::BaseGameSection::initViewports((Graphics&))
+void BaseGameSection::initViewports(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1923,12 +1927,14 @@ void Game::BaseGameSection::initViewports((Graphics&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8014C50C
  * Size:	0000C0
  */
-void LookAtCamera::~LookAtCamera()
+LookAtCamera::~LookAtCamera()
 {
 	/*
 	.loc_0x0:
@@ -1987,12 +1993,14 @@ void LookAtCamera::~LookAtCamera()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8014C5CC
  * Size:	001120
  */
-void Game::BaseGameSection::initGenerators(void)
+void BaseGameSection::initGenerators(void)
 {
 	/*
 	.loc_0x0:
@@ -3216,7 +3224,7 @@ void Game::BaseGameSection::initGenerators(void)
  * Address:	8014D6EC
  * Size:	0000A4
  */
-void Game::BaseGameSection::advanceDayCount(void)
+void BaseGameSection::advanceDayCount(void)
 {
 	/*
 	.loc_0x0:
@@ -3273,7 +3281,7 @@ void Game::BaseGameSection::advanceDayCount(void)
  * Address:	8014D790
  * Size:	0000D4
  */
-void Game::BaseGameSection::saveToGeneratorCache((Game::CourseInfo*))
+void BaseGameSection::saveToGeneratorCache(Game::CourseInfo*)
 {
 	/*
 	.loc_0x0:
@@ -3352,7 +3360,7 @@ void Game::BaseGameSection::saveToGeneratorCache((Game::CourseInfo*))
  * Address:	8014D864
  * Size:	0000AC
  */
-void Game::BaseGameSection::pmTogglePlayer(void)
+void BaseGameSection::pmTogglePlayer(void)
 {
 	/*
 	.loc_0x0:
@@ -3411,14 +3419,14 @@ void Game::BaseGameSection::pmTogglePlayer(void)
  * Address:	8014D910
  * Size:	000004
  */
-void Game::BaseGameSection::onTogglePlayer(void) { }
+void BaseGameSection::onTogglePlayer(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000064
  */
-void Game::BaseGameSection::pmPlayerJoin(void)
+void BaseGameSection::pmPlayerJoin(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3428,14 +3436,14 @@ void Game::BaseGameSection::pmPlayerJoin(void)
  * Address:	8014D914
  * Size:	000004
  */
-void Game::BaseGameSection::onPlayerJoin(void) { }
+void BaseGameSection::onPlayerJoin(void) { }
 
 /*
  * --INFO--
  * Address:	8014D918
  * Size:	0002B8
  */
-void Game::BaseGameSection::setPlayerMode((int))
+void BaseGameSection::setPlayerMode(int)
 {
 	/*
 	.loc_0x0:
@@ -3632,6 +3640,8 @@ void Game::BaseGameSection::setPlayerMode((int))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8014DBD0
@@ -3639,12 +3649,14 @@ void Game::BaseGameSection::setPlayerMode((int))
  */
 void Splitter::split2(float) { }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8014DBD4
  * Size:	00014C
  */
-void Game::BaseGameSection::onCameraBlendFinished((Game::CameraArg*))
+void BaseGameSection::onCameraBlendFinished(Game::CameraArg*)
 {
 	/*
 	.loc_0x0:
@@ -3743,7 +3755,7 @@ void Game::BaseGameSection::onCameraBlendFinished((Game::CameraArg*))
  * Address:	8014DD20
  * Size:	000068
  */
-void Game::BaseGameSection::setFixNearFar((bool, float, float))
+void BaseGameSection::setFixNearFar(bool, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3781,7 +3793,7 @@ void Game::BaseGameSection::setFixNearFar((bool, float, float))
  * Address:	8014DD88
  * Size:	000210
  */
-void Game::BaseGameSection::setCamController(void)
+void BaseGameSection::setCamController(void)
 {
 	/*
 	.loc_0x0:
@@ -3943,14 +3955,14 @@ void Game::BaseGameSection::setCamController(void)
  * Address:	8014DF98
  * Size:	000004
  */
-void Game::BaseGameSection::on_setCamController((int)) { }
+void BaseGameSection::on_setCamController(int) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void Game::BaseGameSection::getNumWindows(void)
+void BaseGameSection::getNumWindows(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3960,7 +3972,7 @@ void Game::BaseGameSection::getNumWindows(void)
  * Address:	........
  * Size:	000008
  */
-void Game::BaseGameSection::getActivePlayerID(void)
+void BaseGameSection::getActivePlayerID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3970,7 +3982,7 @@ void Game::BaseGameSection::getActivePlayerID(void)
  * Address:	8014DF9C
  * Size:	000184
  */
-void Game::BaseGameSection::setDefaultPSSceneInfo((PSGame::SceneInfo&))
+void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo&)
 {
 	/*
 	.loc_0x0:
@@ -4078,6 +4090,8 @@ void Game::BaseGameSection::setDefaultPSSceneInfo((PSGame::SceneInfo&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8014E120
@@ -4111,7 +4125,7 @@ void Camera::getSoundPositionPtr()
  * Address:	8014E130
  * Size:	00068C
  */
-void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<float> b(void)
+void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3f b(void)
 {
 	/*
 	.loc_0x0:
@@ -4598,7 +4612,7 @@ void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<float> b(void)
  * Address:	8014E7BC
  * Size:	000714
  */
-void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<float>(void)
+void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -5124,12 +5138,14 @@ void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8014EED0
  * Size:	000074
  */
-void Game::BaseGameSection::initLights(void)
+void BaseGameSection::initLights(void)
 {
 	/*
 	.loc_0x0:
@@ -5172,7 +5188,7 @@ void Game::BaseGameSection::initLights(void)
  * Address:	8014EF44
  * Size:	000020
  */
-void Game::BaseGameSection::draw3D((Graphics&))
+void BaseGameSection::draw3D(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -5192,7 +5208,7 @@ void Game::BaseGameSection::draw3D((Graphics&))
  * Address:	8014EF64
  * Size:	0001D4
  */
-void Game::BaseGameSection::drawParticle((Graphics&, int))
+void BaseGameSection::drawParticle(Graphics&, int)
 {
 	/*
 	.loc_0x0:
@@ -5343,7 +5359,7 @@ void Game::BaseGameSection::drawParticle((Graphics&, int))
  * Address:	8014F138
  * Size:	0000A0
  */
-void Game::BaseGameSection::draw_Ogawa2D((Graphics&))
+void BaseGameSection::draw_Ogawa2D(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -5395,14 +5411,14 @@ void Game::BaseGameSection::draw_Ogawa2D((Graphics&))
  * Address:	8014F1D8
  * Size:	000004
  */
-void Game::BaseGameSection::test_draw_treasure_detector(void) { }
+void BaseGameSection::test_draw_treasure_detector(void) { }
 
 /*
  * --INFO--
  * Address:	8014F1DC
  * Size:	0001BC
  */
-void Game::BaseGameSection::draw2D((Graphics&))
+void BaseGameSection::draw2D(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -5529,7 +5545,7 @@ void Game::BaseGameSection::draw2D((Graphics&))
  * Address:	........
  * Size:	000004
  */
-void Game::BaseGameSection::setupViewportMatrix((Graphics&))
+void BaseGameSection::setupViewportMatrix(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -5539,7 +5555,7 @@ void Game::BaseGameSection::setupViewportMatrix((Graphics&))
  * Address:	8014F398
  * Size:	0000B8
  */
-void Game::BaseGameSection::directDraw((Graphics&, Viewport*))
+void BaseGameSection::directDraw(Graphics&, Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -5599,7 +5615,7 @@ void Game::BaseGameSection::directDraw((Graphics&, Viewport*))
  * Address:	8014F450
  * Size:	000078
  */
-void Game::BaseGameSection::directDrawPost((Graphics&, Viewport*))
+void BaseGameSection::directDrawPost(Graphics&, Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -5641,7 +5657,7 @@ void Game::BaseGameSection::directDrawPost((Graphics&, Viewport*))
  * Address:	........
  * Size:	000140
  */
-void Game::BaseGameSection::j3dDraw((Viewport*))
+void BaseGameSection::j3dDraw(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -5651,7 +5667,7 @@ void Game::BaseGameSection::j3dDraw((Viewport*))
  * Address:	........
  * Size:	000004
  */
-void Game::BaseGameSection::j3dDrawPostShadow((Viewport*))
+void BaseGameSection::j3dDrawPostShadow(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -5661,7 +5677,7 @@ void Game::BaseGameSection::j3dDrawPostShadow((Viewport*))
  * Address:	........
  * Size:	000004
  */
-void Game::BaseGameSection::j3dDrawObjectLast((Viewport*))
+void BaseGameSection::j3dDrawObjectLast(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -5671,7 +5687,7 @@ void Game::BaseGameSection::j3dDrawObjectLast((Viewport*))
  * Address:	........
  * Size:	000004
  */
-void Game::BaseGameSection::j3dDrawPost((Viewport*))
+void BaseGameSection::j3dDrawPost(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -5681,7 +5697,7 @@ void Game::BaseGameSection::j3dDrawPost((Viewport*))
  * Address:	........
  * Size:	000004
  */
-void Game::BaseGameSection::j3dDrawLast((Viewport*))
+void BaseGameSection::j3dDrawLast(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -5691,7 +5707,7 @@ void Game::BaseGameSection::j3dDrawLast((Viewport*))
  * Address:	8014F4C8
  * Size:	000054
  */
-void Game::BaseGameSection::j3dSetView((Viewport*, bool))
+void BaseGameSection::j3dSetView(Viewport*, bool)
 {
 	/*
 	.loc_0x0:
@@ -5724,7 +5740,7 @@ void Game::BaseGameSection::j3dSetView((Viewport*, bool))
  * Address:	........
  * Size:	000068
  */
-void Game::BaseGameSection::j3dViewCalc((Viewport*))
+void BaseGameSection::j3dViewCalc(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -5734,7 +5750,7 @@ void Game::BaseGameSection::j3dViewCalc((Viewport*))
  * Address:	8014F51C
  * Size:	000030
  */
-void Game::BaseGameSection::doSimulation((float))
+void BaseGameSection::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -5758,7 +5774,7 @@ void Game::BaseGameSection::doSimulation((float))
  * Address:	8014F54C
  * Size:	000030
  */
-void Game::BaseGameSection::doSimpleDraw((Viewport*))
+void BaseGameSection::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -5782,7 +5798,7 @@ void Game::BaseGameSection::doSimpleDraw((Viewport*))
  * Address:	8014F57C
  * Size:	0001D8
  */
-void Game::BaseGameSection::doAnimation(void)
+void BaseGameSection::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -5917,12 +5933,14 @@ void Game::BaseGameSection::doAnimation(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8014F754
  * Size:	00004C
  */
-void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<float>(void)
+void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -5948,12 +5966,14 @@ void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8014F7A0
  * Size:	0000C8
  */
-void Game::BaseGameSection::doEntry(void)
+void BaseGameSection::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -6017,7 +6037,7 @@ void Game::BaseGameSection::doEntry(void)
  * Address:	8014F868
  * Size:	000100
  */
-void Game::BaseGameSection::doSetView((int))
+void BaseGameSection::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -6099,7 +6119,7 @@ void Game::BaseGameSection::doSetView((int))
  * Address:	8014F968
  * Size:	0000C8
  */
-void Game::BaseGameSection::doViewCalc(void)
+void BaseGameSection::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -6165,7 +6185,7 @@ void Game::BaseGameSection::doViewCalc(void)
  * Address:	........
  * Size:	000074
  */
-void Game::BaseGameSection::initBlendCamera(void)
+void BaseGameSection::initBlendCamera(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6175,7 +6195,7 @@ void Game::BaseGameSection::initBlendCamera(void)
  * Address:	8014FA30
  * Size:	000174
  */
-void Game::BaseGameSection::updateBlendCamera(void)
+void BaseGameSection::updateBlendCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -6290,7 +6310,7 @@ void Game::BaseGameSection::updateBlendCamera(void)
  * Address:	........
  * Size:	0000DC
  */
-void Game::BaseGameSection::blend1to2(void)
+void BaseGameSection::blend1to2(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6300,7 +6320,7 @@ void Game::BaseGameSection::blend1to2(void)
  * Address:	........
  * Size:	0000DC
  */
-void Game::BaseGameSection::blend2to1(void)
+void BaseGameSection::blend2to1(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6310,7 +6330,7 @@ void Game::BaseGameSection::blend2to1(void)
  * Address:	8014FBA4
  * Size:	00006C
  */
-void Game::BaseGameSection::setSplitter((bool))
+void BaseGameSection::setSplitter(bool)
 {
 	/*
 	.loc_0x0:
@@ -6353,7 +6373,7 @@ void Game::BaseGameSection::setSplitter((bool))
  * Address:	........
  * Size:	00000C
  */
-void Game::BaseGameSection::startSplit(void)
+void BaseGameSection::startSplit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6363,7 +6383,7 @@ void Game::BaseGameSection::startSplit(void)
  * Address:	........
  * Size:	00000C
  */
-void Game::BaseGameSection::changeSplit(void)
+void BaseGameSection::changeSplit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6373,7 +6393,7 @@ void Game::BaseGameSection::changeSplit(void)
  * Address:	........
  * Size:	00000C
  */
-void Game::BaseGameSection::endSplit(void)
+void BaseGameSection::endSplit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6383,7 +6403,7 @@ void Game::BaseGameSection::endSplit(void)
  * Address:	8014FC10
  * Size:	000134
  */
-void Game::BaseGameSection::updateSplitter(void)
+void BaseGameSection::updateSplitter(void)
 {
 	/*
 	.loc_0x0:
@@ -6482,7 +6502,7 @@ void Game::BaseGameSection::updateSplitter(void)
  * Address:	8014FD44
  * Size:	000058
  */
-void Game::BaseGameSection::doDirectDrawPost((Graphics&, Viewport*))
+void BaseGameSection::doDirectDrawPost(Graphics&, Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -6520,14 +6540,14 @@ void Game::BaseGameSection::doDirectDrawPost((Graphics&, Viewport*))
  * Address:	8014FD9C
  * Size:	000004
  */
-void Game::BaseGameSection::doDirectDraw((Graphics&, Viewport*)) { }
+void BaseGameSection::doDirectDraw(Graphics&, Viewport*) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void Game::BaseGameSection::startHeap(void)
+void BaseGameSection::startHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6537,14 +6557,14 @@ void Game::BaseGameSection::startHeap(void)
  * Address:	8014FDA0
  * Size:	000004
  */
-void Game::BaseGameSection::onStartHeap(void) { }
+void BaseGameSection::onStartHeap(void) { }
 
 /*
  * --INFO--
  * Address:	8014FDA4
  * Size:	0002A8
  */
-void Game::BaseGameSection::clearHeap(void)
+void BaseGameSection::clearHeap(void)
 {
 	/*
 	.loc_0x0:
@@ -6737,12 +6757,14 @@ void Game::BaseGameSection::clearHeap(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8015004C
  * Size:	000060
  */
-void Controller::~Controller()
+Controller::~Controller()
 {
 	/*
 	.loc_0x0:
@@ -6775,19 +6797,21 @@ void Controller::~Controller()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801500AC
  * Size:	000004
  */
-void Game::BaseGameSection::onClearHeap(void) { }
+void BaseGameSection::onClearHeap(void) { }
 
 /*
  * --INFO--
  * Address:	801500B0
  * Size:	00002C
  */
-void Game::BaseGameSection::startFadeout((float))
+void BaseGameSection::startFadeout(float)
 {
 	/*
 	.loc_0x0:
@@ -6810,7 +6834,7 @@ void Game::BaseGameSection::startFadeout((float))
  * Address:	801500DC
  * Size:	00002C
  */
-void Game::BaseGameSection::startFadein((float))
+void BaseGameSection::startFadein(float)
 {
 	/*
 	.loc_0x0:
@@ -6833,7 +6857,7 @@ void Game::BaseGameSection::startFadein((float))
  * Address:	80150108
  * Size:	00002C
  */
-void Game::BaseGameSection::startFadeoutin((float))
+void BaseGameSection::startFadeoutin(float)
 {
 	/*
 	.loc_0x0:
@@ -6856,7 +6880,7 @@ void Game::BaseGameSection::startFadeoutin((float))
  * Address:	80150134
  * Size:	00003C
  */
-void Game::BaseGameSection::startFadeblack(void)
+void BaseGameSection::startFadeblack(void)
 {
 	/*
 	.loc_0x0:
@@ -6883,7 +6907,7 @@ void Game::BaseGameSection::startFadeblack(void)
  * Address:	80150170
  * Size:	00003C
  */
-void Game::BaseGameSection::startFadewhite(void)
+void BaseGameSection::startFadewhite(void)
 {
 	/*
 	.loc_0x0:
@@ -6910,7 +6934,7 @@ void Game::BaseGameSection::startFadewhite(void)
  * Address:	801501AC
  * Size:	0001C0
  */
-void Game::BaseGameSection::setupFixMemory(void)
+void BaseGameSection::setupFixMemory(void)
 {
 	/*
 	.loc_0x0:
@@ -7044,7 +7068,7 @@ void Game::BaseGameSection::setupFixMemory(void)
  * Address:	8015036C
  * Size:	000334
  */
-void Game::BaseGameSection::setupFixMemory_dvdload(void)
+void BaseGameSection::setupFixMemory_dvdload(void)
 {
 	/*
 	.loc_0x0:
@@ -7276,12 +7300,14 @@ void Game::BaseGameSection::setupFixMemory_dvdload(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801506A0
  * Size:	000060
  */
-void ModelEffectData::~ModelEffectData()
+ModelEffectData::~ModelEffectData()
 {
 	/*
 	.loc_0x0:
@@ -7324,26 +7350,28 @@ void BaseGameAllocCallback(unsigned long, int, JKRHeap*, void*)
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80150700
  * Size:	000008
  */
-u32 Game::BaseGameSection::enableAllocHalt(void) { return 0x0; }
+u32 BaseGameSection::enableAllocHalt(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80150708
  * Size:	000008
  */
-u32 Game::BaseGameSection::disableAllocHalt(void) { return 0x0; }
+u32 BaseGameSection::disableAllocHalt(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Game::BaseGameSection::isAllocHalt(void)
+void BaseGameSection::isAllocHalt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -7353,7 +7381,7 @@ void Game::BaseGameSection::isAllocHalt(void)
  * Address:	80150710
  * Size:	000CC0
  */
-void Game::BaseGameSection::setupFloatMemory(void)
+void BaseGameSection::setupFloatMemory(void)
 {
 	/*
 	.loc_0x0:
@@ -8283,35 +8311,35 @@ void Game::BaseGameSection::setupFloatMemory(void)
  * Address:	801513D0
  * Size:	000004
  */
-void Game::BaseGameSection::onSetSoundScene(void) { }
+void BaseGameSection::onSetSoundScene(void) { }
 
 /*
  * --INFO--
  * Address:	801513D4
  * Size:	000008
  */
-s32 Game::BaseGameSection::getCurrFloor(void) { return -0x1; }
+s32 BaseGameSection::getCurrFloor(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	801513DC
  * Size:	000008
  */
-u32 Game::BaseGameSection::challengeDisablePelplant(void) { return 0x1; }
+u32 BaseGameSection::challengeDisablePelplant(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801513E4
  * Size:	000008
  */
-s32 Game::BaseGameSection::getVsEditNumber(void) { return -0x2; }
+s32 BaseGameSection::getVsEditNumber(void) { return -0x2; }
 
 /*
  * --INFO--
  * Address:	801513EC
  * Size:	000008
  */
-void Game::BaseGameSection::getEditorFilename(void)
+void BaseGameSection::getEditorFilename(void)
 {
 	/*
 	.loc_0x0:
@@ -8325,7 +8353,7 @@ void Game::BaseGameSection::getEditorFilename(void)
  * Address:	801513F4
  * Size:	00000C
  */
-void Game::BaseGameSection::getCaveFilename(void)
+void BaseGameSection::getCaveFilename(void)
 {
 	/*
 	.loc_0x0:
@@ -8340,14 +8368,16 @@ void Game::BaseGameSection::getCaveFilename(void)
  * Address:	80151400
  * Size:	000004
  */
-void Game::BaseGameSection::onSetupFloatMemory(void) { }
+void BaseGameSection::onSetupFloatMemory(void) { }
 
 /*
  * --INFO--
  * Address:	80151404
  * Size:	000008
  */
-u32 Game::BaseGameSection::isDevelopSection(void) { return 0x1; }
+u32 BaseGameSection::isDevelopSection(void) { return 0x1; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -8393,12 +8423,14 @@ void JSUList<PSM::ObjBase>::~JSUList()
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8015145C
  * Size:	0000A4
  */
-void Game::BaseGameSection::setDrawBuffer((int))
+void BaseGameSection::setDrawBuffer(int)
 {
 	/*
 	.loc_0x0:
@@ -8455,7 +8487,7 @@ void Game::BaseGameSection::setDrawBuffer((int))
  * Address:	80151500
  * Size:	000030
  */
-void Game::BaseGameSection::postSetupFloatMemory(void)
+void BaseGameSection::postSetupFloatMemory(void)
 {
 	/*
 	.loc_0x0:
@@ -8479,14 +8511,14 @@ void Game::BaseGameSection::postSetupFloatMemory(void)
  * Address:	80151530
  * Size:	000004
  */
-void Game::MapMgr::setupJUTTextures(void) { }
+void MapMgr::setupJUTTextures(void) { }
 
 /*
  * --INFO--
  * Address:	80151534
  * Size:	000200
  */
-void Game::BaseGameSection::createFallPikminSound(void)
+void BaseGameSection::createFallPikminSound(void)
 {
 	/*
 	.loc_0x0:
@@ -8642,17 +8674,19 @@ void Game::BaseGameSection::createFallPikminSound(void)
  * Address:	80151734
  * Size:	000004
  */
-void Game::BaseGameSection::captureRadarmap((Graphics&)) { }
+void BaseGameSection::captureRadarmap(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::BaseGameSection::drawRadarmap((Graphics&))
+void BaseGameSection::drawRadarmap(Graphics&)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -8783,7 +8817,7 @@ void CullPlane::writeObject(Stream&, Plane&) { }
  * Address:	80151848
  * Size:	000090
  */
-void CullPlane::~CullPlane()
+CullPlane::~CullPlane()
 {
 	/*
 	.loc_0x0:
@@ -8830,12 +8864,14 @@ void CullPlane::~CullPlane()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801518D8
  * Size:	000010
  */
-void Game::BaseGameSection::forceFinish(void)
+void BaseGameSection::forceFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -8851,42 +8887,42 @@ void Game::BaseGameSection::forceFinish(void)
  * Address:	801518E8
  * Size:	000004
  */
-void Game::BaseGameSection::addChallengeScore((int)) { }
+void BaseGameSection::addChallengeScore(int) { }
 
 /*
  * --INFO--
  * Address:	801518EC
  * Size:	000004
  */
-void Game::BaseGameSection::startMainBgm(void) { }
+void BaseGameSection::startMainBgm(void) { }
 
 /*
  * --INFO--
  * Address:	801518F0
  * Size:	000004
  */
-void Game::BaseGameSection::goNextFloor((Game::ItemHole::Item*)) { }
+void BaseGameSection::goNextFloor(Game::ItemHole::Item*) { }
 
 /*
  * --INFO--
  * Address:	801518F4
  * Size:	000004
  */
-void Game::BaseGameSection::goCave((Game::ItemCave::Item*)) { }
+void BaseGameSection::goCave(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801518F8
  * Size:	000004
  */
-void Game::BaseGameSection::goMainMap((Game::ItemBigFountain::Item*)) { }
+void BaseGameSection::goMainMap(Game::ItemBigFountain::Item*) { }
 
 /*
  * --INFO--
  * Address:	801518FC
  * Size:	00000C
  */
-void Game::BaseGameSection::getCaveID(void)
+void BaseGameSection::getCaveID(void)
 {
 	/*
 	.loc_0x0:
@@ -8901,58 +8937,57 @@ void Game::BaseGameSection::getCaveID(void)
  * Address:	80151908
  * Size:	000008
  */
-u32 Game::BaseGameSection::getCurrentCourseInfo(void) { return 0x0; }
+u32 BaseGameSection::getCurrentCourseInfo(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80151910
  * Size:	000008
  */
-u32 Game::BaseGameSection::openContainerWindow(void) { return 0x0; }
+u32 BaseGameSection::openContainerWindow(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80151918
  * Size:	000004
  */
-void Game::BaseGameSection::closeContainerWindow(void) { }
+void BaseGameSection::closeContainerWindow(void) { }
 
 /*
  * --INFO--
  * Address:	8015191C
  * Size:	000004
  */
-void Game::BaseGameSection::playMovie_firstexperience((int, Game::Creature*)) {
-}
+void BaseGameSection::playMovie_firstexperience(int, Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	80151920
  * Size:	000004
  */
-void Game::BaseGameSection::playMovie_bootup((Game::Onyon*)) { }
+void BaseGameSection::playMovie_bootup(Game::Onyon*) { }
 
 /*
  * --INFO--
  * Address:	80151924
  * Size:	000004
  */
-void Game::BaseGameSection::playMovie_helloPikmin((Game::Piki*)) { }
+void BaseGameSection::playMovie_helloPikmin(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	80151928
  * Size:	000004
  */
-void Game::BaseGameSection::disableTimer((unsigned long)) { }
+void BaseGameSection::disableTimer(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	8015192C
  * Size:	000004
  */
-void Game::BaseGameSection::onMovieStart((Game::MovieConfig*, unsigned long,
-                                          unsigned long))
+void BaseGameSection::onMovieStart(Game::MovieConfig*, unsigned long,
+                                   unsigned long)
 {
 }
 
@@ -8961,14 +8996,16 @@ void Game::BaseGameSection::onMovieStart((Game::MovieConfig*, unsigned long,
  * Address:	80151930
  * Size:	000004
  */
-void Game::BaseGameSection::gmOrimaDown((int)) { }
+void BaseGameSection::gmOrimaDown(int) { }
 
 /*
  * --INFO--
  * Address:	80151934
  * Size:	000004
  */
-void Game::BaseGameSection::gmPikminZero(void) { }
+void BaseGameSection::gmPikminZero(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -9305,7 +9342,7 @@ void Delegate3<Game::BaseGameSection, Game::MovieConfig*, unsigned long,
  * Address:	80151B60
  * Size:	000030
  */
-void Delegate1<Game::BaseGameSection, Vector3<float>&>::invoke(Vector3<float>&)
+void Delegate1<Game::BaseGameSection, Vector3f&>::invoke(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -9432,7 +9469,7 @@ void ArrayContainer<Plane>::addOne(Plane&)
  * Address:	80151C68
  * Size:	00001C
  */
-void Plane::Plane()
+Plane::Plane()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800532E8
  * Size:	0001C4
  */
-void J2DMaterialFactory::J2DMaterialFactory(const J2DMaterialBlock&)
+J2DMaterialFactory::J2DMaterialFactory(const J2DMaterialBlock&)
 {
 	/*
 	.loc_0x0:
@@ -1458,7 +1458,7 @@ void J2DMaterialFactory::newTevStage(int, int) const
  * Address:	8005443C
  * Size:	000060
  */
-void J2DTevStage::J2DTevStage(const J2DTevStageInfo&)
+J2DTevStage::J2DTevStage(const J2DTevStageInfo&)
 {
 	/*
 	.loc_0x0:

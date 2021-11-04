@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80275A18
  * Size:	000050
  */
-void Game::Tank::Mgr::Mgr(int, unsigned char)
+Tank::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Tank::Mgr::Mgr(int, unsigned char)
  * Address:	80275A68
  * Size:	00009C
  */
-void Game::Tank::Mgr::loadModelData()
+void Tank::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -94,7 +96,7 @@ void Game::Tank::Mgr::loadModelData()
  * Address:	80275B04
  * Size:	000090
  */
-void Game::Tank::Mgr::loadAnimData()
+void Tank::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -148,7 +150,7 @@ void Game::Tank::Mgr::loadAnimData()
  * Address:	80275B94
  * Size:	000138
  */
-void Game::Tank::Mgr::createModel()
+void Tank::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -248,7 +250,7 @@ void Game::Tank::Mgr::createModel()
  * Address:	80275CCC
  * Size:	0000B0
  */
-void Game::Tank::Mgr::~Mgr()
+Tank::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -308,14 +310,14 @@ void Game::Tank::Mgr::~Mgr()
  * Address:	80275D7C
  * Size:	000008
  */
-u32 Game::Tank::Mgr::getEnemyTypeID() { return 0x18; }
+u32 Tank::Mgr::getEnemyTypeID() { return 0x18; }
 
 /*
  * --INFO--
  * Address:	80275D84
  * Size:	000008
  */
-void Game::Tank::Mgr::@4 @__dt()
+Tank::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -323,3 +325,4 @@ void Game::Tank::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

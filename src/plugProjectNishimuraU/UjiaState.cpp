@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80264720
  * Size:	0003D0
  */
-void Game::Ujia::FSM::init(Game::EnemyBase*)
+void Ujia::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +285,7 @@ void Game::Ujia::FSM::init(Game::EnemyBase*)
  * Address:	80264AF0
  * Size:	00005C
  */
-void Game::Ujia::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +320,7 @@ void Game::Ujia::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80264B4C
  * Size:	000044
  */
-void Game::Ujia::StateDead::exec(Game::EnemyBase*)
+void Ujia::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -349,14 +351,14 @@ void Game::Ujia::StateDead::exec(Game::EnemyBase*)
  * Address:	80264B90
  * Size:	000004
  */
-void Game::Ujia::StateDead::cleanup(Game::EnemyBase*) { }
+void Ujia::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80264B94
  * Size:	000064
  */
-void Game::Ujia::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -393,7 +395,7 @@ void Game::Ujia::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80264BF8
  * Size:	000044
  */
-void Game::Ujia::StatePress::exec(Game::EnemyBase*)
+void Ujia::StatePress::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -424,14 +426,14 @@ void Game::Ujia::StatePress::exec(Game::EnemyBase*)
  * Address:	80264C3C
  * Size:	000004
  */
-void Game::Ujia::StatePress::cleanup(Game::EnemyBase*) { }
+void Ujia::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80264C40
  * Size:	0000BC
  */
-void Game::Ujia::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -490,7 +492,7 @@ void Game::Ujia::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80264CFC
  * Size:	0000D4
  */
-void Game::Ujia::StateStay::exec(Game::EnemyBase*)
+void Ujia::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +561,7 @@ void Game::Ujia::StateStay::exec(Game::EnemyBase*)
  * Address:	80264DD0
  * Size:	000084
  */
-void Game::Ujia::StateStay::cleanup(Game::EnemyBase*)
+void Ujia::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -604,7 +606,7 @@ void Game::Ujia::StateStay::cleanup(Game::EnemyBase*)
  * Address:	80264E54
  * Size:	000080
  */
-void Game::Ujia::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -648,7 +650,7 @@ void Game::Ujia::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80264ED4
  * Size:	0000DC
  */
-void Game::Ujia::StateAppear::exec(Game::EnemyBase*)
+void Ujia::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -721,7 +723,7 @@ void Game::Ujia::StateAppear::exec(Game::EnemyBase*)
  * Address:	80264FB0
  * Size:	00003C
  */
-void Game::Ujia::StateAppear::cleanup(Game::EnemyBase*)
+void Ujia::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -748,7 +750,7 @@ void Game::Ujia::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	80264FEC
  * Size:	00006C
  */
-void Game::Ujia::StateDive::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateDive::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +789,7 @@ void Game::Ujia::StateDive::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80265058
  * Size:	000050
  */
-void Game::Ujia::StateDive::exec(Game::EnemyBase*)
+void Ujia::StateDive::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -821,7 +823,7 @@ void Game::Ujia::StateDive::exec(Game::EnemyBase*)
  * Address:	802650A8
  * Size:	00003C
  */
-void Game::Ujia::StateDive::cleanup(Game::EnemyBase*)
+void Ujia::StateDive::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -848,7 +850,7 @@ void Game::Ujia::StateDive::cleanup(Game::EnemyBase*)
  * Address:	802650E4
  * Size:	000034
  */
-void Game::Ujia::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -873,7 +875,7 @@ void Game::Ujia::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80265118
  * Size:	0004C8
  */
-void Game::Ujia::StateMove::exec(Game::EnemyBase*)
+void Ujia::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1217,14 +1219,14 @@ void Game::Ujia::StateMove::exec(Game::EnemyBase*)
  * Address:	802655E0
  * Size:	000004
  */
-void Game::Ujia::StateMove::cleanup(Game::EnemyBase*) { }
+void Ujia::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802655E4
  * Size:	000034
  */
-void Game::Ujia::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1249,7 +1251,7 @@ void Game::Ujia::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80265618
  * Size:	0000F4
  */
-void Game::Ujia::StateMoveSide::exec(Game::EnemyBase*)
+void Ujia::StateMoveSide::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1330,14 +1332,14 @@ void Game::Ujia::StateMoveSide::exec(Game::EnemyBase*)
  * Address:	8026570C
  * Size:	000004
  */
-void Game::Ujia::StateMoveSide::cleanup(Game::EnemyBase*) { }
+void Ujia::StateMoveSide::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80265710
  * Size:	000034
  */
-void Game::Ujia::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1362,7 +1364,7 @@ void Game::Ujia::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80265744
  * Size:	0000F4
  */
-void Game::Ujia::StateMoveCentre::exec(Game::EnemyBase*)
+void Ujia::StateMoveCentre::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1443,14 +1445,14 @@ void Game::Ujia::StateMoveCentre::exec(Game::EnemyBase*)
  * Address:	80265838
  * Size:	000004
  */
-void Game::Ujia::StateMoveCentre::cleanup(Game::EnemyBase*) { }
+void Ujia::StateMoveCentre::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8026583C
  * Size:	000034
  */
-void Game::Ujia::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1475,7 +1477,7 @@ void Game::Ujia::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80265870
  * Size:	0000F4
  */
-void Game::Ujia::StateMoveTop::exec(Game::EnemyBase*)
+void Ujia::StateMoveTop::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1556,14 +1558,14 @@ void Game::Ujia::StateMoveTop::exec(Game::EnemyBase*)
  * Address:	80265964
  * Size:	000004
  */
-void Game::Ujia::StateMoveTop::cleanup(Game::EnemyBase*) { }
+void Ujia::StateMoveTop::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80265968
  * Size:	000034
  */
-void Game::Ujia::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1588,7 +1590,7 @@ void Game::Ujia::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026599C
  * Size:	000198
  */
-void Game::Ujia::StateGoHome::exec(Game::EnemyBase*)
+void Ujia::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1712,14 +1714,14 @@ void Game::Ujia::StateGoHome::exec(Game::EnemyBase*)
  * Address:	80265B34
  * Size:	000004
  */
-void Game::Ujia::StateGoHome::cleanup(Game::EnemyBase*) { }
+void Ujia::StateGoHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80265B38
  * Size:	000058
  */
-void Game::Ujia::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
+void Ujia::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1753,7 +1755,7 @@ void Game::Ujia::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80265B90
  * Size:	00010C
  */
-void Game::Ujia::StateAttack1::exec(Game::EnemyBase*)
+void Ujia::StateAttack1::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1844,4 +1846,5 @@ void Game::Ujia::StateAttack1::exec(Game::EnemyBase*)
  * Address:	80265C9C
  * Size:	000004
  */
-void Game::Ujia::StateAttack1::cleanup(Game::EnemyBase*) { }
+void Ujia::StateAttack1::cleanup(Game::EnemyBase*) { }
+} // namespace Game

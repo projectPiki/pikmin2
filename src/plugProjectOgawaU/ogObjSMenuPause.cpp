@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80314238
  * Size:	0001F4
  */
-void og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(
+void newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(
     (JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
      JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
      JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
@@ -156,7 +148,7 @@ void og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(
  * Address:	8031442C
  * Size:	0000D0
  */
-void og::newScreen::ObjSMenuPause::__ct((char const*))
+newScreen::ObjSMenuPause::ObjSMenuPause(char const*)
 {
 	/*
 	.loc_0x0:
@@ -220,7 +212,7 @@ void og::newScreen::ObjSMenuPause::__ct((char const*))
  * Address:	803144FC
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuPause::__dt(void)
+newScreen::ObjSMenuPause::~ObjSMenuPause(void)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +277,7 @@ void og::newScreen::ObjSMenuPause::__dt(void)
  * Address:	803145C0
  * Size:	00054C
  */
-void og::newScreen::ObjSMenuPause::doCreate((JKRArchive*))
+void newScreen::ObjSMenuPause::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -656,7 +648,7 @@ void og::newScreen::ObjSMenuPause::doCreate((JKRArchive*))
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::ObjSMenuPause::open_TopMenu(void)
+void newScreen::ObjSMenuPause::open_TopMenu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -666,7 +658,7 @@ void og::newScreen::ObjSMenuPause::open_TopMenu(void)
  * Address:	........
  * Size:	000040
  */
-void og::newScreen::ObjSMenuPause::close_TopMenu(void)
+void newScreen::ObjSMenuPause::close_TopMenu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -676,7 +668,7 @@ void og::newScreen::ObjSMenuPause::close_TopMenu(void)
  * Address:	80314B0C
  * Size:	0000DC
  */
-void og::newScreen::ObjSMenuPause::blink_TopMenu((int))
+void newScreen::ObjSMenuPause::blink_TopMenu(int)
 {
 	/*
 	.loc_0x0:
@@ -753,7 +745,7 @@ void og::newScreen::ObjSMenuPause::blink_TopMenu((int))
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::ObjSMenuPause::open_Yuugata(void)
+void newScreen::ObjSMenuPause::open_Yuugata(void)
 {
 	// UNUSED FUNCTION
 }
@@ -763,7 +755,7 @@ void og::newScreen::ObjSMenuPause::open_Yuugata(void)
  * Address:	........
  * Size:	000040
  */
-void og::newScreen::ObjSMenuPause::close_Yuugata(void)
+void newScreen::ObjSMenuPause::close_Yuugata(void)
 {
 	// UNUSED FUNCTION
 }
@@ -773,7 +765,7 @@ void og::newScreen::ObjSMenuPause::close_Yuugata(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::ObjSMenuPause::blink_Yuugata((int))
+void newScreen::ObjSMenuPause::blink_Yuugata(int)
 {
 	// UNUSED FUNCTION
 }
@@ -783,7 +775,7 @@ void og::newScreen::ObjSMenuPause::blink_Yuugata((int))
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::ObjSMenuPause::open_Zenkai(void)
+void newScreen::ObjSMenuPause::open_Zenkai(void)
 {
 	// UNUSED FUNCTION
 }
@@ -793,7 +785,7 @@ void og::newScreen::ObjSMenuPause::open_Zenkai(void)
  * Address:	........
  * Size:	000040
  */
-void og::newScreen::ObjSMenuPause::close_Zenkai(void)
+void newScreen::ObjSMenuPause::close_Zenkai(void)
 {
 	// UNUSED FUNCTION
 }
@@ -803,7 +795,7 @@ void og::newScreen::ObjSMenuPause::close_Zenkai(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::ObjSMenuPause::blink_Zenkai((int))
+void newScreen::ObjSMenuPause::blink_Zenkai(int)
 {
 	// UNUSED FUNCTION
 }
@@ -813,7 +805,7 @@ void og::newScreen::ObjSMenuPause::blink_Zenkai((int))
  * Address:	80314BE8
  * Size:	00006C
  */
-void og::newScreen::ObjSMenuPause::doUpdateLAction(void)
+void newScreen::ObjSMenuPause::doUpdateLAction(void)
 {
 	/*
 	.loc_0x0:
@@ -852,7 +844,7 @@ void og::newScreen::ObjSMenuPause::doUpdateLAction(void)
  * Address:	80314C54
  * Size:	0000C8
  */
-void og::newScreen::ObjSMenuPause::doUpdateRAction(void)
+void newScreen::ObjSMenuPause::doUpdateRAction(void)
 {
 	/*
 	.loc_0x0:
@@ -918,7 +910,7 @@ void og::newScreen::ObjSMenuPause::doUpdateRAction(void)
  * Address:	80314D1C
  * Size:	000010
  */
-void og::newScreen::ObjSMenuPause::doUpdateCancelAction(void)
+void newScreen::ObjSMenuPause::doUpdateCancelAction(void)
 {
 	/*
 	.loc_0x0:
@@ -934,7 +926,7 @@ void og::newScreen::ObjSMenuPause::doUpdateCancelAction(void)
  * Address:	80314D2C
  * Size:	000084
  */
-void og::newScreen::ObjSMenuPause::commonUpdate(void)
+void newScreen::ObjSMenuPause::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -979,7 +971,7 @@ void og::newScreen::ObjSMenuPause::commonUpdate(void)
  * Address:	80314DB0
  * Size:	0000B0
  */
-void og::newScreen::ObjSMenuPause::doUpdate(void)
+void newScreen::ObjSMenuPause::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1043,7 +1035,7 @@ void og::newScreen::ObjSMenuPause::doUpdate(void)
  * Address:	80314E60
  * Size:	000098
  */
-void og::newScreen::ObjSMenuPause::doDraw((Graphics&))
+void newScreen::ObjSMenuPause::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1095,7 +1087,7 @@ void og::newScreen::ObjSMenuPause::doDraw((Graphics&))
  * Address:	80314EF8
  * Size:	0000A4
  */
-void og::newScreen::ObjSMenuPause::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjSMenuPause::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1148,17 +1140,14 @@ void og::newScreen::ObjSMenuPause::doStart((Screen::StartSceneArg const*))
  * Address:	80314F9C
  * Size:	000008
  */
-u32 og::newScreen::ObjSMenuPause::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjSMenuPause::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80314FA4
  * Size:	000034
  */
-void og::newScreen::ObjSMenuPause::doUpdateFinish(void)
+void newScreen::ObjSMenuPause::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1183,7 +1172,7 @@ void og::newScreen::ObjSMenuPause::doUpdateFinish(void)
  * Address:	80314FD8
  * Size:	00004C
  */
-void og::newScreen::ObjSMenuPause::doUpdateFadeout(void)
+void newScreen::ObjSMenuPause::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -1214,7 +1203,7 @@ void og::newScreen::ObjSMenuPause::doUpdateFadeout(void)
  * Address:	80315024
  * Size:	00012C
  */
-void og::newScreen::ObjSMenuPause::doUpdateFadeoutFinish(void)
+void newScreen::ObjSMenuPause::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1321,7 +1310,7 @@ void og::newScreen::ObjSMenuPause::doUpdateFadeoutFinish(void)
  * Address:	80315150
  * Size:	0004C0
  */
-void og::newScreen::ObjSMenuPause::menu_pause(void)
+void newScreen::ObjSMenuPause::menu_pause(void)
 {
 	/*
 	.loc_0x0:
@@ -1675,7 +1664,7 @@ void og::newScreen::ObjSMenuPause::menu_pause(void)
  * Address:	80315610
  * Size:	000478
  */
-void og::newScreen::ObjSMenuPause::menu_yuugata(void)
+void newScreen::ObjSMenuPause::menu_yuugata(void)
 {
 	/*
 	.loc_0x0:
@@ -2013,7 +2002,7 @@ void og::newScreen::ObjSMenuPause::menu_yuugata(void)
  * Address:	80315A88
  * Size:	000478
  */
-void og::newScreen::ObjSMenuPause::menu_zenkai(void)
+void newScreen::ObjSMenuPause::menu_zenkai(void)
 {
 	/*
 	.loc_0x0:
@@ -2351,7 +2340,7 @@ void og::newScreen::ObjSMenuPause::menu_zenkai(void)
  * Address:	80315F00
  * Size:	000040
  */
-void og::newScreen::ObjSMenuPause::killCursorAll(void)
+void newScreen::ObjSMenuPause::killCursorAll(void)
 {
 	/*
 	.loc_0x0:
@@ -2379,7 +2368,7 @@ void og::newScreen::ObjSMenuPause::killCursorAll(void)
  * Address:	80315F40
  * Size:	00006C
  */
-void og::newScreen::ObjSMenuPause::menu(void)
+void newScreen::ObjSMenuPause::menu(void)
 {
 	/*
 	.loc_0x0:
@@ -2428,7 +2417,7 @@ void og::newScreen::ObjSMenuPause::menu(void)
  * Address:	80315FAC
  * Size:	000014
  */
-void og::newScreen::ObjSMenuPause::in_L(void)
+void newScreen::ObjSMenuPause::in_L(void)
 {
 	/*
 	.loc_0x0:
@@ -2445,7 +2434,7 @@ void og::newScreen::ObjSMenuPause::in_L(void)
  * Address:	80315FC0
  * Size:	000014
  */
-void og::newScreen::ObjSMenuPause::in_R(void)
+void newScreen::ObjSMenuPause::in_R(void)
 {
 	/*
 	.loc_0x0:
@@ -2462,7 +2451,7 @@ void og::newScreen::ObjSMenuPause::in_R(void)
  * Address:	80315FD4
  * Size:	000030
  */
-void og::newScreen::ObjSMenuPause::wait(void)
+void newScreen::ObjSMenuPause::wait(void)
 {
 	/*
 	.loc_0x0:
@@ -2486,7 +2475,7 @@ void og::newScreen::ObjSMenuPause::wait(void)
  * Address:	80316004
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuPause::out_L(void)
+void newScreen::ObjSMenuPause::out_L(void)
 {
 	/*
 	.loc_0x0:
@@ -2509,7 +2498,7 @@ void og::newScreen::ObjSMenuPause::out_L(void)
  * Address:	80316030
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuPause::out_R(void)
+void newScreen::ObjSMenuPause::out_R(void)
 {
 	/*
 	.loc_0x0:
@@ -2526,6 +2515,8 @@ void og::newScreen::ObjSMenuPause::out_R(void)
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -2551,12 +2542,14 @@ void __sinit_ogObjSMenuPause_cpp(void)
 	*/
 }
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	80316084
  * Size:	000184
  */
-void og::newScreen::ObjSMenuPause::ObjHIOVal::__ct(void)
+newScreen::ObjSMenuPause::ObjHIOVal::ObjHIOVal(void)
 {
 	/*
 	.loc_0x0:
@@ -2665,7 +2658,7 @@ void og::newScreen::ObjSMenuPause::ObjHIOVal::__ct(void)
  * Address:	80316208
  * Size:	000008
  */
-void @24 @og::newScreen::ObjSMenuPause::__dt(void)
+@24 @og::newScreen::ObjSMenuPause::~ObjSMenuPause(void)
 {
 	/*
 	.loc_0x0:
@@ -2673,3 +2666,4 @@ void @24 @og::newScreen::ObjSMenuPause::__dt(void)
 	  b         -0x1D10
 	*/
 }
+} // namespace og

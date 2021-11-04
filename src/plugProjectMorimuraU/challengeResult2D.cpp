@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80393348
  * Size:	000020
  */
-void Morimura::TChallengeResultScreen::create((char const*, unsigned long))
+void Morimura::TChallengeResultScreen::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -35,7 +25,7 @@ void Morimura::TChallengeResultScreen::create((char const*, unsigned long))
  * Address:	80393368
  * Size:	000118
  */
-void Morimura::TChallengeResultScreen::createAnimPane((char*))
+void Morimura::TChallengeResultScreen::createAnimPane(char*)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +152,8 @@ void Morimura::TChallengeResultScreen::updateBckPane(void)
  * Address:	........
  * Size:	000050
  */
-void Morimura::TChallengeResultDemoScreen::__ct((JKRArchive*, int))
+Morimura::TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive*,
+                                                                 int)
 {
 	// UNUSED FUNCTION
 }
@@ -172,7 +163,7 @@ void Morimura::TChallengeResultDemoScreen::__ct((JKRArchive*, int))
  * Address:	803934D4
  * Size:	0000F8
  */
-void Morimura::TChallengeResultDemoScreen::create((char const*, unsigned long))
+void Morimura::TChallengeResultDemoScreen::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +320,7 @@ void Morimura::TChallengeResultDemoScreen::update(void)
  * Address:	803936B0
  * Size:	00002C
  */
-void Morimura::TChallengeResultDemoScreen::draw((Graphics&, J2DPerspGraph*))
+void Morimura::TChallengeResultDemoScreen::draw(Graphics&, J2DPerspGraph*)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +355,7 @@ void Morimura::TChallengeResultDemoScreen::startDemo(void)
  * Address:	........
  * Size:	0000CC
  */
-void Morimura::TChallengeResultDemoScreen::setComplete((bool))
+void Morimura::TChallengeResultDemoScreen::setComplete(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -384,7 +375,7 @@ void Morimura::TChallengeResultDemoScreen::reset(void)
  * Address:	........
  * Size:	000028
  */
-void Morimura::TMovePane::__ct(void)
+Morimura::TMovePane::TMovePane(void)
 {
 	// UNUSED FUNCTION
 }
@@ -394,7 +385,7 @@ void Morimura::TMovePane::__ct(void)
  * Address:	803936DC
  * Size:	00007C
  */
-void Morimura::TMovePane::setPane((J2DPane*))
+void Morimura::TMovePane::setPane(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -1033,7 +1024,7 @@ void Morimura::TMovePane::forceTurn(void)
  * Address:	........
  * Size:	000088
  */
-void Morimura::TMovePane::startStick((J2DPane*))
+void Morimura::TMovePane::startStick(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -1217,8 +1208,8 @@ void Morimura::setTCounterRV(P2DScreen::Mgr*, unsigned long long,
  * Address:	8039402C
  * Size:	000130
  */
-void Morimura::TCounterRV::__ct((char**, unsigned short, unsigned short,
-                                 JKRArchive*))
+Morimura::TCounterRV::TCounterRV(char**, unsigned short, unsigned short,
+                                 JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1385,7 +1376,7 @@ void Morimura::TCounterRV::update(void)
  * Address:	80394238
  * Size:	0000D8
  */
-void Morimura::TCounterRV::setValue((bool, bool))
+void Morimura::TCounterRV::setValue(bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -1459,7 +1450,7 @@ void Morimura::TCounterRV::setValue((bool, bool))
  * Address:	........
  * Size:	000150
  */
-void Morimura::TCounterRV::createKiraEffect((float, int))
+void Morimura::TCounterRV::createKiraEffect(float, int)
 {
 	// UNUSED FUNCTION
 }
@@ -1499,7 +1490,8 @@ void Morimura::TCounterRV::reset(void)
  * Address:	........
  * Size:	000060
  */
-void Morimura::TChallengeResultCounter::__ct((unsigned long*, int, int))
+Morimura::TChallengeResultCounter::TChallengeResultCounter(unsigned long*, int,
+                                                           int)
 {
 	// UNUSED FUNCTION
 }
@@ -1559,7 +1551,7 @@ void Morimura::TClearTexture::resetTexture(void)
  * Address:	........
  * Size:	0000A4
  */
-void Morimura::TClearTexture::changeTexture((bool))
+void Morimura::TClearTexture::changeTexture(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1589,7 +1581,7 @@ void getEffectPosition__Q28Morimura13TClearTextureFR10Vector2<float>(void)
  * Address:	80394310
  * Size:	0002F0
  */
-void Morimura::TChallengeResult::__ct(void)
+Morimura::TChallengeResult::TChallengeResult(void)
 {
 	/*
 	.loc_0x0:
@@ -1793,14 +1785,14 @@ void Morimura::TChallengeResult::__ct(void)
  * Address:	80394600
  * Size:	000004
  */
-void Morimura::TChallengeResult::VectorUnit::__ct(void) { }
+Morimura::TChallengeResult::VectorUnit::VectorUnit(void) { }
 
 /*
  * --INFO--
  * Address:	80394604
  * Size:	0000F4
  */
-void Morimura::TChallengeResult::__dt(void)
+Morimura::TChallengeResult::~TChallengeResult(void)
 {
 	/*
 	.loc_0x0:
@@ -1879,7 +1871,7 @@ void Morimura::TChallengeResult::__dt(void)
  * Address:	........
  * Size:	000044
  */
-void Morimura::TChallengeResult::setDebugHeapParent((JKRHeap*))
+void Morimura::TChallengeResult::setDebugHeapParent(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -1889,7 +1881,7 @@ void Morimura::TChallengeResult::setDebugHeapParent((JKRHeap*))
  * Address:	803946F8
  * Size:	001854
  */
-void Morimura::TChallengeResult::doCreate((JKRArchive*))
+void Morimura::TChallengeResult::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -4318,7 +4310,7 @@ void Morimura::TChallengeResult::doUpdate(void)
  * Address:	8039690C
  * Size:	000160
  */
-void Morimura::TChallengeResult::doDraw((Graphics&))
+void Morimura::TChallengeResult::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -7641,8 +7633,7 @@ void Morimura::TChallengeResult::fadeEffect(void)
  * Address:	803995F0
  * Size:	0000B0
  */
-void
-    Morimura::TChallengeResultScene::doUserCallBackFunc((Resource::MgrCommand*))
+void Morimura::TChallengeResultScene::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -7702,7 +7693,7 @@ void
  * Address:	803996A0
  * Size:	000008
  */
-void Morimura::TChallengeResultScene::getResName( const
+void Morimura::TChallengeResultScene::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -7716,19 +7707,14 @@ void Morimura::TChallengeResultScene::getResName( const
  * Address:	803996A8
  * Size:	000004
  */
-void Morimura::TChallengeResultScene::doCreateObj( (JKRArchive *))
-{
-}
+void Morimura::TChallengeResultScene::doCreateObj(JKRArchive*) { }
 
 /*
  * --INFO--
  * Address:	803996AC
  * Size:	000008
  */
-u32  Morimura::TChallengeResultScene::getSceneType(void)
-{
-	return 0x2738;
-}
+u32 Morimura::TChallengeResultScene::getSceneType(void) { return 0x2738; }
 
 /*
  * --INFO--
@@ -7796,7 +7782,7 @@ void Morimura::TChallengeResult::getDispMemberBase(void)
  * Address:	80399708
  * Size:	000084
  */
-void efx2d::T2DCavecompLoop::__dt(void)
+efx2d::T2DCavecompLoop::~T2DCavecompLoop(void)
 {
 	/*
 	.loc_0x0:
@@ -7845,7 +7831,7 @@ void efx2d::T2DCavecompLoop::__dt(void)
  * Address:	8039978C
  * Size:	000090
  */
-void Morimura::TCounterRV::__dt(void)
+Morimura::TCounterRV::~TCounterRV(void)
 {
 	/*
 	.loc_0x0:
@@ -7897,7 +7883,7 @@ void Morimura::TCounterRV::__dt(void)
  * Address:	8039981C
  * Size:	000008
  */
-void @8@efx2d::T2DCavecompLoop::__dt(void)
+@8 @efx2d::T2DCavecompLoop::~T2DCavecompLoop(void)
 {
 	/*
 	.loc_0x0:
@@ -7911,7 +7897,7 @@ void @8@efx2d::T2DCavecompLoop::__dt(void)
  * Address:	80399824
  * Size:	000008
  */
-void @24@Morimura::TChallengeResult::__dt(void)
+@24 @Morimura::TChallengeResult::~TChallengeResult(void)
 {
 	/*
 	.loc_0x0:

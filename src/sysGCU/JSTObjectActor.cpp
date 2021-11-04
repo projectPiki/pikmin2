@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-void Game::P2JST::_Print((char*, ...))
+void P2JST::_Print(char*, ...)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +17,7 @@ void Game::P2JST::_Print((char*, ...))
  * Address:	8042E960
  * Size:	0000D0
  */
-void Game::P2JST::ObjectActor::__ct((char const*, Game::MoviePlayer*))
+P2JST::ObjectActor::ObjectActor(char const*, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +81,7 @@ void Game::P2JST::ObjectActor::__ct((char const*, Game::MoviePlayer*))
  * Address:	8042EA30
  * Size:	000068
  */
-void Game::P2JST::ObjectActor::__dt(void)
+P2JST::ObjectActor::~ObjectActor(void)
 {
 	/*
 	.loc_0x0:
@@ -119,7 +121,7 @@ void Game::P2JST::ObjectActor::__dt(void)
  * Address:	8042EA98
  * Size:	000070
  */
-void Game::P2JST::ObjectActor::reset(void)
+void P2JST::ObjectActor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +161,7 @@ void Game::P2JST::ObjectActor::reset(void)
  * Address:	8042EB08
  * Size:	000390
  */
-void Game::P2JST::ObjectActor::update(void)
+void P2JST::ObjectActor::update(void)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +413,7 @@ void Game::P2JST::ObjectActor::update(void)
  * Address:	8042EE98
  * Size:	000068
  */
-void Game::P2JST::ObjectActor::entry(void)
+void P2JST::ObjectActor::entry(void)
 {
 	/*
 	.loc_0x0:
@@ -451,7 +453,7 @@ void Game::P2JST::ObjectActor::entry(void)
  * Address:	8042EF00
  * Size:	0001A4
  */
-void Game::P2JST::ObjectActor::setShape(void)
+void P2JST::ObjectActor::setShape(void)
 {
 	/*
 	.loc_0x0:
@@ -586,7 +588,7 @@ void Game::P2JST::ObjectActor::setShape(void)
  * Address:	8042F0A4
  * Size:	000128
  */
-void Game::P2JST::ObjectActor::setAnim(void)
+void P2JST::ObjectActor::setAnim(void)
 {
 	/*
 	.loc_0x0:
@@ -682,7 +684,7 @@ void Game::P2JST::ObjectActor::setAnim(void)
  * Address:	8042F1CC
  * Size:	000038
  */
-void Game::P2JST::ObjectActor::mountArchive(void)
+void P2JST::ObjectActor::mountArchive(void)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +710,7 @@ void Game::P2JST::ObjectActor::mountArchive(void)
  * Address:	8042F204
  * Size:	000260
  */
-void Game::P2JST::ObjectActor::parseUserData_((unsigned long, void const*))
+void P2JST::ObjectActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:
@@ -892,7 +894,7 @@ void Game::P2JST::ObjectActor::parseUserData_((unsigned long, void const*))
  * Address:	8042F464
  * Size:	00006C
  */
-void Game::P2JST::ObjectActor::JSGFindNodeID(const(char const*))
+void P2JST::ObjectActor::JSGFindNodeID(const(char const*))
 {
 	/*
 	.loc_0x0:
@@ -933,8 +935,8 @@ void Game::P2JST::ObjectActor::JSGFindNodeID(const(char const*))
  * Address:	8042F4D0
  * Size:	00008C
  */
-void Game::P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long,
-                                                              float (*)[4]))
+void P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long,
+                                                        float (*)[4]))
 {
 	/*
 	.loc_0x0:
@@ -983,7 +985,7 @@ void Game::P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long,
  * Address:	8042F55C
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGGetName( const
+void P2JST::ObjectActor::JSGGetName() const
 {
 	/*
 	.loc_0x0:
@@ -997,13 +999,10 @@ void Game::P2JST::ObjectActor::JSGGetName( const
  * Address:	8042F564
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGSetFlag( (unsigned long))
+void P2JST::ObjectActor::JSGSetFlag(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x10(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x10(r3)
+	_10 = a1;
 }
 
 /*
@@ -1011,7 +1010,7 @@ void Game::P2JST::ObjectActor::JSGSetFlag( (unsigned long))
  * Address:	8042F56C
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGGetFlag( const
+void P2JST::ObjectActor::JSGGetFlag() const
 {
 	/*
 	.loc_0x0:
@@ -1025,7 +1024,7 @@ void Game::P2JST::ObjectActor::JSGGetFlag( const
  * Address:	8042F574
  * Size:	000038
  */
-void Game::P2JST::ObjectActor::JSGSetData( (unsigned long, void const *, unsigned long))
+void P2JST::ObjectActor::JSGSetData(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1051,7 +1050,7 @@ void Game::P2JST::ObjectActor::JSGSetData( (unsigned long, void const *, unsigne
  * Address:	8042F5AC
  * Size:	00001C
  */
-void Game::P2JST::ObjectActor::JSGSetTranslation( (Vec const &))
+void P2JST::ObjectActor::JSGSetTranslation(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -1070,7 +1069,7 @@ void Game::P2JST::ObjectActor::JSGSetTranslation( (Vec const &))
  * Address:	8042F5C8
  * Size:	00001C
  */
-void Game::P2JST::ObjectActor::JSGGetTranslation( const(Vec *))
+void P2JST::ObjectActor::JSGGetTranslation(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -1089,7 +1088,7 @@ void Game::P2JST::ObjectActor::JSGGetTranslation( const(Vec *))
  * Address:	8042F5E4
  * Size:	00001C
  */
-void Game::P2JST::ObjectActor::JSGSetRotation( (Vec const &))
+void P2JST::ObjectActor::JSGSetRotation(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -1108,7 +1107,7 @@ void Game::P2JST::ObjectActor::JSGSetRotation( (Vec const &))
  * Address:	8042F600
  * Size:	00001C
  */
-void Game::P2JST::ObjectActor::JSGGetRotation( const(Vec *))
+void P2JST::ObjectActor::JSGGetRotation(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -1127,7 +1126,7 @@ void Game::P2JST::ObjectActor::JSGGetRotation( const(Vec *))
  * Address:	8042F61C
  * Size:	00001C
  */
-void Game::P2JST::ObjectActor::JSGSetScaling( (Vec const &))
+void P2JST::ObjectActor::JSGSetScaling(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -1146,7 +1145,7 @@ void Game::P2JST::ObjectActor::JSGSetScaling( (Vec const &))
  * Address:	8042F638
  * Size:	00001C
  */
-void Game::P2JST::ObjectActor::JSGGetScaling( const(Vec *))
+void P2JST::ObjectActor::JSGGetScaling(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -1165,13 +1164,10 @@ void Game::P2JST::ObjectActor::JSGGetScaling( const(Vec *))
  * Address:	8042F654
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGSetShape( (unsigned long))
+void P2JST::ObjectActor::JSGSetShape(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x58(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x58(r3)
+	_58 = a1;
 }
 
 /*
@@ -1179,7 +1175,7 @@ void Game::P2JST::ObjectActor::JSGSetShape( (unsigned long))
  * Address:	8042F65C
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGGetShape( const
+void P2JST::ObjectActor::JSGGetShape() const
 {
 	/*
 	.loc_0x0:
@@ -1193,13 +1189,10 @@ void Game::P2JST::ObjectActor::JSGGetShape( const
  * Address:	8042F664
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGSetAnimation( (unsigned long))
+void P2JST::ObjectActor::JSGSetAnimation(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x5C(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x5C(r3)
+	_5C = a1;
 }
 
 /*
@@ -1207,7 +1200,7 @@ void Game::P2JST::ObjectActor::JSGSetAnimation( (unsigned long))
  * Address:	8042F66C
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGGetAnimation( const
+void P2JST::ObjectActor::JSGGetAnimation() const
 {
 	/*
 	.loc_0x0:
@@ -1221,7 +1214,7 @@ void Game::P2JST::ObjectActor::JSGGetAnimation( const
  * Address:	8042F674
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGGetAnimationFrameMax( const
+void P2JST::ObjectActor::JSGGetAnimationFrameMax() const
 {
 	/*
 	.loc_0x0:
@@ -1235,16 +1228,14 @@ void Game::P2JST::ObjectActor::JSGGetAnimationFrameMax( const
  * Address:	8042F67C
  * Size:	000004
  */
-void Game::P2JST::ObjectActor::JSGSetAnimationFrame( (float))
-{
-}
+void P2JST::ObjectActor::JSGSetAnimationFrame(float) { }
 
 /*
  * --INFO--
  * Address:	8042F680
  * Size:	000008
  */
-void Game::P2JST::ObjectActor::JSGGetAnimationFrame( const
+void P2JST::ObjectActor::JSGGetAnimationFrame() const
 {
 	/*
 	.loc_0x0:
@@ -1258,27 +1249,23 @@ void Game::P2JST::ObjectActor::JSGGetAnimationFrame( const
  * Address:	8042F688
  * Size:	000004
  */
-void Game::P2JST::ObjectActor::stop(void)
-{
-}
+void P2JST::ObjectActor::stop(void) { }
 
 /*
  * --INFO--
  * Address:	8042F68C
  * Size:	000004
  */
-void Game::P2JST::ObjectActor::start(void)
-{
-}
+void P2JST::ObjectActor::start(void) { }
 
 /*
  * --INFO--
  * Address:	8042F690
  * Size:	000004
  */
-void Game::P2JST::ObjectBase::parseUserData_( (unsigned long, void const *))
-{
-}
+void P2JST::ObjectBase::parseUserData_(unsigned long, void const*) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1307,7 +1294,7 @@ void __sinit_JSTObjectActor_cpp(void)
  * Address:	8042F6BC
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectActor::parseUserData_( (unsigned long, void const *))
+void @4 @Game::P2JST::ObjectActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:
@@ -1321,7 +1308,7 @@ void @4@Game::P2JST::ObjectActor::parseUserData_( (unsigned long, void const *))
  * Address:	8042F6C4
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectActor::stop(void)
+void @4 @Game::P2JST::ObjectActor::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -1335,7 +1322,7 @@ void @4@Game::P2JST::ObjectActor::stop(void)
  * Address:	8042F6CC
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectActor::start(void)
+void @4 @Game::P2JST::ObjectActor::start(void)
 {
 	/*
 	.loc_0x0:
@@ -1349,7 +1336,7 @@ void @4@Game::P2JST::ObjectActor::start(void)
  * Address:	8042F6D4
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectActor::update(void)
+void @4 @Game::P2JST::ObjectActor::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1363,7 +1350,7 @@ void @4@Game::P2JST::ObjectActor::update(void)
  * Address:	8042F6DC
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectActor::reset(void)
+void @4 @Game::P2JST::ObjectActor::reset(void)
 {
 	/*
 	.loc_0x0:

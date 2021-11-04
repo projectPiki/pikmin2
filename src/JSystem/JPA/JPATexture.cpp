@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000AC
  */
-void JPATexture::JPATexture(const unsigned char*, JKRHeap*)
+JPATexture::JPATexture(const unsigned char*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JPATexture::JPATexture(const unsigned char*, JKRHeap*)
  * Address:	800986A0
  * Size:	000068
  */
-void JPATexture::JPATexture(const unsigned char*)
+JPATexture::JPATexture(const unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +53,7 @@ void JPATexture::JPATexture(const unsigned char*)
  * Address:	80098708
  * Size:	000064
  */
-void JPATexture::~JPATexture()
+JPATexture::~JPATexture()
 {
 	/*
 	.loc_0x0:

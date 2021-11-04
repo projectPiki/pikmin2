@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	80453AE8
  * Size:	000090
  */
-void Screen::ObjBase::__ct(void)
+ObjBase::ObjBase(void)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +55,7 @@ void Screen::ObjBase::__ct(void)
  * Address:	80453B78
  * Size:	00002C
  */
-void Screen::ObjBase::create((JKRArchive*))
+void ObjBase::create(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -76,7 +78,7 @@ void Screen::ObjBase::create((JKRArchive*))
  * Address:	80453BA4
  * Size:	0000AC
  */
-void Screen::ObjBase::start((Screen::StartSceneArg const*))
+void ObjBase::start(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Screen::ObjBase::start((Screen::StartSceneArg const*))
  * Address:	80453C50
  * Size:	000138
  */
-void Screen::ObjBase::end((Screen::EndSceneArg const*))
+void ObjBase::end(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +251,7 @@ void Screen::ObjBase::end((Screen::EndSceneArg const*))
  * Address:	80453D88
  * Size:	000110
  */
-void Screen::ObjBase::update(void)
+void ObjBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +343,7 @@ void Screen::ObjBase::update(void)
  * Address:	80453E98
  * Size:	000038
  */
-void Screen::ObjBase::draw((Graphics&))
+void ObjBase::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +371,7 @@ void Screen::ObjBase::draw((Graphics&))
  * Address:	80453ED0
  * Size:	0000D8
  */
-void Screen::ObjBase::doDraw((Graphics&))
+void ObjBase::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -435,7 +437,7 @@ void Screen::ObjBase::doDraw((Graphics&))
  * Address:	80453FA8
  * Size:	00000C
  */
-void Screen::ObjBase::getDispMember(void)
+void ObjBase::getDispMember(void)
 {
 	/*
 	.loc_0x0:
@@ -450,7 +452,7 @@ void Screen::ObjBase::getDispMember(void)
  * Address:	80453FB4
  * Size:	00002C
  */
-void Screen::ObjBase::confirmSetScene((Screen::SetSceneArg&))
+void ObjBase::confirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +475,7 @@ void Screen::ObjBase::confirmSetScene((Screen::SetSceneArg&))
  * Address:	80453FE0
  * Size:	00002C
  */
-void Screen::ObjBase::confirmStartScene((Screen::StartSceneArg*))
+void ObjBase::confirmStartScene(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -496,7 +498,7 @@ void Screen::ObjBase::confirmStartScene((Screen::StartSceneArg*))
  * Address:	8045400C
  * Size:	000034
  */
-void Screen::ObjBase::confirmEndScene((Screen::EndSceneArg*))
+void ObjBase::confirmEndScene(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -521,7 +523,7 @@ void Screen::ObjBase::confirmEndScene((Screen::EndSceneArg*))
  * Address:	80454040
  * Size:	000030
  */
-void Screen::ObjBase::getGamePad( const
+void ObjBase::getGamePad() const
 {
 	/*
 	.loc_0x0:
@@ -545,7 +547,7 @@ void Screen::ObjBase::getGamePad( const
  * Address:	80454070
  * Size:	000044
  */
-void Screen::ObjMgrBase::__ct(void)
+ObjMgrBase::ObjMgrBase(void)
 {
 	/*
 	.loc_0x0:
@@ -574,7 +576,7 @@ void Screen::ObjMgrBase::__ct(void)
  * Address:	804540B4
  * Size:	000058
  */
-void Screen::ObjMgrBase::registObj( (Screen::IObjBase *, Screen::SceneBase *))
+void ObjMgrBase::registObj(Screen::IObjBase*, Screen::SceneBase*)
 {
 	/*
 	.loc_0x0:
@@ -608,7 +610,7 @@ void Screen::ObjMgrBase::registObj( (Screen::IObjBase *, Screen::SceneBase *))
  * Address:	8045410C
  * Size:	000068
  */
-void Screen::ObjMgrBase::update(void)
+void ObjMgrBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -652,7 +654,7 @@ void Screen::ObjMgrBase::update(void)
  * Address:	80454174
  * Size:	00005C
  */
-void Screen::ObjMgrBase::draw( (Graphics &))
+void ObjMgrBase::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -691,7 +693,7 @@ void Screen::ObjMgrBase::draw( (Graphics &))
  * Address:	804541D0
  * Size:	000098
  */
-void Screen::ObjMgrBase::search( (Screen::SceneBase *, char *))
+void ObjMgrBase::search(Screen::SceneBase*, char*)
 {
 	/*
 	.loc_0x0:
@@ -749,7 +751,7 @@ void Screen::ObjMgrBase::search( (Screen::SceneBase *, char *))
  * Address:	80454268
  * Size:	000078
  */
-void Screen::ObjMgrBase::start( (Screen::StartSceneArg *))
+void ObjMgrBase::start(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -797,7 +799,7 @@ void Screen::ObjMgrBase::start( (Screen::StartSceneArg *))
  * Address:	804542E0
  * Size:	000078
  */
-void Screen::ObjMgrBase::end( (Screen::EndSceneArg *))
+void ObjMgrBase::end(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -845,7 +847,7 @@ void Screen::ObjMgrBase::end( (Screen::EndSceneArg *))
  * Address:	80454358
  * Size:	00007C
  */
-void Screen::ObjMgrBase::confirmSetScene( (Screen::SetSceneArg &))
+void ObjMgrBase::confirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -896,7 +898,7 @@ void Screen::ObjMgrBase::confirmSetScene( (Screen::SetSceneArg &))
  * Address:	804543D4
  * Size:	00007C
  */
-void Screen::ObjMgrBase::confirmStartScene( (Screen::StartSceneArg *))
+void ObjMgrBase::confirmStartScene(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -947,7 +949,7 @@ void Screen::ObjMgrBase::confirmStartScene( (Screen::StartSceneArg *))
  * Address:	80454450
  * Size:	00007C
  */
-void Screen::ObjMgrBase::confirmEndScene( (Screen::EndSceneArg *))
+void ObjMgrBase::confirmEndScene(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -998,7 +1000,7 @@ void Screen::ObjMgrBase::confirmEndScene( (Screen::EndSceneArg *))
  * Address:	804544CC
  * Size:	000008
  */
-void @24@Screen::ObjBase::__dt(void)
+@24 @Screen::ObjBase::~ObjBase(void)
 {
 	/*
 	.loc_0x0:
@@ -1006,3 +1008,4 @@ void @24@Screen::ObjBase::__dt(void)
 	  b         -0x146C68
 	*/
 }
+} // namespace Screen

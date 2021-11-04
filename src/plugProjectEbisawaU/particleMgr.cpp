@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803BAF70
  * Size:	000044
  */
@@ -82,7 +72,7 @@ void ParticleMgr::deleteInstance()
  * Address:	803BAFFC
  * Size:	000114
  */
-void ParticleMgr::ParticleMgr()
+ParticleMgr::ParticleMgr()
 {
 	/*
 	.loc_0x0:
@@ -163,7 +153,7 @@ void ParticleMgr::ParticleMgr()
  * Address:	803BB110
  * Size:	000070
  */
-void ModelEffectDataRoot::~ModelEffectDataRoot()
+ModelEffectDataRoot::~ModelEffectDataRoot()
 {
 	/*
 	.loc_0x0:
@@ -407,7 +397,7 @@ void Container<ModelEffect>::~Container()
  * Address:	803BB3A0
  * Size:	00012C
  */
-void ParticleMgr::~ParticleMgr()
+ParticleMgr::~ParticleMgr()
 {
 	/*
 	.loc_0x0:
@@ -918,7 +908,7 @@ void ParticleMgr::draw(Viewport*, unsigned char)
  * Address:	803BB8B4
  * Size:	0000C8
  */
-void ParticleMgr::create(unsigned short, Vector3<float>&, unsigned char)
+void ParticleMgr::create(unsigned short, Vector3f&, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -990,7 +980,7 @@ void ParticleMgr::create(unsigned short, Vector3<float>&, unsigned char)
  * Address:	803BB97C
  * Size:	00005C
  */
-void ParticleMgr::createDemo(unsigned short, Vector3<float>&, unsigned char,
+void ParticleMgr::createDemo(unsigned short, Vector3f&, unsigned char,
                              unsigned char)
 {
 	/*
@@ -1252,7 +1242,7 @@ void ParticleMgr::cull(Sys::Sphere&)
  * Address:	803BBBD0
  * Size:	000114
  */
-void ParticleMgr::cullByResFlg(Vector3<float>&, unsigned short)
+void ParticleMgr::cullByResFlg(Vector3f&, unsigned short)
 {
 	/*
 	.loc_0x0:

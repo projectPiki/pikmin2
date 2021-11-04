@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031741C
  * Size:	0000A8
  */
-void og::newScreen::ObjCourseName::__ct((char const*))
+newScreen::ObjCourseName::ObjCourseName(char const*)
 {
 	/*
 	.loc_0x0:
@@ -69,7 +61,7 @@ void og::newScreen::ObjCourseName::__ct((char const*))
  * Address:	803174C4
  * Size:	0000AC
  */
-void og::newScreen::ObjCourseName::__dt(void)
+newScreen::ObjCourseName::~ObjCourseName(void)
 {
 	/*
 	.loc_0x0:
@@ -128,7 +120,7 @@ void og::newScreen::ObjCourseName::__dt(void)
  * Address:	80317570
  * Size:	000334
  */
-void og::newScreen::ObjCourseName::doCreate((JKRArchive*))
+void newScreen::ObjCourseName::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +361,7 @@ void og::newScreen::ObjCourseName::doCreate((JKRArchive*))
  * Address:	........
  * Size:	0000F0
  */
-void og::newScreen::ObjCourseName::commonUpdate(void)
+void newScreen::ObjCourseName::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -379,7 +371,7 @@ void og::newScreen::ObjCourseName::commonUpdate(void)
  * Address:	803178A4
  * Size:	0000F0
  */
-void og::newScreen::ObjCourseName::doUpdate(void)
+void newScreen::ObjCourseName::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -457,7 +449,7 @@ void og::newScreen::ObjCourseName::doUpdate(void)
  * Address:	80317994
  * Size:	000170
  */
-void og::newScreen::ObjCourseName::doDraw((Graphics&))
+void newScreen::ObjCourseName::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -561,7 +553,7 @@ void og::newScreen::ObjCourseName::doDraw((Graphics&))
  * Address:	80317B04
  * Size:	000014
  */
-void og::newScreen::ObjCourseName::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjCourseName::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -578,7 +570,7 @@ void og::newScreen::ObjCourseName::doStart((Screen::StartSceneArg const*))
  * Address:	80317B18
  * Size:	000010
  */
-void og::newScreen::ObjCourseName::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjCourseName::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -594,14 +586,14 @@ void og::newScreen::ObjCourseName::doEnd((Screen::EndSceneArg const*))
  * Address:	80317B28
  * Size:	000004
  */
-void og::newScreen::ObjCourseName::doUpdateFadeinFinish(void) { }
+void newScreen::ObjCourseName::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80317B2C
  * Size:	00000C
  */
-void og::newScreen::ObjCourseName::doUpdateFinish(void)
+void newScreen::ObjCourseName::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -616,14 +608,14 @@ void og::newScreen::ObjCourseName::doUpdateFinish(void)
  * Address:	80317B38
  * Size:	000004
  */
-void og::newScreen::ObjCourseName::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjCourseName::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80317B3C
  * Size:	000120
  */
-void og::newScreen::ObjCourseName::doUpdateFadein(void)
+void newScreen::ObjCourseName::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -715,7 +707,7 @@ void og::newScreen::ObjCourseName::doUpdateFadein(void)
  * Address:	80317C5C
  * Size:	000134
  */
-void og::newScreen::ObjCourseName::doUpdateFadeout(void)
+void newScreen::ObjCourseName::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +804,7 @@ void og::newScreen::ObjCourseName::doUpdateFadeout(void)
  * Address:	80317D90
  * Size:	000168
  */
-void og::newScreen::ObjCourseName::drawBG((Graphics&))
+void newScreen::ObjCourseName::drawBG(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -915,6 +907,8 @@ void og::newScreen::ObjCourseName::drawBG((Graphics&))
 	*/
 }
 
+} // namespace og
+
 /*
  * --INFO--
  * Address:	80317EF8
@@ -942,7 +936,7 @@ void __sinit_ogObjCourseName_cpp(void)
  * Address:	80317F20
  * Size:	000008
  */
-void @24 @og::newScreen::ObjCourseName::__dt(void)
+@24 @og::newScreen::ObjCourseName::~ObjCourseName(void)
 {
 	/*
 	.loc_0x0:

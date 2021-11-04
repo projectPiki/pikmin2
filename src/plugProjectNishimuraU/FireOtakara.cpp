@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B81C8
  * Size:	0000A4
  */
-void Game::FireOtakara::Obj::Obj()
+FireOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::FireOtakara::Obj::Obj()
  * Address:	802B826C
  * Size:	0001A4
  */
-void Game::FireOtakara::Obj::changeMaterial()
+void FireOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::FireOtakara::Obj::changeMaterial()
  * Address:	802B8410
  * Size:	000060
  */
-void Game::FireOtakara::Obj::interactCreature(Game::Creature*)
+void FireOtakara::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::FireOtakara::Obj::interactCreature(Game::Creature*)
  * Address:	802B8470
  * Size:	000060
  */
-void Game::FireOtakara::Obj::createEffect()
+void FireOtakara::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +257,7 @@ void Game::FireOtakara::Obj::createEffect()
  * Address:	802B84D0
  * Size:	000048
  */
-void Game::FireOtakara::Obj::setupEffect()
+void FireOtakara::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -285,7 +287,7 @@ void Game::FireOtakara::Obj::setupEffect()
  * Address:	802B8518
  * Size:	000034
  */
-void Game::FireOtakara::Obj::startChargeEffect()
+void FireOtakara::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -310,7 +312,7 @@ void Game::FireOtakara::Obj::startChargeEffect()
  * Address:	802B854C
  * Size:	000030
  */
-void Game::FireOtakara::Obj::finishChargeEffect()
+void FireOtakara::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +336,7 @@ void Game::FireOtakara::Obj::finishChargeEffect()
  * Address:	802B857C
  * Size:	0000B0
  */
-void Game::FireOtakara::Obj::createDisChargeEffect()
+void FireOtakara::Obj::createDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -390,7 +392,7 @@ void Game::FireOtakara::Obj::createDisChargeEffect()
  * Address:	802B862C
  * Size:	000030
  */
-void Game::FireOtakara::Obj::effectDrawOn()
+void FireOtakara::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -414,7 +416,7 @@ void Game::FireOtakara::Obj::effectDrawOn()
  * Address:	802B865C
  * Size:	000030
  */
-void Game::FireOtakara::Obj::effectDrawOff()
+void FireOtakara::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -438,7 +440,7 @@ void Game::FireOtakara::Obj::effectDrawOff()
  * Address:	802B868C
  * Size:	000044
  */
-void Game::FireOtakara::Obj::startDisChargeSE()
+void FireOtakara::Obj::startDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -462,23 +464,32 @@ void Game::FireOtakara::Obj::startDisChargeSE()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802B86D0
  * Size:	000004
  */
-void efx::TSimple5::forceKill() { }
+void TSimple5::forceKill() { }
 
 /*
  * --INFO--
  * Address:	802B86D4
  * Size:	000004
  */
-void efx::TSimple5::fade() { }
+void TSimple5::fade() { }
+
+namespace Game {
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	802B86D8
  * Size:	000008
  */
-u32 Game::FireOtakara::Obj::getEnemyTypeID() { return 0x3B; }
+u32 FireOtakara::Obj::getEnemyTypeID() { return 0x3B; }
+} // namespace efx

@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace JStudio {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-void JStudio::stb::data::toString_block((char*, unsigned long))
+void stb::data::toString_block(char*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +17,7 @@ void JStudio::stb::data::toString_block((char*, unsigned long))
  * Address:	8000893C
  * Size:	00004C
  */
-void JStudio::stb::data::TParse_TSequence::getData(
+void stb::data::TParse_TSequence::getData(
     const(JStudio::stb::data::TParse_TSequence::TData*))
 {
 	/*
@@ -49,7 +51,7 @@ void JStudio::stb::data::TParse_TSequence::getData(
  * Address:	80008988
  * Size:	000078
  */
-void JStudio::stb::data::TParse_TParagraph::getData(
+void stb::data::TParse_TParagraph::getData(
     const(JStudio::stb::data::TParse_TParagraph::TData*))
 {
 	/*
@@ -96,7 +98,7 @@ void JStudio::stb::data::TParse_TParagraph::getData(
  * Address:	80008A00
  * Size:	000080
  */
-void JStudio::stb::data::TParse_TParagraph_data::getData(
+void stb::data::TParse_TParagraph_data::getData(
     const(JStudio::stb::data::TParse_TParagraph_data::TData*))
 {
 	/*
@@ -137,3 +139,4 @@ void JStudio::stb::data::TParse_TParagraph_data::getData(
 	  blr
 	*/
 }
+} // namespace JStudio

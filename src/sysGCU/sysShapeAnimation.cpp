@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace SysShape {
 
 /*
  * --INFO--
  * Address:	8043DCDC
  * Size:	000080
  */
-void SysShape::AnimInfo::attach((J3DModelData*, void*))
+void AnimInfo::attach(J3DModelData*, void*)
 {
 	/*
 	.loc_0x0:
@@ -61,8 +53,7 @@ void SysShape::AnimInfo::attach((J3DModelData*, void*))
  * Address:	8043DD5C
  * Size:	000120
  */
-void SysShape::AnimMgr::load((JKRFileLoader*, char*, J3DModelData*,
-                              JKRFileLoader*, char*))
+void AnimMgr::load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*)
 {
 	/*
 	.loc_0x0:
@@ -156,7 +147,7 @@ void SysShape::AnimMgr::load((JKRFileLoader*, char*, J3DModelData*,
  * Address:	8043DE7C
  * Size:	000110
  */
-void SysShape::AnimMgr::load((Stream&, J3DModelData*, JKRFileLoader*, char*))
+void AnimMgr::load(Stream&, J3DModelData*, JKRFileLoader*, char*)
 {
 	/*
 	.loc_0x0:
@@ -250,7 +241,7 @@ void SysShape::AnimMgr::load((Stream&, J3DModelData*, JKRFileLoader*, char*))
  * Address:	8043DF8C
  * Size:	0000D8
  */
-void SysShape::AnimMgr::read((Stream&))
+void AnimMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +313,7 @@ void SysShape::AnimMgr::read((Stream&))
  * Address:	8043E064
  * Size:	0000F8
  */
-void SysShape::AnimMgr::connectBasArc((char*, char*, JKRFileLoader*))
+void AnimMgr::connectBasArc(char*, char*, JKRFileLoader*)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +405,7 @@ void SysShape::AnimMgr::connectBasArc((char*, char*, JKRFileLoader*))
  * Address:	8043E15C
  * Size:	000054
  */
-void SysShape::AnimMgr::registerSoundViewer((PSGame::SoundCreatureMgr*))
+void AnimMgr::registerSoundViewer(PSGame::SoundCreatureMgr*)
 {
 	/*
 	.loc_0x0:
@@ -445,6 +436,8 @@ void SysShape::AnimMgr::registerSoundViewer((PSGame::SoundCreatureMgr*))
 	  blr
 	*/
 }
+
+} // namespace SysShape
 
 /*
  * --INFO--

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	8046D144
  * Size:	00021C
  */
-void PSM::ClusterFactory::partInit(unsigned char)
+void ClusterFactory::partInit(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void PSM::ClusterFactory::partInit(unsigned char)
  * Address:	8046D360
  * Size:	000074
  */
-void PSM::WorldMapRocket::WorldMapRocket()
+WorldMapRocket::WorldMapRocket()
 {
 	/*
 	.loc_0x0:
@@ -221,7 +223,7 @@ void PSM::WorldMapRocket::WorldMapRocket()
  * Address:	8046D3D4
  * Size:	000060
  */
-void PSM::WorldMapRocket::~WorldMapRocket()
+WorldMapRocket::~WorldMapRocket()
 {
 	/*
 	.loc_0x0:
@@ -259,7 +261,7 @@ void PSM::WorldMapRocket::~WorldMapRocket()
  * Address:	8046D434
  * Size:	000490
  */
-void PSM::WorldMapRocket::startRocketSE(float, float)
+void WorldMapRocket::startRocketSE(float, float)
 {
 	/*
 	.loc_0x0:
@@ -579,13 +581,10 @@ void PSM::WorldMapRocket::startRocketSE(float, float)
  * Address:	8046D8C4
  * Size:	000008
  */
-void PSM::WorldMapRocket::stateChange(PSM::WorldMapRocket::rocketState)
+void WorldMapRocket::stateChange(PSM::WorldMapRocket::rocketState a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*
@@ -593,14 +592,14 @@ void PSM::WorldMapRocket::stateChange(PSM::WorldMapRocket::rocketState)
  * Address:	8046D8CC
  * Size:	000004
  */
-void PSM::PikiHumming::PikiHumming() { }
+PikiHumming::PikiHumming() { }
 
 /*
  * --INFO--
  * Address:	8046D8D0
  * Size:	0000FC
  */
-void PSM::PikiHummingMgr::PikiHummingMgr()
+PikiHummingMgr::PikiHummingMgr()
 {
 	/*
 	.loc_0x0:
@@ -675,7 +674,7 @@ void PSM::PikiHummingMgr::PikiHummingMgr()
  * Address:	8046D9CC
  * Size:	000624
  */
-void PSM::PikiHummingMgr::exec()
+void PikiHummingMgr::exec()
 {
 	/*
 	.loc_0x0:
@@ -1160,7 +1159,7 @@ void PSM::PikiHummingMgr::exec()
  * Address:	8046DFF0
  * Size:	0000C4
  */
-void PSM::PikiHummingMgr::play(PSM::Piki*)
+void PikiHummingMgr::play(PSM::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1219,6 +1218,8 @@ void PSM::PikiHummingMgr::play(PSM::Piki*)
 	  blr
 	*/
 }
+
+} // namespace PSM
 
 /*
  * --INFO--
@@ -2598,12 +2599,14 @@ void PSPlayCaveHoleSound(PSM::Creature*)
 	*/
 }
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	8046F21C
  * Size:	000030
  */
-void PSM::ClusterFactory::identifyPart(unsigned char)
+void ClusterFactory::identifyPart(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2621,6 +2624,8 @@ void PSM::ClusterFactory::identifyPart(unsigned char)
 	  blr
 	*/
 }
+
+} // namespace PSM
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -288,7 +288,7 @@ void JAInter::SeMgr::init(void)
  * Address:	800AE444
  * Size:	0000F0
  */
-void JAInter::SeParameter::__ct(void)
+JAInter::SeParameter::SeParameter(void)
 {
 	/*
 	.loc_0x0:
@@ -360,7 +360,7 @@ void JAInter::SeParameter::__ct(void)
  * Address:	800AE534
  * Size:	000018
  */
-void JAInter::MoveParaSetInitZero::__ct(void)
+JAInter::MoveParaSetInitZero::MoveParaSetInitZero(void)
 {
 	/*
 	.loc_0x0:
@@ -378,7 +378,7 @@ void JAInter::MoveParaSetInitZero::__ct(void)
  * Address:	800AE54C
  * Size:	000018
  */
-void JAInter::MoveParaSetInitHalf::__ct(void)
+JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf(void)
 {
 	/*
 	.loc_0x0:
@@ -1500,7 +1500,7 @@ void JAISe::setVolume(float, unsigned long, unsigned char)
  * Address:	800AF29C
  * Size:	0000F0
  */
-void JAInter::SeMgr::setSeqMuteFromSeStart((JAISound*))
+void JAInter::SeMgr::setSeqMuteFromSeStart(JAISound*)
 {
 	/*
 	.loc_0x0:
@@ -1601,7 +1601,7 @@ void JAISequence::setVolume(float, unsigned long, unsigned char)
  * Address:	........
  * Size:	0000E4
  */
-void JAInter::SeMgr::clearSeqMuteFromSeStop((JAISound*))
+void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
 {
 	// UNUSED FUNCTION
 }
@@ -1692,7 +1692,7 @@ void JAInter::SeMgr::checkSeMovePara(void)
  * Address:	800AF48C
  * Size:	000168
  */
-void JAInter::SeMgr::sendSeAllParameter((JAISe*))
+void JAInter::SeMgr::sendSeAllParameter(JAISe*)
 {
 	/*
 	.loc_0x0:
@@ -1994,7 +1994,7 @@ void JAInter::SeMgr::checkPlayingSeUpdateAddition(
  * Address:	800AF84C
  * Size:	000008
  */
-void JAInter::SeMgr::changeIDToCategory((unsigned long))
+void JAInter::SeMgr::changeIDToCategory(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2008,7 +2008,7 @@ void JAInter::SeMgr::changeIDToCategory((unsigned long))
  * Address:	800AF854
  * Size:	0001D0
  */
-void JAInter::SeMgr::releaseSeRegist((JAISe*))
+void JAInter::SeMgr::releaseSeRegist(JAISe*)
 {
 	/*
 	.loc_0x0:
@@ -2152,9 +2152,9 @@ void JAInter::SeMgr::releaseSeRegist((JAISe*))
  * Address:	800AFA24
  * Size:	0006EC
  */
-void JAInter::SeMgr::storeSeBuffer((JAISe**, JAInter::Actor*, unsigned long,
-                                    unsigned long, unsigned char,
-                                    JAInter::SoundInfo*))
+void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, unsigned long,
+                                   unsigned long, unsigned char,
+                                   JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2705,7 +2705,7 @@ void JAISe::stop(unsigned long)
  * Address:	800B0130
  * Size:	000208
  */
-void JAInter::SeMgr::releaseSeBuffer((JAISe*, unsigned long))
+void JAInter::SeMgr::releaseSeBuffer(JAISe*, unsigned long)
 {
 	/*
 	.loc_0x0:

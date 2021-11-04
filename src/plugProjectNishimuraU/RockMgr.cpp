@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802628F0
  * Size:	00009C
  */
-void Game::Rock::Generator::Generator()
+Rock::Generator::Generator()
 {
 	/*
 	.loc_0x0:
@@ -56,7 +58,7 @@ void Game::Rock::Generator::Generator()
  * Address:	8026298C
  * Size:	00000C
  */
-void Game::Rock::Generator::getLatestVersion()
+void Rock::Generator::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Rock::Generator::getLatestVersion()
  * Address:	80262998
  * Size:	000074
  */
-void Game::Rock::Generator::doRead(Stream&)
+void Rock::Generator::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -116,7 +118,7 @@ void Game::Rock::Generator::doRead(Stream&)
  * Address:	80262A0C
  * Size:	0000A4
  */
-void Game::Rock::Generator::doWrite(Stream&)
+void Rock::Generator::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -169,7 +171,7 @@ void Game::Rock::Generator::doWrite(Stream&)
  * Address:	80262AB0
  * Size:	000058
  */
-void Game::Rock::Generator::doReadLatestVersion(Stream&)
+void Rock::Generator::doReadLatestVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -203,14 +205,14 @@ void Game::Rock::Generator::doReadLatestVersion(Stream&)
  * Address:	80262B08
  * Size:	000004
  */
-void Game::Rock::Generator::doReadOldVersion(Stream&) { }
+void Rock::Generator::doReadOldVersion(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80262B0C
  * Size:	000050
  */
-void Game::Rock::Mgr::Mgr(int, unsigned char)
+Rock::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +244,7 @@ void Game::Rock::Mgr::Mgr(int, unsigned char)
  * Address:	80262B5C
  * Size:	000048
  */
-void Game::Rock::Mgr::doAlloc()
+void Rock::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -276,7 +278,7 @@ void Game::Rock::Mgr::doAlloc()
  * Address:	80262BA4
  * Size:	000098
  */
-void Game::Rock::Parms::Parms()
+Rock::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -326,7 +328,7 @@ void Game::Rock::Parms::Parms()
  * Address:	80262C3C
  * Size:	000160
  */
-void Game::Rock::Mgr::createObj(int)
+void Rock::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -436,7 +438,7 @@ void Game::Rock::Mgr::createObj(int)
  * Address:	80262D9C
  * Size:	0000BC
  */
-void Game::Rock::Obj::~Obj()
+Rock::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -499,7 +501,7 @@ void Game::Rock::Obj::~Obj()
  * Address:	80262E58
  * Size:	000010
  */
-void Game::Rock::Mgr::getEnemy(int)
+void Rock::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +517,7 @@ void Game::Rock::Mgr::getEnemy(int)
  * Address:	80262E68
  * Size:	000050
  */
-void Game::Rock::Parms::read(Stream&)
+void Rock::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -547,7 +549,7 @@ void Game::Rock::Parms::read(Stream&)
  * Address:	80262EB8
  * Size:	0000B0
  */
-void Game::Rock::Mgr::~Mgr()
+Rock::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -607,14 +609,14 @@ void Game::Rock::Mgr::~Mgr()
  * Address:	80262F68
  * Size:	000008
  */
-u32 Game::Rock::Mgr::getEnemyTypeID() { return 0x13; }
+u32 Rock::Mgr::getEnemyTypeID() { return 0x13; }
 
 /*
  * --INFO--
  * Address:	80262F70
  * Size:	000070
  */
-void Game::Rock::Generator::~Generator()
+Rock::Generator::~Generator()
 {
 	/*
 	.loc_0x0:
@@ -658,7 +660,7 @@ void Game::Rock::Generator::~Generator()
  * Address:	80262FE0
  * Size:	000008
  */
-void Game::Rock::Generator::getInitialParam()
+void Rock::Generator::getInitialParam()
 {
 	/*
 	.loc_0x0:
@@ -672,7 +674,7 @@ void Game::Rock::Generator::getInitialParam()
  * Address:	80262FE8
  * Size:	000008
  */
-void Game::Rock::Mgr::@4 @__dt()
+Rock::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -680,3 +682,4 @@ void Game::Rock::Mgr::@4 @__dt()
 	  b         -0x134
 	*/
 }
+} // namespace Game

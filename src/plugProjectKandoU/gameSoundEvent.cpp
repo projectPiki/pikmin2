@@ -1,12 +1,16 @@
+#include "types.h"
+
 #include "Game/GameSystem.h"
 #include "Game/TSoundEvent.h"
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8022EBCC
  * Size:	00001C
  */
-Game::TSoundEvent::TSoundEvent()
+TSoundEvent::TSoundEvent()
     : m_state(0)
 {
 	m_state = 0;
@@ -19,7 +23,7 @@ Game::TSoundEvent::TSoundEvent()
  * Address:	8022EBE8
  * Size:	000048
  */
-u32 Game::TSoundEvent::event()
+u32 TSoundEvent::event()
 {
 	_08 = Game::gameSystem->_50;
 	if (!(m_state & 1)) {
@@ -40,14 +44,14 @@ u32 Game::TSoundEvent::event()
  * Address:	8022EC30
  * Size:	000010
  */
-void Game::TSoundEvent::finish(void) { m_state |= Finish; }
+void TSoundEvent::finish(void) { m_state |= Finish; }
 
 /*
  * --INFO--
  * Address:	8022EC40
  * Size:	000074
  */
-u32 Game::TSoundEvent::update()
+u32 TSoundEvent::update()
 {
 	if (!(m_state & Finish) && Game::gameSystem->calcFrameDist(_08) > _04
 	    && m_state & 1 && !(m_state & 2)) {
@@ -57,3 +61,4 @@ u32 Game::TSoundEvent::update()
 
 	return 0;
 }
+} // namespace Game

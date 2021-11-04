@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void Game::PartsView::getHalfX(void)
+void PartsView::getHalfX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::PartsView::getHalfX(void)
  * Address:	........
  * Size:	0002B0
  */
-void Game::PartsView::getOffset(void)
+void PartsView::getOffset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::PartsView::getOffset(void)
  * Address:	8023233C
  * Size:	000140
  */
-void Game::PartsView::__ct(void)
+PartsView::PartsView(void)
 {
 	/*
 	.loc_0x0:
@@ -129,7 +121,7 @@ void Game::PartsView::__ct(void)
  * Address:	........
  * Size:	00015C
  */
-void Game::PartsView::__ct((Game::MapUnit*, unsigned char*))
+PartsView::PartsView(Game::MapUnit*, unsigned char*)
 {
 	// UNUSED FUNCTION
 }
@@ -139,14 +131,14 @@ void Game::PartsView::__ct((Game::MapUnit*, unsigned char*))
  * Address:	8023247C
  * Size:	000004
  */
-void Game::PartsView::doDirectDraw((Graphics&)) { }
+void PartsView::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80232480
  * Size:	000074
  */
-void Game::PartsView::doAnimation(void)
+void PartsView::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -189,14 +181,14 @@ void Game::PartsView::doAnimation(void)
  * Address:	802324F4
  * Size:	000004
  */
-void Game::PartsView::doEntry(void) { }
+void PartsView::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	802324F8
  * Size:	00002C
  */
-void Game::PartsView::doSetView((int))
+void PartsView::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -221,7 +213,7 @@ void Game::PartsView::doSetView((int))
  * Address:	80232524
  * Size:	00002C
  */
-void Game::PartsView::doViewCalc(void)
+void PartsView::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +238,7 @@ void Game::PartsView::doViewCalc(void)
  * Address:	80232550
  * Size:	000158
  */
-void Game::PartsView::read((Stream&))
+void PartsView::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +350,8 @@ void Game::PartsView::read((Stream&))
  * Address:	........
  * Size:	000178
  */
-void Game::PartsView::write((Stream&))
+void PartsView::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Game

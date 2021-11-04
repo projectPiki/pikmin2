@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034F5E0
  * Size:	000070
  */
-void Game::InteractSuckFinish::actEnemy((Game::EnemyBase*))
+void InteractSuckFinish::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -63,7 +55,7 @@ void Game::InteractSuckFinish::actEnemy((Game::EnemyBase*))
  * Address:	8034F650
  * Size:	000068
  */
-void Game::PanModokiBase::Obj::setParameters(void)
+void PanModokiBase::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -98,12 +90,14 @@ void Game::PanModokiBase::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8034F6B8
  * Size:	000120
  */
-void birth__Q34Game13PanModokiBase3ObjFR10Vector3<float> f(void)
+void birth__Q34Game13PanModokiBase3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -186,12 +180,14 @@ void birth__Q34Game13PanModokiBase3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8034F7D8
  * Size:	0001DC
  */
-void Game::PanModokiBase::Obj::onInit((Game::CreatureInitArg*))
+void PanModokiBase::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -328,7 +324,7 @@ void Game::PanModokiBase::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8034F9B4
  * Size:	0002A0
  */
-void Game::PanModokiBase::Obj::__ct(void)
+PanModokiBase::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -518,7 +514,7 @@ void Game::PanModokiBase::Obj::__ct(void)
  * Address:	8034FC54
  * Size:	000034
  */
-void Game::PanModokiBase::Obj::doUpdate(void)
+void PanModokiBase::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -543,7 +539,7 @@ void Game::PanModokiBase::Obj::doUpdate(void)
  * Address:	8034FC88
  * Size:	0000B4
  */
-void Game::PanModokiBase::Obj::doAnimation(void)
+void PanModokiBase::Obj::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -606,7 +602,7 @@ void Game::PanModokiBase::Obj::doAnimation(void)
  * Address:	8034FD3C
  * Size:	000318
  */
-void Game::PanModokiBase::Obj::doAnimationStick(void)
+void PanModokiBase::Obj::doAnimationStick(void)
 {
 	/*
 	.loc_0x0:
@@ -844,7 +840,7 @@ void Game::PanModokiBase::Obj::doAnimationStick(void)
  * Address:	80350054
  * Size:	00027C
  */
-void Game::PanModokiBase::Obj::updateCaptureMatrix(void)
+void PanModokiBase::Obj::updateCaptureMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -1023,14 +1019,14 @@ void Game::PanModokiBase::Obj::updateCaptureMatrix(void)
  * Address:	803502D0
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::doDirectDraw((Graphics&)) { }
+void PanModokiBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	803502D4
  * Size:	000020
  */
-void Game::PanModokiBase::Obj::doDebugDraw((Graphics&))
+void PanModokiBase::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1050,8 +1046,7 @@ void Game::PanModokiBase::Obj::doDebugDraw((Graphics&))
  * Address:	803502F4
  * Size:	000030
  */
-void Game::PanModokiBase::Obj::damageCallBack((Game::Creature*, float,
-                                               CollPart*))
+void PanModokiBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1077,8 +1072,7 @@ void Game::PanModokiBase::Obj::damageCallBack((Game::Creature*, float,
  * Address:	80350324
  * Size:	0001BC
  */
-void Game::PanModokiBase::Obj::pressCallBack((Game::Creature*, float,
-                                              CollPart*))
+void PanModokiBase::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1225,8 +1219,7 @@ void Game::PanModokiBase::Obj::pressCallBack((Game::Creature*, float,
  * Address:	803504E0
  * Size:	00002C
  */
-void Game::PanModokiBase::Obj::hipdropCallBack((Game::Creature*, float,
-                                                CollPart*))
+void PanModokiBase::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1249,7 +1242,7 @@ void Game::PanModokiBase::Obj::hipdropCallBack((Game::Creature*, float,
  * Address:	8035050C
  * Size:	0000AC
  */
-void Game::PanModokiBase::Obj::collisionCallback((Game::CollEvent&))
+void PanModokiBase::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1308,7 +1301,7 @@ void Game::PanModokiBase::Obj::collisionCallback((Game::CollEvent&))
  * Address:	803505B8
  * Size:	000044
  */
-void Game::PanModokiBase::Obj::outWaterCallback(void)
+void PanModokiBase::Obj::outWaterCallback(void)
 {
 	/*
 	.loc_0x0:
@@ -1339,7 +1332,7 @@ void Game::PanModokiBase::Obj::outWaterCallback(void)
  * Address:	803505FC
  * Size:	000034
  */
-void Game::PanModokiBase::Obj::inWaterCallback((Game::WaterBox*))
+void PanModokiBase::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1357,7 @@ void Game::PanModokiBase::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	80350630
  * Size:	000054
  */
-void Game::PanModokiBase::Obj::bounceCallback((Sys::Triangle*))
+void PanModokiBase::Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -1399,7 +1392,7 @@ void Game::PanModokiBase::Obj::bounceCallback((Sys::Triangle*))
  * Address:	80350684
  * Size:	000050
  */
-void Game::PanModokiBase::Obj::damageRumble(void)
+void PanModokiBase::Obj::damageRumble(void)
 {
 	/*
 	.loc_0x0:
@@ -1431,7 +1424,7 @@ void Game::PanModokiBase::Obj::damageRumble(void)
  * Address:	803506D4
  * Size:	00021C
  */
-void Game::PanModokiBase::Obj::doSimulation((float))
+void PanModokiBase::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1598,7 +1591,7 @@ void Game::PanModokiBase::Obj::doSimulation((float))
  * Address:	803508F0
  * Size:	000088
  */
-void Game::PanModokiBase::Obj::getShadowParam((Game::ShadowParam&))
+void PanModokiBase::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -1644,7 +1637,7 @@ void Game::PanModokiBase::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80350978
  * Size:	000058
  */
-void Game::PanModokiBase::Obj::needShadow(void)
+void PanModokiBase::Obj::needShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -1682,7 +1675,7 @@ void Game::PanModokiBase::Obj::needShadow(void)
  * Address:	803509D0
  * Size:	000028
  */
-void Game::PanModokiBase::Obj::startCarcassMotion(void)
+void PanModokiBase::Obj::startCarcassMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -1704,7 +1697,7 @@ void Game::PanModokiBase::Obj::startCarcassMotion(void)
  * Address:	803509F8
  * Size:	00008C
  */
-void Game::PanModokiBase::Obj::initMouthSlots(void)
+void PanModokiBase::Obj::initMouthSlots(void)
 {
 	/*
 	.loc_0x0:
@@ -1755,7 +1748,7 @@ void Game::PanModokiBase::Obj::initMouthSlots(void)
  * Address:	80350A84
  * Size:	000044
  */
-void Game::PanModokiBase::Obj::onKill((Game::CreatureKillArg*))
+void PanModokiBase::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1784,7 +1777,7 @@ void Game::PanModokiBase::Obj::onKill((Game::CreatureKillArg*))
  * Address:	80350AC8
  * Size:	000050
  */
-void Game::PanModokiBase::Obj::doStartMovie(void)
+void PanModokiBase::Obj::doStartMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -1816,7 +1809,7 @@ void Game::PanModokiBase::Obj::doStartMovie(void)
  * Address:	80350B18
  * Size:	000050
  */
-void Game::PanModokiBase::Obj::doEndMovie(void)
+void PanModokiBase::Obj::doEndMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -1848,7 +1841,7 @@ void Game::PanModokiBase::Obj::doEndMovie(void)
  * Address:	80350B68
  * Size:	000054
  */
-void Game::PanModokiBase::Obj::doStartStoneState(void)
+void PanModokiBase::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -1881,7 +1874,7 @@ void Game::PanModokiBase::Obj::doStartStoneState(void)
  * Address:	80350BBC
  * Size:	0000AC
  */
-void Game::PanModokiBase::Obj::doFinishStoneState(void)
+void PanModokiBase::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -1940,7 +1933,7 @@ void Game::PanModokiBase::Obj::doFinishStoneState(void)
  * Address:	80350C68
  * Size:	000064
  */
-void Game::PanModokiBase::Obj::initWalkSmokeEffect(void)
+void PanModokiBase::Obj::initWalkSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -1977,7 +1970,7 @@ void Game::PanModokiBase::Obj::initWalkSmokeEffect(void)
  * Address:	80350CCC
  * Size:	000008
  */
-void Game::PanModokiBase::Obj::getWalkSmokeEffectMgr(void)
+void PanModokiBase::Obj::getWalkSmokeEffectMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1991,7 +1984,7 @@ void Game::PanModokiBase::Obj::getWalkSmokeEffectMgr(void)
  * Address:	80350CD4
  * Size:	0004B4
  */
-void Game::PanModokiBase::Obj::findNextRoutePoint((bool))
+void PanModokiBase::Obj::findNextRoutePoint(bool)
 {
 	/*
 	.loc_0x0:
@@ -2342,7 +2335,7 @@ void Game::PanModokiBase::Obj::findNextRoutePoint((bool))
  * Address:	80351188
  * Size:	000274
  */
-void Game::PanModokiBase::Obj::isCarryToGoal(void)
+void PanModokiBase::Obj::isCarryToGoal(void)
 {
 	/*
 	.loc_0x0:
@@ -2539,7 +2532,7 @@ void Game::PanModokiBase::Obj::isCarryToGoal(void)
  * Address:	803513FC
  * Size:	0002CC
  */
-void Game::PanModokiBase::Obj::walkFunc(void)
+void PanModokiBase::Obj::walkFunc(void)
 {
 	/*
 	.loc_0x0:
@@ -2760,7 +2753,7 @@ void Game::PanModokiBase::Obj::walkFunc(void)
  * Address:	803516C8
  * Size:	000184
  */
-void Game::PanModokiBase::Obj::isReachToGoal((float))
+void PanModokiBase::Obj::isReachToGoal(float)
 {
 	/*
 	.loc_0x0:
@@ -2883,7 +2876,7 @@ void Game::PanModokiBase::Obj::isReachToGoal((float))
  * Address:	8035184C
  * Size:	000074
  */
-void Game::PanModokiBase::Obj::canBack(void)
+void PanModokiBase::Obj::canBack(void)
 {
 	/*
 	.loc_0x0:
@@ -2928,7 +2921,7 @@ void Game::PanModokiBase::Obj::canBack(void)
  * Address:	803518C0
  * Size:	000344
  */
-void Game::PanModokiBase::Obj::findNearestPellet(void)
+void PanModokiBase::Obj::findNearestPellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3163,7 +3156,7 @@ void Game::PanModokiBase::Obj::findNearestPellet(void)
  * Address:	80351C04
  * Size:	000068
  */
-void Game::PanModokiBase::Obj::getCarryTarget(void)
+void PanModokiBase::Obj::getCarryTarget(void)
 {
 	/*
 	.loc_0x0:
@@ -3207,7 +3200,7 @@ void Game::PanModokiBase::Obj::getCarryTarget(void)
  * Address:	80351C6C
  * Size:	0001E4
  */
-void Game::PanModokiBase::Obj::releaseCarryTarget(void)
+void PanModokiBase::Obj::releaseCarryTarget(void)
 {
 	/*
 	.loc_0x0:
@@ -3358,7 +3351,7 @@ void Game::PanModokiBase::Obj::releaseCarryTarget(void)
  * Address:	80351E50
  * Size:	000284
  */
-void Game::PanModokiBase::Obj::checkNearHomeGraphIndex(void)
+void PanModokiBase::Obj::checkNearHomeGraphIndex(void)
 {
 	/*
 	.loc_0x0:
@@ -3543,7 +3536,7 @@ void Game::PanModokiBase::Obj::checkNearHomeGraphIndex(void)
  * Address:	........
  * Size:	0000D0
  */
-void Game::PanModokiBase::Obj::clearCarryVelocity(void)
+void PanModokiBase::Obj::clearCarryVelocity(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3553,7 +3546,7 @@ void Game::PanModokiBase::Obj::clearCarryVelocity(void)
  * Address:	803520D4
  * Size:	000518
  */
-void Game::PanModokiBase::Obj::carryTarget((float))
+void PanModokiBase::Obj::carryTarget(float)
 {
 	/*
 	.loc_0x0:
@@ -3931,7 +3924,7 @@ void Game::PanModokiBase::Obj::carryTarget((float))
  * Address:	803525EC
  * Size:	000050
  */
-void Game::PanModokiBase::Obj::changeCarryDir((bool))
+void PanModokiBase::Obj::changeCarryDir(bool)
 {
 	/*
 	.loc_0x0:
@@ -3967,7 +3960,7 @@ void Game::PanModokiBase::Obj::changeCarryDir((bool))
  * Address:	8035263C
  * Size:	0001B4
  */
-void Game::PanModokiBase::Obj::setCarryDir((bool))
+void PanModokiBase::Obj::setCarryDir(bool)
 {
 	/*
 	.loc_0x0:
@@ -4102,7 +4095,7 @@ void Game::PanModokiBase::Obj::setCarryDir((bool))
  * Address:	803527F0
  * Size:	000384
  */
-void Game::PanModokiBase::Obj::endCarry(void)
+void PanModokiBase::Obj::endCarry(void)
 {
 	/*
 	.loc_0x0:
@@ -4371,7 +4364,7 @@ void Game::PanModokiBase::Obj::endCarry(void)
  * Address:	80352B74
  * Size:	0000A0
  */
-void Game::PanModokiBase::Obj::checkSucked(void)
+void PanModokiBase::Obj::checkSucked(void)
 {
 	/*
 	.loc_0x0:
@@ -4431,7 +4424,7 @@ void Game::PanModokiBase::Obj::checkSucked(void)
  * Address:	80352C14
  * Size:	0000BC
  */
-void Game::PanModokiBase::Obj::suckFinish(void)
+void PanModokiBase::Obj::suckFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -4498,7 +4491,7 @@ void Game::PanModokiBase::Obj::suckFinish(void)
  * Address:	80352CD0
  * Size:	000118
  */
-void Game::PanModokiBase::Obj::isEndPathFinder(void)
+void PanModokiBase::Obj::isEndPathFinder(void)
 {
 	/*
 	.loc_0x0:
@@ -4602,7 +4595,7 @@ void Game::PanModokiBase::Obj::isEndPathFinder(void)
  * Address:	80352DE8
  * Size:	0002BC
  */
-void Game::PanModokiBase::Obj::setPathFinder((bool))
+void PanModokiBase::Obj::setPathFinder(bool)
 {
 	/*
 	.loc_0x0:
@@ -4807,7 +4800,7 @@ void Game::PanModokiBase::Obj::setPathFinder((bool))
  * Address:	803530A4
  * Size:	000044
  */
-void Game::PanModokiBase::Obj::releasePathFinder(void)
+void PanModokiBase::Obj::releasePathFinder(void)
 {
 	/*
 	.loc_0x0:
@@ -4838,7 +4831,7 @@ void Game::PanModokiBase::Obj::releasePathFinder(void)
  * Address:	803530E8
  * Size:	000020
  */
-void Game::PanModokiBase::Obj::killNest(void)
+void PanModokiBase::Obj::killNest(void)
 {
 	/*
 	.loc_0x0:
@@ -4860,7 +4853,7 @@ void Game::PanModokiBase::Obj::killNest(void)
  * Address:	80353108
  * Size:	000324
  */
-void Game::PanModokiBase::Obj::isTargetable((Game::Pellet*))
+void PanModokiBase::Obj::isTargetable(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -5098,12 +5091,14 @@ void Game::PanModokiBase::Obj::isTargetable((Game::Pellet*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8035342C
  * Size:	00017C
  */
-void calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<float>(void)
+void calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -5219,12 +5214,14 @@ void calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803535A8
  * Size:	000028
  */
-void Game::PanModokiBase::Obj::boundEffect(void)
+void PanModokiBase::Obj::boundEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5246,7 +5243,7 @@ void Game::PanModokiBase::Obj::boundEffect(void)
  * Address:	803535D0
  * Size:	0000E8
  */
-void Game::PanModokiBase::Obj::createAppearEffect(void)
+void PanModokiBase::Obj::createAppearEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5320,7 +5317,7 @@ void Game::PanModokiBase::Obj::createAppearEffect(void)
  * Address:	803536B8
  * Size:	0000E0
  */
-void Game::PanModokiBase::Obj::createHideEffect(void)
+void PanModokiBase::Obj::createHideEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5392,7 +5389,7 @@ void Game::PanModokiBase::Obj::createHideEffect(void)
  * Address:	80353798
  * Size:	000030
  */
-void Game::PanModokiBase::Obj::fadeHideEffect(void)
+void PanModokiBase::Obj::fadeHideEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5416,7 +5413,7 @@ void Game::PanModokiBase::Obj::fadeHideEffect(void)
  * Address:	803537C8
  * Size:	000084
  */
-void Game::PanModokiBase::Obj::createPulledSmokeEffect(void)
+void PanModokiBase::Obj::createPulledSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5461,7 +5458,7 @@ void Game::PanModokiBase::Obj::createPulledSmokeEffect(void)
  * Address:	8035384C
  * Size:	000030
  */
-void Game::PanModokiBase::Obj::fadePulledSmokeEffect(void)
+void PanModokiBase::Obj::fadePulledSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5485,7 +5482,7 @@ void Game::PanModokiBase::Obj::fadePulledSmokeEffect(void)
  * Address:	8035387C
  * Size:	0002CC
  */
-void Game::PanModokiBase::Obj::throwUpEatItem(void)
+void PanModokiBase::Obj::throwUpEatItem(void)
 {
 	/*
 	.loc_0x0:
@@ -5692,7 +5689,7 @@ void Game::PanModokiBase::Obj::throwUpEatItem(void)
  * Address:	80353B48
  * Size:	0000B8
  */
-void Game::OoPanModoki::Obj::__ct(void)
+OoPanModoki::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5752,7 +5749,7 @@ void Game::OoPanModoki::Obj::__ct(void)
  * Address:	80353C00
  * Size:	000034
  */
-void Game::OoPanModoki::Obj::appearRumble(void)
+void OoPanModoki::Obj::appearRumble(void)
 {
 	/*
 	.loc_0x0:
@@ -5777,7 +5774,7 @@ void Game::OoPanModoki::Obj::appearRumble(void)
  * Address:	80353C34
  * Size:	000034
  */
-void Game::OoPanModoki::Obj::hideRumble(void)
+void OoPanModoki::Obj::hideRumble(void)
 {
 	/*
 	.loc_0x0:
@@ -5802,7 +5799,7 @@ void Game::OoPanModoki::Obj::hideRumble(void)
  * Address:	80353C68
  * Size:	000094
  */
-void Game::OoPanModoki::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void OoPanModoki::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -5855,7 +5852,7 @@ void Game::OoPanModoki::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	80353CFC
  * Size:	000018
  */
-void Game::OoPanModoki::Obj::canTarget((int, int))
+void OoPanModoki::Obj::canTarget(int, int)
 {
 	/*
 	.loc_0x0:
@@ -5873,7 +5870,7 @@ void Game::OoPanModoki::Obj::canTarget((int, int))
  * Address:	80353D14
  * Size:	000008
  */
-void Game::OoPanModoki::Obj::getDownSmokeScale(void)
+void OoPanModoki::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -5887,7 +5884,9 @@ void Game::OoPanModoki::Obj::getDownSmokeScale(void)
  * Address:	80353D1C
  * Size:	000008
  */
-u32 Game::OoPanModoki::Obj::getEnemyTypeID(void) { return 0x28; }
+u32 OoPanModoki::Obj::getEnemyTypeID(void) { return 0x28; }
+
+} // namespace Game
 
 /*
  * --INFO--

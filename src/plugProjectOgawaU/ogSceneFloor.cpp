@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031BE60
  * Size:	00003C
  */
-void og::newScreen::Floor::__ct(void)
+newScreen::Floor::Floor(void)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void og::newScreen::Floor::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::Floor::__dt(void)
+newScreen::Floor::~Floor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +44,7 @@ void og::newScreen::Floor::__dt(void)
  * Address:	8031BE9C
  * Size:	00013C
  */
-void og::newScreen::Floor::doUserCallBackFunc((Resource::MgrCommand*))
+void newScreen::Floor::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -155,14 +147,14 @@ void og::newScreen::Floor::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	8031BFD8
  * Size:	000004
  */
-void og::newScreen::Floor::doCreateObj((JKRArchive*)) { }
+void newScreen::Floor::doCreateObj(JKRArchive*) { }
 
 /*
  * --INFO--
  * Address:	8031BFDC
  * Size:	000008
  */
-void og::newScreen::Floor::getResName( const
+void newScreen::Floor::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -176,17 +168,14 @@ void og::newScreen::Floor::getResName( const
  * Address:	8031BFE4
  * Size:	000008
  */
-u32  og::newScreen::Floor::getSceneType(void)
-{
-	return 0x2713;
-}
+u32 newScreen::Floor::getSceneType(void) { return 0x2713; }
 
 /*
  * --INFO--
  * Address:	8031BFEC
  * Size:	00000C
  */
-void og::newScreen::Floor::getOwnerID(void)
+void newScreen::Floor::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -201,7 +190,7 @@ void og::newScreen::Floor::getOwnerID(void)
  * Address:	8031BFF8
  * Size:	000010
  */
-void og::newScreen::Floor::getMemberID(void)
+void newScreen::Floor::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -211,3 +200,4 @@ void og::newScreen::Floor::getMemberID(void)
 	  blr
 	*/
 }
+} // namespace og

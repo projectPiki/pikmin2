@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/AIConstants.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JKR/JKRExpandSwitch.h"

@@ -1,12 +1,13 @@
+#include "types.h"
 
+namespace P2JME {
 
 /*
  * --INFO--
  * Address:	8043D32C
  * Size:	000048
  */
-void P2JME::convertU64ToMessageID(unsigned long long, unsigned long*,
-                                  unsigned long*)
+void convertU64ToMessageID(unsigned long long, unsigned long*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -38,7 +39,7 @@ void P2JME::convertU64ToMessageID(unsigned long long, unsigned long*,
  * Address:	8043D374
  * Size:	000128
  */
-void P2JME::convertCharToMessageID(char*, unsigned long*, unsigned long*)
+void convertCharToMessageID(char*, unsigned long*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -128,3 +129,4 @@ void P2JME::convertCharToMessageID(char*, unsigned long*, unsigned long*)
 	  blr
 	*/
 }
+} // namespace P2JME

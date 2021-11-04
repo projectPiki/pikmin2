@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	80342EB4
  * Size:	000214
  */
-void PSSystem::DirectorBase::DirectorBase(int, const char*)
+DirectorBase::DirectorBase(int, const char*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +168,7 @@ void PSSystem::DirectorBase::DirectorBase(int, const char*)
  * Address:	803430C8
  * Size:	000010
  */
-void PSSystem::DirectorBase::isUnderDirection()
+void DirectorBase::isUnderDirection()
 {
 	/*
 	.loc_0x0:
@@ -182,7 +184,7 @@ void PSSystem::DirectorBase::isUnderDirection()
  * Address:	803430D8
  * Size:	0000A4
  */
-void PSSystem::DirectorBase::setTrack(unsigned char, PSSystem::SeqTrackBase*)
+void DirectorBase::setTrack(unsigned char, PSSystem::SeqTrackBase*)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +241,7 @@ void PSSystem::DirectorBase::setTrack(unsigned char, PSSystem::SeqTrackBase*)
  * Address:	8034317C
  * Size:	00014C
  */
-void PSSystem::DirectorBase::exec()
+void DirectorBase::exec()
 {
 	/*
 	.loc_0x0:
@@ -350,7 +352,7 @@ void PSSystem::DirectorBase::exec()
  * Address:	803432C8
  * Size:	000074
  */
-void PSSystem::DirectorBase::directOn()
+void DirectorBase::directOn()
 {
 	/*
 	.loc_0x0:
@@ -397,7 +399,7 @@ void PSSystem::DirectorBase::directOn()
  * Address:	8034333C
  * Size:	0000B0
  */
-void PSSystem::DirectorBase::directOnInner()
+void DirectorBase::directOnInner()
 {
 	/*
 	.loc_0x0:
@@ -461,7 +463,7 @@ void PSSystem::DirectorBase::directOnInner()
  * Address:	803433EC
  * Size:	000080
  */
-void PSSystem::DirectorBase::directOff()
+void DirectorBase::directOff()
 {
 	/*
 	.loc_0x0:
@@ -513,7 +515,7 @@ void PSSystem::DirectorBase::directOff()
  * Address:	8034346C
  * Size:	0000B0
  */
-void PSSystem::DirectorBase::directOffInner()
+void DirectorBase::directOffInner()
 {
 	/*
 	.loc_0x0:
@@ -577,14 +579,14 @@ void PSSystem::DirectorBase::directOffInner()
  * Address:	8034351C
  * Size:	000004
  */
-void PSSystem::DirectorBase::doUpdateRequest() { }
+void DirectorBase::doUpdateRequest() { }
 
 /*
  * --INFO--
  * Address:	80343520
  * Size:	000040
  */
-void PSSystem::DirectorBase::powerOn()
+void DirectorBase::powerOn()
 {
 	/*
 	.loc_0x0:
@@ -612,7 +614,7 @@ void PSSystem::DirectorBase::powerOn()
  * Address:	80343560
  * Size:	000150
  */
-void PSSystem::OneShotDirector::exec()
+void OneShotDirector::exec()
 {
 	/*
 	.loc_0x0:
@@ -724,7 +726,7 @@ void PSSystem::OneShotDirector::exec()
  * Address:	803436B0
  * Size:	000198
  */
-void PSSystem::SwitcherDirector::doUpdateRequest()
+void SwitcherDirector::doUpdateRequest()
 {
 	/*
 	.loc_0x0:
@@ -862,7 +864,7 @@ void PSSystem::SwitcherDirector::doUpdateRequest()
  * Address:	80343848
  * Size:	000088
  */
-void PSSystem::DirectorMgrBase::DirectorMgrBase(unsigned char)
+DirectorMgrBase::DirectorMgrBase(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -910,7 +912,7 @@ void PSSystem::DirectorMgrBase::DirectorMgrBase(unsigned char)
  * Address:	803438D0
  * Size:	00012C
  */
-void PSSystem::DirectorMgrBase::initAndAdaptToBgm(PSSystem::DirectedBgm&)
+void DirectorMgrBase::initAndAdaptToBgm(PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1011,7 +1013,7 @@ void PSSystem::DirectorMgrBase::initAndAdaptToBgm(PSSystem::DirectedBgm&)
  * Address:	803439FC
  * Size:	000164
  */
-void PSSystem::DirectorMgrBase::playInit(JASTrack*)
+void DirectorMgrBase::playInit(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -1132,7 +1134,7 @@ void PSSystem::DirectorMgrBase::playInit(JASTrack*)
  * Address:	80343B60
  * Size:	000068
  */
-void PSSystem::DirectorMgrBase::exec()
+void DirectorMgrBase::exec()
 {
 	/*
 	.loc_0x0:
@@ -1174,7 +1176,7 @@ void PSSystem::DirectorMgrBase::exec()
  * Address:	80343BC8
  * Size:	0001BC
  */
-void PSSystem::DirectorMgrBase::off(PSSystem::DirectedBgm*)
+void DirectorMgrBase::off(PSSystem::DirectedBgm*)
 {
 	/*
 	.loc_0x0:
@@ -1327,8 +1329,8 @@ void PSSystem::DirectorMgrBase::off(PSSystem::DirectedBgm*)
  * Address:	80343D84
  * Size:	000024
  */
-void PSSystem::DirectorCopyActor::DirectorCopyActor(PSSystem::DirectorBase*,
-                                                    PSSystem::DirectorBase*)
+DirectorCopyActor::DirectorCopyActor(PSSystem::DirectorBase*,
+                                     PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -1349,7 +1351,7 @@ void PSSystem::DirectorCopyActor::DirectorCopyActor(PSSystem::DirectorBase*,
  * Address:	80343DA8
  * Size:	000120
  */
-void PSSystem::DirectorCopyActor::exec(PSSystem::DirectorBase*)
+void DirectorCopyActor::exec(PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -1443,56 +1445,56 @@ void PSSystem::DirectorCopyActor::exec(PSSystem::DirectorBase*)
  * Address:	80343EC8
  * Size:	000004
  */
-void PSSystem::DirectorBase::underDirection() { }
+void DirectorBase::underDirection() { }
 
 /*
  * --INFO--
  * Address:	80343ECC
  * Size:	000004
  */
-void PSSystem::DirectorBase::execInner() { }
+void DirectorBase::execInner() { }
 
 /*
  * --INFO--
  * Address:	80343ED0
  * Size:	000004
  */
-void PSSystem::DirectorBase::onPlayInit(JASTrack*) { }
+void DirectorBase::onPlayInit(JASTrack*) { }
 
 /*
  * --INFO--
  * Address:	80343ED4
  * Size:	000004
  */
-void PSSystem::DirectorBase::onDirectOn() { }
+void DirectorBase::onDirectOn() { }
 
 /*
  * --INFO--
  * Address:	80343ED8
  * Size:	000004
  */
-void PSSystem::DirectorBase::onDirectOff() { }
+void DirectorBase::onDirectOff() { }
 
 /*
  * --INFO--
  * Address:	80343EDC
  * Size:	000004
  */
-void PSSystem::DirectorCopyActor::onUpdateFromSlaveD() { }
+void DirectorCopyActor::onUpdateFromSlaveD() { }
 
 /*
  * --INFO--
  * Address:	80343EE0
  * Size:	000004
  */
-void PSSystem::DirectorCopyActor::onUpdateFromMasterD() { }
+void DirectorCopyActor::onUpdateFromMasterD() { }
 
 /*
  * --INFO--
  * Address:	80343EE4
  * Size:	000060
  */
-void PSSystem::DirectorMgrBase::~DirectorMgrBase()
+DirectorMgrBase::~DirectorMgrBase()
 {
 	/*
 	.loc_0x0:
@@ -1530,7 +1532,7 @@ void PSSystem::DirectorMgrBase::~DirectorMgrBase()
  * Address:	80343F44
  * Size:	000070
  */
-void PSSystem::SwitcherDirector::~SwitcherDirector()
+SwitcherDirector::~SwitcherDirector()
 {
 	/*
 	.loc_0x0:
@@ -1574,7 +1576,7 @@ void PSSystem::SwitcherDirector::~SwitcherDirector()
  * Address:	80343FB4
  * Size:	000070
  */
-void PSSystem::OneShotDirector::~OneShotDirector()
+OneShotDirector::~OneShotDirector()
 {
 	/*
 	.loc_0x0:
@@ -1618,14 +1620,14 @@ void PSSystem::OneShotDirector::~OneShotDirector()
  * Address:	80344024
  * Size:	000004
  */
-void PSSystem::OneShotDirector::directOffTrack(PSSystem::SeqTrackBase&) { }
+void OneShotDirector::directOffTrack(PSSystem::SeqTrackBase&) { }
 
 /*
  * --INFO--
  * Address:	80344028
  * Size:	000060
  */
-void PSSystem::DirectorBase::~DirectorBase()
+DirectorBase::~DirectorBase()
 {
 	/*
 	.loc_0x0:
@@ -1657,3 +1659,4 @@ void PSSystem::DirectorBase::~DirectorBase()
 	  blr
 	*/
 }
+} // namespace PSSystem

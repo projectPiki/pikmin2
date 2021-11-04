@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	803AE8B0
  * Size:	00003C
  */
-void efx::TCallBack_StaticClipping::executeAfter((JPABaseEmitter*))
+void TCallBack_StaticClipping::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void efx::TCallBack_StaticClipping::executeAfter((JPABaseEmitter*))
  * Address:	803AE8EC
  * Size:	000048
  */
-void efx::TOneEmitter::add((efx::Context*))
+void TOneEmitter::add(efx::Context*)
 {
 	/*
 	.loc_0x0:
@@ -72,7 +64,7 @@ void efx::TOneEmitter::add((efx::Context*))
  * Address:	........
  * Size:	000024
  */
-void efx::TOneEmitter::del((efx::Context*))
+void TOneEmitter::del(efx::Context*)
 {
 	// UNUSED FUNCTION
 }
@@ -82,7 +74,7 @@ void efx::TOneEmitter::del((efx::Context*))
  * Address:	803AE934
  * Size:	0000C0
  */
-void efx::TOneEmitter::executeAfter((JPABaseEmitter*))
+void TOneEmitter::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -154,7 +146,7 @@ void efx::TOneEmitter::executeAfter((JPABaseEmitter*))
  * Address:	803AE9F4
  * Size:	0000A8
  */
-void efx::TOneEmitter::create((efx::Arg*))
+void TOneEmitter::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -216,7 +208,7 @@ void efx::TOneEmitter::create((efx::Arg*))
  * Address:	803AEA9C
  * Size:	000058
  */
-void efx::TOneEmitter::fade(void)
+void TOneEmitter::fade(void)
 {
 	/*
 	.loc_0x0:
@@ -252,7 +244,7 @@ void efx::TOneEmitter::fade(void)
  * Address:	803AEAF4
  * Size:	000058
  */
-void efx::TOneEmitter::forceKill(void)
+void TOneEmitter::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -288,7 +280,7 @@ void efx::TOneEmitter::forceKill(void)
  * Address:	803AEB4C
  * Size:	000048
  */
-void efx::TOneEmitterChasePos::add((efx::ContextChasePos*))
+void TOneEmitterChasePos::add(efx::ContextChasePos*)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +310,7 @@ void efx::TOneEmitterChasePos::add((efx::ContextChasePos*))
  * Address:	803AEB94
  * Size:	000024
  */
-void efx::TOneEmitterChasePos::del((efx::ContextChasePos*))
+void TOneEmitterChasePos::del(efx::ContextChasePos*)
 {
 	/*
 	.loc_0x0:
@@ -339,7 +331,7 @@ void efx::TOneEmitterChasePos::del((efx::ContextChasePos*))
  * Address:	803AEBB8
  * Size:	0000A8
  */
-void efx::TOneEmitterChasePos::create((efx::Arg*))
+void TOneEmitterChasePos::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -401,7 +393,7 @@ void efx::TOneEmitterChasePos::create((efx::Arg*))
  * Address:	803AEC60
  * Size:	0000AC
  */
-void efx::TOneEmitterChasePos::executeAfter((JPABaseEmitter*))
+void TOneEmitterChasePos::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -468,7 +460,7 @@ void efx::TOneEmitterChasePos::executeAfter((JPABaseEmitter*))
  * Address:	803AED0C
  * Size:	000058
  */
-void efx::TOneEmitterChasePos::fade(void)
+void TOneEmitterChasePos::fade(void)
 {
 	/*
 	.loc_0x0:
@@ -504,7 +496,7 @@ void efx::TOneEmitterChasePos::fade(void)
  * Address:	803AED64
  * Size:	000058
  */
-void efx::TOneEmitterChasePos::forceKill(void)
+void TOneEmitterChasePos::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +532,7 @@ void efx::TOneEmitterChasePos::forceKill(void)
  * Address:	803AEDBC
  * Size:	0000BC
  */
-void efx::TOneEmitterSimple::create((efx::Arg*))
+void TOneEmitterSimple::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -607,7 +599,7 @@ void efx::TOneEmitterSimple::create((efx::Arg*))
  * Address:	803AEE78
  * Size:	00010C
  */
-void efx::TOneEmitterSimple::executeAfter((JPABaseEmitter*))
+void TOneEmitterSimple::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -700,7 +692,7 @@ void efx::TOneEmitterSimple::executeAfter((JPABaseEmitter*))
  * Address:	803AEF84
  * Size:	000090
  */
-void efx::TSimple1::create((efx::Arg*))
+void TSimple1::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -756,7 +748,7 @@ void efx::TSimple1::create((efx::Arg*))
  * Address:	803AF014
  * Size:	0000A8
  */
-void efx::TSimple2::create((efx::Arg*))
+void TSimple2::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -820,7 +812,7 @@ void efx::TSimple2::create((efx::Arg*))
  * Address:	803AF0BC
  * Size:	0000A8
  */
-void efx::TSimple3::create((efx::Arg*))
+void TSimple3::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -884,7 +876,7 @@ void efx::TSimple3::create((efx::Arg*))
  * Address:	803AF164
  * Size:	0000A8
  */
-void efx::TSimple4::create((efx::Arg*))
+void TSimple4::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -948,7 +940,7 @@ void efx::TSimple4::create((efx::Arg*))
  * Address:	803AF20C
  * Size:	0000A8
  */
-void efx::TSimple5::create((efx::Arg*))
+void TSimple5::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1012,7 +1004,7 @@ void efx::TSimple5::create((efx::Arg*))
  * Address:	803AF2B4
  * Size:	0000E4
  */
-void efx::TSimpleMtx1::create((efx::Arg*))
+void TSimpleMtx1::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1093,7 +1085,7 @@ void efx::TSimpleMtx1::create((efx::Arg*))
  * Address:	803AF398
  * Size:	00011C
  */
-void efx::TSimpleMtx2::create((efx::Arg*))
+void TSimpleMtx2::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1192,7 +1184,7 @@ void efx::TSimpleMtx2::create((efx::Arg*))
  * Address:	803AF4B4
  * Size:	00011C
  */
-void efx::TSimpleMtx3::create((efx::Arg*))
+void TSimpleMtx3::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1291,7 +1283,7 @@ void efx::TSimpleMtx3::create((efx::Arg*))
  * Address:	803AF5D0
  * Size:	00011C
  */
-void efx::TSimpleMtx4::create((efx::Arg*))
+void TSimpleMtx4::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1390,7 +1382,7 @@ void efx::TSimpleMtx4::create((efx::Arg*))
  * Address:	803AF6EC
  * Size:	0000DC
  */
-void efx::TSync::create((efx::Arg*))
+void TSync::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1471,7 +1463,7 @@ void efx::TSync::create((efx::Arg*))
  * Address:	803AF7C8
  * Size:	00006C
  */
-void efx::TSync::execute((JPABaseEmitter*))
+void TSync::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1516,7 +1508,7 @@ void efx::TSync::execute((JPABaseEmitter*))
  * Address:	803AF834
  * Size:	000090
  */
-void efx::TSync::executeAfter((JPABaseEmitter*))
+void TSync::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1568,7 +1560,7 @@ void efx::TSync::executeAfter((JPABaseEmitter*))
  * Address:	803AF8C4
  * Size:	00003C
  */
-void efx::TSync::forceKill(void)
+void TSync::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -1595,7 +1587,7 @@ void efx::TSync::forceKill(void)
  * Address:	803AF900
  * Size:	000070
  */
-void efx::TSync::fade(void)
+void TSync::fade(void)
 {
 	/*
 	.loc_0x0:
@@ -1639,7 +1631,7 @@ void efx::TSync::fade(void)
  * Address:	803AF970
  * Size:	000078
  */
-void efx::TChasePos::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChasePos::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1683,7 +1675,7 @@ void efx::TChasePos::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803AF9E8
  * Size:	0000D8
  */
-void efx::TChasePosYRot::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1753,7 +1745,7 @@ void efx::TChasePosYRot::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803AFAC0
  * Size:	00006C
  */
-void efx::TChaseMtx::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChaseMtx::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1794,7 +1786,7 @@ void efx::TChaseMtx::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803AFB2C
  * Size:	000078
  */
-void efx::TChaseMtxT::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChaseMtxT::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1838,7 +1830,7 @@ void efx::TChaseMtxT::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803AFBA4
  * Size:	0000DC
  */
-void efx::TChasePosPos::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1911,8 +1903,7 @@ void efx::TChasePosPos::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803AFC80
  * Size:	0000F8
  */
-void efx::makeMtxZAxisAlongPosPos(float (*)[4], Vector3<float>&,
-                                  Vector3<float>&)
+void makeMtxZAxisAlongPosPos(float (*)[4], Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1992,7 +1983,7 @@ void efx::makeMtxZAxisAlongPosPos(float (*)[4], Vector3<float>&,
  * Address:	803AFD78
  * Size:	00014C
  */
-void efx::TChasePosPosLocalZScale::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -2095,7 +2086,7 @@ void efx::TChasePosPosLocalZScale::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803AFEC4
  * Size:	00014C
  */
-void efx::TChasePosPosLocalYScale::doExecuteEmitterOperation((JPABaseEmitter*))
+void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -2198,7 +2189,7 @@ void efx::TChasePosPosLocalYScale::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803B0010
  * Size:	000098
  */
-void efx::TForever2::__ct((unsigned short, unsigned short))
+TForever2::TForever2(unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -2243,6 +2234,8 @@ void efx::TForever2::__ct((unsigned short, unsigned short))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -2253,12 +2246,14 @@ void __dt__Q23efx28TSyncGroup2<efx::TForever> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B00A8
  * Size:	000058
  */
-void efx::TForever::__ct(void)
+TForever::TForever(void)
 {
 	/*
 	.loc_0x0:
@@ -2292,7 +2287,7 @@ void efx::TForever::__ct(void)
  * Address:	803B0100
  * Size:	0000A8
  */
-void efx::TForever3::__ct((unsigned short, unsigned short, unsigned short))
+TForever3::TForever3(unsigned short, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -2341,6 +2336,8 @@ void efx::TForever3::__ct((unsigned short, unsigned short, unsigned short))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -2351,13 +2348,15 @@ void __dt__Q23efx28TSyncGroup3<efx::TForever> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B01A8
  * Size:	000098
  */
-void efx::TForever4::__ct((unsigned short, unsigned short, unsigned short,
-                           unsigned short))
+TForever4::TForever4(unsigned short, unsigned short, unsigned short,
+                     unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -2402,6 +2401,8 @@ void efx::TForever4::__ct((unsigned short, unsigned short, unsigned short,
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -2417,7 +2418,7 @@ void __dt__Q23efx28TSyncGroup4<efx::TForever> Fv(void)
  * Address:	803B0240
  * Size:	0000AC
  */
-void __ct__Q23efx10TChasePos2FP10Vector3<float> UsUs(void)
+void __ct__Q23efx10TChasePos2FP10Vector3f UsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -2477,12 +2478,14 @@ void __dt__Q23efx29TSyncGroup2<efx::TChasePos> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B02EC
  * Size:	000058
  */
-void efx::TChasePos::__ct(void)
+TChasePos::TChasePos(void)
 {
 	/*
 	.loc_0x0:
@@ -2511,12 +2514,14 @@ void efx::TChasePos::__ct(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B0344
  * Size:	00000C
  */
-void setPosptr__Q23efx10TChasePos2FP10Vector3<float>(void)
+void setPosptr__Q23efx10TChasePos2FP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2531,7 +2536,7 @@ void setPosptr__Q23efx10TChasePos2FP10Vector3<float>(void)
  * Address:	803B0350
  * Size:	0000A0
  */
-void __ct__Q23efx10TChasePos3FP10Vector3<float> UsUsUs(void)
+void __ct__Q23efx10TChasePos3FP10Vector3f UsUsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -2593,7 +2598,7 @@ void __dt__Q23efx29TSyncGroup3<efx::TChasePos> Fv(void)
  * Address:	........
  * Size:	000010
  */
-void setPosptr__Q23efx10TChasePos3FP10Vector3<float>(void)
+void setPosptr__Q23efx10TChasePos3FP10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2603,7 +2608,7 @@ void setPosptr__Q23efx10TChasePos3FP10Vector3<float>(void)
  * Address:	803B03F0
  * Size:	0000AC
  */
-void __ct__Q23efx10TChasePos4FP10Vector3<float> UsUsUsUs(void)
+void __ct__Q23efx10TChasePos4FP10Vector3f UsUsUsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -2668,17 +2673,19 @@ void __dt__Q23efx29TSyncGroup4<efx::TChasePos> Fv(void)
  * Address:	........
  * Size:	000014
  */
-void setPosptr__Q23efx10TChasePos4FP10Vector3<float>(void)
+void setPosptr__Q23efx10TChasePos4FP10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace efx {
 
 /*
  * --INFO--
  * Address:	803B049C
  * Size:	0000AC
  */
-void efx::TChaseMtx2::__ct((float (*)[4], unsigned short, unsigned short))
+TChaseMtx2::TChaseMtx2(float (*)[4], unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -2728,6 +2735,8 @@ void efx::TChaseMtx2::__ct((float (*)[4], unsigned short, unsigned short))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -2738,12 +2747,14 @@ void __dt__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B0548
  * Size:	000058
  */
-void efx::TChaseMtx::__ct(void)
+TChaseMtx::TChaseMtx(void)
 {
 	/*
 	.loc_0x0:
@@ -2777,7 +2788,7 @@ void efx::TChaseMtx::__ct(void)
  * Address:	803B05A0
  * Size:	00000C
  */
-void efx::TChaseMtx2::setMtxptr((float (*)[4]))
+void TChaseMtx2::setMtxptr(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2792,8 +2803,8 @@ void efx::TChaseMtx2::setMtxptr((float (*)[4]))
  * Address:	803B05AC
  * Size:	0000A0
  */
-void efx::TChaseMtx3::__ct((float (*)[4], unsigned short, unsigned short,
-                            unsigned short))
+TChaseMtx3::TChaseMtx3(float (*)[4], unsigned short, unsigned short,
+                       unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -2840,6 +2851,8 @@ void efx::TChaseMtx3::__ct((float (*)[4], unsigned short, unsigned short,
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -2850,12 +2863,14 @@ void __dt__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B064C
  * Size:	000010
  */
-void efx::TChaseMtx3::setMtxptr((float (*)[4]))
+void TChaseMtx3::setMtxptr(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2871,8 +2886,8 @@ void efx::TChaseMtx3::setMtxptr((float (*)[4]))
  * Address:	803B065C
  * Size:	0000AC
  */
-void efx::TChaseMtx4::__ct((float (*)[4], unsigned short, unsigned short,
-                            unsigned short, unsigned short))
+TChaseMtx4::TChaseMtx4(float (*)[4], unsigned short, unsigned short,
+                       unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -2922,6 +2937,8 @@ void efx::TChaseMtx4::__ct((float (*)[4], unsigned short, unsigned short,
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -2932,12 +2949,14 @@ void __dt__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B0708
  * Size:	000014
  */
-void efx::TChaseMtx4::setMtxptr((float (*)[4]))
+void TChaseMtx4::setMtxptr(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2954,11 +2973,13 @@ void efx::TChaseMtx4::setMtxptr((float (*)[4]))
  * Address:	........
  * Size:	0000B8
  */
-void efx::TChaseMtx5::__ct((float (*)[4], unsigned short, unsigned short,
-                            unsigned short, unsigned short, unsigned short))
+TChaseMtx5::TChaseMtx5(float (*)[4], unsigned short, unsigned short,
+                       unsigned short, unsigned short, unsigned short)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -2970,12 +2991,14 @@ void __dt__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void efx::TChaseMtx5::setMtxptr((float (*)[4]))
+void TChaseMtx5::setMtxptr(float (*)[4])
 {
 	// UNUSED FUNCTION
 }
@@ -2985,9 +3008,9 @@ void efx::TChaseMtx5::setMtxptr((float (*)[4]))
  * Address:	803B071C
  * Size:	0000C4
  */
-void efx::TChaseMtx6::__ct((float (*)[4], unsigned short, unsigned short,
-                            unsigned short, unsigned short, unsigned short,
-                            unsigned short))
+TChaseMtx6::TChaseMtx6(float (*)[4], unsigned short, unsigned short,
+                       unsigned short, unsigned short, unsigned short,
+                       unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3043,6 +3066,8 @@ void efx::TChaseMtx6::__ct((float (*)[4], unsigned short, unsigned short,
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -3053,12 +3078,14 @@ void __dt__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B07E0
  * Size:	00001C
  */
-void efx::TChaseMtx6::setMtxptr((float (*)[4]))
+void TChaseMtx6::setMtxptr(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -3077,7 +3104,7 @@ void efx::TChaseMtx6::setMtxptr((float (*)[4]))
  * Address:	803B07FC
  * Size:	0000AC
  */
-void efx::TChaseMtxT2::__ct((float (*)[4], unsigned short, unsigned short))
+TChaseMtxT2::TChaseMtxT2(float (*)[4], unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3127,6 +3154,8 @@ void efx::TChaseMtxT2::__ct((float (*)[4], unsigned short, unsigned short))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -3137,12 +3166,14 @@ void __dt__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B08A8
  * Size:	000058
  */
-void efx::TChaseMtxT::__ct(void)
+TChaseMtxT::TChaseMtxT(void)
 {
 	/*
 	.loc_0x0:
@@ -3176,7 +3207,7 @@ void efx::TChaseMtxT::__ct(void)
  * Address:	803B0900
  * Size:	00000C
  */
-void efx::TChaseMtxT2::setMtxptr((float (*)[4]))
+void TChaseMtxT2::setMtxptr(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -3191,11 +3222,13 @@ void efx::TChaseMtxT2::setMtxptr((float (*)[4]))
  * Address:	........
  * Size:	0000A0
  */
-void efx::TChaseMtxT3::__ct((float (*)[4], unsigned short, unsigned short,
-                             unsigned short))
+TChaseMtxT3::TChaseMtxT3(float (*)[4], unsigned short, unsigned short,
+                         unsigned short)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -3207,12 +3240,14 @@ void __dt__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void efx::TChaseMtxT3::setMtxptr((float (*)[4]))
+void TChaseMtxT3::setMtxptr(float (*)[4])
 {
 	// UNUSED FUNCTION
 }
@@ -3222,8 +3257,8 @@ void efx::TChaseMtxT3::setMtxptr((float (*)[4]))
  * Address:	803B090C
  * Size:	0000AC
  */
-void efx::TChaseMtxT4::__ct((float (*)[4], unsigned short, unsigned short,
-                             unsigned short, unsigned short))
+TChaseMtxT4::TChaseMtxT4(float (*)[4], unsigned short, unsigned short,
+                         unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3273,6 +3308,8 @@ void efx::TChaseMtxT4::__ct((float (*)[4], unsigned short, unsigned short,
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -3283,12 +3320,14 @@ void __dt__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B09B8
  * Size:	000014
  */
-void efx::TChaseMtxT4::setMtxptr((float (*)[4]))
+void TChaseMtxT4::setMtxptr(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -3300,12 +3339,14 @@ void efx::TChaseMtxT4::setMtxptr((float (*)[4]))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B09CC
  * Size:	0000A0
  */
-void __ct__Q23efx14TChasePosYRot2FP10Vector3<float> PfUsUs(void)
+void __ct__Q23efx14TChasePosYRot2FP10Vector3f PfUsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -3362,12 +3403,14 @@ void __dt__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B0A6C
  * Size:	000058
  */
-void efx::TChasePosYRot::__ct(void)
+TChasePosYRot::TChasePosYRot(void)
 {
 	/*
 	.loc_0x0:
@@ -3396,32 +3439,38 @@ void efx::TChasePosYRot::__ct(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void setPosptr__Q23efx14TChasePosYRot2FP10Vector3<float>(void)
-{
-	// UNUSED FUNCTION
-}
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void efx::TChasePosYRot2::setYRot((float*))
+void setPosptr__Q23efx14TChasePosYRot2FP10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace efx {
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00000C
+ */
+void TChasePosYRot2::setYRot(float*)
+{
+	// UNUSED FUNCTION
+}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	803B0AC4
  * Size:	0000B0
  */
-void __ct__Q23efx14TChasePosYRot3FP10Vector3<float> PfUsUsUs(void)
+void __ct__Q23efx14TChasePosYRot3FP10Vector3f PfUsUsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -3487,17 +3536,19 @@ void __dt__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv(void)
  * Address:	........
  * Size:	000010
  */
-void setPosptr__Q23efx14TChasePosYRot3FP10Vector3<float>(void)
+void setPosptr__Q23efx14TChasePosYRot3FP10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace efx {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void efx::TChasePosYRot3::setYRot((float*))
+void TChasePosYRot3::setYRot(float*)
 {
 	// UNUSED FUNCTION
 }
@@ -3507,11 +3558,12 @@ void efx::TChasePosYRot3::setYRot((float*))
  * Address:	........
  * Size:	0000B4
  */
-void __ct__Q23efx24TChasePosPosLocalYScale2FP10Vector3<float> P10Vector3<float>
-fUsUs(void)
+void __ct__Q23efx24TChasePosPosLocalYScale2FP10Vector3f P10Vector3f fUsUs(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -3523,12 +3575,14 @@ void __dt__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B0B74
  * Size:	000058
  */
-void efx::TChasePosPosLocalYScale::__ct(void)
+TChasePosPosLocalYScale::TChasePosPosLocalYScale(void)
 {
 	/*
 	.loc_0x0:
@@ -3562,8 +3616,7 @@ void efx::TChasePosPosLocalYScale::__ct(void)
  * Address:	........
  * Size:	000014
  */
-void setPosptr__Q23efx24TChasePosPosLocalYScale2FP10Vector3<float>
-P10Vector3<float>(void)
+void setPosptr__Q23efx24TChasePosPosLocalYScale2FP10Vector3f P10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3573,7 +3626,7 @@ P10Vector3<float>(void)
  * Address:	803B0BCC
  * Size:	0000C8
  */
-void __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<float> P10Vector3<float>
+void __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3f P10Vector3f
 fUsUsUs(void)
 {
 	/*
@@ -3631,6 +3684,8 @@ fUsUsUs(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -3646,8 +3701,7 @@ void __dt__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv(void)
  * Address:	803B0C94
  * Size:	00001C
  */
-void setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<float>
-P10Vector3<float>(void)
+void setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3f P10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3666,8 +3720,7 @@ P10Vector3<float>(void)
  * Address:	........
  * Size:	0000B4
  */
-void __ct__Q23efx24TChasePosPosLocalZScale2FP10Vector3<float> P10Vector3<float>
-fUsUs(void)
+void __ct__Q23efx24TChasePosPosLocalZScale2FP10Vector3f P10Vector3f fUsUs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3682,12 +3735,14 @@ void __dt__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B0CB0
  * Size:	000058
  */
-void efx::TChasePosPosLocalZScale::__ct(void)
+TChasePosPosLocalZScale::TChasePosPosLocalZScale(void)
 {
 	/*
 	.loc_0x0:
@@ -3721,8 +3776,7 @@ void efx::TChasePosPosLocalZScale::__ct(void)
  * Address:	........
  * Size:	000014
  */
-void setPosptr__Q23efx24TChasePosPosLocalZScale2FP10Vector3<float>
-P10Vector3<float>(void)
+void setPosptr__Q23efx24TChasePosPosLocalZScale2FP10Vector3f P10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3732,7 +3786,7 @@ P10Vector3<float>(void)
  * Address:	803B0D08
  * Size:	0000C8
  */
-void __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<float> P10Vector3<float>
+void __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3f P10Vector3f
 fUsUsUs(void)
 {
 	/*
@@ -3790,6 +3844,8 @@ fUsUsUs(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	........
@@ -3805,8 +3861,7 @@ void __dt__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv(void)
  * Address:	803B0DD0
  * Size:	00001C
  */
-void setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<float>
-P10Vector3<float>(void)
+void setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3f P10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3820,12 +3875,14 @@ P10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B0DEC
  * Size:	00008C
  */
-void efx::TOneEmitterChasePos::__dt(void)
+TOneEmitterChasePos::~TOneEmitterChasePos(void)
 {
 	/*
 	.loc_0x0:
@@ -3876,7 +3933,7 @@ void efx::TOneEmitterChasePos::__dt(void)
  * Address:	803B0E78
  * Size:	00001C
  */
-void efx::TOneEmitterChasePos::startDemoDrawOff(void)
+void TOneEmitterChasePos::startDemoDrawOff(void)
 {
 	/*
 	.loc_0x0:
@@ -3895,7 +3952,7 @@ void efx::TOneEmitterChasePos::startDemoDrawOff(void)
  * Address:	803B0E94
  * Size:	00001C
  */
-void efx::TOneEmitterChasePos::endDemoDrawOn(void)
+void TOneEmitterChasePos::endDemoDrawOn(void)
 {
 	/*
 	.loc_0x0:
@@ -3914,7 +3971,7 @@ void efx::TOneEmitterChasePos::endDemoDrawOn(void)
  * Address:	803B0EB0
  * Size:	000060
  */
-void efx::TCallBack_StaticClipping::__dt(void)
+TCallBack_StaticClipping::~TCallBack_StaticClipping(void)
 {
 	/*
 	.loc_0x0:
@@ -3946,6 +4003,8 @@ void efx::TCallBack_StaticClipping::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -7279,7 +7338,7 @@ void __sinit_efxBase_cpp(void)
  * Address:	803B2D1C
  * Size:	000008
  */
-void @4 @efx::TOneEmitter::executeAfter((JPABaseEmitter*))
+void @4 @efx::TOneEmitter::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -7293,7 +7352,7 @@ void @4 @efx::TOneEmitter::executeAfter((JPABaseEmitter*))
  * Address:	803B2D24
  * Size:	000008
  */
-void @4 @efx::TOneEmitter::__dt(void)
+@4 @efx::TOneEmitter::~TOneEmitter(void)
 {
 	/*
 	.loc_0x0:
@@ -7307,7 +7366,7 @@ void @4 @efx::TOneEmitter::__dt(void)
  * Address:	803B2D2C
  * Size:	000008
  */
-void @4 @efx::TOneEmitterChasePos::executeAfter((JPABaseEmitter*))
+void @4 @efx::TOneEmitterChasePos::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -7321,7 +7380,7 @@ void @4 @efx::TOneEmitterChasePos::executeAfter((JPABaseEmitter*))
  * Address:	803B2D34
  * Size:	000008
  */
-void @4 @efx::TOneEmitterChasePos::__dt(void)
+@4 @efx::TOneEmitterChasePos::~TOneEmitterChasePos(void)
 {
 	/*
 	.loc_0x0:
@@ -7335,7 +7394,7 @@ void @4 @efx::TOneEmitterChasePos::__dt(void)
  * Address:	803B2D3C
  * Size:	000008
  */
-void @4 @efx::TOneEmitterSimple::__dt(void)
+@4 @efx::TOneEmitterSimple::~TOneEmitterSimple(void)
 {
 	/*
 	.loc_0x0:
@@ -7349,7 +7408,7 @@ void @4 @efx::TOneEmitterSimple::__dt(void)
  * Address:	803B2D44
  * Size:	000008
  */
-void @4 @efx::TSync::__dt(void)
+@4 @efx::TSync::~TSync(void)
 {
 	/*
 	.loc_0x0:
@@ -7363,7 +7422,7 @@ void @4 @efx::TSync::__dt(void)
  * Address:	803B2D4C
  * Size:	000008
  */
-void @4 @efx::TChasePos::__dt(void)
+@4 @efx::TChasePos::~TChasePos(void)
 {
 	/*
 	.loc_0x0:
@@ -7377,7 +7436,7 @@ void @4 @efx::TChasePos::__dt(void)
  * Address:	803B2D54
  * Size:	000008
  */
-void @4 @efx::TChasePosYRot::__dt(void)
+@4 @efx::TChasePosYRot::~TChasePosYRot(void)
 {
 	/*
 	.loc_0x0:
@@ -7391,7 +7450,7 @@ void @4 @efx::TChasePosYRot::__dt(void)
  * Address:	803B2D5C
  * Size:	000008
  */
-void @4 @efx::TChaseMtx::__dt(void)
+@4 @efx::TChaseMtx::~TChaseMtx(void)
 {
 	/*
 	.loc_0x0:
@@ -7405,7 +7464,7 @@ void @4 @efx::TChaseMtx::__dt(void)
  * Address:	803B2D64
  * Size:	000008
  */
-void @4 @efx::TChaseMtxT::__dt(void)
+@4 @efx::TChaseMtxT::~TChaseMtxT(void)
 {
 	/*
 	.loc_0x0:
@@ -7419,7 +7478,7 @@ void @4 @efx::TChaseMtxT::__dt(void)
  * Address:	803B2D6C
  * Size:	000008
  */
-void @4 @efx::TChasePosPos::__dt(void)
+@4 @efx::TChasePosPos::~TChasePosPos(void)
 {
 	/*
 	.loc_0x0:
@@ -7433,7 +7492,7 @@ void @4 @efx::TChasePosPos::__dt(void)
  * Address:	803B2D74
  * Size:	000008
  */
-void @4 @efx::TChasePosPosLocalZScale::__dt(void)
+@4 @efx::TChasePosPosLocalZScale::~TChasePosPosLocalZScale(void)
 {
 	/*
 	.loc_0x0:
@@ -7447,7 +7506,7 @@ void @4 @efx::TChasePosPosLocalZScale::__dt(void)
  * Address:	803B2D7C
  * Size:	000008
  */
-void @4 @efx::TChasePosPosLocalYScale::__dt(void)
+@4 @efx::TChasePosPosLocalYScale::~TChasePosPosLocalYScale(void)
 {
 	/*
 	.loc_0x0:

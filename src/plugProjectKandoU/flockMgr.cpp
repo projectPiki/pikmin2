@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8020EADC
  * Size:	0000E0
  */
-void Game::BaseFlockMgr::update(void)
+void BaseFlockMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -88,12 +80,14 @@ void Game::BaseFlockMgr::update(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8020EBBC
  * Size:	000154
  */
-void getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<float>(void)
+void getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -195,12 +189,14 @@ void getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000140
  */
-void Game::BaseFlockMgr::getRandomFlock(void)
+void BaseFlockMgr::getRandomFlock(void)
 {
 	// UNUSED FUNCTION
 }
@@ -210,7 +206,7 @@ void Game::BaseFlockMgr::getRandomFlock(void)
  * Address:	8020ED10
  * Size:	00011C
  */
-void Game::BaseFlockMgr::attackFlock((int, float))
+void BaseFlockMgr::attackFlock(int, float)
 {
 	/*
 	.loc_0x0:
@@ -303,7 +299,7 @@ void Game::BaseFlockMgr::attackFlock((int, float))
  * Address:	8020EE2C
  * Size:	000294
  */
-void Game::BaseFlockMgr::resolveCollision((float))
+void BaseFlockMgr::resolveCollision(float)
 {
 	/*
 	.loc_0x0:
@@ -510,7 +506,7 @@ void Game::BaseFlockMgr::resolveCollision((float))
  * Address:	8020F0C0
  * Size:	000198
  */
-void Game::BaseFlockMgr::doSimpleDraw((Viewport*, J3DModelData**, int))
+void BaseFlockMgr::doSimpleDraw(Viewport*, J3DModelData**, int)
 {
 	/*
 	.loc_0x0:
@@ -634,6 +630,8 @@ void Game::BaseFlockMgr::doSimpleDraw((Viewport*, J3DModelData**, int))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

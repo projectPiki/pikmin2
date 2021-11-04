@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -241,7 +241,7 @@ void __sinit_JASCmdStack_cpp(void)
  * Address:	800A6934
  * Size:	000058
  */
-void JASPortCmd::TPortHead::__dt(void)
+JASPortCmd::TPortHead::~TPortHead(void)
 {
 	/*
 	.loc_0x0:

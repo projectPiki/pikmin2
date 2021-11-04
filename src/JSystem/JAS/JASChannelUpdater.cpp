@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800A8504
  * Size:	000030
  */
-void JASChannelUpdater::JASChannelUpdater()
+JASChannelUpdater::JASChannelUpdater()
 {
 	/*
 	.loc_0x0:

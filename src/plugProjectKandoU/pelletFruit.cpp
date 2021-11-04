@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801FD9B8
  * Size:	000070
  */
-void Game::PelletFruit::Object::do_onInit((Game::CreatureInitArg*))
+void PelletFruit::Object::do_onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +51,7 @@ void Game::PelletFruit::Object::do_onInit((Game::CreatureInitArg*))
  * Address:	801FDA28
  * Size:	000180
  */
-void Game::PelletFruit::Object::do_update(void)
+void PelletFruit::Object::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +165,7 @@ void Game::PelletFruit::Object::do_update(void)
  * Address:	801FDBA8
  * Size:	00011C
  */
-void Game::PelletFruit::Object::changeMaterial(void)
+void PelletFruit::Object::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -256,7 +248,7 @@ void Game::PelletFruit::Object::changeMaterial(void)
  * Address:	801FDCC4
  * Size:	0000B0
  */
-void Game::PelletFruit::Mgr::__ct(void)
+PelletFruit::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -308,6 +300,8 @@ void Game::PelletFruit::Mgr::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -532,12 +526,14 @@ void Container<Game::PelletFruit::Object>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801FE020
  * Size:	00008C
  */
-void Game::PelletFruit::Mgr::setupResources(void)
+void PelletFruit::Mgr::setupResources(void)
 {
 	/*
 	.loc_0x0:
@@ -584,7 +580,7 @@ void Game::PelletFruit::Mgr::setupResources(void)
  * Address:	801FE0AC
  * Size:	00006C
  */
-void Game::PelletFruit::Mgr::onCreateModel((SysShape::Model*))
+void PelletFruit::Mgr::onCreateModel(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -623,7 +619,7 @@ void Game::PelletFruit::Mgr::onCreateModel((SysShape::Model*))
  * Address:	801FE118
  * Size:	0001B4
  */
-void Game::PelletFruit::Mgr::__dt(void)
+PelletFruit::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -752,7 +748,7 @@ void Game::PelletFruit::Mgr::__dt(void)
  * Address:	801FE2CC
  * Size:	000008
  */
-void Game::PelletFruit::Mgr::getMgrName(void)
+void PelletFruit::Mgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -766,7 +762,9 @@ void Game::PelletFruit::Mgr::getMgrName(void)
  * Address:	801FE2D4
  * Size:	000008
  */
-u32 Game::PelletFruit::Mgr::getMgrID(void) { return 0x2; }
+u32 PelletFruit::Mgr::getMgrID(void) { return 0x2; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -818,12 +816,14 @@ void ObjectMgr<Game::PelletFruit::Object>::~ObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801FE364
  * Size:	000008
  */
-u32 Game::PelletFruit::Object::getKind(void) { return 0x2; }
+u32 PelletFruit::Object::getKind(void) { return 0x2; }
 
 /*
  * --INFO--
@@ -893,6 +893,8 @@ void onCreateModel__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
 FPQ28SysShape5Model(void)
 {
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3342,12 +3344,14 @@ void MonoObjectMgr<Game::PelletFruit::Object>::alloc(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801FFD58
  * Size:	00004C
  */
-void Game::PelletFruit::Object::__ct(void)
+PelletFruit::Object::Object(void)
 {
 	/*
 	.loc_0x0:
@@ -3372,6 +3376,8 @@ void Game::PelletFruit::Object::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3655,7 +3661,7 @@ void @84 @get__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPv(void)
  * Address:	801FFE5C
  * Size:	000008
  */
-void @84 @Game::PelletFruit::Mgr::__dt(void)
+@84 @Game::PelletFruit::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

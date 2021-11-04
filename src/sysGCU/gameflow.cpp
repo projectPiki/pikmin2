@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "GameFlow.h"
 
 // TODO: Finish
@@ -40,7 +42,7 @@ GameFlow::GameFlow()
  * Address:	........
  * Size:	000048
  */
-void GameFlow::~GameFlow()
+GameFlow::~GameFlow()
 {
 	// UNUSED FUNCTION
 }

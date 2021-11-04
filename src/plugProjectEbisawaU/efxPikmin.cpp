@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void efx::TParticleCallBack_Yodare::init((JPABaseEmitter*, JPABaseParticle*))
+void TParticleCallBack_Yodare::init(JPABaseEmitter*, JPABaseParticle*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void efx::TParticleCallBack_Yodare::init((JPABaseEmitter*, JPABaseParticle*))
  * Address:	........
  * Size:	000124
  */
-void efx::TParticleCallBack_Yodare::execute((JPABaseEmitter*, JPABaseParticle*))
+void TParticleCallBack_Yodare::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void efx::TParticleCallBack_Yodare::execute((JPABaseEmitter*, JPABaseParticle*))
  * Address:	........
  * Size:	000078
  */
-void efx::TTestYodareGen::create((efx::Arg*))
+void TTestYodareGen::create(efx::Arg*)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void efx::TTestYodareGen::create((efx::Arg*))
  * Address:	803B66B0
  * Size:	0000F0
  */
-void efx::TPkNageBlur::create((efx::Arg*))
+void TPkNageBlur::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -133,7 +125,7 @@ void efx::TPkNageBlur::create((efx::Arg*))
  * Address:	803B67A0
  * Size:	0001E0
  */
-void efx::TDopingSmoke::create((efx::Arg*))
+void TDopingSmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -289,7 +281,7 @@ void efx::TDopingSmoke::create((efx::Arg*))
  * Address:	803B6980
  * Size:	000060
  */
-void efx::TOrimaLight::create((efx::Arg*))
+void TOrimaLight::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -331,7 +323,7 @@ void efx::TOrimaLight::create((efx::Arg*))
  * Address:	803B69E0
  * Size:	000060
  */
-void efx::TOrimaLightAct::create((efx::Arg*))
+void TOrimaLightAct::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +365,7 @@ void efx::TOrimaLightAct::create((efx::Arg*))
  * Address:	803B6A40
  * Size:	000078
  */
-void efx::TCursor::init((long, long))
+void TCursor::init(long, long)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +421,7 @@ void efx::TCursor::init((long, long))
  * Address:	803B6AB8
  * Size:	000154
  */
-void efx::TCursor::create((efx::Arg*))
+void TCursor::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -536,7 +528,7 @@ void efx::TCursor::create((efx::Arg*))
  * Address:	803B6C0C
  * Size:	000100
  */
-void efx::TCursor::update((efx::Arg*))
+void TCursor::update(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -617,12 +609,14 @@ void efx::TCursor::update((efx::Arg*))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B6D0C
  * Size:	000148
  */
-void calcPos___Q23efx7TCursorFP10Vector3<float> fl(void)
+void calcPos___Q23efx7TCursorFP10Vector3f fl(void)
 {
 	/*
 	.loc_0x0:
@@ -721,12 +715,14 @@ void calcPos___Q23efx7TCursorFP10Vector3<float> fl(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B6E54
  * Size:	0000AC
  */
-void efx::TFueactCircle::create((efx::Arg*))
+void TFueactCircle::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -791,7 +787,7 @@ void efx::TFueactCircle::create((efx::Arg*))
  * Address:	803B6F00
  * Size:	000124
  */
-void efx::TFueactCircle::execute((JPABaseEmitter*))
+void TFueactCircle::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -886,7 +882,7 @@ void efx::TFueactCircle::execute((JPABaseEmitter*))
  * Address:	803B7024
  * Size:	0002CC
  */
-void efx::TFueactCircle::execute((JPABaseEmitter*, JPABaseParticle*))
+void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	/*
 	.loc_0x0:
@@ -1095,7 +1091,7 @@ void efx::TFueactCircle::execute((JPABaseEmitter*, JPABaseParticle*))
  * Address:	803B72F0
  * Size:	0001D4
  */
-void efx::TFueactBiriBase::doExecuteEmitterOperation((JPABaseEmitter*))
+void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1240,7 +1236,7 @@ void efx::TFueactBiriBase::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803B74C4
  * Size:	00010C
  */
-void efx::createSimpleDead(Vector3<float>&, long)
+void createSimpleDead(Vector3f&, long)
 {
 	/*
 	.loc_0x0:
@@ -1327,7 +1323,7 @@ void efx::createSimpleDead(Vector3<float>&, long)
  * Address:	........
  * Size:	00005C
  */
-void efx::createSimpleAttack(Vector3<float>&)
+void createSimpleAttack(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1337,7 +1333,7 @@ void efx::createSimpleAttack(Vector3<float>&)
  * Address:	........
  * Size:	00005C
  */
-void efx::createSimpleAttackDp(Vector3<float>&)
+void createSimpleAttackDp(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1347,7 +1343,7 @@ void efx::createSimpleAttackDp(Vector3<float>&)
  * Address:	........
  * Size:	00005C
  */
-void efx::createSimpleKanden(Vector3<float>&)
+void createSimpleKanden(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1357,7 +1353,7 @@ void efx::createSimpleKanden(Vector3<float>&)
  * Address:	803B75D0
  * Size:	00005C
  */
-void efx::createSimpleChinka(Vector3<float>&)
+void createSimpleChinka(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1394,7 +1390,7 @@ void efx::createSimpleChinka(Vector3<float>&)
  * Address:	803B762C
  * Size:	00005C
  */
-void efx::createSimpleGedoku(Vector3<float>&)
+void createSimpleGedoku(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1431,7 +1427,7 @@ void efx::createSimpleGedoku(Vector3<float>&)
  * Address:	803B7688
  * Size:	000098
  */
-void efx::createSimpleBlackDrop(Vector3<float>&)
+void createSimpleBlackDrop(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1481,7 +1477,7 @@ void efx::createSimpleBlackDrop(Vector3<float>&)
  * Address:	803B7720
  * Size:	00008C
  */
-void efx::createSimpleGate1Attack(Vector3<float>&)
+void createSimpleGate1Attack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1528,7 +1524,7 @@ void efx::createSimpleGate1Attack(Vector3<float>&)
  * Address:	803B77AC
  * Size:	00008C
  */
-void efx::createSimplePkAp(Vector3<float>&)
+void createSimplePkAp(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1575,7 +1571,7 @@ void efx::createSimplePkAp(Vector3<float>&)
  * Address:	803B7838
  * Size:	00005C
  */
-void efx::createSimpleWaterOff(Vector3<float>&)
+void createSimpleWaterOff(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1612,7 +1608,7 @@ void efx::createSimpleWaterOff(Vector3<float>&)
  * Address:	803B7894
  * Size:	00005C
  */
-void efx::createSimpleDive(Vector3<float>&)
+void createSimpleDive(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1649,7 +1645,7 @@ void efx::createSimpleDive(Vector3<float>&)
  * Address:	803B78F0
  * Size:	000098
  */
-void efx::createSimpleChiru(Vector3<float>&, long)
+void createSimpleChiru(Vector3f&, long)
 {
 	/*
 	.loc_0x0:
@@ -1709,7 +1705,7 @@ void efx::createSimpleChiru(Vector3<float>&, long)
  * Address:	803B7988
  * Size:	00005C
  */
-void efx::createSimpleInattack(Vector3<float>&)
+void createSimpleInattack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1746,7 +1742,7 @@ void efx::createSimpleInattack(Vector3<float>&)
  * Address:	803B79E4
  * Size:	000080
  */
-void efx::createSimpleInstick(Vector3<float>&)
+void createSimpleInstick(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1790,7 +1786,7 @@ void efx::createSimpleInstick(Vector3<float>&)
  * Address:	803B7A64
  * Size:	00008C
  */
-void efx::createSimpleGate2Attack(Vector3<float>&)
+void createSimpleGate2Attack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1837,7 +1833,7 @@ void efx::createSimpleGate2Attack(Vector3<float>&)
  * Address:	803B7AF0
  * Size:	000080
  */
-void efx::createSimpleBridgeAttack(Vector3<float>&)
+void createSimpleBridgeAttack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1881,7 +1877,7 @@ void efx::createSimpleBridgeAttack(Vector3<float>&)
  * Address:	803B7B70
  * Size:	00005C
  */
-void efx::createSimpleWalksmoke(Vector3<float>&)
+void createSimpleWalksmoke(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1918,7 +1914,7 @@ void efx::createSimpleWalksmoke(Vector3<float>&)
  * Address:	803B7BCC
  * Size:	00008C
  */
-void efx::createSimpleGlow2(Vector3<float>&)
+void createSimpleGlow2(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1965,7 +1961,7 @@ void efx::createSimpleGlow2(Vector3<float>&)
  * Address:	803B7C58
  * Size:	000080
  */
-void efx::createSimpleStoneAttack(Vector3<float>&)
+void createSimpleStoneAttack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2009,7 +2005,7 @@ void efx::createSimpleStoneAttack(Vector3<float>&)
  * Address:	803B7CD8
  * Size:	00005C
  */
-void efx::createSimpleDig(Vector3<float>&)
+void createSimpleDig(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2046,7 +2042,7 @@ void efx::createSimpleDig(Vector3<float>&)
  * Address:	803B7D34
  * Size:	00005C
  */
-void efx::createSimpleGate3Attack(Vector3<float>&)
+void createSimpleGate3Attack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2083,7 +2079,7 @@ void efx::createSimpleGate3Attack(Vector3<float>&)
  * Address:	803B7D90
  * Size:	00005C
  */
-void efx::createSimpleWalkwater(Vector3<float>&)
+void createSimpleWalkwater(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2120,7 +2116,7 @@ void efx::createSimpleWalkwater(Vector3<float>&)
  * Address:	803B7DEC
  * Size:	000038
  */
-void init__Q23efx11TNaviEffectFP10Vector3<float> PA4_fP10Vector3<float>
+void init__Q23efx11TNaviEffectFP10Vector3f PA4_fP10Vector3f
 Q33efx11TNaviEffect12enumNaviType(void)
 {
 	/*
@@ -2149,7 +2145,7 @@ Q33efx11TNaviEffect12enumNaviType(void)
  * Address:	803B7E24
  * Size:	0000D8
  */
-void efx::TNaviEffect::setNaviType((efx::TNaviEffect::enumNaviType))
+void TNaviEffect::setNaviType(efx::TNaviEffect::enumNaviType)
 {
 	/*
 	.loc_0x0:
@@ -2225,7 +2221,7 @@ void efx::TNaviEffect::setNaviType((efx::TNaviEffect::enumNaviType))
  * Address:	803B7EFC
  * Size:	000020
  */
-void efx::TNaviEffect::update(void)
+void TNaviEffect::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2247,7 +2243,7 @@ void efx::TNaviEffect::update(void)
  * Address:	803B7F1C
  * Size:	0000D8
  */
-void efx::TNaviEffect::updateHamon_(void)
+void TNaviEffect::updateHamon_(void)
 {
 	/*
 	.loc_0x0:
@@ -2320,12 +2316,14 @@ void efx::TNaviEffect::updateHamon_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B7FF4
  * Size:	000060
  */
-void createHamonA___Q23efx11TNaviEffectFP10Vector3<float>(void)
+void createHamonA___Q23efx11TNaviEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2358,12 +2356,14 @@ void createHamonA___Q23efx11TNaviEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8054
  * Size:	000024
  */
-void efx::TNaviEffect::killHamonA_(void)
+void TNaviEffect::killHamonA_(void)
 {
 	/*
 	.loc_0x0:
@@ -2379,12 +2379,14 @@ void efx::TNaviEffect::killHamonA_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8078
  * Size:	000060
  */
-void createHamonB___Q23efx11TNaviEffectFP10Vector3<float>(void)
+void createHamonB___Q23efx11TNaviEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2417,12 +2419,14 @@ void createHamonB___Q23efx11TNaviEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B80D8
  * Size:	000024
  */
-void efx::TNaviEffect::killHamonB_(void)
+void TNaviEffect::killHamonB_(void)
 {
 	/*
 	.loc_0x0:
@@ -2443,7 +2447,7 @@ void efx::TNaviEffect::killHamonB_(void)
  * Address:	803B80FC
  * Size:	000078
  */
-void efx::TNaviEffect::createLight_((float (*)[4]))
+void TNaviEffect::createLight_(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2487,7 +2491,7 @@ void efx::TNaviEffect::createLight_((float (*)[4]))
  * Address:	803B8174
  * Size:	00002C
  */
-void efx::TNaviEffect::killLight_(void)
+void TNaviEffect::killLight_(void)
 {
 	/*
 	.loc_0x0:
@@ -2510,7 +2514,7 @@ void efx::TNaviEffect::killLight_(void)
  * Address:	803B81A0
  * Size:	000078
  */
-void efx::TNaviEffect::createLightAct_((float (*)[4]))
+void TNaviEffect::createLightAct_(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2554,7 +2558,7 @@ void efx::TNaviEffect::createLightAct_((float (*)[4]))
  * Address:	803B8218
  * Size:	00002C
  */
-void efx::TNaviEffect::killLightAct_(void)
+void TNaviEffect::killLightAct_(void)
 {
 	/*
 	.loc_0x0:
@@ -2572,12 +2576,14 @@ void efx::TNaviEffect::killLightAct_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8244
  * Size:	000064
  */
-void createCursor___Q23efx11TNaviEffectF10Vector3<float> f(void)
+void createCursor___Q23efx11TNaviEffectF10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -2609,12 +2615,14 @@ void createCursor___Q23efx11TNaviEffectF10Vector3<float> f(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B82A8
  * Size:	00002C
  */
-void efx::TNaviEffect::killCursor_(void)
+void TNaviEffect::killCursor_(void)
 {
 	/*
 	.loc_0x0:
@@ -2632,12 +2640,14 @@ void efx::TNaviEffect::killCursor_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B82D4
  * Size:	000284
  */
-void updateCursor___Q23efx11TNaviEffectF10Vector3<float> f(void)
+void updateCursor___Q23efx11TNaviEffectF10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -2828,7 +2838,7 @@ void updateCursor___Q23efx11TNaviEffectF10Vector3<float> f(void)
  * Address:	803B8558
  * Size:	0000B4
  */
-void createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<float>(void)
+void createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2884,12 +2894,14 @@ void createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B860C
  * Size:	00002C
  */
-void efx::TNaviEffect::killFueact_(void)
+void TNaviEffect::killFueact_(void)
 {
 	/*
 	.loc_0x0:
@@ -2912,7 +2924,7 @@ void efx::TNaviEffect::killFueact_(void)
  * Address:	803B8638
  * Size:	000078
  */
-void efx::TNaviEffect::createOrimadamage_((float (*)[4]))
+void TNaviEffect::createOrimadamage_(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2956,7 +2968,7 @@ void efx::TNaviEffect::createOrimadamage_((float (*)[4]))
  * Address:	........
  * Size:	00002C
  */
-void efx::TNaviEffect::killOrimadamage_(void)
+void TNaviEffect::killOrimadamage_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2966,7 +2978,7 @@ void efx::TNaviEffect::killOrimadamage_(void)
  * Address:	803B86B0
  * Size:	00003C
  */
-void efx::TPkEffect::init(void)
+void TPkEffect::init(void)
 {
 	/*
 	.loc_0x0:
@@ -2993,7 +3005,7 @@ void efx::TPkEffect::init(void)
  * Address:	803B86EC
  * Size:	000034
  */
-void efx::TPkEffect::update(void)
+void TPkEffect::update(void)
 {
 	/*
 	.loc_0x0:
@@ -3020,7 +3032,7 @@ void efx::TPkEffect::update(void)
  * Address:	803B8720
  * Size:	000038
  */
-void efx::TPkEffect::updateMoeSmoke_(void)
+void TPkEffect::updateMoeSmoke_(void)
 {
 	/*
 	.loc_0x0:
@@ -3050,7 +3062,7 @@ void efx::TPkEffect::updateMoeSmoke_(void)
  * Address:	803B8758
  * Size:	0000D0
  */
-void efx::TPkEffect::updateHamon_(void)
+void TPkEffect::updateHamon_(void)
 {
 	/*
 	.loc_0x0:
@@ -3119,12 +3131,14 @@ void efx::TPkEffect::updateHamon_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8828
  * Size:	000064
  */
-void createKourin___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createKourin___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3158,12 +3172,14 @@ void createKourin___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B888C
  * Size:	000024
  */
-void efx::TPkEffect::killKourin_(void)
+void TPkEffect::killKourin_(void)
 {
 	/*
 	.loc_0x0:
@@ -3179,12 +3195,14 @@ void efx::TPkEffect::killKourin_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B88B0
  * Size:	000060
  */
-void createDoping___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createDoping___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3217,12 +3235,14 @@ void createDoping___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8910
  * Size:	000024
  */
-void efx::TPkEffect::killDoping_(void)
+void TPkEffect::killDoping_(void)
 {
 	/*
 	.loc_0x0:
@@ -3238,12 +3258,14 @@ void efx::TPkEffect::killDoping_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8934
  * Size:	0000F8
  */
-void createNage___Q23efx9TPkEffectFP10Vector3<float> PA4_f(void)
+void createNage___Q23efx9TPkEffectFP10Vector3f PA4_f(void)
 {
 	/*
 	.loc_0x0:
@@ -3316,12 +3338,14 @@ void createNage___Q23efx9TPkEffectFP10Vector3<float> PA4_f(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8A2C
  * Size:	000044
  */
-void efx::TPkEffect::killNage_(void)
+void TPkEffect::killNage_(void)
 {
 	/*
 	.loc_0x0:
@@ -3345,12 +3369,14 @@ void efx::TPkEffect::killNage_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8A70
  * Size:	00007C
  */
-void createMoe___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createMoe___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3390,12 +3416,14 @@ void createMoe___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8AEC
  * Size:	000044
  */
-void efx::TPkEffect::killMoe_(void)
+void TPkEffect::killMoe_(void)
 {
 	/*
 	.loc_0x0:
@@ -3419,12 +3447,14 @@ void efx::TPkEffect::killMoe_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8B30
  * Size:	000060
  */
-void createChudoku___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createChudoku___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3457,12 +3487,14 @@ void createChudoku___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8B90
  * Size:	000024
  */
-void efx::TPkEffect::killChudoku_(void)
+void TPkEffect::killChudoku_(void)
 {
 	/*
 	.loc_0x0:
@@ -3478,12 +3510,14 @@ void efx::TPkEffect::killChudoku_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8BB4
  * Size:	000060
  */
-void createMoeSmoke___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createMoeSmoke___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3516,12 +3550,14 @@ void createMoeSmoke___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8C14
  * Size:	000024
  */
-void efx::TPkEffect::killMoeSmoke_(void)
+void TPkEffect::killMoeSmoke_(void)
 {
 	/*
 	.loc_0x0:
@@ -3537,12 +3573,14 @@ void efx::TPkEffect::killMoeSmoke_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8C38
  * Size:	000070
  */
-void createBlackDown___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createBlackDown___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3579,12 +3617,14 @@ void createBlackDown___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8CA8
  * Size:	00002C
  */
-void efx::TPkEffect::killBlackDown_(void)
+void TPkEffect::killBlackDown_(void)
 {
 	/*
 	.loc_0x0:
@@ -3602,12 +3642,14 @@ void efx::TPkEffect::killBlackDown_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8CD4
  * Size:	000060
  */
-void createWater___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createWater___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3640,12 +3682,14 @@ void createWater___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8D34
  * Size:	000024
  */
-void efx::TPkEffect::killWater_(void)
+void TPkEffect::killWater_(void)
 {
 	/*
 	.loc_0x0:
@@ -3661,12 +3705,14 @@ void efx::TPkEffect::killWater_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8D58
  * Size:	000060
  */
-void createHamonA___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createHamonA___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3699,12 +3745,14 @@ void createHamonA___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8DB8
  * Size:	000024
  */
-void efx::TPkEffect::killHamonA_(void)
+void TPkEffect::killHamonA_(void)
 {
 	/*
 	.loc_0x0:
@@ -3720,12 +3768,14 @@ void efx::TPkEffect::killHamonA_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8DDC
  * Size:	000060
  */
-void createHamonB___Q23efx9TPkEffectFP10Vector3<float>(void)
+void createHamonB___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3758,12 +3808,14 @@ void createHamonB___Q23efx9TPkEffectFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8E3C
  * Size:	000024
  */
-void efx::TPkEffect::killHamonB_(void)
+void TPkEffect::killHamonB_(void)
 {
 	/*
 	.loc_0x0:
@@ -3784,7 +3836,7 @@ void efx::TPkEffect::killHamonB_(void)
  * Address:	803B8E60
  * Size:	000020
  */
-void efx::TPkEffectTane::init(void)
+void TPkEffectTane::init(void)
 {
 	/*
 	.loc_0x0:
@@ -3799,12 +3851,14 @@ void efx::TPkEffectTane::init(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8E80
  * Size:	000060
  */
-void createTanekira___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
+void createTanekira___Q23efx13TPkEffectTaneFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3837,12 +3891,14 @@ void createTanekira___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8EE0
  * Size:	000024
  */
-void efx::TPkEffectTane::killTanekira_(void)
+void TPkEffectTane::killTanekira_(void)
 {
 	/*
 	.loc_0x0:
@@ -3858,12 +3914,14 @@ void efx::TPkEffectTane::killTanekira_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8F04
  * Size:	000064
  */
-void createKourin___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
+void createKourin___Q23efx13TPkEffectTaneFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3897,12 +3955,14 @@ void createKourin___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B8F68
  * Size:	000024
  */
-void efx::TPkEffectTane::killKourin_(void)
+void TPkEffectTane::killKourin_(void)
 {
 	/*
 	.loc_0x0:
@@ -3918,12 +3978,14 @@ void efx::TPkEffectTane::killKourin_(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B8F8C
  * Size:	000070
  */
-void createGlow1___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
+void createGlow1___Q23efx13TPkEffectTaneFP10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3960,12 +4022,14 @@ void createGlow1___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void efx::TPkEffectTane::killGlow1_(void)
+void TPkEffectTane::killGlow1_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3975,14 +4039,14 @@ void efx::TPkEffectTane::killGlow1_(void)
  * Address:	803B8FFC
  * Size:	000004
  */
-void efx::TFueactCircle::executeAfter((JPABaseEmitter*)) { }
+void TFueactCircle::executeAfter(JPABaseEmitter*) { }
 
 /*
  * --INFO--
  * Address:	803B9000
  * Size:	00002C
  */
-void efx::TCursor::forceKill(void)
+void TCursor::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -4005,7 +4069,7 @@ void efx::TCursor::forceKill(void)
  * Address:	........
  * Size:	000104
  */
-void efx::TTestYodareGen::__dt(void)
+TTestYodareGen::~TTestYodareGen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4015,7 +4079,7 @@ void efx::TTestYodareGen::__dt(void)
  * Address:	........
  * Size:	000048
  */
-void efx::TTestYodareGen::forceKill(void)
+void TTestYodareGen::forceKill(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4025,7 +4089,7 @@ void efx::TTestYodareGen::forceKill(void)
  * Address:	........
  * Size:	000048
  */
-void efx::TTestYodareGen::fade(void)
+void TTestYodareGen::fade(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4035,7 +4099,7 @@ void efx::TTestYodareGen::fade(void)
  * Address:	........
  * Size:	000084
  */
-void efx::TTestYodareHit::__dt(void)
+TTestYodareHit::~TTestYodareHit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4045,7 +4109,7 @@ void efx::TTestYodareHit::__dt(void)
  * Address:	........
  * Size:	000060
  */
-void efx::TParticleCallBack_Yodare::__dt(void)
+TParticleCallBack_Yodare::~TParticleCallBack_Yodare(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4055,7 +4119,7 @@ void efx::TParticleCallBack_Yodare::__dt(void)
  * Address:	........
  * Size:	000008
  */
-void @4 @efx::TTestYodareHit::__dt(void)
+@4 @efx::TTestYodareHit::~TTestYodareHit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4065,7 +4129,7 @@ void @4 @efx::TTestYodareHit::__dt(void)
  * Address:	........
  * Size:	000008
  */
-void @4 @efx::TTestYodareGen::__dt(void)
+@4 @efx::TTestYodareGen::~TTestYodareGen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4075,7 +4139,7 @@ void @4 @efx::TTestYodareGen::__dt(void)
  * Address:	803B902C
  * Size:	000008
  */
-void @4 @efx::TPkNageBlur::__dt(void)
+@4 @efx::TPkNageBlur::~TPkNageBlur(void)
 {
 	/*
 	.loc_0x0:
@@ -4084,12 +4148,14 @@ void @4 @efx::TPkNageBlur::__dt(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B9034
  * Size:	000008
  */
-void @4 @efx::TFueactCircle::executeAfter((JPABaseEmitter*))
+void @4 @efx::TFueactCircle::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -4103,7 +4169,7 @@ void @4 @efx::TFueactCircle::executeAfter((JPABaseEmitter*))
  * Address:	803B903C
  * Size:	000008
  */
-void @4 @efx::TFueactCircle::execute((JPABaseEmitter*))
+void @4 @efx::TFueactCircle::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -4117,7 +4183,7 @@ void @4 @efx::TFueactCircle::execute((JPABaseEmitter*))
  * Address:	803B9044
  * Size:	000008
  */
-void @4 @efx::TFueactCircle::__dt(void)
+@4 @efx::TFueactCircle::~TFueactCircle(void)
 {
 	/*
 	.loc_0x0:
@@ -4131,7 +4197,7 @@ void @4 @efx::TFueactCircle::__dt(void)
  * Address:	803B904C
  * Size:	000008
  */
-void @8 @efx::TFueactCircle::execute((JPABaseEmitter*, JPABaseParticle*))
+void @8 @efx::TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	/*
 	.loc_0x0:
@@ -4145,7 +4211,7 @@ void @8 @efx::TFueactCircle::execute((JPABaseEmitter*, JPABaseParticle*))
  * Address:	803B9054
  * Size:	000008
  */
-void @8 @efx::TFueactCircle::__dt(void)
+@8 @efx::TFueactCircle::~TFueactCircle(void)
 {
 	/*
 	.loc_0x0:
@@ -4159,7 +4225,7 @@ void @8 @efx::TFueactCircle::__dt(void)
  * Address:	803B905C
  * Size:	000008
  */
-void @4 @efx::TFueactBiriBase::__dt(void)
+@4 @efx::TFueactBiriBase::~TFueactBiriBase(void)
 {
 	/*
 	.loc_0x0:

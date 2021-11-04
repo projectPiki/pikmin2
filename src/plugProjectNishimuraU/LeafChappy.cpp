@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802C5C18
  * Size:	000098
  */
-void Game::LeafChappy::Obj::Obj()
+LeafChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -57,7 +59,7 @@ void Game::LeafChappy::Obj::Obj()
  * Address:	802C5CB0
  * Size:	0000C0
  */
-void Game::LeafChappy::Obj::doUpdate()
+void LeafChappy::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -123,14 +125,14 @@ void Game::LeafChappy::Obj::doUpdate()
  * Address:	802C5D70
  * Size:	000004
  */
-void Game::LeafChappy::Obj::doDirectDraw(Graphics&) { }
+void LeafChappy::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802C5D74
  * Size:	0000C4
  */
-void Game::LeafChappy::Obj::getShadowParam(Game::ShadowParam&)
+void LeafChappy::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::LeafChappy::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802C5E38
  * Size:	0000B4
  */
-void Game::LeafChappy::Obj::initMouthSlots()
+void LeafChappy::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -258,7 +260,7 @@ void Game::LeafChappy::Obj::initMouthSlots()
  * Address:	802C5EEC
  * Size:	000064
  */
-void Game::LeafChappy::Obj::initWalkSmokeEffect()
+void LeafChappy::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -295,7 +297,7 @@ void Game::LeafChappy::Obj::initWalkSmokeEffect()
  * Address:	802C5F50
  * Size:	000020
  */
-void Game::LeafChappy::Obj::doBecomeCarcass()
+void LeafChappy::Obj::doBecomeCarcass()
 {
 	/*
 	.loc_0x0:
@@ -315,7 +317,7 @@ void Game::LeafChappy::Obj::doBecomeCarcass()
  * Address:	802C5F70
  * Size:	000020
  */
-void Game::LeafChappy::Obj::doUpdateCarcass()
+void LeafChappy::Obj::doUpdateCarcass()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +337,7 @@ void Game::LeafChappy::Obj::doUpdateCarcass()
  * Address:	802C5F90
  * Size:	000020
  */
-void Game::LeafChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void LeafChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -355,7 +357,7 @@ void Game::LeafChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	802C5FB0
  * Size:	000244
  */
-void Game::LeafChappy::Obj::birthChildren(Game::EnemyBirthArg&)
+void LeafChappy::Obj::birthChildren(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +524,7 @@ void Game::LeafChappy::Obj::birthChildren(Game::EnemyBirthArg&)
  * Address:	802C61F4
  * Size:	00007C
  */
-void Game::LeafChappy::Obj::startEnemyRumble()
+void LeafChappy::Obj::startEnemyRumble()
 {
 	/*
 	.loc_0x0:
@@ -565,7 +567,7 @@ void Game::LeafChappy::Obj::startEnemyRumble()
  * Address:	802C6270
  * Size:	000050
  */
-void Game::LeafChappy::Obj::createFootmarks()
+void LeafChappy::Obj::createFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -599,7 +601,7 @@ void Game::LeafChappy::Obj::createFootmarks()
  * Address:	802C62C0
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getDownSmokeScale()
+void LeafChappy::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -613,35 +615,35 @@ void Game::LeafChappy::Obj::getDownSmokeScale()
  * Address:	802C62C8
  * Size:	000008
  */
-u32 Game::LeafChappy::Obj::getEnemyTypeID() { return 0x43; }
+u32 LeafChappy::Obj::getEnemyTypeID() { return 0x43; }
 
 /*
  * --INFO--
  * Address:	802C62D0
  * Size:	000004
  */
-void Game::LeafChappy::Obj::createChappyRelation() { }
+void LeafChappy::Obj::createChappyRelation() { }
 
 /*
  * --INFO--
  * Address:	802C62D4
  * Size:	000004
  */
-void Game::LeafChappy::Obj::resetChappyRelation() { }
+void LeafChappy::Obj::resetChappyRelation() { }
 
 /*
  * --INFO--
  * Address:	802C62D8
  * Size:	000008
  */
-u32 Game::LeafChappy::Obj::getChappyRelation() { return 0x0; }
+u32 LeafChappy::Obj::getChappyRelation() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	802C62E0
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getFootmarks()
+void LeafChappy::Obj::getFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -649,3 +651,4 @@ void Game::LeafChappy::Obj::getFootmarks()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802BBC60
  * Size:	000008
  */
-void Game::Imomushi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Imomushi::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Imomushi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802BBC68
  * Size:	000008
  */
-void Game::Imomushi::ProperAnimator::getAnimator(int)
+void Imomushi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Imomushi::ProperAnimator::getAnimator(int)
  * Address:	802BBC70
  * Size:	00005C
  */
-void Game::Imomushi::ProperAnimator::~ProperAnimator()
+Imomushi::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Imomushi::ProperAnimator::~ProperAnimator()
  * Address:	802BBCCC
  * Size:	000008
  */
-void Game::Imomushi::ProperAnimator::getAnimator()
+void Imomushi::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Imomushi::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

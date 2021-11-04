@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8021B94C
  * Size:	0000E4
  */
-void Game::SingleGame::SelectState::__ct(void)
+SingleGame::SelectState::SelectState(void)
 {
 	/*
 	.loc_0x0:
@@ -88,8 +80,7 @@ void Game::SingleGame::SelectState::__ct(void)
  * Address:	8021BA30
  * Size:	000098
  */
-void Game::SingleGame::SelectState::init((Game::SingleGameSection*,
-                                          Game::StateArg*))
+void SingleGame::SelectState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -139,7 +130,7 @@ void Game::SingleGame::SelectState::init((Game::SingleGameSection*,
  * Address:	8021BAC8
  * Size:	000260
  */
-void Game::SingleGame::SelectState::initNext((Game::SingleGameSection*))
+void SingleGame::SelectState::initNext(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -317,14 +308,14 @@ void Game::SingleGame::SelectState::initNext((Game::SingleGameSection*))
  * Address:	8021BD28
  * Size:	000004
  */
-void Game::WorldMap::Base::init((Game::WorldMap::InitArg&)) { }
+void WorldMap::Base::init(Game::WorldMap::InitArg&) { }
 
 /*
  * --INFO--
  * Address:	8021BD2C
  * Size:	00030C
  */
-void Game::SingleGame::SelectState::dvdload(void)
+void SingleGame::SelectState::dvdload(void)
 {
 	/*
 	.loc_0x0:
@@ -565,14 +556,14 @@ void Game::SingleGame::SelectState::dvdload(void)
  * Address:	8021C038
  * Size:	000004
  */
-void Game::WorldMap::Base::loadResource(void) { }
+void WorldMap::Base::loadResource(void) { }
 
 /*
  * --INFO--
  * Address:	8021C03C
  * Size:	0002AC
  */
-void Game::SingleGame::SelectState::exec((Game::SingleGameSection*))
+void SingleGame::SelectState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -789,14 +780,14 @@ void Game::SingleGame::SelectState::exec((Game::SingleGameSection*))
  * Address:	8021C2E8
  * Size:	000004
  */
-void Game::WorldMap::Base::update((Game::WorldMap::UpdateArg&)) { }
+void WorldMap::Base::update(Game::WorldMap::UpdateArg&) { }
 
 /*
  * --INFO--
  * Address:	8021C2EC
  * Size:	0002D0
  */
-void Game::SingleGame::SelectState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::SelectState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -990,35 +981,35 @@ void Game::SingleGame::SelectState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8021C5BC
  * Size:	000004
  */
-void Game::WorldMap::Base::draw4th((Graphics&)) { }
+void WorldMap::Base::draw4th(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8021C5C0
  * Size:	000004
  */
-void Game::WorldMap::Base::draw3rd((Graphics&)) { }
+void WorldMap::Base::draw3rd(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8021C5C4
  * Size:	000004
  */
-void Game::WorldMap::Base::draw2nd((Graphics&)) { }
+void WorldMap::Base::draw2nd(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8021C5C8
  * Size:	000004
  */
-void Game::WorldMap::Base::draw1st((Graphics&)) { }
+void WorldMap::Base::draw1st(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8021C5CC
  * Size:	0000F4
  */
-void Game::SingleGame::SelectState::cleanup((Game::SingleGameSection*))
+void SingleGame::SelectState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1091,6 +1082,8 @@ void Game::SingleGame::SelectState::cleanup((Game::SingleGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

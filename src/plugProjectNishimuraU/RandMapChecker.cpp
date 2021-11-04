@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80245664
  * Size:	000008
  */
-void Game::Cave::RandMapChecker::__ct((Game::Cave::MapNode*))
+Cave::RandMapChecker::RandMapChecker(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +21,7 @@ void Game::Cave::RandMapChecker::__ct((Game::Cave::MapNode*))
  * Address:	8024566C
  * Size:	00007C
  */
-void Game::Cave::RandMapChecker::isPutOnMap((Game::Cave::MapNode*))
+void Cave::RandMapChecker::isPutOnMap(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -80,7 +72,7 @@ void Game::Cave::RandMapChecker::isPutOnMap((Game::Cave::MapNode*))
  * Address:	802456E8
  * Size:	0000F0
  */
-void Game::Cave::RandMapChecker::isPartsOnParts((Game::Cave::MapNode*))
+void Cave::RandMapChecker::isPartsOnParts(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -160,7 +152,7 @@ void Game::Cave::RandMapChecker::isPartsOnParts((Game::Cave::MapNode*))
  * Address:	802457D8
  * Size:	000220
  */
-void Game::Cave::RandMapChecker::isDoorOnParts((Game::Cave::MapNode*))
+void Cave::RandMapChecker::isDoorOnParts(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -338,7 +330,7 @@ void Game::Cave::RandMapChecker::isDoorOnParts((Game::Cave::MapNode*))
  * Address:	802459F8
  * Size:	0001E8
  */
-void Game::Cave::RandMapChecker::isPartsOnDoor((Game::Cave::MapNode*))
+void Cave::RandMapChecker::isPartsOnDoor(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -498,8 +490,7 @@ void Game::Cave::RandMapChecker::isPartsOnDoor((Game::Cave::MapNode*))
  * Address:	80245BE0
  * Size:	00007C
  */
-void Game::Cave::RandMapChecker::isInnerBox((int, int, int, int, int, int, int,
-                                             int))
+void Cave::RandMapChecker::isInnerBox(int, int, int, int, int, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -544,3 +535,4 @@ void Game::Cave::RandMapChecker::isInnerBox((int, int, int, int, int, int, int,
 	  blr
 	*/
 }
+} // namespace Game

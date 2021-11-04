@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80099E60
  * Size:	000060
  */
-void JASBasicWaveBank::JASBasicWaveBank()
+JASBasicWaveBank::JASBasicWaveBank()
 {
 	/*
 	.loc_0x0:
@@ -41,7 +41,7 @@ void JASBasicWaveBank::JASBasicWaveBank()
  * Address:	80099EC0
  * Size:	000048
  */
-void JASWaveBank::~JASWaveBank()
+JASWaveBank::~JASWaveBank()
 {
 	/*
 	.loc_0x0:
@@ -73,7 +73,7 @@ void JASWaveBank::~JASWaveBank()
  * Address:	80099F08
  * Size:	0000BC
  */
-void JASBasicWaveBank::~JASBasicWaveBank()
+JASBasicWaveBank::~JASBasicWaveBank()
 {
 	/*
 	.loc_0x0:
@@ -290,7 +290,7 @@ void JASBasicWaveBank::incWaveTable(const JASBasicWaveBank::TWaveGroup*)
  * Address:	........
  * Size:	000054
  */
-void JASMutexLock::~JASMutexLock()
+JASMutexLock::~JASMutexLock()
 {
 	// UNUSED FUNCTION
 }
@@ -336,7 +336,7 @@ void JASBasicWaveBank::getWaveHandle(unsigned long) const
  * Address:	8009A164
  * Size:	000058
  */
-void JASBasicWaveBank::TWaveGroup::__ct((JASBasicWaveBank*))
+JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank*)
 {
 	/*
 	.loc_0x0:
@@ -370,7 +370,7 @@ void JASBasicWaveBank::TWaveGroup::__ct((JASBasicWaveBank*))
  * Address:	........
  * Size:	000090
  */
-void JASWaveArc::~JASWaveArc()
+JASWaveArc::~JASWaveArc()
 {
 	// UNUSED FUNCTION
 }
@@ -380,7 +380,7 @@ void JASWaveArc::~JASWaveArc()
  * Address:	8009A1BC
  * Size:	0000B4
  */
-void JASBasicWaveBank::TWaveGroup::__dt(void)
+JASBasicWaveBank::TWaveGroup::~TWaveGroup(void)
 {
 	/*
 	.loc_0x0:
@@ -443,7 +443,7 @@ void JASBasicWaveBank::TWaveGroup::__dt(void)
  * Address:	8009A270
  * Size:	000060
  */
-void JASBasicWaveBank::TWaveInfo::__dt(void)
+JASBasicWaveBank::TWaveInfo::~TWaveInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -483,7 +483,7 @@ void JASBasicWaveBank::TWaveInfo::__dt(void)
  * Address:	8009A2D0
  * Size:	0001BC
  */
-void JASBasicWaveBank::TWaveGroup::setWaveCount((unsigned long))
+void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -614,7 +614,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount((unsigned long))
  * Address:	8009A48C
  * Size:	000030
  */
-void JASBasicWaveBank::TWaveInfo::__ct(void)
+JASBasicWaveBank::TWaveInfo::TWaveInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -638,7 +638,7 @@ void JASBasicWaveBank::TWaveInfo::__ct(void)
  * Address:	8009A4BC
  * Size:	00005C
  */
-void JASBasicWaveBank::TWaveHandle::__dt(void)
+JASBasicWaveBank::TWaveHandle::~TWaveHandle(void)
 {
 	/*
 	.loc_0x0:
@@ -677,7 +677,7 @@ void JASBasicWaveBank::TWaveHandle::__dt(void)
  * Address:	8009A518
  * Size:	000048
  */
-void JASWaveHandle::~JASWaveHandle()
+JASWaveHandle::~JASWaveHandle()
 {
 	/*
 	.loc_0x0:
@@ -709,8 +709,8 @@ void JASWaveHandle::~JASWaveHandle()
  * Address:	8009A560
  * Size:	000090
  */
-void JASBasicWaveBank::TWaveGroup::setWaveInfo((int, unsigned long,
-                                                JASWaveInfo const&))
+void JASBasicWaveBank::TWaveGroup::setWaveInfo(int, unsigned long,
+                                               JASWaveInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -921,7 +921,7 @@ void JASBasicWaveBank::TWaveGroup::getWaveID(const(int))
  * Address:	8009A78C
  * Size:	000008
  */
-void JASBasicWaveBank::TWaveHandle::getWaveInfo( const
+void JASBasicWaveBank::TWaveHandle::getWaveInfo() const
 {
 	/*
 	.loc_0x0:
@@ -935,7 +935,7 @@ void JASBasicWaveBank::TWaveHandle::getWaveInfo( const
  * Address:	8009A794
  * Size:	000024
  */
-void JASBasicWaveBank::TWaveHandle::getWavePtr( const
+void JASBasicWaveBank::TWaveHandle::getWavePtr() const
 {
 	/*
 	.loc_0x0:

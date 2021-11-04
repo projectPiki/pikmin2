@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000110
  */
-void Game::MovieConfig::__ct(void)
+MovieConfig::MovieConfig(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::MovieConfig::__ct(void)
  * Address:	80431830
  * Size:	000070
  */
-void Game::MovieConfig::TParms::__dt(void)
+MovieConfig::TParms::~TParms(void)
 {
 	/*
 	.loc_0x0:
@@ -69,14 +61,14 @@ void Game::MovieConfig::TParms::__dt(void)
  * Address:	804318A0
  * Size:	000004
  */
-void Game::MovieConfig::dump(void) { }
+void MovieConfig::dump(void) { }
 
 /*
  * --INFO--
  * Address:	804318A4
  * Size:	00001C
  */
-void Game::MovieConfig::isSkippable(void)
+void MovieConfig::isSkippable(void)
 {
 	/*
 	.loc_0x0:
@@ -97,7 +89,7 @@ void Game::MovieConfig::isSkippable(void)
  * Address:	804318C0
  * Size:	00000C
  */
-void Game::MovieConfig::isNeverSkippable(void)
+void MovieConfig::isNeverSkippable(void)
 {
 	/*
 	.loc_0x0:
@@ -112,7 +104,7 @@ void Game::MovieConfig::isNeverSkippable(void)
  * Address:	804318CC
  * Size:	000054
  */
-void Game::MovieConfig::is((char*))
+void MovieConfig::is(char*)
 {
 	/*
 	.loc_0x0:
@@ -145,7 +137,7 @@ void Game::MovieConfig::is((char*))
  * Address:	80431920
  * Size:	0002D4
  */
-void Game::MovieConfig::read((Stream&))
+void MovieConfig::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +350,7 @@ void Game::MovieConfig::read((Stream&))
  * Address:	80431BF4
  * Size:	000038
  */
-void Game::MovieList::construct(void)
+void MovieList::construct(void)
 {
 	/*
 	.loc_0x0:
@@ -388,7 +380,7 @@ void Game::MovieList::construct(void)
  * Address:	80431C2C
  * Size:	0001BC
  */
-void Game::MovieList::__ct(void)
+MovieList::MovieList(void)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +507,7 @@ void Game::MovieList::__ct(void)
  * Address:	80431DE8
  * Size:	000098
  */
-void Game::MovieConfig::__dt(void)
+MovieConfig::~MovieConfig(void)
 {
 	/*
 	.loc_0x0:
@@ -569,7 +561,7 @@ void Game::MovieConfig::__dt(void)
  * Address:	80431E80
  * Size:	0000B0
  */
-void Game::MovieList::findConfig((char*, char*))
+void MovieList::findConfig(char*, char*)
 {
 	/*
 	.loc_0x0:
@@ -637,7 +629,7 @@ void Game::MovieList::findConfig((char*, char*))
  * Address:	........
  * Size:	000094
  */
-void Game::MovieList::getConfig((int))
+void MovieList::getConfig(int)
 {
 	// UNUSED FUNCTION
 }
@@ -647,7 +639,7 @@ void Game::MovieList::getConfig((int))
  * Address:	80431F30
  * Size:	000164
  */
-void Game::MovieList::read((Stream&))
+void MovieList::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -754,7 +746,7 @@ void Game::MovieList::read((Stream&))
  * Address:	80432094
  * Size:	0000B4
  */
-void Game::MovieList::__dt(void)
+MovieList::~MovieList(void)
 {
 	/*
 	.loc_0x0:
@@ -811,6 +803,8 @@ void Game::MovieList::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803D1104
  * Size:	000A2C
  */
-void ebi::CardError::FSMStateMachine::init((ebi::CardError::TMgr*))
+void CardError::FSMStateMachine::init(ebi::CardError::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -732,7 +724,7 @@ void ebi::CardError::FSMStateMachine::init((ebi::CardError::TMgr*))
  * Address:	803D1B30
  * Size:	00002C
  */
-void ebi::CardError::FSMState::init((ebi::CardError::TMgr*, Game::StateArg*))
+void CardError::FSMState::init(ebi::CardError::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -755,16 +747,14 @@ void ebi::CardError::FSMState::init((ebi::CardError::TMgr*, Game::StateArg*))
  * Address:	803D1B5C
  * Size:	000004
  */
-void ebi::CardError::FSMState::do_init((ebi::CardError::TMgr*, Game::StateArg*))
-{
-}
+void CardError::FSMState::do_init(ebi::CardError::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803D1B60
  * Size:	00002C
  */
-void ebi::CardError::FSMState::exec((ebi::CardError::TMgr*))
+void CardError::FSMState::exec(ebi::CardError::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -787,15 +777,15 @@ void ebi::CardError::FSMState::exec((ebi::CardError::TMgr*))
  * Address:	803D1B8C
  * Size:	000004
  */
-void ebi::CardError::FSMState::do_exec((ebi::CardError::TMgr*)) { }
+void CardError::FSMState::do_exec(ebi::CardError::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D1B90
  * Size:	000084
  */
-void ebi::CardError::FSMState_Warning::do_init((ebi::CardError::TMgr*,
-                                                Game::StateArg*))
+void CardError::FSMState_Warning::do_init(ebi::CardError::TMgr*,
+                                          Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -840,7 +830,7 @@ void ebi::CardError::FSMState_Warning::do_init((ebi::CardError::TMgr*,
  * Address:	803D1C14
  * Size:	0000A4
  */
-void ebi::CardError::FSMState_Warning::do_exec((ebi::CardError::TMgr*))
+void CardError::FSMState_Warning::do_exec(ebi::CardError::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -899,8 +889,8 @@ void ebi::CardError::FSMState_Warning::do_exec((ebi::CardError::TMgr*))
  * Address:	803D1CB8
  * Size:	00003C
  */
-void ebi::CardError::FSMState_Question::do_init((ebi::CardError::TMgr*,
-                                                 Game::StateArg*))
+void CardError::FSMState_Question::do_init(ebi::CardError::TMgr*,
+                                           Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -927,7 +917,7 @@ void ebi::CardError::FSMState_Question::do_init((ebi::CardError::TMgr*,
  * Address:	803D1CF4
  * Size:	000098
  */
-void ebi::CardError::FSMState_Question::do_exec((ebi::CardError::TMgr*))
+void CardError::FSMState_Question::do_exec(ebi::CardError::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -983,8 +973,8 @@ void ebi::CardError::FSMState_Question::do_exec((ebi::CardError::TMgr*))
  * Address:	803D1D8C
  * Size:	000074
  */
-void ebi::CardError::FSMState_CardRequest::do_init((ebi::CardError::TMgr*,
-                                                    Game::StateArg*))
+void CardError::FSMState_CardRequest::do_init(ebi::CardError::TMgr*,
+                                              Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1025,7 +1015,7 @@ void ebi::CardError::FSMState_CardRequest::do_init((ebi::CardError::TMgr*,
  * Address:	803D1E00
  * Size:	000350
  */
-void ebi::CardError::FSMState_CardRequest::do_exec((ebi::CardError::TMgr*))
+void CardError::FSMState_CardRequest::do_exec(ebi::CardError::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1279,7 +1269,7 @@ void ebi::CardError::FSMState_CardRequest::do_exec((ebi::CardError::TMgr*))
  * Address:	803D2150
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardNoCard(
+void CardError::FSMState_CardRequest::do_transitCardNoCard(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1346,7 +1336,7 @@ FPQ33ebi9CardError4TMgriPQ24Game8StateArg(void)
  * Address:	803D21E4
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardIOError(
+void CardError::FSMState_CardRequest::do_transitCardIOError(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1388,7 +1378,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardIOError(
  * Address:	803D2248
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardWrongDevice(
+void CardError::FSMState_CardRequest::do_transitCardWrongDevice(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1430,7 +1420,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardWrongDevice(
  * Address:	803D22AC
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardWrongSector(
+void CardError::FSMState_CardRequest::do_transitCardWrongSector(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1472,7 +1462,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardWrongSector(
  * Address:	803D2310
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardBroken(
+void CardError::FSMState_CardRequest::do_transitCardBroken(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1514,7 +1504,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardBroken(
  * Address:	803D2374
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardEncoding(
+void CardError::FSMState_CardRequest::do_transitCardEncoding(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1556,7 +1546,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardEncoding(
  * Address:	803D23D8
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardNoFileSpace(
+void CardError::FSMState_CardRequest::do_transitCardNoFileSpace(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1598,7 +1588,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardNoFileSpace(
  * Address:	803D243C
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardNoFileEntry(
+void CardError::FSMState_CardRequest::do_transitCardNoFileEntry(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1640,7 +1630,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardNoFileEntry(
  * Address:	803D24A0
  * Size:	000064
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardFileOpenError(
+void CardError::FSMState_CardRequest::do_transitCardFileOpenError(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1682,7 +1672,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardFileOpenError(
  * Address:	803D2504
  * Size:	000068
  */
-void ebi::CardError::FSMState_CardRequest::do_transitCardSerialNoError(
+void CardError::FSMState_CardRequest::do_transitCardSerialNoError(
     (ebi::CardError::TMgr*))
 {
 	/*
@@ -1725,8 +1715,7 @@ void ebi::CardError::FSMState_CardRequest::do_transitCardSerialNoError(
  * Address:	803D256C
  * Size:	000034
  */
-void ebi::CardError::FSMState_NoCard::do_init((ebi::CardError::TMgr*,
-                                               Game::StateArg*))
+void CardError::FSMState_NoCard::do_init(ebi::CardError::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1751,7 +1740,7 @@ void ebi::CardError::FSMState_NoCard::do_init((ebi::CardError::TMgr*,
  * Address:	803D25A0
  * Size:	0000B0
  */
-void ebi::CardError::FSMState_NoCard::do_exec((ebi::CardError::TMgr*))
+void CardError::FSMState_NoCard::do_exec(ebi::CardError::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1813,7 +1802,7 @@ void ebi::CardError::FSMState_NoCard::do_exec((ebi::CardError::TMgr*))
  * Address:	803D2650
  * Size:	000094
  */
-void ebi::CardError::TMgr::__ct(void)
+CardError::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1883,664 +1872,668 @@ FPQ33ebi9CardError4TMgriPQ24Game8StateArg(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D2718
- * Size:	000460
- */
-void ebi::Screen::TMemoryCard::__dt(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x444
-	  addic.    r0, r30, 0x25C
-	  beq-      .loc_0x88
-	  addic.    r0, r30, 0x25C
-	  beq-      .loc_0x88
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x25C
-	  addi      r3, r3, 0x7648
-	  stw       r3, 0x25C(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x264(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x25C
-	  addi      r3, r3, 0x73CC
-	  stw       r3, 0x25C(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x264(r30)
-	  beq-      .loc_0x88
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x264
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0x25C(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0x264(r30)
-	  bl        -0x342B00
+	 * --INFO--
+	 * Address:	803D2718
+	 * Size:	000460
+	 */
+	TMemoryCard::~TMemoryCard(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x444
+		  addic.    r0, r30, 0x25C
+		  beq-      .loc_0x88
+		  addic.    r0, r30, 0x25C
+		  beq-      .loc_0x88
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x25C
+		  addi      r3, r3, 0x7648
+		  stw       r3, 0x25C(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0x264(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x25C
+		  addi      r3, r3, 0x73CC
+		  stw       r3, 0x25C(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0x264(r30)
+		  beq-      .loc_0x88
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x264
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0x25C(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0x264(r30)
+		  bl        -0x342B00
 
-	.loc_0x88:
-	  addic.    r0, r30, 0x224
-	  beq-      .loc_0xF0
-	  addic.    r0, r30, 0x224
-	  beq-      .loc_0xF0
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x224
-	  addi      r3, r3, 0x7648
-	  stw       r3, 0x224(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x22C(r30)
-	  beq-      .loc_0xF0
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x224
-	  addi      r3, r3, 0x73CC
-	  stw       r3, 0x224(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x22C(r30)
-	  beq-      .loc_0xF0
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x22C
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0x224(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0x22C(r30)
-	  bl        -0x342B68
+		.loc_0x88:
+		  addic.    r0, r30, 0x224
+		  beq-      .loc_0xF0
+		  addic.    r0, r30, 0x224
+		  beq-      .loc_0xF0
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x224
+		  addi      r3, r3, 0x7648
+		  stw       r3, 0x224(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0x22C(r30)
+		  beq-      .loc_0xF0
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x224
+		  addi      r3, r3, 0x73CC
+		  stw       r3, 0x224(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0x22C(r30)
+		  beq-      .loc_0xF0
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x22C
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0x224(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0x22C(r30)
+		  bl        -0x342B68
 
-	.loc_0xF0:
-	  addic.    r0, r30, 0x204
-	  beq-      .loc_0x14C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x204
-	  subi      r0, r3, 0x77F4
-	  stw       r0, 0x204(r30)
-	  beq-      .loc_0x14C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x204
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x204(r30)
-	  beq-      .loc_0x14C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x204
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x204(r30)
-	  beq-      .loc_0x14C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x204
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x204(r30)
-	  bl        0x3ED28
+		.loc_0xF0:
+		  addic.    r0, r30, 0x204
+		  beq-      .loc_0x14C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x204
+		  subi      r0, r3, 0x77F4
+		  stw       r0, 0x204(r30)
+		  beq-      .loc_0x14C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x204
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x204(r30)
+		  beq-      .loc_0x14C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x204
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x204(r30)
+		  beq-      .loc_0x14C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x204
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x204(r30)
+		  bl        0x3ED28
 
-	.loc_0x14C:
-	  addic.    r0, r30, 0x1C8
-	  beq-      .loc_0x1BC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x1E8
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x1C8(r30)
-	  beq-      .loc_0x174
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x1E8(r30)
+		.loc_0x14C:
+		  addic.    r0, r30, 0x1C8
+		  beq-      .loc_0x1BC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x1E8
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x1C8(r30)
+		  beq-      .loc_0x174
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x1E8(r30)
 
-	.loc_0x174:
-	  addic.    r0, r30, 0x1C8
-	  beq-      .loc_0x1BC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x1C8
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x1C8(r30)
-	  beq-      .loc_0x1BC
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x1C8
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x1C8(r30)
-	  beq-      .loc_0x1BC
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x1C8
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x1C8(r30)
-	  bl        0x3ECB8
+		.loc_0x174:
+		  addic.    r0, r30, 0x1C8
+		  beq-      .loc_0x1BC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x1C8
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x1C8(r30)
+		  beq-      .loc_0x1BC
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x1C8
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x1C8(r30)
+		  beq-      .loc_0x1BC
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x1C8
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x1C8(r30)
+		  bl        0x3ECB8
 
-	.loc_0x1BC:
-	  addic.    r0, r30, 0x18C
-	  beq-      .loc_0x22C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x1AC
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x18C(r30)
-	  beq-      .loc_0x1E4
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x1AC(r30)
+		.loc_0x1BC:
+		  addic.    r0, r30, 0x18C
+		  beq-      .loc_0x22C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x1AC
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x18C(r30)
+		  beq-      .loc_0x1E4
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x1AC(r30)
 
-	.loc_0x1E4:
-	  addic.    r0, r30, 0x18C
-	  beq-      .loc_0x22C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x18C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x18C(r30)
-	  beq-      .loc_0x22C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x18C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x18C(r30)
-	  beq-      .loc_0x22C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x18C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x18C(r30)
-	  bl        0x3EC48
+		.loc_0x1E4:
+		  addic.    r0, r30, 0x18C
+		  beq-      .loc_0x22C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x18C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x18C(r30)
+		  beq-      .loc_0x22C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x18C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x18C(r30)
+		  beq-      .loc_0x22C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x18C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x18C(r30)
+		  bl        0x3EC48
 
-	.loc_0x22C:
-	  addic.    r0, r30, 0x150
-	  beq-      .loc_0x29C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x170
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x150(r30)
-	  beq-      .loc_0x254
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x170(r30)
+		.loc_0x22C:
+		  addic.    r0, r30, 0x150
+		  beq-      .loc_0x29C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x170
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x150(r30)
+		  beq-      .loc_0x254
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x170(r30)
 
-	.loc_0x254:
-	  addic.    r0, r30, 0x150
-	  beq-      .loc_0x29C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x150
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x150(r30)
-	  beq-      .loc_0x29C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x150
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x150(r30)
-	  beq-      .loc_0x29C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x150
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x150(r30)
-	  bl        0x3EBD8
+		.loc_0x254:
+		  addic.    r0, r30, 0x150
+		  beq-      .loc_0x29C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x150
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x150(r30)
+		  beq-      .loc_0x29C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x150
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x150(r30)
+		  beq-      .loc_0x29C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x150
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x150(r30)
+		  bl        0x3EBD8
 
-	.loc_0x29C:
-	  addic.    r0, r30, 0x114
-	  beq-      .loc_0x30C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x134
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x114(r30)
-	  beq-      .loc_0x2C4
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x134(r30)
+		.loc_0x29C:
+		  addic.    r0, r30, 0x114
+		  beq-      .loc_0x30C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x134
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x114(r30)
+		  beq-      .loc_0x2C4
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x134(r30)
 
-	.loc_0x2C4:
-	  addic.    r0, r30, 0x114
-	  beq-      .loc_0x30C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x114
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x114(r30)
-	  beq-      .loc_0x30C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x114
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x114(r30)
-	  beq-      .loc_0x30C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x114
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x114(r30)
-	  bl        0x3EB68
+		.loc_0x2C4:
+		  addic.    r0, r30, 0x114
+		  beq-      .loc_0x30C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x114
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x114(r30)
+		  beq-      .loc_0x30C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x114
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x114(r30)
+		  beq-      .loc_0x30C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x114
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x114(r30)
+		  bl        0x3EB68
 
-	.loc_0x30C:
-	  addic.    r0, r30, 0xD8
-	  beq-      .loc_0x37C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xF8
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0xD8(r30)
-	  beq-      .loc_0x334
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0xF8(r30)
+		.loc_0x30C:
+		  addic.    r0, r30, 0xD8
+		  beq-      .loc_0x37C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xF8
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0xD8(r30)
+		  beq-      .loc_0x334
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0xF8(r30)
 
-	.loc_0x334:
-	  addic.    r0, r30, 0xD8
-	  beq-      .loc_0x37C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xD8
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0xD8(r30)
-	  beq-      .loc_0x37C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0xD8
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0xD8(r30)
-	  beq-      .loc_0x37C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0xD8
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0xD8(r30)
-	  bl        0x3EAF8
+		.loc_0x334:
+		  addic.    r0, r30, 0xD8
+		  beq-      .loc_0x37C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xD8
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0xD8(r30)
+		  beq-      .loc_0x37C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0xD8
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0xD8(r30)
+		  beq-      .loc_0x37C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0xD8
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0xD8(r30)
+		  bl        0x3EAF8
 
-	.loc_0x37C:
-	  addic.    r0, r30, 0x8C
-	  beq-      .loc_0x3D8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x8C
-	  subi      r0, r3, 0x75AC
-	  stw       r0, 0x8C(r30)
-	  beq-      .loc_0x3D8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x8C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x8C(r30)
-	  beq-      .loc_0x3D8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x8C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x8C(r30)
-	  beq-      .loc_0x3D8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x8C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x8C(r30)
-	  bl        0x3EA9C
+		.loc_0x37C:
+		  addic.    r0, r30, 0x8C
+		  beq-      .loc_0x3D8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x8C
+		  subi      r0, r3, 0x75AC
+		  stw       r0, 0x8C(r30)
+		  beq-      .loc_0x3D8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x8C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x8C(r30)
+		  beq-      .loc_0x3D8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x8C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x8C(r30)
+		  beq-      .loc_0x3D8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x8C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x8C(r30)
+		  bl        0x3EA9C
 
-	.loc_0x3D8:
-	  addic.    r0, r30, 0x40
-	  beq-      .loc_0x434
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x40
-	  subi      r0, r3, 0x75AC
-	  stw       r0, 0x40(r30)
-	  beq-      .loc_0x434
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x40
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x40(r30)
-	  beq-      .loc_0x434
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x40
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x40(r30)
-	  beq-      .loc_0x434
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x40
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x40(r30)
-	  bl        0x3EA40
+		.loc_0x3D8:
+		  addic.    r0, r30, 0x40
+		  beq-      .loc_0x434
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x40
+		  subi      r0, r3, 0x75AC
+		  stw       r0, 0x40(r30)
+		  beq-      .loc_0x434
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x40
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x40(r30)
+		  beq-      .loc_0x434
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x40
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x40(r30)
+		  beq-      .loc_0x434
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x40
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x40(r30)
+		  bl        0x3EA40
 
-	.loc_0x434:
-	  extsh.    r0, r31
-	  ble-      .loc_0x444
-	  mr        r3, r30
-	  bl        -0x3AEAA4
+		.loc_0x434:
+		  extsh.    r0, r31
+		  ble-      .loc_0x444
+		  mr        r3, r30
+		  bl        -0x3AEAA4
 
-	.loc_0x444:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x444:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803D2B78
- * Size:	0004C8
- */
-void ebi::Screen::TMemoryCard::__ct(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0x1
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  addi      r31, r30, 0x40
-	  stw       r29, 0x14(r1)
-	  mr        r29, r31
-	  stw       r4, 0x0(r3)
-	  stw       r4, 0x8(r3)
-	  mr        r3, r31
-	  stw       r4, 0xC(r30)
-	  stw       r4, 0x10(r30)
-	  stw       r4, 0x14(r30)
-	  stb       r0, 0x19(r30)
-	  stw       r4, 0x20(r30)
-	  stw       r4, 0x24(r30)
-	  stw       r4, 0x28(r30)
-	  stw       r4, 0x2C(r30)
-	  bl        0x3E7C0
-	  lis       r3, 0x804D
-	  lis       r4, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r6, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r0, 0
-	  lis       r3, 0x803D
-	  li        r7, 0x1
-	  stw       r0, 0x18(r31)
-	  addi      r0, r4, 0x7F2C
-	  subi      r4, r3, 0x114
-	  subi      r3, r6, 0x77D0
-	  stw       r0, 0x0(r29)
-	  lis       r5, 0x804F
-	  subi      r0, r5, 0x75AC
-	  li        r6, 0x10
-	  stw       r3, 0x0(r29)
-	  addi      r3, r31, 0x20
-	  li        r5, 0
-	  stb       r7, 0x1C(r29)
-	  li        r7, 0x2
-	  stw       r0, 0x0(r31)
-	  bl        -0x3113F0
-	  lfs       f1, 0x1768(r2)
-	  addi      r29, r30, 0x8C
-	  lfs       f0, 0x1770(r2)
-	  li        r4, 0x1
-	  stfs      f1, 0x40(r31)
-	  li        r0, 0
-	  mr        r3, r29
-	  stfs      f0, 0x44(r31)
-	  stb       r4, 0x48(r31)
-	  stb       r0, 0x49(r31)
-	  stb       r0, 0x1C(r31)
-	  bl        0x3E734
-	  lis       r3, 0x804D
-	  lis       r4, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r6, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r0, 0
-	  lis       r3, 0x803D
-	  li        r7, 0x1
-	  stw       r0, 0x18(r29)
-	  addi      r0, r4, 0x7F2C
-	  subi      r4, r3, 0x114
-	  subi      r3, r6, 0x77D0
-	  stw       r0, 0x0(r29)
-	  lis       r5, 0x804F
-	  subi      r0, r5, 0x75AC
-	  li        r6, 0x10
-	  stw       r3, 0x0(r29)
-	  addi      r3, r29, 0x20
-	  li        r5, 0
-	  stb       r7, 0x1C(r29)
-	  li        r7, 0x2
-	  stw       r0, 0x0(r29)
-	  bl        -0x31147C
-	  lfs       f1, 0x1768(r2)
-	  addi      r31, r30, 0xD8
-	  lfs       f0, 0x1770(r2)
-	  li        r4, 0x1
-	  stfs      f1, 0x40(r29)
-	  li        r0, 0
-	  mr        r3, r31
-	  stfs      f0, 0x44(r29)
-	  stb       r4, 0x48(r29)
-	  stb       r0, 0x49(r29)
-	  stb       r0, 0x1C(r29)
-	  bl        0x3E6A8
-	  lis       r3, 0x804D
-	  lis       r6, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r0, 0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r31)
-	  addi      r0, r6, 0x7F2C
-	  subi      r7, r5, 0x77D0
-	  li        r6, 0x1
-	  stw       r0, 0x0(r31)
-	  subi      r5, r4, 0x75F4
-	  addi      r0, r3, 0x798C
-	  addi      r3, r31, 0x20
-	  stw       r7, 0x0(r31)
-	  li        r4, 0
-	  stb       r6, 0x1C(r31)
-	  stw       r5, 0x0(r31)
-	  stw       r0, 0x20(r31)
-	  bl        -0x36B6C8
-	  addi      r29, r30, 0x114
-	  mr        r3, r29
-	  bl        0x3E644
-	  lis       r3, 0x804D
-	  lis       r6, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r0, 0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r29)
-	  addi      r0, r6, 0x7F2C
-	  subi      r7, r5, 0x77D0
-	  li        r6, 0x1
-	  stw       r0, 0x0(r29)
-	  subi      r5, r4, 0x75F4
-	  addi      r0, r3, 0x798C
-	  addi      r3, r29, 0x20
-	  stw       r7, 0x0(r29)
-	  li        r4, 0
-	  stb       r6, 0x1C(r29)
-	  stw       r5, 0x0(r29)
-	  stw       r0, 0x20(r29)
-	  bl        -0x36B72C
-	  addi      r29, r30, 0x150
-	  mr        r3, r29
-	  bl        0x3E5E0
-	  lis       r3, 0x804D
-	  lis       r6, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r0, 0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r29)
-	  addi      r0, r6, 0x7F2C
-	  subi      r7, r5, 0x77D0
-	  li        r6, 0x1
-	  stw       r0, 0x0(r29)
-	  subi      r5, r4, 0x75F4
-	  addi      r0, r3, 0x798C
-	  addi      r3, r29, 0x20
-	  stw       r7, 0x0(r29)
-	  li        r4, 0
-	  stb       r6, 0x1C(r29)
-	  stw       r5, 0x0(r29)
-	  stw       r0, 0x20(r29)
-	  bl        -0x36B790
-	  addi      r29, r30, 0x18C
-	  mr        r3, r29
-	  bl        0x3E57C
-	  lis       r3, 0x804D
-	  lis       r6, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r0, 0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r29)
-	  addi      r0, r6, 0x7F2C
-	  subi      r7, r5, 0x77D0
-	  li        r6, 0x1
-	  stw       r0, 0x0(r29)
-	  subi      r5, r4, 0x75F4
-	  addi      r0, r3, 0x798C
-	  addi      r3, r29, 0x20
-	  stw       r7, 0x0(r29)
-	  li        r4, 0
-	  stb       r6, 0x1C(r29)
-	  stw       r5, 0x0(r29)
-	  stw       r0, 0x20(r29)
-	  bl        -0x36B7F4
-	  addi      r29, r30, 0x1C8
-	  mr        r3, r29
-	  bl        0x3E518
-	  lis       r3, 0x804D
-	  lis       r6, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r0, 0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r29)
-	  addi      r0, r6, 0x7F2C
-	  subi      r7, r5, 0x77D0
-	  li        r6, 0x1
-	  stw       r0, 0x0(r29)
-	  subi      r5, r4, 0x75F4
-	  addi      r0, r3, 0x798C
-	  addi      r3, r29, 0x20
-	  stw       r7, 0x0(r29)
-	  li        r4, 0
-	  stb       r6, 0x1C(r29)
-	  stw       r5, 0x0(r29)
-	  stw       r0, 0x20(r29)
-	  bl        -0x36B858
-	  addi      r29, r30, 0x204
-	  mr        r3, r29
-	  bl        0x3E4B4
-	  lis       r3, 0x804D
-	  lis       r4, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r11, 0
-	  lis       r10, 0x804F
-	  lis       r5, 0x804C
-	  stw       r11, 0x18(r29)
-	  addi      r0, r4, 0x7F2C
-	  lis       r9, 0x804C
-	  lis       r8, 0x804A
-	  stw       r0, 0x0(r29)
-	  subi      r0, r3, 0x77D0
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  stw       r0, 0x0(r29)
-	  li        r0, 0x1
-	  addi      r7, r4, 0x7420
-	  addi      r6, r3, 0x73CC
-	  stb       r0, 0x1C(r29)
-	  subi      r0, r10, 0x77F4
-	  lis       r3, 0x804E
-	  addi      r10, r5, 0x14F0
-	  stw       r0, 0x0(r29)
-	  addi      r5, r3, 0x7648
-	  addi      r9, r9, 0x14D8
-	  subi      r8, r8, 0x1D84
-	  stw       r10, 0x224(r30)
-	  addi      r12, r7, 0x18
-	  addi      r29, r6, 0x18
-	  addi      r4, r30, 0x240
-	  stw       r9, 0x224(r30)
-	  addi      r31, r5, 0x18
-	  lfs       f3, 0x1774(r2)
-	  addi      r0, r30, 0x278
-	  stb       r11, 0x228(r30)
-	  mr        r3, r30
-	  lfs       f2, 0x1778(r2)
-	  stb       r11, 0x229(r30)
-	  lfs       f1, 0x1768(r2)
-	  stw       r8, 0x22C(r30)
-	  stw       r7, 0x224(r30)
-	  stw       r12, 0x22C(r30)
-	  sth       r11, 0x230(r30)
-	  stw       r11, 0x234(r30)
-	  stw       r6, 0x224(r30)
-	  stw       r29, 0x22C(r30)
-	  stw       r4, 0x238(r30)
-	  stw       r5, 0x224(r30)
-	  stw       r31, 0x22C(r30)
-	  stfs      f3, 0x23C(r30)
-	  lwz       r4, -0x6514(r13)
-	  lfs       f0, 0x54(r4)
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x248(r30)
-	  stfs      f1, 0x24C(r30)
-	  stw       r11, 0x254(r30)
-	  stw       r11, 0x258(r30)
-	  stw       r10, 0x25C(r30)
-	  stw       r9, 0x25C(r30)
-	  stb       r11, 0x260(r30)
-	  stb       r11, 0x261(r30)
-	  stw       r8, 0x264(r30)
-	  stw       r7, 0x25C(r30)
-	  stw       r12, 0x264(r30)
-	  sth       r11, 0x268(r30)
-	  stw       r11, 0x26C(r30)
-	  stw       r6, 0x25C(r30)
-	  stw       r29, 0x264(r30)
-	  stw       r0, 0x270(r30)
-	  stw       r5, 0x25C(r30)
-	  stw       r31, 0x264(r30)
-	  stfs      f3, 0x274(r30)
-	  lwz       r4, -0x6514(r13)
-	  lfs       f0, 0x54(r4)
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x280(r30)
-	  stfs      f1, 0x284(r30)
-	  stw       r11, 0x28C(r30)
-	  stw       r11, 0x290(r30)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803D2B78
+	 * Size:	0004C8
+	 */
+	TMemoryCard::TMemoryCard(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  li        r4, 0
+		  stw       r0, 0x24(r1)
+		  li        r0, 0x1
+		  stw       r31, 0x1C(r1)
+		  stw       r30, 0x18(r1)
+		  mr        r30, r3
+		  addi      r31, r30, 0x40
+		  stw       r29, 0x14(r1)
+		  mr        r29, r31
+		  stw       r4, 0x0(r3)
+		  stw       r4, 0x8(r3)
+		  mr        r3, r31
+		  stw       r4, 0xC(r30)
+		  stw       r4, 0x10(r30)
+		  stw       r4, 0x14(r30)
+		  stb       r0, 0x19(r30)
+		  stw       r4, 0x20(r30)
+		  stw       r4, 0x24(r30)
+		  stw       r4, 0x28(r30)
+		  stw       r4, 0x2C(r30)
+		  bl        0x3E7C0
+		  lis       r3, 0x804D
+		  lis       r4, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r6, 0x804F
+		  stw       r0, 0x0(r31)
+		  li        r0, 0
+		  lis       r3, 0x803D
+		  li        r7, 0x1
+		  stw       r0, 0x18(r31)
+		  addi      r0, r4, 0x7F2C
+		  subi      r4, r3, 0x114
+		  subi      r3, r6, 0x77D0
+		  stw       r0, 0x0(r29)
+		  lis       r5, 0x804F
+		  subi      r0, r5, 0x75AC
+		  li        r6, 0x10
+		  stw       r3, 0x0(r29)
+		  addi      r3, r31, 0x20
+		  li        r5, 0
+		  stb       r7, 0x1C(r29)
+		  li        r7, 0x2
+		  stw       r0, 0x0(r31)
+		  bl        -0x3113F0
+		  lfs       f1, 0x1768(r2)
+		  addi      r29, r30, 0x8C
+		  lfs       f0, 0x1770(r2)
+		  li        r4, 0x1
+		  stfs      f1, 0x40(r31)
+		  li        r0, 0
+		  mr        r3, r29
+		  stfs      f0, 0x44(r31)
+		  stb       r4, 0x48(r31)
+		  stb       r0, 0x49(r31)
+		  stb       r0, 0x1C(r31)
+		  bl        0x3E734
+		  lis       r3, 0x804D
+		  lis       r4, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r6, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r0, 0
+		  lis       r3, 0x803D
+		  li        r7, 0x1
+		  stw       r0, 0x18(r29)
+		  addi      r0, r4, 0x7F2C
+		  subi      r4, r3, 0x114
+		  subi      r3, r6, 0x77D0
+		  stw       r0, 0x0(r29)
+		  lis       r5, 0x804F
+		  subi      r0, r5, 0x75AC
+		  li        r6, 0x10
+		  stw       r3, 0x0(r29)
+		  addi      r3, r29, 0x20
+		  li        r5, 0
+		  stb       r7, 0x1C(r29)
+		  li        r7, 0x2
+		  stw       r0, 0x0(r29)
+		  bl        -0x31147C
+		  lfs       f1, 0x1768(r2)
+		  addi      r31, r30, 0xD8
+		  lfs       f0, 0x1770(r2)
+		  li        r4, 0x1
+		  stfs      f1, 0x40(r29)
+		  li        r0, 0
+		  mr        r3, r31
+		  stfs      f0, 0x44(r29)
+		  stb       r4, 0x48(r29)
+		  stb       r0, 0x49(r29)
+		  stb       r0, 0x1C(r29)
+		  bl        0x3E6A8
+		  lis       r3, 0x804D
+		  lis       r6, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r5, 0x804F
+		  stw       r0, 0x0(r31)
+		  li        r0, 0
+		  lis       r4, 0x804F
+		  lis       r3, 0x804E
+		  stw       r0, 0x18(r31)
+		  addi      r0, r6, 0x7F2C
+		  subi      r7, r5, 0x77D0
+		  li        r6, 0x1
+		  stw       r0, 0x0(r31)
+		  subi      r5, r4, 0x75F4
+		  addi      r0, r3, 0x798C
+		  addi      r3, r31, 0x20
+		  stw       r7, 0x0(r31)
+		  li        r4, 0
+		  stb       r6, 0x1C(r31)
+		  stw       r5, 0x0(r31)
+		  stw       r0, 0x20(r31)
+		  bl        -0x36B6C8
+		  addi      r29, r30, 0x114
+		  mr        r3, r29
+		  bl        0x3E644
+		  lis       r3, 0x804D
+		  lis       r6, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r5, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r0, 0
+		  lis       r4, 0x804F
+		  lis       r3, 0x804E
+		  stw       r0, 0x18(r29)
+		  addi      r0, r6, 0x7F2C
+		  subi      r7, r5, 0x77D0
+		  li        r6, 0x1
+		  stw       r0, 0x0(r29)
+		  subi      r5, r4, 0x75F4
+		  addi      r0, r3, 0x798C
+		  addi      r3, r29, 0x20
+		  stw       r7, 0x0(r29)
+		  li        r4, 0
+		  stb       r6, 0x1C(r29)
+		  stw       r5, 0x0(r29)
+		  stw       r0, 0x20(r29)
+		  bl        -0x36B72C
+		  addi      r29, r30, 0x150
+		  mr        r3, r29
+		  bl        0x3E5E0
+		  lis       r3, 0x804D
+		  lis       r6, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r5, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r0, 0
+		  lis       r4, 0x804F
+		  lis       r3, 0x804E
+		  stw       r0, 0x18(r29)
+		  addi      r0, r6, 0x7F2C
+		  subi      r7, r5, 0x77D0
+		  li        r6, 0x1
+		  stw       r0, 0x0(r29)
+		  subi      r5, r4, 0x75F4
+		  addi      r0, r3, 0x798C
+		  addi      r3, r29, 0x20
+		  stw       r7, 0x0(r29)
+		  li        r4, 0
+		  stb       r6, 0x1C(r29)
+		  stw       r5, 0x0(r29)
+		  stw       r0, 0x20(r29)
+		  bl        -0x36B790
+		  addi      r29, r30, 0x18C
+		  mr        r3, r29
+		  bl        0x3E57C
+		  lis       r3, 0x804D
+		  lis       r6, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r5, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r0, 0
+		  lis       r4, 0x804F
+		  lis       r3, 0x804E
+		  stw       r0, 0x18(r29)
+		  addi      r0, r6, 0x7F2C
+		  subi      r7, r5, 0x77D0
+		  li        r6, 0x1
+		  stw       r0, 0x0(r29)
+		  subi      r5, r4, 0x75F4
+		  addi      r0, r3, 0x798C
+		  addi      r3, r29, 0x20
+		  stw       r7, 0x0(r29)
+		  li        r4, 0
+		  stb       r6, 0x1C(r29)
+		  stw       r5, 0x0(r29)
+		  stw       r0, 0x20(r29)
+		  bl        -0x36B7F4
+		  addi      r29, r30, 0x1C8
+		  mr        r3, r29
+		  bl        0x3E518
+		  lis       r3, 0x804D
+		  lis       r6, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r5, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r0, 0
+		  lis       r4, 0x804F
+		  lis       r3, 0x804E
+		  stw       r0, 0x18(r29)
+		  addi      r0, r6, 0x7F2C
+		  subi      r7, r5, 0x77D0
+		  li        r6, 0x1
+		  stw       r0, 0x0(r29)
+		  subi      r5, r4, 0x75F4
+		  addi      r0, r3, 0x798C
+		  addi      r3, r29, 0x20
+		  stw       r7, 0x0(r29)
+		  li        r4, 0
+		  stb       r6, 0x1C(r29)
+		  stw       r5, 0x0(r29)
+		  stw       r0, 0x20(r29)
+		  bl        -0x36B858
+		  addi      r29, r30, 0x204
+		  mr        r3, r29
+		  bl        0x3E4B4
+		  lis       r3, 0x804D
+		  lis       r4, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r3, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r11, 0
+		  lis       r10, 0x804F
+		  lis       r5, 0x804C
+		  stw       r11, 0x18(r29)
+		  addi      r0, r4, 0x7F2C
+		  lis       r9, 0x804C
+		  lis       r8, 0x804A
+		  stw       r0, 0x0(r29)
+		  subi      r0, r3, 0x77D0
+		  lis       r4, 0x804E
+		  lis       r3, 0x804E
+		  stw       r0, 0x0(r29)
+		  li        r0, 0x1
+		  addi      r7, r4, 0x7420
+		  addi      r6, r3, 0x73CC
+		  stb       r0, 0x1C(r29)
+		  subi      r0, r10, 0x77F4
+		  lis       r3, 0x804E
+		  addi      r10, r5, 0x14F0
+		  stw       r0, 0x0(r29)
+		  addi      r5, r3, 0x7648
+		  addi      r9, r9, 0x14D8
+		  subi      r8, r8, 0x1D84
+		  stw       r10, 0x224(r30)
+		  addi      r12, r7, 0x18
+		  addi      r29, r6, 0x18
+		  addi      r4, r30, 0x240
+		  stw       r9, 0x224(r30)
+		  addi      r31, r5, 0x18
+		  lfs       f3, 0x1774(r2)
+		  addi      r0, r30, 0x278
+		  stb       r11, 0x228(r30)
+		  mr        r3, r30
+		  lfs       f2, 0x1778(r2)
+		  stb       r11, 0x229(r30)
+		  lfs       f1, 0x1768(r2)
+		  stw       r8, 0x22C(r30)
+		  stw       r7, 0x224(r30)
+		  stw       r12, 0x22C(r30)
+		  sth       r11, 0x230(r30)
+		  stw       r11, 0x234(r30)
+		  stw       r6, 0x224(r30)
+		  stw       r29, 0x22C(r30)
+		  stw       r4, 0x238(r30)
+		  stw       r5, 0x224(r30)
+		  stw       r31, 0x22C(r30)
+		  stfs      f3, 0x23C(r30)
+		  lwz       r4, -0x6514(r13)
+		  lfs       f0, 0x54(r4)
+		  fmuls     f0, f2, f0
+		  stfs      f0, 0x248(r30)
+		  stfs      f1, 0x24C(r30)
+		  stw       r11, 0x254(r30)
+		  stw       r11, 0x258(r30)
+		  stw       r10, 0x25C(r30)
+		  stw       r9, 0x25C(r30)
+		  stb       r11, 0x260(r30)
+		  stb       r11, 0x261(r30)
+		  stw       r8, 0x264(r30)
+		  stw       r7, 0x25C(r30)
+		  stw       r12, 0x264(r30)
+		  sth       r11, 0x268(r30)
+		  stw       r11, 0x26C(r30)
+		  stw       r6, 0x25C(r30)
+		  stw       r29, 0x264(r30)
+		  stw       r0, 0x270(r30)
+		  stw       r5, 0x25C(r30)
+		  stw       r31, 0x264(r30)
+		  stfs      f3, 0x274(r30)
+		  lwz       r4, -0x6514(r13)
+		  lfs       f0, 0x54(r4)
+		  fmuls     f0, f2, f0
+		  stfs      f0, 0x280(r30)
+		  stfs      f1, 0x284(r30)
+		  stw       r11, 0x28C(r30)
+		  stw       r11, 0x290(r30)
+		  lwz       r31, 0x1C(r1)
+		  lwz       r30, 0x18(r1)
+		  lwz       r29, 0x14(r1)
+		  lwz       r0, 0x24(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
- */
-void ebi::TYesNoCursor::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	0000A0
+	 */
+	TYesNoCursor::~TYesNoCursor(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	803D3040
  * Size:	000378
  */
-void ebi::CardError::TMgr::startSeq((ebi::CardError::TMgr::enumStart))
+void CardError::TMgr::startSeq(ebi::CardError::TMgr::enumStart)
 {
 	/*
 	.loc_0x0:
@@ -2780,7 +2773,7 @@ void ebi::CardError::TMgr::startSeq((ebi::CardError::TMgr::enumStart))
  * Address:	803D33B8
  * Size:	000050
  */
-void ebi::CardError::TMgr::forceQuitSeq(void)
+void CardError::TMgr::forceQuitSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -2812,7 +2805,7 @@ void ebi::CardError::TMgr::forceQuitSeq(void)
  * Address:	803D3408
  * Size:	000044
  */
-void ebi::CardError::TMgr::goEnd_((ebi::CardError::TMgr::enumEnd))
+void CardError::TMgr::goEnd_(ebi::CardError::TMgr::enumEnd)
 {
 	/*
 	.loc_0x0:
@@ -2841,7 +2834,7 @@ void ebi::CardError::TMgr::goEnd_((ebi::CardError::TMgr::enumEnd))
  * Address:	803D344C
  * Size:	0000E0
  */
-void ebi::CardError::TMgr::checkAndTransitNoCard_(void)
+void CardError::TMgr::checkAndTransitNoCard_(void)
 {
 	/*
 	.loc_0x0:
@@ -2919,7 +2912,7 @@ void ebi::CardError::TMgr::checkAndTransitNoCard_(void)
  * Address:	803D352C
  * Size:	00006C
  */
-void ebi::CardError::TMgr::update(void)
+void CardError::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2960,7 +2953,7 @@ void ebi::CardError::TMgr::update(void)
  * Address:	803D3598
  * Size:	00003C
  */
-void ebi::CardError::TMgr::draw(void)
+void CardError::TMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -2989,7 +2982,7 @@ void ebi::CardError::TMgr::draw(void)
  * Address:	803D35D4
  * Size:	000050
  */
-void ebi::CardError::TMgr::isGetEnd(void)
+void CardError::TMgr::isGetEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -3029,7 +3022,7 @@ void ebi::CardError::TMgr::isGetEnd(void)
  * Address:	........
  * Size:	000028
  */
-void ebi::CardError::TMgr::isFinish(void)
+void CardError::TMgr::isFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3039,7 +3032,7 @@ void ebi::CardError::TMgr::isFinish(void)
  * Address:	........
  * Size:	000004
  */
-void ebi::CardError::TMgr::showInfo((long, long, long, long))
+void CardError::TMgr::showInfo(long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -3049,7 +3042,7 @@ void ebi::CardError::TMgr::showInfo((long, long, long, long))
  * Address:	803D3624
  * Size:	000058
  */
-void ebi::CardError::TMgr::getStateID(void)
+void CardError::TMgr::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -3089,6 +3082,8 @@ void init__Q24Game31FSMState<ebi::CardError::TMgr>
 FPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
 {
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

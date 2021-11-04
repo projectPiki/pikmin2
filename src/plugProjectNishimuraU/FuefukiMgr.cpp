@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8029BC38
  * Size:	000050
  */
-void Game::Fuefuki::Mgr::Mgr(int, unsigned char)
+Fuefuki::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Fuefuki::Mgr::Mgr(int, unsigned char)
  * Address:	8029BC88
  * Size:	000048
  */
-void Game::Fuefuki::Mgr::doAlloc()
+void Fuefuki::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Fuefuki::Mgr::doAlloc()
  * Address:	8029BCD0
  * Size:	000048
  */
-void Game::Fuefuki::Parms::Parms()
+Fuefuki::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Fuefuki::Parms::Parms()
  * Address:	8029BD18
  * Size:	000270
  */
-void Game::Fuefuki::Parms::ProperParms::ProperParms()
+Fuefuki::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -273,7 +275,7 @@ void Game::Fuefuki::Parms::ProperParms::ProperParms()
  * Address:	8029BF88
  * Size:	000060
  */
-void Game::Fuefuki::Mgr::createObj(int)
+void Fuefuki::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -309,7 +311,7 @@ void Game::Fuefuki::Mgr::createObj(int)
  * Address:	8029BFE8
  * Size:	0000BC
  */
-void Game::Fuefuki::Obj::~Obj()
+Fuefuki::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void Game::Fuefuki::Obj::~Obj()
  * Address:	8029C0A4
  * Size:	000010
  */
-void Game::Fuefuki::Mgr::getEnemy(int)
+void Fuefuki::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -388,7 +390,7 @@ void Game::Fuefuki::Mgr::getEnemy(int)
  * Address:	8029C0B4
  * Size:	000050
  */
-void Game::Fuefuki::Parms::read(Stream&)
+void Fuefuki::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -420,7 +422,7 @@ void Game::Fuefuki::Parms::read(Stream&)
  * Address:	8029C104
  * Size:	0000B0
  */
-void Game::Fuefuki::Mgr::~Mgr()
+Fuefuki::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -480,14 +482,14 @@ void Game::Fuefuki::Mgr::~Mgr()
  * Address:	8029C1B4
  * Size:	000008
  */
-u32 Game::Fuefuki::Mgr::getEnemyTypeID() { return 0x29; }
+u32 Fuefuki::Mgr::getEnemyTypeID() { return 0x29; }
 
 /*
  * --INFO--
  * Address:	8029C1BC
  * Size:	000008
  */
-void Game::Fuefuki::Mgr::@4 @__dt()
+Fuefuki::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -495,3 +497,4 @@ void Game::Fuefuki::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

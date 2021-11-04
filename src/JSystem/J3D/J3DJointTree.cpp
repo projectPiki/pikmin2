@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8008828C
  * Size:	000084
  */
-void J3DJointTree::J3DJointTree()
+J3DJointTree::J3DJointTree()
 {
 	/*
 	.loc_0x0:

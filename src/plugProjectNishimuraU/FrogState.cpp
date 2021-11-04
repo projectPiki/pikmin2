@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802563C4
  * Size:	00037C
  */
-void Game::Frog::FSM::init(Game::EnemyBase*)
+void Frog::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::Frog::FSM::init(Game::EnemyBase*)
  * Address:	80256740
  * Size:	000068
  */
-void Game::Frog::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +300,7 @@ void Game::Frog::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802567A8
  * Size:	000078
  */
-void Game::Frog::StateDead::exec(Game::EnemyBase*)
+void Frog::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -344,7 +346,7 @@ void Game::Frog::StateDead::exec(Game::EnemyBase*)
  * Address:	80256820
  * Size:	000008
  */
-void Game::Frog::Obj::getDownSmokeScale()
+void Frog::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -358,14 +360,14 @@ void Game::Frog::Obj::getDownSmokeScale()
  * Address:	80256828
  * Size:	000004
  */
-void Game::Frog::StateDead::cleanup(Game::EnemyBase*) { }
+void Frog::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025682C
  * Size:	0000A0
  */
-void Game::Frog::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -421,7 +423,7 @@ void Game::Frog::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802568CC
  * Size:	000440
  */
-void Game::Frog::StateWait::exec(Game::EnemyBase*)
+void Frog::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -719,21 +721,21 @@ void Game::Frog::StateWait::exec(Game::EnemyBase*)
  * Address:	80256D0C
  * Size:	000004
  */
-void Game::Frog::Obj::attackNaviPosition() { }
+void Frog::Obj::attackNaviPosition() { }
 
 /*
  * --INFO--
  * Address:	80256D10
  * Size:	000004
  */
-void Game::Frog::StateWait::cleanup(Game::EnemyBase*) { }
+void Frog::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80256D14
  * Size:	000060
  */
-void Game::Frog::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -769,7 +771,7 @@ void Game::Frog::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80256D74
  * Size:	0003AC
  */
-void Game::Frog::StateTurn::exec(Game::EnemyBase*)
+void Frog::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1034,7 +1036,7 @@ void Game::Frog::StateTurn::exec(Game::EnemyBase*)
  * Address:	80257120
  * Size:	0000AC
  */
-void Game::Frog::StateTurn::cleanup(Game::EnemyBase*)
+void Frog::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1093,7 +1095,7 @@ void Game::Frog::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	802571CC
  * Size:	0000E8
  */
-void Game::Frog::StateJump::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateJump::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1169,7 @@ void Game::Frog::StateJump::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802572B4
  * Size:	000118
  */
-void Game::Frog::StateJump::exec(Game::EnemyBase*)
+void Frog::StateJump::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1255,7 +1257,7 @@ void Game::Frog::StateJump::exec(Game::EnemyBase*)
  * Address:	802573CC
  * Size:	000048
  */
-void Game::Frog::StateJump::cleanup(Game::EnemyBase*)
+void Frog::StateJump::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1285,7 +1287,7 @@ void Game::Frog::StateJump::cleanup(Game::EnemyBase*)
  * Address:	80257414
  * Size:	000058
  */
-void Game::Frog::StateJumpWait::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateJumpWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1319,7 +1321,7 @@ void Game::Frog::StateJumpWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025746C
  * Size:	00008C
  */
-void Game::Frog::StateJumpWait::exec(Game::EnemyBase*)
+void Frog::StateJumpWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1370,7 +1372,7 @@ void Game::Frog::StateJumpWait::exec(Game::EnemyBase*)
  * Address:	802574F8
  * Size:	00003C
  */
-void Game::Frog::StateJumpWait::cleanup(Game::EnemyBase*)
+void Frog::StateJumpWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1397,7 +1399,7 @@ void Game::Frog::StateJumpWait::cleanup(Game::EnemyBase*)
  * Address:	80257534
  * Size:	00008C
  */
-void Game::Frog::StateFall::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1444,7 +1446,7 @@ void Game::Frog::StateFall::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802575C0
  * Size:	000040
  */
-void Game::Frog::StateFall::exec(Game::EnemyBase*)
+void Frog::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1474,7 +1476,7 @@ void Game::Frog::StateFall::exec(Game::EnemyBase*)
  * Address:	80257600
  * Size:	000038
  */
-void Game::Frog::StateFall::cleanup(Game::EnemyBase*)
+void Frog::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1500,7 +1502,7 @@ void Game::Frog::StateFall::cleanup(Game::EnemyBase*)
  * Address:	80257638
  * Size:	000074
  */
-void Game::Frog::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1541,7 +1543,7 @@ void Game::Frog::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802576AC
  * Size:	00016C
  */
-void Game::Frog::StateAttack::exec(Game::EnemyBase*)
+void Frog::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1654,7 +1656,7 @@ void Game::Frog::StateAttack::exec(Game::EnemyBase*)
  * Address:	80257818
  * Size:	000044
  */
-void Game::Frog::StateAttack::cleanup(Game::EnemyBase*)
+void Frog::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1683,7 +1685,7 @@ void Game::Frog::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	8025785C
  * Size:	000054
  */
-void Game::Frog::StateFail::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateFail::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1716,7 +1718,7 @@ void Game::Frog::StateFail::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802578B0
  * Size:	0001A8
  */
-void Game::Frog::StateFail::exec(Game::EnemyBase*)
+void Frog::StateFail::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1846,7 +1848,7 @@ void Game::Frog::StateFail::exec(Game::EnemyBase*)
  * Address:	80257A58
  * Size:	000024
  */
-void Game::Frog::StateFail::cleanup(Game::EnemyBase*)
+void Frog::StateFail::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1867,7 +1869,7 @@ void Game::Frog::StateFail::cleanup(Game::EnemyBase*)
  * Address:	80257A7C
  * Size:	000044
  */
-void Game::Frog::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1896,7 +1898,7 @@ void Game::Frog::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80257AC0
  * Size:	000224
  */
-void Game::Frog::StateTurnToHome::exec(Game::EnemyBase*)
+void Frog::StateTurnToHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2057,7 +2059,7 @@ void Game::Frog::StateTurnToHome::exec(Game::EnemyBase*)
  * Address:	80257CE4
  * Size:	000060
  */
-void Game::Frog::StateTurnToHome::cleanup(Game::EnemyBase*)
+void Frog::StateTurnToHome::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2095,7 +2097,7 @@ void Game::Frog::StateTurnToHome::cleanup(Game::EnemyBase*)
  * Address:	80257D44
  * Size:	00005C
  */
-void Game::Frog::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void Frog::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2130,7 +2132,7 @@ void Game::Frog::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80257DA0
  * Size:	000200
  */
-void Game::Frog::StateGoHome::exec(Game::EnemyBase*)
+void Frog::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2286,7 +2288,7 @@ void Game::Frog::StateGoHome::exec(Game::EnemyBase*)
  * Address:	80257FA0
  * Size:	00010C
  */
-void Game::Frog::StateGoHome::cleanup(Game::EnemyBase*)
+void Frog::StateGoHome::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2371,3 +2373,4 @@ void Game::Frog::StateGoHome::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

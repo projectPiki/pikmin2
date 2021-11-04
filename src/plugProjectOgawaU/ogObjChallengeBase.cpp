@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8032C8A0
  * Size:	000098
  */
-void og::newScreen::ObjChallengeBase::__ct(void)
+newScreen::ObjChallengeBase::ObjChallengeBase(void)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +57,7 @@ void og::newScreen::ObjChallengeBase::__ct(void)
  * Address:	8032C938
  * Size:	0000AC
  */
-void og::newScreen::ObjChallengeBase::__dt(void)
+newScreen::ObjChallengeBase::~ObjChallengeBase(void)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +116,7 @@ void og::newScreen::ObjChallengeBase::__dt(void)
  * Address:	8032C9E4
  * Size:	0000A0
  */
-void og::newScreen::ObjChallengeBase::doCreateAfter(
+void newScreen::ObjChallengeBase::doCreateAfter(
     (JKRArchive*, og::Screen::CallBack_CounterRV*))
 {
 	/*
@@ -177,7 +169,7 @@ void og::newScreen::ObjChallengeBase::doCreateAfter(
  * Address:	8032CA84
  * Size:	000014
  */
-void og::newScreen::ObjChallengeBase::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjChallengeBase::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +186,7 @@ void og::newScreen::ObjChallengeBase::doStart((Screen::StartSceneArg const*))
  * Address:	8032CA98
  * Size:	000010
  */
-void og::newScreen::ObjChallengeBase::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjChallengeBase::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -210,7 +202,7 @@ void og::newScreen::ObjChallengeBase::doEnd((Screen::EndSceneArg const*))
  * Address:	8032CAA8
  * Size:	0001D0
  */
-void og::newScreen::ObjChallengeBase::updateTimer((float, float))
+void newScreen::ObjChallengeBase::updateTimer(float, float)
 {
 	/*
 	.loc_0x0:
@@ -354,49 +346,52 @@ void og::newScreen::ObjChallengeBase::updateTimer((float, float))
  * Address:	8032CC78
  * Size:	000008
  */
-void og::newScreen::ObjChallengeBase::setSubLevel((unsigned long))
+void newScreen::ObjChallengeBase::setSubLevel(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x5C(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x5C(r3)
+	_5C = a1;
 }
+
+} // namespace og
+
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	8032CC80
  * Size:	000008
  */
-u32 Screen::ObjBase::doUpdateFadein(void) { return 0x1; }
+u32 ObjBase::doUpdateFadein(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8032CC88
  * Size:	000004
  */
-void Screen::ObjBase::doUpdateFadeinFinish(void) { }
+void ObjBase::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8032CC8C
  * Size:	000008
  */
-u32 Screen::ObjBase::doUpdate(void) { return 0x0; }
+u32 ObjBase::doUpdate(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8032CC94
  * Size:	000004
  */
-void Screen::ObjBase::doUpdateFinish(void) { }
+void ObjBase::doUpdateFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8032CC98
  * Size:	000004
  */
-void Screen::ObjBase::doUpdateFadeoutFinish(void) { }
+void ObjBase::doUpdateFadeoutFinish(void) { }
+
+} // namespace Screen
 
 /*
  * --INFO--
@@ -450,7 +445,7 @@ void __sinit_ogObjChallengeBase_cpp(void)
  * Address:	8032CD28
  * Size:	000008
  */
-void @24 @og::newScreen::ObjChallengeBase::__dt(void)
+@24 @og::newScreen::ObjChallengeBase::~ObjChallengeBase(void)
 {
 	/*
 	.loc_0x0:

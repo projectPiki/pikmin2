@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031C008
  * Size:	00009C
  */
-void og::newScreen::ObjCave::__ct((char const*))
+newScreen::ObjCave::ObjCave(char const*)
 {
 	/*
 	.loc_0x0:
@@ -66,7 +58,7 @@ void og::newScreen::ObjCave::__ct((char const*))
  * Address:	8031C0A4
  * Size:	0000AC
  */
-void og::newScreen::ObjCave::__dt(void)
+newScreen::ObjCave::~ObjCave(void)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +117,7 @@ void og::newScreen::ObjCave::__dt(void)
  * Address:	8031C150
  * Size:	000518
  */
-void og::newScreen::ObjCave::doCreate((JKRArchive*))
+void newScreen::ObjCave::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -495,7 +487,7 @@ void og::newScreen::ObjCave::doCreate((JKRArchive*))
  * Address:	8031C668
  * Size:	0003A4
  */
-void og::newScreen::ObjCave::commonUpdate(void)
+void newScreen::ObjCave::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -770,7 +762,7 @@ void og::newScreen::ObjCave::commonUpdate(void)
  * Address:	8031CA0C
  * Size:	000024
  */
-void og::newScreen::ObjCave::doUpdate(void)
+void newScreen::ObjCave::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -791,7 +783,7 @@ void og::newScreen::ObjCave::doUpdate(void)
  * Address:	8031CA30
  * Size:	000064
  */
-void og::newScreen::ObjCave::doDraw((Graphics&))
+void newScreen::ObjCave::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -832,7 +824,7 @@ void og::newScreen::ObjCave::doDraw((Graphics&))
  * Address:	8031CA94
  * Size:	000014
  */
-void og::newScreen::ObjCave::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjCave::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -849,7 +841,7 @@ void og::newScreen::ObjCave::doStart((Screen::StartSceneArg const*))
  * Address:	8031CAA8
  * Size:	000010
  */
-void og::newScreen::ObjCave::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjCave::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -865,7 +857,7 @@ void og::newScreen::ObjCave::doEnd((Screen::EndSceneArg const*))
  * Address:	8031CAB8
  * Size:	000074
  */
-void og::newScreen::ObjCave::doUpdateFadein(void)
+void newScreen::ObjCave::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -908,14 +900,14 @@ void og::newScreen::ObjCave::doUpdateFadein(void)
  * Address:	8031CB2C
  * Size:	000004
  */
-void og::newScreen::ObjCave::doUpdateFadeinFinish(void) { }
+void newScreen::ObjCave::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031CB30
  * Size:	00000C
  */
-void og::newScreen::ObjCave::doUpdateFinish(void)
+void newScreen::ObjCave::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -930,7 +922,7 @@ void og::newScreen::ObjCave::doUpdateFinish(void)
  * Address:	8031CB3C
  * Size:	00007C
  */
-void og::newScreen::ObjCave::doUpdateFadeout(void)
+void newScreen::ObjCave::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -975,7 +967,9 @@ void og::newScreen::ObjCave::doUpdateFadeout(void)
  * Address:	8031CBB8
  * Size:	000004
  */
-void og::newScreen::ObjCave::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjCave::doUpdateFadeoutFinish(void) { }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -1045,7 +1039,7 @@ void __sinit_ogObjCave_cpp(void)
  * Address:	8031CC88
  * Size:	000008
  */
-void @24 @og::newScreen::ObjCave::__dt(void)
+@24 @og::newScreen::ObjCave::~ObjCave(void)
 {
 	/*
 	.loc_0x0:

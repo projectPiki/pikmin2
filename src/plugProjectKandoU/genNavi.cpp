@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801ACA08
  * Size:	0000B8
  */
@@ -70,12 +60,14 @@ void makeObjectNavi()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801ACAC0
  * Size:	00008C
  */
-void Game::GenObjectNavi::initialise(void)
+void GenObjectNavi::initialise(void)
 {
 	/*
 	.loc_0x0:
@@ -122,21 +114,21 @@ void Game::GenObjectNavi::initialise(void)
  * Address:	801ACB4C
  * Size:	000004
  */
-void Game::GenObjectNavi::ramSaveParameters((Stream&)) { }
+void GenObjectNavi::ramSaveParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801ACB50
  * Size:	000004
  */
-void Game::GenObjectNavi::ramLoadParameters((Stream&)) { }
+void GenObjectNavi::ramLoadParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801ACB54
  * Size:	000078
  */
-void Game::GenObjectNavi::generate((Game::Generator*))
+void GenObjectNavi::generate(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -173,6 +165,8 @@ void Game::GenObjectNavi::generate((Game::Generator*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -193,12 +187,14 @@ void clear_calcs(SysShape::Model*, SysShape::Animator&)
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801ACBCC
  * Size:	000138
  */
-void Game::GenObjectNavi::birth((Game::GenArg*))
+void GenObjectNavi::birth(Game::GenArg*)
 {
 	/*
 	.loc_0x0:
@@ -297,12 +293,16 @@ void Game::GenObjectNavi::birth((Game::GenArg*))
 	*/
 }
 
+} // namespace Game
+
+namespace SysShape {
+
 /*
  * --INFO--
  * Address:	801ACD04
  * Size:	00001C
  */
-void SysShape::Animator::getCalc(void)
+void Animator::getCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -317,3 +317,4 @@ void SysShape::Animator::getCalc(void)
 	  blr
 	*/
 }
+} // namespace SysShape

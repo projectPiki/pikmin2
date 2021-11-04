@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803CD6D8
  * Size:	0000B0
  */
-void ebi::TScreenProgre::loadResource(void)
+void TScreenProgre::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -73,7 +65,7 @@ void ebi::TScreenProgre::loadResource(void)
  * Address:	803CD788
  * Size:	000318
  */
-void ebi::TScreenProgre::setArchive((JKRArchive*))
+void TScreenProgre::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +277,7 @@ void ebi::TScreenProgre::setArchive((JKRArchive*))
  * Address:	803CDAA0
  * Size:	0003E4
  */
-void ebi::TScreenProgre::startScreen((long, unsigned long))
+void TScreenProgre::startScreen(long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -564,7 +556,7 @@ void ebi::TScreenProgre::startScreen((long, unsigned long))
  * Address:	803CDE84
  * Size:	000054
  */
-void ebi::TScreenProgre::fadeout((unsigned long))
+void TScreenProgre::fadeout(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -603,7 +595,7 @@ void ebi::TScreenProgre::fadeout((unsigned long))
  * Address:	803CDED8
  * Size:	000028
  */
-void ebi::TScreenProgre::isFinish(void)
+void TScreenProgre::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -627,7 +619,7 @@ void ebi::TScreenProgre::isFinish(void)
  * Address:	........
  * Size:	000060
  */
-void ebi::TScreenProgre::killScreen(void)
+void TScreenProgre::killScreen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -637,8 +629,7 @@ void ebi::TScreenProgre::killScreen(void)
  * Address:	803CDF00
  * Size:	0000C0
  */
-void ebi::TScreenProgre::startState((ebi::TScreenProgre::enumState,
-                                     unsigned long))
+void TScreenProgre::startState(ebi::TScreenProgre::enumState, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +699,7 @@ void ebi::TScreenProgre::startState((ebi::TScreenProgre::enumState,
  * Address:	803CDFC0
  * Size:	000554
  */
-void ebi::TScreenProgre::update(void)
+void TScreenProgre::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1139,7 +1130,7 @@ void ebi::TScreenProgre::update(void)
  * Address:	803CE514
  * Size:	0000DC
  */
-void ebi::TScreenProgre::draw(void)
+void TScreenProgre::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -1210,7 +1201,7 @@ void ebi::TScreenProgre::draw(void)
  * Address:	803CE5F0
  * Size:	000308
  */
-void ebi::TScreenProgre::setDecide(void)
+void TScreenProgre::setDecide(void)
 {
 	/*
 	.loc_0x0:
@@ -1418,3 +1409,4 @@ void ebi::TScreenProgre::setDecide(void)
 	  blr
 	*/
 }
+} // namespace ebi

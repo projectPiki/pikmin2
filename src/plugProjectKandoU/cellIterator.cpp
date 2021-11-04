@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8022E36C
  * Size:	000034
  */
-void Game::CellIteratorArg::__ct(void)
+CellIteratorArg::CellIteratorArg(void)
 {
 	/*
 	.loc_0x0:
@@ -40,7 +32,7 @@ void Game::CellIteratorArg::__ct(void)
  * Address:	8022E3A0
  * Size:	000040
  */
-void Game::CellIteratorArg::__ct((Sys::Sphere&))
+CellIteratorArg::CellIteratorArg(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +60,7 @@ void Game::CellIteratorArg::__ct((Sys::Sphere&))
  * Address:	8022E3E0
  * Size:	00007C
  */
-void Game::CellIterator::__ct((Game::CellIteratorArg&))
+CellIterator::CellIterator(Game::CellIteratorArg&)
 {
 	/*
 	.loc_0x0:
@@ -111,7 +103,7 @@ void Game::CellIterator::__ct((Game::CellIteratorArg&))
  * Address:	8022E45C
  * Size:	0000A4
  */
-void Game::CellIterator::first(void)
+void CellIterator::first(void)
 {
 	/*
 	.loc_0x0:
@@ -168,7 +160,7 @@ void Game::CellIterator::first(void)
  * Address:	8022E500
  * Size:	000034
  */
-void Game::CellIterator::next(void)
+void CellIterator::next(void)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +185,7 @@ void Game::CellIterator::next(void)
  * Address:	8022E534
  * Size:	000010
  */
-void Game::CellIterator::isDone(void)
+void CellIterator::isDone(void)
 {
 	/*
 	.loc_0x0:
@@ -209,7 +201,7 @@ void Game::CellIterator::isDone(void)
  * Address:	8022E544
  * Size:	00001C
  */
-void Game::CellIterator::operator*(void)
+void CellIterator::operator*(void)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +222,7 @@ void Game::CellIterator::operator*(void)
  * Address:	8022E560
  * Size:	00001C
  */
-void Game::CellIterator::getCellObject(void)
+void CellIterator::getCellObject(void)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +243,7 @@ void Game::CellIterator::getCellObject(void)
  * Address:	8022E57C
  * Size:	0000EC
  */
-void Game::CellIterator::step(void)
+void CellIterator::step(void)
 {
 	/*
 	.loc_0x0:
@@ -332,7 +324,7 @@ void Game::CellIterator::step(void)
  * Address:	8022E668
  * Size:	000110
  */
-void Game::CellIterator::find(void)
+void CellIterator::find(void)
 {
 	/*
 	.loc_0x0:
@@ -430,7 +422,7 @@ void Game::CellIterator::find(void)
  * Address:	8022E778
  * Size:	00018C
  */
-void Game::CellIterator::satisfy(void)
+void CellIterator::satisfy(void)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +547,7 @@ void Game::CellIterator::satisfy(void)
  * Address:	8022E904
  * Size:	00018C
  */
-void Game::CellIterator::calcExtent(void)
+void CellIterator::calcExtent(void)
 {
 	/*
 	.loc_0x0:
@@ -672,4 +664,5 @@ void Game::CellIterator::calcExtent(void)
  * Address:	8022EA90
  * Size:	000004
  */
-void Game::CellIterator::dump(void) { }
+void CellIterator::dump(void) { }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8010F31C
  * Size:	000130
  */
-void Game::Kochappy::Obj::Obj()
+Kochappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -99,7 +101,7 @@ void Game::Kochappy::Obj::Obj()
  * Address:	8010F44C
  * Size:	00004C
  */
-void Game::KochappyBase::Obj::setFSM(Game::KochappyBase::FSM*)
+void KochappyBase::Obj::setFSM(Game::KochappyBase::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +132,7 @@ void Game::KochappyBase::Obj::setFSM(Game::KochappyBase::FSM*)
  * Address:	8010F498
  * Size:	000048
  */
-void Game::EnemyAnimatorBase::~EnemyAnimatorBase()
+EnemyAnimatorBase::~EnemyAnimatorBase()
 {
 	/*
 	.loc_0x0:
@@ -162,7 +164,7 @@ void Game::EnemyAnimatorBase::~EnemyAnimatorBase()
  * Address:	8010F4E0
  * Size:	0000BC
  */
-void Game::KochappyBase::Obj::~Obj()
+KochappyBase::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -225,7 +227,7 @@ void Game::KochappyBase::Obj::~Obj()
  * Address:	8010F59C
  * Size:	0001A4
  */
-void Game::Kochappy::Obj::changeMaterial()
+void Kochappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -346,7 +348,7 @@ void Game::Kochappy::Obj::changeMaterial()
  * Address:	8010F740
  * Size:	000008
  */
-void Game::Kochappy::Mgr::getChangeTexture()
+void Kochappy::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -360,7 +362,7 @@ void Game::Kochappy::Mgr::getChangeTexture()
  * Address:	8010F748
  * Size:	0000EC
  */
-void Game::Kochappy::Obj::~Obj()
+Kochappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -435,14 +437,14 @@ void Game::Kochappy::Obj::~Obj()
  * Address:	8010F834
  * Size:	000008
  */
-u32 Game::Kochappy::Obj::getEnemyTypeID() { return 0x1; }
+u32 Kochappy::Obj::getEnemyTypeID() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8010F83C
  * Size:	000020
  */
-void Game::KochappyBase::Obj::setAnimationSpeed(float)
+void KochappyBase::Obj::setAnimationSpeed(float)
 {
 	/*
 	.loc_0x0:
@@ -462,7 +464,7 @@ void Game::KochappyBase::Obj::setAnimationSpeed(float)
  * Address:	8010F85C
  * Size:	000008
  */
-void Game::KochappyBase::Obj::getMouthSlots()
+void KochappyBase::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -476,21 +478,21 @@ void Game::KochappyBase::Obj::getMouthSlots()
  * Address:	8010F864
  * Size:	000004
  */
-void Game::KochappyBase::Obj::resetEnemyNonStone() { }
+void KochappyBase::Obj::resetEnemyNonStone() { }
 
 /*
  * --INFO--
  * Address:	8010F868
  * Size:	000004
  */
-void Game::KochappyBase::Obj::setEnemyNonStone() { }
+void KochappyBase::Obj::setEnemyNonStone() { }
 
 /*
  * --INFO--
  * Address:	8010F86C
  * Size:	000008
  */
-void Game::KochappyBase::Obj::getDownSmokeScale()
+void KochappyBase::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -498,3 +500,4 @@ void Game::KochappyBase::Obj::getDownSmokeScale()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012B8AC
  * Size:	000050
  */
-void Game::BlueChappy::Mgr::Mgr(int, unsigned char)
+BlueChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::BlueChappy::Mgr::Mgr(int, unsigned char)
  * Address:	8012B8FC
  * Size:	00006C
  */
-void Game::BlueChappy::Mgr::loadTexData()
+void BlueChappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -76,7 +78,7 @@ void Game::BlueChappy::Mgr::loadTexData()
  * Address:	8012B968
  * Size:	000048
  */
-void Game::BlueChappy::Mgr::doAlloc()
+void BlueChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -108,7 +110,7 @@ void Game::BlueChappy::Mgr::doAlloc()
  * Address:	8012B9B0
  * Size:	0000C8
  */
-void Game::BlueChappy::Mgr::~Mgr()
+BlueChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -174,14 +176,14 @@ void Game::BlueChappy::Mgr::~Mgr()
  * Address:	8012BA78
  * Size:	000008
  */
-u32 Game::BlueChappy::Mgr::getEnemyTypeID() { return 0x2A; }
+u32 BlueChappy::Mgr::getEnemyTypeID() { return 0x2A; }
 
 /*
  * --INFO--
  * Address:	8012BA80
  * Size:	000008
  */
-void Game::BlueChappy::Mgr::getChangeTexture0()
+void BlueChappy::Mgr::getChangeTexture0()
 {
 	/*
 	.loc_0x0:
@@ -195,7 +197,7 @@ void Game::BlueChappy::Mgr::getChangeTexture0()
  * Address:	8012BA88
  * Size:	000008
  */
-void Game::BlueChappy::Mgr::getChangeTexture1()
+void BlueChappy::Mgr::getChangeTexture1()
 {
 	/*
 	.loc_0x0:
@@ -209,7 +211,7 @@ void Game::BlueChappy::Mgr::getChangeTexture1()
  * Address:	8012BA90
  * Size:	000060
  */
-void Game::BlueChappy::Mgr::createObj(int)
+void BlueChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +247,7 @@ void Game::BlueChappy::Mgr::createObj(int)
  * Address:	8012BAF0
  * Size:	0000EC
  */
-void Game::BlueChappy::Obj::~Obj()
+BlueChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -320,7 +322,7 @@ void Game::BlueChappy::Obj::~Obj()
  * Address:	8012BBDC
  * Size:	000010
  */
-void Game::BlueChappy::Mgr::getEnemy(int)
+void BlueChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +338,7 @@ void Game::BlueChappy::Mgr::getEnemy(int)
  * Address:	8012BBEC
  * Size:	000008
  */
-void Game::BlueChappy::Mgr::@4 @__dt()
+BlueChappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -344,3 +346,4 @@ void Game::BlueChappy::Mgr::@4 @__dt()
 	  b         -0x240
 	*/
 }
+} // namespace Game

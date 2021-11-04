@@ -3,19 +3,9 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	0000D8
  */
-void Morimura::TChallengePiki::__ct((J2DPane*, J2DPane*, J2DPane*))
+Morimura::TChallengePiki::TChallengePiki(J2DPane*, J2DPane*, J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void Morimura::TChallengePiki::__ct((J2DPane*, J2DPane*, J2DPane*))
  * Address:	8038C488
  * Size:	000004
  */
-void Morimura::TChallengePiki::posInfo::__ct(void) { }
+Morimura::TChallengePiki::posInfo::posInfo(void) { }
 
 /*
  * --INFO--
@@ -42,7 +32,7 @@ void Morimura::TChallengePiki::reset(void)
  * Address:	........
  * Size:	0002D8
  */
-void Morimura::TChallengePiki::jumpStart((float))
+void Morimura::TChallengePiki::jumpStart(float)
 {
 	// UNUSED FUNCTION
 }
@@ -433,7 +423,8 @@ void Morimura::TChallengePiki::isDemoEnd(void)
  * Address:	........
  * Size:	0000D0
  */
-void Morimura::TChallengeDoping::__ct((J2DPane*, J2DPane*, J2DPane*, J2DPane*))
+Morimura::TChallengeDoping::TChallengeDoping(J2DPane*, J2DPane*, J2DPane*,
+                                             J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -443,7 +434,7 @@ void Morimura::TChallengeDoping::__ct((J2DPane*, J2DPane*, J2DPane*, J2DPane*))
  * Address:	........
  * Size:	00006C
  */
-void Morimura::TChallengeDoping::setLevel((int))
+void Morimura::TChallengeDoping::setLevel(int)
 {
 	// UNUSED FUNCTION
 }
@@ -463,7 +454,7 @@ void Morimura::TChallengeDoping::update(void)
  * Address:	........
  * Size:	000110
  */
-void Morimura::TChallengePanel::__ct((J2DPictureEx*, J2DPane*, J2DPane*))
+Morimura::TChallengePanel::TChallengePanel(J2DPictureEx*, J2DPane*, J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -473,7 +464,7 @@ void Morimura::TChallengePanel::__ct((J2DPictureEx*, J2DPane*, J2DPane*))
  * Address:	........
  * Size:	000074
  */
-void Morimura::TChallengePanel::stateInitialize((JKRArchive*, int, int))
+void Morimura::TChallengePanel::stateInitialize(JKRArchive*, int, int)
 {
 	// UNUSED FUNCTION
 }
@@ -513,7 +504,7 @@ void Morimura::TChallengePanel::decAlpha(void)
  * Address:	........
  * Size:	000064
  */
-void Morimura::TChallengePanel::alphaUpdate((float))
+void Morimura::TChallengePanel::alphaUpdate(float)
 {
 	// UNUSED FUNCTION
 }
@@ -533,7 +524,7 @@ void Morimura::TChallengePanel::canSelect(void)
  * Address:	8038C8F8
  * Size:	0003D0
  */
-void Morimura::TChallengePanel::update((int, bool))
+void Morimura::TChallengePanel::update(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -823,7 +814,7 @@ void Morimura::TChallengePanel::startScaleUp(void)
  * Address:	8038CCC8
  * Size:	0000A0
  */
-void Morimura::TChallengeScreen::__ct((JKRArchive*, int))
+Morimura::TChallengeScreen::TChallengeScreen(JKRArchive*, int)
 {
 	/*
 	.loc_0x0:
@@ -875,7 +866,7 @@ void Morimura::TChallengeScreen::__ct((JKRArchive*, int))
  * Address:	8038CD68
  * Size:	0003C0
  */
-void Morimura::TChallengeScreen::create((char const*, unsigned long))
+void Morimura::TChallengeScreen::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1147,7 +1138,7 @@ void Morimura::TChallengeScreen::create((char const*, unsigned long))
  * Address:	8038D128
  * Size:	0000D8
  */
-void Morimura::TChallengeScreen::createAnimPane((char*))
+void Morimura::TChallengeScreen::createAnimPane(char*)
 {
 	/*
 	.loc_0x0:
@@ -1432,7 +1423,7 @@ void Morimura::TChallengeScreen::isRandAnimStart(void)
  * Address:	8038D45C
  * Size:	000128
  */
-void Morimura::TChallengePlayModeScreen::__ct((JKRArchive*, int))
+Morimura::TChallengePlayModeScreen::TChallengePlayModeScreen(JKRArchive*, int)
 {
 	/*
 	.loc_0x0:
@@ -1520,7 +1511,7 @@ void Morimura::TChallengePlayModeScreen::__ct((JKRArchive*, int))
  * Address:	8038D584
  * Size:	000598
  */
-void Morimura::TChallengePlayModeScreen::create((char const*, unsigned long))
+void Morimura::TChallengePlayModeScreen::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2525,7 +2516,7 @@ void Morimura::TChallengePlayModeScreen::update(void)
  * Address:	8038E318
  * Size:	000660
  */
-void Morimura::TChallengePlayModeScreen::draw((Graphics&, J2DPerspGraph*))
+void Morimura::TChallengePlayModeScreen::draw(Graphics&, J2DPerspGraph*)
 {
 	/*
 	.loc_0x0:
@@ -2958,7 +2949,7 @@ void Morimura::TChallengePlayModeScreen::setState(
  * Address:	........
  * Size:	0000E4
  */
-void Morimura::TChallengePlayModeScreen::setBlink((float))
+void Morimura::TChallengePlayModeScreen::setBlink(float)
 {
 	// UNUSED FUNCTION
 }
@@ -2978,7 +2969,7 @@ void Morimura::TChallengePlayModeScreen::reset(void)
  * Address:	........
  * Size:	000074
  */
-void Morimura::TChallengePlayModeScreen::createMetPicture((ResTIMG const*))
+void Morimura::TChallengePlayModeScreen::createMetPicture(ResTIMG const*)
 {
 	// UNUSED FUNCTION
 }
@@ -2988,8 +2979,8 @@ void Morimura::TChallengePlayModeScreen::createMetPicture((ResTIMG const*))
  * Address:	8038E978
  * Size:	00003C
  */
-void Morimura::TChallengeSelectExplanationWindow::create((char const*,
-                                                          unsigned long))
+void Morimura::TChallengeSelectExplanationWindow::create(char const*,
+                                                         unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3023,7 +3014,7 @@ void Morimura::TChallengeSelectExplanationWindow::screenScaleUp(void) { }
  * Address:	8038E9B8
  * Size:	00013C
  */
-void Morimura::TChallengeSelect::__ct(void)
+Morimura::TChallengeSelect::TChallengeSelect(void)
 {
 	/*
 	.loc_0x0:
@@ -3114,7 +3105,7 @@ void Morimura::TChallengeSelect::__ct(void)
  * Address:	8038EAF4
  * Size:	0000F4
  */
-void Morimura::TChallengeSelect::__dt(void)
+Morimura::TChallengeSelect::~TChallengeSelect(void)
 {
 	/*
 	.loc_0x0:
@@ -3193,7 +3184,7 @@ void Morimura::TChallengeSelect::__dt(void)
  * Address:	........
  * Size:	000044
  */
-void Morimura::TChallengeSelect::setDebugHeapParent((JKRHeap*))
+void Morimura::TChallengeSelect::setDebugHeapParent(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -3203,7 +3194,7 @@ void Morimura::TChallengeSelect::setDebugHeapParent((JKRHeap*))
  * Address:	8038EBE8
  * Size:	001B98
  */
-void Morimura::TChallengeSelect::doCreate((JKRArchive*))
+void Morimura::TChallengeSelect::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -6720,7 +6711,7 @@ void Morimura::TChallengeSelect::doUpdate(void)
  * Address:	80391C4C
  * Size:	000514
  */
-void Morimura::TChallengeSelect::doDraw((Graphics&))
+void Morimura::TChallengeSelect::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -7133,7 +7124,7 @@ void Morimura::TChallengeSelect::doUpdateFadeoutFinish(void)
  * Address:	803921D8
  * Size:	0003F8
  */
-void Morimura::TChallengeSelect::setInfo((int))
+void Morimura::TChallengeSelect::setInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -7437,7 +7428,7 @@ void Morimura::TChallengeSelect::setInfo((int))
  * Address:	803925D0
  * Size:	0000D0
  */
-void Morimura::TChallengeSelect::setStageName((int))
+void Morimura::TChallengeSelect::setStageName(int)
 {
 	/*
 	.loc_0x0:
@@ -7505,7 +7496,7 @@ void Morimura::TChallengeSelect::setStageName((int))
  * Address:	803926A0
  * Size:	00012C
  */
-void Morimura::TChallengeSelect::getState((int))
+void Morimura::TChallengeSelect::getState(int)
 {
 	/*
 	.loc_0x0:
@@ -7614,7 +7605,7 @@ void Morimura::TChallengeSelect::getState((int))
  * Address:	803927CC
  * Size:	0000A4
  */
-void Morimura::TChallengeSelect::getAfterState((int))
+void Morimura::TChallengeSelect::getAfterState(int)
 {
 	/*
 	.loc_0x0:
@@ -7677,7 +7668,7 @@ void Morimura::TChallengeSelect::getAfterState((int))
  * Address:	80392870
  * Size:	0000E4
  */
-void Morimura::TChallengeSelect::isChangeState((int))
+void Morimura::TChallengeSelect::isChangeState(int)
 {
 	/*
 	.loc_0x0:
@@ -8395,7 +8386,7 @@ void Morimura::TChallengeSelect::demoStart(void)
  * Address:	80393168
  * Size:	00009C
  */
-void Morimura::TChallengeSelectScene::doCreateObj((JKRArchive*))
+void Morimura::TChallengeSelectScene::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -8450,7 +8441,7 @@ void Morimura::TChallengeSelectScene::doCreateObj((JKRArchive*))
  * Address:	80393204
  * Size:	000034
  */
-void Morimura::TChallengeSelectScene::doStart((Screen::StartSceneArg*))
+void Morimura::TChallengeSelectScene::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -8475,7 +8466,7 @@ void Morimura::TChallengeSelectScene::doStart((Screen::StartSceneArg*))
  * Address:	80393238
  * Size:	00000C
  */
-void Morimura::TChallengeSelectScene::getResName( const
+void Morimura::TChallengeSelectScene::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -8490,10 +8481,7 @@ void Morimura::TChallengeSelectScene::getResName( const
  * Address:	80393244
  * Size:	000008
  */
-u32  Morimura::TChallengeSelectScene::getSceneType(void)
-{
-	return 0x2737;
-}
+u32 Morimura::TChallengeSelectScene::getSceneType(void) { return 0x2737; }
 
 /*
  * --INFO--
@@ -8532,7 +8520,7 @@ void Morimura::TChallengeSelectScene::getMemberID(void)
  * Address:	8039326C
  * Size:	000084
  */
-void efx2d::T2DChalDive::__dt(void)
+efx2d::T2DChalDive::~T2DChalDive(void)
 {
 	/*
 	.loc_0x0:
@@ -8627,7 +8615,7 @@ void __sinit_challengeSelect2D_cpp(void)
  * Address:	80393338
  * Size:	000008
  */
-void @24@Morimura::TChallengeSelect::__dt(void)
+@24 @Morimura::TChallengeSelect::~TChallengeSelect(void)
 {
 	/*
 	.loc_0x0:
@@ -8641,7 +8629,7 @@ void @24@Morimura::TChallengeSelect::__dt(void)
  * Address:	80393340
  * Size:	000008
  */
-void @8@efx2d::T2DChalDive::__dt(void)
+@8 @efx2d::T2DChalDive::~T2DChalDive(void)
 {
 	/*
 	.loc_0x0:

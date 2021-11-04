@@ -1,12 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80300E68
  * Size:	00002C
  */
-void Game::Cave::RandCapEnemyUnit::RandCapEnemyUnit(
-    Game::Cave::MapUnitGenerator*)
+Cave::RandCapEnemyUnit::RandCapEnemyUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -29,13 +30,10 @@ void Game::Cave::RandCapEnemyUnit::RandCapEnemyUnit(
  * Address:	80300E94
  * Size:	000008
  */
-void Game::Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit*)
+void Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*
@@ -43,7 +41,7 @@ void Game::Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit*)
  * Address:	80300E9C
  * Size:	000108
  */
-void Game::Cave::RandCapEnemyUnit::setCapEnemySlot()
+void Cave::RandCapEnemyUnit::setCapEnemySlot()
 {
 	/*
 	.loc_0x0:
@@ -135,8 +133,7 @@ void Game::Cave::RandCapEnemyUnit::setCapEnemySlot()
  * Address:	80300FA4
  * Size:	0001BC
  */
-void Game::Cave::RandCapEnemyUnit::setCapCommonEnemySlot(Game::Cave::MapNode*,
-                                                         int)
+void Cave::RandCapEnemyUnit::setCapCommonEnemySlot(Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -279,8 +276,8 @@ void Game::Cave::RandCapEnemyUnit::setCapCommonEnemySlot(Game::Cave::MapNode*,
  * Address:	80301160
  * Size:	000098
  */
-void Game::Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*,
-                                               Game::Cave::EnemyUnit*, int, int)
+void Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*,
+                                         Game::Cave::EnemyUnit*, int, int)
 {
 	/*
 	.loc_0x0:
@@ -330,3 +327,4 @@ void Game::Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*,
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "DvdStatus.h"
 
 #ifndef _DVDERRORMESSAGE_DEFINES

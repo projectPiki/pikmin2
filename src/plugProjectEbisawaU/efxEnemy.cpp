@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	803B2D84
  * Size:	000124
  */
-void efx::TChibiHit::create((efx::Arg*))
+void TChibiHit::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +98,7 @@ void efx::TChibiHit::create((efx::Arg*))
  * Address:	803B2EA8
  * Size:	0000E0
  */
-void efx::TChouDown::create((efx::Arg*))
+void TChouDown::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -186,7 +178,7 @@ void efx::TChouDown::create((efx::Arg*))
  * Address:	803B2F88
  * Size:	000044
  */
-void efx::TUmiHamon::setGlobalScale((float))
+void TUmiHamon::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +209,7 @@ void efx::TUmiHamon::setGlobalScale((float))
  * Address:	803B2FCC
  * Size:	000100
  */
-void efx::TUmiFlick::create((efx::Arg*))
+void TUmiFlick::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -299,7 +291,7 @@ void efx::TUmiFlick::create((efx::Arg*))
  * Address:	803B30CC
  * Size:	0000D0
  */
-void efx::TUmiAttack::create((efx::Arg*))
+void TUmiAttack::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +361,7 @@ void efx::TUmiAttack::create((efx::Arg*))
  * Address:	803B319C
  * Size:	000024
  */
-void efx::TUmiEat::setGlobalScale((float))
+void TUmiEat::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -390,7 +382,7 @@ void efx::TUmiEat::setGlobalScale((float))
  * Address:	803B31C0
  * Size:	000024
  */
-void efx::TUmiDeadawa::setGlobalScale((float))
+void TUmiDeadawa::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +403,7 @@ void efx::TUmiDeadawa::setGlobalScale((float))
  * Address:	803B31E4
  * Size:	0000D0
  */
-void efx::TUmiDeadmelt::create((efx::Arg*))
+void TUmiDeadmelt::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -481,7 +473,7 @@ void efx::TUmiDeadmelt::create((efx::Arg*))
  * Address:	803B32B4
  * Size:	0000E8
  */
-void efx::TJgmAttack::create((efx::Arg*))
+void TJgmAttack::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -557,7 +549,7 @@ void efx::TJgmAttack::create((efx::Arg*))
  * Address:	803B339C
  * Size:	000100
  */
-void efx::TJgmAttackW::create((efx::Arg*))
+void TJgmAttackW::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -639,7 +631,7 @@ void efx::TJgmAttackW::create((efx::Arg*))
  * Address:	803B349C
  * Size:	0000D0
  */
-void efx::TJgmBack::create((efx::Arg*))
+void TJgmBack::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -709,7 +701,7 @@ void efx::TJgmBack::create((efx::Arg*))
  * Address:	803B356C
  * Size:	0000E8
  */
-void efx::TJgmBackW::create((efx::Arg*))
+void TJgmBackW::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -785,7 +777,7 @@ void efx::TJgmBackW::create((efx::Arg*))
  * Address:	803B3654
  * Size:	0000C0
  */
-void efx::TImoEat::create((efx::Arg*))
+void TImoEat::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -853,7 +845,7 @@ void efx::TImoEat::create((efx::Arg*))
  * Address:	803B3714
  * Size:	000074
  */
-void efx::TUjinkoHd_Imo::create((efx::Arg*))
+void TUjinkoHd_Imo::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -898,7 +890,7 @@ void efx::TUjinkoHd_Imo::create((efx::Arg*))
  * Address:	803B3788
  * Size:	000074
  */
-void efx::TUjinkoAp_Imo::create((efx::Arg*))
+void TUjinkoAp_Imo::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -943,7 +935,7 @@ void efx::TUjinkoAp_Imo::create((efx::Arg*))
  * Address:	803B37FC
  * Size:	0000D0
  */
-void efx::TImoSmoke::create((efx::Arg*))
+void TImoSmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1013,7 +1005,7 @@ void efx::TImoSmoke::create((efx::Arg*))
  * Address:	803B38CC
  * Size:	0000D0
  */
-void efx::TOtaPartsoff::create((efx::Arg*))
+void TOtaPartsoff::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1078,12 +1070,14 @@ void efx::TOtaPartsoff::create((efx::Arg*))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B399C
  * Size:	000040
  */
-void setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3<float>(void)
+void setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1108,12 +1102,14 @@ void setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B39DC
  * Size:	000034
  */
-void efx::TNewkurageHire::setLifeTime((short))
+void TNewkurageHire::setLifeTime(short)
 {
 	/*
 	.loc_0x0:
@@ -1137,12 +1133,14 @@ void efx::TNewkurageHire::setLifeTime((short))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B3A10
  * Size:	000040
  */
-void setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3<float>(void)
+void setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1167,12 +1165,14 @@ void setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B3A50
  * Size:	000034
  */
-void efx::TKurageHire::setLifeTime((short))
+void TKurageHire::setLifeTime(short)
 {
 	/*
 	.loc_0x0:
@@ -1201,7 +1201,7 @@ void efx::TKurageHire::setLifeTime((short))
  * Address:	803B3A84
  * Size:	000024
  */
-void efx::TQuriGlow::setGlobalScale((float))
+void TQuriGlow::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1222,7 +1222,7 @@ void efx::TQuriGlow::setGlobalScale((float))
  * Address:	803B3AA8
  * Size:	0000A4
  */
-void efx::THebiAphd_base::create((efx::Arg*))
+void THebiAphd_base::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1281,7 +1281,7 @@ void efx::THebiAphd_base::create((efx::Arg*))
  * Address:	803B3B4C
  * Size:	000034
  */
-void efx::TKechappyTest::setGlobalAlpha((unsigned char))
+void TKechappyTest::setGlobalAlpha(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1310,7 +1310,7 @@ void efx::TKechappyTest::setGlobalAlpha((unsigned char))
  * Address:	803B3B80
  * Size:	000024
  */
-void efx::TKechappyTest::setGlobalParticleScale((float))
+void TKechappyTest::setGlobalParticleScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1333,7 +1333,7 @@ void efx::TKechappyTest::setGlobalParticleScale((float))
  * Address:	803B3BA4
  * Size:	000024
  */
-void efx::TKechappyTest::setAwayFromCenterSpeed((float))
+void TKechappyTest::setAwayFromCenterSpeed(float)
 {
 	/*
 	.loc_0x0:
@@ -1356,7 +1356,7 @@ void efx::TKechappyTest::setAwayFromCenterSpeed((float))
  * Address:	803B3BC8
  * Size:	000024
  */
-void efx::TKechappyTest::setSpread((float))
+void TKechappyTest::setSpread(float)
 {
 	/*
 	.loc_0x0:
@@ -1374,12 +1374,14 @@ void efx::TKechappyTest::setSpread((float))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803B3BEC
  * Size:	00004C
  */
-void setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3<float>(void)
+void setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1407,12 +1409,14 @@ void setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803B3C38
  * Size:	0000DC
  */
-void efx::TYakiBody::setRateLOD((int))
+void TYakiBody::setRateLOD(int)
 {
 	/*
 	.loc_0x0:
@@ -1487,7 +1491,7 @@ void efx::TYakiBody::setRateLOD((int))
  * Address:	803B3D14
  * Size:	0000D0
  */
-void efx::TPanApp::create((efx::Arg*))
+void TPanApp::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1557,7 +1561,7 @@ void efx::TPanApp::create((efx::Arg*))
  * Address:	803B3DE4
  * Size:	0000D0
  */
-void efx::TPanHide::create((efx::Arg*))
+void TPanHide::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1627,7 +1631,7 @@ void efx::TPanHide::create((efx::Arg*))
  * Address:	803B3EB4
  * Size:	0000D0
  */
-void efx::TPanSmoke::create((efx::Arg*))
+void TPanSmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1697,7 +1701,7 @@ void efx::TPanSmoke::create((efx::Arg*))
  * Address:	803B3F84
  * Size:	0000D0
  */
-void efx::TBabaFly_ver01::create((efx::Arg*))
+void TBabaFly_ver01::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1767,7 +1771,7 @@ void efx::TBabaFly_ver01::create((efx::Arg*))
  * Address:	803B4054
  * Size:	000184
  */
-void efx::TBabaHe::create((efx::Arg*))
+void TBabaHe::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1884,7 +1888,7 @@ void efx::TBabaHe::create((efx::Arg*))
  * Address:	803B41D8
  * Size:	0000E8
  */
-void efx::TKoganeHit::create((efx::Arg*))
+void TKoganeHit::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1960,7 +1964,7 @@ void efx::TKoganeHit::create((efx::Arg*))
  * Address:	803B42C0
  * Size:	0000E8
  */
-void efx::TKoganeDive::create((efx::Arg*))
+void TKoganeDive::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2036,17 +2040,14 @@ void efx::TKoganeDive::create((efx::Arg*))
  * Address:	803B43A8
  * Size:	000004
  */
-void efx::TParticleCallBack_TankFire::init((JPABaseEmitter*, JPABaseParticle*))
-{
-}
+void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*) { }
 
 /*
  * --INFO--
  * Address:	803B43AC
  * Size:	000144
  */
-void efx::TParticleCallBack_TankFire::execute((JPABaseEmitter*,
-                                               JPABaseParticle*))
+void TParticleCallBack_TankFire::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	/*
 	.loc_0x0:
@@ -2145,7 +2146,7 @@ void efx::TParticleCallBack_TankFire::execute((JPABaseEmitter*,
  * Address:	803B44F0
  * Size:	000090
  */
-void efx::TTankFireABC::create((efx::Arg*))
+void TTankFireABC::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2195,7 +2196,7 @@ void efx::TTankFireABC::create((efx::Arg*))
  * Address:	803B4580
  * Size:	000044
  */
-void efx::TTankFireIND::create((efx::Arg*))
+void TTankFireIND::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2226,7 +2227,7 @@ void efx::TTankFireIND::create((efx::Arg*))
  * Address:	803B45C4
  * Size:	000084
  */
-void efx::TTankFire::create((efx::Arg*))
+void TTankFire::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2273,7 +2274,7 @@ void efx::TTankFire::create((efx::Arg*))
  * Address:	803B4648
  * Size:	000098
  */
-void efx::TTankWat::create((efx::Arg*))
+void TTankWat::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2325,7 +2326,7 @@ void efx::TTankWat::create((efx::Arg*))
  * Address:	803B46E0
  * Size:	000168
  */
-void efx::TDnkmsThunderA::doExecuteEmitterOperation((JPABaseEmitter*))
+void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -2435,7 +2436,7 @@ void efx::TDnkmsThunderA::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803B4848
  * Size:	000168
  */
-void efx::TDnkmsThunderB::doExecuteEmitterOperation((JPABaseEmitter*))
+void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -2545,7 +2546,7 @@ void efx::TDnkmsThunderB::doExecuteEmitterOperation((JPABaseEmitter*))
  * Address:	803B49B0
  * Size:	0000DC
  */
-void efx::THibaFire::setRateLOD((int))
+void THibaFire::setRateLOD(int)
 {
 	/*
 	.loc_0x0:
@@ -2620,7 +2621,7 @@ void efx::THibaFire::setRateLOD((int))
  * Address:	803B4A8C
  * Size:	0000C0
  */
-void efx::TGasuHiba::create((efx::Arg*))
+void TGasuHiba::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2686,7 +2687,7 @@ void efx::TGasuHiba::create((efx::Arg*))
  * Address:	803B4B4C
  * Size:	000078
  */
-void efx::TGasuHiba::setRateLOD((int))
+void TGasuHiba::setRateLOD(int)
 {
 	/*
 	.loc_0x0:
@@ -2732,7 +2733,7 @@ void efx::TGasuHiba::setRateLOD((int))
  * Address:	803B4BC4
  * Size:	000218
  */
-void efx::TDenkiHiba::create((efx::Arg*))
+void TDenkiHiba::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2894,7 +2895,7 @@ void efx::TDenkiHiba::create((efx::Arg*))
  * Address:	........
  * Size:	0000B4
  */
-void efx::TDenkiHiba::setRateLOD((int))
+void TDenkiHiba::setRateLOD(int)
 {
 	// UNUSED FUNCTION
 }
@@ -2904,7 +2905,7 @@ void efx::TDenkiHiba::setRateLOD((int))
  * Address:	803B4DDC
  * Size:	000128
  */
-void efx::TDenkiHibaMgr::create((efx::Arg*))
+void TDenkiHibaMgr::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2992,7 +2993,7 @@ void efx::TDenkiHibaMgr::create((efx::Arg*))
  * Address:	803B4F04
  * Size:	000178
  */
-void efx::TDenkiHibaMgr::createHiba((int))
+void TDenkiHibaMgr::createHiba(int)
 {
 	/*
 	.loc_0x0:
@@ -3098,7 +3099,7 @@ void efx::TDenkiHibaMgr::createHiba((int))
  * Address:	........
  * Size:	000174
  */
-void efx::TDenkiHibaMgr::createHiba(void)
+void TDenkiHibaMgr::createHiba(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3108,7 +3109,7 @@ void efx::TDenkiHibaMgr::createHiba(void)
  * Address:	803B507C
  * Size:	00008C
  */
-void efx::TDenkiHibaMgr::forceKill(void)
+void TDenkiHibaMgr::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -3155,7 +3156,7 @@ void efx::TDenkiHibaMgr::forceKill(void)
  * Address:	803B5108
  * Size:	00008C
  */
-void efx::TDenkiHibaMgr::fade(void)
+void TDenkiHibaMgr::fade(void)
 {
 	/*
 	.loc_0x0:
@@ -3202,7 +3203,7 @@ void efx::TDenkiHibaMgr::fade(void)
  * Address:	803B5194
  * Size:	0000B4
  */
-void efx::TDenkiHibaMgr::setRateLOD((int))
+void TDenkiHibaMgr::setRateLOD(int)
 {
 	/*
 	.loc_0x0:
@@ -3265,7 +3266,7 @@ void efx::TDenkiHibaMgr::setRateLOD((int))
  * Address:	803B5248
  * Size:	000048
  */
-void efx::TTankWat::forceKill(void)
+void TTankWat::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -3297,7 +3298,7 @@ void efx::TTankWat::forceKill(void)
  * Address:	803B5290
  * Size:	000050
  */
-void efx::TTankFire::forceKill(void)
+void TTankFire::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -3329,7 +3330,7 @@ void efx::TTankFire::forceKill(void)
  * Address:	803B52E0
  * Size:	000048
  */
-void efx::TTankFireABC::forceKill(void)
+void TTankFireABC::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -3361,7 +3362,7 @@ void efx::TTankFireABC::forceKill(void)
  * Address:	803B5328
  * Size:	00009C
  */
-void efx::TBabaFly_ver01::__dt(void)
+TBabaFly_ver01::~TBabaFly_ver01(void)
 {
 	/*
 	.loc_0x0:
@@ -3416,7 +3417,7 @@ void efx::TBabaFly_ver01::__dt(void)
  * Address:	803B53C4
  * Size:	00009C
  */
-void efx::TPanSmoke::__dt(void)
+TPanSmoke::~TPanSmoke(void)
 {
 	/*
 	.loc_0x0:
@@ -3471,7 +3472,7 @@ void efx::TPanSmoke::__dt(void)
  * Address:	803B5460
  * Size:	00009C
  */
-void efx::TPanHide::__dt(void)
+TPanHide::~TPanHide(void)
 {
 	/*
 	.loc_0x0:
@@ -3526,7 +3527,7 @@ void efx::TPanHide::__dt(void)
  * Address:	803B54FC
  * Size:	00009C
  */
-void efx::TImoSmoke::__dt(void)
+TImoSmoke::~TImoSmoke(void)
 {
 	/*
 	.loc_0x0:
@@ -3581,7 +3582,7 @@ void efx::TImoSmoke::__dt(void)
  * Address:	803B5598
  * Size:	00009C
  */
-void efx::TImoEat::__dt(void)
+TImoEat::~TImoEat(void)
 {
 	/*
 	.loc_0x0:
@@ -3636,7 +3637,7 @@ void efx::TImoEat::__dt(void)
  * Address:	803B5634
  * Size:	00009C
  */
-void efx::TJgmBack::__dt(void)
+TJgmBack::~TJgmBack(void)
 {
 	/*
 	.loc_0x0:
@@ -3691,7 +3692,7 @@ void efx::TJgmBack::__dt(void)
  * Address:	803B56D0
  * Size:	00009C
  */
-void efx::TChouDown::__dt(void)
+TChouDown::~TChouDown(void)
 {
 	/*
 	.loc_0x0:
@@ -3746,7 +3747,7 @@ void efx::TChouDown::__dt(void)
  * Address:	803B576C
  * Size:	000008
  */
-void @4 @efx::TChouDown::__dt(void)
+@4 @efx::TChouDown::~TChouDown(void)
 {
 	/*
 	.loc_0x0:
@@ -3760,7 +3761,7 @@ void @4 @efx::TChouDown::__dt(void)
  * Address:	803B5774
  * Size:	000008
  */
-void @4 @efx::TJgmBack::__dt(void)
+@4 @efx::TJgmBack::~TJgmBack(void)
 {
 	/*
 	.loc_0x0:
@@ -3774,7 +3775,7 @@ void @4 @efx::TJgmBack::__dt(void)
  * Address:	803B577C
  * Size:	000008
  */
-void @4 @efx::TImoEat::__dt(void)
+@4 @efx::TImoEat::~TImoEat(void)
 {
 	/*
 	.loc_0x0:
@@ -3788,7 +3789,7 @@ void @4 @efx::TImoEat::__dt(void)
  * Address:	803B5784
  * Size:	000008
  */
-void @4 @efx::TImoSmoke::__dt(void)
+@4 @efx::TImoSmoke::~TImoSmoke(void)
 {
 	/*
 	.loc_0x0:
@@ -3802,7 +3803,7 @@ void @4 @efx::TImoSmoke::__dt(void)
  * Address:	803B578C
  * Size:	000008
  */
-void @4 @efx::TPanHide::__dt(void)
+@4 @efx::TPanHide::~TPanHide(void)
 {
 	/*
 	.loc_0x0:
@@ -3816,7 +3817,7 @@ void @4 @efx::TPanHide::__dt(void)
  * Address:	803B5794
  * Size:	000008
  */
-void @4 @efx::TPanSmoke::__dt(void)
+@4 @efx::TPanSmoke::~TPanSmoke(void)
 {
 	/*
 	.loc_0x0:
@@ -3830,7 +3831,7 @@ void @4 @efx::TPanSmoke::__dt(void)
  * Address:	803B579C
  * Size:	000008
  */
-void @4 @efx::TBabaFly_ver01::__dt(void)
+@4 @efx::TBabaFly_ver01::~TBabaFly_ver01(void)
 {
 	/*
 	.loc_0x0:
@@ -3844,7 +3845,7 @@ void @4 @efx::TBabaFly_ver01::__dt(void)
  * Address:	803B57A4
  * Size:	000008
  */
-void @4 @efx::TTankFireIND::__dt(void)
+@4 @efx::TTankFireIND::~TTankFireIND(void)
 {
 	/*
 	.loc_0x0:
@@ -3858,7 +3859,7 @@ void @4 @efx::TTankFireIND::__dt(void)
  * Address:	803B57AC
  * Size:	000008
  */
-void @4 @efx::TDnkmsThunderA::__dt(void)
+@4 @efx::TDnkmsThunderA::~TDnkmsThunderA(void)
 {
 	/*
 	.loc_0x0:
@@ -3872,7 +3873,7 @@ void @4 @efx::TDnkmsThunderA::__dt(void)
  * Address:	803B57B4
  * Size:	000008
  */
-void @4 @efx::TDnkmsThunderB::__dt(void)
+@4 @efx::TDnkmsThunderB::~TDnkmsThunderB(void)
 {
 	/*
 	.loc_0x0:
@@ -3880,3 +3881,4 @@ void @4 @efx::TDnkmsThunderB::__dt(void)
 	  b         -0x139DA8
 	*/
 }
+} // namespace efx

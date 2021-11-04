@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80437400
  * Size:	000058
  */
-void Game::P2JST::ObjectSpecialActor::__ct((char const*, Game::MoviePlayer*))
+P2JST::ObjectSpecialActor::ObjectSpecialActor(char const*, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -49,7 +41,7 @@ void Game::P2JST::ObjectSpecialActor::__ct((char const*, Game::MoviePlayer*))
  * Address:	80437458
  * Size:	00005C
  */
-void Game::P2JST::ObjectSpecialActor::reset(void)
+void P2JST::ObjectSpecialActor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -84,14 +76,14 @@ void Game::P2JST::ObjectSpecialActor::reset(void)
  * Address:	804374B4
  * Size:	000004
  */
-void Game::P2JST::ObjectSpecialActor::stop(void) { }
+void P2JST::ObjectSpecialActor::stop(void) { }
 
 /*
  * --INFO--
  * Address:	804374B8
  * Size:	000254
  */
-void Game::P2JST::ObjectSpecialActor::update(void)
+void P2JST::ObjectSpecialActor::update(void)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +274,7 @@ void Game::P2JST::ObjectSpecialActor::update(void)
  * Address:	8043770C
  * Size:	000084
  */
-void Game::P2JST::ObjectSpecialActor::JSGSetAnimation((unsigned long))
+void P2JST::ObjectSpecialActor::JSGSetAnimation(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -329,17 +321,14 @@ void Game::P2JST::ObjectSpecialActor::JSGSetAnimation((unsigned long))
  * Address:	80437790
  * Size:	000004
  */
-void Game::P2JST::ObjectSpecialActor::parseUserData_((unsigned long,
-                                                      void const*))
-{
-}
+void P2JST::ObjectSpecialActor::parseUserData_(unsigned long, void const*) { }
 
 /*
  * --INFO--
  * Address:	80437794
  * Size:	000068
  */
-void Game::P2JST::ObjectSpecialActor::__dt(void)
+P2JST::ObjectSpecialActor::~ObjectSpecialActor(void)
 {
 	/*
 	.loc_0x0:
@@ -374,6 +363,8 @@ void Game::P2JST::ObjectSpecialActor::__dt(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	804377FC
@@ -401,8 +392,8 @@ void __sinit_JSTObjectSpecialActor_cpp(void)
  * Address:	80437824
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSpecialActor::parseUserData_((unsigned long,
-                                                          void const*))
+void @4
+    @Game::P2JST::ObjectSpecialActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:

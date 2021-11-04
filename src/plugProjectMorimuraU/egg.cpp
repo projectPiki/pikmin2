@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034BB30
  * Size:	000020
  */
-void Game::Egg::Obj::setParameters(void)
+void Egg::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -30,12 +22,14 @@ void Game::Egg::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8034BB50
  * Size:	000020
  */
-void birth__Q34Game3Egg3ObjFR10Vector3<float> f(void)
+void birth__Q34Game3Egg3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -50,12 +44,14 @@ void birth__Q34Game3Egg3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8034BB70
  * Size:	000150
  */
-void Game::Egg::Obj::onInit((Game::CreatureInitArg*))
+void Egg::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +151,7 @@ void Game::Egg::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8034BCC0
  * Size:	000138
  */
-void Game::Egg::Obj::__ct(void)
+Egg::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +247,7 @@ void Game::Egg::Obj::__ct(void)
  * Address:	8034BDF8
  * Size:	00004C
  */
-void Game::Egg::Obj::setFSM((Game::Egg::FSM*))
+void Egg::Obj::setFSM(Game::Egg::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +278,7 @@ void Game::Egg::Obj::setFSM((Game::Egg::FSM*))
  * Address:	8034BE44
  * Size:	00006C
  */
-void Game::Egg::Obj::doUpdate(void)
+void Egg::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -325,14 +321,14 @@ void Game::Egg::Obj::doUpdate(void)
  * Address:	8034BEB0
  * Size:	000004
  */
-void Game::Egg::Obj::doDirectDraw((Graphics&)) { }
+void Egg::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8034BEB4
  * Size:	000020
  */
-void Game::Egg::Obj::doDebugDraw((Graphics&))
+void Egg::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -352,7 +348,7 @@ void Game::Egg::Obj::doDebugDraw((Graphics&))
  * Address:	8034BED4
  * Size:	00004C
  */
-void Game::Egg::Obj::doSimulation((float))
+void Egg::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -387,7 +383,7 @@ void Game::Egg::Obj::doSimulation((float))
  * Address:	8034BF20
  * Size:	000128
  */
-void Game::Egg::Obj::doAnimationCullingOff(void)
+void Egg::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -485,17 +481,14 @@ void Game::Egg::Obj::doAnimationCullingOff(void)
  * Address:	8034C048
  * Size:	000008
  */
-u32 Game::Egg::Obj::pressCallBack((Game::Creature*, float, CollPart*))
-{
-	return 0x0;
-}
+u32 Egg::Obj::pressCallBack(Game::Creature*, float, CollPart*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8034C050
  * Size:	000054
  */
-void Game::Egg::Obj::bounceCallback((Sys::Triangle*))
+void Egg::Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -532,7 +525,7 @@ void Game::Egg::Obj::bounceCallback((Sys::Triangle*))
  * Address:	8034C0A4
  * Size:	000090
  */
-void Game::Egg::Obj::collisionCallback((Game::CollEvent&))
+void Egg::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -582,7 +575,7 @@ void Game::Egg::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8034C134
  * Size:	000050
  */
-void Game::Egg::Obj::getShadowParam((Game::ShadowParam&))
+void Egg::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -614,7 +607,7 @@ void Game::Egg::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8034C184
  * Size:	000048
  */
-void Game::Egg::Obj::needShadow(void)
+void Egg::Obj::needShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -648,7 +641,7 @@ void Game::Egg::Obj::needShadow(void)
  * Address:	8034C1CC
  * Size:	0000A0
  */
-void Game::Egg::Obj::onStartCapture(void)
+void Egg::Obj::onStartCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -702,7 +695,7 @@ void Game::Egg::Obj::onStartCapture(void)
  * Address:	8034C26C
  * Size:	000040
  */
-void Game::Egg::Obj::onEndCapture(void)
+void Egg::Obj::onEndCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -730,7 +723,7 @@ void Game::Egg::Obj::onEndCapture(void)
  * Address:	8034C2AC
  * Size:	0005F4
  */
-void Game::Egg::Obj::genItem(void)
+void Egg::Obj::genItem(void)
 {
 	/*
 	.loc_0x0:
@@ -1169,14 +1162,14 @@ void Game::Egg::Obj::genItem(void)
  * Address:	8034C8A0
  * Size:	000004
  */
-void Game::Egg::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void Egg::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8034C8A4
  * Size:	000010
  */
-void Game::Egg::Obj::isLivingThing(void)
+void Egg::Obj::isLivingThing(void)
 {
 	/*
 	.loc_0x0:
@@ -1192,14 +1185,14 @@ void Game::Egg::Obj::isLivingThing(void)
  * Address:	8034C8B4
  * Size:	000008
  */
-u32 Game::Egg::Obj::getEnemyTypeID(void) { return 0x25; }
+u32 Egg::Obj::getEnemyTypeID(void) { return 0x25; }
 
 /*
  * --INFO--
  * Address:	8034C8BC
  * Size:	000008
  */
-void Game::Egg::Obj::getDownSmokeScale(void)
+void Egg::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -1207,6 +1200,8 @@ void Game::Egg::Obj::getDownSmokeScale(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

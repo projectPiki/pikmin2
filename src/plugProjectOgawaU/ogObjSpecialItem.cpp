@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80319CC4
  * Size:	000088
  */
-void og::newScreen::ObjSpecialItem::__ct((char const*))
+newScreen::ObjSpecialItem::ObjSpecialItem(char const*)
 {
 	/*
 	.loc_0x0:
@@ -61,7 +53,7 @@ void og::newScreen::ObjSpecialItem::__ct((char const*))
  * Address:	80319D4C
  * Size:	0000AC
  */
-void og::newScreen::ObjSpecialItem::__dt(void)
+newScreen::ObjSpecialItem::~ObjSpecialItem(void)
 {
 	/*
 	.loc_0x0:
@@ -120,7 +112,7 @@ void og::newScreen::ObjSpecialItem::__dt(void)
  * Address:	80319DF8
  * Size:	000194
  */
-void og::newScreen::ObjSpecialItem::doCreate((JKRArchive*))
+void newScreen::ObjSpecialItem::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +237,7 @@ void og::newScreen::ObjSpecialItem::doCreate((JKRArchive*))
  * Address:	80319F8C
  * Size:	000040
  */
-void og::newScreen::ObjSpecialItem::doUpdate(void)
+void newScreen::ObjSpecialItem::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +267,7 @@ void og::newScreen::ObjSpecialItem::doUpdate(void)
  * Address:	80319FCC
  * Size:	000104
  */
-void og::newScreen::ObjSpecialItem::doDraw((Graphics&))
+void newScreen::ObjSpecialItem::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -354,7 +346,7 @@ void og::newScreen::ObjSpecialItem::doDraw((Graphics&))
  * Address:	8031A0D0
  * Size:	00010C
  */
-void og::newScreen::ObjSpecialItem::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjSpecialItem::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -445,7 +437,7 @@ void og::newScreen::ObjSpecialItem::doStart((Screen::StartSceneArg const*))
  * Address:	8031A1DC
  * Size:	000010
  */
-void og::newScreen::ObjSpecialItem::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjSpecialItem::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -461,14 +453,14 @@ void og::newScreen::ObjSpecialItem::doEnd((Screen::EndSceneArg const*))
  * Address:	8031A1EC
  * Size:	000004
  */
-void og::newScreen::ObjSpecialItem::doUpdateFadeinFinish(void) { }
+void newScreen::ObjSpecialItem::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031A1F0
  * Size:	00000C
  */
-void og::newScreen::ObjSpecialItem::doUpdateFinish(void)
+void newScreen::ObjSpecialItem::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -483,14 +475,14 @@ void og::newScreen::ObjSpecialItem::doUpdateFinish(void)
  * Address:	8031A1FC
  * Size:	000004
  */
-void og::newScreen::ObjSpecialItem::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjSpecialItem::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031A200
  * Size:	000048
  */
-void og::newScreen::ObjSpecialItem::doUpdateFadein(void)
+void newScreen::ObjSpecialItem::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +514,7 @@ void og::newScreen::ObjSpecialItem::doUpdateFadein(void)
  * Address:	8031A248
  * Size:	000050
  */
-void og::newScreen::ObjSpecialItem::doUpdateFadeout(void)
+void newScreen::ObjSpecialItem::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -556,7 +548,7 @@ void og::newScreen::ObjSpecialItem::doUpdateFadeout(void)
  * Address:	8031A298
  * Size:	000008
  */
-void @24 @og::newScreen::ObjSpecialItem::__dt(void)
+@24 @og::newScreen::ObjSpecialItem::~ObjSpecialItem(void)
 {
 	/*
 	.loc_0x0:
@@ -564,3 +556,4 @@ void @24 @og::newScreen::ObjSpecialItem::__dt(void)
 	  b         -0x550
 	*/
 }
+} // namespace og

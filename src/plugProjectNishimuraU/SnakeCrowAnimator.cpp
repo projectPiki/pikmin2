@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80292B28
  * Size:	000008
  */
-void Game::SnakeCrow::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void SnakeCrow::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -19,7 +21,7 @@ void Game::SnakeCrow::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80292B30
  * Size:	000008
  */
-void Game::SnakeCrow::ProperAnimator::getAnimator(int)
+void SnakeCrow::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +35,7 @@ void Game::SnakeCrow::ProperAnimator::getAnimator(int)
  * Address:	80292B38
  * Size:	00005C
  */
-void Game::SnakeCrow::ProperAnimator::~ProperAnimator()
+SnakeCrow::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +74,7 @@ void Game::SnakeCrow::ProperAnimator::~ProperAnimator()
  * Address:	80292B94
  * Size:	000008
  */
-void Game::SnakeCrow::ProperAnimator::getAnimator()
+void SnakeCrow::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +82,4 @@ void Game::SnakeCrow::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

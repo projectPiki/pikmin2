@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -27,8 +17,8 @@ void @unnamed @moviePlayerAudio_cpp
  * Address:	80454D30
  * Size:	00003C
  */
-void Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(
-    JAIBasic*, const JStage::TSystem*)
+Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(JAIBasic*,
+                                                         const JStage::TSystem*)
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Pikmin_TCreateObject_JAudio::create(
  * Address:	80454F00
  * Size:	000060
  */
-void Pikmin_TCreateObject_JAudio::~Pikmin_TCreateObject_JAudio()
+Pikmin_TCreateObject_JAudio::~Pikmin_TCreateObject_JAudio()
 {
 	/*
 	.loc_0x0:

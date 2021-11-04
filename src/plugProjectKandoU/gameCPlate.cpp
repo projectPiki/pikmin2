@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80194FF4
  * Size:	000014
  */
-void Game::CPlate::get((void*))
+void CPlate::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +24,7 @@ void Game::CPlate::get((void*))
  * Address:	80195008
  * Size:	00003C
  */
-void Game::CPlate::getNext((void*))
+void CPlate::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -59,14 +51,14 @@ void Game::CPlate::getNext((void*))
  * Address:	80195044
  * Size:	000008
  */
-u32 Game::CPlate::getStart(void) { return 0x0; }
+u32 CPlate::getStart(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8019504C
  * Size:	000008
  */
-void Game::CPlate::getEnd(void)
+void CPlate::getEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -80,14 +72,10 @@ void Game::CPlate::getEnd(void)
  * Address:	80195054
  * Size:	00000C
  */
-void Game::CPlate::shrink(void)
+void CPlate::shrink(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0xA
-	  stb       r0, 0x100(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x100(r3)
+	_100 = 10;
 }
 
 /*
@@ -95,7 +83,7 @@ void Game::CPlate::shrink(void)
  * Address:	........
  * Size:	000018
  */
-void Game::CPlate::updateShrink(void)
+void CPlate::updateShrink(void)
 {
 	// UNUSED FUNCTION
 }
@@ -105,7 +93,7 @@ void Game::CPlate::updateShrink(void)
  * Address:	80195060
  * Size:	0001F0
  */
-void Game::CPlate::__ct((int))
+CPlate::CPlate(int)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +229,7 @@ void Game::CPlate::__ct((int))
  * Address:	80195250
  * Size:	00002C
  */
-void Game::CPlate::Slot::__ct(void)
+CPlate::Slot::Slot(void)
 {
 	/*
 	.loc_0x0:
@@ -258,6 +246,8 @@ void Game::CPlate::Slot::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -308,7 +298,7 @@ void Container<Game::Creature>::~Container()
  * Address:	801952EC
  * Size:	000210
  */
-void setPos__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float> f(void)
+void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +460,7 @@ void setPos__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float> f(void)
  * Address:	801954FC
  * Size:	00020C
  */
-void setPosGray__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float> f(void)
+void setPosGray__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -631,17 +621,19 @@ void setPosGray__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float> f(void)
  * Address:	........
  * Size:	00004C
  */
-void setPosNeutral__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float> f(void)
+void setPosNeutral__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80195708
  * Size:	0000A8
  */
-void Game::CPlate::getSlot((Game::Creature*, Game::SlotChangeListener*, bool))
+void CPlate::getSlot(Game::Creature*, Game::SlotChangeListener*, bool)
 {
 	/*
 	.loc_0x0:
@@ -699,7 +691,7 @@ void Game::CPlate::getSlot((Game::Creature*, Game::SlotChangeListener*, bool))
  * Address:	801957B0
  * Size:	0000B8
  */
-void Game::CPlate::changeFlower((Game::Creature*))
+void CPlate::changeFlower(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -759,7 +751,7 @@ void Game::CPlate::changeFlower((Game::Creature*))
  * Address:	80195868
  * Size:	000128
  */
-void Game::CPlate::releaseSlot((Game::Creature*, int))
+void CPlate::releaseSlot(Game::Creature*, int)
 {
 	/*
 	.loc_0x0:
@@ -853,7 +845,7 @@ void Game::CPlate::releaseSlot((Game::Creature*, int))
  * Address:	........
  * Size:	0000B0
  */
-void Game::CPlate::swapSlot((int, int))
+void CPlate::swapSlot(int, int)
 {
 	// UNUSED FUNCTION
 }
@@ -863,7 +855,7 @@ void Game::CPlate::swapSlot((int, int))
  * Address:	80195990
  * Size:	000024
  */
-void Game::CPlate::validSlot((int))
+void CPlate::validSlot(int)
 {
 	/*
 	.loc_0x0:
@@ -883,6 +875,8 @@ void Game::CPlate::validSlot((int))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -893,12 +887,14 @@ void getPriority(int*, int)
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801959B4
  * Size:	0004A0
  */
-void Game::CPlate::sortByColor((Game::Creature*, int))
+void CPlate::sortByColor(Game::Creature*, int)
 {
 	/*
 	.loc_0x0:
@@ -1251,12 +1247,14 @@ void Game::CPlate::sortByColor((Game::Creature*, int))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80195E54
  * Size:	0001E0
  */
-void rearrangeSlot__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float>(void)
+void rearrangeSlot__Q24Game6CPlateFR10Vector3f fR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1406,7 +1404,7 @@ void rearrangeSlot__Q24Game6CPlateFR10Vector3<float> fR10Vector3<float>(void)
  * Address:	80196034
  * Size:	0000C4
  */
-void getSlotPosition__Q24Game6CPlateFiR10Vector3<float>(void)
+void getSlotPosition__Q24Game6CPlateFiR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1470,12 +1468,14 @@ void getSlotPosition__Q24Game6CPlateFiR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801960F8
  * Size:	0001B8
  */
-void Game::CPlate::refresh((int, float))
+void CPlate::refresh(int, float)
 {
 	/*
 	.loc_0x0:
@@ -1623,7 +1623,7 @@ void Game::CPlate::refresh((int, float))
  * Address:	801962B0
  * Size:	0002EC
  */
-void Game::CPlate::refreshSlot((float))
+void CPlate::refreshSlot(float)
 {
 	/*
 	.loc_0x0:
@@ -1844,7 +1844,7 @@ void Game::CPlate::refreshSlot((float))
  * Address:	8019659C
  * Size:	000018
  */
-void Game::CPlate::update(void)
+void CPlate::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1862,7 +1862,7 @@ void Game::CPlate::update(void)
  * Address:	........
  * Size:	000004
  */
-void Game::CPlate::directDraw((Graphics&))
+void CPlate::directDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1872,7 +1872,7 @@ void Game::CPlate::directDraw((Graphics&))
  * Address:	801965B4
  * Size:	000080
  */
-void Game::CPlate::__dt(void)
+CPlate::~CPlate(void)
 {
 	/*
 	.loc_0x0:
@@ -1914,6 +1914,8 @@ void Game::CPlate::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

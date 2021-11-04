@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80126C00
  * Size:	000090
  */
-void Game::TimeMgr::TimeMgr()
+TimeMgr::TimeMgr()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::TimeMgr::TimeMgr()
  * Address:	80126C90
  * Size:	000034
  */
-void Game::TimeMgrParms::TimeMgrParms()
+TimeMgrParms::TimeMgrParms()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +84,7 @@ void Game::TimeMgrParms::TimeMgrParms()
  * Address:	80126CC4
  * Size:	00032C
  */
-void Game::TimeMgrParms::Parms::Parms()
+TimeMgrParms::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -299,7 +301,7 @@ void Game::TimeMgrParms::Parms::Parms()
  * Address:	80126FF0
  * Size:	0000B0
  */
-void Game::TimeMgr::init()
+void TimeMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -357,7 +359,7 @@ void Game::TimeMgr::init()
  * Address:	801270A0
  * Size:	00003C
  */
-void Game::TimeMgr::setTime(float)
+void TimeMgr::setTime(float)
 {
 	/*
 	.loc_0x0:
@@ -384,7 +386,7 @@ void Game::TimeMgr::setTime(float)
  * Address:	801270DC
  * Size:	000040
  */
-void Game::TimeMgr::setStartTime()
+void TimeMgr::setStartTime()
 {
 	/*
 	.loc_0x0:
@@ -412,7 +414,7 @@ void Game::TimeMgr::setStartTime()
  * Address:	8012711C
  * Size:	000040
  */
-void Game::TimeMgr::setEndTime()
+void TimeMgr::setEndTime()
 {
 	/*
 	.loc_0x0:
@@ -442,7 +444,7 @@ void Game::TimeMgr::setEndTime()
  * Address:	8012715C
  * Size:	000168
  */
-void Game::TimeMgr::updateSlot()
+void TimeMgr::updateSlot()
 {
 	/*
 	.loc_0x0:
@@ -560,7 +562,7 @@ void Game::TimeMgr::updateSlot()
  * Address:	801272C4
  * Size:	000060
  */
-void Game::TimeMgr::getSunGaugeRatio()
+void TimeMgr::getSunGaugeRatio()
 {
 	/*
 	.loc_0x0:
@@ -600,7 +602,7 @@ void Game::TimeMgr::getSunGaugeRatio()
  * Address:	80127324
  * Size:	000074
  */
-void Game::TimeMgr::update()
+void TimeMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -645,7 +647,7 @@ void Game::TimeMgr::update()
  * Address:	80127398
  * Size:	000018
  */
-void Game::TimeMgr::isDayOver()
+void TimeMgr::isDayOver()
 {
 	/*
 	.loc_0x0:
@@ -663,7 +665,7 @@ void Game::TimeMgr::isDayOver()
  * Address:	801273B0
  * Size:	000030
  */
-void Game::TimeMgr::isDayTime()
+void TimeMgr::isDayTime()
 {
 	/*
 	.loc_0x0:
@@ -689,7 +691,7 @@ void Game::TimeMgr::isDayTime()
  * Address:	801273E0
  * Size:	000020
  */
-void Game::TimeMgr::getRealDayTime()
+void TimeMgr::getRealDayTime()
 {
 	/*
 	.loc_0x0:
@@ -709,7 +711,7 @@ void Game::TimeMgr::getRealDayTime()
  * Address:	80127400
  * Size:	000150
  */
-void Game::TimeMgr::loadSettingFile(char*)
+void TimeMgr::loadSettingFile(char*)
 {
 	/*
 	.loc_0x0:
@@ -809,7 +811,7 @@ void Game::TimeMgr::loadSettingFile(char*)
  * Address:	80127550
  * Size:	000060
  */
-void Game::TimeMgr::~TimeMgr()
+TimeMgr::~TimeMgr()
 {
 	/*
 	.loc_0x0:
@@ -841,3 +843,4 @@ void Game::TimeMgr::~TimeMgr()
 	  blr
 	*/
 }
+} // namespace Game

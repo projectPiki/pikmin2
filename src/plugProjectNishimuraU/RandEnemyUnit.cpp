@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80248914
  * Size:	0000A8
  */
-void Game::Cave::RandEnemyUnit::__ct((Game::Cave::MapUnitGenerator*, bool))
+Cave::RandEnemyUnit::RandEnemyUnit(Game::Cave::MapUnitGenerator*, bool)
 {
 	/*
 	.loc_0x0:
@@ -77,13 +69,10 @@ void Game::Cave::RandEnemyUnit::__ct((Game::Cave::MapUnitGenerator*, bool))
  * Address:	802489BC
  * Size:	000008
  */
-void Game::Cave::RandEnemyUnit::setManageClassPtr((Game::Cave::RandMapScore*))
+void Cave::RandEnemyUnit::setManageClassPtr(Game::Cave::RandMapScore* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*
@@ -91,7 +80,7 @@ void Game::Cave::RandEnemyUnit::setManageClassPtr((Game::Cave::RandMapScore*))
  * Address:	802489C4
  * Size:	000054
  */
-void Game::Cave::RandEnemyUnit::setEnemySlot(void)
+void Cave::RandEnemyUnit::setEnemySlot(void)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +115,7 @@ void Game::Cave::RandEnemyUnit::setEnemySlot(void)
  * Address:	80248A18
  * Size:	000278
  */
-void Game::Cave::RandEnemyUnit::setEnemyTypeWeight(void)
+void Cave::RandEnemyUnit::setEnemyTypeWeight(void)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +307,7 @@ void Game::Cave::RandEnemyUnit::setEnemyTypeWeight(void)
  * Address:	80248C90
  * Size:	0000F0
  */
-void Game::Cave::RandEnemyUnit::setEnemyTypeC(void)
+void Cave::RandEnemyUnit::setEnemyTypeC(void)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +389,7 @@ void Game::Cave::RandEnemyUnit::setEnemyTypeC(void)
  * Address:	80248D80
  * Size:	0000CC
  */
-void Game::Cave::RandEnemyUnit::setEnemyTypeF(void)
+void Cave::RandEnemyUnit::setEnemyTypeF(void)
 {
 	/*
 	.loc_0x0:
@@ -471,7 +460,7 @@ void Game::Cave::RandEnemyUnit::setEnemyTypeF(void)
  * Address:	80248E4C
  * Size:	0000CC
  */
-void Game::Cave::RandEnemyUnit::setEnemyTypeB(void)
+void Cave::RandEnemyUnit::setEnemyTypeB(void)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +531,7 @@ void Game::Cave::RandEnemyUnit::setEnemyTypeB(void)
  * Address:	80248F18
  * Size:	000104
  */
-void Game::Cave::RandEnemyUnit::setEnemyTypeA(void)
+void Cave::RandEnemyUnit::setEnemyTypeA(void)
 {
 	/*
 	.loc_0x0:
@@ -627,7 +616,7 @@ void Game::Cave::RandEnemyUnit::setEnemyTypeA(void)
  * Address:	8024901C
  * Size:	000190
  */
-void Game::Cave::RandEnemyUnit::setVersusHibaTypeC(void)
+void Cave::RandEnemyUnit::setVersusHibaTypeC(void)
 {
 	/*
 	.loc_0x0:
@@ -759,7 +748,7 @@ void Game::Cave::RandEnemyUnit::setVersusHibaTypeC(void)
  * Address:	802491AC
  * Size:	0001A4
  */
-void Game::Cave::RandEnemyUnit::setVersusEnemyTypeC(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeC(void)
 {
 	/*
 	.loc_0x0:
@@ -892,7 +881,7 @@ void Game::Cave::RandEnemyUnit::setVersusEnemyTypeC(void)
  * Address:	80249350
  * Size:	0002F8
  */
-void Game::Cave::RandEnemyUnit::setSlotEnemyTypeC((int&, int))
+void Cave::RandEnemyUnit::setSlotEnemyTypeC(int&, int)
 {
 	/*
 	.loc_0x0:
@@ -1140,7 +1129,7 @@ void Game::Cave::RandEnemyUnit::setSlotEnemyTypeC((int&, int))
  * Address:	80249648
  * Size:	0001A0
  */
-void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeC(void)
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeC(void)
 {
 	/*
 	.loc_0x0:
@@ -1270,8 +1259,8 @@ void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeC(void)
  * Address:	802497E8
  * Size:	0000D8
  */
-void Game::Cave::RandEnemyUnit::makeSetEnemyTypeC((Game::Cave::MapNode*, int,
-                                                   Game::Cave::EnemyUnit*))
+void Cave::RandEnemyUnit::makeSetEnemyTypeC(Game::Cave::MapNode*, int,
+                                            Game::Cave::EnemyUnit*)
 {
 	/*
 	.loc_0x0:
@@ -1339,7 +1328,7 @@ void Game::Cave::RandEnemyUnit::makeSetEnemyTypeC((Game::Cave::MapNode*, int,
  * Address:	802498C0
  * Size:	00017C
  */
-void Game::Cave::RandEnemyUnit::setVersusEnemyTypeF(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeF(void)
 {
 	/*
 	.loc_0x0:
@@ -1462,7 +1451,7 @@ void Game::Cave::RandEnemyUnit::setVersusEnemyTypeF(void)
  * Address:	80249A3C
  * Size:	0003E0
  */
-void Game::Cave::RandEnemyUnit::setSlotEnemyTypeF((int))
+void Cave::RandEnemyUnit::setSlotEnemyTypeF(int)
 {
 	/*
 	.loc_0x0:
@@ -1768,7 +1757,7 @@ void Game::Cave::RandEnemyUnit::setSlotEnemyTypeF((int))
  * Address:	80249E1C
  * Size:	0001A0
  */
-void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeF(void)
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeF(void)
 {
 	/*
 	.loc_0x0:
@@ -1898,9 +1887,9 @@ void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeF(void)
  * Address:	80249FBC
  * Size:	000088
  */
-void Game::Cave::RandEnemyUnit::makeSetEnemyTypeF((Game::Cave::MapNode*,
-                                                   Game::Cave::BaseGen*,
-                                                   Game::Cave::EnemyUnit*))
+void Cave::RandEnemyUnit::makeSetEnemyTypeF(Game::Cave::MapNode*,
+                                            Game::Cave::BaseGen*,
+                                            Game::Cave::EnemyUnit*)
 {
 	/*
 	.loc_0x0:
@@ -1948,7 +1937,7 @@ void Game::Cave::RandEnemyUnit::makeSetEnemyTypeF((Game::Cave::MapNode*,
  * Address:	8024A044
  * Size:	00017C
  */
-void Game::Cave::RandEnemyUnit::setVersusEnemyTypeB(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeB(void)
 {
 	/*
 	.loc_0x0:
@@ -2071,7 +2060,7 @@ void Game::Cave::RandEnemyUnit::setVersusEnemyTypeB(void)
  * Address:	8024A1C0
  * Size:	0003E0
  */
-void Game::Cave::RandEnemyUnit::setSlotEnemyTypeB((int))
+void Cave::RandEnemyUnit::setSlotEnemyTypeB(int)
 {
 	/*
 	.loc_0x0:
@@ -2377,7 +2366,7 @@ void Game::Cave::RandEnemyUnit::setSlotEnemyTypeB((int))
  * Address:	8024A5A0
  * Size:	0001A0
  */
-void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeB(void)
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeB(void)
 {
 	/*
 	.loc_0x0:
@@ -2507,9 +2496,9 @@ void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeB(void)
  * Address:	8024A740
  * Size:	000088
  */
-void Game::Cave::RandEnemyUnit::makeSetEnemyTypeB((Game::Cave::MapNode*,
-                                                   Game::Cave::BaseGen*,
-                                                   Game::Cave::EnemyUnit*))
+void Cave::RandEnemyUnit::makeSetEnemyTypeB(Game::Cave::MapNode*,
+                                            Game::Cave::BaseGen*,
+                                            Game::Cave::EnemyUnit*)
 {
 	/*
 	.loc_0x0:
@@ -2557,7 +2546,7 @@ void Game::Cave::RandEnemyUnit::makeSetEnemyTypeB((Game::Cave::MapNode*,
  * Address:	8024A7C8
  * Size:	0002CC
  */
-void Game::Cave::RandEnemyUnit::setVersusEasyEnemy(void)
+void Cave::RandEnemyUnit::setVersusEasyEnemy(void)
 {
 	/*
 	.loc_0x0:
@@ -2768,8 +2757,8 @@ void Game::Cave::RandEnemyUnit::setVersusEasyEnemy(void)
  * Address:	8024AA94
  * Size:	000144
  */
-void Game::Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen(
-    (Game::Cave::MapNode*, Game::Cave::BaseGen*))
+void Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen(Game::Cave::MapNode*,
+                                                    Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -2884,7 +2873,7 @@ void Game::Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen(
  * Address:	8024ABD8
  * Size:	0001D4
  */
-void Game::Cave::RandEnemyUnit::setVersusEnemyTypeA(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeA(void)
 {
 	/*
 	.loc_0x0:
@@ -3035,7 +3024,7 @@ void Game::Cave::RandEnemyUnit::setVersusEnemyTypeA(void)
  * Address:	8024ADAC
  * Size:	0003D4
  */
-void Game::Cave::RandEnemyUnit::setSlotEnemyTypeA((int&, int&, int))
+void Cave::RandEnemyUnit::setSlotEnemyTypeA(int&, int&, int)
 {
 	/*
 	.loc_0x0:
@@ -3334,7 +3323,7 @@ void Game::Cave::RandEnemyUnit::setSlotEnemyTypeA((int&, int&, int))
  * Address:	8024B180
  * Size:	000298
  */
-void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeA((int&, int, int))
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeA(int&, int, int)
 {
 	/*
 	.loc_0x0:
@@ -3534,9 +3523,9 @@ void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeA((int&, int, int))
  * Address:	8024B418
  * Size:	000420
  */
-void Game::Cave::RandEnemyUnit::makeSetEnemyTypeA((Game::Cave::MapNode*,
-                                                   Game::Cave::BaseGen*,
-                                                   Game::Cave::EnemyUnit*, int))
+void Cave::RandEnemyUnit::makeSetEnemyTypeA(Game::Cave::MapNode*,
+                                            Game::Cave::BaseGen*,
+                                            Game::Cave::EnemyUnit*, int)
 {
 	/*
 	.loc_0x0:
@@ -3850,8 +3839,8 @@ void Game::Cave::RandEnemyUnit::makeSetEnemyTypeA((Game::Cave::MapNode*,
  * Address:	8024B838
  * Size:	00003C
  */
-void Game::Cave::RandEnemyUnit::isEnemySetGen((Game::Cave::MapNode*,
-                                               Game::Cave::BaseGen*))
+void Cave::RandEnemyUnit::isEnemySetGen(Game::Cave::MapNode*,
+                                        Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -3880,3 +3869,4 @@ void Game::Cave::RandEnemyUnit::isEnemySetGen((Game::Cave::MapNode*,
 	  blr
 	*/
 }
+} // namespace Game

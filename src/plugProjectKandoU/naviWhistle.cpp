@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80165088
  * Size:	000034
  */
-void Game::NaviWhistle::__ct((Game::Navi*))
+NaviWhistle::NaviWhistle(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void Game::NaviWhistle::__ct((Game::Navi*))
  * Address:	801650BC
  * Size:	000128
  */
-void Game::NaviWhistle::init(void)
+void NaviWhistle::init(void)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +128,7 @@ void Game::NaviWhistle::init(void)
  * Address:	801651E4
  * Size:	000190
  */
-void Game::NaviWhistle::updatePosition(void)
+void NaviWhistle::updatePosition(void)
 {
 	/*
 	.loc_0x0:
@@ -252,7 +244,7 @@ void Game::NaviWhistle::updatePosition(void)
  * Address:	80165374
  * Size:	000078
  */
-void Game::NaviWhistle::start(void)
+void NaviWhistle::start(void)
 {
 	/*
 	.loc_0x0:
@@ -300,7 +292,7 @@ void Game::NaviWhistle::start(void)
  * Address:	801653EC
  * Size:	000034
  */
-void Game::NaviWhistle::stop(void)
+void NaviWhistle::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -327,7 +319,7 @@ void Game::NaviWhistle::stop(void)
  * Address:	80165420
  * Size:	000010
  */
-void Game::NaviWhistle::timeout(void)
+void NaviWhistle::timeout(void)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +335,7 @@ void Game::NaviWhistle::timeout(void)
  * Address:	80165430
  * Size:	0000F4
  */
-void Game::NaviWhistle::setFaceDir((float))
+void NaviWhistle::setFaceDir(float)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +418,7 @@ void Game::NaviWhistle::setFaceDir((float))
  * Address:	80165524
  * Size:	0001F4
  */
-void Game::NaviWhistle::updateWhistle(void)
+void NaviWhistle::updateWhistle(void)
 {
 	/*
 	.loc_0x0:
@@ -574,12 +566,14 @@ void Game::NaviWhistle::updateWhistle(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80165718
  * Size:	0001D4
  */
-void update__Q24Game11NaviWhistleFR10Vector3<float> b(void)
+void update__Q24Game11NaviWhistleFR10Vector3f b(void)
 {
 	/*
 	.loc_0x0:

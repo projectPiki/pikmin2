@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80324DB4
  * Size:	00003C
  */
-void og::newScreen::Save::__ct(void)
+newScreen::Save::Save(void)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void og::newScreen::Save::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::Save::__dt(void)
+newScreen::Save::~Save(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +44,7 @@ void og::newScreen::Save::__dt(void)
  * Address:	80324DF0
  * Size:	000078
  */
-void og::newScreen::Save::doUserCallBackFunc((Resource::MgrCommand*))
+void newScreen::Save::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -94,7 +86,7 @@ void og::newScreen::Save::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	80324E68
  * Size:	000030
  */
-void og::newScreen::Save::doCreateObj((JKRArchive*))
+void newScreen::Save::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -118,7 +110,7 @@ void og::newScreen::Save::doCreateObj((JKRArchive*))
  * Address:	80324E98
  * Size:	000068
  */
-void og::newScreen::Save::doCreateObjUserCallBackFunc((JKRArchive*))
+void newScreen::Save::doCreateObjUserCallBackFunc(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -158,7 +150,7 @@ void og::newScreen::Save::doCreateObjUserCallBackFunc((JKRArchive*))
  * Address:	80324F00
  * Size:	000008
  */
-void og::newScreen::Save::getResName( const
+void newScreen::Save::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -172,17 +164,14 @@ void og::newScreen::Save::getResName( const
  * Address:	80324F08
  * Size:	000008
  */
-u32  og::newScreen::Save::getSceneType(void)
-{
-	return 0x2725;
-}
+u32 newScreen::Save::getSceneType(void) { return 0x2725; }
 
 /*
  * --INFO--
  * Address:	80324F10
  * Size:	00000C
  */
-void og::newScreen::Save::getOwnerID(void)
+void newScreen::Save::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +186,7 @@ void og::newScreen::Save::getOwnerID(void)
  * Address:	80324F1C
  * Size:	000010
  */
-void og::newScreen::Save::getMemberID(void)
+void newScreen::Save::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -207,3 +196,4 @@ void og::newScreen::Save::getMemberID(void)
 	  blr
 	*/
 }
+} // namespace og

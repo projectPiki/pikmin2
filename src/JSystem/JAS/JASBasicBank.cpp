@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800996FC
  * Size:	00002C
  */
-void JASBasicBank::JASBasicBank()
+JASBasicBank::JASBasicBank()
 {
 	/*
 	.loc_0x0:
@@ -28,7 +28,7 @@ void JASBasicBank::JASBasicBank()
  * Address:	80099728
  * Size:	000048
  */
-void JASBank::~JASBank()
+JASBank::~JASBank()
 {
 	/*
 	.loc_0x0:
@@ -60,7 +60,7 @@ void JASBank::~JASBank()
  * Address:	80099770
  * Size:	000074
  */
-void JASBasicBank::~JASBasicBank()
+JASBasicBank::~JASBasicBank()
 {
 	/*
 	.loc_0x0:

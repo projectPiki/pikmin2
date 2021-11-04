@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -47,7 +47,7 @@ void JKRDecomp::create(long)
  * Address:	8001C994
  * Size:	000050
  */
-void JKRDecomp::JKRDecomp(long)
+JKRDecomp::JKRDecomp(long)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +79,7 @@ void JKRDecomp::JKRDecomp(long)
  * Address:	8001C9E4
  * Size:	000060
  */
-void JKRDecomp::~JKRDecomp()
+JKRDecomp::~JKRDecomp()
 {
 	/*
 	.loc_0x0:
@@ -590,7 +590,7 @@ void JKRDecomp::checkCompressed(unsigned char*)
  * Address:	8001CF40
  * Size:	000050
  */
-void JKRDecompCommand::JKRDecompCommand()
+JKRDecompCommand::JKRDecompCommand()
 {
 	/*
 	.loc_0x0:
@@ -622,7 +622,7 @@ void JKRDecompCommand::JKRDecompCommand()
  * Address:	8001CF90
  * Size:	00003C
  */
-void JKRDecompCommand::~JKRDecompCommand()
+JKRDecompCommand::~JKRDecompCommand()
 {
 	/*
 	.loc_0x0:

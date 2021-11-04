@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	804391F0
  * Size:	00003C
  */
-void P2JME::TRenderingProcessorBase::__ct((JMessage::TReference const*))
+TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const*)
 {
 	/*
 	.loc_0x0:
@@ -32,8 +34,7 @@ void P2JME::TRenderingProcessorBase::__ct((JMessage::TReference const*))
  * Address:	8043922C
  * Size:	000174
  */
-void P2JME::TRenderingProcessorBase::do_tag((unsigned long, void const*,
-                                             unsigned long))
+void TRenderingProcessorBase::do_tag(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -164,37 +165,28 @@ void P2JME::TRenderingProcessorBase::do_tag((unsigned long, void const*,
  * Address:	804393A0
  * Size:	000008
  */
-u32 P2JME::TRenderingProcessorBase::tagFont((void const*, unsigned long))
-{
-	return 0x1;
-}
+u32 TRenderingProcessorBase::tagFont(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393A8
  * Size:	000008
  */
-u32 P2JME::TRenderingProcessorBase::tagRuby((void const*, unsigned long))
-{
-	return 0x1;
-}
+u32 TRenderingProcessorBase::tagRuby(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393B0
  * Size:	000008
  */
-u32 P2JME::TRenderingProcessorBase::tagSize((void const*, unsigned long))
-{
-	return 0x1;
-}
+u32 TRenderingProcessorBase::tagSize(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393B8
  * Size:	000008
  */
-u32 P2JME::TRenderingProcessorBase::tagColor((void const*, unsigned long))
+u32 TRenderingProcessorBase::tagColor(void const*, unsigned long)
 {
 	return 0x1;
 }
@@ -204,8 +196,8 @@ u32 P2JME::TRenderingProcessorBase::tagColor((void const*, unsigned long))
  * Address:	804393C0
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagPosition((unsigned short, void const*,
-                                                  unsigned long))
+void TRenderingProcessorBase::tagPosition(unsigned short, void const*,
+                                          unsigned long)
 {
 	return 0x1;
 }
@@ -215,8 +207,8 @@ void P2JME::TRenderingProcessorBase::tagPosition((unsigned short, void const*,
  * Address:	804393C8
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagControl((unsigned short, void const*,
-                                                 unsigned long))
+void TRenderingProcessorBase::tagControl(unsigned short, void const*,
+                                         unsigned long)
 {
 	return 0x1;
 }
@@ -226,8 +218,8 @@ void P2JME::TRenderingProcessorBase::tagControl((unsigned short, void const*,
  * Address:	804393D0
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagColorEX((unsigned short, void const*,
-                                                 unsigned long))
+void TRenderingProcessorBase::tagColorEX(unsigned short, void const*,
+                                         unsigned long)
 {
 	return 0x1;
 }
@@ -237,8 +229,8 @@ void P2JME::TRenderingProcessorBase::tagColorEX((unsigned short, void const*,
  * Address:	804393D8
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagImage((unsigned short, void const*,
-                                               unsigned long))
+void TRenderingProcessorBase::tagImage(unsigned short, void const*,
+                                       unsigned long)
 {
 	return 0x1;
 }
@@ -248,7 +240,7 @@ void P2JME::TRenderingProcessorBase::tagImage((unsigned short, void const*,
  * Address:	804393E0
  * Size:	000218
  */
-void P2JME::TRenderingProcessor::__ct((JMessage::TReference const*))
+TRenderingProcessor::TRenderingProcessor(JMessage::TReference const*)
 {
 	/*
 	.loc_0x0:
@@ -394,7 +386,7 @@ void P2JME::TRenderingProcessor::__ct((JMessage::TReference const*))
  * Address:	804395F8
  * Size:	000060
  */
-void P2JME::TRenderingProcessorBase::__dt(void)
+TRenderingProcessorBase::~TRenderingProcessorBase(void)
 {
 	/*
 	.loc_0x0:
@@ -432,7 +424,7 @@ void P2JME::TRenderingProcessorBase::__dt(void)
  * Address:	........
  * Size:	00007C
  */
-void P2JME::TRenderingProcessor::setDrawLocateX(void)
+void TRenderingProcessor::setDrawLocateX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -442,7 +434,7 @@ void P2JME::TRenderingProcessor::setDrawLocateX(void)
  * Address:	........
  * Size:	000338
  */
-void P2JME::TRenderingProcessor::setDrawLocateY(void)
+void TRenderingProcessor::setDrawLocateY(void)
 {
 	// UNUSED FUNCTION
 }
@@ -452,7 +444,7 @@ void P2JME::TRenderingProcessor::setDrawLocateY(void)
  * Address:	80439658
  * Size:	0000E8
  */
-void P2JME::TRenderingProcessor::do_begin((void const*, char const*))
+void TRenderingProcessor::do_begin(void const*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +516,7 @@ void P2JME::TRenderingProcessor::do_begin((void const*, char const*))
  * Address:	80439740
  * Size:	0003B0
  */
-void P2JME::TRenderingProcessor::setDrawLocate(void)
+void TRenderingProcessor::setDrawLocate(void)
 {
 	/*
 	.loc_0x0:
@@ -794,7 +786,7 @@ void P2JME::TRenderingProcessor::setDrawLocate(void)
  * Address:	........
  * Size:	000050
  */
-void P2JME::TRenderingProcessor::addDrawLines(void)
+void TRenderingProcessor::addDrawLines(void)
 {
 	// UNUSED FUNCTION
 }
@@ -804,7 +796,7 @@ void P2JME::TRenderingProcessor::addDrawLines(void)
  * Address:	80439AF0
  * Size:	0000DC
  */
-void P2JME::TRenderingProcessor::newParagraph(void)
+void TRenderingProcessor::newParagraph(void)
 {
 	/*
 	.loc_0x0:
@@ -877,7 +869,7 @@ void P2JME::TRenderingProcessor::newParagraph(void)
  * Address:	80439BCC
  * Size:	00031C
  */
-void P2JME::TRenderingProcessor::do_character((int))
+void TRenderingProcessor::do_character(int)
 {
 	/*
 	.loc_0x0:
@@ -1122,7 +1114,7 @@ void P2JME::TRenderingProcessor::do_character((int))
  * Address:	........
  * Size:	0000B0
  */
-void P2JME::TRenderingProcessor::mf(void)
+void TRenderingProcessor::mf(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1132,7 +1124,7 @@ void P2JME::TRenderingProcessor::mf(void)
  * Address:	80439EE8
  * Size:	0000B8
  */
-void P2JME::TRenderingProcessor::do_select_begin((unsigned long))
+void TRenderingProcessor::do_select_begin(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1190,7 +1182,7 @@ void P2JME::TRenderingProcessor::do_select_begin((unsigned long))
  * Address:	80439FA0
  * Size:	00006C
  */
-void P2JME::TRenderingProcessor::do_select_end(void)
+void TRenderingProcessor::do_select_end(void)
 {
 	/*
 	.loc_0x0:
@@ -1229,7 +1221,7 @@ void P2JME::TRenderingProcessor::do_select_end(void)
  * Address:	8043A00C
  * Size:	0000BC
  */
-void P2JME::TRenderingProcessor::do_select_separate(void)
+void TRenderingProcessor::do_select_separate(void)
 {
 	/*
 	.loc_0x0:
@@ -1288,8 +1280,7 @@ void P2JME::TRenderingProcessor::do_select_separate(void)
  * Address:	8043A0C8
  * Size:	000174
  */
-void P2JME::TRenderingProcessor::do_tag((unsigned long, void const*,
-                                         unsigned long))
+void TRenderingProcessor::do_tag(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1420,8 +1411,8 @@ void P2JME::TRenderingProcessor::do_tag((unsigned long, void const*,
  * Address:	8043A23C
  * Size:	000008
  */
-void P2JME::TRenderingProcessor::do_systemTagCode((unsigned short, void const*,
-                                                   unsigned long))
+void TRenderingProcessor::do_systemTagCode(unsigned short, void const*,
+                                           unsigned long)
 {
 	return 0x0;
 }
@@ -1431,7 +1422,7 @@ void P2JME::TRenderingProcessor::do_systemTagCode((unsigned short, void const*,
  * Address:	8043A244
  * Size:	00002C
  */
-void P2JME::TRenderingProcessor::tagColor((void const*, unsigned long))
+void TRenderingProcessor::tagColor(void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1458,7 +1449,7 @@ void P2JME::TRenderingProcessor::tagColor((void const*, unsigned long))
  * Address:	8043A270
  * Size:	00003C
  */
-void P2JME::TRenderingProcessor::tagSize((void const*, unsigned long))
+void TRenderingProcessor::tagSize(void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1485,7 +1476,7 @@ void P2JME::TRenderingProcessor::tagSize((void const*, unsigned long))
  * Address:	8043A2AC
  * Size:	000164
  */
-void P2JME::TRenderingProcessor::tagRuby((void const*, unsigned long))
+void TRenderingProcessor::tagRuby(void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1594,18 +1585,14 @@ void P2JME::TRenderingProcessor::tagRuby((void const*, unsigned long))
  * Address:	8043A410
  * Size:	000008
  */
-u32 P2JME::TRenderingProcessor::tagFont((void const*, unsigned long))
-{
-	return 0x1;
-}
+u32 TRenderingProcessor::tagFont(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8043A418
  * Size:	000024
  */
-void P2JME::TRenderingProcessor::tagColorEX((unsigned short, void const*,
-                                             unsigned long))
+void TRenderingProcessor::tagColorEX(unsigned short, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1630,8 +1617,7 @@ void P2JME::TRenderingProcessor::tagColorEX((unsigned short, void const*,
  * Address:	8043A43C
  * Size:	00006C
  */
-void P2JME::TRenderingProcessor::tagControl((unsigned short, void const*,
-                                             unsigned long))
+void TRenderingProcessor::tagControl(unsigned short, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1678,7 +1664,7 @@ void P2JME::TRenderingProcessor::tagControl((unsigned short, void const*,
  * Address:	8043A4A8
  * Size:	000014
  */
-void P2JME::TRenderingProcessor::doTagControlAbtnWait(void)
+void TRenderingProcessor::doTagControlAbtnWait(void)
 {
 	/*
 	.loc_0x0:
@@ -1695,8 +1681,8 @@ void P2JME::TRenderingProcessor::doTagControlAbtnWait(void)
  * Address:	8043A4BC
  * Size:	00071C
  */
-void P2JME::TRenderingProcessor::tagPosition((unsigned short, void const*,
-                                              unsigned long))
+void TRenderingProcessor::tagPosition(unsigned short, void const*,
+                                      unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2189,7 +2175,7 @@ void P2JME::TRenderingProcessor::tagPosition((unsigned short, void const*,
  * Address:	8043ABD8
  * Size:	00001C
  */
-void P2JME::TRenderingProcessor::initRuby(void)
+void TRenderingProcessor::initRuby(void)
 {
 	/*
 	.loc_0x0:
@@ -2208,7 +2194,7 @@ void P2JME::TRenderingProcessor::initRuby(void)
  * Address:	8043ABF4
  * Size:	000360
  */
-void P2JME::TRenderingProcessor::drawRuby(void)
+void TRenderingProcessor::drawRuby(void)
 {
 	/*
 	.loc_0x0:
@@ -2460,8 +2446,7 @@ void P2JME::TRenderingProcessor::drawRuby(void)
  * Address:	8043AF54
  * Size:	000438
  */
-void P2JME::TRenderingProcessor::tagImage((unsigned short, void const*,
-                                           unsigned long))
+void TRenderingProcessor::tagImage(unsigned short, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2785,8 +2770,8 @@ void P2JME::TRenderingProcessor::tagImage((unsigned short, void const*,
  * Address:	........
  * Size:	0001B8
  */
-void P2JME::TRenderingProcessor::calcColorCoe((JUtility::TColor const&,
-                                               JUtility::TColor*))
+void TRenderingProcessor::calcColorCoe(JUtility::TColor const&,
+                                       JUtility::TColor*)
 {
 	// UNUSED FUNCTION
 }
@@ -2796,8 +2781,7 @@ void P2JME::TRenderingProcessor::calcColorCoe((JUtility::TColor const&,
  * Address:	8043B38C
  * Size:	000440
  */
-void P2JME::TRenderingProcessor::doDrawLetter((float, float, float, float, int,
-                                               bool))
+void TRenderingProcessor::doDrawLetter(float, float, float, float, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -3129,8 +3113,7 @@ void P2JME::TRenderingProcessor::doDrawLetter((float, float, float, float, int,
  * Address:	8043B7CC
  * Size:	00029C
  */
-void P2JME::TRenderingProcessor::doDrawRuby((float, float, float, float, int,
-                                             bool))
+void TRenderingProcessor::doDrawRuby(float, float, float, float, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -3333,8 +3316,7 @@ void P2JME::TRenderingProcessor::doDrawRuby((float, float, float, float, int,
  * Address:	8043BA68
  * Size:	000074
  */
-void P2JME::TRenderingProcessor::doDrawImage((JUTTexture*, float, float, float,
-                                              float))
+void TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3377,7 +3359,7 @@ void P2JME::TRenderingProcessor::doDrawImage((JUTTexture*, float, float, float,
  * Address:	8043BADC
  * Size:	000334
  */
-void P2JME::TRenderingProcessor::setImageGX(void)
+void TRenderingProcessor::setImageGX(void)
 {
 	/*
 	.loc_0x0:
@@ -3598,8 +3580,7 @@ void P2JME::TRenderingProcessor::setImageGX(void)
  * Address:	8043BE10
  * Size:	0004F4
  */
-void P2JME::TRenderingProcessor::drawImage((JUTTexture*, float, float, float,
-                                            float))
+void TRenderingProcessor::drawImage(JUTTexture*, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3976,7 +3957,7 @@ void P2JME::TRenderingProcessor::drawImage((JUTTexture*, float, float, float,
  * Address:	8043C304
  * Size:	000010
  */
-void P2JME::TRenderingProcessor::reset(void)
+void TRenderingProcessor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -3992,7 +3973,7 @@ void P2JME::TRenderingProcessor::reset(void)
  * Address:	8043C314
  * Size:	000128
  */
-void P2JME::TRenderingProcessor::calcWidth((JUTFont*, int, float, bool))
+void TRenderingProcessor::calcWidth(JUTFont*, int, float, bool)
 {
 	/*
 	.loc_0x0:
@@ -4084,7 +4065,7 @@ void P2JME::TRenderingProcessor::calcWidth((JUTFont*, int, float, bool))
  * Address:	8043C43C
  * Size:	000024
  */
-void P2JME::TRenderingProcessor::setLineWidth(void)
+void TRenderingProcessor::setLineWidth(void)
 {
 	/*
 	.loc_0x0:
@@ -4105,7 +4086,7 @@ void P2JME::TRenderingProcessor::setLineWidth(void)
  * Address:	8043C460
  * Size:	0000D8
  */
-void P2JME::TRenderingProcessor::resetLineWidth(void)
+void TRenderingProcessor::resetLineWidth(void)
 {
 	/*
 	.loc_0x0:
@@ -4173,7 +4154,7 @@ void P2JME::TRenderingProcessor::resetLineWidth(void)
  * Address:	8043C538
  * Size:	000040
  */
-void P2JME::TRenderingProcessor::setOnePageLine(void)
+void TRenderingProcessor::setOnePageLine(void)
 {
 	/*
 	.loc_0x0:
@@ -4207,7 +4188,7 @@ void P2JME::TRenderingProcessor::setOnePageLine(void)
  * Address:	8043C578
  * Size:	0000D8
  */
-void P2JME::TRenderingProcessor::resetOnePageLine(void)
+void TRenderingProcessor::resetOnePageLine(void)
 {
 	/*
 	.loc_0x0:
@@ -4275,7 +4256,7 @@ void P2JME::TRenderingProcessor::resetOnePageLine(void)
  * Address:	........
  * Size:	0000A0
  */
-void P2JME::TRenderingProcessor::resetPageInfo(void)
+void TRenderingProcessor::resetPageInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4285,7 +4266,7 @@ void P2JME::TRenderingProcessor::resetPageInfo(void)
  * Address:	8043C650
  * Size:	00008C
  */
-void P2JME::TRenderingProcessor::setPageInfo(void)
+void TRenderingProcessor::setPageInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -4336,7 +4317,7 @@ void P2JME::TRenderingProcessor::setPageInfo(void)
  * Address:	8043C6DC
  * Size:	000020
  */
-void P2JME::TRenderingProcessor::preProcCode((unsigned int))
+void TRenderingProcessor::preProcCode(unsigned int)
 {
 	/*
 	.loc_0x0:
@@ -4356,7 +4337,7 @@ void P2JME::TRenderingProcessor::preProcCode((unsigned int))
  * Address:	8043C6FC
  * Size:	000020
  */
-void P2JME::TRenderingProcessor::preProcID((unsigned int, unsigned int))
+void TRenderingProcessor::preProcID(unsigned int, unsigned int)
 {
 	/*
 	.loc_0x0:
@@ -4376,7 +4357,7 @@ void P2JME::TRenderingProcessor::preProcID((unsigned int, unsigned int))
  * Address:	........
  * Size:	000260
  */
-void P2JME::TRenderingProcessor::preProcCenteringPre(void)
+void TRenderingProcessor::preProcCenteringPre(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4386,7 +4367,7 @@ void P2JME::TRenderingProcessor::preProcCenteringPre(void)
  * Address:	........
  * Size:	00011C
  */
-void P2JME::TRenderingProcessor::preProcCenteringPost(void)
+void TRenderingProcessor::preProcCenteringPost(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4396,7 +4377,7 @@ void P2JME::TRenderingProcessor::preProcCenteringPost(void)
  * Address:	8043C71C
  * Size:	00039C
  */
-void P2JME::TRenderingProcessor::preProcCenteringCode((unsigned int))
+void TRenderingProcessor::preProcCenteringCode(unsigned int)
 {
 	/*
 	.loc_0x0:
@@ -4659,8 +4640,7 @@ void P2JME::TRenderingProcessor::preProcCenteringCode((unsigned int))
  * Address:	8043CAB8
  * Size:	0003AC
  */
-void P2JME::TRenderingProcessor::preProcCenteringID((unsigned int,
-                                                     unsigned int))
+void TRenderingProcessor::preProcCenteringID(unsigned int, unsigned int)
 {
 	/*
 	.loc_0x0:
@@ -4927,13 +4907,10 @@ void P2JME::TRenderingProcessor::preProcCenteringID((unsigned int,
  * Address:	8043CE64
  * Size:	000008
  */
-void P2JME::TRenderingProcessor::setFont((JUTFont*))
+void TRenderingProcessor::setFont(JUTFont* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4C(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4C(r3)
+	_4C = a1;
 }
 
 /*
@@ -4941,7 +4918,7 @@ void P2JME::TRenderingProcessor::setFont((JUTFont*))
  * Address:	8043CE6C
  * Size:	00044C
  */
-void P2JME::TRenderingProcessor::setTextBoxInfo((J2DPane*))
+void TRenderingProcessor::setTextBoxInfo(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -5250,7 +5227,7 @@ void P2JME::TRenderingProcessor::setTextBoxInfo((J2DPane*))
  * Address:	8043D2B8
  * Size:	000070
  */
-void P2JME::TRenderingProcessor::__dt(void)
+TRenderingProcessor::~TRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -5294,4 +5271,5 @@ void P2JME::TRenderingProcessor::__dt(void)
  * Address:	8043D328
  * Size:	000004
  */
-void P2JME::TRenderingProcessorBase::do_character((int)) { }
+void TRenderingProcessorBase::do_character(int) { }
+} // namespace P2JME

@@ -1,10 +1,13 @@
+#include "types.h"
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802350A0
  * Size:	000064
  */
-void Game::Challenge2D_TitleInfo::__ct((int))
+Challenge2D_TitleInfo::Challenge2D_TitleInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -41,7 +44,7 @@ void Game::Challenge2D_TitleInfo::__ct((int))
  * Address:	80235104
  * Size:	000030
  */
-void Game::Challenge2D_TitleInfo::Info::__ct(void)
+Challenge2D_TitleInfo::Info::Info(void)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +68,7 @@ void Game::Challenge2D_TitleInfo::Info::__ct(void)
  * Address:	80235134
  * Size:	00007C
  */
-void Game::Challenge2D_TitleInfo::operator()((int))
+void Challenge2D_TitleInfo::operator()(int)
 {
 	/*
 	.loc_0x0:
@@ -112,7 +115,7 @@ void Game::Challenge2D_TitleInfo::operator()((int))
  * Address:	802351B0
  * Size:	000064
  */
-void Game::Vs2D_TitleInfo::__ct((int))
+Vs2D_TitleInfo::Vs2D_TitleInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -149,7 +152,7 @@ void Game::Vs2D_TitleInfo::__ct((int))
  * Address:	80235214
  * Size:	00000C
  */
-void Game::Vs2D_TitleInfo::Info::__ct(void)
+Vs2D_TitleInfo::Info::Info(void)
 {
 	/*
 	.loc_0x0:
@@ -164,7 +167,7 @@ void Game::Vs2D_TitleInfo::Info::__ct(void)
  * Address:	80235220
  * Size:	0000A8
  */
-void Game::Vs2D_TitleInfo::operator()((int))
+void Vs2D_TitleInfo::operator()(int)
 {
 	/*
 	.loc_0x0:
@@ -226,7 +229,7 @@ void Game::Vs2D_TitleInfo::operator()((int))
  * Address:	802352C8
  * Size:	000028
  */
-void Game::Challenge2D_ResultInfo::__ct(void)
+Challenge2D_ResultInfo::Challenge2D_ResultInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -242,3 +245,4 @@ void Game::Challenge2D_ResultInfo::__ct(void)
 	  blr
 	*/
 }
+} // namespace Game

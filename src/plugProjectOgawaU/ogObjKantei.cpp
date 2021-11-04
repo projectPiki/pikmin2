@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80318244
  * Size:	000120
  */
-void og::newScreen::ObjKantei::__ct((char const*))
+newScreen::ObjKantei::ObjKantei(char const*)
 {
 	/*
 	.loc_0x0:
@@ -99,7 +91,7 @@ void og::newScreen::ObjKantei::__ct((char const*))
  * Address:	80318364
  * Size:	0000AC
  */
-void og::newScreen::ObjKantei::__dt(void)
+newScreen::ObjKantei::~ObjKantei(void)
 {
 	/*
 	.loc_0x0:
@@ -158,7 +150,7 @@ void og::newScreen::ObjKantei::__dt(void)
  * Address:	........
  * Size:	000050
  */
-void og::newScreen::ObjKantei::startItemName((unsigned long long))
+void newScreen::ObjKantei::startItemName(unsigned long long)
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +160,7 @@ void og::newScreen::ObjKantei::startItemName((unsigned long long))
  * Address:	80318410
  * Size:	0007CC
  */
-void og::newScreen::ObjKantei::doCreate((JKRArchive*))
+void newScreen::ObjKantei::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -723,7 +715,7 @@ void og::newScreen::ObjKantei::doCreate((JKRArchive*))
  * Address:	........
  * Size:	000068
  */
-void og::newScreen::ObjKantei::startKanteiVoice((int))
+void newScreen::ObjKantei::startKanteiVoice(int)
 {
 	// UNUSED FUNCTION
 }
@@ -733,7 +725,7 @@ void og::newScreen::ObjKantei::startKanteiVoice((int))
  * Address:	........
  * Size:	0000F4
  */
-void og::newScreen::ObjKantei::updateKanteiVoice(void)
+void newScreen::ObjKantei::updateKanteiVoice(void)
 {
 	// UNUSED FUNCTION
 }
@@ -743,7 +735,7 @@ void og::newScreen::ObjKantei::updateKanteiVoice(void)
  * Address:	80318BDC
  * Size:	000258
  */
-void og::newScreen::ObjKantei::scaleAnimItemName(void)
+void newScreen::ObjKantei::scaleAnimItemName(void)
 {
 	/*
 	.loc_0x0:
@@ -923,7 +915,7 @@ void og::newScreen::ObjKantei::scaleAnimItemName(void)
  * Address:	80318E34
  * Size:	000154
  */
-void og::newScreen::ObjKantei::commonUpdate(void)
+void newScreen::ObjKantei::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1028,7 +1020,7 @@ void og::newScreen::ObjKantei::commonUpdate(void)
  * Address:	80318F88
  * Size:	00040C
  */
-void og::newScreen::ObjKantei::doUpdate(void)
+void newScreen::ObjKantei::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1321,7 +1313,7 @@ void og::newScreen::ObjKantei::doUpdate(void)
  * Address:	80319394
  * Size:	000040
  */
-void og::newScreen::ObjKantei::finishKantei(void)
+void newScreen::ObjKantei::finishKantei(void)
 {
 	/*
 	.loc_0x0:
@@ -1351,7 +1343,7 @@ void og::newScreen::ObjKantei::finishKantei(void)
  * Address:	803193D4
  * Size:	000290
  */
-void og::newScreen::ObjKantei::doDraw((Graphics&))
+void newScreen::ObjKantei::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1537,7 +1529,7 @@ void og::newScreen::ObjKantei::doDraw((Graphics&))
  * Address:	80319664
  * Size:	00003C
  */
-void og::newScreen::ObjKantei::doDrawMsg((Graphics&))
+void newScreen::ObjKantei::doDrawMsg(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1566,7 +1558,7 @@ void og::newScreen::ObjKantei::doDrawMsg((Graphics&))
  * Address:	803196A0
  * Size:	00010C
  */
-void og::newScreen::ObjKantei::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjKantei::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1657,7 +1649,7 @@ void og::newScreen::ObjKantei::doStart((Screen::StartSceneArg const*))
  * Address:	803197AC
  * Size:	000010
  */
-void og::newScreen::ObjKantei::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjKantei::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1673,14 +1665,14 @@ void og::newScreen::ObjKantei::doEnd((Screen::EndSceneArg const*))
  * Address:	803197BC
  * Size:	000004
  */
-void og::newScreen::ObjKantei::doUpdateFadeinFinish(void) { }
+void newScreen::ObjKantei::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	803197C0
  * Size:	000040
  */
-void og::newScreen::ObjKantei::doUpdateFinish(void)
+void newScreen::ObjKantei::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1710,14 +1702,14 @@ void og::newScreen::ObjKantei::doUpdateFinish(void)
  * Address:	80319800
  * Size:	000004
  */
-void og::newScreen::ObjKantei::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjKantei::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80319804
  * Size:	0001A4
  */
-void og::newScreen::ObjKantei::doUpdateFadein(void)
+void newScreen::ObjKantei::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -1844,7 +1836,7 @@ void og::newScreen::ObjKantei::doUpdateFadein(void)
  * Address:	803199A8
  * Size:	0001AC
  */
-void og::newScreen::ObjKantei::doUpdateFadeout(void)
+void newScreen::ObjKantei::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -1968,6 +1960,8 @@ void og::newScreen::ObjKantei::doUpdateFadeout(void)
 	*/
 }
 
+} // namespace og
+
 /*
  * --INFO--
  * Address:	80319B54
@@ -2017,7 +2011,7 @@ void __sinit_ogObjKantei_cpp(void)
  * Address:	80319BD4
  * Size:	000008
  */
-void @24 @og::newScreen::ObjKantei::__dt(void)
+@24 @og::newScreen::ObjKantei::~ObjKantei(void)
 {
 	/*
 	.loc_0x0:

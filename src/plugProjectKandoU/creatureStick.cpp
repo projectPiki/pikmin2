@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8019EE94
  * Size:	000024
  */
-void Game::Creature::clearStick(void)
+void Creature::clearStick(void)
 {
 	/*
 	.loc_0x0:
@@ -36,7 +28,7 @@ void Game::Creature::clearStick(void)
  * Address:	8019EEB8
  * Size:	00003C
  */
-void Game::Creature::releaseAllStickers(void)
+void Creature::releaseAllStickers(void)
 {
 	/*
 	.loc_0x0:
@@ -67,7 +59,7 @@ void Game::Creature::releaseAllStickers(void)
  * Address:	8019EEF4
  * Size:	000174
  */
-void Game::Creature::startStick((Game::Creature*, CollPart*))
+void Creature::startStick(Game::Creature*, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -186,7 +178,7 @@ void Game::Creature::startStick((Game::Creature*, CollPart*))
  * Address:	8019F068
  * Size:	0001B0
  */
-void Game::Creature::startStickMouth((Game::Creature*, CollPart*))
+void Creature::startStickMouth(Game::Creature*, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +314,7 @@ void Game::Creature::startStickMouth((Game::Creature*, CollPart*))
  * Address:	8019F218
  * Size:	00020C
  */
-void Game::Creature::startStick((Game::Creature*, short))
+void Creature::startStick(Game::Creature*, short)
 {
 	/*
 	.loc_0x0:
@@ -489,7 +481,7 @@ void Game::Creature::startStick((Game::Creature*, short))
  * Address:	8019F424
  * Size:	000150
  */
-void Game::Creature::endStick(void)
+void Creature::endStick(void)
 {
 	/*
 	.loc_0x0:
@@ -599,7 +591,7 @@ void Game::Creature::endStick(void)
  * Address:	8019F574
  * Size:	000014
  */
-void Game::Creature::isStickTo(void)
+void Creature::isStickTo(void)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +608,7 @@ void Game::Creature::isStickTo(void)
  * Address:	8019F588
  * Size:	000060
  */
-void Game::Creature::isStickToMouth(void)
+void Creature::isStickToMouth(void)
 {
 	/*
 	.loc_0x0:
@@ -654,17 +646,19 @@ void Game::Creature::isStickToMouth(void)
  * Address:	........
  * Size:	000028
  */
-void Game::Creature::isStickLeader(void)
+void Creature::isStickLeader(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	8019F5E8
  * Size:	0004B4
  */
-void updateStick__Q24Game8CreatureFR10Vector3<float>(void)
+void updateStick__Q24Game8CreatureFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -998,19 +992,17 @@ void updateStick__Q24Game8CreatureFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8019FA9C
  * Size:	00000C
  */
-void Game::Creature::clearCapture(void)
+void Creature::clearCapture(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0xB8(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0xB8(r3)
+	_B8 = 0;
 }
 
 /*
@@ -1018,7 +1010,7 @@ void Game::Creature::clearCapture(void)
  * Address:	8019FAA8
  * Size:	000054
  */
-void Game::Creature::startCapture((Matrixf*))
+void Creature::startCapture(Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -1051,7 +1043,7 @@ void Game::Creature::startCapture((Matrixf*))
  * Address:	8019FAFC
  * Size:	0000A0
  */
-void Game::Creature::updateCapture((Matrixf&))
+void Creature::updateCapture(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -1105,7 +1097,7 @@ void Game::Creature::updateCapture((Matrixf&))
  * Address:	8019FB9C
  * Size:	000058
  */
-void Game::Creature::endCapture(void)
+void Creature::endCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -1139,7 +1131,7 @@ void Game::Creature::endCapture(void)
  * Address:	8019FBF4
  * Size:	000068
  */
-void Game::Stickers::initialise(void)
+void Stickers::initialise(void)
 {
 	/*
 	.loc_0x0:
@@ -1181,7 +1173,7 @@ void Game::Stickers::initialise(void)
  * Address:	8019FC5C
  * Size:	000108
  */
-void Game::Stickers::__ct((Game::Creature*))
+Stickers::Stickers(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1267,7 +1259,7 @@ void Game::Stickers::__ct((Game::Creature*))
  * Address:	8019FD64
  * Size:	00008C
  */
-void Game::Stickers::__dt(void)
+Stickers::~Stickers(void)
 {
 	/*
 	.loc_0x0:
@@ -1318,7 +1310,7 @@ void Game::Stickers::__dt(void)
  * Address:	8019FDF0
  * Size:	000070
  */
-void Game::Stickers::get((void*))
+void Stickers::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -1362,7 +1354,7 @@ void Game::Stickers::get((void*))
  * Address:	8019FE60
  * Size:	000008
  */
-void Game::Stickers::getNext((void*))
+void Stickers::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -1376,14 +1368,14 @@ void Game::Stickers::getNext((void*))
  * Address:	8019FE68
  * Size:	000008
  */
-u32 Game::Stickers::getStart(void) { return 0x0; }
+u32 Stickers::getStart(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8019FE70
  * Size:	000008
  */
-void Game::Stickers::getEnd(void)
+void Stickers::getEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -1391,3 +1383,4 @@ void Game::Stickers::getEnd(void)
 	  blr
 	*/
 }
+} // namespace Game

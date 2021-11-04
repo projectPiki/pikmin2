@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80349D64
  * Size:	000008
  */
-void Game::Bomb::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Bomb::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::Bomb::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80349D6C
  * Size:	000008
  */
-void Game::Bomb::ProperAnimator::getAnimator((int))
+void Bomb::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::Bomb::ProperAnimator::getAnimator((int))
  * Address:	80349D74
  * Size:	00005C
  */
-void Game::Bomb::ProperAnimator::__dt(void)
+Bomb::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::Bomb::ProperAnimator::__dt(void)
  * Address:	80349DD0
  * Size:	000008
  */
-void Game::Bomb::ProperAnimator::getAnimator(void)
+void Bomb::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::Bomb::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

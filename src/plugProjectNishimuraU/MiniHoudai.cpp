@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802EBFF8
  * Size:	000148
  */
-void Game::MiniHoudai::Obj::__ct(void)
+MiniHoudai::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -115,15 +107,14 @@ void Game::MiniHoudai::Obj::__ct(void)
  * Address:	802EC140
  * Size:	000004
  */
-void Game::MiniHoudai::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) {
-}
+void MiniHoudai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802EC144
  * Size:	0000C8
  */
-void Game::MiniHoudai::Obj::onInit((Game::CreatureInitArg*))
+void MiniHoudai::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -187,7 +178,7 @@ void Game::MiniHoudai::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802EC20C
  * Size:	00004C
  */
-void Game::MiniHoudai::Obj::onKill((Game::CreatureKillArg*))
+void MiniHoudai::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -218,7 +209,7 @@ void Game::MiniHoudai::Obj::onKill((Game::CreatureKillArg*))
  * Address:	802EC258
  * Size:	000054
  */
-void Game::MiniHoudai::Obj::doUpdate(void)
+void MiniHoudai::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +242,7 @@ void Game::MiniHoudai::Obj::doUpdate(void)
  * Address:	802EC2AC
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::doUpdateCommon(void)
+void MiniHoudai::Obj::doUpdateCommon(void)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +267,7 @@ void Game::MiniHoudai::Obj::doUpdateCommon(void)
  * Address:	802EC2E0
  * Size:	00003C
  */
-void Game::MiniHoudai::Obj::doAnimationCullingOff(void)
+void MiniHoudai::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -303,14 +294,14 @@ void Game::MiniHoudai::Obj::doAnimationCullingOff(void)
  * Address:	802EC31C
  * Size:	000004
  */
-void Game::MiniHoudai::Obj::doDirectDraw((Graphics&)) { }
+void MiniHoudai::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802EC320
  * Size:	000020
  */
-void Game::MiniHoudai::Obj::doDebugDraw((Graphics&))
+void MiniHoudai::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -330,7 +321,7 @@ void Game::MiniHoudai::Obj::doDebugDraw((Graphics&))
  * Address:	802EC340
  * Size:	00004C
  */
-void Game::MiniHoudai::Obj::setFSM((Game::MiniHoudai::FSM*))
+void MiniHoudai::Obj::setFSM(Game::MiniHoudai::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -361,7 +352,7 @@ void Game::MiniHoudai::Obj::setFSM((Game::MiniHoudai::FSM*))
  * Address:	802EC38C
  * Size:	0000E0
  */
-void Game::MiniHoudai::Obj::getShadowParam((Game::ShadowParam&))
+void MiniHoudai::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -437,7 +428,7 @@ void Game::MiniHoudai::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802EC46C
  * Size:	000044
  */
-void Game::MiniHoudai::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void MiniHoudai::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +461,7 @@ void Game::MiniHoudai::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	802EC4B0
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::doStartStoneState(void)
+void MiniHoudai::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -495,7 +486,7 @@ void Game::MiniHoudai::Obj::doStartStoneState(void)
  * Address:	802EC4E4
  * Size:	000020
  */
-void Game::MiniHoudai::Obj::doFinishStoneState(void)
+void MiniHoudai::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +506,7 @@ void Game::MiniHoudai::Obj::doFinishStoneState(void)
  * Address:	802EC504
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::doStartEarthquakeFitState(void)
+void MiniHoudai::Obj::doStartEarthquakeFitState(void)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +531,7 @@ void Game::MiniHoudai::Obj::doStartEarthquakeFitState(void)
  * Address:	802EC538
  * Size:	000020
  */
-void Game::MiniHoudai::Obj::doFinishEarthquakeFitState(void)
+void MiniHoudai::Obj::doFinishEarthquakeFitState(void)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +551,7 @@ void Game::MiniHoudai::Obj::doFinishEarthquakeFitState(void)
  * Address:	802EC558
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::doStartWaitingBirthTypeDrop(void)
+void MiniHoudai::Obj::doStartWaitingBirthTypeDrop(void)
 {
 	/*
 	.loc_0x0:
@@ -585,7 +576,7 @@ void Game::MiniHoudai::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	802EC58C
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::doFinishWaitingBirthTypeDrop(void)
+void MiniHoudai::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 	/*
 	.loc_0x0:
@@ -610,7 +601,7 @@ void Game::MiniHoudai::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	802EC5C0
  * Size:	000028
  */
-void Game::MiniHoudai::Obj::startCarcassMotion(void)
+void MiniHoudai::Obj::startCarcassMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -632,7 +623,7 @@ void Game::MiniHoudai::Obj::startCarcassMotion(void)
  * Address:	802EC5E8
  * Size:	000020
  */
-void Game::MiniHoudai::Obj::doStartMovie(void)
+void MiniHoudai::Obj::doStartMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -652,7 +643,7 @@ void Game::MiniHoudai::Obj::doStartMovie(void)
  * Address:	802EC608
  * Size:	000020
  */
-void Game::MiniHoudai::Obj::doEndMovie(void)
+void MiniHoudai::Obj::doEndMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -672,7 +663,7 @@ void Game::MiniHoudai::Obj::doEndMovie(void)
  * Address:	802EC628
  * Size:	000064
  */
-void Game::MiniHoudai::Obj::initWalkSmokeEffect(void)
+void MiniHoudai::Obj::initWalkSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -709,7 +700,7 @@ void Game::MiniHoudai::Obj::initWalkSmokeEffect(void)
  * Address:	802EC68C
  * Size:	000008
  */
-void Game::MiniHoudai::Obj::getWalkSmokeEffectMgr(void)
+void MiniHoudai::Obj::getWalkSmokeEffectMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -723,7 +714,7 @@ void Game::MiniHoudai::Obj::getWalkSmokeEffectMgr(void)
  * Address:	802EC694
  * Size:	000014
  */
-void Game::MiniHoudai::Obj::doBecomeCarcass(void)
+void MiniHoudai::Obj::doBecomeCarcass(void)
 {
 	/*
 	.loc_0x0:
@@ -740,7 +731,7 @@ void Game::MiniHoudai::Obj::doBecomeCarcass(void)
  * Address:	802EC6A8
  * Size:	0001FC
  */
-void Game::MiniHoudai::Obj::doUpdateCarcass(void)
+void MiniHoudai::Obj::doUpdateCarcass(void)
 {
 	/*
 	.loc_0x0:
@@ -885,7 +876,7 @@ void Game::MiniHoudai::Obj::doUpdateCarcass(void)
  * Address:	802EC8A4
  * Size:	000064
  */
-void Game::MiniHoudai::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void MiniHoudai::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -926,7 +917,7 @@ void Game::MiniHoudai::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	802EC908
  * Size:	000050
  */
-void Game::MiniHoudai::Obj::updateCaution(void)
+void MiniHoudai::Obj::updateCaution(void)
 {
 	/*
 	.loc_0x0:
@@ -962,7 +953,7 @@ void Game::MiniHoudai::Obj::updateCaution(void)
  * Address:	802EC958
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::getViewAngle(void)
+void MiniHoudai::Obj::getViewAngle(void)
 {
 	/*
 	.loc_0x0:
@@ -985,7 +976,7 @@ void Game::MiniHoudai::Obj::getViewAngle(void)
  * Address:	802EC97C
  * Size:	000010
  */
-void Game::MiniHoudai::Obj::resetWayPoint(void)
+void MiniHoudai::Obj::resetWayPoint(void)
 {
 	/*
 	.loc_0x0:
@@ -1001,7 +992,7 @@ void Game::MiniHoudai::Obj::resetWayPoint(void)
  * Address:	802EC98C
  * Size:	0000B0
  */
-void Game::MiniHoudai::Obj::setNearestWayPoint(void)
+void MiniHoudai::Obj::setNearestWayPoint(void)
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1052,7 @@ void Game::MiniHoudai::Obj::setNearestWayPoint(void)
  * Address:	802ECA3C
  * Size:	000260
  */
-void Game::MiniHoudai::Obj::setLinkWayPoint(void)
+void MiniHoudai::Obj::setLinkWayPoint(void)
 {
 	/*
 	.loc_0x0:
@@ -1241,7 +1232,7 @@ void Game::MiniHoudai::Obj::setLinkWayPoint(void)
  * Address:	802ECC9C
  * Size:	00006C
  */
-void Game::MiniHoudai::Obj::getSearchedTarget(void)
+void MiniHoudai::Obj::getSearchedTarget(void)
 {
 	/*
 	.loc_0x0:
@@ -1286,7 +1277,7 @@ void Game::MiniHoudai::Obj::getSearchedTarget(void)
  * Address:	802ECD08
  * Size:	000128
  */
-void Game::MiniHoudai::Obj::updateTargetDistance(void)
+void MiniHoudai::Obj::updateTargetDistance(void)
 {
 	/*
 	.loc_0x0:
@@ -1386,7 +1377,7 @@ void Game::MiniHoudai::Obj::updateTargetDistance(void)
  * Address:	802ECE30
  * Size:	0000BC
  */
-void Game::MiniHoudai::Obj::updateHomePosition(void)
+void MiniHoudai::Obj::updateHomePosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1451,7 +1442,7 @@ void Game::MiniHoudai::Obj::updateHomePosition(void)
  * Address:	802ECEEC
  * Size:	00032C
  */
-void Game::MiniHoudai::Obj::isAttackableTarget(void)
+void MiniHoudai::Obj::isAttackableTarget(void)
 {
 	/*
 	.loc_0x0:
@@ -1690,7 +1681,7 @@ void Game::MiniHoudai::Obj::isAttackableTarget(void)
  * Address:	802ED218
  * Size:	000048
  */
-void Game::MiniHoudai::Obj::createShotGun(void)
+void MiniHoudai::Obj::createShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1722,7 +1713,7 @@ void Game::MiniHoudai::Obj::createShotGun(void)
  * Address:	802ED260
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::setupShotGun(void)
+void MiniHoudai::Obj::setupShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1738,22 +1729,26 @@ void Game::MiniHoudai::Obj::setupShotGun(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-void setShotGunTarget__Q34Game10MiniHoudai3ObjFR10Vector3<float>(void)
+void setShotGunTarget__Q34Game10MiniHoudai3ObjFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802ED284
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::resetShotGunCallBack(void)
+void MiniHoudai::Obj::resetShotGunCallBack(void)
 {
 	/*
 	.loc_0x0:
@@ -1774,7 +1769,7 @@ void Game::MiniHoudai::Obj::resetShotGunCallBack(void)
  * Address:	802ED2A8
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::setShotGunCallBack(void)
+void MiniHoudai::Obj::setShotGunCallBack(void)
 {
 	/*
 	.loc_0x0:
@@ -1795,7 +1790,7 @@ void Game::MiniHoudai::Obj::setShotGunCallBack(void)
  * Address:	802ED2CC
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::doUpdateShotGun(void)
+void MiniHoudai::Obj::doUpdateShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1816,7 +1811,7 @@ void Game::MiniHoudai::Obj::doUpdateShotGun(void)
  * Address:	802ED2F0
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::doUpdateCommonShotGun(void)
+void MiniHoudai::Obj::doUpdateCommonShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1837,7 +1832,7 @@ void Game::MiniHoudai::Obj::doUpdateCommonShotGun(void)
  * Address:	802ED314
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::startShotGunRotation(void)
+void MiniHoudai::Obj::startShotGunRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -1858,7 +1853,7 @@ void Game::MiniHoudai::Obj::startShotGunRotation(void)
  * Address:	802ED338
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::finishShotGunRotation(void)
+void MiniHoudai::Obj::finishShotGunRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -1879,7 +1874,7 @@ void Game::MiniHoudai::Obj::finishShotGunRotation(void)
  * Address:	802ED35C
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::isShotGunRotation(void)
+void MiniHoudai::Obj::isShotGunRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -1900,7 +1895,7 @@ void Game::MiniHoudai::Obj::isShotGunRotation(void)
  * Address:	802ED380
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::isShotGunLockOn(void)
+void MiniHoudai::Obj::isShotGunLockOn(void)
 {
 	/*
 	.loc_0x0:
@@ -1921,7 +1916,7 @@ void Game::MiniHoudai::Obj::isShotGunLockOn(void)
  * Address:	802ED3A4
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::isFinishShotGun(void)
+void MiniHoudai::Obj::isFinishShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1942,7 +1937,7 @@ void Game::MiniHoudai::Obj::isFinishShotGun(void)
  * Address:	802ED3C8
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::emitShotGun(void)
+void MiniHoudai::Obj::emitShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1963,7 +1958,7 @@ void Game::MiniHoudai::Obj::emitShotGun(void)
  * Address:	802ED3EC
  * Size:	00002C
  */
-void Game::MiniHoudai::Obj::setShotGunTargetPosition(void)
+void MiniHoudai::Obj::setShotGunTargetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1986,7 +1981,7 @@ void Game::MiniHoudai::Obj::setShotGunTargetPosition(void)
  * Address:	........
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::shotGunDoDebugDraw((Graphics&))
+void MiniHoudai::Obj::shotGunDoDebugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1996,7 +1991,7 @@ void Game::MiniHoudai::Obj::shotGunDoDebugDraw((Graphics&))
  * Address:	802ED418
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::forceFinishShotGun(void)
+void MiniHoudai::Obj::forceFinishShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -2017,7 +2012,7 @@ void Game::MiniHoudai::Obj::forceFinishShotGun(void)
  * Address:	802ED43C
  * Size:	000138
  */
-void Game::MiniHoudai::Obj::createEffect(void)
+void MiniHoudai::Obj::createEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2111,7 +2106,7 @@ void Game::MiniHoudai::Obj::createEffect(void)
  * Address:	802ED574
  * Size:	000058
  */
-void Game::MiniHoudai::Obj::setupEffect(void)
+void MiniHoudai::Obj::setupEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2145,7 +2140,7 @@ void Game::MiniHoudai::Obj::setupEffect(void)
  * Address:	802ED5CC
  * Size:	0000A0
  */
-void Game::MiniHoudai::Obj::createSmokeSmallEffect((bool))
+void MiniHoudai::Obj::createSmokeSmallEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -2201,7 +2196,7 @@ void Game::MiniHoudai::Obj::createSmokeSmallEffect((bool))
  * Address:	802ED66C
  * Size:	0000E8
  */
-void Game::MiniHoudai::Obj::createSmokeLargeEffect(void)
+void MiniHoudai::Obj::createSmokeLargeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2271,7 +2266,7 @@ void Game::MiniHoudai::Obj::createSmokeLargeEffect(void)
  * Address:	802ED754
  * Size:	000024
  */
-void Game::MiniHoudai::Obj::createDownEffect((float))
+void MiniHoudai::Obj::createDownEffect(float)
 {
 	/*
 	.loc_0x0:
@@ -2292,7 +2287,7 @@ void Game::MiniHoudai::Obj::createDownEffect((float))
  * Address:	802ED778
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::startChargeEffect(void)
+void MiniHoudai::Obj::startChargeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2317,7 +2312,7 @@ void Game::MiniHoudai::Obj::startChargeEffect(void)
  * Address:	802ED7AC
  * Size:	000030
  */
-void Game::MiniHoudai::Obj::finishChargeEffect(void)
+void MiniHoudai::Obj::finishChargeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2341,7 +2336,7 @@ void Game::MiniHoudai::Obj::finishChargeEffect(void)
  * Address:	802ED7DC
  * Size:	000034
  */
-void Game::MiniHoudai::Obj::createDeadLightEffect(void)
+void MiniHoudai::Obj::createDeadLightEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2366,7 +2361,7 @@ void Game::MiniHoudai::Obj::createDeadLightEffect(void)
  * Address:	802ED810
  * Size:	0001D4
  */
-void Game::MiniHoudai::Obj::createDeadBombEmitEffect(void)
+void MiniHoudai::Obj::createDeadBombEmitEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2495,7 +2490,7 @@ void Game::MiniHoudai::Obj::createDeadBombEmitEffect(void)
  * Address:	802ED9E4
  * Size:	000058
  */
-void Game::MiniHoudai::Obj::effectDrawOn(void)
+void MiniHoudai::Obj::effectDrawOn(void)
 {
 	/*
 	.loc_0x0:
@@ -2529,7 +2524,7 @@ void Game::MiniHoudai::Obj::effectDrawOn(void)
  * Address:	802EDA3C
  * Size:	000058
  */
-void Game::MiniHoudai::Obj::effectDrawOff(void)
+void MiniHoudai::Obj::effectDrawOff(void)
 {
 	/*
 	.loc_0x0:
@@ -2558,185 +2553,189 @@ void Game::MiniHoudai::Obj::effectDrawOff(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EDA94
- * Size:	00009C
- */
-void efx::TChibiDeadLight::__dt(void)
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x4894
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x25DE64
+	 * --INFO--
+	 * Address:	802EDA94
+	 * Size:	00009C
+	 */
+	TChibiDeadLight::~TChibiDeadLight(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r3, r3, 0x4894
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x68A8
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x25DE64
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2C9A5C
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x2C9A5C
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802EDB30
- * Size:	00009C
- */
-void efx::TChibiCharge::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x48E0
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x25DF00
+	 * --INFO--
+	 * Address:	802EDB30
+	 * Size:	00009C
+	 */
+	TChibiCharge::~TChibiCharge(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r3, r3, 0x48E0
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x68A8
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x25DF00
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2C9AF8
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x2C9AF8
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802EDBCC
- * Size:	0000BC
- */
-void Game::MiniHoudai::Obj::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804D
-	  addi      r0, r31, 0x308
-	  addi      r4, r3, 0x492C
-	  stw       r4, 0x0(r31)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x2FC
-	  stw       r3, 0x178(r31)
-	  lwz       r3, 0x17C(r31)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r31)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0x90
-	  lis       r3, 0x804B
-	  addi      r0, r31, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r31, 0x290
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r31)
-	  lwz       r5, 0x17C(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r31)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x123930
+	 * --INFO--
+	 * Address:	802EDBCC
+	 * Size:	0000BC
+	 */
+	MiniHoudai::Obj::~Obj(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr.       r31, r3
+		  stw       r30, 0x8(r1)
+		  mr        r30, r4
+		  beq-      .loc_0xA0
+		  lis       r3, 0x804D
+		  addi      r0, r31, 0x308
+		  addi      r4, r3, 0x492C
+		  stw       r4, 0x0(r31)
+		  addi      r3, r4, 0x1B0
+		  addi      r4, r4, 0x2FC
+		  stw       r3, 0x178(r31)
+		  lwz       r3, 0x17C(r31)
+		  stw       r4, 0x0(r3)
+		  lwz       r3, 0x17C(r31)
+		  sub       r0, r0, r3
+		  stw       r0, 0xC(r3)
+		  beq-      .loc_0x90
+		  lis       r3, 0x804B
+		  addi      r0, r31, 0x2BC
+		  subi      r4, r3, 0x5CDC
+		  addi      r3, r31, 0x290
+		  stw       r4, 0x0(r31)
+		  addi      r5, r4, 0x1B0
+		  addi      r6, r4, 0x2F8
+		  li        r4, -0x1
+		  stw       r5, 0x178(r31)
+		  lwz       r5, 0x17C(r31)
+		  stw       r6, 0x0(r5)
+		  lwz       r5, 0x17C(r31)
+		  sub       r0, r0, r5
+		  stw       r0, 0xC(r5)
+		  bl        0x123930
 
-	.loc_0x90:
-	  extsh.    r0, r30
-	  ble-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x2C9BB4
+		.loc_0x90:
+		  extsh.    r0, r30
+		  ble-      .loc_0xA0
+		  mr        r3, r31
+		  bl        -0x2C9BB4
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0xA0:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r31
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	802EDC88
  * Size:	000008
  */
-void Game::MiniHoudai::Obj::getDownSmokeScale(void)
+void MiniHoudai::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -2750,7 +2749,7 @@ void Game::MiniHoudai::Obj::getDownSmokeScale(void)
  * Address:	802EDC90
  * Size:	000008
  */
-void @4 @efx::TChibiCharge::__dt(void)
+@4 @efx::TChibiCharge::~TChibiCharge(void)
 {
 	/*
 	.loc_0x0:
@@ -2764,7 +2763,7 @@ void @4 @efx::TChibiCharge::__dt(void)
  * Address:	802EDC98
  * Size:	000008
  */
-void @4 @efx::TChibiDeadLight::__dt(void)
+@4 @efx::TChibiDeadLight::~TChibiDeadLight(void)
 {
 	/*
 	.loc_0x0:
@@ -2772,3 +2771,4 @@ void @4 @efx::TChibiDeadLight::__dt(void)
 	  b         -0x208
 	*/
 }
+} // namespace Game

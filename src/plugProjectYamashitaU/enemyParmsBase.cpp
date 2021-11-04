@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8012A244
  * Size:	000094
  */
-void Game::EnemyParmsBase::loadSettingFile(JKRArchive*, char*)
+void EnemyParmsBase::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::EnemyParmsBase::loadSettingFile(JKRArchive*, char*)
  * Address:	8012A2D8
  * Size:	000024
  */
-void Game::EnemyParmsBase::setDebugParm(unsigned long)
+void EnemyParmsBase::setDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +83,7 @@ void Game::EnemyParmsBase::setDebugParm(unsigned long)
  * Address:	8012A2FC
  * Size:	000024
  */
-void Game::EnemyParmsBase::resetDebugParm(unsigned long)
+void EnemyParmsBase::resetDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -96,3 +98,4 @@ void Game::EnemyParmsBase::resetDebugParm(unsigned long)
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,22 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8023A250
  * Size:	0004A0
  */
-void Game::SingleGame::DayEndState::init((Game::SingleGameSection*,
-                                          Game::StateArg*))
+void SingleGame::DayEndState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +349,7 @@ void Game::SingleGame::DayEndState::init((Game::SingleGameSection*,
  * Address:	8023A6F0
  * Size:	00040C
  */
-void Game::SingleGame::DayEndState::exec((Game::SingleGameSection*))
+void SingleGame::DayEndState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -667,9 +658,9 @@ void Game::SingleGame::DayEndState::exec((Game::SingleGameSection*))
  * Address:	8023AAFC
  * Size:	0005B8
  */
-void Game::SingleGame::DayEndState::onMovieStart((Game::SingleGameSection*,
-                                                  Game::MovieConfig*,
-                                                  unsigned long, unsigned long))
+void SingleGame::DayEndState::onMovieStart(Game::SingleGameSection*,
+                                           Game::MovieConfig*, unsigned long,
+                                           unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1095,9 +1086,9 @@ void Game::SingleGame::DayEndState::onMovieStart((Game::SingleGameSection*,
  * Address:	8023B0B4
  * Size:	0000F4
  */
-void Game::SingleGame::DayEndState::onMovieDone((Game::SingleGameSection*,
-                                                 Game::MovieConfig*,
-                                                 unsigned long, unsigned long))
+void SingleGame::DayEndState::onMovieDone(Game::SingleGameSection*,
+                                          Game::MovieConfig*, unsigned long,
+                                          unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1176,8 +1167,7 @@ void Game::SingleGame::DayEndState::onMovieDone((Game::SingleGameSection*,
  * Address:	8023B1A8
  * Size:	0002C0
  */
-void Game::SingleGame::DayEndState::onMovieCommand((Game::SingleGameSection*,
-                                                    int))
+void SingleGame::DayEndState::onMovieCommand(Game::SingleGameSection*, int)
 {
 	/*
 	.loc_0x0:
@@ -1389,7 +1379,7 @@ void Game::SingleGame::DayEndState::onMovieCommand((Game::SingleGameSection*,
  * Address:	8023B468
  * Size:	000028
  */
-void Game::SingleGame::DayEndState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::DayEndState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1411,7 +1401,7 @@ void Game::SingleGame::DayEndState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8023B490
  * Size:	00007C
  */
-void Game::SingleGame::DayEndState::cleanup((Game::SingleGameSection*))
+void SingleGame::DayEndState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1448,6 +1438,8 @@ void Game::SingleGame::DayEndState::cleanup((Game::SingleGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

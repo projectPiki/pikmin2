@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8029E484
  * Size:	0000A4
  */
-void Game::Ftank::Obj::Obj()
+Ftank::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::Ftank::Obj::Obj()
  * Address:	8029E528
  * Size:	0001A4
  */
-void Game::Ftank::Obj::changeMaterial()
+void Ftank::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::Ftank::Obj::changeMaterial()
  * Address:	8029E6CC
  * Size:	000048
  */
-void Game::Ftank::Obj::createEffect()
+void Ftank::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -210,12 +212,16 @@ void Game::Ftank::Obj::createEffect()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8029E714
  * Size:	0001FC
  */
-void efx::TTankEffect::TTankEffect(float (*)[4])
+TTankEffect::TTankEffect(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -354,7 +360,7 @@ void efx::TTankEffect::TTankEffect(float (*)[4])
  * Address:	8029E910
  * Size:	00009C
  */
-void efx::TTankFireYodare::~TTankFireYodare()
+TTankFireYodare::~TTankFireYodare()
 {
 	/*
 	.loc_0x0:
@@ -409,7 +415,7 @@ void efx::TTankFireYodare::~TTankFireYodare()
  * Address:	8029E9AC
  * Size:	0000C0
  */
-void efx::TTankFireIND::~TTankFireIND()
+TTankFireIND::~TTankFireIND()
 {
 	/*
 	.loc_0x0:
@@ -475,7 +481,7 @@ void efx::TTankFireIND::~TTankFireIND()
  * Address:	8029EA6C
  * Size:	000084
  */
-void efx::TTankFireHit::~TTankFireHit()
+TTankFireHit::~TTankFireHit()
 {
 	/*
 	.loc_0x0:
@@ -519,12 +525,16 @@ void efx::TTankFireHit::~TTankFireHit()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8029EAF0
  * Size:	000054
  */
-void Game::Ftank::Obj::setupEffect()
+void Ftank::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -557,7 +567,7 @@ void Game::Ftank::Obj::setupEffect()
  * Address:	8029EB44
  * Size:	000034
  */
-void Game::Ftank::Obj::startEffect()
+void Ftank::Obj::startEffect()
 {
 	/*
 	.loc_0x0:
@@ -582,7 +592,7 @@ void Game::Ftank::Obj::startEffect()
  * Address:	8029EB78
  * Size:	000054
  */
-void Game::Ftank::Obj::startYodare()
+void Ftank::Obj::startYodare()
 {
 	/*
 	.loc_0x0:
@@ -610,12 +620,16 @@ void Game::Ftank::Obj::startYodare()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8029EBCC
  * Size:	000050
  */
-void efx::TTankFire::fade()
+void TTankFire::fade()
 {
 	/*
 	.loc_0x0:
@@ -647,7 +661,7 @@ void efx::TTankFire::fade()
  * Address:	8029EC1C
  * Size:	000048
  */
-void efx::TTankFireABC::fade()
+void TTankFireABC::fade()
 {
 	/*
 	.loc_0x0:
@@ -674,12 +688,16 @@ void efx::TTankFireABC::fade()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8029EC64
  * Size:	000050
  */
-void Game::Ftank::Obj::finishEffect()
+void Ftank::Obj::finishEffect()
 {
 	/*
 	.loc_0x0:
@@ -711,7 +729,7 @@ void Game::Ftank::Obj::finishEffect()
  * Address:	8029ECB4
  * Size:	000064
  */
-void Game::Ftank::Obj::effectDrawOn()
+void Ftank::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -743,12 +761,16 @@ void Game::Ftank::Obj::effectDrawOn()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8029ED18
  * Size:	000040
  */
-void efx::TTankFireABC::endDemoDrawOn()
+void TTankFireABC::endDemoDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -771,12 +793,16 @@ void efx::TTankFireABC::endDemoDrawOn()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8029ED58
  * Size:	000064
  */
-void Game::Ftank::Obj::effectDrawOff()
+void Ftank::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -808,12 +834,16 @@ void Game::Ftank::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8029EDBC
  * Size:	000040
  */
-void efx::TTankFireABC::startDemoDrawOff()
+void TTankFireABC::startDemoDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -836,12 +866,16 @@ void efx::TTankFireABC::startDemoDrawOff()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8029EDFC
  * Size:	000060
  */
-void Game::Ftank::Obj::interactCreature(Game::Creature*)
+void Ftank::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -877,7 +911,7 @@ void Game::Ftank::Obj::interactCreature(Game::Creature*)
  * Address:	8029EE5C
  * Size:	000010
  */
-void Game::Ftank::Obj::stopEffectRadius(float)
+void Ftank::Obj::stopEffectRadius(float)
 {
 	/*
 	.loc_0x0:
@@ -893,7 +927,7 @@ void Game::Ftank::Obj::stopEffectRadius(float)
  * Address:	8029EE6C
  * Size:	000044
  */
-void Game::Ftank::Obj::createChargeSE()
+void Ftank::Obj::createChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -922,7 +956,7 @@ void Game::Ftank::Obj::createChargeSE()
  * Address:	8029EEB0
  * Size:	000044
  */
-void Game::Ftank::Obj::createDisChargeSE()
+void Ftank::Obj::createDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -951,32 +985,37 @@ void Game::Ftank::Obj::createDisChargeSE()
  * Address:	8029EEF4
  * Size:	000008
  */
-u32 Game::Ftank::Obj::getEnemyTypeID() { return 0x18; }
+u32 Ftank::Obj::getEnemyTypeID() { return 0x18; }
 
-/*
- * --INFO--
- * Address:	8029EEFC
- * Size:	000008
- */
-void efx::TTankFireHit::@4 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x494
-	*/
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	8029EF04
- * Size:	000008
- */
-void efx::TTankFireYodare::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x5F8
-	*/
-}
+	 * --INFO--
+	 * Address:	8029EEFC
+	 * Size:	000008
+	 */
+	TTankFireHit::@4 @~TTankFireHit()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x494
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8029EF04
+	 * Size:	000008
+	 */
+	TTankFireYodare::@4 @~TTankFireYodare()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x5F8
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8029BBC4
  * Size:	000008
  */
-void Game::Fuefuki::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Fuefuki::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Fuefuki::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	8029BBCC
  * Size:	000008
  */
-void Game::Fuefuki::ProperAnimator::getAnimator(int)
+void Fuefuki::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Fuefuki::ProperAnimator::getAnimator(int)
  * Address:	8029BBD4
  * Size:	00005C
  */
-void Game::Fuefuki::ProperAnimator::~ProperAnimator()
+Fuefuki::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Fuefuki::ProperAnimator::~ProperAnimator()
  * Address:	8029BC30
  * Size:	000008
  */
-void Game::Fuefuki::ProperAnimator::getAnimator()
+void Fuefuki::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Fuefuki::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

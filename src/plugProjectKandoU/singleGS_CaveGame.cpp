@@ -1,22 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80217760
  * Size:	000304
  */
-void Game::SingleGame::CaveState::init((Game::SingleGameSection*,
-                                        Game::StateArg*))
+void SingleGame::CaveState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -231,7 +222,7 @@ void Game::SingleGame::CaveState::init((Game::SingleGameSection*,
  * Address:	........
  * Size:	000174
  */
-void Game::SingleGame::CaveState::gameStart((Game::SingleGameSection*))
+void SingleGame::CaveState::gameStart(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -241,14 +232,10 @@ void Game::SingleGame::CaveState::gameStart((Game::SingleGameSection*))
  * Address:	80217A64
  * Size:	00000C
  */
-void Game::SingleGame::CaveState::on_section_fadeout((Game::SingleGameSection*))
+void SingleGame::CaveState::on_section_fadeout(Game::SingleGameSection*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x11(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x11(r3)
+	_11 = 1;
 }
 
 /*
@@ -256,7 +243,7 @@ void Game::SingleGame::CaveState::on_section_fadeout((Game::SingleGameSection*))
  * Address:	80217A70
  * Size:	0002D4
  */
-void Game::SingleGame::CaveState::exec((Game::SingleGameSection*))
+void SingleGame::CaveState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -465,7 +452,7 @@ void Game::SingleGame::CaveState::exec((Game::SingleGameSection*))
  * Address:	80217D44
  * Size:	000098
  */
-void Game::SingleGame::CaveState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::CaveState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -521,7 +508,7 @@ void Game::SingleGame::CaveState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	80217DDC
  * Size:	00048C
  */
-void Game::SingleGame::CaveState::check_SMenu((Game::SingleGameSection*))
+void SingleGame::CaveState::check_SMenu(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -860,7 +847,7 @@ void Game::SingleGame::CaveState::check_SMenu((Game::SingleGameSection*))
  * Address:	80218268
  * Size:	000068
  */
-void Game::SingleGame::CaveState::cleanup((Game::SingleGameSection*))
+void SingleGame::CaveState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -900,7 +887,7 @@ void Game::SingleGame::CaveState::cleanup((Game::SingleGameSection*))
  * Address:	802182D0
  * Size:	0000D4
  */
-void Game::SingleGame::CaveState::onOrimaDown((Game::SingleGameSection*, int))
+void SingleGame::CaveState::onOrimaDown(Game::SingleGameSection*, int)
 {
 	/*
 	.loc_0x0:
@@ -969,8 +956,8 @@ void Game::SingleGame::CaveState::onOrimaDown((Game::SingleGameSection*, int))
  * Address:	802183A4
  * Size:	000104
  */
-void Game::SingleGame::CaveState::onFountainReturn(
-    (Game::SingleGameSection*, Game::ItemBigFountain::Item*))
+void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection*,
+                                             Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -1047,8 +1034,8 @@ void Game::SingleGame::CaveState::onFountainReturn(
  * Address:	802184A8
  * Size:	000144
  */
-void Game::SingleGame::CaveState::onNextFloor((Game::SingleGameSection*,
-                                               Game::ItemHole::Item*))
+void SingleGame::CaveState::onNextFloor(Game::SingleGameSection*,
+                                        Game::ItemHole::Item*)
 {
 	/*
 	.loc_0x0:
@@ -1145,8 +1132,7 @@ void Game::SingleGame::CaveState::onNextFloor((Game::SingleGameSection*,
  * Address:	802185EC
  * Size:	0005F0
  */
-void Game::SingleGame::CaveState::onMovieCommand((Game::SingleGameSection*,
-                                                  int))
+void SingleGame::CaveState::onMovieCommand(Game::SingleGameSection*, int)
 {
 	/*
 	.loc_0x0:
@@ -1600,9 +1586,9 @@ void Game::SingleGame::CaveState::onMovieCommand((Game::SingleGameSection*,
  * Address:	80218BDC
  * Size:	000490
  */
-void Game::SingleGame::CaveState::onMovieStart((Game::SingleGameSection*,
-                                                Game::MovieConfig*,
-                                                unsigned long, unsigned long))
+void SingleGame::CaveState::onMovieStart(Game::SingleGameSection*,
+                                         Game::MovieConfig*, unsigned long,
+                                         unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1954,9 +1940,9 @@ void Game::SingleGame::CaveState::onMovieStart((Game::SingleGameSection*,
  * Address:	8021906C
  * Size:	000EB4
  */
-void Game::SingleGame::CaveState::onMovieDone((Game::SingleGameSection*,
-                                               Game::MovieConfig*,
-                                               unsigned long, unsigned long))
+void SingleGame::CaveState::onMovieDone(Game::SingleGameSection*,
+                                        Game::MovieConfig*, unsigned long,
+                                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3019,6 +3005,8 @@ void Game::SingleGame::CaveState::onMovieDone((Game::SingleGameSection*,
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

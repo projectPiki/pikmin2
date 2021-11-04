@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80387718
  * Size:	000108
  */
-void Game::ShijimiChou::FSM::init((Game::EnemyBase*))
+void ShijimiChou::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +99,7 @@ void Game::ShijimiChou::FSM::init((Game::EnemyBase*))
  * Address:	80387820
  * Size:	00003C
  */
-void Game::ShijimiChou::StateWait::__ct((int))
+ShijimiChou::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -134,7 +126,7 @@ void Game::ShijimiChou::StateWait::__ct((int))
  * Address:	8038785C
  * Size:	0000C0
  */
-void Game::ShijimiChou::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void ShijimiChou::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +186,7 @@ void Game::ShijimiChou::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8038791C
  * Size:	000140
  */
-void Game::ShijimiChou::StateWait::exec((Game::EnemyBase*))
+void ShijimiChou::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +294,7 @@ void Game::ShijimiChou::StateWait::exec((Game::EnemyBase*))
  * Address:	80387A5C
  * Size:	00003C
  */
-void Game::ShijimiChou::StateFly::__ct((int))
+ShijimiChou::StateFly::StateFly(int)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +321,7 @@ void Game::ShijimiChou::StateFly::__ct((int))
  * Address:	80387A98
  * Size:	000054
  */
-void Game::ShijimiChou::StateFly::init((Game::EnemyBase*, Game::StateArg*))
+void ShijimiChou::StateFly::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +354,7 @@ void Game::ShijimiChou::StateFly::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80387AEC
  * Size:	0000E8
  */
-void Game::ShijimiChou::StateFly::exec((Game::EnemyBase*))
+void ShijimiChou::StateFly::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -446,7 +438,7 @@ void Game::ShijimiChou::StateFly::exec((Game::EnemyBase*))
  * Address:	80387BD4
  * Size:	00003C
  */
-void Game::ShijimiChou::StateFall::__ct((int))
+ShijimiChou::StateFall::StateFall(int)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +465,7 @@ void Game::ShijimiChou::StateFall::__ct((int))
  * Address:	80387C10
  * Size:	0000D0
  */
-void Game::ShijimiChou::StateFall::init((Game::EnemyBase*, Game::StateArg*))
+void ShijimiChou::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +531,7 @@ void Game::ShijimiChou::StateFall::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80387CE0
  * Size:	000094
  */
-void Game::ShijimiChou::StateFall::exec((Game::EnemyBase*))
+void ShijimiChou::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -594,7 +586,7 @@ void Game::ShijimiChou::StateFall::exec((Game::EnemyBase*))
  * Address:	80387D74
  * Size:	00003C
  */
-void Game::ShijimiChou::StateDead::__ct((int))
+ShijimiChou::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -621,7 +613,7 @@ void Game::ShijimiChou::StateDead::__ct((int))
  * Address:	80387DB0
  * Size:	0000A0
  */
-void Game::ShijimiChou::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void ShijimiChou::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -673,7 +665,7 @@ void Game::ShijimiChou::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80387E50
  * Size:	000114
  */
-void Game::ShijimiChou::StateDead::exec((Game::EnemyBase*))
+void ShijimiChou::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -756,7 +748,7 @@ void Game::ShijimiChou::StateDead::exec((Game::EnemyBase*))
  * Address:	80387F64
  * Size:	00003C
  */
-void Game::ShijimiChou::StateLeave::__ct((int))
+ShijimiChou::StateLeave::StateLeave(int)
 {
 	/*
 	.loc_0x0:
@@ -783,7 +775,7 @@ void Game::ShijimiChou::StateLeave::__ct((int))
  * Address:	80387FA0
  * Size:	000044
  */
-void Game::ShijimiChou::StateLeave::init((Game::EnemyBase*, Game::StateArg*))
+void ShijimiChou::StateLeave::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +804,7 @@ void Game::ShijimiChou::StateLeave::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80387FE4
  * Size:	000024
  */
-void Game::ShijimiChou::StateLeave::exec((Game::EnemyBase*))
+void ShijimiChou::StateLeave::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -833,7 +825,7 @@ void Game::ShijimiChou::StateLeave::exec((Game::EnemyBase*))
  * Address:	80388008
  * Size:	00003C
  */
-void Game::ShijimiChou::StateRest::__ct((int))
+ShijimiChou::StateRest::StateRest(int)
 {
 	/*
 	.loc_0x0:
@@ -860,7 +852,7 @@ void Game::ShijimiChou::StateRest::__ct((int))
  * Address:	80388044
  * Size:	0000BC
  */
-void Game::ShijimiChou::StateRest::init((Game::EnemyBase*, Game::StateArg*))
+void ShijimiChou::StateRest::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -921,7 +913,7 @@ void Game::ShijimiChou::StateRest::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80388100
  * Size:	00034C
  */
-void Game::ShijimiChou::StateRest::exec((Game::EnemyBase*))
+void ShijimiChou::StateRest::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1158,3 +1150,4 @@ void Game::ShijimiChou::StateRest::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

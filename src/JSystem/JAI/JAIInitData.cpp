@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800ADBA4
  * Size:	000008
  */
-void JAInter::InitData::setWsInitCallback((void (*)(unsigned long*)))
+void JAInter::InitData::setWsInitCallback(void (*)(unsigned long*))
 {
 	/*
 	.loc_0x0:
@@ -19,7 +19,7 @@ void JAInter::InitData::setWsInitCallback((void (*)(unsigned long*)))
  * Address:	800ADBAC
  * Size:	000008
  */
-void JAInter::InitData::setBnkInitCallback((void (*)(unsigned long*)))
+void JAInter::InitData::setBnkInitCallback(void (*)(unsigned long*))
 {
 	/*
 	.loc_0x0:
@@ -285,7 +285,7 @@ void JAInter::InitData::checkInitDataOnMemory(void)
  * Address:	800ADEFC
  * Size:	0000CC
  */
-void JAInter::InitData::initBnkList((unsigned long*))
+void JAInter::InitData::initBnkList(unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -356,7 +356,7 @@ void JAInter::InitData::initBnkList((unsigned long*))
  * Address:	800ADFC8
  * Size:	0000D8
  */
-void JAInter::InitData::initWsList((unsigned long*))
+void JAInter::InitData::initWsList(unsigned long*)
 {
 	/*
 	.loc_0x0:

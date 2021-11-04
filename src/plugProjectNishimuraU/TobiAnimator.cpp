@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802693D4
  * Size:	000008
  */
-void Game::Tobi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Tobi::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Tobi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802693DC
  * Size:	000008
  */
-void Game::Tobi::ProperAnimator::getAnimator(int)
+void Tobi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Tobi::ProperAnimator::getAnimator(int)
  * Address:	802693E4
  * Size:	00005C
  */
-void Game::Tobi::ProperAnimator::~ProperAnimator()
+Tobi::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Tobi::ProperAnimator::~ProperAnimator()
  * Address:	80269440
  * Size:	000008
  */
-void Game::Tobi::ProperAnimator::getAnimator()
+void Tobi::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Tobi::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

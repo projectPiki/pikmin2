@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	803C7834
  * Size:	000274
  */
-void efx::TEnemyPiyo::create((efx::Arg*))
+void TEnemyPiyo::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +186,7 @@ void efx::TEnemyPiyo::create((efx::Arg*))
  * Address:	803C7AA8
  * Size:	0000DC
  */
-void efx::TEnemyPoisonL::create((efx::Arg*))
+void TEnemyPoisonL::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -267,7 +259,7 @@ void efx::TEnemyPoisonL::create((efx::Arg*))
  * Address:	803C7B84
  * Size:	0000DC
  */
-void efx::TEnemyPoisonS::create((efx::Arg*))
+void TEnemyPoisonS::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +332,7 @@ void efx::TEnemyPoisonS::create((efx::Arg*))
  * Address:	803C7C60
  * Size:	0000DC
  */
-void efx::TSekikaLOff::create((efx::Arg*))
+void TSekikaLOff::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -413,7 +405,7 @@ void efx::TSekikaLOff::create((efx::Arg*))
  * Address:	803C7D3C
  * Size:	0000DC
  */
-void efx::TSekikaLOn::create((efx::Arg*))
+void TSekikaLOn::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -486,7 +478,7 @@ void efx::TSekikaLOn::create((efx::Arg*))
  * Address:	803C7E18
  * Size:	0000DC
  */
-void efx::TSekikaSOff::create((efx::Arg*))
+void TSekikaSOff::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +551,7 @@ void efx::TSekikaSOff::create((efx::Arg*))
  * Address:	803C7EF4
  * Size:	0000DC
  */
-void efx::TSekikaSOn::create((efx::Arg*))
+void TSekikaSOn::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -632,7 +624,7 @@ void efx::TSekikaSOn::create((efx::Arg*))
  * Address:	803C7FD0
  * Size:	0000DC
  */
-void efx::TEnemyDead_ArgScale::create((efx::Arg*))
+void TEnemyDead_ArgScale::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -705,7 +697,7 @@ void efx::TEnemyDead_ArgScale::create((efx::Arg*))
  * Address:	803C80AC
  * Size:	00024C
  */
-void efx::TEnemyDead::create((efx::Arg*))
+void TEnemyDead::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -874,7 +866,7 @@ void efx::TEnemyDead::create((efx::Arg*))
  * Address:	803C82F8
  * Size:	000318
  */
-void efx::TEnemyWalkSmoke::create((efx::Arg*))
+void TEnemyWalkSmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1090,7 @@ void efx::TEnemyWalkSmoke::create((efx::Arg*))
  * Address:	803C8610
  * Size:	0000DC
  */
-void efx::TEnemyWalkSmokeM::create((efx::Arg*))
+void TEnemyWalkSmokeM::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1171,7 +1163,7 @@ void efx::TEnemyWalkSmokeM::create((efx::Arg*))
  * Address:	803C86EC
  * Size:	000078
  */
-void efx::TEnemyWalkSmokeS::create((efx::Arg*))
+void TEnemyWalkSmokeS::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1209,7 @@ void efx::TEnemyWalkSmokeS::create((efx::Arg*))
  * Address:	803C8764
  * Size:	000068
  */
-void efx::TEnemyDownSmoke::create((efx::Arg*))
+void TEnemyDownSmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1259,7 +1251,7 @@ void efx::TEnemyDownSmoke::create((efx::Arg*))
  * Address:	803C87CC
  * Size:	00010C
  */
-void efx::TEnemyDownWat::create((efx::Arg*))
+void TEnemyDownWat::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1344,7 +1336,7 @@ void efx::TEnemyDownWat::create((efx::Arg*))
  * Address:	803C88D8
  * Size:	0000F4
  */
-void efx::TEnemyDive::create((efx::Arg*))
+void TEnemyDive::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1423,7 +1415,7 @@ void efx::TEnemyDive::create((efx::Arg*))
  * Address:	803C89CC
  * Size:	0003B8
  */
-void efx::TEnemyBombScaleTable::__ct((Game::EnemyTypeID::EEnemyTypeID))
+TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID)
 {
 	/*
 	.loc_0x0:
@@ -1675,7 +1667,7 @@ void efx::TEnemyBombScaleTable::__ct((Game::EnemyTypeID::EEnemyTypeID))
  * Address:	803C8D84
  * Size:	0001EC
  */
-void efx::TEnemyBomb::create((efx::Arg*))
+void TEnemyBomb::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1822,7 +1814,7 @@ void efx::TEnemyBomb::create((efx::Arg*))
  * Address:	803C8F70
  * Size:	000124
  */
-void efx::TEnemyBombM::create((efx::Arg*))
+void TEnemyBombM::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1913,7 +1905,7 @@ void efx::TEnemyBombM::create((efx::Arg*))
  * Address:	803C9094
  * Size:	000124
  */
-void efx::TEnemyBombS::create((efx::Arg*))
+void TEnemyBombS::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2004,7 +1996,7 @@ void efx::TEnemyBombS::create((efx::Arg*))
  * Address:	803C91B8
  * Size:	0001A4
  */
-void efx::TEnemyApsmoke::create((efx::Arg*))
+void TEnemyApsmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2133,7 +2125,7 @@ void efx::TEnemyApsmoke::create((efx::Arg*))
  * Address:	803C935C
  * Size:	0000DC
  */
-void efx::TEnemyApsmokeM::create((efx::Arg*))
+void TEnemyApsmokeM::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2206,7 +2198,7 @@ void efx::TEnemyApsmokeM::create((efx::Arg*))
  * Address:	803C9438
  * Size:	0000DC
  */
-void efx::TEnemyApsmokeS::create((efx::Arg*))
+void TEnemyApsmokeS::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2279,7 +2271,7 @@ void efx::TEnemyApsmokeS::create((efx::Arg*))
  * Address:	803C9514
  * Size:	0000DC
  */
-void efx::TEnemyHamonM::create((efx::Arg*))
+void TEnemyHamonM::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2352,7 +2344,7 @@ void efx::TEnemyHamonM::create((efx::Arg*))
  * Address:	803C95F0
  * Size:	0000DC
  */
-void efx::TEnemyHamonMInd::create((efx::Arg*))
+void TEnemyHamonMInd::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2425,7 +2417,7 @@ void efx::TEnemyHamonMInd::create((efx::Arg*))
  * Address:	803C96CC
  * Size:	0002FC
  */
-void efx::TEnemyHamonChasePos::create((efx::Arg*))
+void TEnemyHamonChasePos::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2635,12 +2627,14 @@ void efx::TEnemyHamonChasePos::create((efx::Arg*))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803C99C8
  * Size:	000138
  */
-void update__Q23efx11TEnemyHamonFR10Vector3<float>(void)
+void update__Q23efx11TEnemyHamonFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2729,12 +2723,14 @@ void update__Q23efx11TEnemyHamonFR10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803C9B00
  * Size:	0000A0
  */
-void efx::TEnemyHamon::create((efx::Arg*))
+void TEnemyHamon::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -2788,7 +2784,7 @@ void efx::TEnemyHamon::create((efx::Arg*))
  * Address:	803C9BA0
  * Size:	000140
  */
-void efx::TEnemyHamon::getLimitDepth_(void)
+void TEnemyHamon::getLimitDepth_(void)
 {
 	/*
 	.loc_0x0:
@@ -2880,49 +2876,49 @@ void efx::TEnemyHamon::getLimitDepth_(void)
  * Address:	803C9CE0
  * Size:	000004
  */
-void efx::TEnemyApsmoke::forceKill(void) { }
+void TEnemyApsmoke::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CE4
  * Size:	000004
  */
-void efx::TEnemyApsmoke::fade(void) { }
+void TEnemyApsmoke::fade(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CE8
  * Size:	000004
  */
-void efx::TEnemyBomb::forceKill(void) { }
+void TEnemyBomb::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CEC
  * Size:	000004
  */
-void efx::TEnemyBomb::fade(void) { }
+void TEnemyBomb::fade(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CF0
  * Size:	000004
  */
-void efx::TEnemyWalkSmoke::forceKill(void) { }
+void TEnemyWalkSmoke::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CF4
  * Size:	000004
  */
-void efx::TEnemyWalkSmoke::fade(void) { }
+void TEnemyWalkSmoke::fade(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CF8
  * Size:	000008
  */
-void @4 @efx::TEnemyPiyo::__dt(void)
+@4 @efx::TEnemyPiyo::~TEnemyPiyo(void)
 {
 	/*
 	.loc_0x0:
@@ -2936,7 +2932,7 @@ void @4 @efx::TEnemyPiyo::__dt(void)
  * Address:	803C9D00
  * Size:	000008
  */
-void @4 @efx::TEnemyHamonM::__dt(void)
+@4 @efx::TEnemyHamonM::~TEnemyHamonM(void)
 {
 	/*
 	.loc_0x0:
@@ -2950,7 +2946,7 @@ void @4 @efx::TEnemyHamonM::__dt(void)
  * Address:	803C9D08
  * Size:	000008
  */
-void @4 @efx::TEnemyHamonMInd::__dt(void)
+@4 @efx::TEnemyHamonMInd::~TEnemyHamonMInd(void)
 {
 	/*
 	.loc_0x0:
@@ -2958,3 +2954,4 @@ void @4 @efx::TEnemyHamonMInd::__dt(void)
 	  b         -0x29B6C8
 	*/
 }
+} // namespace efx

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802EDCA0
  * Size:	00003C
  */
-void Game::MiniHoudai::verticalRotationCallBack((J3DJoint*, int))
+void MiniHoudai::verticalRotationCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -44,7 +36,8 @@ void Game::MiniHoudai::verticalRotationCallBack((J3DJoint*, int))
  * Address:	........
  * Size:	000054
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::__ct((Game::MiniHoudai::Obj*))
+MiniHoudai::MiniHoudaiShotGunNode::MiniHoudaiShotGunNode(
+    (Game::MiniHoudai::Obj*))
 {
 	// UNUSED FUNCTION
 }
@@ -54,7 +47,19 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::__ct((Game::MiniHoudai::Obj*))
  * Address:	........
  * Size:	0000E8
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::create(void)
+void MiniHoudai::MiniHoudaiShotGunNode::create(void)
+{
+	// UNUSED FUNCTION
+}
+
+} // namespace Game
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00001C
+ */
+void setPosition__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -64,29 +69,19 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::create(void)
  * Address:	........
  * Size:	00001C
  */
-void setPosition__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFR10Vector3<float>(
-    void)
+void setVelocity__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void setVelocity__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFR10Vector3<float>(
-    void)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000DC
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::startShotGun((bool))
+void MiniHoudai::MiniHoudaiShotGunNode::startShotGun(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -96,7 +91,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::startShotGun((bool))
  * Address:	802EDCDC
  * Size:	000D14
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::update(void)
+void MiniHoudai::MiniHoudaiShotGunNode::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1045,7 +1040,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::update(void)
  * Address:	........
  * Size:	000030
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::effectDrawOn(void)
+void MiniHoudai::MiniHoudaiShotGunNode::effectDrawOn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1055,7 +1050,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::effectDrawOn(void)
  * Address:	........
  * Size:	000030
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::effectDrawOff(void)
+void MiniHoudai::MiniHoudaiShotGunNode::effectDrawOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1065,7 +1060,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::effectDrawOff(void)
  * Address:	........
  * Size:	000004
  */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::doDebugDraw((Graphics&))
+void MiniHoudai::MiniHoudaiShotGunNode::doDebugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1075,7 +1070,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunNode::doDebugDraw((Graphics&))
  * Address:	802EE9F0
  * Size:	0001E0
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::__ct((Game::MiniHoudai::Obj*))
+MiniHoudai::MiniHoudaiShotGunMgr::MiniHoudaiShotGunMgr(Game::MiniHoudai::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1212,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::__ct((Game::MiniHoudai::Obj*))
  * Address:	802EEBD0
  * Size:	00006C
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::setupShotGun(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::setupShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1256,7 +1251,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::setupShotGun(void)
  * Address:	802EEC3C
  * Size:	00000C
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::resetCallBack(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::resetCallBack(void)
 {
 	/*
 	.loc_0x0:
@@ -1271,7 +1266,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::resetCallBack(void)
  * Address:	802EEC48
  * Size:	000008
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::setCallBack(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::setCallBack(void)
 {
 	/*
 	.loc_0x0:
@@ -1285,7 +1280,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::setCallBack(void)
  * Address:	802EEC50
  * Size:	000024
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::startRotation(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::startRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -1306,7 +1301,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::startRotation(void)
  * Address:	802EEC74
  * Size:	000014
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::finishRotation(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::finishRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -1323,7 +1318,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::finishRotation(void)
  * Address:	802EEC88
  * Size:	000008
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::isShotGunRotation(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::isShotGunRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -1337,7 +1332,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::isShotGunRotation(void)
  * Address:	802EEC90
  * Size:	000008
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::isShotGunLockOn(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::isShotGunLockOn(void)
 {
 	/*
 	.loc_0x0:
@@ -1351,7 +1346,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::isShotGunLockOn(void)
  * Address:	802EEC98
  * Size:	000008
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::isFinishShotGun(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::isFinishShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1385,7 +1380,7 @@ void setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<
  * Address:	802EECBC
  * Size:	0004C4
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::emitShotGun(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::emitShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1734,7 +1729,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::emitShotGun(void)
  * Address:	802EF180
  * Size:	000074
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::doUpdate(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1779,7 +1774,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::doUpdate(void)
  * Address:	802EF1F4
  * Size:	000078
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::doUpdateCommon(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::doUpdateCommon(void)
 {
 	/*
 	.loc_0x0:
@@ -1827,7 +1822,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::doUpdateCommon(void)
  * Address:	802EF26C
  * Size:	00007C
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::forceFinishShotGun(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::forceFinishShotGun(void)
 {
 	/*
 	.loc_0x0:
@@ -1874,7 +1869,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::forceFinishShotGun(void)
  * Address:	802EF2E8
  * Size:	000020
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::getShotGunPosition(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::getShotGunPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1894,7 +1889,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::getShotGunPosition(void)
  * Address:	802EF308
  * Size:	0001C4
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::searchShotGunRotation(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::searchShotGunRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -2043,7 +2038,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::searchShotGunRotation(void)
  * Address:	802EF4CC
  * Size:	0000C4
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::returnShotGunRotation(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::returnShotGunRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -2124,7 +2119,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::returnShotGunRotation(void)
  * Address:	802EF590
  * Size:	000258
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::rotateVertical((J3DJoint*))
+void MiniHoudai::MiniHoudaiShotGunMgr::rotateVertical(J3DJoint*)
 {
 	/*
 	.loc_0x0:
@@ -2312,7 +2307,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::rotateVertical((J3DJoint*))
  * Address:	802EF7E8
  * Size:	000088
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::effectDrawOn(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::effectDrawOn(void)
 {
 	/*
 	.loc_0x0:
@@ -2366,7 +2361,7 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::effectDrawOn(void)
  * Address:	802EF870
  * Size:	000088
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::effectDrawOff(void)
+void MiniHoudai::MiniHoudaiShotGunMgr::effectDrawOff(void)
 {
 	/*
 	.loc_0x0:
@@ -2420,103 +2415,109 @@ void Game::MiniHoudai::MiniHoudaiShotGunMgr::effectDrawOff(void)
  * Address:	........
  * Size:	000004
  */
-void Game::MiniHoudai::MiniHoudaiShotGunMgr::doDebugDraw((Graphics&))
+void MiniHoudai::MiniHoudaiShotGunMgr::doDebugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802EF8F8
- * Size:	00009C
- */
-void efx::TChibiShell::__dt(void)
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x4C64
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x6940
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x25FCC8
+	 * --INFO--
+	 * Address:	802EF8F8
+	 * Size:	00009C
+	 */
+	TChibiShell::~TChibiShell(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r3, r3, 0x4C64
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x6940
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x25FCC8
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2CB8C0
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x2CB8C0
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802EF994
- * Size:	000060
- */
-void Game::MiniHoudai::MiniHoudaiShotGunNode::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x4CB0
-	  stw       r0, 0x0(r30)
-	  bl        0x121BC4
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2CB920
+	 * --INFO--
+	 * Address:	802EF994
+	 * Size:	000060
+	 */
+	MiniHoudai::MiniHoudaiShotGunNode::~MiniHoudaiShotGunNode(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x44
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x4CB0
+		  stw       r0, 0x0(r30)
+		  bl        0x121BC4
+		  extsh.    r0, r31
+		  ble-      .loc_0x44
+		  mr        r3, r30
+		  bl        -0x2CB920
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x44:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2545,7 +2546,7 @@ void __sinit_MiniHoudaiShotGun_cpp(void)
  * Address:	802EFA1C
  * Size:	000008
  */
-void @4 @efx::TChibiShell::__dt(void)
+@4 @efx::TChibiShell::~TChibiShell(void)
 {
 	/*
 	.loc_0x0:

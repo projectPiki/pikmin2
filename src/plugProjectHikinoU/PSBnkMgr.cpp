@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	8033D738
  * Size:	000064
  */
-void PSSystem::BankMgr::createInstance()
+void BankMgr::createInstance()
 {
 	/*
 	.loc_0x0:
@@ -48,7 +50,7 @@ void PSSystem::BankMgr::createInstance()
  * Address:	8033D79C
  * Size:	000058
  */
-void PSSystem::BankMgr::BankMgr()
+BankMgr::BankMgr()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +84,7 @@ void PSSystem::BankMgr::BankMgr()
  * Address:	8033D7F4
  * Size:	000094
  */
-void PSSystem::BankMgr::preInit()
+void BankMgr::preInit()
 {
 	/*
 	.loc_0x0:
@@ -133,7 +135,7 @@ void PSSystem::BankMgr::preInit()
  * Address:	8033D888
  * Size:	000178
  */
-void PSSystem::BankMgr::init()
+void BankMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -265,9 +267,8 @@ void PSSystem::BankMgr::init()
  * Address:	8033DA00
  * Size:	000078
  */
-void PSSystem::WaveScene::load(unsigned short, unsigned short,
-                               PSSystem::WaveScene::AreaArg,
-                               PSSystem::TaskChecker*)
+void WaveScene::load(unsigned short, unsigned short,
+                     PSSystem::WaveScene::AreaArg, PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -311,7 +312,7 @@ void PSSystem::WaveScene::load(unsigned short, unsigned short,
  * Address:	8033DA78
  * Size:	000028
  */
-void PSSystem::WaveScene::WaveArea::WaveArea()
+WaveScene::WaveArea::WaveArea()
 {
 	/*
 	.loc_0x0:
@@ -333,8 +334,8 @@ void PSSystem::WaveScene::WaveArea::WaveArea()
  * Address:	8033DAA0
  * Size:	000114
  */
-void PSSystem::WaveScene::WaveArea::loadWave(unsigned short, unsigned short,
-                                             PSSystem::TaskChecker*)
+void WaveScene::WaveArea::loadWave(unsigned short, unsigned short,
+                                   PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +430,7 @@ void PSSystem::WaveScene::WaveArea::loadWave(unsigned short, unsigned short,
  * Address:	8033DBB4
  * Size:	0000B0
  */
-void PSSystem::WaveScene::WaveArea::deleteWave()
+void WaveScene::WaveArea::deleteWave()
 {
 	/*
 	.loc_0x0:
@@ -495,7 +496,7 @@ void PSSystem::WaveScene::WaveArea::deleteWave()
  * Address:	8033DC64
  * Size:	00007C
  */
-void PSSystem::WaveScene::WaveArea::waveLoadCallback(unsigned long)
+void WaveScene::WaveArea::waveLoadCallback(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +541,7 @@ void PSSystem::WaveScene::WaveArea::waveLoadCallback(unsigned long)
  * Address:	8033DCE0
  * Size:	000090
  */
-void PSSystem::BankMgr::~BankMgr()
+BankMgr::~BankMgr()
 {
 	/*
 	.loc_0x0:
@@ -594,21 +595,21 @@ void PSSystem::BankMgr::~BankMgr()
  * Address:	8033DD70
  * Size:	000004
  */
-void PSSystem::BankMgr::secondLoadS() { }
+void BankMgr::secondLoadS() { }
 
 /*
  * --INFO--
  * Address:	8033DD74
  * Size:	000004
  */
-void PSSystem::BankMgr::firstLoadS() { }
+void BankMgr::firstLoadS() { }
 
 /*
  * --INFO--
  * Address:	8033DD78
  * Size:	000024
  */
-void PSSystem::BankMgr::initS()
+void BankMgr::initS()
 {
 	/*
 	.loc_0x0:
@@ -629,7 +630,7 @@ void PSSystem::BankMgr::initS()
  * Address:	8033DD9C
  * Size:	0001C8
  */
-void PSSystem::BankMgr::setWsDataS(unsigned long*)
+void BankMgr::setWsDataS(unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -775,7 +776,7 @@ void PSSystem::BankMgr::setWsDataS(unsigned long*)
  * Address:	8033DF64
  * Size:	0001C8
  */
-void PSSystem::BankMgr::setBankDataS(unsigned long*)
+void BankMgr::setBankDataS(unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -921,7 +922,7 @@ void PSSystem::BankMgr::setBankDataS(unsigned long*)
  * Address:	8033E12C
  * Size:	0000CC
  */
-void PSSystem::WaveScene::WaveArea::~WaveArea()
+WaveScene::WaveArea::~WaveArea()
 {
 	/*
 	.loc_0x0:
@@ -988,3 +989,4 @@ void PSSystem::WaveScene::WaveArea::~WaveArea()
 	  blr
 	*/
 }
+} // namespace PSSystem

@@ -8,9 +8,9 @@ typedef struct BaseParm BaseParm;
 
 struct Parameters {
 	inline Parameters(void* end, BaseParm* head, char* name)
-		: m_endAddress(end)
-		, m_parmsHead(head)
-		, m_name(name)
+	    : m_endAddress(end)
+	    , m_parmsHead(head)
+	    , m_name(name)
 	{
 	}
 	void write(Stream&);

@@ -2,22 +2,14 @@
 
 #include "Game/PelletMgr.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801658EC
  * Size:	000020
  */
-void Game::Pellet::getCreatureName(void)
+void Pellet::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -39,7 +31,7 @@ void Game::Pellet::getCreatureName(void)
  * Address:	8016590C
  * Size:	000034
  */
-void Game::Pellet::getCreatureID(void)
+void Pellet::getCreatureID(void)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +60,7 @@ void Game::Pellet::getCreatureID(void)
  * Address:	80165940
  * Size:	000190
  */
-void Game::Pellet::getShadowParam((Game::ShadowParam&))
+void Pellet::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +176,7 @@ void Game::Pellet::getShadowParam((Game::ShadowParam&))
  * Address:	80165AD0
  * Size:	000074
  */
-void Game::Pellet::needShadow(void)
+void Pellet::needShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +221,7 @@ void Game::Pellet::needShadow(void)
  * Address:	80165B44
  * Size:	000008
  */
-void Game::Pellet::getWallTimer(void)
+void Pellet::getWallTimer(void)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +235,7 @@ void Game::Pellet::getWallTimer(void)
  * Address:	80165B4C
  * Size:	000034
  */
-void Game::PelletViewArg::__ct(void)
+PelletViewArg::PelletViewArg(void)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +260,7 @@ void Game::PelletViewArg::__ct(void)
  * Address:	80165B80
  * Size:	000220
  */
-void Game::PelletView::becomePellet((Game::PelletViewArg*))
+void PelletView::becomePellet(Game::PelletViewArg*)
 {
 	/*
 	.loc_0x0:
@@ -420,7 +412,7 @@ void Game::PelletView::becomePellet((Game::PelletViewArg*))
  * Address:	80165DA0
  * Size:	000084
  */
-void Game::PelletView::viewMakeMatrix((Matrixf&))
+void PelletView::viewMakeMatrix(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -465,14 +457,10 @@ void Game::PelletView::viewMakeMatrix((Matrixf&))
  * Address:	80165E24
  * Size:	00000C
  */
-void Game::Pellet::clearClaim(void)
+void Pellet::clearClaim(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x3C0(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x3C0(r3)
+	_3C0 = 0;
 }
 
 /*
@@ -480,7 +468,7 @@ void Game::Pellet::clearClaim(void)
  * Address:	80165E30
  * Size:	000018
  */
-void Game::Pellet::sendClaim(void)
+void Pellet::sendClaim(void)
 {
 	/*
 	.loc_0x0:
@@ -498,7 +486,7 @@ void Game::Pellet::sendClaim(void)
  * Address:	80165E48
  * Size:	0003F4
  */
-void Game::Pellet::updateClaim(void)
+void Pellet::updateClaim(void)
 {
 	/*
 	.loc_0x0:
@@ -789,7 +777,7 @@ void Game::Pellet::updateClaim(void)
  * Address:	8016623C
  * Size:	00000C
  */
-void Game::Pellet::getBuryDepthMax(void)
+void Pellet::getBuryDepthMax(void)
 {
 	/*
 	.loc_0x0:
@@ -804,7 +792,7 @@ void Game::Pellet::getBuryDepthMax(void)
  * Address:	80166248
  * Size:	00000C
  */
-void Game::Pellet::getBuryDepth(void)
+void Pellet::getBuryDepth(void)
 {
 	/*
 	.loc_0x0:
@@ -819,7 +807,7 @@ void Game::Pellet::getBuryDepth(void)
  * Address:	80166254
  * Size:	000124
  */
-void Game::Pellet::getBuryRadius((float))
+void Pellet::getBuryRadius(float)
 {
 	/*
 	.loc_0x0:
@@ -908,7 +896,7 @@ void Game::Pellet::getBuryRadius((float))
  * Address:	80166378
  * Size:	000074
  */
-void Game::Pellet::stimulate((Game::Interaction&))
+void Pellet::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -953,7 +941,7 @@ void Game::Pellet::stimulate((Game::Interaction&))
  * Address:	801663EC
  * Size:	000088
  */
-void Game::InteractMattuan::actPellet((Game::Pellet*))
+void InteractMattuan::actPellet(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -1003,7 +991,7 @@ void Game::InteractMattuan::actPellet((Game::Pellet*))
  * Address:	80166474
  * Size:	000188
  */
-void Game::InteractEat::actPellet((Game::Pellet*))
+void InteractEat::actPellet(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -1121,7 +1109,7 @@ void Game::InteractEat::actPellet((Game::Pellet*))
  * Address:	801665FC
  * Size:	000080
  */
-void Game::InteractSuck::actPellet((Game::Pellet*))
+void InteractSuck::actPellet(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -1167,14 +1155,14 @@ void Game::InteractSuck::actPellet((Game::Pellet*))
  * Address:	8016667C
  * Size:	000004
  */
-void Game::Pellet::doDirectDraw((Graphics&)) { }
+void Pellet::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::Pellet::directDraw((Graphics&))
+void Pellet::directDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1184,7 +1172,7 @@ void Game::Pellet::directDraw((Graphics&))
  * Address:	80166680
  * Size:	0001B0
  */
-void Game::Pellet::__ct(void)
+Pellet::Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -1310,7 +1298,7 @@ void Game::Pellet::__ct(void)
  * Address:	80166830
  * Size:	00006C
  */
-void Game::Pellet::constructor(void)
+void Pellet::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -1346,67 +1334,71 @@ void Game::Pellet::constructor(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8016689C
- * Size:	00009C
- */
-void PSM::CreatureObj::__dt(void)
-{
+namespace PSM {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0xACD00
-	  cmplwi    r30, 0
-	  beq-      .loc_0x70
-	  lis       r4, 0x804F
-	  mr        r3, r30
-	  subi      r5, r4, 0xE34
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        0x2F655C
+	 * --INFO--
+	 * Address:	8016689C
+	 * Size:	00009C
+	 */
+	CreatureObj::~CreatureObj(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r4, 0x804F
+		  addi      r3, r30, 0x30
+		  subi      r6, r4, 0xEBC
+		  li        r4, 0
+		  stw       r6, 0x28(r30)
+		  addi      r5, r6, 0x8
+		  addi      r0, r6, 0x40
+		  stw       r5, 0x10(r30)
+		  stw       r0, 0x30(r30)
+		  bl        -0xACD00
+		  cmplwi    r30, 0
+		  beq-      .loc_0x70
+		  lis       r4, 0x804F
+		  mr        r3, r30
+		  subi      r5, r4, 0xE34
+		  li        r4, 0
+		  stw       r5, 0x28(r30)
+		  addi      r0, r5, 0x8
+		  stw       r0, 0x10(r30)
+		  bl        0x2F655C
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x142864
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x142864
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace PSM
 
 /*
  * --INFO--
  * Address:	80166938
  * Size:	000034
  */
-void Game::Pellet::shadowOn(void)
+void Pellet::shadowOn(void)
 {
 	/*
 	.loc_0x0:
@@ -1433,7 +1425,7 @@ void Game::Pellet::shadowOn(void)
  * Address:	8016696C
  * Size:	000034
  */
-void Game::Pellet::shadowOff(void)
+void Pellet::shadowOff(void)
 {
 	/*
 	.loc_0x0:
@@ -1460,7 +1452,7 @@ void Game::Pellet::shadowOff(void)
  * Address:	........
  * Size:	000010
  */
-void Game::Pellet::isMomijiType(void)
+void Pellet::isMomijiType(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1470,7 +1462,7 @@ void Game::Pellet::isMomijiType(void)
  * Address:	........
  * Size:	000010
  */
-void Game::Pellet::postTexGen(void)
+void Pellet::postTexGen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1480,7 +1472,7 @@ void Game::Pellet::postTexGen(void)
  * Address:	801669A0
  * Size:	000014
  */
-void Game::Pellet::getJAIObject(void)
+void Pellet::getJAIObject(void)
 {
 	/*
 	.loc_0x0:
@@ -1497,7 +1489,7 @@ void Game::Pellet::getJAIObject(void)
  * Address:	801669B4
  * Size:	000008
  */
-void Game::Pellet::getPSCreature(void)
+void Pellet::getPSCreature(void)
 {
 	/*
 	.loc_0x0:
@@ -1511,7 +1503,7 @@ void Game::Pellet::getPSCreature(void)
  * Address:	801669BC
  * Size:	00000C
  */
-void Game::Pellet::getBottomRadius(void)
+void Pellet::getBottomRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -1526,7 +1518,7 @@ void Game::Pellet::getBottomRadius(void)
  * Address:	801669C8
  * Size:	00000C
  */
-void Game::Pellet::getPickRadius(void)
+void Pellet::getPickRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -1541,7 +1533,7 @@ void Game::Pellet::getPickRadius(void)
  * Address:	801669D4
  * Size:	00000C
  */
-void Game::Pellet::getCylinderHeight(void)
+void Pellet::getCylinderHeight(void)
 {
 	/*
 	.loc_0x0:
@@ -1556,7 +1548,7 @@ void Game::Pellet::getCylinderHeight(void)
  * Address:	801669E0
  * Size:	000058
  */
-void Game::Pellet::getConfigIndex(void)
+void Pellet::getConfigIndex(void)
 {
 	/*
 	.loc_0x0:
@@ -1592,7 +1584,7 @@ void Game::Pellet::getConfigIndex(void)
  * Address:	80166A38
  * Size:	00000C
  */
-void Game::Pellet::getConfigName(void)
+void Pellet::getConfigName(void)
 {
 	/*
 	.loc_0x0:
@@ -1607,7 +1599,7 @@ void Game::Pellet::getConfigName(void)
  * Address:	........
  * Size:	00007C
  */
-void Game::PelletGinkaInitArg::__ct(void)
+PelletGinkaInitArg::PelletGinkaInitArg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1617,7 +1609,7 @@ void Game::PelletGinkaInitArg::__ct(void)
  * Address:	80166A44
  * Size:	000130
  */
-void Game::PelletIndexInitArg::__ct((int))
+PelletIndexInitArg::PelletIndexInitArg(int)
 {
 	/*
 	.loc_0x0:
@@ -1707,7 +1699,7 @@ void Game::PelletIndexInitArg::__ct((int))
  * Address:	80166B74
  * Size:	0000F0
  */
-void Game::PelletNumberInitArg::__ct((int, int))
+PelletNumberInitArg::PelletNumberInitArg(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1783,7 +1775,7 @@ void Game::PelletNumberInitArg::__ct((int, int))
  * Address:	........
  * Size:	0000E0
  */
-void Game::PelletDropInitArg::__ct((Game::BasePelletMgr*, int))
+PelletDropInitArg::PelletDropInitArg(Game::BasePelletMgr*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -1793,7 +1785,7 @@ void Game::PelletDropInitArg::__ct((Game::BasePelletMgr*, int))
  * Address:	80166C64
  * Size:	000040
  */
-void Game::Pellet::isPickable(void)
+void Pellet::isPickable(void)
 {
 	/*
 	.loc_0x0:
@@ -1825,14 +1817,14 @@ void Game::Pellet::isPickable(void)
  * Address:	80166CA4
  * Size:	000008
  */
-u32 Game::PelletState::isPickable(void) { return 0x0; }
+u32 PelletState::isPickable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80166CAC
  * Size:	000288
  */
-void Game::Pellet::onKill((Game::CreatureKillArg*))
+void Pellet::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -2052,7 +2044,7 @@ FPQ24Game6PelletiPQ24Game8StateArg(void)
  * Address:	80166F68
  * Size:	000620
  */
-void Game::Pellet::onInit((Game::CreatureInitArg*))
+void Pellet::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -2514,21 +2506,21 @@ void Game::Pellet::onInit((Game::CreatureInitArg*))
  * Address:	80167588
  * Size:	000004
  */
-void Game::Pellet::do_onInit((Game::CreatureInitArg*)) { }
+void Pellet::do_onInit(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
  * Address:	8016758C
  * Size:	000004
  */
-void Game::Pellet::onCreateShape(void) { }
+void Pellet::onCreateShape(void) { }
 
 /*
  * --INFO--
  * Address:	80167590
  * Size:	000020
  */
-void Game::Pellet::getPelletConfigMin(void)
+void Pellet::getPelletConfigMin(void)
 {
 	/*
 	.loc_0x0:
@@ -2550,7 +2542,7 @@ void Game::Pellet::getPelletConfigMin(void)
  * Address:	801675B0
  * Size:	000020
  */
-void Game::Pellet::getPelletConfigMax(void)
+void Pellet::getPelletConfigMax(void)
 {
 	/*
 	.loc_0x0:
@@ -2572,7 +2564,7 @@ void Game::Pellet::getPelletConfigMax(void)
  * Address:	801675D0
  * Size:	000354
  */
-void Game::Pellet::setupParticles(void)
+void Pellet::setupParticles(void)
 {
 	/*
 	.loc_0x0:
@@ -2817,7 +2809,7 @@ void Game::Pellet::setupParticles(void)
  * Address:	80167924
  * Size:	000220
  */
-void Game::Pellet::setupParticles_simple(void)
+void Pellet::setupParticles_simple(void)
 {
 	/*
 	.loc_0x0:
@@ -2975,7 +2967,7 @@ void Game::Pellet::setupParticles_simple(void)
  * Address:	80167B44
  * Size:	000230
  */
-void Game::Pellet::setupParticles_tall(void)
+void Pellet::setupParticles_tall(void)
 {
 	/*
 	.loc_0x0:
@@ -3139,7 +3131,7 @@ void Game::Pellet::setupParticles_tall(void)
  * Address:	........
  * Size:	000004
  */
-void Game::Pellet::setupParticles_complex(void)
+void Pellet::setupParticles_complex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3149,7 +3141,7 @@ void Game::Pellet::setupParticles_complex(void)
  * Address:	80167D74
  * Size:	000018
  */
-void Game::Pellet::panmodokiCarryable(void)
+void Pellet::panmodokiCarryable(void)
 {
 	/*
 	.loc_0x0:
@@ -3167,7 +3159,7 @@ void Game::Pellet::panmodokiCarryable(void)
  * Address:	80167D8C
  * Size:	00004C
  */
-void Game::Pellet::isCarried(void)
+void Pellet::isCarried(void)
 {
 	/*
 	.loc_0x0:
@@ -3204,7 +3196,7 @@ void Game::Pellet::isCarried(void)
  * Address:	80167DD8
  * Size:	00000C
  */
-void Game::Pellet::isPicked(void)
+void Pellet::isPicked(void)
 {
 	/*
 	.loc_0x0:
@@ -3219,7 +3211,7 @@ void Game::Pellet::isPicked(void)
  * Address:	........
  * Size:	00006C
  */
-void Game::Pellet::startDisplayCarryInfo(void)
+void Pellet::startDisplayCarryInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3229,7 +3221,7 @@ void Game::Pellet::startDisplayCarryInfo(void)
  * Address:	80167DE4
  * Size:	000044
  */
-void Game::Pellet::finishDisplayCarryInfo(void)
+void Pellet::finishDisplayCarryInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -3260,7 +3252,7 @@ void Game::Pellet::finishDisplayCarryInfo(void)
  * Address:	80167E28
  * Size:	0000A0
  */
-void Game::Pellet::getCarryInfoParam((CarryInfoParam&))
+void Pellet::getCarryInfoParam(CarryInfoParam&)
 {
 	/*
 	.loc_0x0:
@@ -3316,7 +3308,7 @@ void Game::Pellet::getCarryInfoParam((CarryInfoParam&))
  * Address:	80167EC8
  * Size:	000068
  */
-void Game::Pellet::setCarryColor((int))
+void Pellet::setCarryColor(int)
 {
 	/*
 	.loc_0x0:
@@ -3356,21 +3348,17 @@ void Game::Pellet::setCarryColor((int))
  * Address:	80167F30
  * Size:	000004
  */
-void Game::Pellet::sound_otakaraEventStart(void) { }
+void Pellet::sound_otakaraEventStart(void) { }
 
 /*
  * --INFO--
  * Address:	80167F34
  * Size:	00000C
  */
-void Game::Pellet::clearCarryColor(void)
+void Pellet::clearCarryColor(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x5
-	  stw       r0, 0x3D4(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x3D4(r3)
+	_3D4 = 5;
 }
 
 /*
@@ -3378,7 +3366,7 @@ void Game::Pellet::clearCarryColor(void)
  * Address:	80167F40
  * Size:	00001C
  */
-void Game::Pellet::getVelocity(void)
+void Pellet::getVelocity(void)
 {
 	/*
 	.loc_0x0:
@@ -3392,12 +3380,14 @@ void Game::Pellet::getVelocity(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80167F5C
  * Size:	00001C
  */
-void setVelocity__Q24Game6PelletFR10Vector3<float>(void)
+void setVelocity__Q24Game6PelletFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3411,12 +3401,14 @@ void setVelocity__Q24Game6PelletFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80167F78
  * Size:	000104
  */
-void Game::Pellet::allocateTexCaster(void)
+void Pellet::allocateTexCaster(void)
 {
 	/*
 	.loc_0x0:
@@ -3499,7 +3491,7 @@ void Game::Pellet::allocateTexCaster(void)
  * Address:	8016807C
  * Size:	0002F0
  */
-void Game::Pellet::onSetPosition(void)
+void Pellet::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -3713,7 +3705,7 @@ void Game::Pellet::onSetPosition(void)
  * Address:	8016836C
  * Size:	000160
  */
-void Game::Pellet::setPanModokiRotation((float))
+void Pellet::setPanModokiRotation(float)
 {
 	/*
 	.loc_0x0:
@@ -3819,7 +3811,7 @@ void Game::Pellet::setPanModokiRotation((float))
  * Address:	801684CC
  * Size:	0002D0
  */
-void Game::Pellet::setOrientation((Matrixf&))
+void Pellet::setOrientation(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -4047,7 +4039,7 @@ void Game::Pellet::setOrientation((Matrixf&))
  * Address:	8016879C
  * Size:	000028
  */
-void Game::Pellet::getStateID(void)
+void Pellet::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -4069,7 +4061,7 @@ void Game::Pellet::getStateID(void)
  * Address:	801687C4
  * Size:	000260
  */
-void Game::Pellet::bounceCallback((Sys::Triangle*))
+void Pellet::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -4243,14 +4235,14 @@ void Game::Pellet::bounceCallback((Sys::Triangle*))
  * Address:	80168A24
  * Size:	000004
  */
-void Game::Pellet::onBounce(void) { }
+void Pellet::onBounce(void) { }
 
 /*
  * --INFO--
  * Address:	80168A28
  * Size:	000F84
  */
-void Game::Pellet::update(void)
+void Pellet::update(void)
 {
 	/*
 	.loc_0x0:
@@ -5389,21 +5381,29 @@ void Game::Pellet::update(void)
  * Address:	801699AC
  * Size:	000004
  */
-void Game::Pellet::do_update(void) { }
+void Pellet::do_update(void) { }
+
+} // namespace Game
+
+namespace PSM {
 
 /*
  * --INFO--
  * Address:	801699B0
  * Size:	000008
  */
-u32 PSM::Scene_Game::isCave(void) { return 0x0; }
+u32 Scene_Game::isCave(void) { return 0x0; }
+
+namespace Game {
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::Pellet::move_noDynamics(void)
+void Pellet::move_noDynamics(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5413,7 +5413,7 @@ void Game::Pellet::move_noDynamics(void)
  * Address:	801699B8
  * Size:	00001C
  */
-void Game::Pellet::getPikiBirthCount((int&, int&))
+void Pellet::getPikiBirthCount(int&, int&)
 {
 	/*
 	.loc_0x0:
@@ -5432,7 +5432,7 @@ void Game::Pellet::getPikiBirthCount((int&, int&))
  * Address:	801699D4
  * Size:	000014
  */
-void Game::PelletMgr::setMovieDraw((bool))
+void PelletMgr::setMovieDraw(bool)
 {
 	/*
 	.loc_0x0:
@@ -5449,7 +5449,7 @@ void Game::PelletMgr::setMovieDraw((bool))
  * Address:	801699E8
  * Size:	00012C
  */
-void Game::Pellet::doSimulation((float))
+void Pellet::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -5538,7 +5538,7 @@ void Game::Pellet::doSimulation((float))
  * Address:	80169B14
  * Size:	000114
  */
-void Game::Pellet::updateTrMatrix(void)
+void Pellet::updateTrMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -5621,7 +5621,7 @@ void Game::Pellet::updateTrMatrix(void)
  * Address:	80169C28
  * Size:	00027C
  */
-void Game::Pellet::doAnimation(void)
+void Pellet::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -5808,7 +5808,7 @@ void Game::Pellet::doAnimation(void)
  * Address:	80169EA4
  * Size:	0000F0
  */
-void Game::Pellet::doEntry(void)
+void Pellet::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -5894,14 +5894,14 @@ void Game::Pellet::doEntry(void)
  * Address:	80169F94
  * Size:	000004
  */
-void Game::Pellet::changeMaterial(void) { }
+void Pellet::changeMaterial(void) { }
 
 /*
  * --INFO--
  * Address:	80169F98
  * Size:	000020
  */
-void Game::Pellet::doSetView((int))
+void Pellet::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -5921,7 +5921,7 @@ void Game::Pellet::doSetView((int))
  * Address:	80169FB8
  * Size:	000020
  */
-void Game::Pellet::doViewCalc(void)
+void Pellet::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -5941,7 +5941,7 @@ void Game::Pellet::doViewCalc(void)
  * Address:	80169FD8
  * Size:	0000DC
  */
-void Game::Pellet::theEntry(void)
+void Pellet::theEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -6020,7 +6020,7 @@ void Game::Pellet::theEntry(void)
  * Address:	8016A0B4
  * Size:	00009C
  */
-void Game::Pellet::entryShape(void)
+void Pellet::entryShape(void)
 {
 	/*
 	.loc_0x0:
@@ -6075,7 +6075,7 @@ void Game::Pellet::entryShape(void)
  * Address:	8016A150
  * Size:	000024
  */
-void Game::Pellet::getBoundingSphere((Sys::Sphere&))
+void Pellet::getBoundingSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -6096,7 +6096,7 @@ void Game::Pellet::getBoundingSphere((Sys::Sphere&))
  * Address:	8016A174
  * Size:	00003C
  */
-void Game::Pellet::getLODSphere((Sys::Sphere&))
+void Pellet::getLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -6125,7 +6125,7 @@ void Game::Pellet::getLODSphere((Sys::Sphere&))
  * Address:	8016A1B0
  * Size:	000058
  */
-void Game::Pellet::init_pmotions(void)
+void Pellet::init_pmotions(void)
 {
 	/*
 	.loc_0x0:
@@ -6163,7 +6163,7 @@ void Game::Pellet::init_pmotions(void)
  * Address:	8016A208
  * Size:	0000B4
  */
-void Game::Pellet::update_pmotions(void)
+void Pellet::update_pmotions(void)
 {
 	/*
 	.loc_0x0:
@@ -6226,7 +6226,7 @@ void Game::Pellet::update_pmotions(void)
  * Address:	8016A2BC
  * Size:	000044
  */
-void Game::Pellet::start_pmotions(void)
+void Pellet::start_pmotions(void)
 {
 	/*
 	.loc_0x0:
@@ -6259,7 +6259,7 @@ void Game::Pellet::start_pmotions(void)
  * Address:	........
  * Size:	000004
  */
-void Game::Pellet::stop_pmotions(void)
+void Pellet::stop_pmotions(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6269,7 +6269,7 @@ void Game::Pellet::stop_pmotions(void)
  * Address:	........
  * Size:	000090
  */
-void Game::Pellet::start_carrymotion(void)
+void Pellet::start_carrymotion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6279,7 +6279,7 @@ void Game::Pellet::start_carrymotion(void)
  * Address:	8016A300
  * Size:	00000C
  */
-void Game::Pellet::stop_carrymotion(void)
+void Pellet::stop_carrymotion(void)
 {
 	/*
 	.loc_0x0:
@@ -6294,7 +6294,7 @@ void Game::Pellet::stop_carrymotion(void)
  * Address:	8016A30C
  * Size:	000054
  */
-void Game::Pellet::finish_carrymotion(void)
+void Pellet::finish_carrymotion(void)
 {
 	/*
 	.loc_0x0:
@@ -6331,7 +6331,7 @@ void Game::Pellet::finish_carrymotion(void)
  * Address:	8016A360
  * Size:	000088
  */
-void Game::Pellet::onKeyEvent((SysShape::KeyEvent const&))
+void Pellet::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -6383,7 +6383,7 @@ void Game::Pellet::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8016A3E8
  * Size:	0000C0
  */
-void Game::Pellet::isSlotFree((short))
+void Pellet::isSlotFree(short)
 {
 	/*
 	.loc_0x0:
@@ -6451,7 +6451,7 @@ void Game::Pellet::isSlotFree((short))
  * Address:	8016A4A8
  * Size:	00001C
  */
-void Game::Pellet::getSpeicalSlot(void)
+void Pellet::getSpeicalSlot(void)
 {
 	/*
 	.loc_0x0:
@@ -6472,7 +6472,7 @@ void Game::Pellet::getSpeicalSlot(void)
  * Address:	8016A4C4
  * Size:	000054
  */
-void Game::Pellet::getFreeStickSlot(void)
+void Pellet::getFreeStickSlot(void)
 {
 	/*
 	.loc_0x0:
@@ -6506,12 +6506,14 @@ void Game::Pellet::getFreeStickSlot(void)
 	*/
 }
 
+} // namespace PSM
+
 /*
  * --INFO--
  * Address:	8016A518
  * Size:	000128
  */
-void getNearFreeStickSlot__Q24Game6PelletFR10Vector3<float>(void)
+void getNearFreeStickSlot__Q24Game6PelletFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -6602,12 +6604,14 @@ void getNearFreeStickSlot__Q24Game6PelletFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016A640
  * Size:	0000E8
  */
-void Game::Pellet::getRandomFreeStickSlot(void)
+void Pellet::getRandomFreeStickSlot(void)
 {
 	/*
 	.loc_0x0:
@@ -6683,7 +6687,7 @@ void Game::Pellet::getRandomFreeStickSlot(void)
  * Address:	8016A728
  * Size:	00020C
  */
-void Game::Pellet::getPelletGoal(void)
+void Pellet::getPelletGoal(void)
 {
 	/*
 	.loc_0x0:
@@ -6848,7 +6852,7 @@ void Game::Pellet::getPelletGoal(void)
  * Address:	8016A934
  * Size:	00003C
  */
-void Game::Pellet::getTotalPikmins(void)
+void Pellet::getTotalPikmins(void)
 {
 	/*
 	.loc_0x0:
@@ -6875,7 +6879,7 @@ void Game::Pellet::getTotalPikmins(void)
  * Address:	8016A970
  * Size:	00006C
  */
-void Game::Pellet::getTotalCarryPikmins(void)
+void Pellet::getTotalCarryPikmins(void)
 {
 	/*
 	.loc_0x0:
@@ -6916,7 +6920,7 @@ void Game::Pellet::getTotalCarryPikmins(void)
  * Address:	8016A9DC
  * Size:	000078
  */
-void Game::Pellet::getPikmins((int))
+void Pellet::getPikmins(int)
 {
 	/*
 	.loc_0x0:
@@ -6962,7 +6966,7 @@ void Game::Pellet::getPikmins((int))
  * Address:	8016AA54
  * Size:	0001D4
  */
-void Game::Pellet::onSlotStickStart((Game::Creature*, short))
+void Pellet::onSlotStickStart(Game::Creature*, short)
 {
 	/*
 	.loc_0x0:
@@ -7115,7 +7119,7 @@ void Game::Pellet::onSlotStickStart((Game::Creature*, short))
  * Address:	8016AC28
  * Size:	0001E8
  */
-void Game::Pellet::onSlotStickEnd((Game::Creature*, short))
+void Pellet::onSlotStickEnd(Game::Creature*, short)
 {
 	/*
 	.loc_0x0:
@@ -7264,12 +7268,14 @@ void Game::Pellet::onSlotStickEnd((Game::Creature*, short))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00018C
  */
-void calcStickSlotLocal__Q24Game6PelletFsR10Vector3<float>(void)
+void calcStickSlotLocal__Q24Game6PelletFsR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -7279,7 +7285,7 @@ void calcStickSlotLocal__Q24Game6PelletFsR10Vector3<float>(void)
  * Address:	8016AE10
  * Size:	00021C
  */
-void calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<float>(void)
+void calcStickSlotGlobal__Q24Game6PelletFsR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -7439,12 +7445,14 @@ void calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016B02C
  * Size:	000068
  */
-void Game::Pellet::getFace(void)
+void Pellet::getFace(void)
 {
 	/*
 	.loc_0x0:
@@ -7490,7 +7498,7 @@ void Game::Pellet::getFace(void)
  * Address:	8016B094
  * Size:	0002AC
  */
-void Game::Pellet::startPick(void)
+void Pellet::startPick(void)
 {
 	/*
 	.loc_0x0:
@@ -7717,14 +7725,14 @@ void Game::Pellet::startPick(void)
  * Address:	8016B340
  * Size:	000004
  */
-void Game::Pellet::sound_otakaraEventRestart(void) { }
+void Pellet::sound_otakaraEventRestart(void) { }
 
 /*
  * --INFO--
  * Address:	8016B344
  * Size:	00017C
  */
-void Game::Pellet::endPick((bool))
+void Pellet::endPick(bool)
 {
 	/*
 	.loc_0x0:
@@ -7857,21 +7865,17 @@ void Game::Pellet::endPick((bool))
  * Address:	8016B4C0
  * Size:	000004
  */
-void Game::Pellet::sound_otakaraEventStop(void) { }
+void Pellet::sound_otakaraEventStop(void) { }
 
 /*
  * --INFO--
  * Address:	8016B4C4
  * Size:	00000C
  */
-void Game::Pellet::clearDiscoverDisable(void)
+void Pellet::clearDiscoverDisable(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x32D(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x32D(r3)
+	_32D = 0;
 }
 
 /*
@@ -7879,13 +7883,10 @@ void Game::Pellet::clearDiscoverDisable(void)
  * Address:	8016B4D0
  * Size:	000008
  */
-void Game::Pellet::startDiscoverDisable((unsigned char))
+void Pellet::startDiscoverDisable(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x32D(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x32D(r3)
+	_32D = a1;
 }
 
 /*
@@ -7893,7 +7894,7 @@ void Game::Pellet::startDiscoverDisable((unsigned char))
  * Address:	8016B4D8
  * Size:	000018
  */
-void Game::Pellet::updateDiscoverDisable(void)
+void Pellet::updateDiscoverDisable(void)
 {
 	/*
 	.loc_0x0:
@@ -7911,7 +7912,7 @@ void Game::Pellet::updateDiscoverDisable(void)
  * Address:	8016B4F0
  * Size:	00002C
  */
-void Game::Pellet::discoverDisabled(void)
+void Pellet::discoverDisabled(void)
 {
 	/*
 	.loc_0x0:
@@ -7936,7 +7937,7 @@ void Game::Pellet::discoverDisabled(void)
  * Address:	8016B51C
  * Size:	00002C
  */
-void Game::Pellet::doSave((Stream&))
+void Pellet::doSave(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -7959,7 +7960,7 @@ void Game::Pellet::doSave((Stream&))
  * Address:	8016B548
  * Size:	0001DC
  */
-void Game::Pellet::doLoad((Stream&))
+void Pellet::doLoad(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -8098,7 +8099,7 @@ void Game::Pellet::doLoad((Stream&))
  * Address:	8016B724
  * Size:	0000F4
  */
-void Game::Pellet::onStartCapture(void)
+void Pellet::onStartCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -8173,7 +8174,7 @@ void Game::Pellet::onStartCapture(void)
  * Address:	........
  * Size:	00001C
  */
-void Game::Pellet::getCurrentBuryDepth(void)
+void Pellet::getCurrentBuryDepth(void)
 {
 	// UNUSED FUNCTION
 }
@@ -8183,7 +8184,7 @@ void Game::Pellet::getCurrentBuryDepth(void)
  * Address:	8016B818
  * Size:	000110
  */
-void Game::Pellet::onUpdateCapture((Matrixf&))
+void Pellet::onUpdateCapture(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -8273,7 +8274,7 @@ void Game::Pellet::onUpdateCapture((Matrixf&))
  * Address:	8016B928
  * Size:	000098
  */
-void Game::Pellet::onEndCapture(void)
+void Pellet::onEndCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -8325,7 +8326,7 @@ void Game::Pellet::onEndCapture(void)
  * Address:	8016B9C0
  * Size:	000270
  */
-void Game::BasePelletMgr::__ct((Game::PelletList::cKind))
+BasePelletMgr::BasePelletMgr(Game::PelletList::cKind)
 {
 	/*
 	.loc_0x0:
@@ -8506,12 +8507,14 @@ void Game::BasePelletMgr::__ct((Game::PelletList::cKind))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8016BC30
  * Size:	0000B8
  */
-void CollPartMgr::~CollPartMgr()
+CollPartMgr::~CollPartMgr()
 {
 	/*
 	.loc_0x0:
@@ -8624,12 +8627,14 @@ void MonoObjectMgr<CollPart>::~MonoObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016BD88
  * Size:	000030
  */
-void Game::BasePelletMgr::getPelletConfig((int))
+void BasePelletMgr::getPelletConfig(int)
 {
 	/*
 	.loc_0x0:
@@ -8657,7 +8662,7 @@ void Game::BasePelletMgr::getPelletConfig((int))
  * Address:	8016BDB8
  * Size:	00007C
  */
-void Game::BasePelletMgr::setUse((int))
+void BasePelletMgr::setUse(int)
 {
 	/*
 	.loc_0x0:
@@ -8704,7 +8709,7 @@ void Game::BasePelletMgr::setUse((int))
  * Address:	........
  * Size:	000078
  */
-void Game::BasePelletMgr::used((int))
+void BasePelletMgr::used(int)
 {
 	// UNUSED FUNCTION
 }
@@ -8714,7 +8719,7 @@ void Game::BasePelletMgr::used((int))
  * Address:	........
  * Size:	000024
  */
-void Game::BasePelletMgr::setUseFlagAll((bool))
+void BasePelletMgr::setUseFlagAll(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -8724,7 +8729,7 @@ void Game::BasePelletMgr::setUseFlagAll((bool))
  * Address:	8016BE34
  * Size:	000298
  */
-void Game::BasePelletMgr::load(void)
+void BasePelletMgr::load(void)
 {
 	/*
 	.loc_0x0:
@@ -8936,7 +8941,7 @@ void Game::BasePelletMgr::load(void)
  * Address:	8016C0CC
  * Size:	0003E4
  */
-void Game::BasePelletMgr::load_texArc((char*))
+void BasePelletMgr::load_texArc(char*)
 {
 	/*
 	.loc_0x0:
@@ -9245,7 +9250,7 @@ void Game::BasePelletMgr::load_texArc((char*))
  * Address:	8016C4B0
  * Size:	00010C
  */
-void Game::BasePelletMgr::openTextArc((char*))
+void BasePelletMgr::openTextArc(char*)
 {
 	/*
 	.loc_0x0:
@@ -9334,7 +9339,7 @@ void Game::BasePelletMgr::openTextArc((char*))
  * Address:	8016C5BC
  * Size:	000030
  */
-void Game::BasePelletMgr::closeTextArc((JKRArchive*))
+void BasePelletMgr::closeTextArc(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -9358,7 +9363,7 @@ void Game::BasePelletMgr::closeTextArc((JKRArchive*))
  * Address:	8016C5EC
  * Size:	0000E4
  */
-void Game::BasePelletMgr::useModelMgr((int, unsigned long))
+void BasePelletMgr::useModelMgr(int, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -9433,7 +9438,7 @@ void Game::BasePelletMgr::useModelMgr((int, unsigned long))
  * Address:	8016C6D0
  * Size:	00002C
  */
-void Game::BasePelletMgr::createModelCallback((SysShape::Model*))
+void BasePelletMgr::createModelCallback(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -9456,14 +9461,14 @@ void Game::BasePelletMgr::createModelCallback((SysShape::Model*))
  * Address:	8016C6FC
  * Size:	000004
  */
-void Game::BasePelletMgr::onCreateModel((SysShape::Model*)) { }
+void BasePelletMgr::onCreateModel(SysShape::Model*) { }
 
 /*
  * --INFO--
  * Address:	8016C700
  * Size:	0000E4
  */
-void Game::BasePelletMgr::createShape((int, int))
+void BasePelletMgr::createShape(int, int)
 {
 	/*
 	.loc_0x0:
@@ -9542,7 +9547,7 @@ void Game::BasePelletMgr::createShape((int, int))
  * Address:	8016C7E4
  * Size:	000158
  */
-void Game::BasePelletMgr::setCollTree((Game::Pellet*, int))
+void BasePelletMgr::setCollTree(Game::Pellet*, int)
 {
 	/*
 	.loc_0x0:
@@ -9646,7 +9651,7 @@ void Game::BasePelletMgr::setCollTree((Game::Pellet*, int))
  * Address:	8016C93C
  * Size:	000024
  */
-void Game::BasePelletMgr::generatorNewPelletParm(void)
+void BasePelletMgr::generatorNewPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -9667,17 +9672,14 @@ void Game::BasePelletMgr::generatorNewPelletParm(void)
  * Address:	8016C960
  * Size:	000008
  */
-u32 Game::BasePelletMgr::generatorGetShape((Game::GenPelletParm*))
-{
-	return 0x0;
-}
+u32 BasePelletMgr::generatorGetShape(Game::GenPelletParm*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::BasePelletMgr::setupSoundViewerAndBas(void)
+void BasePelletMgr::setupSoundViewerAndBas(void)
 {
 	// UNUSED FUNCTION
 }
@@ -9687,7 +9689,7 @@ void Game::BasePelletMgr::setupSoundViewerAndBas(void)
  * Address:	8016C968
  * Size:	000018
  */
-void Game::PelletIterator::__ct(void)
+PelletIterator::PelletIterator(void)
 {
 	/*
 	.loc_0x0:
@@ -9705,7 +9707,7 @@ void Game::PelletIterator::__ct(void)
  * Address:	8016C980
  * Size:	00004C
  */
-void Game::PelletIterator::first(void)
+void PelletIterator::first(void)
 {
 	/*
 	.loc_0x0:
@@ -9740,7 +9742,7 @@ void Game::PelletIterator::first(void)
  * Address:	8016C9CC
  * Size:	000068
  */
-void Game::PelletIterator::operator*(void)
+void PelletIterator::operator*(void)
 {
 	/*
 	.loc_0x0:
@@ -9780,7 +9782,7 @@ void Game::PelletIterator::operator*(void)
  * Address:	8016CA34
  * Size:	0000C0
  */
-void Game::PelletIterator::next(void)
+void PelletIterator::next(void)
 {
 	/*
 	.loc_0x0:
@@ -9848,7 +9850,7 @@ void Game::PelletIterator::next(void)
  * Address:	8016CAF4
  * Size:	000010
  */
-void Game::PelletIterator::isDone(void)
+void PelletIterator::isDone(void)
 {
 	/*
 	.loc_0x0:
@@ -9864,7 +9866,7 @@ void Game::PelletIterator::isDone(void)
  * Address:	8016CB04
  * Size:	000350
  */
-void Game::PelletIterator::setFirst(void)
+void PelletIterator::setFirst(void)
 {
 	/*
 	.loc_0x0:
@@ -10127,6 +10129,8 @@ void Game::PelletIterator::setFirst(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8016CE54
@@ -10141,12 +10145,14 @@ void TObjectNode<GenericObjectMgr>::getNext()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016CE5C
  * Size:	0000CC
  */
-void Game::PelletMgr::__ct(void)
+PelletMgr::PelletMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -10203,6 +10209,8 @@ void Game::PelletMgr::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -10404,12 +10412,14 @@ void Container<GenericObjectMgr>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000B8
  */
-void Game::PelletMgr::setUseFlagAll((bool))
+void PelletMgr::setUseFlagAll(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -10419,7 +10429,7 @@ void Game::PelletMgr::setUseFlagAll((bool))
  * Address:	8016D148
  * Size:	0000F0
  */
-void Game::PelletMgr::createManagers((unsigned long))
+void PelletMgr::createManagers(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -10501,7 +10511,7 @@ void Game::PelletMgr::createManagers((unsigned long))
  * Address:	8016D238
  * Size:	000080
  */
-void Game::PelletMgr::resetMgrs(void)
+void PelletMgr::resetMgrs(void)
 {
 	/*
 	.loc_0x0:
@@ -10539,6 +10549,8 @@ void Game::PelletMgr::resetMgrs(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -10636,12 +10648,14 @@ void resetMgr__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016D3A8
  * Size:	000080
  */
-void Game::PelletMgr::setupResources(void)
+void PelletMgr::setupResources(void)
 {
 	/*
 	.loc_0x0:
@@ -10680,12 +10694,14 @@ void Game::PelletMgr::setupResources(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00050C
  */
-void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3<float> f(void)
+void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3f f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -10752,12 +10768,14 @@ void Iterator<Game::PelletOtakara::Object>::isDone()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016D4C0
  * Size:	00021C
  */
-void Game::PelletMgr::birth((Game::PelletInitArg*))
+void PelletMgr::birth(Game::PelletInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -10922,7 +10940,7 @@ void Game::PelletMgr::birth((Game::PelletInitArg*))
  * Address:	8016D6DC
  * Size:	0001AC
  */
-void Game::PelletMgr::setUse((Game::PelletInitArg*))
+void PelletMgr::setUse(Game::PelletInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -11057,7 +11075,7 @@ void Game::PelletMgr::setUse((Game::PelletInitArg*))
  * Address:	8016D888
  * Size:	00015C
  */
-void Game::PelletMgr::OtakaraItemCode::isNull(void)
+void PelletMgr::OtakaraItemCode::isNull(void)
 {
 	/*
 	.loc_0x0:
@@ -11178,7 +11196,7 @@ void Game::PelletMgr::OtakaraItemCode::isNull(void)
  * Address:	8016D9E4
  * Size:	0000C8
  */
-void Game::PelletMgr::makePelletInitArg((Game::PelletInitArg&, char*))
+void PelletMgr::makePelletInitArg(Game::PelletInitArg&, char*)
 {
 	/*
 	.loc_0x0:
@@ -11246,7 +11264,7 @@ void Game::PelletMgr::makePelletInitArg((Game::PelletInitArg&, char*))
  * Address:	8016DAAC
  * Size:	0000E4
  */
-void Game::PelletMgr::makeVsCarryMinMax((Game::PelletInitArg&, char*))
+void PelletMgr::makeVsCarryMinMax(Game::PelletInitArg&, char*)
 {
 	/*
 	.loc_0x0:
@@ -11323,8 +11341,8 @@ void Game::PelletMgr::makeVsCarryMinMax((Game::PelletInitArg&, char*))
  * Address:	8016DB90
  * Size:	0002EC
  */
-void Game::PelletMgr::makePelletInitArg((Game::PelletInitArg&,
-                                         Game::PelletMgr::OtakaraItemCode&))
+void PelletMgr::makePelletInitArg(Game::PelletInitArg&,
+                                  Game::PelletMgr::OtakaraItemCode&)
 {
 	/*
 	.loc_0x0:
@@ -11571,8 +11589,7 @@ void Game::PelletMgr::makePelletInitArg((Game::PelletInitArg&,
  * Address:	8016DE7C
  * Size:	000060
  */
-void Game::PelletMgr::makeOtakaraItemCode((char*,
-                                           Game::PelletMgr::OtakaraItemCode&))
+void PelletMgr::makeOtakaraItemCode(char*, Game::PelletMgr::OtakaraItemCode&)
 {
 	/*
 	.loc_0x0:
@@ -11612,7 +11629,7 @@ void Game::PelletMgr::makeOtakaraItemCode((char*,
  * Address:	8016DEDC
  * Size:	000034
  */
-void Game::PelletMgr::OtakaraItemCode::read((Stream&))
+void PelletMgr::OtakaraItemCode::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -11637,7 +11654,7 @@ void Game::PelletMgr::OtakaraItemCode::read((Stream&))
  * Address:	8016DF10
  * Size:	000060
  */
-void Game::PelletMgr::OtakaraItemCode::write((Stream&))
+void PelletMgr::OtakaraItemCode::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -11673,7 +11690,7 @@ void Game::PelletMgr::OtakaraItemCode::write((Stream&))
  * Address:	8016DF70
  * Size:	00006C
  */
-void Game::PelletMgr::addMgr((Game::BasePelletMgr*))
+void PelletMgr::addMgr(Game::BasePelletMgr*)
 {
 	/*
 	.loc_0x0:
@@ -11714,7 +11731,7 @@ void Game::PelletMgr::addMgr((Game::BasePelletMgr*))
  * Address:	8016DFDC
  * Size:	0001E4
  */
-void Game::PelletMgr::doAnimation(void)
+void PelletMgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -11858,6 +11875,8 @@ void Game::PelletMgr::doAnimation(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8016E1C0
@@ -11889,12 +11908,14 @@ void Iterator<GenericObjectMgr>::isDone()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016E20C
  * Size:	0001E4
  */
-void Game::PelletMgr::doEntry(void)
+void PelletMgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -12043,7 +12064,7 @@ void Game::PelletMgr::doEntry(void)
  * Address:	8016E3F0
  * Size:	0001F4
  */
-void Game::PelletMgr::doSetView((int))
+void PelletMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -12196,7 +12217,7 @@ void Game::PelletMgr::doSetView((int))
  * Address:	8016E5E4
  * Size:	0001E4
  */
-void Game::PelletMgr::doViewCalc(void)
+void PelletMgr::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -12345,7 +12366,7 @@ void Game::PelletMgr::doViewCalc(void)
  * Address:	8016E7C8
  * Size:	0001F4
  */
-void Game::PelletMgr::doSimulation((float))
+void PelletMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -12498,14 +12519,14 @@ void Game::PelletMgr::doSimulation((float))
  * Address:	8016E9BC
  * Size:	000004
  */
-void Game::PelletMgr::doDirectDraw((Graphics&)) { }
+void PelletMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8016E9C0
  * Size:	0001F4
  */
-void Game::PelletMgr::doSimpleDraw((Viewport*))
+void PelletMgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -12658,7 +12679,7 @@ void Game::PelletMgr::doSimpleDraw((Viewport*))
  * Address:	8016EBB4
  * Size:	0001D4
  */
-void Game::PelletMgr::setupSoundViewerAndBas(void)
+void PelletMgr::setupSoundViewerAndBas(void)
 {
 	/*
 	.loc_0x0:
@@ -12803,7 +12824,7 @@ void Game::PelletMgr::setupSoundViewerAndBas(void)
  * Address:	8016ED88
  * Size:	000014
  */
-void Game::PelletMgr::decode((long, unsigned char&, int&))
+void PelletMgr::decode(long, unsigned char&, int&)
 {
 	/*
 	.loc_0x0:
@@ -12820,7 +12841,7 @@ void Game::PelletMgr::decode((long, unsigned char&, int&))
  * Address:	8016ED9C
  * Size:	00000C
  */
-void Game::PelletMgr::encode((unsigned char, int))
+void PelletMgr::encode(unsigned char, int)
 {
 	/*
 	.loc_0x0:
@@ -12835,7 +12856,7 @@ void Game::PelletMgr::encode((unsigned char, int))
  * Address:	8016EDA8
  * Size:	0000B4
  */
-void Game::PelletMgr::getCaveName((int))
+void PelletMgr::getCaveName(int)
 {
 	/*
 	.loc_0x0:
@@ -12902,7 +12923,7 @@ void Game::PelletMgr::getCaveName((int))
  * Address:	8016EE5C
  * Size:	000270
  */
-void Game::PelletMgr::getCaveID((char*))
+void PelletMgr::getCaveID(char*)
 {
 	/*
 	.loc_0x0:
@@ -13100,7 +13121,7 @@ void Game::PelletMgr::getCaveID((char*))
  * Address:	........
  * Size:	000200
  */
-void Game::PelletMgr::getMgrByIndex((int))
+void PelletMgr::getMgrByIndex(int)
 {
 	// UNUSED FUNCTION
 }
@@ -13110,7 +13131,7 @@ void Game::PelletMgr::getMgrByIndex((int))
  * Address:	8016F0CC
  * Size:	00021C
  */
-void Game::PelletMgr::getMgrByID((unsigned char))
+void PelletMgr::getMgrByID(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -13279,7 +13300,7 @@ void Game::PelletMgr::getMgrByID((unsigned char))
  * Address:	........
  * Size:	0000BC
  */
-void Game::PelletMgr::dumpAllPellets(void)
+void PelletMgr::dumpAllPellets(void)
 {
 	// UNUSED FUNCTION
 }
@@ -13289,7 +13310,7 @@ void Game::PelletMgr::dumpAllPellets(void)
  * Address:	8016F2E8
  * Size:	0000E0
  */
-void Game::PelletMgr::__dt(void)
+PelletMgr::~PelletMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -13363,7 +13384,7 @@ void Game::PelletMgr::__dt(void)
  * Address:	8016F3C8
  * Size:	00000C
  */
-void Game::PelletMgr::getMgrName(void)
+void PelletMgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -13372,6 +13393,8 @@ void Game::PelletMgr::getMgrName(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -13912,26 +13935,27 @@ void Iterator<Game::PelletOtakara::Object>::first()
  * Address:	8016F9BC
  * Size:	000008
  */
-void generatorBirth__Q24Game13BasePelletMgrFR10Vector3<float> R10Vector3<float>
+void generatorBirth__Q24Game13BasePelletMgrFR10Vector3f R10Vector3f
 PQ24Game13GenPelletParm(void)
 {
 	return 0x0;
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8016F9C4
  * Size:	000004
  */
-void Game::BasePelletMgr::generatorWrite((Stream&, Game::GenPelletParm*)) { }
+void BasePelletMgr::generatorWrite(Stream&, Game::GenPelletParm*) { }
 
 /*
  * --INFO--
  * Address:	8016F9C8
  * Size:	000004
  */
-void Game::BasePelletMgr::generatorRead((Stream&, Game::GenPelletParm*,
-                                         unsigned long))
+void BasePelletMgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long)
 {
 }
 
@@ -13940,7 +13964,7 @@ void Game::BasePelletMgr::generatorRead((Stream&, Game::GenPelletParm*,
  * Address:	8016F9CC
  * Size:	00000C
  */
-void Game::BasePelletMgr::generatorLocalVersion(void)
+void BasePelletMgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -13955,42 +13979,44 @@ void Game::BasePelletMgr::generatorLocalVersion(void)
  * Address:	8016F9D8
  * Size:	000004
  */
-void Game::BasePelletMgr::doAnimation(void) { }
+void BasePelletMgr::doAnimation(void) { }
 
 /*
  * --INFO--
  * Address:	8016F9DC
  * Size:	000004
  */
-void Game::BasePelletMgr::doEntry(void) { }
+void BasePelletMgr::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	8016F9E0
  * Size:	000004
  */
-void Game::BasePelletMgr::doSetView((int)) { }
+void BasePelletMgr::doSetView(int) { }
 
 /*
  * --INFO--
  * Address:	8016F9E4
  * Size:	000004
  */
-void Game::BasePelletMgr::doViewCalc(void) { }
+void BasePelletMgr::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	8016F9E8
  * Size:	000004
  */
-void Game::BasePelletMgr::doSimulation((float)) { }
+void BasePelletMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8016F9EC
  * Size:	000004
  */
-void Game::BasePelletMgr::doDirectDraw((Graphics&)) { }
+void BasePelletMgr::doDirectDraw(Graphics&) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -14525,7 +14551,7 @@ void satisfy__Q223 @unnamed @pelletMgr_cpp @6NotOffFPQ24Game8WayPoint(void)
  * Address:	80170048
  * Size:	000044
  */
-void onSetPosition__Q24Game6PelletFR10Vector3<float>(void)
+void onSetPosition__Q24Game6PelletFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -14549,12 +14575,14 @@ void onSetPosition__Q24Game6PelletFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017008C
  * Size:	000008
  */
-void Game::Pellet::inWater(void)
+void Pellet::inWater(void)
 {
 	/*
 	.loc_0x0:
@@ -14568,14 +14596,14 @@ void Game::Pellet::inWater(void)
  * Address:	80170094
  * Size:	000008
  */
-s32 Game::Pellet::getBedamaColor(void) { return -0x1; }
+s32 Pellet::getBedamaColor(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	8017009C
  * Size:	000008
  */
-void Game::Pellet::getSound_PosPtr(void)
+void Pellet::getSound_PosPtr(void)
 {
 	/*
 	.loc_0x0:
@@ -14589,7 +14617,7 @@ void Game::Pellet::getSound_PosPtr(void)
  * Address:	801700A4
  * Size:	000008
  */
-void Game::Pellet::getFaceDir(void)
+void Pellet::getFaceDir(void)
 {
 	/*
 	.loc_0x0:
@@ -14603,91 +14631,95 @@ void Game::Pellet::getFaceDir(void)
  * Address:	801700AC
  * Size:	000008
  */
-u32 Game::Pellet::deferPikiCollision(void) { return 0x1; }
+u32 Pellet::deferPikiCollision(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801700B4
  * Size:	000004
  */
-void Game::Pellet::sound_otakaraEventFinish(void) { }
+void Pellet::sound_otakaraEventFinish(void) { }
 
-/*
- * --INFO--
- * Address:	801700B8
- * Size:	0000BC
- */
-void PSM::EventBase::__dt(void)
-{
+namespace PSM {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804B
-	  addi      r4, r3, 0x21A4
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x90
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0xB653C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x90
-	  lis       r4, 0x804F
-	  mr        r3, r30
-	  subi      r5, r4, 0xE34
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        0x2ECD20
+	 * --INFO--
+	 * Address:	801700B8
+	 * Size:	0000BC
+	 */
+	EventBase::~EventBase(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0xA0
+		  lis       r3, 0x804B
+		  addi      r4, r3, 0x21A4
+		  stw       r4, 0x28(r30)
+		  addi      r3, r4, 0x8
+		  addi      r0, r4, 0x40
+		  stw       r3, 0x10(r30)
+		  stw       r0, 0x30(r30)
+		  beq-      .loc_0x90
+		  lis       r4, 0x804F
+		  addi      r3, r30, 0x30
+		  subi      r6, r4, 0xEBC
+		  li        r4, 0
+		  stw       r6, 0x28(r30)
+		  addi      r5, r6, 0x8
+		  addi      r0, r6, 0x40
+		  stw       r5, 0x10(r30)
+		  stw       r0, 0x30(r30)
+		  bl        -0xB653C
+		  cmplwi    r30, 0
+		  beq-      .loc_0x90
+		  lis       r4, 0x804F
+		  mr        r3, r30
+		  subi      r5, r4, 0xE34
+		  li        r4, 0
+		  stw       r5, 0x28(r30)
+		  addi      r0, r5, 0x8
+		  stw       r0, 0x10(r30)
+		  bl        0x2ECD20
 
-	.loc_0x90:
-	  extsh.    r0, r31
-	  ble-      .loc_0xA0
-	  mr        r3, r30
-	  bl        -0x14C0A0
+		.loc_0x90:
+		  extsh.    r0, r31
+		  ble-      .loc_0xA0
+		  mr        r3, r30
+		  bl        -0x14C0A0
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0xA0:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace PSM
 
 /*
  * --INFO--
  * Address:	80170174
  * Size:	000008
  */
-u32 PSM::CreatureObj::getCastType(void) { return 0x0; }
+u32 CreatureObj::getCastType(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017017C
  * Size:	000010
  */
-void PSM::CreatureObj::getJAIObject(void)
+void CreatureObj::getJAIObject(void)
 {
 	/*
 	.loc_0x0:
@@ -14703,7 +14735,7 @@ void PSM::CreatureObj::getJAIObject(void)
  * Address:	8017018C
  * Size:	000010
  */
-void PSM::CreatureObj::getHandleArea((unsigned char))
+void CreatureObj::getHandleArea(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -14719,14 +14751,18 @@ void PSM::CreatureObj::getHandleArea((unsigned char))
  * Address:	8017019C
  * Size:	000004
  */
-void PSM::CreatureObj::onCalcOn(void) { }
+void CreatureObj::onCalcOn(void) { }
+
+namespace Game {
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	801701A0
  * Size:	00000C
  */
-void Game::PelletGoalStateArg::getName(void)
+void PelletGoalStateArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -14735,6 +14771,8 @@ void Game::PelletGoalStateArg::getName(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -17892,7 +17930,7 @@ void __sinit_pelletMgr_cpp(void)
  * Address:	80172410
  * Size:	000008
  */
-void @16 @PSM::EventBase::__dt(void)
+@16 @PSM::EventBase::~EventBase(void)
 {
 	/*
 	.loc_0x0:
@@ -17907,7 +17945,7 @@ void @16 @PSM::EventBase::__dt(void)
  * Size:	000008
  */
 void @48
-    @PSM::CreatureObj::startSound((unsigned char, unsigned long, unsigned long))
+    @PSM::CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -17921,8 +17959,7 @@ void @48
  * Address:	80172420
  * Size:	000008
  */
-void @48
-    @PSM::CreatureObj::startSound((JAISound**, unsigned long, unsigned long))
+void @48 @PSM::CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -17936,7 +17973,7 @@ void @48
  * Address:	80172428
  * Size:	000008
  */
-void @48 @PSM::CreatureObj::startSound((unsigned long, unsigned long))
+void @48 @PSM::CreatureObj::startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -17950,7 +17987,7 @@ void @48 @PSM::CreatureObj::startSound((unsigned long, unsigned long))
  * Address:	80172430
  * Size:	000008
  */
-void @48 @PSM::EventBase::__dt(void)
+@48 @PSM::EventBase::~EventBase(void)
 {
 	/*
 	.loc_0x0:
@@ -17964,7 +18001,7 @@ void @48 @PSM::EventBase::__dt(void)
  * Address:	80172438
  * Size:	000008
  */
-void @788 @Game::Pellet::onKeyEvent((SysShape::KeyEvent const&))
+void @788 @Game::Pellet::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -17978,7 +18015,7 @@ void @788 @Game::Pellet::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80172440
  * Size:	000008
  */
-void @792 @Game::Pellet::getCarryInfoParam((CarryInfoParam&))
+void @792 @Game::Pellet::getCarryInfoParam(CarryInfoParam&)
 {
 	/*
 	.loc_0x0:
@@ -18272,7 +18309,7 @@ void NodeObjectMgr<GenericObjectMgr>::@28 @resetMgr()
  * Address:	801724E8
  * Size:	000008
  */
-void @28 @Game::PelletMgr::doSimpleDraw((Viewport*))
+void @28 @Game::PelletMgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -18286,7 +18323,7 @@ void @28 @Game::PelletMgr::doSimpleDraw((Viewport*))
  * Address:	801724F0
  * Size:	000008
  */
-void @28 @Game::PelletMgr::doDirectDraw((Graphics&))
+void @28 @Game::PelletMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -18300,7 +18337,7 @@ void @28 @Game::PelletMgr::doDirectDraw((Graphics&))
  * Address:	801724F8
  * Size:	000008
  */
-void @28 @Game::PelletMgr::doSimulation((float))
+void @28 @Game::PelletMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -18328,7 +18365,7 @@ void @28 @Game::PelletMgr::doViewCalc(void)
  * Address:	80172508
  * Size:	000008
  */
-void @28 @Game::PelletMgr::doSetView((int))
+void @28 @Game::PelletMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:

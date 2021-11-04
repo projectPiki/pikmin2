@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802A1328
  * Size:	000050
  */
-void Game::Hanachirashi::Mgr::Mgr(int, unsigned char)
+Hanachirashi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Hanachirashi::Mgr::Mgr(int, unsigned char)
  * Address:	802A1378
  * Size:	000048
  */
-void Game::Hanachirashi::Mgr::doAlloc()
+void Hanachirashi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Hanachirashi::Mgr::doAlloc()
  * Address:	802A13C0
  * Size:	000048
  */
-void Game::Hanachirashi::Parms::Parms()
+Hanachirashi::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Hanachirashi::Parms::Parms()
  * Address:	802A1408
  * Size:	00023C
  */
-void Game::Hanachirashi::Parms::ProperParms::ProperParms()
+Hanachirashi::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::Hanachirashi::Parms::ProperParms::ProperParms()
  * Address:	802A1644
  * Size:	000060
  */
-void Game::Hanachirashi::Mgr::createObj(int)
+void Hanachirashi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::Hanachirashi::Mgr::createObj(int)
  * Address:	802A16A4
  * Size:	0000BC
  */
-void Game::Hanachirashi::Obj::~Obj()
+Hanachirashi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -359,7 +361,7 @@ void Game::Hanachirashi::Obj::~Obj()
  * Address:	802A1760
  * Size:	000010
  */
-void Game::Hanachirashi::Mgr::getEnemy(int)
+void Hanachirashi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -375,7 +377,7 @@ void Game::Hanachirashi::Mgr::getEnemy(int)
  * Address:	802A1770
  * Size:	00012C
  */
-void Game::Hanachirashi::Mgr::loadTexData()
+void Hanachirashi::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -474,7 +476,7 @@ void Game::Hanachirashi::Mgr::loadTexData()
  * Address:	802A189C
  * Size:	00013C
  */
-void Game::Hanachirashi::Mgr::createModel()
+void Hanachirashi::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -575,7 +577,7 @@ void Game::Hanachirashi::Mgr::createModel()
  * Address:	802A19D8
  * Size:	0000B0
  */
-void Game::Hanachirashi::Mgr::~Mgr()
+Hanachirashi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -635,14 +637,14 @@ void Game::Hanachirashi::Mgr::~Mgr()
  * Address:	802A1A88
  * Size:	000008
  */
-u32 Game::Hanachirashi::Mgr::getEnemyTypeID() { return 0x37; }
+u32 Hanachirashi::Mgr::getEnemyTypeID() { return 0x37; }
 
 /*
  * --INFO--
  * Address:	802A1A90
  * Size:	000050
  */
-void Game::Hanachirashi::Parms::read(Stream&)
+void Hanachirashi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -674,7 +676,7 @@ void Game::Hanachirashi::Parms::read(Stream&)
  * Address:	802A1AE0
  * Size:	000008
  */
-void Game::Hanachirashi::Mgr::@4 @__dt()
+Hanachirashi::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -682,3 +684,4 @@ void Game::Hanachirashi::Mgr::@4 @__dt()
 	  b         -0x10C
 	*/
 }
+} // namespace Game

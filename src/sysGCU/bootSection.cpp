@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804473BC
  * Size:	000030
  */
-void TinyPikmin::TinyPikmin()
+TinyPikmin::TinyPikmin()
 {
 	/*
 	.loc_0x0:
@@ -463,7 +453,7 @@ void TinyPikmin::drawPikmin(float, float, float, float)
  * Address:	........
  * Size:	000198
  */
-void TinyPikminMgr::TinyPikminMgr()
+TinyPikminMgr::TinyPikminMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -875,7 +865,7 @@ void TinyPikminMgr::disappear()
  * Address:	80447D6C
  * Size:	000348
  */
-void BootSection::BootSection(JKRHeap*)
+BootSection::BootSection(JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -1119,7 +1109,7 @@ void BootSection::BootSection(JKRHeap*)
  * Address:	804480B4
  * Size:	000084
  */
-void BootSection::~BootSection()
+BootSection::~BootSection()
 {
 	/*
 	.loc_0x0:
@@ -1472,12 +1462,14 @@ void BootSection::load2DResource()
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	8044851C
  * Size:	000294
  */
-void ebi::TScreenProgre::__ct(void)
+TScreenProgre::TScreenProgre(void)
 {
 	/*
 	.loc_0x0:
@@ -1648,6 +1640,8 @@ void ebi::TScreenProgre::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

@@ -1,13 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80090538
  * Size:	0001FC
  */
-void JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long,
-                                          JKRHeap*, unsigned char,
-                                          unsigned char)
+JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long, JKRHeap*,
+                                     unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -164,7 +163,7 @@ void JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long,
  * Address:	........
  * Size:	00003C
  */
-void JPARandom::~JPARandom()
+JPARandom::~JPARandom()
 {
 	// UNUSED FUNCTION
 }
@@ -243,7 +242,7 @@ void JPANode<JPABaseParticle>::JPANode()
  * Address:	........
  * Size:	00003C
  */
-void JPABaseParticle::~JPABaseParticle()
+JPABaseParticle::~JPABaseParticle()
 {
 	// UNUSED FUNCTION
 }
@@ -253,7 +252,7 @@ void JPABaseParticle::~JPABaseParticle()
  * Address:	800907B0
  * Size:	000060
  */
-void JPABaseEmitter::~JPABaseEmitter()
+JPABaseEmitter::~JPABaseEmitter()
 {
 	/*
 	.loc_0x0:
@@ -293,7 +292,7 @@ void JPABaseEmitter::~JPABaseEmitter()
  * Address:	80090810
  * Size:	000058
  */
-void JPABaseEmitter::JPABaseEmitter()
+JPABaseEmitter::JPABaseEmitter()
 {
 	/*
 	.loc_0x0:

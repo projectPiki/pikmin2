@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8002ECCC
  * Size:	000040
  */
-void JUTNameTab::JUTNameTab()
+JUTNameTab::JUTNameTab()
 {
 	/*
 	.loc_0x0:
@@ -33,7 +33,7 @@ void JUTNameTab::JUTNameTab()
  * Address:	8002ED0C
  * Size:	00003C
  */
-void JUTNameTab::JUTNameTab(const ResNTAB*)
+JUTNameTab::JUTNameTab(const ResNTAB*)
 {
 	/*
 	.loc_0x0:
@@ -62,7 +62,7 @@ void JUTNameTab::JUTNameTab(const ResNTAB*)
  * Address:	........
  * Size:	0000A8
  */
-void JUTNameTab::JUTNameTab(const JUTNameTab&)
+JUTNameTab::JUTNameTab(const JUTNameTab&)
 {
 	// UNUSED FUNCTION
 }
@@ -213,7 +213,7 @@ void JUTNameTab::calcKeyCode(const char*) const
  * Address:	8002EE7C
  * Size:	000048
  */
-void JUTNameTab::~JUTNameTab()
+JUTNameTab::~JUTNameTab()
 {
 	/*
 	.loc_0x0:

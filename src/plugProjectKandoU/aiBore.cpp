@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802312F4
  * Size:	000098
  */
-void PikiAI::ActBore::__ct((Game::Piki*))
+PikiAI::ActBore::ActBore(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -69,7 +59,7 @@ void PikiAI::ActBore::__ct((Game::Piki*))
  * Address:	8023138C
  * Size:	000080
  */
-void PikiAI::ActBore::init((PikiAI::ActionArg*))
+void PikiAI::ActBore::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -486,7 +476,7 @@ void PikiAI::ActBore::cleanup(void) { }
  * Address:	802318A0
  * Size:	00009C
  */
-void PikiAI::ActRest::__ct((Game::Piki*))
+PikiAI::ActRest::ActRest(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -558,7 +548,7 @@ void PikiAI::ActRest::finish(void)
  * Address:	80231958
  * Size:	000080
  */
-void PikiAI::ActRest::init((PikiAI::ActionArg*))
+void PikiAI::ActRest::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -955,7 +945,7 @@ void PikiAI::ActRest::cleanup(void) { }
  * Address:	80231DC4
  * Size:	0001F4
  */
-void PikiAI::ActRest::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActRest::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1110,7 @@ void PikiAI::ActRest::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80231FB8
  * Size:	0000BC
  */
-void PikiAI::ActOneshot::__ct((Game::Piki*))
+PikiAI::ActOneshot::ActOneshot(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1181,7 +1171,7 @@ void PikiAI::ActOneshot::__ct((Game::Piki*))
  * Address:	80232074
  * Size:	000094
  */
-void PikiAI::ActOneshot::init((PikiAI::ActionArg*))
+void PikiAI::ActOneshot::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -1321,7 +1311,7 @@ void PikiAI::ActOneshot::cleanup(void) { }
  * Address:	802321C4
  * Size:	000150
  */
-void PikiAI::ActOneshot::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActOneshot::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1435,7 +1425,7 @@ void PikiAI::ActOneshot::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80232314
  * Size:	000014
  */
-void @28 @4 @PikiAI::ActRest::onKeyEvent((SysShape::KeyEvent const&))
+void @28 @4 @PikiAI::ActRest::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1452,7 +1442,7 @@ void @28 @4 @PikiAI::ActRest::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80232328
  * Size:	000014
  */
-void @28 @4 @PikiAI::ActOneshot::onKeyEvent((SysShape::KeyEvent const&))
+void @28 @4 @PikiAI::ActOneshot::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	803B9064
  * Size:	000084
  */
-void TParticle2dMgr::~TParticle2dMgr()
+TParticle2dMgr::~TParticle2dMgr()
 {
 	/*
 	.loc_0x0:
@@ -155,7 +145,7 @@ void TParticle2dMgr::deleteInstance()
  * Address:	803B91A4
  * Size:	000088
  */
-void TParticle2dMgr::TParticle2dMgr()
+TParticle2dMgr::TParticle2dMgr()
 {
 	/*
 	.loc_0x0:

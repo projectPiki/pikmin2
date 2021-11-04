@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B86E0
  * Size:	000050
  */
-void Game::WaterOtakara::Mgr::Mgr(int, unsigned char)
+WaterOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::WaterOtakara::Mgr::Mgr(int, unsigned char)
  * Address:	802B8730
  * Size:	000048
  */
-void Game::WaterOtakara::Mgr::doAlloc()
+void WaterOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::WaterOtakara::Mgr::doAlloc()
  * Address:	802B8778
  * Size:	000060
  */
-void Game::WaterOtakara::Mgr::createObj(int)
+void WaterOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::WaterOtakara::Mgr::createObj(int)
  * Address:	802B87D8
  * Size:	0000F0
  */
-void Game::WaterOtakara::Obj::~Obj()
+WaterOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::WaterOtakara::Obj::~Obj()
  * Address:	802B88C8
  * Size:	000010
  */
-void Game::WaterOtakara::Mgr::getEnemy(int)
+void WaterOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::WaterOtakara::Mgr::getEnemy(int)
  * Address:	802B88D8
  * Size:	000080
  */
-void Game::WaterOtakara::Mgr::loadTexData()
+void WaterOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -245,7 +247,7 @@ void Game::WaterOtakara::Mgr::loadTexData()
  * Address:	802B8958
  * Size:	0000C8
  */
-void Game::WaterOtakara::Mgr::~Mgr()
+WaterOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -311,14 +313,14 @@ void Game::WaterOtakara::Mgr::~Mgr()
  * Address:	802B8A20
  * Size:	000008
  */
-u32 Game::WaterOtakara::Mgr::getEnemyTypeID() { return 0x3C; }
+u32 WaterOtakara::Mgr::getEnemyTypeID() { return 0x3C; }
 
 /*
  * --INFO--
  * Address:	802B8A28
  * Size:	000008
  */
-void Game::WaterOtakara::Mgr::getChangeTexture()
+void WaterOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -332,7 +334,7 @@ void Game::WaterOtakara::Mgr::getChangeTexture()
  * Address:	802B8A30
  * Size:	000008
  */
-void Game::WaterOtakara::Mgr::@4 @__dt()
+WaterOtakara::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -340,3 +342,4 @@ void Game::WaterOtakara::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

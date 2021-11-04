@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803C1F58
  * Size:	000094
  */
-void ebi::title::TTitleLightMgr::loadSettingFile((JKRArchive*, char*))
+void title::TTitleLightMgr::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +60,7 @@ void ebi::title::TTitleLightMgr::loadSettingFile((JKRArchive*, char*))
  * Address:	803C1FEC
  * Size:	00017C
  */
-void ebi::title::TTitleLightMgr::setParam_(void)
+void title::TTitleLightMgr::setParam_(void)
 {
 	/*
 	.loc_0x0:
@@ -187,7 +179,7 @@ void ebi::title::TTitleLightMgr::setParam_(void)
  * Address:	803C2168
  * Size:	000020
  */
-void ebi::title::TTitleLightMgr::update(void)
+void title::TTitleLightMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +199,7 @@ void ebi::title::TTitleLightMgr::update(void)
  * Address:	803C2188
  * Size:	000094
  */
-void ebi::title::TTitleLightMgr::setCameraMtx((float (*)[4]))
+void title::TTitleLightMgr::setCameraMtx(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -254,6 +246,8 @@ void ebi::title::TTitleLightMgr::setCameraMtx((float (*)[4]))
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

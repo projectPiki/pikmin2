@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::setWsGroupNumber((long, long))
+void JAInter::BankWave::setWsGroupNumber(long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JAInter::BankWave::setWsGroupNumber((long, long))
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::setWsLoadStatus((long, long))
+void JAInter::BankWave::setWsLoadStatus(long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void JAInter::BankWave::setWsLoadStatus((long, long))
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::getWsGroupNumber((long))
+void JAInter::BankWave::getWsGroupNumber(long)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void JAInter::BankWave::getWsGroupNumber((long))
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::getWsLoadStatus((long))
+void JAInter::BankWave::getWsLoadStatus(long)
 {
 	// UNUSED FUNCTION
 }

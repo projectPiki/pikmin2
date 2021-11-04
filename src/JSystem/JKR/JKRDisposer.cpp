@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "JSystem/JKR/JKRDisposer.h"
 #include "JSystem/JKR/JKRHeap.h"
 

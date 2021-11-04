@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8042F6E4
  * Size:	0000F0
  */
-void Game::P2JST::ObjectCamera::__ct((char const*, Game::MoviePlayer*))
+P2JST::ObjectCamera::ObjectCamera(char const*, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -89,7 +81,7 @@ void Game::P2JST::ObjectCamera::__ct((char const*, Game::MoviePlayer*))
  * Address:	8042F7D4
  * Size:	000068
  */
-void Game::P2JST::ObjectCamera::__dt(void)
+P2JST::ObjectCamera::~ObjectCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -129,7 +121,7 @@ void Game::P2JST::ObjectCamera::__dt(void)
  * Address:	8042F83C
  * Size:	0000A8
  */
-void Game::P2JST::ObjectCamera::reset(void)
+void P2JST::ObjectCamera::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -183,14 +175,14 @@ void Game::P2JST::ObjectCamera::reset(void)
  * Address:	8042F8E4
  * Size:	000004
  */
-void Game::P2JST::ObjectCamera::update(void) { }
+void P2JST::ObjectCamera::update(void) { }
 
 /*
  * --INFO--
  * Address:	8042F8E8
  * Size:	000024
  */
-void Game::P2JST::ObjectCamera::setProjection(void)
+void P2JST::ObjectCamera::setProjection(void)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +203,7 @@ void Game::P2JST::ObjectCamera::setProjection(void)
  * Address:	8042F90C
  * Size:	00007C
  */
-void Game::P2JST::ObjectCamera::setView(void)
+void P2JST::ObjectCamera::setView(void)
 {
 	/*
 	.loc_0x0:
@@ -254,7 +246,7 @@ void Game::P2JST::ObjectCamera::setView(void)
  * Address:	8042F988
  * Size:	00006C
  */
-void Game::P2JST::ObjectCamera::updateCamera(void)
+void P2JST::ObjectCamera::updateCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +285,7 @@ void Game::P2JST::ObjectCamera::updateCamera(void)
  * Address:	8042F9F4
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetName( const
+void P2JST::ObjectCamera::JSGGetName() const
 {
 	/*
 	.loc_0x0:
@@ -307,13 +299,10 @@ void Game::P2JST::ObjectCamera::JSGGetName( const
  * Address:	8042F9FC
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGSetFlag( (unsigned long))
+void P2JST::ObjectCamera::JSGSetFlag(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x10(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x10(r3)
+	_10 = a1;
 }
 
 /*
@@ -321,7 +310,7 @@ void Game::P2JST::ObjectCamera::JSGSetFlag( (unsigned long))
  * Address:	8042FA04
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetFlag( const
+void P2JST::ObjectCamera::JSGGetFlag() const
 {
 	/*
 	.loc_0x0:
@@ -335,7 +324,7 @@ void Game::P2JST::ObjectCamera::JSGGetFlag( const
  * Address:	8042FA0C
  * Size:	000010
  */
-void Game::P2JST::ObjectCamera::JSGSetData( (unsigned long, void const *, unsigned long))
+void P2JST::ObjectCamera::JSGSetData(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -351,7 +340,7 @@ void Game::P2JST::ObjectCamera::JSGSetData( (unsigned long, void const *, unsign
  * Address:	8042FA1C
  * Size:	00001C
  */
-void Game::P2JST::ObjectCamera::JSGSetViewPosition( (Vec const &))
+void P2JST::ObjectCamera::JSGSetViewPosition(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -370,7 +359,7 @@ void Game::P2JST::ObjectCamera::JSGSetViewPosition( (Vec const &))
  * Address:	8042FA38
  * Size:	00001C
  */
-void Game::P2JST::ObjectCamera::JSGGetViewPosition( const(Vec *))
+void P2JST::ObjectCamera::JSGGetViewPosition(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -389,7 +378,7 @@ void Game::P2JST::ObjectCamera::JSGGetViewPosition( const(Vec *))
  * Address:	8042FA54
  * Size:	00001C
  */
-void Game::P2JST::ObjectCamera::JSGSetViewTargetPosition( (Vec const &))
+void P2JST::ObjectCamera::JSGSetViewTargetPosition(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +397,7 @@ void Game::P2JST::ObjectCamera::JSGSetViewTargetPosition( (Vec const &))
  * Address:	8042FA70
  * Size:	00001C
  */
-void Game::P2JST::ObjectCamera::JSGGetViewTargetPosition( const(Vec *))
+void P2JST::ObjectCamera::JSGGetViewTargetPosition(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -427,7 +416,7 @@ void Game::P2JST::ObjectCamera::JSGGetViewTargetPosition( const(Vec *))
  * Address:	8042FA8C
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGSetViewRoll( (float))
+void P2JST::ObjectCamera::JSGSetViewRoll(float)
 {
 	/*
 	.loc_0x0:
@@ -441,7 +430,7 @@ void Game::P2JST::ObjectCamera::JSGSetViewRoll( (float))
  * Address:	8042FA94
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetViewRoll( const
+void P2JST::ObjectCamera::JSGGetViewRoll() const
 {
 	/*
 	.loc_0x0:
@@ -455,7 +444,7 @@ void Game::P2JST::ObjectCamera::JSGGetViewRoll( const
  * Address:	8042FA9C
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGSetProjectionNear( (float))
+void P2JST::ObjectCamera::JSGSetProjectionNear(float)
 {
 	/*
 	.loc_0x0:
@@ -469,7 +458,7 @@ void Game::P2JST::ObjectCamera::JSGSetProjectionNear( (float))
  * Address:	8042FAA4
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetProjectionNear( const
+void P2JST::ObjectCamera::JSGGetProjectionNear() const
 {
 	/*
 	.loc_0x0:
@@ -483,7 +472,7 @@ void Game::P2JST::ObjectCamera::JSGGetProjectionNear( const
  * Address:	8042FAAC
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGSetProjectionFar( (float))
+void P2JST::ObjectCamera::JSGSetProjectionFar(float)
 {
 	/*
 	.loc_0x0:
@@ -497,7 +486,7 @@ void Game::P2JST::ObjectCamera::JSGSetProjectionFar( (float))
  * Address:	8042FAB4
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetProjectionFar( const
+void P2JST::ObjectCamera::JSGGetProjectionFar() const
 {
 	/*
 	.loc_0x0:
@@ -511,7 +500,7 @@ void Game::P2JST::ObjectCamera::JSGGetProjectionFar( const
  * Address:	8042FABC
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGSetProjectionFovy( (float))
+void P2JST::ObjectCamera::JSGSetProjectionFovy(float)
 {
 	/*
 	.loc_0x0:
@@ -525,7 +514,7 @@ void Game::P2JST::ObjectCamera::JSGSetProjectionFovy( (float))
  * Address:	8042FAC4
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetProjectionFovy( const
+void P2JST::ObjectCamera::JSGGetProjectionFovy() const
 {
 	/*
 	.loc_0x0:
@@ -539,7 +528,7 @@ void Game::P2JST::ObjectCamera::JSGGetProjectionFovy( const
  * Address:	8042FACC
  * Size:	000064
  */
-void Game::P2JST::ObjectCamera::JSGSetProjectionAspect( (float))
+void P2JST::ObjectCamera::JSGSetProjectionAspect(float)
 {
 	/*
 	.loc_0x0:
@@ -576,7 +565,7 @@ void Game::P2JST::ObjectCamera::JSGSetProjectionAspect( (float))
  * Address:	8042FB30
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::JSGGetProjectionAspect( const
+void P2JST::ObjectCamera::JSGGetProjectionAspect() const
 {
 	/*
 	.loc_0x0:
@@ -590,7 +579,7 @@ void Game::P2JST::ObjectCamera::JSGGetProjectionAspect( const
  * Address:	........
  * Size:	000168
  */
-void Game::P2JST::ObjectCamera::setParms( (Camera *))
+void P2JST::ObjectCamera::setParms(Camera*)
 {
 	// UNUSED FUNCTION
 }
@@ -600,7 +589,7 @@ void Game::P2JST::ObjectCamera::setParms( (Camera *))
  * Address:	8042FB38
  * Size:	0001A0
  */
-void Game::P2JST::ObjectCamera::setCamera( (Camera *))
+void P2JST::ObjectCamera::setCamera(Camera*)
 {
 	/*
 	.loc_0x0:
@@ -716,7 +705,7 @@ void Game::P2JST::ObjectCamera::setCamera( (Camera *))
  * Address:	8042FCD8
  * Size:	000038
  */
-void Game::P2JST::ObjectCamera::start(void)
+void P2JST::ObjectCamera::start(void)
 {
 	/*
 	.loc_0x0:
@@ -742,7 +731,7 @@ void Game::P2JST::ObjectCamera::start(void)
  * Address:	8042FD10
  * Size:	000050
  */
-void Game::P2JST::ObjectCamera::stop(void)
+void P2JST::ObjectCamera::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -771,6 +760,8 @@ void Game::P2JST::ObjectCamera::stop(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8042FD60
@@ -798,7 +789,7 @@ void __sinit_JSTObjectCamera_cpp(void)
  * Address:	8042FD88
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectCamera::stop(void)
+void @4 @Game::P2JST::ObjectCamera::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +803,7 @@ void @4@Game::P2JST::ObjectCamera::stop(void)
  * Address:	8042FD90
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectCamera::start(void)
+void @4 @Game::P2JST::ObjectCamera::start(void)
 {
 	/*
 	.loc_0x0:
@@ -826,7 +817,7 @@ void @4@Game::P2JST::ObjectCamera::start(void)
  * Address:	8042FD98
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectCamera::update(void)
+void @4 @Game::P2JST::ObjectCamera::update(void)
 {
 	/*
 	.loc_0x0:
@@ -840,7 +831,7 @@ void @4@Game::P2JST::ObjectCamera::update(void)
  * Address:	8042FDA0
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectCamera::reset(void)
+void @4 @Game::P2JST::ObjectCamera::reset(void)
 {
 	/*
 	.loc_0x0:

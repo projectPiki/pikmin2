@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801D0DB8
  * Size:	000058
  */
-void Game::GameStat::clear()
+void GameStat::clear()
 {
 	/*
 	.loc_0x0:
@@ -39,7 +41,7 @@ void Game::GameStat::clear()
  * Address:	801D0E10
  * Size:	000050
  */
-void Game::GameStat::getMapPikmins_exclude_Me(int)
+void GameStat::getMapPikmins_exclude_Me(int)
 {
 	/*
 	.loc_0x0:
@@ -75,7 +77,7 @@ void Game::GameStat::getMapPikmins_exclude_Me(int)
  * Address:	801D0E60
  * Size:	00008C
  */
-void Game::GameStat::getMapPikmins(int)
+void GameStat::getMapPikmins(int)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +128,7 @@ void Game::GameStat::getMapPikmins(int)
  * Address:	801D0EEC
  * Size:	000050
  */
-void Game::GameStat::getZikatuPikmins(int)
+void GameStat::getZikatuPikmins(int)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +164,7 @@ void Game::GameStat::getZikatuPikmins(int)
  * Address:	801D0F3C
  * Size:	0000F8
  */
-void Game::GameStat::getAllPikmins(int)
+void GameStat::getAllPikmins(int)
 {
 	/*
 	.loc_0x0:
@@ -244,7 +246,7 @@ void Game::GameStat::getAllPikmins(int)
  * Address:	801D1034
  * Size:	00003C
  */
-void Game::GameStat::PikiCounter::PikiCounter()
+GameStat::PikiCounter::PikiCounter()
 {
 	/*
 	.loc_0x0:
@@ -273,7 +275,7 @@ void Game::GameStat::PikiCounter::PikiCounter()
  * Address:	801D1070
  * Size:	000024
  */
-void Game::GameStat::PikiCounter::clear()
+void GameStat::PikiCounter::clear()
 {
 	/*
 	.loc_0x0:
@@ -294,7 +296,7 @@ void Game::GameStat::PikiCounter::clear()
  * Address:	801D1094
  * Size:	000084
  */
-void Game::GameStat::PikiCounter::inc(Game::Piki*)
+void GameStat::PikiCounter::inc(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +345,7 @@ void Game::GameStat::PikiCounter::inc(Game::Piki*)
  * Address:	801D1118
  * Size:	000084
  */
-void Game::GameStat::PikiCounter::dec(Game::Piki*)
+void GameStat::PikiCounter::dec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -392,7 +394,7 @@ void Game::GameStat::PikiCounter::dec(Game::Piki*)
  * Address:	801D119C
  * Size:	000080
  */
-void Game::GameStat::PikiCounter::inc(int)
+void GameStat::PikiCounter::inc(int)
 {
 	/*
 	.loc_0x0:
@@ -440,7 +442,7 @@ void Game::GameStat::PikiCounter::inc(int)
  * Address:	801D121C
  * Size:	000080
  */
-void Game::GameStat::PikiCounter::dec(int)
+void GameStat::PikiCounter::dec(int)
 {
 	/*
 	.loc_0x0:
@@ -488,7 +490,7 @@ void Game::GameStat::PikiCounter::dec(int)
  * Address:	801D129C
  * Size:	0000CC
  */
-void Game::GameStat::PikiNaviCounter::clear()
+void GameStat::PikiNaviCounter::clear()
 {
 	/*
 	.loc_0x0:
@@ -551,7 +553,7 @@ void Game::GameStat::PikiNaviCounter::clear()
  * Address:	801D1368
  * Size:	0000AC
  */
-void Game::GameStat::PikiNaviCounter::inc(Game::Piki*)
+void GameStat::PikiNaviCounter::inc(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -614,7 +616,7 @@ void Game::GameStat::PikiNaviCounter::inc(Game::Piki*)
  * Address:	801D1414
  * Size:	0000AC
  */
-void Game::GameStat::PikiNaviCounter::dec(Game::Piki*)
+void GameStat::PikiNaviCounter::dec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -671,6 +673,8 @@ void Game::GameStat::PikiNaviCounter::dec(Game::Piki*)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

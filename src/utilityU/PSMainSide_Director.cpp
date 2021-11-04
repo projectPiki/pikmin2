@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	80456AF8
  * Size:	000080
  */
-void PSM::DamageDirector::DamageDirector()
+DamageDirector::DamageDirector()
 {
 	/*
 	.loc_0x0:
@@ -49,7 +51,7 @@ void PSM::DamageDirector::DamageDirector()
  * Address:	80456B78
  * Size:	000080
  */
-void PSM::OneShotDirector::~OneShotDirector()
+OneShotDirector::~OneShotDirector()
 {
 	/*
 	.loc_0x0:
@@ -97,7 +99,7 @@ void PSM::OneShotDirector::~OneShotDirector()
  * Address:	80456BF8
  * Size:	000034
  */
-void PSM::DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
+void DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +124,7 @@ void PSM::DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	80456C2C
  * Size:	00003C
  */
-void PSM::DamageDirector::execInner()
+void DamageDirector::execInner()
 {
 	/*
 	.loc_0x0:
@@ -151,7 +153,7 @@ void PSM::DamageDirector::execInner()
  * Address:	80456C68
  * Size:	000080
  */
-void PSM::SwitcherDirector::~SwitcherDirector()
+SwitcherDirector::~SwitcherDirector()
 {
 	/*
 	.loc_0x0:
@@ -199,7 +201,7 @@ void PSM::SwitcherDirector::~SwitcherDirector()
  * Address:	80456CE8
  * Size:	000030
  */
-void PSM::TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
+void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -223,7 +225,7 @@ void PSM::TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	80456D18
  * Size:	000030
  */
-void PSM::TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
+void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +249,7 @@ void PSM::TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
  * Address:	80456D48
  * Size:	000084
  */
-void PSM::ActorDirector_TempoChange::ActorDirector_TempoChange()
+ActorDirector_TempoChange::ActorDirector_TempoChange()
 {
 	/*
 	.loc_0x0:
@@ -292,7 +294,7 @@ void PSM::ActorDirector_TempoChange::ActorDirector_TempoChange()
  * Address:	80456DCC
  * Size:	000090
  */
-void PSM::TempoChangeDirectorBase::~TempoChangeDirectorBase()
+TempoChangeDirectorBase::~TempoChangeDirectorBase()
 {
 	/*
 	.loc_0x0:
@@ -344,7 +346,7 @@ void PSM::TempoChangeDirectorBase::~TempoChangeDirectorBase()
  * Address:	80456E5C
  * Size:	00003C
  */
-void PSM::ActorDirector_TempoChange::execInner()
+void ActorDirector_TempoChange::execInner()
 {
 	/*
 	.loc_0x0:
@@ -373,8 +375,8 @@ void PSM::ActorDirector_TempoChange::execInner()
  * Address:	80456E98
  * Size:	000078
  */
-void PSM::PikminNumberDirector::PikminNumberDirector(int, unsigned char,
-                                                     PSSystem::DirectedBgm&)
+PikminNumberDirector::PikminNumberDirector(int, unsigned char,
+                                           PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -416,7 +418,7 @@ void PSM::PikminNumberDirector::PikminNumberDirector(int, unsigned char,
  * Address:	80456F10
  * Size:	00004C
  */
-void PSM::PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -447,7 +449,7 @@ void PSM::PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	80456F5C
  * Size:	00002C
  */
-void PSM::PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +472,7 @@ void PSM::PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
  * Address:	80456F88
  * Size:	00003C
  */
-void PSM::PikminNumberDirector::execInner()
+void PikminNumberDirector::execInner()
 {
 	/*
 	.loc_0x0:
@@ -499,7 +501,7 @@ void PSM::PikminNumberDirector::execInner()
  * Address:	80456FC4
  * Size:	000094
  */
-void PSM::PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(
+PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(
     int, unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
@@ -549,7 +551,7 @@ void PSM::PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(
  * Address:	80457058
  * Size:	000090
  */
-void PSM::PikminNumberDirector::~PikminNumberDirector()
+PikminNumberDirector::~PikminNumberDirector()
 {
 	/*
 	.loc_0x0:
@@ -601,7 +603,7 @@ void PSM::PikminNumberDirector::~PikminNumberDirector()
  * Address:	804570E8
  * Size:	000088
  */
-void PSM::PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -653,7 +655,7 @@ void PSM::PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	80457170
  * Size:	000088
  */
-void PSM::PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -707,7 +709,7 @@ void PSM::PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase&)
  * Address:	804571F8
  * Size:	0000B8
  */
-void PSM::PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -769,7 +771,7 @@ void PSM::PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase&)
  * Address:	804572B0
  * Size:	00007C
  */
-void PSM::TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
+TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +814,7 @@ void PSM::TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
  * Address:	8045732C
  * Size:	000034
  */
-void PSM::TrackOnDirectorBase::onPlayInit(JASTrack*)
+void TrackOnDirectorBase::onPlayInit(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -837,7 +839,7 @@ void PSM::TrackOnDirectorBase::onPlayInit(JASTrack*)
  * Address:	80457360
  * Size:	000050
  */
-void PSM::TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
+void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -873,7 +875,7 @@ void PSM::TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	804573B0
  * Size:	00002C
  */
-void PSM::TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
+void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
 	.loc_0x0:
@@ -896,7 +898,7 @@ void PSM::TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
  * Address:	804573DC
  * Size:	000090
  */
-void PSM::TrackOnDirector_Voting::execInner()
+void TrackOnDirector_Voting::execInner()
 {
 	/*
 	.loc_0x0:
@@ -948,7 +950,7 @@ void PSM::TrackOnDirector_Voting::execInner()
  * Address:	8045746C
  * Size:	000090
  */
-void PSM::TrackOnDirectorBase::~TrackOnDirectorBase()
+TrackOnDirectorBase::~TrackOnDirectorBase()
 {
 	/*
 	.loc_0x0:
@@ -1000,7 +1002,7 @@ void PSM::TrackOnDirectorBase::~TrackOnDirectorBase()
  * Address:	804574FC
  * Size:	0000FC
  */
-void PSM::TrackOnDirector_Scaled::underDirection()
+void TrackOnDirector_Scaled::underDirection()
 {
 	/*
 	.loc_0x0:
@@ -1083,7 +1085,7 @@ void PSM::TrackOnDirector_Scaled::underDirection()
  * Address:	804575F8
  * Size:	00008C
  */
-void PSM::ListDirectorActor::onUpdateFromMasterD()
+void ListDirectorActor::onUpdateFromMasterD()
 {
 	/*
 	.loc_0x0:
@@ -1134,8 +1136,7 @@ void PSM::ListDirectorActor::onUpdateFromMasterD()
  * Address:	80457684
  * Size:	000098
  */
-void PSM::ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long,
-                                                       long)
+ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long, long)
 {
 	/*
 	.loc_0x0:
@@ -1185,7 +1186,7 @@ void PSM::ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long,
  * Address:	8045771C
  * Size:	00003C
  */
-void PSM::ActorDirector_TrackOn::execInner()
+void ActorDirector_TrackOn::execInner()
 {
 	/*
 	.loc_0x0:
@@ -1214,9 +1215,8 @@ void PSM::ActorDirector_TrackOn::execInner()
  * Address:	80457758
  * Size:	0000F4
  */
-void PSM::ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float,
-                                                     float, long, long,
-                                                     unsigned long)
+ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float, float, long,
+                                           long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1289,7 +1289,7 @@ void PSM::ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float,
  * Address:	8045784C
  * Size:	0000A0
  */
-void PSM::TrackOnDirector_Scaled::~TrackOnDirector_Scaled()
+TrackOnDirector_Scaled::~TrackOnDirector_Scaled()
 {
 	/*
 	.loc_0x0:
@@ -1345,7 +1345,7 @@ void PSM::TrackOnDirector_Scaled::~TrackOnDirector_Scaled()
  * Address:	804578EC
  * Size:	00003C
  */
-void PSM::ActorDirector_Scaled::execInner()
+void ActorDirector_Scaled::execInner()
 {
 	/*
 	.loc_0x0:
@@ -1374,7 +1374,7 @@ void PSM::ActorDirector_Scaled::execInner()
  * Address:	80457928
  * Size:	000614
  */
-void PSM::ActorDirector_Scaled::getNearestDistance()
+void ActorDirector_Scaled::getNearestDistance()
 {
 	/*
 	.loc_0x0:
@@ -1811,8 +1811,8 @@ void PSM::ActorDirector_Scaled::getNearestDistance()
  * Address:	80457F3C
  * Size:	0000E4
  */
-void PSM::ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long,
-                                                   unsigned long)
+ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long,
+                                         unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1881,7 +1881,7 @@ void PSM::ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long,
  * Address:	80458020
  * Size:	0000B0
  */
-void PSM::ActorDirector_Scaled::~ActorDirector_Scaled()
+ActorDirector_Scaled::~ActorDirector_Scaled()
 {
 	/*
 	.loc_0x0:
@@ -1941,13 +1941,10 @@ void PSM::ActorDirector_Scaled::~ActorDirector_Scaled()
  * Address:	804580D0
  * Size:	000008
  */
-void PSM::ActorDirector_Enemy::onSetMinDistObj(Game::Creature*)
+void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x68(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x68(r3)
+	_68 = a1;
 }
 
 /*
@@ -1955,7 +1952,7 @@ void PSM::ActorDirector_Enemy::onSetMinDistObj(Game::Creature*)
  * Address:	804580D8
  * Size:	0001D0
  */
-void PSM::ActorDirector_Enemy::underDirection()
+void ActorDirector_Enemy::underDirection()
 {
 	/*
 	.loc_0x0:
@@ -2101,7 +2098,7 @@ void PSM::ActorDirector_Enemy::underDirection()
  * Address:	804582A8
  * Size:	000044
  */
-void PSM::ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
+void ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2130,7 +2127,7 @@ void PSM::ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
  * Address:	804582EC
  * Size:	000044
  */
-void PSM::ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
+void ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2159,7 +2156,7 @@ void PSM::ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
  * Address:	80458330
  * Size:	000044
  */
-void PSM::ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
+void ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2188,7 +2185,7 @@ void PSM::ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
  * Address:	80458374
  * Size:	000044
  */
-void PSM::ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
+void ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2217,7 +2214,7 @@ void PSM::ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
  * Address:	804583B8
  * Size:	00007C
  */
-void PSM::PikAttackDirector::PikAttackDirector(int)
+PikAttackDirector::PikAttackDirector(int)
 {
 	/*
 	.loc_0x0:
@@ -2260,7 +2257,7 @@ void PSM::PikAttackDirector::PikAttackDirector(int)
  * Address:	80458434
  * Size:	00007C
  */
-void PSM::ExiteDirector::ExiteDirector(int)
+ExiteDirector::ExiteDirector(int)
 {
 	/*
 	.loc_0x0:
@@ -2303,9 +2300,8 @@ void PSM::ExiteDirector::ExiteDirector(int)
  * Address:	804584B0
  * Size:	000068
  */
-void PSM::DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*,
-                                           unsigned char,
-                                           PSM::DirectorUpdator::Type)
+DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*, unsigned char,
+                                 PSM::DirectorUpdator::Type)
 {
 	/*
 	.loc_0x0:
@@ -2345,7 +2341,7 @@ void PSM::DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*,
  * Address:	80458518
  * Size:	000034
  */
-void PSM::DirectorUpdator::directOn(unsigned char)
+void DirectorUpdator::directOn(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2370,7 +2366,7 @@ void PSM::DirectorUpdator::directOn(unsigned char)
  * Address:	8045854C
  * Size:	000034
  */
-void PSM::DirectorUpdator::directOff(unsigned char)
+void DirectorUpdator::directOff(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2395,7 +2391,7 @@ void PSM::DirectorUpdator::directOff(unsigned char)
  * Address:	80458580
  * Size:	00012C
  */
-void PSM::DirectorUpdator::frameEndWork()
+void DirectorUpdator::frameEndWork()
 {
 	/*
 	.loc_0x0:
@@ -2500,6 +2496,8 @@ void PSM::DirectorUpdator::frameEndWork()
 	  blr
 	*/
 }
+
+} // namespace PSM
 
 /*
  * --INFO--
@@ -3806,12 +3804,14 @@ void PSMGetPikiBattleD()
 	*/
 }
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	80459510
  * Size:	0000A0
  */
-void PSM::ExiteDirector::~ExiteDirector()
+ExiteDirector::~ExiteDirector()
 {
 	/*
 	.loc_0x0:
@@ -3867,28 +3867,28 @@ void PSM::ExiteDirector::~ExiteDirector()
  * Address:	804595B0
  * Size:	000004
  */
-void PSM::ActorDirector_Scaled::onSetMinDistObj(Game::Creature*) { }
+void ActorDirector_Scaled::onSetMinDistObj(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	804595B4
  * Size:	000008
  */
-u32 PSM::ObjCalcBase::is1PGame() { return 0x1; }
+u32 ObjCalcBase::is1PGame() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804595BC
  * Size:	000008
  */
-u32 PSM::OtakaraEventLink::is2PBattle() { return 0x0; }
+u32 OtakaraEventLink::is2PBattle() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	804595C4
  * Size:	0000A0
  */
-void PSM::PikAttackDirector::~PikAttackDirector()
+PikAttackDirector::~PikAttackDirector()
 {
 	/*
 	.loc_0x0:
@@ -3944,7 +3944,7 @@ void PSM::PikAttackDirector::~PikAttackDirector()
  * Address:	80459664
  * Size:	0000D0
  */
-void PSM::ActorDirector_Kehai::~ActorDirector_Kehai()
+ActorDirector_Kehai::~ActorDirector_Kehai()
 {
 	/*
 	.loc_0x0:
@@ -4012,7 +4012,7 @@ void PSM::ActorDirector_Kehai::~ActorDirector_Kehai()
  * Address:	80459734
  * Size:	0000D0
  */
-void PSM::ActorDirector_Battle::~ActorDirector_Battle()
+ActorDirector_Battle::~ActorDirector_Battle()
 {
 	/*
 	.loc_0x0:
@@ -4080,7 +4080,7 @@ void PSM::ActorDirector_Battle::~ActorDirector_Battle()
  * Address:	80459804
  * Size:	0000C0
  */
-void PSM::ActorDirector_Enemy::~ActorDirector_Enemy()
+ActorDirector_Enemy::~ActorDirector_Enemy()
 {
 	/*
 	.loc_0x0:
@@ -4144,7 +4144,7 @@ void PSM::ActorDirector_Enemy::~ActorDirector_Enemy()
  * Address:	804598C4
  * Size:	0000A0
  */
-void PSM::ActorDirector_TrackOn::~ActorDirector_TrackOn()
+ActorDirector_TrackOn::~ActorDirector_TrackOn()
 {
 	/*
 	.loc_0x0:
@@ -4200,7 +4200,7 @@ void PSM::ActorDirector_TrackOn::~ActorDirector_TrackOn()
  * Address:	80459964
  * Size:	0000A0
  */
-void PSM::TrackOnDirector_Voting::~TrackOnDirector_Voting()
+TrackOnDirector_Voting::~TrackOnDirector_Voting()
 {
 	/*
 	.loc_0x0:
@@ -4256,7 +4256,7 @@ void PSM::TrackOnDirector_Voting::~TrackOnDirector_Voting()
  * Address:	80459A04
  * Size:	0000A0
  */
-void PSM::PikminNumberDirector_AutoBgm::~PikminNumberDirector_AutoBgm()
+PikminNumberDirector_AutoBgm::~PikminNumberDirector_AutoBgm()
 {
 	/*
 	.loc_0x0:
@@ -4312,7 +4312,7 @@ void PSM::PikminNumberDirector_AutoBgm::~PikminNumberDirector_AutoBgm()
  * Address:	80459AA4
  * Size:	0000A0
  */
-void PSM::ActorDirector_TempoChange::~ActorDirector_TempoChange()
+ActorDirector_TempoChange::~ActorDirector_TempoChange()
 {
 	/*
 	.loc_0x0:
@@ -4368,7 +4368,7 @@ void PSM::ActorDirector_TempoChange::~ActorDirector_TempoChange()
  * Address:	80459B44
  * Size:	000090
  */
-void PSM::DamageDirector::~DamageDirector()
+DamageDirector::~DamageDirector()
 {
 	/*
 	.loc_0x0:
@@ -4414,3 +4414,4 @@ void PSM::DamageDirector::~DamageDirector()
 	  blr
 	*/
 }
+} // namespace PSM

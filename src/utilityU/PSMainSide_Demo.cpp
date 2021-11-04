@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	80463FE8
  * Size:	00005C
  */
-void PSM::Demo::Demo()
+Demo::Demo()
 {
 	/*
 	.loc_0x0:
@@ -40,7 +42,7 @@ void PSM::Demo::Demo()
  * Address:	80464044
  * Size:	00020C
  */
-void PSM::Demo::init(Vec*, Vec*, float (*)[4], PSM::DemoArg)
+void Demo::init(Vec*, Vec*, float (*)[4], PSM::DemoArg)
 {
 	/*
 	.loc_0x0:
@@ -203,7 +205,7 @@ void PSM::Demo::init(Vec*, Vec*, float (*)[4], PSM::DemoArg)
  * Address:	80464250
  * Size:	0000EC
  */
-void PSM::Demo::demo1stLoadSync()
+void Demo::demo1stLoadSync()
 {
 	/*
 	.loc_0x0:
@@ -284,7 +286,7 @@ void PSM::Demo::demo1stLoadSync()
  * Address:	8046433C
  * Size:	000048
  */
-void PSM::Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
+void Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
 {
 	/*
 	.loc_0x0:
@@ -316,7 +318,7 @@ void PSM::Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
  * Address:	80464384
  * Size:	001DA4
  */
-void PSM::Demo::initiate(PSM::DemoArg, unsigned char*)
+void Demo::initiate(PSM::DemoArg, unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -2633,7 +2635,7 @@ void PSM::Demo::initiate(PSM::DemoArg, unsigned char*)
  * Address:	80466128
  * Size:	000184
  */
-void PSM::Demo::~Demo()
+Demo::~Demo()
 {
 	/*
 	.loc_0x0:
@@ -2760,7 +2762,7 @@ void PSM::Demo::~Demo()
  * Address:	804662AC
  * Size:	0006C0
  */
-void PSM::Demo::onDemoTop()
+void Demo::onDemoTop()
 {
 	/*
 	.loc_0x0:
@@ -3284,7 +3286,7 @@ void PSM::Demo::onDemoTop()
  * Address:	8046696C
  * Size:	000104
  */
-void PSM::Demo::becomeSceneCamera()
+void Demo::becomeSceneCamera()
 {
 	/*
 	.loc_0x0:
@@ -3371,7 +3373,7 @@ void PSM::Demo::becomeSceneCamera()
  * Address:	80466A70
  * Size:	0000FC
  */
-void PSM::Demo::onDemoFadeoutStart(unsigned long)
+void Demo::onDemoFadeoutStart(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3456,7 +3458,7 @@ void PSM::Demo::onDemoFadeoutStart(unsigned long)
  * Address:	80466B6C
  * Size:	000664
  */
-void PSM::Demo::onDemoEnd()
+void Demo::onDemoEnd()
 {
 	/*
 	.loc_0x0:
@@ -3955,7 +3957,7 @@ void PSM::Demo::onDemoEnd()
  * Address:	804671D0
  * Size:	000268
  */
-void PSM::Demo::onMessageEnd(int)
+void Demo::onMessageEnd(int)
 {
 	/*
 	.loc_0x0:
@@ -4146,6 +4148,8 @@ void PSM::Demo::onMessageEnd(int)
 	*/
 }
 
+} // namespace PSM
+
 /*
  * --INFO--
  * Address:	80467438
@@ -4306,12 +4310,14 @@ void PSMGetGameSceneA()
 	*/
 }
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	80467608
  * Size:	000018
  */
-void PSM::Scene_Cave::isPollutUp()
+void Scene_Cave::isPollutUp()
 {
 	/*
 	.loc_0x0:
@@ -4329,18 +4335,16 @@ void PSM::Scene_Cave::isPollutUp()
  * Address:	80467620
  * Size:	000008
  */
-u32 PSM::SceneBase::getEnvSe() { return 0x0; }
+u32 SceneBase::getEnvSe() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80467628
  * Size:	000008
  */
-void PSM::ObjCalcBase::setMode(PSM::ObjCalcBase::Mode)
+void ObjCalcBase::setMode(PSM::ObjCalcBase::Mode a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
+} // namespace PSM

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80353D4C
  * Size:	000064
  */
-void Game::Tanpopo::Mgr::__ct((int, unsigned char))
+Tanpopo::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +44,7 @@ void Game::Tanpopo::Mgr::__ct((int, unsigned char))
  * Address:	80353DB0
  * Size:	000048
  */
-void Game::Tanpopo::Mgr::doAlloc(void)
+void Tanpopo::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -84,7 +76,7 @@ void Game::Tanpopo::Mgr::doAlloc(void)
  * Address:	80353DF8
  * Size:	000020
  */
-void Game::Tanpopo::Mgr::birth((Game::EnemyBirthArg&))
+void Tanpopo::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -104,7 +96,7 @@ void Game::Tanpopo::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80353E18
  * Size:	000064
  */
-void Game::Clover::Mgr::__ct((int, unsigned char))
+Clover::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +133,7 @@ void Game::Clover::Mgr::__ct((int, unsigned char))
  * Address:	80353E7C
  * Size:	000048
  */
-void Game::Clover::Mgr::doAlloc(void)
+void Clover::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +165,7 @@ void Game::Clover::Mgr::doAlloc(void)
  * Address:	80353EC4
  * Size:	000020
  */
-void Game::Clover::Mgr::birth((Game::EnemyBirthArg&))
+void Clover::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +185,7 @@ void Game::Clover::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80353EE4
  * Size:	000064
  */
-void Game::HikariKinoko::Mgr::__ct((int, unsigned char))
+HikariKinoko::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +222,7 @@ void Game::HikariKinoko::Mgr::__ct((int, unsigned char))
  * Address:	80353F48
  * Size:	000048
  */
-void Game::HikariKinoko::Mgr::doAlloc(void)
+void HikariKinoko::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -262,7 +254,7 @@ void Game::HikariKinoko::Mgr::doAlloc(void)
  * Address:	80353F90
  * Size:	000020
  */
-void Game::HikariKinoko::Mgr::birth((Game::EnemyBirthArg&))
+void HikariKinoko::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +274,7 @@ void Game::HikariKinoko::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80353FB0
  * Size:	000064
  */
-void Game::Ooinu_s::Mgr::__ct((int, unsigned char))
+Ooinu_s::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -319,7 +311,7 @@ void Game::Ooinu_s::Mgr::__ct((int, unsigned char))
  * Address:	80354014
  * Size:	000048
  */
-void Game::Ooinu_s::Mgr::doAlloc(void)
+void Ooinu_s::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -351,7 +343,7 @@ void Game::Ooinu_s::Mgr::doAlloc(void)
  * Address:	8035405C
  * Size:	000020
  */
-void Game::Ooinu_s::Mgr::birth((Game::EnemyBirthArg&))
+void Ooinu_s::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -371,7 +363,7 @@ void Game::Ooinu_s::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8035407C
  * Size:	000064
  */
-void Game::KareOoinu_s::Mgr::__ct((int, unsigned char))
+KareOoinu_s::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +400,7 @@ void Game::KareOoinu_s::Mgr::__ct((int, unsigned char))
  * Address:	803540E0
  * Size:	000048
  */
-void Game::KareOoinu_s::Mgr::doAlloc(void)
+void KareOoinu_s::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -440,7 +432,7 @@ void Game::KareOoinu_s::Mgr::doAlloc(void)
  * Address:	80354128
  * Size:	000020
  */
-void Game::KareOoinu_s::Mgr::birth((Game::EnemyBirthArg&))
+void KareOoinu_s::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +452,7 @@ void Game::KareOoinu_s::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354148
  * Size:	000064
  */
-void Game::Ooinu_l::Mgr::__ct((int, unsigned char))
+Ooinu_l::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -497,7 +489,7 @@ void Game::Ooinu_l::Mgr::__ct((int, unsigned char))
  * Address:	803541AC
  * Size:	000048
  */
-void Game::Ooinu_l::Mgr::doAlloc(void)
+void Ooinu_l::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -529,7 +521,7 @@ void Game::Ooinu_l::Mgr::doAlloc(void)
  * Address:	803541F4
  * Size:	000020
  */
-void Game::Ooinu_l::Mgr::birth((Game::EnemyBirthArg&))
+void Ooinu_l::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +541,7 @@ void Game::Ooinu_l::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354214
  * Size:	000064
  */
-void Game::KareOoinu_l::Mgr::__ct((int, unsigned char))
+KareOoinu_l::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -586,7 +578,7 @@ void Game::KareOoinu_l::Mgr::__ct((int, unsigned char))
  * Address:	80354278
  * Size:	000048
  */
-void Game::KareOoinu_l::Mgr::doAlloc(void)
+void KareOoinu_l::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +610,7 @@ void Game::KareOoinu_l::Mgr::doAlloc(void)
  * Address:	803542C0
  * Size:	000020
  */
-void Game::KareOoinu_l::Mgr::birth((Game::EnemyBirthArg&))
+void KareOoinu_l::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -638,7 +630,7 @@ void Game::KareOoinu_l::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	803542E0
  * Size:	000064
  */
-void Game::Wakame_s::Mgr::__ct((int, unsigned char))
+Wakame_s::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -675,7 +667,7 @@ void Game::Wakame_s::Mgr::__ct((int, unsigned char))
  * Address:	80354344
  * Size:	000048
  */
-void Game::Wakame_s::Mgr::doAlloc(void)
+void Wakame_s::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -707,7 +699,7 @@ void Game::Wakame_s::Mgr::doAlloc(void)
  * Address:	8035438C
  * Size:	000020
  */
-void Game::Wakame_s::Mgr::birth((Game::EnemyBirthArg&))
+void Wakame_s::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -727,7 +719,7 @@ void Game::Wakame_s::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	803543AC
  * Size:	000064
  */
-void Game::Wakame_l::Mgr::__ct((int, unsigned char))
+Wakame_l::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -764,7 +756,7 @@ void Game::Wakame_l::Mgr::__ct((int, unsigned char))
  * Address:	80354410
  * Size:	000048
  */
-void Game::Wakame_l::Mgr::doAlloc(void)
+void Wakame_l::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -796,7 +788,7 @@ void Game::Wakame_l::Mgr::doAlloc(void)
  * Address:	80354458
  * Size:	000020
  */
-void Game::Wakame_l::Mgr::birth((Game::EnemyBirthArg&))
+void Wakame_l::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -816,7 +808,7 @@ void Game::Wakame_l::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354478
  * Size:	000064
  */
-void Game::Tukushi::Mgr::__ct((int, unsigned char))
+Tukushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -853,7 +845,7 @@ void Game::Tukushi::Mgr::__ct((int, unsigned char))
  * Address:	803544DC
  * Size:	000048
  */
-void Game::Tukushi::Mgr::doAlloc(void)
+void Tukushi::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -885,7 +877,7 @@ void Game::Tukushi::Mgr::doAlloc(void)
  * Address:	80354524
  * Size:	000020
  */
-void Game::Tukushi::Mgr::birth((Game::EnemyBirthArg&))
+void Tukushi::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -905,7 +897,7 @@ void Game::Tukushi::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354544
  * Size:	000064
  */
-void Game::Watage::Mgr::__ct((int, unsigned char))
+Watage::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -942,7 +934,7 @@ void Game::Watage::Mgr::__ct((int, unsigned char))
  * Address:	803545A8
  * Size:	000048
  */
-void Game::Watage::Mgr::doAlloc(void)
+void Watage::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -974,7 +966,7 @@ void Game::Watage::Mgr::doAlloc(void)
  * Address:	803545F0
  * Size:	000020
  */
-void Game::Watage::Mgr::birth((Game::EnemyBirthArg&))
+void Watage::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -994,7 +986,7 @@ void Game::Watage::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354610
  * Size:	000064
  */
-void Game::DiodeRed::Mgr::__ct((int, unsigned char))
+DiodeRed::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1031,7 +1023,7 @@ void Game::DiodeRed::Mgr::__ct((int, unsigned char))
  * Address:	80354674
  * Size:	000048
  */
-void Game::DiodeRed::Mgr::doAlloc(void)
+void DiodeRed::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1063,7 +1055,7 @@ void Game::DiodeRed::Mgr::doAlloc(void)
  * Address:	803546BC
  * Size:	000020
  */
-void Game::DiodeRed::Mgr::birth((Game::EnemyBirthArg&))
+void DiodeRed::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -1083,7 +1075,7 @@ void Game::DiodeRed::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	803546DC
  * Size:	000064
  */
-void Game::DiodeGreen::Mgr::__ct((int, unsigned char))
+DiodeGreen::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1112,7 @@ void Game::DiodeGreen::Mgr::__ct((int, unsigned char))
  * Address:	80354740
  * Size:	000048
  */
-void Game::DiodeGreen::Mgr::doAlloc(void)
+void DiodeGreen::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1152,7 +1144,7 @@ void Game::DiodeGreen::Mgr::doAlloc(void)
  * Address:	80354788
  * Size:	000020
  */
-void Game::DiodeGreen::Mgr::birth((Game::EnemyBirthArg&))
+void DiodeGreen::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -1172,7 +1164,7 @@ void Game::DiodeGreen::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	803547A8
  * Size:	000064
  */
-void Game::Margaret::Mgr::__ct((int, unsigned char))
+Margaret::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1209,7 +1201,7 @@ void Game::Margaret::Mgr::__ct((int, unsigned char))
  * Address:	8035480C
  * Size:	000048
  */
-void Game::Margaret::Mgr::doAlloc(void)
+void Margaret::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1241,7 +1233,7 @@ void Game::Margaret::Mgr::doAlloc(void)
  * Address:	80354854
  * Size:	000020
  */
-void Game::Margaret::Mgr::birth((Game::EnemyBirthArg&))
+void Margaret::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -1261,7 +1253,7 @@ void Game::Margaret::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354874
  * Size:	000064
  */
-void Game::Nekojarashi::Mgr::__ct((int, unsigned char))
+Nekojarashi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1298,7 +1290,7 @@ void Game::Nekojarashi::Mgr::__ct((int, unsigned char))
  * Address:	803548D8
  * Size:	000048
  */
-void Game::Nekojarashi::Mgr::doAlloc(void)
+void Nekojarashi::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1330,7 +1322,7 @@ void Game::Nekojarashi::Mgr::doAlloc(void)
  * Address:	80354920
  * Size:	000020
  */
-void Game::Nekojarashi::Mgr::birth((Game::EnemyBirthArg&))
+void Nekojarashi::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -1350,7 +1342,7 @@ void Game::Nekojarashi::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354940
  * Size:	000064
  */
-void Game::Chiyogami::Mgr::__ct((int, unsigned char))
+Chiyogami::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1387,7 +1379,7 @@ void Game::Chiyogami::Mgr::__ct((int, unsigned char))
  * Address:	803549A4
  * Size:	000048
  */
-void Game::Chiyogami::Mgr::doAlloc(void)
+void Chiyogami::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1419,7 +1411,7 @@ void Game::Chiyogami::Mgr::doAlloc(void)
  * Address:	803549EC
  * Size:	000020
  */
-void Game::Chiyogami::Mgr::birth((Game::EnemyBirthArg&))
+void Chiyogami::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -1439,7 +1431,7 @@ void Game::Chiyogami::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354A0C
  * Size:	000064
  */
-void Game::Zenmai::Mgr::__ct((int, unsigned char))
+Zenmai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1476,7 +1468,7 @@ void Game::Zenmai::Mgr::__ct((int, unsigned char))
  * Address:	80354A70
  * Size:	000048
  */
-void Game::Zenmai::Mgr::doAlloc(void)
+void Zenmai::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1508,7 +1500,7 @@ void Game::Zenmai::Mgr::doAlloc(void)
  * Address:	80354AB8
  * Size:	000020
  */
-void Game::Zenmai::Mgr::birth((Game::EnemyBirthArg&))
+void Zenmai::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -1528,7 +1520,7 @@ void Game::Zenmai::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80354AD8
  * Size:	0000C8
  */
-void Game::Zenmai::Mgr::__dt(void)
+Zenmai::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1594,14 +1586,14 @@ void Game::Zenmai::Mgr::__dt(void)
  * Address:	80354BA0
  * Size:	000008
  */
-u32 Game::Zenmai::Mgr::getEnemyTypeID(void) { return 0x5A; }
+u32 Zenmai::Mgr::getEnemyTypeID(void) { return 0x5A; }
 
 /*
  * --INFO--
  * Address:	80354BA8
  * Size:	00002C
  */
-void Game::Zenmai::Mgr::doLoadBmd((void*))
+void Zenmai::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -1624,7 +1616,7 @@ void Game::Zenmai::Mgr::doLoadBmd((void*))
  * Address:	80354BD4
  * Size:	000060
  */
-void Game::Zenmai::Mgr::createObj((int))
+void Zenmai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -1660,7 +1652,7 @@ void Game::Zenmai::Mgr::createObj((int))
  * Address:	80354C34
  * Size:	0000EC
  */
-void Game::Zenmai::Obj::__dt(void)
+Zenmai::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -1735,7 +1727,7 @@ void Game::Zenmai::Obj::__dt(void)
  * Address:	80354D20
  * Size:	000090
  */
-void Game::Zenmai::Obj::__ct(void)
+Zenmai::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -1785,7 +1777,7 @@ void Game::Zenmai::Obj::__ct(void)
  * Address:	80354DB0
  * Size:	0000BC
  */
-void Game::Plants::Obj::__dt(void)
+Plants::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -1848,7 +1840,7 @@ void Game::Plants::Obj::__dt(void)
  * Address:	80354E6C
  * Size:	000010
  */
-void Game::Zenmai::Mgr::getEnemy((int))
+void Zenmai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -1864,7 +1856,7 @@ void Game::Zenmai::Mgr::getEnemy((int))
  * Address:	80354E7C
  * Size:	000034
  */
-void Game::Zenmai::Obj::setParameters(void)
+void Zenmai::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -1889,7 +1881,7 @@ void Game::Zenmai::Obj::setParameters(void)
  * Address:	80354EB0
  * Size:	00006C
  */
-void Game::Zenmai::Obj::getLODCylinder((Sys::Cylinder&))
+void Zenmai::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -1928,49 +1920,49 @@ void Game::Zenmai::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80354F1C
  * Size:	000008
  */
-u32 Game::Zenmai::Obj::getEnemyTypeID(void) { return 0x5A; }
+u32 Zenmai::Obj::getEnemyTypeID(void) { return 0x5A; }
 
 /*
  * --INFO--
  * Address:	80354F24
  * Size:	000004
  */
-void Game::Plants::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void Plants::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	80354F28
  * Size:	000004
  */
-void Game::Plants::Obj::doUpdate(void) { }
+void Plants::Obj::doUpdate(void) { }
 
 /*
  * --INFO--
  * Address:	80354F2C
  * Size:	000004
  */
-void Game::Plants::Obj::doSimulation((float)) { }
+void Plants::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80354F30
  * Size:	000004
  */
-void Game::Plants::Obj::doUpdateCommon(void) { }
+void Plants::Obj::doUpdateCommon(void) { }
 
 /*
  * --INFO--
  * Address:	80354F34
  * Size:	000008
  */
-u32 Game::Plants::Obj::isLivingThing(void) { return 0x0; }
+u32 Plants::Obj::isLivingThing(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80354F3C
  * Size:	00004C
  */
-void Game::Plants::Obj::ignoreAtari((Game::Creature*))
+void Plants::Obj::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -2005,7 +1997,7 @@ void Game::Plants::Obj::ignoreAtari((Game::Creature*))
  * Address:	80354F88
  * Size:	0000C8
  */
-void Game::Chiyogami::Mgr::__dt(void)
+Chiyogami::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2071,14 +2063,14 @@ void Game::Chiyogami::Mgr::__dt(void)
  * Address:	80355050
  * Size:	000008
  */
-u32 Game::Chiyogami::Mgr::getEnemyTypeID(void) { return 0x59; }
+u32 Chiyogami::Mgr::getEnemyTypeID(void) { return 0x59; }
 
 /*
  * --INFO--
  * Address:	80355058
  * Size:	00002C
  */
-void Game::Chiyogami::Mgr::doLoadBmd((void*))
+void Chiyogami::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -2101,7 +2093,7 @@ void Game::Chiyogami::Mgr::doLoadBmd((void*))
  * Address:	80355084
  * Size:	000060
  */
-void Game::Chiyogami::Mgr::createObj((int))
+void Chiyogami::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -2137,7 +2129,7 @@ void Game::Chiyogami::Mgr::createObj((int))
  * Address:	803550E4
  * Size:	0000EC
  */
-void Game::Chiyogami::Obj::__dt(void)
+Chiyogami::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -2212,7 +2204,7 @@ void Game::Chiyogami::Obj::__dt(void)
  * Address:	803551D0
  * Size:	000090
  */
-void Game::Chiyogami::Obj::__ct(void)
+Chiyogami::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -2262,7 +2254,7 @@ void Game::Chiyogami::Obj::__ct(void)
  * Address:	80355260
  * Size:	000010
  */
-void Game::Chiyogami::Mgr::getEnemy((int))
+void Chiyogami::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -2278,7 +2270,7 @@ void Game::Chiyogami::Mgr::getEnemy((int))
  * Address:	80355270
  * Size:	000034
  */
-void Game::Chiyogami::Obj::setParameters(void)
+void Chiyogami::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -2303,7 +2295,7 @@ void Game::Chiyogami::Obj::setParameters(void)
  * Address:	803552A4
  * Size:	00006C
  */
-void Game::Chiyogami::Obj::getLODCylinder((Sys::Cylinder&))
+void Chiyogami::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -2342,14 +2334,14 @@ void Game::Chiyogami::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80355310
  * Size:	000008
  */
-u32 Game::Chiyogami::Obj::getEnemyTypeID(void) { return 0x59; }
+u32 Chiyogami::Obj::getEnemyTypeID(void) { return 0x59; }
 
 /*
  * --INFO--
  * Address:	80355318
  * Size:	0000C8
  */
-void Game::Nekojarashi::Mgr::__dt(void)
+Nekojarashi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2415,14 +2407,14 @@ void Game::Nekojarashi::Mgr::__dt(void)
  * Address:	803553E0
  * Size:	000008
  */
-u32 Game::Nekojarashi::Mgr::getEnemyTypeID(void) { return 0x58; }
+u32 Nekojarashi::Mgr::getEnemyTypeID(void) { return 0x58; }
 
 /*
  * --INFO--
  * Address:	803553E8
  * Size:	00002C
  */
-void Game::Nekojarashi::Mgr::doLoadBmd((void*))
+void Nekojarashi::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -2445,7 +2437,7 @@ void Game::Nekojarashi::Mgr::doLoadBmd((void*))
  * Address:	80355414
  * Size:	000060
  */
-void Game::Nekojarashi::Mgr::createObj((int))
+void Nekojarashi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -2481,7 +2473,7 @@ void Game::Nekojarashi::Mgr::createObj((int))
  * Address:	80355474
  * Size:	0000EC
  */
-void Game::Nekojarashi::Obj::__dt(void)
+Nekojarashi::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -2556,7 +2548,7 @@ void Game::Nekojarashi::Obj::__dt(void)
  * Address:	80355560
  * Size:	000090
  */
-void Game::Nekojarashi::Obj::__ct(void)
+Nekojarashi::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -2606,7 +2598,7 @@ void Game::Nekojarashi::Obj::__ct(void)
  * Address:	803555F0
  * Size:	000010
  */
-void Game::Nekojarashi::Mgr::getEnemy((int))
+void Nekojarashi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -2622,7 +2614,7 @@ void Game::Nekojarashi::Mgr::getEnemy((int))
  * Address:	80355600
  * Size:	0000C8
  */
-void Game::Margaret::Mgr::__dt(void)
+Margaret::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2688,14 +2680,14 @@ void Game::Margaret::Mgr::__dt(void)
  * Address:	803556C8
  * Size:	000008
  */
-u32 Game::Margaret::Mgr::getEnemyTypeID(void) { return 0x57; }
+u32 Margaret::Mgr::getEnemyTypeID(void) { return 0x57; }
 
 /*
  * --INFO--
  * Address:	803556D0
  * Size:	00002C
  */
-void Game::Margaret::Mgr::doLoadBmd((void*))
+void Margaret::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -2718,7 +2710,7 @@ void Game::Margaret::Mgr::doLoadBmd((void*))
  * Address:	803556FC
  * Size:	000060
  */
-void Game::Margaret::Mgr::createObj((int))
+void Margaret::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -2754,7 +2746,7 @@ void Game::Margaret::Mgr::createObj((int))
  * Address:	8035575C
  * Size:	0000EC
  */
-void Game::Margaret::Obj::__dt(void)
+Margaret::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -2829,7 +2821,7 @@ void Game::Margaret::Obj::__dt(void)
  * Address:	80355848
  * Size:	000090
  */
-void Game::Margaret::Obj::__ct(void)
+Margaret::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -2879,7 +2871,7 @@ void Game::Margaret::Obj::__ct(void)
  * Address:	803558D8
  * Size:	000010
  */
-void Game::Margaret::Mgr::getEnemy((int))
+void Margaret::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -2895,14 +2887,14 @@ void Game::Margaret::Mgr::getEnemy((int))
  * Address:	803558E8
  * Size:	000008
  */
-u32 Game::Margaret::Obj::getEnemyTypeID(void) { return 0x57; }
+u32 Margaret::Obj::getEnemyTypeID(void) { return 0x57; }
 
 /*
  * --INFO--
  * Address:	803558F0
  * Size:	0000C8
  */
-void Game::DiodeGreen::Mgr::__dt(void)
+DiodeGreen::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2968,14 +2960,14 @@ void Game::DiodeGreen::Mgr::__dt(void)
  * Address:	803559B8
  * Size:	000008
  */
-u32 Game::DiodeGreen::Mgr::getEnemyTypeID(void) { return 0x56; }
+u32 DiodeGreen::Mgr::getEnemyTypeID(void) { return 0x56; }
 
 /*
  * --INFO--
  * Address:	803559C0
  * Size:	0000BC
  */
-void Game::DiodeGreen::Mgr::loadModelData(void)
+void DiodeGreen::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -3042,7 +3034,7 @@ void Game::DiodeGreen::Mgr::loadModelData(void)
  * Address:	80355A7C
  * Size:	00002C
  */
-void Game::DiodeGreen::Mgr::doLoadBmd((void*))
+void DiodeGreen::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -3065,7 +3057,7 @@ void Game::DiodeGreen::Mgr::doLoadBmd((void*))
  * Address:	80355AA8
  * Size:	000060
  */
-void Game::DiodeGreen::Mgr::createObj((int))
+void DiodeGreen::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -3101,7 +3093,7 @@ void Game::DiodeGreen::Mgr::createObj((int))
  * Address:	80355B08
  * Size:	0000EC
  */
-void Game::DiodeGreen::Obj::__dt(void)
+DiodeGreen::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -3176,7 +3168,7 @@ void Game::DiodeGreen::Obj::__dt(void)
  * Address:	80355BF4
  * Size:	000090
  */
-void Game::DiodeGreen::Obj::__ct(void)
+DiodeGreen::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -3226,7 +3218,7 @@ void Game::DiodeGreen::Obj::__ct(void)
  * Address:	80355C84
  * Size:	000010
  */
-void Game::DiodeGreen::Mgr::getEnemy((int))
+void DiodeGreen::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -3242,7 +3234,7 @@ void Game::DiodeGreen::Mgr::getEnemy((int))
  * Address:	80355C94
  * Size:	0000C8
  */
-void Game::DiodeRed::Mgr::__dt(void)
+DiodeRed::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -3308,14 +3300,14 @@ void Game::DiodeRed::Mgr::__dt(void)
  * Address:	80355D5C
  * Size:	000008
  */
-u32 Game::DiodeRed::Mgr::getEnemyTypeID(void) { return 0x55; }
+u32 DiodeRed::Mgr::getEnemyTypeID(void) { return 0x55; }
 
 /*
  * --INFO--
  * Address:	80355D64
  * Size:	0000BC
  */
-void Game::DiodeRed::Mgr::loadModelData(void)
+void DiodeRed::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -3382,7 +3374,7 @@ void Game::DiodeRed::Mgr::loadModelData(void)
  * Address:	80355E20
  * Size:	00002C
  */
-void Game::DiodeRed::Mgr::doLoadBmd((void*))
+void DiodeRed::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -3405,7 +3397,7 @@ void Game::DiodeRed::Mgr::doLoadBmd((void*))
  * Address:	80355E4C
  * Size:	000060
  */
-void Game::DiodeRed::Mgr::createObj((int))
+void DiodeRed::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -3441,7 +3433,7 @@ void Game::DiodeRed::Mgr::createObj((int))
  * Address:	80355EAC
  * Size:	0000EC
  */
-void Game::DiodeRed::Obj::__dt(void)
+DiodeRed::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -3516,7 +3508,7 @@ void Game::DiodeRed::Obj::__dt(void)
  * Address:	80355F98
  * Size:	000090
  */
-void Game::DiodeRed::Obj::__ct(void)
+DiodeRed::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -3566,7 +3558,7 @@ void Game::DiodeRed::Obj::__ct(void)
  * Address:	80356028
  * Size:	000010
  */
-void Game::DiodeRed::Mgr::getEnemy((int))
+void DiodeRed::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -3582,7 +3574,7 @@ void Game::DiodeRed::Mgr::getEnemy((int))
  * Address:	80356038
  * Size:	0000C8
  */
-void Game::Watage::Mgr::__dt(void)
+Watage::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -3648,14 +3640,14 @@ void Game::Watage::Mgr::__dt(void)
  * Address:	80356100
  * Size:	000008
  */
-u32 Game::Watage::Mgr::getEnemyTypeID(void) { return 0x51; }
+u32 Watage::Mgr::getEnemyTypeID(void) { return 0x51; }
 
 /*
  * --INFO--
  * Address:	80356108
  * Size:	00002C
  */
-void Game::Watage::Mgr::doLoadBmd((void*))
+void Watage::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -3678,7 +3670,7 @@ void Game::Watage::Mgr::doLoadBmd((void*))
  * Address:	80356134
  * Size:	000060
  */
-void Game::Watage::Mgr::createObj((int))
+void Watage::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -3714,7 +3706,7 @@ void Game::Watage::Mgr::createObj((int))
  * Address:	80356194
  * Size:	0000EC
  */
-void Game::Watage::Obj::__dt(void)
+Watage::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -3789,7 +3781,7 @@ void Game::Watage::Obj::__dt(void)
  * Address:	80356280
  * Size:	000090
  */
-void Game::Watage::Obj::__ct(void)
+Watage::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -3839,7 +3831,7 @@ void Game::Watage::Obj::__ct(void)
  * Address:	80356310
  * Size:	000010
  */
-void Game::Watage::Mgr::getEnemy((int))
+void Watage::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -3855,7 +3847,7 @@ void Game::Watage::Mgr::getEnemy((int))
  * Address:	80356320
  * Size:	0000C8
  */
-void Game::Tukushi::Mgr::__dt(void)
+Tukushi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -3921,14 +3913,14 @@ void Game::Tukushi::Mgr::__dt(void)
  * Address:	803563E8
  * Size:	000008
  */
-u32 Game::Tukushi::Mgr::getEnemyTypeID(void) { return 0x50; }
+u32 Tukushi::Mgr::getEnemyTypeID(void) { return 0x50; }
 
 /*
  * --INFO--
  * Address:	803563F0
  * Size:	00002C
  */
-void Game::Tukushi::Mgr::doLoadBmd((void*))
+void Tukushi::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -3951,7 +3943,7 @@ void Game::Tukushi::Mgr::doLoadBmd((void*))
  * Address:	8035641C
  * Size:	000060
  */
-void Game::Tukushi::Mgr::createObj((int))
+void Tukushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -3987,7 +3979,7 @@ void Game::Tukushi::Mgr::createObj((int))
  * Address:	8035647C
  * Size:	0000EC
  */
-void Game::Tukushi::Obj::__dt(void)
+Tukushi::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -4062,7 +4054,7 @@ void Game::Tukushi::Obj::__dt(void)
  * Address:	80356568
  * Size:	000090
  */
-void Game::Tukushi::Obj::__ct(void)
+Tukushi::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -4112,7 +4104,7 @@ void Game::Tukushi::Obj::__ct(void)
  * Address:	803565F8
  * Size:	000010
  */
-void Game::Tukushi::Mgr::getEnemy((int))
+void Tukushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -4128,7 +4120,7 @@ void Game::Tukushi::Mgr::getEnemy((int))
  * Address:	80356608
  * Size:	000034
  */
-void Game::Tukushi::Obj::setParameters(void)
+void Tukushi::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -4153,7 +4145,7 @@ void Game::Tukushi::Obj::setParameters(void)
  * Address:	8035663C
  * Size:	00006C
  */
-void Game::Tukushi::Obj::getLODCylinder((Sys::Cylinder&))
+void Tukushi::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -4192,14 +4184,14 @@ void Game::Tukushi::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	803566A8
  * Size:	000008
  */
-u32 Game::Tukushi::Obj::getEnemyTypeID(void) { return 0x50; }
+u32 Tukushi::Obj::getEnemyTypeID(void) { return 0x50; }
 
 /*
  * --INFO--
  * Address:	803566B0
  * Size:	0000C8
  */
-void Game::Wakame_l::Mgr::__dt(void)
+Wakame_l::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -4265,14 +4257,14 @@ void Game::Wakame_l::Mgr::__dt(void)
  * Address:	80356778
  * Size:	000008
  */
-u32 Game::Wakame_l::Mgr::getEnemyTypeID(void) { return 0x34; }
+u32 Wakame_l::Mgr::getEnemyTypeID(void) { return 0x34; }
 
 /*
  * --INFO--
  * Address:	80356780
  * Size:	00002C
  */
-void Game::Wakame_l::Mgr::doLoadBmd((void*))
+void Wakame_l::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -4295,7 +4287,7 @@ void Game::Wakame_l::Mgr::doLoadBmd((void*))
  * Address:	803567AC
  * Size:	000060
  */
-void Game::Wakame_l::Mgr::createObj((int))
+void Wakame_l::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -4331,7 +4323,7 @@ void Game::Wakame_l::Mgr::createObj((int))
  * Address:	8035680C
  * Size:	0000EC
  */
-void Game::Wakame_l::Obj::__dt(void)
+Wakame_l::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -4406,7 +4398,7 @@ void Game::Wakame_l::Obj::__dt(void)
  * Address:	803568F8
  * Size:	000090
  */
-void Game::Wakame_l::Obj::__ct(void)
+Wakame_l::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -4456,7 +4448,7 @@ void Game::Wakame_l::Obj::__ct(void)
  * Address:	80356988
  * Size:	000010
  */
-void Game::Wakame_l::Mgr::getEnemy((int))
+void Wakame_l::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -4472,7 +4464,7 @@ void Game::Wakame_l::Mgr::getEnemy((int))
  * Address:	80356998
  * Size:	000034
  */
-void Game::Wakame_l::Obj::setParameters(void)
+void Wakame_l::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -4497,7 +4489,7 @@ void Game::Wakame_l::Obj::setParameters(void)
  * Address:	803569CC
  * Size:	00006C
  */
-void Game::Wakame_l::Obj::getLODCylinder((Sys::Cylinder&))
+void Wakame_l::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -4536,14 +4528,14 @@ void Game::Wakame_l::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80356A38
  * Size:	000008
  */
-u32 Game::Wakame_l::Obj::getEnemyTypeID(void) { return 0x34; }
+u32 Wakame_l::Obj::getEnemyTypeID(void) { return 0x34; }
 
 /*
  * --INFO--
  * Address:	80356A40
  * Size:	0000C8
  */
-void Game::Wakame_s::Mgr::__dt(void)
+Wakame_s::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -4609,14 +4601,14 @@ void Game::Wakame_s::Mgr::__dt(void)
  * Address:	80356B08
  * Size:	000008
  */
-u32 Game::Wakame_s::Mgr::getEnemyTypeID(void) { return 0x33; }
+u32 Wakame_s::Mgr::getEnemyTypeID(void) { return 0x33; }
 
 /*
  * --INFO--
  * Address:	80356B10
  * Size:	00002C
  */
-void Game::Wakame_s::Mgr::doLoadBmd((void*))
+void Wakame_s::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -4639,7 +4631,7 @@ void Game::Wakame_s::Mgr::doLoadBmd((void*))
  * Address:	80356B3C
  * Size:	000060
  */
-void Game::Wakame_s::Mgr::createObj((int))
+void Wakame_s::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -4675,7 +4667,7 @@ void Game::Wakame_s::Mgr::createObj((int))
  * Address:	80356B9C
  * Size:	0000EC
  */
-void Game::Wakame_s::Obj::__dt(void)
+Wakame_s::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -4750,7 +4742,7 @@ void Game::Wakame_s::Obj::__dt(void)
  * Address:	80356C88
  * Size:	000090
  */
-void Game::Wakame_s::Obj::__ct(void)
+Wakame_s::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -4800,7 +4792,7 @@ void Game::Wakame_s::Obj::__ct(void)
  * Address:	80356D18
  * Size:	000010
  */
-void Game::Wakame_s::Mgr::getEnemy((int))
+void Wakame_s::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -4816,7 +4808,7 @@ void Game::Wakame_s::Mgr::getEnemy((int))
  * Address:	80356D28
  * Size:	000034
  */
-void Game::Wakame_s::Obj::setParameters(void)
+void Wakame_s::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -4841,7 +4833,7 @@ void Game::Wakame_s::Obj::setParameters(void)
  * Address:	80356D5C
  * Size:	00006C
  */
-void Game::Wakame_s::Obj::getLODCylinder((Sys::Cylinder&))
+void Wakame_s::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -4880,14 +4872,14 @@ void Game::Wakame_s::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80356DC8
  * Size:	000008
  */
-u32 Game::Wakame_s::Obj::getEnemyTypeID(void) { return 0x33; }
+u32 Wakame_s::Obj::getEnemyTypeID(void) { return 0x33; }
 
 /*
  * --INFO--
  * Address:	80356DD0
  * Size:	0000C8
  */
-void Game::KareOoinu_l::Mgr::__dt(void)
+KareOoinu_l::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -4953,14 +4945,14 @@ void Game::KareOoinu_l::Mgr::__dt(void)
  * Address:	80356E98
  * Size:	000008
  */
-u32 Game::KareOoinu_l::Mgr::getEnemyTypeID(void) { return 0x5C; }
+u32 KareOoinu_l::Mgr::getEnemyTypeID(void) { return 0x5C; }
 
 /*
  * --INFO--
  * Address:	80356EA0
  * Size:	00002C
  */
-void Game::KareOoinu_l::Mgr::doLoadBmd((void*))
+void KareOoinu_l::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -4983,7 +4975,7 @@ void Game::KareOoinu_l::Mgr::doLoadBmd((void*))
  * Address:	80356ECC
  * Size:	000060
  */
-void Game::KareOoinu_l::Mgr::createObj((int))
+void KareOoinu_l::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -5019,7 +5011,7 @@ void Game::KareOoinu_l::Mgr::createObj((int))
  * Address:	80356F2C
  * Size:	0000EC
  */
-void Game::KareOoinu_l::Obj::__dt(void)
+KareOoinu_l::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5094,7 +5086,7 @@ void Game::KareOoinu_l::Obj::__dt(void)
  * Address:	80357018
  * Size:	000090
  */
-void Game::KareOoinu_l::Obj::__ct(void)
+KareOoinu_l::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5144,7 +5136,7 @@ void Game::KareOoinu_l::Obj::__ct(void)
  * Address:	803570A8
  * Size:	000010
  */
-void Game::KareOoinu_l::Mgr::getEnemy((int))
+void KareOoinu_l::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -5160,14 +5152,14 @@ void Game::KareOoinu_l::Mgr::getEnemy((int))
  * Address:	803570B8
  * Size:	000008
  */
-u32 Game::KareOoinu_l::Obj::getEnemyTypeID(void) { return 0x5C; }
+u32 KareOoinu_l::Obj::getEnemyTypeID(void) { return 0x5C; }
 
 /*
  * --INFO--
  * Address:	803570C0
  * Size:	0000C8
  */
-void Game::Ooinu_l::Mgr::__dt(void)
+Ooinu_l::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5233,14 +5225,14 @@ void Game::Ooinu_l::Mgr::__dt(void)
  * Address:	80357188
  * Size:	000008
  */
-u32 Game::Ooinu_l::Mgr::getEnemyTypeID(void) { return 0x32; }
+u32 Ooinu_l::Mgr::getEnemyTypeID(void) { return 0x32; }
 
 /*
  * --INFO--
  * Address:	80357190
  * Size:	00002C
  */
-void Game::Ooinu_l::Mgr::doLoadBmd((void*))
+void Ooinu_l::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -5263,7 +5255,7 @@ void Game::Ooinu_l::Mgr::doLoadBmd((void*))
  * Address:	803571BC
  * Size:	000060
  */
-void Game::Ooinu_l::Mgr::createObj((int))
+void Ooinu_l::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -5299,7 +5291,7 @@ void Game::Ooinu_l::Mgr::createObj((int))
  * Address:	8035721C
  * Size:	0000EC
  */
-void Game::Ooinu_l::Obj::__dt(void)
+Ooinu_l::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5374,7 +5366,7 @@ void Game::Ooinu_l::Obj::__dt(void)
  * Address:	80357308
  * Size:	000090
  */
-void Game::Ooinu_l::Obj::__ct(void)
+Ooinu_l::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5424,7 +5416,7 @@ void Game::Ooinu_l::Obj::__ct(void)
  * Address:	80357398
  * Size:	000010
  */
-void Game::Ooinu_l::Mgr::getEnemy((int))
+void Ooinu_l::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -5440,14 +5432,14 @@ void Game::Ooinu_l::Mgr::getEnemy((int))
  * Address:	803573A8
  * Size:	000008
  */
-u32 Game::Ooinu_l::Obj::getEnemyTypeID(void) { return 0x32; }
+u32 Ooinu_l::Obj::getEnemyTypeID(void) { return 0x32; }
 
 /*
  * --INFO--
  * Address:	803573B0
  * Size:	0000C8
  */
-void Game::KareOoinu_s::Mgr::__dt(void)
+KareOoinu_s::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5513,14 +5505,14 @@ void Game::KareOoinu_s::Mgr::__dt(void)
  * Address:	80357478
  * Size:	000008
  */
-u32 Game::KareOoinu_s::Mgr::getEnemyTypeID(void) { return 0x5B; }
+u32 KareOoinu_s::Mgr::getEnemyTypeID(void) { return 0x5B; }
 
 /*
  * --INFO--
  * Address:	80357480
  * Size:	00002C
  */
-void Game::KareOoinu_s::Mgr::doLoadBmd((void*))
+void KareOoinu_s::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -5543,7 +5535,7 @@ void Game::KareOoinu_s::Mgr::doLoadBmd((void*))
  * Address:	803574AC
  * Size:	000060
  */
-void Game::KareOoinu_s::Mgr::createObj((int))
+void KareOoinu_s::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -5579,7 +5571,7 @@ void Game::KareOoinu_s::Mgr::createObj((int))
  * Address:	8035750C
  * Size:	0000EC
  */
-void Game::KareOoinu_s::Obj::__dt(void)
+KareOoinu_s::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5654,7 +5646,7 @@ void Game::KareOoinu_s::Obj::__dt(void)
  * Address:	803575F8
  * Size:	000090
  */
-void Game::KareOoinu_s::Obj::__ct(void)
+KareOoinu_s::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5704,7 +5696,7 @@ void Game::KareOoinu_s::Obj::__ct(void)
  * Address:	80357688
  * Size:	000010
  */
-void Game::KareOoinu_s::Mgr::getEnemy((int))
+void KareOoinu_s::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -5720,14 +5712,14 @@ void Game::KareOoinu_s::Mgr::getEnemy((int))
  * Address:	80357698
  * Size:	000008
  */
-u32 Game::KareOoinu_s::Obj::getEnemyTypeID(void) { return 0x5B; }
+u32 KareOoinu_s::Obj::getEnemyTypeID(void) { return 0x5B; }
 
 /*
  * --INFO--
  * Address:	803576A0
  * Size:	0000C8
  */
-void Game::Ooinu_s::Mgr::__dt(void)
+Ooinu_s::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5793,14 +5785,14 @@ void Game::Ooinu_s::Mgr::__dt(void)
  * Address:	80357768
  * Size:	000008
  */
-u32 Game::Ooinu_s::Mgr::getEnemyTypeID(void) { return 0x31; }
+u32 Ooinu_s::Mgr::getEnemyTypeID(void) { return 0x31; }
 
 /*
  * --INFO--
  * Address:	80357770
  * Size:	00002C
  */
-void Game::Ooinu_s::Mgr::doLoadBmd((void*))
+void Ooinu_s::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -5823,7 +5815,7 @@ void Game::Ooinu_s::Mgr::doLoadBmd((void*))
  * Address:	8035779C
  * Size:	000060
  */
-void Game::Ooinu_s::Mgr::createObj((int))
+void Ooinu_s::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -5859,7 +5851,7 @@ void Game::Ooinu_s::Mgr::createObj((int))
  * Address:	803577FC
  * Size:	0000EC
  */
-void Game::Ooinu_s::Obj::__dt(void)
+Ooinu_s::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5934,7 +5926,7 @@ void Game::Ooinu_s::Obj::__dt(void)
  * Address:	803578E8
  * Size:	000090
  */
-void Game::Ooinu_s::Obj::__ct(void)
+Ooinu_s::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -5984,7 +5976,7 @@ void Game::Ooinu_s::Obj::__ct(void)
  * Address:	80357978
  * Size:	000010
  */
-void Game::Ooinu_s::Mgr::getEnemy((int))
+void Ooinu_s::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -6000,14 +5992,14 @@ void Game::Ooinu_s::Mgr::getEnemy((int))
  * Address:	80357988
  * Size:	000008
  */
-u32 Game::Ooinu_s::Obj::getEnemyTypeID(void) { return 0x31; }
+u32 Ooinu_s::Obj::getEnemyTypeID(void) { return 0x31; }
 
 /*
  * --INFO--
  * Address:	80357990
  * Size:	0000C8
  */
-void Game::HikariKinoko::Mgr::__dt(void)
+HikariKinoko::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6073,14 +6065,14 @@ void Game::HikariKinoko::Mgr::__dt(void)
  * Address:	80357A58
  * Size:	000008
  */
-u32 Game::HikariKinoko::Mgr::getEnemyTypeID(void) { return 0x30; }
+u32 HikariKinoko::Mgr::getEnemyTypeID(void) { return 0x30; }
 
 /*
  * --INFO--
  * Address:	80357A60
  * Size:	00002C
  */
-void Game::HikariKinoko::Mgr::doLoadBmd((void*))
+void HikariKinoko::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -6103,7 +6095,7 @@ void Game::HikariKinoko::Mgr::doLoadBmd((void*))
  * Address:	80357A8C
  * Size:	000060
  */
-void Game::HikariKinoko::Mgr::createObj((int))
+void HikariKinoko::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -6139,7 +6131,7 @@ void Game::HikariKinoko::Mgr::createObj((int))
  * Address:	80357AEC
  * Size:	0000EC
  */
-void Game::HikariKinoko::Obj::__dt(void)
+HikariKinoko::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -6214,7 +6206,7 @@ void Game::HikariKinoko::Obj::__dt(void)
  * Address:	80357BD8
  * Size:	000090
  */
-void Game::HikariKinoko::Obj::__ct(void)
+HikariKinoko::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -6264,7 +6256,7 @@ void Game::HikariKinoko::Obj::__ct(void)
  * Address:	80357C68
  * Size:	000010
  */
-void Game::HikariKinoko::Mgr::getEnemy((int))
+void HikariKinoko::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -6280,7 +6272,7 @@ void Game::HikariKinoko::Mgr::getEnemy((int))
  * Address:	80357C78
  * Size:	0000C8
  */
-void Game::Clover::Mgr::__dt(void)
+Clover::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6346,14 +6338,14 @@ void Game::Clover::Mgr::__dt(void)
  * Address:	80357D40
  * Size:	000008
  */
-u32 Game::Clover::Mgr::getEnemyTypeID(void) { return 0x2F; }
+u32 Clover::Mgr::getEnemyTypeID(void) { return 0x2F; }
 
 /*
  * --INFO--
  * Address:	80357D48
  * Size:	00002C
  */
-void Game::Clover::Mgr::doLoadBmd((void*))
+void Clover::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -6376,7 +6368,7 @@ void Game::Clover::Mgr::doLoadBmd((void*))
  * Address:	80357D74
  * Size:	000060
  */
-void Game::Clover::Mgr::createObj((int))
+void Clover::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -6412,7 +6404,7 @@ void Game::Clover::Mgr::createObj((int))
  * Address:	80357DD4
  * Size:	0000EC
  */
-void Game::Clover::Obj::__dt(void)
+Clover::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -6487,7 +6479,7 @@ void Game::Clover::Obj::__dt(void)
  * Address:	80357EC0
  * Size:	000090
  */
-void Game::Clover::Obj::__ct(void)
+Clover::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -6537,7 +6529,7 @@ void Game::Clover::Obj::__ct(void)
  * Address:	80357F50
  * Size:	000010
  */
-void Game::Clover::Mgr::getEnemy((int))
+void Clover::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -6553,14 +6545,14 @@ void Game::Clover::Mgr::getEnemy((int))
  * Address:	80357F60
  * Size:	000008
  */
-u32 Game::Clover::Obj::getEnemyTypeID(void) { return 0x2F; }
+u32 Clover::Obj::getEnemyTypeID(void) { return 0x2F; }
 
 /*
  * --INFO--
  * Address:	80357F68
  * Size:	0000C8
  */
-void Game::Tanpopo::Mgr::__dt(void)
+Tanpopo::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6626,14 +6618,14 @@ void Game::Tanpopo::Mgr::__dt(void)
  * Address:	80358030
  * Size:	000008
  */
-u32 Game::Tanpopo::Mgr::getEnemyTypeID(void) { return 0x2E; }
+u32 Tanpopo::Mgr::getEnemyTypeID(void) { return 0x2E; }
 
 /*
  * --INFO--
  * Address:	80358038
  * Size:	00002C
  */
-void Game::Tanpopo::Mgr::doLoadBmd((void*))
+void Tanpopo::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -6656,7 +6648,7 @@ void Game::Tanpopo::Mgr::doLoadBmd((void*))
  * Address:	80358064
  * Size:	000060
  */
-void Game::Tanpopo::Mgr::createObj((int))
+void Tanpopo::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -6692,7 +6684,7 @@ void Game::Tanpopo::Mgr::createObj((int))
  * Address:	803580C4
  * Size:	0000EC
  */
-void Game::Tanpopo::Obj::__dt(void)
+Tanpopo::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -6767,7 +6759,7 @@ void Game::Tanpopo::Obj::__dt(void)
  * Address:	803581B0
  * Size:	000090
  */
-void Game::Tanpopo::Obj::__ct(void)
+Tanpopo::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -6817,7 +6809,7 @@ void Game::Tanpopo::Obj::__ct(void)
  * Address:	80358240
  * Size:	000010
  */
-void Game::Tanpopo::Mgr::getEnemy((int))
+void Tanpopo::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -6833,14 +6825,14 @@ void Game::Tanpopo::Mgr::getEnemy((int))
  * Address:	80358250
  * Size:	000008
  */
-u32 Game::Tanpopo::Obj::getEnemyTypeID(void) { return 0x2E; }
+u32 Tanpopo::Obj::getEnemyTypeID(void) { return 0x2E; }
 
 /*
  * --INFO--
  * Address:	80358258
  * Size:	000008
  */
-void @4 @Game::Tanpopo::Mgr::__dt(void)
+@4 @Game::Tanpopo::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6854,7 +6846,7 @@ void @4 @Game::Tanpopo::Mgr::__dt(void)
  * Address:	80358260
  * Size:	000008
  */
-void @4 @Game::Clover::Mgr::__dt(void)
+@4 @Game::Clover::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6868,7 +6860,7 @@ void @4 @Game::Clover::Mgr::__dt(void)
  * Address:	80358268
  * Size:	000008
  */
-void @4 @Game::HikariKinoko::Mgr::__dt(void)
+@4 @Game::HikariKinoko::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6882,7 +6874,7 @@ void @4 @Game::HikariKinoko::Mgr::__dt(void)
  * Address:	80358270
  * Size:	000008
  */
-void @4 @Game::Ooinu_s::Mgr::__dt(void)
+@4 @Game::Ooinu_s::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6896,7 +6888,7 @@ void @4 @Game::Ooinu_s::Mgr::__dt(void)
  * Address:	80358278
  * Size:	000008
  */
-void @4 @Game::KareOoinu_s::Mgr::__dt(void)
+@4 @Game::KareOoinu_s::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6910,7 +6902,7 @@ void @4 @Game::KareOoinu_s::Mgr::__dt(void)
  * Address:	80358280
  * Size:	000008
  */
-void @4 @Game::Ooinu_l::Mgr::__dt(void)
+@4 @Game::Ooinu_l::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6924,7 +6916,7 @@ void @4 @Game::Ooinu_l::Mgr::__dt(void)
  * Address:	80358288
  * Size:	000008
  */
-void @4 @Game::KareOoinu_l::Mgr::__dt(void)
+@4 @Game::KareOoinu_l::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6938,7 +6930,7 @@ void @4 @Game::KareOoinu_l::Mgr::__dt(void)
  * Address:	80358290
  * Size:	000008
  */
-void @4 @Game::Wakame_s::Mgr::__dt(void)
+@4 @Game::Wakame_s::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6952,7 +6944,7 @@ void @4 @Game::Wakame_s::Mgr::__dt(void)
  * Address:	80358298
  * Size:	000008
  */
-void @4 @Game::Wakame_l::Mgr::__dt(void)
+@4 @Game::Wakame_l::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6966,7 +6958,7 @@ void @4 @Game::Wakame_l::Mgr::__dt(void)
  * Address:	803582A0
  * Size:	000008
  */
-void @4 @Game::Tukushi::Mgr::__dt(void)
+@4 @Game::Tukushi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6980,7 +6972,7 @@ void @4 @Game::Tukushi::Mgr::__dt(void)
  * Address:	803582A8
  * Size:	000008
  */
-void @4 @Game::Watage::Mgr::__dt(void)
+@4 @Game::Watage::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -6994,7 +6986,7 @@ void @4 @Game::Watage::Mgr::__dt(void)
  * Address:	803582B0
  * Size:	000008
  */
-void @4 @Game::DiodeRed::Mgr::__dt(void)
+@4 @Game::DiodeRed::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7008,7 +7000,7 @@ void @4 @Game::DiodeRed::Mgr::__dt(void)
  * Address:	803582B8
  * Size:	000008
  */
-void @4 @Game::DiodeGreen::Mgr::__dt(void)
+@4 @Game::DiodeGreen::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7022,7 +7014,7 @@ void @4 @Game::DiodeGreen::Mgr::__dt(void)
  * Address:	803582C0
  * Size:	000008
  */
-void @4 @Game::Margaret::Mgr::__dt(void)
+@4 @Game::Margaret::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7036,7 +7028,7 @@ void @4 @Game::Margaret::Mgr::__dt(void)
  * Address:	803582C8
  * Size:	000008
  */
-void @4 @Game::Nekojarashi::Mgr::__dt(void)
+@4 @Game::Nekojarashi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7050,7 +7042,7 @@ void @4 @Game::Nekojarashi::Mgr::__dt(void)
  * Address:	803582D0
  * Size:	000008
  */
-void @4 @Game::Chiyogami::Mgr::__dt(void)
+@4 @Game::Chiyogami::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7058,6 +7050,8 @@ void @4 @Game::Chiyogami::Mgr::__dt(void)
 	  b         -0x334C
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -7166,7 +7160,7 @@ void @704 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80358350
  * Size:	000008
  */
-void @4 @Game::Zenmai::Mgr::__dt(void)
+@4 @Game::Zenmai::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

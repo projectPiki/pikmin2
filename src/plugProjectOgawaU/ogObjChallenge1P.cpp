@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80327D48
  * Size:	000074
  */
-void og::newScreen::ObjChallenge1P::__ct((char const*))
+newScreen::ObjChallenge1P::ObjChallenge1P(char const*)
 {
 	/*
 	.loc_0x0:
@@ -56,7 +48,7 @@ void og::newScreen::ObjChallenge1P::__ct((char const*))
  * Address:	80327DBC
  * Size:	000068
  */
-void og::newScreen::ObjChallenge1P::__dt(void)
+newScreen::ObjChallenge1P::~ObjChallenge1P(void)
 {
 	/*
 	.loc_0x0:
@@ -96,7 +88,7 @@ void og::newScreen::ObjChallenge1P::__dt(void)
  * Address:	80327E24
  * Size:	000678
  */
-void og::newScreen::ObjChallenge1P::doCreate((JKRArchive*))
+void newScreen::ObjChallenge1P::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -548,7 +540,7 @@ void og::newScreen::ObjChallenge1P::doCreate((JKRArchive*))
  * Address:	........
  * Size:	0001CC
  */
-void og::newScreen::ObjChallenge1P::commonUpdate(void)
+void newScreen::ObjChallenge1P::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -558,7 +550,7 @@ void og::newScreen::ObjChallenge1P::commonUpdate(void)
  * Address:	8032849C
  * Size:	0001D4
  */
-void og::newScreen::ObjChallenge1P::doUpdate(void)
+void newScreen::ObjChallenge1P::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -695,7 +687,7 @@ void og::newScreen::ObjChallenge1P::doUpdate(void)
  * Address:	80328670
  * Size:	000030
  */
-void og::newScreen::ObjChallenge1P::doDraw((Graphics&))
+void newScreen::ObjChallenge1P::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -721,7 +713,7 @@ void og::newScreen::ObjChallenge1P::doDraw((Graphics&))
  * Address:	803286A0
  * Size:	000228
  */
-void og::newScreen::ObjChallenge1P::doUpdateFadein(void)
+void newScreen::ObjChallenge1P::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -881,14 +873,14 @@ void og::newScreen::ObjChallenge1P::doUpdateFadein(void)
  * Address:	803288C8
  * Size:	000004
  */
-void og::newScreen::ObjChallenge1P::doUpdateFadeinFinish(void) { }
+void newScreen::ObjChallenge1P::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	803288CC
  * Size:	00000C
  */
-void og::newScreen::ObjChallenge1P::doUpdateFinish(void)
+void newScreen::ObjChallenge1P::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -903,7 +895,7 @@ void og::newScreen::ObjChallenge1P::doUpdateFinish(void)
  * Address:	803288D8
  * Size:	000230
  */
-void og::newScreen::ObjChallenge1P::doUpdateFadeout(void)
+void newScreen::ObjChallenge1P::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -1065,14 +1057,14 @@ void og::newScreen::ObjChallenge1P::doUpdateFadeout(void)
  * Address:	80328B08
  * Size:	000004
  */
-void og::newScreen::ObjChallenge1P::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjChallenge1P::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80328B0C
  * Size:	000074
  */
-void og::newScreen::ObjChallenge1P::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjChallenge1P::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1111,6 +1103,8 @@ void og::newScreen::ObjChallenge1P::doStart((Screen::StartSceneArg const*))
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -1171,7 +1165,7 @@ void __sinit_ogObjChallenge1P_cpp(void)
  * Address:	80328C28
  * Size:	000008
  */
-void @24 @og::newScreen::ObjChallenge1P::__dt(void)
+@24 @og::newScreen::ObjChallenge1P::~ObjChallenge1P(void)
 {
 	/*
 	.loc_0x0:

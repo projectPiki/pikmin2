@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8005EB80
  * Size:	000068
  */
-void J3DVertexData::J3DVertexData()
+J3DVertexData::J3DVertexData()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +113,7 @@ void J3DVertexBuffer::init()
  * Address:	8005ECA0
  * Size:	00003C
  */
-void J3DVertexBuffer::~J3DVertexBuffer()
+J3DVertexBuffer::~J3DVertexBuffer()
 {
 	/*
 	.loc_0x0:
@@ -263,7 +263,7 @@ void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag)
  * Address:	8005EE28
  * Size:	000014
  */
-void J3DDrawMtxData::J3DDrawMtxData()
+J3DDrawMtxData::J3DDrawMtxData()
 {
 	/*
 	.loc_0x0:
@@ -280,7 +280,7 @@ void J3DDrawMtxData::J3DDrawMtxData()
  * Address:	8005EE3C
  * Size:	00003C
  */
-void J3DDrawMtxData::~J3DDrawMtxData()
+J3DDrawMtxData::~J3DDrawMtxData()
 {
 	/*
 	.loc_0x0:

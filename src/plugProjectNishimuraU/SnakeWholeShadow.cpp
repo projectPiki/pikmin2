@@ -1,13 +1,14 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F89AC
  * Size:	00022C
  */
-void Game::SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&,
-                                                   Vector3<float>&,
-                                                   Vector3<float>&)
+void SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&, Vector3f&,
+                                             Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -164,8 +165,8 @@ void Game::SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&,
  * Address:	802F8BD8
  * Size:	00012C
  */
-void Game::SnakeWholeSphereShadowNode::makeShadowSRT(Game::JointShadowParm&,
-                                                     Vector3<float>&)
+void SnakeWholeSphereShadowNode::makeShadowSRT(Game::JointShadowParm&,
+                                               Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -254,8 +255,7 @@ void Game::SnakeWholeSphereShadowNode::makeShadowSRT(Game::JointShadowParm&,
  * Address:	802F8D04
  * Size:	0000EC
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::SnakeWholeShadowMgr(
-    Game::SnakeWhole::Obj*)
+SnakeWhole::SnakeWholeShadowMgr::SnakeWholeShadowMgr(Game::SnakeWhole::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -334,7 +334,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::SnakeWholeShadowMgr(
  * Address:	802F8DF0
  * Size:	0000C8
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::init()
+void SnakeWhole::SnakeWholeShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -398,7 +398,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::init()
  * Address:	802F8EB8
  * Size:	000078
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::startJointShadow()
+void SnakeWhole::SnakeWholeShadowMgr::startJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -444,7 +444,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::startJointShadow()
  * Address:	802F8F30
  * Size:	000064
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::finishJointShadow()
+void SnakeWhole::SnakeWholeShadowMgr::finishJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -485,7 +485,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::finishJointShadow()
  * Address:	802F8F94
  * Size:	00025C
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::update()
+void SnakeWhole::SnakeWholeShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -658,7 +658,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::update()
  * Address:	802F91F0
  * Size:	000070
  */
-void Game::SnakeWholeSphereShadowNode::~SnakeWholeSphereShadowNode()
+SnakeWholeSphereShadowNode::~SnakeWholeSphereShadowNode()
 {
 	/*
 	.loc_0x0:
@@ -702,7 +702,7 @@ void Game::SnakeWholeSphereShadowNode::~SnakeWholeSphereShadowNode()
  * Address:	802F9260
  * Size:	000070
  */
-void Game::SnakeWholeTubeShadowNode::~SnakeWholeTubeShadowNode()
+SnakeWholeTubeShadowNode::~SnakeWholeTubeShadowNode()
 {
 	/*
 	.loc_0x0:
@@ -740,3 +740,4 @@ void Game::SnakeWholeTubeShadowNode::~SnakeWholeTubeShadowNode()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8024FCC8
  * Size:	00005C
  */
-void Game::Cave::GateNode::GateNode()
+Cave::GateNode::GateNode()
 {
 	/*
 	.loc_0x0:
@@ -40,7 +42,7 @@ void Game::Cave::GateNode::GateNode()
  * Address:	8024FD24
  * Size:	00009C
  */
-void Game::Cave::GateNode::GateNode(Game::Cave::GateUnit*, int, int)
+Cave::GateNode::GateNode(Game::Cave::GateUnit*, int, int)
 {
 	/*
 	.loc_0x0:
@@ -91,7 +93,7 @@ void Game::Cave::GateNode::GateNode(Game::Cave::GateUnit*, int, int)
  * Address:	8024FDC0
  * Size:	000020
  */
-void Game::Cave::GateNode::getObjectId()
+void Cave::GateNode::getObjectId()
 {
 	/*
 	.loc_0x0:
@@ -113,21 +115,21 @@ void Game::Cave::GateNode::getObjectId()
  * Address:	8024FDE0
  * Size:	000008
  */
-u32 Game::Cave::GateNode::getObjectType() { return 0x2; }
+u32 Cave::GateNode::getObjectType() { return 0x2; }
 
 /*
  * --INFO--
  * Address:	8024FDE8
  * Size:	000008
  */
-u32 Game::Cave::GateNode::getBirthCount() { return 0x1; }
+u32 Cave::GateNode::getBirthCount() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8024FDF0
  * Size:	000008
  */
-void Game::Cave::GateNode::getDirection()
+void Cave::GateNode::getDirection()
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Game::Cave::GateNode::getDirection()
  * Address:	8024FDF8
  * Size:	000008
  */
-void Game::Cave::GateNode::getBirthDoorIndex()
+void Cave::GateNode::getBirthDoorIndex()
 {
 	/*
 	.loc_0x0:
@@ -155,7 +157,7 @@ void Game::Cave::GateNode::getBirthDoorIndex()
  * Address:	8024FE00
  * Size:	000070
  */
-void Game::Cave::GateNode::~GateNode()
+Cave::GateNode::~GateNode()
 {
 	/*
 	.loc_0x0:
@@ -193,3 +195,4 @@ void Game::Cave::GateNode::~GateNode()
 	  blr
 	*/
 }
+} // namespace Game

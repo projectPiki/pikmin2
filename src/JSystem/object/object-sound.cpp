@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80014FD8
  * Size:	0000C8
  */
-void JStudio_JAudio::TAdaptor_sound::TAdaptor_sound(JAIBasic*,
-                                                    const JStage::TSystem*)
+JStudio_JAudio::TAdaptor_sound::TAdaptor_sound(JAIBasic*,
+                                               const JStage::TSystem*)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +68,7 @@ void JStudio_JAudio::TAdaptor_sound::TAdaptor_sound(JAIBasic*,
  * Address:	800150A0
  * Size:	000084
  */
-void JStudio_JAudio::TAdaptor_sound::~TAdaptor_sound()
+JStudio_JAudio::TAdaptor_sound::~TAdaptor_sound()
 {
 	/*
 	.loc_0x0:
@@ -803,7 +803,7 @@ void JStudio_JAudio::TAdaptor_sound::endSound_fadeOut_(unsigned long)
  * Address:	800157C0
  * Size:	000060
  */
-void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::~TVVOSetValue_()
+JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::~TVVOSetValue_()
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80233CEC
  * Size:	00001C
  */
-void Game::Highscore::__ct(void)
+Highscore::Highscore(void)
 {
 	/*
 	.loc_0x0:
@@ -34,7 +26,7 @@ void Game::Highscore::__ct(void)
  * Address:	80233D08
  * Size:	000044
  */
-void Game::Highscore::allocate((int))
+void Highscore::allocate(int)
 {
 	/*
 	.loc_0x0:
@@ -63,7 +55,7 @@ void Game::Highscore::allocate((int))
  * Address:	80233D4C
  * Size:	000088
  */
-void Game::Highscore::getScore((int))
+void Highscore::getScore(int)
 {
 	/*
 	.loc_0x0:
@@ -113,7 +105,7 @@ void Game::Highscore::getScore((int))
  * Address:	........
  * Size:	00008C
  */
-void Game::Highscore::newRecord((int))
+void Highscore::newRecord(int)
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +115,7 @@ void Game::Highscore::newRecord((int))
  * Address:	80233DD4
  * Size:	000178
  */
-void Game::Highscore::entryScore((int))
+void Highscore::entryScore(int)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +241,7 @@ void Game::Highscore::entryScore((int))
  * Address:	80233F4C
  * Size:	00004C
  */
-void Game::Highscore::higher((int, int))
+void Highscore::higher(int, int)
 {
 	/*
 	.loc_0x0:
@@ -286,7 +278,7 @@ void Game::Highscore::higher((int, int))
  * Address:	80233F98
  * Size:	000018
  */
-void Game::Highscore::do_higher((int, int))
+void Highscore::do_higher(int, int)
 {
 	/*
 	.loc_0x0:
@@ -304,7 +296,7 @@ void Game::Highscore::do_higher((int, int))
  * Address:	80233FB0
  * Size:	0000B8
  */
-void Game::Highscore::read((Stream&))
+void Highscore::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -370,7 +362,7 @@ void Game::Highscore::read((Stream&))
  * Address:	80234068
  * Size:	000074
  */
-void Game::Highscore::write((Stream&))
+void Highscore::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -415,7 +407,7 @@ void Game::Highscore::write((Stream&))
  * Address:	802340DC
  * Size:	000030
  */
-void Game::Highscore::clear(void)
+void Highscore::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -437,3 +429,4 @@ void Game::Highscore::clear(void)
 	  blr
 	*/
 }
+} // namespace Game

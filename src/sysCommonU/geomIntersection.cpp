@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	8041C9CC
  * Size:	0004F0
  */
-void Sys::Triangle::intersect((Sys::VertexTable&, Sys::Triangle::SphereSweep&))
+void Triangle::intersect(Sys::VertexTable&, Sys::Triangle::SphereSweep&)
 {
 	/*
 	.loc_0x0:
@@ -361,3 +353,4 @@ void Sys::Triangle::intersect((Sys::VertexTable&, Sys::Triangle::SphereSweep&))
 	  blr
 	*/
 }
+} // namespace Sys

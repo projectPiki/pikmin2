@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800B744C
  * Size:	0000CC
  */
-void JAInter::SoundTable::init((unsigned char*, unsigned long))
+void JAInter::SoundTable::init(unsigned char*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -74,7 +74,7 @@ void JAInter::SoundTable::init((unsigned char*, unsigned long))
  * Address:	800B7518
  * Size:	0000C4
  */
-void JAInter::SoundTable::getInfoPointer((unsigned long))
+void JAInter::SoundTable::getInfoPointer(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +147,7 @@ void JAInter::SoundTable::getInfoPointer((unsigned long))
  * Address:	800B75DC
  * Size:	000058
  */
-void JAInter::SoundTable::getInfoFormat((unsigned long))
+void JAInter::SoundTable::getInfoFormat(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -187,7 +187,7 @@ void JAInter::SoundTable::getInfoFormat((unsigned long))
  * Address:	........
  * Size:	0000E4
  */
-void JAInter::SoundTable::setInfoTrack((unsigned long, unsigned char))
+void JAInter::SoundTable::setInfoTrack(unsigned long, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +211,7 @@ void JAInter::SoundTable::getCategotyMax(void)
  * Address:	800B763C
  * Size:	000010
  */
-void JAInter::SoundTable::getSoundMax((unsigned char))
+void JAInter::SoundTable::getSoundMax(unsigned char)
 {
 	/*
 	.loc_0x0:

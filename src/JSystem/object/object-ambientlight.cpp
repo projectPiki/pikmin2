@@ -5,7 +5,7 @@
  * Address:	8001318C
  * Size:	0000A0
  */
-void JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(
+JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(
     const JStage::TSystem*, JStage::TAmbientLight*)
 {
 	/*
@@ -58,7 +58,7 @@ void JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(
  * Address:	8001322C
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight()
+JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight()
 {
 	/*
 	.loc_0x0:

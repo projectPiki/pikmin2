@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80281F10
  * Size:	000050
  */
-void Game::Mar::Mgr::Mgr(int, unsigned char)
+Mar::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Mar::Mgr::Mgr(int, unsigned char)
  * Address:	80281F60
  * Size:	000048
  */
-void Game::Mar::Mgr::doAlloc()
+void Mar::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Mar::Mgr::doAlloc()
  * Address:	80281FA8
  * Size:	000048
  */
-void Game::Mar::Parms::Parms()
+Mar::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Mar::Parms::Parms()
  * Address:	80281FF0
  * Size:	00023C
  */
-void Game::Mar::Parms::ProperParms::ProperParms()
+Mar::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::Mar::Parms::ProperParms::ProperParms()
  * Address:	8028222C
  * Size:	000060
  */
-void Game::Mar::Mgr::createObj(int)
+void Mar::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::Mar::Mgr::createObj(int)
  * Address:	8028228C
  * Size:	000010
  */
-void Game::Mar::Mgr::getEnemy(int)
+void Mar::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +314,7 @@ void Game::Mar::Mgr::getEnemy(int)
  * Address:	8028229C
  * Size:	00012C
  */
-void Game::Mar::Mgr::loadTexData()
+void Mar::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -411,7 +413,7 @@ void Game::Mar::Mgr::loadTexData()
  * Address:	802823C8
  * Size:	00013C
  */
-void Game::Mar::Mgr::createModel()
+void Mar::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -512,7 +514,7 @@ void Game::Mar::Mgr::createModel()
  * Address:	80282504
  * Size:	0000B0
  */
-void Game::Mar::Mgr::~Mgr()
+Mar::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -572,14 +574,14 @@ void Game::Mar::Mgr::~Mgr()
  * Address:	802825B4
  * Size:	000008
  */
-u32 Game::Mar::Mgr::getEnemyTypeID() { return 0x1D; }
+u32 Mar::Mgr::getEnemyTypeID() { return 0x1D; }
 
 /*
  * --INFO--
  * Address:	802825BC
  * Size:	000050
  */
-void Game::Mar::Parms::read(Stream&)
+void Mar::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -611,7 +613,7 @@ void Game::Mar::Parms::read(Stream&)
  * Address:	8028260C
  * Size:	000008
  */
-void Game::Mar::Mgr::@4 @__dt()
+Mar::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -619,3 +621,4 @@ void Game::Mar::Mgr::@4 @__dt()
 	  b         -0x10C
 	*/
 }
+} // namespace Game

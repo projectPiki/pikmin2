@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012CF38
  * Size:	000130
  */
-void Game::BlueKochappy::Obj::Obj()
+BlueKochappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -99,7 +101,7 @@ void Game::BlueKochappy::Obj::Obj()
  * Address:	8012D068
  * Size:	0001A4
  */
-void Game::BlueKochappy::Obj::changeMaterial()
+void BlueKochappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -220,4 +222,5 @@ void Game::BlueKochappy::Obj::changeMaterial()
  * Address:	8012D20C
  * Size:	000008
  */
-u32 Game::BlueKochappy::Obj::getEnemyTypeID() { return 0x2C; }
+u32 BlueKochappy::Obj::getEnemyTypeID() { return 0x2C; }
+} // namespace Game

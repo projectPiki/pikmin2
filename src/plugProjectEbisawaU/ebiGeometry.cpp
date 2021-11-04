@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void ebi::EGEBox2f::isIn(Vector2<float>&)
+void EGEBox2f::isIn(Vector2<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -59,6 +51,8 @@ bool ebi::EGEBox2f::isOut(Vector2<float>&)
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

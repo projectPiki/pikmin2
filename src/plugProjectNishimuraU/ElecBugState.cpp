@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80278E90
  * Size:	000384
  */
-void Game::ElecBug::FSM::init(Game::EnemyBase*)
+void ElecBug::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -262,7 +264,7 @@ void Game::ElecBug::FSM::init(Game::EnemyBase*)
  * Address:	80279214
  * Size:	00005C
  */
-void Game::ElecBug::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -297,7 +299,7 @@ void Game::ElecBug::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279270
  * Size:	000044
  */
-void Game::ElecBug::StateDead::exec(Game::EnemyBase*)
+void ElecBug::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -328,14 +330,14 @@ void Game::ElecBug::StateDead::exec(Game::EnemyBase*)
  * Address:	802792B4
  * Size:	000004
  */
-void Game::ElecBug::StateDead::cleanup(Game::EnemyBase*) { }
+void ElecBug::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802792B8
  * Size:	00004C
  */
-void Game::ElecBug::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -366,7 +368,7 @@ void Game::ElecBug::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279304
  * Size:	0000A0
  */
-void Game::ElecBug::StateWait::exec(Game::EnemyBase*)
+void ElecBug::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -422,14 +424,14 @@ void Game::ElecBug::StateWait::exec(Game::EnemyBase*)
  * Address:	802793A4
  * Size:	000004
  */
-void Game::ElecBug::StateWait::cleanup(Game::EnemyBase*) { }
+void ElecBug::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802793A8
  * Size:	00005C
  */
-void Game::ElecBug::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -464,7 +466,7 @@ void Game::ElecBug::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279404
  * Size:	000200
  */
-void Game::ElecBug::StateTurn::exec(Game::EnemyBase*)
+void ElecBug::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -616,14 +618,14 @@ void Game::ElecBug::StateTurn::exec(Game::EnemyBase*)
  * Address:	80279604
  * Size:	000004
  */
-void Game::ElecBug::StateTurn::cleanup(Game::EnemyBase*) { }
+void ElecBug::StateTurn::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80279608
  * Size:	00003C
  */
-void Game::ElecBug::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +652,7 @@ void Game::ElecBug::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279644
  * Size:	00013C
  */
-void Game::ElecBug::StateMove::exec(Game::EnemyBase*)
+void ElecBug::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -751,14 +753,14 @@ void Game::ElecBug::StateMove::exec(Game::EnemyBase*)
  * Address:	80279780
  * Size:	000004
  */
-void Game::ElecBug::StateMove::cleanup(Game::EnemyBase*) { }
+void ElecBug::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80279784
  * Size:	00007C
  */
-void Game::ElecBug::StateCharge::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateCharge::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -801,7 +803,7 @@ void Game::ElecBug::StateCharge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279800
  * Size:	000554
  */
-void Game::ElecBug::StateCharge::exec(Game::EnemyBase*)
+void ElecBug::StateCharge::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1194,7 +1196,7 @@ void Game::ElecBug::StateCharge::exec(Game::EnemyBase*)
  * Address:	80279D54
  * Size:	00004C
  */
-void Game::EnemyIterator<Game::ElecBug::Obj>::isDone()
+void EnemyIterator<Game::ElecBug::Obj>::isDone()
 {
 	/*
 	.loc_0x0:
@@ -1225,7 +1227,7 @@ void Game::EnemyIterator<Game::ElecBug::Obj>::isDone()
  * Address:	80279DA0
  * Size:	000064
  */
-void Game::ElecBug::StateCharge::cleanup(Game::EnemyBase*)
+void ElecBug::StateCharge::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1262,7 +1264,7 @@ void Game::ElecBug::StateCharge::cleanup(Game::EnemyBase*)
  * Address:	80279E04
  * Size:	000060
  */
-void Game::ElecBug::StateDischarge::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateDischarge::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1298,7 +1300,7 @@ void Game::ElecBug::StateDischarge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80279E64
  * Size:	0000E8
  */
-void Game::ElecBug::StateDischarge::exec(Game::EnemyBase*)
+void ElecBug::StateDischarge::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1378,7 +1380,7 @@ void Game::ElecBug::StateDischarge::exec(Game::EnemyBase*)
  * Address:	80279F4C
  * Size:	00006C
  */
-void Game::ElecBug::StateDischarge::cleanup(Game::EnemyBase*)
+void ElecBug::StateDischarge::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1417,7 +1419,7 @@ void Game::ElecBug::StateDischarge::cleanup(Game::EnemyBase*)
  * Address:	80279FB8
  * Size:	00006C
  */
-void Game::ElecBug::StateChildCharge::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateChildCharge::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1456,7 +1458,7 @@ void Game::ElecBug::StateChildCharge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A024
  * Size:	000228
  */
-void Game::ElecBug::StateChildCharge::exec(Game::EnemyBase*)
+void ElecBug::StateChildCharge::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1616,7 +1618,7 @@ void Game::ElecBug::StateChildCharge::exec(Game::EnemyBase*)
  * Address:	8027A24C
  * Size:	000064
  */
-void Game::ElecBug::StateChildCharge::cleanup(Game::EnemyBase*)
+void ElecBug::StateChildCharge::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1653,7 +1655,7 @@ void Game::ElecBug::StateChildCharge::cleanup(Game::EnemyBase*)
  * Address:	8027A2B0
  * Size:	000060
  */
-void Game::ElecBug::StateChildDischarge::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateChildDischarge::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1689,7 +1691,7 @@ void Game::ElecBug::StateChildDischarge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A310
  * Size:	0000C0
  */
-void Game::ElecBug::StateChildDischarge::exec(Game::EnemyBase*)
+void ElecBug::StateChildDischarge::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1755,7 +1757,7 @@ void Game::ElecBug::StateChildDischarge::exec(Game::EnemyBase*)
  * Address:	8027A3D0
  * Size:	00006C
  */
-void Game::ElecBug::StateChildDischarge::cleanup(Game::EnemyBase*)
+void ElecBug::StateChildDischarge::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1794,7 +1796,7 @@ void Game::ElecBug::StateChildDischarge::cleanup(Game::EnemyBase*)
  * Address:	8027A43C
  * Size:	000070
  */
-void Game::ElecBug::StateReverse::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateReverse::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1834,7 +1836,7 @@ void Game::ElecBug::StateReverse::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A4AC
  * Size:	0000D8
  */
-void Game::ElecBug::StateReverse::exec(Game::EnemyBase*)
+void ElecBug::StateReverse::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1906,7 +1908,7 @@ void Game::ElecBug::StateReverse::exec(Game::EnemyBase*)
  * Address:	8027A584
  * Size:	000010
  */
-void Game::ElecBug::StateReverse::cleanup(Game::EnemyBase*)
+void ElecBug::StateReverse::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1922,7 +1924,7 @@ void Game::ElecBug::StateReverse::cleanup(Game::EnemyBase*)
  * Address:	8027A594
  * Size:	000048
  */
-void Game::ElecBug::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
+void ElecBug::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1952,7 +1954,7 @@ void Game::ElecBug::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A5DC
  * Size:	000050
  */
-void Game::ElecBug::StateReturn::exec(Game::EnemyBase*)
+void ElecBug::StateReturn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1986,14 +1988,14 @@ void Game::ElecBug::StateReturn::exec(Game::EnemyBase*)
  * Address:	8027A62C
  * Size:	000004
  */
-void Game::ElecBug::StateReturn::cleanup(Game::EnemyBase*) { }
+void ElecBug::StateReturn::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8027A630
  * Size:	000038
  */
-void Game::EnemyIterator<Game::ElecBug::Obj>::operator*()
+void EnemyIterator<Game::ElecBug::Obj>::operator*()
 {
 	/*
 	.loc_0x0:
@@ -2019,7 +2021,7 @@ void Game::EnemyIterator<Game::ElecBug::Obj>::operator*()
  * Address:	8027A668
  * Size:	0000E4
  */
-void Game::EnemyIterator<Game::ElecBug::Obj>::next()
+void EnemyIterator<Game::ElecBug::Obj>::next()
 {
 	/*
 	.loc_0x0:
@@ -2096,7 +2098,7 @@ void Game::EnemyIterator<Game::ElecBug::Obj>::next()
  * Address:	8027A74C
  * Size:	0000DC
  */
-void Game::EnemyIterator<Game::ElecBug::Obj>::first()
+void EnemyIterator<Game::ElecBug::Obj>::first()
 {
 	/*
 	.loc_0x0:
@@ -2165,3 +2167,4 @@ void Game::EnemyIterator<Game::ElecBug::Obj>::first()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D2D6C
  * Size:	00023C
  */
-void Game::ItemHoney::FSM::init(Game::CFSMItem*)
+void ItemHoney::FSM::init(Game::CFSMItem*)
 {
 	/*
 	.loc_0x0:
@@ -172,28 +174,28 @@ void Game::ItemHoney::FSM::init(Game::CFSMItem*)
  * Address:	801D2FA8
  * Size:	000004
  */
-void Game::ItemHoney::FallState::init(Game::CFSMItem*, Game::StateArg*) { }
+void ItemHoney::FallState::init(Game::CFSMItem*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801D2FAC
  * Size:	000004
  */
-void Game::ItemHoney::FallState::exec(Game::CFSMItem*) { }
+void ItemHoney::FallState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2FB0
  * Size:	000004
  */
-void Game::ItemHoney::FallState::cleanup(Game::CFSMItem*) { }
+void ItemHoney::FallState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2FB4
  * Size:	000034
  */
-void Game::ItemHoney::FallState::onBounce(Game::CFSMItem*, Sys::Triangle*)
+void ItemHoney::FallState::onBounce(Game::CFSMItem*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -218,7 +220,7 @@ void Game::ItemHoney::FallState::onBounce(Game::CFSMItem*, Sys::Triangle*)
  * Address:	801D2FE8
  * Size:	0001C4
  */
-void Game::ItemHoney::BounceState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHoney::BounceState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -355,22 +357,22 @@ void Game::ItemHoney::BounceState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D31AC
  * Size:	000004
  */
-void Game::ItemHoney::BounceState::exec(Game::CFSMItem*) { }
+void ItemHoney::BounceState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D31B0
  * Size:	000004
  */
-void Game::ItemHoney::BounceState::cleanup(Game::CFSMItem*) { }
+void ItemHoney::BounceState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D31B4
  * Size:	000034
  */
-void Game::ItemHoney::BounceState::onKeyEvent(Game::CFSMItem*,
-                                              const SysShape::KeyEvent&)
+void ItemHoney::BounceState::onKeyEvent(Game::CFSMItem*,
+                                        const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -395,7 +397,7 @@ void Game::ItemHoney::BounceState::onKeyEvent(Game::CFSMItem*,
  * Address:	801D31E8
  * Size:	000038
  */
-void Game::ItemHoney::WaitState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHoney::WaitState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -423,22 +425,21 @@ void Game::ItemHoney::WaitState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D3220
  * Size:	000004
  */
-void Game::ItemHoney::WaitState::exec(Game::CFSMItem*) { }
+void ItemHoney::WaitState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D3224
  * Size:	000004
  */
-void Game::ItemHoney::WaitState::cleanup(Game::CFSMItem*) { }
+void ItemHoney::WaitState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D3228
  * Size:	00011C
  */
-void Game::ItemHoney::WaitState::collisionCallback(Game::CFSMItem*,
-                                                   Game::CollEvent&)
+void ItemHoney::WaitState::collisionCallback(Game::CFSMItem*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -525,8 +526,8 @@ void Game::ItemHoney::WaitState::collisionCallback(Game::CFSMItem*,
  * Address:	801D3344
  * Size:	000038
  */
-void Game::ItemHoney::WaitState::interactAbsorb(Game::CFSMItem*,
-                                                Game::InteractAbsorb&)
+void ItemHoney::WaitState::interactAbsorb(Game::CFSMItem*,
+                                          Game::InteractAbsorb&)
 {
 	/*
 	.loc_0x0:
@@ -552,7 +553,7 @@ void Game::ItemHoney::WaitState::interactAbsorb(Game::CFSMItem*,
  * Address:	801D337C
  * Size:	000038
  */
-void Game::ItemHoney::ShrinkState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHoney::ShrinkState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -580,22 +581,22 @@ void Game::ItemHoney::ShrinkState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D33B4
  * Size:	000004
  */
-void Game::ItemHoney::ShrinkState::exec(Game::CFSMItem*) { }
+void ItemHoney::ShrinkState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D33B8
  * Size:	000004
  */
-void Game::ItemHoney::ShrinkState::cleanup(Game::CFSMItem*) { }
+void ItemHoney::ShrinkState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D33BC
  * Size:	000064
  */
-void Game::ItemHoney::ShrinkState::onKeyEvent(Game::CFSMItem*,
-                                              const SysShape::KeyEvent&)
+void ItemHoney::ShrinkState::onKeyEvent(Game::CFSMItem*,
+                                        const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -632,7 +633,7 @@ void Game::ItemHoney::ShrinkState::onKeyEvent(Game::CFSMItem*,
  * Address:	801D3420
  * Size:	000024
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::kill(Game::ItemHoney::Item*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::kill(Game::ItemHoney::Item*)
 {
 	/*
 	.loc_0x0:
@@ -653,7 +654,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::kill(Game::ItemHoney::Item*)
  * Address:	801D3444
  * Size:	00004C
  */
-void Game::ItemHoney::TouchState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHoney::TouchState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -686,22 +687,22 @@ void Game::ItemHoney::TouchState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D3490
  * Size:	000004
  */
-void Game::ItemHoney::TouchState::exec(Game::CFSMItem*) { }
+void ItemHoney::TouchState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D3494
  * Size:	000004
  */
-void Game::ItemHoney::TouchState::cleanup(Game::CFSMItem*) { }
+void ItemHoney::TouchState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D3498
  * Size:	000038
  */
-void Game::ItemHoney::TouchState::interactAbsorb(Game::CFSMItem*,
-                                                 Game::InteractAbsorb&)
+void ItemHoney::TouchState::interactAbsorb(Game::CFSMItem*,
+                                           Game::InteractAbsorb&)
 {
 	/*
 	.loc_0x0:
@@ -727,8 +728,8 @@ void Game::ItemHoney::TouchState::interactAbsorb(Game::CFSMItem*,
  * Address:	801D34D0
  * Size:	000034
  */
-void Game::ItemHoney::TouchState::onKeyEvent(Game::CFSMItem*,
-                                             const SysShape::KeyEvent&)
+void ItemHoney::TouchState::onKeyEvent(Game::CFSMItem*,
+                                       const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -753,8 +754,7 @@ void Game::ItemHoney::TouchState::onKeyEvent(Game::CFSMItem*,
  * Address:	801D3504
  * Size:	000080
  */
-void Game::ItemHoney::TouchState::collisionCallback(Game::CFSMItem*,
-                                                    Game::CollEvent&)
+void ItemHoney::TouchState::collisionCallback(Game::CFSMItem*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -800,7 +800,7 @@ void Game::ItemHoney::TouchState::collisionCallback(Game::CFSMItem*,
  * Address:	801D3584
  * Size:	000038
  */
-void Game::ItemHoney::DemoState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHoney::DemoState::init(Game::CFSMItem*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -828,22 +828,22 @@ void Game::ItemHoney::DemoState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D35BC
  * Size:	000004
  */
-void Game::ItemHoney::DemoState::exec(Game::CFSMItem*) { }
+void ItemHoney::DemoState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D35C0
  * Size:	000004
  */
-void Game::ItemHoney::DemoState::cleanup(Game::CFSMItem*) { }
+void ItemHoney::DemoState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D35C4
  * Size:	000038
  */
-void Game::ItemHoney::DemoState::onKeyEvent(Game::CFSMItem*,
-                                            const SysShape::KeyEvent&)
+void ItemHoney::DemoState::onKeyEvent(Game::CFSMItem*,
+                                      const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -871,7 +871,7 @@ void Game::ItemHoney::DemoState::onKeyEvent(Game::CFSMItem*,
  * Address:	801D35FC
  * Size:	00003C
  */
-void Game::ItemHoney::Item::demoOK()
+void ItemHoney::Item::demoOK()
 {
 	/*
 	.loc_0x0:
@@ -902,7 +902,7 @@ void Game::ItemHoney::Item::demoOK()
  * Address:	801D3638
  * Size:	000088
  */
-void Game::ItemHoney::Item::Item()
+ItemHoney::Item::Item()
 {
 	/*
 	.loc_0x0:
@@ -948,7 +948,7 @@ void Game::ItemHoney::Item::Item()
  * Address:	801D36C0
  * Size:	000058
  */
-void Game::ItemHoney::Item::createFSM()
+void ItemHoney::Item::createFSM()
 {
 	/*
 	.loc_0x0:
@@ -984,7 +984,7 @@ void Game::ItemHoney::Item::createFSM()
  * Address:	801D3718
  * Size:	000040
  */
-void Game::ItemHoney::Item::doAI()
+void ItemHoney::Item::doAI()
 {
 	/*
 	.loc_0x0:
@@ -1012,7 +1012,7 @@ void Game::ItemHoney::Item::doAI()
  * Address:	801D3758
  * Size:	000158
  */
-void Game::ItemHoney::Item::onInit(Game::CreatureInitArg*)
+void ItemHoney::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -1118,14 +1118,14 @@ void Game::ItemHoney::Item::onInit(Game::CreatureInitArg*)
  * Address:	801D38B0
  * Size:	000004
  */
-void Game::ItemHoney::Item::onSetPosition() { }
+void ItemHoney::Item::onSetPosition() { }
 
 /*
  * --INFO--
  * Address:	801D38B4
  * Size:	000008
  */
-void Game::ItemHoney::Item::getMapCollisionRadius()
+void ItemHoney::Item::getMapCollisionRadius()
 {
 	/*
 	.loc_0x0:
@@ -1139,7 +1139,7 @@ void Game::ItemHoney::Item::getMapCollisionRadius()
  * Address:	801D38BC
  * Size:	000130
  */
-void Game::ItemHoney::Item::changeMaterial()
+void ItemHoney::Item::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -1237,7 +1237,7 @@ void Game::ItemHoney::Item::changeMaterial()
  * Address:	801D39EC
  * Size:	000038
  */
-void Game::ItemHoney::Item::updateBoundSphere()
+void ItemHoney::Item::updateBoundSphere()
 {
 	/*
 	.loc_0x0:
@@ -1263,7 +1263,7 @@ void Game::ItemHoney::Item::updateBoundSphere()
  * Address:	801D3A24
  * Size:	000094
  */
-void Game::ItemHoney::Item::doSimulation(float)
+void ItemHoney::Item::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1316,7 +1316,7 @@ void Game::ItemHoney::Item::doSimulation(float)
  * Address:	801D3AB8
  * Size:	000054
  */
-void Game::ItemHoney::Item::absorbable()
+void ItemHoney::Item::absorbable()
 {
 	/*
 	.loc_0x0:
@@ -1353,14 +1353,14 @@ void Game::ItemHoney::Item::absorbable()
  * Address:	801D3B0C
  * Size:	000008
  */
-u32 Game::ItemHoney::State::absorbable() { return 0x0; }
+u32 ItemHoney::State::absorbable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D3B14
  * Size:	000060
  */
-void Game::ItemHoney::Item::onKeyEvent(const SysShape::KeyEvent&)
+void ItemHoney::Item::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1398,7 +1398,7 @@ void Game::ItemHoney::Item::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	801D3B74
  * Size:	000060
  */
-void Game::ItemHoney::Item::collisionCallback(Game::CollEvent&)
+void ItemHoney::Item::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1436,17 +1436,14 @@ void Game::ItemHoney::Item::collisionCallback(Game::CollEvent&)
  * Address:	801D3BD4
  * Size:	000004
  */
-void Game::ItemHoney::State::collisionCallback(Game::CFSMItem*,
-                                               Game::CollEvent&)
-{
-}
+void ItemHoney::State::collisionCallback(Game::CFSMItem*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801D3BD8
  * Size:	000068
  */
-void Game::ItemHoney::Item::interactAbsorb(Game::InteractAbsorb&)
+void ItemHoney::Item::interactAbsorb(Game::InteractAbsorb&)
 {
 	/*
 	.loc_0x0:
@@ -1488,8 +1485,7 @@ void Game::ItemHoney::Item::interactAbsorb(Game::InteractAbsorb&)
  * Address:	801D3C40
  * Size:	000008
  */
-void Game::ItemHoney::State::interactAbsorb(Game::CFSMItem*,
-                                            Game::InteractAbsorb&)
+void ItemHoney::State::interactAbsorb(Game::CFSMItem*, Game::InteractAbsorb&)
 {
 	return 0x0;
 }
@@ -1499,14 +1495,14 @@ void Game::ItemHoney::State::interactAbsorb(Game::CFSMItem*,
  * Address:	801D3C48
  * Size:	000004
  */
-void Game::ItemHoney::Item::doDirectDraw(Graphics&) { }
+void ItemHoney::Item::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801D3C4C
  * Size:	00006C
  */
-void Game::ItemHoney::Item::makeTrMatrix()
+void ItemHoney::Item::makeTrMatrix()
 {
 	/*
 	.loc_0x0:
@@ -1545,7 +1541,7 @@ void Game::ItemHoney::Item::makeTrMatrix()
  * Address:	801D3CB8
  * Size:	00003C
  */
-void Game::ItemHoney::Item::onStartCapture()
+void ItemHoney::Item::onStartCapture()
 {
 	/*
 	.loc_0x0:
@@ -1572,7 +1568,7 @@ void Game::ItemHoney::Item::onStartCapture()
  * Address:	801D3CF4
  * Size:	000054
  */
-void Game::ItemHoney::Item::onUpdateCapture(Matrixf&)
+void ItemHoney::Item::onUpdateCapture(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -1605,7 +1601,7 @@ void Game::ItemHoney::Item::onUpdateCapture(Matrixf&)
  * Address:	801D3D48
  * Size:	000028
  */
-void Game::ItemHoney::Item::onEndCapture()
+void ItemHoney::Item::onEndCapture()
 {
 	/*
 	.loc_0x0:
@@ -1627,7 +1623,7 @@ void Game::ItemHoney::Item::onEndCapture()
  * Address:	801D3D70
  * Size:	00002C
  */
-void Game::ItemHoney::Item::on_movie_end(bool)
+void ItemHoney::Item::on_movie_end(bool)
 {
 	/*
 	.loc_0x0:
@@ -1650,7 +1646,7 @@ void Game::ItemHoney::Item::on_movie_end(bool)
  * Address:	801D3D9C
  * Size:	00002C
  */
-void Game::ItemHoney::Item::isShrinking()
+void ItemHoney::Item::isShrinking()
 {
 	/*
 	.loc_0x0:
@@ -1673,7 +1669,7 @@ void Game::ItemHoney::Item::isShrinking()
  * Address:	801D3DC8
  * Size:	0000D0
  */
-void Game::ItemHoney::Mgr::Mgr()
+ItemHoney::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -1739,7 +1735,7 @@ void Game::ItemHoney::Mgr::Mgr()
  * Address:	801D3E98
  * Size:	000100
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::~FixedSizeItemMgr()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::~FixedSizeItemMgr()
 {
 	/*
 	.loc_0x0:
@@ -1815,6 +1811,8 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::~FixedSizeItemMgr()
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1916,12 +1914,14 @@ void Container<Game::ItemHoney::Item>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D40A8
  * Size:	000070
  */
-void Game::ItemHoney::Mgr::onCreateModel(SysShape::Model*)
+void ItemHoney::Mgr::onCreateModel(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -1961,7 +1961,7 @@ void Game::ItemHoney::Mgr::onCreateModel(SysShape::Model*)
  * Address:	801D4118
  * Size:	0000CC
  */
-void Game::ItemHoney::Mgr::onLoadResources()
+void ItemHoney::Mgr::onLoadResources()
 {
 	/*
 	.loc_0x0:
@@ -2024,7 +2024,7 @@ void Game::ItemHoney::Mgr::onLoadResources()
  * Address:	801D41E4
  * Size:	00002C
  */
-void Game::ItemHoney::Mgr::birth()
+void ItemHoney::Mgr::birth()
 {
 	/*
 	.loc_0x0:
@@ -2047,8 +2047,7 @@ void Game::ItemHoney::Mgr::birth()
  * Address:	801D4210
  * Size:	000060
  */
-void Game::ItemHoney::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
-                                          Game::GenItemParm*)
+void ItemHoney::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -2084,7 +2083,7 @@ void Game::ItemHoney::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
  * Address:	801D4270
  * Size:	000118
  */
-void Game::ItemHoney::Mgr::~Mgr()
+ItemHoney::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -2172,7 +2171,7 @@ void Game::ItemHoney::Mgr::~Mgr()
  * Address:	801D4388
  * Size:	00000C
  */
-void Game::ItemHoney::Mgr::generatorGetID()
+void ItemHoney::Mgr::generatorGetID()
 {
 	/*
 	.loc_0x0:
@@ -2181,6 +2180,8 @@ void Game::ItemHoney::Mgr::generatorGetID()
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2232,12 +2233,14 @@ void ObjectMgr<Game::ItemHoney::Item>::~ObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D441C
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::birth()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::birth()
 {
 	/*
 	.loc_0x0:
@@ -2260,7 +2263,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::birth()
  * Address:	801D4448
  * Size:	000008
  */
-void Game::ItemHoney::Item::getCreatureName()
+void ItemHoney::Item::getCreatureName()
 {
 	/*
 	.loc_0x0:
@@ -2274,15 +2277,15 @@ void Game::ItemHoney::Item::getCreatureName()
  * Address:	801D4450
  * Size:	000008
  */
-u32 Game::ItemHoney::TouchState::absorbable() { return 0x1; }
+u32 ItemHoney::TouchState::absorbable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801D4458
  * Size:	000008
  */
-void Game::ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*,
-                                                  Game::InteractAbsorb&)
+void ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*,
+                                            Game::InteractAbsorb&)
 {
 	return 0x1;
 }
@@ -2292,23 +2295,21 @@ void Game::ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*,
  * Address:	801D4460
  * Size:	000008
  */
-u32 Game::ItemHoney::ShrinkState::absorbable() { return 0x1; }
+u32 ItemHoney::ShrinkState::absorbable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801D4468
  * Size:	000008
  */
-u32 Game::ItemHoney::WaitState::absorbable() { return 0x1; }
+u32 ItemHoney::WaitState::absorbable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801D4470
  * Size:	000004
  */
-void Game::ItemHoney::State::onKeyEvent(Game::CFSMItem*,
-                                        const SysShape::KeyEvent&)
-{
+void ItemHoney::State::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&) {
 }
 
 /*
@@ -2316,9 +2317,7 @@ void Game::ItemHoney::State::onKeyEvent(Game::CFSMItem*,
  * Address:	801D4474
  * Size:	000004
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::onCreateModel(
-    SysShape::Model*)
-{
+void FixedSizeItemMgr<Game::ItemHoney::Item>::onCreateModel(SysShape::Model*) {
 }
 
 /*
@@ -2326,7 +2325,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::onCreateModel(
  * Address:	801D4478
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doAnimation()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -2349,7 +2348,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doAnimation()
  * Address:	801D44A4
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doEntry()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -2372,7 +2371,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doEntry()
  * Address:	801D44D0
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doSetView(int)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -2395,7 +2394,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doSetView(int)
  * Address:	801D44FC
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doViewCalc()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -2418,7 +2417,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doViewCalc()
  * Address:	801D4528
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doSimulation(float)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -2441,7 +2440,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doSimulation(float)
  * Address:	801D4554
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doDirectDraw(Graphics&)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2464,7 +2463,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::doDirectDraw(Graphics&)
  * Address:	801D4580
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::getNext(void*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -2487,7 +2486,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::getNext(void*)
  * Address:	801D45AC
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::getStart()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::getStart()
 {
 	/*
 	.loc_0x0:
@@ -2510,7 +2509,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::getStart()
  * Address:	801D45D8
  * Size:	000030
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::createModel(
+void FixedSizeItemMgr<Game::ItemHoney::Item>::createModel(
     Game::ItemHoney::Item*)
 {
 	/*
@@ -2529,6 +2528,8 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::createModel(
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4148,12 +4149,14 @@ void MonoObjectMgr<Game::ItemHoney::Item>::MonoObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D57C0
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::getEnd()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::getEnd()
 {
 	/*
 	.loc_0x0:
@@ -4176,7 +4179,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::getEnd()
  * Address:	801D57EC
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::get(void*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -4199,7 +4202,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::get(void*)
  * Address:	801D5818
  * Size:	0001E8
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::initDependency()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::initDependency()
 {
 	/*
 	.loc_0x0:
@@ -4349,7 +4352,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::initDependency()
  * Address:	801D5A00
  * Size:	0000E0
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::killAll()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::killAll()
 {
 	/*
 	.loc_0x0:
@@ -4425,7 +4428,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::killAll()
  * Address:	801D5AE0
  * Size:	00002C
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::createModelCallback(
+void FixedSizeItemMgr<Game::ItemHoney::Item>::createModelCallback(
     SysShape::Model*)
 {
 	/*
@@ -4449,8 +4452,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::createModelCallback(
  * Address:	801D5B0C
  * Size:	0000E4
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::createMgr(int,
-                                                              unsigned long)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::createMgr(int, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4517,6 +4519,8 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::createMgr(int,
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4696,12 +4700,14 @@ void Iterator<Game::ItemHoney::Item>::first()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D5DE8
  * Size:	000064
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::onAlloc()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::onAlloc()
 {
 	/*
 	.loc_0x0:
@@ -4736,6 +4742,8 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::onAlloc()
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4860,12 +4868,14 @@ void MonoObjectMgr<Game::ItemHoney::Item>::alloc(int)
 }
 
 /*
+namespace SysShape {
+
  * --INFO--
  * Address:	801D5FD4
  * Size:	000030
  */
-void Delegate1<Game::FixedSizeItemMgr<Game::ItemHoney::Item>,
-               SysShape::Model*>::invoke(SysShape::Model*)
+void Delegate1<Game::FixedSizeItemMgr<Game::ItemHoney::Item>, Model*>::invoke(
+    SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -4884,12 +4894,16 @@ void Delegate1<Game::FixedSizeItemMgr<Game::ItemHoney::Item>,
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801D6004
  * Size:	000008
  */
-void Game::ItemHoney::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
+void ItemHoney::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -4903,7 +4917,7 @@ void Game::ItemHoney::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
  * Address:	801D600C
  * Size:	000008
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @__dt()
+FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @~Item > ()
 {
 	/*
 	.loc_0x0:
@@ -4911,6 +4925,8 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @__dt()
 	  b         -0x2178
 	*/
 }
+
+} // Game
 
 /*
  * --INFO--
@@ -5094,12 +5110,14 @@ void ObjectMgr<Game::ItemHoney::Item>::@28 @doAnimation()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D607C
  * Size:	000008
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getEnd()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getEnd()
 {
 	/*
 	.loc_0x0:
@@ -5113,7 +5131,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getEnd()
  * Address:	801D6084
  * Size:	000008
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getStart()
+void FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getStart()
 {
 	/*
 	.loc_0x0:
@@ -5127,7 +5145,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getStart()
  * Address:	801D608C
  * Size:	000008
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getNext(void*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -5141,7 +5159,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @getNext(void*)
  * Address:	801D6094
  * Size:	000008
  */
-void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @get(void*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @get(void*)
 {
 	/*
 	.loc_0x0:
@@ -5155,7 +5173,7 @@ void Game::FixedSizeItemMgr<Game::ItemHoney::Item>::@48 @get(void*)
  * Address:	801D609C
  * Size:	000008
  */
-void Game::ItemHoney::Mgr::@48 @__dt()
+ItemHoney::Mgr::@48 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -5163,3 +5181,4 @@ void Game::ItemHoney::Mgr::@48 @__dt()
 	  b         -0x1E30
 	*/
 }
+} // namespace Game

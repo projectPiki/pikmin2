@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031EA58
  * Size:	000080
  */
-void og::newScreen::AnaDemo::__ct((long))
+newScreen::AnaDemo::AnaDemo(long)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +57,7 @@ void og::newScreen::AnaDemo::__ct((long))
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::AnaDemo::__dt(void)
+newScreen::AnaDemo::~AnaDemo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -75,14 +67,14 @@ void og::newScreen::AnaDemo::__dt(void)
  * Address:	8031EAD8
  * Size:	000004
  */
-void og::newScreen::AnaDemo::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::AnaDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	8031EADC
  * Size:	000078
  */
-void og::newScreen::AnaDemo::doCreateObj((JKRArchive*))
+void newScreen::AnaDemo::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +118,7 @@ void og::newScreen::AnaDemo::doCreateObj((JKRArchive*))
  * Address:	8031EB54
  * Size:	00000C
  */
-void og::newScreen::AnaDemo::getResName( const
+void newScreen::AnaDemo::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -141,7 +133,7 @@ void og::newScreen::AnaDemo::getResName( const
  * Address:	8031EB60
  * Size:	000008
  */
-void og::newScreen::AnaDemo::getSceneType(void)
+void newScreen::AnaDemo::getSceneType(void)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +147,7 @@ void og::newScreen::AnaDemo::getSceneType(void)
  * Address:	8031EB68
  * Size:	00000C
  */
-void og::newScreen::AnaDemo::getOwnerID(void)
+void newScreen::AnaDemo::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -170,7 +162,7 @@ void og::newScreen::AnaDemo::getOwnerID(void)
  * Address:	8031EB74
  * Size:	00006C
  */
-void og::newScreen::AnaDemo::getMemberID(void)
+void newScreen::AnaDemo::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +209,5 @@ void og::newScreen::AnaDemo::getMemberID(void)
  * Address:	8031EBE0
  * Size:	000008
  */
-u32  og::newScreen::AnaDemo::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::AnaDemo::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

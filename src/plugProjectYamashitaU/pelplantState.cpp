@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8010AB38
  * Size:	0001E0
  */
-void Game::Pelplant::FSM::init(Game::EnemyBase*)
+void Pelplant::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +159,7 @@ void Game::Pelplant::FSM::init(Game::EnemyBase*)
  * Address:	8010AD18
  * Size:	00003C
  */
-void Game::Pelplant::StateBlendAnim::init(Game::EnemyBase*, Game::StateArg*)
+void Pelplant::StateBlendAnim::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +186,7 @@ void Game::Pelplant::StateBlendAnim::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010AD54
  * Size:	00007C
  */
-void Game::Pelplant::StateBlendAnim::exec(Game::EnemyBase*)
+void Pelplant::StateBlendAnim::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -231,7 +233,7 @@ void Game::Pelplant::StateBlendAnim::exec(Game::EnemyBase*)
  * Address:	8010ADD0
  * Size:	000098
  */
-void Game::Pelplant::StateWither::StateWither(int, int, int, int)
+Pelplant::StateWither::StateWither(int, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -289,7 +291,7 @@ void Game::Pelplant::StateWither::StateWither(int, int, int, int)
  * Address:	8010AE68
  * Size:	000070
  */
-void Game::Pelplant::StateWither::init(Game::EnemyBase*, Game::StateArg*)
+void Pelplant::StateWither::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +331,7 @@ void Game::Pelplant::StateWither::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010AED8
  * Size:	00007C
  */
-void Game::Pelplant::StateWither::exec(Game::EnemyBase*)
+void Pelplant::StateWither::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -376,7 +378,7 @@ void Game::Pelplant::StateWither::exec(Game::EnemyBase*)
  * Address:	8010AF54
  * Size:	000028
  */
-void Game::Pelplant::StateWither::cleanup(Game::EnemyBase*)
+void Pelplant::StateWither::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +400,7 @@ void Game::Pelplant::StateWither::cleanup(Game::EnemyBase*)
  * Address:	8010AF7C
  * Size:	000088
  */
-void Game::Pelplant::StateWait::StateWait(int, int)
+Pelplant::StateWait::StateWait(int, int)
 {
 	/*
 	.loc_0x0:
@@ -452,7 +454,7 @@ void Game::Pelplant::StateWait::StateWait(int, int)
  * Address:	8010B004
  * Size:	000144
  */
-void Game::Pelplant::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Pelplant::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +557,7 @@ void Game::Pelplant::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010B148
  * Size:	000278
  */
-void Game::Pelplant::StateWait::exec(Game::EnemyBase*)
+void Pelplant::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -759,14 +761,14 @@ void Game::Pelplant::StateWait::exec(Game::EnemyBase*)
  * Address:	8010B3C0
  * Size:	000004
  */
-void Game::Pelplant::StateWait::cleanup(Game::EnemyBase*) { }
+void Pelplant::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8010B3C4
  * Size:	000044
  */
-void Game::Pelplant::StateGrow::StateGrow(int, int, int)
+Pelplant::StateGrow::StateGrow(int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -795,7 +797,7 @@ void Game::Pelplant::StateGrow::StateGrow(int, int, int)
  * Address:	8010B408
  * Size:	0002E0
  */
-void Game::Pelplant::StateGrow::init(Game::EnemyBase*, Game::StateArg*)
+void Pelplant::StateGrow::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1005,7 +1007,7 @@ void Game::Pelplant::StateGrow::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010B6E8
  * Size:	000060
  */
-void Game::Pelplant::StateGrow::exec(Game::EnemyBase*)
+void Pelplant::StateGrow::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1045,14 +1047,14 @@ void Game::Pelplant::StateGrow::exec(Game::EnemyBase*)
  * Address:	8010B748
  * Size:	000004
  */
-void Game::Pelplant::StateGrow::cleanup(Game::EnemyBase*) { }
+void Pelplant::StateGrow::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8010B74C
  * Size:	000040
  */
-void Game::Pelplant::StateDamage::StateDamage(int, int)
+Pelplant::StateDamage::StateDamage(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1080,7 +1082,7 @@ void Game::Pelplant::StateDamage::StateDamage(int, int)
  * Address:	8010B78C
  * Size:	00008C
  */
-void Game::Pelplant::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
+void Pelplant::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1135,7 +1137,7 @@ void Game::Pelplant::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010B818
  * Size:	000068
  */
-void Game::Pelplant::StateDamage::exec(Game::EnemyBase*)
+void Pelplant::StateDamage::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1175,7 +1177,7 @@ void Game::Pelplant::StateDamage::exec(Game::EnemyBase*)
  * Address:	8010B880
  * Size:	000010
  */
-void Game::Pelplant::StateDamage::cleanup(Game::EnemyBase*)
+void Pelplant::StateDamage::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1191,7 +1193,7 @@ void Game::Pelplant::StateDamage::cleanup(Game::EnemyBase*)
  * Address:	8010B890
  * Size:	000040
  */
-void Game::Pelplant::StateDead::StateDead(int, int)
+Pelplant::StateDead::StateDead(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1219,7 +1221,7 @@ void Game::Pelplant::StateDead::StateDead(int, int)
  * Address:	8010B8D0
  * Size:	0000B4
  */
-void Game::Pelplant::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Pelplant::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1286,7 +1288,7 @@ void Game::Pelplant::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010B984
  * Size:	000068
  */
-void Game::Pelplant::StateDead::exec(Game::EnemyBase*)
+void Pelplant::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1328,32 +1330,37 @@ void Game::Pelplant::StateDead::exec(Game::EnemyBase*)
  * Address:	8010B9EC
  * Size:	000004
  */
-void Game::Pelplant::StateDead::cleanup(Game::EnemyBase*) { }
+void Pelplant::StateDead::cleanup(Game::EnemyBase*) { }
+
+} // namespace Game
+
+namespace efx {
 
 /*
  * --INFO--
  * Address:	8010B9F0
  * Size:	000004
  */
-void efx::TSimple3::forceKill() { }
+void TSimple3::forceKill() { }
 
 /*
  * --INFO--
  * Address:	8010B9F4
  * Size:	000004
  */
-void efx::TSimple3::fade() { }
+void TSimple3::fade() { }
 
 /*
  * --INFO--
  * Address:	8010B9F8
  * Size:	000004
  */
-void efx::TSimple2::forceKill() { }
+void TSimple2::forceKill() { }
 
 /*
  * --INFO--
  * Address:	8010B9FC
  * Size:	000004
  */
-void efx::TSimple2::fade() { }
+void TSimple2::fade() { }
+} // namespace efx

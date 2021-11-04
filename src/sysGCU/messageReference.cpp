@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "P2JME/TReference.h"
 #include "Dolphin/stl.h"
 

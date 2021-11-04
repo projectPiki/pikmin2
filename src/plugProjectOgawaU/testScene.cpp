@@ -54,7 +54,7 @@ namespace Space {
 	//  * Address:	8030D7D0
 	//  * Size:	000008
 	//  */
-	// void SceneBase::doConfirmSetScene((SetSceneArg&))
+	// void SceneBase::doConfirmSetScene(SetSceneArg&)
 	// {
 	// 	/*
 	// 	.loc_0x0:
@@ -68,7 +68,7 @@ namespace Space {
 	//  * Address:	8030D7D8
 	//  * Size:	000008
 	//  */
-	// void SceneBase::doConfirmStartScene((StartSceneArg*))
+	// void SceneBase::doConfirmStartScene(StartSceneArg*)
 	// {
 	// 	/*
 	// 	.loc_0x0:
@@ -82,7 +82,7 @@ namespace Space {
 	//  * Address:	8030D7E0
 	//  * Size:	000008
 	//  */
-	// void SceneBase::doConfirmEndScene((EndSceneArg*&))
+	// void SceneBase::doConfirmEndScene(EndSceneArg*&)
 	// {
 	// 	/*
 	// 	.loc_0x0:
@@ -128,7 +128,7 @@ namespace Space {
 	//  * Address:	8030D838
 	//  * Size:	000004
 	//  */
-	// void SceneBase::doSetBackupScene((SetSceneArg&))
+	// void SceneBase::doSetBackupScene(SetSceneArg&)
 	// {
 	// }
 
@@ -229,7 +229,7 @@ namespace Space {
 //  * Address:	........
 //  * Size:	000004
 //  */
-// void newTestScene::doUserCallBackFunc((Resource::MgrCommand*))
+// void newTestScene::doUserCallBackFunc(Resource::MgrCommand*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -239,7 +239,7 @@ namespace Space {
 //  * Address:	........
 //  * Size:	000060
 //  */
-// void newTestScene::doCreateObj((JKRArchive*))
+// void newTestScene::doCreateObj(JKRArchive*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -249,7 +249,7 @@ namespace Space {
 //  * Address:	........
 //  * Size:	00000C
 //  */
-// void newTestScene::getResName( const
+// void newTestScene::getResName() const
 // {
 // 	// UNUSED FUNCTION
 // }

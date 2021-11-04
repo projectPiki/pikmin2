@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80276D54
  * Size:	000050
  */
-void Game::Catfish::Mgr::Mgr(int, unsigned char)
+Catfish::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Catfish::Mgr::Mgr(int, unsigned char)
  * Address:	80276DA4
  * Size:	000048
  */
-void Game::Catfish::Mgr::doAlloc()
+void Catfish::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::Catfish::Mgr::doAlloc()
  * Address:	80276DEC
  * Size:	000060
  */
-void Game::Catfish::Mgr::createObj(int)
+void Catfish::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Catfish::Mgr::createObj(int)
  * Address:	80276E4C
  * Size:	0000EC
  */
-void Game::Catfish::Obj::~Obj()
+Catfish::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::Catfish::Obj::~Obj()
  * Address:	80276F38
  * Size:	000010
  */
-void Game::Catfish::Mgr::getEnemy(int)
+void Catfish::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -196,7 +198,7 @@ void Game::Catfish::Mgr::getEnemy(int)
  * Address:	80276F48
  * Size:	0000B0
  */
-void Game::Catfish::Mgr::~Mgr()
+Catfish::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -256,14 +258,14 @@ void Game::Catfish::Mgr::~Mgr()
  * Address:	80276FF8
  * Size:	000008
  */
-u32 Game::Catfish::Mgr::getEnemyTypeID() { return 0x1A; }
+u32 Catfish::Mgr::getEnemyTypeID() { return 0x1A; }
 
 /*
  * --INFO--
  * Address:	80277000
  * Size:	000008
  */
-void Game::Catfish::Mgr::@4 @__dt()
+Catfish::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -271,3 +273,4 @@ void Game::Catfish::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

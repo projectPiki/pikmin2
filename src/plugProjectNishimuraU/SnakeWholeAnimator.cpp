@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802CE268
  * Size:	000008
  */
-void Game::SnakeWhole::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void SnakeWhole::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::SnakeWhole::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802CE270
  * Size:	000008
  */
-void Game::SnakeWhole::ProperAnimator::getAnimator(int)
+void SnakeWhole::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::SnakeWhole::ProperAnimator::getAnimator(int)
  * Address:	802CE278
  * Size:	00005C
  */
-void Game::SnakeWhole::ProperAnimator::~ProperAnimator()
+SnakeWhole::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::SnakeWhole::ProperAnimator::~ProperAnimator()
  * Address:	802CE2D4
  * Size:	000008
  */
-void Game::SnakeWhole::ProperAnimator::getAnimator()
+void SnakeWhole::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::SnakeWhole::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

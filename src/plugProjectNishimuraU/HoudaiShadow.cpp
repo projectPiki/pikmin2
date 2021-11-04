@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802BF47C
  * Size:	00027C
  */
-void Game::Houdai::HoudaiShadowMgr::HoudaiShadowMgr(Game::Houdai::Obj*)
+Houdai::HoudaiShadowMgr::HoudaiShadowMgr(Game::Houdai::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -198,7 +200,7 @@ void Game::Houdai::HoudaiShadowMgr::HoudaiShadowMgr(Game::Houdai::Obj*)
  * Address:	802BF6F8
  * Size:	0001B0
  */
-void Game::Houdai::HoudaiShadowMgr::init()
+void Houdai::HoudaiShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -318,7 +320,7 @@ void Game::Houdai::HoudaiShadowMgr::init()
  * Address:	802BF8A8
  * Size:	000018
  */
-void Game::Houdai::HoudaiShadowMgr::setJointPosPtr(int, int, Vector3<float>*)
+void Houdai::HoudaiShadowMgr::setJointPosPtr(int, int, Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +338,7 @@ void Game::Houdai::HoudaiShadowMgr::setJointPosPtr(int, int, Vector3<float>*)
  * Address:	802BF8C0
  * Size:	0003F0
  */
-void Game::Houdai::HoudaiShadowMgr::update()
+void Houdai::HoudaiShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -614,3 +616,4 @@ void Game::Houdai::HoudaiShadowMgr::update()
 	  blr
 	*/
 }
+} // namespace Game

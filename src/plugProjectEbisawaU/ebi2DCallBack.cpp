@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803D068C
  * Size:	000060
  */
-void ebi::E2DCallBack_Purupuru::do_update(void)
+void E2DCallBack_Purupuru::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +45,7 @@ void ebi::E2DCallBack_Purupuru::do_update(void)
  * Address:	803D06EC
  * Size:	0002CC
  */
-void ebi::E2DCallBack_BlinkFontColor::do_update(void)
+void E2DCallBack_BlinkFontColor::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -252,7 +244,7 @@ void ebi::E2DCallBack_BlinkFontColor::do_update(void)
  * Address:	803D09B8
  * Size:	000118
  */
-void ebi::E2DCallBack_BlinkAlpha::do_update(void)
+void E2DCallBack_BlinkAlpha::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -342,7 +334,7 @@ void ebi::E2DCallBack_BlinkAlpha::do_update(void)
  * Address:	803D0AD0
  * Size:	0000C8
  */
-void ebi::E2DCallBack_AnmBase::loadAnm((char*, JKRArchive*, long, long))
+void E2DCallBack_AnmBase::loadAnm(char*, JKRArchive*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +400,7 @@ void ebi::E2DCallBack_AnmBase::loadAnm((char*, JKRArchive*, long, long))
  * Address:	803D0B98
  * Size:	00010C
  */
-void ebi::E2DCallBack_AnmBase::play((float, J3DAnmAttr, bool))
+void E2DCallBack_AnmBase::play(float, J3DAnmAttr, bool)
 {
 	/*
 	.loc_0x0:
@@ -493,7 +485,7 @@ void ebi::E2DCallBack_AnmBase::play((float, J3DAnmAttr, bool))
  * Address:	803D0CA4
  * Size:	000110
  */
-void ebi::E2DCallBack_AnmBase::playBack((float, bool))
+void E2DCallBack_AnmBase::playBack(float, bool)
 {
 	/*
 	.loc_0x0:
@@ -579,7 +571,7 @@ void ebi::E2DCallBack_AnmBase::playBack((float, bool))
  * Address:	803D0DB4
  * Size:	000014
  */
-void ebi::E2DCallBack_AnmBase::stop(void)
+void E2DCallBack_AnmBase::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -596,7 +588,7 @@ void ebi::E2DCallBack_AnmBase::stop(void)
  * Address:	........
  * Size:	000050
  */
-void ebi::E2DCallBack_AnmBase::disconnect(void)
+void E2DCallBack_AnmBase::disconnect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +598,7 @@ void ebi::E2DCallBack_AnmBase::disconnect(void)
  * Address:	803D0DC8
  * Size:	00003C
  */
-void ebi::E2DCallBack_AnmBase::setStartFrame(void)
+void E2DCallBack_AnmBase::setStartFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -633,7 +625,7 @@ void ebi::E2DCallBack_AnmBase::setStartFrame(void)
  * Address:	803D0E04
  * Size:	00003C
  */
-void ebi::E2DCallBack_AnmBase::setEndFrame(void)
+void E2DCallBack_AnmBase::setEndFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -660,7 +652,7 @@ void ebi::E2DCallBack_AnmBase::setEndFrame(void)
  * Address:	803D0E40
  * Size:	0000C0
  */
-void ebi::E2DCallBack_AnmBase::setRandFrame(void)
+void E2DCallBack_AnmBase::setRandFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -720,7 +712,7 @@ void ebi::E2DCallBack_AnmBase::setRandFrame(void)
  * Address:	803D0F00
  * Size:	000054
  */
-void ebi::E2DCallBack_AnmBase::getPlayFinRate(void)
+void E2DCallBack_AnmBase::getPlayFinRate(void)
 {
 	/*
 	.loc_0x0:
@@ -753,7 +745,7 @@ void ebi::E2DCallBack_AnmBase::getPlayFinRate(void)
  * Address:	803D0F54
  * Size:	00005C
  */
-void ebi::E2DCallBack_AnmBase::do_update(void)
+void E2DCallBack_AnmBase::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -792,7 +784,7 @@ void ebi::E2DCallBack_AnmBase::do_update(void)
  * Address:	803D0FB0
  * Size:	000008
  */
-void ebi::E2DCallBack_AnmBase::isFinish(void)
+void E2DCallBack_AnmBase::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -806,7 +798,7 @@ void ebi::E2DCallBack_AnmBase::isFinish(void)
  * Address:	803D0FB8
  * Size:	00014C
  */
-void ebi::E2DCallBack_WindowCursor::do_update(void)
+void E2DCallBack_WindowCursor::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -903,3 +895,4 @@ void ebi::E2DCallBack_WindowCursor::do_update(void)
 	  blr
 	*/
 }
+} // namespace ebi

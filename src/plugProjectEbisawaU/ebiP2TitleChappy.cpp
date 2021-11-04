@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803E85D8
  * Size:	000150
  */
-void ebi::title::Chappy::TMgr::__ct(void)
+title::Chappy::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +107,7 @@ void ebi::title::Chappy::TMgr::__ct(void)
  * Address:	803E8728
  * Size:	000050
  */
-void ebi::title::Chappy::TMgr::setArchive((JKRArchive*))
+void title::Chappy::TMgr::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +139,7 @@ void ebi::title::Chappy::TMgr::setArchive((JKRArchive*))
  * Address:	803E8778
  * Size:	000028
  */
-void ebi::title::Chappy::TMgr::initUnit(void)
+void title::Chappy::TMgr::initUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -169,7 +161,7 @@ void ebi::title::Chappy::TMgr::initUnit(void)
  * Address:	........
  * Size:	0000C8
  */
-void ebi::title::Chappy::TAnimFolder::load((J3DModelData*, JKRArchive*))
+void title::Chappy::TAnimFolder::load(J3DModelData*, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
@@ -179,7 +171,7 @@ void ebi::title::Chappy::TAnimFolder::load((J3DModelData*, JKRArchive*))
  * Address:	803E87A0
  * Size:	000068
  */
-void ebi::title::Chappy::TAnimator::__ct(void)
+title::Chappy::TAnimator::TAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +209,7 @@ void ebi::title::Chappy::TAnimator::__ct(void)
  * Address:	803E8808
  * Size:	000128
  */
-void ebi::title::Chappy::TAnimator::setArchive((JKRArchive*))
+void title::Chappy::TAnimator::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -305,7 +297,7 @@ void ebi::title::Chappy::TAnimator::setArchive((JKRArchive*))
  * Address:	........
  * Size:	000078
  */
-void ebi::title::Chappy::TAnimator::newJ3DModel(void)
+void title::Chappy::TAnimator::newJ3DModel(void)
 {
 	// UNUSED FUNCTION
 }
@@ -315,13 +307,10 @@ void ebi::title::Chappy::TAnimator::newJ3DModel(void)
  * Address:	803E8930
  * Size:	000008
  */
-void ebi::title::Chappy::TUnit::setController((Controller*))
+void title::Chappy::TUnit::setController(Controller* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x44(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x44(r3)
+	_44 = a1;
 }
 
 /*
@@ -329,7 +318,7 @@ void ebi::title::Chappy::TUnit::setController((Controller*))
  * Address:	803E8938
  * Size:	0000F4
  */
-void ebi::title::Chappy::TUnit::init((ebi::title::Chappy::TMgr*))
+void title::Chappy::TUnit::init(ebi::title::Chappy::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -438,7 +427,7 @@ R10Vector2<float>(void)
  * Address:	803E8A80
  * Size:	000030
  */
-void ebi::title::Chappy::TUnit::goHome(void)
+void title::Chappy::TUnit::goHome(void)
 {
 	/*
 	.loc_0x0:
@@ -464,7 +453,7 @@ void ebi::title::Chappy::TUnit::goHome(void)
  * Address:	803E8AB0
  * Size:	000024
  */
-void ebi::title::Chappy::TUnit::outOfCalc(void)
+void title::Chappy::TUnit::outOfCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -485,7 +474,7 @@ void ebi::title::Chappy::TUnit::outOfCalc(void)
  * Address:	803E8AD4
  * Size:	000014
  */
-void ebi::title::Chappy::TUnit::isCalc(void)
+void title::Chappy::TUnit::isCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -502,7 +491,7 @@ void ebi::title::Chappy::TUnit::isCalc(void)
  * Address:	803E8AE8
  * Size:	000014
  */
-void ebi::title::Chappy::TUnit::isController(void)
+void title::Chappy::TUnit::isController(void)
 {
 	/*
 	.loc_0x0:
@@ -519,7 +508,7 @@ void ebi::title::Chappy::TUnit::isController(void)
  * Address:	803E8AFC
  * Size:	000318
  */
-void ebi::title::Chappy::TUnit::startAIState_(
+void title::Chappy::TUnit::startAIState_(
     (ebi::title::Chappy::TUnit::enumAIState))
 {
 	/*
@@ -746,8 +735,7 @@ void ebi::title::Chappy::TUnit::startAIState_(
  * Address:	........
  * Size:	000100
  */
-void ebi::title::Chappy::TUnit::startAction_(
-    (ebi::title::Chappy::TUnit::enumAction))
+void title::Chappy::TUnit::startAction_(ebi::title::Chappy::TUnit::enumAction)
 {
 	// UNUSED FUNCTION
 }
@@ -757,7 +745,7 @@ void ebi::title::Chappy::TUnit::startAction_(
  * Address:	803E8E14
  * Size:	000A64
  */
-void ebi::title::Chappy::TUnit::update(void)
+void title::Chappy::TUnit::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1570,7 +1558,7 @@ void ebi::title::Chappy::TUnit::update(void)
  * Address:	803E9878
  * Size:	0003A4
  */
-void ebi::title::Chappy::TParam::__ct(void)
+title::Chappy::TParam::TParam(void)
 {
 	/*
 	.loc_0x0:
@@ -1817,14 +1805,14 @@ void ebi::title::Chappy::TParam::__ct(void)
  * Address:	803E9C1C
  * Size:	000008
  */
-u32 ebi::title::Chappy::TUnit::getCreatureType(void) { return 0x6; }
+u32 title::Chappy::TUnit::getCreatureType(void) { return 0x6; }
 
 /*
  * --INFO--
  * Address:	803E9C24
  * Size:	000014
  */
-void ebi::title::Chappy::TAnimFolder::getAnimRes((long))
+void title::Chappy::TAnimFolder::getAnimRes(long)
 {
 	/*
 	.loc_0x0:
@@ -1835,6 +1823,8 @@ void ebi::title::Chappy::TAnimFolder::getAnimRes((long))
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

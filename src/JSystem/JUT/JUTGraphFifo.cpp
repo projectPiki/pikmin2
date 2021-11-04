@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8002EB34
  * Size:	0000DC
  */
-void JUTGraphFifo::JUTGraphFifo(unsigned long)
+JUTGraphFifo::JUTGraphFifo(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -76,7 +76,7 @@ void JUTGraphFifo::JUTGraphFifo(unsigned long)
  * Address:	8002EC10
  * Size:	0000BC
  */
-void JUTGraphFifo::~JUTGraphFifo()
+JUTGraphFifo::~JUTGraphFifo()
 {
 	/*
 	.loc_0x0:

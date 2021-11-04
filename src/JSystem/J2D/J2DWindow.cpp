@@ -5,7 +5,7 @@
  * Address:	80042544
  * Size:	0000F8
  */
-void J2DWindow::J2DWindow()
+J2DWindow::J2DWindow()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +79,7 @@ void J2DWindow::J2DWindow()
  * Address:	8004263C
  * Size:	0000AC
  */
-void J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*)
+J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -134,7 +134,7 @@ void J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*)
  * Address:	800426E8
  * Size:	000560
  */
-void J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*)
+J2DWindow::J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -1050,7 +1050,7 @@ void J2DWindow::initinfo2()
  * Address:	800433A8
  * Size:	0000A8
  */
-void J2DWindow::~J2DWindow()
+J2DWindow::~J2DWindow()
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803EA170
  * Size:	0003B4
  */
-void ebi::TMainTitleMgr::__ct(void)
+TMainTitleMgr::TMainTitleMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -259,22 +251,26 @@ void ebi::TMainTitleMgr::__ct(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
- */
-void ebi::Screen::TPressStart::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	0000A0
+	 */
+	TPressStart::~TPressStart(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	803EA524
  * Size:	000068
  */
-void ebi::TMainTitleMgr::setMode((long))
+void TMainTitleMgr::setMode(long)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +318,7 @@ void ebi::TMainTitleMgr::setMode((long))
  * Address:	803EA58C
  * Size:	000124
  */
-void ebi::TMainTitleMgr::loadResource(void)
+void TMainTitleMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -409,7 +405,7 @@ void ebi::TMainTitleMgr::loadResource(void)
  * Address:	803EA6B0
  * Size:	00004C
  */
-void ebi::TMainTitleMgr::setController((Controller*))
+void TMainTitleMgr::setController(Controller*)
 {
 	/*
 	.loc_0x0:
@@ -440,7 +436,7 @@ void ebi::TMainTitleMgr::setController((Controller*))
  * Address:	803EA6FC
  * Size:	0000C0
  */
-void ebi::TMainTitleMgr::start(void)
+void TMainTitleMgr::start(void)
 {
 	/*
 	.loc_0x0:
@@ -500,7 +496,7 @@ void ebi::TMainTitleMgr::start(void)
  * Address:	803EA7BC
  * Size:	0001F0
  */
-void ebi::TMainTitleMgr::startMenuSet((long, long))
+void TMainTitleMgr::startMenuSet(long, long)
 {
 	/*
 	.loc_0x0:
@@ -658,14 +654,10 @@ void ebi::TMainTitleMgr::startMenuSet((long, long))
  * Address:	803EA9AC
  * Size:	00000C
  */
-void ebi::TMainTitleMgr::forceQuit(void)
+void TMainTitleMgr::forceQuit(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x1650(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x1650(r3)
+	_1650 = 0;
 }
 
 /*
@@ -673,7 +665,7 @@ void ebi::TMainTitleMgr::forceQuit(void)
  * Address:	803EA9B8
  * Size:	000010
  */
-void ebi::TMainTitleMgr::isFinish(void)
+void TMainTitleMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -689,7 +681,7 @@ void ebi::TMainTitleMgr::isFinish(void)
  * Address:	........
  * Size:	000068
  */
-void ebi::TMainTitleMgr::isAnyKey(void)
+void TMainTitleMgr::isAnyKey(void)
 {
 	// UNUSED FUNCTION
 }
@@ -699,7 +691,7 @@ void ebi::TMainTitleMgr::isAnyKey(void)
  * Address:	803EA9C8
  * Size:	000008
  */
-void ebi::TMainTitleMgr::getSelectedMenu(void)
+void TMainTitleMgr::getSelectedMenu(void)
 {
 	/*
 	.loc_0x0:
@@ -713,7 +705,7 @@ void ebi::TMainTitleMgr::getSelectedMenu(void)
  * Address:	803EA9D0
  * Size:	0004B0
  */
-void ebi::TMainTitleMgr::update(void)
+void TMainTitleMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1073,7 +1065,7 @@ void ebi::TMainTitleMgr::update(void)
  * Address:	803EAE80
  * Size:	000274
  */
-void ebi::TMainTitleMgr::draw(void)
+void TMainTitleMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -1258,7 +1250,7 @@ void ebi::TMainTitleMgr::draw(void)
  * Address:	........
  * Size:	000034
  */
-void ebi::TMainTitleMgr::showInfo(void)
+void TMainTitleMgr::showInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1268,7 +1260,7 @@ void ebi::TMainTitleMgr::showInfo(void)
  * Address:	803EB0F4
  * Size:	000070
  */
-void ebi::E2DCallBack_CalcAnimation::__ct(void)
+E2DCallBack_CalcAnimation::E2DCallBack_CalcAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -1303,51 +1295,57 @@ void ebi::E2DCallBack_CalcAnimation::__ct(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00020C
- */
-void ebi::Screen::TTitleMenu::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
 
-/*
- * --INFO--
- * Address:	803EB164
- * Size:	000004
- */
-void ebi::Screen::TTitleMenu_Object_Icon::__ct(void) { }
-
-/*
- * --INFO--
- * Address:	803EB168
- * Size:	00000C
- */
-void ebi::Screen::ArgClose::getName(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  addi      r3, r3, 0x7900
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	........
+	 * Size:	00020C
+	 */
+	TTitleMenu::~TTitleMenu(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	803EB174
- * Size:	000008
- */
-void ebi::Screen::ArgOpen::getName(void)
-{
 	/*
-	.loc_0x0:
-	  addi      r3, r2, 0x1AC8
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803EB164
+	 * Size:	000004
+	 */
+	TTitleMenu_Object_Icon::TTitleMenu_Object_Icon(void) { }
+
+	/*
+	 * --INFO--
+	 * Address:	803EB168
+	 * Size:	00000C
+	 */
+	void ArgClose::getName(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x8049
+		  addi      r3, r3, 0x7900
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	803EB174
+	 * Size:	000008
+	 */
+	void ArgOpen::getName(void)
+	{
+		/*
+		.loc_0x0:
+		  addi      r3, r2, 0x1AC8
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace ebi
 
 /*
  * --INFO--

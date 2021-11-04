@@ -61,7 +61,7 @@ bool UpdateContext::updatable()
 //  * Address:	801966E4
 //  * Size:	00003C
 //  */
-// void Game::UpdateContext::init((Game::UpdateMgr*))
+// void Game::UpdateContext::init(Game::UpdateMgr*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -128,7 +128,7 @@ bool UpdateContext::updatable()
 //  * Address:	80196778
 //  * Size:	00001C
 //  */
-// void Game::UpdateMgr::__ct(void)
+// void Game::UpdateMgr::UpdateMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -168,7 +168,7 @@ bool UpdateContext::updatable()
 //  * Address:	801967B8
 //  * Size:	000028
 //  */
-// void Game::UpdateMgr::updatable((Game::UpdateContext*))
+// void Game::UpdateMgr::updatable(Game::UpdateContext*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -192,7 +192,7 @@ bool UpdateContext::updatable()
 //  * Address:	801967E0
 //  * Size:	0000A0
 //  */
-// void Game::UpdateMgr::create((int))
+// void Game::UpdateMgr::create(int)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -250,7 +250,7 @@ bool UpdateContext::updatable()
 //  * Address:	80196880
 //  * Size:	0000D0
 //  */
-// void Game::UpdateMgr::addClient((Game::UpdateContext*))
+// void Game::UpdateMgr::addClient(Game::UpdateContext*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -328,7 +328,7 @@ bool UpdateContext::updatable()
 //  * Address:	80196950
 //  * Size:	0000C8
 //  */
-// void Game::UpdateMgr::removeClient((Game::UpdateContext*))
+// void Game::UpdateMgr::removeClient(Game::UpdateContext*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -398,7 +398,7 @@ bool UpdateContext::updatable()
 //  * Address:	........
 //  * Size:	000004
 //  */
-// void Game::UpdateMgr::balanceClient((Game::UpdateContext*))
+// void Game::UpdateMgr::balanceClient(Game::UpdateContext*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -408,7 +408,7 @@ bool UpdateContext::updatable()
 //  * Address:	........
 //  * Size:	000004
 //  */
-// void Game::UpdateMgr::showInfo((Graphics&, int, int))
+// void Game::UpdateMgr::showInfo(Graphics&, int, int)
 // {
 // 	// UNUSED FUNCTION
 // }

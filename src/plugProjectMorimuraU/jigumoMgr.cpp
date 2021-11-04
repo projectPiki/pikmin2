@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803688CC
  * Size:	000050
  */
-void Game::Jigumo::Mgr::__ct((int, unsigned char))
+Jigumo::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Jigumo::Mgr::__ct((int, unsigned char))
  * Address:	8036891C
  * Size:	000048
  */
-void Game::Jigumo::Mgr::doAlloc(void)
+void Jigumo::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::Jigumo::Mgr::doAlloc(void)
  * Address:	80368964
  * Size:	00024C
  */
-void Game::Jigumo::Parms::__ct(void)
+Jigumo::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -240,7 +232,7 @@ void Game::Jigumo::Parms::__ct(void)
  * Address:	80368BB0
  * Size:	000020
  */
-void Game::Jigumo::Mgr::birth((Game::EnemyBirthArg&))
+void Jigumo::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +252,7 @@ void Game::Jigumo::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80368BD0
  * Size:	000068
  */
-void Game::Jigumo::Mgr::loadModelData(void)
+void Jigumo::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +294,7 @@ void Game::Jigumo::Mgr::loadModelData(void)
  * Address:	80368C38
  * Size:	0000B0
  */
-void Game::Jigumo::Mgr::__dt(void)
+Jigumo::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +354,7 @@ void Game::Jigumo::Mgr::__dt(void)
  * Address:	80368CE8
  * Size:	00002C
  */
-void Game::Jigumo::Mgr::doLoadBmd((void*))
+void Jigumo::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -385,14 +377,14 @@ void Game::Jigumo::Mgr::doLoadBmd((void*))
  * Address:	80368D14
  * Size:	000008
  */
-u32 Game::Jigumo::Mgr::getEnemyTypeID(void) { return 0x3F; }
+u32 Jigumo::Mgr::getEnemyTypeID(void) { return 0x3F; }
 
 /*
  * --INFO--
  * Address:	80368D1C
  * Size:	000060
  */
-void Game::Jigumo::Mgr::createObj((int))
+void Jigumo::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -428,7 +420,7 @@ void Game::Jigumo::Mgr::createObj((int))
  * Address:	80368D7C
  * Size:	0000BC
  */
-void Game::Jigumo::Obj::__dt(void)
+Jigumo::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -491,7 +483,7 @@ void Game::Jigumo::Obj::__dt(void)
  * Address:	80368E38
  * Size:	000010
  */
-void Game::Jigumo::Mgr::getEnemy((int))
+void Jigumo::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +499,7 @@ void Game::Jigumo::Mgr::getEnemy((int))
  * Address:	80368E48
  * Size:	000050
  */
-void Game::Jigumo::Parms::read((Stream&))
+void Jigumo::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +531,7 @@ void Game::Jigumo::Parms::read((Stream&))
  * Address:	80368E98
  * Size:	000008
  */
-void @4 @Game::Jigumo::Mgr::__dt(void)
+@4 @Game::Jigumo::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -547,3 +539,4 @@ void @4 @Game::Jigumo::Mgr::__dt(void)
 	  b         -0x264
 	*/
 }
+} // namespace Game

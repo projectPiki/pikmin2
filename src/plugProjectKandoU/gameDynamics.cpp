@@ -5,7 +5,7 @@
  * Address:	80139C60
  * Size:	000334
  */
-void DynamicsParms::DynamicsParms()
+DynamicsParms::DynamicsParms()
 {
 	/*
 	.loc_0x0:
@@ -224,7 +224,7 @@ void DynamicsParms::DynamicsParms()
  * Address:	80139F94
  * Size:	000074
  */
-void DynamicsParms::~DynamicsParms()
+DynamicsParms::~DynamicsParms()
 {
 	/*
 	.loc_0x0:
@@ -296,12 +296,14 @@ void DynamicsParms::globalInstance()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013A050
  * Size:	000054
  */
-void Game::Rigid::Rigid()
+Rigid::Rigid()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +336,7 @@ void Game::Rigid::Rigid()
  * Address:	8013A0A4
  * Size:	000034
  */
-void Game::RigidConfig::RigidConfig()
+RigidConfig::RigidConfig()
 {
 	/*
 	.loc_0x0:
@@ -359,7 +361,7 @@ void Game::RigidConfig::RigidConfig()
  * Address:	8013A0D8
  * Size:	00008C
  */
-void Game::Rigid::initPosition(Vector3<float>&, Vector3<float>&)
+void Rigid::initPosition(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +410,7 @@ void Game::Rigid::initPosition(Vector3<float>&, Vector3<float>&)
  * Address:	8013A164
  * Size:	00008C
  */
-void Game::Rigid::initPositionIndex(Vector3<float>&, int, Vector3<float>&)
+void Rigid::initPositionIndex(Vector3f&, int, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +457,7 @@ void Game::Rigid::initPositionIndex(Vector3<float>&, int, Vector3<float>&)
  * Address:	8013A1F0
  * Size:	000038
  */
-void Game::Rigid::updateMatrix(int)
+void Rigid::updateMatrix(int)
 {
 	/*
 	.loc_0x0:
@@ -481,7 +483,7 @@ void Game::Rigid::updateMatrix(int)
  * Address:	8013A228
  * Size:	00006C
  */
-void Game::Rigid::computeForces(int)
+void Rigid::computeForces(int)
 {
 	/*
 	.loc_0x0:
@@ -515,12 +517,14 @@ void Game::Rigid::computeForces(int)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8013A294
  * Size:	000268
  */
-void getYDegree(Quat&, Vector3<float>&)
+void getYDegree(Quat&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -681,12 +685,14 @@ void getYDegree(Quat&, Vector3<float>&)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013A4FC
  * Size:	000678
  */
-void Game::Rigid::integrate(float, int)
+void Rigid::integrate(float, int)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1126,7 @@ void Game::Rigid::integrate(float, int)
  * Address:	8013AB74
  * Size:	000300
  */
-void Game::Rigid::resolveCollision(int, Vector3<float>&, Vector3<float>&, float)
+void Rigid::resolveCollision(int, Vector3f&, Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -1324,6 +1330,8 @@ void Game::Rigid::resolveCollision(int, Vector3<float>&, Vector3<float>&, float)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8024E170
  * Size:	00006C
  */
-void Game::Cave::ItemNode::__ct(void)
+Cave::ItemNode::ItemNode(void)
 {
 	/*
 	.loc_0x0:
@@ -54,8 +46,7 @@ void Game::Cave::ItemNode::__ct(void)
  * Address:	8024E1DC
  * Size:	00008C
  */
-void Game::Cave::ItemNode::__ct((Game::Cave::ItemUnit*, Game::Cave::BaseGen*,
-                                 int))
+Cave::ItemNode::ItemNode(Game::Cave::ItemUnit*, Game::Cave::BaseGen*, int)
 {
 	/*
 	.loc_0x0:
@@ -102,7 +93,7 @@ void Game::Cave::ItemNode::__ct((Game::Cave::ItemUnit*, Game::Cave::BaseGen*,
  * Address:	8024E268
  * Size:	000068
  */
-void Game::Cave::ItemNode::makeGlobalData((Game::Cave::MapNode*))
+void Cave::ItemNode::makeGlobalData(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -140,7 +131,7 @@ void Game::Cave::ItemNode::makeGlobalData((Game::Cave::MapNode*))
  * Address:	8024E2D0
  * Size:	000020
  */
-void Game::Cave::ItemNode::getObjectId(void)
+void Cave::ItemNode::getObjectId(void)
 {
 	/*
 	.loc_0x0:
@@ -162,14 +153,14 @@ void Game::Cave::ItemNode::getObjectId(void)
  * Address:	8024E2F0
  * Size:	000008
  */
-u32 Game::Cave::ItemNode::getObjectType(void) { return 0x1; }
+u32 Cave::ItemNode::getObjectType(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8024E2F8
  * Size:	000008
  */
-void Game::Cave::ItemNode::getBirthCount(void)
+void Cave::ItemNode::getBirthCount(void)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +174,7 @@ void Game::Cave::ItemNode::getBirthCount(void)
  * Address:	8024E300
  * Size:	000014
  */
-void Game::Cave::ItemNode::getBirthPosition((float&, float&))
+void Cave::ItemNode::getBirthPosition(float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -200,7 +191,7 @@ void Game::Cave::ItemNode::getBirthPosition((float&, float&))
  * Address:	8024E314
  * Size:	000008
  */
-void Game::Cave::ItemNode::getDirection(void)
+void Cave::ItemNode::getDirection(void)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +205,7 @@ void Game::Cave::ItemNode::getDirection(void)
  * Address:	8024E31C
  * Size:	000070
  */
-void Game::Cave::ItemNode::__dt(void)
+Cave::ItemNode::~ItemNode(void)
 {
 	/*
 	.loc_0x0:
@@ -252,3 +243,4 @@ void Game::Cave::ItemNode::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

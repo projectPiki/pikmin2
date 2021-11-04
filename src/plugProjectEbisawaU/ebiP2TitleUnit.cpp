@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -21,12 +11,14 @@ void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float>
 	// UNUSED FUNCTION
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803C0AF8
  * Size:	000088
  */
-void ebi::title::TParamBase::loadSettingFile((JKRArchive*, char*))
+void title::TParamBase::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +70,7 @@ void ebi::title::TParamBase::loadSettingFile((JKRArchive*, char*))
  * Address:	803C0B80
  * Size:	0000B0
  */
-void ebi::title::TObjBase::calcModelBaseMtx_(void)
+void title::TObjBase::calcModelBaseMtx_(void)
 {
 	/*
 	.loc_0x0:
@@ -129,6 +121,8 @@ void ebi::title::TObjBase::calcModelBaseMtx_(void)
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	........
@@ -139,12 +133,14 @@ void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float> f(void)
 	// UNUSED FUNCTION
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803C0C30
  * Size:	000094
  */
-void ebi::title::TObjBase::pushOut((ebi::title::TObjBase*))
+void title::TObjBase::pushOut(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +191,7 @@ void ebi::title::TObjBase::pushOut((ebi::title::TObjBase*))
  * Address:	803C0CC4
  * Size:	000220
  */
-void ebi::title::TMapBase::setArchive((JKRArchive*))
+void title::TMapBase::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -351,7 +347,7 @@ void ebi::title::TMapBase::setArchive((JKRArchive*))
  * Address:	803C0EE4
  * Size:	000048
  */
-void ebi::title::TMapBase::startWind((float))
+void title::TMapBase::startWind(float)
 {
 	/*
 	.loc_0x0:
@@ -381,7 +377,7 @@ void ebi::title::TMapBase::startWind((float))
  * Address:	803C0F2C
  * Size:	00027C
  */
-void ebi::title::TMapBase::update(void)
+void title::TMapBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -572,7 +568,7 @@ void ebi::title::TMapBase::update(void)
  * Address:	803C11A8
  * Size:	000150
  */
-void ebi::title::TBGEnemyBase::setArchive((JKRArchive*))
+void title::TBGEnemyBase::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -674,7 +670,7 @@ void ebi::title::TBGEnemyBase::setArchive((JKRArchive*))
  * Address:	803C12F8
  * Size:	00005C
  */
-void ebi::title::TBGEnemyBase::start(void)
+void title::TBGEnemyBase::start(void)
 {
 	/*
 	.loc_0x0:
@@ -709,7 +705,7 @@ void ebi::title::TBGEnemyBase::start(void)
  * Address:	803C1354
  * Size:	000124
  */
-void ebi::title::TBGEnemyBase::update(void)
+void title::TBGEnemyBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -794,7 +790,7 @@ void ebi::title::TBGEnemyBase::update(void)
  * Address:	803C1478
  * Size:	0002D8
  */
-void ebi::title::TBlackPlane::setArchive((JKRArchive*))
+void title::TBlackPlane::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1002,7 +998,7 @@ void ebi::title::TBlackPlane::setArchive((JKRArchive*))
  * Address:	803C1750
  * Size:	0000A0
  */
-void ebi::title::TBlackPlane::start(void)
+void title::TBlackPlane::start(void)
 {
 	/*
 	.loc_0x0:
@@ -1054,7 +1050,7 @@ void ebi::title::TBlackPlane::start(void)
  * Address:	803C17F0
  * Size:	000110
  */
-void ebi::title::TBlackPlane::updateBeforeCamera(void)
+void title::TBlackPlane::updateBeforeCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -1134,7 +1130,7 @@ void ebi::title::TBlackPlane::updateBeforeCamera(void)
  * Address:	803C1900
  * Size:	000050
  */
-void ebi::title::TBlackPlane::updateAfterCamera(void)
+void title::TBlackPlane::updateAfterCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -1166,7 +1162,7 @@ void ebi::title::TBlackPlane::updateAfterCamera(void)
  * Address:	803C1950
  * Size:	00004C
  */
-void ebi::title::TBlackPlane::setLogo(void)
+void title::TBlackPlane::setLogo(void)
 {
 	/*
 	.loc_0x0:
@@ -1197,7 +1193,7 @@ void ebi::title::TBlackPlane::setLogo(void)
  * Address:	803C199C
  * Size:	000078
  */
-void ebi::title::TBlackPlane::getCameraPos(void)
+void title::TBlackPlane::getCameraPos(void)
 {
 	/*
 	.loc_0x0:
@@ -1233,6 +1229,8 @@ void ebi::title::TBlackPlane::getCameraPos(void)
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

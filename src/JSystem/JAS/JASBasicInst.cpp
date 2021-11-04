@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80099888
  * Size:	000044
  */
-void JASBasicInst::JASBasicInst()
+JASBasicInst::JASBasicInst()
 {
 	/*
 	.loc_0x0:
@@ -34,7 +34,7 @@ void JASBasicInst::JASBasicInst()
  * Address:	800998CC
  * Size:	000048
  */
-void JASInst::~JASInst()
+JASInst::~JASInst()
 {
 	/*
 	.loc_0x0:
@@ -66,7 +66,7 @@ void JASInst::~JASInst()
  * Address:	80099914
  * Size:	00008C
  */
-void JASBasicInst::~JASBasicInst()
+JASBasicInst::~JASBasicInst()
 {
 	/*
 	.loc_0x0:
@@ -354,7 +354,7 @@ void JASBasicInst::setKeyRegionCount(unsigned long)
  * Address:	80099C14
  * Size:	000018
  */
-void JASBasicInst::TKeymap::__ct(void)
+JASBasicInst::TKeymap::TKeymap(void)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +549,7 @@ void JASBasicInst::getKeyRegion(int) const
  * Address:	80099D60
  * Size:	000054
  */
-void JASBasicInst::TKeymap::__dt(void)
+JASBasicInst::TKeymap::~TKeymap(void)
 {
 	/*
 	.loc_0x0:
@@ -584,7 +584,7 @@ void JASBasicInst::TKeymap::__dt(void)
  * Address:	80099DB4
  * Size:	000058
  */
-void JASBasicInst::TKeymap::setVeloRegionCount((unsigned long))
+void JASBasicInst::TKeymap::setVeloRegionCount(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +618,7 @@ void JASBasicInst::TKeymap::setVeloRegionCount((unsigned long))
  * Address:	80099E0C
  * Size:	000024
  */
-void JASBasicInst::TKeymap::getVeloRegion((int))
+void JASBasicInst::TKeymap::getVeloRegion(int)
 {
 	/*
 	.loc_0x0:

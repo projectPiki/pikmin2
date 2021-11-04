@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -519,7 +519,7 @@ void JKRDvdAramRipper::callCommand_Async(JKRADCommand*)
  * Address:	8001DCC8
  * Size:	000070
  */
-void JSUFileInputStream::~JSUFileInputStream()
+JSUFileInputStream::~JSUFileInputStream()
 {
 	/*
 	.loc_0x0:
@@ -639,7 +639,7 @@ void JKRDvdAramRipper::syncAram(JKRADCommand*, int)
  * Address:	8001DE18
  * Size:	000040
  */
-void JKRADCommand::JKRADCommand()
+JKRADCommand::JKRADCommand()
 {
 	/*
 	.loc_0x0:
@@ -667,7 +667,7 @@ void JKRADCommand::JKRADCommand()
  * Address:	8001DE58
  * Size:	00008C
  */
-void JKRADCommand::~JKRADCommand()
+JKRADCommand::~JKRADCommand()
 {
 	/*
 	.loc_0x0:

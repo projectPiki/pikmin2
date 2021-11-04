@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80244528
  * Size:	000088
  */
-void Game::Cave::RandMapMgr::__ct((bool))
+Cave::RandMapMgr::RandMapMgr(bool)
 {
 	/*
 	.loc_0x0:
@@ -61,9 +53,9 @@ void Game::Cave::RandMapMgr::__ct((bool))
  * Address:	802445B0
  * Size:	0001A4
  */
-void Game::Cave::RandMapMgr::loadResource((Game::MapUnitInterface*, int,
-                                           Game::Cave::FloorInfo*, bool,
-                                           Game::Cave::EditMapUnit*))
+void Cave::RandMapMgr::loadResource(Game::MapUnitInterface*, int,
+                                    Game::Cave::FloorInfo*, bool,
+                                    Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:
@@ -198,7 +190,7 @@ void Game::Cave::RandMapMgr::loadResource((Game::MapUnitInterface*, int,
  * Address:	80244754
  * Size:	000104
  */
-void Game::Cave::RandMapMgr::create(void)
+void Cave::RandMapMgr::create(void)
 {
 	/*
 	.loc_0x0:
@@ -277,7 +269,7 @@ void Game::Cave::RandMapMgr::create(void)
  * Address:	80244858
  * Size:	000034
  */
-void Game::Cave::RandMapMgr::getNumRooms(void)
+void Cave::RandMapMgr::getNumRooms(void)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +294,7 @@ void Game::Cave::RandMapMgr::getNumRooms(void)
  * Address:	8024488C
  * Size:	00003C
  */
-void Game::Cave::RandMapMgr::getUseUnitName((int))
+void Cave::RandMapMgr::getUseUnitName(int)
 {
 	/*
 	.loc_0x0:
@@ -333,7 +325,7 @@ void Game::Cave::RandMapMgr::getUseUnitName((int))
  * Address:	802448C8
  * Size:	000084
  */
-void Game::Cave::RandMapMgr::getRoomData((int, float&, float&, int&))
+void Cave::RandMapMgr::getRoomData(int, float&, float&, int&)
 {
 	/*
 	.loc_0x0:
@@ -382,7 +374,7 @@ void Game::Cave::RandMapMgr::getRoomData((int, float&, float&, int&))
  * Address:	8024494C
  * Size:	0000E4
  */
-void Game::Cave::RandMapMgr::makeRoomLink((int))
+void Cave::RandMapMgr::makeRoomLink(int)
 {
 	/*
 	.loc_0x0:
@@ -463,7 +455,7 @@ void Game::Cave::RandMapMgr::makeRoomLink((int))
  * Address:	80244A30
  * Size:	000084
  */
-void Game::Cave::RandMapMgr::makeObjectLayoutInfo((int))
+void Cave::RandMapMgr::makeObjectLayoutInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -509,12 +501,14 @@ void Game::Cave::RandMapMgr::makeObjectLayoutInfo((int))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80244AB4
  * Size:	000088
  */
-void getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<float> i(void)
+void getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3f i(void)
 {
 	/*
 	.loc_0x0:
@@ -566,7 +560,7 @@ void getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<float> i(void)
  * Address:	80244B3C
  * Size:	0000A0
  */
-void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<float> ff(void)
+void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3f ff(void)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +612,7 @@ void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<float> ff(void)
  * Address:	80244BDC
  * Size:	000188
  */
-void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<float> iff(void)
+void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3f iff(void)
 {
 	/*
 	.loc_0x0:
@@ -735,12 +729,14 @@ void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<float> iff(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80244D64
  * Size:	000048
  */
-void Game::Cave::RandMapMgr::setUnitTexture((int, JUTTexture*))
+void Cave::RandMapMgr::setUnitTexture(int, JUTTexture*)
 {
 	/*
 	.loc_0x0:
@@ -772,14 +768,10 @@ void Game::Cave::RandMapMgr::setUnitTexture((int, JUTTexture*))
  * Address:	80244DAC
  * Size:	00000C
  */
-void Game::Cave::RandMapMgr::setCaptureOn(void)
+void Cave::RandMapMgr::setCaptureOn(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x3C(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x3C(r3)
+	_3C = 1;
 }
 
 /*
@@ -787,7 +779,7 @@ void Game::Cave::RandMapMgr::setCaptureOn(void)
  * Address:	80244DB8
  * Size:	0000DC
  */
-void Game::Cave::RandMapMgr::captureRadarMap((Graphics&))
+void Cave::RandMapMgr::captureRadarMap(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -856,7 +848,7 @@ void Game::Cave::RandMapMgr::captureRadarMap((Graphics&))
  * Address:	80244E94
  * Size:	00001C
  */
-void Game::Cave::RandMapMgr::isLastFloor(void)
+void Cave::RandMapMgr::isLastFloor(void)
 {
 	/*
 	.loc_0x0:
@@ -877,7 +869,7 @@ void Game::Cave::RandMapMgr::isLastFloor(void)
  * Address:	80244EB0
  * Size:	000008
  */
-void Game::Cave::RandMapMgr::isVersusHiba(void)
+void Cave::RandMapMgr::isVersusHiba(void)
 {
 	/*
 	.loc_0x0:
@@ -891,7 +883,7 @@ void Game::Cave::RandMapMgr::isVersusHiba(void)
  * Address:	80244EB8
  * Size:	000008
  */
-void Game::Cave::RandMapMgr::getRadarMapTexture(void)
+void Cave::RandMapMgr::getRadarMapTexture(void)
 {
 	/*
 	.loc_0x0:
@@ -900,12 +892,14 @@ void Game::Cave::RandMapMgr::getRadarMapTexture(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80244EC0
  * Size:	000024
  */
-void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<float>(void)
+void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -926,7 +920,7 @@ void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<float>(void)
  * Address:	80244EE4
  * Size:	000020
  */
-void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<float> RfRf(void)
+void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3f RfRf(void)
 {
 	/*
 	.loc_0x0:
@@ -946,7 +940,7 @@ void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<float> RfRf(void)
  * Address:	80244F04
  * Size:	000254
  */
-void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<float> Pf(void)
+void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3f Pf(void)
 {
 	/*
 	.loc_0x0:
@@ -1128,12 +1122,14 @@ void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<float> Pf(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80245158
  * Size:	000200
  */
-void Game::Cave::RandMapMgr::drawFrameBuffer((Graphics&))
+void Cave::RandMapMgr::drawFrameBuffer(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1273,7 +1269,7 @@ void Game::Cave::RandMapMgr::drawFrameBuffer((Graphics&))
  * Address:	80245358
  * Size:	000060
  */
-void Game::RoomLink::__dt(void)
+RoomLink::~RoomLink(void)
 {
 	/*
 	.loc_0x0:
@@ -1311,7 +1307,7 @@ void Game::RoomLink::__dt(void)
  * Address:	802453B8
  * Size:	000060
  */
-void Game::Cave::RandMapMgr::__dt(void)
+Cave::RandMapMgr::~RandMapMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1343,3 +1339,4 @@ void Game::Cave::RandMapMgr::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

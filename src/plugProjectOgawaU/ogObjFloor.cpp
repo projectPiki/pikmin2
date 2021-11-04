@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031A3C8
  * Size:	0000E8
  */
-void og::newScreen::ObjFloor::__ct((char const*))
+newScreen::ObjFloor::ObjFloor(char const*)
 {
 	/*
 	.loc_0x0:
@@ -85,7 +77,7 @@ void og::newScreen::ObjFloor::__ct((char const*))
  * Address:	8031A4B0
  * Size:	0000AC
  */
-void og::newScreen::ObjFloor::__dt(void)
+newScreen::ObjFloor::~ObjFloor(void)
 {
 	/*
 	.loc_0x0:
@@ -144,7 +136,7 @@ void og::newScreen::ObjFloor::__dt(void)
  * Address:	........
  * Size:	000090
  */
-void og::newScreen::ObjFloor::isFLOOR(void)
+void newScreen::ObjFloor::isFLOOR(void)
 {
 	// UNUSED FUNCTION
 }
@@ -154,7 +146,7 @@ void og::newScreen::ObjFloor::isFLOOR(void)
  * Address:	........
  * Size:	00007C
  */
-void og::newScreen::ObjFloor::isCHALLENGE(void)
+void newScreen::ObjFloor::isCHALLENGE(void)
 {
 	// UNUSED FUNCTION
 }
@@ -164,7 +156,7 @@ void og::newScreen::ObjFloor::isCHALLENGE(void)
  * Address:	........
  * Size:	000030
  */
-void og::newScreen::ObjFloor::isVS(void)
+void newScreen::ObjFloor::isVS(void)
 {
 	// UNUSED FUNCTION
 }
@@ -174,7 +166,7 @@ void og::newScreen::ObjFloor::isVS(void)
  * Address:	8031A55C
  * Size:	000460
  */
-void og::newScreen::ObjFloor::setCaveMsgID((unsigned long, char*))
+void newScreen::ObjFloor::setCaveMsgID(unsigned long, char*)
 {
 	/*
 	.loc_0x0:
@@ -610,7 +602,7 @@ void og::newScreen::ObjFloor::setCaveMsgID((unsigned long, char*))
  * Address:	8031A9BC
  * Size:	0008C0
  */
-void og::newScreen::ObjFloor::doCreate((JKRArchive*))
+void newScreen::ObjFloor::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1280,14 +1272,14 @@ void og::newScreen::ObjFloor::doCreate((JKRArchive*))
  * Address:	8031B27C
  * Size:	000004
  */
-void og::newScreen::TitleMsg::init(void) { }
+void newScreen::TitleMsg::init(void) { }
 
 /*
  * --INFO--
  * Address:	8031B280
  * Size:	000598
  */
-void og::newScreen::ObjFloor::commonUpdate(void)
+void newScreen::ObjFloor::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1717,21 +1709,21 @@ void og::newScreen::ObjFloor::commonUpdate(void)
  * Address:	8031B818
  * Size:	000004
  */
-void og::newScreen::TitleMsg::end(void) { }
+void newScreen::TitleMsg::end(void) { }
 
 /*
  * --INFO--
  * Address:	8031B81C
  * Size:	000004
  */
-void og::newScreen::TitleMsg::update(void) { }
+void newScreen::TitleMsg::update(void) { }
 
 /*
  * --INFO--
  * Address:	8031B820
  * Size:	000020
  */
-void og::newScreen::ObjFloor::doUpdate(void)
+void newScreen::ObjFloor::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1751,7 +1743,7 @@ void og::newScreen::ObjFloor::doUpdate(void)
  * Address:	8031B840
  * Size:	00019C
  */
-void og::newScreen::ObjFloor::doDraw((Graphics&))
+void newScreen::ObjFloor::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1876,7 +1868,7 @@ void og::newScreen::ObjFloor::doDraw((Graphics&))
  * Address:	8031B9DC
  * Size:	000034
  */
-void og::newScreen::ObjFloor::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjFloor::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1901,7 +1893,7 @@ void og::newScreen::ObjFloor::doStart((Screen::StartSceneArg const*))
  * Address:	8031BA10
  * Size:	000010
  */
-void og::newScreen::ObjFloor::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjFloor::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1917,14 +1909,14 @@ void og::newScreen::ObjFloor::doEnd((Screen::EndSceneArg const*))
  * Address:	8031BA20
  * Size:	000004
  */
-void og::newScreen::ObjFloor::doUpdateFadeinFinish(void) { }
+void newScreen::ObjFloor::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031BA24
  * Size:	000030
  */
-void og::newScreen::ObjFloor::doUpdateFinish(void)
+void newScreen::ObjFloor::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1948,14 +1940,14 @@ void og::newScreen::ObjFloor::doUpdateFinish(void)
  * Address:	8031BA54
  * Size:	000004
  */
-void og::newScreen::ObjFloor::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjFloor::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031BA58
  * Size:	000074
  */
-void og::newScreen::ObjFloor::doUpdateFadein(void)
+void newScreen::ObjFloor::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -1998,7 +1990,7 @@ void og::newScreen::ObjFloor::doUpdateFadein(void)
  * Address:	8031BACC
  * Size:	000088
  */
-void og::newScreen::ObjFloor::doUpdateFadeout(void)
+void newScreen::ObjFloor::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -2046,7 +2038,7 @@ void og::newScreen::ObjFloor::doUpdateFadeout(void)
  * Address:	8031BB54
  * Size:	000168
  */
-void og::newScreen::ObjFloor::drawBG((Graphics&))
+void newScreen::ObjFloor::drawBG(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2148,6 +2140,8 @@ void og::newScreen::ObjFloor::drawBG((Graphics&))
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -2269,7 +2263,7 @@ void __sinit_ogObjFloor_cpp(void)
  * Address:	8031BE58
  * Size:	000008
  */
-void @24 @og::newScreen::ObjFloor::__dt(void)
+@24 @og::newScreen::ObjFloor::~ObjFloor(void)
 {
 	/*
 	.loc_0x0:

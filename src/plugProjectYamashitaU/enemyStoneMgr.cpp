@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80127C00
  * Size:	000088
  */
-void Game::EnemyStone::Mgr::Mgr()
+EnemyStone::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -51,7 +53,7 @@ void Game::EnemyStone::Mgr::Mgr()
  * Address:	80127C88
  * Size:	000174
  */
-void Game::EnemyStone::Mgr::loadResource()
+void EnemyStone::Mgr::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -160,7 +162,7 @@ void Game::EnemyStone::Mgr::loadResource()
  * Address:	80127DFC
  * Size:	000024
  */
-void Game::EnemyStone::DrawInfo::__defctor()
+void EnemyStone::DrawInfo::__defctor()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::EnemyStone::DrawInfo::__defctor()
  * Address:	80127E20
  * Size:	0000F8
  */
-void Game::EnemyStone::Mgr::regist(Game::EnemyStone::Obj*)
+void EnemyStone::Mgr::regist(Game::EnemyStone::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +267,7 @@ void Game::EnemyStone::Mgr::regist(Game::EnemyStone::Obj*)
  * Address:	80127F18
  * Size:	00008C
  */
-void Game::EnemyStone::Mgr::release(Game::EnemyStone::Obj*)
+void EnemyStone::Mgr::release(Game::EnemyStone::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -320,7 +322,7 @@ void Game::EnemyStone::Mgr::release(Game::EnemyStone::Obj*)
  * Address:	80127FA4
  * Size:	000164
  */
-void Game::EnemyStone::Mgr::draw(Viewport*)
+void EnemyStone::Mgr::draw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -433,3 +435,4 @@ void Game::EnemyStone::Mgr::draw(Viewport*)
 	  blr
 	*/
 }
+} // namespace Game

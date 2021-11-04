@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void LoadResource::Node::__ct((char const*))
+LoadResource::Node::Node(char const*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void LoadResource::Node::__ct((char const*))
  * Address:	8044C520
  * Size:	0000B8
  */
-void LoadResource::Node::__dt(void)
+LoadResource::Node::~Node(void)
 {
 	/*
 	.loc_0x0:
@@ -101,7 +91,7 @@ void LoadResource::Node::dump(void)
  * Address:	8044C5D8
  * Size:	000044
  */
-void LoadResource::Arg::__ct((char const*))
+LoadResource::Arg::Arg(char const*)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +120,7 @@ void LoadResource::Arg::__ct((char const*))
  * Address:	8044C61C
  * Size:	000048
  */
-void LoadResource::ArgAramOnly::__ct((char const*))
+LoadResource::ArgAramOnly::ArgAramOnly(char const*)
 {
 	/*
 	.loc_0x0:
@@ -160,7 +150,7 @@ void LoadResource::ArgAramOnly::__ct((char const*))
  * Address:	........
  * Size:	00009C
  */
-void LoadResource::Mgr::__ct(void)
+LoadResource::Mgr::Mgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -230,7 +220,7 @@ void LoadResource::Mgr::init(void)
  * Address:	........
  * Size:	0000B4
  */
-void LoadResource::Mgr::search((char const*))
+void LoadResource::Mgr::search(char const*)
 {
 	// UNUSED FUNCTION
 }
@@ -250,7 +240,7 @@ void LoadResource::Mgr::dump(void)
  * Address:	8044C714
  * Size:	00008C
  */
-void LoadResource::Mgr::mountArchive((LoadResource::Arg&))
+void LoadResource::Mgr::mountArchive(LoadResource::Arg&)
 {
 	/*
 	.loc_0x0:
@@ -303,7 +293,7 @@ void LoadResource::Mgr::mountArchive((LoadResource::Arg&))
  * Address:	8044C7A0
  * Size:	000324
  */
-void LoadResource::Mgr::load((LoadResource::Arg&))
+void LoadResource::Mgr::load(LoadResource::Arg&)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +550,7 @@ void LoadResource::Mgr::load((LoadResource::Arg&))
  * Address:	8044CAC4
  * Size:	000008
  */
-void @24 @LoadResource::Node::__dt(void)
+@24 @LoadResource::Node::~Node(void)
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8042AFC4
  * Size:	0000B0
  */
-void HeapStatus::HeapStatus()
+HeapStatus::HeapStatus()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +61,7 @@ void HeapStatus::HeapStatus()
  * Address:	........
  * Size:	00008C
  */
-void Node::~Node()
+Node::~Node()
 {
 	// UNUSED FUNCTION
 }
@@ -81,7 +71,7 @@ void Node::~Node()
  * Address:	........
  * Size:	00007C
  */
-void CoreNode::~CoreNode()
+CoreNode::~CoreNode()
 {
 	// UNUSED FUNCTION
 }
@@ -191,7 +181,7 @@ void HeapStatus::dumpNode()
  * Address:	8042B074
  * Size:	0001A0
  */
-void HeapInfo::~HeapInfo()
+HeapInfo::~HeapInfo()
 {
 	/*
 	.loc_0x0:
@@ -417,13 +407,10 @@ void JSUTreeIterator<CoreNode>::getObject() const
  * Address:	8042B270
  * Size:	000008
  */
-void JSUTreeIterator<CoreNode>::JSUTreeIterator(JSUTree<CoreNode>*)
+void JSUTreeIterator<CoreNode>::JSUTreeIterator(JSUTree<CoreNode>* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x0(r3)
+	_00 = a1;
 }
 
 /*

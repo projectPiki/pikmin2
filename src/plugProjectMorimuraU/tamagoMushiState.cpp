@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8036CCF0
  * Size:	000108
  */
-void Game::TamagoMushi::FSM::init((Game::EnemyBase*))
+void TamagoMushi::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +99,7 @@ void Game::TamagoMushi::FSM::init((Game::EnemyBase*))
  * Address:	8036CDF8
  * Size:	00003C
  */
-void Game::TamagoMushi::StateWalk::__ct((int))
+TamagoMushi::StateWalk::StateWalk(int)
 {
 	/*
 	.loc_0x0:
@@ -134,7 +126,7 @@ void Game::TamagoMushi::StateWalk::__ct((int))
  * Address:	8036CE34
  * Size:	000108
  */
-void Game::TamagoMushi::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void TamagoMushi::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -212,7 +204,7 @@ void Game::TamagoMushi::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036CF3C
  * Size:	0000EC
  */
-void Game::TamagoMushi::StateWalk::exec((Game::EnemyBase*))
+void TamagoMushi::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +285,7 @@ void Game::TamagoMushi::StateWalk::exec((Game::EnemyBase*))
  * Address:	8036D028
  * Size:	00003C
  */
-void Game::TamagoMushi::StateTurn::__ct((int))
+TamagoMushi::StateTurn::StateTurn(int)
 {
 	/*
 	.loc_0x0:
@@ -320,7 +312,7 @@ void Game::TamagoMushi::StateTurn::__ct((int))
  * Address:	8036D064
  * Size:	000054
  */
-void Game::TamagoMushi::StateTurn::init((Game::EnemyBase*, Game::StateArg*))
+void TamagoMushi::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -353,7 +345,7 @@ void Game::TamagoMushi::StateTurn::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036D0B8
  * Size:	000088
  */
-void Game::TamagoMushi::StateTurn::exec((Game::EnemyBase*))
+void TamagoMushi::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +395,7 @@ void Game::TamagoMushi::StateTurn::exec((Game::EnemyBase*))
  * Address:	8036D140
  * Size:	00003C
  */
-void Game::TamagoMushi::StateAppear::__ct((int))
+TamagoMushi::StateAppear::StateAppear(int)
 {
 	/*
 	.loc_0x0:
@@ -430,7 +422,7 @@ void Game::TamagoMushi::StateAppear::__ct((int))
  * Address:	8036D17C
  * Size:	000160
  */
-void Game::TamagoMushi::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
+void TamagoMushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -530,7 +522,7 @@ void Game::TamagoMushi::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036D2DC
  * Size:	0001AC
  */
-void Game::TamagoMushi::StateAppear::exec((Game::EnemyBase*))
+void TamagoMushi::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -663,7 +655,7 @@ void Game::TamagoMushi::StateAppear::exec((Game::EnemyBase*))
  * Address:	8036D488
  * Size:	00003C
  */
-void Game::TamagoMushi::StateHide::__ct((int))
+TamagoMushi::StateHide::StateHide(int)
 {
 	/*
 	.loc_0x0:
@@ -690,7 +682,7 @@ void Game::TamagoMushi::StateHide::__ct((int))
  * Address:	8036D4C4
  * Size:	00006C
  */
-void Game::TamagoMushi::StateHide::init((Game::EnemyBase*, Game::StateArg*))
+void TamagoMushi::StateHide::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -729,7 +721,7 @@ void Game::TamagoMushi::StateHide::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036D530
  * Size:	000044
  */
-void Game::TamagoMushi::StateHide::exec((Game::EnemyBase*))
+void TamagoMushi::StateHide::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -760,7 +752,7 @@ void Game::TamagoMushi::StateHide::exec((Game::EnemyBase*))
  * Address:	8036D574
  * Size:	00003C
  */
-void Game::TamagoMushi::StateDead::__ct((int))
+TamagoMushi::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +779,7 @@ void Game::TamagoMushi::StateDead::__ct((int))
  * Address:	8036D5B0
  * Size:	000108
  */
-void Game::TamagoMushi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void TamagoMushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -865,7 +857,7 @@ void Game::TamagoMushi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036D6B8
  * Size:	000114
  */
-void Game::TamagoMushi::StateDead::exec((Game::EnemyBase*))
+void TamagoMushi::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -948,7 +940,7 @@ void Game::TamagoMushi::StateDead::exec((Game::EnemyBase*))
  * Address:	8036D7CC
  * Size:	00003C
  */
-void Game::TamagoMushi::StateWait::__ct((int))
+TamagoMushi::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -975,7 +967,7 @@ void Game::TamagoMushi::StateWait::__ct((int))
  * Address:	8036D808
  * Size:	000074
  */
-void Game::TamagoMushi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void TamagoMushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1016,7 +1008,7 @@ void Game::TamagoMushi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036D87C
  * Size:	000098
  */
-void Game::TamagoMushi::StateWait::exec((Game::EnemyBase*))
+void TamagoMushi::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1062,3 +1054,4 @@ void Game::TamagoMushi::StateWait::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

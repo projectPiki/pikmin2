@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80119BFC
  * Size:	000034
  */
-void LifeGauge::LifeGauge()
+LifeGauge::LifeGauge()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +401,7 @@ void LifeGauge::initLifeGaugeDraw()
  * Address:	8011A0DC
  * Size:	0000F0
  */
-void LifeGauge::drawOneTri(Vector3<float>*, Color4&)
+void LifeGauge::drawOneTri(Vector3f*, Color4&)
 {
 	/*
 	.loc_0x0:
@@ -876,7 +876,7 @@ void LifeGaugeList::draw(Graphics&)
  * Address:	8011A7D0
  * Size:	0000DC
  */
-void LifeGaugeMgr::LifeGaugeMgr()
+LifeGaugeMgr::LifeGaugeMgr()
 {
 	/*
 	.loc_0x0:
@@ -943,7 +943,7 @@ void LifeGaugeMgr::LifeGaugeMgr()
  * Address:	8011A8AC
  * Size:	000098
  */
-void LifeGaugeList::~LifeGaugeList()
+LifeGaugeList::~LifeGaugeList()
 {
 	/*
 	.loc_0x0:

@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Parameters.h"
 #include "stream.h"
 #include "BaseParm.h"
@@ -355,7 +357,7 @@ void ParmString::read(Stream& stream)
  * Address:	80413CC4
  * Size:	0000B8
  */
-void ParmEnum::ParmEnum(Parameters*, char**, unsigned long, int, long, char*)
+ParmEnum::ParmEnum(Parameters*, char**, unsigned long, int, long, char*)
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8012E510
  * Size:	000134
  */
-void Game::EnemyEffectNodeHamon::EnemyEffectNodeHamon()
+EnemyEffectNodeHamon::EnemyEffectNodeHamon()
 {
 	/*
 	.loc_0x0:
@@ -89,12 +91,16 @@ void Game::EnemyEffectNodeHamon::EnemyEffectNodeHamon()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8012E644
  * Size:	00009C
  */
-void efx::TEnemyHamonMInd::~TEnemyHamonMInd()
+TEnemyHamonMInd::~TEnemyHamonMInd()
 {
 	/*
 	.loc_0x0:
@@ -149,7 +155,7 @@ void efx::TEnemyHamonMInd::~TEnemyHamonMInd()
  * Address:	8012E6E0
  * Size:	00009C
  */
-void efx::TEnemyHamonM::~TEnemyHamonM()
+TEnemyHamonM::~TEnemyHamonM()
 {
 	/*
 	.loc_0x0:
@@ -199,12 +205,16 @@ void efx::TEnemyHamonM::~TEnemyHamonM()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8012E77C
  * Size:	000060
  */
-void Game::EnemyEffectNodeBase::~EnemyEffectNodeBase()
+EnemyEffectNodeBase::~EnemyEffectNodeBase()
 {
 	/*
 	.loc_0x0:
@@ -242,7 +252,7 @@ void Game::EnemyEffectNodeBase::~EnemyEffectNodeBase()
  * Address:	8012E7DC
  * Size:	00011C
  */
-void Game::EnemyEffectNodeHamon::create(Game::EnemyBase*)
+void EnemyEffectNodeHamon::create(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -327,7 +337,7 @@ void Game::EnemyEffectNodeHamon::create(Game::EnemyBase*)
  * Address:	8012E8F8
  * Size:	00002C
  */
-void Game::EnemyEffectNodeHamon::fade(Game::EnemyBase*)
+void EnemyEffectNodeHamon::fade(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -345,12 +355,16 @@ void Game::EnemyEffectNodeHamon::fade(Game::EnemyBase*)
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8012E924
  * Size:	000044
  */
-void efx::TEnemyHamon::fade()
+void TEnemyHamon::fade()
 {
 	/*
 	.loc_0x0:
@@ -379,7 +393,7 @@ void efx::TEnemyHamon::fade()
  * Address:	8012E968
  * Size:	000050
  */
-void efx::TEnemyHamonChasePos::fade()
+void TEnemyHamonChasePos::fade()
 {
 	/*
 	.loc_0x0:
@@ -406,12 +420,16 @@ void efx::TEnemyHamonChasePos::fade()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8012E9B8
  * Size:	00002C
  */
-void Game::EnemyEffectNodeHamon::forceKill(Game::EnemyBase*)
+void EnemyEffectNodeHamon::forceKill(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -429,12 +447,16 @@ void Game::EnemyEffectNodeHamon::forceKill(Game::EnemyBase*)
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8012E9E4
  * Size:	000044
  */
-void efx::TEnemyHamon::forceKill()
+void TEnemyHamon::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -463,7 +485,7 @@ void efx::TEnemyHamon::forceKill()
  * Address:	8012EA28
  * Size:	000050
  */
-void efx::TEnemyHamonChasePos::forceKill()
+void TEnemyHamonChasePos::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -490,12 +512,16 @@ void efx::TEnemyHamonChasePos::forceKill()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8012EA78
  * Size:	00004C
  */
-void Game::EnemyEffectNodeHamon::update(Game::EnemyBase*)
+void EnemyEffectNodeHamon::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -526,7 +552,7 @@ void Game::EnemyEffectNodeHamon::update(Game::EnemyBase*)
  * Address:	8012EAC4
  * Size:	000160
  */
-void Game::EnemyEffectNodeHamon::~EnemyEffectNodeHamon()
+EnemyEffectNodeHamon::~EnemyEffectNodeHamon()
 {
 	/*
 	.loc_0x0:
@@ -628,3 +654,4 @@ void Game::EnemyEffectNodeHamon::~EnemyEffectNodeHamon()
 	  blr
 	*/
 }
+} // namespace efx

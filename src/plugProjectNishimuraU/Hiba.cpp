@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8026BE8C
  * Size:	000138
  */
-void Game::Hiba::Obj::Obj()
+Hiba::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,14 +103,14 @@ void Game::Hiba::Obj::Obj()
  * Address:	8026BFC4
  * Size:	000004
  */
-void Game::Hiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Hiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8026BFC8
  * Size:	0000F8
  */
-void Game::Hiba::Obj::onInit(Game::CreatureInitArg*)
+void Hiba::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -182,7 +184,7 @@ void Game::Hiba::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8026C0C0
  * Size:	000034
  */
-void Game::Hiba::Obj::doUpdate()
+void Hiba::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -207,14 +209,14 @@ void Game::Hiba::Obj::doUpdate()
  * Address:	8026C0F4
  * Size:	000004
  */
-void Game::Hiba::Obj::doDirectDraw(Graphics&) { }
+void Hiba::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8026C0F8
  * Size:	000020
  */
-void Game::Hiba::Obj::doDebugDraw(Graphics&)
+void Hiba::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -234,7 +236,7 @@ void Game::Hiba::Obj::doDebugDraw(Graphics&)
  * Address:	8026C118
  * Size:	00004C
  */
-void Game::Hiba::Obj::setFSM(Game::Hiba::FSM*)
+void Hiba::Obj::setFSM(Game::Hiba::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +267,7 @@ void Game::Hiba::Obj::setFSM(Game::Hiba::FSM*)
  * Address:	8026C164
  * Size:	000038
  */
-void Game::Hiba::Obj::getShadowParam(Game::ShadowParam&)
+void Hiba::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -291,7 +293,7 @@ void Game::Hiba::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8026C19C
  * Size:	00007C
  */
-void Game::Hiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void Hiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -338,7 +340,7 @@ void Game::Hiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026C218
  * Size:	000030
  */
-void Game::Hiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Hiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +364,7 @@ void Game::Hiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026C248
  * Size:	000030
  */
-void Game::Hiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Hiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +388,7 @@ void Game::Hiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026C278
  * Size:	000034
  */
-void Game::Hiba::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
+void Hiba::Obj::bombCallBack(Game::Creature*, Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +413,7 @@ void Game::Hiba::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
  * Address:	8026C2AC
  * Size:	0001D0
  */
-void Game::Hiba::Obj::interactFireAttack()
+void Hiba::Obj::interactFireAttack()
 {
 	/*
 	.loc_0x0:
@@ -547,7 +549,7 @@ void Game::Hiba::Obj::interactFireAttack()
  * Address:	8026C47C
  * Size:	000024
  */
-void Game::Hiba::Obj::setupLodParms()
+void Hiba::Obj::setupLodParms()
 {
 	/*
 	.loc_0x0:
@@ -568,7 +570,7 @@ void Game::Hiba::Obj::setupLodParms()
  * Address:	8026C4A0
  * Size:	00002C
  */
-void Game::Hiba::Obj::updateEfxLod()
+void Hiba::Obj::updateEfxLod()
 {
 	/*
 	.loc_0x0:
@@ -591,7 +593,7 @@ void Game::Hiba::Obj::updateEfxLod()
  * Address:	8026C4CC
  * Size:	000064
  */
-void Game::Hiba::Obj::createEffect()
+void Hiba::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -630,7 +632,7 @@ void Game::Hiba::Obj::createEffect()
  * Address:	8026C530
  * Size:	000058
  */
-void Game::Hiba::Obj::startFireEffect()
+void Hiba::Obj::startFireEffect()
 {
 	/*
 	.loc_0x0:
@@ -664,7 +666,7 @@ void Game::Hiba::Obj::startFireEffect()
  * Address:	8026C588
  * Size:	000030
  */
-void Game::Hiba::Obj::finishFireEffect()
+void Hiba::Obj::finishFireEffect()
 {
 	/*
 	.loc_0x0:
@@ -688,7 +690,7 @@ void Game::Hiba::Obj::finishFireEffect()
  * Address:	8026C5B8
  * Size:	000044
  */
-void Game::Hiba::Obj::generatorKill()
+void Hiba::Obj::generatorKill()
 {
 	/*
 	.loc_0x0:
@@ -719,28 +721,28 @@ void Game::Hiba::Obj::generatorKill()
  * Address:	8026C5FC
  * Size:	000004
  */
-void Game::Hiba::Obj::doSimulation(float) { }
+void Hiba::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8026C600
  * Size:	000004
  */
-void Game::Hiba::Obj::inWaterCallback(Game::WaterBox*) { }
+void Hiba::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8026C604
  * Size:	000004
  */
-void Game::Hiba::Obj::outWaterCallback() { }
+void Hiba::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8026C608
  * Size:	000008
  */
-void Game::Hiba::Obj::isLivingThing()
+void Hiba::Obj::isLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -754,14 +756,14 @@ void Game::Hiba::Obj::isLivingThing()
  * Address:	8026C610
  * Size:	000004
  */
-void Game::Hiba::Obj::lifeRecover() { }
+void Hiba::Obj::lifeRecover() { }
 
 /*
  * --INFO--
  * Address:	8026C614
  * Size:	000014
  */
-void Game::EnemyBase::@716 @12 @viewOnPelletKilled()
+void EnemyBase::@716 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -778,7 +780,7 @@ void Game::EnemyBase::@716 @12 @viewOnPelletKilled()
  * Address:	8026C628
  * Size:	000014
  */
-void Game::EnemyBase::@716 @12 @viewStartCarryMotion()
+void EnemyBase::@716 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -795,7 +797,7 @@ void Game::EnemyBase::@716 @12 @viewStartCarryMotion()
  * Address:	8026C63C
  * Size:	000014
  */
-void Game::EnemyBase::@716 @12 @viewStartPreCarryMotion()
+void EnemyBase::@716 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -812,7 +814,7 @@ void Game::EnemyBase::@716 @12 @viewStartPreCarryMotion()
  * Address:	8026C650
  * Size:	000014
  */
-void Game::EnemyBase::@716 @12 @view_finish_carrymotion()
+void EnemyBase::@716 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -829,7 +831,7 @@ void Game::EnemyBase::@716 @12 @view_finish_carrymotion()
  * Address:	8026C664
  * Size:	000014
  */
-void Game::EnemyBase::@716 @12 @view_start_carrymotion()
+void EnemyBase::@716 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -846,7 +848,7 @@ void Game::EnemyBase::@716 @12 @view_start_carrymotion()
  * Address:	8026C678
  * Size:	000014
  */
-void Game::EnemyBase::@716 @12 @viewGetShape()
+void EnemyBase::@716 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -857,3 +859,4 @@ void Game::EnemyBase::@716 @12 @viewGetShape()
 	  b         -0x165FE8
 	*/
 }
+} // namespace Game

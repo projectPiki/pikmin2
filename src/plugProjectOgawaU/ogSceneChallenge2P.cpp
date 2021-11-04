@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	8031FD04
  * Size:	00003C
  */
-void og::newScreen::Challenge2P::__ct(void)
+newScreen::Challenge2P::Challenge2P(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +34,7 @@ void og::newScreen::Challenge2P::__ct(void)
  * Address:	........
  * Size:	000060
  */
-void og::newScreen::Challenge2P::__dt(void)
+newScreen::Challenge2P::~Challenge2P(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,14 +44,14 @@ void og::newScreen::Challenge2P::__dt(void)
  * Address:	8031FD40
  * Size:	000004
  */
-void og::newScreen::Challenge2P::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::Challenge2P::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	8031FD44
  * Size:	0000C0
  */
-void og::newScreen::Challenge2P::doCreateObj((JKRArchive*))
+void newScreen::Challenge2P::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +117,7 @@ void og::newScreen::Challenge2P::doCreateObj((JKRArchive*))
  * Address:	8031FE04
  * Size:	00004C
  */
-void og::newScreen::Challenge2P::doStart((Screen::StartSceneArg*))
+void newScreen::Challenge2P::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -146,7 +148,7 @@ void og::newScreen::Challenge2P::doStart((Screen::StartSceneArg*))
  * Address:	8031FE50
  * Size:	000038
  */
-void og::newScreen::Challenge2P::doUpdateActive(void)
+void newScreen::Challenge2P::doUpdateActive(void)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +176,7 @@ void og::newScreen::Challenge2P::doUpdateActive(void)
  * Address:	8031FE88
  * Size:	000084
  */
-void og::newScreen::Challenge2P::startCountDown(void)
+void newScreen::Challenge2P::startCountDown(void)
 {
 	/*
 	.loc_0x0:
@@ -219,7 +221,7 @@ void og::newScreen::Challenge2P::startCountDown(void)
  * Address:	8031FF0C
  * Size:	00000C
  */
-void og::newScreen::Challenge2P::getResName( const
+void newScreen::Challenge2P::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -234,17 +236,14 @@ void og::newScreen::Challenge2P::getResName( const
  * Address:	8031FF18
  * Size:	000008
  */
-u32  og::newScreen::Challenge2P::getSceneType(void)
-{
-	return 0x2724;
-}
+u32 newScreen::Challenge2P::getSceneType(void) { return 0x2724; }
 
 /*
  * --INFO--
  * Address:	8031FF20
  * Size:	00000C
  */
-void og::newScreen::Challenge2P::getOwnerID(void)
+void newScreen::Challenge2P::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -259,7 +258,7 @@ void og::newScreen::Challenge2P::getOwnerID(void)
  * Address:	8031FF2C
  * Size:	000010
  */
-void og::newScreen::Challenge2P::getMemberID(void)
+void newScreen::Challenge2P::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +274,5 @@ void og::newScreen::Challenge2P::getMemberID(void)
  * Address:	8031FF3C
  * Size:	000008
  */
-u32  og::newScreen::Challenge2P::isDrawInDemo( const
-{
-	return 0x0;
-}
+u32 newScreen::Challenge2P::isDrawInDemo() const { return 0x0; }
+} // namespace og

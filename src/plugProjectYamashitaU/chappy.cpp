@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80115F90
  * Size:	000144
  */
-void Game::Chappy::Obj::Obj()
+Chappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -104,7 +106,7 @@ void Game::Chappy::Obj::Obj()
  * Address:	801160D4
  * Size:	00004C
  */
-void Game::ChappyBase::Obj::setFSM(Game::ChappyBase::FSM*)
+void ChappyBase::Obj::setFSM(Game::ChappyBase::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -135,7 +137,7 @@ void Game::ChappyBase::Obj::setFSM(Game::ChappyBase::FSM*)
  * Address:	80116120
  * Size:	0000BC
  */
-void Game::ChappyBase::Obj::~Obj()
+ChappyBase::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -198,7 +200,7 @@ void Game::ChappyBase::Obj::~Obj()
  * Address:	801161DC
  * Size:	0002B0
  */
-void Game::Chappy::Obj::changeMaterial()
+void Chappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -386,7 +388,7 @@ void Game::Chappy::Obj::changeMaterial()
  * Address:	8011648C
  * Size:	000008
  */
-void Game::Chappy::Mgr::getChangeTexture1()
+void Chappy::Mgr::getChangeTexture1()
 {
 	/*
 	.loc_0x0:
@@ -400,7 +402,7 @@ void Game::Chappy::Mgr::getChangeTexture1()
  * Address:	80116494
  * Size:	000008
  */
-void Game::Chappy::Mgr::getChangeTexture0()
+void Chappy::Mgr::getChangeTexture0()
 {
 	/*
 	.loc_0x0:
@@ -414,7 +416,7 @@ void Game::Chappy::Mgr::getChangeTexture0()
  * Address:	8011649C
  * Size:	0000EC
  */
-void Game::Chappy::Obj::~Obj()
+Chappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -489,14 +491,14 @@ void Game::Chappy::Obj::~Obj()
  * Address:	80116588
  * Size:	000008
  */
-u32 Game::Chappy::Obj::getEnemyTypeID() { return 0x2; }
+u32 Chappy::Obj::getEnemyTypeID() { return 0x2; }
 
 /*
  * --INFO--
  * Address:	80116590
  * Size:	000008
  */
-void Game::ChappyBase::Obj::getMouthSlots()
+void ChappyBase::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -510,7 +512,7 @@ void Game::ChappyBase::Obj::getMouthSlots()
  * Address:	80116598
  * Size:	000020
  */
-void Game::ChappyBase::Obj::setAnimationSpeed(float)
+void ChappyBase::Obj::setAnimationSpeed(float)
 {
 	/*
 	.loc_0x0:
@@ -530,35 +532,35 @@ void Game::ChappyBase::Obj::setAnimationSpeed(float)
  * Address:	801165B8
  * Size:	000004
  */
-void Game::ChappyBase::Obj::resetUnderGround() { }
+void ChappyBase::Obj::resetUnderGround() { }
 
 /*
  * --INFO--
  * Address:	801165BC
  * Size:	000004
  */
-void Game::ChappyBase::Obj::setUnderGround() { }
+void ChappyBase::Obj::setUnderGround() { }
 
 /*
  * --INFO--
  * Address:	801165C0
  * Size:	000004
  */
-void Game::ChappyBase::Obj::createFlickEffect() { }
+void ChappyBase::Obj::createFlickEffect() { }
 
 /*
  * --INFO--
  * Address:	801165C4
  * Size:	000004
  */
-void Game::ChappyBase::Obj::createSmokeEffect() { }
+void ChappyBase::Obj::createSmokeEffect() { }
 
 /*
  * --INFO--
  * Address:	801165C8
  * Size:	000008
  */
-void Game::ChappyBase::Obj::getDownSmokeScale()
+void ChappyBase::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -572,7 +574,7 @@ void Game::ChappyBase::Obj::getDownSmokeScale()
  * Address:	801165D0
  * Size:	000014
  */
-void Game::EnemyBase::@740 @12 @viewOnPelletKilled()
+void EnemyBase::@740 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -589,7 +591,7 @@ void Game::EnemyBase::@740 @12 @viewOnPelletKilled()
  * Address:	801165E4
  * Size:	000014
  */
-void Game::EnemyBase::@740 @12 @viewStartCarryMotion()
+void EnemyBase::@740 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -606,7 +608,7 @@ void Game::EnemyBase::@740 @12 @viewStartCarryMotion()
  * Address:	801165F8
  * Size:	000014
  */
-void Game::EnemyBase::@740 @12 @viewStartPreCarryMotion()
+void EnemyBase::@740 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -623,7 +625,7 @@ void Game::EnemyBase::@740 @12 @viewStartPreCarryMotion()
  * Address:	8011660C
  * Size:	000014
  */
-void Game::EnemyBase::@740 @12 @view_finish_carrymotion()
+void EnemyBase::@740 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -640,7 +642,7 @@ void Game::EnemyBase::@740 @12 @view_finish_carrymotion()
  * Address:	80116620
  * Size:	000014
  */
-void Game::EnemyBase::@740 @12 @view_start_carrymotion()
+void EnemyBase::@740 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -657,7 +659,7 @@ void Game::EnemyBase::@740 @12 @view_start_carrymotion()
  * Address:	80116634
  * Size:	000014
  */
-void Game::EnemyBase::@740 @12 @viewGetShape()
+void EnemyBase::@740 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -668,3 +670,4 @@ void Game::EnemyBase::@740 @12 @viewGetShape()
 	  b         -0xFFA4
 	*/
 }
+} // namespace Game

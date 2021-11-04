@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80258120
  * Size:	000050
  */
-void Game::Frog::Mgr::Mgr(int, unsigned char)
+Frog::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Frog::Mgr::Mgr(int, unsigned char)
  * Address:	80258170
  * Size:	000048
  */
-void Game::Frog::Mgr::doAlloc()
+void Frog::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Frog::Mgr::doAlloc()
  * Address:	802581B8
  * Size:	000154
  */
-void Game::Frog::Parms::Parms()
+Frog::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -168,7 +170,7 @@ void Game::Frog::Parms::Parms()
  * Address:	8025830C
  * Size:	000060
  */
-void Game::Frog::Mgr::createObj(int)
+void Frog::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -204,7 +206,7 @@ void Game::Frog::Mgr::createObj(int)
  * Address:	8025836C
  * Size:	0000BC
  */
-void Game::Frog::Obj::~Obj()
+Frog::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -267,7 +269,7 @@ void Game::Frog::Obj::~Obj()
  * Address:	80258428
  * Size:	000010
  */
-void Game::Frog::Mgr::getEnemy(int)
+void Frog::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +285,7 @@ void Game::Frog::Mgr::getEnemy(int)
  * Address:	80258438
  * Size:	000050
  */
-void Game::Frog::Parms::read(Stream&)
+void Frog::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -315,7 +317,7 @@ void Game::Frog::Parms::read(Stream&)
  * Address:	80258488
  * Size:	0000B0
  */
-void Game::Frog::Mgr::~Mgr()
+Frog::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -375,14 +377,14 @@ void Game::Frog::Mgr::~Mgr()
  * Address:	80258538
  * Size:	000008
  */
-u32 Game::Frog::Mgr::getEnemyTypeID() { return 0x11; }
+u32 Frog::Mgr::getEnemyTypeID() { return 0x11; }
 
 /*
  * --INFO--
  * Address:	80258540
  * Size:	000008
  */
-void Game::Frog::Mgr::@4 @__dt()
+Frog::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -390,3 +392,4 @@ void Game::Frog::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

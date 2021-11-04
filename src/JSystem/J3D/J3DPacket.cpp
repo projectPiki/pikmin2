@@ -328,7 +328,7 @@ void J3DPacket::draw() { }
  * Address:	8005FB1C
  * Size:	000048
  */
-void J3DPacket::~J3DPacket()
+J3DPacket::~J3DPacket()
 {
 	/*
 	.loc_0x0:
@@ -360,7 +360,7 @@ void J3DPacket::~J3DPacket()
  * Address:	8005FB64
  * Size:	00005C
  */
-void J3DDrawPacket::~J3DDrawPacket()
+J3DDrawPacket::~J3DDrawPacket()
 {
 	/*
 	.loc_0x0:
@@ -538,7 +538,7 @@ void J3DDrawPacket::draw()
  * Address:	8005FD2C
  * Size:	00005C
  */
-void J3DMatPacket::J3DMatPacket()
+J3DMatPacket::J3DMatPacket()
 {
 	/*
 	.loc_0x0:
@@ -573,7 +573,7 @@ void J3DMatPacket::J3DMatPacket()
  * Address:	8005FD88
  * Size:	00006C
  */
-void J3DMatPacket::~J3DMatPacket()
+J3DMatPacket::~J3DMatPacket()
 {
 	/*
 	.loc_0x0:
@@ -787,7 +787,7 @@ void J3DMatPacket::draw()
  * Address:	8005FF90
  * Size:	000058
  */
-void J3DShapePacket::J3DShapePacket()
+J3DShapePacket::J3DShapePacket()
 {
 	/*
 	.loc_0x0:
@@ -821,7 +821,7 @@ void J3DShapePacket::J3DShapePacket()
  * Address:	8005FFE8
  * Size:	00006C
  */
-void J3DShapePacket::~J3DShapePacket()
+J3DShapePacket::~J3DShapePacket()
 {
 	/*
 	.loc_0x0:

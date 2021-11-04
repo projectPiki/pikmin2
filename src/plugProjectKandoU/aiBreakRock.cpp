@@ -5,7 +5,7 @@
  * Address:	801E36A0
  * Size:	0000F8
  */
-void PikiAI::ActBreakRock::ActBreakRock(Game::Piki*)
+PikiAI::ActBreakRock::ActBreakRock(Game::Piki*)
 {
 	/*
 	.loc_0x0:

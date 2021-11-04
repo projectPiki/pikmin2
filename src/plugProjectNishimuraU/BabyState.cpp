@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8028C584
  * Size:	0001D0
  */
-void Game::Baby::FSM::init(Game::EnemyBase*)
+void Baby::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -143,7 +145,7 @@ void Game::Baby::FSM::init(Game::EnemyBase*)
  * Address:	8028C754
  * Size:	000058
  */
-void Game::Baby::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Baby::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +179,7 @@ void Game::Baby::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8028C7AC
  * Size:	000044
  */
-void Game::Baby::StateDead::exec(Game::EnemyBase*)
+void Baby::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -208,14 +210,14 @@ void Game::Baby::StateDead::exec(Game::EnemyBase*)
  * Address:	8028C7F0
  * Size:	000004
  */
-void Game::Baby::StateDead::cleanup(Game::EnemyBase*) { }
+void Baby::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8028C7F4
  * Size:	0000DC
  */
-void Game::Baby::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void Baby::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +284,7 @@ void Game::Baby::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8028C8D0
  * Size:	000044
  */
-void Game::Baby::StatePress::exec(Game::EnemyBase*)
+void Baby::StatePress::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -313,14 +315,14 @@ void Game::Baby::StatePress::exec(Game::EnemyBase*)
  * Address:	8028C914
  * Size:	000004
  */
-void Game::Baby::StatePress::cleanup(Game::EnemyBase*) { }
+void Baby::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8028C918
  * Size:	000040
  */
-void Game::Baby::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
+void Baby::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -348,7 +350,7 @@ void Game::Baby::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8028C958
  * Size:	0000D8
  */
-void Game::Baby::StateBorn::exec(Game::EnemyBase*)
+void Baby::StateBorn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -420,14 +422,14 @@ void Game::Baby::StateBorn::exec(Game::EnemyBase*)
  * Address:	8028CA30
  * Size:	000004
  */
-void Game::Baby::StateBorn::cleanup(Game::EnemyBase*) { }
+void Baby::StateBorn::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8028CA34
  * Size:	000034
  */
-void Game::Baby::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void Baby::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -452,7 +454,7 @@ void Game::Baby::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8028CA68
  * Size:	000468
  */
-void Game::Baby::StateMove::exec(Game::EnemyBase*)
+void Baby::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -764,14 +766,14 @@ void Game::Baby::StateMove::exec(Game::EnemyBase*)
  * Address:	8028CED0
  * Size:	000004
  */
-void Game::Baby::StateMove::cleanup(Game::EnemyBase*) { }
+void Baby::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8028CED4
  * Size:	000050
  */
-void Game::Baby::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void Baby::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -803,7 +805,7 @@ void Game::Baby::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8028CF24
  * Size:	000104
  */
-void Game::Baby::StateAttack::exec(Game::EnemyBase*)
+void Baby::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -888,7 +890,7 @@ void Game::Baby::StateAttack::exec(Game::EnemyBase*)
  * Address:	8028D028
  * Size:	000024
  */
-void Game::Baby::StateAttack::cleanup(Game::EnemyBase*)
+void Baby::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -903,3 +905,4 @@ void Game::Baby::StateAttack::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

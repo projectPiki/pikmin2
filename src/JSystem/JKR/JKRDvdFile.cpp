@@ -5,7 +5,7 @@
  * Address:	8001D0B8
  * Size:	000074
  */
-void JKRDvdFile::JKRDvdFile()
+JKRDvdFile::JKRDvdFile()
 {
 	/*
 	.loc_0x0:
@@ -46,7 +46,7 @@ void JKRDvdFile::JKRDvdFile()
  * Address:	8001D12C
  * Size:	0000B0
  */
-void JKRDvdFile::JKRDvdFile(const char*)
+JKRDvdFile::JKRDvdFile(const char*)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +106,7 @@ void JKRDvdFile::JKRDvdFile(const char*)
  * Address:	8001D1DC
  * Size:	0000B0
  */
-void JKRDvdFile::JKRDvdFile(long)
+JKRDvdFile::JKRDvdFile(long)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +166,7 @@ void JKRDvdFile::JKRDvdFile(long)
  * Address:	8001D28C
  * Size:	00009C
  */
-void JKRDvdFile::~JKRDvdFile()
+JKRDvdFile::~JKRDvdFile()
 {
 	/*
 	.loc_0x0:

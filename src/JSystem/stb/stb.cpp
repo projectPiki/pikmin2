@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace JStudio {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000058
  */
-void JStudio::stb::TObject::toString_status((int))
+void stb::TObject::toString_status(int)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +17,7 @@ void JStudio::stb::TObject::toString_status((int))
  * Address:	........
  * Size:	000048
  */
-void JStudio::stb::TObject::__ct((unsigned long, void const*, unsigned long))
+stb::TObject::TObject(unsigned long, void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -25,8 +27,7 @@ void JStudio::stb::TObject::__ct((unsigned long, void const*, unsigned long))
  * Address:	80010278
  * Size:	000070
  */
-void JStudio::stb::TObject::__ct(
-    (JStudio::stb::data::TParse_TBlock_object const&))
+stb::TObject::TObject((JStudio::stb::data::TParse_TBlock_object const&))
 {
 	/*
 	.loc_0x0:
@@ -66,7 +67,7 @@ void JStudio::stb::TObject::__ct(
  * Address:	800102E8
  * Size:	000048
  */
-void JStudio::stb::TObject::__dt(void)
+stb::TObject::~TObject(void)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +99,7 @@ void JStudio::stb::TObject::__dt(void)
  * Address:	........
  * Size:	000058
  */
-void JStudio::stb::TObject::setFlag_operation((unsigned char, int))
+void stb::TObject::setFlag_operation(unsigned char, int)
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +109,7 @@ void JStudio::stb::TObject::setFlag_operation((unsigned char, int))
  * Address:	........
  * Size:	000018
  */
-void JStudio::stb::TObject::reset((void const*))
+void stb::TObject::reset(void const*)
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +119,7 @@ void JStudio::stb::TObject::reset((void const*))
  * Address:	80010330
  * Size:	000238
  */
-void JStudio::stb::TObject::forward((unsigned long))
+void stb::TObject::forward(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -306,39 +307,36 @@ void JStudio::stb::TObject::forward((unsigned long))
  * Address:	80010568
  * Size:	000004
  */
-void JStudio::stb::TObject::do_begin(void) { }
+void stb::TObject::do_begin(void) { }
 
 /*
  * --INFO--
  * Address:	8001056C
  * Size:	000004
  */
-void JStudio::stb::TObject::do_end(void) { }
+void stb::TObject::do_end(void) { }
 
 /*
  * --INFO--
  * Address:	80010570
  * Size:	000004
  */
-void JStudio::stb::TObject::do_paragraph((unsigned long, void const*,
-                                          unsigned long))
-{
-}
+void stb::TObject::do_paragraph(unsigned long, void const*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80010574
  * Size:	000004
  */
-void JStudio::stb::TObject::do_wait((unsigned long)) { }
+void stb::TObject::do_wait(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80010578
  * Size:	000004
  */
-void JStudio::stb::TObject::do_data((void const*, unsigned long, void const*,
-                                     unsigned long))
+void stb::TObject::do_data(void const*, unsigned long, void const*,
+                           unsigned long)
 {
 }
 
@@ -347,7 +345,7 @@ void JStudio::stb::TObject::do_data((void const*, unsigned long, void const*,
  * Address:	8001057C
  * Size:	0001A4
  */
-void JStudio::stb::TObject::process_sequence_(void)
+void stb::TObject::process_sequence_(void)
 {
 	/*
 	.loc_0x0:
@@ -500,9 +498,8 @@ void JStudio::stb::TObject::process_sequence_(void)
  * Address:	80010720
  * Size:	00013C
  */
-void JStudio::stb::TObject::process_paragraph_reserved_((unsigned long,
-                                                         void const*,
-                                                         unsigned long))
+void stb::TObject::process_paragraph_reserved_(unsigned long, void const*,
+                                               unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -617,7 +614,7 @@ void JStudio::stb::TObject::process_paragraph_reserved_((unsigned long,
  * Address:	........
  * Size:	000058
  */
-void JStudio::stb::TObject_control::__ct((void const*, unsigned long))
+stb::TObject_control::TObject_control(void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -627,7 +624,7 @@ void JStudio::stb::TObject_control::__ct((void const*, unsigned long))
  * Address:	........
  * Size:	00007C
  */
-void JStudio::stb::TObject_control::__ct(
+stb::TObject_control::TObject_control(
     (JStudio::stb::data::TParse_TBlock_object const&))
 {
 	// UNUSED FUNCTION
@@ -638,7 +635,7 @@ void JStudio::stb::TObject_control::__ct(
  * Address:	8001085C
  * Size:	000094
  */
-void JStudio::stb::TControl::__ct(void)
+stb::TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -687,7 +684,7 @@ void JStudio::stb::TControl::__ct(void)
  * Address:	800108F0
  * Size:	00005C
  */
-void JStudio::stb::TObject_control::__dt(void)
+stb::TObject_control::~TObject_control(void)
 {
 	/*
 	.loc_0x0:
@@ -721,6 +718,8 @@ void JStudio::stb::TObject_control::__dt(void)
 	*/
 }
 
+} // namespace JStudio
+
 /*
  * --INFO--
  * Address:	........
@@ -731,12 +730,14 @@ void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace JStudio {
+
 /*
  * --INFO--
  * Address:	8001094C
  * Size:	00009C
  */
-void JStudio::stb::TControl::__dt(void)
+stb::TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -793,7 +794,7 @@ void JStudio::stb::TControl::__dt(void)
  * Address:	........
  * Size:	000054
  */
-void JStudio::stb::TControl::appendObject((JStudio::stb::TObject*))
+void stb::TControl::appendObject(JStudio::stb::TObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -803,7 +804,7 @@ void JStudio::stb::TControl::appendObject((JStudio::stb::TObject*))
  * Address:	........
  * Size:	000038
  */
-void JStudio::stb::TControl::removeObject((JStudio::stb::TObject*))
+void stb::TControl::removeObject(JStudio::stb::TObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -813,7 +814,7 @@ void JStudio::stb::TControl::removeObject((JStudio::stb::TObject*))
  * Address:	........
  * Size:	00006C
  */
-void JStudio::stb::TControl::removeObject_all(void)
+void stb::TControl::removeObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -823,7 +824,7 @@ void JStudio::stb::TControl::removeObject_all(void)
  * Address:	........
  * Size:	000064
  */
-void JStudio::stb::TControl::destroyObject((JStudio::stb::TObject*))
+void stb::TControl::destroyObject(JStudio::stb::TObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -833,7 +834,7 @@ void JStudio::stb::TControl::destroyObject((JStudio::stb::TObject*))
  * Address:	........
  * Size:	000094
  */
-void JStudio::stb::TControl::destroyObject_all(void)
+void stb::TControl::destroyObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -843,7 +844,7 @@ void JStudio::stb::TControl::destroyObject_all(void)
  * Address:	800109E8
  * Size:	000094
  */
-void JStudio::stb::TControl::getObject((void const*, unsigned long))
+void stb::TControl::getObject(void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -895,7 +896,7 @@ void JStudio::stb::TControl::getObject((void const*, unsigned long))
  * Size:	00009C
  */
 void std::find_if<JGadget::TLinkList<JStudio::stb::TObject, -12>::iterator,
-                  JStudio::object::TPRObject_ID_equal>(
+                  object::TPRObject_ID_equal>(
     JGadget::TLinkList<JStudio::stb::TObject, -12>::iterator,
     JGadget::TLinkList<JStudio::stb::TObject, -12>::iterator,
     JStudio::object::TPRObject_ID_equal)
@@ -955,7 +956,7 @@ void std::find_if<JGadget::TLinkList<JStudio::stb::TObject, -12>::iterator,
  * Address:	........
  * Size:	00007C
  */
-void JStudio::stb::TControl::getObject_index((unsigned long))
+void stb::TControl::getObject_index(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -965,7 +966,7 @@ void JStudio::stb::TControl::getObject_index((unsigned long))
  * Address:	........
  * Size:	000084
  */
-void JStudio::stb::TControl::reset(void)
+void stb::TControl::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -975,7 +976,7 @@ void JStudio::stb::TControl::reset(void)
  * Address:	80010B18
  * Size:	0000F0
  */
-void JStudio::stb::TControl::forward((unsigned long))
+void stb::TControl::forward(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1055,7 +1056,7 @@ void JStudio::stb::TControl::forward((unsigned long))
  * Address:	80010C08
  * Size:	000048
  */
-void JStudio::stb::TFactory::__dt(void)
+stb::TFactory::~TFactory(void)
 {
 	/*
 	.loc_0x0:
@@ -1087,8 +1088,7 @@ void JStudio::stb::TFactory::__dt(void)
  * Address:	80010C50
  * Size:	000008
  */
-void JStudio::stb::TFactory::create(
-    (JStudio::stb::data::TParse_TBlock_object const&))
+void stb::TFactory::create((JStudio::stb::data::TParse_TBlock_object const&))
 {
 	return 0x0;
 }
@@ -1098,7 +1098,7 @@ void JStudio::stb::TFactory::create(
  * Address:	80010C58
  * Size:	00003C
  */
-void JStudio::stb::TFactory::destroy((JStudio::stb::TObject*))
+void stb::TFactory::destroy(JStudio::stb::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -1127,7 +1127,7 @@ void JStudio::stb::TFactory::destroy((JStudio::stb::TObject*))
  * Address:	80010C94
  * Size:	000020
  */
-void JStudio::stb::TParse::__ct((JStudio::stb::TControl*))
+stb::TParse::TParse(JStudio::stb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -1147,7 +1147,7 @@ void JStudio::stb::TParse::__ct((JStudio::stb::TControl*))
  * Address:	80010CB4
  * Size:	000060
  */
-void JStudio::stb::TParse::__dt(void)
+stb::TParse::~TParse(void)
 {
 	/*
 	.loc_0x0:
@@ -1185,8 +1185,7 @@ void JStudio::stb::TParse::__dt(void)
  * Address:	80010D14
  * Size:	0000C8
  */
-void JStudio::stb::TParse::parseHeader_next((void const**, unsigned long*,
-                                             unsigned long))
+void stb::TParse::parseHeader_next(void const**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1258,8 +1257,7 @@ void JStudio::stb::TParse::parseHeader_next((void const**, unsigned long*,
  * Address:	80010DDC
  * Size:	000054
  */
-void JStudio::stb::TParse::parseBlock_next((void const**, unsigned long*,
-                                            unsigned long))
+void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1292,8 +1290,8 @@ void JStudio::stb::TParse::parseBlock_next((void const**, unsigned long*,
  * Address:	80010E30
  * Size:	000008
  */
-void JStudio::stb::TParse::parseHeader(
-    (JStudio::stb::data::TParse_THeader const&, unsigned long))
+void stb::TParse::parseHeader((JStudio::stb::data::TParse_THeader const&,
+                               unsigned long))
 {
 	return 0x1;
 }
@@ -1303,8 +1301,8 @@ void JStudio::stb::TParse::parseHeader(
  * Address:	80010E38
  * Size:	000038
  */
-void JStudio::stb::TParse::parseBlock_block(
-    (JStudio::stb::data::TParse_TBlock const&, unsigned long))
+void stb::TParse::parseBlock_block((JStudio::stb::data::TParse_TBlock const&,
+                                    unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -1330,7 +1328,7 @@ void JStudio::stb::TParse::parseBlock_block(
  * Address:	80010E70
  * Size:	000154
  */
-void JStudio::stb::TParse::parseBlock_object(
+void stb::TParse::parseBlock_object(
     (JStudio::stb::data::TParse_TBlock_object const&, unsigned long))
 {
 	/*
@@ -1434,3 +1432,4 @@ void JStudio::stb::TParse::parseBlock_object(
 	  blr
 	*/
 }
+} // namespace JStudio

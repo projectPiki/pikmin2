@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8015928C
  * Size:	0000CC
  */
-void Game::NaviMgr::__ct(void)
+NaviMgr::NaviMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +74,7 @@ void Game::NaviMgr::__ct(void)
  * Address:	80159358
  * Size:	000060
  */
-void Game::NaviParms::__ct(void)
+NaviParms::NaviParms(void)
 {
 	/*
 	.loc_0x0:
@@ -120,7 +112,7 @@ void Game::NaviParms::__ct(void)
  * Address:	801593B8
  * Size:	000F10
  */
-void Game::NaviParms::Parms::__ct(void)
+NaviParms::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1090,7 @@ void Game::NaviParms::Parms::__ct(void)
  * Address:	8015A2C8
  * Size:	0001A4
  */
-void Game::FakePikiParms::__ct(void)
+FakePikiParms::FakePikiParms(void)
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1209,7 @@ void Game::FakePikiParms::__ct(void)
  * Address:	8015A46C
  * Size:	0002B4
  */
-void Game::FakePikiParms::Parms::__ct(void)
+FakePikiParms::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -1399,6 +1391,8 @@ void Game::FakePikiParms::Parms::__ct(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8015A720
@@ -1455,12 +1449,14 @@ void MonoObjectMgr<Game::Navi>::~MonoObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8015A7C0
  * Size:	000110
  */
-void Game::NaviMgr::__dt(void)
+NaviMgr::~NaviMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1548,7 +1544,7 @@ void Game::NaviMgr::__dt(void)
  * Address:	........
  * Size:	000020
  */
-void Game::NaviMgr::init(void)
+void NaviMgr::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1558,7 +1554,7 @@ void Game::NaviMgr::init(void)
  * Address:	8015A8D0
  * Size:	000078
  */
-void Game::NaviMgr::createPSMDirectorUpdator(void)
+void NaviMgr::createPSMDirectorUpdator(void)
 {
 	/*
 	.loc_0x0:
@@ -1602,7 +1598,7 @@ void Game::NaviMgr::createPSMDirectorUpdator(void)
  * Address:	8015A948
  * Size:	00005C
  */
-void Game::NaviMgr::resetMgr(void)
+void NaviMgr::resetMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1641,7 +1637,7 @@ void Game::NaviMgr::resetMgr(void)
  * Address:	8015A9A4
  * Size:	000090
  */
-void Game::NaviMgr::killAll(void)
+void NaviMgr::killAll(void)
 {
 	/*
 	.loc_0x0:
@@ -1695,7 +1691,7 @@ void Game::NaviMgr::killAll(void)
  * Address:	8015AA34
  * Size:	0000F0
  */
-void Game::NaviMgr::setupNavi((Game::Navi*))
+void NaviMgr::setupNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -1771,7 +1767,7 @@ void Game::NaviMgr::setupNavi((Game::Navi*))
  * Address:	8015AB24
  * Size:	0000FC
  */
-void Game::NaviMgr::birth(void)
+void NaviMgr::birth(void)
 {
 	/*
 	.loc_0x0:
@@ -1856,7 +1852,7 @@ void Game::NaviMgr::birth(void)
  * Address:	8015AC20
  * Size:	00009C
  */
-void Game::NaviMgr::getActiveNavi(void)
+void NaviMgr::getActiveNavi(void)
 {
 	/*
 	.loc_0x0:
@@ -1915,7 +1911,7 @@ void Game::NaviMgr::getActiveNavi(void)
  * Address:	8015ACBC
  * Size:	0000BC
  */
-void Game::NaviMgr::loadResources(void)
+void NaviMgr::loadResources(void)
 {
 	/*
 	.loc_0x0:
@@ -1978,7 +1974,7 @@ void Game::NaviMgr::loadResources(void)
  * Address:	8015AD78
  * Size:	000050
  */
-void Game::NaviParms::read((Stream&))
+void NaviParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2010,7 +2006,7 @@ void Game::NaviParms::read((Stream&))
  * Address:	8015ADC8
  * Size:	000264
  */
-void Game::NaviMgr::load(void)
+void NaviMgr::load(void)
 {
 	/*
 	.loc_0x0:
@@ -2181,7 +2177,7 @@ void Game::NaviMgr::load(void)
  * Address:	8015B02C
  * Size:	000064
  */
-void Game::NaviMgr::createModel((int))
+void NaviMgr::createModel(int)
 {
 	/*
 	.loc_0x0:
@@ -2220,7 +2216,7 @@ void Game::NaviMgr::createModel((int))
  * Address:	8015B090
  * Size:	0000D4
  */
-void Game::NaviMgr::loadResources_float(void)
+void NaviMgr::loadResources_float(void)
 {
 	/*
 	.loc_0x0:
@@ -2293,7 +2289,7 @@ void Game::NaviMgr::loadResources_float(void)
  * Address:	8015B164
  * Size:	00008C
  */
-void Game::NaviMgr::getAliveCount(void)
+void NaviMgr::getAliveCount(void)
 {
 	/*
 	.loc_0x0:
@@ -2346,7 +2342,7 @@ void Game::NaviMgr::getAliveCount(void)
  * Address:	........
  * Size:	000090
  */
-void Game::NaviMgr::getSurviveNavi(void)
+void NaviMgr::getSurviveNavi(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2356,7 +2352,7 @@ void Game::NaviMgr::getSurviveNavi(void)
  * Address:	8015B1F0
  * Size:	000018
  */
-void Game::NaviMgr::clearDeadCount(void)
+void NaviMgr::clearDeadCount(void)
 {
 	/*
 	.loc_0x0:
@@ -2374,7 +2370,7 @@ void Game::NaviMgr::clearDeadCount(void)
  * Address:	8015B208
  * Size:	000078
  */
-void Game::NaviMgr::informOrimaDead((int))
+void NaviMgr::informOrimaDead(int)
 {
 	/*
 	.loc_0x0:
@@ -2422,7 +2418,7 @@ void Game::NaviMgr::informOrimaDead((int))
  * Address:	8015B280
  * Size:	00004C
  */
-void Game::NaviMgr::getDeadOrima((int))
+void NaviMgr::getDeadOrima(int)
 {
 	/*
 	.loc_0x0:
@@ -2457,7 +2453,7 @@ void Game::NaviMgr::getDeadOrima((int))
  * Address:	8015B2CC
  * Size:	0000EC
  */
-void Game::NaviMgr::getAliveOrima((int))
+void NaviMgr::getAliveOrima(int)
 {
 	/*
 	.loc_0x0:
@@ -2542,7 +2538,7 @@ void Game::NaviMgr::getAliveOrima((int))
  * Address:	8015B3B8
  * Size:	0000A8
  */
-void Game::NaviMgr::setMovieDraw((bool))
+void NaviMgr::setMovieDraw(bool)
 {
 	/*
 	.loc_0x0:
@@ -2606,7 +2602,7 @@ void Game::NaviMgr::setMovieDraw((bool))
  * Address:	8015B460
  * Size:	0000E0
  */
-void Game::NaviMgr::doAnimation(void)
+void NaviMgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -2682,7 +2678,7 @@ void Game::NaviMgr::doAnimation(void)
  * Address:	8015B540
  * Size:	000168
  */
-void Game::NaviMgr::doEntry(void)
+void NaviMgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -2800,7 +2796,7 @@ void Game::NaviMgr::doEntry(void)
  * Address:	8015B6A8
  * Size:	000378
  */
-void Game::NaviMgr::doSimulation((float))
+void NaviMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -3076,7 +3072,7 @@ void Game::NaviMgr::doSimulation((float))
  * Address:	........
  * Size:	000074
  */
-void Game::NaviMgr::draw2d((J2DGrafContext&))
+void NaviMgr::draw2d(J2DGrafContext&)
 {
 	// UNUSED FUNCTION
 }
@@ -3086,14 +3082,14 @@ void Game::NaviMgr::draw2d((J2DGrafContext&))
  * Address:	8015BA20
  * Size:	000004
  */
-void Game::NaviMgr::setupSoundViewerAndBas(void) { }
+void NaviMgr::setupSoundViewerAndBas(void) { }
 
 /*
  * --INFO--
  * Address:	8015BA24
  * Size:	000008
  */
-void Game::NaviMgr::getMgrName(void)
+void NaviMgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -3107,7 +3103,9 @@ void Game::NaviMgr::getMgrName(void)
  * Address:	8015BA2C
  * Size:	000008
  */
-u32 Game::NaviMgr::frozenable(void) { return 0x0; }
+u32 NaviMgr::frozenable(void) { return 0x0; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3203,12 +3201,14 @@ void ObjectMgr<Game::Navi>::~ObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8015BB2C
  * Size:	000044
  */
-void Game::FakePikiParms::read((Stream&))
+void FakePikiParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -3231,6 +3231,8 @@ void Game::FakePikiParms::read((Stream&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4960,7 +4962,7 @@ void MonoObjectMgr<Game::Navi>::@28 @doDirectDraw(Graphics&)
  * Address:	8015CCE4
  * Size:	000008
  */
-void @28 @Game::NaviMgr::doSimulation((float))
+void @28 @Game::NaviMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -5030,7 +5032,7 @@ void @28 @Game::NaviMgr::doAnimation(void)
  * Address:	8015CD0C
  * Size:	000008
  */
-void @48 @Game::NaviMgr::__dt(void)
+@48 @Game::NaviMgr::~NaviMgr(void)
 {
 	/*
 	.loc_0x0:

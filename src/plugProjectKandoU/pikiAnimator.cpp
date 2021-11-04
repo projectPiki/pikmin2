@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8013364C
  * Size:	000050
  */
-void PikiAnimator::PikiAnimator()
+PikiAnimator::PikiAnimator()
 {
 	/*
 	.loc_0x0:

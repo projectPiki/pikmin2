@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802326A8
  * Size:	0000E0
  */
-void Game::SingleGame::EndingState::__ct(void)
+SingleGame::EndingState::EndingState(void)
 {
 	/*
 	.loc_0x0:
@@ -87,8 +79,7 @@ void Game::SingleGame::EndingState::__ct(void)
  * Address:	80232788
  * Size:	0000D4
  */
-void Game::SingleGame::EndingState::init((Game::SingleGameSection*,
-                                          Game::StateArg*))
+void SingleGame::EndingState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +146,7 @@ void Game::SingleGame::EndingState::init((Game::SingleGameSection*,
  * Address:	........
  * Size:	0000BC
  */
-void Game::SingleGame::EndingState::initNext((Game::SingleGameSection*))
+void SingleGame::EndingState::initNext(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -165,7 +156,7 @@ void Game::SingleGame::EndingState::initNext((Game::SingleGameSection*))
  * Address:	8023285C
  * Size:	0001C8
  */
-void Game::SingleGame::EndingState::dvdload(void)
+void SingleGame::EndingState::dvdload(void)
 {
 	/*
 	.loc_0x0:
@@ -305,14 +296,14 @@ void Game::SingleGame::EndingState::dvdload(void)
  * Address:	80232A24
  * Size:	000004
  */
-void Game::SingleGame::EndingState::do_dvdload(void) { }
+void SingleGame::EndingState::do_dvdload(void) { }
 
 /*
  * --INFO--
  * Address:	80232A28
  * Size:	000850
  */
-void Game::SingleGame::EndingState::exec((Game::SingleGameSection*))
+void SingleGame::EndingState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -904,7 +895,7 @@ void Game::SingleGame::EndingState::exec((Game::SingleGameSection*))
  * Address:	80233278
  * Size:	0000D4
  */
-void Game::SingleGame::EndingState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::EndingState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -973,7 +964,7 @@ void Game::SingleGame::EndingState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8023334C
  * Size:	0000B8
  */
-void Game::SingleGame::EndingState::cleanup((Game::SingleGameSection*))
+void SingleGame::EndingState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1032,44 +1023,54 @@ void Game::SingleGame::EndingState::cleanup((Game::SingleGameSection*))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80233404
- * Size:	000008
- */
-u32 og::Screen::DispMemberFinalMessage::getSize(void) { return 0xC; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	8023340C
- * Size:	00000C
- */
-void og::Screen::DispMemberFinalMessage::getOwnerID(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+namespace og {
 
-/*
- * --INFO--
- * Address:	80233418
- * Size:	000014
- */
-void og::Screen::DispMemberFinalMessage::getMemberID(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4C4D
-	  lis       r3, 0x4649
-	  addi      r4, r4, 0x5347
-	  addi      r3, r3, 0x4E41
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80233404
+	 * Size:	000008
+	 */
+	u32 DispMemberFinalMessage::getSize(void) { return 0xC; }
+
+	/*
+	 * --INFO--
+	 * Address:	8023340C
+	 * Size:	00000C
+	 */
+	void DispMemberFinalMessage::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80233418
+	 * Size:	000014
+	 */
+	void DispMemberFinalMessage::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4C4D
+		  lis       r3, 0x4649
+		  addi      r4, r4, 0x5347
+		  addi      r3, r3, 0x4E41
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--

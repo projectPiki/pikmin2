@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8028E394
  * Size:	000090
  */
-void Game::Demon::Obj::Obj()
+Demon::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::Demon::Obj::Obj()
  * Address:	8028E424
  * Size:	0003F0
  */
-void Game::Demon::Obj::getAttackableTarget()
+void Demon::Obj::getAttackableTarget()
 {
 	/*
 	.loc_0x0:
@@ -341,7 +343,7 @@ void Game::Demon::Obj::getAttackableTarget()
  * Address:	8028E814
  * Size:	00033C
  */
-void Game::Demon::Obj::catchTarget()
+void Demon::Obj::catchTarget()
 {
 	/*
 	.loc_0x0:
@@ -588,14 +590,14 @@ void Game::Demon::Obj::catchTarget()
  * Address:	8028EB50
  * Size:	000008
  */
-u32 Game::Demon::Obj::getEnemyTypeID() { return 0x20; }
+u32 Demon::Obj::getEnemyTypeID() { return 0x20; }
 
 /*
  * --INFO--
  * Address:	8028EB58
  * Size:	000008
  */
-void Game::Demon::Obj::getStickPikminNum()
+void Demon::Obj::getStickPikminNum()
 {
 	/*
 	.loc_0x0:
@@ -609,7 +611,7 @@ void Game::Demon::Obj::getStickPikminNum()
  * Address:	8028EB60
  * Size:	000008
  */
-void Game::Demon::Obj::resetAttackableTimer(float)
+void Demon::Obj::resetAttackableTimer(float)
 {
 	/*
 	.loc_0x0:
@@ -617,3 +619,4 @@ void Game::Demon::Obj::resetAttackableTimer(float)
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80284A9C
  * Size:	000098
  */
-void Game::Wealthy::Obj::Obj()
+Wealthy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -57,7 +59,7 @@ void Game::Wealthy::Obj::Obj()
  * Address:	80284B34
  * Size:	0001F0
  */
-void Game::Wealthy::Obj::changeMaterial()
+void Wealthy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::Wealthy::Obj::changeMaterial()
  * Address:	80284D24
  * Size:	000144
  */
-void Game::Wealthy::Obj::createItem()
+void Wealthy::Obj::createItem()
 {
 	/*
 	.loc_0x0:
@@ -314,7 +316,7 @@ void Game::Wealthy::Obj::createItem()
  * Address:	80284E68
  * Size:	0000B0
  */
-void Game::Wealthy::Obj::createEffect()
+void Wealthy::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void Game::Wealthy::Obj::createEffect()
  * Address:	80284F18
  * Size:	000058
  */
-void Game::Wealthy::Obj::startBodyEffect()
+void Wealthy::Obj::startBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -406,7 +408,7 @@ void Game::Wealthy::Obj::startBodyEffect()
  * Address:	80284F70
  * Size:	000030
  */
-void Game::Wealthy::Obj::finishBodyEffect()
+void Wealthy::Obj::finishBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -430,7 +432,7 @@ void Game::Wealthy::Obj::finishBodyEffect()
  * Address:	80284FA0
  * Size:	000030
  */
-void Game::Wealthy::Obj::effectDrawOn()
+void Wealthy::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -454,7 +456,7 @@ void Game::Wealthy::Obj::effectDrawOn()
  * Address:	80284FD0
  * Size:	000030
  */
-void Game::Wealthy::Obj::effectDrawOff()
+void Wealthy::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -478,7 +480,7 @@ void Game::Wealthy::Obj::effectDrawOff()
  * Address:	80285000
  * Size:	000044
  */
-void Game::Wealthy::Obj::createPressSENormal()
+void Wealthy::Obj::createPressSENormal()
 {
 	/*
 	.loc_0x0:
@@ -502,12 +504,16 @@ void Game::Wealthy::Obj::createPressSENormal()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	80285044
  * Size:	00009C
  */
-void efx::TOoganeKira::~TOoganeKira()
+TOoganeKira::~TOoganeKira()
 {
 	/*
 	.loc_0x0:
@@ -557,23 +563,32 @@ void efx::TOoganeKira::~TOoganeKira()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802850E0
  * Size:	000008
  */
-u32 Game::Wealthy::Obj::getEnemyTypeID() { return 0xA; }
+u32 Wealthy::Obj::getEnemyTypeID() { return 0xA; }
 
-/*
- * --INFO--
- * Address:	802850E8
- * Size:	000008
- */
-void efx::TOoganeKira::@4 @__dt()
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xA8
-	*/
-}
+	 * --INFO--
+	 * Address:	802850E8
+	 * Size:	000008
+	 */
+	TOoganeKira::@4 @~TOoganeKira()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0xA8
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

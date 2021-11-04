@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8023381C
  * Size:	000034
  */
-void Game::TekiStat::Info::incKilled(void)
+void TekiStat::Info::incKilled(void)
 {
 	/*
 	.loc_0x0:
@@ -40,7 +32,7 @@ void Game::TekiStat::Info::incKilled(void)
  * Address:	80233850
  * Size:	000028
  */
-void Game::TekiStat::Info::incKillPikmin(void)
+void TekiStat::Info::incKillPikmin(void)
 {
 	/*
 	.loc_0x0:
@@ -62,7 +54,7 @@ void Game::TekiStat::Info::incKillPikmin(void)
  * Address:	80233878
  * Size:	000010
  */
-void Game::TekiStat::Mgr::__ct(void)
+TekiStat::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +70,7 @@ void Game::TekiStat::Mgr::__ct(void)
  * Address:	80233888
  * Size:	000084
  */
-void Game::TekiStat::Mgr::whatsNew(void)
+void TekiStat::Mgr::whatsNew(void)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +123,7 @@ void Game::TekiStat::Mgr::whatsNew(void)
  * Address:	8023390C
  * Size:	000078
  */
-void Game::TekiStat::Mgr::setOutOfDateAll(void)
+void TekiStat::Mgr::setOutOfDateAll(void)
 {
 	/*
 	.loc_0x0:
@@ -179,7 +171,7 @@ void Game::TekiStat::Mgr::setOutOfDateAll(void)
  * Address:	80233984
  * Size:	0000C8
  */
-void Game::TekiStat::Mgr::clear(void)
+void TekiStat::Mgr::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +241,7 @@ void Game::TekiStat::Mgr::clear(void)
  * Address:	80233A4C
  * Size:	000060
  */
-void Game::TekiStat::Mgr::allocate((int))
+void TekiStat::Mgr::allocate(int)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +277,7 @@ void Game::TekiStat::Mgr::allocate((int))
  * Address:	80233AAC
  * Size:	000018
  */
-void Game::TekiStat::Info::__ct(void)
+TekiStat::Info::Info(void)
 {
 	/*
 	.loc_0x0:
@@ -303,7 +295,7 @@ void Game::TekiStat::Info::__ct(void)
  * Address:	80233AC4
  * Size:	00007C
  */
-void Game::TekiStat::Mgr::getTekiInfo((int))
+void TekiStat::Mgr::getTekiInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +342,7 @@ void Game::TekiStat::Mgr::getTekiInfo((int))
  * Address:	........
  * Size:	000058
  */
-void Game::TekiStat::Info::write((Stream&))
+void TekiStat::Info::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -360,7 +352,7 @@ void Game::TekiStat::Info::write((Stream&))
  * Address:	........
  * Size:	000058
  */
-void Game::TekiStat::Info::read((Stream&))
+void TekiStat::Info::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -370,7 +362,7 @@ void Game::TekiStat::Info::read((Stream&))
  * Address:	80233B40
  * Size:	0000C0
  */
-void Game::TekiStat::Mgr::write((Stream&))
+void TekiStat::Mgr::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -438,7 +430,7 @@ void Game::TekiStat::Mgr::write((Stream&))
  * Address:	80233C00
  * Size:	0000EC
  */
-void Game::TekiStat::Mgr::read((Stream&))
+void TekiStat::Mgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -513,3 +505,4 @@ void Game::TekiStat::Mgr::read((Stream&))
 	  blr
 	*/
 }
+} // namespace Game

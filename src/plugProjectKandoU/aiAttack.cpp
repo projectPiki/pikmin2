@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801A04CC
  * Size:	000070
  */
@@ -86,7 +76,7 @@ void PikiAI::ActAttack::emotion_success(void)
  * Address:	801A0580
  * Size:	0000D4
  */
-void PikiAI::ActAttack::__ct((Game::Piki*))
+PikiAI::ActAttack::ActAttack(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +147,7 @@ void PikiAI::ActAttack::__ct((Game::Piki*))
  * Address:	801A0654
  * Size:	00011C
  */
-void PikiAI::ActAttack::init((PikiAI::ActionArg*))
+void PikiAI::ActAttack::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -1320,7 +1310,7 @@ void PikiAI::ActAttack::cleanup(void)
  * Address:	801A1538
  * Size:	0000E0
  */
-void PikiAI::ActAttack::collisionCallback((Game::Piki*, Game::CollEvent&))
+void PikiAI::ActAttack::collisionCallback(Game::Piki*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1390,7 +1380,7 @@ void PikiAI::ActAttack::collisionCallback((Game::Piki*, Game::CollEvent&))
  * Address:	801A1618
  * Size:	00024C
  */
-void PikiAI::ActAttack::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiAI::ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -1561,7 +1551,7 @@ void PikiAI::ActAttack::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	801A1864
  * Size:	000024
  */
-void PikiAI::ActAttack::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1655,7 +1645,7 @@ u32 PikiAI::ActAttack::getNextAIType(void) { return 0x1; }
  * Address:	801A1900
  * Size:	000014
  */
-void @56 @4 @PikiAI::ActAttack::onKeyEvent((SysShape::KeyEvent const&))
+void @56 @4 @PikiAI::ActAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

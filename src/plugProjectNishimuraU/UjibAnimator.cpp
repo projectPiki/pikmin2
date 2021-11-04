@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8025CCD4
  * Size:	000008
  */
-void Game::Ujib::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Ujib::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Ujib::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	8025CCDC
  * Size:	000008
  */
-void Game::Ujib::ProperAnimator::getAnimator(int)
+void Ujib::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Ujib::ProperAnimator::getAnimator(int)
  * Address:	8025CCE4
  * Size:	00005C
  */
-void Game::Ujib::ProperAnimator::~ProperAnimator()
+Ujib::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Ujib::ProperAnimator::~ProperAnimator()
  * Address:	8025CD40
  * Size:	000008
  */
-void Game::Ujib::ProperAnimator::getAnimator()
+void Ujib::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Ujib::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

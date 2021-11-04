@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801D7E64
  * Size:	000074
  */
-void Game::Navi::stimulate(Game::Interaction&)
+void Navi::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -50,7 +52,7 @@ void Game::Navi::stimulate(Game::Interaction&)
  * Address:	801D7ED8
  * Size:	00008C
  */
-void Game::InteractSarai::actNavi(Game::Navi*)
+void InteractSarai::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::InteractSarai::actNavi(Game::Navi*)
  * Address:	801D7F64
  * Size:	000080
  */
-void Game::InteractBomb::actNavi(Game::Navi*)
+void InteractBomb::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -151,7 +153,7 @@ void Game::InteractBomb::actNavi(Game::Navi*)
  * Address:	801D7FE4
  * Size:	0000E0
  */
-void Game::InteractWind::actNavi(Game::Navi*)
+void InteractWind::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -227,7 +229,7 @@ void Game::InteractWind::actNavi(Game::Navi*)
  * Address:	801D80C4
  * Size:	0000B4
  */
-void Game::InteractDenki::actNavi(Game::Navi*)
+void InteractDenki::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -290,7 +292,7 @@ void Game::InteractDenki::actNavi(Game::Navi*)
  * Address:	801D8178
  * Size:	000044
  */
-void Game::InteractFallMeck::actNavi(Game::Navi*)
+void InteractFallMeck::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -319,7 +321,7 @@ void Game::InteractFallMeck::actNavi(Game::Navi*)
  * Address:	801D81BC
  * Size:	0001F8
  */
-void Game::InteractFlick::actNavi(Game::Navi*)
+void InteractFlick::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -471,7 +473,7 @@ void Game::InteractFlick::actNavi(Game::Navi*)
  * Address:	801D83B4
  * Size:	0000F4
  */
-void Game::InteractPress::actNavi(Game::Navi*)
+void InteractPress::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -554,7 +556,7 @@ void Game::InteractPress::actNavi(Game::Navi*)
  * Address:	801D84A8
  * Size:	0000B8
  */
-void Game::InteractFire::actNavi(Game::Navi*)
+void InteractFire::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -620,7 +622,7 @@ void Game::InteractFire::actNavi(Game::Navi*)
  * Address:	801D8560
  * Size:	000090
  */
-void Game::InteractBubble::actNavi(Game::Navi*)
+void InteractBubble::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -676,14 +678,14 @@ void Game::InteractBubble::actNavi(Game::Navi*)
  * Address:	801D85F0
  * Size:	000008
  */
-u32 Game::InteractGas::actNavi(Game::Navi*) { return 0x0; }
+u32 InteractGas::actNavi(Game::Navi*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D85F8
  * Size:	00005C
  */
-void Game::InteractBury::actNavi(Game::Navi*)
+void InteractBury::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -722,7 +724,7 @@ void Game::InteractBury::actNavi(Game::Navi*)
  * Address:	801D8654
  * Size:	000358
  */
-void Game::InteractFue::actNavi(Game::Navi*)
+void InteractFue::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -982,7 +984,7 @@ void Game::InteractFue::actNavi(Game::Navi*)
  * Address:	801D89AC
  * Size:	000074
  */
-void Game::InteractKaisan::actNavi(Game::Navi*)
+void InteractKaisan::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -1029,7 +1031,7 @@ void Game::InteractKaisan::actNavi(Game::Navi*)
  * Address:	801D8A20
  * Size:	00009C
  */
-void Game::InteractAttack::actNavi(Game::Navi*)
+void InteractAttack::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -1082,3 +1084,4 @@ void Game::InteractAttack::actNavi(Game::Navi*)
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8026CC0C
  * Size:	000008
  */
-void Game::GasHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void GasHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::GasHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	8026CC14
  * Size:	000008
  */
-void Game::GasHiba::ProperAnimator::getAnimator(int)
+void GasHiba::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::GasHiba::ProperAnimator::getAnimator(int)
  * Address:	8026CC1C
  * Size:	00005C
  */
-void Game::GasHiba::ProperAnimator::~ProperAnimator()
+GasHiba::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::GasHiba::ProperAnimator::~ProperAnimator()
  * Address:	8026CC78
  * Size:	000008
  */
-void Game::GasHiba::ProperAnimator::getAnimator()
+void GasHiba::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::GasHiba::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

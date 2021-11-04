@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8025979C
  * Size:	000050
  */
-void Game::Ujib::Mgr::Mgr(int, unsigned char)
+Ujib::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Ujib::Mgr::Mgr(int, unsigned char)
  * Address:	802597EC
  * Size:	000048
  */
-void Game::Ujib::Mgr::doAlloc()
+void Ujib::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Ujib::Mgr::doAlloc()
  * Address:	80259834
  * Size:	0000DC
  */
-void Game::Ujib::Parms::Parms()
+Ujib::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -138,7 +140,7 @@ void Game::Ujib::Parms::Parms()
  * Address:	80259910
  * Size:	000060
  */
-void Game::Ujib::Mgr::createObj(int)
+void Ujib::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +176,7 @@ void Game::Ujib::Mgr::createObj(int)
  * Address:	80259970
  * Size:	0000BC
  */
-void Game::Ujib::Obj::~Obj()
+Ujib::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -237,7 +239,7 @@ void Game::Ujib::Obj::~Obj()
  * Address:	80259A2C
  * Size:	000010
  */
-void Game::Ujib::Mgr::getEnemy(int)
+void Ujib::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -253,7 +255,7 @@ void Game::Ujib::Mgr::getEnemy(int)
  * Address:	80259A3C
  * Size:	000050
  */
-void Game::Ujib::Parms::read(Stream&)
+void Ujib::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +287,7 @@ void Game::Ujib::Parms::read(Stream&)
  * Address:	80259A8C
  * Size:	0000B0
  */
-void Game::Ujib::Mgr::~Mgr()
+Ujib::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -345,14 +347,14 @@ void Game::Ujib::Mgr::~Mgr()
  * Address:	80259B3C
  * Size:	000008
  */
-u32 Game::Ujib::Mgr::getEnemyTypeID() { return 0xD; }
+u32 Ujib::Mgr::getEnemyTypeID() { return 0xD; }
 
 /*
  * --INFO--
  * Address:	80259B44
  * Size:	000008
  */
-void Game::Ujib::Mgr::@4 @__dt()
+Ujib::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -360,3 +362,4 @@ void Game::Ujib::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

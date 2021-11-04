@@ -158,12 +158,8 @@ void PSAutoBgm::MeloArrBase::pre(PSAutoBgm::MeloArrArg&) { }
  */
 void PSAutoBgm::MeloArrBase::directOn(PSAutoBgm::Track*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x19(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x19(r3)
+	_19 = 1;
 }
 
 /*
@@ -173,12 +169,8 @@ void PSAutoBgm::MeloArrBase::directOn(PSAutoBgm::Track*)
  */
 void PSAutoBgm::MeloArrBase::directOff(PSAutoBgm::Track*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x19(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x19(r3)
+	_19 = 0;
 }
 
 /*
@@ -186,7 +178,7 @@ void PSAutoBgm::MeloArrBase::directOff(PSAutoBgm::Track*)
  * Address:	8033F030
  * Size:	000080
  */
-void PSAutoBgm::MeloArrBase::~MeloArrBase()
+PSAutoBgm::MeloArrBase::~MeloArrBase()
 {
 	/*
 	.loc_0x0:
@@ -234,7 +226,7 @@ void PSAutoBgm::MeloArrBase::~MeloArrBase()
  * Address:	8033F0B0
  * Size:	000098
  */
-void PSAutoBgm::MeloArr_RandomAvoid::~MeloArr_RandomAvoid()
+PSAutoBgm::MeloArr_RandomAvoid::~MeloArr_RandomAvoid()
 {
 	/*
 	.loc_0x0:
@@ -288,7 +280,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::~MeloArr_RandomAvoid()
  * Address:	8033F148
  * Size:	000008
  */
-void PSAutoBgm::MeloArr_RandomAvoid::@16 @__dt()
+PSAutoBgm::MeloArr_RandomAvoid::@16 @~MeloArr_RandomAvoid()
 {
 	/*
 	.loc_0x0:
@@ -302,7 +294,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::@16 @__dt()
  * Address:	8033F150
  * Size:	000008
  */
-void PSAutoBgm::MeloArrBase::@16 @__dt()
+PSAutoBgm::MeloArrBase::@16 @~MeloArrBase()
 {
 	/*
 	.loc_0x0:

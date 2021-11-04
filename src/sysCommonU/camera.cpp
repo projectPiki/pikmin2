@@ -3,19 +3,9 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	0000B0
  */
-void CullPlane::CullPlane(int)
+CullPlane::CullPlane(int)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void CullPlane::CullPlane(int)
  * Address:	........
  * Size:	00006C
  */
-void CullPlane::isPointVisible(Vector3<float>&, float)
+void CullPlane::isPointVisible(Vector3f&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +125,7 @@ void CullPlane::isCylinderVisible(Sys::Cylinder&)
  * Address:	........
  * Size:	0000F8
  */
-void CullFrustum::CullFrustum(int)
+CullFrustum::CullFrustum(int)
 {
 	// UNUSED FUNCTION
 }
@@ -445,7 +435,7 @@ void CullFrustum::updatePlanes()
  * Address:	8041A648
  * Size:	000158
  */
-void Camera::Camera()
+Camera::Camera()
 {
 	/*
 	.loc_0x0:
@@ -543,7 +533,7 @@ void Camera::Camera()
  * Address:	8041A7A0
  * Size:	0000A0
  */
-void CullFrustum::~CullFrustum()
+CullFrustum::~CullFrustum()
 {
 	/*
 	.loc_0x0:
@@ -866,12 +856,14 @@ void Camera::getLookAtPosition_()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8041AB68
  * Size:	000008
  */
-void Game::P2JST::ObjectCamera::isRunning(void)
+void P2JST::ObjectCamera::isRunning(void)
 {
 	/*
 	.loc_0x0:
@@ -879,6 +871,8 @@ void Game::P2JST::ObjectCamera::isRunning(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1466,7 +1460,7 @@ void Camera::calcScreenSize(Sys::Sphere&)
  * Address:	........
  * Size:	0000E0
  */
-void Camera::calcScreenSize(Sys::Sphere&, float&, float&, Vector3<float>&)
+void Camera::calcScreenSize(Sys::Sphere&, float&, float&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1690,7 +1684,7 @@ void Camera::updateSoundCamera(float)
  * Address:	8041B498
  * Size:	0001AC
  */
-void LookAtCamera::LookAtCamera()
+LookAtCamera::LookAtCamera()
 {
 	/*
 	.loc_0x0:
@@ -1809,7 +1803,7 @@ void LookAtCamera::LookAtCamera()
  * Address:	8041B644
  * Size:	0000B0
  */
-void Camera::~Camera()
+Camera::~Camera()
 {
 	/*
 	.loc_0x0:
@@ -1894,7 +1888,7 @@ void LookAtCamera::updateMatrix()
  * Address:	8041B728
  * Size:	000180
  */
-void BlendCamera::BlendCamera(int, Camera**)
+BlendCamera::BlendCamera(int, Camera**)
 {
 	/*
 	.loc_0x0:
@@ -2279,7 +2273,7 @@ void BlendCamera::doUpdate()
  * Address:	........
  * Size:	0001C8
  */
-void EditorCamera::EditorCamera()
+EditorCamera::EditorCamera()
 {
 	// UNUSED FUNCTION
 }
@@ -2289,7 +2283,7 @@ void EditorCamera::EditorCamera()
  * Address:	........
  * Size:	000078
  */
-void EditorCamera::init(Controller*, Vector3<float>&, float)
+void EditorCamera::init(Controller*, Vector3f&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -2319,7 +2313,7 @@ void EditorCamera::doUpdate()
  * Address:	........
  * Size:	0000D0
  */
-void EditorCamera::~EditorCamera()
+EditorCamera::~EditorCamera()
 {
 	// UNUSED FUNCTION
 }
@@ -2329,7 +2323,7 @@ void EditorCamera::~EditorCamera()
  * Address:	8041BC3C
  * Size:	0000C0
  */
-void BlendCamera::~BlendCamera()
+BlendCamera::~BlendCamera()
 {
 	/*
 	.loc_0x0:

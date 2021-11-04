@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -18,7 +8,7 @@ void _Print(char*, ...)
 void
     makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<
         float>
-    R10Vector3<float>(void)
+    R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -262,12 +252,14 @@ void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParm
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802F83E8
  * Size:	0000EC
  */
-void Game::SnakeCrow::SnakeCrowShadowMgr::__ct((Game::SnakeCrow::Obj*))
+SnakeCrow::SnakeCrowShadowMgr::SnakeCrowShadowMgr(Game::SnakeCrow::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +338,7 @@ void Game::SnakeCrow::SnakeCrowShadowMgr::__ct((Game::SnakeCrow::Obj*))
  * Address:	802F84D4
  * Size:	0000C0
  */
-void Game::SnakeCrow::SnakeCrowShadowMgr::init(void)
+void SnakeCrow::SnakeCrowShadowMgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +400,7 @@ void Game::SnakeCrow::SnakeCrowShadowMgr::init(void)
  * Address:	802F8594
  * Size:	000078
  */
-void Game::SnakeCrow::SnakeCrowShadowMgr::startJointShadow(void)
+void SnakeCrow::SnakeCrowShadowMgr::startJointShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -454,7 +446,7 @@ void Game::SnakeCrow::SnakeCrowShadowMgr::startJointShadow(void)
  * Address:	802F860C
  * Size:	000064
  */
-void Game::SnakeCrow::SnakeCrowShadowMgr::finishJointShadow(void)
+void SnakeCrow::SnakeCrowShadowMgr::finishJointShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -495,7 +487,7 @@ void Game::SnakeCrow::SnakeCrowShadowMgr::finishJointShadow(void)
  * Address:	802F8670
  * Size:	00025C
  */
-void Game::SnakeCrow::SnakeCrowShadowMgr::update(void)
+void SnakeCrow::SnakeCrowShadowMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -668,7 +660,7 @@ void Game::SnakeCrow::SnakeCrowShadowMgr::update(void)
  * Address:	802F88CC
  * Size:	000070
  */
-void Game::SnakeCrowSphereShadowNode::__dt(void)
+SnakeCrowSphereShadowNode::~SnakeCrowSphereShadowNode(void)
 {
 	/*
 	.loc_0x0:
@@ -712,7 +704,7 @@ void Game::SnakeCrowSphereShadowNode::__dt(void)
  * Address:	802F893C
  * Size:	000070
  */
-void Game::SnakeCrowTubeShadowNode::__dt(void)
+SnakeCrowTubeShadowNode::~SnakeCrowTubeShadowNode(void)
 {
 	/*
 	.loc_0x0:
@@ -750,3 +742,4 @@ void Game::SnakeCrowTubeShadowNode::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8022EA94
  * Size:	000044
  */
-void Game::VsGame::VSState::__ct(void)
+VsGame::VSState::VSState(void)
 {
 	/*
 	.loc_0x0:
@@ -44,7 +36,7 @@ void Game::VsGame::VSState::__ct(void)
  * Address:	8022EAD8
  * Size:	0000CC
  */
-void Game::VsGame::VSState::do_init((Game::VsGameSection*))
+void VsGame::VSState::do_init(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -105,6 +97,8 @@ void Game::VsGame::VSState::do_init((Game::VsGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

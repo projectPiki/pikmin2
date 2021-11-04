@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80323584
  * Size:	000050
  */
-void og::newScreen::SMenuPauseDoukutu::__ct(void)
+newScreen::SMenuPauseDoukutu::SMenuPauseDoukutu(void)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void og::newScreen::SMenuPauseDoukutu::__ct(void)
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::SMenuPauseDoukutu::__dt(void)
+newScreen::SMenuPauseDoukutu::~SMenuPauseDoukutu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,17 +49,14 @@ void og::newScreen::SMenuPauseDoukutu::__dt(void)
  * Address:	803235D4
  * Size:	000004
  */
-void og::newScreen::SMenuPauseDoukutu::doUserCallBackFunc(
-    (Resource::MgrCommand*))
-{
-}
+void newScreen::SMenuPauseDoukutu::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	803235D8
  * Size:	000060
  */
-void og::newScreen::SMenuPauseDoukutu::doCreateObj((JKRArchive*))
+void newScreen::SMenuPauseDoukutu::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +94,7 @@ void og::newScreen::SMenuPauseDoukutu::doCreateObj((JKRArchive*))
  * Address:	80323638
  * Size:	000090
  */
-void og::newScreen::SMenuPauseDoukutu::doGetFinishState(void)
+void newScreen::SMenuPauseDoukutu::doGetFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -155,14 +144,14 @@ void og::newScreen::SMenuPauseDoukutu::doGetFinishState(void)
  * Address:	803236C8
  * Size:	000004
  */
-void og::newScreen::SMenuPauseDoukutu::doUpdateActive(void) { }
+void newScreen::SMenuPauseDoukutu::doUpdateActive(void) { }
 
 /*
  * --INFO--
  * Address:	803236CC
  * Size:	000068
  */
-void og::newScreen::SMenuPauseDoukutu::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::SMenuPauseDoukutu::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -202,7 +191,7 @@ void og::newScreen::SMenuPauseDoukutu::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	80323734
  * Size:	00000C
  */
-void og::newScreen::SMenuPauseDoukutu::getResName( const
+void newScreen::SMenuPauseDoukutu::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -217,17 +206,14 @@ void og::newScreen::SMenuPauseDoukutu::getResName( const
  * Address:	80323740
  * Size:	000008
  */
-u32  og::newScreen::SMenuPauseDoukutu::getSceneType(void)
-{
-	return 0x271B;
-}
+u32 newScreen::SMenuPauseDoukutu::getSceneType(void) { return 0x271B; }
 
 /*
  * --INFO--
  * Address:	80323748
  * Size:	00000C
  */
-void og::newScreen::SMenuPauseDoukutu::getOwnerID(void)
+void newScreen::SMenuPauseDoukutu::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +228,7 @@ void og::newScreen::SMenuPauseDoukutu::getOwnerID(void)
  * Address:	80323754
  * Size:	000014
  */
-void og::newScreen::SMenuPauseDoukutu::getMemberID(void)
+void newScreen::SMenuPauseDoukutu::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -259,10 +245,9 @@ void og::newScreen::SMenuPauseDoukutu::getMemberID(void)
  * Address:	80323768
  * Size:	000008
  */
-u32  og::newScreen::SMenuPauseDoukutu::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::SMenuPauseDoukutu::isUseBackupSceneInfo(void) { return 0x1; }
+
+} // namespace og
 
 /*
  * --INFO--

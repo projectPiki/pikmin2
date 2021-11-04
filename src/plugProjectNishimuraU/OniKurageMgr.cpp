@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802D3998
  * Size:	000050
  */
-void Game::OniKurage::Mgr::Mgr(int, unsigned char)
+OniKurage::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::OniKurage::Mgr::Mgr(int, unsigned char)
  * Address:	802D39E8
  * Size:	000048
  */
-void Game::OniKurage::Mgr::doAlloc()
+void OniKurage::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::OniKurage::Mgr::doAlloc()
  * Address:	802D3A30
  * Size:	000048
  */
-void Game::OniKurage::Parms::Parms()
+OniKurage::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::OniKurage::Parms::Parms()
  * Address:	802D3A78
  * Size:	00023C
  */
-void Game::OniKurage::Parms::ProperParms::ProperParms()
+OniKurage::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::OniKurage::Parms::ProperParms::ProperParms()
  * Address:	802D3CB4
  * Size:	000060
  */
-void Game::OniKurage::Mgr::createObj(int)
+void OniKurage::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::OniKurage::Mgr::createObj(int)
  * Address:	802D3D14
  * Size:	0000BC
  */
-void Game::OniKurage::Obj::~Obj()
+OniKurage::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -359,7 +361,7 @@ void Game::OniKurage::Obj::~Obj()
  * Address:	802D3DD0
  * Size:	000010
  */
-void Game::OniKurage::Mgr::getEnemy(int)
+void OniKurage::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -375,7 +377,7 @@ void Game::OniKurage::Mgr::getEnemy(int)
  * Address:	802D3DE0
  * Size:	000068
  */
-void Game::OniKurage::Mgr::loadModelData()
+void OniKurage::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -417,7 +419,7 @@ void Game::OniKurage::Mgr::loadModelData()
  * Address:	802D3E48
  * Size:	0000B0
  */
-void Game::OniKurage::Mgr::~Mgr()
+OniKurage::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -477,14 +479,14 @@ void Game::OniKurage::Mgr::~Mgr()
  * Address:	802D3EF8
  * Size:	000008
  */
-u32 Game::OniKurage::Mgr::getEnemyTypeID() { return 0x48; }
+u32 OniKurage::Mgr::getEnemyTypeID() { return 0x48; }
 
 /*
  * --INFO--
  * Address:	802D3F00
  * Size:	00002C
  */
-void Game::OniKurage::Mgr::doLoadBmd(void*)
+void OniKurage::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +509,7 @@ void Game::OniKurage::Mgr::doLoadBmd(void*)
  * Address:	802D3F2C
  * Size:	000050
  */
-void Game::OniKurage::Parms::read(Stream&)
+void OniKurage::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +541,7 @@ void Game::OniKurage::Parms::read(Stream&)
  * Address:	802D3F7C
  * Size:	000008
  */
-void Game::OniKurage::Mgr::@4 @__dt()
+OniKurage::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -547,3 +549,4 @@ void Game::OniKurage::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

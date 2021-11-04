@@ -43,11 +43,11 @@ struct CollisionBuffer {
 
 // TODO: Ensure this is aligned.
 struct CellLeg {
-	CellLeg*     m_next;   // _00
-	CellLeg*     m_prev;   // _04
-	Cell*        m_cell;   // _08
-	CellObject*  m_object; // _0C
-	u8           m_flags;  // _10
+	CellLeg* m_next;      // _00
+	CellLeg* m_prev;      // _04
+	Cell* m_cell;         // _08
+	CellObject* m_object; // _0C
+	u8 m_flags;           // _10
 };
 
 struct Cell {
@@ -69,17 +69,17 @@ struct Cell {
 	void exit(CellLeg*, bool);
 	void entry(CellLeg*, bool);
 
-	Cell*    _00[4]; // _00
-	Cell*    _10;    // _10
-	ushort   _14;    // _14
-	ushort   _16;    // _16
-	ushort   _18;    // _18
-	u8       _1A[2]; // _1A
-	CellLeg* _1C;    // _1C
-	Cell*    _20;    // _20
-	Cell*    _24;    // _24
-	short    _28;    // _28
-	u8       _2A[2]; // _2A
+	Cell* _00[4]; // _00
+	Cell* _10;    // _10
+	ushort _14;   // _14
+	ushort _16;   // _16
+	ushort _18;   // _18
+	u8 _1A[2];    // _1A
+	CellLeg* _1C; // _1C
+	Cell* _20;    // _20
+	Cell* _24;    // _24
+	short _28;    // _28
+	u8 _2A[2];    // _2A
 
 	static CellPyramid* sCurrCellMgr;
 };
@@ -131,7 +131,7 @@ struct CellLayer {
 	short _04;      // _04
 	ushort _06;     // _06
 	Cell* m_cells;  // _08
-	Cell  m_cell;   // _0C // maybe this is a Cell?
+	Cell m_cell;    // _0C // maybe this is a Cell?
 };
 
 struct CellPyramid : public SweepPrune::World {
@@ -165,7 +165,7 @@ struct CellPyramid : public SweepPrune::World {
 	 * Incremented at the start of every resolve/search pass.
 	 * Passed on to CellObjects to prevent evaluating multiple times per pass.
 	 */
-	ulong  m_passID;         // _44
+	ulong m_passID; // _44
 
 	static u8 sOptResolveColl;
 	static u8 sSpeedUpResolveColl;

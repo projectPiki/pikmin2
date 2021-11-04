@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802E6C70
  * Size:	000008
  */
-void Game::KumaKochappy::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void KumaKochappy::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::KumaKochappy::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802E6C78
  * Size:	000008
  */
-void Game::KumaKochappy::ProperAnimator::getAnimator((int))
+void KumaKochappy::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::KumaKochappy::ProperAnimator::getAnimator((int))
  * Address:	802E6C80
  * Size:	00005C
  */
-void Game::KumaKochappy::ProperAnimator::__dt(void)
+KumaKochappy::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::KumaKochappy::ProperAnimator::__dt(void)
  * Address:	802E6CDC
  * Size:	000008
  */
-void Game::KumaKochappy::ProperAnimator::getAnimator(void)
+void KumaKochappy::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::KumaKochappy::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

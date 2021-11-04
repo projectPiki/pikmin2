@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -46,7 +46,7 @@ void __ct__Q27JGadget18TList_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*>(
  * Address:	800274A4
  * Size:	0000C0
  */
-void JGadget::TList_pointer_void::__dt(void)
+JGadget::TList_pointer_void::~TList_pointer_void(void)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +238,7 @@ void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
  * Address:	........
  * Size:	0000E4
  */
-void JGadget::TList_pointer_void::remove((void* const&))
+void JGadget::TList_pointer_void::remove(void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -248,7 +248,7 @@ void JGadget::TList_pointer_void::remove((void* const&))
  * Address:	........
  * Size:	000020
  */
-void JGadget::TList_pointer_void::assign((unsigned long, void* const&))
+void JGadget::TList_pointer_void::assign(unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -268,7 +268,7 @@ void assign__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FUlRCPv(void)
  * Address:	........
  * Size:	0000FC
  */
-void JGadget::TList_pointer_void::resize((unsigned long, void* const&))
+void JGadget::TList_pointer_void::resize(unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -288,8 +288,7 @@ void JGadget::TList_pointer_void::unique(void)
  * Address:	........
  * Size:	000030
  */
-void
-    JGadget::TList_pointer_void::operator=((JGadget::TList_pointer_void const&))
+void JGadget::TList_pointer_void::operator=(JGadget::TList_pointer_void const&)
 {
 	// UNUSED FUNCTION
 }

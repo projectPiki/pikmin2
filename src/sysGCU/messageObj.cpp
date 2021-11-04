@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace P2JME {
 
 /*
  * --INFO--
  * Address:	80438A34
  * Size:	000074
  */
-void P2JME::TControl::__ct(void)
+TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -56,7 +48,7 @@ void P2JME::TControl::__ct(void)
  * Address:	80438AA8
  * Size:	000024
  */
-void P2JME::TControl::setController((Controller*, Controller*))
+void TControl::setController(Controller*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +71,7 @@ void P2JME::TControl::setController((Controller*, Controller*))
  * Address:	80438ACC
  * Size:	00006C
  */
-void P2JME::TControl::setFont((JUTFont*))
+void TControl::setFont(JUTFont*)
 {
 	/*
 	.loc_0x0:
@@ -120,7 +112,7 @@ void P2JME::TControl::setFont((JUTFont*))
  * Address:	80438B38
  * Size:	00009C
  */
-void P2JME::TControl::setRubyFont((JUTFont*))
+void TControl::setRubyFont(JUTFont*)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +169,7 @@ void P2JME::TControl::setRubyFont((JUTFont*))
  * Address:	80438BD4
  * Size:	000104
  */
-void P2JME::TControl::init(void)
+void TControl::init(void)
 {
 	/*
 	.loc_0x0:
@@ -256,14 +248,14 @@ void P2JME::TControl::init(void)
  * Address:	80438CD8
  * Size:	000008
  */
-u32 P2JME::TControl::onInit(void) { return 0x1; }
+u32 TControl::onInit(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80438CE0
  * Size:	00007C
  */
-void P2JME::TControl::createRenderingProcessor(void)
+void TControl::createRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -310,7 +302,7 @@ void P2JME::TControl::createRenderingProcessor(void)
  * Address:	80438D5C
  * Size:	000080
  */
-void P2JME::TControl::createSequenceProcessor(void)
+void TControl::createSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +350,7 @@ void P2JME::TControl::createSequenceProcessor(void)
  * Address:	80438DDC
  * Size:	000070
  */
-void P2JME::TControl::reset(void)
+void TControl::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +390,7 @@ void P2JME::TControl::reset(void)
  * Address:	80438E4C
  * Size:	00008C
  */
-void P2JME::TControl::update(void)
+void TControl::update(void)
 {
 	/*
 	.loc_0x0:
@@ -451,14 +443,14 @@ void P2JME::TControl::update(void)
  * Address:	80438ED8
  * Size:	000004
  */
-void P2JME::TRenderingProcessor::update(void) { }
+void TRenderingProcessor::update(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000020
  */
-void P2JME::TControl::drawCommon(void)
+void TControl::drawCommon(void)
 {
 	// UNUSED FUNCTION
 }
@@ -468,7 +460,7 @@ void P2JME::TControl::drawCommon(void)
  * Address:	80438EDC
  * Size:	000020
  */
-void P2JME::TControl::draw((Graphics&))
+void TControl::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -488,7 +480,7 @@ void P2JME::TControl::draw((Graphics&))
  * Address:	80438EFC
  * Size:	000080
  */
-void P2JME::TControl::draw((float (*)[4], float (*)[4]))
+void TControl::draw(float (*)[4], float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -534,7 +526,7 @@ void P2JME::TControl::draw((float (*)[4], float (*)[4]))
  * Address:	80438F7C
  * Size:	000050
  */
-void P2JME::TControl::setLocate((int, int))
+void TControl::setLocate(int, int)
 {
 	/*
 	.loc_0x0:
@@ -566,7 +558,7 @@ void P2JME::TControl::setLocate((int, int))
  * Address:	80438FCC
  * Size:	000054
  */
-void P2JME::TControl::setMessageID((char*))
+void TControl::setMessageID(char*)
 {
 	/*
 	.loc_0x0:
@@ -599,7 +591,7 @@ void P2JME::TControl::setMessageID((char*))
  * Address:	80439020
  * Size:	000084
  */
-void P2JME::TControl::setMessageID((unsigned long, unsigned long))
+void TControl::setMessageID(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -644,7 +636,7 @@ void P2JME::TControl::setMessageID((unsigned long, unsigned long))
  * Address:	804390A4
  * Size:	00007C
  */
-void P2JME::TControl::setMessageCode((unsigned short, unsigned short))
+void TControl::setMessageCode(unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -687,7 +679,7 @@ void P2JME::TControl::setMessageCode((unsigned short, unsigned short))
  * Address:	80439120
  * Size:	000070
  */
-void P2JME::TControl::setMessageCode((unsigned long))
+void TControl::setMessageCode(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -727,7 +719,7 @@ void P2JME::TControl::setMessageCode((unsigned long))
  * Address:	80439190
  * Size:	000060
  */
-void P2JME::TControl::__dt(void)
+TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -759,3 +751,4 @@ void P2JME::TControl::__dt(void)
 	  blr
 	*/
 }
+} // namespace P2JME

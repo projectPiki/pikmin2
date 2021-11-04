@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803AC2F0
  * Size:	000038
  */
-void Game::Tyre::frontTyreCallBack((J3DJoint*, int))
+void Tyre::frontTyreCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +35,7 @@ void Game::Tyre::frontTyreCallBack((J3DJoint*, int))
  * Address:	803AC328
  * Size:	000038
  */
-void Game::Tyre::rearTyreCallBack((J3DJoint*, int))
+void Tyre::rearTyreCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +63,7 @@ void Game::Tyre::rearTyreCallBack((J3DJoint*, int))
  * Address:	803AC360
  * Size:	000020
  */
-void Game::Tyre::Obj::setParameters(void)
+void Tyre::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -86,12 +78,14 @@ void Game::Tyre::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	803AC380
  * Size:	000020
  */
-void birth__Q34Game4Tyre3ObjFR10Vector3<float> f(void)
+void birth__Q34Game4Tyre3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -106,12 +100,14 @@ void birth__Q34Game4Tyre3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803AC3A0
  * Size:	00018C
  */
-void Game::Tyre::Obj::onInit((Game::CreatureInitArg*))
+void Tyre::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -224,7 +220,7 @@ void Game::Tyre::Obj::onInit((Game::CreatureInitArg*))
  * Address:	803AC52C
  * Size:	0003C0
  */
-void Game::Tyre::Obj::__ct(void)
+Tyre::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -490,7 +486,7 @@ void Game::Tyre::Obj::__ct(void)
  * Address:	803AC8EC
  * Size:	00004C
  */
-void Game::Tyre::Obj::setFSM((Game::Tyre::FSM*))
+void Tyre::Obj::setFSM(Game::Tyre::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -521,7 +517,7 @@ void Game::Tyre::Obj::setFSM((Game::Tyre::FSM*))
  * Address:	803AC938
  * Size:	00004C
  */
-void Game::Tyre::Obj::doUpdate(void)
+void Tyre::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -552,7 +548,7 @@ void Game::Tyre::Obj::doUpdate(void)
  * Address:	803AC984
  * Size:	0000B8
  */
-void Game::Tyre::Obj::doAnimationCullingOff(void)
+void Tyre::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -618,14 +614,14 @@ void Game::Tyre::Obj::doAnimationCullingOff(void)
  * Address:	803ACA3C
  * Size:	000004
  */
-void Game::Tyre::Obj::doDirectDraw((Graphics&)) { }
+void Tyre::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	803ACA40
  * Size:	000020
  */
-void Game::Tyre::Obj::doDebugDraw((Graphics&))
+void Tyre::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -645,7 +641,7 @@ void Game::Tyre::Obj::doDebugDraw((Graphics&))
  * Address:	803ACA60
  * Size:	000020
  */
-void Game::Tyre::Obj::doSimulation((float))
+void Tyre::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -665,7 +661,7 @@ void Game::Tyre::Obj::doSimulation((float))
  * Address:	803ACA80
  * Size:	000080
  */
-void Game::Tyre::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void Tyre::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -709,7 +705,7 @@ void Game::Tyre::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	803ACB00
  * Size:	00012C
  */
-void Game::Tyre::Obj::doStartStoneState(void)
+void Tyre::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -796,7 +792,7 @@ void Game::Tyre::Obj::doStartStoneState(void)
  * Address:	803ACC2C
  * Size:	000124
  */
-void Game::Tyre::Obj::doFinishStoneState(void)
+void Tyre::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -883,7 +879,7 @@ void Game::Tyre::Obj::doFinishStoneState(void)
  * Address:	803ACD50
  * Size:	000538
  */
-void Game::Tyre::Obj::collisionCallback((Game::CollEvent&))
+void Tyre::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1261,7 +1257,7 @@ void Game::Tyre::Obj::collisionCallback((Game::CollEvent&))
  * Address:	803AD288
  * Size:	0000A0
  */
-void Game::Tyre::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Tyre::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1323,7 +1319,7 @@ void Game::Tyre::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	803AD328
  * Size:	00003C
  */
-void Game::Tyre::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Tyre::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1352,7 +1348,7 @@ void Game::Tyre::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	803AD364
  * Size:	000058
  */
-void Game::Tyre::Obj::earthquakeCallBack((Game::Creature*, float))
+void Tyre::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -1388,7 +1384,7 @@ void Game::Tyre::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	803AD3BC
  * Size:	000034
  */
-void Game::Tyre::Obj::inWaterCallback((Game::WaterBox*))
+void Tyre::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1413,7 +1409,7 @@ void Game::Tyre::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	803AD3F0
  * Size:	000044
  */
-void Game::Tyre::Obj::outWaterCallback(void)
+void Tyre::Obj::outWaterCallback(void)
 {
 	/*
 	.loc_0x0:
@@ -1444,7 +1440,7 @@ void Game::Tyre::Obj::outWaterCallback(void)
  * Address:	803AD434
  * Size:	000050
  */
-void Game::Tyre::Obj::getShadowParam((Game::ShadowParam&))
+void Tyre::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -1476,7 +1472,7 @@ void Game::Tyre::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	803AD484
  * Size:	00004C
  */
-void Game::Tyre::Obj::needShadow(void)
+void Tyre::Obj::needShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -1511,7 +1507,7 @@ void Game::Tyre::Obj::needShadow(void)
  * Address:	803AD4D0
  * Size:	000050
  */
-void Game::Tyre::Obj::isFreeze(void)
+void Tyre::Obj::isFreeze(void)
 {
 	/*
 	.loc_0x0:
@@ -1549,7 +1545,7 @@ void Game::Tyre::Obj::isFreeze(void)
  * Address:	803AD520
  * Size:	000298
  */
-void Game::Tyre::Obj::frontRollMtxCalc(void)
+void Tyre::Obj::frontRollMtxCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -1741,7 +1737,7 @@ void Game::Tyre::Obj::frontRollMtxCalc(void)
  * Address:	803AD7B8
  * Size:	00038C
  */
-void Game::Tyre::Obj::rearRollMtxCalc(void)
+void Tyre::Obj::rearRollMtxCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -2000,14 +1996,14 @@ void Game::Tyre::Obj::rearRollMtxCalc(void)
  * Address:	803ADB44
  * Size:	000008
  */
-u32 Game::Tyre::Obj::getEnemyTypeID(void) { return 0x62; }
+u32 Tyre::Obj::getEnemyTypeID(void) { return 0x62; }
 
 /*
  * --INFO--
  * Address:	803ADB4C
  * Size:	000088
  */
-void Game::Tyre::Obj::moveStart(void)
+void Tyre::Obj::moveStart(void)
 {
 	/*
 	.loc_0x0:
@@ -2061,7 +2057,7 @@ void Game::Tyre::Obj::moveStart(void)
  * Address:	803ADBD4
  * Size:	0000E8
  */
-void Game::Tyre::Obj::collisionStOn(void)
+void Tyre::Obj::collisionStOn(void)
 {
 	/*
 	.loc_0x0:
@@ -2131,7 +2127,7 @@ void Game::Tyre::Obj::collisionStOn(void)
  * Address:	803ADCBC
  * Size:	000108
  */
-void Game::Tyre::Obj::collisionStOff(void)
+void Tyre::Obj::collisionStOff(void)
 {
 	/*
 	.loc_0x0:
@@ -2209,7 +2205,7 @@ void Game::Tyre::Obj::collisionStOff(void)
  * Address:	803ADDC4
  * Size:	0005CC
  */
-void Game::Tyre::Obj::flick(void)
+void Tyre::Obj::flick(void)
 {
 	/*
 	.loc_0x0:
@@ -2630,7 +2626,7 @@ void Game::Tyre::Obj::flick(void)
  * Address:	803AE390
  * Size:	000100
  */
-void Game::Tyre::Obj::deadEffect(void)
+void Tyre::Obj::deadEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2706,7 +2702,7 @@ void Game::Tyre::Obj::deadEffect(void)
  * Address:	803AE490
  * Size:	000064
  */
-void Game::Tyre::Obj::createSmokeEffect(void)
+void Tyre::Obj::createSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2745,7 +2741,7 @@ void Game::Tyre::Obj::createSmokeEffect(void)
  * Address:	803AE4F4
  * Size:	000050
  */
-void Game::Tyre::Obj::fadeSmokeEffect(void)
+void Tyre::Obj::fadeSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2772,12 +2768,14 @@ void Game::Tyre::Obj::fadeSmokeEffect(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	803AE544
  * Size:	0001E8
  */
-void landEffect__Q34Game4Tyre3ObjFR10Vector3<float>(void)
+void landEffect__Q34Game4Tyre3ObjFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2916,12 +2914,14 @@ void landEffect__Q34Game4Tyre3ObjFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803AE72C
  * Size:	00002C
  */
-void Game::Tyre::Obj::scaleUpShadow(void)
+void Tyre::Obj::scaleUpShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -2939,74 +2939,78 @@ void Game::Tyre::Obj::scaleUpShadow(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803AE758
- * Size:	00009C
- */
-void efx::TKageTyresmoke::__dt(void)
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x63FC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68F4
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x31EB28
+	 * --INFO--
+	 * Address:	803AE758
+	 * Size:	00009C
+	 */
+	TKageTyresmoke::~TKageTyresmoke(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x63FC
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x68F4
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x31EB28
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x38A720
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x38A720
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	803AE7F4
  * Size:	000004
  */
-void Game::Tyre::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void Tyre::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	803AE7F8
  * Size:	000008
  */
-void Game::Tyre::Obj::isUnderground(void)
+void Tyre::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -3015,12 +3019,14 @@ void Game::Tyre::Obj::isUnderground(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	803AE800
  * Size:	000008
  */
-u32 bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<float> f(void)
+u32 bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3f f(void)
 {
 	return 0x0;
 }
@@ -3154,7 +3160,7 @@ void @836 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803AE8A8
  * Size:	000008
  */
-void @4 @efx::TKageTyresmoke::__dt(void)
+@4 @efx::TKageTyresmoke::~TKageTyresmoke(void)
 {
 	/*
 	.loc_0x0:

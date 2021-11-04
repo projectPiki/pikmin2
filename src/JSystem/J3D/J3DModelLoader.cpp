@@ -112,7 +112,7 @@ void J3DModelLoaderDataBase::load(const void*, unsigned long)
  * Address:	8006F9E8
  * Size:	00005C
  */
-void J3DModelLoader_v26::~J3DModelLoader_v26()
+J3DModelLoader_v26::~J3DModelLoader_v26()
 {
 	/*
 	.loc_0x0:
@@ -151,7 +151,7 @@ void J3DModelLoader_v26::~J3DModelLoader_v26()
  * Address:	8006FA44
  * Size:	00005C
  */
-void J3DModelLoader_v21::~J3DModelLoader_v21()
+J3DModelLoader_v21::~J3DModelLoader_v21()
 {
 	/*
 	.loc_0x0:
@@ -190,7 +190,7 @@ void J3DModelLoader_v21::~J3DModelLoader_v21()
  * Address:	8006FAA0
  * Size:	000048
  */
-void J3DModelLoader::~J3DModelLoader()
+J3DModelLoader::~J3DModelLoader()
 {
 	/*
 	.loc_0x0:
@@ -1108,7 +1108,7 @@ void J3DModelLoader::readInformation(const J3DModelInfoBlock*, unsigned long)
  * Address:	80070510
  * Size:	00005C
  */
-void J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase()
+J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase()
 {
 	/*
 	.loc_0x0:
@@ -1737,7 +1737,7 @@ void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock*, unsigned long)
  * Address:	80070C54
  * Size:	000054
  */
-void J3DMaterial::J3DMaterial()
+J3DMaterial::J3DMaterial()
 {
 	/*
 	.loc_0x0:
@@ -2740,7 +2740,7 @@ void J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*,
  * Address:	800717D8
  * Size:	000048
  */
-void J3DTexture::~J3DTexture()
+J3DTexture::~J3DTexture()
 {
 	/*
 	.loc_0x0:

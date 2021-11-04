@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	80328C30
  * Size:	00003C
  */
-void og::newScreen::Challenge1P::__ct(void)
+newScreen::Challenge1P::Challenge1P(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +34,7 @@ void og::newScreen::Challenge1P::__ct(void)
  * Address:	........
  * Size:	000060
  */
-void og::newScreen::Challenge1P::__dt(void)
+newScreen::Challenge1P::~Challenge1P(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,14 +44,14 @@ void og::newScreen::Challenge1P::__dt(void)
  * Address:	80328C6C
  * Size:	000004
  */
-void og::newScreen::Challenge1P::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::Challenge1P::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80328C70
  * Size:	00009C
  */
-void og::newScreen::Challenge1P::doCreateObj((JKRArchive*))
+void newScreen::Challenge1P::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -104,7 +106,7 @@ void og::newScreen::Challenge1P::doCreateObj((JKRArchive*))
  * Address:	80328D0C
  * Size:	00004C
  */
-void og::newScreen::Challenge1P::doStart((Screen::StartSceneArg*))
+void newScreen::Challenge1P::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -135,7 +137,7 @@ void og::newScreen::Challenge1P::doStart((Screen::StartSceneArg*))
  * Address:	80328D58
  * Size:	000038
  */
-void og::newScreen::Challenge1P::doUpdateActive(void)
+void newScreen::Challenge1P::doUpdateActive(void)
 {
 	/*
 	.loc_0x0:
@@ -163,7 +165,7 @@ void og::newScreen::Challenge1P::doUpdateActive(void)
  * Address:	80328D90
  * Size:	00003C
  */
-void og::newScreen::Challenge1P::startCountDown(void)
+void newScreen::Challenge1P::startCountDown(void)
 {
 	/*
 	.loc_0x0:
@@ -190,7 +192,7 @@ void og::newScreen::Challenge1P::startCountDown(void)
  * Address:	80328DCC
  * Size:	00000C
  */
-void og::newScreen::Challenge1P::getResName( const
+void newScreen::Challenge1P::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -205,17 +207,14 @@ void og::newScreen::Challenge1P::getResName( const
  * Address:	80328DD8
  * Size:	000008
  */
-u32  og::newScreen::Challenge1P::getSceneType(void)
-{
-	return 0x2727;
-}
+u32 newScreen::Challenge1P::getSceneType(void) { return 0x2727; }
 
 /*
  * --INFO--
  * Address:	80328DE0
  * Size:	00000C
  */
-void og::newScreen::Challenge1P::getOwnerID(void)
+void newScreen::Challenge1P::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +229,7 @@ void og::newScreen::Challenge1P::getOwnerID(void)
  * Address:	80328DEC
  * Size:	000010
  */
-void og::newScreen::Challenge1P::getMemberID(void)
+void newScreen::Challenge1P::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +245,5 @@ void og::newScreen::Challenge1P::getMemberID(void)
  * Address:	80328DFC
  * Size:	000008
  */
-u32  og::newScreen::Challenge1P::isDrawInDemo( const
-{
-	return 0x0;
-}
+u32 newScreen::Challenge1P::isDrawInDemo() const { return 0x0; }
+} // namespace og

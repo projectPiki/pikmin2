@@ -1,3 +1,4 @@
+#include "types.h"
 
 /*
  * --INFO--
@@ -81,7 +82,7 @@ void createObject_SOUND_JAI___Q214JStudio_JAudio21 @unnamed @control_cpp
  * Address:	80015D10
  * Size:	000060
  */
-void JStudio_JAudio::TCreateObject::__dt(void)
+JStudio_JAudio::TCreateObject::~TCreateObject(void)
 {
 	/*
 	.loc_0x0:

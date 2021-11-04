@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800A6A9C
  * Size:	000074
  */
-void JASHeap::JASHeap(JASDisposer*)
+JASHeap::JASHeap(JASDisposer*)
 {
 	/*
 	.loc_0x0:
@@ -561,7 +561,7 @@ void JSUTree<JASHeap>::getParent() const
  * Address:	........
  * Size:	000038
  */
-void JASMutexLock::JASMutexLock(OSMutex*)
+JASMutexLock::JASMutexLock(OSMutex*)
 {
 	// UNUSED FUNCTION
 }
@@ -853,7 +853,7 @@ void JASHeap::getCurOffset()
  * Address:	........
  * Size:	00001C
  */
-void JASSolidHeap::JASSolidHeap()
+JASSolidHeap::JASSolidHeap()
 {
 	// UNUSED FUNCTION
 }
@@ -863,7 +863,7 @@ void JASSolidHeap::JASSolidHeap()
  * Address:	........
  * Size:	000030
  */
-void JASSolidHeap::JASSolidHeap(unsigned char*, unsigned long)
+JASSolidHeap::JASSolidHeap(unsigned char*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -923,7 +923,7 @@ void JASSolidHeap::getRemain()
  * Address:	800A7184
  * Size:	000014
  */
-void JASGenericMemPool::JASGenericMemPool()
+JASGenericMemPool::JASGenericMemPool()
 {
 	/*
 	.loc_0x0:
@@ -940,7 +940,7 @@ void JASGenericMemPool::JASGenericMemPool()
  * Address:	........
  * Size:	000070
  */
-void JASGenericMemPool::~JASGenericMemPool()
+JASGenericMemPool::~JASGenericMemPool()
 {
 	// UNUSED FUNCTION
 }

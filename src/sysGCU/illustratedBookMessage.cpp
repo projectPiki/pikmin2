@@ -1,12 +1,14 @@
 #include "types.h"
 
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000048
  */
-void P2JME::IllustratedBook::TSequenceProcessor::__ct((JMessage::TReference*,
-                                                       JMessage::TControl*))
+IllustratedBook::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*,
+                                                        JMessage::TControl*)
 {
 	// UNUSED FUNCTION
 }
@@ -16,7 +18,7 @@ void P2JME::IllustratedBook::TSequenceProcessor::__ct((JMessage::TReference*,
  * Address:	80454F88
  * Size:	000070
  */
-void P2JME::TSeqProcNoSeq::__dt(void)
+TSeqProcNoSeq::~TSeqProcNoSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -92,7 +94,7 @@ void makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2J
  * Address:	80455044
  * Size:	000060
  */
-void P2JME::IllustratedBook::TControl::__ct(void)
+IllustratedBook::TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -128,7 +130,7 @@ void P2JME::IllustratedBook::TControl::__ct(void)
  * Address:	804550A4
  * Size:	00003C
  */
-void P2JME::IllustratedBook::TControl::onInit(void)
+void IllustratedBook::TControl::onInit(void)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +157,7 @@ void P2JME::IllustratedBook::TControl::onInit(void)
  * Address:	804550E0
  * Size:	00003C
  */
-void P2JME::IllustratedBook::TControl::reset(void)
+void IllustratedBook::TControl::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -182,7 +184,7 @@ void P2JME::IllustratedBook::TControl::reset(void)
  * Address:	8045511C
  * Size:	000028
  */
-void P2JME::IllustratedBook::TControl::getScrollPosition(void)
+void IllustratedBook::TControl::getScrollPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +208,7 @@ void P2JME::IllustratedBook::TControl::getScrollPosition(void)
  * Address:	80455144
  * Size:	0000F4
  */
-void P2JME::IllustratedBook::TControl::scroll((float))
+void IllustratedBook::TControl::scroll(float)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +295,7 @@ void P2JME::IllustratedBook::TControl::scroll((float))
  * Address:	80455238
  * Size:	0000D0
  */
-void P2JME::IllustratedBook::TControl::update((Controller*, Controller*))
+void IllustratedBook::TControl::update(Controller*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -357,7 +359,7 @@ void P2JME::IllustratedBook::TControl::update((Controller*, Controller*))
  * Address:	80455308
  * Size:	000080
  */
-void P2JME::IllustratedBook::TControl::setTextBoxInfo((J2DTextBox*))
+void IllustratedBook::TControl::setTextBoxInfo(J2DTextBox*)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +405,7 @@ void P2JME::IllustratedBook::TControl::setTextBoxInfo((J2DTextBox*))
  * Address:	80455388
  * Size:	000078
  */
-void P2JME::IllustratedBook::TControl::draw((float (*)[4], float (*)[4]))
+void IllustratedBook::TControl::draw(float (*)[4], float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -449,7 +451,7 @@ void P2JME::IllustratedBook::TControl::draw((float (*)[4], float (*)[4]))
  * Address:	80455400
  * Size:	000080
  */
-void P2JME::IllustratedBook::TControl::__dt(void)
+IllustratedBook::TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -497,7 +499,7 @@ void P2JME::IllustratedBook::TControl::__dt(void)
  * Address:	80455480
  * Size:	000020
  */
-void P2JME::IllustratedBook::TControl::draw((Graphics&))
+void IllustratedBook::TControl::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -517,7 +519,7 @@ void P2JME::IllustratedBook::TControl::draw((Graphics&))
  * Address:	804554A0
  * Size:	000084
  */
-void P2JME::IllustratedBook::TControl::createRenderingProcessor(void)
+void IllustratedBook::TControl::createRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -566,7 +568,7 @@ void P2JME::IllustratedBook::TControl::createRenderingProcessor(void)
  * Address:	80455524
  * Size:	000094
  */
-void P2JME::IllustratedBook::TControl::createSequenceProcessor(void)
+void IllustratedBook::TControl::createSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -619,7 +621,7 @@ void P2JME::IllustratedBook::TControl::createSequenceProcessor(void)
  * Address:	804555B8
  * Size:	0000B8
  */
-void P2JME::IllustratedBook::TRenderingProcessor::__dt(void)
+IllustratedBook::TRenderingProcessor::~TRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -683,7 +685,7 @@ void P2JME::IllustratedBook::TRenderingProcessor::__dt(void)
  * Address:	80455670
  * Size:	000008
  */
-u32 P2JME::IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
+u32 IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
 {
 	return 0x1;
 }
@@ -693,7 +695,7 @@ u32 P2JME::IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
  * Address:	80455678
  * Size:	000080
  */
-void P2JME::IllustratedBook::TSequenceProcessor::__dt(void)
+IllustratedBook::TSequenceProcessor::~TSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -741,4 +743,5 @@ void P2JME::IllustratedBook::TSequenceProcessor::__dt(void)
  * Address:	804556F8
  * Size:	000008
  */
-u32 P2JME::TSeqProcNoSeq::do_isReady(void) { return 0x1; }
+u32 TSeqProcNoSeq::do_isReady(void) { return 0x1; }
+} // namespace P2JME

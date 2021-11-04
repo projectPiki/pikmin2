@@ -49,16 +49,16 @@ namespace EnemyInfoFunc {
 	char* getEnemyResName(s32 enemyID, s32 enemyFlags)
 	{
 		switch (enemyID) {
-		case FireOtakara:
-		case WaterOtakara:
-		case GasOtakara:
-		case ElecOtakara:
+		case EnemyID_FireOtakara:
+		case EnemyID_WaterOtakara:
+		case EnemyID_GasOtakara:
+		case EnemyID_ElecOtakara:
 			return "Otakara";
 			break;
 		}
 
-		if (enemyID == INVALID || enemyID == INVALID2) {
-			enemyID = PanHouse;
+		if (enemyID == EnemyID_INVALID || enemyID == EnemyID_INVALID2) {
+			enemyID = EnemyID_PanHouse;
 		}
 
 		EnemyInfo* result = getInfo(enemyID, enemyFlags);

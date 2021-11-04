@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "ebi/P2DScreen/Mgr.h"
 
 // Whole file is #ifdef'd out because it was meant

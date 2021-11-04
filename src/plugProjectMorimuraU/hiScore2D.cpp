@@ -3,16 +3,6 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	000254
  */
 void Morimura::setScreenAlpha(J2DPane*, unsigned char)
@@ -180,7 +170,7 @@ void Morimura::THiScoreIndPane::draw(void)
  * Address:	........
  * Size:	000030
  */
-void Morimura::THiScoreIndPane::setRadius((short, float))
+void Morimura::THiScoreIndPane::setRadius(short, float)
 {
 	// UNUSED FUNCTION
 }
@@ -190,7 +180,7 @@ void Morimura::THiScoreIndPane::setRadius((short, float))
  * Address:	........
  * Size:	000048
  */
-void Morimura::THiScoreListScreen::__ct((JKRArchive*, int))
+Morimura::THiScoreListScreen::THiScoreListScreen(JKRArchive*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -200,7 +190,7 @@ void Morimura::THiScoreListScreen::__ct((JKRArchive*, int))
  * Address:	8037CBC0
  * Size:	00032C
  */
-void Morimura::THiScoreListScreen::create((char const*, unsigned long))
+void Morimura::THiScoreListScreen::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -425,7 +415,7 @@ void Morimura::THiScoreListScreen::create((char const*, unsigned long))
  * Address:	8037CEEC
  * Size:	0001CC
  */
-void Morimura::THiScore::__ct(void)
+Morimura::THiScore::THiScore(void)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +549,7 @@ void Vector2<float>::Vector2() { }
  * Address:	8037D0BC
  * Size:	00105C
  */
-void Morimura::THiScore::doCreate((JKRArchive*))
+void Morimura::THiScore::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1716,7 +1706,7 @@ void Morimura::THiScore::doCreate((JKRArchive*))
  * Address:	8037E118
  * Size:	000060
  */
-void Morimura::TIndPane::__dt(void)
+Morimura::TIndPane::~TIndPane(void)
 {
 	/*
 	.loc_0x0:
@@ -1754,7 +1744,7 @@ void Morimura::TIndPane::__dt(void)
  * Address:	8037E178
  * Size:	00001C
  */
-void Morimura::THiScore::getNameID((int))
+void Morimura::THiScore::getNameID(int)
 {
 	/*
 	.loc_0x0:
@@ -2545,7 +2535,7 @@ void Morimura::THiScoreListScreen::update(void)
  * Address:	8037EBB4
  * Size:	0001A8
  */
-void Morimura::THiScore::doDraw((Graphics&))
+void Morimura::THiScore::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -3388,7 +3378,7 @@ void Morimura::THiScore::changePaneInfo(void)
  * Address:	8037F6F0
  * Size:	000124
  */
-void Morimura::THiScore::setPaneCharacter((int))
+void Morimura::THiScore::setPaneCharacter(int)
 {
 	/*
 	.loc_0x0:
@@ -3477,7 +3467,7 @@ void Morimura::THiScore::setPaneCharacter((int))
  * Address:	8037F814
  * Size:	00044C
  */
-void Morimura::THiScore::getRecord((int, int))
+void Morimura::THiScore::getRecord(int, int)
 {
 	/*
 	.loc_0x0:
@@ -3814,7 +3804,7 @@ void Morimura::THiScore::getRecord((int, int))
  * Address:	8037FC60
  * Size:	00043C
  */
-void Morimura::THiScore::changeTextTevBlock((int))
+void Morimura::THiScore::changeTextTevBlock(int)
 {
 	/*
 	.loc_0x0:
@@ -4107,7 +4097,7 @@ void Morimura::THiScore::changeTextTevBlock((int))
  * Address:	8038009C
  * Size:	00021C
  */
-void Morimura::THiScore::copyTevBlock((J2DTevBlock*, J2DTevBlock*))
+void Morimura::THiScore::copyTevBlock(J2DTevBlock*, J2DTevBlock*)
 {
 	/*
 	.loc_0x0:
@@ -4258,7 +4248,7 @@ void Morimura::THiScore::copyTevBlock((J2DTevBlock*, J2DTevBlock*))
  * Address:	803802B8
  * Size:	00021C
  */
-void Morimura::THiScore::changeTevBlock((J2DTevBlock*, J2DTevBlock*))
+void Morimura::THiScore::changeTevBlock(J2DTevBlock*, J2DTevBlock*)
 {
 	/*
 	.loc_0x0:
@@ -4409,7 +4399,7 @@ void Morimura::THiScore::changeTevBlock((J2DTevBlock*, J2DTevBlock*))
  * Address:	803804D4
  * Size:	000080
  */
-void Morimura::THiScore::copyColorBlock((J2DColorBlock*, J2DColorBlock*))
+void Morimura::THiScore::copyColorBlock(J2DColorBlock*, J2DColorBlock*)
 {
 	/*
 	.loc_0x0:
@@ -4457,7 +4447,7 @@ void Morimura::THiScore::copyColorBlock((J2DColorBlock*, J2DColorBlock*))
  * Address:	80380554
  * Size:	000080
  */
-void Morimura::THiScore::changeColorBlock((J2DColorBlock*, J2DColorBlock*))
+void Morimura::THiScore::changeColorBlock(J2DColorBlock*, J2DColorBlock*)
 {
 	/*
 	.loc_0x0:
@@ -4619,7 +4609,7 @@ void Morimura::THiScore::updateLayout(void)
  * Address:	80380754
  * Size:	000050
  */
-void Morimura::THiScoreScene::__ct(void)
+Morimura::THiScoreScene::THiScoreScene(void)
 {
 	/*
 	.loc_0x0:
@@ -4651,7 +4641,7 @@ void Morimura::THiScoreScene::__ct(void)
  * Address:	803807A4
  * Size:	00000C
  */
-void Morimura::THiScoreScene::getResName( const
+void Morimura::THiScoreScene::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -4666,7 +4656,7 @@ void Morimura::THiScoreScene::getResName( const
  * Address:	803807B0
  * Size:	000068
  */
-void Morimura::THiScoreScene::doCreateObj( (JKRArchive *))
+void Morimura::THiScoreScene::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -4706,10 +4696,7 @@ void Morimura::THiScoreScene::doCreateObj( (JKRArchive *))
  * Address:	80380818
  * Size:	000008
  */
-u32  Morimura::THiScoreScene::getSceneType(void)
-{
-	return 0x2736;
-}
+u32 Morimura::THiScoreScene::getSceneType(void) { return 0x2736; }
 
 /*
  * --INFO--
@@ -4747,10 +4734,7 @@ void Morimura::THiScoreScene::getMemberID(void)
  * Address:	8038083C
  * Size:	000008
  */
-u32  Morimura::DispMemberHighScore::getSize(void)
-{
-	return 0x10;
-}
+u32 Morimura::DispMemberHighScore::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
@@ -4817,44 +4801,35 @@ void Morimura::THiScore::getDispMemberBase(void)
  * Address:	80380894
  * Size:	000008
  */
-u32  Morimura::THiScore::getIdMax(void)
-{
-	return 0x10;
-}
+u32 Morimura::THiScore::getIdMax(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8038089C
  * Size:	000004
  */
-void Morimura::TScrollList::setShortenIndex( (int, int, bool))
-{
-}
+void Morimura::TScrollList::setShortenIndex(int, int, bool) { }
 
 /*
  * --INFO--
  * Address:	803808A0
  * Size:	000004
  */
-void Morimura::TScrollList::doUpdateIn(void)
-{
-}
+void Morimura::TScrollList::doUpdateIn(void) { }
 
 /*
  * --INFO--
  * Address:	803808A4
  * Size:	000004
  */
-void Morimura::TScrollList::doUpdateOut(void)
-{
-}
+void Morimura::TScrollList::doUpdateOut(void) { }
 
 /*
  * --INFO--
  * Address:	803808A8
  * Size:	0000DC
  */
-void Morimura::THiScore::__dt(void)
+Morimura::THiScore::~THiScore(void)
 {
 	/*
 	.loc_0x0:
@@ -4925,7 +4900,7 @@ void Morimura::THiScore::__dt(void)
  * Address:	80380984
  * Size:	000070
  */
-void Morimura::THiScoreIndPane::__dt(void)
+Morimura::THiScoreIndPane::~THiScoreIndPane(void)
 {
 	/*
 	.loc_0x0:
@@ -4993,7 +4968,7 @@ void __sinit_hiScore2D_cpp(void)
  * Address:	80380A24
  * Size:	000008
  */
-void @24@Morimura::THiScore::__dt(void)
+@24 @Morimura::THiScore::~THiScore(void)
 {
 	/*
 	.loc_0x0:

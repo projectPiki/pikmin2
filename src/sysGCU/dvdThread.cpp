@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80424818
  * Size:	000080
  */
-void DvdThreadCommand::DvdThreadCommand()
+DvdThreadCommand::DvdThreadCommand()
 {
 	/*
 	.loc_0x0:
@@ -171,7 +161,7 @@ void DvdThreadCommand::checkExp(const char*) const
  * Address:	804248B8
  * Size:	00004C
  */
-void DvdThread::DvdThread(unsigned long, int, int)
+DvdThread::DvdThread(unsigned long, int, int)
 {
 	/*
 	.loc_0x0:

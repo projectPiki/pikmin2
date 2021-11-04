@@ -245,7 +245,7 @@ void J3DTexNoAnm::calc(unsigned short*) const
  * Address:	8006A394
  * Size:	0000D0
  */
-void J3DMaterialAnm::~J3DMaterialAnm()
+J3DMaterialAnm::~J3DMaterialAnm()
 {
 	/*
 	.loc_0x0:
@@ -311,7 +311,7 @@ void J3DMaterialAnm::~J3DMaterialAnm()
  * Address:	8006A464
  * Size:	00003C
  */
-void J3DMatColorAnm::~J3DMatColorAnm()
+J3DMatColorAnm::~J3DMatColorAnm()
 {
 	/*
 	.loc_0x0:
@@ -340,7 +340,7 @@ void J3DMatColorAnm::~J3DMatColorAnm()
  * Address:	8006A4A0
  * Size:	00003C
  */
-void J3DTexMtxAnm::~J3DTexMtxAnm()
+J3DTexMtxAnm::~J3DTexMtxAnm()
 {
 	/*
 	.loc_0x0:
@@ -369,7 +369,7 @@ void J3DTexMtxAnm::~J3DTexMtxAnm()
  * Address:	8006A4DC
  * Size:	000048
  */
-void J3DTexNoAnm::~J3DTexNoAnm()
+J3DTexNoAnm::~J3DTexNoAnm()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +401,7 @@ void J3DTexNoAnm::~J3DTexNoAnm()
  * Address:	8006A524
  * Size:	00003C
  */
-void J3DTevColorAnm::~J3DTevColorAnm()
+J3DTevColorAnm::~J3DTevColorAnm()
 {
 	/*
 	.loc_0x0:
@@ -430,7 +430,7 @@ void J3DTevColorAnm::~J3DTevColorAnm()
  * Address:	8006A560
  * Size:	00003C
  */
-void J3DTevKColorAnm::~J3DTevKColorAnm()
+J3DTevKColorAnm::~J3DTevKColorAnm()
 {
 	/*
 	.loc_0x0:

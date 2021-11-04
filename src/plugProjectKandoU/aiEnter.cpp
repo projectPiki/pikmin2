@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801A2720
  * Size:	0000D0
  */
-void PikiAI::ActEnter::__ct((Game::Piki*))
+PikiAI::ActEnter::ActEnter(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -85,7 +75,7 @@ void PikiAI::ActEnter::__ct((Game::Piki*))
  * Address:	801A27F0
  * Size:	000338
  */
-void PikiAI::ActEnter::init((PikiAI::ActionArg*))
+void PikiAI::ActEnter::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -533,7 +523,7 @@ void PikiAI::ActEnter::cleanup(void)
  * Address:	801A2DD0
  * Size:	000004
  */
-void PikiAI::ActEnter::onKeyEvent((SysShape::KeyEvent const&)) { }
+void PikiAI::ActEnter::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
@@ -872,7 +862,7 @@ void PikiAI::ActEnter::execSuck(void)
  * Address:	801A31DC
  * Size:	000070
  */
-void PikiAI::ActExit::__ct((Game::Piki*))
+PikiAI::ActExit::ActExit(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -914,7 +904,7 @@ void PikiAI::ActExit::__ct((Game::Piki*))
  * Address:	801A324C
  * Size:	000204
  */
-void PikiAI::ActExit::init((PikiAI::ActionArg*))
+void PikiAI::ActExit::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -1209,7 +1199,7 @@ void PikiAI::GotoPosActionArg::getName(void)
  * Address:	801A35D8
  * Size:	000014
  */
-void @96 @4 @PikiAI::ActEnter::onKeyEvent((SysShape::KeyEvent const&))
+void @96 @4 @PikiAI::ActEnter::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

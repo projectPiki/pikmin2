@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801F1908
  * Size:	000088
  */
-void Game::GeneratorCache::__ct(void)
+GeneratorCache::GeneratorCache(void)
 {
 	/*
 	.loc_0x0:
@@ -61,7 +53,7 @@ void Game::GeneratorCache::__ct(void)
  * Address:	801F1990
  * Size:	000060
  */
-void Game::CourseCache::__dt(void)
+CourseCache::~CourseCache(void)
 {
 	/*
 	.loc_0x0:
@@ -99,7 +91,7 @@ void Game::CourseCache::__dt(void)
  * Address:	801F19F0
  * Size:	000098
  */
-void Game::GeneratorCache::clearCache(void)
+void GeneratorCache::clearCache(void)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +149,7 @@ void Game::GeneratorCache::clearCache(void)
  * Address:	........
  * Size:	000098
  */
-void Game::GeneratorCache::__dt(void)
+GeneratorCache::~GeneratorCache(void)
 {
 	// UNUSED FUNCTION
 }
@@ -167,7 +159,7 @@ void Game::GeneratorCache::__dt(void)
  * Address:	801F1A88
  * Size:	000018
  */
-void Game::GeneratorCache::clearGeneratorList(void)
+void GeneratorCache::clearGeneratorList(void)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +177,7 @@ void Game::GeneratorCache::clearGeneratorList(void)
  * Address:	801F1AA0
  * Size:	000078
  */
-void Game::GeneratorCache::addGenerator((Game::Generator*))
+void GeneratorCache::addGenerator(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +229,7 @@ void Game::GeneratorCache::addGenerator((Game::Generator*))
  * Address:	801F1B18
  * Size:	000008
  */
-void Game::GeneratorCache::getFirstGenerator(void)
+void GeneratorCache::getFirstGenerator(void)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +243,7 @@ void Game::GeneratorCache::getFirstGenerator(void)
  * Address:	........
  * Size:	000034
  */
-void Game::GeneratorCache::findRamGenerator((int))
+void GeneratorCache::findRamGenerator(int)
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +253,7 @@ void Game::GeneratorCache::findRamGenerator((int))
  * Address:	801F1B20
  * Size:	000024
  */
-void Game::GeneratorCache::getTotalMePikmins(void)
+void GeneratorCache::getTotalMePikmins(void)
 {
 	/*
 	.loc_0x0:
@@ -286,7 +278,7 @@ void Game::GeneratorCache::getTotalMePikmins(void)
  * Address:	801F1B44
  * Size:	000074
  */
-void Game::GeneratorCache::getColorMePikmins((int))
+void GeneratorCache::getColorMePikmins(int)
 {
 	/*
 	.loc_0x0:
@@ -333,7 +325,7 @@ void Game::GeneratorCache::getColorMePikmins((int))
  * Address:	801F1BB8
  * Size:	00009C
  */
-void Game::CourseCache::getColorMePikmins((unsigned char*, int))
+void CourseCache::getColorMePikmins(unsigned char*, int)
 {
 	/*
 	.loc_0x0:
@@ -390,7 +382,7 @@ void Game::CourseCache::getColorMePikmins((unsigned char*, int))
  * Address:	801F1C54
  * Size:	00009C
  */
-void Game::GeneratorCache::createHeap(void)
+void GeneratorCache::createHeap(void)
 {
 	/*
 	.loc_0x0:
@@ -447,7 +439,7 @@ void Game::GeneratorCache::createHeap(void)
  * Address:	........
  * Size:	000004
  */
-void Game::GeneratorCache::destroyHeap(void)
+void GeneratorCache::destroyHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -457,7 +449,7 @@ void Game::GeneratorCache::destroyHeap(void)
  * Address:	801F1CF0
  * Size:	000038
  */
-void Game::GeneratorCache::findCache((Game::CourseCache&, int))
+void GeneratorCache::findCache(Game::CourseCache&, int)
 {
 	/*
 	.loc_0x0:
@@ -489,7 +481,7 @@ void Game::GeneratorCache::findCache((Game::CourseCache&, int))
  * Address:	801F1D28
  * Size:	000128
  */
-void Game::GeneratorCache::loadGenerators((int))
+void GeneratorCache::loadGenerators(int)
 {
 	/*
 	.loc_0x0:
@@ -601,7 +593,7 @@ void Game::GeneratorCache::loadGenerators((int))
  * Address:	801F1E50
  * Size:	0001B8
  */
-void Game::GeneratorCache::loadCreatures((int))
+void GeneratorCache::loadCreatures(int)
 {
 	/*
 	.loc_0x0:
@@ -755,7 +747,7 @@ void Game::GeneratorCache::loadCreatures((int))
  * Address:	801F2008
  * Size:	000114
  */
-void Game::GeneratorCache::loadPikiheads(void)
+void GeneratorCache::loadPikiheads(void)
 {
 	/*
 	.loc_0x0:
@@ -840,7 +832,7 @@ void Game::GeneratorCache::loadPikiheads(void)
  * Address:	801F211C
  * Size:	0000C0
  */
-void Game::GeneratorCache::slideCache(void)
+void GeneratorCache::slideCache(void)
 {
 	/*
 	.loc_0x0:
@@ -908,7 +900,7 @@ void Game::GeneratorCache::slideCache(void)
  * Address:	801F21DC
  * Size:	00004C
  */
-void Game::GeneratorCache::updateUseList(void)
+void GeneratorCache::updateUseList(void)
 {
 	/*
 	.loc_0x0:
@@ -945,7 +937,7 @@ void Game::GeneratorCache::updateUseList(void)
  * Address:	801F2228
  * Size:	000078
  */
-void Game::GeneratorCache::createNumberGenerators(void)
+void GeneratorCache::createNumberGenerators(void)
 {
 	/*
 	.loc_0x0:
@@ -993,7 +985,7 @@ void Game::GeneratorCache::createNumberGenerators(void)
  * Address:	801F22A0
  * Size:	0000F8
  */
-void Game::GeneratorCache::beginSave((int))
+void GeneratorCache::beginSave(int)
 {
 	/*
 	.loc_0x0:
@@ -1091,7 +1083,7 @@ void Game::GeneratorCache::beginSave((int))
  * Address:	801F2398
  * Size:	0000C8
  */
-void Game::GeneratorCache::endSave(void)
+void GeneratorCache::endSave(void)
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1159,7 @@ void Game::GeneratorCache::endSave(void)
  * Address:	801F2460
  * Size:	0000F0
  */
-void Game::GeneratorCache::saveGenerator((Game::Generator*))
+void GeneratorCache::saveGenerator(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -1243,7 +1235,7 @@ void Game::GeneratorCache::saveGenerator((Game::Generator*))
  * Address:	801F2550
  * Size:	000140
  */
-void Game::GeneratorCache::saveCreature((Game::Generator*))
+void GeneratorCache::saveCreature(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -1343,7 +1335,7 @@ void Game::GeneratorCache::saveCreature((Game::Generator*))
  * Address:	801F2690
  * Size:	0002D0
  */
-void Game::GeneratorCache::savePikiheads(void)
+void GeneratorCache::savePikiheads(void)
 {
 	/*
 	.loc_0x0:
@@ -1557,7 +1549,7 @@ void Game::GeneratorCache::savePikiheads(void)
  * Address:	........
  * Size:	000030
  */
-void Game::GeneratorCache::checkOverflow(void)
+void GeneratorCache::checkOverflow(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1567,7 +1559,7 @@ void Game::GeneratorCache::checkOverflow(void)
  * Address:	801F2960
  * Size:	000070
  */
-void Game::CourseCache::__ct((int))
+CourseCache::CourseCache(int)
 {
 	/*
 	.loc_0x0:
@@ -1607,7 +1599,7 @@ void Game::CourseCache::__ct((int))
  * Address:	801F29D0
  * Size:	000028
  */
-void Game::CourseCache::beginSave((int))
+void CourseCache::beginSave(int)
 {
 	/*
 	.loc_0x0:
@@ -1629,7 +1621,7 @@ void Game::CourseCache::beginSave((int))
  * Address:	801F29F8
  * Size:	000234
  */
-void Game::GeneratorCache::write((Stream&))
+void GeneratorCache::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1822,7 +1814,7 @@ void Game::GeneratorCache::write((Stream&))
  * Address:	801F2C2C
  * Size:	0002B0
  */
-void Game::GeneratorCache::read((Stream&))
+void GeneratorCache::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2060,7 +2052,7 @@ void Game::GeneratorCache::read((Stream&))
  * Address:	801F2EDC
  * Size:	0001D4
  */
-void Game::CourseCache::write((Stream&))
+void CourseCache::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2189,7 +2181,7 @@ void Game::CourseCache::write((Stream&))
  * Address:	801F30B0
  * Size:	0000BC
  */
-void Game::CourseCache::read((Stream&))
+void CourseCache::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2242,3 +2234,4 @@ void Game::CourseCache::read((Stream&))
 	  blr
 	*/
 }
+} // namespace Game

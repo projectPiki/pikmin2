@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012D80C
  * Size:	000050
  */
-void Game::KochappyBase::Mgr::Mgr(int, unsigned char)
+KochappyBase::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::KochappyBase::Mgr::Mgr(int, unsigned char)
  * Address:	8012D85C
  * Size:	0000C0
  */
-void Game::KochappyBase::Mgr::loadModelData()
+void KochappyBase::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::KochappyBase::Mgr::loadModelData()
  * Address:	8012D91C
  * Size:	0000A0
  */
-void Game::KochappyBase::Mgr::loadAnimData()
+void KochappyBase::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -161,7 +163,7 @@ void Game::KochappyBase::Mgr::loadAnimData()
  * Address:	8012D9BC
  * Size:	00011C
  */
-void Game::KochappyBase::Mgr::createModel()
+void KochappyBase::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -252,14 +254,14 @@ void Game::KochappyBase::Mgr::createModel()
  * Address:	8012DAD8
  * Size:	000008
  */
-u32 Game::KochappyBase::Mgr::getEnemyTypeID() { return 0x1; }
+u32 KochappyBase::Mgr::getEnemyTypeID() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8012DAE0
  * Size:	000008
  */
-void Game::KochappyBase::Mgr::@4 @__dt()
+KochappyBase::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -267,3 +269,4 @@ void Game::KochappyBase::Mgr::@4 @__dt()
 	  b         -0x1B7E0
 	*/
 }
+} // namespace Game

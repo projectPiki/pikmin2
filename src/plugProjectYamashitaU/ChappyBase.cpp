@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012A950
  * Size:	00015C
  */
-void Game::ChappyBase::Obj::Obj()
+ChappyBase::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -110,7 +112,7 @@ void Game::ChappyBase::Obj::Obj()
  * Address:	8012AAAC
  * Size:	000044
  */
-void Game::ChappyBase::Obj::birth(Vector3<float>&, float)
+void ChappyBase::Obj::birth(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -139,14 +141,14 @@ void Game::ChappyBase::Obj::birth(Vector3<float>&, float)
  * Address:	8012AAF0
  * Size:	000004
  */
-void Game::ChappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void ChappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8012AAF4
  * Size:	000080
  */
-void Game::ChappyBase::Obj::onInit(Game::CreatureInitArg*)
+void ChappyBase::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -190,7 +192,7 @@ void Game::ChappyBase::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8012AB74
  * Size:	000034
  */
-void Game::ChappyBase::Obj::doUpdate()
+void ChappyBase::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -215,14 +217,14 @@ void Game::ChappyBase::Obj::doUpdate()
  * Address:	8012ABA8
  * Size:	000004
  */
-void Game::ChappyBase::Obj::doDirectDraw(Graphics&) { }
+void ChappyBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8012ABAC
  * Size:	000020
  */
-void Game::ChappyBase::Obj::doDebugDraw(Graphics&)
+void ChappyBase::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +244,7 @@ void Game::ChappyBase::Obj::doDebugDraw(Graphics&)
  * Address:	8012ABCC
  * Size:	0000C8
  */
-void Game::ChappyBase::Obj::getShadowParam(Game::ShadowParam&)
+void ChappyBase::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -308,7 +310,7 @@ void Game::ChappyBase::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8012AC94
  * Size:	000040
  */
-void Game::ChappyBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void ChappyBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +342,7 @@ void Game::ChappyBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	8012ACD4
  * Size:	000150
  */
-void Game::ChappyBase::Obj::collisionCallback(Game::CollEvent&)
+void ChappyBase::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -446,7 +448,7 @@ void Game::ChappyBase::Obj::collisionCallback(Game::CollEvent&)
  * Address:	8012AE24
  * Size:	000050
  */
-void Game::ChappyBase::Obj::doStartStoneState()
+void ChappyBase::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -480,14 +482,14 @@ void Game::ChappyBase::Obj::doStartStoneState()
  * Address:	8012AE74
  * Size:	000004
  */
-void Game::ChappyBase::Obj::doFinishStoneState() { }
+void ChappyBase::Obj::doFinishStoneState() { }
 
 /*
  * --INFO--
  * Address:	8012AE78
  * Size:	000064
  */
-void Game::ChappyBase::Obj::getOffsetForMapCollision()
+void ChappyBase::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -524,7 +526,7 @@ void Game::ChappyBase::Obj::getOffsetForMapCollision()
  * Address:	8012AEDC
  * Size:	000028
  */
-void Game::ChappyBase::Obj::startCarcassMotion()
+void ChappyBase::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -546,7 +548,7 @@ void Game::ChappyBase::Obj::startCarcassMotion()
  * Address:	8012AF04
  * Size:	0000DC
  */
-void Game::ChappyBase::Obj::initMouthSlots()
+void ChappyBase::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -617,7 +619,7 @@ void Game::ChappyBase::Obj::initMouthSlots()
  * Address:	8012AFE0
  * Size:	000064
  */
-void Game::ChappyBase::Obj::initWalkSmokeEffect()
+void ChappyBase::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -654,7 +656,7 @@ void Game::ChappyBase::Obj::initWalkSmokeEffect()
  * Address:	8012B044
  * Size:	000008
  */
-void Game::ChappyBase::Obj::getWalkSmokeEffectMgr()
+void ChappyBase::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -668,7 +670,7 @@ void Game::ChappyBase::Obj::getWalkSmokeEffectMgr()
  * Address:	8012B04C
  * Size:	000200
  */
-void Game::ChappyBase::Obj::isWakeup()
+void ChappyBase::Obj::isWakeup()
 {
 	/*
 	.loc_0x0:
@@ -824,7 +826,7 @@ void Game::ChappyBase::Obj::isWakeup()
  * Address:	8012B24C
  * Size:	0000B0
  */
-void Game::ChappyBase::Obj::setCollEvent(Game::CollEvent&)
+void ChappyBase::Obj::setCollEvent(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -886,7 +888,7 @@ void Game::ChappyBase::Obj::setCollEvent(Game::CollEvent&)
  * Address:	8012B2FC
  * Size:	0000C8
  */
-void Game::ChappyBase::Obj::flickStatePikmin()
+void ChappyBase::Obj::flickStatePikmin()
 {
 	/*
 	.loc_0x0:
@@ -948,7 +950,7 @@ void Game::ChappyBase::Obj::flickStatePikmin()
  * Address:	8012B3C4
  * Size:	0001A4
  */
-void Game::ChappyBase::Obj::flickAttackBomb()
+void ChappyBase::Obj::flickAttackBomb()
 {
 	/*
 	.loc_0x0:
@@ -1069,7 +1071,7 @@ void Game::ChappyBase::Obj::flickAttackBomb()
  * Address:	8012B568
  * Size:	000060
  */
-void Game::ChappyBase::Obj::flickAttackFail()
+void ChappyBase::Obj::flickAttackFail()
 {
 	/*
 	.loc_0x0:
@@ -1105,7 +1107,7 @@ void Game::ChappyBase::Obj::flickAttackFail()
  * Address:	8012B5C8
  * Size:	000024
  */
-void Game::ChappyBase::Obj::eatAttackPikmin()
+void ChappyBase::Obj::eatAttackPikmin()
 {
 	/*
 	.loc_0x0:
@@ -1126,7 +1128,7 @@ void Game::ChappyBase::Obj::eatAttackPikmin()
  * Address:	8012B5EC
  * Size:	0000B0
  */
-void Game::ChappyBase::Obj::createEffect()
+void ChappyBase::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1179,12 +1181,16 @@ void Game::ChappyBase::Obj::createEffect()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8012B69C
  * Size:	000084
  */
-void efx::TChaseMtx::~TChaseMtx()
+TChaseMtx::~TChaseMtx()
 {
 	/*
 	.loc_0x0:
@@ -1228,12 +1234,16 @@ void efx::TChaseMtx::~TChaseMtx()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8012B720
  * Size:	000050
  */
-void Game::ChappyBase::Obj::setupEffect()
+void ChappyBase::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1267,7 +1277,7 @@ void Game::ChappyBase::Obj::setupEffect()
  * Address:	8012B770
  * Size:	000034
  */
-void Game::ChappyBase::Obj::startSleepEffect()
+void ChappyBase::Obj::startSleepEffect()
 {
 	/*
 	.loc_0x0:
@@ -1292,7 +1302,7 @@ void Game::ChappyBase::Obj::startSleepEffect()
  * Address:	8012B7A4
  * Size:	000030
  */
-void Game::ChappyBase::Obj::finishSleepEffect()
+void ChappyBase::Obj::finishSleepEffect()
 {
 	/*
 	.loc_0x0:
@@ -1311,12 +1321,16 @@ void Game::ChappyBase::Obj::finishSleepEffect()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8012B7D4
  * Size:	00009C
  */
-void efx::THanachoN::~THanachoN()
+THanachoN::~THanachoN()
 {
 	/*
 	.loc_0x0:
@@ -1371,14 +1385,14 @@ void efx::THanachoN::~THanachoN()
  * Address:	8012B870
  * Size:	000004
  */
-void efx::TSync::doExecuteAfter(JPABaseEmitter*) { }
+void TSync::doExecuteAfter(JPABaseEmitter*) { }
 
 /*
  * --INFO--
  * Address:	8012B874
  * Size:	000010
  */
-void efx::TSync::startDemoDrawOff()
+void TSync::startDemoDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1394,7 +1408,7 @@ void efx::TSync::startDemoDrawOff()
  * Address:	8012B884
  * Size:	000010
  */
-void efx::TSync::endDemoDrawOn()
+void TSync::endDemoDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1410,7 +1424,7 @@ void efx::TSync::endDemoDrawOn()
  * Address:	8012B894
  * Size:	000008
  */
-void efx::TSync::@4 @executeAfter(JPABaseEmitter*)
+void TSync::@4 @executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1424,7 +1438,7 @@ void efx::TSync::@4 @executeAfter(JPABaseEmitter*)
  * Address:	8012B89C
  * Size:	000008
  */
-void efx::TSync::@4 @execute(JPABaseEmitter*)
+void TSync::@4 @execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1438,7 +1452,7 @@ void efx::TSync::@4 @execute(JPABaseEmitter*)
  * Address:	8012B8A4
  * Size:	000008
  */
-void efx::THanachoN::@4 @__dt()
+THanachoN::@4 @~THanachoN()
 {
 	/*
 	.loc_0x0:
@@ -1446,3 +1460,4 @@ void efx::THanachoN::@4 @__dt()
 	  b         -0xD4
 	*/
 }
+} // namespace efx

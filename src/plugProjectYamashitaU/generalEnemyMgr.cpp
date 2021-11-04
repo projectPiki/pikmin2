@@ -2,12 +2,14 @@
 
 #include "Game/generalEnemyMgr.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8010BD3C
  * Size:	000FAC
  */
-void Game::GeneralEnemyMgr::createEnemyMgr(unsigned char, int, int)
+void GeneralEnemyMgr::createEnemyMgr(unsigned char, int, int)
 {
 	/*
 	.loc_0x0:
@@ -1218,7 +1220,7 @@ void Game::GeneralEnemyMgr::createEnemyMgr(unsigned char, int, int)
  * Address:	8010CCE8
  * Size:	0001BC
  */
-void Game::GeneralEnemyMgr::GeneralEnemyMgr()
+GeneralEnemyMgr::GeneralEnemyMgr()
 {
 	/*
 	.loc_0x0:
@@ -1351,7 +1353,7 @@ void Game::GeneralEnemyMgr::GeneralEnemyMgr()
  * Address:	8010CEA4
  * Size:	000068
  */
-void Game::EnemyMgrNode::~EnemyMgrNode()
+EnemyMgrNode::~EnemyMgrNode()
 {
 	/*
 	.loc_0x0:
@@ -1391,7 +1393,7 @@ void Game::EnemyMgrNode::~EnemyMgrNode()
  * Address:	8010CF0C
  * Size:	000078
  */
-void Game::GeneralEnemyMgr::killAll()
+void GeneralEnemyMgr::killAll()
 {
 	/*
 	.loc_0x0:
@@ -1437,7 +1439,7 @@ void Game::GeneralEnemyMgr::killAll()
  * Address:	8010CF84
  * Size:	000030
  */
-void Game::EnemyMgrNode::killAll(Game::CreatureKillArg*)
+void EnemyMgrNode::killAll(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1461,7 +1463,7 @@ void Game::EnemyMgrNode::killAll(Game::CreatureKillArg*)
  * Address:	8010CFB4
  * Size:	00004C
  */
-void Game::GeneralEnemyMgr::setupSoundViewerAndBas()
+void GeneralEnemyMgr::setupSoundViewerAndBas()
 {
 	/*
 	.loc_0x0:
@@ -1496,7 +1498,7 @@ void Game::GeneralEnemyMgr::setupSoundViewerAndBas()
  * Address:	8010D000
  * Size:	000030
  */
-void Game::EnemyMgrNode::setupSoundViewerAndBas()
+void EnemyMgrNode::setupSoundViewerAndBas()
 {
 	/*
 	.loc_0x0:
@@ -1520,7 +1522,7 @@ void Game::EnemyMgrNode::setupSoundViewerAndBas()
  * Address:	8010D030
  * Size:	00008C
  */
-void Game::GeneralEnemyMgr::doAnimation()
+void GeneralEnemyMgr::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1573,7 +1575,7 @@ void Game::GeneralEnemyMgr::doAnimation()
  * Address:	8010D0BC
  * Size:	000030
  */
-void Game::EnemyMgrNode::doAnimation()
+void EnemyMgrNode::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1597,7 +1599,7 @@ void Game::EnemyMgrNode::doAnimation()
  * Address:	8010D0EC
  * Size:	000058
  */
-void Game::GeneralEnemyMgr::doEntry()
+void GeneralEnemyMgr::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -1637,7 +1639,7 @@ void Game::GeneralEnemyMgr::doEntry()
  * Address:	8010D144
  * Size:	000030
  */
-void Game::EnemyMgrNode::doEntry()
+void EnemyMgrNode::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -1661,7 +1663,7 @@ void Game::EnemyMgrNode::doEntry()
  * Address:	8010D174
  * Size:	000068
  */
-void Game::GeneralEnemyMgr::doSetView(int)
+void GeneralEnemyMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -1705,7 +1707,7 @@ void Game::GeneralEnemyMgr::doSetView(int)
  * Address:	8010D1DC
  * Size:	000030
  */
-void Game::EnemyMgrNode::doSetView(int)
+void EnemyMgrNode::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -1729,7 +1731,7 @@ void Game::EnemyMgrNode::doSetView(int)
  * Address:	8010D20C
  * Size:	000058
  */
-void Game::GeneralEnemyMgr::doViewCalc()
+void GeneralEnemyMgr::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -1769,7 +1771,7 @@ void Game::GeneralEnemyMgr::doViewCalc()
  * Address:	8010D264
  * Size:	000030
  */
-void Game::EnemyMgrNode::doViewCalc()
+void EnemyMgrNode::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -1793,7 +1795,7 @@ void Game::EnemyMgrNode::doViewCalc()
  * Address:	8010D294
  * Size:	000068
  */
-void Game::GeneralEnemyMgr::doSimulation(float)
+void GeneralEnemyMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1837,7 +1839,7 @@ void Game::GeneralEnemyMgr::doSimulation(float)
  * Address:	8010D2FC
  * Size:	000030
  */
-void Game::EnemyMgrNode::doSimulation(float)
+void EnemyMgrNode::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1861,7 +1863,7 @@ void Game::EnemyMgrNode::doSimulation(float)
  * Address:	8010D32C
  * Size:	000068
  */
-void Game::GeneralEnemyMgr::doDirectDraw(Graphics&)
+void GeneralEnemyMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1905,7 +1907,7 @@ void Game::GeneralEnemyMgr::doDirectDraw(Graphics&)
  * Address:	8010D394
  * Size:	000030
  */
-void Game::EnemyMgrNode::doDirectDraw(Graphics&)
+void EnemyMgrNode::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1929,7 +1931,7 @@ void Game::EnemyMgrNode::doDirectDraw(Graphics&)
  * Address:	8010D3C4
  * Size:	000080
  */
-void Game::GeneralEnemyMgr::doSimpleDraw(Viewport*)
+void GeneralEnemyMgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -1979,7 +1981,7 @@ void Game::GeneralEnemyMgr::doSimpleDraw(Viewport*)
  * Address:	8010D444
  * Size:	000030
  */
-void Game::EnemyMgrNode::doSimpleDraw(Viewport*)
+void EnemyMgrNode::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -2003,7 +2005,7 @@ void Game::EnemyMgrNode::doSimpleDraw(Viewport*)
  * Address:	8010D474
  * Size:	00004C
  */
-void Game::GeneralEnemyMgr::getJ3DModelData(int)
+void GeneralEnemyMgr::getJ3DModelData(int)
 {
 	/*
 	.loc_0x0:
@@ -2036,7 +2038,7 @@ void Game::GeneralEnemyMgr::getJ3DModelData(int)
  * Address:	8010D4C0
  * Size:	0000BC
  */
-void Game::GeneralEnemyMgr::birth(int, Game::EnemyBirthArg&)
+void GeneralEnemyMgr::birth(int, Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -2105,7 +2107,7 @@ void Game::GeneralEnemyMgr::birth(int, Game::EnemyBirthArg&)
  * Address:	8010D57C
  * Size:	000028
  */
-void Game::GeneralEnemyMgr::getEnemyName(int, int)
+void GeneralEnemyMgr::getEnemyName(int, int)
 {
 	/*
 	.loc_0x0:
@@ -2127,7 +2129,7 @@ void Game::GeneralEnemyMgr::getEnemyName(int, int)
  * Address:	8010D5A4
  * Size:	000028
  */
-void Game::GeneralEnemyMgr::getEnemyID(char*, int)
+void GeneralEnemyMgr::getEnemyID(char*, int)
 {
 	/*
 	.loc_0x0:
@@ -2149,7 +2151,7 @@ void Game::GeneralEnemyMgr::getEnemyID(char*, int)
  * Address:	8010D5CC
  * Size:	00002C
  */
-void Game::GeneralEnemyMgr::getIEnemyMgrBase(int)
+void GeneralEnemyMgr::getIEnemyMgrBase(int)
 {
 	/*
 	.loc_0x0:
@@ -2178,7 +2180,7 @@ void Game::GeneralEnemyMgr::getIEnemyMgrBase(int)
  * Address:	8010D5F8
  * Size:	00021C
  */
-void Game::GeneralEnemyMgr::allocateEnemys(unsigned char, int)
+void GeneralEnemyMgr::allocateEnemys(unsigned char, int)
 {
 	/*
 	.loc_0x0:
@@ -2345,7 +2347,7 @@ void Game::GeneralEnemyMgr::allocateEnemys(unsigned char, int)
  * Address:	8010D814
  * Size:	000040
  */
-void Game::GeneralEnemyMgr::resetEnemyNum()
+void GeneralEnemyMgr::resetEnemyNum()
 {
 	/*
 	.loc_0x0:
@@ -2377,8 +2379,7 @@ void Game::GeneralEnemyMgr::resetEnemyNum()
  * Address:	8010D854
  * Size:	00022C
  */
-void Game::GeneralEnemyMgr::addEnemyNum(int, unsigned char,
-                                        Game::GenObjectEnemy*)
+void GeneralEnemyMgr::addEnemyNum(int, unsigned char, Game::GenObjectEnemy*)
 {
 	/*
 	.loc_0x0:
@@ -2555,7 +2556,7 @@ void Game::GeneralEnemyMgr::addEnemyNum(int, unsigned char,
  * Address:	8010DA80
  * Size:	000170
  */
-void Game::GeneralEnemyMgr::getEnemyNum(int, bool)
+void GeneralEnemyMgr::getEnemyNum(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -2691,7 +2692,7 @@ void Game::GeneralEnemyMgr::getEnemyNum(int, bool)
  * Address:	8010DBF0
  * Size:	0000B4
  */
-void Game::GeneralEnemyMgr::useHeap()
+void GeneralEnemyMgr::useHeap()
 {
 	/*
 	.loc_0x0:
@@ -2754,7 +2755,7 @@ void Game::GeneralEnemyMgr::useHeap()
  * Address:	8010DCA4
  * Size:	000038
  */
-void Game::GeneralEnemyMgr::getEnemyMgr(int)
+void GeneralEnemyMgr::getEnemyMgr(int)
 {
 	/*
 	.loc_0x0:
@@ -2786,7 +2787,7 @@ void Game::GeneralEnemyMgr::getEnemyMgr(int)
  * Address:	8010DCDC
  * Size:	000098
  */
-void Game::GeneralEnemyMgr::setMovieDraw(bool)
+void GeneralEnemyMgr::setMovieDraw(bool)
 {
 	/*
 	.loc_0x0:
@@ -2848,7 +2849,7 @@ void Game::GeneralEnemyMgr::setMovieDraw(bool)
  * Address:	8010DD74
  * Size:	000030
  */
-void Game::EnemyMgrNode::endMovie()
+void EnemyMgrNode::endMovie()
 {
 	/*
 	.loc_0x0:
@@ -2872,7 +2873,7 @@ void Game::EnemyMgrNode::endMovie()
  * Address:	8010DDA4
  * Size:	000030
  */
-void Game::EnemyMgrNode::startMovie()
+void EnemyMgrNode::startMovie()
 {
 	/*
 	.loc_0x0:
@@ -2896,7 +2897,7 @@ void Game::EnemyMgrNode::startMovie()
  * Address:	8010DDD4
  * Size:	00011C
  */
-void Game::GeneralEnemyMgr::prepareDayendEnemies()
+void GeneralEnemyMgr::prepareDayendEnemies()
 {
 	/*
 	.loc_0x0:
@@ -2991,6 +2992,8 @@ void Game::GeneralEnemyMgr::prepareDayendEnemies()
 	.loc_0x11C:
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3453,12 +3456,14 @@ void GeneralMgrIterator<Game::EnemyBase>::first()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8010E4BC
  * Size:	000C84
  */
-void Game::GeneralEnemyMgr::createDayendEnemies(Sys::Sphere&)
+void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -4405,7 +4410,7 @@ void Game::GeneralEnemyMgr::createDayendEnemies(Sys::Sphere&)
  * Address:	8010F140
  * Size:	000030
  */
-void Game::EnemyMgrNode::setDebugParm(unsigned long)
+void EnemyMgrNode::setDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4429,7 +4434,7 @@ void Game::EnemyMgrNode::setDebugParm(unsigned long)
  * Address:	8010F170
  * Size:	000030
  */
-void Game::EnemyMgrNode::resetDebugParm(unsigned long)
+void EnemyMgrNode::resetDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4453,7 +4458,7 @@ void Game::EnemyMgrNode::resetDebugParm(unsigned long)
  * Address:	8010F1A0
  * Size:	0000B4
  */
-void Game::GeneralEnemyMgr::~GeneralEnemyMgr()
+GeneralEnemyMgr::~GeneralEnemyMgr()
 {
 	/*
 	.loc_0x0:
@@ -4516,7 +4521,9 @@ void Game::GeneralEnemyMgr::~GeneralEnemyMgr()
  * Address:	8010F254
  * Size:	000008
  */
-u32 Game::EnemyMgrNode::getMatrixLoadType() { return 0x1; }
+u32 EnemyMgrNode::getMatrixLoadType() { return 0x1; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4525,12 +4532,14 @@ u32 Game::EnemyMgrNode::getMatrixLoadType() { return 0x1; }
  */
 void GenericObjectMgr::doEntry() { }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8010F260
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @getMatrixLoadType()
+void EnemyMgrNode::@24 @getMatrixLoadType()
 {
 	/*
 	.loc_0x0:
@@ -4544,7 +4553,7 @@ void Game::EnemyMgrNode::@24 @getMatrixLoadType()
  * Address:	8010F268
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doSimpleDraw(Viewport*)
+void EnemyMgrNode::@24 @doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -4558,7 +4567,7 @@ void Game::EnemyMgrNode::@24 @doSimpleDraw(Viewport*)
  * Address:	8010F270
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doDirectDraw(Graphics&)
+void EnemyMgrNode::@24 @doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4572,7 +4581,7 @@ void Game::EnemyMgrNode::@24 @doDirectDraw(Graphics&)
  * Address:	8010F278
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doSimulation(float)
+void EnemyMgrNode::@24 @doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -4586,7 +4595,7 @@ void Game::EnemyMgrNode::@24 @doSimulation(float)
  * Address:	8010F280
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doViewCalc()
+void EnemyMgrNode::@24 @doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -4600,7 +4609,7 @@ void Game::EnemyMgrNode::@24 @doViewCalc()
  * Address:	8010F288
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doSetView(int)
+void EnemyMgrNode::@24 @doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -4614,7 +4623,7 @@ void Game::EnemyMgrNode::@24 @doSetView(int)
  * Address:	8010F290
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doEntry()
+void EnemyMgrNode::@24 @doEntry()
 {
 	/*
 	.loc_0x0:
@@ -4628,7 +4637,7 @@ void Game::EnemyMgrNode::@24 @doEntry()
  * Address:	8010F298
  * Size:	000008
  */
-void Game::EnemyMgrNode::@24 @doAnimation()
+void EnemyMgrNode::@24 @doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -4642,7 +4651,7 @@ void Game::EnemyMgrNode::@24 @doAnimation()
  * Address:	8010F2A0
  * Size:	000008
  */
-void Game::GeneralEnemyMgr::@4 @__dt()
+GeneralEnemyMgr::@4 @~GeneralEnemyMgr()
 {
 	/*
 	.loc_0x0:
@@ -4650,3 +4659,4 @@ void Game::GeneralEnemyMgr::@4 @__dt()
 	  b         -0x104
 	*/
 }
+} // namespace Game

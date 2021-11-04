@@ -5,7 +5,7 @@
  * Address:	801D04E8
  * Size:	0000F8
  */
-void PikiAI::ActBreakGate::ActBreakGate(Game::Piki*)
+PikiAI::ActBreakGate::ActBreakGate(Game::Piki*)
 {
 	/*
 	.loc_0x0:

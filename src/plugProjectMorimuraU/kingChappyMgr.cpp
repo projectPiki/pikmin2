@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8035C288
  * Size:	000050
  */
-void Game::KingChappy::Mgr::__ct((int, unsigned char))
+KingChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::KingChappy::Mgr::__ct((int, unsigned char))
  * Address:	8035C2D8
  * Size:	000048
  */
-void Game::KingChappy::Mgr::doAlloc(void)
+void KingChappy::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::KingChappy::Mgr::doAlloc(void)
  * Address:	8035C320
  * Size:	00006C
  */
-void Game::KingChappy::Parms::__ct(void)
+KingChappy::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +114,7 @@ void Game::KingChappy::Parms::__ct(void)
  * Address:	8035C38C
  * Size:	0005F4
  */
-void Game::KingChappy::Parms::ProperParms::__ct(void)
+KingChappy::Parms::ProperParms::ProperParms(void)
 {
 	/*
 	.loc_0x0:
@@ -517,7 +509,7 @@ void Game::KingChappy::Parms::ProperParms::__ct(void)
  * Address:	8035C980
  * Size:	000020
  */
-void Game::KingChappy::Mgr::birth((Game::EnemyBirthArg&))
+void KingChappy::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -537,7 +529,7 @@ void Game::KingChappy::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8035C9A0
  * Size:	000020
  */
-void Game::KingChappy::Mgr::createModel(void)
+void KingChappy::Mgr::createModel(void)
 {
 	/*
 	.loc_0x0:
@@ -557,7 +549,7 @@ void Game::KingChappy::Mgr::createModel(void)
  * Address:	8035C9C0
  * Size:	0000EC
  */
-void Game::KingChappy::Mgr::requestState((Game::KingChappy::Obj*, int))
+void KingChappy::Mgr::requestState(Game::KingChappy::Obj*, int)
 {
 	/*
 	.loc_0x0:
@@ -638,7 +630,7 @@ void Game::KingChappy::Mgr::requestState((Game::KingChappy::Obj*, int))
  * Address:	8035CAAC
  * Size:	000010
  */
-void Game::KingChappy::Mgr::getEnemy((int))
+void KingChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -654,7 +646,7 @@ void Game::KingChappy::Mgr::getEnemy((int))
  * Address:	8035CABC
  * Size:	0000B0
  */
-void Game::KingChappy::Mgr::__dt(void)
+KingChappy::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -714,14 +706,14 @@ void Game::KingChappy::Mgr::__dt(void)
  * Address:	8035CB6C
  * Size:	000008
  */
-u32 Game::KingChappy::Mgr::getEnemyTypeID(void) { return 0x35; }
+u32 KingChappy::Mgr::getEnemyTypeID(void) { return 0x35; }
 
 /*
  * --INFO--
  * Address:	8035CB74
  * Size:	000060
  */
-void Game::KingChappy::Mgr::createObj((int))
+void KingChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -757,7 +749,7 @@ void Game::KingChappy::Mgr::createObj((int))
  * Address:	8035CBD4
  * Size:	0000BC
  */
-void Game::KingChappy::Obj::__dt(void)
+KingChappy::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -820,7 +812,7 @@ void Game::KingChappy::Obj::__dt(void)
  * Address:	8035CC90
  * Size:	000050
  */
-void Game::KingChappy::Parms::read((Stream&))
+void KingChappy::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -852,7 +844,7 @@ void Game::KingChappy::Parms::read((Stream&))
  * Address:	8035CCE0
  * Size:	000008
  */
-void @4 @Game::KingChappy::Mgr::__dt(void)
+@4 @Game::KingChappy::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -860,3 +852,4 @@ void @4 @Game::KingChappy::Mgr::__dt(void)
 	  b         -0x228
 	*/
 }
+} // namespace Game

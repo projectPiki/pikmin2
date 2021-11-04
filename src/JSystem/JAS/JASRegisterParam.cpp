@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8009C714
  * Size:	000050
  */
-void JASRegisterParam::JASRegisterParam()
+JASRegisterParam::JASRegisterParam()
 {
 	/*
 	.loc_0x0:

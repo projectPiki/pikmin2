@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8029A63C
  * Size:	000324
  */
-void Game::Fuefuki::FSM::init(Game::EnemyBase*)
+void Fuefuki::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -236,7 +238,7 @@ void Game::Fuefuki::FSM::init(Game::EnemyBase*)
  * Address:	8029A960
  * Size:	00005C
  */
-void Game::Fuefuki::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -271,7 +273,7 @@ void Game::Fuefuki::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029A9BC
  * Size:	000044
  */
-void Game::Fuefuki::StateDead::exec(Game::EnemyBase*)
+void Fuefuki::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -302,14 +304,14 @@ void Game::Fuefuki::StateDead::exec(Game::EnemyBase*)
  * Address:	8029AA00
  * Size:	000004
  */
-void Game::Fuefuki::StateDead::cleanup(Game::EnemyBase*) { }
+void Fuefuki::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8029AA04
  * Size:	0000A0
  */
-void Game::Fuefuki::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -361,7 +363,7 @@ void Game::Fuefuki::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029AAA4
  * Size:	00005C
  */
-void Game::Fuefuki::StateStay::exec(Game::EnemyBase*)
+void Fuefuki::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -398,14 +400,14 @@ void Game::Fuefuki::StateStay::exec(Game::EnemyBase*)
  * Address:	8029AB00
  * Size:	000004
  */
-void Game::Fuefuki::StateStay::cleanup(Game::EnemyBase*) { }
+void Fuefuki::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8029AB04
  * Size:	00018C
  */
-void Game::Fuefuki::StateLand::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -520,7 +522,7 @@ void Game::Fuefuki::StateLand::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029AC90
  * Size:	000124
  */
-void Game::Fuefuki::StateLand::exec(Game::EnemyBase*)
+void Fuefuki::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -615,7 +617,7 @@ void Game::Fuefuki::StateLand::exec(Game::EnemyBase*)
  * Address:	8029ADB4
  * Size:	000050
  */
-void Game::Fuefuki::StateLand::cleanup(Game::EnemyBase*)
+void Fuefuki::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +649,7 @@ void Game::Fuefuki::StateLand::cleanup(Game::EnemyBase*)
  * Address:	8029AE04
  * Size:	00005C
  */
-void Game::Fuefuki::StateJump::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateJump::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -682,7 +684,7 @@ void Game::Fuefuki::StateJump::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029AE60
  * Size:	00030C
  */
-void Game::Fuefuki::StateJump::exec(Game::EnemyBase*)
+void Fuefuki::StateJump::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -901,7 +903,7 @@ void Game::Fuefuki::StateJump::exec(Game::EnemyBase*)
  * Address:	8029B16C
  * Size:	000010
  */
-void Game::Fuefuki::StateJump::cleanup(Game::EnemyBase*)
+void Fuefuki::StateJump::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -917,7 +919,7 @@ void Game::Fuefuki::StateJump::cleanup(Game::EnemyBase*)
  * Address:	8029B17C
  * Size:	000060
  */
-void Game::Fuefuki::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -953,7 +955,7 @@ void Game::Fuefuki::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029B1DC
  * Size:	00011C
  */
-void Game::Fuefuki::StateWait::exec(Game::EnemyBase*)
+void Fuefuki::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1046,7 +1048,7 @@ void Game::Fuefuki::StateWait::exec(Game::EnemyBase*)
  * Address:	8029B2F8
  * Size:	000024
  */
-void Game::Fuefuki::StateWait::cleanup(Game::EnemyBase*)
+void Fuefuki::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1067,7 +1069,7 @@ void Game::Fuefuki::StateWait::cleanup(Game::EnemyBase*)
  * Address:	8029B31C
  * Size:	000060
  */
-void Game::Fuefuki::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1103,7 +1105,7 @@ void Game::Fuefuki::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029B37C
  * Size:	000248
  */
-void Game::Fuefuki::StateTurn::exec(Game::EnemyBase*)
+void Fuefuki::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1275,7 +1277,7 @@ void Game::Fuefuki::StateTurn::exec(Game::EnemyBase*)
  * Address:	8029B5C4
  * Size:	000024
  */
-void Game::Fuefuki::StateTurn::cleanup(Game::EnemyBase*)
+void Fuefuki::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1296,7 +1298,7 @@ void Game::Fuefuki::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	8029B5E8
  * Size:	000050
  */
-void Game::Fuefuki::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1328,7 +1330,7 @@ void Game::Fuefuki::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029B638
  * Size:	0001CC
  */
-void Game::Fuefuki::StateWalk::exec(Game::EnemyBase*)
+void Fuefuki::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1477,7 +1479,7 @@ void Game::Fuefuki::StateWalk::exec(Game::EnemyBase*)
  * Address:	8029B804
  * Size:	00003C
  */
-void Game::Fuefuki::StateWalk::cleanup(Game::EnemyBase*)
+void Fuefuki::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1504,7 +1506,7 @@ void Game::Fuefuki::StateWalk::cleanup(Game::EnemyBase*)
  * Address:	8029B840
  * Size:	000068
  */
-void Game::Fuefuki::StateWhisle::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateWhisle::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1542,7 +1544,7 @@ void Game::Fuefuki::StateWhisle::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029B8A8
  * Size:	00010C
  */
-void Game::Fuefuki::StateWhisle::exec(Game::EnemyBase*)
+void Fuefuki::StateWhisle::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1633,7 +1635,7 @@ void Game::Fuefuki::StateWhisle::exec(Game::EnemyBase*)
  * Address:	8029B9B4
  * Size:	000064
  */
-void Game::Fuefuki::StateWhisle::cleanup(Game::EnemyBase*)
+void Fuefuki::StateWhisle::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1670,7 +1672,7 @@ void Game::Fuefuki::StateWhisle::cleanup(Game::EnemyBase*)
  * Address:	8029BA18
  * Size:	000068
  */
-void Game::Fuefuki::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
+void Fuefuki::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1708,7 +1710,7 @@ void Game::Fuefuki::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029BA80
  * Size:	00010C
  */
-void Game::Fuefuki::StateStruggle::exec(Game::EnemyBase*)
+void Fuefuki::StateStruggle::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1799,7 +1801,7 @@ void Game::Fuefuki::StateStruggle::exec(Game::EnemyBase*)
  * Address:	8029BB8C
  * Size:	000038
  */
-void Game::Fuefuki::StateStruggle::cleanup(Game::EnemyBase*)
+void Fuefuki::StateStruggle::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1819,3 +1821,4 @@ void Game::Fuefuki::StateStruggle::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

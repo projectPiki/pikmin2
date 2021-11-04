@@ -787,12 +787,8 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData*, JPABaseParticle*)
  */
 void JPACalcClrIdxMerge(JPAEmitterWorkData*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  sth       r0, 0x214(r3)
-	  blr
-	*/
+	// Generated from sth r0, 0x214(r3)
+	_214 = 0;
 }
 
 /*
@@ -842,12 +838,8 @@ void JPACalcClrIdxMerge(JPAEmitterWorkData*, JPABaseParticle*)
  */
 void JPACalcClrIdxRandom(JPAEmitterWorkData*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  sth       r0, 0x214(r3)
-	  blr
-	*/
+	// Generated from sth r0, 0x214(r3)
+	_214 = 0;
 }
 
 /*
@@ -4898,7 +4890,7 @@ void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, unsigned char, short,
  * Address:	8008EBF0
  * Size:	000114
  */
-void JPABaseShape::JPABaseShape(const unsigned char*, JKRHeap*)
+JPABaseShape::JPABaseShape(const unsigned char*, JKRHeap*)
 {
 	/*
 	.loc_0x0:

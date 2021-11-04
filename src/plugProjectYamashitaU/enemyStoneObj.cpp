@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80129B30
  * Size:	0000A8
  */
-void Game::EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
+EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +61,7 @@ void Game::EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
  * Address:	80129BD8
  * Size:	000104
  */
-void Game::EnemyStone::Obj::start()
+void EnemyStone::Obj::start()
 {
 	/*
 	.loc_0x0:
@@ -144,7 +146,7 @@ void Game::EnemyStone::Obj::start()
  * Address:	80129CDC
  * Size:	0000E0
  */
-void Game::EnemyStone::Obj::shake()
+void EnemyStone::Obj::shake()
 {
 	/*
 	.loc_0x0:
@@ -220,7 +222,7 @@ void Game::EnemyStone::Obj::shake()
  * Address:	80129DBC
  * Size:	0002A8
  */
-void Game::EnemyStone::Obj::update()
+void EnemyStone::Obj::update()
 {
 	/*
 	.loc_0x0:
@@ -428,7 +430,7 @@ void Game::EnemyStone::Obj::update()
  * Address:	8012A064
  * Size:	000088
  */
-void Game::EnemyStone::Obj::checkDrawInfoState(int)
+void EnemyStone::Obj::checkDrawInfoState(int)
 {
 	/*
 	.loc_0x0:
@@ -484,7 +486,7 @@ void Game::EnemyStone::Obj::checkDrawInfoState(int)
  * Address:	8012A0EC
  * Size:	0000B4
  */
-void Game::EnemyStone::Obj::dead()
+void EnemyStone::Obj::dead()
 {
 	/*
 	.loc_0x0:
@@ -547,7 +549,7 @@ void Game::EnemyStone::Obj::dead()
  * Address:	8012A1A0
  * Size:	00007C
  */
-void Game::EnemyStone::Obj::~Obj()
+EnemyStone::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -586,6 +588,8 @@ void Game::EnemyStone::Obj::~Obj()
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

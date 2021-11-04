@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801B07C0
  * Size:	000BA0
  */
-void Game::Piki::graspSituation_Fast((Game::Creature**))
+void Piki::graspSituation_Fast(Game::Creature**)
 {
 	/*
 	.loc_0x0:
@@ -855,7 +847,7 @@ void Game::Piki::graspSituation_Fast((Game::Creature**))
  * Address:	801B1360
  * Size:	001A04
  */
-void Game::Piki::graspSituation((Game::Creature**))
+void Piki::graspSituation(Game::Creature**)
 {
 	/*
 	.loc_0x0:
@@ -2773,6 +2765,8 @@ void Game::Piki::graspSituation((Game::Creature**))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801B2D64
@@ -2804,12 +2798,14 @@ void Iterator<Game::ItemGate>::isDone()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801B2DB0
  * Size:	0007D4
  */
-void Game::Piki::invokeAI((Game::CollEvent*, bool))
+void Piki::invokeAI(Game::CollEvent*, bool)
 {
 	/*
 	.loc_0x0:
@@ -3380,7 +3376,7 @@ void Game::Piki::invokeAI((Game::CollEvent*, bool))
  * Address:	801B3584
  * Size:	0002C4
  */
-void Game::Piki::invokeAI((Game::PlatEvent*))
+void Piki::invokeAI(Game::PlatEvent*)
 {
 	/*
 	.loc_0x0:
@@ -3593,7 +3589,7 @@ void Game::Piki::invokeAI((Game::PlatEvent*))
  * Address:	801B3848
  * Size:	0000B0
  */
-void Game::Piki::invokeAIFree((Game::Piki::InvokeAIFreeArg&))
+void Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg&)
 {
 	/*
 	.loc_0x0:
@@ -3657,7 +3653,7 @@ void Game::Piki::invokeAIFree((Game::Piki::InvokeAIFreeArg&))
  * Address:	801B38F8
  * Size:	000310
  */
-void Game::Piki::checkInvokeAI((bool))
+void Piki::checkInvokeAI(bool)
 {
 	/*
 	.loc_0x0:
@@ -3883,7 +3879,7 @@ void Game::Piki::checkInvokeAI((bool))
  * Address:	801B3C08
  * Size:	000054
  */
-void Game::Piki::invokeAI(void)
+void Piki::invokeAI(void)
 {
 	/*
 	.loc_0x0:
@@ -3920,7 +3916,7 @@ void Game::Piki::invokeAI(void)
  * Address:	801B3C5C
  * Size:	000028
  */
-void Game::Piki::setActTransportArg((PikiAI::ActTransportArg&))
+void Piki::setActTransportArg(PikiAI::ActTransportArg&)
 {
 	/*
 	.loc_0x0:
@@ -3936,6 +3932,8 @@ void Game::Piki::setActTransportArg((PikiAI::ActTransportArg&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

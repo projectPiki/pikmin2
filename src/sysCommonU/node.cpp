@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Node.h"
 #include "CNode.h"
 #include "JSystem/JUTException.h"

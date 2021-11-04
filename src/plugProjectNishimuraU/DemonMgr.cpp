@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8028E048
  * Size:	000050
  */
-void Game::Demon::Mgr::Mgr(int, unsigned char)
+Demon::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Demon::Mgr::Mgr(int, unsigned char)
  * Address:	8028E098
  * Size:	000048
  */
-void Game::Demon::Mgr::doAlloc()
+void Demon::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::Demon::Mgr::doAlloc()
  * Address:	8028E0E0
  * Size:	000060
  */
-void Game::Demon::Mgr::createObj(int)
+void Demon::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Demon::Mgr::createObj(int)
  * Address:	8028E140
  * Size:	0000F0
  */
-void Game::Demon::Obj::~Obj()
+Demon::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::Demon::Obj::~Obj()
  * Address:	8028E230
  * Size:	000010
  */
-void Game::Demon::Mgr::getEnemy(int)
+void Demon::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::Demon::Mgr::getEnemy(int)
  * Address:	8028E240
  * Size:	000068
  */
-void Game::Demon::Mgr::loadModelData()
+void Demon::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -239,7 +241,7 @@ void Game::Demon::Mgr::loadModelData()
  * Address:	8028E2A8
  * Size:	0000B0
  */
-void Game::Demon::Mgr::~Mgr()
+Demon::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -299,14 +301,14 @@ void Game::Demon::Mgr::~Mgr()
  * Address:	8028E358
  * Size:	000008
  */
-u32 Game::Demon::Mgr::getEnemyTypeID() { return 0x20; }
+u32 Demon::Mgr::getEnemyTypeID() { return 0x20; }
 
 /*
  * --INFO--
  * Address:	8028E360
  * Size:	00002C
  */
-void Game::Demon::Mgr::doLoadBmd(void*)
+void Demon::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +331,7 @@ void Game::Demon::Mgr::doLoadBmd(void*)
  * Address:	8028E38C
  * Size:	000008
  */
-void Game::Demon::Mgr::@4 @__dt()
+Demon::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -337,3 +339,4 @@ void Game::Demon::Mgr::@4 @__dt()
 	  b         -0xE8
 	*/
 }
+} // namespace Game

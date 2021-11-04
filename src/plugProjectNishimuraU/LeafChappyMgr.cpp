@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802C5918
  * Size:	000050
  */
-void Game::LeafChappy::Mgr::Mgr(int, unsigned char)
+LeafChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::LeafChappy::Mgr::Mgr(int, unsigned char)
  * Address:	802C5968
  * Size:	000048
  */
-void Game::LeafChappy::Mgr::birth(Game::EnemyBirthArg&)
+void LeafChappy::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::LeafChappy::Mgr::birth(Game::EnemyBirthArg&)
  * Address:	802C59B0
  * Size:	000048
  */
-void Game::LeafChappy::Mgr::doAlloc()
+void LeafChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -101,7 +103,7 @@ void Game::LeafChappy::Mgr::doAlloc()
  * Address:	802C59F8
  * Size:	000060
  */
-void Game::LeafChappy::Mgr::createObj(int)
+void LeafChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -137,7 +139,7 @@ void Game::LeafChappy::Mgr::createObj(int)
  * Address:	802C5A58
  * Size:	0000F0
  */
-void Game::LeafChappy::Obj::~Obj()
+LeafChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -213,7 +215,7 @@ void Game::LeafChappy::Obj::~Obj()
  * Address:	802C5B48
  * Size:	000010
  */
-void Game::LeafChappy::Mgr::getEnemy(int)
+void LeafChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +231,7 @@ void Game::LeafChappy::Mgr::getEnemy(int)
  * Address:	802C5B58
  * Size:	0000B0
  */
-void Game::LeafChappy::Mgr::~Mgr()
+LeafChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -289,14 +291,14 @@ void Game::LeafChappy::Mgr::~Mgr()
  * Address:	802C5C08
  * Size:	000008
  */
-u32 Game::LeafChappy::Mgr::getEnemyTypeID() { return 0x43; }
+u32 LeafChappy::Mgr::getEnemyTypeID() { return 0x43; }
 
 /*
  * --INFO--
  * Address:	802C5C10
  * Size:	000008
  */
-void Game::LeafChappy::Mgr::@4 @__dt()
+LeafChappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -304,3 +306,4 @@ void Game::LeafChappy::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

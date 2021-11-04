@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802FFE04
  * Size:	000050
  */
-void Game::RedKabuto::Mgr::Mgr(int, unsigned char)
+RedKabuto::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::RedKabuto::Mgr::Mgr(int, unsigned char)
  * Address:	802FFE54
  * Size:	000048
  */
-void Game::RedKabuto::Mgr::doAlloc()
+void RedKabuto::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::RedKabuto::Mgr::doAlloc()
  * Address:	802FFE9C
  * Size:	000060
  */
-void Game::RedKabuto::Mgr::createObj(int)
+void RedKabuto::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::RedKabuto::Mgr::createObj(int)
  * Address:	802FFEFC
  * Size:	0000EC
  */
-void Game::RedKabuto::Obj::~Obj()
+RedKabuto::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::RedKabuto::Obj::~Obj()
  * Address:	802FFFE8
  * Size:	000010
  */
-void Game::RedKabuto::Mgr::getEnemy(int)
+void RedKabuto::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -196,7 +198,7 @@ void Game::RedKabuto::Mgr::getEnemy(int)
  * Address:	802FFFF8
  * Size:	000080
  */
-void Game::RedKabuto::Mgr::loadTexData()
+void RedKabuto::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -244,7 +246,7 @@ void Game::RedKabuto::Mgr::loadTexData()
  * Address:	80300078
  * Size:	0000C8
  */
-void Game::RedKabuto::Mgr::~Mgr()
+RedKabuto::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -310,14 +312,14 @@ void Game::RedKabuto::Mgr::~Mgr()
  * Address:	80300140
  * Size:	000008
  */
-u32 Game::RedKabuto::Mgr::getEnemyTypeID() { return 0x5F; }
+u32 RedKabuto::Mgr::getEnemyTypeID() { return 0x5F; }
 
 /*
  * --INFO--
  * Address:	80300148
  * Size:	000008
  */
-void Game::RedKabuto::Mgr::getChangeTexture()
+void RedKabuto::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -331,7 +333,7 @@ void Game::RedKabuto::Mgr::getChangeTexture()
  * Address:	80300150
  * Size:	000008
  */
-void Game::RedKabuto::Mgr::@4 @__dt()
+RedKabuto::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -339,3 +341,4 @@ void Game::RedKabuto::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

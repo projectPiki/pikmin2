@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8010F874
  * Size:	000198
  */
-void Game::KochappyBase::FSM::init(Game::EnemyBase*)
+void KochappyBase::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Game::KochappyBase::FSM::init(Game::EnemyBase*)
  * Address:	8010FA0C
  * Size:	00003C
  */
-void Game::KochappyBase::StatePress::StatePress(int)
+KochappyBase::StatePress::StatePress(int)
 {
 	/*
 	.loc_0x0:
@@ -168,7 +170,7 @@ void Game::KochappyBase::StatePress::StatePress(int)
  * Address:	8010FA48
  * Size:	000054
  */
-void Game::KochappyBase::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -201,7 +203,7 @@ void Game::KochappyBase::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010FA9C
  * Size:	000050
  */
-void Game::KochappyBase::StatePress::exec(Game::EnemyBase*)
+void KochappyBase::StatePress::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -235,7 +237,7 @@ void Game::KochappyBase::StatePress::exec(Game::EnemyBase*)
  * Address:	8010FAEC
  * Size:	00003C
  */
-void Game::KochappyBase::StateWait::StateWait(int)
+KochappyBase::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -262,7 +264,7 @@ void Game::KochappyBase::StateWait::StateWait(int)
  * Address:	8010FB28
  * Size:	0000C8
  */
-void Game::KochappyBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -326,7 +328,7 @@ void Game::KochappyBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010FBF0
  * Size:	000308
  */
-void Game::KochappyBase::StateWait::exec(Game::EnemyBase*)
+void KochappyBase::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -550,7 +552,7 @@ void Game::KochappyBase::StateWait::exec(Game::EnemyBase*)
  * Address:	8010FEF8
  * Size:	000024
  */
-void Game::KochappyBase::StateWait::cleanup(Game::EnemyBase*)
+void KochappyBase::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +573,7 @@ void Game::KochappyBase::StateWait::cleanup(Game::EnemyBase*)
  * Address:	8010FF1C
  * Size:	00003C
  */
-void Game::KochappyBase::StateDead::StateDead(int)
+KochappyBase::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -598,7 +600,7 @@ void Game::KochappyBase::StateDead::StateDead(int)
  * Address:	8010FF58
  * Size:	000040
  */
-void Game::KochappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -626,7 +628,7 @@ void Game::KochappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010FF98
  * Size:	000050
  */
-void Game::KochappyBase::StateDead::exec(Game::EnemyBase*)
+void KochappyBase::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -660,14 +662,14 @@ void Game::KochappyBase::StateDead::exec(Game::EnemyBase*)
  * Address:	8010FFE8
  * Size:	000004
  */
-void Game::KochappyBase::StateDead::cleanup(Game::EnemyBase*) { }
+void KochappyBase::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8010FFEC
  * Size:	00003C
  */
-void Game::KochappyBase::StateTurn::StateTurn(int)
+KochappyBase::StateTurn::StateTurn(int)
 {
 	/*
 	.loc_0x0:
@@ -694,7 +696,7 @@ void Game::KochappyBase::StateTurn::StateTurn(int)
  * Address:	80110028
  * Size:	000054
  */
-void Game::KochappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -727,7 +729,7 @@ void Game::KochappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8011007C
  * Size:	000710
  */
-void Game::KochappyBase::StateTurn::exec(Game::EnemyBase*)
+void KochappyBase::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1231,7 +1233,7 @@ void Game::KochappyBase::StateTurn::exec(Game::EnemyBase*)
  * Address:	8011078C
  * Size:	000024
  */
-void Game::KochappyBase::StateTurn::cleanup(Game::EnemyBase*)
+void KochappyBase::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1252,7 +1254,7 @@ void Game::KochappyBase::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	801107B0
  * Size:	000044
  */
-void Game::KochappyBase::StateWalk::StateWalk(int)
+KochappyBase::StateWalk::StateWalk(int)
 {
 	/*
 	.loc_0x0:
@@ -1281,7 +1283,7 @@ void Game::KochappyBase::StateWalk::StateWalk(int)
  * Address:	801107F4
  * Size:	000080
  */
-void Game::KochappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1325,7 +1327,7 @@ void Game::KochappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80110874
  * Size:	0006E4
  */
-void Game::KochappyBase::StateWalk::exec(Game::EnemyBase*)
+void KochappyBase::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1826,7 +1828,7 @@ void Game::KochappyBase::StateWalk::exec(Game::EnemyBase*)
  * Address:	80110F58
  * Size:	000048
  */
-void Game::KochappyBase::StateWalk::cleanup(Game::EnemyBase*)
+void KochappyBase::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1856,7 +1858,7 @@ void Game::KochappyBase::StateWalk::cleanup(Game::EnemyBase*)
  * Address:	80110FA0
  * Size:	00003C
  */
-void Game::KochappyBase::StateAttack::StateAttack(int)
+KochappyBase::StateAttack::StateAttack(int)
 {
 	/*
 	.loc_0x0:
@@ -1883,7 +1885,7 @@ void Game::KochappyBase::StateAttack::StateAttack(int)
  * Address:	80110FDC
  * Size:	000048
  */
-void Game::KochappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1913,7 +1915,7 @@ void Game::KochappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80111024
  * Size:	0003F0
  */
-void Game::KochappyBase::StateAttack::exec(Game::EnemyBase*)
+void KochappyBase::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2197,7 +2199,7 @@ void Game::KochappyBase::StateAttack::exec(Game::EnemyBase*)
  * Address:	80111414
  * Size:	000024
  */
-void Game::KochappyBase::StateAttack::cleanup(Game::EnemyBase*)
+void KochappyBase::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2218,7 +2220,7 @@ void Game::KochappyBase::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	80111438
  * Size:	000044
  */
-void Game::KochappyBase::StateFlick::StateFlick(int)
+KochappyBase::StateFlick::StateFlick(int)
 {
 	/*
 	.loc_0x0:
@@ -2247,7 +2249,7 @@ void Game::KochappyBase::StateFlick::StateFlick(int)
  * Address:	8011147C
  * Size:	000094
  */
-void Game::KochappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2296,7 +2298,7 @@ void Game::KochappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80111510
  * Size:	000178
  */
-void Game::KochappyBase::StateFlick::exec(Game::EnemyBase*)
+void KochappyBase::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2416,7 +2418,7 @@ void Game::KochappyBase::StateFlick::exec(Game::EnemyBase*)
  * Address:	80111688
  * Size:	000050
  */
-void Game::KochappyBase::StateFlick::cleanup(Game::EnemyBase*)
+void KochappyBase::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2448,7 +2450,7 @@ void Game::KochappyBase::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	801116D8
  * Size:	000040
  */
-void Game::KochappyBase::StateTurnToHome::StateTurnToHome(int)
+KochappyBase::StateTurnToHome::StateTurnToHome(int)
 {
 	/*
 	.loc_0x0:
@@ -2476,8 +2478,7 @@ void Game::KochappyBase::StateTurnToHome::StateTurnToHome(int)
  * Address:	80111718
  * Size:	000120
  */
-void Game::KochappyBase::StateTurnToHome::init(Game::EnemyBase*,
-                                               Game::StateArg*)
+void KochappyBase::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2569,7 +2570,7 @@ void Game::KochappyBase::StateTurnToHome::init(Game::EnemyBase*,
  * Address:	80111838
  * Size:	00046C
  */
-void Game::KochappyBase::StateTurnToHome::exec(Game::EnemyBase*)
+void KochappyBase::StateTurnToHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2882,14 +2883,14 @@ void Game::KochappyBase::StateTurnToHome::exec(Game::EnemyBase*)
  * Address:	80111CA4
  * Size:	000004
  */
-void Game::KochappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
+void KochappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80111CA8
  * Size:	00003C
  */
-void Game::KochappyBase::StateGoHome::StateGoHome(int)
+KochappyBase::StateGoHome::StateGoHome(int)
 {
 	/*
 	.loc_0x0:
@@ -2916,7 +2917,7 @@ void Game::KochappyBase::StateGoHome::StateGoHome(int)
  * Address:	80111CE4
  * Size:	000064
  */
-void Game::KochappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2953,7 +2954,7 @@ void Game::KochappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80111D48
  * Size:	000440
  */
-void Game::KochappyBase::StateGoHome::exec(Game::EnemyBase*)
+void KochappyBase::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3257,7 +3258,7 @@ void Game::KochappyBase::StateGoHome::exec(Game::EnemyBase*)
  * Address:	80112188
  * Size:	000040
  */
-void Game::KochappyBase::StateGoHome::cleanup(Game::EnemyBase*)
+void KochappyBase::StateGoHome::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3285,7 +3286,7 @@ void Game::KochappyBase::StateGoHome::cleanup(Game::EnemyBase*)
  * Address:	801121C8
  * Size:	00003C
  */
-void Game::KochappyBase::StateDemo::StateDemo(int)
+KochappyBase::StateDemo::StateDemo(int)
 {
 	/*
 	.loc_0x0:
@@ -3312,7 +3313,7 @@ void Game::KochappyBase::StateDemo::StateDemo(int)
  * Address:	80112204
  * Size:	00007C
  */
-void Game::KochappyBase::StateDemo::init(Game::EnemyBase*, Game::StateArg*)
+void KochappyBase::StateDemo::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3357,14 +3358,16 @@ void Game::KochappyBase::StateDemo::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80112280
  * Size:	000004
  */
-void Game::BaseGameSection::enableTimer(float, unsigned long) { }
+void BaseGameSection::enableTimer(float, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80112284
  * Size:	000008
  */
-u32 Game::BaseGameSection::getTimerType() { return 0x0; }
+u32 BaseGameSection::getTimerType() { return 0x0; }
+
+} // namespace Game
 
 /*
  * --INFO--

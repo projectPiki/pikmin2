@@ -312,8 +312,7 @@ void BombOtakara::Obj::earthquakeCallBack(Creature*, float)
  * Address:	802F99B4
  * Size:	000030
  */
-void BombOtakara::Obj::bombCallBack(Creature*, Vector3<float>&,
-                                          float)
+void BombOtakara::Obj::bombCallBack(Creature*, Vector3f&, float)
 {
 	/*
 	.loc_0x0:

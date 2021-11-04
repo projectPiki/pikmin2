@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B9780
  * Size:	000050
  */
-void Game::ElecOtakara::Mgr::Mgr(int, unsigned char)
+ElecOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::ElecOtakara::Mgr::Mgr(int, unsigned char)
  * Address:	802B97D0
  * Size:	000048
  */
-void Game::ElecOtakara::Mgr::doAlloc()
+void ElecOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::ElecOtakara::Mgr::doAlloc()
  * Address:	802B9818
  * Size:	000060
  */
-void Game::ElecOtakara::Mgr::createObj(int)
+void ElecOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::ElecOtakara::Mgr::createObj(int)
  * Address:	802B9878
  * Size:	0000F0
  */
-void Game::ElecOtakara::Obj::~Obj()
+ElecOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::ElecOtakara::Obj::~Obj()
  * Address:	802B9968
  * Size:	000010
  */
-void Game::ElecOtakara::Mgr::getEnemy(int)
+void ElecOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::ElecOtakara::Mgr::getEnemy(int)
  * Address:	802B9978
  * Size:	000080
  */
-void Game::ElecOtakara::Mgr::loadTexData()
+void ElecOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -245,7 +247,7 @@ void Game::ElecOtakara::Mgr::loadTexData()
  * Address:	802B99F8
  * Size:	0000C8
  */
-void Game::ElecOtakara::Mgr::~Mgr()
+ElecOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -311,14 +313,14 @@ void Game::ElecOtakara::Mgr::~Mgr()
  * Address:	802B9AC0
  * Size:	000008
  */
-u32 Game::ElecOtakara::Mgr::getEnemyTypeID() { return 0x3E; }
+u32 ElecOtakara::Mgr::getEnemyTypeID() { return 0x3E; }
 
 /*
  * --INFO--
  * Address:	802B9AC8
  * Size:	000008
  */
-void Game::ElecOtakara::Mgr::getChangeTexture()
+void ElecOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -332,7 +334,7 @@ void Game::ElecOtakara::Mgr::getChangeTexture()
  * Address:	802B9AD0
  * Size:	000008
  */
-void Game::ElecOtakara::Mgr::@4 @__dt()
+ElecOtakara::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -340,3 +342,4 @@ void Game::ElecOtakara::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

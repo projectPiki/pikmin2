@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	804728A4
  * Size:	000060
  */
-void PSM::ObjCalc_SingleGame::newInstance_SingleGame()
+void ObjCalc_SingleGame::newInstance_SingleGame()
 {
 	/*
 	.loc_0x0:
@@ -43,7 +45,7 @@ void PSM::ObjCalc_SingleGame::newInstance_SingleGame()
  * Address:	80472904
  * Size:	000008
  */
-void PSM::ObjCalc_SingleGame::getPlayerNo(PSM::Creature*)
+void ObjCalc_SingleGame::getPlayerNo(PSM::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -57,7 +59,7 @@ void PSM::ObjCalc_SingleGame::getPlayerNo(PSM::Creature*)
  * Address:	8047290C
  * Size:	000008
  */
-void PSM::ObjCalc_SingleGame::getPlayerNo(Vec&)
+void ObjCalc_SingleGame::getPlayerNo(Vec&)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void PSM::ObjCalc_SingleGame::getPlayerNo(Vec&)
  * Address:	80472914
  * Size:	00005C
  */
-void PSM::ObjCalc_2PGame::newInstance_2PGame()
+void ObjCalc_2PGame::newInstance_2PGame()
 {
 	/*
 	.loc_0x0:
@@ -108,7 +110,7 @@ void PSM::ObjCalc_2PGame::newInstance_2PGame()
  * Address:	80472970
  * Size:	0003BC
  */
-void PSM::ObjCalc_2PGame::getPlayerNo(Vec&)
+void ObjCalc_2PGame::getPlayerNo(Vec&)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +391,7 @@ void PSM::ObjCalc_2PGame::getPlayerNo(Vec&)
  * Address:	80472D2C
  * Size:	0000C8
  */
-void PSM::ObjCalc_2PGame::getPlayerNo(PSM::Creature*)
+void ObjCalc_2PGame::getPlayerNo(PSM::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -461,7 +463,7 @@ void PSM::ObjCalc_2PGame::getPlayerNo(PSM::Creature*)
  * Address:	80472DF4
  * Size:	000074
  */
-void PSM::ObjCalc_SingleGame::~ObjCalc_SingleGame()
+ObjCalc_SingleGame::~ObjCalc_SingleGame()
 {
 	/*
 	.loc_0x0:
@@ -506,7 +508,7 @@ void PSM::ObjCalc_SingleGame::~ObjCalc_SingleGame()
  * Address:	80472E68
  * Size:	000074
  */
-void PSM::ObjCalc_2PGame::~ObjCalc_2PGame()
+ObjCalc_2PGame::~ObjCalc_2PGame()
 {
 	/*
 	.loc_0x0:
@@ -551,4 +553,5 @@ void PSM::ObjCalc_2PGame::~ObjCalc_2PGame()
  * Address:	80472EDC
  * Size:	000008
  */
-u32 PSM::ObjCalc_2PGame::is1PGame() { return 0x0; }
+u32 ObjCalc_2PGame::is1PGame() { return 0x0; }
+} // namespace PSM

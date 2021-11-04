@@ -1,3 +1,5 @@
+#include "types.h"
+
 struct VsOtakaraName {
 	static const char* cCoin;
 	static const char* cBedamaBlue;

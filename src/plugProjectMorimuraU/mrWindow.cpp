@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	803A3644
  * Size:	000050
  */
-void Morimura::TConfirmEndWindow::__ct((char const*))
+Morimura::TConfirmEndWindow::TConfirmEndWindow(char const*)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Morimura::TConfirmEndWindow::__ct((char const*))
  * Address:	803A3694
  * Size:	000040
  */
-void Morimura::TConfirmEndWindow::doStart((Screen::StartSceneArg const*))
+void Morimura::TConfirmEndWindow::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -178,7 +168,7 @@ void Morimura::TConfirmEndWindow::doUpdateFadeout(void)
  * Address:	803A37B0
  * Size:	000038
  */
-void Morimura::TConfirmEndWindow::doDraw((Graphics&))
+void Morimura::TConfirmEndWindow::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +198,7 @@ void Morimura::TConfirmEndWindow::doDraw((Graphics&))
  * Address:	803A37E8
  * Size:	000024
  */
-void Morimura::TConfirmEndWindow::setRetireMsg((unsigned long long))
+void Morimura::TConfirmEndWindow::setRetireMsg(unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +219,7 @@ void Morimura::TConfirmEndWindow::setRetireMsg((unsigned long long))
  * Address:	803A380C
  * Size:	000074
  */
-void Morimura::TSelectExplanationWindow::__ct((JKRArchive*, int))
+Morimura::TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive*, int)
 {
 	/*
 	.loc_0x0:
@@ -401,7 +391,7 @@ void Morimura::TSelectExplanationWindow::update(void)
  * Address:	803A3A14
  * Size:	00002C
  */
-void Morimura::TSelectExplanationWindow::draw((Graphics&, J2DPerspGraph*))
+void Morimura::TSelectExplanationWindow::draw(Graphics&, J2DPerspGraph*)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +450,7 @@ void Morimura::TSelectExplanationWindow::closeWindow(void)
  * Address:	803A3A68
  * Size:	000080
  */
-void Morimura::TConfirmEndWindow::__dt(void)
+Morimura::TConfirmEndWindow::~TConfirmEndWindow(void)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +498,7 @@ void Morimura::TConfirmEndWindow::__dt(void)
  * Address:	803A3AE8
  * Size:	000008
  */
-void @24 @Morimura::TConfirmEndWindow::__dt(void)
+@24 @Morimura::TConfirmEndWindow::~TConfirmEndWindow(void)
 {
 	/*
 	.loc_0x0:

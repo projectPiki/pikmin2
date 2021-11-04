@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8023410C
  * Size:	0000FC
  */
-void Game::PlayCommonData::__ct(void)
+PlayCommonData::PlayCommonData(void)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +90,7 @@ void Game::PlayCommonData::__ct(void)
  * Address:	80234208
  * Size:	000078
  */
-void Game::PlayCommonData::reset(void)
+void PlayCommonData::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -144,7 +136,7 @@ void Game::PlayCommonData::reset(void)
  * Address:	80234280
  * Size:	0000C0
  */
-void Game::PlayChallengeGameData::reset(void)
+void PlayChallengeGameData::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +200,7 @@ void Game::PlayChallengeGameData::reset(void)
  * Address:	80234340
  * Size:	0000A0
  */
-void Game::PlayCommonData::write((Stream&))
+void PlayCommonData::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -262,7 +254,7 @@ void Game::PlayCommonData::write((Stream&))
  * Address:	802343E0
  * Size:	0000EC
  */
-void Game::PlayCommonData::read((Stream&))
+void PlayCommonData::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +333,7 @@ void Game::PlayCommonData::read((Stream&))
  * Address:	802344CC
  * Size:	000078
  */
-void Game::PlayCommonData::getHighscore_clear((int))
+void PlayCommonData::getHighscore_clear(int)
 {
 	/*
 	.loc_0x0:
@@ -387,7 +379,7 @@ void Game::PlayCommonData::getHighscore_clear((int))
  * Address:	80234544
  * Size:	000078
  */
-void Game::PlayCommonData::getHighscore_complete((int))
+void PlayCommonData::getHighscore_complete(int)
 {
 	/*
 	.loc_0x0:
@@ -433,7 +425,7 @@ void Game::PlayCommonData::getHighscore_complete((int))
  * Address:	802345BC
  * Size:	000038
  */
-void Game::PlayCommonData::entryHighscores_clear((int, int*, int*))
+void PlayCommonData::entryHighscores_clear(int, int*, int*)
 {
 	/*
 	.loc_0x0:
@@ -459,7 +451,7 @@ void Game::PlayCommonData::entryHighscores_clear((int, int*, int*))
  * Address:	802345F4
  * Size:	000038
  */
-void Game::PlayCommonData::entryHighscores_complete((int, int*, int*))
+void PlayCommonData::entryHighscores_complete(int, int*, int*)
 {
 	/*
 	.loc_0x0:
@@ -487,8 +479,7 @@ void Game::PlayCommonData::entryHighscores_complete((int, int*, int*))
  * Address:	8023462C
  * Size:	0000E0
  */
-void Game::PlayCommonData::entryHighscores_common((Game::Highscore**, int, int*,
-                                                   int*))
+void PlayCommonData::entryHighscores_common(Game::Highscore**, int, int*, int*)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +551,7 @@ void Game::PlayCommonData::entryHighscores_common((Game::Highscore**, int, int*,
  * Address:	8023470C
  * Size:	00000C
  */
-void Game::PlayCommonData::isChallengeGamePlayable(void)
+void PlayCommonData::isChallengeGamePlayable(void)
 {
 	/*
 	.loc_0x0:
@@ -575,7 +566,7 @@ void Game::PlayCommonData::isChallengeGamePlayable(void)
  * Address:	80234718
  * Size:	00000C
  */
-void Game::PlayCommonData::isLouieRescued(void)
+void PlayCommonData::isLouieRescued(void)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +581,7 @@ void Game::PlayCommonData::isLouieRescued(void)
  * Address:	80234724
  * Size:	00008C
  */
-void Game::PlayCommonData::isPerfectChallenge(void)
+void PlayCommonData::isPerfectChallenge(void)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +638,7 @@ void Game::PlayCommonData::isPerfectChallenge(void)
  * Address:	802347B0
  * Size:	000030
  */
-void Game::PlayCommonData::enableChallengeGame(void)
+void PlayCommonData::enableChallengeGame(void)
 {
 	/*
 	.loc_0x0:
@@ -671,7 +662,7 @@ void Game::PlayCommonData::enableChallengeGame(void)
  * Address:	802347E0
  * Size:	000030
  */
-void Game::PlayCommonData::enableLouieRescue(void)
+void PlayCommonData::enableLouieRescue(void)
 {
 	/*
 	.loc_0x0:
@@ -695,7 +686,7 @@ void Game::PlayCommonData::enableLouieRescue(void)
  * Address:	80234810
  * Size:	00001C
  */
-void Game::PlayCommonData::challenge_is_virgin(void)
+void PlayCommonData::challenge_is_virgin(void)
 {
 	/*
 	.loc_0x0:
@@ -714,7 +705,7 @@ void Game::PlayCommonData::challenge_is_virgin(void)
  * Address:	8023482C
  * Size:	000014
  */
-void Game::PlayCommonData::challenge_is_virgin_check_only(void)
+void PlayCommonData::challenge_is_virgin_check_only(void)
 {
 	/*
 	.loc_0x0:
@@ -731,7 +722,7 @@ void Game::PlayCommonData::challenge_is_virgin_check_only(void)
  * Address:	80234840
  * Size:	000024
  */
-void Game::PlayCommonData::challenge_get_CourseState((int))
+void PlayCommonData::challenge_get_CourseState(int)
 {
 	/*
 	.loc_0x0:
@@ -752,7 +743,7 @@ void Game::PlayCommonData::challenge_get_CourseState((int))
  * Address:	........
  * Size:	000008
  */
-void Game::PlayCommonData::challenge_get_coursenum(void)
+void PlayCommonData::challenge_get_coursenum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -762,7 +753,7 @@ void Game::PlayCommonData::challenge_get_coursenum(void)
  * Address:	80234864
  * Size:	00002C
  */
-void Game::PlayCommonData::challenge_checkOpen((int))
+void PlayCommonData::challenge_checkOpen(int)
 {
 	/*
 	.loc_0x0:
@@ -785,7 +776,7 @@ void Game::PlayCommonData::challenge_checkOpen((int))
  * Address:	80234890
  * Size:	00002C
  */
-void Game::PlayCommonData::challenge_checkClear((int))
+void PlayCommonData::challenge_checkClear(int)
 {
 	/*
 	.loc_0x0:
@@ -808,7 +799,7 @@ void Game::PlayCommonData::challenge_checkClear((int))
  * Address:	802348BC
  * Size:	00002C
  */
-void Game::PlayCommonData::challenge_checkKunsho((int))
+void PlayCommonData::challenge_checkKunsho(int)
 {
 	/*
 	.loc_0x0:
@@ -831,7 +822,7 @@ void Game::PlayCommonData::challenge_checkKunsho((int))
  * Address:	802348E8
  * Size:	00004C
  */
-void Game::PlayCommonData::challenge_checkJustOpen((int))
+void PlayCommonData::challenge_checkJustOpen(int)
 {
 	/*
 	.loc_0x0:
@@ -866,7 +857,7 @@ void Game::PlayCommonData::challenge_checkJustOpen((int))
  * Address:	80234934
  * Size:	00004C
  */
-void Game::PlayCommonData::challenge_checkJustClear((int))
+void PlayCommonData::challenge_checkJustClear(int)
 {
 	/*
 	.loc_0x0:
@@ -901,7 +892,7 @@ void Game::PlayCommonData::challenge_checkJustClear((int))
  * Address:	80234980
  * Size:	00004C
  */
-void Game::PlayCommonData::challenge_checkJustKunsho((int))
+void PlayCommonData::challenge_checkJustKunsho(int)
 {
 	/*
 	.loc_0x0:
@@ -936,7 +927,7 @@ void Game::PlayCommonData::challenge_checkJustKunsho((int))
  * Address:	802349CC
  * Size:	000094
  */
-void Game::PlayCommonData::challenge_openNewCourse(void)
+void PlayCommonData::challenge_openNewCourse(void)
 {
 	/*
 	.loc_0x0:
@@ -995,7 +986,7 @@ void Game::PlayCommonData::challenge_openNewCourse(void)
  * Address:	80234A60
  * Size:	000030
  */
-void Game::PlayCommonData::challenge_setClear((int))
+void PlayCommonData::challenge_setClear(int)
 {
 	/*
 	.loc_0x0:
@@ -1019,7 +1010,7 @@ void Game::PlayCommonData::challenge_setClear((int))
  * Address:	80234A90
  * Size:	000030
  */
-void Game::PlayCommonData::challenge_setOpen((int))
+void PlayCommonData::challenge_setOpen(int)
 {
 	/*
 	.loc_0x0:
@@ -1043,7 +1034,7 @@ void Game::PlayCommonData::challenge_setOpen((int))
  * Address:	80234AC0
  * Size:	000080
  */
-void Game::PlayCommonData::challenge_setKunsho((int))
+void PlayCommonData::challenge_setKunsho(int)
 {
 	/*
 	.loc_0x0:
@@ -1093,7 +1084,7 @@ void Game::PlayCommonData::challenge_setKunsho((int))
  * Address:	80234B40
  * Size:	000084
  */
-void Game::PlayCommonData::challenge_getHighscore((int, int))
+void PlayCommonData::challenge_getHighscore(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1142,7 +1133,7 @@ void Game::PlayCommonData::challenge_getHighscore((int, int))
  * Address:	80234BC4
  * Size:	0000C8
  */
-void Game::PlayChallengeGameData::__ct(void)
+PlayChallengeGameData::PlayChallengeGameData(void)
 {
 	/*
 	.loc_0x0:
@@ -1204,7 +1195,7 @@ void Game::PlayChallengeGameData::__ct(void)
  * Address:	80234C8C
  * Size:	000078
  */
-void Game::PlayChallengeGameData::CourseState::__ct(void)
+PlayChallengeGameData::CourseState::CourseState(void)
 {
 	/*
 	.loc_0x0:
@@ -1246,7 +1237,7 @@ void Game::PlayChallengeGameData::CourseState::__ct(void)
  * Address:	80234D04
  * Size:	0000A4
  */
-void Game::PlayChallengeGameData::getState((int))
+void PlayChallengeGameData::getState(int)
 {
 	/*
 	.loc_0x0:
@@ -1305,7 +1296,7 @@ void Game::PlayChallengeGameData::getState((int))
  * Address:	80234DA8
  * Size:	00009C
  */
-void Game::PlayChallengeGameData::write((Stream&))
+void PlayChallengeGameData::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1362,7 +1353,7 @@ void Game::PlayChallengeGameData::write((Stream&))
  * Address:	80234E44
  * Size:	00009C
  */
-void Game::PlayChallengeGameData::read((Stream&))
+void PlayChallengeGameData::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1419,7 +1410,7 @@ void Game::PlayChallengeGameData::read((Stream&))
  * Address:	80234EE0
  * Size:	000018
  */
-void Game::Lowscore::do_higher((int, int))
+void Lowscore::do_higher(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1431,3 +1422,4 @@ void Game::Lowscore::do_higher((int, int))
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8002CE5C
  * Size:	0000AC
  */
-void JUTFader::JUTFader(int, int, int, int, JUtility::TColor)
+JUTFader::JUTFader(int, int, int, int, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -273,7 +273,7 @@ void JUTFader::setStatus(JUTFader::EStatus, int)
  * Address:	8002D0FC
  * Size:	000048
  */
-void JUTFader::~JUTFader()
+JUTFader::~JUTFader()
 {
 	/*
 	.loc_0x0:

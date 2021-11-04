@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-void JUTException::JUTException(JUTDirectPrint*)
+JUTException::JUTException(JUTDirectPrint*)
 {
 	// UNUSED FUNCTION
 }
@@ -3728,8 +3728,7 @@ void JUTException::createConsole(void*, unsigned long)
  * Address:	8002CD40
  * Size:	000020
  */
-void JUTExternalFB::JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*,
-                                  unsigned long)
+JUTExternalFB::JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3769,7 +3768,7 @@ void JUTException::disableFpuException()
  * Address:	8002CD60
  * Size:	000060
  */
-void JUTException::~JUTException()
+JUTException::~JUTException()
 {
 	/*
 	.loc_0x0:

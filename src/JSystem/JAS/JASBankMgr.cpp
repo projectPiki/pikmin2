@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -531,7 +531,7 @@ void JASBankMgr::noteOn(int, int, unsigned char, unsigned char, unsigned short,
  * Address:	........
  * Size:	000054
  */
-void JASCriticalSection::~JASCriticalSection()
+JASCriticalSection::~JASCriticalSection()
 {
 	// UNUSED FUNCTION
 }

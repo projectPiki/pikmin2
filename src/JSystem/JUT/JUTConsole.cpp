@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -117,7 +117,7 @@ void JUTConsole::destroy(JUTConsole*)
  * Address:	800281FC
  * Size:	000100
  */
-void JUTConsole::JUTConsole(unsigned int, unsigned int, bool)
+JUTConsole::JUTConsole(unsigned int, unsigned int, bool)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +195,7 @@ void JUTConsole::JUTConsole(unsigned int, unsigned int, bool)
  * Address:	800282FC
  * Size:	000070
  */
-void JUTConsole::~JUTConsole()
+JUTConsole::~JUTConsole()
 {
 	/*
 	.loc_0x0:
@@ -695,7 +695,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType) const
  * Address:	80028944
  * Size:	00005C
  */
-void J2DOrthoGraph::~J2DOrthoGraph()
+J2DOrthoGraph::~J2DOrthoGraph()
 {
 	/*
 	.loc_0x0:
@@ -1204,7 +1204,7 @@ void JUTConsole::getLineOffset() const
  * Address:	........
  * Size:	000028
  */
-void JUTConsoleManager::JUTConsoleManager()
+JUTConsoleManager::JUTConsoleManager()
 {
 	// UNUSED FUNCTION
 }
@@ -1224,7 +1224,7 @@ void __dt__Q27JGadget27TLinkList<JUTConsole, -24> Fv(void)
  * Address:	........
  * Size:	000058
  */
-void JUTConsoleManager::~JUTConsoleManager()
+JUTConsoleManager::~JUTConsoleManager()
 {
 	// UNUSED FUNCTION
 }

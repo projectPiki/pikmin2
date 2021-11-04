@@ -1,3 +1,5 @@
+#include "types.h"
+
 extern "C" {
 bool OSRestoreInterrupts(unsigned int);
 unsigned int OSDisableInterrupts();

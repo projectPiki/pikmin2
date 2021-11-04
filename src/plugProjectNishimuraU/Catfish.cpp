@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80277008
  * Size:	000090
  */
-void Game::Catfish::Obj::Obj()
+Catfish::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::Catfish::Obj::Obj()
  * Address:	80277098
  * Size:	00003C
  */
-void Game::Catfish::Obj::onInit(Game::CreatureInitArg*)
+void Catfish::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +84,7 @@ void Game::Catfish::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802770D4
  * Size:	0000C0
  */
-void Game::Catfish::Obj::getShadowParam(Game::ShadowParam&)
+void Catfish::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -146,7 +148,7 @@ void Game::Catfish::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80277194
  * Size:	000028
  */
-void Game::Catfish::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Catfish::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -168,7 +170,7 @@ void Game::Catfish::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	802771BC
  * Size:	000020
  */
-void Game::Catfish::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Catfish::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -188,7 +190,7 @@ void Game::Catfish::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	802771DC
  * Size:	0000A0
  */
-void Game::Catfish::Obj::initMouthSlots()
+void Catfish::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -244,7 +246,7 @@ void Game::Catfish::Obj::initMouthSlots()
  * Address:	8027727C
  * Size:	000044
  */
-void Game::Catfish::Obj::resetEnemyNonStone()
+void Catfish::Obj::resetEnemyNonStone()
 {
 	/*
 	.loc_0x0:
@@ -277,7 +279,7 @@ void Game::Catfish::Obj::resetEnemyNonStone()
  * Address:	802772C0
  * Size:	000028
  */
-void Game::Catfish::Obj::createDownEffect()
+void Catfish::Obj::createDownEffect()
 {
 	/*
 	.loc_0x0:
@@ -299,35 +301,35 @@ void Game::Catfish::Obj::createDownEffect()
  * Address:	802772E8
  * Size:	000004
  */
-void Game::Catfish::Obj::changeMaterial() { }
+void Catfish::Obj::changeMaterial() { }
 
 /*
  * --INFO--
  * Address:	802772EC
  * Size:	000004
  */
-void Game::Catfish::Obj::inWaterCallback(Game::WaterBox*) { }
+void Catfish::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802772F0
  * Size:	000004
  */
-void Game::Catfish::Obj::outWaterCallback() { }
+void Catfish::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802772F4
  * Size:	000008
  */
-u32 Game::Catfish::Obj::getEnemyTypeID() { return 0x1A; }
+u32 Catfish::Obj::getEnemyTypeID() { return 0x1A; }
 
 /*
  * --INFO--
  * Address:	802772FC
  * Size:	000010
  */
-void Game::Catfish::Obj::setEnemyNonStone()
+void Catfish::Obj::setEnemyNonStone()
 {
 	/*
 	.loc_0x0:
@@ -337,3 +339,4 @@ void Game::Catfish::Obj::setEnemyNonStone()
 	  blr
 	*/
 }
+} // namespace Game

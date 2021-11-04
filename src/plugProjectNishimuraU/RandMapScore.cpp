@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8024C878
  * Size:	0000A8
  */
-void Game::Cave::RandMapScore::__ct((Game::Cave::MapUnitGenerator*))
+Cave::RandMapScore::RandMapScore(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -69,7 +61,7 @@ void Game::Cave::RandMapScore::__ct((Game::Cave::MapUnitGenerator*))
  * Address:	8024C920
  * Size:	00006C
  */
-void Game::Cave::RandMapScore::setMapUnitScore(void)
+void Cave::RandMapScore::setMapUnitScore(void)
 {
 	/*
 	.loc_0x0:
@@ -112,7 +104,7 @@ void Game::Cave::RandMapScore::setMapUnitScore(void)
  * Address:	8024C98C
  * Size:	000038
  */
-void Game::Cave::RandMapScore::setStartSlot(void)
+void Cave::RandMapScore::setStartSlot(void)
 {
 	/*
 	.loc_0x0:
@@ -142,7 +134,7 @@ void Game::Cave::RandMapScore::setStartSlot(void)
  * Address:	8024C9C4
  * Size:	000058
  */
-void Game::Cave::RandMapScore::setGoalSlot(void)
+void Cave::RandMapScore::setGoalSlot(void)
 {
 	/*
 	.loc_0x0:
@@ -180,8 +172,8 @@ void Game::Cave::RandMapScore::setGoalSlot(void)
  * Address:	8024CA1C
  * Size:	00018C
  */
-void Game::Cave::RandMapScore::makeObjectLayout((Game::Cave::MapNode*,
-                                                 Game::Cave::ObjectLayout*))
+void Cave::RandMapScore::makeObjectLayout(Game::Cave::MapNode*,
+                                          Game::Cave::ObjectLayout*)
 {
 	/*
 	.loc_0x0:
@@ -300,7 +292,7 @@ void Game::Cave::RandMapScore::makeObjectLayout((Game::Cave::MapNode*,
  * Address:	8024CBA8
  * Size:	000010
  */
-void Game::Cave::RandMapScore::getFixObjNode((int))
+void Cave::RandMapScore::getFixObjNode(int)
 {
 	/*
 	.loc_0x0:
@@ -316,7 +308,7 @@ void Game::Cave::RandMapScore::getFixObjNode((int))
  * Address:	8024CBB8
  * Size:	000010
  */
-void Game::Cave::RandMapScore::getFixObjGen((int))
+void Cave::RandMapScore::getFixObjGen(int)
 {
 	/*
 	.loc_0x0:
@@ -327,12 +319,14 @@ void Game::Cave::RandMapScore::getFixObjGen((int))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8024CBC8
  * Size:	000064
  */
-void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<float>(void)
+void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -366,12 +360,14 @@ void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8024CC2C
  * Size:	000008
  */
-void Game::Cave::RandMapScore::getVersusHighScore(void)
+void Cave::RandMapScore::getVersusHighScore(void)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +381,7 @@ void Game::Cave::RandMapScore::getVersusHighScore(void)
  * Address:	8024CC34
  * Size:	000008
  */
-void Game::Cave::RandMapScore::getVersusLowScore(void)
+void Cave::RandMapScore::getVersusLowScore(void)
 {
 	/*
 	.loc_0x0:
@@ -399,7 +395,7 @@ void Game::Cave::RandMapScore::getVersusLowScore(void)
  * Address:	8024CC3C
  * Size:	000084
  */
-void Game::Cave::RandMapScore::isScoreSetDone(void)
+void Cave::RandMapScore::isScoreSetDone(void)
 {
 	/*
 	.loc_0x0:
@@ -456,7 +452,7 @@ void Game::Cave::RandMapScore::isScoreSetDone(void)
  * Address:	8024CCC0
  * Size:	0000C4
  */
-void Game::Cave::RandMapScore::clearRoomAndDoorScore(void)
+void Cave::RandMapScore::clearRoomAndDoorScore(void)
 {
 	/*
 	.loc_0x0:
@@ -527,7 +523,7 @@ void Game::Cave::RandMapScore::clearRoomAndDoorScore(void)
  * Address:	8024CD84
  * Size:	000154
  */
-void Game::Cave::RandMapScore::setUnitAndDoorScore(void)
+void Cave::RandMapScore::setUnitAndDoorScore(void)
 {
 	/*
 	.loc_0x0:
@@ -642,7 +638,7 @@ void Game::Cave::RandMapScore::setUnitAndDoorScore(void)
  * Address:	8024CED8
  * Size:	0000B0
  */
-void Game::Cave::RandMapScore::setStartMapNodeScore((Game::Cave::MapNode*))
+void Cave::RandMapScore::setStartMapNodeScore(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -704,7 +700,7 @@ void Game::Cave::RandMapScore::setStartMapNodeScore((Game::Cave::MapNode*))
  * Address:	........
  * Size:	0000DC
  */
-void Game::Cave::RandMapScore::getRandRoomMapNode(void)
+void Cave::RandMapScore::getRandRoomMapNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -714,7 +710,7 @@ void Game::Cave::RandMapScore::getRandRoomMapNode(void)
  * Address:	8024CF88
  * Size:	00013C
  */
-void Game::Cave::RandMapScore::setChallengePod(void)
+void Cave::RandMapScore::setChallengePod(void)
 {
 	/*
 	.loc_0x0:
@@ -823,7 +819,7 @@ void Game::Cave::RandMapScore::setChallengePod(void)
  * Address:	8024D0C4
  * Size:	0001B8
  */
-void Game::Cave::RandMapScore::setVersusOnyon(void)
+void Cave::RandMapScore::setVersusOnyon(void)
 {
 	/*
 	.loc_0x0:
@@ -959,8 +955,8 @@ void Game::Cave::RandMapScore::setVersusOnyon(void)
  * Address:	8024D27C
  * Size:	0000FC
  */
-void Game::Cave::RandMapScore::getMaxScoreRoomMapNode((Game::Cave::MapNode*,
-                                                       Game::Cave::BaseGen**))
+void Cave::RandMapScore::getMaxScoreRoomMapNode(Game::Cave::MapNode*,
+                                                Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -1049,7 +1045,7 @@ void Game::Cave::RandMapScore::getMaxScoreRoomMapNode((Game::Cave::MapNode*,
  * Address:	8024D378
  * Size:	0003B0
  */
-void Game::Cave::RandMapScore::calcNodeScore((Game::Cave::MapNode*))
+void Cave::RandMapScore::calcNodeScore(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -1359,7 +1355,7 @@ void Game::Cave::RandMapScore::calcNodeScore((Game::Cave::MapNode*))
  * Address:	8024D728
  * Size:	000048
  */
-void Game::Cave::RandMapScore::copyNodeScore(void)
+void Cave::RandMapScore::copyNodeScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1393,7 +1389,7 @@ void Game::Cave::RandMapScore::copyNodeScore(void)
  * Address:	8024D770
  * Size:	00008C
  */
-void Game::Cave::RandMapScore::subNodeScore(void)
+void Cave::RandMapScore::subNodeScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1448,7 +1444,7 @@ void Game::Cave::RandMapScore::subNodeScore(void)
  * Address:	8024D7FC
  * Size:	000064
  */
-void Game::Cave::RandMapScore::setMapNodeScore((Game::Cave::MapNode*, int))
+void Cave::RandMapScore::setMapNodeScore(Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -1489,7 +1485,7 @@ void Game::Cave::RandMapScore::setMapNodeScore((Game::Cave::MapNode*, int))
  * Address:	8024D860
  * Size:	0003BC
  */
-void Game::Cave::RandMapScore::setChallengeFixObjNormal(void)
+void Cave::RandMapScore::setChallengeFixObjNormal(void)
 {
 	/*
 	.loc_0x0:
@@ -1782,7 +1778,7 @@ void Game::Cave::RandMapScore::setChallengeFixObjNormal(void)
  * Address:	8024DC1C
  * Size:	000324
  */
-void Game::Cave::RandMapScore::setChallengeFixObjHard(void)
+void Cave::RandMapScore::setChallengeFixObjHard(void)
 {
 	/*
 	.loc_0x0:
@@ -2035,7 +2031,7 @@ void Game::Cave::RandMapScore::setChallengeFixObjHard(void)
  * Address:	8024DF40
  * Size:	000064
  */
-void Game::Cave::RandMapScore::isGoalSetHard(void)
+void Cave::RandMapScore::isGoalSetHard(void)
 {
 	/*
 	.loc_0x0:
@@ -2086,8 +2082,7 @@ void Game::Cave::RandMapScore::isGoalSetHard(void)
  * Address:	8024DFA4
  * Size:	000128
  */
-void Game::Cave::RandMapScore::isFixObjSet((Game::Cave::MapNode*,
-                                            Game::Cave::BaseGen*))
+void Cave::RandMapScore::isFixObjSet(Game::Cave::MapNode*, Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -2187,7 +2182,7 @@ void Game::Cave::RandMapScore::isFixObjSet((Game::Cave::MapNode*,
  * Address:	8024E0CC
  * Size:	000070
  */
-void Game::Cave::FixObjNode::__dt(void)
+Cave::FixObjNode::~FixObjNode(void)
 {
 	/*
 	.loc_0x0:
@@ -2231,14 +2226,14 @@ void Game::Cave::FixObjNode::__dt(void)
  * Address:	8024E13C
  * Size:	000008
  */
-u32 Game::Cave::FixObjNode::getObjectId(void) { return 0x1; }
+u32 Cave::FixObjNode::getObjectId(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8024E144
  * Size:	000008
  */
-void Game::Cave::FixObjNode::getObjectType(void)
+void Cave::FixObjNode::getObjectType(void)
 {
 	/*
 	.loc_0x0:
@@ -2252,14 +2247,14 @@ void Game::Cave::FixObjNode::getObjectType(void)
  * Address:	8024E14C
  * Size:	000008
  */
-u32 Game::Cave::FixObjNode::getBirthCount(void) { return 0x1; }
+u32 Cave::FixObjNode::getBirthCount(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8024E154
  * Size:	000008
  */
-void Game::Cave::FixObjNode::getDirection(void)
+void Cave::FixObjNode::getDirection(void)
 {
 	/*
 	.loc_0x0:
@@ -2273,7 +2268,7 @@ void Game::Cave::FixObjNode::getDirection(void)
  * Address:	8024E15C
  * Size:	000014
  */
-void Game::Cave::FixObjNode::getBirthPosition((float&, float&))
+void Cave::FixObjNode::getBirthPosition(float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -2284,3 +2279,4 @@ void Game::Cave::FixObjNode::getBirthPosition((float&, float&))
 	  blr
 	*/
 }
+} // namespace Game

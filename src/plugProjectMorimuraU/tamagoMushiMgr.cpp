@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8036D988
  * Size:	000050
  */
-void Game::TamagoMushi::Mgr::__ct((int, unsigned char))
+TamagoMushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::TamagoMushi::Mgr::__ct((int, unsigned char))
  * Address:	8036D9D8
  * Size:	000100
  */
-void Game::TamagoMushi::Mgr::doAlloc(void)
+void TamagoMushi::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -132,12 +124,14 @@ void Game::TamagoMushi::Mgr::doAlloc(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8036DAD8
  * Size:	000048
  */
-void J3DUMtxCacheBase::~J3DUMtxCacheBase()
+J3DUMtxCacheBase::~J3DUMtxCacheBase()
 {
 	/*
 	.loc_0x0:
@@ -164,12 +158,14 @@ void J3DUMtxCacheBase::~J3DUMtxCacheBase()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8036DB20
  * Size:	000010
  */
-void Game::TamagoMushi::Mgr::getEnemy((int))
+void TamagoMushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +181,7 @@ void Game::TamagoMushi::Mgr::getEnemy((int))
  * Address:	8036DB30
  * Size:	000260
  */
-void Game::TamagoMushi::Parms::__ct(void)
+TamagoMushi::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +345,7 @@ void Game::TamagoMushi::Parms::__ct(void)
  * Address:	8036DD90
  * Size:	000048
  */
-void Game::TamagoMushi::Mgr::birth((Game::EnemyBirthArg&))
+void TamagoMushi::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -381,7 +377,7 @@ void Game::TamagoMushi::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8036DDD8
  * Size:	000058
  */
-void Game::TamagoMushi::Mgr::fetch((J3DModel*, float))
+void TamagoMushi::Mgr::fetch(J3DModel*, float)
 {
 	/*
 	.loc_0x0:
@@ -417,7 +413,7 @@ void Game::TamagoMushi::Mgr::fetch((J3DModel*, float))
  * Address:	........
  * Size:	000090
  */
-void Game::TamagoMushi::Mgr::getFreeNum(void)
+void TamagoMushi::Mgr::getFreeNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -577,7 +573,7 @@ void
  * Address:	8036DFD8
  * Size:	0003AC
  */
-void Game::TamagoMushi::Mgr::createGroup((Game::TamagoMushi::Obj*, int, bool))
+void TamagoMushi::Mgr::createGroup(Game::TamagoMushi::Obj*, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -850,8 +846,8 @@ void Game::TamagoMushi::Mgr::createGroup((Game::TamagoMushi::Obj*, int, bool))
  * Address:	8036E384
  * Size:	000484
  */
-void Game::TamagoMushi::Mgr::createGroupByBigFoot((Game::TamagoMushi::Obj*, int,
-                                                   bool, float))
+void TamagoMushi::Mgr::createGroupByBigFoot(Game::TamagoMushi::Obj*, int, bool,
+                                            float)
 {
 	/*
 	.loc_0x0:
@@ -1172,7 +1168,7 @@ void Game::TamagoMushi::Mgr::createGroupByBigFoot((Game::TamagoMushi::Obj*, int,
  * Address:	8036E808
  * Size:	0000B0
  */
-void Game::TamagoMushi::Mgr::__dt(void)
+TamagoMushi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1232,14 +1228,14 @@ void Game::TamagoMushi::Mgr::__dt(void)
  * Address:	8036E8B8
  * Size:	000008
  */
-u32 Game::TamagoMushi::Mgr::getEnemyTypeID(void) { return 0x44; }
+u32 TamagoMushi::Mgr::getEnemyTypeID(void) { return 0x44; }
 
 /*
  * --INFO--
  * Address:	8036E8C0
  * Size:	000060
  */
-void Game::TamagoMushi::Mgr::createObj((int))
+void TamagoMushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -1275,7 +1271,7 @@ void Game::TamagoMushi::Mgr::createObj((int))
  * Address:	8036E920
  * Size:	0000BC
  */
-void Game::TamagoMushi::Obj::__dt(void)
+TamagoMushi::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -1338,7 +1334,7 @@ void Game::TamagoMushi::Obj::__dt(void)
  * Address:	8036E9DC
  * Size:	000050
  */
-void Game::TamagoMushi::Parms::read((Stream&))
+void TamagoMushi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1364,6 +1360,8 @@ void Game::TamagoMushi::Parms::read((Stream&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1505,7 +1503,7 @@ void J3DUMtxCacheRef<J3DUMtxAnmCacheTable>::~J3DUMtxCacheRef()
  * Address:	8036EBA0
  * Size:	000008
  */
-void @4 @Game::TamagoMushi::Mgr::__dt(void)
+@4 @Game::TamagoMushi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

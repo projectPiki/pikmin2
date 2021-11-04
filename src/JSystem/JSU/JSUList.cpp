@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "JSystem/JSU/JSUPtrLink.h"
 #include "JSystem/JSU/JSUPtrList.h"
 

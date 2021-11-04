@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8028D470
  * Size:	000140
  */
-void Game::Baby::Obj::Obj()
+Baby::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -103,14 +105,14 @@ void Game::Baby::Obj::Obj()
  * Address:	8028D5B0
  * Size:	000004
  */
-void Game::Baby::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Baby::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8028D5B4
  * Size:	0000B8
  */
-void Game::Baby::Obj::onInit(Game::CreatureInitArg*)
+void Baby::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -172,7 +174,7 @@ void Game::Baby::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8028D66C
  * Size:	000048
  */
-void Game::Baby::Obj::doUpdate()
+void Baby::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -202,14 +204,14 @@ void Game::Baby::Obj::doUpdate()
  * Address:	8028D6B4
  * Size:	000004
  */
-void Game::Baby::Obj::doDirectDraw(Graphics&) { }
+void Baby::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8028D6B8
  * Size:	000020
  */
-void Game::Baby::Obj::doDebugDraw(Graphics&)
+void Baby::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +231,7 @@ void Game::Baby::Obj::doDebugDraw(Graphics&)
  * Address:	8028D6D8
  * Size:	00004C
  */
-void Game::Baby::Obj::setFSM(Game::Baby::FSM*)
+void Baby::Obj::setFSM(Game::Baby::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::Baby::Obj::setFSM(Game::Baby::FSM*)
  * Address:	8028D724
  * Size:	000068
  */
-void Game::Baby::Obj::getShadowParam(Game::ShadowParam&)
+void Baby::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +304,7 @@ void Game::Baby::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8028D78C
  * Size:	000074
  */
-void Game::Baby::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Baby::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -347,7 +349,7 @@ void Game::Baby::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	8028D800
  * Size:	000074
  */
-void Game::Baby::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Baby::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -392,7 +394,7 @@ void Game::Baby::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8028D874
  * Size:	000020
  */
-void Game::Baby::Obj::doStartStoneState()
+void Baby::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -412,7 +414,7 @@ void Game::Baby::Obj::doStartStoneState()
  * Address:	8028D894
  * Size:	00005C
  */
-void Game::Baby::Obj::doFinishStoneState()
+void Baby::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -449,7 +451,7 @@ void Game::Baby::Obj::doFinishStoneState()
  * Address:	8028D8F0
  * Size:	000034
  */
-void Game::Baby::Obj::doStartWaitingBirthTypeDrop()
+void Baby::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -474,7 +476,7 @@ void Game::Baby::Obj::doStartWaitingBirthTypeDrop()
  * Address:	8028D924
  * Size:	000034
  */
-void Game::Baby::Obj::doFinishWaitingBirthTypeDrop()
+void Baby::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -499,7 +501,7 @@ void Game::Baby::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8028D958
  * Size:	000020
  */
-void Game::Baby::Obj::doStartMovie()
+void Baby::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -519,7 +521,7 @@ void Game::Baby::Obj::doStartMovie()
  * Address:	8028D978
  * Size:	000020
  */
-void Game::Baby::Obj::doEndMovie()
+void Baby::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -539,7 +541,7 @@ void Game::Baby::Obj::doEndMovie()
  * Address:	8028D998
  * Size:	00008C
  */
-void Game::Baby::Obj::initMouthSlots()
+void Baby::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -590,7 +592,7 @@ void Game::Baby::Obj::initMouthSlots()
  * Address:	8028DA24
  * Size:	00008C
  */
-void Game::Baby::Obj::getSlotPikiNum()
+void Baby::Obj::getSlotPikiNum()
 {
 	/*
 	.loc_0x0:
@@ -643,7 +645,7 @@ void Game::Baby::Obj::getSlotPikiNum()
  * Address:	8028DAB0
  * Size:	000008
  */
-void Game::Baby::Obj::getMouthSlots()
+void Baby::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -657,7 +659,7 @@ void Game::Baby::Obj::getMouthSlots()
  * Address:	8028DAB8
  * Size:	00001C
  */
-void Game::Baby::Obj::resetRandTargetPosition()
+void Baby::Obj::resetRandTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -676,7 +678,7 @@ void Game::Baby::Obj::resetRandTargetPosition()
  * Address:	8028DAD4
  * Size:	000074
  */
-void Game::Baby::Obj::resetZukanAnimationFrame()
+void Baby::Obj::resetZukanAnimationFrame()
 {
 	/*
 	.loc_0x0:
@@ -717,7 +719,7 @@ void Game::Baby::Obj::resetZukanAnimationFrame()
  * Address:	8028DB48
  * Size:	00020C
  */
-void Game::Baby::Obj::moveNoTarget()
+void Baby::Obj::moveNoTarget()
 {
 	/*
 	.loc_0x0:
@@ -872,7 +874,7 @@ void Game::Baby::Obj::moveNoTarget()
  * Address:	8028DD54
  * Size:	0000F4
  */
-void Game::Baby::Obj::createHoney()
+void Baby::Obj::createHoney()
 {
 	/*
 	.loc_0x0:
@@ -947,7 +949,7 @@ void Game::Baby::Obj::createHoney()
  * Address:	8028DE48
  * Size:	0000B4
  */
-void Game::Baby::Obj::createEffect()
+void Baby::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1006,14 +1008,14 @@ void Game::Baby::Obj::createEffect()
  * Address:	8028DEFC
  * Size:	000004
  */
-void Game::Baby::Obj::setupEffect() { }
+void Baby::Obj::setupEffect() { }
 
 /*
  * --INFO--
  * Address:	8028DF00
  * Size:	000034
  */
-void Game::Baby::Obj::createBornEffect()
+void Baby::Obj::createBornEffect()
 {
 	/*
 	.loc_0x0:
@@ -1038,7 +1040,7 @@ void Game::Baby::Obj::createBornEffect()
  * Address:	8028DF34
  * Size:	000030
  */
-void Game::Baby::Obj::effectDrawOn()
+void Baby::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1062,7 +1064,7 @@ void Game::Baby::Obj::effectDrawOn()
  * Address:	8028DF64
  * Size:	000030
  */
-void Game::Baby::Obj::effectDrawOff()
+void Baby::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1081,12 +1083,16 @@ void Game::Baby::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8028DF94
  * Size:	00009C
  */
-void efx::TBabyBorn::~TBabyBorn()
+TBabyBorn::~TBabyBorn()
 {
 	/*
 	.loc_0x0:
@@ -1136,37 +1142,46 @@ void efx::TBabyBorn::~TBabyBorn()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8028E030
  * Size:	000004
  */
-void Game::Baby::Obj::inWaterCallback(Game::WaterBox*) { }
+void Baby::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8028E034
  * Size:	000004
  */
-void Game::Baby::Obj::outWaterCallback() { }
+void Baby::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8028E038
  * Size:	000008
  */
-u32 Game::Baby::Obj::getEnemyTypeID() { return 0x1F; }
+u32 Baby::Obj::getEnemyTypeID() { return 0x1F; }
 
-/*
- * --INFO--
- * Address:	8028E040
- * Size:	000008
- */
-void efx::TBabyBorn::@4 @__dt()
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xB0
-	*/
-}
+	 * --INFO--
+	 * Address:	8028E040
+	 * Size:	000008
+	 */
+	TBabyBorn::@4 @~TBabyBorn()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0xB0
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

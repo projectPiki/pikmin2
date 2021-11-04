@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803E12E0
  * Size:	000248
  */
-void ebi::FileSelect::FSMStateMachine::init((ebi::FileSelect::TMgr*))
+void FileSelect::FSMStateMachine::init(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +177,7 @@ void ebi::FileSelect::FSMStateMachine::init((ebi::FileSelect::TMgr*))
  * Address:	803E1528
  * Size:	00002C
  */
-void ebi::FileSelect::FSMState::init((ebi::FileSelect::TMgr*, Game::StateArg*))
+void FileSelect::FSMState::init(ebi::FileSelect::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -208,17 +200,14 @@ void ebi::FileSelect::FSMState::init((ebi::FileSelect::TMgr*, Game::StateArg*))
  * Address:	803E1554
  * Size:	000004
  */
-void ebi::FileSelect::FSMState::do_init((ebi::FileSelect::TMgr*,
-                                         Game::StateArg*))
-{
-}
+void FileSelect::FSMState::do_init(ebi::FileSelect::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803E1558
  * Size:	00002C
  */
-void ebi::FileSelect::FSMState::exec((ebi::FileSelect::TMgr*))
+void FileSelect::FSMState::exec(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -241,15 +230,15 @@ void ebi::FileSelect::FSMState::exec((ebi::FileSelect::TMgr*))
  * Address:	803E1584
  * Size:	000004
  */
-void ebi::FileSelect::FSMState::do_exec((ebi::FileSelect::TMgr*)) { }
+void FileSelect::FSMState::do_exec(ebi::FileSelect::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E1588
  * Size:	000010
  */
-void ebi::FileSelect::FSMState_EmptyUpdate::do_init((ebi::FileSelect::TMgr*,
-                                                     Game::StateArg*))
+void FileSelect::FSMState_EmptyUpdate::do_init(ebi::FileSelect::TMgr*,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +254,7 @@ void ebi::FileSelect::FSMState_EmptyUpdate::do_init((ebi::FileSelect::TMgr*,
  * Address:	803E1598
  * Size:	000054
  */
-void ebi::FileSelect::FSMState_EmptyUpdate::do_exec((ebi::FileSelect::TMgr*))
+void FileSelect::FSMState_EmptyUpdate::do_exec(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -327,8 +316,8 @@ FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg(void)
  * Address:	803E161C
  * Size:	00000C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_init((ebi::FileSelect::TMgr*,
-                                                     Game::StateArg*))
+void FileSelect::FSMState_CardRequest::do_init(ebi::FileSelect::TMgr*,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +332,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_init((ebi::FileSelect::TMgr*,
  * Address:	803E1628
  * Size:	000278
  */
-void ebi::FileSelect::FSMState_CardRequest::do_exec((ebi::FileSelect::TMgr*))
+void FileSelect::FSMState_CardRequest::do_exec(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -531,7 +520,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_exec((ebi::FileSelect::TMgr*))
  * Address:	803E18A0
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardNoCard(
+void FileSelect::FSMState_CardRequest::do_transitCardNoCard(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -559,7 +548,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardNoCard(
  * Address:	803E18DC
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardIOError(
+void FileSelect::FSMState_CardRequest::do_transitCardIOError(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -587,7 +576,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardIOError(
  * Address:	803E1918
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardWrongDevice(
+void FileSelect::FSMState_CardRequest::do_transitCardWrongDevice(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -615,7 +604,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardWrongDevice(
  * Address:	803E1954
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardWrongSector(
+void FileSelect::FSMState_CardRequest::do_transitCardWrongSector(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -643,7 +632,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardWrongSector(
  * Address:	803E1990
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardBroken(
+void FileSelect::FSMState_CardRequest::do_transitCardBroken(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -671,7 +660,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardBroken(
  * Address:	803E19CC
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardEncoding(
+void FileSelect::FSMState_CardRequest::do_transitCardEncoding(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -699,7 +688,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardEncoding(
  * Address:	803E1A08
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardNoFileSpace(
+void FileSelect::FSMState_CardRequest::do_transitCardNoFileSpace(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -727,7 +716,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardNoFileSpace(
  * Address:	803E1A44
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardNoFileEntry(
+void FileSelect::FSMState_CardRequest::do_transitCardNoFileEntry(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -755,7 +744,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardNoFileEntry(
  * Address:	803E1A80
  * Size:	00003C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardFileOpenError(
+void FileSelect::FSMState_CardRequest::do_transitCardFileOpenError(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -783,7 +772,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardFileOpenError(
  * Address:	803E1ABC
  * Size:	00002C
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardPlayerDataBroken(
+void FileSelect::FSMState_CardRequest::do_transitCardPlayerDataBroken(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -807,7 +796,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardPlayerDataBroken(
  * Address:	803E1AE8
  * Size:	000054
  */
-void ebi::FileSelect::FSMState_CardRequest::do_transitCardSerialNoError(
+void FileSelect::FSMState_CardRequest::do_transitCardSerialNoError(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -841,8 +830,7 @@ void ebi::FileSelect::FSMState_CardRequest::do_transitCardSerialNoError(
  * Address:	803E1B3C
  * Size:	000028
  */
-void ebi::FileSelect::FSMState_MountCheck::do_cardRequest(
-    (ebi::FileSelect::TMgr*))
+void FileSelect::FSMState_MountCheck::do_cardRequest(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -864,7 +852,7 @@ void ebi::FileSelect::FSMState_MountCheck::do_cardRequest(
  * Address:	803E1B64
  * Size:	000034
  */
-void ebi::FileSelect::FSMState_MountCheck::do_transitCardReady(
+void FileSelect::FSMState_MountCheck::do_transitCardReady(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -890,7 +878,7 @@ void ebi::FileSelect::FSMState_MountCheck::do_transitCardReady(
  * Address:	803E1B98
  * Size:	00002C
  */
-void ebi::FileSelect::FSMState_GetPlayerHeader::do_cardRequest(
+void FileSelect::FSMState_GetPlayerHeader::do_cardRequest(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -914,7 +902,7 @@ void ebi::FileSelect::FSMState_GetPlayerHeader::do_cardRequest(
  * Address:	803E1BC4
  * Size:	000034
  */
-void ebi::FileSelect::FSMState_GetPlayerHeader::do_transitCardReady(
+void FileSelect::FSMState_GetPlayerHeader::do_transitCardReady(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -940,7 +928,7 @@ void ebi::FileSelect::FSMState_GetPlayerHeader::do_transitCardReady(
  * Address:	803E1BF8
  * Size:	000038
  */
-void ebi::FileSelect::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
+void FileSelect::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
     (ebi::FileSelect::TMgr*))
 {
 	/*
@@ -967,8 +955,8 @@ void ebi::FileSelect::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
  * Address:	803E1C30
  * Size:	000044
  */
-void ebi::FileSelect::FSMState_ScreenFileSelect::do_init(
-    (ebi::FileSelect::TMgr*, Game::StateArg*))
+void FileSelect::FSMState_ScreenFileSelect::do_init(ebi::FileSelect::TMgr*,
+                                                    Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -997,8 +985,7 @@ void ebi::FileSelect::FSMState_ScreenFileSelect::do_init(
  * Address:	803E1C74
  * Size:	0000C4
  */
-void ebi::FileSelect::FSMState_ScreenFileSelect::do_exec(
-    (ebi::FileSelect::TMgr*))
+void FileSelect::FSMState_ScreenFileSelect::do_exec(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1071,8 +1058,8 @@ void ebi::FileSelect::FSMState_ScreenFileSelect::do_exec(
  * Address:	803E1D38
  * Size:	000060
  */
-void ebi::FileSelect::FSMState_CardError::do_init((ebi::FileSelect::TMgr*,
-                                                   Game::StateArg*))
+void FileSelect::FSMState_CardError::do_init(ebi::FileSelect::TMgr*,
+                                             Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1110,7 +1097,7 @@ void ebi::FileSelect::FSMState_CardError::do_init((ebi::FileSelect::TMgr*,
  * Address:	803E1D98
  * Size:	0000B8
  */
-void ebi::FileSelect::FSMState_CardError::do_exec((ebi::FileSelect::TMgr*))
+void FileSelect::FSMState_CardError::do_exec(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1176,7 +1163,7 @@ void ebi::FileSelect::FSMState_CardError::do_exec((ebi::FileSelect::TMgr*))
  * Address:	........
  * Size:	0000C0
  */
-void ebi::FileSelect::TMgr::__ct(void)
+FileSelect::TMgr::TMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1212,7 +1199,7 @@ FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg(void)
  * Address:	803E1E84
  * Size:	000054
  */
-void ebi::FS::TMgr::__dt(void)
+FS::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1247,7 +1234,7 @@ void ebi::FS::TMgr::__dt(void)
  * Address:	803E1ED8
  * Size:	000084
  */
-void ebi::FileSelect::TMgr::__dt(void)
+FileSelect::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1294,7 +1281,7 @@ void ebi::FileSelect::TMgr::__dt(void)
  * Address:	803E1F5C
  * Size:	0000DC
  */
-void ebi::FileSelect::TMgr::createInstance(void)
+void FileSelect::TMgr::createInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -1365,7 +1352,7 @@ void ebi::FileSelect::TMgr::createInstance(void)
  * Address:	........
  * Size:	000048
  */
-void ebi::FileSelect::TMgr::deleteInstance(void)
+void FileSelect::TMgr::deleteInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1375,7 +1362,7 @@ void ebi::FileSelect::TMgr::deleteInstance(void)
  * Address:	........
  * Size:	000008
  */
-void ebi::FileSelect::TMgr::getInstance(void)
+void FileSelect::TMgr::getInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1385,7 +1372,7 @@ void ebi::FileSelect::TMgr::getInstance(void)
  * Address:	803E2038
  * Size:	000058
  */
-void ebi::FileSelect::TMgr::onDvdErrorOccured(void)
+void FileSelect::TMgr::onDvdErrorOccured(void)
 {
 	/*
 	.loc_0x0:
@@ -1423,7 +1410,7 @@ void ebi::FileSelect::TMgr::onDvdErrorOccured(void)
  * Address:	803E2090
  * Size:	000044
  */
-void ebi::FileSelect::TMgr::onDvdErrorRecovered(void)
+void FileSelect::TMgr::onDvdErrorRecovered(void)
 {
 	/*
 	.loc_0x0:
@@ -1456,7 +1443,7 @@ void ebi::FileSelect::TMgr::onDvdErrorRecovered(void)
  * Address:	803E20D4
  * Size:	00004C
  */
-void ebi::FileSelect::TMgr::start(void)
+void FileSelect::TMgr::start(void)
 {
 	/*
 	.loc_0x0:
@@ -1487,7 +1474,7 @@ void ebi::FileSelect::TMgr::start(void)
  * Address:	803E2120
  * Size:	000058
  */
-void ebi::FileSelect::TMgr::forceQuit(void)
+void FileSelect::TMgr::forceQuit(void)
 {
 	/*
 	.loc_0x0:
@@ -1521,7 +1508,7 @@ void ebi::FileSelect::TMgr::forceQuit(void)
  * Address:	803E2178
  * Size:	00008C
  */
-void ebi::FileSelect::TMgr::update(void)
+void FileSelect::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1570,7 +1557,7 @@ void ebi::FileSelect::TMgr::update(void)
  * Address:	803E2204
  * Size:	000044
  */
-void ebi::FileSelect::TMgr::draw(void)
+void FileSelect::TMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -1601,14 +1588,14 @@ void ebi::FileSelect::TMgr::draw(void)
  * Address:	803E2248
  * Size:	000004
  */
-void ebi::FileSelect::TMgr::showInfo(void) { }
+void FileSelect::TMgr::showInfo(void) { }
 
 /*
  * --INFO--
  * Address:	803E224C
  * Size:	00004C
  */
-void ebi::FileSelect::TMgr::isFinish(void)
+void FileSelect::TMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1643,7 +1630,7 @@ void ebi::FileSelect::TMgr::isFinish(void)
  * Address:	803E2298
  * Size:	00005C
  */
-void ebi::FileSelect::TMgr::goEnd_((ebi::FileSelect::TMgr::enumEnd))
+void FileSelect::TMgr::goEnd_(ebi::FileSelect::TMgr::enumEnd)
 {
 	/*
 	.loc_0x0:
@@ -1678,7 +1665,7 @@ void ebi::FileSelect::TMgr::goEnd_((ebi::FileSelect::TMgr::enumEnd))
  * Address:	803E22F4
  * Size:	000058
  */
-void ebi::FileSelect::TMgr::getStateID(void)
+void FileSelect::TMgr::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -1797,6 +1784,8 @@ FPQ33ebi10FileSelect4TMgr(void)
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

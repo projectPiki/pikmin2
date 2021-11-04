@@ -5,7 +5,7 @@
  * Address:	80025638
  * Size:	0000B8
  */
-void JKRThread::JKRThread(unsigned long, int, int)
+JKRThread::JKRThread(unsigned long, int, int)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +65,7 @@ void JKRThread::JKRThread(unsigned long, int, int)
  * Address:	800256F0
  * Size:	0000A0
  */
-void JKRThread::JKRThread(JKRHeap*, unsigned long, int, int)
+JKRThread::JKRThread(JKRHeap*, unsigned long, int, int)
 {
 	/*
 	.loc_0x0:
@@ -119,7 +119,7 @@ void JKRThread::JKRThread(JKRHeap*, unsigned long, int, int)
  * Address:	80025790
  * Size:	0000A8
  */
-void JKRThread::JKRThread(OSThread*, int)
+JKRThread::JKRThread(OSThread*, int)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +173,7 @@ void JKRThread::JKRThread(OSThread*, int)
  * Address:	80025838
  * Size:	0000D8
  */
-void JKRThread::~JKRThread()
+JKRThread::~JKRThread()
 {
 	/*
 	.loc_0x0:
@@ -496,7 +496,7 @@ void JKRThreadSwitch::loopProc()
  * Address:	80025BC8
  * Size:	000110
  */
-void JKRTask::~JKRTask()
+JKRTask::~JKRTask()
 {
 	/*
 	.loc_0x0:

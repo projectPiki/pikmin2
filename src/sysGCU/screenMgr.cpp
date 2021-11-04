@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
  */
-void Screen::DispMemberCpy(unsigned char*, og::Screen::DispMemberBase*)
+void DispMemberCpy(unsigned char*, og::Screen::DispMemberBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Screen::DispMemberCpy(unsigned char*, og::Screen::DispMemberBase*)
  * Address:	........
  * Size:	000048
  */
-void Screen::getSceneOwnerName(Screen::SceneBase*)
+void getSceneOwnerName(Screen::SceneBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Screen::getSceneOwnerName(Screen::SceneBase*)
  * Address:	........
  * Size:	000040
  */
-void Screen::getSceneMemberName(Screen::SceneBase*)
+void getSceneMemberName(Screen::SceneBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void Screen::getSceneMemberName(Screen::SceneBase*)
  * Address:	80452300
  * Size:	000054
  */
-void Screen::SceneInfoList::__ct(void)
+SceneInfoList::SceneInfoList(void)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +70,7 @@ void Screen::SceneInfoList::__ct(void)
  * Address:	........
  * Size:	000064
  */
-void Screen::SceneInfoList::set((long, og::Screen::DispMemberBase*))
+void SceneInfoList::set(long, og::Screen::DispMemberBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -88,7 +80,7 @@ void Screen::SceneInfoList::set((long, og::Screen::DispMemberBase*))
  * Address:	........
  * Size:	000088
  */
-void Screen::MgrCommand::__ct(void)
+MgrCommand::MgrCommand(void)
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +90,7 @@ void Screen::MgrCommand::__ct(void)
  * Address:	........
  * Size:	000048
  */
-void Screen::MgrCommand::clearArgBuf(void)
+void MgrCommand::clearArgBuf(void)
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +100,7 @@ void Screen::MgrCommand::clearArgBuf(void)
  * Address:	........
  * Size:	000048
  */
-void Screen::MgrCommand::clearDispMemberBuf(void)
+void MgrCommand::clearDispMemberBuf(void)
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +110,7 @@ void Screen::MgrCommand::clearDispMemberBuf(void)
  * Address:	........
  * Size:	0000E8
  */
-void Screen::MgrCommand::setArg((Screen::SceneArgBase*))
+void MgrCommand::setArg(Screen::SceneArgBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +120,7 @@ void Screen::MgrCommand::setArg((Screen::SceneArgBase*))
  * Address:	........
  * Size:	0000F4
  */
-void Screen::MgrCommand::setDispMember((og::Screen::DispMemberBase*))
+void MgrCommand::setDispMember(og::Screen::DispMemberBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +130,7 @@ void Screen::MgrCommand::setDispMember((og::Screen::DispMemberBase*))
  * Address:	........
  * Size:	0001BC
  */
-void Screen::MgrCommand::setTypeSetScene((Screen::SetSceneArg&))
+void MgrCommand::setTypeSetScene(Screen::SetSceneArg&)
 {
 	// UNUSED FUNCTION
 }
@@ -148,7 +140,7 @@ void Screen::MgrCommand::setTypeSetScene((Screen::SetSceneArg&))
  * Address:	........
  * Size:	000110
  */
-void Screen::MgrCommand::setTypeStartScene((Screen::SceneArgBase*))
+void MgrCommand::setTypeStartScene(Screen::SceneArgBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -158,7 +150,7 @@ void Screen::MgrCommand::setTypeStartScene((Screen::SceneArgBase*))
  * Address:	........
  * Size:	000110
  */
-void Screen::MgrCommand::setTypeEndScene((Screen::SceneArgBase*))
+void MgrCommand::setTypeEndScene(Screen::SceneArgBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +160,7 @@ void Screen::MgrCommand::setTypeEndScene((Screen::SceneArgBase*))
  * Address:	........
  * Size:	00008C
  */
-void Screen::MgrCommand::setTypeInvalid(void)
+void MgrCommand::setTypeInvalid(void)
 {
 	// UNUSED FUNCTION
 }
@@ -178,7 +170,7 @@ void Screen::MgrCommand::setTypeInvalid(void)
  * Address:	80452354
  * Size:	0001CC
  */
-void Screen::Mgr::__ct(void)
+Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -311,7 +303,7 @@ void Screen::Mgr::__ct(void)
  * Address:	80452520
  * Size:	000060
  */
-void Screen::SceneInfoList::__dt(void)
+SceneInfoList::~SceneInfoList(void)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +341,7 @@ void Screen::SceneInfoList::__dt(void)
  * Address:	80452580
  * Size:	000070
  */
-void Screen::Mgr::init(void)
+void Mgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -391,7 +383,7 @@ void Screen::Mgr::init(void)
  * Address:	804525F0
  * Size:	0000FC
  */
-void Screen::Mgr::reset(void)
+void Mgr::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -474,7 +466,7 @@ void Screen::Mgr::reset(void)
  * Address:	........
  * Size:	000240
  */
-void Screen::Mgr::create(void)
+void Mgr::create(void)
 {
 	// UNUSED FUNCTION
 }
@@ -484,7 +476,7 @@ void Screen::Mgr::create(void)
  * Address:	804526EC
  * Size:	0001E8
  */
-void Screen::Mgr::startScene((Screen::StartSceneArg*))
+void Mgr::startScene(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -640,7 +632,7 @@ void Screen::Mgr::startScene((Screen::StartSceneArg*))
  * Address:	804528D4
  * Size:	00018C
  */
-void Screen::Mgr::endScene((Screen::EndSceneArg*))
+void Mgr::endScene(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -773,7 +765,7 @@ void Screen::Mgr::endScene((Screen::EndSceneArg*))
  * Address:	80452A60
  * Size:	000008
  */
-void Screen::Mgr::getCurrentCommand(void)
+void Mgr::getCurrentCommand(void)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +779,7 @@ void Screen::Mgr::getCurrentCommand(void)
  * Address:	80452A68
  * Size:	0000A8
  */
-void Screen::Mgr::getNewCommand(void)
+void Mgr::getNewCommand(void)
 {
 	/*
 	.loc_0x0:
@@ -847,7 +839,7 @@ void Screen::Mgr::getNewCommand(void)
  * Address:	80452B10
  * Size:	000058
  */
-void Screen::Mgr::releaseCommand((Screen::MgrCommand*))
+void Mgr::releaseCommand(Screen::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -881,7 +873,7 @@ void Screen::Mgr::releaseCommand((Screen::MgrCommand*))
  * Address:	........
  * Size:	00002C
  */
-void Screen::Mgr::updateCurrentScene(void)
+void Mgr::updateCurrentScene(void)
 {
 	// UNUSED FUNCTION
 }
@@ -891,7 +883,7 @@ void Screen::Mgr::updateCurrentScene(void)
  * Address:	80452B68
  * Size:	0002D8
  */
-void Screen::Mgr::update(void)
+void Mgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1117,7 +1109,7 @@ void Screen::Mgr::update(void)
  * Address:	80452E40
  * Size:	0000B4
  */
-void Screen::Mgr::draw((Graphics&))
+void Mgr::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1180,21 +1172,21 @@ void Screen::Mgr::draw((Graphics&))
  * Address:	80452EF4
  * Size:	000004
  */
-void Screen::Mgr::drawBG((Graphics&)) { }
+void Mgr::drawBG(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80452EF8
  * Size:	000008
  */
-u32 Screen::Mgr::doGetSceneBase((long)) { return 0x0; }
+u32 Mgr::doGetSceneBase(long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A0
  */
-void Screen::Mgr::getSceneBase((long))
+void Mgr::getSceneBase(long)
 {
 	// UNUSED FUNCTION
 }
@@ -1204,7 +1196,7 @@ void Screen::Mgr::getSceneBase((long))
  * Address:	........
  * Size:	0000E4
  */
-void Screen::Mgr::createNewBackupSceneInfo((Screen::SceneBase*))
+void Mgr::createNewBackupSceneInfo(Screen::SceneBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -1214,7 +1206,7 @@ void Screen::Mgr::createNewBackupSceneInfo((Screen::SceneBase*))
  * Address:	80452F00
  * Size:	000078
  */
-void Screen::Mgr::clearBackupSceneInfo(void)
+void Mgr::clearBackupSceneInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -1260,7 +1252,7 @@ void Screen::Mgr::clearBackupSceneInfo(void)
  * Address:	80452F78
  * Size:	00024C
  */
-void Screen::Mgr::changeScene((Screen::SetSceneArg&, unsigned char*))
+void Mgr::changeScene(Screen::SetSceneArg&, unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -1441,7 +1433,7 @@ void Screen::Mgr::changeScene((Screen::SetSceneArg&, unsigned char*))
  * Address:	804531C4
  * Size:	000598
  */
-void Screen::Mgr::setScene((Screen::SetSceneArg&))
+void Mgr::setScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -1877,7 +1869,7 @@ void Screen::Mgr::setScene((Screen::SetSceneArg&))
  * Address:	8045375C
  * Size:	000024
  */
-void Screen::Mgr::isCurrentSceneLoading(void)
+void Mgr::isCurrentSceneLoading(void)
 {
 	/*
 	.loc_0x0:
@@ -1898,7 +1890,7 @@ void Screen::Mgr::isCurrentSceneLoading(void)
  * Address:	80453780
  * Size:	000160
  */
-void Screen::Mgr::copyDispMember((unsigned char*, unsigned char*))
+void Mgr::copyDispMember(unsigned char*, unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -2004,7 +1996,7 @@ void Screen::Mgr::copyDispMember((unsigned char*, unsigned char*))
  * Address:	804538E0
  * Size:	000034
  */
-void Screen::Mgr::setDispMember((og::Screen::DispMemberBase*))
+void Mgr::setDispMember(og::Screen::DispMemberBase*)
 {
 	/*
 	.loc_0x0:
@@ -2033,7 +2025,7 @@ void Screen::Mgr::setDispMember((og::Screen::DispMemberBase*))
  * Address:	80453914
  * Size:	00001C
  */
-void Screen::Mgr::getDispMember(void)
+void Mgr::getDispMember(void)
 {
 	/*
 	.loc_0x0:
@@ -2054,7 +2046,7 @@ void Screen::Mgr::getDispMember(void)
  * Address:	80453930
  * Size:	000040
  */
-void Screen::Mgr::getSceneType(void)
+void Mgr::getSceneType(void)
 {
 	/*
 	.loc_0x0:
@@ -2086,7 +2078,7 @@ void Screen::Mgr::getSceneType(void)
  * Address:	80453970
  * Size:	000028
  */
-void Screen::Mgr::isSceneFinish(void)
+void Mgr::isSceneFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2110,7 +2102,7 @@ void Screen::Mgr::isSceneFinish(void)
  * Address:	80453998
  * Size:	000038
  */
-void Screen::Mgr::getSceneFinishState(void)
+void Mgr::getSceneFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -2138,7 +2130,7 @@ void Screen::Mgr::getSceneFinishState(void)
  * Address:	804539D0
  * Size:	00001C
  */
-void Screen::Mgr::setGamePad((Controller*))
+void Mgr::setGamePad(Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2157,7 +2149,7 @@ void Screen::Mgr::setGamePad((Controller*))
  * Address:	804539EC
  * Size:	000034
  */
-void Screen::Mgr::setBackupScene(void)
+void Mgr::setBackupScene(void)
 {
 	/*
 	.loc_0x0:
@@ -2186,7 +2178,7 @@ void Screen::Mgr::setBackupScene(void)
  * Address:	80453A20
  * Size:	000038
  */
-void Screen::Mgr::isAnyReservation( const
+void Mgr::isAnyReservation() const
 {
 	/*
 	.loc_0x0:
@@ -2220,7 +2212,7 @@ void Screen::Mgr::isAnyReservation( const
  * Address:	80453A58
  * Size:	000068
  */
-void Screen::MgrCommand::__dt(void)
+MgrCommand::~MgrCommand(void)
 {
 	/*
 	.loc_0x0:
@@ -2254,6 +2246,8 @@ void Screen::MgrCommand::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Screen
 
 /*
  * --INFO--

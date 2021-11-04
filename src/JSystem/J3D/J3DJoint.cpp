@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -506,7 +506,7 @@ void J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*)
  * Address:	8006B82C
  * Size:	00005C
  */
-void J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase()
+J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase()
 {
 	/*
 	.loc_0x0:
@@ -576,7 +576,7 @@ void J3DJoint::appendChild(J3DJoint*)
  * Address:	8006B8BC
  * Size:	0000FC
  */
-void J3DJoint::J3DJoint()
+J3DJoint::J3DJoint()
 {
 	/*
 	.loc_0x0:
@@ -936,13 +936,10 @@ void J3DMtxCalcAnmBase::getAnmTransform()
  * Address:	8006BD04
  * Size:	000008
  */
-void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform*)
+void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*

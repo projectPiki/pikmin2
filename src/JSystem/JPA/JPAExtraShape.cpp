@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -416,7 +416,7 @@ void JPACalcAlphaFlickAnm(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8009146C
  * Size:	000034
  */
-void JPAExtraShape::JPAExtraShape(const unsigned char*)
+JPAExtraShape::JPAExtraShape(const unsigned char*)
 {
 	/*
 	.loc_0x0:

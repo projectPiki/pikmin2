@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80346178
  * Size:	000224
  */
-void Morimura::THuWhitePaneSet::drawSelf((float, float, float (*)[3][4]))
+void Morimura::THuWhitePaneSet::drawSelf(float, float, float (*)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -215,7 +205,7 @@ void Morimura::THuWhitePaneSet::gxSet(void)
  * Address:	80346430
  * Size:	0000B0
  */
-void Morimura::THurryUp2D::__ct(void)
+Morimura::THurryUp2D::THurryUp2D(void)
 {
 	/*
 	.loc_0x0:
@@ -271,7 +261,7 @@ void Morimura::THurryUp2D::__ct(void)
  * Address:	803464E0
  * Size:	000024
  */
-void Morimura::THurryUp2D::TStateParam::__ct(void)
+Morimura::THurryUp2D::TStateParam::TStateParam(void)
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Morimura::THurryUp2D::TStateParam::__ct(void)
  * Address:	80346504
  * Size:	000390
  */
-void Morimura::THurryUp2D::doCreate((JKRArchive*))
+void Morimura::THurryUp2D::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -691,7 +681,7 @@ void Morimura::THurryUp2D::doUpdate(void)
  * Address:	80346A20
  * Size:	00040C
  */
-void Morimura::THurryUp2D::doDraw((Graphics&))
+void Morimura::THurryUp2D::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -982,7 +972,7 @@ void Morimura::THurryUp2D::doDraw((Graphics&))
  * Address:	80346E2C
  * Size:	00005C
  */
-void Morimura::THurryUp2D::doStart((Screen::StartSceneArg const*))
+void Morimura::THurryUp2D::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1952,7 +1942,7 @@ void Morimura::THurryUp2D::scaleUp2(void)
  * Address:	80347B6C
  * Size:	000254
  */
-void Morimura::THurryUp2D::changeState((int, float))
+void Morimura::THurryUp2D::changeState(int, float)
 {
 	/*
 	.loc_0x0:
@@ -2154,7 +2144,7 @@ void Morimura::THurryUp2D::getDispMemberBase(void)
  * Address:	80347DF4
  * Size:	0000C4
  */
-void Morimura::THurryUp2D::__dt(void)
+Morimura::THurryUp2D::~THurryUp2D(void)
 {
 	/*
 	.loc_0x0:
@@ -2219,7 +2209,7 @@ void Morimura::THurryUp2D::__dt(void)
  * Address:	80347EB8
  * Size:	000060
  */
-void Morimura::THuWhitePaneSet::__dt(void)
+Morimura::THuWhitePaneSet::~THuWhitePaneSet(void)
 {
 	/*
 	.loc_0x0:
@@ -2279,7 +2269,7 @@ void __sinit_hurryUp2D_cpp(void)
  * Address:	80347F40
  * Size:	000008
  */
-void @24 @Morimura::THurryUp2D::__dt(void)
+@24 @Morimura::THurryUp2D::~THurryUp2D(void)
 {
 	/*
 	.loc_0x0:

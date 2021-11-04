@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8026E994
  * Size:	000008
  */
-void Game::ElecHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void ElecHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::ElecHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	8026E99C
  * Size:	000008
  */
-void Game::ElecHiba::ProperAnimator::getAnimator(int)
+void ElecHiba::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::ElecHiba::ProperAnimator::getAnimator(int)
  * Address:	8026E9A4
  * Size:	00005C
  */
-void Game::ElecHiba::ProperAnimator::~ProperAnimator()
+ElecHiba::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::ElecHiba::ProperAnimator::~ProperAnimator()
  * Address:	8026EA00
  * Size:	000008
  */
-void Game::ElecHiba::ProperAnimator::getAnimator()
+void ElecHiba::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::ElecHiba::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

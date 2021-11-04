@@ -5,7 +5,7 @@
  * Address:	8005DAAC
  * Size:	000114
  */
-void J3DSys::J3DSys()
+J3DSys::J3DSys()
 {
 	/*
 	.loc_0x0:

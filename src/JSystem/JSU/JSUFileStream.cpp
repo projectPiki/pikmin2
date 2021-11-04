@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80026EE4
  * Size:	000044
  */
-void JSUFileInputStream::JSUFileInputStream(JKRFile*)
+JSUFileInputStream::JSUFileInputStream(JKRFile*)
 {
 	/*
 	.loc_0x0:

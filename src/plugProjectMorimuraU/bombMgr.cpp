@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80349DD8
  * Size:	000050
  */
-void Game::Bomb::Mgr::__ct((int, unsigned char))
+Bomb::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Bomb::Mgr::__ct((int, unsigned char))
  * Address:	80349E28
  * Size:	000048
  */
-void Game::Bomb::Mgr::doAlloc(void)
+void Bomb::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::Bomb::Mgr::doAlloc(void)
  * Address:	80349E70
  * Size:	000150
  */
-void Game::Bomb::Parms::__ct(void)
+Bomb::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +169,7 @@ void Game::Bomb::Parms::__ct(void)
  * Address:	80349FC0
  * Size:	000020
  */
-void Game::Bomb::Mgr::birth((Game::EnemyBirthArg&))
+void Bomb::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +189,7 @@ void Game::Bomb::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80349FE0
  * Size:	0000B0
  */
-void Game::Bomb::Mgr::__dt(void)
+Bomb::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -257,14 +249,14 @@ void Game::Bomb::Mgr::__dt(void)
  * Address:	8034A090
  * Size:	000008
  */
-u32 Game::Bomb::Mgr::getEnemyTypeID(void) { return 0x24; }
+u32 Bomb::Mgr::getEnemyTypeID(void) { return 0x24; }
 
 /*
  * --INFO--
  * Address:	8034A098
  * Size:	000060
  */
-void Game::Bomb::Mgr::createObj((int))
+void Bomb::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -300,7 +292,7 @@ void Game::Bomb::Mgr::createObj((int))
  * Address:	8034A0F8
  * Size:	0000BC
  */
-void Game::Bomb::Obj::__dt(void)
+Bomb::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -363,7 +355,7 @@ void Game::Bomb::Obj::__dt(void)
  * Address:	8034A1B4
  * Size:	000010
  */
-void Game::Bomb::Mgr::getEnemy((int))
+void Bomb::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +371,7 @@ void Game::Bomb::Mgr::getEnemy((int))
  * Address:	8034A1C4
  * Size:	000050
  */
-void Game::Bomb::Parms::read((Stream&))
+void Bomb::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +403,7 @@ void Game::Bomb::Parms::read((Stream&))
  * Address:	8034A214
  * Size:	000008
  */
-void @4 @Game::Bomb::Mgr::__dt(void)
+@4 @Game::Bomb::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -419,3 +411,4 @@ void @4 @Game::Bomb::Mgr::__dt(void)
 	  b         -0x238
 	*/
 }
+} // namespace Game

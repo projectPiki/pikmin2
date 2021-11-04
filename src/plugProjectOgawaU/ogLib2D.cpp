@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "og/ogLib2D.h"
 
 og::Lib2D* og::gLib2D;
@@ -27,10 +29,10 @@ Lib2D::~Lib2D() { og::gLib2D = nullptr; }
  * Address:	8030F668
  * Size:	000088
  */
-void og::Lib2D::create()
+void Lib2D::create()
 {
 	if (!og::gLib2D) {
-		og::gLib2D = new og::Lib2D();
+		gLib2D = new og::Lib2D();
 	}
 }
 } // namespace og

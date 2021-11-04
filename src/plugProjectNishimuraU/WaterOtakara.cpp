@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B8A38
  * Size:	0000A4
  */
-void Game::WaterOtakara::Obj::Obj()
+WaterOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::WaterOtakara::Obj::Obj()
  * Address:	802B8ADC
  * Size:	0001A4
  */
-void Game::WaterOtakara::Obj::changeMaterial()
+void WaterOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::WaterOtakara::Obj::changeMaterial()
  * Address:	802B8C80
  * Size:	000060
  */
-void Game::WaterOtakara::Obj::interactCreature(Game::Creature*)
+void WaterOtakara::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::WaterOtakara::Obj::interactCreature(Game::Creature*)
  * Address:	802B8CE0
  * Size:	000060
  */
-void Game::WaterOtakara::Obj::createEffect()
+void WaterOtakara::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +257,7 @@ void Game::WaterOtakara::Obj::createEffect()
  * Address:	802B8D40
  * Size:	000048
  */
-void Game::WaterOtakara::Obj::setupEffect()
+void WaterOtakara::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -285,7 +287,7 @@ void Game::WaterOtakara::Obj::setupEffect()
  * Address:	802B8D88
  * Size:	000034
  */
-void Game::WaterOtakara::Obj::startChargeEffect()
+void WaterOtakara::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -310,7 +312,7 @@ void Game::WaterOtakara::Obj::startChargeEffect()
  * Address:	802B8DBC
  * Size:	000030
  */
-void Game::WaterOtakara::Obj::finishChargeEffect()
+void WaterOtakara::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +336,7 @@ void Game::WaterOtakara::Obj::finishChargeEffect()
  * Address:	802B8DEC
  * Size:	0000A4
  */
-void Game::WaterOtakara::Obj::createDisChargeEffect()
+void WaterOtakara::Obj::createDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -387,7 +389,7 @@ void Game::WaterOtakara::Obj::createDisChargeEffect()
  * Address:	802B8E90
  * Size:	000030
  */
-void Game::WaterOtakara::Obj::effectDrawOn()
+void WaterOtakara::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -411,7 +413,7 @@ void Game::WaterOtakara::Obj::effectDrawOn()
  * Address:	802B8EC0
  * Size:	000030
  */
-void Game::WaterOtakara::Obj::effectDrawOff()
+void WaterOtakara::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -435,7 +437,7 @@ void Game::WaterOtakara::Obj::effectDrawOff()
  * Address:	802B8EF0
  * Size:	000044
  */
-void Game::WaterOtakara::Obj::startDisChargeSE()
+void WaterOtakara::Obj::startDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -464,4 +466,5 @@ void Game::WaterOtakara::Obj::startDisChargeSE()
  * Address:	802B8F34
  * Size:	000008
  */
-u32 Game::WaterOtakara::Obj::getEnemyTypeID() { return 0x3C; }
+u32 WaterOtakara::Obj::getEnemyTypeID() { return 0x3C; }
+} // namespace Game

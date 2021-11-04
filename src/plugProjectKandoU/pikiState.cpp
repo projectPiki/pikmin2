@@ -1,28 +1,20 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80189378
  * Size:	000004
  */
-void Game::PikiState::dump(void) { }
+void PikiState::dump(void) { }
 
 /*
  * --INFO--
  * Address:	8018937C
  * Size:	000030
  */
-void Game::PikiState::getInfo((char*))
+void PikiState::getInfo(char*)
 {
 	/*
 	.loc_0x0:
@@ -46,7 +38,7 @@ void Game::PikiState::getInfo((char*))
  * Address:	801893AC
  * Size:	000B6C
  */
-void Game::PikiFSM::init((Game::Piki*))
+void PikiFSM::init(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -853,7 +845,7 @@ void Game::PikiFSM::init((Game::Piki*))
  * Address:	80189F18
  * Size:	000118
  */
-void Game::PikiFSM::transit((Game::Piki*, int, Game::StateArg*))
+void PikiFSM::transit(Game::Piki*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -941,7 +933,7 @@ void Game::PikiFSM::transit((Game::Piki*, int, Game::StateArg*))
  * Address:	8018A030
  * Size:	000050
  */
-void Game::PikiFSM::transitForce((Game::Piki*, int, Game::StateArg*))
+void PikiFSM::transitForce(Game::Piki*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -977,7 +969,7 @@ void Game::PikiFSM::transitForce((Game::Piki*, int, Game::StateArg*))
  * Address:	8018A080
  * Size:	000040
  */
-void Game::PikiWalkState::init((Game::Piki*, Game::StateArg*))
+void PikiWalkState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1005,7 +997,7 @@ void Game::PikiWalkState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018A0C0
  * Size:	000024
  */
-void Game::PikiWalkState::exec((Game::Piki*))
+void PikiWalkState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1026,14 +1018,14 @@ void Game::PikiWalkState::exec((Game::Piki*))
  * Address:	8018A0E4
  * Size:	000004
  */
-void Game::PikiWalkState::cleanup((Game::Piki*)) { }
+void PikiWalkState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018A0E8
  * Size:	000040
  */
-void Game::PikiDemoWaitState::init((Game::Piki*, Game::StateArg*))
+void PikiDemoWaitState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1053,7 @@ void Game::PikiDemoWaitState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018A128
  * Size:	000024
  */
-void Game::PikiDemoWaitState::exec((Game::Piki*))
+void PikiDemoWaitState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1082,14 +1074,14 @@ void Game::PikiDemoWaitState::exec((Game::Piki*))
  * Address:	8018A14C
  * Size:	000004
  */
-void Game::PikiDemoWaitState::cleanup((Game::Piki*)) { }
+void PikiDemoWaitState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018A150
  * Size:	000100
  */
-void Game::PikiCarrotState::init((Game::Piki*, Game::StateArg*))
+void PikiCarrotState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1165,7 +1157,7 @@ void Game::PikiCarrotState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018A250
  * Size:	000334
  */
-void Game::PikiCarrotState::exec((Game::Piki*))
+void PikiCarrotState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1398,7 +1390,7 @@ void Game::PikiCarrotState::exec((Game::Piki*))
  * Address:	8018A584
  * Size:	0000D8
  */
-void Game::PikiCarrotState::cleanup((Game::Piki*))
+void PikiCarrotState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1464,7 +1456,7 @@ void Game::PikiCarrotState::cleanup((Game::Piki*))
  * Address:	8018A65C
  * Size:	000124
  */
-void Game::PikiCarrotState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiCarrotState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -1551,16 +1543,14 @@ void Game::PikiCarrotState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	8018A780
  * Size:	000004
  */
-void Game::PikiCarrotState::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-}
+void PikiCarrotState::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8018A784
  * Size:	0000D8
  */
-void Game::PikiSwallowedState::init((Game::Piki*, Game::StateArg*))
+void PikiSwallowedState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1634,7 +1624,7 @@ void Game::PikiSwallowedState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018A85C
  * Size:	000074
  */
-void Game::PikiSwallowedState::exec((Game::Piki*))
+void PikiSwallowedState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1702,7 +1692,7 @@ FPQ24Game4PikiiPQ24Game8StateArg(void)
  * Address:	8018A900
  * Size:	000054
  */
-void Game::PikiSwallowedState::cleanup((Game::Piki*))
+void PikiSwallowedState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1735,7 +1725,7 @@ void Game::PikiSwallowedState::cleanup((Game::Piki*))
  * Address:	8018A954
  * Size:	00020C
  */
-void Game::PikiHoleinState::init((Game::Piki*, Game::StateArg*))
+void PikiHoleinState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1888,7 +1878,7 @@ void Game::PikiHoleinState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018AB60
  * Size:	0001C0
  */
-void Game::PikiHoleinState::exec((Game::Piki*))
+void PikiHoleinState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2022,14 +2012,14 @@ void Game::PikiHoleinState::exec((Game::Piki*))
  * Address:	8018AD20
  * Size:	000004
  */
-void Game::PikiHoleinState::cleanup((Game::Piki*)) { }
+void PikiHoleinState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018AD24
  * Size:	0001F4
  */
-void Game::PikiFountainonState::init((Game::Piki*, Game::StateArg*))
+void PikiFountainonState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2176,7 +2166,7 @@ void Game::PikiFountainonState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018AF18
  * Size:	0001A0
  */
-void Game::PikiFountainonState::exec((Game::Piki*))
+void PikiFountainonState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2300,14 +2290,14 @@ void Game::PikiFountainonState::exec((Game::Piki*))
  * Address:	8018B0B8
  * Size:	000004
  */
-void Game::PikiFountainonState::cleanup((Game::Piki*)) { }
+void PikiFountainonState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018B0BC
  * Size:	0000C8
  */
-void Game::PikiTaneState::init((Game::Piki*, Game::StateArg*))
+void PikiTaneState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2369,7 +2359,7 @@ void Game::PikiTaneState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018B184
  * Size:	000038
  */
-void Game::PikiTaneState::exec((Game::Piki*))
+void PikiTaneState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2395,7 +2385,7 @@ void Game::PikiTaneState::exec((Game::Piki*))
  * Address:	8018B1BC
  * Size:	000034
  */
-void Game::PikiTaneState::cleanup((Game::Piki*))
+void PikiTaneState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2420,7 +2410,7 @@ void Game::PikiTaneState::cleanup((Game::Piki*))
  * Address:	8018B1F0
  * Size:	000064
  */
-void Game::PikiTaneState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiTaneState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -2457,7 +2447,7 @@ void Game::PikiTaneState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	8018B254
  * Size:	000114
  */
-void Game::PikiNukareState::init((Game::Piki*, Game::StateArg*))
+void PikiNukareState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2548,7 +2538,7 @@ void Game::PikiNukareState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018B368
  * Size:	00000C
  */
-void Game::PikiNukareState::soft_transittable((int))
+void PikiNukareState::soft_transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -2563,7 +2553,7 @@ void Game::PikiNukareState::soft_transittable((int))
  * Address:	8018B374
  * Size:	000150
  */
-void Game::PikiNukareState::exec((Game::Piki*))
+void PikiNukareState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2663,7 +2653,7 @@ void Game::PikiNukareState::exec((Game::Piki*))
  * Address:	8018B4C4
  * Size:	00020C
  */
-void Game::PikiNukareState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiNukareState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -2818,7 +2808,7 @@ void Game::PikiNukareState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	8018B6D0
  * Size:	000010
  */
-void Game::PikiNukareState::cleanup((Game::Piki*))
+void PikiNukareState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2834,7 +2824,7 @@ void Game::PikiNukareState::cleanup((Game::Piki*))
  * Address:	8018B6E0
  * Size:	0000B8
  */
-void Game::PikiDopeState::init((Game::Piki*, Game::StateArg*))
+void PikiDopeState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2894,7 +2884,7 @@ void Game::PikiDopeState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018B798
  * Size:	000008
  */
-void Game::PikiDopeState::onFlute((Game::Piki*, Game::Navi*))
+void PikiDopeState::onFlute(Game::Piki*, Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -2908,7 +2898,7 @@ void Game::PikiDopeState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	8018B7A0
  * Size:	00018C
  */
-void Game::PikiDopeState::exec((Game::Piki*))
+void PikiDopeState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -3031,7 +3021,7 @@ void Game::PikiDopeState::exec((Game::Piki*))
  * Address:	8018B92C
  * Size:	0000D8
  */
-void Game::PikiDopeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiDopeState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -3105,14 +3095,14 @@ void Game::PikiDopeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	8018BA04
  * Size:	000004
  */
-void Game::PikiDopeState::cleanup((Game::Piki*)) { }
+void PikiDopeState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018BA08
  * Size:	000024
  */
-void Game::PikiPanicState::soft_transittable((int))
+void PikiPanicState::soft_transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -3133,7 +3123,7 @@ void Game::PikiPanicState::soft_transittable((int))
  * Address:	8018BA2C
  * Size:	000070
  */
-void Game::PikiPanicState::transittable((int))
+void PikiPanicState::transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -3179,7 +3169,7 @@ void Game::PikiPanicState::transittable((int))
  * Address:	........
  * Size:	000064
  */
-void Game::PikiPanicState::startSound((Game::Piki*))
+void PikiPanicState::startSound(Game::Piki*)
 {
 	// UNUSED FUNCTION
 }
@@ -3189,7 +3179,7 @@ void Game::PikiPanicState::startSound((Game::Piki*))
  * Address:	8018BA9C
  * Size:	000280
  */
-void Game::PikiPanicState::init((Game::Piki*, Game::StateArg*))
+void PikiPanicState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3381,7 +3371,7 @@ void Game::PikiPanicState::init((Game::Piki*, Game::StateArg*))
  * Address:	........
  * Size:	00017C
  */
-void Game::PikiPanicState::checkDemo((Game::Piki*))
+void PikiPanicState::checkDemo(Game::Piki*)
 {
 	// UNUSED FUNCTION
 }
@@ -3391,7 +3381,7 @@ void Game::PikiPanicState::checkDemo((Game::Piki*))
  * Address:	8018BD1C
  * Size:	000260
  */
-void Game::PikiPanicState::exec((Game::Piki*))
+void PikiPanicState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -3577,7 +3567,7 @@ void Game::PikiPanicState::exec((Game::Piki*))
  * Address:	8018BF7C
  * Size:	000048
  */
-void Game::PikiPanicState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiPanicState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -3607,7 +3597,7 @@ void Game::PikiPanicState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	8018BFC4
  * Size:	0002BC
  */
-void Game::PikiPanicState::panicRun((Game::Piki*))
+void PikiPanicState::panicRun(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -3824,7 +3814,7 @@ void Game::PikiPanicState::panicRun((Game::Piki*))
  * Address:	8018C280
  * Size:	0002D4
  */
-void Game::PikiPanicState::panicLobster((Game::Piki*))
+void PikiPanicState::panicLobster(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4041,7 +4031,7 @@ void Game::PikiPanicState::panicLobster((Game::Piki*))
  * Address:	8018C554
  * Size:	0000E4
  */
-void Game::PikiPanicState::cleanup((Game::Piki*))
+void PikiPanicState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4116,14 +4106,10 @@ void Game::PikiPanicState::cleanup((Game::Piki*))
  * Address:	8018C638
  * Size:	00000C
  */
-void Game::PikiPanicState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiPanicState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x21(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x21(r3)
+	_21 = 1;
 }
 
 /*
@@ -4131,7 +4117,7 @@ void Game::PikiPanicState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	8018C644
  * Size:	00011C
  */
-void Game::PikiPanicState::onFlute((Game::Piki*, Game::Navi*))
+void PikiPanicState::onFlute(Game::Piki*, Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -4224,21 +4210,21 @@ void Game::PikiPanicState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	8018C760
  * Size:	000004
  */
-void Game::PikiDeadState::init((Game::Piki*, Game::StateArg*)) { }
+void PikiDeadState::init(Game::Piki*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	8018C764
  * Size:	000004
  */
-void Game::PikiDeadState::exec((Game::Piki*)) { }
+void PikiDeadState::exec(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018C768
  * Size:	000010
  */
-void Game::PikiDyingState::transittable((int))
+void PikiDyingState::transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -4254,7 +4240,7 @@ void Game::PikiDyingState::transittable((int))
  * Address:	8018C778
  * Size:	0000B4
  */
-void Game::PikiDyingState::init((Game::Piki*, Game::StateArg*))
+void PikiDyingState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4315,7 +4301,7 @@ void Game::PikiDyingState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018C82C
  * Size:	0000DC
  */
-void Game::PikiDyingState::exec((Game::Piki*))
+void PikiDyingState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4388,14 +4374,14 @@ void Game::PikiDyingState::exec((Game::Piki*))
  * Address:	8018C908
  * Size:	000004
  */
-void Game::PikiDyingState::cleanup((Game::Piki*)) { }
+void PikiDyingState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018C90C
  * Size:	000064
  */
-void Game::PikiDyingState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiDyingState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -4436,7 +4422,7 @@ void Game::PikiDyingState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	8018C970
  * Size:	000010
  */
-void Game::PikiDenkiDyingState::soft_transittable((int))
+void PikiDenkiDyingState::soft_transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -4452,7 +4438,7 @@ void Game::PikiDenkiDyingState::soft_transittable((int))
  * Address:	8018C980
  * Size:	000010
  */
-void Game::PikiDenkiDyingState::transittable((int))
+void PikiDenkiDyingState::transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -4468,7 +4454,7 @@ void Game::PikiDenkiDyingState::transittable((int))
  * Address:	8018C990
  * Size:	000084
  */
-void Game::PikiDenkiDyingState::init((Game::Piki*, Game::StateArg*))
+void PikiDenkiDyingState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4515,7 +4501,7 @@ void Game::PikiDenkiDyingState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018CA14
  * Size:	000138
  */
-void Game::PikiDenkiDyingState::exec((Game::Piki*))
+void PikiDenkiDyingState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4607,14 +4593,14 @@ void Game::PikiDenkiDyingState::exec((Game::Piki*))
  * Address:	8018CB4C
  * Size:	000004
  */
-void Game::PikiDenkiDyingState::cleanup((Game::Piki*)) { }
+void PikiDenkiDyingState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018CB50
  * Size:	000010
  */
-void Game::PikiPressedState::soft_transittable((int))
+void PikiPressedState::soft_transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -4630,7 +4616,7 @@ void Game::PikiPressedState::soft_transittable((int))
  * Address:	8018CB60
  * Size:	000010
  */
-void Game::PikiPressedState::transittable((int))
+void PikiPressedState::transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -4646,7 +4632,7 @@ void Game::PikiPressedState::transittable((int))
  * Address:	8018CB70
  * Size:	0000C8
  */
-void Game::PikiPressedState::init((Game::Piki*, Game::StateArg*))
+void PikiPressedState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4708,7 +4694,7 @@ void Game::PikiPressedState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018CC38
  * Size:	00010C
  */
-void Game::PikiPressedState::exec((Game::Piki*))
+void PikiPressedState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4791,7 +4777,7 @@ void Game::PikiPressedState::exec((Game::Piki*))
  * Address:	8018CD44
  * Size:	000034
  */
-void Game::PikiPressedState::cleanup((Game::Piki*))
+void PikiPressedState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4816,7 +4802,7 @@ void Game::PikiPressedState::cleanup((Game::Piki*))
  * Address:	8018CD78
  * Size:	000084
  */
-void Game::PikiLookAtState::init((Game::Piki*, Game::StateArg*))
+void PikiLookAtState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4861,14 +4847,14 @@ void Game::PikiLookAtState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018CDFC
  * Size:	000004
  */
-void Game::PikiLookAtState::onFlute((Game::Piki*, Game::Navi*)) { }
+void PikiLookAtState::onFlute(Game::Piki*, Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8018CE00
  * Size:	000180
  */
-void Game::PikiLookAtState::exec((Game::Piki*))
+void PikiLookAtState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4990,7 +4976,7 @@ void Game::PikiLookAtState::exec((Game::Piki*))
  * Address:	8018CF80
  * Size:	000028
  */
-void Game::PikiLookAtState::onKeyEvent((SysShape::KeyEvent const&))
+void PikiLookAtState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -5014,14 +5000,14 @@ void Game::PikiLookAtState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8018CFA8
  * Size:	000004
  */
-void Game::PikiLookAtState::cleanup((Game::Piki*)) { }
+void PikiLookAtState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018CFAC
  * Size:	0001FC
  */
-void Game::PikiAutoNukiState::init((Game::Piki*, Game::StateArg*))
+void PikiAutoNukiState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -5166,7 +5152,7 @@ void Game::PikiAutoNukiState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018D1A8
  * Size:	000300
  */
-void Game::PikiAutoNukiState::exec((Game::Piki*))
+void PikiAutoNukiState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5388,8 +5374,7 @@ void Game::PikiAutoNukiState::exec((Game::Piki*))
  * Address:	8018D4A8
  * Size:	000028
  */
-void Game::PikiAutoNukiState::onKeyEvent((Game::Piki*,
-                                          SysShape::KeyEvent const&))
+void PikiAutoNukiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -5413,14 +5398,14 @@ void Game::PikiAutoNukiState::onKeyEvent((Game::Piki*,
  * Address:	8018D4D0
  * Size:	000004
  */
-void Game::PikiAutoNukiState::cleanup((Game::Piki*)) { }
+void PikiAutoNukiState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018D4D4
  * Size:	000064
  */
-void Game::PikiGoHangState::init((Game::Piki*, Game::StateArg*))
+void PikiGoHangState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -5457,7 +5442,7 @@ void Game::PikiGoHangState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018D538
  * Size:	0001C8
  */
-void Game::PikiGoHangState::exec((Game::Piki*))
+void PikiGoHangState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5601,7 +5586,7 @@ void Game::PikiGoHangState::exec((Game::Piki*))
  * Address:	8018D700
  * Size:	000034
  */
-void Game::PikiGoHangState::cleanup((Game::Piki*))
+void PikiGoHangState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5626,14 +5611,14 @@ void Game::PikiGoHangState::cleanup((Game::Piki*))
  * Address:	8018D734
  * Size:	000004
  */
-void Game::PikiHangedState::onKeyEvent((SysShape::KeyEvent const&)) { }
+void PikiHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	8018D738
  * Size:	0000C4
  */
-void Game::PikiHangedState::init((Game::Piki*, Game::StateArg*))
+void PikiHangedState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -5698,7 +5683,7 @@ void Game::PikiHangedState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018D7FC
  * Size:	00006C
  */
-void Game::PikiHangedState::exec((Game::Piki*))
+void PikiHangedState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5739,7 +5724,7 @@ void Game::PikiHangedState::exec((Game::Piki*))
  * Address:	8018D868
  * Size:	000034
  */
-void Game::PikiHangedState::cleanup((Game::Piki*))
+void PikiHangedState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5764,7 +5749,7 @@ void Game::PikiHangedState::cleanup((Game::Piki*))
  * Address:	8018D89C
  * Size:	00006C
  */
-void Game::PikiHangedState::ignoreAtari((Game::Piki*, Game::Creature*))
+void PikiHangedState::ignoreAtari(Game::Piki*, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -5809,14 +5794,14 @@ void Game::PikiHangedState::ignoreAtari((Game::Piki*, Game::Creature*))
  * Address:	8018D908
  * Size:	000004
  */
-void Game::PikiWaterHangedState::onKeyEvent((SysShape::KeyEvent const&)) { }
+void PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	8018D90C
  * Size:	0000C4
  */
-void Game::PikiWaterHangedState::init((Game::Piki*, Game::StateArg*))
+void PikiWaterHangedState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -5883,7 +5868,7 @@ void Game::PikiWaterHangedState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018D9D0
  * Size:	0000A8
  */
-void Game::PikiWaterHangedState::exec((Game::Piki*))
+void PikiWaterHangedState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5943,7 +5928,7 @@ void Game::PikiWaterHangedState::exec((Game::Piki*))
  * Address:	8018DA78
  * Size:	000034
  */
-void Game::PikiWaterHangedState::cleanup((Game::Piki*))
+void PikiWaterHangedState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5968,7 +5953,7 @@ void Game::PikiWaterHangedState::cleanup((Game::Piki*))
  * Address:	8018DAAC
  * Size:	00006C
  */
-void Game::PikiWaterHangedState::ignoreAtari((Game::Piki*, Game::Creature*))
+void PikiWaterHangedState::ignoreAtari(Game::Piki*, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -6013,7 +5998,7 @@ void Game::PikiWaterHangedState::ignoreAtari((Game::Piki*, Game::Creature*))
  * Address:	8018DB18
  * Size:	000070
  */
-void Game::PikiHipDropState::init((Game::Piki*, Game::StateArg*))
+void PikiHipDropState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6053,7 +6038,7 @@ void Game::PikiHipDropState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018DB88
  * Size:	0003C8
  */
-void Game::PikiHipDropState::exec((Game::Piki*))
+void PikiHipDropState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6329,7 +6314,7 @@ void Game::PikiHipDropState::exec((Game::Piki*))
  * Address:	8018DF50
  * Size:	000038
  */
-void Game::PikiHipDropState::cleanup((Game::Piki*))
+void PikiHipDropState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6355,17 +6340,14 @@ void Game::PikiHipDropState::cleanup((Game::Piki*))
  * Address:	8018DF88
  * Size:	000004
  */
-void Game::PikiHipDropState::onKeyEvent((Game::Piki*,
-                                         SysShape::KeyEvent const&))
-{
-}
+void PikiHipDropState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	8018DF8C
  * Size:	00002C
  */
-void Game::PikiHipDropState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiHipDropState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -6390,7 +6372,7 @@ void Game::PikiHipDropState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	8018DFB8
  * Size:	0002E0
  */
-void Game::PikiHipDropState::collisionCallback((Game::Piki*, Game::CollEvent&))
+void PikiHipDropState::collisionCallback(Game::Piki*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6596,7 +6578,7 @@ void Game::PikiHipDropState::collisionCallback((Game::Piki*, Game::CollEvent&))
  * Address:	8018E298
  * Size:	00002C
  */
-void Game::PikiHipDropState::platCallback((Game::Piki*, Game::PlatEvent&))
+void PikiHipDropState::platCallback(Game::Piki*, Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6623,7 +6605,7 @@ void Game::PikiHipDropState::platCallback((Game::Piki*, Game::PlatEvent&))
  * Address:	8018E2C4
  * Size:	0000BC
  */
-void Game::PikiHipDropState::dosin((Game::Piki*))
+void PikiHipDropState::dosin(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6684,7 +6666,7 @@ void Game::PikiHipDropState::dosin((Game::Piki*))
  * Address:	8018E380
  * Size:	000108
  */
-void Game::PikiHipDropState::earthquake((Game::Piki*))
+void PikiHipDropState::earthquake(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6766,7 +6748,7 @@ void Game::PikiHipDropState::earthquake((Game::Piki*))
  * Address:	8018E488
  * Size:	000088
  */
-void Game::PikiFallMeckState::init((Game::Piki*, Game::StateArg*))
+void PikiFallMeckState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6816,7 +6798,7 @@ void Game::PikiFallMeckState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018E510
  * Size:	000038
  */
-void Game::PikiFallMeckState::exec((Game::Piki*))
+void PikiFallMeckState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6844,23 +6826,21 @@ void Game::PikiFallMeckState::exec((Game::Piki*))
  * Address:	8018E548
  * Size:	000004
  */
-void Game::PikiFallMeckState::cleanup((Game::Piki*)) { }
+void PikiFallMeckState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8018E54C
  * Size:	000004
  */
-void Game::PikiFallMeckState::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-}
+void PikiFallMeckState::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8018E550
  * Size:	000034
  */
-void Game::PikiFallMeckState::platCallback((Game::Piki*, Game::PlatEvent&))
+void PikiFallMeckState::platCallback(Game::Piki*, Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6885,7 +6865,7 @@ void Game::PikiFallMeckState::platCallback((Game::Piki*, Game::PlatEvent&))
  * Address:	........
  * Size:	000284
  */
-void Game::PikiFallMeckState::becomePikihead((Game::Piki*))
+void PikiFallMeckState::becomePikihead(Game::Piki*)
 {
 	// UNUSED FUNCTION
 }
@@ -6895,7 +6875,7 @@ void Game::PikiFallMeckState::becomePikihead((Game::Piki*))
  * Address:	8018E584
  * Size:	00054C
  */
-void Game::PikiFallMeckState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiFallMeckState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -7276,7 +7256,7 @@ void Game::PikiFallMeckState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	8018EAD0
  * Size:	0000A0
  */
-void Game::PikiSuikomiState::init((Game::Piki*, Game::StateArg*))
+void PikiSuikomiState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -7330,7 +7310,7 @@ void Game::PikiSuikomiState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018EB70
  * Size:	0000EC
  */
-void Game::PikiSuikomiState::exec((Game::Piki*))
+void PikiSuikomiState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7411,7 +7391,7 @@ void Game::PikiSuikomiState::exec((Game::Piki*))
  * Address:	8018EC5C
  * Size:	0001FC
  */
-void Game::PikiSuikomiState::execMouth((Game::Piki*))
+void PikiSuikomiState::execMouth(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7570,8 +7550,7 @@ void Game::PikiSuikomiState::execMouth((Game::Piki*))
  * Address:	8018EE58
  * Size:	000038
  */
-void Game::PikiSuikomiState::onKeyEvent((Game::Piki*,
-                                         SysShape::KeyEvent const&))
+void PikiSuikomiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -7599,7 +7578,7 @@ void Game::PikiSuikomiState::onKeyEvent((Game::Piki*,
  * Address:	8018EE90
  * Size:	000108
  */
-void Game::PikiSuikomiState::execString((Game::Piki*))
+void PikiSuikomiState::execString(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7679,7 +7658,7 @@ void Game::PikiSuikomiState::execString((Game::Piki*))
  * Address:	8018EF98
  * Size:	000014
  */
-void Game::PikiSuikomiState::ignoreAtari((Game::Piki*, Game::Creature*))
+void PikiSuikomiState::ignoreAtari(Game::Piki*, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -7696,7 +7675,7 @@ void Game::PikiSuikomiState::ignoreAtari((Game::Piki*, Game::Creature*))
  * Address:	8018EFAC
  * Size:	0001C0
  */
-void Game::PikiSuikomiState::execStomach((Game::Piki*))
+void PikiSuikomiState::execStomach(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7832,7 +7811,7 @@ void Game::PikiSuikomiState::execStomach((Game::Piki*))
  * Address:	8018F16C
  * Size:	000048
  */
-void Game::PikiSuikomiState::cleanup((Game::Piki*))
+void PikiSuikomiState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7862,21 +7841,21 @@ void Game::PikiSuikomiState::cleanup((Game::Piki*))
  * Address:	8018F1B4
  * Size:	000004
  */
-void Game::PikiFlyingState::stopEffect(void) { }
+void PikiFlyingState::stopEffect(void) { }
 
 /*
  * --INFO--
  * Address:	8018F1B8
  * Size:	000004
  */
-void Game::PikiFlyingState::restartEffect(void) { }
+void PikiFlyingState::restartEffect(void) { }
 
 /*
  * --INFO--
  * Address:	8018F1BC
  * Size:	000124
  */
-void Game::PikiFlyingState::init((Game::Piki*, Game::StateArg*))
+void PikiFlyingState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -7967,7 +7946,7 @@ void Game::PikiFlyingState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018F2E0
  * Size:	000074
  */
-void Game::PikiFlyingState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiFlyingState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -8010,7 +7989,7 @@ void Game::PikiFlyingState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	8018F354
  * Size:	000328
  */
-void Game::PikiFlyingState::collisionCallback((Game::Piki*, Game::CollEvent&))
+void PikiFlyingState::collisionCallback(Game::Piki*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -8240,7 +8219,7 @@ void Game::PikiFlyingState::collisionCallback((Game::Piki*, Game::CollEvent&))
  * Address:	8018F67C
  * Size:	00006C
  */
-void Game::PikiFlyingState::ignoreAtari((Game::Piki*, Game::Creature*))
+void PikiFlyingState::ignoreAtari(Game::Piki*, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -8285,7 +8264,7 @@ void Game::PikiFlyingState::ignoreAtari((Game::Piki*, Game::Creature*))
  * Address:	8018F6E8
  * Size:	0003CC
  */
-void Game::PikiFlyingState::exec((Game::Piki*))
+void PikiFlyingState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -8570,7 +8549,7 @@ void Game::PikiFlyingState::exec((Game::Piki*))
  * Address:	8018FAB4
  * Size:	000068
  */
-void Game::PikiFlyingState::cleanup((Game::Piki*))
+void PikiFlyingState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -8608,7 +8587,7 @@ void Game::PikiFlyingState::cleanup((Game::Piki*))
  * Address:	8018FB1C
  * Size:	000170
  */
-void Game::PikiFlickState::init((Game::Piki*, Game::StateArg*))
+void PikiFlickState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -8714,7 +8693,7 @@ void Game::PikiFlickState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018FC8C
  * Size:	000018
  */
-void Game::PikiFlickState::onFlute((Game::Piki*, Game::Navi*))
+void PikiFlickState::onFlute(Game::Piki*, Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -8732,7 +8711,7 @@ void Game::PikiFlickState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	8018FCA4
  * Size:	000208
  */
-void Game::PikiFlickState::exec((Game::Piki*))
+void PikiFlickState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -8890,7 +8869,7 @@ void Game::PikiFlickState::exec((Game::Piki*))
  * Address:	8018FEAC
  * Size:	000124
  */
-void Game::PikiFlickState::onKeyEvent((SysShape::KeyEvent const&))
+void PikiFlickState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -8985,7 +8964,7 @@ void Game::PikiFlickState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8018FFD0
  * Size:	0000AC
  */
-void Game::PikiFlickState::cleanup((Game::Piki*))
+void PikiFlickState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -9042,7 +9021,7 @@ void Game::PikiFlickState::cleanup((Game::Piki*))
  * Address:	8019007C
  * Size:	0001A4
  */
-void Game::PikiBlowState::init((Game::Piki*, Game::StateArg*))
+void PikiBlowState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -9171,7 +9150,7 @@ void Game::PikiBlowState::init((Game::Piki*, Game::StateArg*))
  * Address:	80190220
  * Size:	000140
  */
-void Game::PikiBlowState::exec((Game::Piki*))
+void PikiBlowState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -9275,14 +9254,14 @@ void Game::PikiBlowState::exec((Game::Piki*))
  * Address:	80190360
  * Size:	000004
  */
-void Game::PikiBlowState::cleanup((Game::Piki*)) { }
+void PikiBlowState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	80190364
  * Size:	000064
  */
-void Game::PikiBlowState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiBlowState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -9321,7 +9300,7 @@ void Game::PikiBlowState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	801903C8
  * Size:	000010
  */
-void Game::PikiBlowState::onFlute((Game::Piki*, Game::Navi*))
+void PikiBlowState::onFlute(Game::Piki*, Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9337,7 +9316,7 @@ void Game::PikiBlowState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	801903D8
  * Size:	000168
  */
-void Game::PikiBlowState::bounceCallback((Game::Piki*, Sys::Triangle*))
+void PikiBlowState::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -9449,7 +9428,7 @@ void Game::PikiBlowState::bounceCallback((Game::Piki*, Sys::Triangle*))
  * Address:	80190540
  * Size:	00008C
  */
-void Game::PikiKokeDamageState::init((Game::Piki*, Game::StateArg*))
+void PikiKokeDamageState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -9502,7 +9481,7 @@ void Game::PikiKokeDamageState::init((Game::Piki*, Game::StateArg*))
  * Address:	801905CC
  * Size:	00015C
  */
-void Game::PikiKokeDamageState::exec((Game::Piki*))
+void PikiKokeDamageState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -9611,7 +9590,7 @@ void Game::PikiKokeDamageState::exec((Game::Piki*))
  * Address:	80190728
  * Size:	00001C
  */
-void Game::PikiKokeDamageState::onFlute((Game::Piki*, Game::Navi*))
+void PikiKokeDamageState::onFlute(Game::Piki*, Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9630,7 +9609,7 @@ void Game::PikiKokeDamageState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	80190744
  * Size:	0000E8
  */
-void Game::PikiKokeDamageState::cleanup((Game::Piki*))
+void PikiKokeDamageState::cleanup(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -9706,8 +9685,7 @@ void Game::PikiKokeDamageState::cleanup((Game::Piki*))
  * Address:	8019082C
  * Size:	000060
  */
-void Game::PikiKokeDamageState::onKeyEvent((Game::Piki*,
-                                            SysShape::KeyEvent const&))
+void PikiKokeDamageState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -9747,7 +9725,7 @@ void Game::PikiKokeDamageState::onKeyEvent((Game::Piki*,
  * Address:	8019088C
  * Size:	000120
  */
-void Game::PikiKokeState::init((Game::Piki*, Game::StateArg*))
+void PikiKokeState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -9839,14 +9817,10 @@ void Game::PikiKokeState::init((Game::Piki*, Game::StateArg*))
  * Address:	801909AC
  * Size:	00000C
  */
-void Game::PikiKokeState::onFlute((Game::Piki*, Game::Navi*))
+void PikiKokeState::onFlute(Game::Piki*, Game::Navi*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x10(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x10(r3)
+	_10 = 0;
 }
 
 /*
@@ -9854,7 +9828,7 @@ void Game::PikiKokeState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	801909B8
  * Size:	000094
  */
-void Game::PikiKokeState::exec((Game::Piki*))
+void PikiKokeState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -9909,7 +9883,7 @@ void Game::PikiKokeState::exec((Game::Piki*))
  * Address:	80190A4C
  * Size:	0000F0
  */
-void Game::PikiKokeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiKokeState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -9995,14 +9969,14 @@ void Game::PikiKokeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	80190B3C
  * Size:	000004
  */
-void Game::PikiKokeState::cleanup((Game::Piki*)) { }
+void PikiKokeState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	80190B40
  * Size:	000200
  */
-void Game::PikiDrownState::init((Game::Piki*, Game::StateArg*))
+void PikiDrownState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -10162,7 +10136,7 @@ void Game::PikiDrownState::init((Game::Piki*, Game::StateArg*))
  * Address:	80190D40
  * Size:	000040
  */
-void Game::PikiDrownState::soft_transittable((int))
+void PikiDrownState::soft_transittable(int)
 {
 	/*
 	.loc_0x0:
@@ -10192,7 +10166,7 @@ void Game::PikiDrownState::soft_transittable((int))
  * Address:	80190D80
  * Size:	000010
  */
-void Game::PikiDrownState::onFlute((Game::Piki*, Game::Navi*))
+void PikiDrownState::onFlute(Game::Piki*, Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10208,14 +10182,10 @@ void Game::PikiDrownState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	80190D90
  * Size:	00000C
  */
-void Game::PikiDrownState::outWaterCallback((Game::Piki*))
+void PikiDrownState::outWaterCallback(Game::Piki*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x1C(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x1C(r3)
+	_1C = 1;
 }
 
 /*
@@ -10223,7 +10193,7 @@ void Game::PikiDrownState::outWaterCallback((Game::Piki*))
  * Address:	80190D9C
  * Size:	00074C
  */
-void Game::PikiDrownState::exec((Game::Piki*))
+void PikiDrownState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -10774,14 +10744,14 @@ void Game::PikiDrownState::exec((Game::Piki*))
  * Address:	801914E8
  * Size:	000004
  */
-void Game::PikiDrownState::cleanup((Game::Piki*)) { }
+void PikiDrownState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	801914EC
  * Size:	000120
  */
-void Game::PikiDrownState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiDrownState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -10881,7 +10851,7 @@ void Game::PikiDrownState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	8019160C
  * Size:	000358
  */
-void Game::PikiEmotionState::init((Game::Piki*, Game::StateArg*))
+void PikiEmotionState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -11127,7 +11097,7 @@ void Game::PikiEmotionState::init((Game::Piki*, Game::StateArg*))
  * Address:	........
  * Size:	000004
  */
-void Game::PikiEmotionState::doDump(void)
+void PikiEmotionState::doDump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -11137,7 +11107,7 @@ void Game::PikiEmotionState::doDump(void)
  * Address:	80191964
  * Size:	0000A8
  */
-void Game::PikiEmotionState::exec((Game::Piki*))
+void PikiEmotionState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -11195,15 +11165,14 @@ void Game::PikiEmotionState::exec((Game::Piki*))
  * Address:	80191A0C
  * Size:	000004
  */
-void Game::PikiEmotionState::cleanup((Game::Piki*)) { }
+void PikiEmotionState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	80191A10
  * Size:	0000C0
  */
-void Game::PikiEmotionState::onKeyEvent((Game::Piki*,
-                                         SysShape::KeyEvent const&))
+void PikiEmotionState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -11273,7 +11242,7 @@ void Game::PikiEmotionState::onKeyEvent((Game::Piki*,
  * Address:	80191AD0
  * Size:	000170
  */
-void Game::PikiAbsorbState::init((Game::Piki*, Game::StateArg*))
+void PikiAbsorbState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -11385,7 +11354,7 @@ void Game::PikiAbsorbState::init((Game::Piki*, Game::StateArg*))
  * Address:	80191C40
  * Size:	000154
  */
-void Game::PikiAbsorbState::exec((Game::Piki*))
+void PikiAbsorbState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -11490,7 +11459,7 @@ void Game::PikiAbsorbState::exec((Game::Piki*))
  * Address:	80191D94
  * Size:	00012C
  */
-void Game::PikiAbsorbState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiAbsorbState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -11593,14 +11562,14 @@ void Game::PikiAbsorbState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	80191EC0
  * Size:	000004
  */
-void Game::PikiAbsorbState::cleanup((Game::Piki*)) { }
+void PikiAbsorbState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	80191EC4
  * Size:	0000E0
  */
-void Game::PikiGrowupState::init((Game::Piki*, Game::StateArg*))
+void PikiGrowupState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -11676,7 +11645,7 @@ void Game::PikiGrowupState::init((Game::Piki*, Game::StateArg*))
  * Address:	80191FA4
  * Size:	000078
  */
-void Game::PikiGrowupState::exec((Game::Piki*))
+void PikiGrowupState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -11720,7 +11689,7 @@ void Game::PikiGrowupState::exec((Game::Piki*))
  * Address:	8019201C
  * Size:	0001A0
  */
-void Game::PikiGrowupState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiGrowupState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -11848,14 +11817,14 @@ void Game::PikiGrowupState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	801921BC
  * Size:	000004
  */
-void Game::PikiGrowupState::cleanup((Game::Piki*)) { }
+void PikiGrowupState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	801921C0
  * Size:	000020
  */
-void Game::PikiEscapeState::init((Game::Piki*, Game::StateArg*))
+void PikiEscapeState::init(Game::Piki*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -11877,7 +11846,7 @@ void Game::PikiEscapeState::init((Game::Piki*, Game::StateArg*))
  * Address:	801921E0
  * Size:	000074
  */
-void Game::PikiEscapeState::initRun((Game::Piki*))
+void PikiEscapeState::initRun(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -11922,7 +11891,7 @@ void Game::PikiEscapeState::initRun((Game::Piki*))
  * Address:	........
  * Size:	000120
  */
-void Game::PikiEscapeState::initKoke((Game::Piki*))
+void PikiEscapeState::initKoke(Game::Piki*)
 {
 	// UNUSED FUNCTION
 }
@@ -11932,7 +11901,7 @@ void Game::PikiEscapeState::initKoke((Game::Piki*))
  * Address:	........
  * Size:	000190
  */
-void Game::PikiEscapeState::findTeki((Game::Piki*))
+void PikiEscapeState::findTeki(Game::Piki*)
 {
 	// UNUSED FUNCTION
 }
@@ -11942,7 +11911,7 @@ void Game::PikiEscapeState::findTeki((Game::Piki*))
  * Address:	80192254
  * Size:	0005C8
  */
-void Game::PikiEscapeState::exec((Game::Piki*))
+void PikiEscapeState::exec(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -12374,7 +12343,7 @@ void Game::PikiEscapeState::exec((Game::Piki*))
  * Address:	8019281C
  * Size:	00017C
  */
-void Game::PikiEscapeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
+void PikiEscapeState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -12507,91 +12476,93 @@ void Game::PikiEscapeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	80192998
  * Size:	000004
  */
-void Game::PikiEscapeState::cleanup((Game::Piki*)) { }
+void PikiEscapeState::cleanup(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	8019299C
  * Size:	000008
  */
-u32 Game::PikiEscapeState::callable(void) { return 0x0; }
+u32 PikiEscapeState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929A4
  * Size:	000008
  */
-u32 Game::PikiState::invincible((Game::Piki*)) { return 0x0; }
+u32 PikiState::invincible(Game::Piki*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929AC
  * Size:	000008
  */
-u32 Game::PikiState::dopable(void) { return 0x0; }
+u32 PikiState::dopable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929B4
  * Size:	000008
  */
-u32 Game::PikiState::pressable(void) { return 0x1; }
+u32 PikiState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801929BC
  * Size:	000004
  */
-void Game::PikiState::onFlute((Game::Piki*, Game::Navi*)) { }
+void PikiState::onFlute(Game::Piki*, Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	801929C0
  * Size:	000008
  */
-u32 Game::PikiState::callable(void) { return 0x0; }
+u32 PikiState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929C8
  * Size:	000008
  */
-u32 Game::PikiEmotionState::callable(void) { return 0x1; }
+u32 PikiEmotionState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801929D0
  * Size:	000008
  */
-u32 Game::PikiKokeState::callable(void) { return 0x0; }
+u32 PikiKokeState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929D8
  * Size:	000008
  */
-u32 Game::PikiKokeDamageState::callable(void) { return 0x0; }
+u32 PikiKokeDamageState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929E0
  * Size:	000008
  */
-u32 Game::PikiBlowState::pressable(void) { return 0x0; }
+u32 PikiBlowState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929E8
  * Size:	000008
  */
-u32 Game::PikiBlowState::callable(void) { return 0x0; }
+u32 PikiBlowState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929F0
  * Size:	000008
  */
-u32 Game::PikiFlickState::callable(void) { return 0x0; }
+u32 PikiFlickState::callable(void) { return 0x0; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -12608,194 +12579,196 @@ void PikiAI::ActCropArg::getName(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80192A04
  * Size:	000008
  */
-u32 Game::PikiFlyingState::callable(void) { return 0x0; }
+u32 PikiFlyingState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A0C
  * Size:	000008
  */
-u32 Game::PikiSuikomiState::pressable(void) { return 0x0; }
+u32 PikiSuikomiState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A14
  * Size:	000008
  */
-u32 Game::PikiFallMeckState::pressable(void) { return 0x0; }
+u32 PikiFallMeckState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A1C
  * Size:	000008
  */
-u32 Game::PikiWaterHangedState::throwable(void) { return 0x1; }
+u32 PikiWaterHangedState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A24
  * Size:	000008
  */
-u32 Game::PikiHangedState::throwable(void) { return 0x1; }
+u32 PikiHangedState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A2C
  * Size:	000008
  */
-u32 Game::PikiGoHangState::callable(void) { return 0x1; }
+u32 PikiGoHangState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A34
  * Size:	000008
  */
-u32 Game::PikiGoHangState::throwable(void) { return 0x1; }
+u32 PikiGoHangState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A3C
  * Size:	000008
  */
-u32 Game::PikiAutoNukiState::callable(void) { return 0x0; }
+u32 PikiAutoNukiState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A44
  * Size:	000008
  */
-u32 Game::PikiLookAtState::callable(void) { return 0x0; }
+u32 PikiLookAtState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A4C
  * Size:	000008
  */
-u32 Game::PikiPressedState::pressable(void) { return 0x0; }
+u32 PikiPressedState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A54
  * Size:	000008
  */
-u32 Game::PikiPressedState::dead(void) { return 0x1; }
+u32 PikiPressedState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A5C
  * Size:	000008
  */
-u32 Game::PikiDenkiDyingState::pressable(void) { return 0x0; }
+u32 PikiDenkiDyingState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A64
  * Size:	000008
  */
-u32 Game::PikiDenkiDyingState::dead(void) { return 0x1; }
+u32 PikiDenkiDyingState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A6C
  * Size:	000008
  */
-u32 Game::PikiDyingState::pressable(void) { return 0x0; }
+u32 PikiDyingState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A74
  * Size:	000008
  */
-u32 Game::PikiDyingState::dead(void) { return 0x1; }
+u32 PikiDyingState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A7C
  * Size:	000008
  */
-u32 Game::PikiDeadState::pressable(void) { return 0x0; }
+u32 PikiDeadState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A84
  * Size:	000008
  */
-u32 Game::PikiDeadState::transittable((int)) { return 0x0; }
+u32 PikiDeadState::transittable(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A8C
  * Size:	000008
  */
-u32 Game::PikiDeadState::dead(void) { return 0x1; }
+u32 PikiDeadState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A94
  * Size:	000008
  */
-u32 Game::PikiTaneState::callable(void) { return 0x0; }
+u32 PikiTaneState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A9C
  * Size:	000008
  */
-u32 Game::PikiFountainonState::callable(void) { return 0x0; }
+u32 PikiFountainonState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AA4
  * Size:	000008
  */
-u32 Game::PikiFountainonState::soft_transittable((int)) { return 0x0; }
+u32 PikiFountainonState::soft_transittable(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AAC
  * Size:	000008
  */
-u32 Game::PikiFountainonState::invincible((Game::Piki*)) { return 0x1; }
+u32 PikiFountainonState::invincible(Game::Piki*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AB4
  * Size:	000008
  */
-u32 Game::PikiHoleinState::callable(void) { return 0x0; }
+u32 PikiHoleinState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192ABC
  * Size:	000008
  */
-u32 Game::PikiHoleinState::soft_transittable((int)) { return 0x0; }
+u32 PikiHoleinState::soft_transittable(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AC4
  * Size:	000008
  */
-u32 Game::PikiHoleinState::invincible((Game::Piki*)) { return 0x1; }
+u32 PikiHoleinState::invincible(Game::Piki*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192ACC
  * Size:	000008
  */
-u32 Game::PikiSwallowedState::dead(void) { return 0x1; }
+u32 PikiSwallowedState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AD4
  * Size:	000008
  */
-u32 Game::PikiSwallowedState::ignoreAtari((Game::Piki*, Game::Creature*))
+u32 PikiSwallowedState::ignoreAtari(Game::Piki*, Game::Creature*)
 {
 	return 0x1;
 }
@@ -12805,56 +12778,58 @@ u32 Game::PikiSwallowedState::ignoreAtari((Game::Piki*, Game::Creature*))
  * Address:	80192ADC
  * Size:	000008
  */
-u32 Game::PikiSwallowedState::callable(void) { return 0x0; }
+u32 PikiSwallowedState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AE4
  * Size:	000008
  */
-u32 Game::PikiDemoWaitState::invincible((Game::Piki*)) { return 0x1; }
+u32 PikiDemoWaitState::invincible(Game::Piki*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AEC
  * Size:	000008
  */
-u32 Game::PikiWalkState::dopable(void) { return 0x1; }
+u32 PikiWalkState::dopable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AF4
  * Size:	000008
  */
-u32 Game::PikiWalkState::aiActive(void) { return 0x1; }
+u32 PikiWalkState::aiActive(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AFC
  * Size:	000008
  */
-u32 Game::PikiWalkState::callable(void) { return 0x1; }
+u32 PikiWalkState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B04
  * Size:	000008
  */
-u32 Game::PikiWalkState::releasable(void) { return 0x1; }
+u32 PikiWalkState::releasable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B0C
  * Size:	000008
  */
-u32 Game::PikiWalkState::battleOK(void) { return 0x1; }
+u32 PikiWalkState::battleOK(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B14
  * Size:	000008
  */
-u32 Game::PikiWalkState::throwable(void) { return 0x1; }
+u32 PikiWalkState::throwable(void) { return 0x1; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -12986,7 +12961,7 @@ void __sinit_pikiState_cpp(void)
  * Address:	80192C34
  * Size:	000014
  */
-void @28 @4 @Game::PikiLookAtState::onKeyEvent((SysShape::KeyEvent const&))
+void @28 @4 @Game::PikiLookAtState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -13003,7 +12978,7 @@ void @28 @4 @Game::PikiLookAtState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80192C48
  * Size:	000014
  */
-void @20 @4 @Game::PikiHangedState::onKeyEvent((SysShape::KeyEvent const&))
+void @20 @4 @Game::PikiHangedState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -13020,7 +12995,7 @@ void @20 @4 @Game::PikiHangedState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80192C5C
  * Size:	000014
  */
-void @24 @4 @Game::PikiWaterHangedState::onKeyEvent((SysShape::KeyEvent const&))
+void @24 @4 @Game::PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -13037,7 +13012,7 @@ void @24 @4 @Game::PikiWaterHangedState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80192C70
  * Size:	000014
  */
-void @48 @4 @Game::PikiFlickState::onKeyEvent((SysShape::KeyEvent const&))
+void @48 @4 @Game::PikiFlickState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

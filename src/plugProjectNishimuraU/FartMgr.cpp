@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802850F0
  * Size:	000050
  */
-void Game::Fart::Mgr::Mgr(int, unsigned char)
+Fart::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Fart::Mgr::Mgr(int, unsigned char)
  * Address:	80285140
  * Size:	000048
  */
-void Game::Fart::Mgr::doAlloc()
+void Fart::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::Fart::Mgr::doAlloc()
  * Address:	80285188
  * Size:	000060
  */
-void Game::Fart::Mgr::createObj(int)
+void Fart::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Fart::Mgr::createObj(int)
  * Address:	802851E8
  * Size:	0000F0
  */
-void Game::Fart::Obj::~Obj()
+Fart::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::Fart::Obj::~Obj()
  * Address:	802852D8
  * Size:	000010
  */
-void Game::Fart::Mgr::getEnemy(int)
+void Fart::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::Fart::Mgr::getEnemy(int)
  * Address:	802852E8
  * Size:	000080
  */
-void Game::Fart::Mgr::loadTexData()
+void Fart::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -245,7 +247,7 @@ void Game::Fart::Mgr::loadTexData()
  * Address:	80285368
  * Size:	0000C8
  */
-void Game::Fart::Mgr::~Mgr()
+Fart::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -311,14 +313,14 @@ void Game::Fart::Mgr::~Mgr()
  * Address:	80285430
  * Size:	000008
  */
-u32 Game::Fart::Mgr::getEnemyTypeID() { return 0xB; }
+u32 Fart::Mgr::getEnemyTypeID() { return 0xB; }
 
 /*
  * --INFO--
  * Address:	80285438
  * Size:	000008
  */
-void Game::Fart::Mgr::getChangeTexture()
+void Fart::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -332,7 +334,7 @@ void Game::Fart::Mgr::getChangeTexture()
  * Address:	80285440
  * Size:	000008
  */
-void Game::Fart::Mgr::@4 @__dt()
+Fart::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -340,3 +342,4 @@ void Game::Fart::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

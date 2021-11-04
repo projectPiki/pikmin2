@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "sysMath.h"
 #include "Vector3.h"
 
@@ -185,7 +187,7 @@ void BoundBox::read(Stream& stream)
  * Address:	80411990
  * Size:	000058
  */
-void Vector3<float>::read(Stream& stream)
+void Vector3f::read(Stream& stream)
 {
 	x = stream.readFloat();
 	y = stream.readFloat();
@@ -197,7 +199,7 @@ void Vector3<float>::read(Stream& stream)
  * Address:	804119E8
  * Size:	000058
  */
-void Vector3<float>::write(Stream& stream)
+void Vector3f::write(Stream& stream)
 {
 	stream.writeFloat(x);
 	stream.writeFloat(y);
@@ -963,7 +965,7 @@ Quat::Quat(float _w, Vector3f vec)
 // * Address:	804124FC
 // * Size:	000264
 // */
-// void Quat::set(Vector3<float>&)
+// void Quat::set(Vector3f&)
 //{
 //    /*
 //    .loc_0x0:
@@ -1188,7 +1190,7 @@ Quat::Quat(float _w, Vector3f vec)
 // * Address:	........
 // * Size:	000020
 // */
-// void Quat::set(float, Vector3<float>&)
+// void Quat::set(float, Vector3f&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1279,7 +1281,7 @@ Quat::Quat(float _w, Vector3f vec)
 // * Address:	........
 // * Size:	000128
 // */
-// void rotate(Quat&, Vector3<float>&)
+// void rotate(Quat&, Vector3f&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1881,7 +1883,7 @@ Quat::Quat(float _w, Vector3f vec)
 // * Address:	........
 // * Size:	000054
 // */
-// void Plane::calcProjection(Vector3<float>&)
+// void Plane::calcProjection(Vector3f&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1891,7 +1893,7 @@ Quat::Quat(float _w, Vector3f vec)
 // * Address:	........
 // * Size:	000060
 // */
-// void Plane::intersectRay(Vector3<float>&, Vector3<float>&)
+// void Plane::intersectRay(Vector3f&, Vector3f&)
 //{
 //    // UNUSED FUNCTION
 //}

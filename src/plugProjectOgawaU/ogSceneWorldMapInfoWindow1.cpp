@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8032C208
  * Size:	00003C
  */
-void og::newScreen::WorldMapInfoWindow1::__ct(void)
+newScreen::WorldMapInfoWindow1::WorldMapInfoWindow1(void)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void og::newScreen::WorldMapInfoWindow1::__ct(void)
  * Address:	........
  * Size:	000060
  */
-void og::newScreen::WorldMapInfoWindow1::__dt(void)
+newScreen::WorldMapInfoWindow1::~WorldMapInfoWindow1(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +44,7 @@ void og::newScreen::WorldMapInfoWindow1::__dt(void)
  * Address:	8032C244
  * Size:	0000A4
  */
-void og::newScreen::WorldMapInfoWindow1::doCreateObj((JKRArchive*))
+void newScreen::WorldMapInfoWindow1::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -109,8 +101,7 @@ void og::newScreen::WorldMapInfoWindow1::doCreateObj((JKRArchive*))
  * Address:	8032C2E8
  * Size:	000008
  */
-void og::newScreen::WorldMapInfoWindow1::doConfirmSetScene(
-    (Screen::SetSceneArg&))
+void newScreen::WorldMapInfoWindow1::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	return 0x1;
 }
@@ -120,7 +111,7 @@ void og::newScreen::WorldMapInfoWindow1::doConfirmSetScene(
  * Address:	8032C2F0
  * Size:	000064
  */
-void og::newScreen::WorldMapInfoWindow1::doGetFinishState(void)
+void newScreen::WorldMapInfoWindow1::doGetFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +150,7 @@ void og::newScreen::WorldMapInfoWindow1::doGetFinishState(void)
  * Address:	8032C354
  * Size:	00000C
  */
-void og::newScreen::WorldMapInfoWindow1::getResName( const
+void newScreen::WorldMapInfoWindow1::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -174,17 +165,14 @@ void og::newScreen::WorldMapInfoWindow1::getResName( const
  * Address:	8032C360
  * Size:	000008
  */
-u32  og::newScreen::WorldMapInfoWindow1::getSceneType(void)
-{
-	return 0x272A;
-}
+u32 newScreen::WorldMapInfoWindow1::getSceneType(void) { return 0x272A; }
 
 /*
  * --INFO--
  * Address:	8032C368
  * Size:	000014
  */
-void og::newScreen::WorldMapInfoWindow1::getMemberID(void)
+void newScreen::WorldMapInfoWindow1::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -201,10 +189,9 @@ void og::newScreen::WorldMapInfoWindow1::getMemberID(void)
  * Address:	8032C37C
  * Size:	000008
  */
-u32  og::newScreen::WorldMapInfoWindow1::isUseBackupSceneInfo(void)
-{
-	return 0x0;
-}
+u32 newScreen::WorldMapInfoWindow1::isUseBackupSceneInfo(void) { return 0x0; }
+
+} // namespace og
 
 /*
  * --INFO--

@@ -63,7 +63,7 @@ u32 J2DIndBlock::getIndTexStageNum() const { return 0x0; }
  * Address:	80049518
  * Size:	000050
  */
-void J2DBloSaver::CTextureNameConnect::~CTextureNameConnect()
+J2DBloSaver::CTextureNameConnect::~CTextureNameConnect()
 {
 	/*
 	.loc_0x0:
@@ -145,7 +145,7 @@ void J2DBloSaver::CTextureNameConnect::clear()
  * Address:	800495D8
  * Size:	000068
  */
-void J2DTevStage::J2DTevStage()
+J2DTevStage::J2DTevStage()
 {
 	/*
 	.loc_0x0:

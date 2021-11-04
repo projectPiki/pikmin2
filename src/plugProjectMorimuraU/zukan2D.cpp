@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80370C08
  * Size:	000204
  */
-void Morimura::TZukanBase::__ct((char*))
+Morimura::TZukanBase::TZukanBase(char*)
 {
 	/*
 	.loc_0x0:
@@ -156,7 +146,7 @@ void Morimura::TZukanBase::__ct((char*))
  * Address:	80370E0C
  * Size:	0000C4
  */
-void Morimura::TScrollList::__dt(void)
+Morimura::TScrollList::~TScrollList(void)
 {
 	/*
 	.loc_0x0:
@@ -221,7 +211,7 @@ void Morimura::TScrollList::__dt(void)
  * Address:	80370ED0
  * Size:	0000FC
  */
-void Morimura::TZukanBase::__dt(void)
+Morimura::TZukanBase::~TZukanBase(void)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +292,7 @@ void Morimura::TZukanBase::__dt(void)
  * Address:	........
  * Size:	000044
  */
-void Morimura::TZukanBase::setDebugHeapParent((JKRHeap*))
+void Morimura::TZukanBase::setDebugHeapParent(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -312,7 +302,7 @@ void Morimura::TZukanBase::setDebugHeapParent((JKRHeap*))
  * Address:	80370FCC
  * Size:	00090C
  */
-void Morimura::TZukanBase::doCreate((JKRArchive*))
+void Morimura::TZukanBase::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -2099,14 +2089,14 @@ void Morimura::TZukanBase::doUpdate(void)
  * Address:	803728A0
  * Size:	000008
  */
-u32 Morimura::TScrollList::isListShow((int)) { return 0x1; }
+u32 Morimura::TScrollList::isListShow(int) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	803728A8
  * Size:	0002B8
  */
-void Morimura::TZukanBase::updateButtonAlpha((unsigned char))
+void Morimura::TZukanBase::updateButtonAlpha(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2340,7 +2330,7 @@ void Morimura::TZukanBase::isComplete(void)
  * Address:	80372B68
  * Size:	000714
  */
-void Morimura::TZukanBase::doDraw((Graphics&))
+void Morimura::TZukanBase::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2841,7 +2831,7 @@ void Morimura::TZukanBase::doDraw((Graphics&))
  * Address:	8037327C
  * Size:	000004
  */
-void Morimura::TZukanBase::doDemoDraw((Graphics&)) { }
+void Morimura::TZukanBase::doDemoDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -2866,7 +2856,7 @@ void Morimura::TZukanBase::doUpdateFadeoutFinish(void)
  * Address:	80373298
  * Size:	000578
  */
-void Morimura::TZukanBase::indexPaneInit((J2DScreen*))
+void Morimura::TZukanBase::indexPaneInit(J2DScreen*)
 {
 	/*
 	.loc_0x0:
@@ -4336,7 +4326,7 @@ void Morimura::TZukanBase::doPushBButton(void)
  * Address:	80374558
  * Size:	000244
  */
-void Morimura::TZukanBase::setShortenIndex((int, int, bool))
+void Morimura::TZukanBase::setShortenIndex(int, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -4515,7 +4505,7 @@ void Morimura::TZukanBase::setShortenIndex((int, int, bool))
  * Address:	8037479C
  * Size:	000088
  */
-void Morimura::TZukanBase::windowOpenClose((unsigned long long))
+void Morimura::TZukanBase::windowOpenClose(unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -4626,12 +4616,8 @@ void Morimura::TZukanBase::requireRequest(void)
  */
 void Morimura::TZukanBase::requireEffectOff(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x217(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x217(r3)
+	_217 = 1;
 }
 
 /*
@@ -4692,7 +4678,7 @@ void Morimura::TZukanBase::requireSceneEnd(void)
  * Address:	803748F8
  * Size:	000010
  */
-void Morimura::TZukanBase::checkRequest((int&))
+void Morimura::TZukanBase::checkRequest(int&)
 {
 	/*
 	.loc_0x0:
@@ -4750,7 +4736,7 @@ void Morimura::TZukanBase::getCurrSelectId(void)
  * Address:	80374970
  * Size:	000124
  */
-void Morimura::TZukanBase::getTexInfo((int))
+void Morimura::TZukanBase::getTexInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -4851,7 +4837,7 @@ void Morimura::TZukanBase::resetDebugShow(void)
  * Address:	........
  * Size:	00004C
  */
-void Morimura::TEnemyZukanIndex::getIndexInfo((int))
+void Morimura::TEnemyZukanIndex::getIndexInfo(int)
 {
 	// UNUSED FUNCTION
 }
@@ -4861,7 +4847,7 @@ void Morimura::TEnemyZukanIndex::getIndexInfo((int))
  * Address:	........
  * Size:	00005C
  */
-void Morimura::TEnemyZukan::__ct(void)
+Morimura::TEnemyZukan::TEnemyZukan(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4871,7 +4857,7 @@ void Morimura::TEnemyZukan::__ct(void)
  * Address:	80374A94
  * Size:	000124
  */
-void Morimura::TEnemyZukan::__dt(void)
+Morimura::TEnemyZukan::~TEnemyZukan(void)
 {
 	/*
 	.loc_0x0:
@@ -4962,7 +4948,7 @@ void Morimura::TEnemyZukan::__dt(void)
  * Address:	80374BB8
  * Size:	001734
  */
-void Morimura::TEnemyZukan::doCreate((JKRArchive*))
+void Morimura::TEnemyZukan::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -6645,9 +6631,9 @@ void Morimura::TEnemyZukan::doCreate((JKRArchive*))
  * Address:	803762EC
  * Size:	000044
  */
-void Morimura::TScaleUpCounter::init((J2DScreen*, unsigned long long,
-                                      unsigned long long, unsigned long long,
-                                      unsigned long*, bool))
+void Morimura::TScaleUpCounter::init(J2DScreen*, unsigned long long,
+                                     unsigned long long, unsigned long long,
+                                     unsigned long*, bool)
 {
 	/*
 	.loc_0x0:
@@ -6819,7 +6805,7 @@ void Morimura::TEnemyZukan::setDetail(void)
  * Address:	80376510
  * Size:	000048
  */
-void Morimura::TEnemyZukan::setShortenIndex((int, int, bool))
+void Morimura::TEnemyZukan::setShortenIndex(int, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -6851,7 +6837,7 @@ void Morimura::TEnemyZukan::setShortenIndex((int, int, bool))
  * Address:	80376558
  * Size:	0000D8
  */
-void Morimura::TEnemyZukan::isListShow((int))
+void Morimura::TEnemyZukan::isListShow(int)
 {
 	/*
 	.loc_0x0:
@@ -6935,7 +6921,7 @@ void Morimura::TEnemyZukan::isListShow((int))
  * Address:	80376630
  * Size:	000718
  */
-void Morimura::TEnemyZukan::indexPaneInit((J2DScreen*))
+void Morimura::TEnemyZukan::indexPaneInit(J2DScreen*)
 {
 	/*
 	.loc_0x0:
@@ -7473,7 +7459,7 @@ void Morimura::TEnemyZukan::indexPaneInit((J2DScreen*))
  * Address:	80376D48
  * Size:	000970
  */
-void Morimura::TEnemyZukan::getUpdateIndex((int&, bool))
+void Morimura::TEnemyZukan::getUpdateIndex(int&, bool)
 {
 	/*
 	.loc_0x0:
@@ -8229,7 +8215,7 @@ void Morimura::TEnemyZukan::getUpdateIndex((int&, bool))
  * Address:	803776B8
  * Size:	000024
  */
-void Morimura::TEnemyZukan::getNameID((int))
+void Morimura::TEnemyZukan::getNameID(int)
 {
 	/*
 	.loc_0x0:
@@ -8250,7 +8236,7 @@ void Morimura::TEnemyZukan::getNameID((int))
  * Address:	803776DC
  * Size:	000024
  */
-void Morimura::TEnemyZukan::getXMsgID((int))
+void Morimura::TEnemyZukan::getXMsgID(int)
 {
 	/*
 	.loc_0x0:
@@ -8271,7 +8257,7 @@ void Morimura::TEnemyZukan::getXMsgID((int))
  * Address:	80377700
  * Size:	000024
  */
-void Morimura::TEnemyZukan::getYMsgID((int))
+void Morimura::TEnemyZukan::getYMsgID(int)
 {
 	/*
 	.loc_0x0:
@@ -8292,7 +8278,7 @@ void Morimura::TEnemyZukan::getYMsgID((int))
  * Address:	80377724
  * Size:	000050
  */
-void Morimura::TEnemyZukan::getModelIndex((int))
+void Morimura::TEnemyZukan::getModelIndex(int)
 {
 	/*
 	.loc_0x0:
@@ -8427,7 +8413,7 @@ void Morimura::TEnemyZukan::isOpenConfirmWindow(void)
  * Address:	80377868
  * Size:	0000FC
  */
-void Morimura::TEnemyZukan::isNewSupply((int, bool))
+void Morimura::TEnemyZukan::isNewSupply(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -8630,7 +8616,7 @@ void Morimura::TEnemyZukan::openConfirmWindow(void)
  * Address:	80377A94
  * Size:	000134
  */
-void Morimura::TEnemyZukan::getPrice((int))
+void Morimura::TEnemyZukan::getPrice(int)
 {
 	/*
 	.loc_0x0:
@@ -8735,7 +8721,7 @@ void Morimura::TEnemyZukan::getPrice((int))
  * Address:	80377BC8
  * Size:	0000F8
  */
-void Morimura::TEnemyZukan::getDefeatNum((int))
+void Morimura::TEnemyZukan::getDefeatNum(int)
 {
 	/*
 	.loc_0x0:
@@ -8825,7 +8811,7 @@ void Morimura::TEnemyZukan::getDefeatNum((int))
  * Address:	80377CC0
  * Size:	00012C
  */
-void Morimura::TEnemyZukan::getKilledNum((int))
+void Morimura::TEnemyZukan::getKilledNum(int)
 {
 	/*
 	.loc_0x0:
@@ -8928,7 +8914,7 @@ void Morimura::TEnemyZukan::getKilledNum((int))
  * Address:	80377DEC
  * Size:	000054
  */
-void Morimura::TDEnemyScene::__ct(void)
+Morimura::TDEnemyScene::TDEnemyScene(void)
 {
 	/*
 	.loc_0x0:
@@ -8961,7 +8947,7 @@ void Morimura::TDEnemyScene::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void Morimura::THIOScene::__dt(void)
+Morimura::THIOScene::~THIOScene(void)
 {
 	// UNUSED FUNCTION
 }
@@ -8971,7 +8957,7 @@ void Morimura::THIOScene::__dt(void)
  * Address:	80377E40
  * Size:	0000DC
  */
-void Morimura::TDEnemyScene::doCreateObj((JKRArchive*))
+void Morimura::TDEnemyScene::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -9042,7 +9028,7 @@ void Morimura::TDEnemyScene::doCreateObj((JKRArchive*))
  * Address:	80377F1C
  * Size:	000034
  */
-void Morimura::TDEnemyScene::doStart((Screen::StartSceneArg*))
+void Morimura::TDEnemyScene::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -9101,7 +9087,7 @@ void Morimura::TItemZukan::isCategoryComplete(void)
  * Address:	........
  * Size:	000148
  */
-void Morimura::TItemZukan::__ct(void)
+Morimura::TItemZukan::TItemZukan(void)
 {
 	// UNUSED FUNCTION
 }
@@ -9111,7 +9097,7 @@ void Morimura::TItemZukan::__ct(void)
  * Address:	80377F78
  * Size:	000124
  */
-void Morimura::TItemZukan::__dt(void)
+Morimura::TItemZukan::~TItemZukan(void)
 {
 	/*
 	.loc_0x0:
@@ -9581,7 +9567,7 @@ void Morimura::TItemZukan::demoSet(void)
  * Address:	80378568
  * Size:	00045C
  */
-void Morimura::TItemZukan::setShortenIndex((int, int, bool))
+void Morimura::TItemZukan::setShortenIndex(int, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -9918,7 +9904,7 @@ void Morimura::TItemZukan::setShortenIndex((int, int, bool))
  * Address:	803789C4
  * Size:	000010
  */
-void Morimura::TItemZukan::getCategoryColorId((int))
+void Morimura::TItemZukan::getCategoryColorId(int)
 {
 	/*
 	.loc_0x0:
@@ -10157,7 +10143,7 @@ void Morimura::TItemZukan::doUpdateOut(void)
  * Address:	80378CA8
  * Size:	0000C0
  */
-void Morimura::TItemZukan::getUpdateIndex((int&, bool))
+void Morimura::TItemZukan::getUpdateIndex(int&, bool)
 {
 	/*
 	.loc_0x0:
@@ -10227,7 +10213,7 @@ void Morimura::TItemZukan::getUpdateIndex((int&, bool))
  * Address:	80378D68
  * Size:	00003C
  */
-void Morimura::TItemZukan::getNameID((int))
+void Morimura::TItemZukan::getNameID(int)
 {
 	/*
 	.loc_0x0:
@@ -10254,7 +10240,7 @@ void Morimura::TItemZukan::getNameID((int))
  * Address:	80378DA4
  * Size:	00003C
  */
-void Morimura::TItemZukan::getXMsgID((int))
+void Morimura::TItemZukan::getXMsgID(int)
 {
 	/*
 	.loc_0x0:
@@ -10281,7 +10267,7 @@ void Morimura::TItemZukan::getXMsgID((int))
  * Address:	80378DE0
  * Size:	00003C
  */
-void Morimura::TItemZukan::getYMsgID((int))
+void Morimura::TItemZukan::getYMsgID(int)
 {
 	/*
 	.loc_0x0:
@@ -10308,7 +10294,7 @@ void Morimura::TItemZukan::getYMsgID((int))
  * Address:	80378E1C
  * Size:	000034
  */
-void Morimura::TItemZukan::getModelIndex((int))
+void Morimura::TItemZukan::getModelIndex(int)
 {
 	/*
 	.loc_0x0:
@@ -10357,7 +10343,7 @@ void Morimura::TItemZukan::getIdMax(void)
  * Address:	80378E70
  * Size:	001690
  */
-void Morimura::TItemZukan::doCreate((JKRArchive*))
+void Morimura::TItemZukan::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -12003,7 +11989,7 @@ void Morimura::TItemZukan::doCreate((JKRArchive*))
  * Address:	8037A500
  * Size:	0007B4
  */
-void Morimura::TItemZukan::doDemoDraw((Graphics&))
+void Morimura::TItemZukan::doDemoDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -12700,7 +12686,7 @@ void Morimura::TItemZukan::isComplete(void)
  * Address:	8037AEB4
  * Size:	000080
  */
-void Morimura::TItemZukan::isListShow((int))
+void Morimura::TItemZukan::isListShow(int)
 {
 	/*
 	.loc_0x0:
@@ -12851,7 +12837,7 @@ void Morimura::TItemZukan::setYWindow(void)
  * Address:	8037B048
  * Size:	0000C0
  */
-void Morimura::TItemZukan::getPrice((int))
+void Morimura::TItemZukan::getPrice(int)
 {
 	/*
 	.loc_0x0:
@@ -12919,7 +12905,7 @@ void Morimura::TItemZukan::getPrice((int))
  * Address:	8037B108
  * Size:	0000C8
  */
-void Morimura::TItemZukan::getWeight((int))
+void Morimura::TItemZukan::getWeight(int)
 {
 	/*
 	.loc_0x0:
@@ -12989,7 +12975,7 @@ void Morimura::TItemZukan::getWeight((int))
  * Address:	8037B1D0
  * Size:	000098
  */
-void Morimura::TItemZukan::isNewSupply((int, bool))
+void Morimura::TItemZukan::isNewSupply(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -13176,7 +13162,7 @@ void Morimura::TItemZukan::openConfirmWindow(void)
  * Address:	8037B3AC
  * Size:	000054
  */
-void Morimura::TDItemScene::__ct(void)
+Morimura::TDItemScene::TDItemScene(void)
 {
 	/*
 	.loc_0x0:
@@ -13209,7 +13195,7 @@ void Morimura::TDItemScene::__ct(void)
  * Address:	8037B400
  * Size:	0001C8
  */
-void Morimura::TDItemScene::doCreateObj((JKRArchive*))
+void Morimura::TDItemScene::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -13339,7 +13325,7 @@ void Morimura::TDItemScene::doCreateObj((JKRArchive*))
  * Address:	8037B5C8
  * Size:	000034
  */
-void Morimura::TDItemScene::doStart((Screen::StartSceneArg*))
+void Morimura::TDItemScene::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -13388,7 +13374,7 @@ void Morimura::TDItemScene::isAppearConfirmWindow(void)
  * Address:	8037B624
  * Size:	000080
  */
-void Morimura::TCallbackScrollMsg::__ct(void)
+Morimura::TCallbackScrollMsg::TCallbackScrollMsg(void)
 {
 	/*
 	.loc_0x0:
@@ -13566,7 +13552,7 @@ void Morimura::TCallbackScrollMsg::reset(void)
  * Address:	8037B814
  * Size:	000034
  */
-void Morimura::TCallbackScrollMsg::scroll((float))
+void Morimura::TCallbackScrollMsg::scroll(float)
 {
 	/*
 	.loc_0x0:
@@ -13591,7 +13577,7 @@ void Morimura::TCallbackScrollMsg::scroll((float))
  * Address:	8037B848
  * Size:	000048
  */
-void Morimura::TCallbackScrollMsg::draw((Graphics&, J2DGrafContext&))
+void Morimura::TCallbackScrollMsg::draw(Graphics&, J2DGrafContext&)
 {
 	/*
 	.loc_0x0:
@@ -13644,7 +13630,7 @@ void Morimura::TCallbackScrollMsg::getPosRate(void)
  * Address:	8037B8B4
  * Size:	000080
  */
-void Morimura::TZukanWindow::__ct((JKRArchive*, int))
+Morimura::TZukanWindow::TZukanWindow(JKRArchive*, int)
 {
 	/*
 	.loc_0x0:
@@ -13688,7 +13674,7 @@ void Morimura::TZukanWindow::__ct((JKRArchive*, int))
  * Address:	8037B934
  * Size:	000538
  */
-void Morimura::TZukanWindow::create((char const*, unsigned long))
+void Morimura::TZukanWindow::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -14332,7 +14318,7 @@ void Morimura::TZukanWindow::update(void)
  * Address:	8037C1FC
  * Size:	00002C
  */
-void Morimura::TZukanWindow::draw((Graphics&, J2DPerspGraph*))
+void Morimura::TZukanWindow::draw(Graphics&, J2DPerspGraph*)
 {
 	/*
 	.loc_0x0:
@@ -14459,7 +14445,7 @@ void Morimura::TZukanWindow::windowClose(void)
  * Address:	8037C348
  * Size:	000038
  */
-void Morimura::TZukanWindow::msgScroll((float))
+void Morimura::TZukanWindow::msgScroll(float)
 {
 	/*
 	.loc_0x0:
@@ -14509,7 +14495,7 @@ void Morimura::TZukanWindow::getPosRate(void)
  * Address:	8037C3B0
  * Size:	00006C
  */
-void Morimura::TZukanWindow::setWindowColor((J2DGXColorS10&))
+void Morimura::TZukanWindow::setWindowColor(J2DGXColorS10&)
 {
 	/*
 	.loc_0x0:
@@ -14548,7 +14534,7 @@ void Morimura::TZukanWindow::setWindowColor((J2DGXColorS10&))
  * Address:	8037C41C
  * Size:	0000F0
  */
-void Morimura::TZukanWindow::setIconColor((J2DGXColorS10&, J2DGXColorS10&))
+void Morimura::TZukanWindow::setIconColor(J2DGXColorS10&, J2DGXColorS10&)
 {
 	/*
 	.loc_0x0:
@@ -14620,7 +14606,7 @@ void Morimura::TZukanWindow::setIconColor((J2DGXColorS10&, J2DGXColorS10&))
  * Address:	8037C50C
  * Size:	00008C
  */
-void Morimura::TZukanWindow::onIcon((int))
+void Morimura::TZukanWindow::onIcon(int)
 {
 	/*
 	.loc_0x0:
@@ -14671,7 +14657,7 @@ void Morimura::TZukanWindow::onIcon((int))
  * Address:	8037C598
  * Size:	0000D4
  */
-void Morimura::TZukanWindow::moveIcon((float))
+void Morimura::TZukanWindow::moveIcon(float)
 {
 	/*
 	.loc_0x0:
@@ -14746,7 +14732,7 @@ void Morimura::TZukanWindow::moveIcon((float))
  * Address:	8037C66C
  * Size:	000040
  */
-void Morimura::TZukanWindow::changeIconTexture((int, ResTIMG*))
+void Morimura::TZukanWindow::changeIconTexture(int, ResTIMG*)
 {
 	/*
 	.loc_0x0:
@@ -14774,7 +14760,7 @@ void Morimura::TZukanWindow::changeIconTexture((int, ResTIMG*))
  * Address:	8037C6AC
  * Size:	000090
  */
-void Morimura::TCallbackScrollMsg::__dt(void)
+Morimura::TCallbackScrollMsg::~TCallbackScrollMsg(void)
 {
 	/*
 	.loc_0x0:
@@ -14826,7 +14812,7 @@ void Morimura::TCallbackScrollMsg::__dt(void)
  * Address:	8037C73C
  * Size:	00000C
  */
-void Morimura::TDItemScene::getResName( const
+void Morimura::TDItemScene::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -14841,10 +14827,7 @@ void Morimura::TDItemScene::getResName( const
  * Address:	8037C748
  * Size:	000008
  */
-u32  Morimura::TDItemScene::getSceneType(void)
-{
-	return 0x2735;
-}
+u32 Morimura::TDItemScene::getSceneType(void) { return 0x2735; }
 
 /*
  * --INFO--
@@ -14964,25 +14947,21 @@ void Morimura::TZukanBase::doUpdateFadeout(void)
  * Address:	8037C7E4
  * Size:	000004
  */
-void Morimura::TScrollList::changeTextTevBlock( (int))
-{
-}
+void Morimura::TScrollList::changeTextTevBlock(int) { }
 
 /*
  * --INFO--
  * Address:	8037C7E8
  * Size:	000004
  */
-void Morimura::TScrollList::setPaneCharacter( (int))
-{
-}
+void Morimura::TScrollList::setPaneCharacter(int) { }
 
 /*
  * --INFO--
  * Address:	8037C7EC
  * Size:	00000C
  */
-void Morimura::TDEnemyScene::getResName( const
+void Morimura::TDEnemyScene::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -14997,10 +14976,7 @@ void Morimura::TDEnemyScene::getResName( const
  * Address:	8037C7F8
  * Size:	000008
  */
-u32  Morimura::TDEnemyScene::getSceneType(void)
-{
-	return 0x2734;
-}
+u32 Morimura::TDEnemyScene::getSceneType(void) { return 0x2734; }
 
 /*
  * --INFO--
@@ -15081,10 +15057,7 @@ void Morimura::TEnemyZukan::getDispDataZukan(void)
  * Address:	8037C858
  * Size:	000008
  */
-u32  Morimura::TZukanBase::getCategoryColorId( (int))
-{
-	return 0x0;
-}
+u32 Morimura::TZukanBase::getCategoryColorId(int) { return 0x0; }
 
 /*
  * --INFO--
@@ -15180,7 +15153,7 @@ void __sinit_zukan2D_cpp(void)
  * Address:	8037C994
  * Size:	000008
  */
-void @24@Morimura::TZukanBase::__dt(void)
+@24 @Morimura::TZukanBase::~TZukanBase(void)
 {
 	/*
 	.loc_0x0:
@@ -15194,7 +15167,7 @@ void @24@Morimura::TZukanBase::__dt(void)
  * Address:	8037C99C
  * Size:	000008
  */
-void @24@Morimura::TEnemyZukan::__dt(void)
+@24 @Morimura::TEnemyZukan::~TEnemyZukan(void)
 {
 	/*
 	.loc_0x0:
@@ -15208,7 +15181,7 @@ void @24@Morimura::TEnemyZukan::__dt(void)
  * Address:	8037C9A4
  * Size:	000008
  */
-void @24@Morimura::TItemZukan::__dt(void)
+@24 @Morimura::TItemZukan::~TItemZukan(void)
 {
 	/*
 	.loc_0x0:

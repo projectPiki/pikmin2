@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00004C
  */
-void Game::BigTreasure::AttackShadowNode::__ct((int))
+BigTreasure::AttackShadowNode::AttackShadowNode(int)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::BigTreasure::AttackShadowNode::__ct((int))
  * Address:	802F39A8
  * Size:	000108
  */
-void Game::BigTreasure::AttackShadowNode::makeShadowSRT(void)
+void BigTreasure::AttackShadowNode::makeShadowSRT(void)
 {
 	/*
 	.loc_0x0:
@@ -103,7 +95,7 @@ void Game::BigTreasure::AttackShadowNode::makeShadowSRT(void)
  * Address:	........
  * Size:	00007C
  */
-void Game::BigTreasure::BigTreasureFireAttack::__ct(
+BigTreasure::BigTreasureFireAttack::BigTreasureFireAttack(
     (Game::BigTreasure::Obj*, Game::BigTreasure::BigTreasureAttackParameter*))
 {
 	// UNUSED FUNCTION
@@ -114,7 +106,7 @@ void Game::BigTreasure::BigTreasureFireAttack::__ct(
  * Address:	........
  * Size:	000024
  */
-void Game::BigTreasure::BigTreasureFireAttack::init(void)
+void BigTreasure::BigTreasureFireAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -124,8 +116,8 @@ void Game::BigTreasure::BigTreasureFireAttack::init(void)
  * Address:	........
  * Size:	00004C
  */
-void start__Q34Game11BigTreasure21BigTreasureFireAttackFR10Vector3<float>
-R10Vector3<float>(void)
+void start__Q34Game11BigTreasure21BigTreasureFireAttackFR10Vector3f
+R10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +127,7 @@ R10Vector3<float>(void)
  * Address:	802F3AB0
  * Size:	000374
  */
-void Game::BigTreasure::BigTreasureFireAttack::update(void)
+void BigTreasure::BigTreasureFireAttack::update(void)
 {
 	/*
 	.loc_0x0:
@@ -384,7 +376,7 @@ void Game::BigTreasure::BigTreasureFireAttack::update(void)
  * Address:	........
  * Size:	000004
  */
-void Game::BigTreasure::BigTreasureFireAttack::finish(void)
+void BigTreasure::BigTreasureFireAttack::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -394,7 +386,7 @@ void Game::BigTreasure::BigTreasureFireAttack::finish(void)
  * Address:	........
  * Size:	00007C
  */
-void Game::BigTreasure::BigTreasureGasAttack::__ct(
+BigTreasure::BigTreasureGasAttack::BigTreasureGasAttack(
     (Game::BigTreasure::Obj*, Game::BigTreasure::BigTreasureAttackParameter*))
 {
 	// UNUSED FUNCTION
@@ -405,27 +397,31 @@ void Game::BigTreasure::BigTreasureGasAttack::__ct(
  * Address:	........
  * Size:	000024
  */
-void Game::BigTreasure::BigTreasureGasAttack::init(void)
+void BigTreasure::BigTreasureGasAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000CC
  */
-void start__Q34Game11BigTreasure20BigTreasureGasAttackFR10Vector3<float> f(void)
+void start__Q34Game11BigTreasure20BigTreasureGasAttackFR10Vector3f f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F3E24
  * Size:	000364
  */
-void Game::BigTreasure::BigTreasureGasAttack::update(void)
+void BigTreasure::BigTreasureGasAttack::update(void)
 {
 	/*
 	.loc_0x0:
@@ -672,28 +668,32 @@ void Game::BigTreasure::BigTreasureGasAttack::update(void)
  * Address:	........
  * Size:	0000B0
  */
-void Game::BigTreasure::BigTreasureWaterAttack::__ct(
+BigTreasure::BigTreasureWaterAttack::BigTreasureWaterAttack(
     (Game::BigTreasure::Obj*, Game::BigTreasure::BigTreasureAttackParameter*))
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChasePos4::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000080
+	 */
+	TChasePos4::~TChasePos4(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000020
  */
-void Game::BigTreasure::BigTreasureWaterAttack::init(void)
+void BigTreasure::BigTreasureWaterAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -703,8 +703,8 @@ void Game::BigTreasure::BigTreasureWaterAttack::init(void)
  * Address:	........
  * Size:	000064
  */
-void start__Q34Game11BigTreasure22BigTreasureWaterAttackFR10Vector3<float>
-R10Vector3<float>(void)
+void start__Q34Game11BigTreasure22BigTreasureWaterAttackFR10Vector3f
+R10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -714,7 +714,7 @@ R10Vector3<float>(void)
  * Address:	802F4188
  * Size:	000324
  */
-void Game::BigTreasure::BigTreasureWaterAttack::update(void)
+void BigTreasure::BigTreasureWaterAttack::update(void)
 {
 	/*
 	.loc_0x0:
@@ -939,7 +939,7 @@ void Game::BigTreasure::BigTreasureWaterAttack::update(void)
  * Address:	........
  * Size:	0000D0
  */
-void Game::BigTreasure::BigTreasureWaterAttack::finish(void)
+void BigTreasure::BigTreasureWaterAttack::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -949,77 +949,81 @@ void Game::BigTreasure::BigTreasureWaterAttack::finish(void)
  * Address:	........
  * Size:	000184
  */
-void Game::BigTreasure::BigTreasureElecAttack::__ct(
+BigTreasure::BigTreasureElecAttack::BigTreasureElecAttack(
     (Game::BigTreasure::Obj*, Game::BigTreasure::BigTreasureAttackParameter*))
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChasePosPosLocalZScale3::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	802F44AC
- * Size:	000084
- */
-void efx::TChasePosPosLocalZScale::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x67C4
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x58
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x264864
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000080
+	 */
+	TChasePosPosLocalZScale3::~TChasePosPosLocalZScale3(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x2D045C
+	/*
+	 * --INFO--
+	 * Address:	802F44AC
+	 * Size:	000084
+	 */
+	TChasePosPosLocalZScale::~TChasePosPosLocalZScale(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x68
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x67C4
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x58
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x264864
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x58:
+		  extsh.    r0, r31
+		  ble-      .loc_0x68
+		  mr        r3, r30
+		  bl        -0x2D045C
+
+		.loc_0x68:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-void Game::BigTreasure::BigTreasureElecAttack::init(void)
+void BigTreasure::BigTreasureElecAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1029,8 +1033,8 @@ void Game::BigTreasure::BigTreasureElecAttack::init(void)
  * Address:	........
  * Size:	000080
  */
-void start__Q34Game11BigTreasure21BigTreasureElecAttackFR10Vector3<float>
-    R10Vector3<float> b(void)
+void start__Q34Game11BigTreasure21BigTreasureElecAttackFR10Vector3f R10Vector3f
+b(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1040,7 +1044,7 @@ void start__Q34Game11BigTreasure21BigTreasureElecAttackFR10Vector3<float>
  * Address:	........
  * Size:	000088
  */
-void Game::BigTreasure::BigTreasureElecAttack::startInteract(
+void BigTreasure::BigTreasureElecAttack::startInteract(
     (Game::BigTreasure::BigTreasureElecAttack*))
 {
 	// UNUSED FUNCTION
@@ -1051,7 +1055,7 @@ void Game::BigTreasure::BigTreasureElecAttack::startInteract(
  * Address:	802F4530
  * Size:	000738
  */
-void Game::BigTreasure::BigTreasureElecAttack::update(void)
+void BigTreasure::BigTreasureElecAttack::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1583,7 +1587,7 @@ void Game::BigTreasure::BigTreasureElecAttack::update(void)
  * Address:	........
  * Size:	0000E8
  */
-void Game::BigTreasure::BigTreasureElecAttack::finish(void)
+void BigTreasure::BigTreasureElecAttack::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1593,7 +1597,8 @@ void Game::BigTreasure::BigTreasureElecAttack::finish(void)
  * Address:	802F4C68
  * Size:	0007B4
  */
-void Game::BigTreasure::BigTreasureAttackMgr::__ct((Game::BigTreasure::Obj*))
+BigTreasure::BigTreasureAttackMgr::BigTreasureAttackMgr(
+    (Game::BigTreasure::Obj*))
 {
 	/*
 	.loc_0x0:
@@ -2155,22 +2160,26 @@ void Game::BigTreasure::BigTreasureAttackMgr::__ct((Game::BigTreasure::Obj*))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChaseMtx6::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000080
+	 */
+	TChaseMtx6::~TChaseMtx6(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	802F541C
  * Size:	0001C8
  */
-void Game::BigTreasure::BigTreasureAttackMgr::init(void)
+void BigTreasure::BigTreasureAttackMgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -2316,7 +2325,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::init(void)
  * Address:	802F55E4
  * Size:	0000E8
  */
-void Game::BigTreasure::BigTreasureAttackMgr::update(void)
+void BigTreasure::BigTreasureAttackMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2392,7 +2401,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::update(void)
  * Address:	........
  * Size:	00008C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::setFireAttackParameter(void)
+void BigTreasure::BigTreasureAttackMgr::setFireAttackParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2402,7 +2411,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::setFireAttackParameter(void)
  * Address:	802F56CC
  * Size:	000130
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startFireAttack(void)
+void BigTreasure::BigTreasureAttackMgr::startFireAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -2500,7 +2509,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startFireAttack(void)
  * Address:	802F57FC
  * Size:	00009C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startNewFireList(void)
+void BigTreasure::BigTreasureAttackMgr::startNewFireList(void)
 {
 	/*
 	.loc_0x0:
@@ -2553,7 +2562,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startNewFireList(void)
  * Address:	802F5898
  * Size:	00018C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateFireAttack(void)
+void BigTreasure::BigTreasureAttackMgr::updateFireAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -2680,7 +2689,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateFireAttack(void)
  * Address:	........
  * Size:	000030
  */
-void Game::BigTreasure::BigTreasureAttackMgr::finishFireAttack(void)
+void BigTreasure::BigTreasureAttackMgr::finishFireAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2690,7 +2699,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::finishFireAttack(void)
  * Address:	802F5A24
  * Size:	000070
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateFireEmitPosition(void)
+void BigTreasure::BigTreasureAttackMgr::updateFireEmitPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -2730,7 +2739,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateFireEmitPosition(void)
  * Address:	802F5A94
  * Size:	0000A0
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateFireSePosition(
+void BigTreasure::BigTreasureAttackMgr::updateFireSePosition(
     (Game::BigTreasure::BigTreasureFireAttack*, int))
 {
 	/*
@@ -2783,7 +2792,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateFireSePosition(
  * Address:	........
  * Size:	0001A4
  */
-void Game::BigTreasure::BigTreasureAttackMgr::setGasAttackParameter(void)
+void BigTreasure::BigTreasureAttackMgr::setGasAttackParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2793,7 +2802,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::setGasAttackParameter(void)
  * Address:	802F5B34
  * Size:	0002C4
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startGasAttack(void)
+void BigTreasure::BigTreasureAttackMgr::startGasAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -3010,7 +3019,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startGasAttack(void)
  * Address:	802F5DF8
  * Size:	00014C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startNewGasList(void)
+void BigTreasure::BigTreasureAttackMgr::startNewGasList(void)
 {
 	/*
 	.loc_0x0:
@@ -3117,7 +3126,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startNewGasList(void)
  * Address:	802F5F44
  * Size:	000344
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateGasAttack(void)
+void BigTreasure::BigTreasureAttackMgr::updateGasAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -3380,7 +3389,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateGasAttack(void)
  * Address:	........
  * Size:	000058
  */
-void Game::BigTreasure::BigTreasureAttackMgr::finishGasAttack(void)
+void BigTreasure::BigTreasureAttackMgr::finishGasAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3390,7 +3399,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::finishGasAttack(void)
  * Address:	802F6288
  * Size:	000058
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateGasEmitPosition(void)
+void BigTreasure::BigTreasureAttackMgr::updateGasEmitPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -3424,7 +3433,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateGasEmitPosition(void)
  * Address:	802F62E0
  * Size:	0000A0
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateGasSePosition(
+void BigTreasure::BigTreasureAttackMgr::updateGasSePosition(
     (Game::BigTreasure::BigTreasureGasAttack*, int))
 {
 	/*
@@ -3477,7 +3486,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateGasSePosition(
  * Address:	........
  * Size:	0000DC
  */
-void Game::BigTreasure::BigTreasureAttackMgr::setWaterAttackParameter(void)
+void BigTreasure::BigTreasureAttackMgr::setWaterAttackParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3487,7 +3496,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::setWaterAttackParameter(void)
  * Address:	802F6380
  * Size:	00010C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startWaterAttack(void)
+void BigTreasure::BigTreasureAttackMgr::startWaterAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -3576,7 +3585,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startWaterAttack(void)
  * Address:	802F648C
  * Size:	00047C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startNewWaterList(void)
+void BigTreasure::BigTreasureAttackMgr::startNewWaterList(void)
 {
 	/*
 	.loc_0x0:
@@ -3899,7 +3908,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startNewWaterList(void)
  * Address:	802F6908
  * Size:	000164
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateWaterAttack(void)
+void BigTreasure::BigTreasureAttackMgr::updateWaterAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -4010,7 +4019,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateWaterAttack(void)
  * Address:	........
  * Size:	000004
  */
-void Game::BigTreasure::BigTreasureAttackMgr::finishWaterAttack(void)
+void BigTreasure::BigTreasureAttackMgr::finishWaterAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4020,7 +4029,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::finishWaterAttack(void)
  * Address:	802F6A6C
  * Size:	000058
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateWaterEmitPosition(void)
+void BigTreasure::BigTreasureAttackMgr::updateWaterEmitPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -4054,7 +4063,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateWaterEmitPosition(void)
  * Address:	802F6AC4
  * Size:	0002D8
  */
-void Game::BigTreasure::BigTreasureAttackMgr::getWaterTargetCreature(void)
+void BigTreasure::BigTreasureAttackMgr::getWaterTargetCreature(void)
 {
 	/*
 	.loc_0x0:
@@ -4272,7 +4281,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::getWaterTargetCreature(void)
  * Address:	802F6D9C
  * Size:	0003FC
  */
-void Game::BigTreasure::BigTreasureAttackMgr::setElecAttackParameter(void)
+void BigTreasure::BigTreasureAttackMgr::setElecAttackParameter(void)
 {
 	/*
 	.loc_0x0:
@@ -4563,7 +4572,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::setElecAttackParameter(void)
  * Address:	802F7198
  * Size:	000494
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startElecAttack(void)
+void BigTreasure::BigTreasureAttackMgr::startElecAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -4892,7 +4901,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startElecAttack(void)
  * Address:	........
  * Size:	000184
  */
-void Game::BigTreasure::BigTreasureAttackMgr::startNewElecList(void)
+void BigTreasure::BigTreasureAttackMgr::startNewElecList(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4902,7 +4911,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::startNewElecList(void)
  * Address:	802F762C
  * Size:	000288
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateElecAttack(void)
+void BigTreasure::BigTreasureAttackMgr::updateElecAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -5102,7 +5111,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateElecAttack(void)
  * Address:	........
  * Size:	000190
  */
-void Game::BigTreasure::BigTreasureAttackMgr::finishElecAttack(void)
+void BigTreasure::BigTreasureAttackMgr::finishElecAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5112,7 +5121,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::finishElecAttack(void)
  * Address:	802F78B4
  * Size:	0001E4
  */
-void Game::BigTreasure::BigTreasureAttackMgr::finishAttack(void)
+void BigTreasure::BigTreasureAttackMgr::finishAttack(void)
 {
 	/*
 	.loc_0x0:
@@ -5257,7 +5266,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::finishAttack(void)
  * Address:	802F7A98
  * Size:	000080
  */
-void Game::BigTreasure::BigTreasureAttackMgr::addAttackShadow(
+void BigTreasure::BigTreasureAttackMgr::addAttackShadow(
     (Game::BigTreasure::BigTreasureWaterAttack*))
 {
 	/*
@@ -5308,7 +5317,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::addAttackShadow(
  * Address:	802F7B18
  * Size:	000080
  */
-void Game::BigTreasure::BigTreasureAttackMgr::addAttackShadow(
+void BigTreasure::BigTreasureAttackMgr::addAttackShadow(
     (Game::BigTreasure::BigTreasureElecAttack*))
 {
 	/*
@@ -5359,7 +5368,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::addAttackShadow(
  * Address:	802F7B98
  * Size:	00006C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::delAttackShadow(
+void BigTreasure::BigTreasureAttackMgr::delAttackShadow(
     (Game::BigTreasure::BigTreasureWaterAttack*))
 {
 	/*
@@ -5403,7 +5412,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::delAttackShadow(
  * Address:	802F7C04
  * Size:	00006C
  */
-void Game::BigTreasure::BigTreasureAttackMgr::delAttackShadow(
+void BigTreasure::BigTreasureAttackMgr::delAttackShadow(
     (Game::BigTreasure::BigTreasureElecAttack*))
 {
 	/*
@@ -5447,7 +5456,7 @@ void Game::BigTreasure::BigTreasureAttackMgr::delAttackShadow(
  * Address:	802F7C70
  * Size:	000044
  */
-void Game::BigTreasure::BigTreasureAttackMgr::updateAttackShadow(void)
+void BigTreasure::BigTreasureAttackMgr::updateAttackShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -5475,405 +5484,410 @@ void Game::BigTreasure::BigTreasureAttackMgr::updateAttackShadow(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F7CB4
- * Size:	00009C
- */
-void efx::TOootaElecAttack1::__dt(void)
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x57A0
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x6940
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x268084
+	 * --INFO--
+	 * Address:	802F7CB4
+	 * Size:	00009C
+	 */
+	TOootaElecAttack1::~TOootaElecAttack1(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r3, r3, 0x57A0
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x6940
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x268084
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2D3C7C
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x2D3C7C
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F7D50
- * Size:	00009C
- */
-void efx::TOootaElecLeg::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x57EC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x67C4
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x268120
+	 * --INFO--
+	 * Address:	802F7D50
+	 * Size:	00009C
+	 */
+	TOootaElecLeg::~TOootaElecLeg(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r3, r3, 0x57EC
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x67C4
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x268120
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2D3D18
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x2D3D18
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F7DEC
- * Size:	00009C
- */
-void efx::TOootaElecparts::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x58BC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x6940
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x2681BC
+	 * --INFO--
+	 * Address:	802F7DEC
+	 * Size:	00009C
+	 */
+	TOootaElecparts::~TOootaElecparts(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r3, r3, 0x58BC
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x6940
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x2681BC
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2D3DB4
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x2D3DB4
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F7E88
- * Size:	000060
- */
-void Game::BigTreasure::BigTreasureElecAttack::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x5924
-	  stw       r0, 0x0(r30)
-	  bl        0x1196D0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2D3E14
+	 * --INFO--
+	 * Address:	802F7E88
+	 * Size:	000060
+	 */
+	BigTreasure::BigTreasureElecAttack::~BigTreasureElecAttack(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x44
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x5924
+		  stw       r0, 0x0(r30)
+		  bl        0x1196D0
+		  extsh.    r0, r31
+		  ble-      .loc_0x44
+		  mr        r3, r30
+		  bl        -0x2D3E14
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x44:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F7EE8
- * Size:	000060
- */
-void Game::BigTreasure::BigTreasureWaterAttack::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x599C
-	  stw       r0, 0x0(r30)
-	  bl        0x119670
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2D3E74
+	 * --INFO--
+	 * Address:	802F7EE8
+	 * Size:	000060
+	 */
+	BigTreasure::BigTreasureWaterAttack::~BigTreasureWaterAttack(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x44
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x599C
+		  stw       r0, 0x0(r30)
+		  bl        0x119670
+		  extsh.    r0, r31
+		  ble-      .loc_0x44
+		  mr        r3, r30
+		  bl        -0x2D3E74
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x44:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F7F48
- * Size:	000060
- */
-void Game::BigTreasure::BigTreasureGasAttack::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x59AC
-	  stw       r0, 0x0(r30)
-	  bl        0x119610
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2D3ED4
+	 * --INFO--
+	 * Address:	802F7F48
+	 * Size:	000060
+	 */
+	BigTreasure::BigTreasureGasAttack::~BigTreasureGasAttack(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x44
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x59AC
+		  stw       r0, 0x0(r30)
+		  bl        0x119610
+		  extsh.    r0, r31
+		  ble-      .loc_0x44
+		  mr        r3, r30
+		  bl        -0x2D3ED4
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x44:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F7FA8
- * Size:	000060
- */
-void Game::BigTreasure::BigTreasureFireAttack::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x59BC
-	  stw       r0, 0x0(r30)
-	  bl        0x1195B0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2D3F34
+	 * --INFO--
+	 * Address:	802F7FA8
+	 * Size:	000060
+	 */
+	BigTreasure::BigTreasureFireAttack::~BigTreasureFireAttack(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x44
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x59BC
+		  stw       r0, 0x0(r30)
+		  bl        0x1195B0
+		  extsh.    r0, r31
+		  ble-      .loc_0x44
+		  mr        r3, r30
+		  bl        -0x2D3F34
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x44:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F8008
- * Size:	000070
- */
-void Game::BigTreasure::AttackShadowNode::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x59CC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x1A34
-	  stw       r0, 0x0(r30)
-	  bl        0x119540
+	 * --INFO--
+	 * Address:	802F8008
+	 * Size:	000070
+	 */
+	BigTreasure::AttackShadowNode::~AttackShadowNode(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x54
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x59CC
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x44
+		  lis       r5, 0x804C
+		  li        r4, 0
+		  addi      r0, r5, 0x1A34
+		  stw       r0, 0x0(r30)
+		  bl        0x119540
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x2D3FA4
+		.loc_0x44:
+		  extsh.    r0, r31
+		  ble-      .loc_0x54
+		  mr        r3, r30
+		  bl        -0x2D3FA4
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x54:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F8078
- * Size:	000008
- */
-void @4 @efx::TOootaElecparts::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x290
-	*/
-}
+	 * --INFO--
+	 * Address:	802F8078
+	 * Size:	000008
+	 */
+	@4 @efx::TOootaElecparts::~TOootaElecparts(void)
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x290
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F8080
- * Size:	000008
- */
-void @4 @efx::TOootaElecLeg::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x334
-	*/
-}
+	 * --INFO--
+	 * Address:	802F8080
+	 * Size:	000008
+	 */
+	@4 @efx::TOootaElecLeg::~TOootaElecLeg(void)
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x334
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802F8088
- * Size:	000008
- */
-void @4 @efx::TOootaElecAttack1::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x3D8
-	*/
-}
+	 * --INFO--
+	 * Address:	802F8088
+	 * Size:	000008
+	 */
+	@4 @efx::TOootaElecAttack1::~TOootaElecAttack1(void)
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x3D8
+		*/
+	}
+} // namespace efx
+
+} // namespace Game

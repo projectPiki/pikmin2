@@ -233,7 +233,7 @@ void JADUtility::Prm<unsigned char>::~Prm()
  * Address:	80339024
  * Size:	000290
  */
-void PSAutoBgm::Conductor::~Conductor()
+PSAutoBgm::Conductor::~Conductor()
 {
 	/*
 	.loc_0x0:
@@ -649,7 +649,7 @@ void PSAutoBgm::Conductor::createTables(JASTrack*)
  * Address:	803394F8
  * Size:	0002A4
  */
-void PSAutoBgm::Track::Track()
+PSAutoBgm::Track::Track()
 {
 	/*
 	.loc_0x0:
@@ -857,7 +857,7 @@ void PSAutoBgm::Track::afterGetFromFree()
  * Address:	803397D8
  * Size:	0003DC
  */
-void PSAutoBgm::Track::~Track()
+PSAutoBgm::Track::~Track()
 {
 	/*
 	.loc_0x0:
@@ -1413,7 +1413,7 @@ void PSAutoBgm::Module::afterGetFromFree()
  * Address:	80339E5C
  * Size:	000554
  */
-void PSAutoBgm::Module::Module()
+PSAutoBgm::Module::Module()
 {
 	/*
 	.loc_0x0:
@@ -1770,7 +1770,7 @@ void PSAutoBgm::Module::Module()
  * Address:	8033A3B0
  * Size:	00072C
  */
-void PSAutoBgm::Module::~Module()
+PSAutoBgm::Module::~Module()
 {
 	/*
 	.loc_0x0:
@@ -2968,7 +2968,7 @@ void PSAutoBgm::CycleBase::checkCloser(JASTrack*)
  * Address:	8033B28C
  * Size:	000184
  */
-void PSAutoBgm::OnCycle::OnCycle(PSAutoBgm::Module*)
+PSAutoBgm::OnCycle::OnCycle(PSAutoBgm::Module*)
 {
 	/*
 	.loc_0x0:
@@ -3680,7 +3680,7 @@ void PSAutoBgm::OnCycle::avoidCheck()
  * Address:	8033BB54
  * Size:	0000B0
  */
-void PSAutoBgm::OffCycle::OffCycle(PSAutoBgm::Module*)
+PSAutoBgm::OffCycle::OffCycle(PSAutoBgm::Module*)
 {
 	/*
 	.loc_0x0:
@@ -3736,10 +3736,8 @@ void PSAutoBgm::OffCycle::OffCycle(PSAutoBgm::Module*)
  * Address:	8033BC04
  * Size:	00015C
  */
-void PSAutoBgm::AutoBgm::AutoBgm(const char*, const char*,
-                                 const JAInter::SoundInfo&,
-                                 JADUtility::AccessMode,
-                                 PSSystem::DirectorMgrBase*)
+PSAutoBgm::AutoBgm::AutoBgm(const char*, const char*, const JAInter::SoundInfo&,
+                            JADUtility::AccessMode, PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:
@@ -3842,7 +3840,7 @@ void PSAutoBgm::AutoBgm::AutoBgm(const char*, const char*,
  * Address:	8033BD60
  * Size:	000078
  */
-void PSAutoBgm::MeloArrMgr::~MeloArrMgr()
+PSAutoBgm::MeloArrMgr::~MeloArrMgr()
 {
 	/*
 	.loc_0x0:
@@ -3888,7 +3886,7 @@ void PSAutoBgm::MeloArrMgr::~MeloArrMgr()
  * Address:	8033BDD8
  * Size:	000154
  */
-void PSAutoBgm::ConductorMgr::~ConductorMgr()
+PSAutoBgm::ConductorMgr::~ConductorMgr()
 {
 	/*
 	.loc_0x0:
@@ -4685,7 +4683,7 @@ void JADUtility::PrmSetRc<PSAutoBgm::Track>::~PrmSetRc()
  * Address:	8033C6F8
  * Size:	0000C4
  */
-void JADUtility::StrEditBox::~StrEditBox()
+JADUtility::StrEditBox::~StrEditBox()
 {
 	/*
 	.loc_0x0:
@@ -5663,7 +5661,7 @@ void PSAutoBgm::PrmLink<unsigned short>::PrmLink()
  * Address:	8033D120
  * Size:	0001C4
  */
-void PSAutoBgm::AutoBgm::~AutoBgm()
+PSAutoBgm::AutoBgm::~AutoBgm()
 {
 	/*
 	.loc_0x0:
@@ -5995,12 +5993,14 @@ void PSAutoBgm::Conductor::getEraseLink()
 	*/
 }
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	8033D46C
  * Size:	000004
  */
-void PSSystem::SeqTrackRoot::onBeatTop() { }
+void SeqTrackRoot::onBeatTop() { }
 
 /*
  * --INFO--
@@ -6219,6 +6219,8 @@ void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::@600
 	*/
 }
 
+} // namespace PSSystem
+
 /*
  * --INFO--
  * Address:	8033D710
@@ -6241,7 +6243,7 @@ void JADUtility::DataMgrNode::@600 @28 @init()
  * Address:	8033D724
  * Size:	000014
  */
-void PSAutoBgm::ConductorMgr::@600 @28 @__dt()
+PSAutoBgm::ConductorMgr::@600 @28 @~ConductorMgr()
 {
 	/*
 	.loc_0x0:

@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-void JPAResourceLoader::JPAResourceLoader(const unsigned char*,
-                                          JPAResourceManager*, unsigned short)
+JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*,
+                                     unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -16,8 +16,7 @@ void JPAResourceLoader::JPAResourceLoader(const unsigned char*,
  * Address:	800980D8
  * Size:	000040
  */
-void JPAResourceLoader::JPAResourceLoader(const unsigned char*,
-                                          JPAResourceManager*)
+JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*)
 {
 	/*
 	.loc_0x0:

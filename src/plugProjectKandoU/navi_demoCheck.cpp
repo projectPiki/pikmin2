@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8021F3D0
  * Size:	001790
  */
-void Game::Navi::demoCheck(void)
+void Navi::demoCheck(void)
 {
 	/*
 	.loc_0x0:
@@ -1698,12 +1690,14 @@ void Game::Navi::demoCheck(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80220B60
  * Size:	000058
  */
-void Vector3<float>::distance(Vector3<float>&)
+void Vector3f::distance(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1947,12 +1941,14 @@ void first__Q24Game30EnemyIterator<Game::Pom::Obj> Fv(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80220E04
  * Size:	0001C4
  */
-void Game::Navi::checkDemoNaviAndPiki((Sys::Sphere&))
+void Navi::checkDemoNaviAndPiki(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2089,6 +2085,8 @@ void Game::Navi::checkDemoNaviAndPiki((Sys::Sphere&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

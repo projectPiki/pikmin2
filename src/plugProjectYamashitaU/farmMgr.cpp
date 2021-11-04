@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80124018
  * Size:	0000C0
  */
-void Game::Farm::FarmMgr::FarmMgr(unsigned long)
+Farm::FarmMgr::FarmMgr(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +67,7 @@ void Game::Farm::FarmMgr::FarmMgr(unsigned long)
  * Address:	801240D8
  * Size:	00002C
  */
-void Game::Farm::FarmMgr::setupSound()
+void Farm::FarmMgr::setupSound()
 {
 	/*
 	.loc_0x0:
@@ -96,7 +98,7 @@ void Game::Farm::FarmMgr::setupSound()
  * Address:	80124104
  * Size:	000124
  */
-void Game::Farm::FarmMgr::doAnimation()
+void Farm::FarmMgr::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -199,14 +201,14 @@ void Game::Farm::FarmMgr::doAnimation()
  * Address:	80124228
  * Size:	000008
  */
-u32 Game::Creature::getJAIObject() { return 0x0; }
+u32 Creature::getJAIObject() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80124230
  * Size:	000068
  */
-void Game::Farm::FarmMgr::doEntry()
+void Farm::FarmMgr::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -250,7 +252,7 @@ void Game::Farm::FarmMgr::doEntry()
  * Address:	80124298
  * Size:	00005C
  */
-void Game::Farm::FarmMgr::doSetView(int)
+void Farm::FarmMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -291,7 +293,7 @@ void Game::Farm::FarmMgr::doSetView(int)
  * Address:	801242F4
  * Size:	00004C
  */
-void Game::Farm::FarmMgr::doViewCalc()
+void Farm::FarmMgr::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -328,21 +330,21 @@ void Game::Farm::FarmMgr::doViewCalc()
  * Address:	80124340
  * Size:	000004
  */
-void Game::Farm::FarmMgr::doSimulation(float) { }
+void Farm::FarmMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80124344
  * Size:	000004
  */
-void Game::Farm::FarmMgr::doDirectDraw(Graphics&) { }
+void Farm::FarmMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80124348
  * Size:	000050
  */
-void Game::Farm::FarmMgr::doDebugDraw(Graphics&)
+void Farm::FarmMgr::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -378,7 +380,7 @@ void Game::Farm::FarmMgr::doDebugDraw(Graphics&)
  * Address:	80124398
  * Size:	000068
  */
-void Game::Farm::FarmMgr::addFarmBmd(void*)
+void Farm::FarmMgr::addFarmBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -418,7 +420,7 @@ void Game::Farm::FarmMgr::addFarmBmd(void*)
  * Address:	80124400
  * Size:	000074
  */
-void Game::Farm::FarmMgr::createNewFarm(void*)
+void Farm::FarmMgr::createNewFarm(void*)
 {
 	/*
 	.loc_0x0:
@@ -461,7 +463,7 @@ void Game::Farm::FarmMgr::createNewFarm(void*)
  * Address:	80124474
  * Size:	000120
  */
-void Game::Farm::FarmMgr::addObstacle(Game::Creature*, float, float)
+void Farm::FarmMgr::addObstacle(Game::Creature*, float, float)
 {
 	/*
 	.loc_0x0:
@@ -561,7 +563,7 @@ void Game::Farm::FarmMgr::addObstacle(Game::Creature*, float, float)
  * Address:	80124594
  * Size:	0000F0
  */
-void Game::Farm::FarmMgr::addPlant(Game::Creature*)
+void Farm::FarmMgr::addPlant(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -649,7 +651,7 @@ void Game::Farm::FarmMgr::addPlant(Game::Creature*)
  * Address:	80124684
  * Size:	00004C
  */
-void Game::Farm::FarmMgr::initAllFarmObjectNodes()
+void Farm::FarmMgr::initAllFarmObjectNodes()
 {
 	/*
 	.loc_0x0:
@@ -686,7 +688,7 @@ void Game::Farm::FarmMgr::initAllFarmObjectNodes()
  * Address:	801246D0
  * Size:	000078
  */
-void Game::Farm::FarmMgr::~FarmMgr()
+Farm::FarmMgr::~FarmMgr()
 {
 	/*
 	.loc_0x0:
@@ -725,6 +727,8 @@ void Game::Farm::FarmMgr::~FarmMgr()
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80124748
@@ -747,12 +751,14 @@ void __sinit_farmMgr_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80124770
  * Size:	000008
  */
-void Game::Farm::FarmMgr::@4 @__dt()
+Farm::FarmMgr::@4 @~FarmMgr()
 {
 	/*
 	.loc_0x0:
@@ -760,3 +766,4 @@ void Game::Farm::FarmMgr::@4 @__dt()
 	  b         -0xA4
 	*/
 }
+} // namespace Game

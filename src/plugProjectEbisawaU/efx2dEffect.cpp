@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	803BA18C
  * Size:	00007C
  */
-void efx2d::T2DCursor::create((efx2d::Arg*))
+void efx2d::T2DCursor::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -64,7 +54,7 @@ void efx2d::T2DCursor::create((efx2d::Arg*))
  * Address:	803BA208
  * Size:	00005C
  */
-void efx2d::T2DCountKira::create((efx2d::Arg*))
+void efx2d::T2DCountKira::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -103,7 +93,7 @@ void efx2d::T2DCountKira::create((efx2d::Arg*))
  * Address:	........
  * Size:	0000E8
  */
-void efx2d::T2DSensorAct_forVS::create((efx2d::Arg*))
+void efx2d::T2DSensorAct_forVS::create(efx2d::Arg*)
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +103,7 @@ void efx2d::T2DSensorAct_forVS::create((efx2d::Arg*))
  * Address:	803BA264
  * Size:	0000D8
  */
-void efx2d::T2DSensorGet_forVS::create((efx2d::Arg*))
+void efx2d::T2DSensorGet_forVS::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +175,7 @@ void efx2d::T2DSensorGet_forVS::create((efx2d::Arg*))
  * Address:	803BA33C
  * Size:	000140
  */
-void efx2d::T2DSprayset_forVS::create((efx2d::Arg*))
+void efx2d::T2DSprayset_forVS::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +273,7 @@ void efx2d::T2DSprayset_forVS::create((efx2d::Arg*))
  * Address:	803BA47C
  * Size:	0000C8
  */
-void efx2d::FileSelect::T2DFilecopied::create((efx2d::Arg*))
+void efx2d::FileSelect::T2DFilecopied::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -351,7 +341,7 @@ void efx2d::FileSelect::T2DFilecopied::create((efx2d::Arg*))
  * Address:	803BA544
  * Size:	0000C8
  */
-void efx2d::FileSelect::T2DFiledelete::create((efx2d::Arg*))
+void efx2d::FileSelect::T2DFiledelete::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -419,7 +409,7 @@ void efx2d::FileSelect::T2DFiledelete::create((efx2d::Arg*))
  * Address:	803BA60C
  * Size:	0000C8
  */
-void efx2d::FileSelect::T2DFiledeleteM::create((efx2d::Arg*))
+void efx2d::FileSelect::T2DFiledeleteM::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -487,7 +477,7 @@ void efx2d::FileSelect::T2DFiledeleteM::create((efx2d::Arg*))
  * Address:	803BA6D4
  * Size:	0001CC
  */
-void efx2d::FileSelect::T2DFilecopyBase::create((efx2d::Arg*))
+void efx2d::FileSelect::T2DFilecopyBase::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -630,7 +620,7 @@ void efx2d::FileSelect::T2DFilecopyBase::create((efx2d::Arg*))
  * Address:	803BA8A0
  * Size:	0000DC
  */
-void efx2d::WorldMap::T2DShstar2::create((efx2d::Arg*))
+void efx2d::WorldMap::T2DShstar2::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -703,7 +693,7 @@ void efx2d::WorldMap::T2DShstar2::create((efx2d::Arg*))
  * Address:	803BA97C
  * Size:	0000F4
  */
-void efx2d::WorldMap::T2DNewmap::create((efx2d::Arg*))
+void efx2d::WorldMap::T2DNewmap::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -782,7 +772,7 @@ void efx2d::WorldMap::T2DNewmap::create((efx2d::Arg*))
  * Address:	803BAA70
  * Size:	0000AC
  */
-void efx2d::WorldMap::TSimple_ArgDirScale::create((efx2d::Arg*))
+void efx2d::WorldMap::TSimple_ArgDirScale::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -841,7 +831,7 @@ void efx2d::WorldMap::TSimple_ArgDirScale::create((efx2d::Arg*))
  * Address:	803BAB1C
  * Size:	00005C
  */
-void efx2d::WorldMap::T2DOnyonKira::create((efx2d::Arg*))
+void efx2d::WorldMap::T2DOnyonKira::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -880,7 +870,7 @@ void efx2d::WorldMap::T2DOnyonKira::create((efx2d::Arg*))
  * Address:	803BAB78
  * Size:	000040
  */
-void efx2d::WorldMap::T2DOnyonKira::setGlobalParticleScale((float))
+void efx2d::WorldMap::T2DOnyonKira::setGlobalParticleScale(float)
 {
 	/*
 	.loc_0x0:
@@ -908,7 +898,7 @@ void efx2d::WorldMap::T2DOnyonKira::setGlobalParticleScale((float))
  * Address:	803BABB8
  * Size:	000018
  */
-void efx2d::WorldMap::T2DRocketGlow::setGlobalParticleScale((float))
+void efx2d::WorldMap::T2DRocketGlow::setGlobalParticleScale(float)
 {
 	/*
 	.loc_0x0:
@@ -926,7 +916,7 @@ void efx2d::WorldMap::T2DRocketGlow::setGlobalParticleScale((float))
  * Address:	803BABD0
  * Size:	00005C
  */
-void efx2d::WorldMap::T2DRocketB::create((efx2d::Arg*))
+void efx2d::WorldMap::T2DRocketB::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -965,7 +955,7 @@ void efx2d::WorldMap::T2DRocketB::create((efx2d::Arg*))
  * Address:	803BAC2C
  * Size:	000040
  */
-void efx2d::WorldMap::T2DRocketB::setGlobalParticleScale((float))
+void efx2d::WorldMap::T2DRocketB::setGlobalParticleScale(float)
 {
 	/*
 	.loc_0x0:
@@ -993,7 +983,7 @@ void efx2d::WorldMap::T2DRocketB::setGlobalParticleScale((float))
  * Address:	803BAC6C
  * Size:	00009C
  */
-void efx2d::WorldMap::T2DRocketB::__dt(void)
+efx2d::WorldMap::T2DRocketB::~T2DRocketB(void)
 {
 	/*
 	.loc_0x0:
@@ -1048,7 +1038,7 @@ void efx2d::WorldMap::T2DRocketB::__dt(void)
  * Address:	803BAD08
  * Size:	00009C
  */
-void efx2d::WorldMap::T2DOnyonKira::__dt(void)
+efx2d::WorldMap::T2DOnyonKira::~T2DOnyonKira(void)
 {
 	/*
 	.loc_0x0:
@@ -1103,7 +1093,7 @@ void efx2d::WorldMap::T2DOnyonKira::__dt(void)
  * Address:	803BADA4
  * Size:	000084
  */
-void efx2d::FileSelect::T2DFilecopyBase::__dt(void)
+efx2d::FileSelect::T2DFilecopyBase::~T2DFilecopyBase(void)
 {
 	/*
 	.loc_0x0:
@@ -1152,7 +1142,7 @@ void efx2d::FileSelect::T2DFilecopyBase::__dt(void)
  * Address:	803BAE28
  * Size:	000084
  */
-void efx2d::T2DCountKira::__dt(void)
+efx2d::T2DCountKira::~T2DCountKira(void)
 {
 	/*
 	.loc_0x0:
@@ -1201,7 +1191,7 @@ void efx2d::T2DCountKira::__dt(void)
  * Address:	803BAEAC
  * Size:	00009C
  */
-void efx2d::T2DCursor::__dt(void)
+efx2d::T2DCursor::~T2DCursor(void)
 {
 	/*
 	.loc_0x0:
@@ -1256,7 +1246,7 @@ void efx2d::T2DCursor::__dt(void)
  * Address:	803BAF48
  * Size:	000008
  */
-void @8 @efx2d::T2DCursor::__dt(void)
+@8 @efx2d::T2DCursor::~T2DCursor(void)
 {
 	/*
 	.loc_0x0:
@@ -1270,7 +1260,7 @@ void @8 @efx2d::T2DCursor::__dt(void)
  * Address:	803BAF50
  * Size:	000008
  */
-void @8 @efx2d::T2DCountKira::__dt(void)
+@8 @efx2d::T2DCountKira::~T2DCountKira(void)
 {
 	/*
 	.loc_0x0:
@@ -1284,7 +1274,7 @@ void @8 @efx2d::T2DCountKira::__dt(void)
  * Address:	803BAF58
  * Size:	000008
  */
-void @8 @efx2d::FileSelect::T2DFilecopyBase::__dt(void)
+@8 @efx2d::FileSelect::T2DFilecopyBase::~T2DFilecopyBase(void)
 {
 	/*
 	.loc_0x0:
@@ -1298,7 +1288,7 @@ void @8 @efx2d::FileSelect::T2DFilecopyBase::__dt(void)
  * Address:	803BAF60
  * Size:	000008
  */
-void @8 @efx2d::WorldMap::T2DOnyonKira::__dt(void)
+@8 @efx2d::WorldMap::T2DOnyonKira::~T2DOnyonKira(void)
 {
 	/*
 	.loc_0x0:
@@ -1312,7 +1302,7 @@ void @8 @efx2d::WorldMap::T2DOnyonKira::__dt(void)
  * Address:	803BAF68
  * Size:	000008
  */
-void @8 @efx2d::WorldMap::T2DRocketB::__dt(void)
+@8 @efx2d::WorldMap::T2DRocketB::~T2DRocketB(void)
 {
 	/*
 	.loc_0x0:

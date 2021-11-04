@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8038844C
  * Size:	000008
  */
-void Game::ShijimiChou::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void ShijimiChou::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::ShijimiChou::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80388454
  * Size:	000008
  */
-void Game::ShijimiChou::ProperAnimator::getAnimator((int))
+void ShijimiChou::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::ShijimiChou::ProperAnimator::getAnimator((int))
  * Address:	8038845C
  * Size:	00005C
  */
-void Game::ShijimiChou::ProperAnimator::__dt(void)
+ShijimiChou::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::ShijimiChou::ProperAnimator::__dt(void)
  * Address:	803884B8
  * Size:	000008
  */
-void Game::ShijimiChou::ProperAnimator::getAnimator(void)
+void ShijimiChou::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::ShijimiChou::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

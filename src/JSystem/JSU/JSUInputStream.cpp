@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80026378
  * Size:	00005C
  */
-void JSUInputStream::~JSUInputStream()
+JSUInputStream::~JSUInputStream()
 {
 	/*
 	.loc_0x0:
@@ -374,7 +374,7 @@ void JSURandomInputStream::seek(long, JSUStreamSeekFrom)
  * Address:	8002674C
  * Size:	00006C
  */
-void JSURandomInputStream::~JSURandomInputStream()
+JSURandomInputStream::~JSURandomInputStream()
 {
 	/*
 	.loc_0x0:

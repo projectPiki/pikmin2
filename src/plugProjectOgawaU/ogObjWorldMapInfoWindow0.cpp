@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8032B340
  * Size:	000084
  */
-void og::newScreen::ObjWorldMapInfoWindow0::__ct((char const*))
+newScreen::ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +52,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::__ct((char const*))
  * Address:	8032B3C4
  * Size:	0003C4
  */
-void og::newScreen::ObjWorldMapInfoWindow0::doCreate((JKRArchive*))
+void newScreen::ObjWorldMapInfoWindow0::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -331,8 +323,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::doCreate((JKRArchive*))
  * Address:	8032B788
  * Size:	00008C
  */
-void og::newScreen::ObjWorldMapInfoWindow0::doStart(
-    (Screen::StartSceneArg const*))
+void newScreen::ObjWorldMapInfoWindow0::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +370,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::doStart(
  * Address:	8032B814
  * Size:	000090
  */
-void og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(void)
+void newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +420,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(void)
  * Address:	8032B8A4
  * Size:	000020
  */
-void og::newScreen::ObjWorldMapInfoWindow0::commonUpdate(void)
+void newScreen::ObjWorldMapInfoWindow0::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -449,7 +440,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::commonUpdate(void)
  * Address:	8032B8C4
  * Size:	000038
  */
-void og::newScreen::ObjWorldMapInfoWindow0::out_cancel(void)
+void newScreen::ObjWorldMapInfoWindow0::out_cancel(void)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +466,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::out_cancel(void)
  * Address:	8032B8FC
  * Size:	000038
  */
-void og::newScreen::ObjWorldMapInfoWindow0::out_menu_0(void)
+void newScreen::ObjWorldMapInfoWindow0::out_menu_0(void)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +492,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::out_menu_0(void)
  * Address:	8032B934
  * Size:	000038
  */
-void og::newScreen::ObjWorldMapInfoWindow0::out_menu_1(void)
+void newScreen::ObjWorldMapInfoWindow0::out_menu_1(void)
 {
 	/*
 	.loc_0x0:
@@ -527,14 +518,10 @@ void og::newScreen::ObjWorldMapInfoWindow0::out_menu_1(void)
  * Address:	8032B96C
  * Size:	00000C
  */
-void og::newScreen::ObjWorldMapInfoWindow0::out_L(void)
+void newScreen::ObjWorldMapInfoWindow0::out_L(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x2
-	  stw       r0, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x38(r3)
+	_38 = 2;
 }
 
 /*
@@ -542,7 +529,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::out_L(void)
  * Address:	8032B978
  * Size:	000088
  */
-void og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadeoutFinish(void)
+void newScreen::ObjWorldMapInfoWindow0::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +577,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadeoutFinish(void)
  * Address:	8032BA00
  * Size:	00000C
  */
-void og::newScreen::ObjWorldMapInfoWindow0::getResult(void)
+void newScreen::ObjWorldMapInfoWindow0::getResult(void)
 {
 	/*
 	.loc_0x0:
@@ -605,7 +592,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::getResult(void)
  * Address:	8032BA0C
  * Size:	000068
  */
-void og::newScreen::ObjWorldMapInfoWindow0::__dt(void)
+newScreen::ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
 {
 	/*
 	.loc_0x0:
@@ -640,55 +627,59 @@ void og::newScreen::ObjWorldMapInfoWindow0::__dt(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032BA74
- * Size:	000008
- */
-u32 og::Screen::DispMemberWorldMapInfoWin0::getSize(void) { return 0x28; }
+namespace Screen {
 
-/*
- * --INFO--
- * Address:	8032BA7C
- * Size:	00000C
- */
-void og::Screen::DispMemberWorldMapInfoWin0::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8032BA74
+	 * Size:	000008
+	 */
+	u32 DispMemberWorldMapInfoWin0::getSize(void) { return 0x28; }
 
-/*
- * --INFO--
- * Address:	8032BA88
- * Size:	000014
- */
-void og::Screen::DispMemberWorldMapInfoWin0::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5769
-	  lis       r3, 0x574D
-	  addi      r4, r4, 0x6E30
-	  addi      r3, r3, 0x6170
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8032BA7C
+	 * Size:	00000C
+	 */
+	void DispMemberWorldMapInfoWin0::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8032BA9C
- * Size:	000008
- */
-void @24 @og::newScreen::ObjWorldMapInfoWindow0::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0x94
-	*/
-}
+	 * --INFO--
+	 * Address:	8032BA88
+	 * Size:	000014
+	 */
+	void DispMemberWorldMapInfoWin0::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5769
+		  lis       r3, 0x574D
+		  addi      r4, r4, 0x6E30
+		  addi      r3, r3, 0x6170
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8032BA9C
+	 * Size:	000008
+	 */
+	@24 @og::newScreen::ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x18
+		  b         -0x94
+		*/
+	}
+} // namespace Screen
+} // namespace og

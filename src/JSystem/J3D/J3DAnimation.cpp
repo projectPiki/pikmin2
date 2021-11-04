@@ -2822,7 +2822,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData*)
  * Address:	800697E8
  * Size:	000084
  */
-void J3DAnmColorKey::~J3DAnmColorKey()
+J3DAnmColorKey::~J3DAnmColorKey()
 {
 	/*
 	.loc_0x0:
@@ -2880,7 +2880,7 @@ u32 J3DAnmColorKey::getKind() const { return 0xB; }
  * Address:	80069874
  * Size:	000048
  */
-void J3DAnmBase::~J3DAnmBase()
+J3DAnmBase::~J3DAnmBase()
 {
 	/*
 	.loc_0x0:
@@ -2912,7 +2912,7 @@ void J3DAnmBase::~J3DAnmBase()
  * Address:	800698BC
  * Size:	000074
  */
-void J3DAnmColor::~J3DAnmColor()
+J3DAnmColor::~J3DAnmColor()
 {
 	/*
 	.loc_0x0:
@@ -2973,7 +2973,7 @@ void J3DAnmColor::getColor(unsigned short, _GXColor*) const { }
  * Address:	8006993C
  * Size:	000084
  */
-void J3DAnmColorFull::~J3DAnmColorFull()
+J3DAnmColorFull::~J3DAnmColorFull()
 {
 	/*
 	.loc_0x0:
@@ -3031,7 +3031,7 @@ u32 J3DAnmColorFull::getKind() const { return 0xA; }
  * Address:	800699C8
  * Size:	00006C
  */
-void J3DAnmVtxColorKey::~J3DAnmVtxColorKey()
+J3DAnmVtxColorKey::~J3DAnmVtxColorKey()
 {
 	/*
 	.loc_0x0:
@@ -3081,7 +3081,7 @@ u32 J3DAnmVtxColorKey::getKind() const { return 0xF; }
  * Address:	80069A3C
  * Size:	00005C
  */
-void J3DAnmVtxColor::~J3DAnmVtxColor()
+J3DAnmVtxColor::~J3DAnmVtxColor()
 {
 	/*
 	.loc_0x0:
@@ -3135,7 +3135,7 @@ void J3DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const {
  * Address:	80069AA4
  * Size:	00006C
  */
-void J3DAnmVtxColorFull::~J3DAnmVtxColorFull()
+J3DAnmVtxColorFull::~J3DAnmVtxColorFull()
 {
 	/*
 	.loc_0x0:
@@ -3185,7 +3185,7 @@ u32 J3DAnmVtxColorFull::getKind() const { return 0xE; }
  * Address:	80069B18
  * Size:	00006C
  */
-void J3DAnmClusterKey::~J3DAnmClusterKey()
+J3DAnmClusterKey::~J3DAnmClusterKey()
 {
 	/*
 	.loc_0x0:
@@ -3235,7 +3235,7 @@ u32 J3DAnmClusterKey::getKind() const { return 0xD; }
  * Address:	80069B8C
  * Size:	00005C
  */
-void J3DAnmCluster::~J3DAnmCluster()
+J3DAnmCluster::~J3DAnmCluster()
 {
 	/*
 	.loc_0x0:
@@ -3295,7 +3295,7 @@ void J3DAnmCluster::getWeight(unsigned short) const
  * Address:	80069BF8
  * Size:	00006C
  */
-void J3DAnmClusterFull::~J3DAnmClusterFull()
+J3DAnmClusterFull::~J3DAnmClusterFull()
 {
 	/*
 	.loc_0x0:
@@ -3345,7 +3345,7 @@ u32 J3DAnmClusterFull::getKind() const { return 0xC; }
  * Address:	80069C6C
  * Size:	00006C
  */
-void J3DAnmTransformFull::~J3DAnmTransformFull()
+J3DAnmTransformFull::~J3DAnmTransformFull()
 {
 	/*
 	.loc_0x0:
@@ -3395,7 +3395,7 @@ u32 J3DAnmTransformFull::getKind() const { return 0x9; }
  * Address:	80069CE0
  * Size:	00005C
  */
-void J3DAnmTransform::~J3DAnmTransform()
+J3DAnmTransform::~J3DAnmTransform()
 {
 	/*
 	.loc_0x0:

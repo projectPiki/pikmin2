@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80093A40
  * Size:	000010
  */
-void JPAKeyBlock::JPAKeyBlock(const unsigned char*)
+JPAKeyBlock::JPAKeyBlock(const unsigned char*)
 {
 	/*
 	.loc_0x0:

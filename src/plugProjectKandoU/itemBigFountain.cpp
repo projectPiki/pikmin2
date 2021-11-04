@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801EC188
  * Size:	00018C
  */
-void Game::ItemBigFountain::FSM::init((Game::ItemBigFountain::Item*))
+void ItemBigFountain::FSM::init(Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -134,8 +126,8 @@ void Game::ItemBigFountain::FSM::init((Game::ItemBigFountain::Item*))
  * Address:	801EC314
  * Size:	000048
  */
-void Game::ItemBigFountain::AppearState::init((Game::ItemBigFountain::Item*,
-                                               Game::StateArg*))
+void ItemBigFountain::AppearState::init(Game::ItemBigFountain::Item*,
+                                        Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -165,7 +157,7 @@ void Game::ItemBigFountain::AppearState::init((Game::ItemBigFountain::Item*,
  * Address:	801EC35C
  * Size:	0000CC
  */
-void Game::ItemBigFountain::AppearState::exec((Game::ItemBigFountain::Item*))
+void ItemBigFountain::AppearState::exec(Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -255,17 +247,15 @@ FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
  * Address:	801EC458
  * Size:	000004
  */
-void Game::ItemBigFountain::AppearState::cleanup((Game::ItemBigFountain::Item*))
-{
-}
+void ItemBigFountain::AppearState::cleanup(Game::ItemBigFountain::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EC45C
  * Size:	00003C
  */
-void Game::ItemBigFountain::CloseState::init((Game::ItemBigFountain::Item*,
-                                              Game::StateArg*))
+void ItemBigFountain::CloseState::init(Game::ItemBigFountain::Item*,
+                                       Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Game::ItemBigFountain::CloseState::init((Game::ItemBigFountain::Item*,
  * Address:	801EC498
  * Size:	000014
  */
-void Game::ItemBigFountain::CloseState::exec((Game::ItemBigFountain::Item*))
+void ItemBigFountain::CloseState::exec(Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -309,17 +299,15 @@ void Game::ItemBigFountain::CloseState::exec((Game::ItemBigFountain::Item*))
  * Address:	801EC4AC
  * Size:	000004
  */
-void Game::ItemBigFountain::CloseState::cleanup((Game::ItemBigFountain::Item*))
-{
-}
+void ItemBigFountain::CloseState::cleanup(Game::ItemBigFountain::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EC4B0
  * Size:	000044
  */
-void Game::ItemBigFountain::WaitState::init((Game::ItemBigFountain::Item*,
-                                             Game::StateArg*))
+void ItemBigFountain::WaitState::init(Game::ItemBigFountain::Item*,
+                                      Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -348,7 +336,7 @@ void Game::ItemBigFountain::WaitState::init((Game::ItemBigFountain::Item*,
  * Address:	801EC4F4
  * Size:	000034
  */
-void Game::ItemBigFountain::WaitState::exec((Game::ItemBigFountain::Item*))
+void ItemBigFountain::WaitState::exec(Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -373,17 +361,14 @@ void Game::ItemBigFountain::WaitState::exec((Game::ItemBigFountain::Item*))
  * Address:	801EC528
  * Size:	000004
  */
-void Game::ItemBigFountain::WaitState::cleanup((Game::ItemBigFountain::Item*))
-{
-}
+void ItemBigFountain::WaitState::cleanup(Game::ItemBigFountain::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EC52C
  * Size:	000094
  */
-void Game::ItemBigFountain::WaitState::onDamage((Game::ItemBigFountain::Item*,
-                                                 float))
+void ItemBigFountain::WaitState::onDamage(Game::ItemBigFountain::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -438,8 +423,8 @@ void Game::ItemBigFountain::WaitState::onDamage((Game::ItemBigFountain::Item*,
  * Address:	801EC5C0
  * Size:	00000C
  */
-void Game::ItemBigFountain::WaitState::onKeyEvent((Game::ItemBigFountain::Item*,
-                                                   SysShape::KeyEvent const&))
+void ItemBigFountain::WaitState::onKeyEvent(Game::ItemBigFountain::Item*,
+                                            SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -454,8 +439,8 @@ void Game::ItemBigFountain::WaitState::onKeyEvent((Game::ItemBigFountain::Item*,
  * Address:	801EC5CC
  * Size:	00011C
  */
-void Game::ItemBigFountain::OutState::init((Game::ItemBigFountain::Item*,
-                                            Game::StateArg*))
+void ItemBigFountain::OutState::init(Game::ItemBigFountain::Item*,
+                                     Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +527,7 @@ void Game::ItemBigFountain::OutState::init((Game::ItemBigFountain::Item*,
  * Address:	801EC6E8
  * Size:	000034
  */
-void Game::ItemBigFountain::OutState::exec((Game::ItemBigFountain::Item*))
+void ItemBigFountain::OutState::exec(Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -567,16 +552,14 @@ void Game::ItemBigFountain::OutState::exec((Game::ItemBigFountain::Item*))
  * Address:	801EC71C
  * Size:	000004
  */
-void Game::ItemBigFountain::OutState::cleanup((Game::ItemBigFountain::Item*)) {
-}
+void ItemBigFountain::OutState::cleanup(Game::ItemBigFountain::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EC720
  * Size:	000204
  */
-void Game::ItemBigFountain::Item::movieUserCommand((unsigned long,
-                                                    Game::MoviePlayer*))
+void ItemBigFountain::Item::movieUserCommand(unsigned long, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -735,7 +718,7 @@ void Game::ItemBigFountain::Item::movieUserCommand((unsigned long,
  * Address:	801EC924
  * Size:	000108
  */
-void Game::ItemBigFountain::Item::interactGotKey((Game::InteractGotKey&))
+void ItemBigFountain::Item::interactGotKey(Game::InteractGotKey&)
 {
 	/*
 	.loc_0x0:
@@ -817,7 +800,7 @@ void Game::ItemBigFountain::Item::interactGotKey((Game::InteractGotKey&))
  * Address:	........
  * Size:	0000DC
  */
-void Game::ItemBigFountain::Item::__ct(void)
+ItemBigFountain::Item::Item(void)
 {
 	// UNUSED FUNCTION
 }
@@ -827,7 +810,7 @@ void Game::ItemBigFountain::Item::__ct(void)
  * Address:	801ECA2C
  * Size:	000048
  */
-void Game::ItemBigFountain::Item::constructor(void)
+void ItemBigFountain::Item::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -859,7 +842,7 @@ void Game::ItemBigFountain::Item::constructor(void)
  * Address:	801ECA74
  * Size:	000284
  */
-void Game::ItemBigFountain::Item::onInit((Game::CreatureInitArg*))
+void ItemBigFountain::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -1069,22 +1052,26 @@ FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TForever3::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000080
+	 */
+	TForever3::~TForever3(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	801ECD2C
  * Size:	000054
  */
-void Game::ItemBigFountain::Item::initDependency(void)
+void ItemBigFountain::Item::initDependency(void)
 {
 	/*
 	.loc_0x0:
@@ -1119,7 +1106,7 @@ void Game::ItemBigFountain::Item::initDependency(void)
  * Address:	801ECD80
  * Size:	0000C0
  */
-void Game::ItemBigFountain::Item::update(void)
+void ItemBigFountain::Item::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1183,7 +1170,7 @@ void Game::ItemBigFountain::Item::update(void)
  * Address:	801ECE40
  * Size:	000060
  */
-void Game::ItemBigFountain::Item::killAllEffect(void)
+void ItemBigFountain::Item::killAllEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -1223,7 +1210,7 @@ void Game::ItemBigFountain::Item::killAllEffect(void)
  * Address:	801ECEA0
  * Size:	000068
  */
-void Game::ItemBigFountain::Item::makeTrMatrix(void)
+void ItemBigFountain::Item::makeTrMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -1261,7 +1248,7 @@ void Game::ItemBigFountain::Item::makeTrMatrix(void)
  * Address:	801ECF08
  * Size:	000118
  */
-void Game::ItemBigFountain::Item::onSetPosition(void)
+void ItemBigFountain::Item::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1345,7 +1332,7 @@ void Game::ItemBigFountain::Item::onSetPosition(void)
  * Address:	801ED020
  * Size:	0000A0
  */
-void Game::ItemBigFountain::Item::doAI(void)
+void ItemBigFountain::Item::doAI(void)
 {
 	/*
 	.loc_0x0:
@@ -1403,7 +1390,7 @@ void Game::ItemBigFountain::Item::doAI(void)
  * Address:	801ED0C0
  * Size:	00016C
  */
-void Game::ItemBigFountain::Item::doDirectDraw((Graphics&))
+void ItemBigFountain::Item::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1510,7 +1497,7 @@ void Game::ItemBigFountain::Item::doDirectDraw((Graphics&))
  * Address:	801ED22C
  * Size:	000038
  */
-void Game::ItemBigFountain::Item::updateBoundSphere(void)
+void ItemBigFountain::Item::updateBoundSphere(void)
 {
 	/*
 	.loc_0x0:
@@ -1536,14 +1523,14 @@ void Game::ItemBigFountain::Item::updateBoundSphere(void)
  * Address:	801ED264
  * Size:	000004
  */
-void Game::ItemBigFountain::Item::doSimulation((float)) { }
+void ItemBigFountain::Item::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801ED268
  * Size:	000030
  */
-void Game::ItemBigFountain::Item::canRide(void)
+void ItemBigFountain::Item::canRide(void)
 {
 	/*
 	.loc_0x0:
@@ -1567,14 +1554,14 @@ void Game::ItemBigFountain::Item::canRide(void)
  * Address:	801ED298
  * Size:	000008
  */
-u32 Game::ItemBigFountain::State::canRide(void) { return 0x0; }
+u32 ItemBigFountain::State::canRide(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801ED2A0
  * Size:	00011C
  */
-void Game::ItemBigFountain::Item::interactAttack((Game::InteractAttack&))
+void ItemBigFountain::Item::interactAttack(Game::InteractAttack&)
 {
 	/*
 	.loc_0x0:
@@ -1669,10 +1656,7 @@ void Game::ItemBigFountain::Item::interactAttack((Game::InteractAttack&))
  * Address:	801ED3BC
  * Size:	000004
  */
-void Game::ItemBigFountain::State::onDamage((Game::ItemBigFountain::Item*,
-                                             float))
-{
-}
+void ItemBigFountain::State::onDamage(Game::ItemBigFountain::Item*, float) { }
 
 /*
  * --INFO--
@@ -1756,7 +1740,7 @@ void getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<
  * Address:	801ED488
  * Size:	000060
  */
-void Game::ItemBigFountain::Item::getWorkDistance((Sys::Sphere&))
+void ItemBigFountain::Item::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1796,7 +1780,7 @@ void Game::ItemBigFountain::Item::getWorkDistance((Sys::Sphere&))
  * Address:	801ED4E8
  * Size:	00003C
  */
-void Game::ItemBigFountain::Item::onKeyEvent((SysShape::KeyEvent const&))
+void ItemBigFountain::Item::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1833,7 +1817,7 @@ FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent(void)
  * Address:	801ED528
  * Size:	000120
  */
-void Game::ItemBigFountain::Mgr::__ct(void)
+ItemBigFountain::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1925,7 +1909,7 @@ void Game::ItemBigFountain::Mgr::__ct(void)
  * Address:	801ED648
  * Size:	000024
  */
-void Game::ItemBigFountain::FountainParms::read((Stream&))
+void ItemBigFountain::FountainParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1946,7 +1930,7 @@ void Game::ItemBigFountain::FountainParms::read((Stream&))
  * Address:	801ED66C
  * Size:	0001EC
  */
-void Game::ItemBigFountain::FountainParms::__ct(void)
+ItemBigFountain::FountainParms::FountainParms(void)
 {
 	/*
 	.loc_0x0:
@@ -2081,7 +2065,7 @@ void Game::ItemBigFountain::FountainParms::__ct(void)
  * Address:	801ED858
  * Size:	0000DC
  */
-void Game::ItemBigFountain::Mgr::onLoadResources(void)
+void ItemBigFountain::Mgr::onLoadResources(void)
 {
 	/*
 	.loc_0x0:
@@ -2148,7 +2132,7 @@ void Game::ItemBigFountain::Mgr::onLoadResources(void)
  * Address:	801ED934
  * Size:	000020
  */
-void Game::ItemBigFountain::Mgr::birth(void)
+void ItemBigFountain::Mgr::birth(void)
 {
 	/*
 	.loc_0x0:
@@ -2168,8 +2152,8 @@ void Game::ItemBigFountain::Mgr::birth(void)
  * Address:	801ED954
  * Size:	000058
  */
-void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<float>
-    R10Vector3<float> PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3f R10Vector3f
+PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -2203,7 +2187,7 @@ void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<float>
  * Address:	801ED9AC
  * Size:	000134
  */
-void Game::ItemBigFountain::Mgr::__dt(void)
+ItemBigFountain::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2300,7 +2284,7 @@ void Game::ItemBigFountain::Mgr::__dt(void)
  * Address:	801EDAE0
  * Size:	0000E8
  */
-void Game::ItemBigFountain::Mgr::doNew(void)
+void ItemBigFountain::Mgr::doNew(void)
 {
 	/*
 	.loc_0x0:
@@ -2374,7 +2358,7 @@ void Game::ItemBigFountain::Mgr::doNew(void)
  * Address:	801EDBC8
  * Size:	00000C
  */
-void Game::ItemBigFountain::Mgr::generatorGetID(void)
+void ItemBigFountain::Mgr::generatorGetID(void)
 {
 	/*
 	.loc_0x0:
@@ -2389,14 +2373,14 @@ void Game::ItemBigFountain::Mgr::generatorGetID(void)
  * Address:	801EDBD4
  * Size:	000008
  */
-u32 Game::ItemBigFountain::Item::sound_culling(void) { return 0x0; }
+u32 ItemBigFountain::Item::sound_culling(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801EDBDC
  * Size:	00000C
  */
-void Game::ItemBigFountain::Item::getCreatureName(void)
+void ItemBigFountain::Item::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -2439,7 +2423,7 @@ Fv(void)
  * Address:	801EDC1C
  * Size:	000008
  */
-u32 Game::ItemBigFountain::OutState::canRide(void) { return 0x1; }
+u32 ItemBigFountain::OutState::canRide(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -2603,6 +2587,8 @@ FPQ34Game15ItemBigFountain4Item(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2921,7 +2907,7 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	801EDF64
  * Size:	000008
  */
-void @376 @Game::ItemBigFountain::Item::onKeyEvent((SysShape::KeyEvent const&))
+void @376 @Game::ItemBigFountain::Item::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -2935,7 +2921,7 @@ void @376 @Game::ItemBigFountain::Item::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	801EDF6C
  * Size:	000008
  */
-void @48 @Game::ItemBigFountain::Mgr::__dt(void)
+@48 @Game::ItemBigFountain::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

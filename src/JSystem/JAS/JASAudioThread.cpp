@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-void JASAudioThread::JASAudioThread(int, int, unsigned long)
+JASAudioThread::JASAudioThread(int, int, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -316,7 +316,7 @@ void JASAudioThread::getCurrentVCounter()
  * Address:	800A5E5C
  * Size:	000060
  */
-void JASAudioThread::~JASAudioThread()
+JASAudioThread::~JASAudioThread()
 {
 	/*
 	.loc_0x0:

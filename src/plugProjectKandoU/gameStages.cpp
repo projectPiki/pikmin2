@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000068
  */
-void Game::CaveOtakara::__ct(void)
+CaveOtakara::CaveOtakara(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::CaveOtakara::__ct(void)
  * Address:	........
  * Size:	000090
  */
-void Game::CaveOtakaraInfo::__ct(void)
+CaveOtakaraInfo::CaveOtakaraInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::CaveOtakaraInfo::__ct(void)
  * Address:	801AD378
  * Size:	000060
  */
-void Game::CaveOtakara::__dt(void)
+CaveOtakara::~CaveOtakara(void)
 {
 	/*
 	.loc_0x0:
@@ -73,7 +65,7 @@ void Game::CaveOtakara::__dt(void)
  * Address:	........
  * Size:	0000EC
  */
-void Game::CaveOtakaraInfo::read((Stream&))
+void CaveOtakaraInfo::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -83,7 +75,7 @@ void Game::CaveOtakaraInfo::read((Stream&))
  * Address:	........
  * Size:	000024
  */
-void Game::CaveOtakaraInfo::get_index((int))
+void CaveOtakaraInfo::get_index(int)
 {
 	// UNUSED FUNCTION
 }
@@ -93,7 +85,7 @@ void Game::CaveOtakaraInfo::get_index((int))
  * Address:	........
  * Size:	00008C
  */
-void Game::CaveOtakaraInfo::get_id((ID32&))
+void CaveOtakaraInfo::get_id(ID32&)
 {
 	// UNUSED FUNCTION
 }
@@ -103,7 +95,7 @@ void Game::CaveOtakaraInfo::get_id((ID32&))
  * Address:	........
  * Size:	000080
  */
-void Game::CaveOtakaraInfo::getCaveIndex_FromID((ID32&))
+void CaveOtakaraInfo::getCaveIndex_FromID(ID32&)
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +105,7 @@ void Game::CaveOtakaraInfo::getCaveIndex_FromID((ID32&))
  * Address:	........
  * Size:	00003C
  */
-void Game::CaveOtakaraInfo::getCaveID_FromIndex((int))
+void CaveOtakaraInfo::getCaveID_FromIndex(int)
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +115,7 @@ void Game::CaveOtakaraInfo::getCaveID_FromIndex((int))
  * Address:	........
  * Size:	000064
  */
-void Game::LimitGenInfo::__ct(void)
+LimitGenInfo::LimitGenInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -133,7 +125,7 @@ void Game::LimitGenInfo::__ct(void)
  * Address:	801AD3D8
  * Size:	000060
  */
-void Game::LimitGen::__dt(void)
+LimitGen::~LimitGen(void)
 {
 	/*
 	.loc_0x0:
@@ -171,7 +163,7 @@ void Game::LimitGen::__dt(void)
  * Address:	........
  * Size:	0000CC
  */
-void Game::LimitGenInfo::read((Stream&))
+void LimitGenInfo::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -181,7 +173,7 @@ void Game::LimitGenInfo::read((Stream&))
  * Address:	801AD438
  * Size:	000154
  */
-void Game::CourseInfo::__ct(void)
+CourseInfo::CourseInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -278,7 +270,7 @@ void Game::CourseInfo::__ct(void)
  * Address:	........
  * Size:	00006C
  */
-void Game::CaveOtakaraInfo::__dt(void)
+CaveOtakaraInfo::~CaveOtakaraInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -288,7 +280,7 @@ void Game::CaveOtakaraInfo::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void Game::LimitGenInfo::__dt(void)
+LimitGenInfo::~LimitGenInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -298,14 +290,14 @@ void Game::LimitGenInfo::__dt(void)
  * Address:	801AD58C
  * Size:	000004
  */
-void Game::CourseInfo::dump(void) { }
+void CourseInfo::dump(void) { }
 
 /*
  * --INFO--
  * Address:	801AD590
  * Size:	0004C4
  */
-void Game::CourseInfo::read((Stream&))
+void CourseInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -662,7 +654,7 @@ void Game::CourseInfo::read((Stream&))
  * Address:	801ADA54
  * Size:	000088
  */
-void Game::CourseInfo::getOtakaraNum((ID32&))
+void CourseInfo::getOtakaraNum(ID32&)
 {
 	/*
 	.loc_0x0:
@@ -720,7 +712,7 @@ void Game::CourseInfo::getOtakaraNum((ID32&))
  * Address:	801ADADC
  * Size:	000038
  */
-void Game::CourseInfo::getOtakaraNum((int))
+void CourseInfo::getOtakaraNum(int)
 {
 	/*
 	.loc_0x0:
@@ -750,7 +742,7 @@ void Game::CourseInfo::getOtakaraNum((int))
  * Address:	801ADB14
  * Size:	00008C
  */
-void Game::CourseInfo::getCaveIndex_FromID((ID32&))
+void CourseInfo::getCaveIndex_FromID(ID32&)
 {
 	/*
 	.loc_0x0:
@@ -805,7 +797,7 @@ void Game::CourseInfo::getCaveIndex_FromID((ID32&))
  * Address:	801ADBA0
  * Size:	00009C
  */
-void Game::CourseInfo::getCaveinfoFilename_FromID((ID32&))
+void CourseInfo::getCaveinfoFilename_FromID(ID32&)
 {
 	/*
 	.loc_0x0:
@@ -866,7 +858,7 @@ void Game::CourseInfo::getCaveinfoFilename_FromID((ID32&))
  * Address:	801ADC3C
  * Size:	00003C
  */
-void Game::CourseInfo::getCaveID_FromIndex((int))
+void CourseInfo::getCaveID_FromIndex(int)
 {
 	/*
 	.loc_0x0:
@@ -897,7 +889,7 @@ void Game::CourseInfo::getCaveID_FromIndex((int))
  * Address:	801ADC78
  * Size:	000008
  */
-void Game::CourseInfo::getCaveNum(void)
+void CourseInfo::getCaveNum(void)
 {
 	/*
 	.loc_0x0:
@@ -911,7 +903,7 @@ void Game::CourseInfo::getCaveNum(void)
  * Address:	801ADC80
  * Size:	0001EC
  */
-void Game::Stages::__ct(void)
+Stages::Stages(void)
 {
 	/*
 	.loc_0x0:
@@ -1048,7 +1040,7 @@ void Game::Stages::__ct(void)
  * Address:	801ADE6C
  * Size:	0000D0
  */
-void Game::CourseInfo::__dt(void)
+CourseInfo::~CourseInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1112,7 @@ void Game::CourseInfo::__dt(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Stages::update(void)
+void Stages::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1130,7 +1122,7 @@ void Game::Stages::update(void)
  * Address:	801ADF3C
  * Size:	000070
  */
-void Game::Stages::getCourseInfo((char*))
+void Stages::getCourseInfo(char*)
 {
 	/*
 	.loc_0x0:
@@ -1178,7 +1170,7 @@ void Game::Stages::getCourseInfo((char*))
  * Address:	801ADFAC
  * Size:	000074
  */
-void Game::Stages::getCourseInfo((int))
+void Stages::getCourseInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -1225,7 +1217,7 @@ void Game::Stages::getCourseInfo((int))
  * Address:	........
  * Size:	0003FC
  */
-void Game::Stages::draw2d(void)
+void Stages::draw2d(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1235,7 +1227,7 @@ void Game::Stages::draw2d(void)
  * Address:	801AE020
  * Size:	000234
  */
-void Game::Stages::createMapMgr((Game::CourseInfo*, Game::RouteMgr*))
+void Stages::createMapMgr(Game::CourseInfo*, Game::RouteMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1397,12 +1389,14 @@ void Game::Stages::createMapMgr((Game::CourseInfo*, Game::RouteMgr*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801AE254
  * Size:	000060
  */
-void MapCollision::~MapCollision()
+MapCollision::~MapCollision()
 {
 	/*
 	.loc_0x0:
@@ -1435,12 +1429,14 @@ void MapCollision::~MapCollision()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void Game::Stages::dump(void)
+void Stages::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1450,7 +1446,7 @@ void Game::Stages::dump(void)
  * Address:	801AE2B4
  * Size:	000194
  */
-void Game::Stages::read((Stream&))
+void Stages::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1563,3 +1559,4 @@ void Game::Stages::read((Stream&))
 	  blr
 	*/
 }
+} // namespace Game

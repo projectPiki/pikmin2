@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801D7808
  * Size:	00001C
  */
-void Game::AILODParm::AILODParm()
+AILODParm::AILODParm()
 {
 	/*
 	.loc_0x0:
@@ -24,7 +26,7 @@ void Game::AILODParm::AILODParm()
  * Address:	801D7824
  * Size:	000018
  */
-void Game::AILOD::AILOD()
+AILOD::AILOD()
 {
 	/*
 	.loc_0x0:
@@ -42,7 +44,7 @@ void Game::AILOD::AILOD()
  * Address:	801D783C
  * Size:	0003A8
  */
-void Game::Creature::updateLOD(Game::AILODParm&)
+void Creature::updateLOD(Game::AILODParm&)
 {
 	/*
 	.loc_0x0:
@@ -338,7 +340,7 @@ void Game::Creature::updateLOD(Game::AILODParm&)
  * Address:	801D7BE4
  * Size:	000258
  */
-void Game::Creature::drawLODInfo(Graphics&, Vector3<float>&)
+void Creature::drawLODInfo(Graphics&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -512,6 +514,8 @@ void Game::Creature::drawLODInfo(Graphics&, Vector3<float>&)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

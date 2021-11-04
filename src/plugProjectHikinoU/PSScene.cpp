@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	8034147C
  * Size:	00007C
  */
-void PSSystem::WaveScene::~WaveScene()
+WaveScene::~WaveScene()
 {
 	/*
 	.loc_0x0:
@@ -50,8 +52,7 @@ void PSSystem::WaveScene::~WaveScene()
  * Address:	803414F8
  * Size:	000040
  */
-void PSSystem::WaveLoader::loadWave(PSSystem::TaskChecker*,
-                                    PSSystem::WaveScene::AreaArg)
+void WaveLoader::loadWave(PSSystem::TaskChecker*, PSSystem::WaveScene::AreaArg)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +82,7 @@ void PSSystem::WaveLoader::loadWave(PSSystem::TaskChecker*,
  * Address:	80341538
  * Size:	000118
  */
-void PSSystem::Scene::Scene(unsigned char)
+Scene::Scene(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +168,7 @@ void PSSystem::Scene::Scene(unsigned char)
  * Address:	80341650
  * Size:	0000C4
  */
-void PSSystem::Scene::~Scene()
+Scene::~Scene()
 {
 	/*
 	.loc_0x0:
@@ -234,7 +235,7 @@ void PSSystem::Scene::~Scene()
  * Address:	80341714
  * Size:	0000BC
  */
-void PSSystem::Scene::adaptChildScene(PSSystem::Scene*)
+void Scene::adaptChildScene(PSSystem::Scene*)
 {
 	/*
 	.loc_0x0:
@@ -301,7 +302,7 @@ void PSSystem::Scene::adaptChildScene(PSSystem::Scene*)
  * Address:	803417D0
  * Size:	000070
  */
-void PSSystem::Scene::adaptTo(PSSystem::Scene**)
+void Scene::adaptTo(PSSystem::Scene**)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +344,7 @@ void PSSystem::Scene::adaptTo(PSSystem::Scene**)
  * Address:	80341840
  * Size:	000058
  */
-void PSSystem::Scene::detach()
+void Scene::detach()
 {
 	/*
 	.loc_0x0:
@@ -379,7 +380,7 @@ void PSSystem::Scene::detach()
  * Address:	80341898
  * Size:	000060
  */
-void PSSystem::Scene::appendSeq(PSSystem::SeqBase*)
+void Scene::appendSeq(PSSystem::SeqBase*)
 {
 	/*
 	.loc_0x0:
@@ -417,7 +418,7 @@ void PSSystem::Scene::appendSeq(PSSystem::SeqBase*)
  * Address:	803418F8
  * Size:	00003C
  */
-void PSSystem::Scene::startMainSeq()
+void Scene::startMainSeq()
 {
 	/*
 	.loc_0x0:
@@ -446,7 +447,7 @@ void PSSystem::Scene::startMainSeq()
  * Address:	80341934
  * Size:	00003C
  */
-void PSSystem::Scene::stopMainSeq(unsigned long)
+void Scene::stopMainSeq(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +476,7 @@ void PSSystem::Scene::stopMainSeq(unsigned long)
  * Address:	80341970
  * Size:	000024
  */
-void PSSystem::Scene::stopAllSound(unsigned long)
+void Scene::stopAllSound(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -496,7 +497,7 @@ void PSSystem::Scene::stopAllSound(unsigned long)
  * Address:	80341994
  * Size:	000088
  */
-void PSSystem::Scene::scene1st(PSSystem::TaskChecker*)
+void Scene::scene1st(PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -544,7 +545,7 @@ void PSSystem::Scene::scene1st(PSSystem::TaskChecker*)
  * Address:	80341A1C
  * Size:	00005C
  */
-void PSSystem::Scene::scene1stLoadSync()
+void Scene::scene1stLoadSync()
 {
 	/*
 	.loc_0x0:
@@ -581,7 +582,7 @@ void PSSystem::Scene::scene1stLoadSync()
  * Address:	80341A78
  * Size:	00004C
  */
-void PSSystem::Scene::exec()
+void Scene::exec()
 {
 	/*
 	.loc_0x0:
@@ -614,7 +615,7 @@ void PSSystem::Scene::exec()
  * Address:	80341AC4
  * Size:	000034
  */
-void PSSystem::SceneMgr::refreshCurEndScene()
+void SceneMgr::refreshCurEndScene()
 {
 	/*
 	.loc_0x0:
@@ -643,7 +644,7 @@ void PSSystem::SceneMgr::refreshCurEndScene()
  * Address:	80341AF8
  * Size:	000154
  */
-void PSSystem::SceneMgr::findSeq(JASTrack*)
+void SceneMgr::findSeq(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -756,7 +757,7 @@ void PSSystem::SceneMgr::findSeq(JASTrack*)
  * Address:	80341C4C
  * Size:	000154
  */
-void PSSystem::SceneMgr::getPlayingSeq(JASTrack*)
+void SceneMgr::getPlayingSeq(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -869,7 +870,7 @@ void PSSystem::SceneMgr::getPlayingSeq(JASTrack*)
  * Address:	80341DA0
  * Size:	000440
  */
-void PSSystem::SceneMgr::deleteScene(PSSystem::Scene*)
+void SceneMgr::deleteScene(PSSystem::Scene*)
 {
 	/*
 	.loc_0x0:
@@ -1227,7 +1228,7 @@ void PSSystem::SceneMgr::deleteScene(PSSystem::Scene*)
  * Address:	803421E0
  * Size:	000068
  */
-void PSSystem::SceneMgr::deleteCurrentScene()
+void SceneMgr::deleteCurrentScene()
 {
 	/*
 	.loc_0x0:
@@ -1269,7 +1270,7 @@ void PSSystem::SceneMgr::deleteCurrentScene()
  * Address:	80342248
  * Size:	000008
  */
-void PSSystem::Scene::getSeqMgr()
+void Scene::getSeqMgr()
 {
 	/*
 	.loc_0x0:
@@ -1283,7 +1284,7 @@ void PSSystem::Scene::getSeqMgr()
  * Address:	80342250
  * Size:	000008
  */
-void PSSystem::Scene::getChildScene()
+void Scene::getChildScene()
 {
 	/*
 	.loc_0x0:
@@ -1291,6 +1292,8 @@ void PSSystem::Scene::getChildScene()
 	  blr
 	*/
 }
+
+} // namespace PSSystem
 
 /*
  * --INFO--

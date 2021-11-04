@@ -1,23 +1,15 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8024BAAC
  * Size:	000200
  */
-void Game::Cave::MapUnitGenerator::__ct((Game::MapUnitInterface*, int,
+Cave::MapUnitGenerator::MapUnitGenerator(Game::MapUnitInterface*, int,
                                          Game::Cave::FloorInfo*, bool,
-                                         Game::Cave::EditMapUnit*))
+                                         Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +173,7 @@ void Game::Cave::MapUnitGenerator::__ct((Game::MapUnitInterface*, int,
  * Address:	8024BCAC
  * Size:	000024
  */
-void Game::Cave::MapNode::__defctor(void)
+void Cave::MapNode::__defctor(void)
 {
 	/*
 	.loc_0x0:
@@ -202,7 +194,7 @@ void Game::Cave::MapNode::__defctor(void)
  * Address:	8024BCD0
  * Size:	0000AC
  */
-void Game::Cave::MapUnitGenerator::createEditMapInfo((Game::Cave::EditMapUnit*))
+void Cave::MapUnitGenerator::createEditMapInfo(Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:
@@ -261,7 +253,7 @@ void Game::Cave::MapUnitGenerator::createEditMapInfo((Game::Cave::EditMapUnit*))
  * Address:	8024BD7C
  * Size:	00024C
  */
-void Game::Cave::MapUnitGenerator::createMemList((Game::MapUnitInterface*, int))
+void Cave::MapUnitGenerator::createMemList(Game::MapUnitInterface*, int)
 {
 	/*
 	.loc_0x0:
@@ -450,7 +442,7 @@ void Game::Cave::MapUnitGenerator::createMemList((Game::MapUnitInterface*, int))
  * Address:	8024BFC8
  * Size:	000078
  */
-void Game::Cave::MapUnitGenerator::isCreateList((Game::MapUnitInterface*))
+void Cave::MapUnitGenerator::isCreateList(Game::MapUnitInterface*)
 {
 	/*
 	.loc_0x0:
@@ -506,7 +498,7 @@ void Game::Cave::MapUnitGenerator::isCreateList((Game::MapUnitInterface*))
  * Address:	8024C040
  * Size:	0000CC
  */
-void Game::Cave::MapUnitGenerator::memMapListSorting(void)
+void Cave::MapUnitGenerator::memMapListSorting(void)
 {
 	/*
 	.loc_0x0:
@@ -583,7 +575,7 @@ void Game::Cave::MapUnitGenerator::memMapListSorting(void)
  * Address:	8024C10C
  * Size:	00014C
  */
-void Game::Cave::MapUnitGenerator::createMapPartsList(void)
+void Cave::MapUnitGenerator::createMapPartsList(void)
 {
 	/*
 	.loc_0x0:
@@ -694,7 +686,7 @@ void Game::Cave::MapUnitGenerator::createMapPartsList(void)
  * Address:	8024C258
  * Size:	0000B4
  */
-void Game::Cave::MapUnitGenerator::createEnemyList(void)
+void Cave::MapUnitGenerator::createEnemyList(void)
 {
 	/*
 	.loc_0x0:
@@ -759,7 +751,7 @@ void Game::Cave::MapUnitGenerator::createEnemyList(void)
  * Address:	8024C30C
  * Size:	0000EC
  */
-void Game::Cave::MapUnitGenerator::createCapEnemyList(void)
+void Cave::MapUnitGenerator::createCapEnemyList(void)
 {
 	/*
 	.loc_0x0:
@@ -846,7 +838,7 @@ void Game::Cave::MapUnitGenerator::createCapEnemyList(void)
  * Address:	8024C3F8
  * Size:	000030
  */
-void Game::Cave::MapUnitGenerator::isPomGroup((Game::Cave::TekiInfo*))
+void Cave::MapUnitGenerator::isPomGroup(Game::Cave::TekiInfo*)
 {
 	/*
 	.loc_0x0:
@@ -874,7 +866,7 @@ void Game::Cave::MapUnitGenerator::isPomGroup((Game::Cave::TekiInfo*))
  * Address:	8024C428
  * Size:	0000B4
  */
-void Game::Cave::MapUnitGenerator::createGateList(void)
+void Cave::MapUnitGenerator::createGateList(void)
 {
 	/*
 	.loc_0x0:
@@ -939,7 +931,7 @@ void Game::Cave::MapUnitGenerator::createGateList(void)
  * Address:	8024C4DC
  * Size:	0000B4
  */
-void Game::Cave::MapUnitGenerator::createItemList(void)
+void Cave::MapUnitGenerator::createItemList(void)
 {
 	/*
 	.loc_0x0:
@@ -1004,7 +996,7 @@ void Game::Cave::MapUnitGenerator::createItemList(void)
  * Address:	8024C590
  * Size:	00002C
  */
-void Game::Cave::MapUnitGenerator::createCaveLevel(void)
+void Cave::MapUnitGenerator::createCaveLevel(void)
 {
 	/*
 	.loc_0x0:
@@ -1021,6 +1013,8 @@ void Game::Cave::MapUnitGenerator::createCaveLevel(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

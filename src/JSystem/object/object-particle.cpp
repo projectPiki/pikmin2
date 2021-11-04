@@ -5,8 +5,8 @@
  * Address:	800056C0
  * Size:	0000E8
  */
-void JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(
-    JPAEmitterManager*, const JStage::TSystem*)
+JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager*,
+                                                        const JStage::TSystem*)
 {
 	/*
 	.loc_0x0:
@@ -76,7 +76,7 @@ void JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(
  * Address:	800057A8
  * Size:	000060
  */
-void JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_()
+JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_()
 {
 	/*
 	.loc_0x0:
@@ -109,12 +109,14 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_()
 	*/
 }
 
+namespace JStudio {
+
 /*
  * --INFO--
  * Address:	80005808
  * Size:	000018
  */
-void JStudio::TVariableValue::TVariableValue()
+TVariableValue::TVariableValue()
 {
 	/*
 	.loc_0x0:
@@ -127,12 +129,14 @@ void JStudio::TVariableValue::TVariableValue()
 	*/
 }
 
+} // namespace JStudio
+
 /*
  * --INFO--
  * Address:	80005820
  * Size:	000098
  */
-void JStudio_JParticle::TAdaptor_particle::~TAdaptor_particle()
+JStudio_JParticle::TAdaptor_particle::~TAdaptor_particle()
 {
 	/*
 	.loc_0x0:

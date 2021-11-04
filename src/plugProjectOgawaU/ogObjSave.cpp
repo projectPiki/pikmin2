@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80324A54
  * Size:	000060
  */
-void og::newScreen::ObjSave::__ct((char const*))
+newScreen::ObjSave::ObjSave(char const*)
 {
 	/*
 	.loc_0x0:
@@ -51,7 +43,7 @@ void og::newScreen::ObjSave::__ct((char const*))
  * Address:	80324AB4
  * Size:	0000AC
  */
-void og::newScreen::ObjSave::__dt(void)
+newScreen::ObjSave::~ObjSave(void)
 {
 	/*
 	.loc_0x0:
@@ -110,7 +102,7 @@ void og::newScreen::ObjSave::__dt(void)
  * Address:	80324B60
  * Size:	00008C
  */
-void og::newScreen::ObjSave::doCreate((JKRArchive*))
+void newScreen::ObjSave::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -161,7 +153,7 @@ void og::newScreen::ObjSave::doCreate((JKRArchive*))
  * Address:	........
  * Size:	000080
  */
-void og::newScreen::ObjSave::startSave(void)
+void newScreen::ObjSave::startSave(void)
 {
 	// UNUSED FUNCTION
 }
@@ -171,7 +163,7 @@ void og::newScreen::ObjSave::startSave(void)
  * Address:	80324BEC
  * Size:	000134
  */
-void og::newScreen::ObjSave::doUpdate(void)
+void newScreen::ObjSave::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -274,7 +266,7 @@ void og::newScreen::ObjSave::doUpdate(void)
  * Address:	80324D20
  * Size:	000030
  */
-void og::newScreen::ObjSave::doDraw((Graphics&))
+void newScreen::ObjSave::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -300,38 +292,35 @@ void og::newScreen::ObjSave::doDraw((Graphics&))
  * Address:	80324D50
  * Size:	000008
  */
-u32 og::newScreen::ObjSave::doStart((Screen::StartSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjSave::doStart(Screen::StartSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80324D58
  * Size:	000008
  */
-u32 og::newScreen::ObjSave::doEnd((Screen::EndSceneArg const*)) { return 0x1; }
+u32 newScreen::ObjSave::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80324D60
  * Size:	000004
  */
-void og::newScreen::ObjSave::doUpdateFadeinFinish(void) { }
+void newScreen::ObjSave::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80324D64
  * Size:	000004
  */
-void og::newScreen::ObjSave::doUpdateFinish(void) { }
+void newScreen::ObjSave::doUpdateFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80324D68
  * Size:	000034
  */
-void og::newScreen::ObjSave::doUpdateFadeoutFinish(void)
+void newScreen::ObjSave::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -356,21 +345,21 @@ void og::newScreen::ObjSave::doUpdateFadeoutFinish(void)
  * Address:	80324D9C
  * Size:	000008
  */
-u32 og::newScreen::ObjSave::doUpdateFadein(void) { return 0x1; }
+u32 newScreen::ObjSave::doUpdateFadein(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80324DA4
  * Size:	000008
  */
-u32 og::newScreen::ObjSave::doUpdateFadeout(void) { return 0x1; }
+u32 newScreen::ObjSave::doUpdateFadeout(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80324DAC
  * Size:	000008
  */
-void @24 @og::newScreen::ObjSave::__dt(void)
+@24 @og::newScreen::ObjSave::~ObjSave(void)
 {
 	/*
 	.loc_0x0:
@@ -378,3 +367,4 @@ void @24 @og::newScreen::ObjSave::__dt(void)
 	  b         -0x2FC
 	*/
 }
+} // namespace og

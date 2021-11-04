@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/ChappyBase.h"
 
 namespace Game {

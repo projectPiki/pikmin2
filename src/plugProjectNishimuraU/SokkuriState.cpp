@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802EFA24
  * Size:	000330
  */
-void Game::Sokkuri::FSM::init((Game::EnemyBase*))
+void Sokkuri::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +241,7 @@ void Game::Sokkuri::FSM::init((Game::EnemyBase*))
  * Address:	802EFD54
  * Size:	000064
  */
-void Game::Sokkuri::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -286,7 +278,7 @@ void Game::Sokkuri::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802EFDB8
  * Size:	000060
  */
-void Game::Sokkuri::StateDead::exec((Game::EnemyBase*))
+void Sokkuri::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -326,14 +318,14 @@ void Game::Sokkuri::StateDead::exec((Game::EnemyBase*))
  * Address:	802EFE18
  * Size:	000004
  */
-void Game::Sokkuri::StateDead::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802EFE1C
  * Size:	000070
  */
-void Game::Sokkuri::StatePress::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +365,7 @@ void Game::Sokkuri::StatePress::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802EFE8C
  * Size:	000060
  */
-void Game::Sokkuri::StatePress::exec((Game::EnemyBase*))
+void Sokkuri::StatePress::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -413,14 +405,14 @@ void Game::Sokkuri::StatePress::exec((Game::EnemyBase*))
  * Address:	802EFEEC
  * Size:	000004
  */
-void Game::Sokkuri::StatePress::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802EFEF0
  * Size:	0000C4
  */
-void Game::Sokkuri::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -483,7 +475,7 @@ void Game::Sokkuri::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802EFFB4
  * Size:	000064
  */
-void Game::Sokkuri::StateStay::exec((Game::EnemyBase*))
+void Sokkuri::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +514,7 @@ void Game::Sokkuri::StateStay::exec((Game::EnemyBase*))
  * Address:	802F0018
  * Size:	00007C
  */
-void Game::Sokkuri::StateStay::cleanup((Game::EnemyBase*))
+void Sokkuri::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -567,7 +559,7 @@ void Game::Sokkuri::StateStay::cleanup((Game::EnemyBase*))
  * Address:	802F0094
  * Size:	000078
  */
-void Game::Sokkuri::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -609,7 +601,7 @@ void Game::Sokkuri::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F010C
  * Size:	0000D8
  */
-void Game::Sokkuri::StateAppear::exec((Game::EnemyBase*))
+void Sokkuri::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -681,14 +673,14 @@ void Game::Sokkuri::StateAppear::exec((Game::EnemyBase*))
  * Address:	802F01E4
  * Size:	000004
  */
-void Game::Sokkuri::StateAppear::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StateAppear::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802F01E8
  * Size:	000070
  */
-void Game::Sokkuri::StateDisappear::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -728,7 +720,7 @@ void Game::Sokkuri::StateDisappear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F0258
  * Size:	00009C
  */
-void Game::Sokkuri::StateDisappear::exec((Game::EnemyBase*))
+void Sokkuri::StateDisappear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -785,14 +777,14 @@ void Game::Sokkuri::StateDisappear::exec((Game::EnemyBase*))
  * Address:	802F02F4
  * Size:	000004
  */
-void Game::Sokkuri::StateDisappear::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StateDisappear::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802F02F8
  * Size:	000068
  */
-void Game::Sokkuri::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -830,7 +822,7 @@ void Game::Sokkuri::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F0360
  * Size:	000154
  */
-void Game::Sokkuri::StateWait::exec((Game::EnemyBase*))
+void Sokkuri::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -939,14 +931,14 @@ void Game::Sokkuri::StateWait::exec((Game::EnemyBase*))
  * Address:	802F04B4
  * Size:	000004
  */
-void Game::Sokkuri::StateWait::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802F04B8
  * Size:	000060
  */
-void Game::Sokkuri::StateMoveGround::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateMoveGround::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -982,7 +974,7 @@ void Game::Sokkuri::StateMoveGround::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F0518
  * Size:	000234
  */
-void Game::Sokkuri::StateMoveGround::exec((Game::EnemyBase*))
+void Sokkuri::StateMoveGround::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1153,14 +1145,14 @@ void Game::Sokkuri::StateMoveGround::exec((Game::EnemyBase*))
  * Address:	802F074C
  * Size:	000004
  */
-void Game::Sokkuri::StateMoveGround::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StateMoveGround::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802F0750
  * Size:	000050
  */
-void Game::Sokkuri::StateMoveWater::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateMoveWater::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1192,7 +1184,7 @@ void Game::Sokkuri::StateMoveWater::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F07A0
  * Size:	0001D8
  */
-void Game::Sokkuri::StateMoveWater::exec((Game::EnemyBase*))
+void Sokkuri::StateMoveWater::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1338,14 +1330,14 @@ void Game::Sokkuri::StateMoveWater::exec((Game::EnemyBase*))
  * Address:	802F0978
  * Size:	000004
  */
-void Game::Sokkuri::StateMoveWater::cleanup((Game::EnemyBase*)) { }
+void Sokkuri::StateMoveWater::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802F097C
  * Size:	00006C
  */
-void Game::Sokkuri::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Sokkuri::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1384,7 +1376,7 @@ void Game::Sokkuri::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F09E8
  * Size:	000198
  */
-void Game::Sokkuri::StateFlick::exec((Game::EnemyBase*))
+void Sokkuri::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1512,7 +1504,7 @@ void Game::Sokkuri::StateFlick::exec((Game::EnemyBase*))
  * Address:	802F0B80
  * Size:	000010
  */
-void Game::Sokkuri::StateFlick::cleanup((Game::EnemyBase*))
+void Sokkuri::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1522,3 +1514,4 @@ void Game::Sokkuri::StateFlick::cleanup((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

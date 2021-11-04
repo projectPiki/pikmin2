@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000238
  */
-void Sys::Edge::calcNearestEdgePoint(Vector3<float>&, Vector3<float>&)
+void Edge::calcNearestEdgePoint(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +17,7 @@ void Sys::Edge::calcNearestEdgePoint(Vector3<float>&, Vector3<float>&)
  * Address:	80415AA4
  * Size:	0000B4
  */
-void Sys::Tube::getAxisVector(Vector3<float>&)
+void Tube::getAxisVector(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -74,7 +76,7 @@ void Sys::Tube::getAxisVector(Vector3<float>&)
  * Address:	........
  * Size:	00002C
  */
-void Sys::Tube::getYRatio((float))
+void Tube::getYRatio(float)
 {
 	// UNUSED FUNCTION
 }
@@ -84,7 +86,7 @@ void Sys::Tube::getYRatio((float))
  * Address:	80415B58
  * Size:	00027C
  */
-void Sys::Tube::collide(Sys::Sphere&, Vector3<float>&, float&)
+void Tube::collide(Sys::Sphere&, Vector3f&, float&)
 {
 	/*
 	.loc_0x0:
@@ -267,7 +269,7 @@ void Sys::Tube::collide(Sys::Sphere&, Vector3<float>&, float&)
  * Address:	80415DD4
  * Size:	0000F4
  */
-void Sys::Tube::getPosRatio(const Vector3<float>&)
+void Tube::getPosRatio(const Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -344,7 +346,7 @@ void Sys::Tube::getPosRatio(const Vector3<float>&)
  * Address:	........
  * Size:	00001C
  */
-void Sys::Tube::getRatioRadius((float))
+void Tube::getRatioRadius(float)
 {
 	// UNUSED FUNCTION
 }
@@ -354,8 +356,7 @@ void Sys::Tube::getRatioRadius((float))
  * Address:	........
  * Size:	000200
  */
-void Sys::Tube::getPosGradient(Vector3<float>&, float, Vector3<float>&,
-                               Vector3<float>&)
+void Tube::getPosGradient(Vector3f&, float, Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -365,7 +366,7 @@ void Sys::Tube::getPosGradient(Vector3<float>&, float, Vector3<float>&,
  * Address:	80415EC8
  * Size:	00004C
  */
-void Sys::Tube::setPos((float))
+void Tube::setPos(float)
 {
 	/*
 	.loc_0x0:
@@ -396,7 +397,7 @@ void Sys::Tube::setPos((float))
  * Address:	80415F14
  * Size:	000058
  */
-void Sys::Sphere::intersect((Sys::Sphere&))
+void Sphere::intersect(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -430,7 +431,7 @@ void Sys::Sphere::intersect((Sys::Sphere&))
  * Address:	80415F6C
  * Size:	000120
  */
-void Sys::Sphere::intersect(Sys::Sphere&, Vector3<float>&)
+void Sphere::intersect(Sys::Sphere&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +523,7 @@ void Sys::Sphere::intersect(Sys::Sphere&, Vector3<float>&)
  * Address:	8041608C
  * Size:	000204
  */
-void Sys::Sphere::intersect((Sys::Edge&, float&))
+void Sphere::intersect(Sys::Edge&, float&)
 {
 	/*
 	.loc_0x0:
@@ -677,7 +678,7 @@ void Sys::Sphere::intersect((Sys::Edge&, float&))
  * Address:	80416290
  * Size:	00028C
  */
-void Sys::Sphere::intersect(Sys::Edge&, float&, Vector3<float>&)
+void Sphere::intersect(Sys::Edge&, float&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -866,7 +867,7 @@ void Sys::Sphere::intersect(Sys::Edge&, float&, Vector3<float>&)
  * Address:	8041651C
  * Size:	0003D4
  */
-void Sys::Sphere::intersect(Sys::Edge&, float&, Vector3<float>&, float&)
+void Sphere::intersect(Sys::Edge&, float&, Vector3f&, float&)
 {
 	/*
 	.loc_0x0:
@@ -1157,7 +1158,7 @@ void Sys::Sphere::intersect(Sys::Edge&, float&, Vector3<float>&, float&)
  * Address:	........
  * Size:	0000D8
  */
-void Sys::Sphere::intersectRay(Vector3<float>&, Vector3<float>&)
+void Sphere::intersectRay(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1167,7 +1168,7 @@ void Sys::Sphere::intersectRay(Vector3<float>&, Vector3<float>&)
  * Address:	804168F0
  * Size:	000068
  */
-void Sys::Triangle::__ct(void)
+Triangle::Triangle(void)
 {
 	/*
 	.loc_0x0:
@@ -1205,8 +1206,7 @@ void Sys::Triangle::__ct(void)
  * Address:	........
  * Size:	00027C
  */
-void Sys::Triangle::findNearestPoint(Sys::VertexTable&, Vector3<float>&,
-                                     Vector3<float>&)
+void Triangle::findNearestPoint(Sys::VertexTable&, Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1216,7 +1216,7 @@ void Sys::Triangle::findNearestPoint(Sys::VertexTable&, Vector3<float>&,
  * Address:	80416958
  * Size:	000168
  */
-void Sys::Triangle::createSphere((Sys::VertexTable&))
+void Triangle::createSphere(Sys::VertexTable&)
 {
 	/*
 	.loc_0x0:
@@ -1322,7 +1322,7 @@ void Sys::Triangle::createSphere((Sys::VertexTable&))
  * Address:	80416AC0
  * Size:	000084
  */
-void Sys::Triangle::fastIntersect((Sys::Sphere&))
+void Triangle::fastIntersect(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1367,7 +1367,7 @@ void Sys::Triangle::fastIntersect((Sys::Sphere&))
  * Address:	........
  * Size:	000088
  */
-void Sys::Triangle::write((Stream&))
+void Triangle::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -1377,7 +1377,7 @@ void Sys::Triangle::write((Stream&))
  * Address:	........
  * Size:	000088
  */
-void Sys::Triangle::read((Stream&))
+void Triangle::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -1387,7 +1387,7 @@ void Sys::Triangle::read((Stream&))
  * Address:	........
  * Size:	000038
  */
-void Sys::Triangle::constructFromJ3D((Sys::VertexTable&, __J3DUTriangle&))
+void Triangle::constructFromJ3D(Sys::VertexTable&, __J3DUTriangle&)
 {
 	// UNUSED FUNCTION
 }
@@ -1397,7 +1397,7 @@ void Sys::Triangle::constructFromJ3D((Sys::VertexTable&, __J3DUTriangle&))
  * Address:	........
  * Size:	000004
  */
-void Sys::Triangle::draw((Graphics&, Sys::VertexTable&, bool))
+void Triangle::draw(Graphics&, Sys::VertexTable&, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1407,7 +1407,7 @@ void Sys::Triangle::draw((Graphics&, Sys::VertexTable&, bool))
  * Address:	80416B44
  * Size:	000104
  */
-void Sys::Triangle::calcDist((Plane&, Sys::VertexTable&))
+void Triangle::calcDist(Plane&, Sys::VertexTable&)
 {
 	/*
 	.loc_0x0:
@@ -1500,7 +1500,7 @@ void Sys::Triangle::calcDist((Plane&, Sys::VertexTable&))
  * Address:	........
  * Size:	0001EC
  */
-void Sys::Triangle::intersect((Sys::VertexTable&, BoundBox2d&))
+void Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
 {
 	// UNUSED FUNCTION
 }
@@ -1510,7 +1510,7 @@ void Sys::Triangle::intersect((Sys::VertexTable&, BoundBox2d&))
  * Address:	........
  * Size:	0002F0
  */
-void Sys::Triangle::intersect(Sys::Edge&, Vector3<float>&)
+void Triangle::intersect(Sys::Edge&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1520,7 +1520,7 @@ void Sys::Triangle::intersect(Sys::Edge&, Vector3<float>&)
  * Address:	80416C48
  * Size:	000334
  */
-void Sys::Triangle::intersect(Sys::Edge&, float, Vector3<float>&)
+void Triangle::intersect(Sys::Edge&, float, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1761,7 +1761,7 @@ void Sys::Triangle::intersect(Sys::Edge&, float, Vector3<float>&)
  * Address:	80416F7C
  * Size:	000370
  */
-void Sys::Triangle::intersect(Sys::Edge&, float, Vector3<float>&, float&)
+void Triangle::intersect(Sys::Edge&, float, Vector3f&, float&)
 {
 	/*
 	.loc_0x0:
@@ -2017,7 +2017,7 @@ void Sys::Triangle::intersect(Sys::Edge&, float, Vector3<float>&, float&)
  * Address:	804172EC
  * Size:	0002AC
  */
-void Sys::Triangle::intersect((Sys::VertexTable&, Sys::Sphere&))
+void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2222,7 +2222,7 @@ void Sys::Triangle::intersect((Sys::VertexTable&, Sys::Sphere&))
  * Address:	80417598
  * Size:	0002F8
  */
-void Sys::Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3<float>&)
+void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2440,8 +2440,7 @@ void Sys::Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3<float>&)
  * Address:	80417890
  * Size:	0002F8
  */
-void Sys::Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&,
-                                  Vector3<float>&)
+void Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2665,7 +2664,7 @@ void Sys::Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&,
  * Address:	........
  * Size:	00014C
  */
-void Sys::Triangle::intersectOptimistic(Sys::Sphere&, Vector3<float>&)
+void Triangle::intersectOptimistic(Sys::Sphere&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -2675,7 +2674,7 @@ void Sys::Triangle::intersectOptimistic(Sys::Sphere&, Vector3<float>&)
  * Address:	80417B88
  * Size:	0000EC
  */
-void Sys::Triangle::insideXZ(Vector3<float>&)
+void Triangle::insideXZ(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2754,7 +2753,7 @@ void Sys::Triangle::insideXZ(Vector3<float>&)
  * Address:	80417C74
  * Size:	0004C8
  */
-void Sys::Triangle::makePlanes((Sys::VertexTable&))
+void Triangle::makePlanes(Sys::VertexTable&)
 {
 	/*
 	.loc_0x0:
@@ -3080,7 +3079,7 @@ void Sys::Triangle::makePlanes((Sys::VertexTable&))
  * Address:	8041813C
  * Size:	000040
  */
-void Sys::RayIntersectInfo::condition((Sys::Triangle&))
+void RayIntersectInfo::condition(Sys::Triangle&)
 {
 	/*
 	.loc_0x0:
@@ -3112,7 +3111,7 @@ void Sys::RayIntersectInfo::condition((Sys::Triangle&))
  * Address:	8041817C
  * Size:	000428
  */
-void Sys::GridDivider::createTriangles((Sys::CreateTriangleArg&))
+void GridDivider::createTriangles(Sys::CreateTriangleArg&)
 {
 	/*
 	.loc_0x0:
@@ -3414,7 +3413,7 @@ void Sys::GridDivider::createTriangles((Sys::CreateTriangleArg&))
  * Address:	804185A4
  * Size:	0001D8
  */
-void Sys::GridDivider::getMinY(Vector3<float>&)
+void GridDivider::getMinY(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -3568,7 +3567,7 @@ void Sys::GridDivider::getMinY(Vector3<float>&)
  * Address:	8041877C
  * Size:	000234
  */
-void Sys::GridDivider::getCurrTri((Game::CurrTriInfo&))
+void GridDivider::getCurrTri(Game::CurrTriInfo&)
 {
 	/*
 	.loc_0x0:
@@ -3743,7 +3742,7 @@ void Sys::GridDivider::getCurrTri((Game::CurrTriInfo&))
  * Address:	804189B0
  * Size:	000230
  */
-void Sys::GridDivider::findTriLists((Sys::Sphere&))
+void GridDivider::findTriLists(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -3933,8 +3932,8 @@ void Sys::GridDivider::findTriLists((Sys::Sphere&))
  * Address:	80418BE0
  * Size:	00045C
  */
-void Sys::GridDivider::create((BoundBox&, int, int, Sys::VertexTable*,
-                               Sys::TriangleTable*))
+void GridDivider::create(BoundBox&, int, int, Sys::VertexTable*,
+                         Sys::TriangleTable*)
 {
 	/*
 	.loc_0x0:
@@ -4295,7 +4294,7 @@ void Sys::GridDivider::create((BoundBox&, int, int, Sys::VertexTable*,
  * Address:	8041903C
  * Size:	000088
  */
-void Sys::TriIndexList::__ct(void)
+TriIndexList::TriIndexList(void)
 {
 	/*
 	.loc_0x0:
@@ -4341,10 +4340,12 @@ void Sys::TriIndexList::__ct(void)
  * Address:	........
  * Size:	00006C
  */
-void Sys::GridDivider::write((Stream&))
+void GridDivider::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Sys
 
 /*
  * --INFO--
@@ -4422,12 +4423,14 @@ void ArrayContainer<Sys::Triangle>::write(Stream&)
  */
 void ArrayContainer<Sys::Triangle>::writeObject(Stream&, Sys::Triangle&) { }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C0
  */
-void Sys::GridInfo::write((Stream&))
+void GridInfo::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -4437,7 +4440,7 @@ void Sys::GridInfo::write((Stream&))
  * Address:	8041919C
  * Size:	000248
  */
-void Sys::GridDivider::read((Stream&))
+void GridDivider::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -4598,6 +4601,8 @@ void Sys::GridDivider::read((Stream&))
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	804193E4
@@ -4665,12 +4670,14 @@ void ArrayContainer<Sys::Triangle>::read(Stream&)
  */
 void ArrayContainer<Sys::Triangle>::readObject(Stream&, Sys::Triangle&) { }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	80419498
  * Size:	000074
  */
-void Sys::TriangleTable::createTriangleSphere((Sys::VertexTable&))
+void TriangleTable::createTriangleSphere(Sys::VertexTable&)
 {
 	/*
 	.loc_0x0:
@@ -4715,7 +4722,7 @@ void Sys::TriangleTable::createTriangleSphere((Sys::VertexTable&))
  * Address:	8041950C
  * Size:	000088
  */
-void Sys::TriIndexList::constructClone((Sys::TriangleTable&))
+void TriIndexList::constructClone(Sys::TriangleTable&)
 {
 	/*
 	.loc_0x0:
@@ -4765,9 +4772,8 @@ void Sys::TriIndexList::constructClone((Sys::TriangleTable&))
  * Address:	80419594
  * Size:	000150
  */
-void Sys::TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&,
-                                  Vector3<float>&, Vector3<float>&, float&,
-                                  float&)
+void TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&, Vector3f&,
+                             Vector3f&, float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -4873,9 +4879,8 @@ void Sys::TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&,
  * Address:	804196E4
  * Size:	000294
  */
-void Sys::TriIndexList::makeCovarianceMatrix(Sys::VertexTable&,
-                                             Sys::TriangleTable&, Matrix3f&,
-                                             Vector3<float>&)
+void TriIndexList::makeCovarianceMatrix(Sys::VertexTable&, Sys::TriangleTable&,
+                                        Matrix3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5064,8 +5069,7 @@ void Sys::TriIndexList::makeCovarianceMatrix(Sys::VertexTable&,
  * Address:	80419978
  * Size:	000004
  */
-void Sys::TriIndexList::draw((Graphics&, Sys::VertexTable&, Sys::TriangleTable&,
-                              bool))
+void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool)
 {
 }
 
@@ -5074,7 +5078,7 @@ void Sys::TriIndexList::draw((Graphics&, Sys::VertexTable&, Sys::TriangleTable&,
  * Address:	8041997C
  * Size:	00007C
  */
-void Sys::TriangleTable::__ct(void)
+TriangleTable::TriangleTable(void)
 {
 	/*
 	.loc_0x0:
@@ -5111,6 +5115,8 @@ void Sys::TriangleTable::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Sys
 
 /*
  * --INFO--
@@ -5204,12 +5210,14 @@ void Container<Sys::Triangle>::~Container()
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
  */
-void Sys::TriangleTable::findMaxVertexIndex(void)
+void TriangleTable::findMaxVertexIndex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5219,7 +5227,7 @@ void Sys::TriangleTable::findMaxVertexIndex(void)
  * Address:	80419AE8
  * Size:	00013C
  */
-void Sys::VertexTable::transform((Matrixf&))
+void VertexTable::transform(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -5330,7 +5338,7 @@ void Sys::VertexTable::transform((Matrixf&))
  * Address:	80419C24
  * Size:	0000D4
  */
-void Sys::VertexTable::write((Stream&))
+void VertexTable::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -5399,7 +5407,7 @@ void Sys::VertexTable::write((Stream&))
  * Address:	80419CF8
  * Size:	000024
  */
-void Sys::VertexTable::writeObject(Stream&, Vector3<float>&)
+void VertexTable::writeObject(Stream&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5420,7 +5428,7 @@ void Sys::VertexTable::writeObject(Stream&, Vector3<float>&)
  * Address:	80419D1C
  * Size:	000090
  */
-void Sys::VertexTable::__dt(void)
+VertexTable::~VertexTable(void)
 {
 	/*
 	.loc_0x0:
@@ -5472,7 +5480,7 @@ void Sys::VertexTable::__dt(void)
  * Address:	80419DAC
  * Size:	000024
  */
-void Sys::VertexTable::readObject(Stream&, Vector3<float>&)
+void VertexTable::readObject(Stream&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5493,7 +5501,7 @@ void Sys::VertexTable::readObject(Stream&, Vector3<float>&)
  * Address:	80419DD0
  * Size:	000090
  */
-void Sys::TriangleTable::__dt(void)
+TriangleTable::~TriangleTable(void)
 {
 	/*
 	.loc_0x0:
@@ -5545,7 +5553,7 @@ void Sys::TriangleTable::__dt(void)
  * Address:	80419E60
  * Size:	000088
  */
-void Sys::TriangleTable::readObject((Stream&, Sys::Triangle&))
+void TriangleTable::readObject(Stream&, Sys::Triangle&)
 {
 	/*
 	.loc_0x0:
@@ -5591,7 +5599,7 @@ void Sys::TriangleTable::readObject((Stream&, Sys::Triangle&))
  * Address:	80419EE8
  * Size:	000088
  */
-void Sys::TriangleTable::writeObject((Stream&, Sys::Triangle&))
+void TriangleTable::writeObject(Stream&, Sys::Triangle&)
 {
 	/*
 	.loc_0x0:
@@ -5637,7 +5645,7 @@ void Sys::TriangleTable::writeObject((Stream&, Sys::Triangle&))
  * Address:	80419F70
  * Size:	000034
  */
-void Sys::GridDivider::getBoundBox((BoundBox&))
+void GridDivider::getBoundBox(BoundBox&)
 {
 	/*
 	.loc_0x0:
@@ -5656,6 +5664,8 @@ void Sys::GridDivider::getBoundBox((BoundBox&))
 	  blr
 	*/
 }
+
+} // namespace Sys
 
 /*
  * --INFO--

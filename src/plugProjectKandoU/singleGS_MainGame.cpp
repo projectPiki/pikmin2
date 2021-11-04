@@ -1,22 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802135AC
  * Size:	0008B0
  */
-void Game::SingleGame::GameState::init((Game::SingleGameSection*,
-                                        Game::StateArg*))
+void SingleGame::GameState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -666,7 +657,7 @@ void Game::SingleGame::GameState::init((Game::SingleGameSection*,
  * Address:	........
  * Size:	000174
  */
-void Game::SingleGame::GameState::gameStart((Game::SingleGameSection*))
+void SingleGame::GameState::gameStart(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -676,7 +667,7 @@ void Game::SingleGame::GameState::gameStart((Game::SingleGameSection*))
  * Address:	80213E5C
  * Size:	000288
  */
-void Game::SingleGame::GameState::check_DemoInout((Game::SingleGameSection*))
+void SingleGame::GameState::check_DemoInout(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -866,14 +857,10 @@ void Game::SingleGame::GameState::check_DemoInout((Game::SingleGameSection*))
  * Address:	802140E4
  * Size:	00000C
  */
-void Game::SingleGame::GameState::on_section_fadeout((Game::SingleGameSection*))
+void SingleGame::GameState::on_section_fadeout(Game::SingleGameSection*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x18(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x18(r3)
+	_18 = 1;
 }
 
 /*
@@ -881,8 +868,8 @@ void Game::SingleGame::GameState::on_section_fadeout((Game::SingleGameSection*))
  * Address:	802140F0
  * Size:	000B28
  */
-void Game::SingleGame::GameState::on_demo_timer((Game::SingleGameSection*,
-                                                 unsigned long))
+void SingleGame::GameState::on_demo_timer(Game::SingleGameSection*,
+                                          unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1692,7 +1679,7 @@ void Game::SingleGame::GameState::on_demo_timer((Game::SingleGameSection*,
  * Address:	80214C18
  * Size:	0006E0
  */
-void Game::SingleGame::GameState::exec((Game::SingleGameSection*))
+void SingleGame::GameState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -2187,143 +2174,151 @@ void Game::SingleGame::GameState::exec((Game::SingleGameSection*))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802152F8
- * Size:	0001DC
- */
-void og::Screen::DispMemberSMenuAll::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  lis       r4, 0x804B
-	  addi      r5, r4, 0x1148
-	  lis       r9, 0x804C
-	  stmw      r24, 0x10(r1)
-	  addi      r0, r9, 0x58C
-	  lis       r8, 0x804C
-	  lis       r7, 0x804C
-	  addi      r26, r8, 0x574
-	  lis       r6, 0x804C
-	  addi      r12, r7, 0x55C
-	  li        r4, 0
-	  addi      r10, r6, 0x544
-	  li        r25, 0x4D2
-	  li        r24, 0x9A5
-	  li        r11, 0x56
-	  li        r9, 0x6F
-	  li        r8, 0x16
-	  li        r7, 0x14D
-	  li        r6, 0x2C
-	  stw       r5, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r0, 0x0(r3)
-	  li        r0, 0x1
-	  stw       r5, 0x8(r3)
-	  stw       r4, 0xC(r3)
-	  stw       r26, 0x8(r3)
-	  stw       r25, 0x10(r3)
-	  stw       r24, 0x14(r3)
-	  stw       r0, 0x18(r3)
-	  stw       r5, 0x1C(r3)
-	  stw       r4, 0x20(r3)
-	  stw       r12, 0x1C(r3)
-	  stw       r0, 0x30(r3)
-	  stw       r11, 0x24(r3)
-	  stw       r24, 0x28(r3)
-	  stb       r0, 0x2C(r3)
-	  stb       r4, 0x2D(r3)
-	  stw       r5, 0x34(r3)
-	  stw       r4, 0x38(r3)
-	  stw       r10, 0x34(r3)
-	  stw       r9, 0x3C(r3)
-	  stw       r8, 0x40(r3)
-	  stw       r7, 0x44(r3)
-	  stw       r6, 0x48(r3)
-	  stb       r4, 0x4C(r3)
-	  stb       r4, 0x4D(r3)
-	  stb       r4, 0x4E(r3)
-	  stb       r4, 0x4F(r3)
-	  stb       r4, 0x50(r3)
-	  stb       r4, 0x51(r3)
-	  stb       r4, 0x52(r3)
-	  stb       r4, 0x53(r3)
-	  stb       r4, 0x54(r3)
-	  stb       r4, 0x55(r3)
-	  stb       r4, 0x56(r3)
-	  stb       r4, 0x57(r3)
-	  stb       r4, 0x58(r3)
-	  lis       r12, 0x804C
-	  lis       r11, 0x75
-	  lis       r10, 0xA
-	  stb       r4, 0x59(r3)
-	  lis       r9, 0x1
-	  lis       r8, 0x745F
-	  lis       r7, 0x804C
-	  stw       r5, 0x5C(r3)
-	  lis       r6, 0x804C
-	  addi      r12, r12, 0x52C
-	  subi      r24, r11, 0x344F
-	  stw       r4, 0x60(r3)
-	  subi      r25, r10, 0x40F
-	  subi      r26, r9, 0x2BCF
-	  li        r27, 0x10E1
-	  stw       r12, 0x5C(r3)
-	  li        r28, 0x141
-	  li        r29, 0xA
-	  li        r30, 0x14
-	  stw       r0, 0x64(r3)
-	  li        r31, 0x1E
-	  li        r12, 0x28
-	  li        r11, 0x32
-	  stw       r24, 0x68(r3)
-	  li        r10, 0x3C
-	  li        r9, 0x46
-	  addi      r8, r8, 0x3031
-	  stw       r25, 0x6C(r3)
-	  addi      r7, r7, 0x514
-	  addi      r6, r6, 0x4FC
-	  stw       r26, 0x70(r3)
-	  stw       r27, 0x74(r3)
-	  stw       r28, 0x78(r3)
-	  stw       r29, 0x7C(r3)
-	  stw       r30, 0x80(r3)
-	  stw       r31, 0x84(r3)
-	  stw       r12, 0x88(r3)
-	  stw       r11, 0x8C(r3)
-	  stw       r10, 0x90(r3)
-	  stw       r9, 0x94(r3)
-	  stb       r4, 0xA5(r3)
-	  stb       r4, 0xA6(r3)
-	  stw       r4, 0x98(r3)
-	  stw       r8, 0x9C(r3)
-	  stb       r0, 0xA0(r3)
-	  stb       r0, 0xA1(r3)
-	  stb       r0, 0xA2(r3)
-	  stb       r0, 0xA3(r3)
-	  stb       r0, 0xA4(r3)
-	  stw       r5, 0xA8(r3)
-	  stw       r4, 0xAC(r3)
-	  stw       r7, 0xA8(r3)
-	  stw       r0, 0xB0(r3)
-	  stw       r5, 0xB4(r3)
-	  stw       r4, 0xB8(r3)
-	  stw       r6, 0xB4(r3)
-	  stw       r4, 0xBC(r3)
-	  stb       r4, 0xC0(r3)
-	  lmw       r24, 0x10(r1)
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
+namespace og {
+
+	namespace Screen {
+
+		/*
+		 * --INFO--
+		 * Address:	802152F8
+		 * Size:	0001DC
+		 */
+		DispMemberSMenuAll::DispMemberSMenuAll(void)
+		{
+			/*
+			.loc_0x0:
+			  stwu      r1, -0x30(r1)
+			  lis       r4, 0x804B
+			  addi      r5, r4, 0x1148
+			  lis       r9, 0x804C
+			  stmw      r24, 0x10(r1)
+			  addi      r0, r9, 0x58C
+			  lis       r8, 0x804C
+			  lis       r7, 0x804C
+			  addi      r26, r8, 0x574
+			  lis       r6, 0x804C
+			  addi      r12, r7, 0x55C
+			  li        r4, 0
+			  addi      r10, r6, 0x544
+			  li        r25, 0x4D2
+			  li        r24, 0x9A5
+			  li        r11, 0x56
+			  li        r9, 0x6F
+			  li        r8, 0x16
+			  li        r7, 0x14D
+			  li        r6, 0x2C
+			  stw       r5, 0x0(r3)
+			  stw       r4, 0x4(r3)
+			  stw       r0, 0x0(r3)
+			  li        r0, 0x1
+			  stw       r5, 0x8(r3)
+			  stw       r4, 0xC(r3)
+			  stw       r26, 0x8(r3)
+			  stw       r25, 0x10(r3)
+			  stw       r24, 0x14(r3)
+			  stw       r0, 0x18(r3)
+			  stw       r5, 0x1C(r3)
+			  stw       r4, 0x20(r3)
+			  stw       r12, 0x1C(r3)
+			  stw       r0, 0x30(r3)
+			  stw       r11, 0x24(r3)
+			  stw       r24, 0x28(r3)
+			  stb       r0, 0x2C(r3)
+			  stb       r4, 0x2D(r3)
+			  stw       r5, 0x34(r3)
+			  stw       r4, 0x38(r3)
+			  stw       r10, 0x34(r3)
+			  stw       r9, 0x3C(r3)
+			  stw       r8, 0x40(r3)
+			  stw       r7, 0x44(r3)
+			  stw       r6, 0x48(r3)
+			  stb       r4, 0x4C(r3)
+			  stb       r4, 0x4D(r3)
+			  stb       r4, 0x4E(r3)
+			  stb       r4, 0x4F(r3)
+			  stb       r4, 0x50(r3)
+			  stb       r4, 0x51(r3)
+			  stb       r4, 0x52(r3)
+			  stb       r4, 0x53(r3)
+			  stb       r4, 0x54(r3)
+			  stb       r4, 0x55(r3)
+			  stb       r4, 0x56(r3)
+			  stb       r4, 0x57(r3)
+			  stb       r4, 0x58(r3)
+			  lis       r12, 0x804C
+			  lis       r11, 0x75
+			  lis       r10, 0xA
+			  stb       r4, 0x59(r3)
+			  lis       r9, 0x1
+			  lis       r8, 0x745F
+			  lis       r7, 0x804C
+			  stw       r5, 0x5C(r3)
+			  lis       r6, 0x804C
+			  addi      r12, r12, 0x52C
+			  subi      r24, r11, 0x344F
+			  stw       r4, 0x60(r3)
+			  subi      r25, r10, 0x40F
+			  subi      r26, r9, 0x2BCF
+			  li        r27, 0x10E1
+			  stw       r12, 0x5C(r3)
+			  li        r28, 0x141
+			  li        r29, 0xA
+			  li        r30, 0x14
+			  stw       r0, 0x64(r3)
+			  li        r31, 0x1E
+			  li        r12, 0x28
+			  li        r11, 0x32
+			  stw       r24, 0x68(r3)
+			  li        r10, 0x3C
+			  li        r9, 0x46
+			  addi      r8, r8, 0x3031
+			  stw       r25, 0x6C(r3)
+			  addi      r7, r7, 0x514
+			  addi      r6, r6, 0x4FC
+			  stw       r26, 0x70(r3)
+			  stw       r27, 0x74(r3)
+			  stw       r28, 0x78(r3)
+			  stw       r29, 0x7C(r3)
+			  stw       r30, 0x80(r3)
+			  stw       r31, 0x84(r3)
+			  stw       r12, 0x88(r3)
+			  stw       r11, 0x8C(r3)
+			  stw       r10, 0x90(r3)
+			  stw       r9, 0x94(r3)
+			  stb       r4, 0xA5(r3)
+			  stb       r4, 0xA6(r3)
+			  stw       r4, 0x98(r3)
+			  stw       r8, 0x9C(r3)
+			  stb       r0, 0xA0(r3)
+			  stb       r0, 0xA1(r3)
+			  stb       r0, 0xA2(r3)
+			  stb       r0, 0xA3(r3)
+			  stb       r0, 0xA4(r3)
+			  stw       r5, 0xA8(r3)
+			  stw       r4, 0xAC(r3)
+			  stw       r7, 0xA8(r3)
+			  stw       r0, 0xB0(r3)
+			  stw       r5, 0xB4(r3)
+			  stw       r4, 0xB8(r3)
+			  stw       r6, 0xB4(r3)
+			  stw       r4, 0xBC(r3)
+			  stb       r4, 0xC0(r3)
+			  lmw       r24, 0x10(r1)
+			  addi      r1, r1, 0x30
+			  blr
+			*/
+		}
+
+	} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--
  * Address:	802154D4
  * Size:	0000D4
  */
-void Game::SingleGame::GameState::onOrimaDown((Game::SingleGameSection*, int))
+void SingleGame::GameState::onOrimaDown(Game::SingleGameSection*, int)
 {
 	/*
 	.loc_0x0:
@@ -2392,8 +2387,8 @@ void Game::SingleGame::GameState::onOrimaDown((Game::SingleGameSection*, int))
  * Address:	802155A8
  * Size:	0000DC
  */
-void Game::SingleGame::GameState::onHoleIn((Game::SingleGameSection*,
-                                            Game::ItemCave::Item*))
+void SingleGame::GameState::onHoleIn(Game::SingleGameSection*,
+                                     Game::ItemCave::Item*)
 {
 	/*
 	.loc_0x0:
@@ -2460,19 +2455,16 @@ void Game::SingleGame::GameState::onHoleIn((Game::SingleGameSection*,
  * Address:	80215684
  * Size:	000004
  */
-void Game::SingleGame::GameState::onMovieCommand((Game::SingleGameSection*,
-                                                  int))
-{
-}
+void SingleGame::GameState::onMovieCommand(Game::SingleGameSection*, int) { }
 
 /*
  * --INFO--
  * Address:	80215688
  * Size:	000158
  */
-void Game::SingleGame::GameState::onMovieStart((Game::SingleGameSection*,
-                                                Game::MovieConfig*,
-                                                unsigned long, unsigned long))
+void SingleGame::GameState::onMovieStart(Game::SingleGameSection*,
+                                         Game::MovieConfig*, unsigned long,
+                                         unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2586,9 +2578,9 @@ void Game::SingleGame::GameState::onMovieStart((Game::SingleGameSection*,
  * Address:	802157E0
  * Size:	001A7C
  */
-void Game::SingleGame::GameState::onMovieDone((Game::SingleGameSection*,
-                                               Game::MovieConfig*,
-                                               unsigned long, unsigned long))
+void SingleGame::GameState::onMovieDone(Game::SingleGameSection*,
+                                        Game::MovieConfig*, unsigned long,
+                                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4483,7 +4475,7 @@ void Game::SingleGame::GameState::onMovieDone((Game::SingleGameSection*,
  * Address:	8021725C
  * Size:	000074
  */
-void Game::SingleGame::GameState::needRepayDemo(void)
+void SingleGame::GameState::needRepayDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -4532,7 +4524,7 @@ void Game::SingleGame::GameState::needRepayDemo(void)
  * Address:	802172D0
  * Size:	000140
  */
-void Game::SingleGame::GameState::startRepayDemo(void)
+void SingleGame::GameState::startRepayDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -4632,7 +4624,7 @@ void Game::SingleGame::GameState::startRepayDemo(void)
  * Address:	80217410
  * Size:	0000A8
  */
-void Game::SingleGame::GameState::updateRepayDemo(void)
+void SingleGame::GameState::updateRepayDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -4694,7 +4686,7 @@ void Game::SingleGame::GameState::updateRepayDemo(void)
  * Address:	........
  * Size:	000004
  */
-void Game::SingleGame::GameState::drawRepayDemo((Graphics&))
+void SingleGame::GameState::drawRepayDemo(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -4704,7 +4696,7 @@ void Game::SingleGame::GameState::drawRepayDemo((Graphics&))
  * Address:	802174B8
  * Size:	000078
  */
-void Game::SingleGame::GameState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::GameState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4750,7 +4742,7 @@ void Game::SingleGame::GameState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	80217530
  * Size:	000068
  */
-void Game::SingleGame::GameState::cleanup((Game::SingleGameSection*))
+void SingleGame::GameState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -4785,353 +4777,363 @@ void Game::SingleGame::GameState::cleanup((Game::SingleGameSection*))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80217598
- * Size:	000008
- */
-u32 og::Screen::DispMemberSave::getSize(void) { return 0xC; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	802175A0
- * Size:	00000C
- */
-void og::Screen::DispMemberSave::getOwnerID(void)
-{
+namespace og {
+
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217598
+	 * Size:	000008
+	 */
+	u32 DispMemberSave::getSize(void) { return 0xC; }
 
-/*
- * --INFO--
- * Address:	802175AC
- * Size:	000010
- */
-void og::Screen::DispMemberSave::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5341
-	  li        r3, 0
-	  addi      r4, r4, 0x5645
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175A0
+	 * Size:	00000C
+	 */
+	void DispMemberSave::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802175BC
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuCont::getSize(void) { return 0x8; }
-
-/*
- * --INFO--
- * Address:	802175C4
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuCont::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175AC
+	 * Size:	000010
+	 */
+	void DispMemberSave::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5341
+		  li        r3, 0
+		  addi      r4, r4, 0x5645
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802175D0
- * Size:	000014
- */
-void og::Screen::DispMemberSMenuCont::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x434F
-	  lis       r3, 0x53
-	  addi      r4, r4, 0x4E54
-	  addi      r3, r3, 0x4D5F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175BC
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuCont::getSize(void) { return 0x8; }
 
-/*
- * --INFO--
- * Address:	802175E4
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuPauseVS::getSize(void) { return 0xC; }
-
-/*
- * --INFO--
- * Address:	802175EC
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuPauseVS::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175C4
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuCont::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802175F8
- * Size:	000014
- */
-void og::Screen::DispMemberSMenuPauseVS::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x535F
-	  lis       r3, 0x534D
-	  addi      r4, r4, 0x5653
-	  addi      r3, r3, 0x5F50
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175D0
+	 * Size:	000014
+	 */
+	void DispMemberSMenuCont::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x434F
+		  lis       r3, 0x53
+		  addi      r4, r4, 0x4E54
+		  addi      r3, r3, 0x4D5F
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8021760C
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuMap::getSize(void) { return 0x4C; }
-
-/*
- * --INFO--
- * Address:	80217614
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuMap::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175E4
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuPauseVS::getSize(void) { return 0xC; }
 
-/*
- * --INFO--
- * Address:	80217620
- * Size:	000010
- */
-void og::Screen::DispMemberSMenuMap::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5F4D
-	  li        r3, 0x534D
-	  addi      r4, r4, 0x4150
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175EC
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuPauseVS::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80217630
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuItem::getSize(void) { return 0x28; }
-
-/*
- * --INFO--
- * Address:	80217638
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuItem::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	802175F8
+	 * Size:	000014
+	 */
+	void DispMemberSMenuPauseVS::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x535F
+		  lis       r3, 0x534D
+		  addi      r4, r4, 0x5653
+		  addi      r3, r3, 0x5F50
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80217644
- * Size:	000014
- */
-void og::Screen::DispMemberSMenuItem::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4954
-	  lis       r3, 0x53
-	  addi      r4, r4, 0x454D
-	  addi      r3, r3, 0x4D5F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8021760C
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuMap::getSize(void) { return 0x4C; }
 
-/*
- * --INFO--
- * Address:	80217658
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuPauseDoukutu::getSize(void) { return 0x18; }
-
-/*
- * --INFO--
- * Address:	80217660
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuPauseDoukutu::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217614
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuMap::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8021766C
- * Size:	000014
- */
-void og::Screen::DispMemberSMenuPauseDoukutu::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5345
-	  lis       r3, 0x50
-	  addi      r4, r4, 0x5F44
-	  addi      r3, r3, 0x4155
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217620
+	 * Size:	000010
+	 */
+	void DispMemberSMenuMap::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5F4D
+		  li        r3, 0x534D
+		  addi      r4, r4, 0x4150
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80217680
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuPause::getSize(void) { return 0x14; }
-
-/*
- * --INFO--
- * Address:	80217688
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuPause::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217630
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuItem::getSize(void) { return 0x28; }
 
-/*
- * --INFO--
- * Address:	80217694
- * Size:	000014
- */
-void og::Screen::DispMemberSMenuPause::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4155
-	  lis       r3, 0x534D
-	  addi      r4, r4, 0x5345
-	  addi      r3, r3, 0x5F50
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217638
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuItem::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802176A8
- * Size:	000008
- */
-u32 og::Screen::DispMemberSMenuAll::getSize(void) { return 0xC4; }
-
-/*
- * --INFO--
- * Address:	802176B0
- * Size:	00000C
- */
-void og::Screen::DispMemberSMenuAll::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217644
+	 * Size:	000014
+	 */
+	void DispMemberSMenuItem::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4954
+		  lis       r3, 0x53
+		  addi      r4, r4, 0x454D
+		  addi      r3, r3, 0x4D5F
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802176BC
- * Size:	000010
- */
-void og::Screen::DispMemberSMenuAll::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5F41
-	  li        r3, 0x534D
-	  addi      r4, r4, 0x4C4C
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217658
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuPauseDoukutu::getSize(void) { return 0x18; }
 
-/*
- * --INFO--
- * Address:	802176CC
- * Size:	00006C
- */
-void og::Screen::DispMemberSMenuAll::doSetSubMemberAll(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r4, r31, 0x8
-	  bl        0xF7CF8
-	  mr        r3, r31
-	  addi      r4, r31, 0x1C
-	  bl        0xF7CEC
-	  mr        r3, r31
-	  addi      r4, r31, 0x34
-	  bl        0xF7CE0
-	  mr        r3, r31
-	  addi      r4, r31, 0x5C
-	  bl        0xF7CD4
-	  mr        r3, r31
-	  addi      r4, r31, 0xA8
-	  bl        0xF7CC8
-	  mr        r3, r31
-	  addi      r4, r31, 0xB4
-	  bl        0xF7CBC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80217660
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuPauseDoukutu::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8021766C
+	 * Size:	000014
+	 */
+	void DispMemberSMenuPauseDoukutu::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5345
+		  lis       r3, 0x50
+		  addi      r4, r4, 0x5F44
+		  addi      r3, r3, 0x4155
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80217680
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuPause::getSize(void) { return 0x14; }
+
+	/*
+	 * --INFO--
+	 * Address:	80217688
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuPause::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80217694
+	 * Size:	000014
+	 */
+	void DispMemberSMenuPause::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4155
+		  lis       r3, 0x534D
+		  addi      r4, r4, 0x5345
+		  addi      r3, r3, 0x5F50
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	802176A8
+	 * Size:	000008
+	 */
+	u32 DispMemberSMenuAll::getSize(void) { return 0xC4; }
+
+	/*
+	 * --INFO--
+	 * Address:	802176B0
+	 * Size:	00000C
+	 */
+	void DispMemberSMenuAll::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	802176BC
+	 * Size:	000010
+	 */
+	void DispMemberSMenuAll::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5F41
+		  li        r3, 0x534D
+		  addi      r4, r4, 0x4C4C
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	802176CC
+	 * Size:	00006C
+	 */
+	void DispMemberSMenuAll::doSetSubMemberAll(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r3
+		  addi      r4, r31, 0x8
+		  bl        0xF7CF8
+		  mr        r3, r31
+		  addi      r4, r31, 0x1C
+		  bl        0xF7CEC
+		  mr        r3, r31
+		  addi      r4, r31, 0x34
+		  bl        0xF7CE0
+		  mr        r3, r31
+		  addi      r4, r31, 0x5C
+		  bl        0xF7CD4
+		  mr        r3, r31
+		  addi      r4, r31, 0xA8
+		  bl        0xF7CC8
+		  mr        r3, r31
+		  addi      r4, r31, 0xB4
+		  bl        0xF7CBC
+		  lwz       r0, 0x14(r1)
+		  lwz       r31, 0xC(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--

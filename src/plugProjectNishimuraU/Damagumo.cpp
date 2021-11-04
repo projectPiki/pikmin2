@@ -1,12 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802A57A4
  * Size:	000024
  */
-void Game::Damagumo::DamagumoGroundCallBack::invokeOnGround(int,
-                                                            Game::WaterBox*)
+void Damagumo::DamagumoGroundCallBack::invokeOnGround(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -27,8 +28,7 @@ void Game::Damagumo::DamagumoGroundCallBack::invokeOnGround(int,
  * Address:	802A57C8
  * Size:	000024
  */
-void Game::Damagumo::DamagumoGroundCallBack::invokeOffGround(int,
-                                                             Game::WaterBox*)
+void Damagumo::DamagumoGroundCallBack::invokeOffGround(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -49,7 +49,7 @@ void Game::Damagumo::DamagumoGroundCallBack::invokeOffGround(int,
  * Address:	802A57EC
  * Size:	00016C
  */
-void Game::Damagumo::Obj::Obj()
+Damagumo::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -158,7 +158,7 @@ void Game::Damagumo::Obj::Obj()
  * Address:	802A5958
  * Size:	000034
  */
-void Game::Damagumo::Obj::constructor()
+void Damagumo::Obj::constructor()
 {
 	/*
 	.loc_0x0:
@@ -183,14 +183,14 @@ void Game::Damagumo::Obj::constructor()
  * Address:	802A598C
  * Size:	000004
  */
-void Game::Damagumo::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Damagumo::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802A5990
  * Size:	000134
  */
-void Game::Damagumo::Obj::onInit(Game::CreatureInitArg*)
+void Damagumo::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +283,7 @@ void Game::Damagumo::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802A5AC4
  * Size:	000050
  */
-void Game::Damagumo::Obj::doUpdate()
+void Damagumo::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -315,7 +315,7 @@ void Game::Damagumo::Obj::doUpdate()
  * Address:	802A5B14
  * Size:	000034
  */
-void Game::Damagumo::Obj::doUpdateCommon()
+void Damagumo::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -340,7 +340,7 @@ void Game::Damagumo::Obj::doUpdateCommon()
  * Address:	802A5B48
  * Size:	000098
  */
-void Game::Damagumo::Obj::doAnimationCullingOff()
+void Damagumo::Obj::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -390,14 +390,14 @@ void Game::Damagumo::Obj::doAnimationCullingOff()
  * Address:	802A5BE0
  * Size:	000004
  */
-void Game::Damagumo::Obj::doDirectDraw(Graphics&) { }
+void Damagumo::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802A5BE4
  * Size:	000020
  */
-void Game::Damagumo::Obj::doDebugDraw(Graphics&)
+void Damagumo::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -417,7 +417,7 @@ void Game::Damagumo::Obj::doDebugDraw(Graphics&)
  * Address:	802A5C04
  * Size:	00004C
  */
-void Game::Damagumo::Obj::setFSM(Game::Damagumo::FSM*)
+void Damagumo::Obj::setFSM(Game::Damagumo::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -448,7 +448,7 @@ void Game::Damagumo::Obj::setFSM(Game::Damagumo::FSM*)
  * Address:	802A5C50
  * Size:	00003C
  */
-void Game::Damagumo::Obj::getShadowParam(Game::ShadowParam&)
+void Damagumo::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +475,7 @@ void Game::Damagumo::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802A5C8C
  * Size:	000050
  */
-void Game::Damagumo::Obj::needShadow()
+void Damagumo::Obj::needShadow()
 {
 	/*
 	.loc_0x0:
@@ -511,7 +511,7 @@ void Game::Damagumo::Obj::needShadow()
  * Address:	802A5CDC
  * Size:	00009C
  */
-void Game::Damagumo::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void Damagumo::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -566,7 +566,7 @@ void Game::Damagumo::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	802A5D78
  * Size:	0001AC
  */
-void Game::Damagumo::Obj::collisionCallback(Game::CollEvent&)
+void Damagumo::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -691,7 +691,7 @@ void Game::Damagumo::Obj::collisionCallback(Game::CollEvent&)
  * Address:	802A5F24
  * Size:	000034
  */
-void Game::Damagumo::Obj::doStartStoneState()
+void Damagumo::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -716,7 +716,7 @@ void Game::Damagumo::Obj::doStartStoneState()
  * Address:	802A5F58
  * Size:	00005C
  */
-void Game::Damagumo::Obj::doFinishStoneState()
+void Damagumo::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -753,7 +753,7 @@ void Game::Damagumo::Obj::doFinishStoneState()
  * Address:	802A5FB4
  * Size:	000020
  */
-void Game::Damagumo::Obj::doStartMovie()
+void Damagumo::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -773,7 +773,7 @@ void Game::Damagumo::Obj::doStartMovie()
  * Address:	802A5FD4
  * Size:	000020
  */
-void Game::Damagumo::Obj::doEndMovie()
+void Damagumo::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -793,7 +793,7 @@ void Game::Damagumo::Obj::doEndMovie()
  * Address:	802A5FF4
  * Size:	000060
  */
-void Game::Damagumo::Obj::getThrowupItemPosition(Vector3<float>*)
+void Damagumo::Obj::getThrowupItemPosition(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -829,7 +829,7 @@ void Game::Damagumo::Obj::getThrowupItemPosition(Vector3<float>*)
  * Address:	802A6054
  * Size:	000014
  */
-void Game::Damagumo::Obj::getThrowupItemVelocity(Vector3<float>*)
+void Damagumo::Obj::getThrowupItemVelocity(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -846,7 +846,7 @@ void Game::Damagumo::Obj::getThrowupItemVelocity(Vector3<float>*)
  * Address:	802A6068
  * Size:	000298
  */
-void Game::Damagumo::Obj::getTargetPosition()
+void Damagumo::Obj::getTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -1036,7 +1036,7 @@ void Game::Damagumo::Obj::getTargetPosition()
  * Address:	802A6300
  * Size:	00010C
  */
-void Game::Damagumo::Obj::createIKSystem()
+void Damagumo::Obj::createIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1121,7 +1121,7 @@ void Game::Damagumo::Obj::createIKSystem()
  * Address:	802A640C
  * Size:	000124
  */
-void Game::Damagumo::Obj::setupIKSystem()
+void Damagumo::Obj::setupIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1208,7 +1208,7 @@ void Game::Damagumo::Obj::setupIKSystem()
  * Address:	802A6530
  * Size:	000090
  */
-void Game::Damagumo::Obj::setIKParameter()
+void Damagumo::Obj::setIKParameter()
 {
 	/*
 	.loc_0x0:
@@ -1256,7 +1256,7 @@ void Game::Damagumo::Obj::setIKParameter()
  * Address:	802A65C0
  * Size:	000020
  */
-void Game::Damagumo::Obj::setIKSystemTargetPosition(Vector3<float>&)
+void Damagumo::Obj::setIKSystemTargetPosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1276,7 +1276,7 @@ void Game::Damagumo::Obj::setIKSystemTargetPosition(Vector3<float>&)
  * Address:	802A65E0
  * Size:	000060
  */
-void Game::Damagumo::Obj::updateIKSystem()
+void Damagumo::Obj::updateIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1312,7 +1312,7 @@ void Game::Damagumo::Obj::updateIKSystem()
  * Address:	802A6640
  * Size:	000060
  */
-void Game::Damagumo::Obj::doAnimationIKSystem()
+void Damagumo::Obj::doAnimationIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1348,7 +1348,7 @@ void Game::Damagumo::Obj::doAnimationIKSystem()
  * Address:	802A66A0
  * Size:	000024
  */
-void Game::Damagumo::Obj::finishAnimationIKSystem()
+void Damagumo::Obj::finishAnimationIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1369,7 +1369,7 @@ void Game::Damagumo::Obj::finishAnimationIKSystem()
  * Address:	802A66C4
  * Size:	000024
  */
-void Game::Damagumo::Obj::startProgramedIK()
+void Damagumo::Obj::startProgramedIK()
 {
 	/*
 	.loc_0x0:
@@ -1390,7 +1390,7 @@ void Game::Damagumo::Obj::startProgramedIK()
  * Address:	802A66E8
  * Size:	000024
  */
-void Game::Damagumo::Obj::startIKMotion()
+void Damagumo::Obj::startIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1411,7 +1411,7 @@ void Game::Damagumo::Obj::startIKMotion()
  * Address:	802A670C
  * Size:	000024
  */
-void Game::Damagumo::Obj::finishIKMotion()
+void Damagumo::Obj::finishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1432,7 +1432,7 @@ void Game::Damagumo::Obj::finishIKMotion()
  * Address:	802A6730
  * Size:	000024
  */
-void Game::Damagumo::Obj::forceFinishIKMotion()
+void Damagumo::Obj::forceFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1453,7 +1453,7 @@ void Game::Damagumo::Obj::forceFinishIKMotion()
  * Address:	802A6754
  * Size:	000024
  */
-void Game::Damagumo::Obj::isFinishIKMotion()
+void Damagumo::Obj::isFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1474,7 +1474,7 @@ void Game::Damagumo::Obj::isFinishIKMotion()
  * Address:	802A6778
  * Size:	000024
  */
-void Game::Damagumo::Obj::startBlendMotion()
+void Damagumo::Obj::startBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -1495,7 +1495,7 @@ void Game::Damagumo::Obj::startBlendMotion()
  * Address:	802A679C
  * Size:	000024
  */
-void Game::Damagumo::Obj::finishBlendMotion()
+void Damagumo::Obj::finishBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -1516,7 +1516,7 @@ void Game::Damagumo::Obj::finishBlendMotion()
  * Address:	802A67C0
  * Size:	000020
  */
-void Game::Damagumo::Obj::getTraceCentrePosition()
+void Damagumo::Obj::getTraceCentrePosition()
 {
 	/*
 	.loc_0x0:
@@ -1536,7 +1536,7 @@ void Game::Damagumo::Obj::getTraceCentrePosition()
  * Address:	802A67E0
  * Size:	000024
  */
-void Game::Damagumo::Obj::isCollisionCheck(CollPart*)
+void Damagumo::Obj::isCollisionCheck(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1557,7 +1557,7 @@ void Game::Damagumo::Obj::isCollisionCheck(CollPart*)
  * Address:	802A6804
  * Size:	000048
  */
-void Game::Damagumo::Obj::createShadowSystem()
+void Damagumo::Obj::createShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1589,7 +1589,7 @@ void Game::Damagumo::Obj::createShadowSystem()
  * Address:	802A684C
  * Size:	000074
  */
-void Game::Damagumo::Obj::setupShadowSystem()
+void Damagumo::Obj::setupShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1634,7 +1634,7 @@ void Game::Damagumo::Obj::setupShadowSystem()
  * Address:	802A68C0
  * Size:	000024
  */
-void Game::Damagumo::Obj::doAnimationShadowSystem()
+void Damagumo::Obj::doAnimationShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1655,7 +1655,7 @@ void Game::Damagumo::Obj::doAnimationShadowSystem()
  * Address:	802A68E4
  * Size:	00004C
  */
-void Game::Damagumo::Obj::createMaterialAnimation()
+void Damagumo::Obj::createMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1686,7 +1686,7 @@ void Game::Damagumo::Obj::createMaterialAnimation()
  * Address:	802A6930
  * Size:	000060
  */
-void Game::Damagumo::Obj::startMaterialAnimation()
+void Damagumo::Obj::startMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1722,7 +1722,7 @@ void Game::Damagumo::Obj::startMaterialAnimation()
  * Address:	802A6990
  * Size:	00013C
  */
-void Game::Damagumo::Obj::updateMaterialAnimation()
+void Damagumo::Obj::updateMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1825,7 +1825,7 @@ void Game::Damagumo::Obj::updateMaterialAnimation()
  * Address:	802A6ACC
  * Size:	000090
  */
-void Game::Damagumo::Obj::setupCollision()
+void Damagumo::Obj::setupCollision()
 {
 	/*
 	.loc_0x0:
@@ -1877,7 +1877,7 @@ void Game::Damagumo::Obj::setupCollision()
  * Address:	802A6B5C
  * Size:	00008C
  */
-void Game::Damagumo::Obj::createItemAndEnemy()
+void Damagumo::Obj::createItemAndEnemy()
 {
 	/*
 	.loc_0x0:
@@ -1926,7 +1926,7 @@ void Game::Damagumo::Obj::createItemAndEnemy()
  * Address:	802A6BE8
  * Size:	0000C8
  */
-void Game::Damagumo::Obj::startBossFlickBGM()
+void Damagumo::Obj::startBossFlickBGM()
 {
 	/*
 	.loc_0x0:
@@ -1994,7 +1994,7 @@ void Game::Damagumo::Obj::startBossFlickBGM()
  * Address:	802A6CB0
  * Size:	0000FC
  */
-void Game::Damagumo::Obj::updateBossBGM()
+void Damagumo::Obj::updateBossBGM()
 {
 	/*
 	.loc_0x0:
@@ -2079,7 +2079,7 @@ void Game::Damagumo::Obj::updateBossBGM()
  * Address:	802A6DAC
  * Size:	0000C4
  */
-void Game::Damagumo::Obj::resetBossAppearBGM()
+void Damagumo::Obj::resetBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -2146,7 +2146,7 @@ void Game::Damagumo::Obj::resetBossAppearBGM()
  * Address:	802A6E70
  * Size:	0000BC
  */
-void Game::Damagumo::Obj::setBossAppearBGM()
+void Damagumo::Obj::setBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -2211,7 +2211,7 @@ void Game::Damagumo::Obj::setBossAppearBGM()
  * Address:	802A6F2C
  * Size:	0005BC
  */
-void Game::Damagumo::Obj::createEffect()
+void Damagumo::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -2613,12 +2613,16 @@ void Game::Damagumo::Obj::createEffect()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802A74E8
  * Size:	000084
  */
-void efx::TChasePosPos::~TChasePosPos()
+TChasePosPos::~TChasePosPos()
 {
 	/*
 	.loc_0x0:
@@ -2662,12 +2666,16 @@ void efx::TChasePosPos::~TChasePosPos()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802A756C
  * Size:	000184
  */
-void Game::Damagumo::Obj::setupEffect()
+void Damagumo::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -2778,7 +2786,7 @@ void Game::Damagumo::Obj::setupEffect()
  * Address:	802A76F0
  * Size:	0001F0
  */
-void Game::Damagumo::Obj::createOnGroundEffect(int, Game::WaterBox*)
+void Damagumo::Obj::createOnGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -2922,7 +2930,7 @@ void Game::Damagumo::Obj::createOnGroundEffect(int, Game::WaterBox*)
  * Address:	802A78E0
  * Size:	000128
  */
-void Game::Damagumo::Obj::createOffGroundEffect(int, Game::WaterBox*)
+void Damagumo::Obj::createOffGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -3018,7 +3026,7 @@ void Game::Damagumo::Obj::createOffGroundEffect(int, Game::WaterBox*)
  * Address:	802A7A08
  * Size:	0001A0
  */
-void Game::Damagumo::Obj::startPinchJointEffect()
+void Damagumo::Obj::startPinchJointEffect()
 {
 	/*
 	.loc_0x0:
@@ -3140,7 +3148,7 @@ void Game::Damagumo::Obj::startPinchJointEffect()
  * Address:	802A7BA8
  * Size:	000058
  */
-void Game::Damagumo::Obj::finishPinchJointEffect()
+void Damagumo::Obj::finishPinchJointEffect()
 {
 	/*
 	.loc_0x0:
@@ -3176,7 +3184,7 @@ void Game::Damagumo::Obj::finishPinchJointEffect()
  * Address:	802A7C00
  * Size:	0001C0
  */
-void Game::Damagumo::Obj::startDeadEffect()
+void Damagumo::Obj::startDeadEffect()
 {
 	/*
 	.loc_0x0:
@@ -3310,7 +3318,7 @@ void Game::Damagumo::Obj::startDeadEffect()
  * Address:	802A7DC0
  * Size:	000250
  */
-void Game::Damagumo::Obj::updatePinchLife()
+void Damagumo::Obj::updatePinchLife()
 {
 	/*
 	.loc_0x0:
@@ -3482,7 +3490,7 @@ void Game::Damagumo::Obj::updatePinchLife()
  * Address:	802A8010
  * Size:	000198
  */
-void Game::Damagumo::Obj::effectDrawOn()
+void Damagumo::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -3610,7 +3618,7 @@ void Game::Damagumo::Obj::effectDrawOn()
  * Address:	802A81A8
  * Size:	000198
  */
-void Game::Damagumo::Obj::effectDrawOff()
+void Damagumo::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -3738,7 +3746,7 @@ void Game::Damagumo::Obj::effectDrawOff()
  * Address:	802A8340
  * Size:	000038
  */
-void Game::Damagumo::Obj::addShadowScale()
+void Damagumo::Obj::addShadowScale()
 {
 	/*
 	.loc_0x0:
@@ -3759,12 +3767,16 @@ void Game::Damagumo::Obj::addShadowScale()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802A8378
  * Size:	00009C
  */
-void efx::TDamaDeadHahenC2::~TDamaDeadHahenC2()
+TDamaDeadHahenC2::~TDamaDeadHahenC2()
 {
 	/*
 	.loc_0x0:
@@ -3819,7 +3831,7 @@ void efx::TDamaDeadHahenC2::~TDamaDeadHahenC2()
  * Address:	802A8414
  * Size:	00009C
  */
-void efx::TDamaDeadHahenC1::~TDamaDeadHahenC1()
+TDamaDeadHahenC1::~TDamaDeadHahenC1()
 {
 	/*
 	.loc_0x0:
@@ -3874,7 +3886,7 @@ void efx::TDamaDeadHahenC1::~TDamaDeadHahenC1()
  * Address:	802A84B0
  * Size:	00009C
  */
-void efx::TDamaSmoke::~TDamaSmoke()
+TDamaSmoke::~TDamaSmoke()
 {
 	/*
 	.loc_0x0:
@@ -3929,7 +3941,7 @@ void efx::TDamaSmoke::~TDamaSmoke()
  * Address:	802A854C
  * Size:	00009C
  */
-void efx::TDamaDeadHahenB::~TDamaDeadHahenB()
+TDamaDeadHahenB::~TDamaDeadHahenB()
 {
 	/*
 	.loc_0x0:
@@ -3984,7 +3996,7 @@ void efx::TDamaDeadHahenB::~TDamaDeadHahenB()
  * Address:	802A85E8
  * Size:	00009C
  */
-void efx::TDamaDeadHahenA::~TDamaDeadHahenA()
+TDamaDeadHahenA::~TDamaDeadHahenA()
 {
 	/*
 	.loc_0x0:
@@ -4039,7 +4051,7 @@ void efx::TDamaDeadHahenA::~TDamaDeadHahenA()
  * Address:	802A8684
  * Size:	00009C
  */
-void efx::TDamaDeadElecB::~TDamaDeadElecB()
+TDamaDeadElecB::~TDamaDeadElecB()
 {
 	/*
 	.loc_0x0:
@@ -4094,7 +4106,7 @@ void efx::TDamaDeadElecB::~TDamaDeadElecB()
  * Address:	802A8720
  * Size:	00009C
  */
-void efx::TDamaDeadElecA::~TDamaDeadElecA()
+TDamaDeadElecA::~TDamaDeadElecA()
 {
 	/*
 	.loc_0x0:
@@ -4149,7 +4161,7 @@ void efx::TDamaDeadElecA::~TDamaDeadElecA()
  * Address:	802A87BC
  * Size:	00009C
  */
-void efx::TDamaHahen::~TDamaHahen()
+TDamaHahen::~TDamaHahen()
 {
 	/*
 	.loc_0x0:
@@ -4204,7 +4216,7 @@ void efx::TDamaHahen::~TDamaHahen()
  * Address:	802A8858
  * Size:	00009C
  */
-void efx::TDamaFootw::~TDamaFootw()
+TDamaFootw::~TDamaFootw()
 {
 	/*
 	.loc_0x0:
@@ -4254,12 +4266,16 @@ void efx::TDamaFootw::~TDamaFootw()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802A88F4
  * Size:	000088
  */
-void Game::ConditionNotStickClient::satisfy(Game::Piki*)
+void ConditionNotStickClient::satisfy(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -4309,21 +4325,21 @@ void Game::ConditionNotStickClient::satisfy(Game::Piki*)
  * Address:	802A897C
  * Size:	000004
  */
-void Game::Damagumo::Obj::inWaterCallback(Game::WaterBox*) { }
+void Damagumo::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802A8980
  * Size:	000004
  */
-void Game::Damagumo::Obj::outWaterCallback() { }
+void Damagumo::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802A8984
  * Size:	000008
  */
-void Game::Damagumo::Obj::getDamageCoeStoneState()
+void Damagumo::Obj::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -4337,14 +4353,16 @@ void Game::Damagumo::Obj::getDamageCoeStoneState()
  * Address:	802A898C
  * Size:	000004
  */
-void Game::Damagumo::Obj::throwupItemInDeathProcedure() { }
+void Damagumo::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--
  * Address:	802A8990
  * Size:	000008
  */
-u32 Game::Damagumo::Obj::getEnemyTypeID() { return 0x38; }
+u32 Damagumo::Obj::getEnemyTypeID() { return 0x38; }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -4368,12 +4386,14 @@ void __sinit_Damagumo_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802A89C0
  * Size:	000014
  */
-void Game::EnemyBase::@1176 @12 @viewOnPelletKilled()
+void EnemyBase::@1176 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -4390,7 +4410,7 @@ void Game::EnemyBase::@1176 @12 @viewOnPelletKilled()
  * Address:	802A89D4
  * Size:	000014
  */
-void Game::EnemyBase::@1176 @12 @viewStartCarryMotion()
+void EnemyBase::@1176 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4407,7 +4427,7 @@ void Game::EnemyBase::@1176 @12 @viewStartCarryMotion()
  * Address:	802A89E8
  * Size:	000014
  */
-void Game::EnemyBase::@1176 @12 @viewStartPreCarryMotion()
+void EnemyBase::@1176 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4424,7 +4444,7 @@ void Game::EnemyBase::@1176 @12 @viewStartPreCarryMotion()
  * Address:	802A89FC
  * Size:	000014
  */
-void Game::EnemyBase::@1176 @12 @view_finish_carrymotion()
+void EnemyBase::@1176 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -4441,7 +4461,7 @@ void Game::EnemyBase::@1176 @12 @view_finish_carrymotion()
  * Address:	802A8A10
  * Size:	000014
  */
-void Game::EnemyBase::@1176 @12 @view_start_carrymotion()
+void EnemyBase::@1176 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -4458,7 +4478,7 @@ void Game::EnemyBase::@1176 @12 @view_start_carrymotion()
  * Address:	802A8A24
  * Size:	000014
  */
-void Game::EnemyBase::@1176 @12 @viewGetShape()
+void EnemyBase::@1176 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -4470,128 +4490,133 @@ void Game::EnemyBase::@1176 @12 @viewGetShape()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802A8A38
- * Size:	000008
- */
-void efx::TDamaFootw::@4 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x1E4
-	*/
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	802A8A40
- * Size:	000008
- */
-void efx::TDamaHahen::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x288
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A38
+	 * Size:	000008
+	 */
+	TDamaFootw::@4 @~TDamaFootw()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x1E4
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A48
- * Size:	000008
- */
-void efx::TDamaDeadElecA::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x32C
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A40
+	 * Size:	000008
+	 */
+	TDamaHahen::@4 @~TDamaHahen()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x288
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A50
- * Size:	000008
- */
-void efx::TDamaDeadElecB::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x3D0
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A48
+	 * Size:	000008
+	 */
+	TDamaDeadElecA::@4 @~TDamaDeadElecA()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x32C
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A58
- * Size:	000008
- */
-void efx::TDamaDeadHahenA::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x474
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A50
+	 * Size:	000008
+	 */
+	TDamaDeadElecB::@4 @~TDamaDeadElecB()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x3D0
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A60
- * Size:	000008
- */
-void efx::TDamaDeadHahenB::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x518
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A58
+	 * Size:	000008
+	 */
+	TDamaDeadHahenA::@4 @~TDamaDeadHahenA()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x474
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A68
- * Size:	000008
- */
-void efx::TDamaSmoke::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x5BC
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A60
+	 * Size:	000008
+	 */
+	TDamaDeadHahenB::@4 @~TDamaDeadHahenB()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x518
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A70
- * Size:	000008
- */
-void efx::TDamaDeadHahenC1::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x660
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A68
+	 * Size:	000008
+	 */
+	TDamaSmoke::@4 @~TDamaSmoke()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x5BC
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802A8A78
- * Size:	000008
- */
-void efx::TDamaDeadHahenC2::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x704
-	*/
-}
+	 * --INFO--
+	 * Address:	802A8A70
+	 * Size:	000008
+	 */
+	TDamaDeadHahenC1::@4 @~TDamaDeadHahenC1()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x660
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	802A8A78
+	 * Size:	000008
+	 */
+	TDamaDeadHahenC2::@4 @~TDamaDeadHahenC2()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x704
+		*/
+	}
+} // namespace efx
+
+} // namespace Game

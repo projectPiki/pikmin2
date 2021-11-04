@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80022E98
  * Size:	000058
  */
-void JKRFileLoader::JKRFileLoader()
+JKRFileLoader::JKRFileLoader()
 {
 	/*
 	.loc_0x0:
@@ -39,7 +39,7 @@ void JKRFileLoader::JKRFileLoader()
  * Address:	80022EF0
  * Size:	00008C
  */
-void JKRFileLoader::~JKRFileLoader()
+JKRFileLoader::~JKRFileLoader()
 {
 	/*
 	.loc_0x0:

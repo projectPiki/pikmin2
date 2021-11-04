@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803EEBE8
  * Size:	0001D0
  */
-void ebi::Omake::FSMStateMachine::init((ebi::Omake::TMgr*))
+void Omake::FSMStateMachine::init(ebi::Omake::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -153,7 +145,7 @@ void ebi::Omake::FSMStateMachine::init((ebi::Omake::TMgr*))
  * Address:	803EEDB8
  * Size:	00002C
  */
-void ebi::Omake::FSMState::init((ebi::Omake::TMgr*, Game::StateArg*))
+void Omake::FSMState::init(ebi::Omake::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +168,7 @@ void ebi::Omake::FSMState::init((ebi::Omake::TMgr*, Game::StateArg*))
  * Address:	803EEDE4
  * Size:	00002C
  */
-void ebi::Omake::FSMState::exec((ebi::Omake::TMgr*))
+void Omake::FSMState::exec(ebi::Omake::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -199,8 +191,7 @@ void ebi::Omake::FSMState::exec((ebi::Omake::TMgr*))
  * Address:	803EEE10
  * Size:	0000DC
  */
-void ebi::Omake::FSMState_OmakeScreen::do_init((ebi::Omake::TMgr*,
-                                                Game::StateArg*))
+void Omake::FSMState_OmakeScreen::do_init(ebi::Omake::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -273,7 +264,7 @@ void ebi::Omake::FSMState_OmakeScreen::do_init((ebi::Omake::TMgr*,
  * Address:	803EEEEC
  * Size:	0000A8
  */
-void ebi::Omake::FSMState_OmakeScreen::do_exec((ebi::Omake::TMgr*))
+void Omake::FSMState_OmakeScreen::do_exec(ebi::Omake::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -333,8 +324,7 @@ void ebi::Omake::FSMState_OmakeScreen::do_exec((ebi::Omake::TMgr*))
  * Address:	803EEF94
  * Size:	000034
  */
-void ebi::Omake::FSMState_CardEScreen::do_init((ebi::Omake::TMgr*,
-                                                Game::StateArg*))
+void Omake::FSMState_CardEScreen::do_init(ebi::Omake::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -359,7 +349,7 @@ void ebi::Omake::FSMState_CardEScreen::do_init((ebi::Omake::TMgr*,
  * Address:	803EEFC8
  * Size:	0000A0
  */
-void ebi::Omake::FSMState_CardEScreen::do_exec((ebi::Omake::TMgr*))
+void Omake::FSMState_CardEScreen::do_exec(ebi::Omake::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -415,8 +405,7 @@ void ebi::Omake::FSMState_CardEScreen::do_exec((ebi::Omake::TMgr*))
  * Address:	803EF068
  * Size:	000048
  */
-void ebi::Omake::FSMState_SelectGame::do_init((ebi::Omake::TMgr*,
-                                               Game::StateArg*))
+void Omake::FSMState_SelectGame::do_init(ebi::Omake::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -446,7 +435,7 @@ void ebi::Omake::FSMState_SelectGame::do_init((ebi::Omake::TMgr*,
  * Address:	803EF0B0
  * Size:	000378
  */
-void ebi::Omake::FSMState_SelectGame::do_exec((ebi::Omake::TMgr*))
+void Omake::FSMState_SelectGame::do_exec(ebi::Omake::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -714,7 +703,7 @@ void ebi::Omake::FSMState_SelectGame::do_exec((ebi::Omake::TMgr*))
  * Address:	803EF428
  * Size:	0000B4
  */
-void ebi::Omake::TMgr::__ct(void)
+Omake::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -771,7 +760,7 @@ void ebi::Omake::TMgr::__ct(void)
  * Address:	803EF4DC
  * Size:	0000E8
  */
-void ebi::Omake::TMgr::loadResource(void)
+void Omake::TMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -843,7 +832,7 @@ void ebi::Omake::TMgr::loadResource(void)
  * Address:	803EF5C4
  * Size:	000050
  */
-void ebi::Omake::TMgr::newCardEMgrAndTask(void)
+void Omake::TMgr::newCardEMgrAndTask(void)
 {
 	/*
 	.loc_0x0:
@@ -875,7 +864,7 @@ void ebi::Omake::TMgr::newCardEMgrAndTask(void)
  * Address:	803EF614
  * Size:	00003C
  */
-void ebi::Omake::TMgr::start(void)
+void Omake::TMgr::start(void)
 {
 	/*
 	.loc_0x0:
@@ -902,7 +891,7 @@ void ebi::Omake::TMgr::start(void)
  * Address:	803EF650
  * Size:	00003C
  */
-void ebi::Omake::TMgr::goEnd_(void)
+void Omake::TMgr::goEnd_(void)
 {
 	/*
 	.loc_0x0:
@@ -929,7 +918,7 @@ void ebi::Omake::TMgr::goEnd_(void)
  * Address:	........
  * Size:	000084
  */
-void ebi::Omake::TMgr::forceQuit(void)
+void Omake::TMgr::forceQuit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -939,7 +928,7 @@ void ebi::Omake::TMgr::forceQuit(void)
  * Address:	803EF68C
  * Size:	000028
  */
-void ebi::Omake::TMgr::isFinish(void)
+void Omake::TMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -961,7 +950,7 @@ void ebi::Omake::TMgr::isFinish(void)
  * Address:	803EF6B4
  * Size:	0000E0
  */
-void ebi::Omake::TMgr::update(void)
+void Omake::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1031,7 +1020,7 @@ void ebi::Omake::TMgr::update(void)
  * Address:	803EF794
  * Size:	000080
  */
-void ebi::Omake::TMgr::draw(void)
+void Omake::TMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -1077,7 +1066,7 @@ void ebi::Omake::TMgr::draw(void)
  * Address:	803EF814
  * Size:	00002C
  */
-void ebi::Omake::TMgr::isMovieState(void)
+void Omake::TMgr::isMovieState(void)
 {
 	/*
 	.loc_0x0:
@@ -1100,7 +1089,7 @@ void ebi::Omake::TMgr::isMovieState(void)
  * Address:	803EF840
  * Size:	000054
  */
-void ebi::Omake::TMgr::restartFromMovieState(void)
+void Omake::TMgr::restartFromMovieState(void)
 {
 	/*
 	.loc_0x0:
@@ -1135,7 +1124,7 @@ void ebi::Omake::TMgr::restartFromMovieState(void)
  * Address:	803EF894
  * Size:	000008
  */
-void ebi::Omake::TMgr::getMovieID(void)
+void Omake::TMgr::getMovieID(void)
 {
 	/*
 	.loc_0x0:
@@ -1149,7 +1138,7 @@ void ebi::Omake::TMgr::getMovieID(void)
  * Address:	........
  * Size:	00016C
  */
-void ebi::Omake::TMgr::isTouchAnyKey_(void)
+void Omake::TMgr::isTouchAnyKey_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1159,7 +1148,7 @@ void ebi::Omake::TMgr::isTouchAnyKey_(void)
  * Address:	803EF89C
  * Size:	000058
  */
-void ebi::Omake::TMgr::getStateID(void)
+void Omake::TMgr::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -1195,14 +1184,14 @@ void ebi::Omake::TMgr::getStateID(void)
  * Address:	803EF8F4
  * Size:	000004
  */
-void ebi::Omake::FSMState::do_init((ebi::Omake::TMgr*, Game::StateArg*)) { }
+void Omake::FSMState::do_init(ebi::Omake::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803EF8F8
  * Size:	000004
  */
-void ebi::Omake::FSMState::do_exec((ebi::Omake::TMgr*)) { }
+void Omake::FSMState::do_exec(ebi::Omake::TMgr*) { }
 
 /*
  * --INFO--
@@ -1255,580 +1244,586 @@ FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EF960
- * Size:	000278
- */
-void ebi::Screen::TOmakeGame::__dt(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x25C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x244
-	  subi      r0, r3, 0x5CB0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x244
-	  subi      r0, r3, 0x7618
-	  stw       r0, 0x244(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x244
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x244(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x244
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x244(r30)
-	  beq-      .loc_0x88
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x244
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x244(r30)
-	  bl        0x21BA4
+	 * --INFO--
+	 * Address:	803EF960
+	 * Size:	000278
+	 */
+	TOmakeGame::~TOmakeGame(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x25C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x244
+		  subi      r0, r3, 0x5CB0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x244
+		  subi      r0, r3, 0x7618
+		  stw       r0, 0x244(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x244
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x244(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x244
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x244(r30)
+		  beq-      .loc_0x88
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x244
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x244(r30)
+		  bl        0x21BA4
 
-	.loc_0x88:
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x160
-	  subi      r4, r4, 0x1A4
-	  li        r5, 0x4C
-	  li        r6, 0x3
-	  bl        -0x32E238
-	  addic.    r0, r30, 0x140
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x140
-	  subi      r0, r3, 0x77F4
-	  stw       r0, 0x140(r30)
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x140
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x140(r30)
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x140
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x140(r30)
-	  beq-      .loc_0xFC
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x140
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x140(r30)
-	  bl        0x21B30
+		.loc_0x88:
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x160
+		  subi      r4, r4, 0x1A4
+		  li        r5, 0x4C
+		  li        r6, 0x3
+		  bl        -0x32E238
+		  addic.    r0, r30, 0x140
+		  beq-      .loc_0xFC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x140
+		  subi      r0, r3, 0x77F4
+		  stw       r0, 0x140(r30)
+		  beq-      .loc_0xFC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x140
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x140(r30)
+		  beq-      .loc_0xFC
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x140
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x140(r30)
+		  beq-      .loc_0xFC
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x140
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x140(r30)
+		  bl        0x21B30
 
-	.loc_0xFC:
-	  addic.    r0, r30, 0x104
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x124
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x104(r30)
-	  beq-      .loc_0x124
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x124(r30)
+		.loc_0xFC:
+		  addic.    r0, r30, 0x104
+		  beq-      .loc_0x16C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x124
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x104(r30)
+		  beq-      .loc_0x124
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x124(r30)
 
-	.loc_0x124:
-	  addic.    r0, r30, 0x104
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x104
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x104(r30)
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x104
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x104(r30)
-	  beq-      .loc_0x16C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x104
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x104(r30)
-	  bl        0x21AC0
+		.loc_0x124:
+		  addic.    r0, r30, 0x104
+		  beq-      .loc_0x16C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x104
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x104(r30)
+		  beq-      .loc_0x16C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x104
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x104(r30)
+		  beq-      .loc_0x16C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x104
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x104(r30)
+		  bl        0x21AC0
 
-	.loc_0x16C:
-	  addic.    r0, r30, 0xC8
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xE8
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0x194
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0xE8(r30)
+		.loc_0x16C:
+		  addic.    r0, r30, 0xC8
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xE8
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0xC8(r30)
+		  beq-      .loc_0x194
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0xE8(r30)
 
-	.loc_0x194:
-	  addic.    r0, r30, 0xC8
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xC8
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0xC8
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0x1DC
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0xC8
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0xC8(r30)
-	  bl        0x21A50
+		.loc_0x194:
+		  addic.    r0, r30, 0xC8
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xC8
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0xC8(r30)
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0xC8
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0xC8(r30)
+		  beq-      .loc_0x1DC
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0xC8
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0xC8(r30)
+		  bl        0x21A50
 
-	.loc_0x1DC:
-	  addic.    r0, r30, 0x8C
-	  beq-      .loc_0x24C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xAC
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x8C(r30)
-	  beq-      .loc_0x204
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0xAC(r30)
+		.loc_0x1DC:
+		  addic.    r0, r30, 0x8C
+		  beq-      .loc_0x24C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xAC
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x8C(r30)
+		  beq-      .loc_0x204
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0xAC(r30)
 
-	.loc_0x204:
-	  addic.    r0, r30, 0x8C
-	  beq-      .loc_0x24C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x8C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x8C(r30)
-	  beq-      .loc_0x24C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x8C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x8C(r30)
-	  beq-      .loc_0x24C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x8C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x8C(r30)
-	  bl        0x219E0
+		.loc_0x204:
+		  addic.    r0, r30, 0x8C
+		  beq-      .loc_0x24C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x8C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x8C(r30)
+		  beq-      .loc_0x24C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x8C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x8C(r30)
+		  beq-      .loc_0x24C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x8C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x8C(r30)
+		  bl        0x219E0
 
-	.loc_0x24C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x25C
-	  mr        r3, r30
-	  bl        -0x3CBB04
+		.loc_0x24C:
+		  extsh.    r0, r31
+		  ble-      .loc_0x25C
+		  mr        r3, r30
+		  bl        -0x3CBB04
 
-	.loc_0x25C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x25C:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803EFBD8
- * Size:	0002E4
- */
-void ebi::Screen::TOmakeCardE::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x2C8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x14C
-	  subi      r0, r3, 0x5D00
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x14C
-	  subi      r0, r3, 0x77F4
-	  stw       r0, 0x14C(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x14C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x14C(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x14C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x14C(r30)
-	  beq-      .loc_0x88
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x14C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x14C(r30)
-	  bl        0x2192C
+	 * --INFO--
+	 * Address:	803EFBD8
+	 * Size:	0002E4
+	 */
+	TOmakeCardE::~TOmakeCardE(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x2C8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x14C
+		  subi      r0, r3, 0x5D00
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x14C
+		  subi      r0, r3, 0x77F4
+		  stw       r0, 0x14C(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x14C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x14C(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x14C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x14C(r30)
+		  beq-      .loc_0x88
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x14C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x14C(r30)
+		  bl        0x2192C
 
-	.loc_0x88:
-	  addic.    r0, r30, 0x110
-	  beq-      .loc_0xF8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x130
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x110(r30)
-	  beq-      .loc_0xB0
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x130(r30)
+		.loc_0x88:
+		  addic.    r0, r30, 0x110
+		  beq-      .loc_0xF8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x130
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x110(r30)
+		  beq-      .loc_0xB0
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x130(r30)
 
-	.loc_0xB0:
-	  addic.    r0, r30, 0x110
-	  beq-      .loc_0xF8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x110
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x110(r30)
-	  beq-      .loc_0xF8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x110
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x110(r30)
-	  beq-      .loc_0xF8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x110
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x110(r30)
-	  bl        0x218BC
+		.loc_0xB0:
+		  addic.    r0, r30, 0x110
+		  beq-      .loc_0xF8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x110
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x110(r30)
+		  beq-      .loc_0xF8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x110
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x110(r30)
+		  beq-      .loc_0xF8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x110
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x110(r30)
+		  bl        0x218BC
 
-	.loc_0xF8:
-	  addic.    r0, r30, 0xD4
-	  beq-      .loc_0x168
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xF4
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0xD4(r30)
-	  beq-      .loc_0x120
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0xF4(r30)
+		.loc_0xF8:
+		  addic.    r0, r30, 0xD4
+		  beq-      .loc_0x168
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xF4
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0xD4(r30)
+		  beq-      .loc_0x120
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0xF4(r30)
 
-	.loc_0x120:
-	  addic.    r0, r30, 0xD4
-	  beq-      .loc_0x168
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xD4
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0xD4(r30)
-	  beq-      .loc_0x168
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0xD4
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0xD4(r30)
-	  beq-      .loc_0x168
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0xD4
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0xD4(r30)
-	  bl        0x2184C
+		.loc_0x120:
+		  addic.    r0, r30, 0xD4
+		  beq-      .loc_0x168
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xD4
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0xD4(r30)
+		  beq-      .loc_0x168
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0xD4
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0xD4(r30)
+		  beq-      .loc_0x168
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0xD4
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0xD4(r30)
+		  bl        0x2184C
 
-	.loc_0x168:
-	  addic.    r0, r30, 0x98
-	  beq-      .loc_0x1D8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xB8
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x98(r30)
-	  beq-      .loc_0x190
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0xB8(r30)
+		.loc_0x168:
+		  addic.    r0, r30, 0x98
+		  beq-      .loc_0x1D8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xB8
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x98(r30)
+		  beq-      .loc_0x190
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0xB8(r30)
 
-	.loc_0x190:
-	  addic.    r0, r30, 0x98
-	  beq-      .loc_0x1D8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x98
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x98(r30)
-	  beq-      .loc_0x1D8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x98
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x98(r30)
-	  beq-      .loc_0x1D8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x98
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x98(r30)
-	  bl        0x217DC
+		.loc_0x190:
+		  addic.    r0, r30, 0x98
+		  beq-      .loc_0x1D8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x98
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x98(r30)
+		  beq-      .loc_0x1D8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x98
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x98(r30)
+		  beq-      .loc_0x1D8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x98
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x98(r30)
+		  bl        0x217DC
 
-	.loc_0x1D8:
-	  addic.    r0, r30, 0x5C
-	  beq-      .loc_0x248
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x7C
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x5C(r30)
-	  beq-      .loc_0x200
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x7C(r30)
+		.loc_0x1D8:
+		  addic.    r0, r30, 0x5C
+		  beq-      .loc_0x248
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x7C
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x5C(r30)
+		  beq-      .loc_0x200
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x7C(r30)
 
-	.loc_0x200:
-	  addic.    r0, r30, 0x5C
-	  beq-      .loc_0x248
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x5C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x5C(r30)
-	  beq-      .loc_0x248
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x5C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x5C(r30)
-	  beq-      .loc_0x248
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x5C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x5C(r30)
-	  bl        0x2176C
+		.loc_0x200:
+		  addic.    r0, r30, 0x5C
+		  beq-      .loc_0x248
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x5C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x5C(r30)
+		  beq-      .loc_0x248
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x5C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x5C(r30)
+		  beq-      .loc_0x248
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x5C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x5C(r30)
+		  bl        0x2176C
 
-	.loc_0x248:
-	  addic.    r0, r30, 0x20
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x40
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x20(r30)
-	  beq-      .loc_0x270
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x40(r30)
+		.loc_0x248:
+		  addic.    r0, r30, 0x20
+		  beq-      .loc_0x2B8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x40
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x20(r30)
+		  beq-      .loc_0x270
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x40(r30)
 
-	.loc_0x270:
-	  addic.    r0, r30, 0x20
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x20
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x20(r30)
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x20
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x20(r30)
-	  beq-      .loc_0x2B8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x20
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x20(r30)
-	  bl        0x216FC
+		.loc_0x270:
+		  addic.    r0, r30, 0x20
+		  beq-      .loc_0x2B8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x20
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x20(r30)
+		  beq-      .loc_0x2B8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x20
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x20(r30)
+		  beq-      .loc_0x2B8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x20
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x20(r30)
+		  bl        0x216FC
 
-	.loc_0x2B8:
-	  extsh.    r0, r31
-	  ble-      .loc_0x2C8
-	  mr        r3, r30
-	  bl        -0x3CBDE8
+		.loc_0x2B8:
+		  extsh.    r0, r31
+		  ble-      .loc_0x2C8
+		  mr        r3, r30
+		  bl        -0x3CBDE8
 
-	.loc_0x2C8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x2C8:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803EFEBC
- * Size:	000208
- */
-void ebi::Screen::TOmake::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x1EC
-	  lis       r3, 0x804F
-	  lis       r4, 0x803D
-	  subi      r0, r3, 0x5E4C
-	  li        r5, 0x4C
-	  stw       r0, 0x0(r30)
-	  addi      r3, r30, 0x1E4
-	  subi      r4, r4, 0x1A4
-	  li        r6, 0x7
-	  bl        -0x32E738
-	  addic.    r0, r30, 0x178
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x178
-	  subi      r0, r3, 0x7618
-	  stw       r0, 0x178(r30)
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x178
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x178(r30)
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x178
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x178(r30)
-	  beq-      .loc_0xA0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x178
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x178(r30)
-	  bl        0x21630
+	 * --INFO--
+	 * Address:	803EFEBC
+	 * Size:	000208
+	 */
+	TOmake::~TOmake(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x1EC
+		  lis       r3, 0x804F
+		  lis       r4, 0x803D
+		  subi      r0, r3, 0x5E4C
+		  li        r5, 0x4C
+		  stw       r0, 0x0(r30)
+		  addi      r3, r30, 0x1E4
+		  subi      r4, r4, 0x1A4
+		  li        r6, 0x7
+		  bl        -0x32E738
+		  addic.    r0, r30, 0x178
+		  beq-      .loc_0xA0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x178
+		  subi      r0, r3, 0x7618
+		  stw       r0, 0x178(r30)
+		  beq-      .loc_0xA0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x178
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x178(r30)
+		  beq-      .loc_0xA0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x178
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x178(r30)
+		  beq-      .loc_0xA0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x178
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x178(r30)
+		  bl        0x21630
 
-	.loc_0xA0:
-	  addic.    r0, r30, 0x158
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x158
-	  subi      r0, r3, 0x77F4
-	  stw       r0, 0x158(r30)
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x158
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x158(r30)
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x158
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x158(r30)
-	  beq-      .loc_0xFC
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x158
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x158(r30)
-	  bl        0x215D4
+		.loc_0xA0:
+		  addic.    r0, r30, 0x158
+		  beq-      .loc_0xFC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x158
+		  subi      r0, r3, 0x77F4
+		  stw       r0, 0x158(r30)
+		  beq-      .loc_0xFC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x158
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x158(r30)
+		  beq-      .loc_0xFC
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x158
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x158(r30)
+		  beq-      .loc_0xFC
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x158
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x158(r30)
+		  bl        0x215D4
 
-	.loc_0xFC:
-	  addic.    r0, r30, 0x11C
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x13C
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x11C(r30)
-	  beq-      .loc_0x124
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x13C(r30)
+		.loc_0xFC:
+		  addic.    r0, r30, 0x11C
+		  beq-      .loc_0x16C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x13C
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x11C(r30)
+		  beq-      .loc_0x124
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x13C(r30)
 
-	.loc_0x124:
-	  addic.    r0, r30, 0x11C
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x11C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x11C(r30)
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x11C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x11C(r30)
-	  beq-      .loc_0x16C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x11C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x11C(r30)
-	  bl        0x21564
+		.loc_0x124:
+		  addic.    r0, r30, 0x11C
+		  beq-      .loc_0x16C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x11C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x11C(r30)
+		  beq-      .loc_0x16C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x11C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x11C(r30)
+		  beq-      .loc_0x16C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x11C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x11C(r30)
+		  bl        0x21564
 
-	.loc_0x16C:
-	  addic.    r0, r30, 0xE0
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x100
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0xE0(r30)
-	  beq-      .loc_0x194
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x100(r30)
+		.loc_0x16C:
+		  addic.    r0, r30, 0xE0
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x100
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0xE0(r30)
+		  beq-      .loc_0x194
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x100(r30)
 
-	.loc_0x194:
-	  addic.    r0, r30, 0xE0
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xE0
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0xE0(r30)
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0xE0
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0xE0(r30)
-	  beq-      .loc_0x1DC
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0xE0
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0xE0(r30)
-	  bl        0x214F4
+		.loc_0x194:
+		  addic.    r0, r30, 0xE0
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xE0
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0xE0(r30)
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0xE0
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0xE0(r30)
+		  beq-      .loc_0x1DC
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0xE0
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0xE0(r30)
+		  bl        0x214F4
 
-	.loc_0x1DC:
-	  extsh.    r0, r31
-	  ble-      .loc_0x1EC
-	  mr        r3, r30
-	  bl        -0x3CBFF0
+		.loc_0x1DC:
+		  extsh.    r0, r31
+		  ble-      .loc_0x1EC
+		  mr        r3, r30
+		  bl        -0x3CBFF0
 
-	.loc_0x1EC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x1EC:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803F00C4
- * Size:	000004
- */
-void init__Q24Game27FSMState<ebi::Omake::TMgr>
-FPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
-{
-}
+	/*
+	 * --INFO--
+	 * Address:	803F00C4
+	 * Size:	000004
+	 */
+	void init__Q24Game27FSMState<ebi::Omake::TMgr>
+	FPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+	{
+	}
+
+} // namespace Screen
+
+} // namespace ebi
 
 /*
  * --INFO--
@@ -2040,17 +2035,23 @@ FPQ24Game27FSMState<ebi::Omake::TMgr>(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F0298
- * Size:	00000C
- */
-void ebi::Screen::ArgOpenOmake::getName(void)
-{
+namespace ebi {
+
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  addi      r3, r3, 0x7B30
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803F0298
+	 * Size:	00000C
+	 */
+	void ArgOpenOmake::getName(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x8049
+		  addi      r3, r3, 0x7B30
+		  blr
+		*/
+	}
+} // namespace Screen
+} // namespace ebi

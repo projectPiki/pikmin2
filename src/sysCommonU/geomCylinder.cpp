@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000104
  */
-void __ct__Q23Sys8CylinderFRC10Vector3<float> RC10Vector3<float> f(void)
+void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void __ct__Q23Sys8CylinderFRC10Vector3<float> RC10Vector3<float> f(void)
  * Address:	80421628
  * Size:	00003C
  */
-void __ct__Q23Sys8CylinderFRC10Vector3<float> RC10Vector3<float> ff(void)
+void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff(void)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +42,7 @@ void __ct__Q23Sys8CylinderFRC10Vector3<float> RC10Vector3<float> ff(void)
  * Address:	80421664
  * Size:	000100
  */
-void set__Q23Sys8CylinderFRC10Vector3<float> RC10Vector3<float> f(void)
+void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -127,12 +117,14 @@ void set__Q23Sys8CylinderFRC10Vector3<float> RC10Vector3<float> f(void)
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000188
  */
-void Sys::Cylinder::intersect((Plane const&))
+void Cylinder::intersect(Plane const&)
 {
 	// UNUSED FUNCTION
 }
@@ -142,7 +134,7 @@ void Sys::Cylinder::intersect((Plane const&))
  * Address:	80421764
  * Size:	000190
  */
-void Sys::Cylinder::culled((Plane const&))
+void Cylinder::culled(Plane const&)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +252,7 @@ void Sys::Cylinder::culled((Plane const&))
  * Address:	804218F4
  * Size:	0001D8
  */
-void Sys::Cylinder::intersect((Sys::Triangle const&, float&))
+void Cylinder::intersect(Sys::Triangle const&, float&)
 {
 	/*
 	.loc_0x0:
@@ -402,7 +394,8 @@ void Sys::Cylinder::intersect((Sys::Triangle const&, float&))
  * Address:	........
  * Size:	0004A0
  */
-void Sys::Cylinder::draw((Graphics&))
+void Cylinder::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Sys

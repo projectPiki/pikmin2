@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80253E8C
  * Size:	000050
  */
-void Game::Pom::Mgr::Mgr(int, unsigned char)
+Pom::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Pom::Mgr::Mgr(int, unsigned char)
  * Address:	80253EDC
  * Size:	0001F4
  */
-void Game::Pom::Mgr::birth(Game::EnemyBirthArg&)
+void Pom::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -190,7 +192,7 @@ void Game::Pom::Mgr::birth(Game::EnemyBirthArg&)
  * Address:	802540D0
  * Size:	000048
  */
-void Game::Pom::Mgr::doAlloc()
+void Pom::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -224,7 +226,7 @@ void Game::Pom::Mgr::doAlloc()
  * Address:	80254118
  * Size:	0001C8
  */
-void Game::Pom::Parms::Parms()
+Pom::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -350,7 +352,7 @@ void Game::Pom::Parms::Parms()
  * Address:	802542E0
  * Size:	000188
  */
-void Game::Pom::Mgr::createObj(int)
+void Pom::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +472,7 @@ void Game::Pom::Mgr::createObj(int)
  * Address:	80254468
  * Size:	0000BC
  */
-void Game::Pom::Obj::~Obj()
+Pom::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -533,7 +535,7 @@ void Game::Pom::Obj::~Obj()
  * Address:	80254524
  * Size:	000010
  */
-void Game::Pom::Mgr::getEnemy(int)
+void Pom::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +551,7 @@ void Game::Pom::Mgr::getEnemy(int)
  * Address:	80254534
  * Size:	000138
  */
-void Game::Pom::Mgr::createModel()
+void Pom::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -649,7 +651,7 @@ void Game::Pom::Mgr::createModel()
  * Address:	8025466C
  * Size:	000050
  */
-void Game::Pom::Parms::read(Stream&)
+void Pom::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -681,7 +683,7 @@ void Game::Pom::Parms::read(Stream&)
  * Address:	802546BC
  * Size:	0000B0
  */
-void Game::Pom::Mgr::~Mgr()
+Pom::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -741,7 +743,9 @@ void Game::Pom::Mgr::~Mgr()
  * Address:	8025476C
  * Size:	000008
  */
-u32 Game::Pom::Mgr::getEnemyTypeID() { return 0x52; }
+u32 Pom::Mgr::getEnemyTypeID() { return 0x52; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -765,12 +769,14 @@ void __sinit_PomMgr_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8025479C
  * Size:	000008
  */
-void Game::Pom::Mgr::@4 @__dt()
+Pom::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -778,3 +784,4 @@ void Game::Pom::Mgr::@4 @__dt()
 	  b         -0xE4
 	*/
 }
+} // namespace Game

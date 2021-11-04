@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8027C40C
  * Size:	000050
  */
-void Game::Wtank::Mgr::Mgr(int, unsigned char)
+Wtank::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Wtank::Mgr::Mgr(int, unsigned char)
  * Address:	8027C45C
  * Size:	000048
  */
-void Game::Wtank::Mgr::doAlloc()
+void Wtank::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Wtank::Mgr::doAlloc()
  * Address:	8027C4A4
  * Size:	000058
  */
-void Game::Tank::Parms::Parms()
+Tank::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Tank::Parms::Parms()
  * Address:	8027C4FC
  * Size:	000060
  */
-void Game::Wtank::Mgr::createObj(int)
+void Wtank::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Game::Wtank::Mgr::createObj(int)
  * Address:	8027C55C
  * Size:	0000F0
  */
-void Game::Wtank::Obj::~Obj()
+Wtank::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::Wtank::Obj::~Obj()
  * Address:	8027C64C
  * Size:	000010
  */
-void Game::Wtank::Mgr::getEnemy(int)
+void Wtank::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -233,7 +235,7 @@ void Game::Wtank::Mgr::getEnemy(int)
  * Address:	8027C65C
  * Size:	000080
  */
-void Game::Wtank::Mgr::loadTexData()
+void Wtank::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -281,7 +283,7 @@ void Game::Wtank::Mgr::loadTexData()
  * Address:	8027C6DC
  * Size:	0000C8
  */
-void Game::Wtank::Mgr::~Mgr()
+Wtank::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -347,14 +349,14 @@ void Game::Wtank::Mgr::~Mgr()
  * Address:	8027C7A4
  * Size:	000008
  */
-u32 Game::Wtank::Mgr::getEnemyTypeID() { return 0x19; }
+u32 Wtank::Mgr::getEnemyTypeID() { return 0x19; }
 
 /*
  * --INFO--
  * Address:	8027C7AC
  * Size:	000008
  */
-void Game::Wtank::Mgr::getChangeTexture()
+void Wtank::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -368,7 +370,7 @@ void Game::Wtank::Mgr::getChangeTexture()
  * Address:	8027C7B4
  * Size:	000050
  */
-void Game::Tank::Parms::read(Stream&)
+void Tank::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +402,7 @@ void Game::Tank::Parms::read(Stream&)
  * Address:	8027C804
  * Size:	000008
  */
-void Game::Wtank::Mgr::@4 @__dt()
+Wtank::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -408,3 +410,4 @@ void Game::Wtank::Mgr::@4 @__dt()
 	  b         -0x12C
 	*/
 }
+} // namespace Game

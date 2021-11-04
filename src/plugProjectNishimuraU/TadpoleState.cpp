@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8027730C
  * Size:	000224
  */
-void Game::Tadpole::FSM::init(Game::EnemyBase*)
+void Tadpole::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +168,7 @@ void Game::Tadpole::FSM::init(Game::EnemyBase*)
  * Address:	80277530
  * Size:	00005C
  */
-void Game::Tadpole::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Tadpole::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -201,7 +203,7 @@ void Game::Tadpole::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027758C
  * Size:	000058
  */
-void Game::Tadpole::StateDead::exec(Game::EnemyBase*)
+void Tadpole::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -239,14 +241,14 @@ void Game::Tadpole::StateDead::exec(Game::EnemyBase*)
  * Address:	802775E4
  * Size:	000004
  */
-void Game::Tadpole::StateDead::cleanup(Game::EnemyBase*) { }
+void Tadpole::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802775E8
  * Size:	000048
  */
-void Game::Tadpole::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Tadpole::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +278,7 @@ void Game::Tadpole::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80277630
  * Size:	00015C
  */
-void Game::Tadpole::StateWait::exec(Game::EnemyBase*)
+void Tadpole::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -385,14 +387,14 @@ void Game::Tadpole::StateWait::exec(Game::EnemyBase*)
  * Address:	8027778C
  * Size:	000004
  */
-void Game::Tadpole::StateWait::cleanup(Game::EnemyBase*) { }
+void Tadpole::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80277790
  * Size:	000054
  */
-void Game::Tadpole::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void Tadpole::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -425,7 +427,7 @@ void Game::Tadpole::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802777E4
  * Size:	000210
  */
-void Game::Tadpole::StateMove::exec(Game::EnemyBase*)
+void Tadpole::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -581,14 +583,14 @@ void Game::Tadpole::StateMove::exec(Game::EnemyBase*)
  * Address:	802779F4
  * Size:	000004
  */
-void Game::Tadpole::StateMove::cleanup(Game::EnemyBase*) { }
+void Tadpole::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802779F8
  * Size:	00005C
  */
-void Game::Tadpole::StateAmaze::init(Game::EnemyBase*, Game::StateArg*)
+void Tadpole::StateAmaze::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -623,7 +625,7 @@ void Game::Tadpole::StateAmaze::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80277A54
  * Size:	0000B4
  */
-void Game::Tadpole::StateAmaze::exec(Game::EnemyBase*)
+void Tadpole::StateAmaze::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -686,7 +688,7 @@ void Game::Tadpole::StateAmaze::exec(Game::EnemyBase*)
  * Address:	80277B08
  * Size:	000030
  */
-void Game::Tadpole::StateAmaze::cleanup(Game::EnemyBase*)
+void Tadpole::StateAmaze::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -710,7 +712,7 @@ void Game::Tadpole::StateAmaze::cleanup(Game::EnemyBase*)
  * Address:	80277B38
  * Size:	000040
  */
-void Game::Tadpole::StateEscape::init(Game::EnemyBase*, Game::StateArg*)
+void Tadpole::StateEscape::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -738,7 +740,7 @@ void Game::Tadpole::StateEscape::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80277B78
  * Size:	000168
  */
-void Game::Tadpole::StateEscape::exec(Game::EnemyBase*)
+void Tadpole::StateEscape::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -850,7 +852,7 @@ void Game::Tadpole::StateEscape::exec(Game::EnemyBase*)
  * Address:	80277CE0
  * Size:	000024
  */
-void Game::Tadpole::StateEscape::cleanup(Game::EnemyBase*)
+void Tadpole::StateEscape::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -871,7 +873,7 @@ void Game::Tadpole::StateEscape::cleanup(Game::EnemyBase*)
  * Address:	80277D04
  * Size:	0000E0
  */
-void Game::Tadpole::StateLeap::init(Game::EnemyBase*, Game::StateArg*)
+void Tadpole::StateLeap::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -943,7 +945,7 @@ void Game::Tadpole::StateLeap::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80277DE4
  * Size:	0003FC
  */
-void Game::Tadpole::StateLeap::exec(Game::EnemyBase*)
+void Tadpole::StateLeap::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1252,7 +1254,7 @@ void Game::Tadpole::StateLeap::exec(Game::EnemyBase*)
  * Address:	802781E0
  * Size:	000010
  */
-void Game::Tadpole::StateLeap::cleanup(Game::EnemyBase*)
+void Tadpole::StateLeap::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1262,3 +1264,4 @@ void Game::Tadpole::StateLeap::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

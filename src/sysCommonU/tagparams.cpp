@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "PrimTagParm.h"
 #include "Dolphin/string.h"
 

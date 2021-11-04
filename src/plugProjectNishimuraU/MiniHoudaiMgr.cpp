@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802EBD54
  * Size:	000050
  */
-void Game::MiniHoudai::Mgr::__ct((int, unsigned char))
+MiniHoudai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::MiniHoudai::Mgr::__ct((int, unsigned char))
  * Address:	802EBDA4
  * Size:	0000D8
  */
-void Game::MiniHoudai::Mgr::loadModelData(void)
+void MiniHoudai::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -123,7 +115,7 @@ void Game::MiniHoudai::Mgr::loadModelData(void)
  * Address:	802EBE7C
  * Size:	000090
  */
-void Game::MiniHoudai::Mgr::loadAnimData(void)
+void MiniHoudai::Mgr::loadAnimData(void)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +169,7 @@ void Game::MiniHoudai::Mgr::loadAnimData(void)
  * Address:	802EBF0C
  * Size:	0000B0
  */
-void Game::MiniHoudai::Mgr::__dt(void)
+MiniHoudai::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -237,14 +229,14 @@ void Game::MiniHoudai::Mgr::__dt(void)
  * Address:	802EBFBC
  * Size:	000008
  */
-u32 Game::MiniHoudai::Mgr::getEnemyTypeID(void) { return 0x4E; }
+u32 MiniHoudai::Mgr::getEnemyTypeID(void) { return 0x4E; }
 
 /*
  * --INFO--
  * Address:	802EBFC4
  * Size:	00002C
  */
-void Game::MiniHoudai::Mgr::doLoadBmd((void*))
+void MiniHoudai::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -267,7 +259,7 @@ void Game::MiniHoudai::Mgr::doLoadBmd((void*))
  * Address:	802EBFF0
  * Size:	000008
  */
-void @4 @Game::MiniHoudai::Mgr::__dt(void)
+@4 @Game::MiniHoudai::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -275,3 +267,4 @@ void @4 @Game::MiniHoudai::Mgr::__dt(void)
 	  b         -0xE8
 	*/
 }
+} // namespace Game

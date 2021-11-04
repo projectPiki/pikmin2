@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -32,7 +32,7 @@ void JAIAnimeSound::handleStop(unsigned char, unsigned long)
  * Address:	800AB128
  * Size:	000188
  */
-void JAIAnimeSound::JAIAnimeSound(Vec*, JKRHeap*, unsigned char)
+JAIAnimeSound::JAIAnimeSound(Vec*, JKRHeap*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1175,7 +1175,7 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
  * Address:	800ABDD8
  * Size:	000060
  */
-void JAIAnimeSound::~JAIAnimeSound()
+JAIAnimeSound::~JAIAnimeSound()
 {
 	/*
 	.loc_0x0:
@@ -1215,10 +1215,6 @@ void JAIAnimeSound::~JAIAnimeSound()
  */
 void JAInter::ObjectBase::enable(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x18(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x18(r3)
+	_18 = 1;
 }

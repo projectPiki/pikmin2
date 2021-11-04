@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000080
  */
-void Caption::Node::__ct(void)
+Caption::Node::Node(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void Caption::Node::__ct(void)
  * Address:	804508E8
  * Size:	000064
  */
-void Caption::Node::read((Stream&))
+void Caption::Node::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +52,7 @@ void Caption::Node::read((Stream&))
  * Address:	8045094C
  * Size:	0000D4
  */
-void Caption::Mgr::__ct(void)
+Caption::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -114,12 +114,14 @@ void Caption::Mgr::__ct(void)
 	*/
 }
 
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	80450A20
  * Size:	000080
  */
-void P2JME::Caption::TControl::__dt(void)
+Caption::TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -162,12 +164,14 @@ void P2JME::Caption::TControl::__dt(void)
 	*/
 }
 
+} // namespace P2JME
+
 /*
  * --INFO--
  * Address:	80450AA0
  * Size:	000108
  */
-void Caption::Mgr::read((Stream&))
+void Caption::Mgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +345,7 @@ void Caption::Mgr::resetMessageObjs(void)
  * Address:	........
  * Size:	00002C
  */
-void Caption::Mgr::setCurrentNode((long))
+void Caption::Mgr::setCurrentNode(long)
 {
 	// UNUSED FUNCTION
 }
@@ -351,7 +355,7 @@ void Caption::Mgr::setCurrentNode((long))
  * Address:	80450C78
  * Size:	000194
  */
-void Caption::Mgr::update((long))
+void Caption::Mgr::update(long)
 {
 	/*
 	.loc_0x0:
@@ -504,7 +508,7 @@ void Caption::Mgr::update((long))
  * Address:	80450E0C
  * Size:	000098
  */
-void Caption::Mgr::draw((Graphics&))
+void Caption::Mgr::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -597,7 +601,7 @@ void Caption::Mgr::getFreeMessage(void)
  * Address:	80450F00
  * Size:	000060
  */
-void Caption::Mgr::__dt(void)
+Caption::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -635,7 +639,7 @@ void Caption::Mgr::__dt(void)
  * Address:	80450F60
  * Size:	000060
  */
-void Caption::Node::__dt(void)
+Caption::Node::~Node(void)
 {
 	/*
 	.loc_0x0:

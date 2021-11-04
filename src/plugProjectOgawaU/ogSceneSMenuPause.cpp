@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	803140B4
  * Size:	000050
  */
-void og::newScreen::SMenuPause::__ct(void)
+newScreen::SMenuPause::SMenuPause(void)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void og::newScreen::SMenuPause::__ct(void)
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::SMenuPause::__dt(void)
+newScreen::SMenuPause::~SMenuPause(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,14 +49,14 @@ void og::newScreen::SMenuPause::__dt(void)
  * Address:	80314104
  * Size:	000004
  */
-void og::newScreen::SMenuPause::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::SMenuPause::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80314108
  * Size:	000060
  */
-void og::newScreen::SMenuPause::doCreateObj((JKRArchive*))
+void newScreen::SMenuPause::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -102,14 +94,14 @@ void og::newScreen::SMenuPause::doCreateObj((JKRArchive*))
  * Address:	80314168
  * Size:	000004
  */
-void og::newScreen::SMenuPause::doUpdateActive(void) { }
+void newScreen::SMenuPause::doUpdateActive(void) { }
 
 /*
  * --INFO--
  * Address:	8031416C
  * Size:	000068
  */
-void og::newScreen::SMenuPause::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::SMenuPause::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -149,7 +141,7 @@ void og::newScreen::SMenuPause::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	803141D4
  * Size:	00000C
  */
-void og::newScreen::SMenuPause::getResName( const
+void newScreen::SMenuPause::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -164,17 +156,14 @@ void og::newScreen::SMenuPause::getResName( const
  * Address:	803141E0
  * Size:	000008
  */
-u32  og::newScreen::SMenuPause::getSceneType(void)
-{
-	return 0x271A;
-}
+u32 newScreen::SMenuPause::getSceneType(void) { return 0x271A; }
 
 /*
  * --INFO--
  * Address:	803141E8
  * Size:	00000C
  */
-void og::newScreen::SMenuPause::getOwnerID(void)
+void newScreen::SMenuPause::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -189,7 +178,7 @@ void og::newScreen::SMenuPause::getOwnerID(void)
  * Address:	803141F4
  * Size:	000014
  */
-void og::newScreen::SMenuPause::getMemberID(void)
+void newScreen::SMenuPause::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -206,10 +195,9 @@ void og::newScreen::SMenuPause::getMemberID(void)
  * Address:	80314208
  * Size:	000008
  */
-u32  og::newScreen::SMenuPause::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::SMenuPause::isUseBackupSceneInfo(void) { return 0x1; }
+
+} // namespace og
 
 /*
  * --INFO--

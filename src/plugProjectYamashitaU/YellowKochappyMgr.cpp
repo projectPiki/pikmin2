@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012D5E4
  * Size:	000050
  */
-void Game::YellowKochappy::Mgr::Mgr(int, unsigned char)
+YellowKochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::YellowKochappy::Mgr::Mgr(int, unsigned char)
  * Address:	8012D634
  * Size:	000048
  */
-void Game::YellowKochappy::Mgr::doAlloc()
+void YellowKochappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::YellowKochappy::Mgr::doAlloc()
  * Address:	8012D67C
  * Size:	000048
  */
-void Game::YellowKochappy::Mgr::loadTexData()
+void YellowKochappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -99,7 +101,7 @@ void Game::YellowKochappy::Mgr::loadTexData()
  * Address:	8012D6C4
  * Size:	0000C8
  */
-void Game::YellowKochappy::Mgr::~Mgr()
+YellowKochappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -165,14 +167,14 @@ void Game::YellowKochappy::Mgr::~Mgr()
  * Address:	8012D78C
  * Size:	000008
  */
-u32 Game::YellowKochappy::Mgr::getEnemyTypeID() { return 0x2D; }
+u32 YellowKochappy::Mgr::getEnemyTypeID() { return 0x2D; }
 
 /*
  * --INFO--
  * Address:	8012D794
  * Size:	000060
  */
-void Game::YellowKochappy::Mgr::createObj(int)
+void YellowKochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +210,7 @@ void Game::YellowKochappy::Mgr::createObj(int)
  * Address:	8012D7F4
  * Size:	000010
  */
-void Game::YellowKochappy::Mgr::getEnemy(int)
+void YellowKochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -224,7 +226,7 @@ void Game::YellowKochappy::Mgr::getEnemy(int)
  * Address:	8012D804
  * Size:	000008
  */
-void Game::YellowKochappy::Mgr::@4 @__dt()
+YellowKochappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -232,3 +234,4 @@ void Game::YellowKochappy::Mgr::@4 @__dt()
 	  b         -0x144
 	*/
 }
+} // namespace Game

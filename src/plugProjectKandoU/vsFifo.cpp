@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8023D64C
  * Size:	000090
  */
-void VSFifo::VSFifo(unsigned long)
+VSFifo::VSFifo(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void VSFifo::VSFifo(unsigned long)
  * Address:	8023D6DC
  * Size:	000048
  */
-void VSFifo::~VSFifo()
+VSFifo::~VSFifo()
 {
 	/*
 	.loc_0x0:

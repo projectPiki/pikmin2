@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801F7970
  * Size:	000134
  */
-void Game::ItemBarrel::FSM::init((Game::ItemBarrel::Item*))
+void ItemBarrel::FSM::init(Game::ItemBarrel::Item*)
 {
 	/*
 	.loc_0x0:
@@ -110,8 +102,7 @@ void Game::ItemBarrel::FSM::init((Game::ItemBarrel::Item*))
  * Address:	801F7AA4
  * Size:	00000C
  */
-void Game::ItemBarrel::NormalState::init((Game::ItemBarrel::Item*,
-                                          Game::StateArg*))
+void ItemBarrel::NormalState::init(Game::ItemBarrel::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -126,21 +117,21 @@ void Game::ItemBarrel::NormalState::init((Game::ItemBarrel::Item*,
  * Address:	801F7AB0
  * Size:	000004
  */
-void Game::ItemBarrel::NormalState::exec((Game::ItemBarrel::Item*)) { }
+void ItemBarrel::NormalState::exec(Game::ItemBarrel::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F7AB4
  * Size:	000004
  */
-void Game::ItemBarrel::NormalState::cleanup((Game::ItemBarrel::Item*)) { }
+void ItemBarrel::NormalState::cleanup(Game::ItemBarrel::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F7AB8
  * Size:	000064
  */
-void Game::ItemBarrel::NormalState::onDamage((Game::ItemBarrel::Item*, float))
+void ItemBarrel::NormalState::onDamage(Game::ItemBarrel::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -204,8 +195,8 @@ FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg(void)
  * Address:	801F7B4C
  * Size:	000004
  */
-void Game::ItemBarrel::NormalState::onKeyEvent((Game::ItemBarrel::Item*,
-                                                SysShape::KeyEvent const&))
+void ItemBarrel::NormalState::onKeyEvent(Game::ItemBarrel::Item*,
+                                         SysShape::KeyEvent const&)
 {
 }
 
@@ -214,8 +205,7 @@ void Game::ItemBarrel::NormalState::onKeyEvent((Game::ItemBarrel::Item*,
  * Address:	801F7B50
  * Size:	000170
  */
-void Game::ItemBarrel::DeadState::init((Game::ItemBarrel::Item*,
-                                        Game::StateArg*))
+void ItemBarrel::DeadState::init(Game::ItemBarrel::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -323,29 +313,29 @@ void Game::ItemBarrel::DeadState::init((Game::ItemBarrel::Item*,
  * Address:	801F7CC0
  * Size:	000004
  */
-void Game::ItemBarrel::DeadState::exec((Game::ItemBarrel::Item*)) { }
+void ItemBarrel::DeadState::exec(Game::ItemBarrel::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F7CC4
  * Size:	000004
  */
-void Game::ItemBarrel::DeadState::cleanup((Game::ItemBarrel::Item*)) { }
+void ItemBarrel::DeadState::cleanup(Game::ItemBarrel::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F7CC8
  * Size:	000004
  */
-void Game::ItemBarrel::DeadState::onDamage((Game::ItemBarrel::Item*, float)) { }
+void ItemBarrel::DeadState::onDamage(Game::ItemBarrel::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801F7CCC
  * Size:	000148
  */
-void Game::ItemBarrel::DeadState::onKeyEvent((Game::ItemBarrel::Item*,
-                                              SysShape::KeyEvent const&))
+void ItemBarrel::DeadState::onKeyEvent(Game::ItemBarrel::Item*,
+                                       SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -441,9 +431,7 @@ void Game::ItemBarrel::DeadState::onKeyEvent((Game::ItemBarrel::Item*,
  * Address:	801F7E14
  * Size:	000004
  */
-void Game::ItemBarrel::DamagedState::init((Game::ItemBarrel::Item*,
-                                           Game::StateArg*))
-{
+void ItemBarrel::DamagedState::init(Game::ItemBarrel::Item*, Game::StateArg*) {
 }
 
 /*
@@ -451,21 +439,21 @@ void Game::ItemBarrel::DamagedState::init((Game::ItemBarrel::Item*,
  * Address:	801F7E18
  * Size:	000004
  */
-void Game::ItemBarrel::DamagedState::exec((Game::ItemBarrel::Item*)) { }
+void ItemBarrel::DamagedState::exec(Game::ItemBarrel::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F7E1C
  * Size:	000004
  */
-void Game::ItemBarrel::DamagedState::cleanup((Game::ItemBarrel::Item*)) { }
+void ItemBarrel::DamagedState::cleanup(Game::ItemBarrel::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F7E20
  * Size:	000010
  */
-void Game::ItemBarrel::DamagedState::onDamage((Game::ItemBarrel::Item*, float))
+void ItemBarrel::DamagedState::onDamage(Game::ItemBarrel::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -481,8 +469,8 @@ void Game::ItemBarrel::DamagedState::onDamage((Game::ItemBarrel::Item*, float))
  * Address:	801F7E30
  * Size:	000004
  */
-void Game::ItemBarrel::DamagedState::onKeyEvent((Game::ItemBarrel::Item*,
-                                                 SysShape::KeyEvent const&))
+void ItemBarrel::DamagedState::onKeyEvent(Game::ItemBarrel::Item*,
+                                          SysShape::KeyEvent const&)
 {
 }
 
@@ -491,7 +479,7 @@ void Game::ItemBarrel::DamagedState::onKeyEvent((Game::ItemBarrel::Item*,
  * Address:	801F7E34
  * Size:	000044
  */
-void Game::ItemBarrel::Item::doSave((Stream&))
+void ItemBarrel::Item::doSave(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -520,7 +508,7 @@ void Game::ItemBarrel::Item::doSave((Stream&))
  * Address:	801F7E78
  * Size:	0000BC
  */
-void Game::ItemBarrel::Item::doLoad((Stream&))
+void ItemBarrel::Item::doLoad(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -585,7 +573,7 @@ void Game::ItemBarrel::Item::doLoad((Stream&))
  * Address:	........
  * Size:	0000E4
  */
-void Game::ItemBarrel::Item::__ct(void)
+ItemBarrel::Item::Item(void)
 {
 	// UNUSED FUNCTION
 }
@@ -595,7 +583,7 @@ void Game::ItemBarrel::Item::__ct(void)
  * Address:	801F7F34
  * Size:	000048
  */
-void Game::ItemBarrel::Item::constructor(void)
+void ItemBarrel::Item::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -627,7 +615,7 @@ void Game::ItemBarrel::Item::constructor(void)
  * Address:	801F7F7C
  * Size:	000140
  */
-void Game::ItemBarrel::Item::onInit((Game::CreatureInitArg*))
+void ItemBarrel::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -749,7 +737,7 @@ FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg(void)
  * Address:	801F80F0
  * Size:	00004C
  */
-void Game::ItemBarrel::Item::onSetPosition(void)
+void ItemBarrel::Item::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -780,7 +768,7 @@ void Game::ItemBarrel::Item::onSetPosition(void)
  * Address:	801F813C
  * Size:	000048
  */
-void Game::ItemBarrel::Item::updateBoundSphere(void)
+void ItemBarrel::Item::updateBoundSphere(void)
 {
 	/*
 	.loc_0x0:
@@ -810,7 +798,7 @@ void Game::ItemBarrel::Item::updateBoundSphere(void)
  * Address:	801F8184
  * Size:	0000C4
  */
-void Game::ItemBarrel::Item::doAI(void)
+void ItemBarrel::Item::doAI(void)
 {
 	/*
 	.loc_0x0:
@@ -872,13 +860,14 @@ void Game::ItemBarrel::Item::doAI(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801F8248
  * Size:	000114
  */
-void getVectorField__Q34Game10ItemBarrel4ItemFRQ23Sys6SphereR10Vector3<float>(
-    void)
+void getVectorField__Q34Game10ItemBarrel4ItemFRQ23Sys6SphereR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -968,12 +957,14 @@ void getVectorField__Q34Game10ItemBarrel4ItemFRQ23Sys6SphereR10Vector3<float>(
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801F835C
  * Size:	000058
  */
-void Game::ItemBarrel::Item::getWorkRadius(void)
+void ItemBarrel::Item::getWorkRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -1011,7 +1002,7 @@ void Game::ItemBarrel::Item::getWorkRadius(void)
  * Address:	801F83B4
  * Size:	0000C4
  */
-void Game::ItemBarrel::Item::getWorkDistance((Sys::Sphere&))
+void ItemBarrel::Item::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1080,7 +1071,7 @@ void Game::ItemBarrel::Item::getWorkDistance((Sys::Sphere&))
  * Address:	801F8478
  * Size:	000024
  */
-void Game::ItemBarrel::Item::createBarrel(void)
+void ItemBarrel::Item::createBarrel(void)
 {
 	/*
 	.loc_0x0:
@@ -1101,7 +1092,7 @@ void Game::ItemBarrel::Item::createBarrel(void)
  * Address:	801F849C
  * Size:	000148
  */
-void Game::ItemBarrel::Item::interactAttack((Game::InteractAttack&))
+void ItemBarrel::Item::interactAttack(Game::InteractAttack&)
 {
 	/*
 	.loc_0x0:
@@ -1211,14 +1202,14 @@ void Game::ItemBarrel::Item::interactAttack((Game::InteractAttack&))
  * Address:	801F85E4
  * Size:	000004
  */
-void Game::ItemBarrel::State::onDamage((Game::ItemBarrel::Item*, float)) { }
+void ItemBarrel::State::onDamage(Game::ItemBarrel::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801F85E8
  * Size:	000120
  */
-void Game::ItemBarrel::Mgr::__ct(void)
+ItemBarrel::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1310,7 +1301,7 @@ void Game::ItemBarrel::Mgr::__ct(void)
  * Address:	801F8708
  * Size:	000024
  */
-void Game::ItemBarrel::BarrelParms::read((Stream&))
+void ItemBarrel::BarrelParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1331,7 +1322,7 @@ void Game::ItemBarrel::BarrelParms::read((Stream&))
  * Address:	801F872C
  * Size:	0001EC
  */
-void Game::ItemBarrel::BarrelParms::__ct(void)
+ItemBarrel::BarrelParms::BarrelParms(void)
 {
 	/*
 	.loc_0x0:
@@ -1466,7 +1457,7 @@ void Game::ItemBarrel::BarrelParms::__ct(void)
  * Address:	801F8918
  * Size:	000108
  */
-void Game::ItemBarrel::Mgr::birth(void)
+void ItemBarrel::Mgr::birth(void)
 {
 	/*
 	.loc_0x0:
@@ -1548,7 +1539,7 @@ void Game::ItemBarrel::Mgr::birth(void)
  * Address:	801F8A20
  * Size:	000060
  */
-void generatorBirth__Q34Game10ItemBarrel3MgrFR10Vector3<float> R10Vector3<float>
+void generatorBirth__Q34Game10ItemBarrel3MgrFR10Vector3f R10Vector3f
 PQ24Game11GenItemParm(void)
 {
 	/*
@@ -1585,7 +1576,7 @@ PQ24Game11GenItemParm(void)
  * Address:	801F8A80
  * Size:	0000B8
  */
-void Game::ItemBarrel::Mgr::onLoadResources(void)
+void ItemBarrel::Mgr::onLoadResources(void)
 {
 	/*
 	.loc_0x0:
@@ -1643,7 +1634,7 @@ void Game::ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8B38
  * Size:	000134
  */
-void Game::ItemBarrel::Mgr::__dt(void)
+ItemBarrel::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1740,7 +1731,7 @@ void Game::ItemBarrel::Mgr::__dt(void)
  * Address:	801F8C6C
  * Size:	0000F0
  */
-void Game::ItemBarrel::Mgr::doNew(void)
+void ItemBarrel::Mgr::doNew(void)
 {
 	/*
 	.loc_0x0:
@@ -1816,7 +1807,7 @@ void Game::ItemBarrel::Mgr::doNew(void)
  * Address:	801F8D5C
  * Size:	00000C
  */
-void Game::ItemBarrel::Mgr::generatorGetID(void)
+void ItemBarrel::Mgr::generatorGetID(void)
 {
 	/*
 	.loc_0x0:
@@ -1831,7 +1822,7 @@ void Game::ItemBarrel::Mgr::generatorGetID(void)
  * Address:	801F8D68
  * Size:	000008
  */
-void Game::ItemBarrel::Item::getCreatureName(void)
+void ItemBarrel::Item::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -2005,6 +1996,8 @@ FPQ34Game10ItemBarrel4Item(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2329,7 +2322,7 @@ void @376
  * Address:	801F90CC
  * Size:	000008
  */
-void @48 @Game::ItemBarrel::Mgr::__dt(void)
+@48 @Game::ItemBarrel::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000058
  */
-void JUTDirectPrint::JUTDirectPrint()
+JUTDirectPrint::JUTDirectPrint()
 {
 	// UNUSED FUNCTION
 }

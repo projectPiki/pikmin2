@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012A670
  * Size:	000050
  */
-void Game::ChappyBase::Mgr::Mgr(int, unsigned char)
+ChappyBase::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::ChappyBase::Mgr::Mgr(int, unsigned char)
  * Address:	8012A6C0
  * Size:	0000C0
  */
-void Game::ChappyBase::Mgr::loadModelData()
+void ChappyBase::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::ChappyBase::Mgr::loadModelData()
  * Address:	8012A780
  * Size:	0000A0
  */
-void Game::ChappyBase::Mgr::loadAnimData()
+void ChappyBase::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -161,7 +163,7 @@ void Game::ChappyBase::Mgr::loadAnimData()
  * Address:	8012A820
  * Size:	00011C
  */
-void Game::ChappyBase::Mgr::createModel()
+void ChappyBase::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -254,21 +256,21 @@ void Game::ChappyBase::Mgr::createModel()
  * Address:	8012A93C
  * Size:	000008
  */
-u32 Game::ChappyBase::Mgr::getEnemyTypeID() { return 0x2; }
+u32 ChappyBase::Mgr::getEnemyTypeID() { return 0x2; }
 
 /*
  * --INFO--
  * Address:	8012A944
  * Size:	000004
  */
-void Game::EnemyMgrBase::doAlloc() { }
+void EnemyMgrBase::doAlloc() { }
 
 /*
  * --INFO--
  * Address:	8012A948
  * Size:	000008
  */
-void Game::ChappyBase::Mgr::@4 @__dt()
+ChappyBase::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -276,3 +278,4 @@ void Game::ChappyBase::Mgr::@4 @__dt()
 	  b         -0x11178
 	*/
 }
+} // namespace Game

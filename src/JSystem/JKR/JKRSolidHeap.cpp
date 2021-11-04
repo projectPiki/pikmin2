@@ -112,7 +112,7 @@ void JKRSolidHeap::do_destroy()
  * Address:	80024E84
  * Size:	00005C
  */
-void JKRSolidHeap::JKRSolidHeap(void*, unsigned long, JKRHeap*, bool)
+JKRSolidHeap::JKRSolidHeap(void*, unsigned long, JKRHeap*, bool)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +147,7 @@ void JKRSolidHeap::JKRSolidHeap(void*, unsigned long, JKRHeap*, bool)
  * Address:	80024EE0
  * Size:	000068
  */
-void JKRSolidHeap::~JKRSolidHeap()
+JKRSolidHeap::~JKRSolidHeap()
 {
 	/*
 	.loc_0x0:

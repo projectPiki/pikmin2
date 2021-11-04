@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80323798
  * Size:	0000B0
  */
-void og::newScreen::ObjUfoMenu::__ct((char const*))
+newScreen::ObjUfoMenu::ObjUfoMenu(char const*)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +63,7 @@ void og::newScreen::ObjUfoMenu::__ct((char const*))
  * Address:	80323848
  * Size:	0000AC
  */
-void og::newScreen::ObjUfoMenu::__dt(void)
+newScreen::ObjUfoMenu::~ObjUfoMenu(void)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +122,7 @@ void og::newScreen::ObjUfoMenu::__dt(void)
  * Address:	803238F4
  * Size:	000490
  */
-void og::newScreen::ObjUfoMenu::doCreate((JKRArchive*))
+void newScreen::ObjUfoMenu::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -452,7 +444,7 @@ void og::newScreen::ObjUfoMenu::doCreate((JKRArchive*))
  * Address:	........
  * Size:	00012C
  */
-void og::newScreen::ObjUfoMenu::commonUpdate(void)
+void newScreen::ObjUfoMenu::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -462,7 +454,7 @@ void og::newScreen::ObjUfoMenu::commonUpdate(void)
  * Address:	80323D84
  * Size:	0000F4
  */
-void og::newScreen::ObjUfoMenu::setSelectPikmin((int))
+void newScreen::ObjUfoMenu::setSelectPikmin(int)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +531,7 @@ void og::newScreen::ObjUfoMenu::setSelectPikmin((int))
  * Address:	80323E78
  * Size:	000524
  */
-void og::newScreen::ObjUfoMenu::doUpdate(void)
+void newScreen::ObjUfoMenu::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -896,7 +888,7 @@ void og::newScreen::ObjUfoMenu::doUpdate(void)
  * Address:	8032439C
  * Size:	000094
  */
-void og::newScreen::ObjUfoMenu::setBackupScene(void)
+void newScreen::ObjUfoMenu::setBackupScene(void)
 {
 	/*
 	.loc_0x0:
@@ -949,7 +941,7 @@ void og::newScreen::ObjUfoMenu::setBackupScene(void)
  * Address:	80324430
  * Size:	0000B4
  */
-void og::newScreen::ObjUfoMenu::doDraw((Graphics&))
+void newScreen::ObjUfoMenu::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1008,7 +1000,7 @@ void og::newScreen::ObjUfoMenu::doDraw((Graphics&))
  * Address:	803244E4
  * Size:	000020
  */
-void og::newScreen::ObjUfoMenu::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjUfoMenu::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1028,17 +1020,14 @@ void og::newScreen::ObjUfoMenu::doStart((Screen::StartSceneArg const*))
  * Address:	80324504
  * Size:	000008
  */
-u32 og::newScreen::ObjUfoMenu::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjUfoMenu::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8032450C
  * Size:	000044
  */
-void og::newScreen::ObjUfoMenu::doUpdateFadeinFinish(void)
+void newScreen::ObjUfoMenu::doUpdateFadeinFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1067,7 +1056,7 @@ void og::newScreen::ObjUfoMenu::doUpdateFadeinFinish(void)
  * Address:	80324550
  * Size:	00002C
  */
-void og::newScreen::ObjUfoMenu::doUpdateFinish(void)
+void newScreen::ObjUfoMenu::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1090,7 +1079,7 @@ void og::newScreen::ObjUfoMenu::doUpdateFinish(void)
  * Address:	8032457C
  * Size:	000024
  */
-void og::newScreen::ObjUfoMenu::doUpdateFadeoutFinish(void)
+void newScreen::ObjUfoMenu::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1111,7 +1100,7 @@ void og::newScreen::ObjUfoMenu::doUpdateFadeoutFinish(void)
  * Address:	803245A0
  * Size:	000188
  */
-void og::newScreen::ObjUfoMenu::doUpdateFadein(void)
+void newScreen::ObjUfoMenu::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -1223,7 +1212,7 @@ void og::newScreen::ObjUfoMenu::doUpdateFadein(void)
  * Address:	80324728
  * Size:	00017C
  */
-void og::newScreen::ObjUfoMenu::doUpdateFadeout(void)
+void newScreen::ObjUfoMenu::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -1327,6 +1316,8 @@ void og::newScreen::ObjUfoMenu::doUpdateFadeout(void)
 	*/
 }
 
+} // namespace og
+
 /*
  * --INFO--
  * Address:	803248A4
@@ -1362,7 +1353,7 @@ void __sinit_ogObjUfo_cpp(void)
  * Address:	803248EC
  * Size:	000008
  */
-void @24 @og::newScreen::ObjUfoMenu::__dt(void)
+@24 @og::newScreen::ObjUfoMenu::~ObjUfoMenu(void)
 {
 	/*
 	.loc_0x0:

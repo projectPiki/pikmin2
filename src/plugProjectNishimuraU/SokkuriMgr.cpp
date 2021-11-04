@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F0C04
  * Size:	000050
  */
-void Game::Sokkuri::Mgr::__ct((int, unsigned char))
+Sokkuri::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Sokkuri::Mgr::__ct((int, unsigned char))
  * Address:	802F0C54
  * Size:	000048
  */
-void Game::Sokkuri::Mgr::doAlloc(void)
+void Sokkuri::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::Sokkuri::Mgr::doAlloc(void)
  * Address:	802F0C9C
  * Size:	000048
  */
-void Game::Sokkuri::Parms::__ct(void)
+Sokkuri::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -113,7 +105,7 @@ void Game::Sokkuri::Parms::__ct(void)
  * Address:	802F0CE4
  * Size:	0002B0
  */
-void Game::Sokkuri::Parms::ProperParms::__ct(void)
+Sokkuri::Parms::ProperParms::ProperParms(void)
 {
 	/*
 	.loc_0x0:
@@ -299,7 +291,7 @@ void Game::Sokkuri::Parms::ProperParms::__ct(void)
  * Address:	802F0F94
  * Size:	000060
  */
-void Game::Sokkuri::Mgr::createObj((int))
+void Sokkuri::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +327,7 @@ void Game::Sokkuri::Mgr::createObj((int))
  * Address:	802F0FF4
  * Size:	0000BC
  */
-void Game::Sokkuri::Obj::__dt(void)
+Sokkuri::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +390,7 @@ void Game::Sokkuri::Obj::__dt(void)
  * Address:	802F10B0
  * Size:	000010
  */
-void Game::Sokkuri::Mgr::getEnemy((int))
+void Sokkuri::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +406,7 @@ void Game::Sokkuri::Mgr::getEnemy((int))
  * Address:	802F10C0
  * Size:	000068
  */
-void Game::Sokkuri::Mgr::loadModelData(void)
+void Sokkuri::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -456,7 +448,7 @@ void Game::Sokkuri::Mgr::loadModelData(void)
  * Address:	802F1128
  * Size:	0000B0
  */
-void Game::Sokkuri::Mgr::__dt(void)
+Sokkuri::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -516,14 +508,14 @@ void Game::Sokkuri::Mgr::__dt(void)
  * Address:	802F11D8
  * Size:	000008
  */
-u32 Game::Sokkuri::Mgr::getEnemyTypeID(void) { return 0x4F; }
+u32 Sokkuri::Mgr::getEnemyTypeID(void) { return 0x4F; }
 
 /*
  * --INFO--
  * Address:	802F11E0
  * Size:	00002C
  */
-void Game::Sokkuri::Mgr::doLoadBmd((void*))
+void Sokkuri::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -546,7 +538,7 @@ void Game::Sokkuri::Mgr::doLoadBmd((void*))
  * Address:	802F120C
  * Size:	000050
  */
-void Game::Sokkuri::Parms::read((Stream&))
+void Sokkuri::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -578,7 +570,7 @@ void Game::Sokkuri::Parms::read((Stream&))
  * Address:	802F125C
  * Size:	000008
  */
-void @4 @Game::Sokkuri::Mgr::__dt(void)
+@4 @Game::Sokkuri::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -586,3 +578,4 @@ void @4 @Game::Sokkuri::Mgr::__dt(void)
 	  b         -0x138
 	*/
 }
+} // namespace Game

@@ -1,19 +1,23 @@
+#include "types.h"
+
 #include "P2JME/SimpleMessage.h"
 #include "JSystem/JMessage.h"
+
+namespace P2JME {
 
 /*
  * --INFO--
  * Address:	8043DBEC
  * Size:	000004
  */
-P2JME::SimpleMessage::SimpleMessage(void) { }
+SimpleMessage::SimpleMessage(void) { }
 
 /*
  * --INFO--
  * Address:	8043DBF0
  * Size:	00006C
  */
-void P2JME::SimpleMessage::init(void)
+void SimpleMessage::init(void)
 {
 	this->m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_messageRef);
 
@@ -26,8 +30,8 @@ void P2JME::SimpleMessage::init(void)
  * Address:	8043DC5C
  * Size:	000080
  */
-void P2JME::SimpleMessage::drawMessageID(Graphics& r4, unsigned long r5,
-                                         unsigned long r6)
+void SimpleMessage::drawMessageID(Graphics& r4, unsigned long r5,
+                                  unsigned long r6)
 {
 	this->m_processor->preProcID(r5, r6);
 
@@ -37,3 +41,4 @@ void P2JME::SimpleMessage::drawMessageID(Graphics& r4, unsigned long r5,
 	jmProc->setBegin_messageID(r5, r6, nullptr);
 	jmProc->process(nullptr);
 }
+} // namespace P2JME

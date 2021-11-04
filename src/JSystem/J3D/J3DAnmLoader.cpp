@@ -644,7 +644,7 @@ void J3DAnmLoaderDataBase::load(const void*)
  * Address:	80072E64
  * Size:	00001C
  */
-void J3DAnmFullLoader_v15::J3DAnmFullLoader_v15()
+J3DAnmFullLoader_v15::J3DAnmFullLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -663,7 +663,7 @@ void J3DAnmFullLoader_v15::J3DAnmFullLoader_v15()
  * Address:	80072E80
  * Size:	000048
  */
-void J3DAnmLoader::~J3DAnmLoader()
+J3DAnmLoader::~J3DAnmLoader()
 {
 	/*
 	.loc_0x0:
@@ -695,7 +695,7 @@ void J3DAnmLoader::~J3DAnmLoader()
  * Address:	80072EC8
  * Size:	00005C
  */
-void J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15()
+J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -734,7 +734,7 @@ void J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15()
  * Address:	80072F24
  * Size:	00001C
  */
-void J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15()
+J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -753,7 +753,7 @@ void J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15()
  * Address:	80072F40
  * Size:	00005C
  */
-void J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15()
+J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -2417,7 +2417,7 @@ void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey*,
  * Address:	80074170
  * Size:	00005C
  */
-void J3DAnmVisibilityFull::~J3DAnmVisibilityFull()
+J3DAnmVisibilityFull::~J3DAnmVisibilityFull()
 {
 	/*
 	.loc_0x0:
@@ -2463,7 +2463,7 @@ u32 J3DAnmVisibilityFull::getKind() const { return 0x6; }
  * Address:	800741D4
  * Size:	000074
  */
-void J3DAnmTexPattern::~J3DAnmTexPattern()
+J3DAnmTexPattern::~J3DAnmTexPattern()
 {
 	/*
 	.loc_0x0:
@@ -2517,7 +2517,7 @@ u32 J3DAnmTexPattern::getKind() const { return 0x2; }
  * Address:	80074250
  * Size:	000088
  */
-void J3DAnmTevRegKey::~J3DAnmTevRegKey()
+J3DAnmTevRegKey::~J3DAnmTevRegKey()
 {
 	/*
 	.loc_0x0:
@@ -2578,7 +2578,7 @@ u32 J3DAnmTevRegKey::getKind() const { return 0x5; }
  * Address:	800742E0
  * Size:	000088
  */
-void J3DAnmTextureSRTKey::~J3DAnmTextureSRTKey()
+J3DAnmTextureSRTKey::~J3DAnmTextureSRTKey()
 {
 	/*
 	.loc_0x0:
@@ -2639,7 +2639,7 @@ u32 J3DAnmTextureSRTKey::getKind() const { return 0x4; }
  * Address:	80074370
  * Size:	00006C
  */
-void J3DAnmTransformKey::~J3DAnmTransformKey()
+J3DAnmTransformKey::~J3DAnmTransformKey()
 {
 	/*
 	.loc_0x0:

@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80272490
  * Size:	000008
  */
-void Game::Sarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Sarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Sarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80272498
  * Size:	000008
  */
-void Game::Sarai::ProperAnimator::getAnimator(int)
+void Sarai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Sarai::ProperAnimator::getAnimator(int)
  * Address:	802724A0
  * Size:	00005C
  */
-void Game::Sarai::ProperAnimator::~ProperAnimator()
+Sarai::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Sarai::ProperAnimator::~ProperAnimator()
  * Address:	802724FC
  * Size:	000008
  */
-void Game::Sarai::ProperAnimator::getAnimator()
+void Sarai::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Sarai::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

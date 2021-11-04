@@ -3,19 +3,9 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	000228
  */
-void Matrixf::makeNaturalPosture(Vector3<float>&)
+void Matrixf::makeNaturalPosture(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void Matrixf::makeNaturalPosture(Vector3<float>&)
  * Address:	80427F90
  * Size:	000344
  */
-void Matrixf::makeNaturalPosture(Vector3<float>&, float)
+void Matrixf::makeNaturalPosture(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -289,7 +279,7 @@ void Matrixf::print(char*) { }
  * Address:	804282D8
  * Size:	000288
  */
-void Matrixf::makeSRT(Vector3<float>&, Vector3<float>&, Vector3<float>&)
+void Matrixf::makeSRT(Vector3f&, Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -481,7 +471,7 @@ void Matrixf::makeSRT(Vector3<float>&, Vector3<float>&, Vector3<float>&)
  * Address:	80428560
  * Size:	000050
  */
-void Matrixf::makeST(Vector3<float>&, Vector3<float>&)
+void Matrixf::makeST(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -513,7 +503,7 @@ void Matrixf::makeST(Vector3<float>&, Vector3<float>&)
  * Address:	804285B0
  * Size:	000290
  */
-void Matrixf::makeSR(Vector3<float>&, Vector3<float>&)
+void Matrixf::makeSR(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -707,7 +697,7 @@ void Matrixf::makeSR(Vector3<float>&, Vector3<float>&)
  * Address:	80428840
  * Size:	000048
  */
-void Matrixf::makeT(Vector3<float>&)
+void Matrixf::makeT(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -737,7 +727,7 @@ void Matrixf::makeT(Vector3<float>&)
  * Address:	80428888
  * Size:	000230
  */
-void Matrixf::makeTR(Vector3<float>&, Vector3<float>&)
+void Matrixf::makeTR(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -907,7 +897,7 @@ void Matrixf::makeTR(Vector3<float>&, Vector3<float>&)
  * Address:	........
  * Size:	000128
  */
-void Matrixf::makeSQT(Vector3<float>&, Quat&, Vector3<float>&)
+void Matrixf::makeSQT(Vector3f&, Quat&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -917,7 +907,7 @@ void Matrixf::makeSQT(Vector3<float>&, Quat&, Vector3<float>&)
  * Address:	80428AB8
  * Size:	0000D0
  */
-void Matrixf::makeTQ(Vector3<float>&, Quat&)
+void Matrixf::makeTQ(Vector3f&, Quat&)
 {
 	/*
 	.loc_0x0:

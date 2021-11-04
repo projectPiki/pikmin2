@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80424E90
  * Size:	000150
  */
-void HorizonalSplitter::HorizonalSplitter(Graphics*)
+HorizonalSplitter::HorizonalSplitter(Graphics*)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +164,7 @@ void HorizonalSplitter::split2(float)
  * Address:	........
  * Size:	000150
  */
-void VerticalSplitter::VerticalSplitter(Graphics*)
+VerticalSplitter::VerticalSplitter(Graphics*)
 {
 	// UNUSED FUNCTION
 }
@@ -194,7 +184,7 @@ void VerticalSplitter::split2(float)
  * Address:	........
  * Size:	0001C8
  */
-void FourSplitter::FourSplitter(Graphics*)
+FourSplitter::FourSplitter(Graphics*)
 {
 	// UNUSED FUNCTION
 }
@@ -214,7 +204,7 @@ void FourSplitter::split4(float, float)
  * Address:	8042509C
  * Size:	0000C0
  */
-void Viewport::Viewport()
+Viewport::Viewport()
 {
 	/*
 	.loc_0x0:
@@ -1201,7 +1191,7 @@ void Graphics::initPrimDraw(Matrixf*)
  * Address:	........
  * Size:	0000F0
  */
-void Graphics::drawPoint(Vector3<float>&)
+void Graphics::drawPoint(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1211,7 +1201,7 @@ void Graphics::drawPoint(Vector3<float>&)
  * Address:	........
  * Size:	00012C
  */
-void Graphics::drawPoint(Vector3<float>*, unsigned short)
+void Graphics::drawPoint(Vector3f*, unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -1221,7 +1211,7 @@ void Graphics::drawPoint(Vector3<float>*, unsigned short)
  * Address:	804259E8
  * Size:	0000C4
  */
-void Graphics::drawLine(Vector3<float>&, Vector3<float>&)
+void Graphics::drawLine(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1292,7 +1282,7 @@ void Graphics::drawPlane(Plane&, float)
  * Address:	........
  * Size:	0007F0
  */
-void Graphics::drawBox(Vector3<float>&, Vector3<float>*, float*, float*)
+void Graphics::drawBox(Vector3f&, Vector3f*, float*, float*)
 {
 	// UNUSED FUNCTION
 }
@@ -1302,8 +1292,7 @@ void Graphics::drawBox(Vector3<float>&, Vector3<float>*, float*, float*)
  * Address:	........
  * Size:	000790
  */
-void Graphics::drawBox(Vector3<float>&, Vector3<float>&, Vector3<float>&,
-                       Vector3<float>&)
+void Graphics::drawBox(Vector3f&, Vector3f&, Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1313,7 +1302,7 @@ void Graphics::drawBox(Vector3<float>&, Vector3<float>&, Vector3<float>&,
  * Address:	80425AAC
  * Size:	000598
  */
-void Graphics::drawSphere(Vector3<float>&, float)
+void Graphics::drawSphere(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -2129,7 +2118,7 @@ void Graphics::drawSphere(float, Matrixf*)
  * Address:	........
  * Size:	0005B4
  */
-void Graphics::drawCylinder(Vector3<float>&, Vector3<float>&, float)
+void Graphics::drawCylinder(Vector3f&, Vector3f&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -2149,7 +2138,7 @@ void Graphics::loadPrimViewMtx()
  * Address:	........
  * Size:	0005F8
  */
-void Graphics::drawTube(Vector3<float>&, Vector3<float>&, float, float)
+void Graphics::drawTube(Vector3f&, Vector3f&, float, float)
 {
 	// UNUSED FUNCTION
 }
@@ -2702,7 +2691,7 @@ void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
  * Address:	80426CB8
  * Size:	00070C
  */
-void Graphics::drawCone(Vector3<float>&, Vector3<float>&, float, int)
+void Graphics::drawCone(Vector3f&, Vector3f&, float, int)
 {
 	/*
 	.loc_0x0:
@@ -3215,7 +3204,7 @@ void Graphics::drawCone(Vector3<float>&, Vector3<float>&, float, int)
  * Address:	804273C4
  * Size:	0000A4
  */
-void Graphics::Graphics()
+Graphics::Graphics()
 {
 	/*
 	.loc_0x0:
@@ -3850,7 +3839,7 @@ void Graphics::initPerspPrintf(Viewport*)
  * Address:	80427ADC
  * Size:	0003C4
  */
-void Graphics::perspPrintf(PerspPrintfInfo&, Vector3<float>&, char*, ...)
+void Graphics::perspPrintf(PerspPrintfInfo&, Vector3f&, char*, ...)
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000108
  */
-void Game::CylinderList::__ct((int))
+CylinderList::CylinderList(int)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::CylinderList::__ct((int))
  * Address:	........
  * Size:	000210
  */
-void Game::CylinderList::createCylinder((int, float))
+void CylinderList::createCylinder(int, float)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::CylinderList::createCylinder((int, float))
  * Address:	........
  * Size:	00002C
  */
-void Game::CylinderList::draw(void)
+void CylinderList::draw(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void Game::CylinderList::draw(void)
  * Address:	8023DA30
  * Size:	0004DC
  */
-void Game::CylinderBase::__ct(void)
+CylinderBase::CylinderBase(void)
 {
 	/*
 	.loc_0x0:
@@ -416,14 +408,13 @@ void Game::CylinderBase::__ct(void)
  * Address:	8023DF0C
  * Size:	000008
  */
-void Game::CylinderBase::setColor((Color4*))
+void CylinderBase::setColor(Color4* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x8(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x8(r3)
+	_08 = a1;
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -446,12 +437,14 @@ void setShadowRect__Q24Game12CylinderBaseFR7Rect<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8023DF38
  * Size:	0000B4
  */
-void Game::CylinderBase::setCameraParms((Camera*, int))
+void CylinderBase::setCameraParms(Camera*, int)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +501,7 @@ void Game::CylinderBase::setCameraParms((Camera*, int))
  * Address:	8023DFEC
  * Size:	0000CC
  */
-void Game::CylinderBase::makeSRT((Matrixf&, Game::ShadowParam&))
+void CylinderBase::makeSRT(Matrixf&, Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -575,7 +568,7 @@ void Game::CylinderBase::makeSRT((Matrixf&, Game::ShadowParam&))
  * Address:	8023E0B8
  * Size:	0000A4
  */
-void Game::CylinderBase::getCylinderType((Game::ShadowParam&, int))
+void CylinderBase::getCylinderType(Game::ShadowParam&, int)
 {
 	/*
 	.loc_0x0:
@@ -634,35 +627,35 @@ void Game::CylinderBase::getCylinderType((Game::ShadowParam&, int))
  * Address:	8023E15C
  * Size:	000004
  */
-void Game::CylinderBase::setFilterTextureID((int)) { }
+void CylinderBase::setFilterTextureID(int) { }
 
 /*
  * --INFO--
  * Address:	8023E160
  * Size:	000004
  */
-void Game::CylinderBase::drawInit(void) { }
+void CylinderBase::drawInit(void) { }
 
 /*
  * --INFO--
  * Address:	8023E164
  * Size:	000004
  */
-void Game::CylinderBase::drawCylinder((Matrixf&, int)) { }
+void CylinderBase::drawCylinder(Matrixf&, int) { }
 
 /*
  * --INFO--
  * Address:	8023E168
  * Size:	000004
  */
-void Game::CylinderBase::drawFinish(void) { }
+void CylinderBase::drawFinish(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00010C
  */
-void Game::CylinderBase::setupFillGX(void)
+void CylinderBase::setupFillGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +665,7 @@ void Game::CylinderBase::setupFillGX(void)
  * Address:	........
  * Size:	00005C
  */
-void Game::CylinderBase::setupDrawCylinderGX(void)
+void CylinderBase::setupDrawCylinderGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -682,7 +675,7 @@ void Game::CylinderBase::setupDrawCylinderGX(void)
  * Address:	........
  * Size:	000088
  */
-void Game::CylinderBase::setupFilterGX(void)
+void CylinderBase::setupFilterGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -692,7 +685,7 @@ void Game::CylinderBase::setupFilterGX(void)
  * Address:	........
  * Size:	00004C
  */
-void Game::CylinderBase::setOrthoProjection(void)
+void CylinderBase::setOrthoProjection(void)
 {
 	// UNUSED FUNCTION
 }
@@ -702,7 +695,7 @@ void Game::CylinderBase::setOrthoProjection(void)
  * Address:	........
  * Size:	0000A4
  */
-void Game::CylinderBase::setOrthoCamera(void)
+void CylinderBase::setOrthoCamera(void)
 {
 	// UNUSED FUNCTION
 }
@@ -712,7 +705,7 @@ void Game::CylinderBase::setOrthoCamera(void)
  * Address:	........
  * Size:	0000D0
  */
-void Game::CylinderBase::setScissorViewport(void)
+void CylinderBase::setScissorViewport(void)
 {
 	// UNUSED FUNCTION
 }
@@ -722,7 +715,7 @@ void Game::CylinderBase::setScissorViewport(void)
  * Address:	........
  * Size:	000090
  */
-void Game::CylinderBase::fillShadowRect(void)
+void CylinderBase::fillShadowRect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -732,7 +725,7 @@ void Game::CylinderBase::fillShadowRect(void)
  * Address:	........
  * Size:	0000D4
  */
-void Game::CylinderBase::fillRectAlphaZero(void)
+void CylinderBase::fillRectAlphaZero(void)
 {
 	// UNUSED FUNCTION
 }
@@ -742,7 +735,7 @@ void Game::CylinderBase::fillRectAlphaZero(void)
  * Address:	........
  * Size:	000038
  */
-void Game::CylinderBase::drawCylinderList((int))
+void CylinderBase::drawCylinderList(int)
 {
 	// UNUSED FUNCTION
 }
@@ -752,7 +745,7 @@ void Game::CylinderBase::drawCylinderList((int))
  * Address:	8023E16C
  * Size:	000164
  */
-void Game::ShadowCylinder2::__ct((Game::ShadowParms*, Color4*))
+ShadowCylinder2::ShadowCylinder2(Game::ShadowParms*, Color4*)
 {
 	/*
 	.loc_0x0:
@@ -861,7 +854,7 @@ void Game::ShadowCylinder2::__ct((Game::ShadowParms*, Color4*))
  * Address:	8023E2D0
  * Size:	000044
  */
-void Game::ShadowCylinder2::setFilterTextureID((int))
+void ShadowCylinder2::setFilterTextureID(int)
 {
 	/*
 	.loc_0x0:
@@ -896,7 +889,7 @@ void Game::ShadowCylinder2::setFilterTextureID((int))
  * Address:	8023E314
  * Size:	000350
  */
-void Game::ShadowCylinder2::drawInit(void)
+void ShadowCylinder2::drawInit(void)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1113,7 @@ void Game::ShadowCylinder2::drawInit(void)
  * Address:	8023E664
  * Size:	0000C0
  */
-void Game::ShadowCylinder2::drawCylinder((Matrixf&, int))
+void ShadowCylinder2::drawCylinder(Matrixf&, int)
 {
 	/*
 	.loc_0x0:
@@ -1180,7 +1173,7 @@ void Game::ShadowCylinder2::drawCylinder((Matrixf&, int))
  * Address:	8023E724
  * Size:	0001E4
  */
-void Game::ShadowCylinder2::drawFinish(void)
+void ShadowCylinder2::drawFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1315,7 +1308,7 @@ void Game::ShadowCylinder2::drawFinish(void)
  * Address:	8023E908
  * Size:	000170
  */
-void Game::ShadowCylinder2::copyShadowTexture(void)
+void ShadowCylinder2::copyShadowTexture(void)
 {
 	/*
 	.loc_0x0:
@@ -1419,7 +1412,7 @@ void Game::ShadowCylinder2::copyShadowTexture(void)
  * Address:	8023EA78
  * Size:	0000FC
  */
-void Game::ShadowCylinder2::setupTextureFilterGX(void)
+void ShadowCylinder2::setupTextureFilterGX(void)
 {
 	/*
 	.loc_0x0:
@@ -1494,7 +1487,7 @@ void Game::ShadowCylinder2::setupTextureFilterGX(void)
  * Address:	8023EB74
  * Size:	000108
  */
-void Game::ShadowCylinder2::drawTextureFilter(void)
+void ShadowCylinder2::drawTextureFilter(void)
 {
 	/*
 	.loc_0x0:
@@ -1572,7 +1565,7 @@ void Game::ShadowCylinder2::drawTextureFilter(void)
  * Address:	8023EC7C
  * Size:	00005C
  */
-void Game::ShadowCylinder3::__ct((Game::ShadowParms*, Color4*))
+ShadowCylinder3::ShadowCylinder3(Game::ShadowParms*, Color4*)
 {
 	/*
 	.loc_0x0:
@@ -1607,7 +1600,7 @@ void Game::ShadowCylinder3::__ct((Game::ShadowParms*, Color4*))
  * Address:	8023ECD8
  * Size:	000350
  */
-void Game::ShadowCylinder3::drawInit(void)
+void ShadowCylinder3::drawInit(void)
 {
 	/*
 	.loc_0x0:
@@ -1831,7 +1824,7 @@ void Game::ShadowCylinder3::drawInit(void)
  * Address:	8023F028
  * Size:	0000F8
  */
-void Game::ShadowCylinder3::drawCylinder((Matrixf&, int))
+void ShadowCylinder3::drawCylinder(Matrixf&, int)
 {
 	/*
 	.loc_0x0:
@@ -1905,7 +1898,7 @@ void Game::ShadowCylinder3::drawCylinder((Matrixf&, int))
  * Address:	8023F120
  * Size:	0001D4
  */
-void Game::ShadowCylinder3::drawFinish(void)
+void ShadowCylinder3::drawFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2036,7 +2029,7 @@ void Game::ShadowCylinder3::drawFinish(void)
  * Address:	8023F2F4
  * Size:	0000D0
  */
-void Game::ShadowCylinder3::drawScreenFilter(void)
+void ShadowCylinder3::drawScreenFilter(void)
 {
 	/*
 	.loc_0x0:
@@ -2100,7 +2093,9 @@ void Game::ShadowCylinder3::drawScreenFilter(void)
  * Address:	8023F3C4
  * Size:	000004
  */
-void Game::ShadowCylinder3::setFilterTextureID((int)) { }
+void ShadowCylinder3::setFilterTextureID(int) { }
+
+} // namespace Game
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -27,7 +27,7 @@ void J3DMaterialTable::clear()
  * Address:	80083C74
  * Size:	000034
  */
-void J3DMaterialTable::J3DMaterialTable()
+J3DMaterialTable::J3DMaterialTable()
 {
 	/*
 	.loc_0x0:
@@ -52,7 +52,7 @@ void J3DMaterialTable::J3DMaterialTable()
  * Address:	80083CA8
  * Size:	000048
  */
-void J3DMaterialTable::~J3DMaterialTable()
+J3DMaterialTable::~J3DMaterialTable()
 {
 	/*
 	.loc_0x0:
@@ -84,7 +84,7 @@ void J3DMaterialTable::~J3DMaterialTable()
  * Address:	80083CF0
  * Size:	000018
  */
-void J3DMatColorAnm::J3DMatColorAnm()
+J3DMatColorAnm::J3DMatColorAnm()
 {
 	/*
 	.loc_0x0:
@@ -102,7 +102,7 @@ void J3DMatColorAnm::J3DMatColorAnm()
  * Address:	80083D08
  * Size:	000024
  */
-void J3DTexNoAnm::J3DTexNoAnm()
+J3DTexNoAnm::J3DTexNoAnm()
 {
 	/*
 	.loc_0x0:
@@ -262,7 +262,7 @@ void J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**)
  * Address:	80083EF0
  * Size:	000018
  */
-void J3DTexMtxAnm::J3DTexMtxAnm()
+J3DTexMtxAnm::J3DTexMtxAnm()
 {
 	/*
 	.loc_0x0:
@@ -522,7 +522,7 @@ void J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**,
  * Address:	80084234
  * Size:	000018
  */
-void J3DTevKColorAnm::J3DTevKColorAnm()
+J3DTevKColorAnm::J3DTevKColorAnm()
 {
 	/*
 	.loc_0x0:
@@ -540,7 +540,7 @@ void J3DTevKColorAnm::J3DTevKColorAnm()
  * Address:	8008424C
  * Size:	000018
  */
-void J3DTevColorAnm::J3DTevColorAnm()
+J3DTevColorAnm::J3DTevColorAnm()
 {
 	/*
 	.loc_0x0:

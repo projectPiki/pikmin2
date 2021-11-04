@@ -25,20 +25,20 @@ struct World {
 	struct ResolveArg {
 		Callback* m_callback;
 		u32* _04;
-		u32  _08;
+		u32 _08;
 	};
 
 	void resolve(ResolveArg&);
 
-	float _00;    // _00
-	u32   _04;    // _04
-	u32   _08;    // _08
-	u32   _0C;    // _0C
-	u8    _10[4]; // _10
-	float _14;    // _14
-	u32   _18;    // _18
-	u32   _1C;    // _1C
-	u32   _20;    // _20
+	float _00; // _00
+	u32 _04;   // _04
+	u32 _08;   // _08
+	u32 _0C;   // _0C
+	u8 _10[4]; // _10
+	float _14; // _14
+	u32 _18;   // _18
+	u32 _1C;   // _1C
+	u32 _20;   // _20
 };
 } // namespace SweepPrune
 
@@ -51,6 +51,5 @@ struct SweepCallback : Callback {
 
 	// vt _00
 };
-
 
 #endif

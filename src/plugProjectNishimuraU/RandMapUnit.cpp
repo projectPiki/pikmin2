@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80245C5C
  * Size:	000030
  */
-void Game::Cave::EditMapUnit::__ct(void)
+Cave::EditMapUnit::EditMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -39,7 +31,7 @@ void Game::Cave::EditMapUnit::__ct(void)
  * Address:	80245C8C
  * Size:	0000B8
  */
-void Game::Cave::EditMapUnit::read((char*))
+void Cave::EditMapUnit::read(char*)
 {
 	/*
 	.loc_0x0:
@@ -103,7 +95,7 @@ void Game::Cave::EditMapUnit::read((char*))
  * Address:	80245D44
  * Size:	0001E8
  */
-void Game::Cave::EditMapUnit::read((Stream*))
+void Cave::EditMapUnit::read(Stream*)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +239,7 @@ void Game::Cave::EditMapUnit::read((Stream*))
  * Address:	80245F2C
  * Size:	000054
  */
-void Game::Cave::EditMapUnit::setEditNumber((int))
+void Cave::EditMapUnit::setEditNumber(int)
 {
 	/*
 	.loc_0x0:
@@ -288,7 +280,7 @@ void Game::Cave::EditMapUnit::setEditNumber((int))
  * Address:	80245F80
  * Size:	00019C
  */
-void Game::Cave::RandMapUnit::__ct((Game::Cave::MapUnitGenerator*))
+Cave::RandMapUnit::RandMapUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -423,7 +415,7 @@ void Game::Cave::RandMapUnit::__ct((Game::Cave::MapUnitGenerator*))
  * Address:	8024611C
  * Size:	0000F4
  */
-void Game::Cave::RandMapUnit::setMapUnit(void)
+void Cave::RandMapUnit::setMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +500,7 @@ void Game::Cave::RandMapUnit::setMapUnit(void)
  * Address:	80246210
  * Size:	000034
  */
-void Game::Cave::RandMapUnit::getAliveMapIndex((Game::Cave::MapNode*))
+void Cave::RandMapUnit::getAliveMapIndex(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -537,7 +529,7 @@ void Game::Cave::RandMapUnit::getAliveMapIndex((Game::Cave::MapNode*))
  * Address:	80246244
  * Size:	0000A0
  */
-void Game::Cave::RandMapUnit::getTextureSize((int&, int&))
+void Cave::RandMapUnit::getTextureSize(int&, int&)
 {
 	/*
 	.loc_0x0:
@@ -597,7 +589,7 @@ void Game::Cave::RandMapUnit::getTextureSize((int&, int&))
  * Address:	802462E4
  * Size:	00006C
  */
-void Game::Cave::RandMapUnit::getRandMapUnit(void)
+void Cave::RandMapUnit::getRandMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -642,7 +634,7 @@ void Game::Cave::RandMapUnit::getRandMapUnit(void)
  * Address:	80246350
  * Size:	000284
  */
-void Game::Cave::RandMapUnit::changeCapToRootLoopMapUnit(void)
+void Cave::RandMapUnit::changeCapToRootLoopMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -855,7 +847,7 @@ void Game::Cave::RandMapUnit::changeCapToRootLoopMapUnit(void)
  * Address:	802465D4
  * Size:	000360
  */
-void Game::Cave::RandMapUnit::changeTwoToOneMapUnit(void)
+void Cave::RandMapUnit::changeTwoToOneMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -1133,7 +1125,7 @@ void Game::Cave::RandMapUnit::changeTwoToOneMapUnit(void)
  * Address:	80246934
  * Size:	000144
  */
-void Game::Cave::RandMapUnit::setEditorMapUnit(void)
+void Cave::RandMapUnit::setEditorMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -1238,7 +1230,7 @@ void Game::Cave::RandMapUnit::setEditorMapUnit(void)
  * Address:	80246A78
  * Size:	00006C
  */
-void Game::Cave::RandMapUnit::setFirstMapUnit(void)
+void Cave::RandMapUnit::setFirstMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -1281,7 +1273,7 @@ void Game::Cave::RandMapUnit::setFirstMapUnit(void)
  * Address:	80246AE4
  * Size:	00008C
  */
-void Game::Cave::RandMapUnit::getFirstMapUnit(void)
+void Cave::RandMapUnit::getFirstMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -1342,7 +1334,7 @@ void Game::Cave::RandMapUnit::getFirstMapUnit(void)
  * Address:	80246B70
  * Size:	000188
  */
-void Game::Cave::RandMapUnit::getNormalRandMapUnit(void)
+void Cave::RandMapUnit::getNormalRandMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -1470,7 +1462,7 @@ void Game::Cave::RandMapUnit::getNormalRandMapUnit(void)
  * Address:	80246CF8
  * Size:	0000C8
  */
-void Game::Cave::RandMapUnit::setUnitKindOrder((Game::Cave::MapNode*, int*))
+void Cave::RandMapUnit::setUnitKindOrder(Game::Cave::MapNode*, int*)
 {
 	/*
 	.loc_0x0:
@@ -1540,7 +1532,7 @@ void Game::Cave::RandMapUnit::setUnitKindOrder((Game::Cave::MapNode*, int*))
  * Address:	80246DC0
  * Size:	000314
  */
-void Game::Cave::RandMapUnit::setUnitDoorSorting((int))
+void Cave::RandMapUnit::setUnitDoorSorting(int)
 {
 	/*
 	.loc_0x0:
@@ -1797,7 +1789,7 @@ void Game::Cave::RandMapUnit::setUnitDoorSorting((int))
  * Address:	802470D4
  * Size:	000164
  */
-void Game::Cave::RandMapUnit::setRandomDoorIndex((int*, int))
+void Cave::RandMapUnit::setRandomDoorIndex(int*, int)
 {
 	/*
 	.loc_0x0:
@@ -1910,7 +1902,7 @@ void Game::Cave::RandMapUnit::setRandomDoorIndex((int*, int))
  * Address:	80247238
  * Size:	000208
  */
-void Game::Cave::RandMapUnit::getLoopRandMapUnit(void)
+void Cave::RandMapUnit::getLoopRandMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -2072,7 +2064,7 @@ void Game::Cave::RandMapUnit::getLoopRandMapUnit(void)
  * Address:	80247440
  * Size:	0000C8
  */
-void Game::Cave::RandMapUnit::getCalcDoorIndex((int&, int&, int&, int))
+void Cave::RandMapUnit::getCalcDoorIndex(int&, int&, int&, int)
 {
 	/*
 	.loc_0x0:
@@ -2148,8 +2140,8 @@ void Game::Cave::RandMapUnit::getCalcDoorIndex((int&, int&, int&, int))
  * Address:	80247508
  * Size:	00012C
  */
-void Game::Cave::RandMapUnit::getLinkDoorNodeFirst((Game::Cave::MapNode*, int,
-                                                    int, int, int&))
+void Cave::RandMapUnit::getLinkDoorNodeFirst(Game::Cave::MapNode*, int, int,
+                                             int, int&)
 {
 	/*
 	.loc_0x0:
@@ -2250,7 +2242,7 @@ void Game::Cave::RandMapUnit::getLinkDoorNodeFirst((Game::Cave::MapNode*, int,
  * Address:	80247634
  * Size:	0000D0
  */
-void Game::Cave::RandMapUnit::isInLinkArea((int, int, int, int, int))
+void Cave::RandMapUnit::isInLinkArea(int, int, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2326,7 +2318,7 @@ void Game::Cave::RandMapUnit::isInLinkArea((int, int, int, int, int))
  * Address:	80247704
  * Size:	000130
  */
-void Game::Cave::RandMapUnit::getLoopMapNode((Game::Cave::MapNode**))
+void Cave::RandMapUnit::getLoopMapNode(Game::Cave::MapNode**)
 {
 	/*
 	.loc_0x0:
@@ -2426,8 +2418,8 @@ void Game::Cave::RandMapUnit::getLoopMapNode((Game::Cave::MapNode**))
  * Address:	80247834
  * Size:	0000EC
  */
-void Game::Cave::RandMapUnit::getLinkDoorDirection((Game::Cave::MapNode*, int,
-                                                    Game::Cave::MapNode*, int))
+void Cave::RandMapUnit::getLinkDoorDirection(Game::Cave::MapNode*, int,
+                                             Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -2510,7 +2502,7 @@ void Game::Cave::RandMapUnit::getLinkDoorDirection((Game::Cave::MapNode*, int,
  * Address:	80247920
  * Size:	0000BC
  */
-void Game::Cave::RandMapUnit::getUpToLinkDoorDir((int, int, int))
+void Cave::RandMapUnit::getUpToLinkDoorDir(int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2591,7 +2583,7 @@ void Game::Cave::RandMapUnit::getUpToLinkDoorDir((int, int, int))
  * Address:	802479DC
  * Size:	0000C4
  */
-void Game::Cave::RandMapUnit::getRightToLinkDoorDir((int, int, int))
+void Cave::RandMapUnit::getRightToLinkDoorDir(int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2674,7 +2666,7 @@ void Game::Cave::RandMapUnit::getRightToLinkDoorDir((int, int, int))
  * Address:	80247AA0
  * Size:	0000BC
  */
-void Game::Cave::RandMapUnit::getDownToLinkDoorDir((int, int, int))
+void Cave::RandMapUnit::getDownToLinkDoorDir(int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2755,7 +2747,7 @@ void Game::Cave::RandMapUnit::getDownToLinkDoorDir((int, int, int))
  * Address:	80247B5C
  * Size:	0000C0
  */
-void Game::Cave::RandMapUnit::getLeftToLinkDoorDir((int, int, int))
+void Cave::RandMapUnit::getLeftToLinkDoorDir(int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2837,7 +2829,7 @@ void Game::Cave::RandMapUnit::getLeftToLinkDoorDir((int, int, int))
  * Address:	80247C1C
  * Size:	0002F0
  */
-void Game::Cave::RandMapUnit::getLoopEndMapUnit(void)
+void Cave::RandMapUnit::getLoopEndMapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -3085,7 +3077,7 @@ void Game::Cave::RandMapUnit::getLoopEndMapUnit(void)
  * Address:	80247F0C
  * Size:	000070
  */
-void Game::Cave::RandMapUnit::getPartsKindNum((int))
+void Cave::RandMapUnit::getPartsKindNum(int)
 {
 	/*
 	.loc_0x0:
@@ -3131,7 +3123,7 @@ void Game::Cave::RandMapUnit::getPartsKindNum((int))
  * Address:	80247F7C
  * Size:	00008C
  */
-void Game::Cave::RandMapUnit::getOpenDoorNum(void)
+void Cave::RandMapUnit::getOpenDoorNum(void)
 {
 	/*
 	.loc_0x0:
@@ -3188,7 +3180,7 @@ void Game::Cave::RandMapUnit::getOpenDoorNum(void)
  * Address:	80248008
  * Size:	0000B4
  */
-void Game::Cave::RandMapUnit::addMap((Game::Cave::UnitInfo*, int, int, bool))
+void Cave::RandMapUnit::addMap(Game::Cave::UnitInfo*, int, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -3253,7 +3245,7 @@ void Game::Cave::RandMapUnit::addMap((Game::Cave::UnitInfo*, int, int, bool))
  * Address:	802480BC
  * Size:	0003DC
  */
-void Game::Cave::RandMapUnit::changeMapPriority((Game::Cave::UnitInfo*))
+void Cave::RandMapUnit::changeMapPriority(Game::Cave::UnitInfo*)
 {
 	/*
 	.loc_0x0:
@@ -3564,7 +3556,7 @@ void Game::Cave::RandMapUnit::changeMapPriority((Game::Cave::UnitInfo*))
  * Address:	80248498
  * Size:	00012C
  */
-void Game::Cave::RandMapUnit::moveCentre(void)
+void Cave::RandMapUnit::moveCentre(void)
 {
 	/*
 	.loc_0x0:
@@ -3671,7 +3663,7 @@ void Game::Cave::RandMapUnit::moveCentre(void)
  * Address:	802485C4
  * Size:	000134
  */
-void Game::Cave::RandMapUnit::closeDoorCheck(void)
+void Cave::RandMapUnit::closeDoorCheck(void)
 {
 	/*
 	.loc_0x0:
@@ -3782,7 +3774,7 @@ void Game::Cave::RandMapUnit::closeDoorCheck(void)
  * Address:	802486F8
  * Size:	000038
  */
-void Game::Cave::RandMapUnit::deleteMapNode((Game::Cave::MapNode*))
+void Cave::RandMapUnit::deleteMapNode(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -3808,7 +3800,7 @@ void Game::Cave::RandMapUnit::deleteMapNode((Game::Cave::MapNode*))
  * Address:	80248730
  * Size:	000198
  */
-void Game::Cave::RandMapUnit::createLoopMapNodeCheck(void)
+void Cave::RandMapUnit::createLoopMapNodeCheck(void)
 {
 	/*
 	.loc_0x0:
@@ -3954,7 +3946,7 @@ void Game::Cave::RandMapUnit::createLoopMapNodeCheck(void)
  * Address:	802488C8
  * Size:	00004C
  */
-void Game::Cave::RandMapUnit::isLoopMapNodeCheck((Game::Cave::MapNode*, int))
+void Cave::RandMapUnit::isLoopMapNodeCheck(Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -3985,3 +3977,4 @@ void Game::Cave::RandMapUnit::isLoopMapNodeCheck((Game::Cave::MapNode*, int))
 	  blr
 	*/
 }
+} // namespace Game

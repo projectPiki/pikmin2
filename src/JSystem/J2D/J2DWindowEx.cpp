@@ -5,8 +5,8 @@
  * Address:	80044E34
  * Size:	0002E8
  */
-void J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long,
-                              J2DMaterial*)
+J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long,
+                         J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +379,7 @@ void J2DWindowEx::setMinSize()
  * Address:	80045300
  * Size:	0000F8
  */
-void J2DWindowEx::~J2DWindowEx()
+J2DWindowEx::~J2DWindowEx()
 {
 	/*
 	.loc_0x0:
@@ -3186,13 +3186,10 @@ void J2DWindowEx::isNeedSetAnm(unsigned char)
  * Address:	80047564
  * Size:	000008
  */
-void J2DWindowEx::setAnimation(J2DAnmVisibilityFull*)
+void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x174(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x174(r3)
+	_174 = a1;
 }
 
 /*

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012EC24
  * Size:	000070
  */
-void Game::EnemyBirthArg::EnemyBirthArg()
+EnemyBirthArg::EnemyBirthArg()
 {
 	/*
 	.loc_0x0:
@@ -45,7 +47,7 @@ void Game::EnemyBirthArg::EnemyBirthArg()
  * Address:	8012EC94
  * Size:	0000C4
  */
-void Game::EnemyMgrBase::EnemyMgrBase(int, unsigned char)
+EnemyMgrBase::EnemyMgrBase(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +108,7 @@ void Game::EnemyMgrBase::EnemyMgrBase(int, unsigned char)
  * Address:	8012ED58
  * Size:	000070
  */
-void Game::EnemyMgrBase::startMovie()
+void EnemyMgrBase::startMovie()
 {
 	/*
 	.loc_0x0:
@@ -152,7 +154,7 @@ void Game::EnemyMgrBase::startMovie()
  * Address:	8012EDC8
  * Size:	000070
  */
-void Game::EnemyMgrBase::endMovie()
+void EnemyMgrBase::endMovie()
 {
 	/*
 	.loc_0x0:
@@ -198,7 +200,7 @@ void Game::EnemyMgrBase::endMovie()
  * Address:	8012EE38
  * Size:	0000A0
  */
-void Game::EnemyMgrBase::alloc()
+void EnemyMgrBase::alloc()
 {
 	/*
 	.loc_0x0:
@@ -254,7 +256,7 @@ void Game::EnemyMgrBase::alloc()
  * Address:	8012EED8
  * Size:	000110
  */
-void Game::EnemyMgrBase::doAnimation()
+void EnemyMgrBase::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -342,7 +344,7 @@ void Game::EnemyMgrBase::doAnimation()
  * Address:	8012EFE8
  * Size:	0000B4
  */
-void Game::EnemyMgrBase::doEntry()
+void EnemyMgrBase::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -407,7 +409,7 @@ void Game::EnemyMgrBase::doEntry()
  * Address:	8012F09C
  * Size:	00008C
  */
-void Game::EnemyMgrBase::doSetView(int)
+void EnemyMgrBase::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +462,7 @@ void Game::EnemyMgrBase::doSetView(int)
  * Address:	8012F128
  * Size:	00007C
  */
-void Game::EnemyMgrBase::doViewCalc()
+void EnemyMgrBase::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -509,7 +511,7 @@ void Game::EnemyMgrBase::doViewCalc()
  * Address:	8012F1A4
  * Size:	0000EC
  */
-void Game::EnemyMgrBase::doSimulation(float)
+void EnemyMgrBase::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +592,7 @@ void Game::EnemyMgrBase::doSimulation(float)
  * Address:	8012F290
  * Size:	0000C4
  */
-void Game::EnemyMgrBase::doDirectDraw(Graphics&)
+void EnemyMgrBase::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -659,7 +661,7 @@ void Game::EnemyMgrBase::doDirectDraw(Graphics&)
  * Address:	8012F354
  * Size:	000074
  */
-void Game::EnemyMgrBase::getNext(void*)
+void EnemyMgrBase::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +710,7 @@ void Game::EnemyMgrBase::getNext(void*)
  * Address:	8012F3C8
  * Size:	000184
  */
-void Game::EnemyMgrBase::birth(Game::EnemyBirthArg&)
+void EnemyMgrBase::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -833,14 +835,14 @@ void Game::EnemyMgrBase::birth(Game::EnemyBirthArg&)
  * Address:	8012F54C
  * Size:	000008
  */
-s32 Game::EnemyMgrBase::getEnemyTypeID() { return -0x1; }
+s32 EnemyMgrBase::getEnemyTypeID() { return -0x1; }
 
 /*
  * --INFO--
  * Address:	8012F554
  * Size:	000164
  */
-void Game::EnemyMgrBase::kill(Game::EnemyBase*)
+void EnemyMgrBase::kill(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -953,7 +955,7 @@ void Game::EnemyMgrBase::kill(Game::EnemyBase*)
  * Address:	8012F6B8
  * Size:	0000A8
  */
-void Game::EnemyMgrBase::killAll(Game::CreatureKillArg*)
+void EnemyMgrBase::killAll(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1015,7 +1017,7 @@ void Game::EnemyMgrBase::killAll(Game::CreatureKillArg*)
  * Address:	8012F760
  * Size:	00003C
  */
-void Game::EnemyMgrBase::isValidEnemyTypeID()
+void EnemyMgrBase::isValidEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1042,7 +1044,7 @@ void Game::EnemyMgrBase::isValidEnemyTypeID()
  * Address:	8012F79C
  * Size:	000100
  */
-void Game::EnemyMgrBase::setupSoundViewerAndBas()
+void EnemyMgrBase::setupSoundViewerAndBas()
 {
 	/*
 	.loc_0x0:
@@ -1122,7 +1124,7 @@ void Game::EnemyMgrBase::setupSoundViewerAndBas()
  * Address:	8012F89C
  * Size:	00008C
  */
-void Game::EnemyMgrBase::init(Game::EnemyParmsBase*)
+void EnemyMgrBase::init(Game::EnemyParmsBase*)
 {
 	/*
 	.loc_0x0:
@@ -1169,7 +1171,7 @@ void Game::EnemyMgrBase::init(Game::EnemyParmsBase*)
  * Address:	8012F928
  * Size:	000024
  */
-void Game::EnemyMgrBase::setDebugParm(unsigned long)
+void EnemyMgrBase::setDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1190,7 +1192,7 @@ void Game::EnemyMgrBase::setDebugParm(unsigned long)
  * Address:	8012F94C
  * Size:	000024
  */
-void Game::EnemyMgrBase::resetDebugParm(unsigned long)
+void EnemyMgrBase::resetDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1211,7 +1213,7 @@ void Game::EnemyMgrBase::resetDebugParm(unsigned long)
  * Address:	8012F970
  * Size:	0000AC
  */
-void Game::EnemyMgrBase::createModel()
+void EnemyMgrBase::createModel()
 {
 	/*
 	.loc_0x0:
@@ -1268,7 +1270,7 @@ void Game::EnemyMgrBase::createModel()
  * Address:	8012FA1C
  * Size:	0000C0
  */
-void Game::EnemyMgrBase::initParms()
+void EnemyMgrBase::initParms()
 {
 	/*
 	.loc_0x0:
@@ -1332,7 +1334,7 @@ void Game::EnemyMgrBase::initParms()
  * Address:	8012FADC
  * Size:	000078
  */
-void Game::EnemyMgrBase::loadStoneSetting(const char*)
+void EnemyMgrBase::loadStoneSetting(const char*)
 {
 	/*
 	.loc_0x0:
@@ -1378,7 +1380,7 @@ void Game::EnemyMgrBase::loadStoneSetting(const char*)
  * Address:	8012FB54
  * Size:	000090
  */
-void Game::EnemyMgrBase::setupParms(const char*)
+void EnemyMgrBase::setupParms(const char*)
 {
 	/*
 	.loc_0x0:
@@ -1430,7 +1432,7 @@ void Game::EnemyMgrBase::setupParms(const char*)
  * Address:	8012FBE4
  * Size:	000088
  */
-void Game::EnemyMgrBase::loadResource()
+void EnemyMgrBase::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -1478,7 +1480,7 @@ void Game::EnemyMgrBase::loadResource()
  * Address:	8012FC6C
  * Size:	0002FC
  */
-void Game::EnemyMgrBase::initObjects()
+void EnemyMgrBase::initObjects()
 {
 	/*
 	.loc_0x0:
@@ -1697,7 +1699,7 @@ void Game::EnemyMgrBase::initObjects()
  * Address:	8012FF68
  * Size:	0000C0
  */
-void Game::EnemyMgrBase::initStoneSetting()
+void EnemyMgrBase::initStoneSetting()
 {
 	/*
 	.loc_0x0:
@@ -1761,7 +1763,7 @@ void Game::EnemyMgrBase::initStoneSetting()
  * Address:	80130028
  * Size:	0000E4
  */
-void Game::EnemyMgrBase::loadModelData(JKRArchive*)
+void EnemyMgrBase::loadModelData(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1838,7 +1840,7 @@ void Game::EnemyMgrBase::loadModelData(JKRArchive*)
  * Address:	8013010C
  * Size:	0000C0
  */
-void Game::EnemyMgrBase::loadModelData()
+void EnemyMgrBase::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -1900,7 +1902,7 @@ void Game::EnemyMgrBase::loadModelData()
  * Address:	801301CC
  * Size:	000154
  */
-void Game::EnemyMgrBase::loadAnimData()
+void EnemyMgrBase::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -2007,7 +2009,7 @@ void Game::EnemyMgrBase::loadAnimData()
  * Address:	80130320
  * Size:	000074
  */
-void Game::EnemyMgrBase::loadTexData()
+void EnemyMgrBase::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -2050,7 +2052,7 @@ void Game::EnemyMgrBase::loadTexData()
  * Address:	80130394
  * Size:	00002C
  */
-void Game::EnemyMgrBase::doLoadBmd(void*)
+void EnemyMgrBase::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -2073,7 +2075,7 @@ void Game::EnemyMgrBase::doLoadBmd(void*)
  * Address:	801303C0
  * Size:	000028
  */
-void Game::EnemyMgrBase::doLoadBdl(void*)
+void EnemyMgrBase::doLoadBdl(void*)
 {
 	/*
 	.loc_0x0:
@@ -2095,7 +2097,7 @@ void Game::EnemyMgrBase::doLoadBdl(void*)
  * Address:	801303E8
  * Size:	000090
  */
-void Game::EnemyMgrBase::initGenerator()
+void EnemyMgrBase::initGenerator()
 {
 	/*
 	.loc_0x0:
@@ -2145,7 +2147,7 @@ void Game::EnemyMgrBase::initGenerator()
  * Address:	80130478
  * Size:	0000E8
  */
-void Game::EnemyMgrBase::doAnimationAlwaysMovieActor()
+void EnemyMgrBase::doAnimationAlwaysMovieActor()
 {
 	/*
 	.loc_0x0:
@@ -2221,7 +2223,7 @@ void Game::EnemyMgrBase::doAnimationAlwaysMovieActor()
  * Address:	80130560
  * Size:	00007C
  */
-void Game::EnemyMgrBase::doEntryAlwaysMovieActor()
+void EnemyMgrBase::doEntryAlwaysMovieActor()
 {
 	/*
 	.loc_0x0:
@@ -2270,7 +2272,7 @@ void Game::EnemyMgrBase::doEntryAlwaysMovieActor()
  * Address:	801305DC
  * Size:	00009C
  */
-void Game::EnemyMgrBase::doSimulationAlwaysMovieActor(float)
+void EnemyMgrBase::doSimulationAlwaysMovieActor(float)
 {
 	/*
 	.loc_0x0:
@@ -2327,7 +2329,7 @@ void Game::EnemyMgrBase::doSimulationAlwaysMovieActor(float)
  * Address:	80130678
  * Size:	00008C
  */
-void Game::EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics&)
+void EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2380,7 +2382,7 @@ void Game::EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics&)
  * Address:	80130704
  * Size:	000008
  */
-void Game::EnemyMgrBase::@4 @__dt()
+EnemyMgrBase::@4 @~EnemyMgrBase()
 {
 	/*
 	.loc_0x0:
@@ -2388,3 +2390,4 @@ void Game::EnemyMgrBase::@4 @__dt()
 	  b         -0x27164
 	*/
 }
+} // namespace Game

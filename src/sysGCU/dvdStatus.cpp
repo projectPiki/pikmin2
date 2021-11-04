@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8042A314
  * Size:	000014
  */
-void DvdStatus::DvdStatus()
+DvdStatus::DvdStatus()
 {
 	/*
 	.loc_0x0:

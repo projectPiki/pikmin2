@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801B6468
  * Size:	000024
  */
-void Game::MapUnitInterface::getDoor(int idx)
+void MapUnitInterface::getDoor(int idx)
 {
 	return this->_118.getChildAt(idx)
 	/*
@@ -37,7 +29,7 @@ void Game::MapUnitInterface::getDoor(int idx)
  * Address:	801B648C
  * Size:	00001C
  */
-void Game::MapUnitInterface::getCellSize((int&, int&))
+void MapUnitInterface::getCellSize(int&, int&)
 {
 	/*
 	.loc_0x0:
@@ -56,7 +48,7 @@ void Game::MapUnitInterface::getCellSize((int&, int&))
  * Address:	801B64A8
  * Size:	000024
  */
-void Game::Door::getLink((int))
+void Door::getLink(int)
 {
 	/*
 	.loc_0x0:
@@ -77,7 +69,7 @@ void Game::Door::getLink((int))
  * Address:	........
  * Size:	000078
  */
-void Game::DoorLink::write((Stream&))
+void DoorLink::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -87,7 +79,7 @@ void Game::DoorLink::write((Stream&))
  * Address:	........
  * Size:	000064
  */
-void Game::DoorLink::read((Stream&))
+void DoorLink::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -97,7 +89,7 @@ void Game::DoorLink::read((Stream&))
  * Address:	........
  * Size:	000124
  */
-void Game::Door::write((Stream&))
+void Door::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -107,7 +99,7 @@ void Game::Door::write((Stream&))
  * Address:	801B64CC
  * Size:	000104
  */
-void Game::Door::read(Stream& stream)
+void Door::read(Stream& stream)
 {
 	_18 = stream.readInt();
 	_44 = stream.readInt();
@@ -116,10 +108,10 @@ void Game::Door::read(Stream& stream)
 	_1C = stream.readInt();
 	for (int i = 0; i < _1C; i++) {
 		// inlined constructor
-		Game::DoorLink* link = new Game::DoorLink();
-		link->_18            = stream.readFloat();
-		link->_1C            = stream.readInt();
-		int v0               = stream.readInt();
+		DoorLink* link = new Game::DoorLink();
+		link->_18      = stream.readFloat();
+		link->_1C      = stream.readInt();
+		int v0         = stream.readInt();
 
 		// TODO: WTF does this evaluate to?
 		// neg       r0, r3 <-- -stream.readInt()
@@ -213,7 +205,7 @@ void Game::Door::read(Stream& stream)
  * Address:	801B65D0
  * Size:	0000AC
  */
-void Game::MapUnit::__ct(void)
+MapUnit::MapUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -268,10 +260,12 @@ void Game::MapUnit::__ct(void)
  * Address:	........
  * Size:	0000CC
  */
-void Game::MapUnit::setupSizeInfo(void)
+void MapUnit::setupSizeInfo(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -297,12 +291,14 @@ void MapCollision::getBoundBox(BoundBox&)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000080
  */
-void Game::MapUnit::save((Stream&))
+void MapUnit::save(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -312,7 +308,7 @@ void Game::MapUnit::save((Stream&))
  * Address:	801B66AC
  * Size:	00004C
  */
-void Game::MapUnit::load(Stream& stream)
+void MapUnit::load(Stream& stream)
 {
 	_94 = stream.readShort();
 	_96 = stream.readShort();
@@ -345,10 +341,12 @@ void Game::MapUnit::load(Stream& stream)
  * Address:	........
  * Size:	0000B8
  */
-void Game::MapUnitMgr::__ct(void)
+MapUnitMgr::MapUnitMgr(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -550,12 +548,14 @@ void Container<Game::MapUnit>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801B6918
  * Size:	000088
  */
-void Game::MapUnitMgr::getAt((int))
+void MapUnitMgr::getAt(int)
 {
 	/*
 	.loc_0x0:
@@ -611,10 +611,12 @@ void Game::MapUnitMgr::getAt((int))
  * Address:	........
  * Size:	00020C
  */
-void Game::MapUnitMgr::findMapUnit((char*))
+void MapUnitMgr::findMapUnit(char*)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -647,12 +649,14 @@ void Iterator<Game::MapUnit>::isDone()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000038
  */
-void Game::MapUnitMgr::testConstruct(void)
+void MapUnitMgr::testConstruct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +666,7 @@ void Game::MapUnitMgr::testConstruct(void)
  * Address:	........
  * Size:	000068
  */
-void Game::MapUnitMgr::loadShape((char*))
+void MapUnitMgr::loadShape(char*)
 {
 	// UNUSED FUNCTION
 }
@@ -672,30 +676,34 @@ void Game::MapUnitMgr::loadShape((char*))
  * Address:	801B69EC
  * Size:	000440
  */
-void Game::MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path)
+void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path)
 {
 	char path[512];
-	sprintf(path, "%s/arc.szs", path);
-	JKRArchive* archive = JKRArchive::mount(path, 1, nullptr, 1);
+} // Game
+
+sprintf(path, "%s/arc.szs", path);
+JKRArchive* archive = JKRArchive::mount(path, 1, nullptr, 1);
 #line 651
-	P2ASSERT(archive);
+P2ASSERT(archive);
 
-	void* viewModelData = archive.getResource("view.bmd");
+void* viewModelData = archive.getResource("view.bmd");
 #line 657
-	P2ASSERT(viewModelData);
+P2ASSERT(viewModelData);
 
-	// unit->_0C = J3DModelData*
-	unit->_0C = J3DModelLoaderDataBase::load(
-	    viewModelData, 0x20000000); // 0x20000000 is some flag
-	unit->_0C->newSharedDisplayList(0x40000);
-	unit->makeSharedDL();
+// unit->_0C = J3DModelData*
+unit->_0C = J3DModelLoaderDataBase::load(viewModelData,
+                                         0x20000000); // 0x20000000 is some flag
+unit->_0C->newSharedDisplayList(0x40000);
+unit->makeSharedDL();
+
+namespace SysShape {
 
 	void* textureData = archive.getResource("texture.bti");
 	if (textureData) {
 		unit->_30 = textureData;
 		unit->_2C = 0;
 	}
-	SysShape::Model::enableMaterialAnim(unit->_0C, 0);
+	Model::enableMaterialAnim(unit->_0C, 0);
 
 	int foundFiles = 0;
 	unit->_E8      = 0;
@@ -1054,14 +1062,18 @@ void Game::MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path)
 	  addi      r1, r1, 0x12B0
 	  blr
 	*/
-}
+} // namespace SysShape
+
+namespace Game {
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000048
  */
-void Game::MapUnitMgr::load((char*))
+void MapUnitMgr::load(char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1071,7 +1083,7 @@ void Game::MapUnitMgr::load((char*))
  * Address:	801B6E2C
  * Size:	0000DC
  */
-void Game::MapRoom::__ct(void)
+MapRoom::MapRoom(void)
 {
 	/*
 	.loc_0x0:
@@ -1138,7 +1150,7 @@ void Game::MapRoom::__ct(void)
  * Address:	........
  * Size:	0000FC
  */
-void Game::MapRoom::countItems(void)
+void MapRoom::countItems(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1148,7 +1160,7 @@ void Game::MapRoom::countItems(void)
  * Address:	........
  * Size:	000170
  */
-void Game::MapRoom::countEnemys(void)
+void MapRoom::countEnemys(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1158,14 +1170,14 @@ void Game::MapRoom::countEnemys(void)
  * Address:	801B6F08
  * Size:	000008
  */
-u32 Game::ObjectLayoutNode::getExtraCode(void) { return 0x0; }
+u32 ObjectLayoutNode::getExtraCode(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801B6F10
  * Size:	0007B8
  */
-void Game::MapRoom::placeObjects((Game::Cave::FloorInfo*, bool))
+void MapRoom::placeObjects(Game::Cave::FloorInfo*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1713,21 +1725,21 @@ void Game::MapRoom::placeObjects((Game::Cave::FloorInfo*, bool))
  * Address:	801B76C8
  * Size:	000008
  */
-s32 Game::ObjectLayoutNode::getBirthDoorIndex(void) { return -0x1; }
+s32 ObjectLayoutNode::getBirthDoorIndex(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	801B76D0
  * Size:	000008
  */
-u32 Game::ObjectLayoutNode::isFixedBattery(void) { return 0x0; }
+u32 ObjectLayoutNode::isFixedBattery(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801B76D8
  * Size:	000008
  */
-void Game::ObjectLayoutNode::getDirection(void)
+void ObjectLayoutNode::getDirection(void)
 {
 	/*
 	.loc_0x0:
@@ -1741,24 +1753,28 @@ void Game::ObjectLayoutNode::getDirection(void)
  * Address:	801B76E0
  * Size:	000004
  */
-void Game::ObjectLayoutNode::getBirthPosition((float&, float&)) { }
+void ObjectLayoutNode::getBirthPosition(float&, float&) { }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00001C
  */
-void getCenterPosition__Q24Game7MapRoomFR10Vector3<float>(void)
+void getCenterPosition__Q24Game7MapRoomFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00016C
  */
-void Game::MapRoom::create((Game::MapUnit*, Matrixf&))
+void MapRoom::create(Game::MapUnit*, Matrixf&)
 {
 	// UNUSED FUNCTION
 }
@@ -1768,7 +1784,7 @@ void Game::MapRoom::create((Game::MapUnit*, Matrixf&))
  * Address:	........
  * Size:	000064
  */
-void Game::MapRoom::createDoorInfo((Game::MapUnitInterface*))
+void MapRoom::createDoorInfo(Game::MapUnitInterface*)
 {
 	// UNUSED FUNCTION
 }
@@ -1778,14 +1794,14 @@ void Game::MapRoom::createDoorInfo((Game::MapUnitInterface*))
  * Address:	801B76E4
  * Size:	000004
  */
-void Game::RoomDoorInfo::__ct(void) { }
+RoomDoorInfo::RoomDoorInfo(void) { }
 
 /*
  * --INFO--
  * Address:	801B76E8
  * Size:	0000D4
  */
-void Game::MapRoom::doAnimation(void)
+void MapRoom::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -1862,7 +1878,7 @@ void Game::MapRoom::doAnimation(void)
  * Address:	801B77BC
  * Size:	0001F4
  */
-void Game::MapRoom::doEntry(void)
+void MapRoom::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -2037,7 +2053,7 @@ void Game::MapRoom::doEntry(void)
  * Address:	801B79B0
  * Size:	000124
  */
-void Game::MapRoom::doSetView((int))
+void MapRoom::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -2136,7 +2152,7 @@ void Game::MapRoom::doSetView((int))
  * Address:	801B7AD4
  * Size:	000024
  */
-void Game::MapRoom::doViewCalc(void)
+void MapRoom::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -2157,21 +2173,21 @@ void Game::MapRoom::doViewCalc(void)
  * Address:	801B7AF8
  * Size:	000004
  */
-void Game::MapRoom::doSimulation((float)) { }
+void MapRoom::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801B7AFC
  * Size:	000004
  */
-void Game::MapRoom::doDirectDraw((Graphics&)) { }
+void MapRoom::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801B7B00
  * Size:	0001E8
  */
-void Game::RoomMapMgr::__ct((Game::Cave::CaveInfo*))
+RoomMapMgr::RoomMapMgr(Game::Cave::CaveInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2304,6 +2320,8 @@ void Game::RoomMapMgr::__ct((Game::Cave::CaveInfo*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801B7CE8
@@ -2360,12 +2378,14 @@ void MonoObjectMgr<Game::MapRoom>::~MonoObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801B7D88
  * Size:	0001FC
  */
-void Game::RoomMapMgr::getMapRoom((short))
+void RoomMapMgr::getMapRoom(short)
 {
 	/*
 	.loc_0x0:
@@ -2521,6 +2541,8 @@ void Game::RoomMapMgr::getMapRoom((short))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801B7F84
@@ -2552,12 +2574,14 @@ void Iterator<Game::MapRoom>::isDone()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801B7FD0
  * Size:	00000C
  */
-void Game::CaveVRBox::__ct(void)
+CaveVRBox::CaveVRBox(void)
 {
 	/*
 	.loc_0x0:
@@ -2572,7 +2596,7 @@ void Game::CaveVRBox::__ct(void)
  * Address:	........
  * Size:	000158
  */
-void Game::CaveVRBox::create((char*))
+void CaveVRBox::create(char*)
 {
 	// UNUSED FUNCTION
 }
@@ -2582,7 +2606,7 @@ void Game::CaveVRBox::create((char*))
  * Address:	801B7FDC
  * Size:	000A48
  */
-void Game::RoomMapMgr::createRandomMap((int, Game::Cave::EditMapUnit*))
+void RoomMapMgr::createRandomMap(int, Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:
@@ -3346,7 +3370,7 @@ void Game::RoomMapMgr::createRandomMap((int, Game::Cave::EditMapUnit*))
  * Address:	801B8A24
  * Size:	0000EC
  */
-void Game::MapUnitInterface::__dt(void)
+MapUnitInterface::~MapUnitInterface(void)
 {
 	/*
 	.loc_0x0:
@@ -3429,7 +3453,7 @@ void Game::MapUnitInterface::__dt(void)
  * Address:	801B8B10
  * Size:	00003C
  */
-void Game::MapUnitInterface::__ct(void)
+MapUnitInterface::MapUnitInterface(void)
 {
 	/*
 	.loc_0x0:
@@ -3456,7 +3480,7 @@ void Game::MapUnitInterface::__ct(void)
  * Address:	801B8B4C
  * Size:	0000DC
  */
-void Game::PartsView::__dt(void)
+PartsView::~PartsView(void)
 {
 	/*
 	.loc_0x0:
@@ -3533,7 +3557,7 @@ void Game::PartsView::__dt(void)
  * Address:	801B8C28
  * Size:	000224
  */
-void Game::RoomMapMgr::completeUnitData(void)
+void RoomMapMgr::completeUnitData(void)
 {
 	/*
 	.loc_0x0:
@@ -3700,7 +3724,7 @@ void Game::RoomMapMgr::completeUnitData(void)
  * Address:	801B8E4C
  * Size:	000234
  */
-void Game::RoomMapMgr::setupJUTTextures(void)
+void RoomMapMgr::setupJUTTextures(void)
 {
 	/*
 	.loc_0x0:
@@ -3871,7 +3895,7 @@ void Game::RoomMapMgr::setupJUTTextures(void)
  * Address:	801B9080
  * Size:	0002BC
  */
-void Game::RoomMapMgr::useUnit((char*))
+void RoomMapMgr::useUnit(char*)
 {
 	/*
 	.loc_0x0:
@@ -4090,7 +4114,7 @@ void Game::RoomMapMgr::useUnit((char*))
  * Address:	801B933C
  * Size:	000210
  */
-void Game::RoomMapMgr::getTexture((char*))
+void RoomMapMgr::getTexture(char*)
 {
 	/*
 	.loc_0x0:
@@ -4254,7 +4278,7 @@ void Game::RoomMapMgr::getTexture((char*))
  * Address:	801B954C
  * Size:	0001F4
  */
-void Game::RoomMapMgr::allocRooms((int))
+void RoomMapMgr::allocRooms(int)
 {
 	/*
 	.loc_0x0:
@@ -4407,8 +4431,8 @@ void Game::RoomMapMgr::allocRooms((int))
  * Address:	801B9740
  * Size:	000050
  */
-void Game::RoomMapMgr::makeRoom((char*, float, float, int, int, Game::RoomLink*,
-                                 Game::ObjectLayoutInfo*))
+void RoomMapMgr::makeRoom(char*, float, float, int, int, Game::RoomLink*,
+                          Game::ObjectLayoutInfo*)
 {
 	/*
 	.loc_0x0:
@@ -4440,7 +4464,7 @@ void Game::RoomMapMgr::makeRoom((char*, float, float, int, int, Game::RoomLink*,
  * Address:	801B9790
  * Size:	0003B4
  */
-void Game::RoomMapMgr::placeObjects(void)
+void RoomMapMgr::placeObjects(void)
 {
 	/*
 	.loc_0x0:
@@ -4715,7 +4739,7 @@ void Game::RoomMapMgr::placeObjects(void)
  * Address:	801B9B44
  * Size:	000024
  */
-void Game::RoomMapMgr::getBoundBox2d((BoundBox2d&))
+void RoomMapMgr::getBoundBox2d(BoundBox2d&)
 {
 	/*
 	.loc_0x0:
@@ -4736,7 +4760,7 @@ void Game::RoomMapMgr::getBoundBox2d((BoundBox2d&))
  * Address:	801B9B68
  * Size:	000034
  */
-void Game::RoomMapMgr::getBoundBox((BoundBox&))
+void RoomMapMgr::getBoundBox(BoundBox&)
 {
 	/*
 	.loc_0x0:
@@ -4761,14 +4785,14 @@ void Game::RoomMapMgr::getBoundBox((BoundBox&))
  * Address:	801B9B9C
  * Size:	000004
  */
-void Game::RoomMapMgr::drawCollision((Graphics&, Sys::Sphere&)) { }
+void RoomMapMgr::drawCollision(Graphics&, Sys::Sphere&) { }
 
 /*
  * --INFO--
  * Address:	801B9BA0
  * Size:	0001F0
  */
-void Game::RoomMapMgr::traceMove((Game::MoveInfo&, float))
+void RoomMapMgr::traceMove(Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -4920,7 +4944,7 @@ void Game::RoomMapMgr::traceMove((Game::MoveInfo&, float))
  * Address:	801B9D90
  * Size:	000024
  */
-void Game::RoomMapMgr::hasHiddenCollision(void)
+void RoomMapMgr::hasHiddenCollision(void)
 {
 	/*
 	.loc_0x0:
@@ -4941,7 +4965,7 @@ void Game::RoomMapMgr::hasHiddenCollision(void)
  * Address:	801B9DB4
  * Size:	00008C
  */
-void Game::RoomMapMgr::constraintBoundBox((Sys::Sphere&))
+void RoomMapMgr::constraintBoundBox(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -4994,7 +5018,7 @@ void Game::RoomMapMgr::constraintBoundBox((Sys::Sphere&))
  * Address:	801B9E40
  * Size:	0001F4
  */
-void Game::RoomMapMgr::entryToMapRoomCellMgr(void)
+void RoomMapMgr::entryToMapRoomCellMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5149,7 +5173,7 @@ void Game::RoomMapMgr::entryToMapRoomCellMgr(void)
  * Address:	801BA034
  * Size:	000128
  */
-void Game::RoomMapMgr::findRoomIndex((Sys::Sphere&))
+void RoomMapMgr::findRoomIndex(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -5243,7 +5267,7 @@ void Game::RoomMapMgr::findRoomIndex((Sys::Sphere&))
  * Address:	........
  * Size:	00003C
  */
-void Game::MapRoom::createGlobalCollision(void)
+void MapRoom::createGlobalCollision(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5253,7 +5277,7 @@ void Game::MapRoom::createGlobalCollision(void)
  * Address:	801BA15C
  * Size:	0009FC
  */
-void Game::RoomMapMgr::createGlobalCollision(void)
+void RoomMapMgr::createGlobalCollision(void)
 {
 	/*
 	.loc_0x0:
@@ -5977,12 +6001,14 @@ void Game::RoomMapMgr::createGlobalCollision(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801BAB58
  * Size:	0000B8
  */
-void addOne__Q23Sys11VertexTableFR10Vector3<float>(void)
+void addOne__Q23Sys11VertexTableFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -6155,12 +6181,14 @@ void ArrayContainer<Sys::Triangle>::alloc(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801BAD60
  * Size:	000328
  */
-void Game::RoomMapMgr::traceMove_new((Game::MoveInfo&, float))
+void RoomMapMgr::traceMove_new(Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -6392,7 +6420,7 @@ void Game::RoomMapMgr::traceMove_new((Game::MoveInfo&, float))
  * Address:	801BB088
  * Size:	000740
  */
-void Game::RoomMapMgr::traceMove_original((Game::MoveInfo&, float))
+void RoomMapMgr::traceMove_original(Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -6926,7 +6954,7 @@ void Game::RoomMapMgr::traceMove_original((Game::MoveInfo&, float))
  * Address:	801BB7C8
  * Size:	0004F0
  */
-void Game::RoomMapMgr::findRayIntersection((Sys::RayIntersectInfo&))
+void RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo&)
 {
 	/*
 	.loc_0x0:
@@ -7281,12 +7309,14 @@ void Game::RoomMapMgr::findRayIntersection((Sys::RayIntersectInfo&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801BBCB8
  * Size:	00008C
  */
-void getMinY__Q24Game10RoomMapMgrFR10Vector3<float>(void)
+void getMinY__Q24Game10RoomMapMgrFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -7328,12 +7358,14 @@ void getMinY__Q24Game10RoomMapMgrFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801BBD44
  * Size:	000770
  */
-void Game::RoomMapMgr::createTriangles((Sys::CreateTriangleArg&))
+void RoomMapMgr::createTriangles(Sys::CreateTriangleArg&)
 {
 	/*
 	.loc_0x0:
@@ -7869,7 +7901,7 @@ void Game::RoomMapMgr::createTriangles((Sys::CreateTriangleArg&))
  * Address:	801BC4B4
  * Size:	000460
  */
-void Game::RoomMapMgr::getCurrTri((Game::CurrTriInfo&))
+void RoomMapMgr::getCurrTri(Game::CurrTriInfo&)
 {
 	/*
 	.loc_0x0:
@@ -8195,8 +8227,8 @@ void Game::RoomMapMgr::getCurrTri((Game::CurrTriInfo&))
  * Address:	801BC914
  * Size:	0016B8
  */
-void Game::RoomMapMgr::makeOneRoom((float, float, float, char*, short,
-                                    Game::RoomLink*, Game::ObjectLayoutInfo*))
+void RoomMapMgr::makeOneRoom(float, float, float, char*, short, Game::RoomLink*,
+                             Game::ObjectLayoutInfo*)
 {
 	/*
 	.loc_0x0:
@@ -9890,7 +9922,7 @@ void Game::RoomMapMgr::makeOneRoom((float, float, float, char*, short,
  * Address:	801BDFCC
  * Size:	0001F4
  */
-void Game::RoomMapMgr::deleteTemp(void)
+void RoomMapMgr::deleteTemp(void)
 {
 	/*
 	.loc_0x0:
@@ -10043,7 +10075,7 @@ void Game::RoomMapMgr::deleteTemp(void)
  * Address:	801BE1C0
  * Size:	000094
  */
-void Game::RoomMapMgr::getMUI((Game::MapUnit*))
+void RoomMapMgr::getMUI(Game::MapUnit*)
 {
 	/*
 	.loc_0x0:
@@ -10100,7 +10132,7 @@ void Game::RoomMapMgr::getMUI((Game::MapUnit*))
  * Address:	801BE254
  * Size:	000060
  */
-void Game::RoomMapMgr::doAnimation(void)
+void RoomMapMgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -10138,7 +10170,7 @@ void Game::RoomMapMgr::doAnimation(void)
  * Address:	801BE2B4
  * Size:	0000DC
  */
-void Game::RoomMapMgr::doEntry(void)
+void RoomMapMgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -10211,7 +10243,7 @@ void Game::RoomMapMgr::doEntry(void)
  * Address:	801BE390
  * Size:	00007C
  */
-void Game::RoomMapMgr::doSetView((int))
+void RoomMapMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -10258,7 +10290,7 @@ void Game::RoomMapMgr::doSetView((int))
  * Address:	801BE40C
  * Size:	000068
  */
-void Game::RoomMapMgr::doViewCalc(void)
+void RoomMapMgr::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -10300,14 +10332,14 @@ void Game::RoomMapMgr::doViewCalc(void)
  * Address:	801BE474
  * Size:	000004
  */
-void Game::RoomMapMgr::doSimulation((float)) { }
+void RoomMapMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801BE478
  * Size:	000210
  */
-void Game::RoomMapMgr::doDirectDraw((Graphics&))
+void RoomMapMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -10462,12 +10494,14 @@ void Game::RoomMapMgr::doDirectDraw((Graphics&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801BE688
  * Size:	000024
  */
-void getStartPosition__Q24Game10RoomMapMgrFR10Vector3<float> i(void)
+void getStartPosition__Q24Game10RoomMapMgrFR10Vector3f i(void)
 {
 	/*
 	.loc_0x0:
@@ -10483,19 +10517,21 @@ void getStartPosition__Q24Game10RoomMapMgrFR10Vector3<float> i(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801BE6AC
  * Size:	000008
  */
-u32 Game::RoomMapMgr::getDemoMatrix(void) { return 0x0; }
+u32 RoomMapMgr::getDemoMatrix(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801BE6B4
  * Size:	000084
  */
-void Game::Door::__dt(void)
+Door::~Door(void)
 {
 	/*
 	.loc_0x0:
@@ -10544,14 +10580,16 @@ void Game::Door::__dt(void)
  * Address:	801BE738
  * Size:	000004
  */
-void Game::PartsView::constructor(void) { }
+void PartsView::constructor(void) { }
 
 /*
  * --INFO--
  * Address:	801BE73C
  * Size:	000004
  */
-void Game::PartsView::doSimulation((float)) { }
+void PartsView::doSimulation(float) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -10825,12 +10863,14 @@ void ObjectMgr<Game::MapRoom>::~ObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801BEA30
  * Size:	000024
  */
-void Game::MapRoom::getBoundingSphere((Sys::Sphere&))
+void MapRoom::getBoundingSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -10851,7 +10891,7 @@ void Game::MapRoom::getBoundingSphere((Sys::Sphere&))
  * Address:	801BEA54
  * Size:	000008
  */
-void Game::MapRoom::getTypeName(void)
+void MapRoom::getTypeName(void)
 {
 	/*
 	.loc_0x0:
@@ -10865,7 +10905,7 @@ void Game::MapRoom::getTypeName(void)
  * Address:	801BEA5C
  * Size:	00000C
  */
-void Game::MapRoom::getObjType(void)
+void MapRoom::getObjType(void)
 {
 	/*
 	.loc_0x0:
@@ -10880,14 +10920,14 @@ void Game::MapRoom::getObjType(void)
  * Address:	801BEA68
  * Size:	000008
  */
-u32 Game::MapRoom::collisionUpdatable(void) { return 0x0; }
+u32 MapRoom::collisionUpdatable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801BEA70
  * Size:	00001C
  */
-void Game::MapRoom::getPosition(void)
+void MapRoom::getPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -10906,14 +10946,14 @@ void Game::MapRoom::getPosition(void)
  * Address:	801BEA8C
  * Size:	000004
  */
-void Game::MapRoom::constructor(void) { }
+void MapRoom::constructor(void) { }
 
 /*
  * --INFO--
  * Address:	801BEA90
  * Size:	00000C
  */
-void Game::ItemGateInitArg::getName(void)
+void ItemGateInitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -10928,7 +10968,7 @@ void Game::ItemGateInitArg::getName(void)
  * Address:	801BEA9C
  * Size:	00000C
  */
-void Game::ItemBigFountain::InitArg::getName(void)
+void ItemBigFountain::InitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -10943,7 +10983,7 @@ void Game::ItemBigFountain::InitArg::getName(void)
  * Address:	801BEAA8
  * Size:	00000C
  */
-void Game::ItemHole::InitArg::getName(void)
+void ItemHole::InitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -10952,6 +10992,8 @@ void Game::ItemHole::InitArg::getName(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -11131,12 +11173,14 @@ void Iterator<Game::MapUnit>::first()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801BECAC
  * Size:	0000E0
  */
-void Game::MapUnitMgr::__dt(void)
+MapUnitMgr::~MapUnitMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -11210,56 +11254,56 @@ void Game::MapUnitMgr::__dt(void)
  * Address:	801BED8C
  * Size:	000004
  */
-void Game::MapUnit::constructor(void) { }
+void MapUnit::constructor(void) { }
 
 /*
  * --INFO--
  * Address:	801BED90
  * Size:	000004
  */
-void Game::MapUnit::doAnimation(void) { }
+void MapUnit::doAnimation(void) { }
 
 /*
  * --INFO--
  * Address:	801BED94
  * Size:	000004
  */
-void Game::MapUnit::doEntry(void) { }
+void MapUnit::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	801BED98
  * Size:	000004
  */
-void Game::MapUnit::doSetView((int)) { }
+void MapUnit::doSetView(int) { }
 
 /*
  * --INFO--
  * Address:	801BED9C
  * Size:	000004
  */
-void Game::MapUnit::doViewCalc(void) { }
+void MapUnit::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	801BEDA0
  * Size:	000004
  */
-void Game::MapUnit::doSimulation((float)) { }
+void MapUnit::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801BEDA4
  * Size:	000004
  */
-void Game::MapUnit::doDirectDraw((Graphics&)) { }
+void MapUnit::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801BEDA8
  * Size:	000060
  */
-void Game::DoorLink::__dt(void)
+DoorLink::~DoorLink(void)
 {
 	/*
 	.loc_0x0:
@@ -11291,6 +11335,8 @@ void Game::DoorLink::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -14298,7 +14344,7 @@ void @280 @4 @Game::MapMgr::frozenable(void)
  * Address:	801C0D80
  * Size:	000014
  */
-void @280 @4 @Game::RoomMapMgr::doDirectDraw((Graphics&))
+void @280 @4 @Game::RoomMapMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -14315,7 +14361,7 @@ void @280 @4 @Game::RoomMapMgr::doDirectDraw((Graphics&))
  * Address:	801C0D94
  * Size:	000014
  */
-void @280 @4 @Game::RoomMapMgr::doSimulation((float))
+void @280 @4 @Game::RoomMapMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -14349,7 +14395,7 @@ void @280 @4 @Game::RoomMapMgr::doViewCalc(void)
  * Address:	801C0DBC
  * Size:	000014
  */
-void @280 @4 @Game::RoomMapMgr::doSetView((int))
+void @280 @4 @Game::RoomMapMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:

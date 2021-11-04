@@ -1,18 +1,20 @@
 #include "types.h"
 
+namespace JStudio {
+
 /*
  * --INFO--
  * Address:	80008A80
  * Size:	000004
  */
-void JStudio::functionvalue::extrapolateParameter_raw(double, double) { }
+void functionvalue::extrapolateParameter_raw(double, double) { }
 
 /*
  * --INFO--
  * Address:	80008A84
  * Size:	00003C
  */
-void JStudio::functionvalue::extrapolateParameter_repeat(double, double)
+void functionvalue::extrapolateParameter_repeat(double, double)
 {
 	/*
 	.loc_0x0:
@@ -41,7 +43,7 @@ void JStudio::functionvalue::extrapolateParameter_repeat(double, double)
  * Address:	80008AC0
  * Size:	00002C
  */
-void JStudio::functionvalue::extrapolateParameter_clamp(double, double)
+void functionvalue::extrapolateParameter_clamp(double, double)
 {
 	/*
 	.loc_0x0:
@@ -66,7 +68,7 @@ void JStudio::functionvalue::extrapolateParameter_clamp(double, double)
  * Address:	80008AEC
  * Size:	000048
  */
-void JStudio::TFunctionValue::toFunction_outside(int)
+void TFunctionValue::toFunction_outside(int)
 {
 	/*
 	.loc_0x0:
@@ -100,7 +102,7 @@ void JStudio::TFunctionValue::toFunction_outside(int)
  * Address:	80008B34
  * Size:	000048
  */
-void JStudio::TFunctionValue::~TFunctionValue()
+TFunctionValue::~TFunctionValue()
 {
 	/*
 	.loc_0x0:
@@ -132,7 +134,7 @@ void JStudio::TFunctionValue::~TFunctionValue()
  * Address:	80008B7C
  * Size:	000060
  */
-void JStudio::functionvalue::extrapolateParameter_turn(double, double)
+void functionvalue::extrapolateParameter_turn(double, double)
 {
 	/*
 	.loc_0x0:
@@ -172,7 +174,7 @@ void JStudio::functionvalue::extrapolateParameter_turn(double, double)
  * Address:	80008BDC
  * Size:	000014
  */
-void JStudio::TFunctionValueAttribute_range::range_set(double, double)
+void TFunctionValueAttribute_range::range_set(double, double)
 {
 	/*
 	.loc_0x0:
@@ -189,7 +191,7 @@ void JStudio::TFunctionValueAttribute_range::range_set(double, double)
  * Address:	80008BF0
  * Size:	000064
  */
-void JStudio::TFunctionValue_composite::TFunctionValue_composite()
+TFunctionValue_composite::TFunctionValue_composite()
 {
 	/*
 	.loc_0x0:
@@ -226,14 +228,14 @@ void JStudio::TFunctionValue_composite::TFunctionValue_composite()
  * Address:	80008C54
  * Size:	000008
  */
-u32 JStudio::TFunctionValue_composite::getType() const { return 0x1; }
+u32 TFunctionValue_composite::getType() const { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80008C5C
  * Size:	000020
  */
-void JStudio::TFunctionValue_composite::getAttributeSet()
+void TFunctionValue_composite::getAttributeSet()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +257,7 @@ void JStudio::TFunctionValue_composite::getAttributeSet()
  * Address:	80008C7C
  * Size:	00004C
  */
-void JStudio::TFunctionValue_composite::initialize()
+void TFunctionValue_composite::initialize()
 {
 	/*
 	.loc_0x0:
@@ -286,14 +288,14 @@ void JStudio::TFunctionValue_composite::initialize()
  * Address:	80008CC8
  * Size:	000004
  */
-void JStudio::TFunctionValue_composite::prepare() { }
+void TFunctionValue_composite::prepare() { }
 
 /*
  * --INFO--
  * Address:	80008CCC
  * Size:	000034
  */
-void JStudio::TFunctionValue_composite::getValue(double)
+void TFunctionValue_composite::getValue(double)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +320,7 @@ void JStudio::TFunctionValue_composite::getValue(double)
  * Address:	80008D00
  * Size:	00006C
  */
-void JStudio::TFunctionValue_composite::composite_raw(
+void TFunctionValue_composite::composite_raw(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -367,7 +369,7 @@ void JStudio::TFunctionValue_composite::composite_raw(
  * Address:	80008D6C
  * Size:	00016C
  */
-void JStudio::TFunctionValue_composite::composite_index(
+void TFunctionValue_composite::composite_index(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -494,7 +496,7 @@ void JStudio::TFunctionValue_composite::composite_index(
  * Address:	80008ED8
  * Size:	000068
  */
-void JStudio::TFunctionValue_composite::composite_parameter(
+void TFunctionValue_composite::composite_parameter(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -538,7 +540,7 @@ void JStudio::TFunctionValue_composite::composite_parameter(
  * Address:	80008F40
  * Size:	000084
  */
-void JStudio::TFunctionValue_composite::composite_add(
+void TFunctionValue_composite::composite_add(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -589,7 +591,7 @@ void JStudio::TFunctionValue_composite::composite_add(
  * Address:	80008FC4
  * Size:	0000E8
  */
-void JStudio::TFunctionValue_composite::composite_subtract(
+void TFunctionValue_composite::composite_subtract(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -673,7 +675,7 @@ void JStudio::TFunctionValue_composite::composite_subtract(
  * Address:	800090AC
  * Size:	000084
  */
-void JStudio::TFunctionValue_composite::composite_multiply(
+void TFunctionValue_composite::composite_multiply(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -724,7 +726,7 @@ void JStudio::TFunctionValue_composite::composite_multiply(
  * Address:	80009130
  * Size:	0000E8
  */
-void JStudio::TFunctionValue_composite::composite_divide(
+void TFunctionValue_composite::composite_divide(
     const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
     const JStudio::TFunctionValue_composite::TData&, double)
 {
@@ -808,7 +810,7 @@ void JStudio::TFunctionValue_composite::composite_divide(
  * Address:	80009218
  * Size:	000028
  */
-void JStudio::TFunctionValue_constant::TFunctionValue_constant()
+TFunctionValue_constant::TFunctionValue_constant()
 {
 	/*
 	.loc_0x0:
@@ -830,14 +832,14 @@ void JStudio::TFunctionValue_constant::TFunctionValue_constant()
  * Address:	80009240
  * Size:	000008
  */
-u32 JStudio::TFunctionValue_constant::getType() const { return 0x2; }
+u32 TFunctionValue_constant::getType() const { return 0x2; }
 
 /*
  * --INFO--
  * Address:	80009248
  * Size:	000014
  */
-void JStudio::TFunctionValue_constant::getAttributeSet()
+void TFunctionValue_constant::getAttributeSet()
 {
 	/*
 	.loc_0x0:
@@ -854,7 +856,7 @@ void JStudio::TFunctionValue_constant::getAttributeSet()
  * Address:	8000925C
  * Size:	000010
  */
-void JStudio::TFunctionValue_constant::initialize()
+void TFunctionValue_constant::initialize()
 {
 	/*
 	.loc_0x0:
@@ -870,14 +872,14 @@ void JStudio::TFunctionValue_constant::initialize()
  * Address:	8000926C
  * Size:	000004
  */
-void JStudio::TFunctionValue_constant::prepare() { }
+void TFunctionValue_constant::prepare() { }
 
 /*
  * --INFO--
  * Address:	80009270
  * Size:	000008
  */
-void JStudio::TFunctionValue_constant::getValue(double)
+void TFunctionValue_constant::getValue(double)
 {
 	/*
 	.loc_0x0:
@@ -891,7 +893,7 @@ void JStudio::TFunctionValue_constant::getValue(double)
  * Address:	80009278
  * Size:	000074
  */
-void JStudio::TFunctionValue_transition::TFunctionValue_transition()
+TFunctionValue_transition::TFunctionValue_transition()
 {
 	/*
 	.loc_0x0:
@@ -932,14 +934,14 @@ void JStudio::TFunctionValue_transition::TFunctionValue_transition()
  * Address:	800092EC
  * Size:	000008
  */
-u32 JStudio::TFunctionValue_transition::getType() const { return 0x3; }
+u32 TFunctionValue_transition::getType() const { return 0x3; }
 
 /*
  * --INFO--
  * Address:	800092F4
  * Size:	000030
  */
-void JStudio::TFunctionValue_transition::getAttributeSet()
+void TFunctionValue_transition::getAttributeSet()
 {
 	/*
 	.loc_0x0:
@@ -967,7 +969,7 @@ void JStudio::TFunctionValue_transition::getAttributeSet()
  * Address:	80009324
  * Size:	000048
  */
-void JStudio::TFunctionValue_transition::initialize()
+void TFunctionValue_transition::initialize()
 {
 	/*
 	.loc_0x0:
@@ -997,7 +999,7 @@ void JStudio::TFunctionValue_transition::initialize()
  * Address:	8000936C
  * Size:	0000A8
  */
-void JStudio::TFunctionValue_transition::prepare()
+void TFunctionValue_transition::prepare()
 {
 	/*
 	.loc_0x0:
@@ -1063,7 +1065,7 @@ void JStudio::TFunctionValue_transition::prepare()
  * Address:	80009414
  * Size:	000250
  */
-void JStudio::TFunctionValue_transition::getValue(double)
+void TFunctionValue_transition::getValue(double)
 {
 	/*
 	.loc_0x0:
@@ -1263,7 +1265,7 @@ void JStudio::TFunctionValue_transition::getValue(double)
  * Address:	80009664
  * Size:	000078
  */
-void JStudio::TFunctionValue_list::TFunctionValue_list()
+TFunctionValue_list::TFunctionValue_list()
 {
 	/*
 	.loc_0x0:
@@ -1305,14 +1307,14 @@ void JStudio::TFunctionValue_list::TFunctionValue_list()
  * Address:	800096DC
  * Size:	000008
  */
-u32 JStudio::TFunctionValue_list::getType() const { return 0x4; }
+u32 TFunctionValue_list::getType() const { return 0x4; }
 
 /*
  * --INFO--
  * Address:	800096E4
  * Size:	000030
  */
-void JStudio::TFunctionValue_list::getAttributeSet()
+void TFunctionValue_list::getAttributeSet()
 {
 	/*
 	.loc_0x0:
@@ -1340,7 +1342,7 @@ void JStudio::TFunctionValue_list::getAttributeSet()
  * Address:	80009714
  * Size:	00004C
  */
-void JStudio::TFunctionValue_list::initialize()
+void TFunctionValue_list::initialize()
 {
 	/*
 	.loc_0x0:
@@ -1371,7 +1373,7 @@ void JStudio::TFunctionValue_list::initialize()
  * Address:	80009760
  * Size:	000128
  */
-void JStudio::TFunctionValue_list::prepare()
+void TFunctionValue_list::prepare()
 {
 	/*
 	.loc_0x0:
@@ -1481,7 +1483,7 @@ void JStudio::TFunctionValue_list::prepare()
  * Address:	80009888
  * Size:	000530
  */
-void JStudio::TFunctionValue_list::getValue(double)
+void TFunctionValue_list::getValue(double)
 {
 	/*
 	.loc_0x0:
@@ -1905,7 +1907,7 @@ void JStudio::TFunctionValue_list::getValue(double)
  * Address:	80009DB8
  * Size:	000014
  */
-void JStudio::TFunctionValue_list::update_INTERPOLATE_NONE_(
+void TFunctionValue_list::update_INTERPOLATE_NONE_(
     const JStudio::TFunctionValue_list&,
     const JStudio::TFunctionValue_list::TIndexData_&)
 {
@@ -1924,7 +1926,7 @@ void JStudio::TFunctionValue_list::update_INTERPOLATE_NONE_(
  * Address:	80009DCC
  * Size:	000030
  */
-void JStudio::TFunctionValue_list::update_INTERPOLATE_LINEAR_(
+void TFunctionValue_list::update_INTERPOLATE_LINEAR_(
     const JStudio::TFunctionValue_list&,
     const JStudio::TFunctionValue_list::TIndexData_&)
 {
@@ -1950,7 +1952,7 @@ void JStudio::TFunctionValue_list::update_INTERPOLATE_LINEAR_(
  * Address:	80009DFC
  * Size:	00007C
  */
-void JStudio::TFunctionValue_list::update_INTERPOLATE_PLATEAU_(
+void TFunctionValue_list::update_INTERPOLATE_PLATEAU_(
     const JStudio::TFunctionValue_list&,
     const JStudio::TFunctionValue_list::TIndexData_&)
 {
@@ -1995,7 +1997,7 @@ void JStudio::TFunctionValue_list::update_INTERPOLATE_PLATEAU_(
  * Address:	80009E78
  * Size:	0000B4
  */
-void JStudio::TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
+void TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
     const JStudio::TFunctionValue_list&,
     const JStudio::TFunctionValue_list::TIndexData_&)
 {
@@ -2060,7 +2062,7 @@ void JStudio::TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
  * Address:	80009F2C
  * Size:	000084
  */
-void JStudio::TFunctionValue_list_parameter::TFunctionValue_list_parameter()
+TFunctionValue_list_parameter::TFunctionValue_list_parameter()
 {
 	/*
 	.loc_0x0:
@@ -2105,14 +2107,14 @@ void JStudio::TFunctionValue_list_parameter::TFunctionValue_list_parameter()
  * Address:	80009FB0
  * Size:	000008
  */
-u32 JStudio::TFunctionValue_list_parameter::getType() const { return 0x5; }
+u32 TFunctionValue_list_parameter::getType() const { return 0x5; }
 
 /*
  * --INFO--
  * Address:	80009FB8
  * Size:	000030
  */
-void JStudio::TFunctionValue_list_parameter::getAttributeSet()
+void TFunctionValue_list_parameter::getAttributeSet()
 {
 	/*
 	.loc_0x0:
@@ -2140,8 +2142,7 @@ void JStudio::TFunctionValue_list_parameter::getAttributeSet()
  * Address:	80009FE8
  * Size:	000030
  */
-void JStudio::TFunctionValue_list_parameter::data_set(const float*,
-                                                      unsigned long)
+void TFunctionValue_list_parameter::data_set(const float*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2165,7 +2166,7 @@ void JStudio::TFunctionValue_list_parameter::data_set(const float*,
  * Address:	8000A018
  * Size:	000058
  */
-void JStudio::TFunctionValue_list_parameter::initialize()
+void TFunctionValue_list_parameter::initialize()
 {
 	/*
 	.loc_0x0:
@@ -2199,7 +2200,7 @@ void JStudio::TFunctionValue_list_parameter::initialize()
  * Address:	8000A070
  * Size:	000128
  */
-void JStudio::TFunctionValue_list_parameter::prepare()
+void TFunctionValue_list_parameter::prepare()
 {
 	/*
 	.loc_0x0:
@@ -2309,7 +2310,7 @@ void JStudio::TFunctionValue_list_parameter::prepare()
  * Address:	8000A198
  * Size:	000538
  */
-void JStudio::TFunctionValue_list_parameter::getValue(double)
+void TFunctionValue_list_parameter::getValue(double)
 {
 	/*
 	.loc_0x0:
@@ -2738,7 +2739,7 @@ void JStudio::TFunctionValue_list_parameter::getValue(double)
  * Size:	00005C
  */
 void JGadget::findUpperBound_binary_current<
-    JStudio::TFunctionValue_list_parameter::TIterator_data_, double>(
+    TFunctionValue_list_parameter::TIterator_data_, double>(
     JStudio::TFunctionValue_list_parameter::TIterator_data_,
     JStudio::TFunctionValue_list_parameter::TIterator_data_,
     JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&)
@@ -2960,7 +2961,7 @@ void JGadget::findUpperBound_binary_current<
  * Address:	8000A958
  * Size:	00000C
  */
-void JStudio::TFunctionValue_list_parameter::update_INTERPOLATE_NONE_(
+void TFunctionValue_list_parameter::update_INTERPOLATE_NONE_(
     const JStudio::TFunctionValue_list_parameter&, double)
 {
 	/*
@@ -2976,7 +2977,7 @@ void JStudio::TFunctionValue_list_parameter::update_INTERPOLATE_NONE_(
  * Address:	8000A964
  * Size:	000030
  */
-void JStudio::TFunctionValue_list_parameter::update_INTERPOLATE_LINEAR_(
+void TFunctionValue_list_parameter::update_INTERPOLATE_LINEAR_(
     const JStudio::TFunctionValue_list_parameter&, double)
 {
 	/*
@@ -3001,7 +3002,7 @@ void JStudio::TFunctionValue_list_parameter::update_INTERPOLATE_LINEAR_(
  * Address:	8000A994
  * Size:	00006C
  */
-void JStudio::TFunctionValue_list_parameter::update_INTERPOLATE_PLATEAU_(
+void TFunctionValue_list_parameter::update_INTERPOLATE_PLATEAU_(
     const JStudio::TFunctionValue_list_parameter&, double)
 {
 	/*
@@ -3239,7 +3240,7 @@ void JStudio::TFunctionValue_list_parameter::
  * Address:	8000AC60
  * Size:	000098
  */
-void JStudio::TFunctionValue_hermite::TFunctionValue_hermite()
+TFunctionValue_hermite::TFunctionValue_hermite()
 {
 	/*
 	.loc_0x0:
@@ -3289,14 +3290,14 @@ void JStudio::TFunctionValue_hermite::TFunctionValue_hermite()
  * Address:	8000ACF8
  * Size:	000008
  */
-u32 JStudio::TFunctionValue_hermite::getType() const { return 0x6; }
+u32 TFunctionValue_hermite::getType() const { return 0x6; }
 
 /*
  * --INFO--
  * Address:	8000AD00
  * Size:	000020
  */
-void JStudio::TFunctionValue_hermite::getAttributeSet()
+void TFunctionValue_hermite::getAttributeSet()
 {
 	/*
 	.loc_0x0:
@@ -3318,8 +3319,8 @@ void JStudio::TFunctionValue_hermite::getAttributeSet()
  * Address:	8000AD20
  * Size:	000050
  */
-void JStudio::TFunctionValue_hermite::data_set(const float*, unsigned long,
-                                               unsigned long)
+void TFunctionValue_hermite::data_set(const float*, unsigned long,
+                                      unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3351,7 +3352,7 @@ void JStudio::TFunctionValue_hermite::data_set(const float*, unsigned long,
  * Address:	8000AD70
  * Size:	00006C
  */
-void JStudio::TFunctionValue_hermite::initialize()
+void TFunctionValue_hermite::initialize()
 {
 	/*
 	.loc_0x0:
@@ -3390,7 +3391,7 @@ void JStudio::TFunctionValue_hermite::initialize()
  * Address:	8000ADDC
  * Size:	0000A8
  */
-void JStudio::TFunctionValue_hermite::prepare()
+void TFunctionValue_hermite::prepare()
 {
 	/*
 	.loc_0x0:
@@ -3456,7 +3457,7 @@ void JStudio::TFunctionValue_hermite::prepare()
  * Address:	8000AE84
  * Size:	0005D0
  */
-void JStudio::TFunctionValue_hermite::getValue(double)
+void TFunctionValue_hermite::getValue(double)
 {
 	/*
 	.loc_0x0:
@@ -3923,7 +3924,7 @@ void JStudio::TFunctionValue_hermite::getValue(double)
  * Size:	000084
  */
 void JGadget::findUpperBound_binary_current<
-    JStudio::TFunctionValue_hermite::TIterator_data_, double>(
+    TFunctionValue_hermite::TIterator_data_, double>(
     JStudio::TFunctionValue_hermite::TIterator_data_,
     JStudio::TFunctionValue_hermite::TIterator_data_,
     JStudio::TFunctionValue_hermite::TIterator_data_, const double&)
@@ -4201,7 +4202,7 @@ void JGadget::findUpperBound_binary_current<
  * Address:	8000B7BC
  * Size:	00005C
  */
-void JStudio::TFunctionValue_hermite::~TFunctionValue_hermite()
+TFunctionValue_hermite::~TFunctionValue_hermite()
 {
 	/*
 	.loc_0x0:
@@ -4240,7 +4241,7 @@ void JStudio::TFunctionValue_hermite::~TFunctionValue_hermite()
  * Address:	8000B818
  * Size:	00005C
  */
-void JStudio::TFunctionValue_list_parameter::~TFunctionValue_list_parameter()
+TFunctionValue_list_parameter::~TFunctionValue_list_parameter()
 {
 	/*
 	.loc_0x0:
@@ -4279,7 +4280,7 @@ void JStudio::TFunctionValue_list_parameter::~TFunctionValue_list_parameter()
  * Address:	8000B874
  * Size:	00005C
  */
-void JStudio::TFunctionValue_list::~TFunctionValue_list()
+TFunctionValue_list::~TFunctionValue_list()
 {
 	/*
 	.loc_0x0:
@@ -4318,7 +4319,7 @@ void JStudio::TFunctionValue_list::~TFunctionValue_list()
  * Address:	8000B8D0
  * Size:	00005C
  */
-void JStudio::TFunctionValue_transition::~TFunctionValue_transition()
+TFunctionValue_transition::~TFunctionValue_transition()
 {
 	/*
 	.loc_0x0:
@@ -4357,7 +4358,7 @@ void JStudio::TFunctionValue_transition::~TFunctionValue_transition()
  * Address:	8000B92C
  * Size:	00005C
  */
-void JStudio::TFunctionValue_constant::~TFunctionValue_constant()
+TFunctionValue_constant::~TFunctionValue_constant()
 {
 	/*
 	.loc_0x0:
@@ -4396,7 +4397,7 @@ void JStudio::TFunctionValue_constant::~TFunctionValue_constant()
  * Address:	8000B988
  * Size:	000088
  */
-void JStudio::TFunctionValue_composite::~TFunctionValue_composite()
+TFunctionValue_composite::~TFunctionValue_composite()
 {
 	/*
 	.loc_0x0:
@@ -4564,3 +4565,4 @@ void std::upper_bound<JStudio::TFunctionValue_hermite::TIterator_data_, double,
 	  blr
 	*/
 }
+} // namespace JStudio

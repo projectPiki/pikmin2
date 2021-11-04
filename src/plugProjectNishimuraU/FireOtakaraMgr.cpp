@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B7CCC
  * Size:	000050
  */
-void Game::FireOtakara::Mgr::Mgr(int, unsigned char)
+FireOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::FireOtakara::Mgr::Mgr(int, unsigned char)
  * Address:	802B7D1C
  * Size:	000048
  */
-void Game::FireOtakara::Mgr::doAlloc()
+void FireOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::FireOtakara::Mgr::doAlloc()
  * Address:	802B7D64
  * Size:	000154
  */
-void Game::OtakaraBase::Parms::Parms()
+OtakaraBase::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -168,7 +170,7 @@ void Game::OtakaraBase::Parms::Parms()
  * Address:	802B7EB8
  * Size:	000060
  */
-void Game::FireOtakara::Mgr::createObj(int)
+void FireOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -204,7 +206,7 @@ void Game::FireOtakara::Mgr::createObj(int)
  * Address:	802B7F18
  * Size:	0000F0
  */
-void Game::FireOtakara::Obj::~Obj()
+FireOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -280,7 +282,7 @@ void Game::FireOtakara::Obj::~Obj()
  * Address:	802B8008
  * Size:	000010
  */
-void Game::FireOtakara::Mgr::getEnemy(int)
+void FireOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::FireOtakara::Mgr::getEnemy(int)
  * Address:	802B8018
  * Size:	000080
  */
-void Game::FireOtakara::Mgr::loadTexData()
+void FireOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -344,7 +346,7 @@ void Game::FireOtakara::Mgr::loadTexData()
  * Address:	802B8098
  * Size:	0000C8
  */
-void Game::FireOtakara::Mgr::~Mgr()
+FireOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -410,14 +412,14 @@ void Game::FireOtakara::Mgr::~Mgr()
  * Address:	802B8160
  * Size:	000008
  */
-u32 Game::FireOtakara::Mgr::getEnemyTypeID() { return 0x3B; }
+u32 FireOtakara::Mgr::getEnemyTypeID() { return 0x3B; }
 
 /*
  * --INFO--
  * Address:	802B8168
  * Size:	000008
  */
-void Game::FireOtakara::Mgr::getChangeTexture()
+void FireOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -431,7 +433,7 @@ void Game::FireOtakara::Mgr::getChangeTexture()
  * Address:	802B8170
  * Size:	000050
  */
-void Game::OtakaraBase::Parms::read(Stream&)
+void OtakaraBase::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -463,7 +465,7 @@ void Game::OtakaraBase::Parms::read(Stream&)
  * Address:	802B81C0
  * Size:	000008
  */
-void Game::FireOtakara::Mgr::@4 @__dt()
+FireOtakara::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -471,3 +473,4 @@ void Game::FireOtakara::Mgr::@4 @__dt()
 	  b         -0x12C
 	*/
 }
+} // namespace Game

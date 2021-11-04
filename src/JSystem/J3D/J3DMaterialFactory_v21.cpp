@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80084A00
  * Size:	0001E0
  */
-void J3DMaterialFactory_v21::J3DMaterialFactory_v21(const J3DMaterialBlock_v21&)
+J3DMaterialFactory_v21::J3DMaterialFactory_v21(const J3DMaterialBlock_v21&)
 {
 	/*
 	.loc_0x0:

@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803ABDEC
  * Size:	000008
  */
-void Game::Tyre::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Tyre::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::Tyre::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	803ABDF4
  * Size:	000008
  */
-void Game::Tyre::ProperAnimator::getAnimator((int))
+void Tyre::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::Tyre::ProperAnimator::getAnimator((int))
  * Address:	803ABDFC
  * Size:	00005C
  */
-void Game::Tyre::ProperAnimator::__dt(void)
+Tyre::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::Tyre::ProperAnimator::__dt(void)
  * Address:	803ABE58
  * Size:	000008
  */
-void Game::Tyre::ProperAnimator::getAnimator(void)
+void Tyre::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::Tyre::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

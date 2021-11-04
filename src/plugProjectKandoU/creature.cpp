@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013AE84
  * Size:	00012C
  */
-void Game::Creature::Creature()
+Creature::Creature()
 {
 	/*
 	.loc_0x0:
@@ -92,7 +94,7 @@ void Game::Creature::Creature()
  * Address:	8013AFB0
  * Size:	000018
  */
-void Game::CellLeg::CellLeg()
+CellLeg::CellLeg()
 {
 	/*
 	.loc_0x0:
@@ -110,7 +112,7 @@ void Game::CellLeg::CellLeg()
  * Address:	8013AFC8
  * Size:	000120
  */
-void Game::Creature::init(Game::CreatureInitArg*)
+void Creature::init(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -196,21 +198,21 @@ void Game::Creature::init(Game::CreatureInitArg*)
  * Address:	8013B0E8
  * Size:	000004
  */
-void Game::Creature::onInitPost(Game::CreatureInitArg*) { }
+void Creature::onInitPost(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
  * Address:	8013B0EC
  * Size:	000004
  */
-void Game::Creature::onInit(Game::CreatureInitArg*) { }
+void Creature::onInit(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
  * Address:	8013B0F0
  * Size:	0000B4
  */
-void Game::Creature::kill(Game::CreatureKillArg*)
+void Creature::kill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -269,14 +271,14 @@ void Game::Creature::kill(Game::CreatureKillArg*)
  * Address:	8013B1A4
  * Size:	000004
  */
-void Game::Creature::onKill(Game::CreatureKillArg*) { }
+void Creature::onKill(Game::CreatureKillArg*) { }
 
 /*
  * --INFO--
  * Address:	8013B1A8
  * Size:	0000C8
  */
-void Game::Creature::setPosition(Vector3<float>&, bool)
+void Creature::setPosition(Vector3f&, bool)
 {
 	/*
 	.loc_0x0:
@@ -342,14 +344,14 @@ void Game::Creature::setPosition(Vector3<float>&, bool)
  * Address:	8013B270
  * Size:	000004
  */
-void Game::Creature::onSetPositionPost(Vector3<float>&) { }
+void Creature::onSetPositionPost(Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	8013B274
  * Size:	0000CC
  */
-void Game::Creature::initPosition(Vector3<float>&)
+void Creature::initPosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +416,7 @@ void Game::Creature::initPosition(Vector3<float>&)
  * Address:	8013B340
  * Size:	0000A0
  */
-void Game::Creature::getYVector(Vector3<float>&)
+void Creature::getYVector(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +472,7 @@ void Game::Creature::getYVector(Vector3<float>&)
  * Address:	8013B3E0
  * Size:	000034
  */
-void Game::Creature::getBodyRadius()
+void Creature::getBodyRadius()
 {
 	/*
 	.loc_0x0:
@@ -495,7 +497,7 @@ void Game::Creature::getBodyRadius()
  * Address:	8013B414
  * Size:	000034
  */
-void Game::Creature::getCellRadius()
+void Creature::getCellRadius()
 {
 	/*
 	.loc_0x0:
@@ -520,7 +522,7 @@ void Game::Creature::getCellRadius()
  * Address:	8013B448
  * Size:	000024
  */
-void Game::Creature::getTypeName()
+void Creature::getTypeName()
 {
 	/*
 	.loc_0x0:
@@ -541,7 +543,7 @@ void Game::Creature::getTypeName()
  * Address:	8013B46C
  * Size:	00008C
  */
-void Game::Creature::getShadowParam(Game::ShadowParam&)
+void Creature::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -588,7 +590,7 @@ void Game::Creature::getShadowParam(Game::ShadowParam&)
  * Address:	8013B4F8
  * Size:	00000C
  */
-void Game::Creature::needShadow()
+void Creature::needShadow()
 {
 	/*
 	.loc_0x0:
@@ -603,7 +605,7 @@ void Game::Creature::needShadow()
  * Address:	8013B504
  * Size:	000070
  */
-void Game::Creature::getLifeGaugeParam(Game::LifeGaugeParam&)
+void Creature::getLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -643,7 +645,7 @@ void Game::Creature::getLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	8013B574
  * Size:	000090
  */
-void Game::Creature::save(Stream&, unsigned char)
+void Creature::save(Stream&, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -693,7 +695,7 @@ void Game::Creature::save(Stream&, unsigned char)
  * Address:	8013B604
  * Size:	0000E4
  */
-void Game::Creature::load(Stream&, unsigned char)
+void Creature::load(Stream&, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -766,7 +768,7 @@ void Game::Creature::load(Stream&, unsigned char)
  * Address:	8013B6E8
  * Size:	0000BC
  */
-void Game::Creature::calcSphereDistance(Game::Creature*)
+void Creature::calcSphereDistance(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -829,7 +831,7 @@ void Game::Creature::calcSphereDistance(Game::Creature*)
  * Address:	8013B7A4
  * Size:	0000CC
  */
-void Game::Creature::applyAirDrag(float, float, float)
+void Creature::applyAirDrag(float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -892,7 +894,7 @@ void Game::Creature::applyAirDrag(float, float, float)
  * Address:	8013B870
  * Size:	00003C
  */
-void Game::Creature::doAnimation()
+void Creature::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -921,14 +923,14 @@ void Game::Creature::doAnimation()
  * Address:	8013B8AC
  * Size:	000004
  */
-void Game::Creature::doEntry() { }
+void Creature::doEntry() { }
 
 /*
  * --INFO--
  * Address:	8013B8B0
  * Size:	000108
  */
-void Game::Creature::doSetView(int)
+void Creature::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -1018,7 +1020,7 @@ void Game::Creature::doSetView(int)
  * Address:	8013B9B8
  * Size:	00002C
  */
-void Game::Creature::doViewCalc()
+void Creature::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -1043,7 +1045,7 @@ void Game::Creature::doViewCalc()
  * Address:	8013B9E4
  * Size:	000010
  */
-void Game::Creature::isPiki()
+void Creature::isPiki()
 {
 	/*
 	.loc_0x0:
@@ -1059,7 +1061,7 @@ void Game::Creature::isPiki()
  * Address:	8013B9F4
  * Size:	000014
  */
-void Game::Creature::isNavi()
+void Creature::isNavi()
 {
 	/*
 	.loc_0x0:
@@ -1076,7 +1078,7 @@ void Game::Creature::isNavi()
  * Address:	8013BA08
  * Size:	000014
  */
-void Game::Creature::isTeki()
+void Creature::isTeki()
 {
 	/*
 	.loc_0x0:
@@ -1093,7 +1095,7 @@ void Game::Creature::isTeki()
  * Address:	8013BA1C
  * Size:	000014
  */
-void Game::Creature::isPellet()
+void Creature::isPellet()
 {
 	/*
 	.loc_0x0:
@@ -1110,7 +1112,7 @@ void Game::Creature::isPellet()
  * Address:	8013BA30
  * Size:	000020
  */
-void Game::Creature::sound_culling()
+void Creature::sound_culling()
 {
 	/*
 	.loc_0x0:
@@ -1130,7 +1132,7 @@ void Game::Creature::sound_culling()
  * Address:	8013BA50
  * Size:	00009C
  */
-void Game::Creature::movie_begin(bool)
+void Creature::movie_begin(bool)
 {
 	/*
 	.loc_0x0:
@@ -1185,7 +1187,7 @@ void Game::Creature::movie_begin(bool)
  * Address:	8013BAEC
  * Size:	000050
  */
-void Game::Creature::movie_end(bool)
+void Creature::movie_end(bool)
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1219,7 @@ void Game::Creature::movie_end(bool)
  * Address:	8013BB3C
  * Size:	0000E0
  */
-void Game::Creature::checkWater(Game::WaterBox*, Sys::Sphere&)
+void Creature::checkWater(Game::WaterBox*, Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1293,21 +1295,21 @@ void Game::Creature::checkWater(Game::WaterBox*, Sys::Sphere&)
  * Address:	8013BC1C
  * Size:	000004
  */
-void Game::Creature::inWaterCallback(Game::WaterBox*) { }
+void Creature::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8013BC20
  * Size:	000004
  */
-void Game::Creature::outWaterCallback() { }
+void Creature::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8013BC24
  * Size:	000144
  */
-void Game::Creature::checkHell(Game::Creature::CheckHellArg&)
+void Creature::checkHell(Game::Creature::CheckHellArg&)
 {
 	/*
 	.loc_0x0:
@@ -1408,7 +1410,7 @@ void Game::Creature::checkHell(Game::Creature::CheckHellArg&)
  * Address:	8013BD68
  * Size:	000178
  */
-void Game::Creature::updateCell()
+void Creature::updateCell()
 {
 	/*
 	.loc_0x0:
@@ -1520,14 +1522,14 @@ void Game::Creature::updateCell()
  * Address:	8013BEE0
  * Size:	000008
  */
-s32 Game::Creature::getCreatureID() { return -0x1; }
+s32 Creature::getCreatureID() { return -0x1; }
 
 /*
  * --INFO--
  * Address:	8013BEE8
  * Size:	000044
  */
-void Game::Creature::getCellPikiCount()
+void Creature::getCellPikiCount()
 {
 	/*
 	.loc_0x0:
@@ -1560,7 +1562,7 @@ void Game::Creature::getCellPikiCount()
  * Address:	8013BF2C
  * Size:	0000B0
  */
-void Game::Creature::applyImpulse(Vector3<float>&, Vector3<float>&)
+void Creature::applyImpulse(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1616,7 +1618,7 @@ void Game::Creature::applyImpulse(Vector3<float>&, Vector3<float>&)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void Game::Creature::checkCollision(Game::CellObject*)
+void Creature::checkCollision(Game::CellObject*)
 {
 	/*
 	.loc_0x0:
@@ -1841,7 +1843,7 @@ void Game::Creature::checkCollision(Game::CellObject*)
  * Address:	8013C2C0
  * Size:	0008CC
  */
-void Game::Creature::resolveOneColl(CollPart*, CollPart*, Vector3<float>&)
+void Creature::resolveOneColl(CollPart*, CollPart*, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2472,15 +2474,17 @@ void Game::Creature::resolveOneColl(CollPart*, CollPart*, Vector3<float>&)
  * Address:	8013CB8C
  * Size:	000004
  */
-void Game::Creature::collisionCallback(Game::CollEvent&) { }
+void Creature::collisionCallback(Game::CollEvent&) { }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	8013CB90
  * Size:	000030
  */
-void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3<float>&>::invoke(
-    CollPart*, CollPart*, Vector3<float>&)
+void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3f&>::invoke(
+    CollPart*, CollPart*, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2499,54 +2503,56 @@ void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3<float>&>::invoke(
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013CBC0
  * Size:	000004
  */
-void Game::Creature::constructor() { }
+void Creature::constructor() { }
 
 /*
  * --INFO--
  * Address:	8013CBC4
  * Size:	000004
  */
-void Game::Creature::doSimulation(float) { }
+void Creature::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8013CBC8
  * Size:	000008
  */
-u32 Game::Creature::inWater() { return 0x0; }
+u32 Creature::inWater() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBD0
  * Size:	000008
  */
-u32 Game::Creature::isFlying() { return 0x0; }
+u32 Creature::isFlying() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBD8
  * Size:	000008
  */
-u32 Game::Creature::getPSCreature() { return 0x0; }
+u32 Creature::getPSCreature() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBE0
  * Size:	000008
  */
-u32 Game::Creature::getSound_PosPtr() { return 0x0; }
+u32 Creature::getSound_PosPtr() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBE8
  * Size:	000008
  */
-void Game::Creature::getSound_CurrAnimFrame()
+void Creature::getSound_CurrAnimFrame()
 {
 	/*
 	.loc_0x0:
@@ -2560,7 +2566,7 @@ void Game::Creature::getSound_CurrAnimFrame()
  * Address:	8013CBF0
  * Size:	000008
  */
-void Game::Creature::getSound_CurrAnimSpeed()
+void Creature::getSound_CurrAnimSpeed()
 {
 	/*
 	.loc_0x0:
@@ -2574,7 +2580,7 @@ void Game::Creature::getSound_CurrAnimSpeed()
  * Address:	8013CBF8
  * Size:	00002C
  */
-void Game::Creature::getLODSphere(Sys::Sphere&)
+void Creature::getLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2597,35 +2603,37 @@ void Game::Creature::getLODSphere(Sys::Sphere&)
  * Address:	8013CC24
  * Size:	000004
  */
-void Game::Creature::onStickStart(Game::Creature*) { }
+void Creature::onStickStart(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	8013CC28
  * Size:	000004
  */
-void Game::Creature::onStickEnd(Game::Creature*) { }
+void Creature::onStickEnd(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	8013CC2C
  * Size:	000004
  */
-void Game::CellObject::checkCollision(Game::CellObject*) { }
+void CellObject::checkCollision(Game::CellObject*) { }
 
 /*
  * --INFO--
  * Address:	8013CC30
  * Size:	000008
  */
-u32 Game::CellObject::isPiki() { return 0x0; }
+u32 CellObject::isPiki() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CC38
  * Size:	000008
  */
-u32 Game::CellObject::isNavi() { return 0x0; }
+u32 CellObject::isNavi() { return 0x0; }
+
+} // namespace Game
 
 /*
  * --INFO--

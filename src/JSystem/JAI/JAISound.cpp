@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000078
  */
-void JAISound::JAISound()
+JAISound::JAISound()
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void JSULink<JAISound>::~JSULink()
  * Address:	800B3838
  * Size:	0000EC
  */
-void JAISequence::JAISequence()
+JAISequence::JAISequence()
 {
 	/*
 	.loc_0x0:
@@ -96,7 +96,7 @@ void JAISequence::JAISequence()
  * Address:	........
  * Size:	000058
  */
-void JAInter::SeqParameter::__dt(void)
+JAInter::SeqParameter::~SeqParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -106,7 +106,7 @@ void JAInter::SeqParameter::__dt(void)
  * Address:	........
  * Size:	000064
  */
-void JAISound::~JAISound()
+JAISound::~JAISound()
 {
 	// UNUSED FUNCTION
 }
@@ -116,7 +116,7 @@ void JAISound::~JAISound()
  * Address:	800B3924
  * Size:	000154
  */
-void JAISe::JAISe()
+JAISe::JAISe()
 {
 	/*
 	.loc_0x0:
@@ -213,7 +213,7 @@ void JAISe::JAISe()
  * Address:	800B3A78
  * Size:	0000AC
  */
-void JAIStream::JAIStream()
+JAIStream::JAIStream()
 {
 	/*
 	.loc_0x0:
@@ -3571,7 +3571,7 @@ void JAISound::onGet() { }
  * Address:	800B57EC
  * Size:	000068
  */
-void JAInter::LinkSound::releaseSound((JAISound*))
+void JAInter::LinkSound::releaseSound(JAISound*)
 {
 	/*
 	.loc_0x0:
@@ -3638,7 +3638,7 @@ void JAInter::LinkSound::getUsedEndFirstObject(void)
  * Address:	800B5858
  * Size:	000098
  */
-void JAInter::MoveParaSet::set((float, unsigned long))
+void JAInter::MoveParaSet::set(float, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4823,13 +4823,10 @@ void JAISound::setDemoDolbyU7(unsigned char, unsigned long)
  * Address:	800B62D4
  * Size:	000008
  */
-void JAISound::setDistanceParameterMoveTime(unsigned char)
+void JAISound::setDistanceParameterMoveTime(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x19(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x19(r3)
+	_19 = a1;
 }
 
 /*
@@ -4837,13 +4834,10 @@ void JAISound::setDistanceParameterMoveTime(unsigned char)
  * Address:	800B62DC
  * Size:	000008
  */
-void JAISound::setAdjustPriority(short)
+void JAISound::setAdjustPriority(short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x1C(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x1C(r3)
+	_1C = a1;
 }
 
 /*

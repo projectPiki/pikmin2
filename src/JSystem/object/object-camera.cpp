@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80013428
  * Size:	0000C4
  */
-void JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem*,
-                                                      JStage::TCamera*)
+JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem*,
+                                                 JStage::TCamera*)
 {
 	/*
 	.loc_0x0:
@@ -67,7 +67,7 @@ void JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem*,
  * Address:	800134EC
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_camera::~TAdaptor_camera()
+JStudio_JStage::TAdaptor_camera::~TAdaptor_camera()
 {
 	/*
 	.loc_0x0:

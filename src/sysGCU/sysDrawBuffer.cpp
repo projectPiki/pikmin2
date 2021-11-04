@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	80455700
  * Size:	00005C
  */
-void Sys::DrawBuffer::__ct(void)
+DrawBuffer::DrawBuffer(void)
 {
 	/*
 	.loc_0x0:
@@ -50,7 +42,7 @@ void Sys::DrawBuffer::__ct(void)
  * Address:	8045575C
  * Size:	000060
  */
-void Sys::DrawBuffer::__dt(void)
+DrawBuffer::~DrawBuffer(void)
 {
 	/*
 	.loc_0x0:
@@ -88,7 +80,7 @@ void Sys::DrawBuffer::__dt(void)
  * Address:	804557BC
  * Size:	0000DC
  */
-void Sys::DrawBuffer::create((Sys::DrawBuffer::CreateArg&))
+void DrawBuffer::create(Sys::DrawBuffer::CreateArg&)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +151,7 @@ void Sys::DrawBuffer::create((Sys::DrawBuffer::CreateArg&))
  * Address:	80455898
  * Size:	000088
  */
-void Sys::DrawBuffer::draw(void)
+void DrawBuffer::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +203,7 @@ void Sys::DrawBuffer::draw(void)
  * Address:	80455920
  * Size:	000058
  */
-void Sys::DrawBuffer::frameInit(void)
+void DrawBuffer::frameInit(void)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +239,7 @@ void Sys::DrawBuffer::frameInit(void)
  * Address:	80455978
  * Size:	000054
  */
-void Sys::DrawBuffers::__ct(void)
+DrawBuffers::DrawBuffers(void)
 {
 	/*
 	.loc_0x0:
@@ -280,7 +272,7 @@ void Sys::DrawBuffers::__ct(void)
  * Address:	804559CC
  * Size:	000060
  */
-void Sys::DrawBuffers::__dt(void)
+DrawBuffers::~DrawBuffers(void)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +310,7 @@ void Sys::DrawBuffers::__dt(void)
  * Address:	80455A2C
  * Size:	000098
  */
-void Sys::DrawBuffers::allocate((int))
+void DrawBuffers::allocate(int)
 {
 	/*
 	.loc_0x0:
@@ -374,7 +366,7 @@ void Sys::DrawBuffers::allocate((int))
  * Address:	80455AC4
  * Size:	00008C
  */
-void Sys::DrawBuffers::get((int))
+void DrawBuffers::get(int)
 {
 	/*
 	.loc_0x0:
@@ -425,7 +417,7 @@ void Sys::DrawBuffers::get((int))
  * Address:	80455B50
  * Size:	0000E0
  */
-void Sys::DrawBuffers::frameInitAll(void)
+void DrawBuffers::frameInitAll(void)
 {
 	/*
 	.loc_0x0:
@@ -497,3 +489,4 @@ void Sys::DrawBuffers::frameInitAll(void)
 	  blr
 	*/
 }
+} // namespace Sys

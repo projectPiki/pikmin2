@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80124778
  * Size:	00003C
  */
-void Game::makeObjectEnemy()
+void makeObjectEnemy()
 {
 	/*
 	.loc_0x0:
@@ -36,7 +38,7 @@ void Game::makeObjectEnemy()
  * Address:	801247B4
  * Size:	0000D0
  */
-void Game::GenObjectEnemy::GenObjectEnemy()
+GenObjectEnemy::GenObjectEnemy()
 {
 	/*
 	.loc_0x0:
@@ -102,7 +104,7 @@ void Game::GenObjectEnemy::GenObjectEnemy()
  * Address:	80124884
  * Size:	00008C
  */
-void Game::GenObjectEnemy::initialise()
+void GenObjectEnemy::initialise()
 {
 	/*
 	.loc_0x0:
@@ -149,21 +151,21 @@ void Game::GenObjectEnemy::initialise()
  * Address:	80124910
  * Size:	000004
  */
-void Game::GenObjectEnemy::ramSaveParameters(Stream&) { }
+void GenObjectEnemy::ramSaveParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80124914
  * Size:	000004
  */
-void Game::GenObjectEnemy::ramLoadParameters(Stream&) { }
+void GenObjectEnemy::ramLoadParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80124918
  * Size:	0006B4
  */
-void Game::GenObjectEnemy::generate(Game::Generator*)
+void GenObjectEnemy::generate(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +652,7 @@ void Game::GenObjectEnemy::generate(Game::Generator*)
  * Address:	80124FCC
  * Size:	0000E0
  */
-void Game::GenObjectEnemy::birth(Game::GenArg*)
+void GenObjectEnemy::birth(Game::GenArg*)
 {
 	/*
 	.loc_0x0:
@@ -720,7 +722,7 @@ void Game::GenObjectEnemy::birth(Game::GenArg*)
  * Address:	801250AC
  * Size:	000218
  */
-void Game::GenObjectEnemy::doWrite(Stream&)
+void GenObjectEnemy::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -868,14 +870,14 @@ void Game::GenObjectEnemy::doWrite(Stream&)
  * Address:	801252C4
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::doWrite(Stream&) { }
+void EnemyGeneratorBase::doWrite(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801252C8
  * Size:	00000C
  */
-void Game::EnemyGeneratorBase::getLatestVersion()
+void EnemyGeneratorBase::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -890,7 +892,7 @@ void Game::EnemyGeneratorBase::getLatestVersion()
  * Address:	801252D4
  * Size:	0001E4
  */
-void Game::GenObjectEnemy::doRead(Stream&)
+void GenObjectEnemy::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1031,14 +1033,14 @@ void Game::GenObjectEnemy::doRead(Stream&)
  * Address:	801254B8
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::doRead(Stream&) { }
+void EnemyGeneratorBase::doRead(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801254BC
  * Size:	000470
  */
-void Game::GenObjectEnemy::doReadOldVersion(Stream&)
+void GenObjectEnemy::doReadOldVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1366,7 @@ void Game::GenObjectEnemy::doReadOldVersion(Stream&)
  * Address:	8012592C
  * Size:	000E38
  */
-void Game::GenObjectEnemy::createEnemyGenerator()
+void GenObjectEnemy::createEnemyGenerator()
 {
 	/*
 	.loc_0x0:
@@ -2490,7 +2492,7 @@ void Game::GenObjectEnemy::createEnemyGenerator()
  * Address:	80126764
  * Size:	00006C
  */
-void Game::EnemyGeneratorBase::EnemyGeneratorBase(char*)
+EnemyGeneratorBase::EnemyGeneratorBase(char*)
 {
 	/*
 	.loc_0x0:
@@ -2529,7 +2531,7 @@ void Game::EnemyGeneratorBase::EnemyGeneratorBase(char*)
  * Address:	801267D0
  * Size:	00002C
  */
-void Game::GenObjectEnemy::getShape()
+void GenObjectEnemy::getShape()
 {
 	/*
 	.loc_0x0:
@@ -2552,7 +2554,7 @@ void Game::GenObjectEnemy::getShape()
  * Address:	801267FC
  * Size:	000040
  */
-void Game::GenObjectEnemy::updateUseList(Game::Generator*, int)
+void GenObjectEnemy::updateUseList(Game::Generator*, int)
 {
 	/*
 	.loc_0x0:
@@ -2582,7 +2584,7 @@ void Game::GenObjectEnemy::updateUseList(Game::Generator*, int)
  * Address:	8012683C
  * Size:	00031C
  */
-void Game::GenObjectEnemy::render(Graphics&, Game::Generator*)
+void GenObjectEnemy::render(Graphics&, Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -2797,14 +2799,14 @@ void Game::GenObjectEnemy::render(Graphics&, Game::Generator*)
  * Address:	80126B58
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::draw(Graphics&, Game::Generator*) { }
+void EnemyGeneratorBase::draw(Graphics&, Game::Generator*) { }
 
 /*
  * --INFO--
  * Address:	80126B5C
  * Size:	000060
  */
-void Game::EnemyGeneratorBase::~EnemyGeneratorBase()
+EnemyGeneratorBase::~EnemyGeneratorBase()
 {
 	/*
 	.loc_0x0:
@@ -2842,14 +2844,14 @@ void Game::EnemyGeneratorBase::~EnemyGeneratorBase()
  * Address:	80126BBC
  * Size:	000008
  */
-u32 Game::EnemyGeneratorBase::getInitialParam() { return 0x0; }
+u32 EnemyGeneratorBase::getInitialParam() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80126BC4
  * Size:	000008
  */
-void Game::GenArg::getName()
+void GenArg::getName()
 {
 	/*
 	.loc_0x0:
@@ -2863,14 +2865,14 @@ void Game::GenArg::getName()
  * Address:	80126BCC
  * Size:	000004
  */
-void Game::GenObject::update(Game::Generator*) { }
+void GenObject::update(Game::Generator*) { }
 
 /*
  * --INFO--
  * Address:	80126BD0
  * Size:	000028
  */
-void Game::GenObject::generatorMakeMatrix(Matrixf&, Vector3<float>&)
+void GenObject::generatorMakeMatrix(Matrixf&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2892,11 +2894,12 @@ void Game::GenObject::generatorMakeMatrix(Matrixf&, Vector3<float>&)
  * Address:	80126BF8
  * Size:	000004
  */
-void Game::GenObject::getDebugInfo(char*) { }
+void GenObject::getDebugInfo(char*) { }
 
 /*
  * --INFO--
  * Address:	80126BFC
  * Size:	000004
  */
-void Game::GenBase::doEvent(unsigned long) { }
+void GenBase::doEvent(unsigned long) { }
+} // namespace Game

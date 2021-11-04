@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B8F3C
  * Size:	000050
  */
-void Game::GasOtakara::Mgr::Mgr(int, unsigned char)
+GasOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::GasOtakara::Mgr::Mgr(int, unsigned char)
  * Address:	802B8F8C
  * Size:	000048
  */
-void Game::GasOtakara::Mgr::doAlloc()
+void GasOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::GasOtakara::Mgr::doAlloc()
  * Address:	802B8FD4
  * Size:	000060
  */
-void Game::GasOtakara::Mgr::createObj(int)
+void GasOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::GasOtakara::Mgr::createObj(int)
  * Address:	802B9034
  * Size:	0000F0
  */
-void Game::GasOtakara::Obj::~Obj()
+GasOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::GasOtakara::Obj::~Obj()
  * Address:	802B9124
  * Size:	000010
  */
-void Game::GasOtakara::Mgr::getEnemy(int)
+void GasOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::GasOtakara::Mgr::getEnemy(int)
  * Address:	802B9134
  * Size:	000080
  */
-void Game::GasOtakara::Mgr::loadTexData()
+void GasOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -245,7 +247,7 @@ void Game::GasOtakara::Mgr::loadTexData()
  * Address:	802B91B4
  * Size:	0000C8
  */
-void Game::GasOtakara::Mgr::~Mgr()
+GasOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -311,14 +313,14 @@ void Game::GasOtakara::Mgr::~Mgr()
  * Address:	802B927C
  * Size:	000008
  */
-u32 Game::GasOtakara::Mgr::getEnemyTypeID() { return 0x3D; }
+u32 GasOtakara::Mgr::getEnemyTypeID() { return 0x3D; }
 
 /*
  * --INFO--
  * Address:	802B9284
  * Size:	000008
  */
-void Game::GasOtakara::Mgr::getChangeTexture()
+void GasOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -332,7 +334,7 @@ void Game::GasOtakara::Mgr::getChangeTexture()
  * Address:	802B928C
  * Size:	000008
  */
-void Game::GasOtakara::Mgr::@4 @__dt()
+GasOtakara::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -340,3 +342,4 @@ void Game::GasOtakara::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

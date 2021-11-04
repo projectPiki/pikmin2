@@ -5,7 +5,7 @@
  * Address:	80040F74
  * Size:	000078
  */
-void J2DTextBox::J2DTextBox()
+J2DTextBox::J2DTextBox()
 {
 	/*
 	.loc_0x0:
@@ -47,7 +47,7 @@ void J2DTextBox::J2DTextBox()
  * Address:	80040FEC
  * Size:	000094
  */
-void J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*)
+J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -96,8 +96,8 @@ void J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*)
  * Address:	80041080
  * Size:	000460
  */
-void J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long,
-                            J2DMaterial*)
+J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long,
+                       J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -417,9 +417,9 @@ u32 J2DTevBlock::getFont() { return 0x0; }
  * Address:	800414EC
  * Size:	00008C
  */
-void J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&,
-                            const ResFONT*, const char*, short,
-                            J2DTextBoxHBinding, J2DTextBoxVBinding)
+J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&,
+                       const ResFONT*, const char*, short, J2DTextBoxHBinding,
+                       J2DTextBoxVBinding)
 {
 	/*
 	.loc_0x0:
@@ -874,7 +874,7 @@ void J2DTextBox::private_readStream(J2DPane*, JSURandomInputStream*,
  * Address:	80041AF0
  * Size:	000098
  */
-void J2DTextBox::~J2DTextBox()
+J2DTextBox::~J2DTextBox()
 {
 	/*
 	.loc_0x0:

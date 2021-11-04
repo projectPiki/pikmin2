@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSM {
 
 /*
  * --INFO--
  * Address:	804724A0
  * Size:	000070
  */
-void PSM::THPDinamicsProc::setSetting(PSM::THP_ID)
+void THPDinamicsProc::setSetting(PSM::THP_ID)
 {
 	/*
 	.loc_0x0:
@@ -49,7 +51,7 @@ void PSM::THPDinamicsProc::setSetting(PSM::THP_ID)
  * Address:	80472510
  * Size:	000110
  */
-void PSM::THPDinamicsProc::setSetting(PSM::THPDemoDinamics*)
+void THPDinamicsProc::setSetting(PSM::THPDemoDinamics*)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void PSM::THPDinamicsProc::setSetting(PSM::THPDemoDinamics*)
  * Address:	80472620
  * Size:	000130
  */
-void PSM::THPDinamicsProc::dinamics(float)
+void THPDinamicsProc::dinamics(float)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +251,7 @@ void PSM::THPDinamicsProc::dinamics(float)
  * Address:	80472750
  * Size:	000064
  */
-void PSM::CreaturePrm::~CreaturePrm()
+CreaturePrm::~CreaturePrm()
 {
 	/*
 	.loc_0x0:
@@ -285,12 +287,16 @@ void PSM::CreaturePrm::~CreaturePrm()
 	*/
 }
 
+namespace PSSystem {
+
+} // namespace PSSystem
+
 /*
  * --INFO--
  * Address:	804727B4
  * Size:	000050
  */
-void PSSystem::SingletonBase<PSM::CreaturePrm>::~SingletonBase()
+void SingletonBase<PSM::CreaturePrm>::~SingletonBase()
 {
 	/*
 	.loc_0x0:
@@ -318,6 +324,8 @@ void PSSystem::SingletonBase<PSM::CreaturePrm>::~SingletonBase()
 	  blr
 	*/
 }
+
+} // namespace PSM
 
 /*
  * --INFO--

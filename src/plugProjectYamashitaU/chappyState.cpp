@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80116648
  * Size:	000150
  */
-void Game::ChappyBase::FSM::init(Game::EnemyBase*)
+void ChappyBase::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -119,7 +121,7 @@ void Game::ChappyBase::FSM::init(Game::EnemyBase*)
  * Address:	80116798
  * Size:	00003C
  */
-void Game::ChappyBase::StateSleep::StateSleep(int)
+ChappyBase::StateSleep::StateSleep(int)
 {
 	/*
 	.loc_0x0:
@@ -146,7 +148,7 @@ void Game::ChappyBase::StateSleep::StateSleep(int)
  * Address:	801167D4
  * Size:	0000BC
  */
-void Game::ChappyBase::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -213,7 +215,7 @@ void Game::ChappyBase::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80116890
  * Size:	0001B0
  */
-void Game::ChappyBase::StateSleep::exec(Game::EnemyBase*)
+void ChappyBase::StateSleep::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +351,7 @@ void Game::ChappyBase::StateSleep::exec(Game::EnemyBase*)
  * Address:	80116A40
  * Size:	000098
  */
-void Game::ChappyBase::StateSleep::cleanup(Game::EnemyBase*)
+void ChappyBase::StateSleep::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +405,7 @@ void Game::ChappyBase::StateSleep::cleanup(Game::EnemyBase*)
  * Address:	80116AD8
  * Size:	000064
  */
-void Game::ChappyBase::StateSleep::setNextState(Game::EnemyBase*, int)
+void ChappyBase::StateSleep::setNextState(Game::EnemyBase*, int)
 {
 	/*
 	.loc_0x0:
@@ -440,7 +442,7 @@ void Game::ChappyBase::StateSleep::setNextState(Game::EnemyBase*, int)
  * Address:	80116B3C
  * Size:	000054
  */
-void Game::ChappyBase::StateDead::StateDead(int)
+ChappyBase::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +475,7 @@ void Game::ChappyBase::StateDead::StateDead(int)
  * Address:	80116B90
  * Size:	000040
  */
-void Game::ChappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +503,7 @@ void Game::ChappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80116BD0
  * Size:	000064
  */
-void Game::ChappyBase::StateDead::exec(Game::EnemyBase*)
+void ChappyBase::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -542,14 +544,14 @@ void Game::ChappyBase::StateDead::exec(Game::EnemyBase*)
  * Address:	80116C34
  * Size:	000004
  */
-void Game::ChappyBase::StateDead::cleanup(Game::EnemyBase*) { }
+void ChappyBase::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80116C38
  * Size:	000060
  */
-void Game::ChappyBase::StateTurn::StateTurn(int)
+ChappyBase::StateTurn::StateTurn(int)
 {
 	/*
 	.loc_0x0:
@@ -585,7 +587,7 @@ void Game::ChappyBase::StateTurn::StateTurn(int)
  * Address:	80116C98
  * Size:	000058
  */
-void Game::ChappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -619,7 +621,7 @@ void Game::ChappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80116CF0
  * Size:	0007F0
  */
-void Game::ChappyBase::StateTurn::exec(Game::EnemyBase*)
+void ChappyBase::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1191,7 +1193,7 @@ void Game::ChappyBase::StateTurn::exec(Game::EnemyBase*)
  * Address:	801174E0
  * Size:	000038
  */
-void Game::ChappyBase::StateTurn::cleanup(Game::EnemyBase*)
+void ChappyBase::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1219,7 @@ void Game::ChappyBase::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	80117518
  * Size:	000054
  */
-void Game::ChappyBase::StateWalk::StateWalk(int)
+ChappyBase::StateWalk::StateWalk(int)
 {
 	/*
 	.loc_0x0:
@@ -1250,7 +1252,7 @@ void Game::ChappyBase::StateWalk::StateWalk(int)
  * Address:	8011756C
  * Size:	000058
  */
-void Game::ChappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1284,7 +1286,7 @@ void Game::ChappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	801175C4
  * Size:	0007FC
  */
-void Game::ChappyBase::StateWalk::exec(Game::EnemyBase*)
+void ChappyBase::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1861,7 +1863,7 @@ void Game::ChappyBase::StateWalk::exec(Game::EnemyBase*)
  * Address:	80117DC0
  * Size:	000048
  */
-void Game::ChappyBase::StateWalk::cleanup(Game::EnemyBase*)
+void ChappyBase::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1891,7 +1893,7 @@ void Game::ChappyBase::StateWalk::cleanup(Game::EnemyBase*)
  * Address:	80117E08
  * Size:	000054
  */
-void Game::ChappyBase::StateAttack::StateAttack(int)
+ChappyBase::StateAttack::StateAttack(int)
 {
 	/*
 	.loc_0x0:
@@ -1924,7 +1926,7 @@ void Game::ChappyBase::StateAttack::StateAttack(int)
  * Address:	80117E5C
  * Size:	000048
  */
-void Game::ChappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1954,7 +1956,7 @@ void Game::ChappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80117EA4
  * Size:	00033C
  */
-void Game::ChappyBase::StateAttack::exec(Game::EnemyBase*)
+void ChappyBase::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2227,7 +2229,7 @@ void Game::ChappyBase::StateAttack::exec(Game::EnemyBase*)
  * Address:	801181E0
  * Size:	0002F0
  */
-void Game::ChappyBase::StateAttack::transitState(Game::EnemyBase*)
+void ChappyBase::StateAttack::transitState(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2435,7 +2437,7 @@ void Game::ChappyBase::StateAttack::transitState(Game::EnemyBase*)
  * Address:	801184D0
  * Size:	000024
  */
-void Game::ChappyBase::StateAttack::cleanup(Game::EnemyBase*)
+void ChappyBase::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2456,15 +2458,14 @@ void Game::ChappyBase::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	801184F4
  * Size:	000004
  */
-void Game::ChappyBase::StateAttack::doDirectDraw(Game::EnemyBase*, Graphics&) {
-}
+void ChappyBase::StateAttack::doDirectDraw(Game::EnemyBase*, Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801184F8
  * Size:	000054
  */
-void Game::ChappyBase::StateFlick::StateFlick(int)
+ChappyBase::StateFlick::StateFlick(int)
 {
 	/*
 	.loc_0x0:
@@ -2497,7 +2498,7 @@ void Game::ChappyBase::StateFlick::StateFlick(int)
  * Address:	8011854C
  * Size:	000078
  */
-void Game::ChappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2539,7 +2540,7 @@ void Game::ChappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	801185C4
  * Size:	00023C
  */
-void Game::ChappyBase::StateFlick::exec(Game::EnemyBase*)
+void ChappyBase::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2726,7 +2727,7 @@ void Game::ChappyBase::StateFlick::exec(Game::EnemyBase*)
  * Address:	80118800
  * Size:	000054
  */
-void Game::ChappyBase::StateFlick::cleanup(Game::EnemyBase*)
+void ChappyBase::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2759,7 +2760,7 @@ void Game::ChappyBase::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	80118854
  * Size:	000064
  */
-void Game::ChappyBase::StateTurnToHome::StateTurnToHome(int)
+ChappyBase::StateTurnToHome::StateTurnToHome(int)
 {
 	/*
 	.loc_0x0:
@@ -2796,7 +2797,7 @@ void Game::ChappyBase::StateTurnToHome::StateTurnToHome(int)
  * Address:	801188B8
  * Size:	000150
  */
-void Game::ChappyBase::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2902,7 +2903,7 @@ void Game::ChappyBase::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80118A08
  * Size:	0006AC
  */
-void Game::ChappyBase::StateTurnToHome::exec(Game::EnemyBase*)
+void ChappyBase::StateTurnToHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3391,14 +3392,14 @@ void Game::ChappyBase::StateTurnToHome::exec(Game::EnemyBase*)
  * Address:	801190B4
  * Size:	000004
  */
-void Game::ChappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
+void ChappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	801190B8
  * Size:	000054
  */
-void Game::ChappyBase::StateGoHome::StateGoHome(int)
+ChappyBase::StateGoHome::StateGoHome(int)
 {
 	/*
 	.loc_0x0:
@@ -3431,7 +3432,7 @@ void Game::ChappyBase::StateGoHome::StateGoHome(int)
  * Address:	8011910C
  * Size:	00002C
  */
-void Game::ChappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void ChappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3454,7 +3455,7 @@ void Game::ChappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80119138
  * Size:	0005C4
  */
-void Game::ChappyBase::StateGoHome::exec(Game::EnemyBase*)
+void ChappyBase::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3881,7 +3882,7 @@ void Game::ChappyBase::StateGoHome::exec(Game::EnemyBase*)
  * Address:	801196FC
  * Size:	000014
  */
-void Game::ChappyBase::StateGoHome::cleanup(Game::EnemyBase*)
+void ChappyBase::StateGoHome::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3892,3 +3893,4 @@ void Game::ChappyBase::StateGoHome::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

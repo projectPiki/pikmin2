@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace SysShape {
 
 /*
  * --INFO--
  * Address:	8043E1D8
  * Size:	0000C4
  */
-void SysShape::Model::__ct((J3DModelData*, unsigned long, unsigned long))
+Model::Model(J3DModelData*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +70,7 @@ void SysShape::Model::__ct((J3DModelData*, unsigned long, unsigned long))
  * Address:	8043E29C
  * Size:	00017C
  */
-void SysShape::Model::enableMaterialAnim((J3DModelData*, int))
+void Model::enableMaterialAnim(J3DModelData*, int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +189,7 @@ void SysShape::Model::enableMaterialAnim((J3DModelData*, int))
  * Address:	8043E418
  * Size:	000174
  */
-void SysShape::Model::enableMaterialAnim((int))
+void Model::enableMaterialAnim(int)
 {
 	/*
 	.loc_0x0:
@@ -314,7 +306,7 @@ void SysShape::Model::enableMaterialAnim((int))
  * Address:	8043E58C
  * Size:	000048
  */
-void SysShape::Model::getMatrix((int))
+void Model::getMatrix(int)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +342,7 @@ void SysShape::Model::getMatrix((int))
  * Address:	8043E5D4
  * Size:	00015C
  */
-void SysShape::Model::getRoughBoundingRadius(void)
+void Model::getRoughBoundingRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +467,7 @@ void SysShape::Model::getRoughBoundingRadius(void)
  * Address:	8043E730
  * Size:	000174
  */
-void SysShape::Model::getRoughCenter(void)
+void Model::getRoughCenter(void)
 {
 	/*
 	.loc_0x0:
@@ -596,7 +588,7 @@ void SysShape::Model::getRoughCenter(void)
  * Address:	........
  * Size:	0000A4
  */
-void SysShape::Model::entry((Sys::Sphere&))
+void Model::entry(Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +598,7 @@ void SysShape::Model::entry((Sys::Sphere&))
  * Address:	8043E8A4
  * Size:	000098
  */
-void SysShape::Model::isVisible((Sys::Sphere&))
+void Model::isVisible(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -664,7 +656,7 @@ void SysShape::Model::isVisible((Sys::Sphere&))
  * Address:	8043E93C
  * Size:	000080
  */
-void SysShape::Model::jointVisible((bool, int))
+void Model::jointVisible(bool, int)
 {
 	/*
 	.loc_0x0:
@@ -718,7 +710,7 @@ void SysShape::Model::jointVisible((bool, int))
  * Address:	8043E9BC
  * Size:	000058
  */
-void SysShape::Model::hide(void)
+void Model::hide(void)
 {
 	/*
 	.loc_0x0:
@@ -760,7 +752,7 @@ void SysShape::Model::hide(void)
  * Address:	8043EA14
  * Size:	000058
  */
-void SysShape::Model::show(void)
+void Model::show(void)
 {
 	/*
 	.loc_0x0:
@@ -802,7 +794,7 @@ void SysShape::Model::show(void)
  * Address:	8043EA6C
  * Size:	000044
  */
-void SysShape::Model::hidePackets(void)
+void Model::hidePackets(void)
 {
 	/*
 	.loc_0x0:
@@ -835,7 +827,7 @@ void SysShape::Model::hidePackets(void)
  * Address:	8043EAB0
  * Size:	000044
  */
-void SysShape::Model::showPackets(void)
+void Model::showPackets(void)
 {
 	/*
 	.loc_0x0:
@@ -868,7 +860,7 @@ void SysShape::Model::showPackets(void)
  * Address:	8043EAF4
  * Size:	0000BC
  */
-void SysShape::Model::initJoints(void)
+void Model::initJoints(void)
 {
 	/*
 	.loc_0x0:
@@ -931,7 +923,7 @@ void SysShape::Model::initJoints(void)
  * Address:	8043EBB0
  * Size:	000060
  */
-void SysShape::Joint::__dt(void)
+Joint::~Joint(void)
 {
 	/*
 	.loc_0x0:
@@ -969,7 +961,7 @@ void SysShape::Joint::__dt(void)
  * Address:	8043EC10
  * Size:	00005C
  */
-void SysShape::Joint::__ct(void)
+Joint::Joint(void)
 {
 	/*
 	.loc_0x0:
@@ -1004,7 +996,7 @@ void SysShape::Joint::__ct(void)
  * Address:	8043EC6C
  * Size:	000330
  */
-void SysShape::Model::initJointsRec((int, SysShape::Joint*))
+void Model::initJointsRec(int, SysShape::Joint*)
 {
 	/*
 	.loc_0x0:
@@ -1233,6 +1225,8 @@ void SysShape::Model::initJointsRec((int, SysShape::Joint*))
 	*/
 }
 
+} // namespace SysShape
+
 /*
  * --INFO--
  * Address:	8043EF9C
@@ -1275,12 +1269,14 @@ void J3DJoint::getChild()
 	*/
 }
 
+namespace SysShape {
+
 /*
  * --INFO--
  * Address:	8043EFB4
  * Size:	000030
  */
-void SysShape::Model::getJointIndex((char*))
+void Model::getJointIndex(char*)
 {
 	/*
 	.loc_0x0:
@@ -1304,7 +1300,7 @@ void SysShape::Model::getJointIndex((char*))
  * Address:	8043EFE4
  * Size:	00005C
  */
-void SysShape::Model::getJoint((char*))
+void Model::getJoint(char*)
 {
 	/*
 	.loc_0x0:
@@ -1343,7 +1339,7 @@ void SysShape::Model::getJoint((char*))
  * Address:	........
  * Size:	000050
  */
-void SysShape::Model::update(void)
+void Model::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1353,7 +1349,7 @@ void SysShape::Model::update(void)
  * Address:	8043F040
  * Size:	00000C
  */
-void SysShape::Model::setViewCalcModeImm(void)
+void Model::setViewCalcModeImm(void)
 {
 	/*
 	.loc_0x0:
@@ -1368,7 +1364,7 @@ void SysShape::Model::setViewCalcModeImm(void)
  * Address:	8043F04C
  * Size:	00000C
  */
-void SysShape::Model::setViewCalcModeInd(void)
+void Model::setViewCalcModeInd(void)
 {
 	/*
 	.loc_0x0:
@@ -1383,7 +1379,7 @@ void SysShape::Model::setViewCalcModeInd(void)
  * Address:	........
  * Size:	000040
  */
-void SysShape::Model::needViewCalc(void)
+void Model::needViewCalc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1393,7 +1389,7 @@ void SysShape::Model::needViewCalc(void)
  * Address:	8043F058
  * Size:	000068
  */
-void SysShape::Model::viewCalc(void)
+void Model::viewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -1437,7 +1433,7 @@ void SysShape::Model::viewCalc(void)
  * Address:	8043F0C0
  * Size:	00004C
  */
-void SysShape::Model::setCurrentViewNo((unsigned long))
+void Model::setCurrentViewNo(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1472,7 +1468,7 @@ void SysShape::Model::setCurrentViewNo((unsigned long))
  * Address:	8043F10C
  * Size:	000014
  */
-void SysShape::Model::isMtxImmediate(void)
+void Model::isMtxImmediate(void)
 {
 	/*
 	.loc_0x0:
@@ -1489,14 +1485,14 @@ void SysShape::Model::isMtxImmediate(void)
  * Address:	8043F120
  * Size:	000008
  */
-u32 SysShape::Model::isModel(void) { return 0x1; }
+u32 Model::isModel(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8043F128
  * Size:	000008
  */
-void SysShape::Model::isVisible(void)
+void Model::isVisible(void)
 {
 	/*
 	.loc_0x0:
@@ -1510,7 +1506,7 @@ void SysShape::Model::isVisible(void)
  * Address:	8043F130
  * Size:	000030
  */
-void SysShape::Model::jointVisible((bool, SysShape::Joint*))
+void Model::jointVisible(bool, SysShape::Joint*)
 {
 	/*
 	.loc_0x0:
@@ -1528,6 +1524,8 @@ void SysShape::Model::jointVisible((bool, SysShape::Joint*))
 	  blr
 	*/
 }
+
+} // namespace SysShape
 
 /*
  * --INFO--

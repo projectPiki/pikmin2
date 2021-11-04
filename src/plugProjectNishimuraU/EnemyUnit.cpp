@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802440F4
  * Size:	000074
  */
-void Game::Cave::EnemyNode::__ct(void)
+Cave::EnemyNode::EnemyNode(void)
 {
 	/*
 	.loc_0x0:
@@ -56,7 +48,7 @@ void Game::Cave::EnemyNode::__ct(void)
  * Address:	80244168
  * Size:	000060
  */
-void Game::ObjectLayoutNode::__dt(void)
+ObjectLayoutNode::~ObjectLayoutNode(void)
 {
 	/*
 	.loc_0x0:
@@ -94,8 +86,7 @@ void Game::ObjectLayoutNode::__dt(void)
  * Address:	802441C8
  * Size:	000094
  */
-void Game::Cave::EnemyNode::__ct((Game::Cave::EnemyUnit*, Game::Cave::BaseGen*,
-                                  int))
+Cave::EnemyNode::EnemyNode(Game::Cave::EnemyUnit*, Game::Cave::BaseGen*, int)
 {
 	/*
 	.loc_0x0:
@@ -144,7 +135,7 @@ void Game::Cave::EnemyNode::__ct((Game::Cave::EnemyUnit*, Game::Cave::BaseGen*,
  * Address:	8024425C
  * Size:	0001A8
  */
-void Game::Cave::EnemyNode::makeGlobalData((Game::Cave::MapNode*))
+void Cave::EnemyNode::makeGlobalData(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -265,12 +256,14 @@ void Game::Cave::EnemyNode::makeGlobalData((Game::Cave::MapNode*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80244404
  * Size:	000020
  */
-void setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<float> f(void)
+void setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -285,18 +278,17 @@ void setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80244424
  * Size:	000008
  */
-void Game::Cave::EnemyNode::setBirthDoorIndex((int))
+void Cave::EnemyNode::setBirthDoorIndex(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -304,7 +296,7 @@ void Game::Cave::EnemyNode::setBirthDoorIndex((int))
  * Address:	8024442C
  * Size:	000020
  */
-void Game::Cave::EnemyNode::getObjectId(void)
+void Cave::EnemyNode::getObjectId(void)
 {
 	/*
 	.loc_0x0:
@@ -326,7 +318,7 @@ void Game::Cave::EnemyNode::getObjectId(void)
  * Address:	8024444C
  * Size:	000020
  */
-void Game::Cave::EnemyNode::getExtraCode(void)
+void Cave::EnemyNode::getExtraCode(void)
 {
 	/*
 	.loc_0x0:
@@ -348,7 +340,7 @@ void Game::Cave::EnemyNode::getExtraCode(void)
  * Address:	8024446C
  * Size:	000020
  */
-void Game::Cave::EnemyNode::getObjectType(void)
+void Cave::EnemyNode::getObjectType(void)
 {
 	/*
 	.loc_0x0:
@@ -370,7 +362,7 @@ void Game::Cave::EnemyNode::getObjectType(void)
  * Address:	8024448C
  * Size:	000008
  */
-void Game::Cave::EnemyNode::getBirthCount(void)
+void Cave::EnemyNode::getBirthCount(void)
 {
 	/*
 	.loc_0x0:
@@ -384,7 +376,7 @@ void Game::Cave::EnemyNode::getBirthCount(void)
  * Address:	80244494
  * Size:	000014
  */
-void Game::Cave::EnemyNode::getBirthPosition((float&, float&))
+void Cave::EnemyNode::getBirthPosition(float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -401,7 +393,7 @@ void Game::Cave::EnemyNode::getBirthPosition((float&, float&))
  * Address:	802444A8
  * Size:	000008
  */
-void Game::Cave::EnemyNode::getDirection(void)
+void Cave::EnemyNode::getDirection(void)
 {
 	/*
 	.loc_0x0:
@@ -415,7 +407,7 @@ void Game::Cave::EnemyNode::getDirection(void)
  * Address:	802444B0
  * Size:	000008
  */
-void Game::Cave::EnemyNode::getBirthDoorIndex(void)
+void Cave::EnemyNode::getBirthDoorIndex(void)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +421,7 @@ void Game::Cave::EnemyNode::getBirthDoorIndex(void)
  * Address:	802444B8
  * Size:	000070
  */
-void Game::Cave::EnemyNode::__dt(void)
+Cave::EnemyNode::~EnemyNode(void)
 {
 	/*
 	.loc_0x0:
@@ -467,3 +459,4 @@ void Game::Cave::EnemyNode::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

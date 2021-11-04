@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80228328
  * Size:	0000F8
  */
-void Game::VsGame::TitleState::__ct(void)
+VsGame::TitleState::TitleState(void)
 {
 	/*
 	.loc_0x0:
@@ -95,7 +87,7 @@ void Game::VsGame::TitleState::__ct(void)
  * Address:	80228420
  * Size:	000134
  */
-void Game::VsGame::TitleState::init((Game::VsGameSection*, Game::StateArg*))
+void VsGame::TitleState::init(Game::VsGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -186,7 +178,7 @@ void Game::VsGame::TitleState::init((Game::VsGameSection*, Game::StateArg*))
  * Address:	........
  * Size:	000084
  */
-void Game::VsGame::TitleState::initNext((Game::VsGameSection*))
+void VsGame::TitleState::initNext(Game::VsGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -196,7 +188,7 @@ void Game::VsGame::TitleState::initNext((Game::VsGameSection*))
  * Address:	80228554
  * Size:	0003F4
  */
-void Game::VsGame::TitleState::dvdload(void)
+void VsGame::TitleState::dvdload(void)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +499,7 @@ void Game::VsGame::TitleState::dvdload(void)
  * Address:	80228948
  * Size:	000038
  */
-void Game::VsGame::TitleState::exec((Game::VsGameSection*))
+void VsGame::TitleState::exec(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +531,7 @@ void Game::VsGame::TitleState::exec((Game::VsGameSection*))
  * Address:	80228980
  * Size:	0002DC
  */
-void Game::VsGame::TitleState::execChallenge((Game::VsGameSection*))
+void VsGame::TitleState::execChallenge(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +779,7 @@ FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
  * Address:	80228C8C
  * Size:	000430
  */
-void Game::VsGame::TitleState::execVs((Game::VsGameSection*))
+void VsGame::TitleState::execVs(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1101,7 +1093,7 @@ void Game::VsGame::TitleState::execVs((Game::VsGameSection*))
  * Address:	802290BC
  * Size:	000088
  */
-void Game::VsGame::TitleState::draw((Game::VsGameSection*, Graphics&))
+void VsGame::TitleState::draw(Game::VsGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1149,7 +1141,7 @@ void Game::VsGame::TitleState::draw((Game::VsGameSection*, Graphics&))
  * Address:	80229144
  * Size:	0000B0
  */
-void Game::VsGame::TitleState::cleanup((Game::VsGameSection*))
+void VsGame::TitleState::cleanup(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -1203,6 +1195,8 @@ void Game::VsGame::TitleState::cleanup((Game::VsGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

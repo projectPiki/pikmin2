@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80128108
  * Size:	000164
  */
-void Game::EnemyStone::Info::setup(Stream&)
+void EnemyStone::Info::setup(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -110,7 +112,7 @@ void Game::EnemyStone::Info::setup(Stream&)
  * Address:	8012826C
  * Size:	000014
  */
-void Game::EnemyStone::ObjInfo::ObjInfo()
+EnemyStone::ObjInfo::ObjInfo()
 {
 	/*
 	.loc_0x0:
@@ -121,3 +123,4 @@ void Game::EnemyStone::ObjInfo::ObjInfo()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012DAE8
  * Size:	000148
  */
-void Game::KochappyBase::Obj::Obj()
+KochappyBase::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::KochappyBase::Obj::Obj()
  * Address:	8012DC30
  * Size:	000068
  */
-void Game::KochappyBase::Obj::birth(Vector3<float>&, float)
+void KochappyBase::Obj::birth(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -143,15 +145,14 @@ void Game::KochappyBase::Obj::birth(Vector3<float>&, float)
  * Address:	8012DC98
  * Size:	000004
  */
-void Game::KochappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) {
-}
+void KochappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8012DC9C
  * Size:	000068
  */
-void Game::KochappyBase::Obj::onInit(Game::CreatureInitArg*)
+void KochappyBase::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +194,7 @@ void Game::KochappyBase::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8012DD04
  * Size:	000088
  */
-void Game::KochappyBase::Obj::doUpdate()
+void KochappyBase::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -241,14 +242,14 @@ void Game::KochappyBase::Obj::doUpdate()
  * Address:	8012DD8C
  * Size:	000004
  */
-void Game::KochappyBase::Obj::doDirectDraw(Graphics&) { }
+void KochappyBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8012DD90
  * Size:	000020
  */
-void Game::KochappyBase::Obj::doDebugDraw(Graphics&)
+void KochappyBase::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +269,7 @@ void Game::KochappyBase::Obj::doDebugDraw(Graphics&)
  * Address:	8012DDB0
  * Size:	000088
  */
-void Game::KochappyBase::Obj::getShadowParam(Game::ShadowParam&)
+void KochappyBase::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -314,7 +315,7 @@ void Game::KochappyBase::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8012DE38
  * Size:	000040
  */
-void Game::KochappyBase::Obj::bounceCallback(Sys::Triangle*)
+void KochappyBase::Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -344,7 +345,7 @@ void Game::KochappyBase::Obj::bounceCallback(Sys::Triangle*)
  * Address:	8012DE78
  * Size:	0000A0
  */
-void Game::KochappyBase::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void KochappyBase::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -402,7 +403,7 @@ void Game::KochappyBase::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	8012DF18
  * Size:	000020
  */
-void Game::KochappyBase::Obj::doStartStoneState()
+void KochappyBase::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -422,14 +423,14 @@ void Game::KochappyBase::Obj::doStartStoneState()
  * Address:	8012DF38
  * Size:	000004
  */
-void Game::KochappyBase::Obj::doFinishStoneState() { }
+void KochappyBase::Obj::doFinishStoneState() { }
 
 /*
  * --INFO--
  * Address:	8012DF3C
  * Size:	000064
  */
-void Game::KochappyBase::Obj::getOffsetForMapCollision()
+void KochappyBase::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -466,7 +467,7 @@ void Game::KochappyBase::Obj::getOffsetForMapCollision()
  * Address:	8012DFA0
  * Size:	000028
  */
-void Game::KochappyBase::Obj::startCarcassMotion()
+void KochappyBase::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -488,7 +489,7 @@ void Game::KochappyBase::Obj::startCarcassMotion()
  * Address:	8012DFC8
  * Size:	00008C
  */
-void Game::KochappyBase::Obj::initMouthSlots()
+void KochappyBase::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -539,7 +540,7 @@ void Game::KochappyBase::Obj::initMouthSlots()
  * Address:	8012E054
  * Size:	00008C
  */
-void Game::KochappyBase::Obj::initWalkSmokeEffect()
+void KochappyBase::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -588,7 +589,7 @@ void Game::KochappyBase::Obj::initWalkSmokeEffect()
  * Address:	8012E0E0
  * Size:	000008
  */
-void Game::KochappyBase::Obj::getWalkSmokeEffectMgr()
+void KochappyBase::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -596,3 +597,4 @@ void Game::KochappyBase::Obj::getWalkSmokeEffectMgr()
 	  blr
 	*/
 }
+} // namespace Game

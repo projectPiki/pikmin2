@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80288EB4
  * Size:	000050
  */
-void Game::Queen::Mgr::Mgr(int, unsigned char)
+Queen::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Queen::Mgr::Mgr(int, unsigned char)
  * Address:	80288F04
  * Size:	000048
  */
-void Game::Queen::Mgr::doAlloc()
+void Queen::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Queen::Mgr::doAlloc()
  * Address:	80288F4C
  * Size:	000188
  */
-void Game::Queen::Parms::Parms()
+Queen::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::Queen::Parms::Parms()
  * Address:	802890D4
  * Size:	000060
  */
-void Game::Queen::Mgr::createObj(int)
+void Queen::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::Queen::Mgr::createObj(int)
  * Address:	80289134
  * Size:	0000BC
  */
-void Game::Queen::Obj::~Obj()
+Queen::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -280,7 +282,7 @@ void Game::Queen::Obj::~Obj()
  * Address:	802891F0
  * Size:	000010
  */
-void Game::Queen::Mgr::getEnemy(int)
+void Queen::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::Queen::Mgr::getEnemy(int)
  * Address:	80289200
  * Size:	000068
  */
-void Game::Queen::Mgr::loadModelData()
+void Queen::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -338,7 +340,7 @@ void Game::Queen::Mgr::loadModelData()
  * Address:	80289268
  * Size:	0000B4
  */
-void Game::Queen::Mgr::loadTexData()
+void Queen::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +403,7 @@ void Game::Queen::Mgr::loadTexData()
  * Address:	8028931C
  * Size:	00007C
  */
-void Game::Queen::Mgr::createModel()
+void Queen::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -448,7 +450,7 @@ void Game::Queen::Mgr::createModel()
  * Address:	80289398
  * Size:	0000B0
  */
-void Game::Queen::Mgr::~Mgr()
+Queen::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -508,14 +510,14 @@ void Game::Queen::Mgr::~Mgr()
  * Address:	80289448
  * Size:	000008
  */
-u32 Game::Queen::Mgr::getEnemyTypeID() { return 0x1E; }
+u32 Queen::Mgr::getEnemyTypeID() { return 0x1E; }
 
 /*
  * --INFO--
  * Address:	80289450
  * Size:	00002C
  */
-void Game::Queen::Mgr::doLoadBmd(void*)
+void Queen::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -538,7 +540,7 @@ void Game::Queen::Mgr::doLoadBmd(void*)
  * Address:	8028947C
  * Size:	000050
  */
-void Game::Queen::Parms::read(Stream&)
+void Queen::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -570,7 +572,7 @@ void Game::Queen::Parms::read(Stream&)
  * Address:	802894CC
  * Size:	000008
  */
-void Game::Queen::Mgr::@4 @__dt()
+Queen::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -578,3 +580,4 @@ void Game::Queen::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

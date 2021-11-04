@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800113C8
  * Size:	0000A8
  */
-void JStudio_JStage::TAdaptor_light::TAdaptor_light(const JStage::TSystem*,
-                                                    JStage::TLight*)
+JStudio_JStage::TAdaptor_light::TAdaptor_light(const JStage::TSystem*,
+                                               JStage::TLight*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +60,7 @@ void JStudio_JStage::TAdaptor_light::TAdaptor_light(const JStage::TSystem*,
  * Address:	80011470
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_light::~TAdaptor_light()
+JStudio_JStage::TAdaptor_light::~TAdaptor_light()
 {
 	/*
 	.loc_0x0:

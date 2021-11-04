@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80014D24
  * Size:	000038
  */
-void JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl*)
+JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -31,7 +31,7 @@ void JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl*)
  * Address:	80014D5C
  * Size:	000060
  */
-void JStudio_JMessage::TAdaptor_message::~TAdaptor_message()
+JStudio_JMessage::TAdaptor_message::~TAdaptor_message()
 {
 	/*
 	.loc_0x0:

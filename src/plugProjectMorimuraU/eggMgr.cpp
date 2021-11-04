@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034B6B0
  * Size:	000050
  */
-void Game::Egg::Mgr::__ct((int, unsigned char))
+Egg::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Egg::Mgr::__ct((int, unsigned char))
  * Address:	8034B700
  * Size:	000048
  */
-void Game::Egg::Mgr::doAlloc(void)
+void Egg::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::Egg::Mgr::doAlloc(void)
  * Address:	8034B748
  * Size:	00018C
  */
-void Game::Egg::Parms::__ct(void)
+Egg::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -192,7 +184,7 @@ void Game::Egg::Parms::__ct(void)
  * Address:	8034B8D4
  * Size:	000020
  */
-void Game::Egg::Mgr::birth((Game::EnemyBirthArg&))
+void Egg::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -212,7 +204,7 @@ void Game::Egg::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8034B8F4
  * Size:	0000B0
  */
-void Game::Egg::Mgr::__dt(void)
+Egg::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -272,14 +264,14 @@ void Game::Egg::Mgr::__dt(void)
  * Address:	8034B9A4
  * Size:	000008
  */
-u32 Game::Egg::Mgr::getEnemyTypeID(void) { return 0x25; }
+u32 Egg::Mgr::getEnemyTypeID(void) { return 0x25; }
 
 /*
  * --INFO--
  * Address:	8034B9AC
  * Size:	000060
  */
-void Game::Egg::Mgr::createObj((int))
+void Egg::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -315,7 +307,7 @@ void Game::Egg::Mgr::createObj((int))
  * Address:	8034BA0C
  * Size:	0000BC
  */
-void Game::Egg::Obj::__dt(void)
+Egg::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -378,7 +370,7 @@ void Game::Egg::Obj::__dt(void)
  * Address:	8034BAC8
  * Size:	000010
  */
-void Game::Egg::Mgr::getEnemy((int))
+void Egg::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -394,7 +386,7 @@ void Game::Egg::Mgr::getEnemy((int))
  * Address:	8034BAD8
  * Size:	000050
  */
-void Game::Egg::Parms::read((Stream&))
+void Egg::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +418,7 @@ void Game::Egg::Parms::read((Stream&))
  * Address:	8034BB28
  * Size:	000008
  */
-void @4 @Game::Egg::Mgr::__dt(void)
+@4 @Game::Egg::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -434,3 +426,4 @@ void @4 @Game::Egg::Mgr::__dt(void)
 	  b         -0x238
 	*/
 }
+} // namespace Game

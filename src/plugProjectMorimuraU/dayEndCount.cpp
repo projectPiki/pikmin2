@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80344088
  * Size:	0000E0
  */
-void Morimura::TDayEndCount::__ct(void)
+Morimura::TDayEndCount::TDayEndCount(void)
 {
 	/*
 	.loc_0x0:
@@ -83,7 +73,7 @@ void Morimura::TDayEndCount::__ct(void)
  * Address:	80344168
  * Size:	0000AC
  */
-void Morimura::TTestBase::__dt(void)
+Morimura::TTestBase::~TTestBase(void)
 {
 	/*
 	.loc_0x0:
@@ -142,7 +132,7 @@ void Morimura::TTestBase::__dt(void)
  * Address:	80344214
  * Size:	0002EC
  */
-void Morimura::TDayEndCount::doCreate((JKRArchive*))
+void Morimura::TDayEndCount::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1121,7 +1111,7 @@ void Morimura::TDayEndCount::doUpdate(void)
  * Address:	80344F88
  * Size:	000078
  */
-void Morimura::TDayEndCount::doDraw((Graphics&))
+void Morimura::TDayEndCount::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1458,7 +1448,7 @@ void Morimura::TDayEndCount::reset(void)
  * Address:	80345414
  * Size:	000104
  */
-void Morimura::TChallengeEndCount::__ct(void)
+Morimura::TChallengeEndCount::TChallengeEndCount(void)
 {
 	/*
 	.loc_0x0:
@@ -1535,7 +1525,7 @@ void Morimura::TChallengeEndCount::__ct(void)
  * Address:	80345518
  * Size:	0000C4
  */
-void Morimura::TDayEndCount::__dt(void)
+Morimura::TDayEndCount::~TDayEndCount(void)
 {
 	/*
 	.loc_0x0:
@@ -1600,7 +1590,7 @@ void Morimura::TDayEndCount::__dt(void)
  * Address:	803455DC
  * Size:	000040
  */
-void Morimura::TChallengeEndCount::doCreate((JKRArchive*))
+void Morimura::TChallengeEndCount::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1628,7 +1618,7 @@ void Morimura::TChallengeEndCount::doCreate((JKRArchive*))
  * Address:	8034561C
  * Size:	00013C
  */
-void Morimura::TChallengeEndCount1p::__ct(void)
+Morimura::TChallengeEndCount1p::TChallengeEndCount1p(void)
 {
 	/*
 	.loc_0x0:
@@ -1719,7 +1709,7 @@ void Morimura::TChallengeEndCount1p::__ct(void)
  * Address:	80345758
  * Size:	0000DC
  */
-void Morimura::TChallengeEndCount::__dt(void)
+Morimura::TChallengeEndCount::~TChallengeEndCount(void)
 {
 	/*
 	.loc_0x0:
@@ -1815,7 +1805,7 @@ void Morimura::TChallengeEndCount1p::doUpdate(void)
  * Address:	80345868
  * Size:	00013C
  */
-void Morimura::TChallengeEndCount2p::__ct(void)
+Morimura::TChallengeEndCount2p::TChallengeEndCount2p(void)
 {
 	/*
 	.loc_0x0:
@@ -1930,7 +1920,7 @@ void Morimura::TChallengeEndCount2p::doUpdate(void)
  * Address:	803459D4
  * Size:	00048C
  */
-void Morimura::TCountDownScene::doCreateObj((JKRArchive*))
+void Morimura::TCountDownScene::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -2251,7 +2241,7 @@ void Morimura::TCountDownScene::doCreateObj((JKRArchive*))
  * Address:	80345E60
  * Size:	000064
  */
-void Morimura::TCountDownScene::doStart((Screen::StartSceneArg*))
+void Morimura::TCountDownScene::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -2290,7 +2280,7 @@ void Morimura::TCountDownScene::doStart((Screen::StartSceneArg*))
  * Address:	80345EC4
  * Size:	00000C
  */
-void Morimura::TCountDownScene::getResName( const
+void Morimura::TCountDownScene::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -2305,10 +2295,7 @@ void Morimura::TCountDownScene::getResName( const
  * Address:	80345ED0
  * Size:	000008
  */
-u32  Morimura::TCountDownScene::getSceneType(void)
-{
-	return 0x272D;
-}
+u32 Morimura::TCountDownScene::getSceneType(void) { return 0x272D; }
 
 /*
  * --INFO--
@@ -2347,7 +2334,7 @@ void Morimura::TCountDownScene::getMemberID(void)
  * Address:	80345EF8
  * Size:	000038
  */
-void Morimura::TDayEndCount::doStart( (Screen::StartSceneArg const *))
+void Morimura::TDayEndCount::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -2404,12 +2391,8 @@ void Morimura::TDayEndCount::getDispMemberBase(void)
  */
 void Morimura::TTestBase::doUpdateFadeinFinish(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x45(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x45(r3)
+	_45 = 1;
 }
 
 /*
@@ -2417,7 +2400,7 @@ void Morimura::TTestBase::doUpdateFadeinFinish(void)
  * Address:	80345F70
  * Size:	0000F4
  */
-void Morimura::TChallengeEndCount2p::__dt(void)
+Morimura::TChallengeEndCount2p::~TChallengeEndCount2p(void)
 {
 	/*
 	.loc_0x0:
@@ -2494,7 +2477,7 @@ void Morimura::TChallengeEndCount2p::__dt(void)
  * Address:	80346064
  * Size:	0000F4
  */
-void Morimura::TChallengeEndCount1p::__dt(void)
+Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 {
 	/*
 	.loc_0x0:
@@ -2571,7 +2554,7 @@ void Morimura::TChallengeEndCount1p::__dt(void)
  * Address:	80346158
  * Size:	000008
  */
-void @24@Morimura::TDayEndCount::__dt(void)
+@24 @Morimura::TDayEndCount::~TDayEndCount(void)
 {
 	/*
 	.loc_0x0:
@@ -2585,7 +2568,7 @@ void @24@Morimura::TDayEndCount::__dt(void)
  * Address:	80346160
  * Size:	000008
  */
-void @24@Morimura::TChallengeEndCount::__dt(void)
+@24 @Morimura::TChallengeEndCount::~TChallengeEndCount(void)
 {
 	/*
 	.loc_0x0:
@@ -2599,7 +2582,7 @@ void @24@Morimura::TChallengeEndCount::__dt(void)
  * Address:	80346168
  * Size:	000008
  */
-void @24@Morimura::TChallengeEndCount1p::__dt(void)
+@24 @Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 {
 	/*
 	.loc_0x0:
@@ -2613,7 +2596,7 @@ void @24@Morimura::TChallengeEndCount1p::__dt(void)
  * Address:	80346170
  * Size:	000008
  */
-void @24@Morimura::TChallengeEndCount2p::__dt(void)
+@24 @Morimura::TChallengeEndCount2p::~TChallengeEndCount2p(void)
 {
 	/*
 	.loc_0x0:

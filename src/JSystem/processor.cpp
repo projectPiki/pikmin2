@@ -5,7 +5,7 @@
  * Address:	80006D0C
  * Size:	000048
  */
-void JMessage::TReference::~TReference()
+JMessage::TReference::~TReference()
 {
 	/*
 	.loc_0x0:
@@ -44,7 +44,7 @@ u32 JMessage::TReference::do_word(unsigned long) const { return 0x0; }
  * Address:	80006D5C
  * Size:	000048
  */
-void JMessage::TProcessor::~TProcessor()
+JMessage::TProcessor::~TProcessor()
 {
 	/*
 	.loc_0x0:
@@ -1079,8 +1079,8 @@ void JMessage::TProcessor::process_onSelect_(JMessage::TProcessor*)
  * Address:	800077E4
  * Size:	000044
  */
-void JMessage::TSequenceProcessor::TSequenceProcessor(
-    const JMessage::TReference*, JMessage::TControl*)
+JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*,
+                                                 JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -1109,7 +1109,7 @@ void JMessage::TSequenceProcessor::TSequenceProcessor(
  * Address:	80007828
  * Size:	00005C
  */
-void JMessage::TSequenceProcessor::~TSequenceProcessor()
+JMessage::TSequenceProcessor::~TSequenceProcessor()
 {
 	/*
 	.loc_0x0:
@@ -2004,8 +2004,7 @@ void JMessage::TSequenceProcessor::process_onBranch_(
  * Address:	800080C0
  * Size:	00003C
  */
-void JMessage::TRenderingProcessor::TRenderingProcessor(
-    const JMessage::TReference*)
+JMessage::TRenderingProcessor::TRenderingProcessor(const JMessage::TReference*)
 {
 	/*
 	.loc_0x0:
@@ -2032,7 +2031,7 @@ void JMessage::TRenderingProcessor::TRenderingProcessor(
  * Address:	800080FC
  * Size:	00005C
  */
-void JMessage::TRenderingProcessor::~TRenderingProcessor()
+JMessage::TRenderingProcessor::~TRenderingProcessor()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802C6F58
  * Size:	000050
  */
-void Game::BigFoot::Mgr::Mgr(int, unsigned char)
+BigFoot::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::BigFoot::Mgr::Mgr(int, unsigned char)
  * Address:	802C6FA8
  * Size:	000048
  */
-void Game::BigFoot::Mgr::doAlloc()
+void BigFoot::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::BigFoot::Mgr::doAlloc()
  * Address:	802C6FF0
  * Size:	000048
  */
-void Game::BigFoot::Parms::Parms()
+BigFoot::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::BigFoot::Parms::Parms()
  * Address:	802C7038
  * Size:	0003D8
  */
-void Game::BigFoot::Parms::ProperParms::ProperParms()
+BigFoot::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -363,7 +365,7 @@ void Game::BigFoot::Parms::ProperParms::ProperParms()
  * Address:	802C7410
  * Size:	000060
  */
-void Game::BigFoot::Mgr::createObj(int)
+void BigFoot::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -399,7 +401,7 @@ void Game::BigFoot::Mgr::createObj(int)
  * Address:	802C7470
  * Size:	0000BC
  */
-void Game::BigFoot::Obj::~Obj()
+BigFoot::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -462,7 +464,7 @@ void Game::BigFoot::Obj::~Obj()
  * Address:	802C752C
  * Size:	000010
  */
-void Game::BigFoot::Mgr::getEnemy(int)
+void BigFoot::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +480,7 @@ void Game::BigFoot::Mgr::getEnemy(int)
  * Address:	802C753C
  * Size:	000068
  */
-void Game::BigFoot::Mgr::loadModelData()
+void BigFoot::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -520,7 +522,7 @@ void Game::BigFoot::Mgr::loadModelData()
  * Address:	802C75A4
  * Size:	0000B4
  */
-void Game::BigFoot::Mgr::loadTexData()
+void BigFoot::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -583,7 +585,7 @@ void Game::BigFoot::Mgr::loadTexData()
  * Address:	802C7658
  * Size:	00007C
  */
-void Game::BigFoot::Mgr::createModel()
+void BigFoot::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -630,7 +632,7 @@ void Game::BigFoot::Mgr::createModel()
  * Address:	802C76D4
  * Size:	0000B0
  */
-void Game::BigFoot::Mgr::~Mgr()
+BigFoot::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -690,14 +692,14 @@ void Game::BigFoot::Mgr::~Mgr()
  * Address:	802C7784
  * Size:	000008
  */
-u32 Game::BigFoot::Mgr::getEnemyTypeID() { return 0x45; }
+u32 BigFoot::Mgr::getEnemyTypeID() { return 0x45; }
 
 /*
  * --INFO--
  * Address:	802C778C
  * Size:	00002C
  */
-void Game::BigFoot::Mgr::doLoadBmd(void*)
+void BigFoot::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -720,7 +722,7 @@ void Game::BigFoot::Mgr::doLoadBmd(void*)
  * Address:	802C77B8
  * Size:	000050
  */
-void Game::BigFoot::Parms::read(Stream&)
+void BigFoot::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -752,7 +754,7 @@ void Game::BigFoot::Parms::read(Stream&)
  * Address:	802C7808
  * Size:	000008
  */
-void Game::BigFoot::Mgr::@4 @__dt()
+BigFoot::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -760,3 +762,4 @@ void Game::BigFoot::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

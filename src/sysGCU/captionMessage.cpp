@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000044
  */
-void P2JME::Caption::TRenderingProcessor::__ct((JMessage::TReference*))
+Caption::TRenderingProcessor::TRenderingProcessor(JMessage::TReference*)
 {
 	// UNUSED FUNCTION
 }
@@ -15,8 +17,7 @@ void P2JME::Caption::TRenderingProcessor::__ct((JMessage::TReference*))
  * Address:	80450FC0
  * Size:	00000C
  */
-void P2JME::Caption::TRenderingProcessor::doGetDrawInfo(
-    (P2JME::Window::DrawInfo*))
+void Caption::TRenderingProcessor::doGetDrawInfo(P2JME::Window::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -31,8 +32,8 @@ void P2JME::Caption::TRenderingProcessor::doGetDrawInfo(
  * Address:	80450FCC
  * Size:	0001EC
  */
-void P2JME::Caption::TRenderingProcessor::doDrawCommon((float, float, Matrixf*,
-                                                        Matrixf*))
+void Caption::TRenderingProcessor::doDrawCommon(float, float, Matrixf*,
+                                                Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +184,7 @@ void P2JME::Caption::TRenderingProcessor::doDrawCommon((float, float, Matrixf*,
  * Address:	804511B8
  * Size:	000054
  */
-void P2JME::Caption::TControl::__ct(void)
+Caption::TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -216,7 +217,7 @@ void P2JME::Caption::TControl::__ct(void)
  * Address:	8045120C
  * Size:	0000E8
  */
-void P2JME::Caption::TControl::onInit(void)
+void Caption::TControl::onInit(void)
 {
 	/*
 	.loc_0x0:
@@ -288,7 +289,7 @@ void P2JME::Caption::TControl::onInit(void)
  * Address:	804512F4
  * Size:	000034
  */
-void P2JME::Caption::TControl::reset(void)
+void Caption::TControl::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -313,7 +314,7 @@ void P2JME::Caption::TControl::reset(void)
  * Address:	80451328
  * Size:	000128
  */
-void P2JME::Caption::TControl::updateSetFrame((long))
+void Caption::TControl::updateSetFrame(long)
 {
 	/*
 	.loc_0x0:
@@ -409,7 +410,7 @@ void P2JME::Caption::TControl::updateSetFrame((long))
  * Address:	80451450
  * Size:	000084
  */
-void P2JME::Caption::TControl::draw((Graphics&))
+void Caption::TControl::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -456,7 +457,7 @@ void P2JME::Caption::TControl::draw((Graphics&))
  * Address:	804514D4
  * Size:	000058
  */
-void P2JME::Caption::TControl::start((char*, long, long))
+void Caption::TControl::start(char*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -490,7 +491,7 @@ void P2JME::Caption::TControl::start((char*, long, long))
  * Address:	8045152C
  * Size:	000088
  */
-void P2JME::Caption::TControl::createSequenceProcessor(void)
+void Caption::TControl::createSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +541,7 @@ void P2JME::Caption::TControl::createSequenceProcessor(void)
  * Address:	804515B4
  * Size:	00008C
  */
-void P2JME::Caption::TControl::createRenderingProcessor(void)
+void Caption::TControl::createRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -591,7 +592,7 @@ void P2JME::Caption::TControl::createRenderingProcessor(void)
  * Address:	80451640
  * Size:	000080
  */
-void P2JME::Caption::TSequenceProcessor::__dt(void)
+Caption::TSequenceProcessor::~TSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -639,42 +640,42 @@ void P2JME::Caption::TSequenceProcessor::__dt(void)
  * Address:	804516C0
  * Size:	000008
  */
-u32 P2JME::Caption::TSequenceProcessor::do_isReady(void) { return 0x1; }
+u32 Caption::TSequenceProcessor::do_isReady(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804516C8
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doResetAbtnWaitSE(void) { }
+void Caption::TSequenceProcessor::doResetAbtnWaitSE(void) { }
 
 /*
  * --INFO--
  * Address:	804516CC
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doCharacterSE((int)) { }
+void Caption::TSequenceProcessor::doCharacterSE(int) { }
 
 /*
  * --INFO--
  * Address:	804516D0
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doCharacterSEStart(void) { }
+void Caption::TSequenceProcessor::doCharacterSEStart(void) { }
 
 /*
  * --INFO--
  * Address:	804516D4
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doCharacterSEEnd(void) { }
+void Caption::TSequenceProcessor::doCharacterSEEnd(void) { }
 
 /*
  * --INFO--
  * Address:	804516D8
  * Size:	0000B8
  */
-void P2JME::Caption::TRenderingProcessor::__dt(void)
+Caption::TRenderingProcessor::~TRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -732,3 +733,4 @@ void P2JME::Caption::TRenderingProcessor::__dt(void)
 	  blr
 	*/
 }
+} // namespace P2JME

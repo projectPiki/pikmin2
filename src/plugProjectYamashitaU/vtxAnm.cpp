@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80122450
  * Size:	0000B0
  */
-void Game::FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
+FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
 {
 	/*
 	.loc_0x0:
@@ -63,7 +65,7 @@ void Game::FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
  * Address:	80122500
  * Size:	0001F8
  */
-void Game::FieldVtxColorMgr::createFieldVtxColorInfo()
+void FieldVtxColorMgr::createFieldVtxColorInfo()
 {
 	/*
 	.loc_0x0:
@@ -223,7 +225,7 @@ void Game::FieldVtxColorMgr::createFieldVtxColorInfo()
  * Address:	801226F8
  * Size:	00001C
  */
-void Game::FieldVtxColorInfo::FieldVtxColorInfo()
+FieldVtxColorInfo::FieldVtxColorInfo()
 {
 	/*
 	.loc_0x0:
@@ -242,7 +244,7 @@ void Game::FieldVtxColorInfo::FieldVtxColorInfo()
  * Address:	80122714
  * Size:	0001C8
  */
-void Game::FieldVtxColorMgr::initVtxColor()
+void FieldVtxColorMgr::initVtxColor()
 {
 	/*
 	.loc_0x0:
@@ -400,7 +402,7 @@ void Game::FieldVtxColorMgr::initVtxColor()
  * Address:	801228DC
  * Size:	000280
  */
-void Game::FieldVtxColorMgr::calc(J3DVertexBuffer*)
+void FieldVtxColorMgr::calc(J3DVertexBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -622,8 +624,8 @@ void Game::FieldVtxColorMgr::calc(J3DVertexBuffer*)
  * Address:	80122B5C
  * Size:	000158
  */
-void Game::FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void*, int, int,
-                                                             int, int)
+void FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void*, int, int, int,
+                                                       int)
 {
 	/*
 	.loc_0x0:
@@ -749,7 +751,7 @@ void Game::FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void*, int, int,
  * Address:	80122CB4
  * Size:	000210
  */
-void Game::FieldVtxColorMgr::setupFieldVtxColorInfo(J3DShape*)
+void FieldVtxColorMgr::setupFieldVtxColorInfo(J3DShape*)
 {
 	/*
 	.loc_0x0:
@@ -933,7 +935,7 @@ void Game::FieldVtxColorMgr::setupFieldVtxColorInfo(J3DShape*)
  * Address:	80122EC4
  * Size:	000128
  */
-void Game::FieldVtxColorMgr::createNewControl(Vector3<float>&, float, float)
+void FieldVtxColorMgr::createNewControl(Vector3f&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1033,8 +1035,8 @@ void Game::FieldVtxColorMgr::createNewControl(Vector3<float>&, float, float)
  * Address:	80122FEC
  * Size:	000204
  */
-void Game::FieldVtxColorMgr::setupFieldVtxColorControl(
-    Game::FieldVtxColorControl*, Vector3<float>&, float, float)
+void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl*,
+                                                 Vector3f&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1205,7 +1207,7 @@ void Game::FieldVtxColorMgr::setupFieldVtxColorControl(
  * Address:	801231F0
  * Size:	000080
  */
-void Game::FieldVtxColorMgr::~FieldVtxColorMgr()
+FieldVtxColorMgr::~FieldVtxColorMgr()
 {
 	/*
 	.loc_0x0:
@@ -1253,7 +1255,7 @@ void Game::FieldVtxColorMgr::~FieldVtxColorMgr()
  * Address:	80123270
  * Size:	000008
  */
-void Game::FieldVtxColorMgr::@12 @__dt()
+FieldVtxColorMgr::@12 @~FieldVtxColorMgr()
 {
 	/*
 	.loc_0x0:
@@ -1261,3 +1263,4 @@ void Game::FieldVtxColorMgr::@12 @__dt()
 	  b         -0x84
 	*/
 }
+} // namespace Game

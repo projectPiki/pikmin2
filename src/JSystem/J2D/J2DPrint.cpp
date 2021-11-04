@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8003D750
  * Size:	000094
  */
-void J2DPrint::J2DPrint(JUTFont*, float)
+J2DPrint::J2DPrint(JUTFont*, float)
 {
 	/*
 	.loc_0x0:
@@ -54,7 +54,7 @@ void J2DPrint::J2DPrint(JUTFont*, float)
  * Address:	8003D7E4
  * Size:	000098
  */
-void J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
+J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -104,8 +104,8 @@ void J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
  * Address:	8003D87C
  * Size:	000094
  */
-void J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor,
-                        JUtility::TColor, JUtility::TColor, JUtility::TColor)
+J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor,
+                   JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -154,7 +154,7 @@ void J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor,
  * Address:	8003D910
  * Size:	000048
  */
-void J2DPrint::~J2DPrint()
+J2DPrint::~J2DPrint()
 {
 	/*
 	.loc_0x0:

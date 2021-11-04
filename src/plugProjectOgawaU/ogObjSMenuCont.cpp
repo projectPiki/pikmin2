@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80330658
  * Size:	000064
  */
-void og::newScreen::ObjSMenuCont::__ct((char const*))
+newScreen::ObjSMenuCont::ObjSMenuCont(char const*)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +44,7 @@ void og::newScreen::ObjSMenuCont::__ct((char const*))
  * Address:	803306BC
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuCont::__dt(void)
+newScreen::ObjSMenuCont::~ObjSMenuCont(void)
 {
 	/*
 	.loc_0x0:
@@ -117,7 +109,7 @@ void og::newScreen::ObjSMenuCont::__dt(void)
  * Address:	80330780
  * Size:	00014C
  */
-void og::newScreen::ObjSMenuCont::doCreate((JKRArchive*))
+void newScreen::ObjSMenuCont::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -220,7 +212,7 @@ void og::newScreen::ObjSMenuCont::doCreate((JKRArchive*))
  * Address:	803308CC
  * Size:	0000CC
  */
-void og::newScreen::ObjSMenuCont::doUpdateLAction(void)
+void newScreen::ObjSMenuCont::doUpdateLAction(void)
 {
 	/*
 	.loc_0x0:
@@ -287,7 +279,7 @@ void og::newScreen::ObjSMenuCont::doUpdateLAction(void)
  * Address:	80330998
  * Size:	00006C
  */
-void og::newScreen::ObjSMenuCont::doUpdateRAction(void)
+void newScreen::ObjSMenuCont::doUpdateRAction(void)
 {
 	/*
 	.loc_0x0:
@@ -326,7 +318,7 @@ void og::newScreen::ObjSMenuCont::doUpdateRAction(void)
  * Address:	80330A04
  * Size:	000080
  */
-void og::newScreen::ObjSMenuCont::commonUpdate(void)
+void newScreen::ObjSMenuCont::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -370,7 +362,7 @@ void og::newScreen::ObjSMenuCont::commonUpdate(void)
  * Address:	80330A84
  * Size:	000054
  */
-void og::newScreen::ObjSMenuCont::doUpdate(void)
+void newScreen::ObjSMenuCont::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +395,7 @@ void og::newScreen::ObjSMenuCont::doUpdate(void)
  * Address:	80330AD8
  * Size:	000084
  */
-void og::newScreen::ObjSMenuCont::doDraw((Graphics&))
+void newScreen::ObjSMenuCont::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -450,7 +442,7 @@ void og::newScreen::ObjSMenuCont::doDraw((Graphics&))
  * Address:	80330B5C
  * Size:	000014
  */
-void og::newScreen::ObjSMenuCont::in_L(void)
+void newScreen::ObjSMenuCont::in_L(void)
 {
 	/*
 	.loc_0x0:
@@ -467,7 +459,7 @@ void og::newScreen::ObjSMenuCont::in_L(void)
  * Address:	80330B70
  * Size:	000014
  */
-void og::newScreen::ObjSMenuCont::in_R(void)
+void newScreen::ObjSMenuCont::in_R(void)
 {
 	/*
 	.loc_0x0:
@@ -484,14 +476,10 @@ void og::newScreen::ObjSMenuCont::in_R(void)
  * Address:	80330B84
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuCont::wait(void)
+void newScreen::ObjSMenuCont::wait(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x4
-	  stw       r0, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x38(r3)
+	_38 = 4;
 }
 
 /*
@@ -499,7 +487,7 @@ void og::newScreen::ObjSMenuCont::wait(void)
  * Address:	80330B90
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuCont::out_L(void)
+void newScreen::ObjSMenuCont::out_L(void)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +510,7 @@ void og::newScreen::ObjSMenuCont::out_L(void)
  * Address:	80330BBC
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuCont::out_R(void)
+void newScreen::ObjSMenuCont::out_R(void)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +533,7 @@ void og::newScreen::ObjSMenuCont::out_R(void)
  * Address:	80330BE8
  * Size:	0000A4
  */
-void og::newScreen::ObjSMenuCont::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjSMenuCont::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -598,17 +586,14 @@ void og::newScreen::ObjSMenuCont::doStart((Screen::StartSceneArg const*))
  * Address:	80330C8C
  * Size:	000008
  */
-u32 og::newScreen::ObjSMenuCont::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjSMenuCont::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80330C94
  * Size:	000020
  */
-void og::newScreen::ObjSMenuCont::doUpdateFinish(void)
+void newScreen::ObjSMenuCont::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -628,7 +613,7 @@ void og::newScreen::ObjSMenuCont::doUpdateFinish(void)
  * Address:	80330CB4
  * Size:	00004C
  */
-void og::newScreen::ObjSMenuCont::doUpdateFadeout(void)
+void newScreen::ObjSMenuCont::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -659,7 +644,9 @@ void og::newScreen::ObjSMenuCont::doUpdateFadeout(void)
  * Address:	80330D00
  * Size:	000004
  */
-void og::newScreen::ObjSMenuCont::doUpdateCancelAction(void) { }
+void newScreen::ObjSMenuCont::doUpdateCancelAction(void) { }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -683,7 +670,7 @@ void __sinit_ogObjSMenuCont_cpp(void)
  * Address:	80330D18
  * Size:	000008
  */
-void @24 @og::newScreen::ObjSMenuCont::__dt(void)
+@24 @og::newScreen::ObjSMenuCont::~ObjSMenuCont(void)
 {
 	/*
 	.loc_0x0:

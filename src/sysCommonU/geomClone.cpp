@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	80421ACC
  * Size:	000120
  */
-void Sys::TriDivider::clone((Matrixf&))
+void TriDivider::clone(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +97,7 @@ void Sys::TriDivider::clone((Matrixf&))
  * Address:	80421BEC
  * Size:	000160
  */
-void Sys::VertexTable::cloneFrom((Matrixf&, Sys::VertexTable*))
+void VertexTable::cloneFrom(Matrixf&, Sys::VertexTable*)
 {
 	/*
 	.loc_0x0:
@@ -225,8 +217,7 @@ void Sys::VertexTable::cloneFrom((Matrixf&, Sys::VertexTable*))
  * Address:	80421D4C
  * Size:	0000B4
  */
-void Sys::TriangleTable::cloneFrom((Matrixf&, Sys::TriangleTable*,
-                                    Sys::VertexTable*))
+void TriangleTable::cloneFrom(Matrixf&, Sys::TriangleTable*, Sys::VertexTable*)
 {
 	/*
 	.loc_0x0:
@@ -287,8 +278,7 @@ void Sys::TriangleTable::cloneFrom((Matrixf&, Sys::TriangleTable*,
  * Address:	80421E00
  * Size:	0000C4
  */
-void Sys::GridDivider::do_clone((Matrixf&, Sys::VertexTable*,
-                                 Sys::TriangleTable*))
+void GridDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*)
 {
 	/*
 	.loc_0x0:
@@ -345,3 +335,4 @@ void Sys::GridDivider::do_clone((Matrixf&, Sys::VertexTable*,
 	  blr
 	*/
 }
+} // namespace Sys

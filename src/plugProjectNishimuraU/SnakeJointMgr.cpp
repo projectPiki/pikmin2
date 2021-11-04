@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802D1634
  * Size:	000038
  */
-void Game::SnakeJointCallBack(J3DJoint*, int)
+void SnakeJointCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +35,7 @@ void Game::SnakeJointCallBack(J3DJoint*, int)
  * Address:	802D166C
  * Size:	00003C
  */
-void Game::SnakeJointMgr::SnakeJointMgr(Game::EnemyBase*)
+SnakeJointMgr::SnakeJointMgr(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::SnakeJointMgr::SnakeJointMgr(Game::EnemyBase*)
  * Address:	802D16A8
  * Size:	0000B8
  */
-void Game::SnakeJointMgr::setupCallBackJoint()
+void SnakeJointMgr::setupCallBackJoint()
 {
 	/*
 	.loc_0x0:
@@ -122,7 +124,7 @@ void Game::SnakeJointMgr::setupCallBackJoint()
  * Address:	802D1760
  * Size:	000020
  */
-void Game::SnakeJointMgr::startModify(float, float)
+void SnakeJointMgr::startModify(float, float)
 {
 	/*
 	.loc_0x0:
@@ -142,7 +144,7 @@ void Game::SnakeJointMgr::startModify(float, float)
  * Address:	802D1780
  * Size:	00001C
  */
-void Game::SnakeJointMgr::returnModify(float)
+void SnakeJointMgr::returnModify(float)
 {
 	/*
 	.loc_0x0:
@@ -161,14 +163,10 @@ void Game::SnakeJointMgr::returnModify(float)
  * Address:	802D179C
  * Size:	00000C
  */
-void Game::SnakeJointMgr::finishModify()
+void SnakeJointMgr::finishModify()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x1C(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x1C(r3)
+	_1C = 0;
 }
 
 /*
@@ -176,7 +174,7 @@ void Game::SnakeJointMgr::finishModify()
  * Address:	802D17A8
  * Size:	000080
  */
-void Game::SnakeJointMgr::doAnimation()
+void SnakeJointMgr::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -224,7 +222,7 @@ void Game::SnakeJointMgr::doAnimation()
  * Address:	802D1828
  * Size:	00000C
  */
-void Game::SnakeJointMgr::finishAnimation()
+void SnakeJointMgr::finishAnimation()
 {
 	/*
 	.loc_0x0:
@@ -239,7 +237,7 @@ void Game::SnakeJointMgr::finishAnimation()
  * Address:	802D1834
  * Size:	0002AC
  */
-void Game::SnakeJointMgr::makeMatrix()
+void SnakeJointMgr::makeMatrix()
 {
 	/*
 	.loc_0x0:
@@ -448,3 +446,4 @@ void Game::SnakeJointMgr::makeMatrix()
 	  blr
 	*/
 }
+} // namespace Game

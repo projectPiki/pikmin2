@@ -1,94 +1,90 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
  */
-void og::newScreen::Test::__ct((char const*))
+newScreen::Test::Test(char const*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8030D868
- * Size:	000094
- */
-void Screen::ObjBase::__dt(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x68
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0x103D1C
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x2F088C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x103CBC
+	 * --INFO--
+	 * Address:	8030D868
+	 * Size:	000094
+	 */
+	ObjBase::~ObjBase(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x78
+		  lis       r4, 0x804F
+		  subi      r4, r4, 0x28A8
+		  stw       r4, 0x0(r30)
+		  addi      r0, r4, 0x10
+		  stw       r0, 0x18(r30)
+		  beq-      .loc_0x68
+		  lis       r4, 0x804E
+		  subi      r4, r4, 0x7DC0
+		  stw       r4, 0x0(r30)
+		  addi      r0, r4, 0x10
+		  stw       r0, 0x18(r30)
+		  bl        0x103D1C
+		  addi      r3, r30, 0x18
+		  li        r4, 0
+		  bl        -0x2F088C
+		  mr        r3, r30
+		  li        r4, 0
+		  bl        0x103CBC
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        -0x2E9828
+		.loc_0x68:
+		  extsh.    r0, r31
+		  ble-      .loc_0x78
+		  mr        r3, r30
+		  bl        -0x2E9828
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x78:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void og::newScreen::Test::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	0000AC
+	 */
+	newScreen::Test::~Test(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00011C
  */
-void og::newScreen::Test::doCreate((JKRArchive*))
+void newScreen::Test::doCreate(JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +94,7 @@ void og::newScreen::Test::doCreate((JKRArchive*))
  * Address:	........
  * Size:	000040
  */
-void og::newScreen::Test::doUpdate(void)
+void newScreen::Test::doUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +104,7 @@ void og::newScreen::Test::doUpdate(void)
  * Address:	........
  * Size:	000034
  */
-void og::newScreen::Test::doDraw((Graphics&))
+void newScreen::Test::doDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +114,7 @@ void og::newScreen::Test::doDraw((Graphics&))
  * Address:	........
  * Size:	000008
  */
-void og::newScreen::Test::doStart((Screen::StartSceneArg const*))
+void newScreen::Test::doStart(Screen::StartSceneArg const*)
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +124,7 @@ void og::newScreen::Test::doStart((Screen::StartSceneArg const*))
  * Address:	........
  * Size:	000008
  */
-void og::newScreen::Test::doEnd((Screen::EndSceneArg const*))
+void newScreen::Test::doEnd(Screen::EndSceneArg const*)
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +134,7 @@ void og::newScreen::Test::doEnd((Screen::EndSceneArg const*))
  * Address:	........
  * Size:	000004
  */
-void og::newScreen::Test::doUpdateFadeinFinish(void)
+void newScreen::Test::doUpdateFadeinFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -148,7 +144,7 @@ void og::newScreen::Test::doUpdateFadeinFinish(void)
  * Address:	........
  * Size:	000004
  */
-void og::newScreen::Test::doUpdateFinish(void)
+void newScreen::Test::doUpdateFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -158,7 +154,7 @@ void og::newScreen::Test::doUpdateFinish(void)
  * Address:	........
  * Size:	000004
  */
-void og::newScreen::Test::doUpdateFadeoutFinish(void)
+void newScreen::Test::doUpdateFadeoutFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +164,7 @@ void og::newScreen::Test::doUpdateFadeoutFinish(void)
  * Address:	........
  * Size:	000008
  */
-void og::newScreen::Test::doUpdateFadein(void)
+void newScreen::Test::doUpdateFadein(void)
 {
 	// UNUSED FUNCTION
 }
@@ -178,47 +174,51 @@ void og::newScreen::Test::doUpdateFadein(void)
  * Address:	........
  * Size:	000008
  */
-void og::newScreen::Test::doUpdateFadeout(void)
+void newScreen::Test::doUpdateFadeout(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void og::Screen::DispMemberTest::getSize(void)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void og::Screen::DispMemberTest::getOwnerID(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000008
+	 */
+	void DispMemberTest::getSize(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void og::Screen::DispMemberTest::getMemberID(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	00000C
+	 */
+	void DispMemberTest::getOwnerID(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000010
+	 */
+	void DispMemberTest::getMemberID(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	8030D8FC
  * Size:	000060
  */
-void Screen::ObjBase::setOwner((Screen::SceneBase*))
+void ObjBase::setOwner(Screen::SceneBase*)
 {
 	/*
 	.loc_0x0:
@@ -256,7 +256,7 @@ void Screen::ObjBase::setOwner((Screen::SceneBase*))
  * Address:	8030D95C
  * Size:	000008
  */
-void Screen::ObjBase::getOwner( const
+void ObjBase::getOwner() const
 {
 	/*
 	.loc_0x0:
@@ -270,37 +270,28 @@ void Screen::ObjBase::getOwner( const
  * Address:	8030D964
  * Size:	000008
  */
-u32  Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
-{
-	return 0x1;
-}
+u32 ObjBase::doConfirmSetScene(Screen::SetSceneArg&) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8030D96C
  * Size:	000008
  */
-u32  Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
-{
-	return 0x1;
-}
+u32 ObjBase::doConfirmStartScene(Screen::StartSceneArg*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8030D974
  * Size:	000008
  */
-u32  Screen::ObjBase::doConfirmEndScene( (Screen::EndSceneArg *&))
-{
-	return 0x1;
-}
+u32 ObjBase::doConfirmEndScene(Screen::EndSceneArg*&) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8030D97C
  * Size:	00007C
  */
-void Screen::IObjBase::__dt(void)
+IObjBase::~IObjBase(void)
 {
 	/*
 	.loc_0x0:
@@ -345,7 +336,7 @@ void Screen::IObjBase::__dt(void)
  * Address:	8030D9F8
  * Size:	000008
  */
-void @24@Screen::IObjBase::__dt(void)
+@24 @Screen::IObjBase::~IObjBase(void)
 {
 	/*
 	.loc_0x0:
@@ -359,7 +350,8 @@ void @24@Screen::IObjBase::__dt(void)
  * Address:	........
  * Size:	000008
  */
-void @24@og::newScreen::Test::__dt(void)
+@24 @og::newScreen::Test::~Test(void)
 {
 	// UNUSED FUNCTION
 }
+} // namespace og

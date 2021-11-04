@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80022ADC
  * Size:	00008C
  */
-void JKRArcFinder::JKRArcFinder(JKRArchive*, long, long)
+JKRArcFinder::JKRArcFinder(JKRArchive*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -109,7 +109,7 @@ void JKRArcFinder::findNextFile()
  * Address:	80022C14
  * Size:	000088
  */
-void JKRDvdFinder::JKRDvdFinder(const char*)
+JKRDvdFinder::JKRDvdFinder(const char*)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +155,7 @@ void JKRDvdFinder::JKRDvdFinder(const char*)
  * Address:	80022C9C
  * Size:	000080
  */
-void JKRDvdFinder::~JKRDvdFinder()
+JKRDvdFinder::~JKRDvdFinder()
 {
 	/*
 	.loc_0x0:
@@ -262,7 +262,7 @@ void JKRDvdFinder::findNextFile()
  * Address:	80022DC0
  * Size:	00005C
  */
-void JKRArcFinder::~JKRArcFinder()
+JKRArcFinder::~JKRArcFinder()
 {
 	/*
 	.loc_0x0:

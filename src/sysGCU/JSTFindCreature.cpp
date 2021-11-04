@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	804313B8
  * Size:	000450
  */
-void Game::P2JST::ObjectSystem::findCreature(const(char const*))
+void P2JST::ObjectSystem::findCreature(const(char const*))
 {
 	/*
 	.loc_0x0:
@@ -353,6 +345,8 @@ void Game::P2JST::ObjectSystem::findCreature(const(char const*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

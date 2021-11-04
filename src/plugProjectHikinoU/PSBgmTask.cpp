@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	8033E6B4
  * Size:	000124
  */
-void PSSystem::ModParamWithFade::task(JASTrack&)
+void ModParamWithFade::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +100,7 @@ void PSSystem::ModParamWithFade::task(JASTrack&)
  * Address:	8033E7D8
  * Size:	0000F4
  */
-void PSSystem::ModParamWithTableTask::task(JASTrack&)
+void ModParamWithTableTask::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +175,7 @@ void PSSystem::ModParamWithTableTask::task(JASTrack&)
  * Address:	8033E8CC
  * Size:	000030
  */
-void PSSystem::PitchModTask::tableTask(JASTrack&, float)
+void PitchModTask::tableTask(JASTrack&, float)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void PSSystem::PitchModTask::tableTask(JASTrack&, float)
  * Address:	8033E8FC
  * Size:	0000D4
  */
-void PSSystem::OuterParamTask::getPreParam(JASTrack&)
+void OuterParamTask::getPreParam(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +284,7 @@ void PSSystem::OuterParamTask::getPreParam(JASTrack&)
  * Address:	8033E9D0
  * Size:	000098
  */
-void PSSystem::OuterParamTask::timeTask(JASTrack&, float)
+void OuterParamTask::timeTask(JASTrack&, float)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +338,7 @@ void PSSystem::OuterParamTask::timeTask(JASTrack&, float)
  * Address:	8033EA68
  * Size:	000028
  */
-void PSSystem::SimpleWaitTask::task(JASTrack&)
+void SimpleWaitTask::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -360,7 +362,7 @@ void PSSystem::SimpleWaitTask::task(JASTrack&)
  * Address:	8033EA90
  * Size:	000074
  */
-void PSSystem::BankRandPrm::BankRandPrm()
+BankRandPrm::BankRandPrm()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +403,7 @@ void PSSystem::BankRandPrm::BankRandPrm()
  * Address:	8033EB04
  * Size:	000080
  */
-void PSSystem::TaskEntry_OuterParam::makeEntry(float, unsigned long)
+void TaskEntry_OuterParam::makeEntry(float, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -445,7 +447,7 @@ void PSSystem::TaskEntry_OuterParam::makeEntry(float, unsigned long)
  * Address:	8033EB84
  * Size:	000054
  */
-void PSSystem::TaskEntry_IdMask::makeEntry(unsigned char)
+void TaskEntry_IdMask::makeEntry(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +480,7 @@ void PSSystem::TaskEntry_IdMask::makeEntry(unsigned char)
  * Address:	8033EBD8
  * Size:	000110
  */
-void PSSystem::TaskEntry_PitMod::makeEntry(float, float, unsigned long)
+void TaskEntry_PitMod::makeEntry(float, float, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -562,7 +564,7 @@ void PSSystem::TaskEntry_PitMod::makeEntry(float, float, unsigned long)
  * Address:	8033ECE8
  * Size:	0000A4
  */
-void PSSystem::TaskEntry_MuteVolume::makeEntry(float, unsigned long)
+void TaskEntry_MuteVolume::makeEntry(float, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -615,7 +617,7 @@ void PSSystem::TaskEntry_MuteVolume::makeEntry(float, unsigned long)
  * Address:	8033ED8C
  * Size:	00008C
  */
-void PSSystem::TaskEntry_MuteOnVolume::makeEntry(unsigned long)
+void TaskEntry_MuteOnVolume::makeEntry(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -662,7 +664,7 @@ void PSSystem::TaskEntry_MuteOnVolume::makeEntry(unsigned long)
  * Address:	8033EE18
  * Size:	000080
  */
-void PSSystem::TaskEntry_Tempo::makeEntry(float, unsigned long)
+void TaskEntry_Tempo::makeEntry(float, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -700,3 +702,4 @@ void PSSystem::TaskEntry_Tempo::makeEntry(float, unsigned long)
 	  blr
 	*/
 }
+} // namespace PSSystem

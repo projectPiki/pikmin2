@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013F6D4
  * Size:	000050
  */
-void Game::Navi::getShadowParam(Game::ShadowParam&)
+void Navi::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Navi::getShadowParam(Game::ShadowParam&)
  * Address:	8013F724
  * Size:	000024
  */
-void Game::Navi::getLODSphere(Sys::Sphere&)
+void Navi::getLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -58,7 +60,7 @@ void Game::Navi::getLODSphere(Sys::Sphere&)
  * Address:	8013F748
  * Size:	000208
  */
-void Game::Navi::Navi()
+Navi::Navi()
 {
 	/*
 	.loc_0x0:
@@ -213,12 +215,16 @@ void Game::Navi::Navi()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8013F950
  * Size:	0002B0
  */
-void efx::TNaviEffect::TNaviEffect()
+TNaviEffect::TNaviEffect()
 {
 	/*
 	.loc_0x0:
@@ -402,7 +408,7 @@ void efx::TNaviEffect::TNaviEffect()
  * Address:	8013FC00
  * Size:	000084
  */
-void efx::TChaseMtxT::~TChaseMtxT()
+TChaseMtxT::~TChaseMtxT()
 {
 	/*
 	.loc_0x0:
@@ -451,7 +457,7 @@ void efx::TChaseMtxT::~TChaseMtxT()
  * Address:	8013FC84
  * Size:	000050
  */
-void efx::Context::Context()
+Context::Context()
 {
 	/*
 	.loc_0x0:
@@ -483,7 +489,7 @@ void efx::Context::Context()
  * Address:	8013FCD4
  * Size:	00008C
  */
-void efx::TOneEmitter::~TOneEmitter()
+TOneEmitter::~TOneEmitter()
 {
 	/*
 	.loc_0x0:
@@ -534,7 +540,7 @@ void efx::TOneEmitter::~TOneEmitter()
  * Address:	8013FD60
  * Size:	000060
  */
-void efx::Context::~Context()
+Context::~Context()
 {
 	/*
 	.loc_0x0:
@@ -572,7 +578,7 @@ void efx::Context::~Context()
  * Address:	8013FDC0
  * Size:	00009C
  */
-void efx::TFueactBiri2::~TFueactBiri2()
+TFueactBiri2::~TFueactBiri2()
 {
 	/*
 	.loc_0x0:
@@ -627,7 +633,7 @@ void efx::TFueactBiri2::~TFueactBiri2()
  * Address:	8013FE5C
  * Size:	00009C
  */
-void efx::TFueactBiri1::~TFueactBiri1()
+TFueactBiri1::~TFueactBiri1()
 {
 	/*
 	.loc_0x0:
@@ -682,7 +688,7 @@ void efx::TFueactBiri1::~TFueactBiri1()
  * Address:	8013FEF8
  * Size:	000084
  */
-void efx::TFueactBiriBase::~TFueactBiriBase()
+TFueactBiriBase::~TFueactBiriBase()
 {
 	/*
 	.loc_0x0:
@@ -731,7 +737,7 @@ void efx::TFueactBiriBase::~TFueactBiriBase()
  * Address:	8013FF7C
  * Size:	000080
  */
-void efx::TFueactCircle::~TFueactCircle()
+TFueactCircle::~TFueactCircle()
 {
 	/*
 	.loc_0x0:
@@ -777,7 +783,7 @@ void efx::TFueactCircle::~TFueactCircle()
  * Address:	8013FFFC
  * Size:	000060
  */
-void efx::ContextChasePos::~ContextChasePos()
+ContextChasePos::~ContextChasePos()
 {
 	/*
 	.loc_0x0:
@@ -815,7 +821,7 @@ void efx::ContextChasePos::~ContextChasePos()
  * Address:	8014005C
  * Size:	000054
  */
-void efx::ContextChasePos::ContextChasePos()
+ContextChasePos::ContextChasePos()
 {
 	/*
 	.loc_0x0:
@@ -843,12 +849,16 @@ void efx::ContextChasePos::ContextChasePos()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801400B0
  * Size:	000290
  */
-void Game::Navi::onInit(Game::CreatureInitArg*)
+void Navi::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -1030,7 +1040,7 @@ void Game::Navi::onInit(Game::CreatureInitArg*)
  * Address:	80140340
  * Size:	000008
  */
-void Game::Navi::getCreatureID()
+void Navi::getCreatureID()
 {
 	/*
 	.loc_0x0:
@@ -1044,7 +1054,7 @@ void Game::Navi::getCreatureID()
  * Address:	80140348
  * Size:	000034
  */
-void Game::StateMachine<Game::Navi>::start(Game::Navi*, int, Game::StateArg*)
+void StateMachine<Game::Navi>::start(Game::Navi*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1069,7 +1079,7 @@ void Game::StateMachine<Game::Navi>::start(Game::Navi*, int, Game::StateArg*)
  * Address:	8014037C
  * Size:	000088
  */
-void Game::Navi::onSetPosition(Vector3<float>&)
+void Navi::onSetPosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1119,7 +1129,7 @@ void Game::Navi::onSetPosition(Vector3<float>&)
  * Address:	80140404
  * Size:	000040
  */
-void Game::Navi::onKill(Game::CreatureKillArg*)
+void Navi::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1147,7 +1157,7 @@ void Game::Navi::onKill(Game::CreatureKillArg*)
  * Address:	80140444
  * Size:	0000D4
  */
-void Game::Navi::onKeyEvent(const SysShape::KeyEvent&)
+void Navi::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1220,14 +1230,14 @@ void Game::Navi::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	80140518
  * Size:	000004
  */
-void Game::NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&) { }
+void NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	8014051C
  * Size:	000080
  */
-void Game::Navi::getPosition()
+void Navi::getPosition()
 {
 	/*
 	.loc_0x0:
@@ -1275,7 +1285,7 @@ void Game::Navi::getPosition()
  * Address:	8014059C
  * Size:	000050
  */
-void Game::Navi::onStickStart(Game::Creature*)
+void Navi::onStickStart(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1309,7 +1319,7 @@ void Game::Navi::onStickStart(Game::Creature*)
  * Address:	801405EC
  * Size:	000058
  */
-void Game::Navi::onStickEnd(Game::Creature*)
+void Navi::onStickEnd(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1345,7 +1355,7 @@ void Game::Navi::onStickEnd(Game::Creature*)
  * Address:	80140644
  * Size:	000654
  */
-void Game::Navi::procActionButton()
+void Navi::procActionButton()
 {
 	/*
 	.loc_0x0:
@@ -1807,6 +1817,8 @@ void Game::Navi::procActionButton()
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	80140C98
@@ -1854,13 +1866,15 @@ void Iterator<Game::ItemPikihead::Item>::isDone()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80140CF4
  * Size:	000138
  */
-void Game::Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*,
-                                    Game::NaviNukuAdjustStateArg&)
+void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*,
+                              Game::NaviNukuAdjustStateArg&)
 {
 	/*
 	.loc_0x0:
@@ -1950,7 +1964,7 @@ void Game::Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*,
  * Address:	80140E2C
  * Size:	000050
  */
-void Game::Navi::hasDope(int)
+void Navi::hasDope(int)
 {
 	/*
 	.loc_0x0:
@@ -1986,7 +2000,7 @@ void Game::Navi::hasDope(int)
  * Address:	80140E7C
  * Size:	000044
  */
-void Game::Navi::getDopeCount(int)
+void Navi::getDopeCount(int)
 {
 	/*
 	.loc_0x0:
@@ -2019,7 +2033,7 @@ void Game::Navi::getDopeCount(int)
  * Address:	80140EC0
  * Size:	00004C
  */
-void Game::Navi::useDope(int)
+void Navi::useDope(int)
 {
 	/*
 	.loc_0x0:
@@ -2054,7 +2068,7 @@ void Game::Navi::useDope(int)
  * Address:	80140F0C
  * Size:	0000A0
  */
-void Game::Navi::incDopeCount(int)
+void Navi::incDopeCount(int)
 {
 	/*
 	.loc_0x0:
@@ -2104,3 +2118,4 @@ void Game::Navi::incDopeCount(int)
 	  blr
 	*/
 }
+} // namespace Game

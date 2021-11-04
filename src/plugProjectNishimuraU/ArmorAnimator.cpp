@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80287AFC
  * Size:	000008
  */
-void Game::Armor::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Armor::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Armor::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80287B04
  * Size:	000008
  */
-void Game::Armor::ProperAnimator::getAnimator(int)
+void Armor::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Armor::ProperAnimator::getAnimator(int)
  * Address:	80287B0C
  * Size:	00005C
  */
-void Game::Armor::ProperAnimator::~ProperAnimator()
+Armor::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Armor::ProperAnimator::~ProperAnimator()
  * Address:	80287B68
  * Size:	000008
  */
-void Game::Armor::ProperAnimator::getAnimator()
+void Armor::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Armor::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

@@ -3,19 +3,9 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	00007C
  */
-void Resource::Node::__ct((char const*))
+Resource::Node::Node(char const*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void Resource::Node::__ct((char const*))
  * Address:	804330D8
  * Size:	0000DC
  */
-void Resource::Node::__dt(void)
+Resource::Node::~Node(void)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +98,7 @@ void Resource::Node::dump(void)
  * Address:	........
  * Size:	0001CC
  */
-void Resource::Node::drawDump((Graphics&, int&, int&))
+void Resource::Node::drawDump(Graphics&, int&, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +118,7 @@ void Resource::Node::becomeCurrentHeap(void)
  * Address:	........
  * Size:	000030
  */
-void Resource::Node::destroy((Resource::Node*))
+void Resource::Node::destroy(Resource::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +128,7 @@ void Resource::Node::destroy((Resource::Node*))
  * Address:	804331B4
  * Size:	000138
  */
-void Resource::MgrCommand::__ct((char*))
+Resource::MgrCommand::MgrCommand(char*)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +228,7 @@ void __dt__Q38Resource10MgrCommand26 @class$2436resourceMgr_cppFv(void)
  * Address:	804332EC
  * Size:	0000B8
  */
-void Resource::MgrCommand::__dt(void)
+Resource::MgrCommand::~MgrCommand(void)
 {
 	/*
 	.loc_0x0:
@@ -419,7 +409,7 @@ void Resource::MgrCommand::getResource(void)
  * Address:	........
  * Size:	000040
  */
-void Resource::MgrCommand::setModeMemory((Resource::Node*))
+void Resource::MgrCommand::setModeMemory(Resource::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -429,7 +419,7 @@ void Resource::MgrCommand::setModeMemory((Resource::Node*))
  * Address:	........
  * Size:	000040
  */
-void Resource::MgrCommand::setModeAram((Resource::Node*, ARAM::Node*))
+void Resource::MgrCommand::setModeAram(Resource::Node*, ARAM::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -439,7 +429,7 @@ void Resource::MgrCommand::setModeAram((Resource::Node*, ARAM::Node*))
  * Address:	........
  * Size:	000040
  */
-void Resource::MgrCommand::setModeDvd((Resource::Node*))
+void Resource::MgrCommand::setModeDvd(Resource::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -669,7 +659,7 @@ void Resource::MgrCommand::destroy(void)
  * Address:	804336D0
  * Size:	00010C
  */
-void Resource::Mgr::__ct((JKRHeap*, unsigned long))
+Resource::Mgr::Mgr(JKRHeap*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -752,7 +742,7 @@ void Resource::Mgr::__ct((JKRHeap*, unsigned long))
  * Address:	........
  * Size:	00006C
  */
-void Resource::Mgr::search((char const*))
+void Resource::Mgr::search(char const*)
 {
 	// UNUSED FUNCTION
 }
@@ -772,14 +762,14 @@ void Resource::Mgr::dump(void)
  * Address:	804337DC
  * Size:	000004
  */
-void Resource::Mgr::drawDump((Graphics&, int, int)) { }
+void Resource::Mgr::drawDump(Graphics&, int, int) { }
 
 /*
  * --INFO--
  * Address:	804337E0
  * Size:	0001B4
  */
-void Resource::Mgr::createNewNode((char const*))
+void Resource::Mgr::createNewNode(char const*)
 {
 	/*
 	.loc_0x0:
@@ -918,7 +908,7 @@ void Resource::Mgr::createNewNode((char const*))
  * Address:	80433994
  * Size:	000188
  */
-void Resource::Mgr::loadResource((Resource::MgrCommand*, char const*, bool))
+void Resource::Mgr::loadResource(Resource::MgrCommand*, char const*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1044,7 +1034,7 @@ void Resource::Mgr::loadResource((Resource::MgrCommand*, char const*, bool))
  * Address:	80433B1C
  * Size:	000070
  */
-void Resource::Mgr::destroy((Resource::MgrCommand*))
+void Resource::Mgr::destroy(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -1131,7 +1121,7 @@ void Resource::Mgr::destroyAll(void)
  * Address:	80433BF0
  * Size:	0001E0
  */
-void Resource::Mgr::sync((Resource::MgrCommand*, bool))
+void Resource::Mgr::sync(Resource::MgrCommand*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1305,7 +1295,7 @@ void Resource::Mgr::sync((Resource::MgrCommand*, bool))
  * Address:	........
  * Size:	00013C
  */
-void Resource::Mgr::syncAll((bool))
+void Resource::Mgr::syncAll(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1429,7 +1419,7 @@ void Resource::Mgr::delFinishCommand(void)
  * Address:	80433F00
  * Size:	000030
  */
-void Resource::Mgr::searchCommand((Resource::MgrCommand*))
+void Resource::Mgr::searchCommand(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -1493,7 +1483,7 @@ void Delegate<Resource::MgrCommand>::invoke()
  * Address:	80433F60
  * Size:	000008
  */
-void @24 @Resource::Node::__dt(void)
+@24 @Resource::Node::~Node(void)
 {
 	/*
 	.loc_0x0:
@@ -1507,7 +1497,7 @@ void @24 @Resource::Node::__dt(void)
  * Address:	80433F68
  * Size:	000008
  */
-void @24 @Resource::MgrCommand::__dt(void)
+@24 @Resource::MgrCommand::~MgrCommand(void)
 {
 	/*
 	.loc_0x0:

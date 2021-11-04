@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80324F2C
  * Size:	000080
  */
-void og::newScreen::ObjFinalMsg::__ct((char const*))
+newScreen::ObjFinalMsg::ObjFinalMsg(char const*)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +51,7 @@ void og::newScreen::ObjFinalMsg::__ct((char const*))
  * Address:	80324FAC
  * Size:	0000AC
  */
-void og::newScreen::ObjFinalMsg::__dt(void)
+newScreen::ObjFinalMsg::~ObjFinalMsg(void)
 {
 	/*
 	.loc_0x0:
@@ -118,7 +110,7 @@ void og::newScreen::ObjFinalMsg::__dt(void)
  * Address:	80325058
  * Size:	0002CC
  */
-void og::newScreen::ObjFinalMsg::doCreate((JKRArchive*))
+void newScreen::ObjFinalMsg::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -321,7 +313,7 @@ void og::newScreen::ObjFinalMsg::doCreate((JKRArchive*))
  * Address:	80325324
  * Size:	000070
  */
-void og::newScreen::ObjFinalMsg::blink_Menu((int))
+void newScreen::ObjFinalMsg::blink_Menu(int)
 {
 	/*
 	.loc_0x0:
@@ -365,7 +357,7 @@ void og::newScreen::ObjFinalMsg::blink_Menu((int))
  * Address:	........
  * Size:	000054
  */
-void og::newScreen::ObjFinalMsg::commonUpdate(void)
+void newScreen::ObjFinalMsg::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -375,7 +367,7 @@ void og::newScreen::ObjFinalMsg::commonUpdate(void)
  * Address:	80325394
  * Size:	000068
  */
-void og::newScreen::ObjFinalMsg::doUpdate(void)
+void newScreen::ObjFinalMsg::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -415,7 +407,7 @@ void og::newScreen::ObjFinalMsg::doUpdate(void)
  * Address:	803253FC
  * Size:	0001C0
  */
-void og::newScreen::ObjFinalMsg::menu(void)
+void newScreen::ObjFinalMsg::menu(void)
 {
 	/*
 	.loc_0x0:
@@ -557,7 +549,7 @@ void og::newScreen::ObjFinalMsg::menu(void)
  * Address:	803255BC
  * Size:	000060
  */
-void og::newScreen::ObjFinalMsg::doDraw((Graphics&))
+void newScreen::ObjFinalMsg::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -595,7 +587,7 @@ void og::newScreen::ObjFinalMsg::doDraw((Graphics&))
  * Address:	8032561C
  * Size:	000060
  */
-void og::newScreen::ObjFinalMsg::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjFinalMsg::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -631,17 +623,14 @@ void og::newScreen::ObjFinalMsg::doStart((Screen::StartSceneArg const*))
  * Address:	8032567C
  * Size:	000008
  */
-u32 og::newScreen::ObjFinalMsg::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjFinalMsg::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80325684
  * Size:	0000B8
  */
-void og::newScreen::ObjFinalMsg::doUpdateFadein(void)
+void newScreen::ObjFinalMsg::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -701,7 +690,7 @@ void og::newScreen::ObjFinalMsg::doUpdateFadein(void)
  * Address:	8032573C
  * Size:	00003C
  */
-void og::newScreen::ObjFinalMsg::doUpdateFadeinFinish(void)
+void newScreen::ObjFinalMsg::doUpdateFadeinFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -728,7 +717,7 @@ void og::newScreen::ObjFinalMsg::doUpdateFadeinFinish(void)
  * Address:	80325778
  * Size:	000038
  */
-void og::newScreen::ObjFinalMsg::doUpdateFinish(void)
+void newScreen::ObjFinalMsg::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -754,7 +743,7 @@ void og::newScreen::ObjFinalMsg::doUpdateFinish(void)
  * Address:	803257B0
  * Size:	0000B0
  */
-void og::newScreen::ObjFinalMsg::doUpdateFadeout(void)
+void newScreen::ObjFinalMsg::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +801,7 @@ void og::newScreen::ObjFinalMsg::doUpdateFadeout(void)
  * Address:	80325860
  * Size:	000034
  */
-void og::newScreen::ObjFinalMsg::doUpdateFadeoutFinish(void)
+void newScreen::ObjFinalMsg::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -837,7 +826,7 @@ void og::newScreen::ObjFinalMsg::doUpdateFadeoutFinish(void)
  * Address:	80325894
  * Size:	00004C
  */
-void og::newScreen::ObjFinalMsg::wait(void)
+void newScreen::ObjFinalMsg::wait(void)
 {
 	/*
 	.loc_0x0:
@@ -868,7 +857,7 @@ void og::newScreen::ObjFinalMsg::wait(void)
  * Address:	803258E0
  * Size:	000008
  */
-void @24 @og::newScreen::ObjFinalMsg::__dt(void)
+@24 @og::newScreen::ObjFinalMsg::~ObjFinalMsg(void)
 {
 	/*
 	.loc_0x0:
@@ -876,3 +865,4 @@ void @24 @og::newScreen::ObjFinalMsg::__dt(void)
 	  b         -0x938
 	*/
 }
+} // namespace og

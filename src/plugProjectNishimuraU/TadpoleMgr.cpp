@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80278264
  * Size:	000050
  */
-void Game::Tadpole::Mgr::Mgr(int, unsigned char)
+Tadpole::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Tadpole::Mgr::Mgr(int, unsigned char)
  * Address:	802782B4
  * Size:	000048
  */
-void Game::Tadpole::Mgr::doAlloc()
+void Tadpole::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Tadpole::Mgr::doAlloc()
  * Address:	802782FC
  * Size:	000098
  */
-void Game::Tadpole::Parms::Parms()
+Tadpole::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -121,7 +123,7 @@ void Game::Tadpole::Parms::Parms()
  * Address:	80278394
  * Size:	000060
  */
-void Game::Tadpole::Mgr::createObj(int)
+void Tadpole::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +159,7 @@ void Game::Tadpole::Mgr::createObj(int)
  * Address:	802783F4
  * Size:	0000BC
  */
-void Game::Tadpole::Obj::~Obj()
+Tadpole::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -220,7 +222,7 @@ void Game::Tadpole::Obj::~Obj()
  * Address:	802784B0
  * Size:	000010
  */
-void Game::Tadpole::Mgr::getEnemy(int)
+void Tadpole::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -236,7 +238,7 @@ void Game::Tadpole::Mgr::getEnemy(int)
  * Address:	802784C0
  * Size:	000050
  */
-void Game::Tadpole::Parms::read(Stream&)
+void Tadpole::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +270,7 @@ void Game::Tadpole::Parms::read(Stream&)
  * Address:	80278510
  * Size:	0000B0
  */
-void Game::Tadpole::Mgr::~Mgr()
+Tadpole::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -328,14 +330,14 @@ void Game::Tadpole::Mgr::~Mgr()
  * Address:	802785C0
  * Size:	000008
  */
-u32 Game::Tadpole::Mgr::getEnemyTypeID() { return 0x1B; }
+u32 Tadpole::Mgr::getEnemyTypeID() { return 0x1B; }
 
 /*
  * --INFO--
  * Address:	802785C8
  * Size:	000008
  */
-void Game::Tadpole::Mgr::@4 @__dt()
+Tadpole::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -343,3 +345,4 @@ void Game::Tadpole::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

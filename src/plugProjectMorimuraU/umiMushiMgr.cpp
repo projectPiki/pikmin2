@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8038273C
  * Size:	000050
  */
-void Game::UmiMushi::Mgr::__ct((int, unsigned char))
+UmiMushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::UmiMushi::Mgr::__ct((int, unsigned char))
  * Address:	8038278C
  * Size:	000048
  */
-void Game::UmiMushi::Mgr::doAlloc(void)
+void UmiMushi::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::UmiMushi::Mgr::doAlloc(void)
  * Address:	803827D4
  * Size:	0000A4
  */
-void Game::UmiMushi::Parms::__ct(void)
+UmiMushi::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +128,7 @@ void Game::UmiMushi::Parms::__ct(void)
  * Address:	80382878
  * Size:	000360
  */
-void Game::UmiMushi::Parms::ProperParms::__ct(void)
+UmiMushi::Parms::ProperParms::ProperParms(void)
 {
 	/*
 	.loc_0x0:
@@ -366,7 +358,7 @@ void Game::UmiMushi::Parms::ProperParms::__ct(void)
  * Address:	80382BD8
  * Size:	000020
  */
-void Game::UmiMushi::Mgr::birth((Game::EnemyBirthArg&))
+void UmiMushi::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +378,7 @@ void Game::UmiMushi::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80382BF8
  * Size:	000068
  */
-void Game::UmiMushi::Mgr::loadModelData(void)
+void UmiMushi::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -428,7 +420,7 @@ void Game::UmiMushi::Mgr::loadModelData(void)
  * Address:	80382C60
  * Size:	0000BC
  */
-void Game::UmiMushi::Mgr::loadTexData(void)
+void UmiMushi::Mgr::loadTexData(void)
 {
 	/*
 	.loc_0x0:
@@ -493,7 +485,7 @@ void Game::UmiMushi::Mgr::loadTexData(void)
  * Address:	80382D1C
  * Size:	00007C
  */
-void Game::UmiMushi::Mgr::createModel(void)
+void UmiMushi::Mgr::createModel(void)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +532,7 @@ void Game::UmiMushi::Mgr::createModel(void)
  * Address:	80382D98
  * Size:	000160
  */
-void Game::UmiMushi::Mgr::createObj((int))
+void UmiMushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +642,7 @@ void Game::UmiMushi::Mgr::createObj((int))
  * Address:	80382EF8
  * Size:	0000BC
  */
-void Game::UmiMushi::Obj::__dt(void)
+UmiMushi::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -713,7 +705,7 @@ void Game::UmiMushi::Obj::__dt(void)
  * Address:	80382FB4
  * Size:	0000B0
  */
-void Game::UmiMushi::Mgr::__dt(void)
+UmiMushi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -773,7 +765,7 @@ void Game::UmiMushi::Mgr::__dt(void)
  * Address:	80383064
  * Size:	00002C
  */
-void Game::UmiMushi::Mgr::doLoadBmd((void*))
+void UmiMushi::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -796,14 +788,14 @@ void Game::UmiMushi::Mgr::doLoadBmd((void*))
  * Address:	80383090
  * Size:	000008
  */
-u32 Game::UmiMushi::Mgr::getEnemyTypeID(void) { return 0x64; }
+u32 UmiMushi::Mgr::getEnemyTypeID(void) { return 0x64; }
 
 /*
  * --INFO--
  * Address:	80383098
  * Size:	000010
  */
-void Game::UmiMushi::Mgr::getEnemy((int))
+void UmiMushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -819,7 +811,7 @@ void Game::UmiMushi::Mgr::getEnemy((int))
  * Address:	803830A8
  * Size:	000050
  */
-void Game::UmiMushi::Parms::read((Stream&))
+void UmiMushi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -851,7 +843,7 @@ void Game::UmiMushi::Parms::read((Stream&))
  * Address:	803830F8
  * Size:	000008
  */
-void @4 @Game::UmiMushi::Mgr::__dt(void)
+@4 @Game::UmiMushi::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -859,3 +851,4 @@ void @4 @Game::UmiMushi::Mgr::__dt(void)
 	  b         -0x148
 	*/
 }
+} // namespace Game

@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/Cave/Info.h"
 #include "Dolphin/string.h"
 #include "Game/generalEnemyMgr.h"
@@ -67,10 +69,13 @@ namespace Cave {
 		char* inputString = stream.readString(nullptr, 0);
 		if (*inputString == '$') {
 			char rawDropMode = inputString[1];
-			if ((rawDropMode < '1') || ('9' < rawDropMode)) {
-				inputString++;
-				m_dropMode = DropOnPikminOrLeader;
-			} else {
+			if (rawDropMode < '1')
+				|| ('9' < rawDropMode)
+				{
+					inputString++;
+					m_dropMode = DropOnPikminOrLeader;
+				}
+			else {
 				inputString += 2;
 				m_dropMode = DropMode(rawDropMode - '0');
 			}

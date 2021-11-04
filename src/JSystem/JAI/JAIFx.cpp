@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -119,7 +119,7 @@ void JAInter::Fx::init(void)
  * Address:	800AD82C
  * Size:	000008
  */
-void JAInter::Fx::setSceneMax((unsigned char))
+void JAInter::Fx::setSceneMax(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -133,8 +133,8 @@ void JAInter::Fx::setSceneMax((unsigned char))
  * Address:	800AD834
  * Size:	000024
  */
-void JAInter::Fx::setBufferMax((unsigned long, unsigned long, unsigned long,
-                                unsigned long))
+void JAInter::Fx::setBufferMax(unsigned long, unsigned long, unsigned long,
+                               unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +155,7 @@ void JAInter::Fx::setBufferMax((unsigned long, unsigned long, unsigned long,
  * Address:	800AD858
  * Size:	000008
  */
-void JAInter::Fx::setTablePointer((void**))
+void JAInter::Fx::setTablePointer(void**)
 {
 	/*
 	.loc_0x0:
@@ -169,7 +169,7 @@ void JAInter::Fx::setTablePointer((void**))
  * Address:	800AD860
  * Size:	000010
  */
-void JAInter::Fx::setBufferPointer((unsigned char, short*))
+void JAInter::Fx::setBufferPointer(unsigned char, short*)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +185,7 @@ void JAInter::Fx::setBufferPointer((unsigned char, short*))
  * Address:	800AD870
  * Size:	000010
  */
-void JAInter::Fx::setScenePointer((unsigned char, void*))
+void JAInter::Fx::setScenePointer(unsigned char, void*)
 {
 	/*
 	.loc_0x0:
@@ -215,7 +215,7 @@ void JAInter::Fx::getSceneMax(void)
  * Address:	800AD888
  * Size:	000010
  */
-void JAInter::Fx::getBufferSizeMax((unsigned char))
+void JAInter::Fx::getBufferSizeMax(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -231,7 +231,7 @@ void JAInter::Fx::getBufferSizeMax((unsigned char))
  * Address:	800AD898
  * Size:	000010
  */
-void JAInter::Fx::getBufferPointer((unsigned char))
+void JAInter::Fx::getBufferPointer(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -261,7 +261,7 @@ void JAInter::Fx::getFxconfigTable(void)
  * Address:	........
  * Size:	000080
  */
-void JAInter::Fx::clearBuffer((unsigned char))
+void JAInter::Fx::clearBuffer(unsigned char)
 {
 	// UNUSED FUNCTION
 }

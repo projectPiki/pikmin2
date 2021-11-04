@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8027D69C
  * Size:	000140
  */
-void Game::Armor::Obj::Obj()
+Armor::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -103,14 +105,14 @@ void Game::Armor::Obj::Obj()
  * Address:	8027D7DC
  * Size:	000004
  */
-void Game::Armor::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Armor::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8027D7E0
  * Size:	000098
  */
-void Game::Armor::Obj::onInit(Game::CreatureInitArg*)
+void Armor::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -160,7 +162,7 @@ void Game::Armor::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8027D878
  * Size:	000048
  */
-void Game::Armor::Obj::doUpdate()
+void Armor::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -190,14 +192,14 @@ void Game::Armor::Obj::doUpdate()
  * Address:	8027D8C0
  * Size:	000004
  */
-void Game::Armor::Obj::doDirectDraw(Graphics&) { }
+void Armor::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8027D8C4
  * Size:	000020
  */
-void Game::Armor::Obj::doDebugDraw(Graphics&)
+void Armor::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::Armor::Obj::doDebugDraw(Graphics&)
  * Address:	8027D8E4
  * Size:	00004C
  */
-void Game::Armor::Obj::setFSM(Game::Armor::FSM*)
+void Armor::Obj::setFSM(Game::Armor::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -248,7 +250,7 @@ void Game::Armor::Obj::setFSM(Game::Armor::FSM*)
  * Address:	8027D930
  * Size:	0000EC
  */
-void Game::Armor::Obj::getShadowParam(Game::ShadowParam&)
+void Armor::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +331,7 @@ void Game::Armor::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8027DA1C
  * Size:	000094
  */
-void Game::Armor::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void Armor::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -384,7 +386,7 @@ void Game::Armor::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	8027DAB0
  * Size:	000068
  */
-void Game::Armor::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Armor::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -424,7 +426,7 @@ void Game::Armor::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8027DB18
  * Size:	000260
  */
-void Game::Armor::Obj::doStartStoneState()
+void Armor::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -606,7 +608,7 @@ void Game::Armor::Obj::doStartStoneState()
  * Address:	8027DD78
  * Size:	000034
  */
-void Game::Armor::Obj::doFinishStoneState()
+void Armor::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -631,7 +633,7 @@ void Game::Armor::Obj::doFinishStoneState()
  * Address:	8027DDAC
  * Size:	000028
  */
-void Game::Armor::Obj::startCarcassMotion()
+void Armor::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -653,7 +655,7 @@ void Game::Armor::Obj::startCarcassMotion()
  * Address:	8027DDD4
  * Size:	000020
  */
-void Game::Armor::Obj::doStartMovie()
+void Armor::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -673,7 +675,7 @@ void Game::Armor::Obj::doStartMovie()
  * Address:	8027DDF4
  * Size:	000020
  */
-void Game::Armor::Obj::doEndMovie()
+void Armor::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -693,7 +695,7 @@ void Game::Armor::Obj::doEndMovie()
  * Address:	8027DE14
  * Size:	00008C
  */
-void Game::Armor::Obj::initMouthSlots()
+void Armor::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -744,7 +746,7 @@ void Game::Armor::Obj::initMouthSlots()
  * Address:	8027DEA0
  * Size:	000030
  */
-void Game::Armor::Obj::lifeIncrement()
+void Armor::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -768,7 +770,7 @@ void Game::Armor::Obj::lifeIncrement()
  * Address:	8027DED0
  * Size:	0003EC
  */
-void Game::Armor::Obj::attackPikmin()
+void Armor::Obj::attackPikmin()
 {
 	/*
 	.loc_0x0:
@@ -1059,7 +1061,7 @@ void Game::Armor::Obj::attackPikmin()
  * Address:	8027E2BC
  * Size:	00008C
  */
-void Game::Armor::Obj::getSlotPikiNum()
+void Armor::Obj::getSlotPikiNum()
 {
 	/*
 	.loc_0x0:
@@ -1112,7 +1114,7 @@ void Game::Armor::Obj::getSlotPikiNum()
  * Address:	8027E348
  * Size:	000008
  */
-void Game::Armor::Obj::getMouthSlots()
+void Armor::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -1126,7 +1128,7 @@ void Game::Armor::Obj::getMouthSlots()
  * Address:	8027E350
  * Size:	00002C
  */
-void Game::Armor::Obj::killSlotPiki()
+void Armor::Obj::killSlotPiki()
 {
 	/*
 	.loc_0x0:
@@ -1149,7 +1151,7 @@ void Game::Armor::Obj::killSlotPiki()
  * Address:	8027E37C
  * Size:	000020
  */
-void Game::Armor::Obj::resetBridgeSearch()
+void Armor::Obj::resetBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -1169,7 +1171,7 @@ void Game::Armor::Obj::resetBridgeSearch()
  * Address:	8027E39C
  * Size:	000048
  */
-void Game::Armor::Obj::setBridgeSearch()
+void Armor::Obj::setBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -1203,7 +1205,7 @@ void Game::Armor::Obj::setBridgeSearch()
  * Address:	8027E3E4
  * Size:	0002C0
  */
-void Game::Armor::Obj::setNearestBridge()
+void Armor::Obj::setNearestBridge()
 {
 	/*
 	.loc_0x0:
@@ -1415,14 +1417,14 @@ void Game::Armor::Obj::setNearestBridge()
  * Address:	8027E6A4
  * Size:	000004
  */
-void Game::Armor::Obj::setCullingCheck() { }
+void Armor::Obj::setCullingCheck() { }
 
 /*
  * --INFO--
  * Address:	8027E6A8
  * Size:	0001B4
  */
-void Game::Armor::Obj::checkBreakOrMove()
+void Armor::Obj::checkBreakOrMove()
 {
 	/*
 	.loc_0x0:
@@ -1561,7 +1563,7 @@ void Game::Armor::Obj::checkBreakOrMove()
  * Address:	8027E85C
  * Size:	000028
  */
-void Game::Armor::Obj::isBreakBridge()
+void Armor::Obj::isBreakBridge()
 {
 	/*
 	.loc_0x0:
@@ -1585,7 +1587,7 @@ void Game::Armor::Obj::isBreakBridge()
  * Address:	8027E884
  * Size:	0002A8
  */
-void Game::Armor::Obj::moveBridgeSide()
+void Armor::Obj::moveBridgeSide()
 {
 	/*
 	.loc_0x0:
@@ -1775,7 +1777,7 @@ void Game::Armor::Obj::moveBridgeSide()
  * Address:	8027EB2C
  * Size:	000288
  */
-void Game::Armor::Obj::moveBridgeCentre()
+void Armor::Obj::moveBridgeCentre()
 {
 	/*
 	.loc_0x0:
@@ -1957,7 +1959,7 @@ void Game::Armor::Obj::moveBridgeCentre()
  * Address:	8027EDB4
  * Size:	00031C
  */
-void Game::Armor::Obj::moveBridgeTop()
+void Armor::Obj::moveBridgeTop()
 {
 	/*
 	.loc_0x0:
@@ -2182,7 +2184,7 @@ void Game::Armor::Obj::moveBridgeTop()
  * Address:	8027F0D0
  * Size:	00005C
  */
-void Game::Armor::Obj::breakTargetBridge()
+void Armor::Obj::breakTargetBridge()
 {
 	/*
 	.loc_0x0:
@@ -2217,7 +2219,7 @@ void Game::Armor::Obj::breakTargetBridge()
  * Address:	8027F12C
  * Size:	0000B0
  */
-void Game::Armor::Obj::createEffect()
+void Armor::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -2275,7 +2277,7 @@ void Game::Armor::Obj::createEffect()
  * Address:	8027F1DC
  * Size:	000040
  */
-void Game::Armor::Obj::setupEffect()
+void Armor::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -2303,7 +2305,7 @@ void Game::Armor::Obj::setupEffect()
  * Address:	8027F21C
  * Size:	000034
  */
-void Game::Armor::Obj::createAttackEffect()
+void Armor::Obj::createAttackEffect()
 {
 	/*
 	.loc_0x0:
@@ -2328,7 +2330,7 @@ void Game::Armor::Obj::createAttackEffect()
  * Address:	8027F250
  * Size:	00008C
  */
-void Game::Armor::Obj::createAppearEffect()
+void Armor::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -2375,7 +2377,7 @@ void Game::Armor::Obj::createAppearEffect()
  * Address:	8027F2DC
  * Size:	00008C
  */
-void Game::Armor::Obj::createDisAppearEffect()
+void Armor::Obj::createDisAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -2422,7 +2424,7 @@ void Game::Armor::Obj::createDisAppearEffect()
  * Address:	8027F368
  * Size:	000090
  */
-void Game::Armor::Obj::createBridgeEffect()
+void Armor::Obj::createBridgeEffect()
 {
 	/*
 	.loc_0x0:
@@ -2470,7 +2472,7 @@ void Game::Armor::Obj::createBridgeEffect()
  * Address:	8027F3F8
  * Size:	000030
  */
-void Game::Armor::Obj::effectDrawOn()
+void Armor::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -2494,7 +2496,7 @@ void Game::Armor::Obj::effectDrawOn()
  * Address:	8027F428
  * Size:	000030
  */
-void Game::Armor::Obj::effectDrawOff()
+void Armor::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -2513,12 +2515,16 @@ void Game::Armor::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027F458
  * Size:	00009C
  */
-void efx::TYoroiAttack::~TYoroiAttack()
+TYoroiAttack::~TYoroiAttack()
 {
 	/*
 	.loc_0x0:
@@ -2568,12 +2574,16 @@ void efx::TYoroiAttack::~TYoroiAttack()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8027F4F4
  * Size:	000008
  */
-void Game::Armor::Obj::getDownSmokeScale()
+void Armor::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -2587,18 +2597,23 @@ void Game::Armor::Obj::getDownSmokeScale()
  * Address:	8027F4FC
  * Size:	000008
  */
-u32 Game::Armor::Obj::getEnemyTypeID() { return 0xF; }
+u32 Armor::Obj::getEnemyTypeID() { return 0xF; }
 
-/*
- * --INFO--
- * Address:	8027F504
- * Size:	000008
- */
-void efx::TYoroiAttack::@4 @__dt()
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xB0
-	*/
-}
+	 * --INFO--
+	 * Address:	8027F504
+	 * Size:	000008
+	 */
+	TYoroiAttack::@4 @~TYoroiAttack()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0xB0
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

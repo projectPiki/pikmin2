@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8030195C
  * Size:	000090
  */
-void Game::FixMiniHoudai::Obj::Obj()
+FixMiniHoudai::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -49,3 +51,4 @@ void Game::FixMiniHoudai::Obj::Obj()
 	  blr
 	*/
 }
+} // namespace Game

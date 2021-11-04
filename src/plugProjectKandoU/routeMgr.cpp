@@ -196,7 +196,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801726A0
 //  * Size:	00006C
 //  */
-// void Game::WayPoint::__ct(void)
+// void Game::WayPoint::WayPoint(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -235,7 +235,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017270C
 //  * Size:	000060
 //  */
-// void Game::WayPoint::RoomList::__dt(void)
+// void Game::WayPoint::RoomList::~RoomList(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -273,7 +273,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017276C
 //  * Size:	000084
 //  */
-// void Game::WayPoint::__dt(void)
+// void Game::WayPoint::~WayPoint(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -322,7 +322,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	000034
 //  */
-// void Game::WayPoint::includeRoom((short))
+// void Game::WayPoint::includeRoom(short)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -377,7 +377,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	000078
 //  */
-// void Game::WayPoint::getLink((int))
+// void Game::WayPoint::getLink(int)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -387,7 +387,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80172874
 //  * Size:	000028
 //  */
-// void Game::WayPoint::setOpen((bool))
+// void Game::WayPoint::setOpen(bool)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -411,7 +411,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017289C
 //  * Size:	000028
 //  */
-// void Game::WayPoint::setWater((bool))
+// void Game::WayPoint::setWater(bool)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -435,7 +435,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801728C4
 //  * Size:	000028
 //  */
-// void Game::WayPoint::setBridge((bool))
+// void Game::WayPoint::setBridge(bool)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -459,7 +459,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	000028
 //  */
-// void Game::WayPoint::setVisit((bool))
+// void Game::WayPoint::setVisit(bool)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -469,7 +469,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	000048
 //  */
-// void Game::WayPoint::setVsColor((int))
+// void Game::WayPoint::setVsColor(int)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -479,7 +479,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	000040
 //  */
-// void Game::WayPoint::hasLinkTo((short))
+// void Game::WayPoint::hasLinkTo(short)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -489,7 +489,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	0000B4
 //  */
-// void Game::WayPoint::addLink((short))
+// void Game::WayPoint::addLink(short)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -499,7 +499,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	0000A4
 //  */
-// void Game::WayPoint::killLink((short))
+// void Game::WayPoint::killLink(short)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -509,7 +509,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	00012C
 //  */
-// void Game::WayPoint::write((Stream&))
+// void Game::WayPoint::write(Stream&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -519,7 +519,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	0000A0
 //  */
-// void Game::WayPoint::read((Stream&))
+// void Game::WayPoint::read(Stream&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -529,7 +529,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801728EC
 //  * Size:	000004
 //  */
-// void Game::WayPoint::directDraw((Graphics&))
+// void Game::WayPoint::directDraw(Graphics&)
 // {
 // }
 
@@ -538,7 +538,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801728F0
 //  * Size:	000004
 //  */
-// void Game::WayPoint::directDraw_Simple((Graphics&))
+// void Game::WayPoint::directDraw_Simple(Graphics&)
 // {
 // }
 
@@ -547,7 +547,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	00010C
 //  */
-// void Game::WayPoint::createOffPlane((Plane&, Game::WayPoint*))
+// void Game::WayPoint::createOffPlane(Plane&, Game::WayPoint*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -557,7 +557,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	00006C
 //  */
-// void Game::RouteMgr::__ct(void)
+// void Game::RouteMgr::RouteMgr(void)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -611,7 +611,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80172964
 //  * Size:	000080
 //  */
-// void Game::RouteMgr::__dt(void)
+// void Game::RouteMgr::~RouteMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -773,7 +773,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80172B2C
 //  * Size:	0001E4
 //  */
-// void Game::RouteMgr::linkable((Game::WayPoint*, Game::WayPoint*))
+// void Game::RouteMgr::linkable(Game::WayPoint*, Game::WayPoint*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1133,7 +1133,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80172FC4
 //  * Size:	0003A8
 //  */
-// void Game::RouteMgr::getNearestWayPoint((Game::WPSearchArg&))
+// void Game::RouteMgr::getNearestWayPoint(Game::WPSearchArg&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1407,7 +1407,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017336C
 //  * Size:	00081C
 //  */
-// void Game::RouteMgr::getNearestEdge((Game::WPEdgeSearchArg&))
+// void Game::RouteMgr::getNearestEdge(Game::WPEdgeSearchArg&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2218,7 +2218,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80173D68
 //  * Size:	000210
 //  */
-// void Game::RouteMgr::openRoom((short))
+// void Game::RouteMgr::openRoom(short)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2386,7 +2386,7 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	00011C
 //  */
-// void Game::RouteMgr::sonarCheck((Game::RouteMgr::SonarArg&))
+// void Game::RouteMgr::sonarCheck(Game::RouteMgr::SonarArg&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2396,7 +2396,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80173F78
 //  * Size:	00031C
 //  */
-// void Game::RouteMgr::write((Stream&))
+// void Game::RouteMgr::write(Stream&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2627,8 +2627,8 @@ bool WayPointIterator::isDone()
 //  * Address:	........
 //  * Size:	000004
 //  */
-// void Game::RouteMgr::directDraw((Graphics&, Game::WayPoint*, Game::WayPoint*,
-//                                  int, short*))
+// void Game::RouteMgr::directDraw(Graphics&, Game::WayPoint*, Game::WayPoint*,
+//                                  int, short*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2638,7 +2638,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174294
 //  * Size:	00007C
 //  */
-// void Game::GameRouteMgr::__ct(void)
+// void Game::GameRouteMgr::GameRouteMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2681,7 +2681,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174310
 //  * Size:	0000BC
 //  */
-// void Game::GameRouteMgr::__dt(void)
+// void Game::GameRouteMgr::~GameRouteMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2746,7 +2746,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801743CC
 //  * Size:	0000F4
 //  */
-// void Game::GameRouteMgr::read((Stream&))
+// void Game::GameRouteMgr::read(Stream&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2827,7 +2827,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801744C0
 //  * Size:	000088
 //  */
-// void Game::GameRouteMgr::getWayPoint((short))
+// void Game::GameRouteMgr::getWayPoint(short)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2877,7 +2877,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174548
 //  * Size:	000030
 //  */
-// void Game::GameRouteMgr::get((void*))
+// void Game::GameRouteMgr::get(void*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2901,7 +2901,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174578
 //  * Size:	000008
 //  */
-// void Game::GameRouteMgr::getNext((void*))
+// void Game::GameRouteMgr::getNext(void*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2943,7 +2943,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174590
 //  * Size:	0000AC
 //  */
-// void Game::EditorRouteMgr::__ct(void)
+// void Game::EditorRouteMgr::EditorRouteMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2998,7 +2998,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017463C
 //  * Size:	000060
 //  */
-// void Game::EditorRouteMgr::WPNode::__dt(void)
+// void Game::EditorRouteMgr::WPNode::~WPNode(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3036,7 +3036,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017469C
 //  * Size:	0001AC
 //  */
-// void Game::EditorRouteMgr::read((Stream&))
+// void Game::EditorRouteMgr::read(Stream&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3171,7 +3171,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174848
 //  * Size:	00008C
 //  */
-// void Game::EditorRouteMgr::addWayPoint((Game::WayPoint*))
+// void Game::EditorRouteMgr::addWayPoint(Game::WayPoint*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3220,7 +3220,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801748D4
 //  * Size:	000088
 //  */
-// void Game::EditorRouteMgr::delWayPoint((Game::WayPoint*))
+// void Game::EditorRouteMgr::delWayPoint(Game::WayPoint*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3276,7 +3276,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017495C
 //  * Size:	000038
 //  */
-// void Game::EditorRouteMgr::getWayPoint((short))
+// void Game::EditorRouteMgr::getWayPoint(short)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3308,7 +3308,7 @@ bool WayPointIterator::isDone()
 //  * Address:	80174994
 //  * Size:	000008
 //  */
-// void Game::EditorRouteMgr::get((void*))
+// void Game::EditorRouteMgr::get(void*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3322,7 +3322,7 @@ bool WayPointIterator::isDone()
 //  * Address:	8017499C
 //  * Size:	000008
 //  */
-// void Game::EditorRouteMgr::getNext((void*))
+// void Game::EditorRouteMgr::getNext(void*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3364,7 +3364,7 @@ bool WayPointIterator::isDone()
 //  * Address:	801749B4
 //  * Size:	0000B8
 //  */
-// void Game::EditorRouteMgr::__dt(void)
+// void Game::EditorRouteMgr::~EditorRouteMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:

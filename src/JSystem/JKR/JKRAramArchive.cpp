@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80018958
  * Size:	0000B0
  */
-void JKRAramArchive::JKRAramArchive(long, JKRArchive::EMountDirection)
+JKRAramArchive::JKRAramArchive(long, JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +65,7 @@ void JKRAramArchive::JKRAramArchive(long, JKRArchive::EMountDirection)
  * Address:	80018A08
  * Size:	000150
  */
-void JKRAramArchive::~JKRAramArchive()
+JKRAramArchive::~JKRAramArchive()
 {
 	/*
 	.loc_0x0:
@@ -179,7 +179,7 @@ void JKRAramArchive::~JKRAramArchive()
  * Address:	80018B58
  * Size:	000060
  */
-void JKRFile::~JKRFile()
+JKRFile::~JKRFile()
 {
 	/*
 	.loc_0x0:

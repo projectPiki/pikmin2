@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80363F58
  * Size:	000050
  */
-void Game::Miulin::Mgr::__ct((int, unsigned char))
+Miulin::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Miulin::Mgr::__ct((int, unsigned char))
  * Address:	80363FA8
  * Size:	000048
  */
-void Game::Miulin::Mgr::doAlloc(void)
+void Miulin::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::Miulin::Mgr::doAlloc(void)
  * Address:	80363FF0
  * Size:	000208
  */
-void Game::Miulin::Parms::__ct(void)
+Miulin::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -223,7 +215,7 @@ void Game::Miulin::Parms::__ct(void)
  * Address:	803641F8
  * Size:	000020
  */
-void Game::Miulin::Mgr::birth((Game::EnemyBirthArg&))
+void Miulin::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +235,7 @@ void Game::Miulin::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80364218
  * Size:	0000B0
  */
-void Game::Miulin::Mgr::__dt(void)
+Miulin::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -303,14 +295,14 @@ void Game::Miulin::Mgr::__dt(void)
  * Address:	803642C8
  * Size:	000008
  */
-u32 Game::Miulin::Mgr::getEnemyTypeID(void) { return 0x36; }
+u32 Miulin::Mgr::getEnemyTypeID(void) { return 0x36; }
 
 /*
  * --INFO--
  * Address:	803642D0
  * Size:	000060
  */
-void Game::Miulin::Mgr::createObj((int))
+void Miulin::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +338,7 @@ void Game::Miulin::Mgr::createObj((int))
  * Address:	80364330
  * Size:	0000BC
  */
-void Game::Miulin::Obj::__dt(void)
+Miulin::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -409,7 +401,7 @@ void Game::Miulin::Obj::__dt(void)
  * Address:	803643EC
  * Size:	000010
  */
-void Game::Miulin::Mgr::getEnemy((int))
+void Miulin::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -425,7 +417,7 @@ void Game::Miulin::Mgr::getEnemy((int))
  * Address:	803643FC
  * Size:	000050
  */
-void Game::Miulin::Parms::read((Stream&))
+void Miulin::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -457,7 +449,7 @@ void Game::Miulin::Parms::read((Stream&))
  * Address:	8036444C
  * Size:	000008
  */
-void @4 @Game::Miulin::Mgr::__dt(void)
+@4 @Game::Miulin::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -465,3 +457,4 @@ void @4 @Game::Miulin::Mgr::__dt(void)
 	  b         -0x238
 	*/
 }
+} // namespace Game

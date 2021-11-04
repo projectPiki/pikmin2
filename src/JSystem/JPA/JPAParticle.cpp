@@ -5,7 +5,7 @@
  * Address:	80094028
  * Size:	000048
  */
-void JPAParticleCallBack::~JPAParticleCallBack()
+JPAParticleCallBack::~JPAParticleCallBack()
 {
 	/*
 	.loc_0x0:

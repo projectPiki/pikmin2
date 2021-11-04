@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -32,7 +32,7 @@ void JUTXfb::common_init(int)
  * Address:	........
  * Size:	0000B0
  */
-void JUTXfb::JUTXfb(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber)
+JUTXfb::JUTXfb(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber)
 {
 	// UNUSED FUNCTION
 }
@@ -42,8 +42,7 @@ void JUTXfb::JUTXfb(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber)
  * Address:	........
  * Size:	00005C
  */
-void JUTXfb::JUTXfb(const _GXRenderModeObj*, void*, void*, void*,
-                    JUTXfb::EXfbNumber)
+JUTXfb::JUTXfb(const _GXRenderModeObj*, void*, void*, void*, JUTXfb::EXfbNumber)
 {
 	// UNUSED FUNCTION
 }
@@ -53,7 +52,7 @@ void JUTXfb::JUTXfb(const _GXRenderModeObj*, void*, void*, void*,
  * Address:	........
  * Size:	000078
  */
-void JUTXfb::~JUTXfb()
+JUTXfb::~JUTXfb()
 {
 	// UNUSED FUNCTION
 }

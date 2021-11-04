@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802547A4
  * Size:	000138
  */
-void Game::Pom::Obj::Obj()
+Pom::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,14 +103,14 @@ void Game::Pom::Obj::Obj()
  * Address:	802548DC
  * Size:	000004
  */
-void Game::Pom::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Pom::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802548E0
  * Size:	000114
  */
-void Game::Pom::Obj::onInit(Game::CreatureInitArg*)
+void Pom::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +195,7 @@ void Game::Pom::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802549F4
  * Size:	000088
  */
-void Game::Pom::Obj::doUpdate()
+void Pom::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -243,7 +245,7 @@ void Game::Pom::Obj::doUpdate()
  * Address:	80254A7C
  * Size:	000110
  */
-void Game::Pom::Obj::changeMaterial()
+void Pom::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -327,14 +329,14 @@ void Game::Pom::Obj::changeMaterial()
  * Address:	80254B8C
  * Size:	000004
  */
-void Game::Pom::Obj::doDirectDraw(Graphics&) { }
+void Pom::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80254B90
  * Size:	000020
  */
-void Game::Pom::Obj::doDebugDraw(Graphics&)
+void Pom::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -354,7 +356,7 @@ void Game::Pom::Obj::doDebugDraw(Graphics&)
  * Address:	80254BB0
  * Size:	00004C
  */
-void Game::Pom::Obj::setFSM(Game::Pom::FSM*)
+void Pom::Obj::setFSM(Game::Pom::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +387,7 @@ void Game::Pom::Obj::setFSM(Game::Pom::FSM*)
  * Address:	80254BFC
  * Size:	000044
  */
-void Game::Pom::Obj::getShadowParam(Game::ShadowParam&)
+void Pom::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +416,7 @@ void Game::Pom::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80254C40
  * Size:	00012C
  */
-void Game::Pom::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Pom::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +509,7 @@ void Game::Pom::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	80254D6C
  * Size:	00002C
  */
-void Game::Pom::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Pom::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -530,7 +532,7 @@ void Game::Pom::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	80254D98
  * Size:	0000A8
  */
-void Game::Pom::Obj::collisionCallback(Game::CollEvent&)
+void Pom::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -588,7 +590,7 @@ void Game::Pom::Obj::collisionCallback(Game::CollEvent&)
  * Address:	80254E40
  * Size:	00004C
  */
-void Game::Pom::Obj::initMouthSlots()
+void Pom::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -619,7 +621,7 @@ void Game::Pom::Obj::initMouthSlots()
  * Address:	80254E8C
  * Size:	000510
  */
-void Game::Pom::Obj::setPomParms()
+void Pom::Obj::setPomParms()
 {
 	/*
 	.loc_0x0:
@@ -1047,7 +1049,7 @@ void Game::Pom::Obj::setPomParms()
  * Address:	8025539C
  * Size:	000008
  */
-void Game::Pom::Obj::getEnemyTypeID()
+void Pom::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1063,7 @@ void Game::Pom::Obj::getEnemyTypeID()
  * Address:	802553A4
  * Size:	0004AC
  */
-void Game::Pom::Obj::shotPikmin()
+void Pom::Obj::shotPikmin()
 {
 	/*
 	.loc_0x0:
@@ -1404,7 +1406,7 @@ void Game::Pom::Obj::shotPikmin()
  * Address:	80255850
  * Size:	00019C
  */
-void Game::Pom::Obj::changePomColor()
+void Pom::Obj::changePomColor()
 {
 	/*
 	.loc_0x0:
@@ -1545,7 +1547,7 @@ void Game::Pom::Obj::changePomColor()
  * Address:	802559EC
  * Size:	000184
  */
-void Game::Pom::Obj::createSwingSmokeEffect()
+void Pom::Obj::createSwingSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1658,7 +1660,7 @@ void Game::Pom::Obj::createSwingSmokeEffect()
  * Address:	80255B70
  * Size:	000094
  */
-void Game::Pom::Obj::createShotEffect()
+void Pom::Obj::createShotEffect()
 {
 	/*
 	.loc_0x0:
@@ -1707,7 +1709,7 @@ void Game::Pom::Obj::createShotEffect()
  * Address:	80255C04
  * Size:	000080
  */
-void Game::Pom::Obj::createPomDeadEffect()
+void Pom::Obj::createPomDeadEffect()
 {
 	/*
 	.loc_0x0:
@@ -1751,28 +1753,28 @@ void Game::Pom::Obj::createPomDeadEffect()
  * Address:	80255C84
  * Size:	000004
  */
-void Game::Pom::Obj::inWaterCallback(Game::WaterBox*) { }
+void Pom::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80255C88
  * Size:	000004
  */
-void Game::Pom::Obj::outWaterCallback() { }
+void Pom::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	80255C8C
  * Size:	000008
  */
-u32 Game::Pom::Obj::isLivingThing() { return 0x0; }
+u32 Pom::Obj::isLivingThing() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80255C94
  * Size:	000008
  */
-void Game::Pom::Obj::getMouthSlots()
+void Pom::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -1786,7 +1788,7 @@ void Game::Pom::Obj::getMouthSlots()
  * Address:	80255C9C
  * Size:	000008
  */
-void Game::Pom::Obj::getDownSmokeScale()
+void Pom::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1794,3 +1796,4 @@ void Game::Pom::Obj::getDownSmokeScale()
 	  blr
 	*/
 }
+} // namespace Game

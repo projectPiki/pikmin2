@@ -5,7 +5,7 @@
  * Address:	80036074
  * Size:	0000AC
  */
-void J2DGrafContext::J2DGrafContext(float, float, float, float)
+J2DGrafContext::J2DGrafContext(float, float, float, float)
 {
 	/*
 	.loc_0x0:

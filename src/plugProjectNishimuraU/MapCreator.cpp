@@ -1,23 +1,15 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8024C5E4
  * Size:	0000F0
  */
-void Game::RoomMapMgr::nishimuraCreateRandomMap((Game::MapUnitInterface*, int,
-                                                 Game::Cave::FloorInfo*, bool,
-                                                 Game::Cave::EditMapUnit*))
+void RoomMapMgr::nishimuraCreateRandomMap(Game::MapUnitInterface*, int,
+                                          Game::Cave::FloorInfo*, bool,
+                                          Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:
@@ -97,7 +89,7 @@ void Game::RoomMapMgr::nishimuraCreateRandomMap((Game::MapUnitInterface*, int,
  * Address:	8024C6D4
  * Size:	00011C
  */
-void Game::RoomMapMgr::nishimuraPlaceRooms(void)
+void RoomMapMgr::nishimuraPlaceRooms(void)
 {
 	/*
 	.loc_0x0:
@@ -186,7 +178,7 @@ void Game::RoomMapMgr::nishimuraPlaceRooms(void)
  * Address:	8024C7F0
  * Size:	000088
  */
-void Game::RoomMapMgr::nishimuraSetTexture(void)
+void RoomMapMgr::nishimuraSetTexture(void)
 {
 	/*
 	.loc_0x0:
@@ -230,3 +222,4 @@ void Game::RoomMapMgr::nishimuraSetTexture(void)
 	  blr
 	*/
 }
+} // namespace Game

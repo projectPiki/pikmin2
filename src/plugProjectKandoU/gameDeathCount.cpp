@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000030
  */
-void Game::BirthCounter::__ct(void)
+BirthCounter::BirthCounter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::BirthCounter::__ct(void)
  * Address:	........
  * Size:	000024
  */
-void Game::BirthCounter::reset(void)
+void BirthCounter::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::BirthCounter::reset(void)
  * Address:	........
  * Size:	000078
  */
-void Game::BirthCounter::operator()((int))
+void BirthCounter::operator()(int)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void Game::BirthCounter::operator()((int))
  * Address:	........
  * Size:	00005C
  */
-void Game::BirthCounter::read((Stream&))
+void BirthCounter::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +47,7 @@ void Game::BirthCounter::read((Stream&))
  * Address:	........
  * Size:	000090
  */
-void Game::BirthCounter::write((Stream&))
+void BirthCounter::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +57,7 @@ void Game::BirthCounter::write((Stream&))
  * Address:	........
  * Size:	000030
  */
-void Game::BirthMgr::__ct(void)
+BirthMgr::BirthMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +67,7 @@ void Game::BirthMgr::__ct(void)
  * Address:	8022F9FC
  * Size:	000068
  */
-void Game::BirthMgr::clear(void)
+void BirthMgr::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -113,7 +105,7 @@ void Game::BirthMgr::clear(void)
  * Address:	8022FA64
  * Size:	000048
  */
-void Game::BirthMgr::inc((int))
+void BirthMgr::inc(int)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +139,7 @@ void Game::BirthMgr::inc((int))
  * Address:	8022FAAC
  * Size:	000048
  */
-void Game::BirthMgr::dec((int))
+void BirthMgr::dec(int)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +173,7 @@ void Game::BirthMgr::dec((int))
  * Address:	8022FAF4
  * Size:	0000D0
  */
-void Game::BirthMgr::inc_today((int))
+void BirthMgr::inc_today(int)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +241,7 @@ void Game::BirthMgr::inc_today((int))
  * Address:	8022FBC4
  * Size:	0000D0
  */
-void Game::BirthMgr::inc_cave((int))
+void BirthMgr::inc_cave(int)
 {
 	/*
 	.loc_0x0:
@@ -317,7 +309,7 @@ void Game::BirthMgr::inc_cave((int))
  * Address:	8022FC94
  * Size:	0000D0
  */
-void Game::BirthMgr::dec_today((int))
+void BirthMgr::dec_today(int)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +377,7 @@ void Game::BirthMgr::dec_today((int))
  * Address:	8022FD64
  * Size:	0000D0
  */
-void Game::BirthMgr::dec_cave((int))
+void BirthMgr::dec_cave(int)
 {
 	/*
 	.loc_0x0:
@@ -453,7 +445,7 @@ void Game::BirthMgr::dec_cave((int))
  * Address:	8022FE34
  * Size:	000140
  */
-void Game::BirthMgr::account_cave(void)
+void BirthMgr::account_cave(void)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +547,7 @@ void Game::BirthMgr::account_cave(void)
  * Address:	8022FF74
  * Size:	0002B4
  */
-void Game::BirthMgr::account_today_adjust(void)
+void BirthMgr::account_today_adjust(void)
 {
 	/*
 	.loc_0x0:
@@ -766,7 +758,7 @@ void Game::BirthMgr::account_today_adjust(void)
  * Address:	80230228
  * Size:	000204
  */
-void Game::BirthMgr::account_today(void)
+void BirthMgr::account_today(void)
 {
 	/*
 	.loc_0x0:
@@ -923,7 +915,7 @@ void Game::BirthMgr::account_today(void)
  * Address:	........
  * Size:	000070
  */
-void Game::BirthMgr::get_cave((int))
+void BirthMgr::get_cave(int)
 {
 	// UNUSED FUNCTION
 }
@@ -933,7 +925,7 @@ void Game::BirthMgr::get_cave((int))
  * Address:	........
  * Size:	000070
  */
-void Game::BirthMgr::get_today((int))
+void BirthMgr::get_today(int)
 {
 	// UNUSED FUNCTION
 }
@@ -943,7 +935,7 @@ void Game::BirthMgr::get_today((int))
  * Address:	8023042C
  * Size:	000070
  */
-void Game::BirthMgr::get_total((int))
+void BirthMgr::get_total(int)
 {
 	/*
 	.loc_0x0:
@@ -987,7 +979,7 @@ void Game::BirthMgr::get_total((int))
  * Address:	8023049C
  * Size:	0000B0
  */
-void Game::BirthMgr::read((Stream&))
+void BirthMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1049,7 +1041,7 @@ void Game::BirthMgr::read((Stream&))
  * Address:	8023054C
  * Size:	000148
  */
-void Game::BirthMgr::write((Stream&))
+void BirthMgr::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1149,7 +1141,7 @@ void Game::BirthMgr::write((Stream&))
  * Address:	........
  * Size:	000030
  */
-void Game::DeathCounter::__ct(void)
+DeathCounter::DeathCounter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1159,7 +1151,7 @@ void Game::DeathCounter::__ct(void)
  * Address:	........
  * Size:	00002C
  */
-void Game::DeathCounter::reset(void)
+void DeathCounter::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1169,7 +1161,7 @@ void Game::DeathCounter::reset(void)
  * Address:	........
  * Size:	000100
  */
-void Game::DeathCounter::operator()((int))
+void DeathCounter::operator()(int)
 {
 	// UNUSED FUNCTION
 }
@@ -1179,7 +1171,7 @@ void Game::DeathCounter::operator()((int))
  * Address:	........
  * Size:	00005C
  */
-void Game::DeathCounter::read((Stream&))
+void DeathCounter::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -1189,7 +1181,7 @@ void Game::DeathCounter::read((Stream&))
  * Address:	........
  * Size:	000090
  */
-void Game::DeathCounter::write((Stream&))
+void DeathCounter::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -1199,7 +1191,7 @@ void Game::DeathCounter::write((Stream&))
  * Address:	........
  * Size:	000030
  */
-void Game::DeathMgr::__ct(void)
+DeathMgr::DeathMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1209,7 +1201,7 @@ void Game::DeathMgr::__ct(void)
  * Address:	80230694
  * Size:	000084
  */
-void Game::DeathMgr::clear(void)
+void DeathMgr::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -1254,7 +1246,7 @@ void Game::DeathMgr::clear(void)
  * Address:	80230718
  * Size:	00005C
  */
-void Game::DeathMgr::inc((int))
+void DeathMgr::inc(int)
 {
 	/*
 	.loc_0x0:
@@ -1297,7 +1289,7 @@ void Game::DeathMgr::inc((int))
  * Address:	80230774
  * Size:	0000FC
  */
-void Game::DeathMgr::inc_today((int))
+void DeathMgr::inc_today(int)
 {
 	/*
 	.loc_0x0:
@@ -1380,7 +1372,7 @@ void Game::DeathMgr::inc_today((int))
  * Address:	80230870
  * Size:	0000FC
  */
-void Game::DeathMgr::inc_cave((int))
+void DeathMgr::inc_cave(int)
 {
 	/*
 	.loc_0x0:
@@ -1463,7 +1455,7 @@ void Game::DeathMgr::inc_cave((int))
  * Address:	8023096C
  * Size:	0001FC
  */
-void Game::DeathMgr::account_cave(void)
+void DeathMgr::account_cave(void)
 {
 	/*
 	.loc_0x0:
@@ -1620,7 +1612,7 @@ void Game::DeathMgr::account_cave(void)
  * Address:	80230B68
  * Size:	0001FC
  */
-void Game::DeathMgr::account_today(void)
+void DeathMgr::account_today(void)
 {
 	/*
 	.loc_0x0:
@@ -1777,7 +1769,7 @@ void Game::DeathMgr::account_today(void)
  * Address:	80230D64
  * Size:	0000E8
  */
-void Game::DeathMgr::get_cave((int))
+void DeathMgr::get_cave(int)
 {
 	/*
 	.loc_0x0:
@@ -1855,7 +1847,7 @@ void Game::DeathMgr::get_cave((int))
  * Address:	80230E4C
  * Size:	0000E8
  */
-void Game::DeathMgr::get_today((int))
+void DeathMgr::get_today(int)
 {
 	/*
 	.loc_0x0:
@@ -1933,7 +1925,7 @@ void Game::DeathMgr::get_today((int))
  * Address:	80230F34
  * Size:	0000E8
  */
-void Game::DeathMgr::get_total((int))
+void DeathMgr::get_total(int)
 {
 	/*
 	.loc_0x0:
@@ -2011,7 +2003,7 @@ void Game::DeathMgr::get_total((int))
  * Address:	8023101C
  * Size:	0000B0
  */
-void Game::DeathMgr::read((Stream&))
+void DeathMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2073,7 +2065,7 @@ void Game::DeathMgr::read((Stream&))
  * Address:	802310CC
  * Size:	000148
  */
-void Game::DeathMgr::write((Stream&))
+void DeathMgr::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2167,6 +2159,8 @@ void Game::DeathMgr::write((Stream&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

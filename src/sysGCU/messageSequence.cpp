@@ -1,22 +1,14 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace P2JME {
 
 /*
  * --INFO--
  * Address:	80437844
  * Size:	000084
  */
-void P2JME::TSequenceProcessor::__ct((JMessage::TReference const*,
-                                      JMessage::TControl*))
+TSequenceProcessor::TSequenceProcessor(JMessage::TReference const*,
+                                       JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -61,7 +53,7 @@ void P2JME::TSequenceProcessor::__ct((JMessage::TReference const*,
  * Address:	804378C8
  * Size:	000034
  */
-void P2JME::TSequenceProcessor::do_begin((void const*, char const*))
+void TSequenceProcessor::do_begin(void const*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -86,14 +78,14 @@ void P2JME::TSequenceProcessor::do_begin((void const*, char const*))
  * Address:	804378FC
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::do_end(void) { }
+void TSequenceProcessor::do_end(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::tagColor((void const*, unsigned long))
+void TSequenceProcessor::tagColor(void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -103,7 +95,7 @@ void P2JME::TSequenceProcessor::tagColor((void const*, unsigned long))
  * Address:	........
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::tagSize((void const*, unsigned long))
+void TSequenceProcessor::tagSize(void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +105,7 @@ void P2JME::TSequenceProcessor::tagSize((void const*, unsigned long))
  * Address:	........
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::tagRuby((void const*, unsigned long))
+void TSequenceProcessor::tagRuby(void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +115,7 @@ void P2JME::TSequenceProcessor::tagRuby((void const*, unsigned long))
  * Address:	........
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::tagFont((void const*, unsigned long))
+void TSequenceProcessor::tagFont(void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -133,8 +125,7 @@ void P2JME::TSequenceProcessor::tagFont((void const*, unsigned long))
  * Address:	80437900
  * Size:	0000A4
  */
-void P2JME::TSequenceProcessor::do_tag((unsigned long, void const*,
-                                        unsigned long))
+void TSequenceProcessor::do_tag(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -205,8 +196,8 @@ void P2JME::TSequenceProcessor::do_tag((unsigned long, void const*,
  * Address:	804379A4
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::do_systemTagCode((unsigned short, void const*,
-                                                  unsigned long))
+void TSequenceProcessor::do_systemTagCode(unsigned short, void const*,
+                                          unsigned long)
 {
 	return 0x0;
 }
@@ -216,7 +207,7 @@ void P2JME::TSequenceProcessor::do_systemTagCode((unsigned short, void const*,
  * Address:	804379AC
  * Size:	0001D8
  */
-void P2JME::TSequenceProcessor::do_isReady(void)
+void TSequenceProcessor::do_isReady(void)
 {
 	/*
 	.loc_0x0:
@@ -378,21 +369,21 @@ void P2JME::TSequenceProcessor::do_isReady(void)
  * Address:	80437B84
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doFastForwardSE(void) { }
+void TSequenceProcessor::doFastForwardSE(void) { }
 
 /*
  * --INFO--
  * Address:	80437B88
  * Size:	000008
  */
-u32 P2JME::TSequenceProcessor::do_jump_isReady(void) { return 0x0; }
+u32 TSequenceProcessor::do_jump_isReady(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80437B90
  * Size:	00000C
  */
-void P2JME::TSequenceProcessor::do_jump((void const*, char const*))
+void TSequenceProcessor::do_jump(void const*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -407,21 +398,21 @@ void P2JME::TSequenceProcessor::do_jump((void const*, char const*))
  * Address:	80437B9C
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::do_branch_query((unsigned short)) { }
+void TSequenceProcessor::do_branch_query(unsigned short) { }
 
 /*
  * --INFO--
  * Address:	80437BA0
  * Size:	000008
  */
-s32 P2JME::TSequenceProcessor::do_branch_queryResult(void) { return -0x1; }
+s32 TSequenceProcessor::do_branch_queryResult(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80437BA8
  * Size:	00000C
  */
-void P2JME::TSequenceProcessor::do_branch((void const*, char const*))
+void TSequenceProcessor::do_branch(void const*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -436,7 +427,7 @@ void P2JME::TSequenceProcessor::do_branch((void const*, char const*))
  * Address:	80437BB4
  * Size:	0000A8
  */
-void P2JME::TSequenceProcessor::do_character((int))
+void TSequenceProcessor::do_character(int)
 {
 	/*
 	.loc_0x0:
@@ -500,22 +491,21 @@ void P2JME::TSequenceProcessor::do_character((int))
  * Address:	80437C5C
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doCharacterSE((int)) { }
+void TSequenceProcessor::doCharacterSE(int) { }
 
 /*
  * --INFO--
  * Address:	80437C60
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doCharacterSEStart(void) { }
+void TSequenceProcessor::doCharacterSEStart(void) { }
 
 /*
  * --INFO--
  * Address:	80437C64
  * Size:	0000F4
  */
-void P2JME::TSequenceProcessor::tagControl((unsigned short, void const*,
-                                            unsigned long))
+void TSequenceProcessor::tagControl(unsigned short, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -608,7 +598,7 @@ void P2JME::TSequenceProcessor::tagControl((unsigned short, void const*,
  * Address:	80437D58
  * Size:	00004C
  */
-void P2JME::TSequenceProcessor::setAbtnWait(void)
+void TSequenceProcessor::setAbtnWait(void)
 {
 	/*
 	.loc_0x0:
@@ -639,14 +629,14 @@ void P2JME::TSequenceProcessor::setAbtnWait(void)
  * Address:	80437DA4
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doCharacterSEEnd(void) { }
+void TSequenceProcessor::doCharacterSEEnd(void) { }
 
 /*
  * --INFO--
  * Address:	80437DA8
  * Size:	000060
  */
-void P2JME::TSequenceProcessor::resetAbtnWait(void)
+void TSequenceProcessor::resetAbtnWait(void)
 {
 	/*
 	.loc_0x0:
@@ -682,7 +672,7 @@ void P2JME::TSequenceProcessor::resetAbtnWait(void)
  * Address:	80437E08
  * Size:	00002C
  */
-void P2JME::TSequenceProcessor::doResetAbtnWaitSE(void)
+void TSequenceProcessor::doResetAbtnWaitSE(void)
 {
 	/*
 	.loc_0x0:
@@ -705,7 +695,7 @@ void P2JME::TSequenceProcessor::doResetAbtnWaitSE(void)
  * Address:	80437E34
  * Size:	000018
  */
-void P2JME::TSequenceProcessor::reset(void)
+void TSequenceProcessor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -723,7 +713,7 @@ void P2JME::TSequenceProcessor::reset(void)
  * Address:	80437E4C
  * Size:	000060
  */
-void P2JME::TSequenceProcessor::__dt(void)
+TSequenceProcessor::~TSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -755,3 +745,4 @@ void P2JME::TSequenceProcessor::__dt(void)
 	  blr
 	*/
 }
+} // namespace P2JME

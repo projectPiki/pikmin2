@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -82,7 +82,7 @@ void createObject_PARTICLE_JPA___Q217JStudio_JParticle21 @unnamed @control_cpp
  * Address:	800062EC
  * Size:	000060
  */
-void JStudio_JParticle::TCreateObject::__dt(void)
+JStudio_JParticle::TCreateObject::~TCreateObject(void)
 {
 	/*
 	.loc_0x0:

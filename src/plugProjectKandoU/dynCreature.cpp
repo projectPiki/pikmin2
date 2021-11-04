@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801A7F3C
  * Size:	00005C
  */
-void Game::DynParticleMgr::__ct((int))
+DynParticleMgr::DynParticleMgr(int)
 {
 	/*
 	.loc_0x0:
@@ -44,6 +36,8 @@ void Game::DynParticleMgr::__ct((int))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -101,12 +95,14 @@ void MonoObjectMgr<Game::DynParticle>::~MonoObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801A8038
  * Size:	000030
  */
-void Game::DynParticleMgr::resetMgr(void)
+void DynParticleMgr::resetMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -134,7 +130,7 @@ void Game::DynParticleMgr::resetMgr(void)
  * Address:	801A8068
  * Size:	000078
  */
-void Game::DynParticle::getAt((int))
+void DynParticle::getAt(int)
 {
 	/*
 	.loc_0x0:
@@ -182,7 +178,7 @@ void Game::DynParticle::getAt((int))
  * Address:	........
  * Size:	000058
  */
-void Game::DynParticle::release(void)
+void DynParticle::release(void)
 {
 	// UNUSED FUNCTION
 }
@@ -192,7 +188,7 @@ void Game::DynParticle::release(void)
  * Address:	........
  * Size:	000050
  */
-void Game::DynParticle::updateGlobal((Matrixf&))
+void DynParticle::updateGlobal(Matrixf&)
 {
 	// UNUSED FUNCTION
 }
@@ -202,7 +198,7 @@ void Game::DynParticle::updateGlobal((Matrixf&))
  * Address:	801A80E0
  * Size:	000074
  */
-void Game::DynCreature::__ct(void)
+DynCreature::DynCreature(void)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +239,7 @@ void Game::DynCreature::__ct(void)
  * Address:	801A8154
  * Size:	0000B0
  */
-void Game::DynCreature::createParticles((int))
+void DynCreature::createParticles(int)
 {
 	/*
 	.loc_0x0:
@@ -313,7 +309,7 @@ void Game::DynCreature::createParticles((int))
  * Address:	801A8204
  * Size:	000074
  */
-void Game::DynCreature::releaseParticles(void)
+void DynCreature::releaseParticles(void)
 {
 	/*
 	.loc_0x0:
@@ -360,7 +356,7 @@ void Game::DynCreature::releaseParticles(void)
  * Address:	801A8278
  * Size:	00006C
  */
-void Game::DynCreature::updateParticlePositions(void)
+void DynCreature::updateParticlePositions(void)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +399,7 @@ void Game::DynCreature::updateParticlePositions(void)
  * Address:	801A82E4
  * Size:	0004F4
  */
-void Game::DynCreature::computeForces((float))
+void DynCreature::computeForces(float)
 {
 	/*
 	.loc_0x0:
@@ -782,8 +778,7 @@ void Game::DynCreature::computeForces((float))
  * Address:	801A87D8
  * Size:	0000B4
  */
-void tracemoveCallback__Q24Game11DynCreatureFR10Vector3<float>
-R10Vector3<float>(void)
+void tracemoveCallback__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -839,6 +834,8 @@ R10Vector3<float>(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -854,17 +851,19 @@ void range_check(float)
  * Address:	........
  * Size:	0000BC
  */
-void range_check(Vector3<float>&)
+void range_check(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000080
  */
-void Game::DynCreature::getContactParticeRatio(void)
+void DynCreature::getContactParticeRatio(void)
 {
 	// UNUSED FUNCTION
 }
@@ -874,7 +873,7 @@ void Game::DynCreature::getContactParticeRatio(void)
  * Address:	........
  * Size:	00002C
  */
-void Game::DynCreature::getContactParticleNum(void)
+void DynCreature::getContactParticleNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -884,7 +883,7 @@ void Game::DynCreature::getContactParticleNum(void)
  * Address:	........
  * Size:	000020
  */
-void Game::DynCreature::getParticleNum(void)
+void DynCreature::getParticleNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -894,7 +893,7 @@ void Game::DynCreature::getParticleNum(void)
  * Address:	801A888C
  * Size:	0004A8
  */
-void Game::DynCreature::simulate((float))
+void DynCreature::simulate(float)
 {
 	/*
 	.loc_0x0:
@@ -1264,7 +1263,7 @@ void Game::DynCreature::simulate((float))
  * Address:	801A8D34
  * Size:	00001C
  */
-void Game::DynCreature::getPosition(void)
+void DynCreature::getPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1278,12 +1277,14 @@ void Game::DynCreature::getPosition(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801A8D50
  * Size:	0000AC
  */
-void onSetPosition__Q24Game11DynCreatureFR10Vector3<float>(void)
+void onSetPosition__Q24Game11DynCreatureFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1333,19 +1334,21 @@ void onSetPosition__Q24Game11DynCreatureFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801A8DFC
  * Size:	000004
  */
-void Game::DynCreature::onSetPosition(void) { }
+void DynCreature::onSetPosition(void) { }
 
 /*
  * --INFO--
  * Address:	801A8E00
  * Size:	00001C
  */
-void Game::DynCreature::getVelocity(void)
+void DynCreature::getVelocity(void)
 {
 	/*
 	.loc_0x0:
@@ -1359,12 +1362,14 @@ void Game::DynCreature::getVelocity(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801A8E1C
  * Size:	00001C
  */
-void setVelocity__Q24Game11DynCreatureFR10Vector3<float>(void)
+void setVelocity__Q24Game11DynCreatureFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1383,8 +1388,7 @@ void setVelocity__Q24Game11DynCreatureFR10Vector3<float>(void)
  * Address:	801A8E38
  * Size:	000088
  */
-void getVelocityAt__Q24Game11DynCreatureFR10Vector3<float>
-R10Vector3<float>(void)
+void getVelocityAt__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1430,8 +1434,7 @@ R10Vector3<float>(void)
  * Address:	801A8EC0
  * Size:	000008
  */
-void getAngularEffect__Q24Game11DynCreatureFR10Vector3<float>
-R10Vector3<float>(void)
+void getAngularEffect__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1445,8 +1448,7 @@ R10Vector3<float>(void)
  * Address:	801A8EC8
  * Size:	000044
  */
-void applyImpulse__Q24Game11DynCreatureFR10Vector3<float>
-R10Vector3<float>(void)
+void applyImpulse__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1470,12 +1472,14 @@ R10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00019C
  */
-void Game::DynCreature::simulateCylinder((Sys::Cylinder&, float))
+void DynCreature::simulateCylinder(Sys::Cylinder&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -1485,7 +1489,7 @@ void Game::DynCreature::simulateCylinder((Sys::Cylinder&, float))
  * Address:	801A8F0C
  * Size:	0000B8
  */
-void Game::DynParticleMgr::__dt(void)
+DynParticleMgr::~DynParticleMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1541,6 +1545,8 @@ void Game::DynParticleMgr::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2271,8 +2277,8 @@ u32 Container<Game::DynParticle>::getTo() { return 0x0; }
  * Address:	801A9604
  * Size:	000030
  */
-void Delegate2<Game::DynCreature, Vector3<float>&, Vector3<float>&>::invoke(
-    Vector3<float>&, Vector3<float>&)
+void Delegate2<Game::DynCreature, Vector3f&, Vector3f&>::invoke(Vector3f&,
+                                                                Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -3228,47 +3234,51 @@ void ObjectMgr<Game::DynParticle>::doAnimation()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801AA208
  * Size:	000004
  */
-void Game::DynParticle::doDirectDraw((Graphics&)) { }
+void DynParticle::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801AA20C
  * Size:	000004
  */
-void Game::DynParticle::doSimulation((float)) { }
+void DynParticle::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801AA210
  * Size:	000004
  */
-void Game::DynParticle::doViewCalc(void) { }
+void DynParticle::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	801AA214
  * Size:	000004
  */
-void Game::DynParticle::doSetView((unsigned long)) { }
+void DynParticle::doSetView(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	801AA218
  * Size:	000004
  */
-void Game::DynParticle::doEntry(void) { }
+void DynParticle::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	801AA21C
  * Size:	000004
  */
-void Game::DynParticle::doAnimation(void) { }
+void DynParticle::doAnimation(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3392,19 +3402,21 @@ void MonoObjectMgr<Game::DynParticle>::alloc(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801AA3A8
  * Size:	000004
  */
-void Game::DynParticle::constructor(void) { }
+void DynParticle::constructor(void) { }
 
 /*
  * --INFO--
  * Address:	801AA3AC
  * Size:	000034
  */
-void Game::DynParticle::__ct(void)
+DynParticle::DynParticle(void)
 {
 	/*
 	.loc_0x0:
@@ -3423,6 +3435,8 @@ void Game::DynParticle::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

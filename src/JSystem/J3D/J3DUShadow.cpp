@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800177D0
  * Size:	00001C
  */
-void JUTTexture::JUTTexture()
+JUTTexture::JUTTexture()
 {
 	/*
 	.loc_0x0:

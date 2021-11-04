@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80456184
  * Size:	00012C
  */
-void Menu::Menu(JUTGamePad*, JUTFont*, bool)
+Menu::Menu(JUTGamePad*, JUTFont*, bool)
 {
 	/*
 	.loc_0x0:
@@ -521,8 +521,8 @@ void Menu::doUpdate(bool)
  * Address:	804567D8
  * Size:	000068
  */
-void Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
-                              IDelegate1<Menu&>*)
+Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
+                         IDelegate1<Menu&>*)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +560,7 @@ void Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
  * Address:	80456840
  * Size:	000080
  */
-void Menu::MenuItem::MenuItem(Menu::MenuItem::cTypeFlag, int, char*)
+Menu::MenuItem::MenuItem(Menu::MenuItem::cTypeFlag, int, char*)
 {
 	/*
 	.loc_0x0:

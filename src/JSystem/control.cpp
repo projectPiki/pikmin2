@@ -1,10 +1,11 @@
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800083A4
  * Size:	000044
  */
-void JMessage::TControl::__ct(void)
+JMessage::TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +34,7 @@ void JMessage::TControl::__ct(void)
  * Address:	800083E8
  * Size:	000048
  */
-void JMessage::TControl::__dt(void)
+JMessage::TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -272,7 +273,7 @@ void JMessage::TControl::render(void)
  * Address:	8000867C
  * Size:	0000DC
  */
-void JMessage::TControl::setMessageCode((unsigned short, unsigned short))
+void JMessage::TControl::setMessageCode(unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -351,7 +352,7 @@ void JMessage::TControl::setMessageCode((unsigned short, unsigned short))
  * Address:	80008758
  * Size:	0000FC
  */
-void JMessage::TControl::setMessageID((unsigned long, unsigned long, bool*))
+void JMessage::TControl::setMessageID(unsigned long, unsigned long, bool*)
 {
 	/*
 	.loc_0x0:

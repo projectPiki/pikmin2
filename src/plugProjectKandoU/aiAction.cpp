@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80196A18
  * Size:	00001C
  */
-void PikiAI::Action::Action(Game::Piki* piki)
+PikiAI::Action::Action(Game::Piki* piki)
 {
 	_04 = piki;
 	_08 = "Action";
@@ -62,7 +52,7 @@ void PikiAI::Action::getInfo(char* dest)
  * Address:	80196A64
  * Size:	000280
  */
-void PikiAI::Brain::__ct((Game::Piki*))
+PikiAI::Brain::Brain(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -264,7 +254,7 @@ void PikiAI::Brain::__ct((Game::Piki*))
  * Address:	80196CE4
  * Size:	00001C
  */
-void PikiAI::Brain::addAction((PikiAI::Action*))
+void PikiAI::Brain::addAction(PikiAI::Action*)
 {
 	/*
 	.loc_0x0:
@@ -530,7 +520,7 @@ u32 PikiAI::Action::exec(void) { return 0x1; }
  * Address:	80196F94
  * Size:	000100
  */
-void PikiAI::Brain::start((int, PikiAI::ActionArg*))
+void PikiAI::Brain::start(int, PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -631,7 +621,7 @@ u32 PikiAI::Action::applicable(void) { return 0x1; }
  * Address:	8019709C
  * Size:	000004
  */
-void PikiAI::Action::init((PikiAI::ActionArg*)) { }
+void PikiAI::Action::init(PikiAI::ActionArg*) { }
 
 /*
  * --INFO--
@@ -800,7 +790,7 @@ void PikiAI::Brain::searchOrima(void)
  * Address:	801972B0
  * Size:	000004
  */
-void PikiAI::Action::doDirectDraw((Graphics&)) { }
+void PikiAI::Action::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

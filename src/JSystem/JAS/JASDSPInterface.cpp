@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -512,12 +512,8 @@ void JASDsp::TChannel::playStart(void)
  */
 void JASDsp::TChannel::playStop(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  sth       r0, 0x0(r3)
-	  blr
-	*/
+	// Generated from sth r0, 0x0(r3)
+	_00 = 0;
 }
 
 /*
@@ -543,12 +539,8 @@ void JASDsp::TChannel::replyFinishRequest(void)
  */
 void JASDsp::TChannel::forceStop(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  sth       r0, 0x10A(r3)
-	  blr
-	*/
+	// Generated from sth r0, 0x10A(r3)
+	_10A = 1;
 }
 
 /*
@@ -556,7 +548,7 @@ void JASDsp::TChannel::forceStop(void)
  * Address:	........
  * Size:	000014
  */
-void JASDsp::TChannel::isActive( const
+void JASDsp::TChannel::isActive() const
 {
 	// UNUSED FUNCTION
 }
@@ -566,7 +558,7 @@ void JASDsp::TChannel::isActive( const
  * Address:	800A573C
  * Size:	000014
  */
-void JASDsp::TChannel::isFinish( const
+void JASDsp::TChannel::isFinish() const
 {
 	/*
 	.loc_0x0:
@@ -583,7 +575,7 @@ void JASDsp::TChannel::isFinish( const
  * Address:	........
  * Size:	000008
  */
-void JASDsp::TChannel::getBlockCounter( const
+void JASDsp::TChannel::getBlockCounter() const
 {
 	// UNUSED FUNCTION
 }
@@ -593,7 +585,7 @@ void JASDsp::TChannel::getBlockCounter( const
  * Address:	........
  * Size:	000008
  */
-void JASDsp::TChannel::getRemainSamples( const
+void JASDsp::TChannel::getRemainSamples() const
 {
 	// UNUSED FUNCTION
 }
@@ -603,7 +595,8 @@ void JASDsp::TChannel::getRemainSamples( const
  * Address:	800A5750
  * Size:	000150
  */
-void JASDsp::TChannel::setWaveInfo( (JASWaveInfo const &, unsigned long, unsigned long))
+void JASDsp::TChannel::setWaveInfo(JASWaveInfo const&, unsigned long,
+                                   unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -713,7 +706,7 @@ void JASDsp::TChannel::setWaveInfo( (JASWaveInfo const &, unsigned long, unsigne
  * Address:	800A58A0
  * Size:	000018
  */
-void JASDsp::TChannel::setOscInfo( (unsigned long))
+void JASDsp::TChannel::setOscInfo(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -756,7 +749,8 @@ void JASDsp::TChannel::initAutoMixer(void)
  * Address:	800A58E4
  * Size:	00002C
  */
-void JASDsp::TChannel::setAutoMixer( (unsigned short, unsigned char, unsigned char, unsigned char, unsigned char))
+void JASDsp::TChannel::setAutoMixer(unsigned short, unsigned char,
+                                    unsigned char, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -779,7 +773,7 @@ void JASDsp::TChannel::setAutoMixer( (unsigned short, unsigned char, unsigned ch
  * Address:	........
  * Size:	000008
  */
-void JASDsp::TChannel::updateAMVolume( (unsigned short))
+void JASDsp::TChannel::updateAMVolume(unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -789,7 +783,7 @@ void JASDsp::TChannel::updateAMVolume( (unsigned short))
  * Address:	........
  * Size:	000010
  */
-void JASDsp::TChannel::updateAMPan( (unsigned char, unsigned char))
+void JASDsp::TChannel::updateAMPan(unsigned char, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -799,7 +793,7 @@ void JASDsp::TChannel::updateAMPan( (unsigned char, unsigned char))
  * Address:	........
  * Size:	00000C
  */
-void JASDsp::TChannel::updateAMFX( (unsigned char))
+void JASDsp::TChannel::updateAMFX(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -809,7 +803,7 @@ void JASDsp::TChannel::updateAMFX( (unsigned char))
  * Address:	800A5910
  * Size:	000018
  */
-void JASDsp::TChannel::setPitch( (unsigned short))
+void JASDsp::TChannel::setPitch(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -829,7 +823,7 @@ void JASDsp::TChannel::setPitch( (unsigned short))
  * Address:	800A5928
  * Size:	00000C
  */
-void JASDsp::TChannel::setMixerInitDelayMax( (unsigned char))
+void JASDsp::TChannel::setMixerInitDelayMax(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -844,7 +838,7 @@ void JASDsp::TChannel::setMixerInitDelayMax( (unsigned char))
  * Address:	800A5934
  * Size:	000020
  */
-void JASDsp::TChannel::setMixerInitVolume( (unsigned char, short))
+void JASDsp::TChannel::setMixerInitVolume(unsigned char, short)
 {
 	/*
 	.loc_0x0:
@@ -864,7 +858,7 @@ void JASDsp::TChannel::setMixerInitVolume( (unsigned char, short))
  * Address:	800A5954
  * Size:	000018
  */
-void JASDsp::TChannel::setMixerInitDelaySamples( (unsigned char, unsigned char))
+void JASDsp::TChannel::setMixerInitDelaySamples(unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -882,7 +876,7 @@ void JASDsp::TChannel::setMixerInitDelaySamples( (unsigned char, unsigned char))
  * Address:	800A596C
  * Size:	000020
  */
-void JASDsp::TChannel::setMixerDelaySamples( (unsigned char, unsigned char))
+void JASDsp::TChannel::setMixerDelaySamples(unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -902,7 +896,7 @@ void JASDsp::TChannel::setMixerDelaySamples( (unsigned char, unsigned char))
  * Address:	800A598C
  * Size:	00002C
  */
-void JASDsp::TChannel::setMixerVolume( (unsigned char, short))
+void JASDsp::TChannel::setMixerVolume(unsigned char, short)
 {
 	/*
 	.loc_0x0:
@@ -925,7 +919,7 @@ void JASDsp::TChannel::setMixerVolume( (unsigned char, short))
  * Address:	800A59B8
  * Size:	00000C
  */
-void JASDsp::TChannel::setPauseFlag( (unsigned char))
+void JASDsp::TChannel::setPauseFlag(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -991,7 +985,7 @@ void JASDsp::TChannel::initFilter(void)
  * Address:	800A5A30
  * Size:	000038
  */
-void JASDsp::TChannel::setFilterMode( (unsigned short))
+void JASDsp::TChannel::setFilterMode(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -1021,7 +1015,7 @@ void JASDsp::TChannel::setFilterMode( (unsigned short))
  * Address:	800A5A68
  * Size:	000024
  */
-void JASDsp::TChannel::setIIRFilterParam( (short *))
+void JASDsp::TChannel::setIIRFilterParam(short*)
 {
 	/*
 	.loc_0x0:
@@ -1042,7 +1036,7 @@ void JASDsp::TChannel::setIIRFilterParam( (short *))
  * Address:	800A5A8C
  * Size:	000044
  */
-void JASDsp::TChannel::setFIR8FilterParam( (short *))
+void JASDsp::TChannel::setFIR8FilterParam(short*)
 {
 	/*
 	.loc_0x0:
@@ -1071,13 +1065,10 @@ void JASDsp::TChannel::setFIR8FilterParam( (short *))
  * Address:	800A5AD0
  * Size:	000008
  */
-void JASDsp::TChannel::setDistFilter( (short))
+void JASDsp::TChannel::setDistFilter(short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x150(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x150(r3)
+	_150 = a1;
 }
 
 /*
@@ -1085,7 +1076,7 @@ void JASDsp::TChannel::setDistFilter( (short))
  * Address:	800A5AD8
  * Size:	000020
  */
-void JASDsp::TChannel::setBusConnect( (unsigned char, unsigned char))
+void JASDsp::TChannel::setBusConnect(unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:

@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80299240
  * Size:	000008
  */
-void Game::KumaChappy::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void KumaChappy::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::KumaChappy::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80299248
  * Size:	000008
  */
-void Game::KumaChappy::ProperAnimator::getAnimator(int)
+void KumaChappy::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::KumaChappy::ProperAnimator::getAnimator(int)
  * Address:	80299250
  * Size:	00005C
  */
-void Game::KumaChappy::ProperAnimator::~ProperAnimator()
+KumaChappy::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::KumaChappy::ProperAnimator::~ProperAnimator()
  * Address:	802992AC
  * Size:	000008
  */
-void Game::KumaChappy::ProperAnimator::getAnimator()
+void KumaChappy::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::KumaChappy::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

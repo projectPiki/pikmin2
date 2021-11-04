@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8036CA94
  * Size:	000034
  */
-void birth__Q34Game4Nest3ObjFR10Vector3<float> f(void)
+void birth__Q34Game4Nest3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -35,12 +25,14 @@ void birth__Q34Game4Nest3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8036CAC8
  * Size:	00011C
  */
-void Game::Nest::Obj::onInit((Game::CreatureInitArg*))
+void Nest::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +117,7 @@ void Game::Nest::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8036CBE4
  * Size:	000098
  */
-void Game::Nest::Obj::__ct(void)
+Nest::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +169,7 @@ void Game::Nest::Obj::__ct(void)
  * Address:	8036CC7C
  * Size:	000020
  */
-void Game::Nest::Obj::setHouseType((int))
+void Nest::Obj::setHouseType(int)
 {
 	/*
 	.loc_0x0:
@@ -199,98 +191,98 @@ void Game::Nest::Obj::setHouseType((int))
  * Address:	8036CC9C
  * Size:	000004
  */
-void Game::Nest::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void Nest::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8036CCA0
  * Size:	000004
  */
-void Game::Nest::Obj::update(void) { }
+void Nest::Obj::update(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCA4
  * Size:	000004
  */
-void Game::Nest::Obj::doUpdate(void) { }
+void Nest::Obj::doUpdate(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCA8
  * Size:	000004
  */
-void Game::Nest::Obj::doSimulation((float)) { }
+void Nest::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8036CCAC
  * Size:	000004
  */
-void Game::Nest::Obj::doAnimationCullingOn(void) { }
+void Nest::Obj::doAnimationCullingOn(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCB0
  * Size:	000004
  */
-void Game::Nest::Obj::doAnimationCullingOff(void) { }
+void Nest::Obj::doAnimationCullingOff(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCB4
  * Size:	000004
  */
-void Game::Nest::Obj::doUpdateCommon(void) { }
+void Nest::Obj::doUpdateCommon(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCB8
  * Size:	000004
  */
-void Game::Nest::Obj::doEntry(void) { }
+void Nest::Obj::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCBC
  * Size:	000004
  */
-void Game::Nest::Obj::doViewCalc(void) { }
+void Nest::Obj::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCC0
  * Size:	000008
  */
-u32 Game::Nest::Obj::isLivingThing(void) { return 0x0; }
+u32 Nest::Obj::isLivingThing(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8036CCC8
  * Size:	000008
  */
-u32 Game::Nest::Obj::ignoreAtari((Game::Creature*)) { return 0x0; }
+u32 Nest::Obj::ignoreAtari(Game::Creature*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8036CCD0
  * Size:	000008
  */
-u32 Game::Nest::Obj::needShadow(void) { return 0x0; }
+u32 Nest::Obj::needShadow(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8036CCD8
  * Size:	000008
  */
-u32 Game::Nest::Obj::getEnemyTypeID(void) { return 0x53; }
+u32 Nest::Obj::getEnemyTypeID(void) { return 0x53; }
 
 /*
  * --INFO--
  * Address:	8036CCE0
  * Size:	000008
  */
-void Game::Nest::Obj::getSound_CurrAnimFrame(void)
+void Nest::Obj::getSound_CurrAnimFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -304,7 +296,7 @@ void Game::Nest::Obj::getSound_CurrAnimFrame(void)
  * Address:	8036CCE8
  * Size:	000008
  */
-void Game::Nest::Obj::getSound_CurrAnimSpeed(void)
+void Nest::Obj::getSound_CurrAnimSpeed(void)
 {
 	/*
 	.loc_0x0:
@@ -312,3 +304,4 @@ void Game::Nest::Obj::getSound_CurrAnimSpeed(void)
 	  blr
 	*/
 }
+} // namespace Game

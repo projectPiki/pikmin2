@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8023F3F0
  * Size:	000138
  */
-void Game::PlayCamera::__ct((Game::Navi*))
+PlayCamera::PlayCamera(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -105,13 +97,10 @@ void Game::PlayCamera::__ct((Game::Navi*))
  * Address:	8023F528
  * Size:	000008
  */
-void Game::PlayCamera::setCameraParms((Game::CameraParms*))
+void PlayCamera::setCameraParms(Game::CameraParms* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x24C(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x24C(r3)
+	_24C = a1;
 }
 
 /*
@@ -119,13 +108,10 @@ void Game::PlayCamera::setCameraParms((Game::CameraParms*))
  * Address:	8023F530
  * Size:	000008
  */
-void Game::PlayCamera::setVibrationParms((Game::VibrationParms*))
+void PlayCamera::setVibrationParms(Game::VibrationParms* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x250(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x250(r3)
+	_250 = a1;
 }
 
 /*
@@ -133,7 +119,7 @@ void Game::PlayCamera::setVibrationParms((Game::VibrationParms*))
  * Address:	8023F538
  * Size:	00016C
  */
-void Game::PlayCamera::init(void)
+void PlayCamera::init(void)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +232,7 @@ void Game::PlayCamera::init(void)
  * Address:	8023F6A4
  * Size:	000034
  */
-void Game::PlayCamera::setCameraAngle((float))
+void PlayCamera::setCameraAngle(float)
 {
 	/*
 	.loc_0x0:
@@ -271,7 +257,7 @@ void Game::PlayCamera::setCameraAngle((float))
  * Address:	8023F6D8
  * Size:	00005C
  */
-void Game::PlayCamera::getCameraData((Game::CameraData&))
+void PlayCamera::getCameraData(Game::CameraData&)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +292,7 @@ void Game::PlayCamera::getCameraData((Game::CameraData&))
  * Address:	8023F734
  * Size:	00005C
  */
-void Game::PlayCamera::setCameraData((Game::CameraData&))
+void PlayCamera::setCameraData(Game::CameraData&)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +327,7 @@ void Game::PlayCamera::setCameraData((Game::CameraData&))
  * Address:	8023F790
  * Size:	000080
  */
-void Game::PlayCamera::changePlayerMode((bool))
+void PlayCamera::changePlayerMode(bool)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +375,7 @@ void Game::PlayCamera::changePlayerMode((bool))
  * Address:	8023F810
  * Size:	00004C
  */
-void Game::PlayCamera::isSpecialCamera(void)
+void PlayCamera::isSpecialCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -422,7 +408,7 @@ void Game::PlayCamera::isSpecialCamera(void)
  * Address:	8023F85C
  * Size:	0000E8
  */
-void Game::PlayCamera::doUpdate(void)
+void PlayCamera::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -506,7 +492,7 @@ void Game::PlayCamera::doUpdate(void)
  * Address:	8023F944
  * Size:	0000E0
  */
-void Game::PlayCamera::updateMatrix(void)
+void PlayCamera::updateMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -574,7 +560,7 @@ void Game::PlayCamera::updateMatrix(void)
  * Address:	8023FA24
  * Size:	00007C
  */
-void Game::PlayCamera::noUpdate(void)
+void PlayCamera::noUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -617,7 +603,7 @@ void Game::PlayCamera::noUpdate(void)
  * Address:	8023FAA0
  * Size:	000044
  */
-void Game::PlayCamera::isVibration(void)
+void PlayCamera::isVibration(void)
 {
 	/*
 	.loc_0x0:
@@ -652,7 +638,7 @@ void Game::PlayCamera::isVibration(void)
  * Address:	8023FAE4
  * Size:	000208
  */
-void Game::PlayCamera::startVibration((int, float))
+void PlayCamera::startVibration(int, float)
 {
 	/*
 	.loc_0x0:
@@ -818,7 +804,7 @@ void Game::PlayCamera::startVibration((int, float))
  * Address:	8023FCEC
  * Size:	0000D0
  */
-void Game::PlayCamera::startDemoCamera((int))
+void PlayCamera::startDemoCamera(int)
 {
 	/*
 	.loc_0x0:
@@ -886,7 +872,7 @@ void Game::PlayCamera::startDemoCamera((int))
  * Address:	8023FDBC
  * Size:	000020
  */
-void Game::PlayCamera::finishDemoCamera(void)
+void PlayCamera::finishDemoCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -906,7 +892,7 @@ void Game::PlayCamera::finishDemoCamera(void)
  * Address:	8023FDDC
  * Size:	0000EC
  */
-void Game::PlayCamera::updateCameraMode(void)
+void PlayCamera::updateCameraMode(void)
 {
 	/*
 	.loc_0x0:
@@ -993,7 +979,7 @@ void Game::PlayCamera::updateCameraMode(void)
  * Address:	8023FEC8
  * Size:	000080
  */
-void Game::PlayCamera::startZoomCamera(void)
+void PlayCamera::startZoomCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -1037,7 +1023,7 @@ void Game::PlayCamera::startZoomCamera(void)
  * Address:	8023FF48
  * Size:	000084
  */
-void Game::PlayCamera::startGameCamera((int))
+void PlayCamera::startGameCamera(int)
 {
 	/*
 	.loc_0x0:
@@ -1088,7 +1074,7 @@ void Game::PlayCamera::startGameCamera((int))
  * Address:	8023FFCC
  * Size:	0002F8
  */
-void Game::PlayCamera::setTargetParms(void)
+void PlayCamera::setTargetParms(void)
 {
 	/*
 	.loc_0x0:
@@ -1308,7 +1294,7 @@ void Game::PlayCamera::setTargetParms(void)
  * Address:	802402C4
  * Size:	000070
  */
-void Game::PlayCamera::setTargetThetaToWhistle(void)
+void PlayCamera::setTargetThetaToWhistle(void)
 {
 	/*
 	.loc_0x0:
@@ -1348,7 +1334,7 @@ void Game::PlayCamera::setTargetThetaToWhistle(void)
  * Address:	80240334
  * Size:	000010
  */
-void Game::PlayCamera::setFollowTime(void)
+void PlayCamera::setFollowTime(void)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1350,7 @@ void Game::PlayCamera::setFollowTime(void)
  * Address:	80240344
  * Size:	000068
  */
-void Game::PlayCamera::setSmoothThetaSpeed(void)
+void PlayCamera::setSmoothThetaSpeed(void)
 {
 	/*
 	.loc_0x0:
@@ -1408,7 +1394,7 @@ void Game::PlayCamera::setSmoothThetaSpeed(void)
  * Address:	802403AC
  * Size:	0000E0
  */
-void Game::PlayCamera::changeTargetTheta(void)
+void PlayCamera::changeTargetTheta(void)
 {
 	/*
 	.loc_0x0:
@@ -1484,7 +1470,7 @@ void Game::PlayCamera::changeTargetTheta(void)
  * Address:	8024048C
  * Size:	000384
  */
-void Game::PlayCamera::changeTargetAtPosition(void)
+void PlayCamera::changeTargetAtPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1745,7 +1731,7 @@ void Game::PlayCamera::changeTargetAtPosition(void)
  * Address:	80240810
  * Size:	000164
  */
-void Game::PlayCamera::updateParms((int))
+void PlayCamera::updateParms(int)
 {
 	/*
 	.loc_0x0:
@@ -1856,7 +1842,7 @@ void Game::PlayCamera::updateParms((int))
  * Address:	80240974
  * Size:	00012C
  */
-void Game::PlayCamera::updateVibration((int))
+void PlayCamera::updateVibration(int)
 {
 	/*
 	.loc_0x0:
@@ -1951,7 +1937,7 @@ void Game::PlayCamera::updateVibration((int))
  * Address:	80240AA0
  * Size:	000074
  */
-void Game::PlayCamera::otherVibFinished((int))
+void PlayCamera::otherVibFinished(int)
 {
 	/*
 	.loc_0x0:
@@ -1996,7 +1982,7 @@ void Game::PlayCamera::otherVibFinished((int))
  * Address:	80240B14
  * Size:	000174
  */
-void Game::PlayCamera::isModCameraFinished(void)
+void PlayCamera::isModCameraFinished(void)
 {
 	/*
 	.loc_0x0:
@@ -2127,7 +2113,7 @@ void Game::PlayCamera::isModCameraFinished(void)
  * Address:	80240C88
  * Size:	000158
  */
-void Game::PlayCamera::setCollisionCameraTargetPhi((int))
+void PlayCamera::setCollisionCameraTargetPhi(int)
 {
 	/*
 	.loc_0x0:
@@ -2259,7 +2245,7 @@ void Game::PlayCamera::setCollisionCameraTargetPhi((int))
  * Address:	80240DE0
  * Size:	000384
  */
-void Game::PlayCamera::getCollisionCameraTargetPhi((float, float))
+void PlayCamera::getCollisionCameraTargetPhi(float, float)
 {
 	/*
 	.loc_0x0:
@@ -2518,7 +2504,7 @@ void Game::PlayCamera::getCollisionCameraTargetPhi((float, float))
  * Address:	80241164
  * Size:	0000D0
  */
-void Game::PlayCamera::__dt(void)
+PlayCamera::~PlayCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -2586,14 +2572,14 @@ void Game::PlayCamera::__dt(void)
  * Address:	80241234
  * Size:	000004
  */
-void Game::PlayCamera::startVibration((int)) { }
+void PlayCamera::startVibration(int) { }
 
 /*
  * --INFO--
  * Address:	80241238
  * Size:	00001C
  */
-void Game::PlayCamera::getLookAtPosition_(void)
+void PlayCamera::getLookAtPosition_(void)
 {
 	/*
 	.loc_0x0:
@@ -2606,6 +2592,8 @@ void Game::PlayCamera::getLookAtPosition_(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

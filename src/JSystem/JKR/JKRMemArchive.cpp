@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80024644
  * Size:	0000BC
  */
-void JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection)
+JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +68,7 @@ void JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection)
  * Address:	80024700
  * Size:	0000C8
  */
-void JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
+JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
 {
 	/*
 	.loc_0x0:
@@ -134,7 +134,7 @@ void JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
  * Address:	800247C8
  * Size:	0000A8
  */
-void JKRMemArchive::~JKRMemArchive()
+JKRMemArchive::~JKRMemArchive()
 {
 	/*
 	.loc_0x0:

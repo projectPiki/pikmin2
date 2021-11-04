@@ -5,7 +5,7 @@
  * Address:	80098990
  * Size:	000060
  */
-void JStage::TActor::__dt(void)
+JStage::TActor::~TActor(void)
 {
 	/*
 	.loc_0x0:
@@ -43,109 +43,84 @@ void JStage::TActor::__dt(void)
  * Address:	800989F0
  * Size:	000008
  */
-u32  JStage::TActor::JSGFGetType( const
-{
-	return 0x2;
-}
+u32 JStage::TActor::JSGFGetType() const { return 0x2; }
 
 /*
  * --INFO--
  * Address:	800989F8
  * Size:	000004
  */
-void JStage::TActor::JSGGetTranslation( const(Vec *))
-{
-}
+void JStage::TActor::JSGGetTranslation(const(Vec*)) { }
 
 /*
  * --INFO--
  * Address:	800989FC
  * Size:	000004
  */
-void JStage::TActor::JSGSetTranslation( (Vec const &))
-{
-}
+void JStage::TActor::JSGSetTranslation(Vec const&) { }
 
 /*
  * --INFO--
  * Address:	80098A00
  * Size:	000004
  */
-void JStage::TActor::JSGGetScaling( const(Vec *))
-{
-}
+void JStage::TActor::JSGGetScaling(const(Vec*)) { }
 
 /*
  * --INFO--
  * Address:	80098A04
  * Size:	000004
  */
-void JStage::TActor::JSGSetScaling( (Vec const &))
-{
-}
+void JStage::TActor::JSGSetScaling(Vec const&) { }
 
 /*
  * --INFO--
  * Address:	80098A08
  * Size:	000004
  */
-void JStage::TActor::JSGGetRotation( const(Vec *))
-{
-}
+void JStage::TActor::JSGGetRotation(const(Vec*)) { }
 
 /*
  * --INFO--
  * Address:	80098A0C
  * Size:	000004
  */
-void JStage::TActor::JSGSetRotation( (Vec const &))
-{
-}
+void JStage::TActor::JSGSetRotation(Vec const&) { }
 
 /*
  * --INFO--
  * Address:	80098A10
  * Size:	000008
  */
-s32  JStage::TActor::JSGGetShape( const
-{
-	return -0x1;
-}
+s32 JStage::TActor::JSGGetShape() const { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80098A18
  * Size:	000004
  */
-void JStage::TActor::JSGSetShape( (unsigned long))
-{
-}
+void JStage::TActor::JSGSetShape(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098A1C
  * Size:	000008
  */
-s32  JStage::TActor::JSGGetAnimation( const
-{
-	return -0x1;
-}
+s32 JStage::TActor::JSGGetAnimation() const { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80098A24
  * Size:	000004
  */
-void JStage::TActor::JSGSetAnimation( (unsigned long))
-{
-}
+void JStage::TActor::JSGSetAnimation(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098A28
  * Size:	000008
  */
-void JStage::TActor::JSGGetAnimationFrame( const
+void JStage::TActor::JSGGetAnimationFrame() const
 {
 	/*
 	.loc_0x0:
@@ -159,16 +134,14 @@ void JStage::TActor::JSGGetAnimationFrame( const
  * Address:	80098A30
  * Size:	000004
  */
-void JStage::TActor::JSGSetAnimationFrame( (float))
-{
-}
+void JStage::TActor::JSGSetAnimationFrame(float) { }
 
 /*
  * --INFO--
  * Address:	80098A34
  * Size:	000008
  */
-void JStage::TActor::JSGGetAnimationFrameMax( const
+void JStage::TActor::JSGGetAnimationFrameMax() const
 {
 	/*
 	.loc_0x0:
@@ -182,7 +155,7 @@ void JStage::TActor::JSGGetAnimationFrameMax( const
  * Address:	80098A3C
  * Size:	000008
  */
-void JStage::TActor::JSGGetAnimationTransition( const
+void JStage::TActor::JSGGetAnimationTransition() const
 {
 	/*
 	.loc_0x0:
@@ -196,35 +169,28 @@ void JStage::TActor::JSGGetAnimationTransition( const
  * Address:	80098A44
  * Size:	000004
  */
-void JStage::TActor::JSGSetAnimationTransition( (float))
-{
-}
+void JStage::TActor::JSGSetAnimationTransition(float) { }
 
 /*
  * --INFO--
  * Address:	80098A48
  * Size:	000008
  */
-s32  JStage::TActor::JSGGetTextureAnimation( const
-{
-	return -0x1;
-}
+s32 JStage::TActor::JSGGetTextureAnimation() const { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80098A50
  * Size:	000004
  */
-void JStage::TActor::JSGSetTextureAnimation( (unsigned long))
-{
-}
+void JStage::TActor::JSGSetTextureAnimation(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098A54
  * Size:	000008
  */
-void JStage::TActor::JSGGetTextureAnimationFrame( const
+void JStage::TActor::JSGGetTextureAnimationFrame() const
 {
 	/*
 	.loc_0x0:
@@ -238,16 +204,14 @@ void JStage::TActor::JSGGetTextureAnimationFrame( const
  * Address:	80098A5C
  * Size:	000004
  */
-void JStage::TActor::JSGSetTextureAnimationFrame( (float))
-{
-}
+void JStage::TActor::JSGSetTextureAnimationFrame(float) { }
 
 /*
  * --INFO--
  * Address:	80098A60
  * Size:	000008
  */
-void JStage::TActor::JSGGetTextureAnimationFrameMax( const
+void JStage::TActor::JSGGetTextureAnimationFrameMax() const
 {
 	/*
 	.loc_0x0:

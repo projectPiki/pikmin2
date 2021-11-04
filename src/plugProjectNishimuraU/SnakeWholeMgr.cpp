@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802CE2DC
  * Size:	000050
  */
-void Game::SnakeWhole::Mgr::Mgr(int, unsigned char)
+SnakeWhole::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::SnakeWhole::Mgr::Mgr(int, unsigned char)
  * Address:	802CE32C
  * Size:	000048
  */
-void Game::SnakeWhole::Mgr::doAlloc()
+void SnakeWhole::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::SnakeWhole::Mgr::doAlloc()
  * Address:	802CE374
  * Size:	000154
  */
-void Game::SnakeWhole::Parms::Parms()
+SnakeWhole::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -168,7 +170,7 @@ void Game::SnakeWhole::Parms::Parms()
  * Address:	802CE4C8
  * Size:	000060
  */
-void Game::SnakeWhole::Mgr::createObj(int)
+void SnakeWhole::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -204,7 +206,7 @@ void Game::SnakeWhole::Mgr::createObj(int)
  * Address:	802CE528
  * Size:	0000BC
  */
-void Game::SnakeWhole::Obj::~Obj()
+SnakeWhole::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -267,7 +269,7 @@ void Game::SnakeWhole::Obj::~Obj()
  * Address:	802CE5E4
  * Size:	000010
  */
-void Game::SnakeWhole::Mgr::getEnemy(int)
+void SnakeWhole::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +285,7 @@ void Game::SnakeWhole::Mgr::getEnemy(int)
  * Address:	802CE5F4
  * Size:	000068
  */
-void Game::SnakeWhole::Mgr::loadModelData()
+void SnakeWhole::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -325,7 +327,7 @@ void Game::SnakeWhole::Mgr::loadModelData()
  * Address:	802CE65C
  * Size:	0000B0
  */
-void Game::SnakeWhole::Mgr::~Mgr()
+SnakeWhole::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -385,14 +387,14 @@ void Game::SnakeWhole::Mgr::~Mgr()
  * Address:	802CE70C
  * Size:	000008
  */
-u32 Game::SnakeWhole::Mgr::getEnemyTypeID() { return 0x46; }
+u32 SnakeWhole::Mgr::getEnemyTypeID() { return 0x46; }
 
 /*
  * --INFO--
  * Address:	802CE714
  * Size:	00002C
  */
-void Game::SnakeWhole::Mgr::doLoadBmd(void*)
+void SnakeWhole::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -415,7 +417,7 @@ void Game::SnakeWhole::Mgr::doLoadBmd(void*)
  * Address:	802CE740
  * Size:	000050
  */
-void Game::SnakeWhole::Parms::read(Stream&)
+void SnakeWhole::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -447,7 +449,7 @@ void Game::SnakeWhole::Parms::read(Stream&)
  * Address:	802CE790
  * Size:	000008
  */
-void Game::SnakeWhole::Mgr::@4 @__dt()
+SnakeWhole::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -455,3 +457,4 @@ void Game::SnakeWhole::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

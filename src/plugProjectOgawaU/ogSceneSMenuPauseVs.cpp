@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80329CFC
  * Size:	00003C
  */
-void og::newScreen::SMenuPauseVS::__ct(void)
+newScreen::SMenuPauseVS::SMenuPauseVS(void)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void og::newScreen::SMenuPauseVS::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::SMenuPauseVS::__dt(void)
+newScreen::SMenuPauseVS::~SMenuPauseVS(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,15 +44,14 @@ void og::newScreen::SMenuPauseVS::__dt(void)
  * Address:	80329D38
  * Size:	000004
  */
-void og::newScreen::SMenuPauseVS::doUserCallBackFunc((Resource::MgrCommand*)) {
-}
+void newScreen::SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80329D3C
  * Size:	000078
  */
-void og::newScreen::SMenuPauseVS::doCreateObj((JKRArchive*))
+void newScreen::SMenuPauseVS::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -104,7 +95,7 @@ void og::newScreen::SMenuPauseVS::doCreateObj((JKRArchive*))
  * Address:	80329DB4
  * Size:	000088
  */
-void og::newScreen::SMenuPauseVS::doGetFinishState(void)
+void newScreen::SMenuPauseVS::doGetFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -152,14 +143,14 @@ void og::newScreen::SMenuPauseVS::doGetFinishState(void)
  * Address:	80329E3C
  * Size:	000004
  */
-void og::newScreen::SMenuPauseVS::doUpdateActive(void) { }
+void newScreen::SMenuPauseVS::doUpdateActive(void) { }
 
 /*
  * --INFO--
  * Address:	80329E40
  * Size:	000068
  */
-void og::newScreen::SMenuPauseVS::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::SMenuPauseVS::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -203,7 +194,7 @@ void og::newScreen::SMenuPauseVS::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	80329EA8
  * Size:	00000C
  */
-void og::newScreen::SMenuPauseVS::doSetBackupScene((Screen::SetSceneArg&))
+void newScreen::SMenuPauseVS::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -218,7 +209,7 @@ void og::newScreen::SMenuPauseVS::doSetBackupScene((Screen::SetSceneArg&))
  * Address:	80329EB4
  * Size:	00000C
  */
-void og::newScreen::SMenuPauseVS::getResName( const
+void newScreen::SMenuPauseVS::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -233,17 +224,14 @@ void og::newScreen::SMenuPauseVS::getResName( const
  * Address:	80329EC0
  * Size:	000008
  */
-u32  og::newScreen::SMenuPauseVS::getSceneType(void)
-{
-	return 0x2728;
-}
+u32 newScreen::SMenuPauseVS::getSceneType(void) { return 0x2728; }
 
 /*
  * --INFO--
  * Address:	80329EC8
  * Size:	00000C
  */
-void og::newScreen::SMenuPauseVS::getOwnerID(void)
+void newScreen::SMenuPauseVS::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +246,7 @@ void og::newScreen::SMenuPauseVS::getOwnerID(void)
  * Address:	80329ED4
  * Size:	000014
  */
-void og::newScreen::SMenuPauseVS::getMemberID(void)
+void newScreen::SMenuPauseVS::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -275,10 +263,9 @@ void og::newScreen::SMenuPauseVS::getMemberID(void)
  * Address:	80329EE8
  * Size:	000008
  */
-u32  og::newScreen::SMenuPauseVS::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::SMenuPauseVS::isUseBackupSceneInfo(void) { return 0x1; }
+
+} // namespace og
 
 /*
  * --INFO--

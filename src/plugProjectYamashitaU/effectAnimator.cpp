@@ -256,7 +256,7 @@ void EffectAnimator::ObjMgr::setup(EffectAnimator::ObjMgrData*)
  * Address:	80132FB0
  * Size:	000060
  */
-void EffectAnimator::Obj::~Obj()
+EffectAnimator::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -294,14 +294,10 @@ void EffectAnimator::Obj::~Obj()
  * Address:	80133010
  * Size:	00000C
  */
-void EffectAnimator::Mgr::Mgr()
+EffectAnimator::Mgr::Mgr()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x0(r3)
+	_00 = 0;
 }
 
 /*
@@ -453,7 +449,7 @@ void EffectAnimator::Mgr::update(efx::TKechappyTest*, int, float)
  * Address:	801331B4
  * Size:	000070
  */
-void EffectAnimator::LengthObj::~LengthObj()
+EffectAnimator::LengthObj::~LengthObj()
 {
 	/*
 	.loc_0x0:
@@ -591,7 +587,7 @@ void EffectAnimator::LengthObj::update(efx::TKechappyTest*, float)
  * Address:	8013333C
  * Size:	000070
  */
-void EffectAnimator::BristleObj::~BristleObj()
+EffectAnimator::BristleObj::~BristleObj()
 {
 	/*
 	.loc_0x0:
@@ -729,7 +725,7 @@ void EffectAnimator::BristleObj::update(efx::TKechappyTest*, float)
  * Address:	801334C4
  * Size:	000070
  */
-void EffectAnimator::VibrationObj::~VibrationObj()
+EffectAnimator::VibrationObj::~VibrationObj()
 {
 	/*
 	.loc_0x0:

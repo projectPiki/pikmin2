@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80212288
  * Size:	0000FC
  */
-void PikiAI::ActBridge::__ct((Game::Piki*))
+PikiAI::ActBridge::ActBridge(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +88,7 @@ void PikiAI::ActBridge::__ct((Game::Piki*))
  * Address:	80212384
  * Size:	0000C8
  */
-void PikiAI::ActBridge::init((PikiAI::ActionArg*))
+void PikiAI::ActBridge::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -520,7 +510,7 @@ void PikiAI::ActBridge::cleanup(void)
  * Address:	8021282C
  * Size:	000110
  */
-void PikiAI::ActBridge::platCallback((Game::Piki*, Game::PlatEvent&))
+void PikiAI::ActBridge::platCallback(Game::Piki*, Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -610,28 +600,28 @@ void PikiAI::ActBridge::platCallback((Game::Piki*, Game::PlatEvent&))
  * Address:	8021293C
  * Size:	000004
  */
-void PikiAI::ActBridge::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
+void PikiAI::ActBridge::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	80212940
  * Size:	000004
  */
-void PikiAI::ActBridge::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
+void PikiAI::ActBridge::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	80212944
  * Size:	000004
  */
-void PikiAI::ActBridge::onKeyEvent((SysShape::KeyEvent const&)) { }
+void PikiAI::ActBridge::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	80212948
  * Size:	000014
  */
-void @52 @4 @PikiAI::ActBridge::onKeyEvent((SysShape::KeyEvent const&))
+void @52 @4 @PikiAI::ActBridge::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8027A89C
  * Size:	000050
  */
-void Game::ElecBug::Mgr::Mgr(int, unsigned char)
+ElecBug::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::ElecBug::Mgr::Mgr(int, unsigned char)
  * Address:	8027A8EC
  * Size:	000048
  */
-void Game::ElecBug::Mgr::doAlloc()
+void ElecBug::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::ElecBug::Mgr::doAlloc()
  * Address:	8027A934
  * Size:	000118
  */
-void Game::ElecBug::Parms::Parms()
+ElecBug::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -153,7 +155,7 @@ void Game::ElecBug::Parms::Parms()
  * Address:	8027AA4C
  * Size:	000060
  */
-void Game::ElecBug::Mgr::createObj(int)
+void ElecBug::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -189,7 +191,7 @@ void Game::ElecBug::Mgr::createObj(int)
  * Address:	8027AAAC
  * Size:	0000BC
  */
-void Game::ElecBug::Obj::~Obj()
+ElecBug::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -252,7 +254,7 @@ void Game::ElecBug::Obj::~Obj()
  * Address:	8027AB68
  * Size:	000010
  */
-void Game::ElecBug::Mgr::getEnemy(int)
+void ElecBug::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +270,7 @@ void Game::ElecBug::Mgr::getEnemy(int)
  * Address:	8027AB78
  * Size:	000050
  */
-void Game::ElecBug::Parms::read(Stream&)
+void ElecBug::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -300,7 +302,7 @@ void Game::ElecBug::Parms::read(Stream&)
  * Address:	8027ABC8
  * Size:	0000B0
  */
-void Game::ElecBug::Mgr::~Mgr()
+ElecBug::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -360,14 +362,14 @@ void Game::ElecBug::Mgr::~Mgr()
  * Address:	8027AC78
  * Size:	000008
  */
-u32 Game::ElecBug::Mgr::getEnemyTypeID() { return 0x1C; }
+u32 ElecBug::Mgr::getEnemyTypeID() { return 0x1C; }
 
 /*
  * --INFO--
  * Address:	8027AC80
  * Size:	000008
  */
-void Game::ElecBug::Mgr::@4 @__dt()
+ElecBug::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -375,3 +377,4 @@ void Game::ElecBug::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

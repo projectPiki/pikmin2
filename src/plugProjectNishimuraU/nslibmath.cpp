@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8023D7B0
  * Size:	0000A8
  */
-void calcLagrange__Q24Game9NsMathExpFPC10Vector3<float> fR10Vector3<float>(void)
+void calcLagrange__Q24Game9NsMathExpFPC10Vector3f fR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -69,8 +59,8 @@ void calcLagrange__Q24Game9NsMathExpFPC10Vector3<float> fR10Vector3<float>(void)
  * Address:	8023D858
  * Size:	0001D8
  */
-void calcJointPos__Q24Game9NsMathExpFRC10Vector3<float> RC10Vector3<float>
-    ffR10Vector3<float> R10Vector3<float>(void)
+void calcJointPos__Q24Game9NsMathExpFRC10Vector3f RC10Vector3f ffR10Vector3f
+R10Vector3f(void)
 {
 	/*
 	.loc_0x0:

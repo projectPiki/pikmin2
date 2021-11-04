@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802A43FC
  * Size:	000224
  */
-void Game::Damagumo::FSM::init(Game::EnemyBase*)
+void Damagumo::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +168,7 @@ void Game::Damagumo::FSM::init(Game::EnemyBase*)
  * Address:	802A4620
  * Size:	0000CC
  */
-void Game::Damagumo::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Damagumo::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +231,7 @@ void Game::Damagumo::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A46EC
  * Size:	00008C
  */
-void Game::Damagumo::StateDead::exec(Game::EnemyBase*)
+void Damagumo::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -282,14 +284,14 @@ void Game::Damagumo::StateDead::exec(Game::EnemyBase*)
  * Address:	802A4778
  * Size:	000004
  */
-void Game::Damagumo::StateDead::cleanup(Game::EnemyBase*) { }
+void Damagumo::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802A477C
  * Size:	000084
  */
-void Game::Damagumo::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void Damagumo::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -334,7 +336,7 @@ void Game::Damagumo::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A4800
  * Size:	0000B8
  */
-void Game::Damagumo::StateStay::exec(Game::EnemyBase*)
+void Damagumo::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -400,14 +402,14 @@ void Game::Damagumo::StateStay::exec(Game::EnemyBase*)
  * Address:	802A48B8
  * Size:	000004
  */
-void Game::Damagumo::StateStay::cleanup(Game::EnemyBase*) { }
+void Damagumo::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802A48BC
  * Size:	0000B4
  */
-void Game::Damagumo::StateLand::init(Game::EnemyBase*, Game::StateArg*)
+void Damagumo::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -464,7 +466,7 @@ void Game::Damagumo::StateLand::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A4970
  * Size:	0001E8
  */
-void Game::Damagumo::StateLand::exec(Game::EnemyBase*)
+void Damagumo::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +618,7 @@ void Game::Damagumo::StateLand::exec(Game::EnemyBase*)
  * Address:	802A4B58
  * Size:	00005C
  */
-void Game::Damagumo::StateLand::cleanup(Game::EnemyBase*)
+void Damagumo::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -651,7 +653,7 @@ void Game::Damagumo::StateLand::cleanup(Game::EnemyBase*)
  * Address:	802A4BB4
  * Size:	000098
  */
-void Game::Damagumo::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Damagumo::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -701,7 +703,7 @@ void Game::Damagumo::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A4C4C
  * Size:	0000F4
  */
-void Game::Damagumo::StateWait::exec(Game::EnemyBase*)
+void Damagumo::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -782,14 +784,14 @@ void Game::Damagumo::StateWait::exec(Game::EnemyBase*)
  * Address:	802A4D40
  * Size:	000004
  */
-void Game::Damagumo::StateWait::cleanup(Game::EnemyBase*) { }
+void Damagumo::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802A4D44
  * Size:	000064
  */
-void Game::Damagumo::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void Damagumo::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -826,7 +828,7 @@ void Game::Damagumo::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A4DA8
  * Size:	0000C8
  */
-void Game::Damagumo::StateFlick::exec(Game::EnemyBase*)
+void Damagumo::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -894,7 +896,7 @@ void Game::Damagumo::StateFlick::exec(Game::EnemyBase*)
  * Address:	802A4E70
  * Size:	000024
  */
-void Game::Damagumo::StateFlick::cleanup(Game::EnemyBase*)
+void Damagumo::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -915,7 +917,7 @@ void Game::Damagumo::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802A4E94
  * Size:	000098
  */
-void Game::Damagumo::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void Damagumo::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -965,7 +967,7 @@ void Game::Damagumo::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A4F2C
  * Size:	000100
  */
-void Game::Damagumo::StateWalk::exec(Game::EnemyBase*)
+void Damagumo::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1049,7 +1051,9 @@ void Game::Damagumo::StateWalk::exec(Game::EnemyBase*)
  * Address:	802A502C
  * Size:	000004
  */
-void Game::Damagumo::StateWalk::cleanup(Game::EnemyBase*) { }
+void Damagumo::StateWalk::cleanup(Game::EnemyBase*) { }
+
+} // namespace Game
 
 /*
  * --INFO--

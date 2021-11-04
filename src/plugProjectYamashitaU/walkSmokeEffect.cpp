@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8012A320
  * Size:	000034
  */
-void Game::WalkSmokeEffect::Obj::Obj()
+WalkSmokeEffect::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -30,7 +32,7 @@ void Game::WalkSmokeEffect::Obj::Obj()
  * Address:	8012A354
  * Size:	000010
  */
-void Game::WalkSmokeEffect::Mgr::Mgr()
+WalkSmokeEffect::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -46,7 +48,7 @@ void Game::WalkSmokeEffect::Mgr::Mgr()
  * Address:	8012A364
  * Size:	0000B4
  */
-void Game::WalkSmokeEffect::Mgr::alloc(int)
+void WalkSmokeEffect::Mgr::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +109,7 @@ void Game::WalkSmokeEffect::Mgr::alloc(int)
  * Address:	8012A418
  * Size:	0001C8
  */
-void Game::WalkSmokeEffect::Mgr::update(Game::EnemyBase*)
+void WalkSmokeEffect::Mgr::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +245,7 @@ void Game::WalkSmokeEffect::Mgr::update(Game::EnemyBase*)
  * Address:	8012A5E0
  * Size:	000090
  */
-void Game::WalkSmokeEffect::Mgr::setup(int, SysShape::Model*, char*, float)
+void WalkSmokeEffect::Mgr::setup(int, SysShape::Model*, char*, float)
 {
 	/*
 	.loc_0x0:
@@ -285,3 +287,4 @@ void Game::WalkSmokeEffect::Mgr::setup(int, SysShape::Model*, char*, float)
 	  blr
 	*/
 }
+} // namespace Game

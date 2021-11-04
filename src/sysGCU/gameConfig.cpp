@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void Game::GameConfig::setConstSetting(void)
+void GameConfig::setConstSetting(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::GameConfig::setConstSetting(void)
  * Address:	80432170
  * Size:	000130
  */
-void Game::GameConfig::__ct(void)
+GameConfig::GameConfig(void)
 {
 	/*
 	.loc_0x0:
@@ -113,7 +105,7 @@ void Game::GameConfig::__ct(void)
  * Address:	804322A0
  * Size:	000070
  */
-void Game::GameConfig::Parms::__dt(void)
+GameConfig::Parms::~Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +149,7 @@ void Game::GameConfig::Parms::__dt(void)
  * Address:	80432310
  * Size:	000460
  */
-void Game::GameConfig::Parms::__ct(void)
+GameConfig::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -449,7 +441,7 @@ void Game::GameConfig::Parms::__ct(void)
  * Address:	80432770
  * Size:	000128
  */
-void Game::GameConfig::load((char*))
+void GameConfig::load(char*)
 {
 	/*
 	.loc_0x0:
@@ -544,6 +536,8 @@ void Game::GameConfig::load((char*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80432898
@@ -571,12 +565,14 @@ void __sinit_gameConfig_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	804328D4
  * Size:	000074
  */
-void Game::GameConfig::__dt(void)
+GameConfig::~GameConfig(void)
 {
 	/*
 	.loc_0x0:
@@ -615,3 +611,4 @@ void Game::GameConfig::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

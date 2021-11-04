@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802AD6F0
  * Size:	000138
  */
-void Game::Kurage::Obj::Obj()
+Kurage::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,14 +103,14 @@ void Game::Kurage::Obj::Obj()
  * Address:	802AD828
  * Size:	000004
  */
-void Game::Kurage::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Kurage::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802AD82C
  * Size:	0000A8
  */
-void Game::Kurage::Obj::onInit(Game::CreatureInitArg*)
+void Kurage::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +164,7 @@ void Game::Kurage::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802AD8D4
  * Size:	000054
  */
-void Game::Kurage::Obj::onKill(Game::CreatureKillArg*)
+void Kurage::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +197,7 @@ void Game::Kurage::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802AD928
  * Size:	000100
  */
-void Game::Kurage::Obj::doUpdate()
+void Kurage::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -275,14 +277,14 @@ void Game::Kurage::Obj::doUpdate()
  * Address:	802ADA28
  * Size:	000004
  */
-void Game::Kurage::Obj::doDirectDraw(Graphics&) { }
+void Kurage::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802ADA2C
  * Size:	000020
  */
-void Game::Kurage::Obj::doDebugDraw(Graphics&)
+void Kurage::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +304,7 @@ void Game::Kurage::Obj::doDebugDraw(Graphics&)
  * Address:	802ADA4C
  * Size:	00004C
  */
-void Game::Kurage::Obj::setFSM(Game::Kurage::FSM*)
+void Kurage::Obj::setFSM(Game::Kurage::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -333,7 +335,7 @@ void Game::Kurage::Obj::setFSM(Game::Kurage::FSM*)
  * Address:	802ADA98
  * Size:	000118
  */
-void Game::Kurage::Obj::getShadowParam(Game::ShadowParam&)
+void Kurage::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -423,7 +425,7 @@ void Game::Kurage::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802ADBB0
  * Size:	000038
  */
-void Game::Kurage::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void Kurage::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -453,7 +455,7 @@ void Game::Kurage::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	802ADBE8
  * Size:	000044
  */
-void Game::Kurage::Obj::doStartStoneState()
+void Kurage::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -482,7 +484,7 @@ void Game::Kurage::Obj::doStartStoneState()
  * Address:	802ADC2C
  * Size:	00007C
  */
-void Game::Kurage::Obj::doFinishStoneState()
+void Kurage::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -531,7 +533,7 @@ void Game::Kurage::Obj::doFinishStoneState()
  * Address:	802ADCA8
  * Size:	000034
  */
-void Game::Kurage::Obj::doStartWaitingBirthTypeDrop()
+void Kurage::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -556,7 +558,7 @@ void Game::Kurage::Obj::doStartWaitingBirthTypeDrop()
  * Address:	802ADCDC
  * Size:	000034
  */
-void Game::Kurage::Obj::doFinishWaitingBirthTypeDrop()
+void Kurage::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -581,7 +583,7 @@ void Game::Kurage::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802ADD10
  * Size:	000020
  */
-void Game::Kurage::Obj::doStartMovie()
+void Kurage::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -601,7 +603,7 @@ void Game::Kurage::Obj::doStartMovie()
  * Address:	802ADD30
  * Size:	000020
  */
-void Game::Kurage::Obj::doEndMovie()
+void Kurage::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -621,7 +623,7 @@ void Game::Kurage::Obj::doEndMovie()
  * Address:	802ADD50
  * Size:	000098
  */
-void Game::Kurage::Obj::setHeightVelocity(float, float)
+void Kurage::Obj::setHeightVelocity(float, float)
 {
 	/*
 	.loc_0x0:
@@ -671,7 +673,7 @@ void Game::Kurage::Obj::setHeightVelocity(float, float)
  * Address:	802ADDE8
  * Size:	0001D8
  */
-void Game::Kurage::Obj::setRandTarget()
+void Kurage::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -807,7 +809,7 @@ void Game::Kurage::Obj::setRandTarget()
  * Address:	802ADFC0
  * Size:	0000A4
  */
-void Game::Kurage::Obj::getMovePitchOffset()
+void Kurage::Obj::getMovePitchOffset()
 {
 	/*
 	.loc_0x0:
@@ -866,7 +868,7 @@ void Game::Kurage::Obj::getMovePitchOffset()
  * Address:	802AE064
  * Size:	0001A8
  */
-void Game::Kurage::Obj::getAttackPitchOffset()
+void Kurage::Obj::getAttackPitchOffset()
 {
 	/*
 	.loc_0x0:
@@ -992,7 +994,7 @@ void Game::Kurage::Obj::getAttackPitchOffset()
  * Address:	802AE20C
  * Size:	0001A8
  */
-void Game::Kurage::Obj::getFlickPitchOffset()
+void Kurage::Obj::getFlickPitchOffset()
 {
 	/*
 	.loc_0x0:
@@ -1118,7 +1120,7 @@ void Game::Kurage::Obj::getFlickPitchOffset()
  * Address:	802AE3B4
  * Size:	000144
  */
-void Game::Kurage::Obj::getTakeOffPitchOffset()
+void Kurage::Obj::getTakeOffPitchOffset()
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1219,7 @@ void Game::Kurage::Obj::getTakeOffPitchOffset()
  * Address:	802AE4F8
  * Size:	000168
  */
-void Game::Kurage::Obj::getFallPitchOffset(float)
+void Kurage::Obj::getFallPitchOffset(float)
 {
 	/*
 	.loc_0x0:
@@ -1325,7 +1327,7 @@ void Game::Kurage::Obj::getFallPitchOffset(float)
  * Address:	802AE660
  * Size:	000030
  */
-void Game::Kurage::Obj::updateFallTimer()
+void Kurage::Obj::updateFallTimer()
 {
 	/*
 	.loc_0x0:
@@ -1351,7 +1353,7 @@ void Game::Kurage::Obj::updateFallTimer()
  * Address:	802AE690
  * Size:	0000A4
  */
-void Game::Kurage::Obj::getFlyingNextState()
+void Kurage::Obj::getFlyingNextState()
 {
 	/*
 	.loc_0x0:
@@ -1416,7 +1418,7 @@ void Game::Kurage::Obj::getFlyingNextState()
  * Address:	802AE734
  * Size:	000448
  */
-void Game::Kurage::Obj::getSearchedTarget(float)
+void Kurage::Obj::getSearchedTarget(float)
 {
 	/*
 	.loc_0x0:
@@ -1730,7 +1732,7 @@ void Game::Kurage::Obj::getSearchedTarget(float)
  * Address:	802AEB7C
  * Size:	00033C
  */
-void Game::Kurage::Obj::isSuck(float, Game::Creature*)
+void Kurage::Obj::isSuck(float, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1973,7 +1975,7 @@ void Game::Kurage::Obj::isSuck(float, Game::Creature*)
  * Address:	802AEEB8
  * Size:	000434
  */
-void Game::Kurage::Obj::suckPikmin(float)
+void Kurage::Obj::suckPikmin(float)
 {
 	/*
 	.loc_0x0:
@@ -2272,7 +2274,7 @@ void Game::Kurage::Obj::suckPikmin(float)
  * Address:	802AF2EC
  * Size:	0002B4
  */
-void Game::Kurage::Obj::createEffect()
+void Kurage::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -2469,7 +2471,7 @@ void Game::Kurage::Obj::createEffect()
  * Address:	802AF5A0
  * Size:	00008C
  */
-void Game::Kurage::Obj::setupEffect()
+void Kurage::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -2516,7 +2518,7 @@ void Game::Kurage::Obj::setupEffect()
  * Address:	802AF62C
  * Size:	000088
  */
-void Game::Kurage::Obj::startEyeHireBodyEffect()
+void Kurage::Obj::startEyeHireBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -2562,7 +2564,7 @@ void Game::Kurage::Obj::startEyeHireBodyEffect()
  * Address:	802AF6B4
  * Size:	00007C
  */
-void Game::Kurage::Obj::finishEyeBodyEffect()
+void Kurage::Obj::finishEyeBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -2605,7 +2607,7 @@ void Game::Kurage::Obj::finishEyeBodyEffect()
  * Address:	802AF730
  * Size:	000024
  */
-void Game::Kurage::Obj::setHireEffectLife(short)
+void Kurage::Obj::setHireEffectLife(short)
 {
 	/*
 	.loc_0x0:
@@ -2626,7 +2628,7 @@ void Game::Kurage::Obj::setHireEffectLife(short)
  * Address:	802AF754
  * Size:	000050
  */
-void Game::Kurage::Obj::finishHireEffect()
+void Kurage::Obj::finishHireEffect()
 {
 	/*
 	.loc_0x0:
@@ -2658,7 +2660,7 @@ void Game::Kurage::Obj::finishHireEffect()
  * Address:	802AF7A4
  * Size:	000058
  */
-void Game::Kurage::Obj::startSuckEffect(Vector3<float>&)
+void Kurage::Obj::startSuckEffect(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2692,7 +2694,7 @@ void Game::Kurage::Obj::startSuckEffect(Vector3<float>&)
  * Address:	802AF7FC
  * Size:	000024
  */
-void Game::Kurage::Obj::updateSuckEffect(Vector3<float>&)
+void Kurage::Obj::updateSuckEffect(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2713,7 +2715,7 @@ void Game::Kurage::Obj::updateSuckEffect(Vector3<float>&)
  * Address:	802AF820
  * Size:	000030
  */
-void Game::Kurage::Obj::finishSuckEffect()
+void Kurage::Obj::finishSuckEffect()
 {
 	/*
 	.loc_0x0:
@@ -2737,7 +2739,7 @@ void Game::Kurage::Obj::finishSuckEffect()
  * Address:	802AF850
  * Size:	00009C
  */
-void Game::Kurage::Obj::createBodyBombEffect()
+void Kurage::Obj::createBodyBombEffect()
 {
 	/*
 	.loc_0x0:
@@ -2788,7 +2790,7 @@ void Game::Kurage::Obj::createBodyBombEffect()
  * Address:	802AF8EC
  * Size:	000044
  */
-void Game::Kurage::Obj::createDownEffect()
+void Kurage::Obj::createDownEffect()
 {
 	/*
 	.loc_0x0:
@@ -2817,7 +2819,7 @@ void Game::Kurage::Obj::createDownEffect()
  * Address:	802AF930
  * Size:	000008
  */
-void Game::Kurage::Obj::getDownSmokeScale()
+void Kurage::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -2831,7 +2833,7 @@ void Game::Kurage::Obj::getDownSmokeScale()
  * Address:	802AF938
  * Size:	0000A0
  */
-void Game::Kurage::Obj::effectDrawOn()
+void Kurage::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -2883,7 +2885,7 @@ void Game::Kurage::Obj::effectDrawOn()
  * Address:	802AF9D8
  * Size:	0000A0
  */
-void Game::Kurage::Obj::effectDrawOff()
+void Kurage::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -2930,12 +2932,16 @@ void Game::Kurage::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802AFA78
  * Size:	00009C
  */
-void efx::TNewkurageDeadrun::~TNewkurageDeadrun()
+TNewkurageDeadrun::~TNewkurageDeadrun()
 {
 	/*
 	.loc_0x0:
@@ -2990,7 +2996,7 @@ void efx::TNewkurageDeadrun::~TNewkurageDeadrun()
  * Address:	802AFB14
  * Size:	00009C
  */
-void efx::TNewkurageKira::~TNewkurageKira()
+TNewkurageKira::~TNewkurageKira()
 {
 	/*
 	.loc_0x0:
@@ -3045,7 +3051,7 @@ void efx::TNewkurageKira::~TNewkurageKira()
  * Address:	802AFBB0
  * Size:	00009C
  */
-void efx::TNewkurageEye::~TNewkurageEye()
+TNewkurageEye::~TNewkurageEye()
 {
 	/*
 	.loc_0x0:
@@ -3095,65 +3101,74 @@ void efx::TNewkurageEye::~TNewkurageEye()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802AFC4C
  * Size:	000004
  */
-void Game::Kurage::Obj::inWaterCallback(Game::WaterBox*) { }
+void Kurage::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802AFC50
  * Size:	000004
  */
-void Game::Kurage::Obj::outWaterCallback() { }
+void Kurage::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802AFC54
  * Size:	000008
  */
-u32 Game::Kurage::Obj::getEnemyTypeID() { return 0x39; }
+u32 Kurage::Obj::getEnemyTypeID() { return 0x39; }
 
-/*
- * --INFO--
- * Address:	802AFC5C
- * Size:	000008
- */
-void efx::TNewkurageEye::@4 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xB0
-	*/
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	802AFC64
- * Size:	000008
- */
-void efx::TNewkurageKira::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x154
-	*/
-}
+	 * --INFO--
+	 * Address:	802AFC5C
+	 * Size:	000008
+	 */
+	TNewkurageEye::@4 @~TNewkurageEye()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0xB0
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802AFC6C
- * Size:	000008
- */
-void efx::TNewkurageDeadrun::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x1F8
-	*/
-}
+	 * --INFO--
+	 * Address:	802AFC64
+	 * Size:	000008
+	 */
+	TNewkurageKira::@4 @~TNewkurageKira()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x154
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	802AFC6C
+	 * Size:	000008
+	 */
+	TNewkurageDeadrun::@4 @~TNewkurageDeadrun()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x1F8
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

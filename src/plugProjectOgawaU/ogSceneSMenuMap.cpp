@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80312BFC
  * Size:	000050
  */
-void og::newScreen::SMenuMap::__ct(void)
+newScreen::SMenuMap::SMenuMap(void)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void og::newScreen::SMenuMap::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::SceneSMenuBase::__dt(void)
+newScreen::SceneSMenuBase::~SceneSMenuBase(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,7 +49,7 @@ void og::newScreen::SceneSMenuBase::__dt(void)
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::SMenuMap::__dt(void)
+newScreen::SMenuMap::~SMenuMap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -67,7 +59,7 @@ void og::newScreen::SMenuMap::__dt(void)
  * Address:	80312C4C
  * Size:	000148
  */
-void og::newScreen::SMenuMap::doUserCallBackFunc((Resource::MgrCommand*))
+void newScreen::SMenuMap::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +175,7 @@ void og::newScreen::SMenuMap::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	80312D94
  * Size:	000080
  */
-void og::newScreen::SMenuMap::doCreateObj((JKRArchive*))
+void newScreen::SMenuMap::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -229,14 +221,14 @@ void og::newScreen::SMenuMap::doCreateObj((JKRArchive*))
  * Address:	80312E14
  * Size:	000004
  */
-void og::newScreen::SMenuMap::doUpdateActive(void) { }
+void newScreen::SMenuMap::doUpdateActive(void) { }
 
 /*
  * --INFO--
  * Address:	80312E18
  * Size:	000068
  */
-void og::newScreen::SMenuMap::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::SMenuMap::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +268,7 @@ void og::newScreen::SMenuMap::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	80312E80
  * Size:	00000C
  */
-void og::newScreen::SMenuMap::doSetBackupScene((Screen::SetSceneArg&))
+void newScreen::SMenuMap::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -291,7 +283,7 @@ void og::newScreen::SMenuMap::doSetBackupScene((Screen::SetSceneArg&))
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::SMenuMap::close(void)
+void newScreen::SMenuMap::close(void)
 {
 	// UNUSED FUNCTION
 }
@@ -301,7 +293,7 @@ void og::newScreen::SMenuMap::close(void)
  * Address:	80312E8C
  * Size:	00000C
  */
-void og::newScreen::SMenuMap::getResName( const
+void newScreen::SMenuMap::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -316,17 +308,14 @@ void og::newScreen::SMenuMap::getResName( const
  * Address:	80312E98
  * Size:	000008
  */
-u32  og::newScreen::SMenuMap::getSceneType(void)
-{
-	return 0x271D;
-}
+u32 newScreen::SMenuMap::getSceneType(void) { return 0x271D; }
 
 /*
  * --INFO--
  * Address:	80312EA0
  * Size:	00000C
  */
-void og::newScreen::SMenuMap::getOwnerID(void)
+void newScreen::SMenuMap::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +330,7 @@ void og::newScreen::SMenuMap::getOwnerID(void)
  * Address:	80312EAC
  * Size:	000010
  */
-void og::newScreen::SMenuMap::getMemberID(void)
+void newScreen::SMenuMap::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -357,17 +346,14 @@ void og::newScreen::SMenuMap::getMemberID(void)
  * Address:	80312EBC
  * Size:	000008
  */
-u32  og::newScreen::SMenuMap::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::SMenuMap::isUseBackupSceneInfo(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80312EC4
  * Size:	000008
  */
-void og::newScreen::SceneSMenuBase::doGetFinishState(void)
+void newScreen::SceneSMenuBase::doGetFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -376,14 +362,18 @@ void og::newScreen::SceneSMenuBase::doGetFinishState(void)
 	*/
 }
 
+} // namespace og
+
+namespace Screen {
+
 /*
  * --INFO--
  * Address:	80312ECC
  * Size:	000004
  */
-void Screen::SceneBase::doUserCallBackFunc( (Resource::MgrCommand *))
-{
-}
+void SceneBase::doUserCallBackFunc(Resource::MgrCommand*) { }
+
+} // namespace Screen
 
 /*
  * --INFO--

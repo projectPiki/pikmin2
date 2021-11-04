@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -98,12 +88,14 @@ void makeObjectPiki()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801AC4E8
  * Size:	00008C
  */
-void Game::GenObjectPiki::initialise(void)
+void GenObjectPiki::initialise(void)
 {
 	/*
 	.loc_0x0:
@@ -150,7 +142,7 @@ void Game::GenObjectPiki::initialise(void)
  * Address:	801AC574
  * Size:	00002C
  */
-void Game::GenObjectPiki::ramSaveParameters((Stream&))
+void GenObjectPiki::ramSaveParameters(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +165,7 @@ void Game::GenObjectPiki::ramSaveParameters((Stream&))
  * Address:	801AC5A0
  * Size:	000038
  */
-void Game::GenObjectPiki::ramLoadParameters((Stream&))
+void GenObjectPiki::ramLoadParameters(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +191,7 @@ void Game::GenObjectPiki::ramLoadParameters((Stream&))
  * Address:	801AC5D8
  * Size:	000258
  */
-void Game::GenObjectPiki::generate((Game::Generator*))
+void GenObjectPiki::generate(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +365,7 @@ void Game::GenObjectPiki::generate((Game::Generator*))
  * Address:	801AC830
  * Size:	0001B0
  */
-void Game::GenObjectPiki::birth((Game::GenArg*))
+void GenObjectPiki::birth(Game::GenArg*)
 {
 	/*
 	.loc_0x0:
@@ -501,6 +493,8 @@ void Game::GenObjectPiki::birth((Game::GenArg*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

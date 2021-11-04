@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	803A102C
  * Size:	0000B8
  */
-void Morimura::TCallbackScissor::draw((Graphics&, J2DGrafContext&))
+void Morimura::TCallbackScissor::draw(Graphics&, J2DGrafContext&)
 {
 	/*
 	.loc_0x0:
@@ -73,8 +63,8 @@ void Morimura::TCallbackScissor::draw((Graphics&, J2DGrafContext&))
  * Address:	803A10E4
  * Size:	0000C0
  */
-void Morimura::TOffsetMsgSet::__ct((unsigned long long*, unsigned long long,
-                                    int))
+Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long,
+                                       int)
 {
 	/*
 	.loc_0x0:
@@ -138,8 +128,8 @@ void Morimura::TOffsetMsgSet::__ct((unsigned long long*, unsigned long long,
  * Address:	803A11A4
  * Size:	000068
  */
-void Morimura::TOffsetMsgSet::__ct((unsigned long long*, unsigned long long,
-                                    int, unsigned long long*, int*))
+Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long,
+                                       int, unsigned long long*, int*)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +171,7 @@ void Morimura::TOffsetMsgSet::__ct((unsigned long long*, unsigned long long,
  * Address:	803A120C
  * Size:	00019C
  */
-void Morimura::TOffsetMsgSet::getMsgID((int))
+void Morimura::TOffsetMsgSet::getMsgID(int)
 {
 	/*
 	.loc_0x0:
@@ -316,7 +306,7 @@ void Morimura::TOffsetMsgSet::getMsgID((int))
  * Address:	803A13A8
  * Size:	000028
  */
-void Morimura::TScreenBase::__ct((JKRArchive*, int))
+Morimura::TScreenBase::TScreenBase(JKRArchive*, int)
 {
 	/*
 	.loc_0x0:
@@ -338,7 +328,7 @@ void Morimura::TScreenBase::__ct((JKRArchive*, int))
  * Address:	803A13D0
  * Size:	000090
  */
-void Morimura::TScreenBase::create((char const*, unsigned long))
+void Morimura::TScreenBase::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -388,7 +378,7 @@ void Morimura::TScreenBase::create((char const*, unsigned long))
  * Address:	803A1460
  * Size:	0000B0
  */
-void Morimura::TScreenBase::addAnim((char*))
+void Morimura::TScreenBase::addAnim(char*)
 {
 	/*
 	.loc_0x0:
@@ -441,15 +431,23 @@ void Morimura::TScreenBase::addAnim((char*))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void og::Screen::AnimScreen::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
+
+namespace Screen {
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000048
+	 */
+	AnimScreen::~AnimScreen(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--
@@ -508,7 +506,7 @@ void Morimura::TScreenBase::update(void)
  * Address:	803A1598
  * Size:	000038
  */
-void Morimura::TScreenBase::draw((Graphics&, J2DPerspGraph*))
+void Morimura::TScreenBase::draw(Graphics&, J2DPerspGraph*)
 {
 	/*
 	.loc_0x0:
@@ -536,7 +534,7 @@ void Morimura::TScreenBase::draw((Graphics&, J2DPerspGraph*))
  * Address:	803A15D0
  * Size:	000124
  */
-void Morimura::TIndPane::__ct((char const*, float, float))
+Morimura::TIndPane::TIndPane(char const*, float, float)
 {
 	/*
 	.loc_0x0:
@@ -623,7 +621,7 @@ void Morimura::TIndPane::__ct((char const*, float, float))
  * Address:	803A16F4
  * Size:	0000A4
  */
-void Morimura::TIndPane::createIndTexture((char const*))
+void Morimura::TIndPane::createIndTexture(char const*)
 {
 	/*
 	.loc_0x0:
@@ -680,7 +678,7 @@ void Morimura::TIndPane::createIndTexture((char const*))
  * Address:	803A1798
  * Size:	000074
  */
-void Morimura::TIndPane::createCaptureTexture((_GXTexFmt))
+void Morimura::TIndPane::createCaptureTexture(_GXTexFmt)
 {
 	/*
 	.loc_0x0:
@@ -937,7 +935,7 @@ void Morimura::TIndPane::draw(void)
  * Address:	803A1B14
  * Size:	0000A8
  */
-void Morimura::TScaleUpCounter::setValue((bool, bool))
+void Morimura::TScaleUpCounter::setValue(bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -1001,7 +999,7 @@ void Morimura::TScaleUpCounter::setValue((bool, bool))
  * Address:	803A1BBC
  * Size:	000060
  */
-void Morimura::TScaleUpCounter::forceScaleUp((bool))
+void Morimura::TScaleUpCounter::forceScaleUp(bool)
 {
 	/*
 	.loc_0x0:
@@ -1041,7 +1039,7 @@ void Morimura::TScaleUpCounter::forceScaleUp((bool))
  * Address:	803A1C1C
  * Size:	000040
  */
-void Morimura::TScaleUpCounter::setScale((float, float))
+void Morimura::TScaleUpCounter::setScale(float, float)
 {
 	/*
 	.loc_0x0:
@@ -1292,7 +1290,7 @@ void Morimura::setScaleUpCounter2(P2DScreen::Mgr*, unsigned long long,
  * Address:	803A1F2C
  * Size:	0000B8
  */
-void Morimura::TScissorPane::drawSelf((float, float, float (*)[3][4]))
+void Morimura::TScissorPane::drawSelf(float, float, float (*)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1350,7 +1348,7 @@ void Morimura::TScissorPane::drawSelf((float, float, float (*)[3][4]))
  * Address:	803A1FE4
  * Size:	000060
  */
-void Morimura::TScissorPane::__dt(void)
+Morimura::TScissorPane::~TScissorPane(void)
 {
 	/*
 	.loc_0x0:
@@ -1388,7 +1386,7 @@ void Morimura::TScissorPane::__dt(void)
  * Address:	803A2044
  * Size:	000090
  */
-void Morimura::TScaleUpCounter::__dt(void)
+Morimura::TScaleUpCounter::~TScaleUpCounter(void)
 {
 	/*
 	.loc_0x0:
@@ -1440,7 +1438,7 @@ void Morimura::TScaleUpCounter::__dt(void)
  * Address:	803A20D4
  * Size:	000080
  */
-void Morimura::TCallbackScissor::__dt(void)
+Morimura::TCallbackScissor::~TCallbackScissor(void)
 {
 	/*
 	.loc_0x0:

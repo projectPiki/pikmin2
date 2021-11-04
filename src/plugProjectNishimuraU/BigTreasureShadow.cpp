@@ -1,12 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802DA5C8
  * Size:	000418
  */
-void Game::BigTreasure::BigTreasureShadowMgr::BigTreasureShadowMgr(
-    Game::BigTreasure::Obj*)
+BigTreasure::BigTreasureShadowMgr::BigTreasureShadowMgr(Game::BigTreasure::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -324,7 +325,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::BigTreasureShadowMgr(
  * Address:	802DA9E0
  * Size:	0002B4
  */
-void Game::BigTreasure::BigTreasureShadowMgr::init()
+void BigTreasure::BigTreasureShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -509,14 +510,10 @@ void Game::BigTreasure::BigTreasureShadowMgr::init()
  * Address:	802DAC94
  * Size:	000008
  */
-void Game::BigTreasure::BigTreasureShadowMgr::setKosiJointPosPtr(
-    Vector3<float>*)
+void BigTreasure::BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x40(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x40(r3)
+	_40 = a1;
 }
 
 /*
@@ -524,8 +521,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::setKosiJointPosPtr(
  * Address:	802DAC9C
  * Size:	000018
  */
-void Game::BigTreasure::BigTreasureShadowMgr::setJointPosPtr(int, int,
-                                                             Vector3<float>*)
+void BigTreasure::BigTreasureShadowMgr::setJointPosPtr(int, int, Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -543,7 +539,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::setJointPosPtr(int, int,
  * Address:	802DACB4
  * Size:	000510
  */
-void Game::BigTreasure::BigTreasureShadowMgr::update()
+void BigTreasure::BigTreasureShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -903,7 +899,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::update()
  * Address:	802DB1C4
  * Size:	0000F4
  */
-void Game::BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(
+void BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(
     Game::JointShadowParm&)
 {
 	/*
@@ -985,8 +981,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(
  * Address:	802DB2B8
  * Size:	000348
  */
-void Game::BigTreasure::BigTreasureShadowMgr::updateHandShadow(
-    Game::JointShadowParm&)
+void BigTreasure::BigTreasureShadowMgr::updateHandShadow(Game::JointShadowParm&)
 {
 	/*
 	.loc_0x0:
@@ -1210,7 +1205,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::updateHandShadow(
  * Address:	802DB600
  * Size:	000544
  */
-void Game::BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(
+void BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(
     Game::JointShadowParm&)
 {
 	/*
@@ -1562,7 +1557,7 @@ void Game::BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(
  * Address:	802DBB44
  * Size:	000070
  */
-void Game::TubeShadowPosNode::~TubeShadowPosNode()
+TubeShadowPosNode::~TubeShadowPosNode()
 {
 	/*
 	.loc_0x0:
@@ -1600,3 +1595,4 @@ void Game::TubeShadowPosNode::~TubeShadowPosNode()
 	  blr
 	*/
 }
+} // namespace Game

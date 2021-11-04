@@ -5,7 +5,7 @@
  * Address:	801336A8
  * Size:	000044
  */
-void Platform::Platform()
+Platform::Platform()
 {
 	/*
 	.loc_0x0:
@@ -187,7 +187,7 @@ void Platform::load(JKRFileLoader*, char*)
  * Address:	80133860
  * Size:	000014
  */
-void PlatAttacher::PlatAttacher()
+PlatAttacher::PlatAttacher()
 {
 	/*
 	.loc_0x0:
@@ -249,7 +249,7 @@ void PlatAttacher::setMapCodeAll(MapCode::Code&)
  * Address:	801338D8
  * Size:	000060
  */
-void Platform::~Platform()
+Platform::~Platform()
 {
 	/*
 	.loc_0x0:
@@ -411,7 +411,7 @@ void PlatAttacher::read(Stream&)
  * Address:	80133AC8
  * Size:	0000B0
  */
-void ArrayContainer<Vector3<float>>::read(Stream&)
+void ArrayContainer<Vector3f>::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -471,14 +471,14 @@ void ArrayContainer<Vector3<float>>::read(Stream&)
  * Address:	80133B78
  * Size:	000004
  */
-void ArrayContainer<Vector3<float>>::readObject(Stream&, Vector3<float>&) { }
+void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80133B7C
  * Size:	000068
  */
-void ArrayContainer<Vector3<float>>::alloc(int)
+void ArrayContainer<Vector3f>::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -516,7 +516,7 @@ void ArrayContainer<Vector3<float>>::alloc(int)
  * Address:	80133BE4
  * Size:	000080
  */
-void ArrayContainer<Vector3<float>>::~ArrayContainer()
+void ArrayContainer<Vector3f>::~ArrayContainer()
 {
 	/*
 	.loc_0x0:
@@ -564,7 +564,7 @@ void ArrayContainer<Vector3<float>>::~ArrayContainer()
  * Address:	80133C64
  * Size:	000070
  */
-void Container<Vector3<float>>::~Container()
+void Container<Vector3f>::~Container()
 {
 	/*
 	.loc_0x0:
@@ -711,12 +711,14 @@ void PlatAttacher::getPlatform(int)
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	80133DD4
  * Size:	000090
  */
-void Sys::GridDivider::~GridDivider()
+GridDivider::~GridDivider()
 {
 	/*
 	.loc_0x0:
@@ -770,7 +772,7 @@ void Sys::GridDivider::~GridDivider()
  * Address:	80133E64
  * Size:	0000A0
  */
-void Sys::TriIndexList::~TriIndexList()
+TriIndexList::~TriIndexList()
 {
 	/*
 	.loc_0x0:
@@ -826,7 +828,7 @@ void Sys::TriIndexList::~TriIndexList()
  * Address:	80133F04
  * Size:	000060
  */
-void Sys::TriDivider::~TriDivider()
+TriDivider::~TriDivider()
 {
 	/*
 	.loc_0x0:
@@ -864,7 +866,7 @@ void Sys::TriDivider::~TriDivider()
  * Address:	80133F64
  * Size:	0000F8
  */
-void Sys::OBBTree::~OBBTree()
+OBBTree::~OBBTree()
 {
 	/*
 	.loc_0x0:
@@ -941,12 +943,14 @@ void Sys::OBBTree::~OBBTree()
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	8013405C
  * Size:	000010
  */
-void CollTree::CollTree()
+CollTree::CollTree()
 {
 	/*
 	.loc_0x0:
@@ -1395,8 +1399,7 @@ void CollPart::getNext()
  * Address:	80134550
  * Size:	00003C
  */
-void CollTree::checkCollision(CollTree*, CollPart**, CollPart**,
-                              Vector3<float>&)
+void CollTree::checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1426,7 +1429,7 @@ void CollTree::checkCollision(CollTree*, CollPart**, CollPart**,
  * Size:	000604
  */
 void CollTree::checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**,
-                                 Vector3<float>&)
+                                 Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2613,12 +2616,14 @@ void CollPart::checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*)
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	801354B4
  * Size:	00003C
  */
-void Sys::Tube::Tube(Vector3<float>&, Vector3<float>&, float, float)
+Tube::Tube(Vector3f&, Vector3f&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -2645,7 +2650,7 @@ void Sys::Tube::Tube(Vector3<float>&, Vector3<float>&, float, float)
  * Address:	801354F0
  * Size:	000020
  */
-void Sys::Sphere::Sphere(Vector3<float>&, float)
+Sphere::Sphere(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -2659,6 +2664,8 @@ void Sys::Sphere::Sphere(Vector3<float>&, float)
 	  blr
 	*/
 }
+
+} // namespace Sys
 
 /*
  * --INFO--
@@ -2681,7 +2688,7 @@ void CollPart::isSphere()
  * Address:	80135520
  * Size:	00001C
  */
-void Vector3<float>::Vector3(const Vector3<float>&)
+void Vector3f::Vector3(const Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2734,8 +2741,8 @@ void CollPart::isTube()
  * Address:	80135564
  * Size:	000198
  */
-void CollTree::checkCollisionMulti(
-    CollTree*, IDelegate3<CollPart*, CollPart*, Vector3<float>&>*)
+void CollTree::checkCollisionMulti(CollTree*,
+                                   IDelegate3<CollPart*, CollPart*, Vector3f&>*)
 {
 	/*
 	.loc_0x0:
@@ -2879,8 +2886,8 @@ void CollTree::checkCollisionMulti(
  * Address:	801356FC
  * Size:	0001F0
  */
-void CollPart::checkCollisionMulti(
-    CollPart*, IDelegate3<CollPart*, CollPart*, Vector3<float>&>*)
+void CollPart::checkCollisionMulti(CollPart*,
+                                   IDelegate3<CollPart*, CollPart*, Vector3f&>*)
 {
 	/*
 	.loc_0x0:
@@ -3054,7 +3061,7 @@ void CollPart::checkCollisionMulti(
  * Address:	801358EC
  * Size:	0001B0
  */
-void CollPart::collide(CollPart*, Vector3<float>&)
+void CollPart::collide(CollPart*, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -4656,7 +4663,7 @@ void CollTree::getBoundingSphere(Sys::Sphere&)
  * Address:	80136C74
  * Size:	000064
  */
-void CollPart::CollPart(SysShape::MtxObject*)
+CollPart::CollPart(SysShape::MtxObject*)
 {
 	/*
 	.loc_0x0:
@@ -4693,7 +4700,7 @@ void CollPart::CollPart(SysShape::MtxObject*)
  * Address:	80136CD8
  * Size:	000058
  */
-void CollPart::CollPart()
+CollPart::CollPart()
 {
 	/*
 	.loc_0x0:
@@ -5155,7 +5162,7 @@ void CollPart::update()
  * Address:	801372C0
  * Size:	00001C
  */
-void Matrixf::getTranslation(Vector3<float>&)
+void Matrixf::getTranslation(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5174,7 +5181,7 @@ void Matrixf::getTranslation(Vector3<float>&)
  * Address:	801372DC
  * Size:	000024
  */
-void Matrixf::getBasis(int, Vector3<float>&)
+void Matrixf::getBasis(int, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5477,7 +5484,7 @@ void CollPart::makeTubeTree()
  * Address:	801375B0
  * Size:	00022C
  */
-void CollPart::calcStickLocal(Vector3<float>&, Vector3<float>&)
+void CollPart::calcStickLocal(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5648,7 +5655,7 @@ void CollPart::calcStickLocal(Vector3<float>&, Vector3<float>&)
  * Address:	801377DC
  * Size:	000168
  */
-void CollPart::calcStickGlobal(Vector3<float>&, Vector3<float>&)
+void CollPart::calcStickGlobal(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5762,7 +5769,7 @@ void CollPart::calcStickGlobal(Vector3<float>&, Vector3<float>&)
  * Address:	80137944
  * Size:	0004C8
  */
-void CollPart::calcPoseMatrix(Vector3<float>&, Matrixf&)
+void CollPart::calcPoseMatrix(Vector3f&, Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -6546,7 +6553,7 @@ void CollPart::draw(Graphics&) { }
  * Address:	80138334
  * Size:	000134
  */
-void MouthCollPart::MouthCollPart()
+MouthCollPart::MouthCollPart()
 {
 	/*
 	.loc_0x0:
@@ -6635,7 +6642,7 @@ void MouthCollPart::MouthCollPart()
  * Address:	80138468
  * Size:	000060
  */
-void CollPart::~CollPart()
+CollPart::~CollPart()
 {
 	/*
 	.loc_0x0:
@@ -6673,7 +6680,7 @@ void CollPart::~CollPart()
  * Address:	801384C8
  * Size:	000048
  */
-void MouthCollPart::getPosition(Vector3<float>&)
+void MouthCollPart::getPosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -6729,7 +6736,7 @@ void MouthCollPart::copyMatrixTo(Matrixf&)
  * Address:	80138548
  * Size:	000010
  */
-void MouthSlots::MouthSlots()
+MouthSlots::MouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -6782,7 +6789,7 @@ void MouthSlots::alloc(int)
  * Address:	801385BC
  * Size:	000070
  */
-void MouthCollPart::~MouthCollPart()
+MouthCollPart::~MouthCollPart()
 {
 	/*
 	.loc_0x0:
@@ -7754,13 +7761,10 @@ void CollPart::addChild(CollPart*)
  * Address:	8013917C
  * Size:	000008
  */
-void CNode::setName(char*)
+void CNode::setName(char* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x14(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x14(r3)
+	_14 = a1;
 }
 
 /*
@@ -7874,7 +7878,7 @@ void AgeCollPart::draw(Graphics&)
  * Address:	801392B4
  * Size:	0000CC
  */
-void AgeCollPart::AgeCollPart(SysShape::Model*)
+AgeCollPart::AgeCollPart(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -7937,7 +7941,7 @@ void AgeCollPart::AgeCollPart(SysShape::Model*)
  * Address:	80139380
  * Size:	000070
  */
-void AgeCollPart::~AgeCollPart()
+AgeCollPart::~AgeCollPart()
 {
 	/*
 	.loc_0x0:
@@ -8037,7 +8041,7 @@ void CollPart::doDirectDraw(Graphics&) { }
  * Address:	80139414
  * Size:	000070
  */
-void CollPartFactory::~CollPartFactory()
+CollPartFactory::~CollPartFactory()
 {
 	/*
 	.loc_0x0:
@@ -8083,12 +8087,14 @@ void CollPartFactory::~CollPartFactory()
  */
 u32 MouthCollPart::isMouth() { return 0x1; }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	8013948C
  * Size:	0000D4
  */
-void Sys::OBB::~OBB()
+OBB::~OBB()
 {
 	/*
 	.loc_0x0:
@@ -8151,6 +8157,8 @@ void Sys::OBB::~OBB()
 	  blr
 	*/
 }
+
+} // namespace Sys
 
 /*
  * --INFO--
@@ -8342,12 +8350,14 @@ void ArrayContainer<int>::read(Stream&)
  */
 void ArrayContainer<int>::readObject(Stream&, int&) { }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	80139750
  * Size:	000034
  */
-void Sys::IndexList::readObject(Stream&, int&)
+void IndexList::readObject(Stream&, int&)
 {
 	/*
 	.loc_0x0:
@@ -8372,7 +8382,7 @@ void Sys::IndexList::readObject(Stream&, int&)
  * Address:	80139784
  * Size:	000028
  */
-void Sys::IndexList::writeObject(Stream&, int&)
+void IndexList::writeObject(Stream&, int&)
 {
 	/*
 	.loc_0x0:
@@ -8394,7 +8404,7 @@ void Sys::IndexList::writeObject(Stream&, int&)
  * Address:	801397AC
  * Size:	000090
  */
-void Sys::IndexList::~IndexList()
+IndexList::~IndexList()
 {
 	/*
 	.loc_0x0:
@@ -8441,12 +8451,14 @@ void Sys::IndexList::~IndexList()
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	8013983C
  * Size:	000010
  */
-void ArrayContainer<Vector3<float>>::setArray(Vector3<float>*, int)
+void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
 {
 	/*
 	.loc_0x0:
@@ -8462,7 +8474,7 @@ void ArrayContainer<Vector3<float>>::setArray(Vector3<float>*, int)
  * Address:	8013984C
  * Size:	000040
  */
-void ArrayContainer<Vector3<float>>::addOne(Vector3<float>&)
+void ArrayContainer<Vector3f>::addOne(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -8600,14 +8612,14 @@ void MonoObjectMgr<CollPart>::getEmptyIndex()
  * Address:	8013997C
  * Size:	000004
  */
-void ArrayContainer<Vector3<float>>::writeObject(Stream&, Vector3<float>&) { }
+void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80139980
  * Size:	0000D4
  */
-void ArrayContainer<Vector3<float>>::write(Stream&)
+void ArrayContainer<Vector3f>::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -8676,7 +8688,7 @@ void ArrayContainer<Vector3<float>>::write(Stream&)
  * Address:	80139A54
  * Size:	000010
  */
-void ArrayContainer<Vector3<float>>::get(void*)
+void ArrayContainer<Vector3f>::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -8692,7 +8704,7 @@ void ArrayContainer<Vector3<float>>::get(void*)
  * Address:	80139A64
  * Size:	000008
  */
-void ArrayContainer<Vector3<float>>::getNext(void*)
+void ArrayContainer<Vector3f>::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -8706,14 +8718,14 @@ void ArrayContainer<Vector3<float>>::getNext(void*)
  * Address:	80139A6C
  * Size:	000008
  */
-u32 ArrayContainer<Vector3<float>>::getStart() { return 0x0; }
+u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80139A74
  * Size:	000008
  */
-void ArrayContainer<Vector3<float>>::getEnd()
+void ArrayContainer<Vector3f>::getEnd()
 {
 	/*
 	.loc_0x0:
@@ -8727,7 +8739,7 @@ void ArrayContainer<Vector3<float>>::getEnd()
  * Address:	80139A7C
  * Size:	000010
  */
-void ArrayContainer<Vector3<float>>::getAt(int)
+void ArrayContainer<Vector3f>::getAt(int)
 {
 	/*
 	.loc_0x0:
@@ -8743,7 +8755,7 @@ void ArrayContainer<Vector3<float>>::getAt(int)
  * Address:	80139A8C
  * Size:	000008
  */
-void ArrayContainer<Vector3<float>>::getTo()
+void ArrayContainer<Vector3f>::getTo()
 {
 	/*
 	.loc_0x0:
@@ -8953,7 +8965,7 @@ void ArrayContainer<int>::getTo()
  * Address:	80139BE8
  * Size:	00002C
  */
-void Container<Vector3<float>>::getObject(void*)
+void Container<Vector3f>::getObject(void*)
 {
 	/*
 	.loc_0x0:
@@ -8976,14 +8988,14 @@ void Container<Vector3<float>>::getObject(void*)
  * Address:	80139C14
  * Size:	000008
  */
-u32 Container<Vector3<float>>::getAt(int) { return 0x0; }
+u32 Container<Vector3f>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80139C1C
  * Size:	000008
  */
-u32 Container<Vector3<float>>::getTo() { return 0x0; }
+u32 Container<Vector3f>::getTo() { return 0x0; }
 
 /*
  * --INFO--

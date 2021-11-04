@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803826C8
  * Size:	000008
  */
-void Game::UmiMushi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void UmiMushi::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::UmiMushi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	803826D0
  * Size:	000008
  */
-void Game::UmiMushi::ProperAnimator::getAnimator((int))
+void UmiMushi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::UmiMushi::ProperAnimator::getAnimator((int))
  * Address:	803826D8
  * Size:	00005C
  */
-void Game::UmiMushi::ProperAnimator::__dt(void)
+UmiMushi::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::UmiMushi::ProperAnimator::__dt(void)
  * Address:	80382734
  * Size:	000008
  */
-void Game::UmiMushi::ProperAnimator::getAnimator(void)
+void UmiMushi::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::UmiMushi::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

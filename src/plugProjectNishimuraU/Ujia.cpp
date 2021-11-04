@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80266080
  * Size:	000130
  */
-void Game::Ujia::Obj::Obj()
+Ujia::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -99,14 +101,14 @@ void Game::Ujia::Obj::Obj()
  * Address:	802661B0
  * Size:	000004
  */
-void Game::Ujia::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Ujia::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802661B4
  * Size:	000098
  */
-void Game::Ujia::Obj::onInit(Game::CreatureInitArg*)
+void Ujia::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -156,7 +158,7 @@ void Game::Ujia::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8026624C
  * Size:	000034
  */
-void Game::Ujia::Obj::doUpdate()
+void Ujia::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -181,14 +183,14 @@ void Game::Ujia::Obj::doUpdate()
  * Address:	80266280
  * Size:	000004
  */
-void Game::Ujia::Obj::doDirectDraw(Graphics&) { }
+void Ujia::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80266284
  * Size:	000020
  */
-void Game::Ujia::Obj::doDebugDraw(Graphics&)
+void Ujia::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +210,7 @@ void Game::Ujia::Obj::doDebugDraw(Graphics&)
  * Address:	802662A4
  * Size:	00004C
  */
-void Game::Ujia::Obj::setFSM(Game::Ujia::FSM*)
+void Ujia::Obj::setFSM(Game::Ujia::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +241,7 @@ void Game::Ujia::Obj::setFSM(Game::Ujia::FSM*)
  * Address:	802662F0
  * Size:	0000A8
  */
-void Game::Ujia::Obj::getShadowParam(Game::ShadowParam&)
+void Ujia::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -297,7 +299,7 @@ void Game::Ujia::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80266398
  * Size:	000094
  */
-void Game::Ujia::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Ujia::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +352,7 @@ void Game::Ujia::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026642C
  * Size:	00002C
  */
-void Game::Ujia::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Ujia::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +375,7 @@ void Game::Ujia::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	80266458
  * Size:	000028
  */
-void Game::Ujia::Obj::startCarcassMotion()
+void Ujia::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -395,7 +397,7 @@ void Game::Ujia::Obj::startCarcassMotion()
  * Address:	80266480
  * Size:	000030
  */
-void Game::Ujia::Obj::lifeIncrement()
+void Ujia::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -419,7 +421,7 @@ void Game::Ujia::Obj::lifeIncrement()
  * Address:	802664B0
  * Size:	000034
  */
-void Game::Ujia::Obj::setInWaterDamage()
+void Ujia::Obj::setInWaterDamage()
 {
 	/*
 	.loc_0x0:
@@ -446,7 +448,7 @@ void Game::Ujia::Obj::setInWaterDamage()
  * Address:	802664E4
  * Size:	0000B4
  */
-void Game::Ujia::Obj::resetAppearCheck()
+void Ujia::Obj::resetAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -507,7 +509,7 @@ void Game::Ujia::Obj::resetAppearCheck()
  * Address:	80266598
  * Size:	000048
  */
-void Game::Ujia::Obj::isAppearCheck()
+void Ujia::Obj::isAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -541,7 +543,7 @@ void Game::Ujia::Obj::isAppearCheck()
  * Address:	802665E0
  * Size:	000020
  */
-void Game::Ujia::Obj::resetBridgeSearch()
+void Ujia::Obj::resetBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -561,7 +563,7 @@ void Game::Ujia::Obj::resetBridgeSearch()
  * Address:	80266600
  * Size:	000048
  */
-void Game::Ujia::Obj::setBridgeSearch()
+void Ujia::Obj::setBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -595,7 +597,7 @@ void Game::Ujia::Obj::setBridgeSearch()
  * Address:	80266648
  * Size:	0002C0
  */
-void Game::Ujia::Obj::setNearestBridge()
+void Ujia::Obj::setNearestBridge()
 {
 	/*
 	.loc_0x0:
@@ -807,14 +809,14 @@ void Game::Ujia::Obj::setNearestBridge()
  * Address:	80266908
  * Size:	000004
  */
-void Game::Ujia::Obj::setCullingCheck() { }
+void Ujia::Obj::setCullingCheck() { }
 
 /*
  * --INFO--
  * Address:	8026690C
  * Size:	0001B4
  */
-void Game::Ujia::Obj::checkBreakOrMove()
+void Ujia::Obj::checkBreakOrMove()
 {
 	/*
 	.loc_0x0:
@@ -953,7 +955,7 @@ void Game::Ujia::Obj::checkBreakOrMove()
  * Address:	80266AC0
  * Size:	000028
  */
-void Game::Ujia::Obj::isBreakBridge()
+void Ujia::Obj::isBreakBridge()
 {
 	/*
 	.loc_0x0:
@@ -977,7 +979,7 @@ void Game::Ujia::Obj::isBreakBridge()
  * Address:	80266AE8
  * Size:	0002A8
  */
-void Game::Ujia::Obj::moveBridgeSide()
+void Ujia::Obj::moveBridgeSide()
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1169,7 @@ void Game::Ujia::Obj::moveBridgeSide()
  * Address:	80266D90
  * Size:	000288
  */
-void Game::Ujia::Obj::moveBridgeCentre()
+void Ujia::Obj::moveBridgeCentre()
 {
 	/*
 	.loc_0x0:
@@ -1349,7 +1351,7 @@ void Game::Ujia::Obj::moveBridgeCentre()
  * Address:	80267018
  * Size:	0002F0
  */
-void Game::Ujia::Obj::moveBridgeTop()
+void Ujia::Obj::moveBridgeTop()
 {
 	/*
 	.loc_0x0:
@@ -1561,7 +1563,7 @@ void Game::Ujia::Obj::moveBridgeTop()
  * Address:	80267308
  * Size:	00005C
  */
-void Game::Ujia::Obj::breakTargetBridge()
+void Ujia::Obj::breakTargetBridge()
 {
 	/*
 	.loc_0x0:
@@ -1596,7 +1598,7 @@ void Game::Ujia::Obj::breakTargetBridge()
  * Address:	80267364
  * Size:	00008C
  */
-void Game::Ujia::Obj::createAppearEffect()
+void Ujia::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1643,7 +1645,7 @@ void Game::Ujia::Obj::createAppearEffect()
  * Address:	802673F0
  * Size:	00008C
  */
-void Game::Ujia::Obj::createDisAppearEffect()
+void Ujia::Obj::createDisAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1690,7 +1692,7 @@ void Game::Ujia::Obj::createDisAppearEffect()
  * Address:	8026747C
  * Size:	000090
  */
-void Game::Ujia::Obj::createBridgeEffect()
+void Ujia::Obj::createBridgeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1738,7 +1740,7 @@ void Game::Ujia::Obj::createBridgeEffect()
  * Address:	8026750C
  * Size:	000008
  */
-void Game::Ujia::Obj::isUnderground()
+void Ujia::Obj::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -1752,7 +1754,7 @@ void Game::Ujia::Obj::isUnderground()
  * Address:	80267514
  * Size:	000008
  */
-void Game::Ujia::Obj::getDownSmokeScale()
+void Ujia::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1766,14 +1768,14 @@ void Game::Ujia::Obj::getDownSmokeScale()
  * Address:	8026751C
  * Size:	000008
  */
-u32 Game::Ujia::Obj::getEnemyTypeID() { return 0xC; }
+u32 Ujia::Obj::getEnemyTypeID() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	80267524
  * Size:	000014
  */
-void Game::EnemyBase::@724 @12 @viewOnPelletKilled()
+void EnemyBase::@724 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1790,7 +1792,7 @@ void Game::EnemyBase::@724 @12 @viewOnPelletKilled()
  * Address:	80267538
  * Size:	000014
  */
-void Game::EnemyBase::@724 @12 @viewStartCarryMotion()
+void EnemyBase::@724 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1807,7 +1809,7 @@ void Game::EnemyBase::@724 @12 @viewStartCarryMotion()
  * Address:	8026754C
  * Size:	000014
  */
-void Game::EnemyBase::@724 @12 @viewStartPreCarryMotion()
+void EnemyBase::@724 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1824,7 +1826,7 @@ void Game::EnemyBase::@724 @12 @viewStartPreCarryMotion()
  * Address:	80267560
  * Size:	000014
  */
-void Game::EnemyBase::@724 @12 @view_finish_carrymotion()
+void EnemyBase::@724 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1841,7 +1843,7 @@ void Game::EnemyBase::@724 @12 @view_finish_carrymotion()
  * Address:	80267574
  * Size:	000014
  */
-void Game::EnemyBase::@724 @12 @view_start_carrymotion()
+void EnemyBase::@724 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1858,7 +1860,7 @@ void Game::EnemyBase::@724 @12 @view_start_carrymotion()
  * Address:	80267588
  * Size:	000014
  */
-void Game::EnemyBase::@724 @12 @viewGetShape()
+void EnemyBase::@724 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -1869,3 +1871,4 @@ void Game::EnemyBase::@724 @12 @viewGetShape()
 	  b         -0x160EF8
 	*/
 }
+} // namespace Game

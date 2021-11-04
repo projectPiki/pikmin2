@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -756,7 +756,7 @@ void JPAVolumeTorus(JPAEmitterWorkData*)
  * Address:	8008F9CC
  * Size:	000034
  */
-void JPADynamicsBlock::JPADynamicsBlock(const unsigned char*)
+JPADynamicsBlock::JPADynamicsBlock(const unsigned char*)
 {
 	/*
 	.loc_0x0:

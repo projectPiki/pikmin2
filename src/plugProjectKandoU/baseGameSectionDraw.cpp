@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E8
  */
-void Game::BaseGameSection::newdraw_draw3D((Graphics&))
+void BaseGameSection::newdraw_draw3D(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::BaseGameSection::newdraw_draw3D((Graphics&))
  * Address:	........
  * Size:	000194
  */
-void Game::BaseGameSection::newdraw_drawPreShadow((Viewport*))
+void BaseGameSection::newdraw_drawPreShadow(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::BaseGameSection::newdraw_drawPreShadow((Viewport*))
  * Address:	........
  * Size:	000220
  */
-void Game::BaseGameSection::newdraw_drawPostShadow((Viewport*))
+void BaseGameSection::newdraw_drawPostShadow(Viewport*)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void Game::BaseGameSection::newdraw_drawPostShadow((Viewport*))
  * Address:	........
  * Size:	0000D0
  */
-void Game::BaseGameSection::newdraw_drawParticle((Graphics&))
+void BaseGameSection::newdraw_drawParticle(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +47,7 @@ void Game::BaseGameSection::newdraw_drawParticle((Graphics&))
  * Address:	802398D8
  * Size:	0001F4
  */
-void Game::BaseGameSection::newdraw_draw3D_all((Graphics&))
+void BaseGameSection::newdraw_draw3D_all(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -202,7 +194,7 @@ void Game::BaseGameSection::newdraw_draw3D_all((Graphics&))
  * Address:	80239ACC
  * Size:	000360
  */
-void Game::BaseGameSection::newdraw_drawAll((Viewport*))
+void BaseGameSection::newdraw_drawAll(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -426,6 +418,8 @@ void Game::BaseGameSection::newdraw_drawAll((Viewport*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

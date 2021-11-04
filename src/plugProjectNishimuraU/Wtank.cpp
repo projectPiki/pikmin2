@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8027C80C
  * Size:	0000A4
  */
-void Game::Wtank::Obj::Obj()
+Wtank::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::Wtank::Obj::Obj()
  * Address:	8027C8B0
  * Size:	0001A4
  */
-void Game::Wtank::Obj::changeMaterial()
+void Wtank::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::Wtank::Obj::changeMaterial()
  * Address:	8027CA54
  * Size:	00019C
  */
-void Game::Wtank::Obj::createEffect()
+void Wtank::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -293,12 +295,16 @@ void Game::Wtank::Obj::createEffect()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027CBF0
  * Size:	00009C
  */
-void efx::TTankWatYodare::~TTankWatYodare()
+TTankWatYodare::~TTankWatYodare()
 {
 	/*
 	.loc_0x0:
@@ -353,7 +359,7 @@ void efx::TTankWatYodare::~TTankWatYodare()
  * Address:	8027CC8C
  * Size:	000084
  */
-void efx::TTankWatHit::~TTankWatHit()
+TTankWatHit::~TTankWatHit()
 {
 	/*
 	.loc_0x0:
@@ -402,7 +408,7 @@ void efx::TTankWatHit::~TTankWatHit()
  * Address:	8027CD10
  * Size:	00006C
  */
-void efx::TOneEmitterSimple::~TOneEmitterSimple()
+TOneEmitterSimple::~TOneEmitterSimple()
 {
 	/*
 	.loc_0x0:
@@ -443,7 +449,7 @@ void efx::TOneEmitterSimple::~TOneEmitterSimple()
  * Address:	8027CD7C
  * Size:	000060
  */
-void efx::TParticleCallBack_TankFire::~TParticleCallBack_TankFire()
+TParticleCallBack_TankFire::~TParticleCallBack_TankFire()
 {
 	/*
 	.loc_0x0:
@@ -476,12 +482,16 @@ void efx::TParticleCallBack_TankFire::~TParticleCallBack_TankFire()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8027CDDC
  * Size:	000050
  */
-void Game::Wtank::Obj::setupEffect()
+void Wtank::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -513,7 +523,7 @@ void Game::Wtank::Obj::setupEffect()
  * Address:	8027CE2C
  * Size:	000034
  */
-void Game::Wtank::Obj::startEffect()
+void Wtank::Obj::startEffect()
 {
 	/*
 	.loc_0x0:
@@ -538,7 +548,7 @@ void Game::Wtank::Obj::startEffect()
  * Address:	8027CE60
  * Size:	000054
  */
-void Game::Wtank::Obj::startYodare()
+void Wtank::Obj::startYodare()
 {
 	/*
 	.loc_0x0:
@@ -566,12 +576,16 @@ void Game::Wtank::Obj::startYodare()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027CEB4
  * Size:	000048
  */
-void efx::TTankWat::fade()
+void TTankWat::fade()
 {
 	/*
 	.loc_0x0:
@@ -603,7 +617,7 @@ void efx::TTankWat::fade()
  * Address:	8027CEFC
  * Size:	000044
  */
-void efx::TOneEmitterSimple::fade()
+void TOneEmitterSimple::fade()
 {
 	/*
 	.loc_0x0:
@@ -629,12 +643,16 @@ void efx::TOneEmitterSimple::fade()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8027CF40
  * Size:	000050
  */
-void Game::Wtank::Obj::finishEffect()
+void Wtank::Obj::finishEffect()
 {
 	/*
 	.loc_0x0:
@@ -666,7 +684,7 @@ void Game::Wtank::Obj::finishEffect()
  * Address:	8027CF90
  * Size:	000050
  */
-void Game::Wtank::Obj::effectDrawOn()
+void Wtank::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -693,12 +711,16 @@ void Game::Wtank::Obj::effectDrawOn()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027CFE0
  * Size:	000040
  */
-void efx::TTankWat::endDemoDrawOn()
+void TTankWat::endDemoDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -726,7 +748,7 @@ void efx::TTankWat::endDemoDrawOn()
  * Address:	8027D020
  * Size:	00001C
  */
-void efx::TOneEmitterSimple::endDemoDrawOn()
+void TOneEmitterSimple::endDemoDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -740,12 +762,16 @@ void efx::TOneEmitterSimple::endDemoDrawOn()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8027D03C
  * Size:	000050
  */
-void Game::Wtank::Obj::effectDrawOff()
+void Wtank::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -772,12 +798,16 @@ void Game::Wtank::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027D08C
  * Size:	000040
  */
-void efx::TTankWat::startDemoDrawOff()
+void TTankWat::startDemoDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -805,7 +835,7 @@ void efx::TTankWat::startDemoDrawOff()
  * Address:	8027D0CC
  * Size:	00001C
  */
-void efx::TOneEmitterSimple::startDemoDrawOff()
+void TOneEmitterSimple::startDemoDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -819,12 +849,16 @@ void efx::TOneEmitterSimple::startDemoDrawOff()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8027D0E8
  * Size:	000060
  */
-void Game::Wtank::Obj::interactCreature(Game::Creature*)
+void Wtank::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -860,7 +894,7 @@ void Game::Wtank::Obj::interactCreature(Game::Creature*)
  * Address:	8027D148
  * Size:	00000C
  */
-void Game::Wtank::Obj::stopEffectRadius(float)
+void Wtank::Obj::stopEffectRadius(float)
 {
 	/*
 	.loc_0x0:
@@ -875,7 +909,7 @@ void Game::Wtank::Obj::stopEffectRadius(float)
  * Address:	8027D154
  * Size:	000044
  */
-void Game::Wtank::Obj::createChargeSE()
+void Wtank::Obj::createChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -904,7 +938,7 @@ void Game::Wtank::Obj::createChargeSE()
  * Address:	8027D198
  * Size:	000044
  */
-void Game::Wtank::Obj::createDisChargeSE()
+void Wtank::Obj::createDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -928,12 +962,16 @@ void Game::Wtank::Obj::createDisChargeSE()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027D1DC
  * Size:	000044
  */
-void efx::TOneEmitterSimple::forceKill()
+void TOneEmitterSimple::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -959,19 +997,23 @@ void efx::TOneEmitterSimple::forceKill()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8027D220
  * Size:	000008
  */
-u32 Game::Wtank::Obj::getEnemyTypeID() { return 0x19; }
+u32 Wtank::Obj::getEnemyTypeID() { return 0x19; }
 
 /*
  * --INFO--
  * Address:	8027D228
  * Size:	000014
  */
-void Game::EnemyBase::@780 @12 @viewOnPelletKilled()
+void EnemyBase::@780 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -988,7 +1030,7 @@ void Game::EnemyBase::@780 @12 @viewOnPelletKilled()
  * Address:	8027D23C
  * Size:	000014
  */
-void Game::EnemyBase::@780 @12 @viewStartCarryMotion()
+void EnemyBase::@780 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1005,7 +1047,7 @@ void Game::EnemyBase::@780 @12 @viewStartCarryMotion()
  * Address:	8027D250
  * Size:	000014
  */
-void Game::EnemyBase::@780 @12 @viewStartPreCarryMotion()
+void EnemyBase::@780 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1064,7 @@ void Game::EnemyBase::@780 @12 @viewStartPreCarryMotion()
  * Address:	8027D264
  * Size:	000014
  */
-void Game::EnemyBase::@780 @12 @view_finish_carrymotion()
+void EnemyBase::@780 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1039,7 +1081,7 @@ void Game::EnemyBase::@780 @12 @view_finish_carrymotion()
  * Address:	8027D278
  * Size:	000014
  */
-void Game::EnemyBase::@780 @12 @view_start_carrymotion()
+void EnemyBase::@780 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1056,7 +1098,7 @@ void Game::EnemyBase::@780 @12 @view_start_carrymotion()
  * Address:	8027D28C
  * Size:	000014
  */
-void Game::EnemyBase::@780 @12 @viewGetShape()
+void EnemyBase::@780 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -1068,12 +1110,16 @@ void Game::EnemyBase::@780 @12 @viewGetShape()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027D2A0
  * Size:	000008
  */
-void efx::TOneEmitterSimple::@4 @executeAfter(JPABaseEmitter*)
+void TOneEmitterSimple::@4 @executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1087,7 +1133,7 @@ void efx::TOneEmitterSimple::@4 @executeAfter(JPABaseEmitter*)
  * Address:	8027D2A8
  * Size:	000008
  */
-void efx::TTankWatHit::@4 @__dt()
+TTankWatHit::@4 @~TTankWatHit()
 {
 	/*
 	.loc_0x0:
@@ -1101,7 +1147,7 @@ void efx::TTankWatHit::@4 @__dt()
  * Address:	8027D2B0
  * Size:	000008
  */
-void efx::TTankWatYodare::@4 @__dt()
+TTankWatYodare::@4 @~TTankWatYodare()
 {
 	/*
 	.loc_0x0:
@@ -1109,3 +1155,4 @@ void efx::TTankWatYodare::@4 @__dt()
 	  b         -0x6C4
 	*/
 }
+} // namespace efx

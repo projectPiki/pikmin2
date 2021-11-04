@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802FFBC8
  * Size:	000090
  */
-void Game::GreenKabuto::Obj::Obj()
+GreenKabuto::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::GreenKabuto::Obj::Obj()
  * Address:	802FFC58
  * Size:	0001A4
  */
-void Game::GreenKabuto::Obj::changeMaterial()
+void GreenKabuto::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -176,4 +178,5 @@ void Game::GreenKabuto::Obj::changeMaterial()
  * Address:	802FFDFC
  * Size:	000008
  */
-u32 Game::GreenKabuto::Obj::getEnemyTypeID() { return 0x4B; }
+u32 GreenKabuto::Obj::getEnemyTypeID() { return 0x4B; }
+} // namespace Game

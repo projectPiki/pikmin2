@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034A21C
  * Size:	000020
  */
-void Game::Bomb::Obj::setParameters(void)
+void Bomb::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -35,7 +27,7 @@ void Game::Bomb::Obj::setParameters(void)
  * Address:	8034A23C
  * Size:	0000EC
  */
-void Game::Bomb::Obj::onStartCapture(void)
+void Bomb::Obj::onStartCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -112,7 +104,7 @@ void Game::Bomb::Obj::onStartCapture(void)
  * Address:	8034A328
  * Size:	000048
  */
-void Game::Bomb::Obj::onEndCapture(void)
+void Bomb::Obj::onEndCapture(void)
 {
 	/*
 	.loc_0x0:
@@ -137,12 +129,14 @@ void Game::Bomb::Obj::onEndCapture(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8034A370
  * Size:	000020
  */
-void birth__Q34Game4Bomb3ObjFR10Vector3<float> f(void)
+void birth__Q34Game4Bomb3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -157,12 +151,14 @@ void birth__Q34Game4Bomb3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8034A390
  * Size:	000168
  */
-void Game::Bomb::Obj::onInit((Game::CreatureInitArg*))
+void Bomb::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -266,7 +262,7 @@ void Game::Bomb::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8034A4F8
  * Size:	0001DC
  */
-void Game::Bomb::Obj::__ct(void)
+Bomb::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -405,7 +401,7 @@ void Game::Bomb::Obj::__ct(void)
  * Address:	8034A6D4
  * Size:	00004C
  */
-void Game::Bomb::Obj::setFSM((Game::Bomb::FSM*))
+void Bomb::Obj::setFSM(Game::Bomb::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -436,7 +432,7 @@ void Game::Bomb::Obj::setFSM((Game::Bomb::FSM*))
  * Address:	8034A720
  * Size:	0000D4
  */
-void Game::Bomb::Obj::doUpdate(void)
+void Bomb::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -509,21 +505,21 @@ void Game::Bomb::Obj::doUpdate(void)
  * Address:	8034A7F4
  * Size:	000004
  */
-void Game::Bomb::Obj::doDirectDraw((Graphics&)) { }
+void Bomb::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8034A7F8
  * Size:	000004
  */
-void Game::Bomb::Obj::doDebugDraw((Graphics&)) { }
+void Bomb::Obj::doDebugDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8034A7FC
  * Size:	00002C
  */
-void Game::Bomb::Obj::doEntry(void)
+void Bomb::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -548,7 +544,7 @@ void Game::Bomb::Obj::doEntry(void)
  * Address:	8034A828
  * Size:	0001F4
  */
-void Game::Bomb::Obj::doAnimationCullingOff(void)
+void Bomb::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -699,7 +695,7 @@ void Game::Bomb::Obj::doAnimationCullingOff(void)
  * Address:	8034AA1C
  * Size:	00004C
  */
-void Game::Bomb::Obj::doAnimationCullingOn(void)
+void Bomb::Obj::doAnimationCullingOn(void)
 {
 	/*
 	.loc_0x0:
@@ -734,7 +730,7 @@ void Game::Bomb::Obj::doAnimationCullingOn(void)
  * Address:	8034AA68
  * Size:	000134
  */
-void Game::Bomb::Obj::doSimulation((float))
+void Bomb::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -835,7 +831,7 @@ void Game::Bomb::Obj::doSimulation((float))
  * Address:	8034AB9C
  * Size:	000050
  */
-void Game::Bomb::Obj::getShadowParam((Game::ShadowParam&))
+void Bomb::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -867,7 +863,7 @@ void Game::Bomb::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8034ABEC
  * Size:	000048
  */
-void Game::Bomb::Obj::needShadow(void)
+void Bomb::Obj::needShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -901,7 +897,7 @@ void Game::Bomb::Obj::needShadow(void)
  * Address:	8034AC34
  * Size:	000080
  */
-void Game::Bomb::Obj::doFinishStoneState(void)
+void Bomb::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -947,7 +943,7 @@ void Game::Bomb::Obj::doFinishStoneState(void)
  * Address:	8034ACB4
  * Size:	000048
  */
-void Game::Bomb::Obj::doStartStoneState(void)
+void Bomb::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -977,7 +973,7 @@ void Game::Bomb::Obj::doStartStoneState(void)
  * Address:	8034ACFC
  * Size:	000084
  */
-void Game::Bomb::Obj::onKill((Game::CreatureKillArg*))
+void Bomb::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1024,7 +1020,7 @@ void Game::Bomb::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8034AD80
  * Size:	000030
  */
-void Game::Bomb::Obj::doStartMovie(void)
+void Bomb::Obj::doStartMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -1048,7 +1044,7 @@ void Game::Bomb::Obj::doStartMovie(void)
  * Address:	8034ADB0
  * Size:	000030
  */
-void Game::Bomb::Obj::doEndMovie(void)
+void Bomb::Obj::doEndMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -1072,7 +1068,7 @@ void Game::Bomb::Obj::doEndMovie(void)
  * Address:	8034ADE0
  * Size:	000074
  */
-void Game::Bomb::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Bomb::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1118,12 +1114,14 @@ void Game::Bomb::Obj::damageCallBack((Game::Creature*, float, CollPart*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8034AE54
  * Size:	000160
  */
-void bombCallBack__Q34Game4Bomb3ObjFPQ24Game8CreatureR10Vector3<float> f(void)
+void bombCallBack__Q34Game4Bomb3ObjFPQ24Game8CreatureR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -1226,22 +1224,21 @@ void bombCallBack__Q34Game4Bomb3ObjFPQ24Game8CreatureR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8034AFB4
  * Size:	000008
  */
-u32 Game::Bomb::Obj::pressCallBack((Game::Creature*, float, CollPart*))
-{
-	return 0x0;
-}
+u32 Bomb::Obj::pressCallBack(Game::Creature*, float, CollPart*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8034AFBC
  * Size:	000078
  */
-void Game::Bomb::Obj::bounceCallback((Sys::Triangle*))
+void Bomb::Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -1287,7 +1284,7 @@ void Game::Bomb::Obj::bounceCallback((Sys::Triangle*))
  * Address:	8034B034
  * Size:	00009C
  */
-void Game::Bomb::Obj::collisionCallback((Game::CollEvent&))
+void Bomb::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1342,7 +1339,7 @@ void Game::Bomb::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8034B0D0
  * Size:	000060
  */
-void Game::Bomb::Obj::forceBomb(void)
+void Bomb::Obj::forceBomb(void)
 {
 	/*
 	.loc_0x0:
@@ -1380,7 +1377,7 @@ void Game::Bomb::Obj::forceBomb(void)
  * Address:	........
  * Size:	000048
  */
-void Game::Bomb::Obj::isBombStart(void)
+void Bomb::Obj::isBombStart(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1390,7 +1387,7 @@ void Game::Bomb::Obj::isBombStart(void)
  * Address:	8034B130
  * Size:	000028
  */
-void Game::Bomb::Obj::bombEffInWater(void)
+void Bomb::Obj::bombEffInWater(void)
 {
 	/*
 	.loc_0x0:
@@ -1412,7 +1409,7 @@ void Game::Bomb::Obj::bombEffInWater(void)
  * Address:	8034B158
  * Size:	00005C
  */
-void Game::Bomb::Obj::canEat(void)
+void Bomb::Obj::canEat(void)
 {
 	/*
 	.loc_0x0:
@@ -1451,7 +1448,7 @@ void Game::Bomb::Obj::canEat(void)
  * Address:	8034B1B4
  * Size:	0000D8
  */
-void Game::Bomb::Obj::isAnimStart(void)
+void Bomb::Obj::isAnimStart(void)
 {
 	/*
 	.loc_0x0:
@@ -1528,74 +1525,78 @@ void Game::Bomb::Obj::isAnimStart(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8034B28C
- * Size:	00009C
- */
-void efx::TBombrockLight::__dt(void)
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x4498
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x685C
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x2BB65C
+	 * --INFO--
+	 * Address:	8034B28C
+	 * Size:	00009C
+	 */
+	TBombrockLight::~TBombrockLight(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804E
+		  subi      r3, r3, 0x4498
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x685C
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x2BB65C
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x327254
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x327254
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	8034B328
  * Size:	000004
  */
-void Game::Bomb::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void Bomb::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8034B32C
  * Size:	000040
  */
-void Game::Bomb::Obj::isLivingThing(void)
+void Bomb::Obj::isLivingThing(void)
 {
 	/*
 	.loc_0x0:
@@ -1629,7 +1630,7 @@ void Game::Bomb::Obj::isLivingThing(void)
  * Address:	8034B36C
  * Size:	000048
  */
-void Game::Bomb::Obj::isUnderground(void)
+void Bomb::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -1661,14 +1662,14 @@ void Game::Bomb::Obj::isUnderground(void)
  * Address:	8034B3B4
  * Size:	000008
  */
-u32 Game::Bomb::Obj::getEnemyTypeID(void) { return 0x24; }
+u32 Bomb::Obj::getEnemyTypeID(void) { return 0x24; }
 
 /*
  * --INFO--
  * Address:	8034B3BC
  * Size:	000008
  */
-void @4 @efx::TBombrockLight::__dt(void)
+@4 @efx::TBombrockLight::~TBombrockLight(void)
 {
 	/*
 	.loc_0x0:
@@ -1676,3 +1677,4 @@ void @4 @efx::TBombrockLight::__dt(void)
 	  b         -0x134
 	*/
 }
+} // namespace Game

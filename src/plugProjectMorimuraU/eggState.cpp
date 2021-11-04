@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034B3C4
  * Size:	000054
  */
-void Game::Egg::FSM::init((Game::EnemyBase*))
+void Egg::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +44,7 @@ void Game::Egg::FSM::init((Game::EnemyBase*))
  * Address:	8034B418
  * Size:	00003C
  */
-void Game::Egg::StateWait::__ct((int))
+Egg::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +71,7 @@ void Game::Egg::StateWait::__ct((int))
  * Address:	8034B454
  * Size:	000040
  */
-void Game::Egg::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Egg::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +99,7 @@ void Game::Egg::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034B494
  * Size:	0001A8
  */
-void Game::Egg::StateWait::exec((Game::EnemyBase*))
+void Egg::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -225,3 +217,4 @@ void Game::Egg::StateWait::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

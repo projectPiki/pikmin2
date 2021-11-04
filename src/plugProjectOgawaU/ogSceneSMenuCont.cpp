@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	803304F0
  * Size:	000050
  */
-void og::newScreen::SMenuCont::__ct(void)
+newScreen::SMenuCont::SMenuCont(void)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void og::newScreen::SMenuCont::__ct(void)
  * Address:	........
  * Size:	000084
  */
-void og::newScreen::SMenuCont::__dt(void)
+newScreen::SMenuCont::~SMenuCont(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,7 +49,7 @@ void og::newScreen::SMenuCont::__dt(void)
  * Address:	80330540
  * Size:	000068
  */
-void og::newScreen::SMenuCont::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::SMenuCont::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -97,7 +89,7 @@ void og::newScreen::SMenuCont::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	803305A8
  * Size:	00000C
  */
-void og::newScreen::SMenuCont::doSetBackupScene((Screen::SetSceneArg&))
+void newScreen::SMenuCont::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -112,14 +104,14 @@ void og::newScreen::SMenuCont::doSetBackupScene((Screen::SetSceneArg&))
  * Address:	803305B4
  * Size:	000004
  */
-void og::newScreen::SMenuCont::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::SMenuCont::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	803305B8
  * Size:	000060
  */
-void og::newScreen::SMenuCont::doCreateObj((JKRArchive*))
+void newScreen::SMenuCont::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -157,14 +149,14 @@ void og::newScreen::SMenuCont::doCreateObj((JKRArchive*))
  * Address:	80330618
  * Size:	000004
  */
-void og::newScreen::SMenuCont::doUpdateActive(void) { }
+void newScreen::SMenuCont::doUpdateActive(void) { }
 
 /*
  * --INFO--
  * Address:	8033061C
  * Size:	00000C
  */
-void og::newScreen::SMenuCont::getResName( const
+void newScreen::SMenuCont::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -179,17 +171,14 @@ void og::newScreen::SMenuCont::getResName( const
  * Address:	80330628
  * Size:	000008
  */
-u32  og::newScreen::SMenuCont::getSceneType(void)
-{
-	return 0x272B;
-}
+u32 newScreen::SMenuCont::getSceneType(void) { return 0x272B; }
 
 /*
  * --INFO--
  * Address:	80330630
  * Size:	00000C
  */
-void og::newScreen::SMenuCont::getOwnerID(void)
+void newScreen::SMenuCont::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -204,7 +193,7 @@ void og::newScreen::SMenuCont::getOwnerID(void)
  * Address:	8033063C
  * Size:	000014
  */
-void og::newScreen::SMenuCont::getMemberID(void)
+void newScreen::SMenuCont::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -221,7 +210,5 @@ void og::newScreen::SMenuCont::getMemberID(void)
  * Address:	80330650
  * Size:	000008
  */
-u32  og::newScreen::SMenuCont::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::SMenuCont::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

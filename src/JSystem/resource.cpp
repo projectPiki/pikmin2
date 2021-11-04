@@ -191,7 +191,7 @@ void JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long,
  * Address:	800065A8
  * Size:	000074
  */
-void JMessage::TResourceContainer::TCResource::~TCResource()
+JMessage::TResourceContainer::TCResource::~TCResource()
 {
 	/*
 	.loc_0x0:
@@ -343,7 +343,7 @@ void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
  * Address:	80006710
  * Size:	000048
  */
-void JMessage::TResourceContainer::TResourceContainer()
+JMessage::TResourceContainer::TResourceContainer()
 {
 	/*
 	.loc_0x0:
@@ -417,7 +417,7 @@ void JUTFont::isLeadByte_ShiftJIS(int)
  * Address:	80006798
  * Size:	000028
  */
-void JMessage::TParse::TParse(JMessage::TResourceContainer*)
+JMessage::TParse::TParse(JMessage::TResourceContainer*)
 {
 	/*
 	.loc_0x0:
@@ -439,7 +439,7 @@ void JMessage::TParse::TParse(JMessage::TResourceContainer*)
  * Address:	800067C0
  * Size:	000060
  */
-void JMessage::TParse::~TParse()
+JMessage::TParse::~TParse()
 {
 	/*
 	.loc_0x0:
@@ -741,7 +741,7 @@ void JMessage::TParse::parseBlock_next(const void**, unsigned long*,
  * Address:	80006B28
  * Size:	000020
  */
-void JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
+JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
 {
 	/*
 	.loc_0x0:
@@ -761,7 +761,7 @@ void JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
  * Address:	80006B48
  * Size:	000060
  */
-void JMessage::TParse_color::~TParse_color()
+JMessage::TParse_color::~TParse_color()
 {
 	/*
 	.loc_0x0:

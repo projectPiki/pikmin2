@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -481,7 +481,7 @@ void __sinit_JASDriverIF_cpp(void)
  * Address:	800A4B38
  * Size:	000010
  */
-void JASCallbackMgr::TCallback::__ct(void)
+JASCallbackMgr::TCallback::TCallback(void)
 {
 	/*
 	.loc_0x0:

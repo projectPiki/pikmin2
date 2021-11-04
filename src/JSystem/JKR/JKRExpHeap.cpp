@@ -185,7 +185,7 @@ void JKRExpHeap::do_destroy()
  * Address:	80020030
  * Size:	000098
  */
-void JKRExpHeap::JKRExpHeap(void*, unsigned long, JKRHeap*, bool)
+JKRExpHeap::JKRExpHeap(void*, unsigned long, JKRHeap*, bool)
 {
 	/*
 	.loc_0x0:
@@ -235,7 +235,7 @@ void JKRExpHeap::JKRExpHeap(void*, unsigned long, JKRHeap*, bool)
  * Address:	800200C8
  * Size:	000068
  */
-void JKRExpHeap::~JKRExpHeap()
+JKRExpHeap::~JKRExpHeap()
 {
 	/*
 	.loc_0x0:

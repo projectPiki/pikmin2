@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	00003C
  */
-void JUTRomFont::JUTRomFont()
+JUTRomFont::JUTRomFont()
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JUTRomFont::JUTRomFont()
  * Address:	8003264C
  * Size:	000054
  */
-void JUTRomFont::JUTRomFont(JKRHeap*)
+JUTRomFont::JUTRomFont(JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -83,7 +83,7 @@ void JUTRomFont::initiate(JKRHeap*)
  * Address:	800326F4
  * Size:	00009C
  */
-void JUTRomFont::~JUTRomFont()
+JUTRomFont::~JUTRomFont()
 {
 	/*
 	.loc_0x0:

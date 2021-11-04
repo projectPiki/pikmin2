@@ -2420,7 +2420,7 @@ void JPAFieldSpin::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
  * Address:	80093394
  * Size:	000038
  */
-void JPAFieldBlock::JPAFieldBlock(const unsigned char*, JKRHeap*)
+JPAFieldBlock::JPAFieldBlock(const unsigned char*, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -2687,7 +2687,7 @@ void JPAFieldBlock::init(JKRHeap*)
  * Address:	800936B8
  * Size:	000048
  */
-void JPAFieldBase::~JPAFieldBase()
+JPAFieldBase::~JPAFieldBase()
 {
 	/*
 	.loc_0x0:
@@ -2726,7 +2726,7 @@ void JPAFieldBase::prepare(JPAEmitterWorkData*, JPAFieldBlock*) { }
  * Address:	80093704
  * Size:	00005C
  */
-void JPAFieldSpin::~JPAFieldSpin()
+JPAFieldSpin::~JPAFieldSpin()
 {
 	/*
 	.loc_0x0:
@@ -2765,7 +2765,7 @@ void JPAFieldSpin::~JPAFieldSpin()
  * Address:	80093760
  * Size:	00005C
  */
-void JPAFieldDrag::~JPAFieldDrag()
+JPAFieldDrag::~JPAFieldDrag()
 {
 	/*
 	.loc_0x0:
@@ -2804,7 +2804,7 @@ void JPAFieldDrag::~JPAFieldDrag()
  * Address:	800937BC
  * Size:	00005C
  */
-void JPAFieldRandom::~JPAFieldRandom()
+JPAFieldRandom::~JPAFieldRandom()
 {
 	/*
 	.loc_0x0:
@@ -2843,7 +2843,7 @@ void JPAFieldRandom::~JPAFieldRandom()
  * Address:	80093818
  * Size:	00005C
  */
-void JPAFieldConvection::~JPAFieldConvection()
+JPAFieldConvection::~JPAFieldConvection()
 {
 	/*
 	.loc_0x0:
@@ -2882,7 +2882,7 @@ void JPAFieldConvection::~JPAFieldConvection()
  * Address:	80093874
  * Size:	00005C
  */
-void JPAFieldVortex::~JPAFieldVortex()
+JPAFieldVortex::~JPAFieldVortex()
 {
 	/*
 	.loc_0x0:
@@ -2921,7 +2921,7 @@ void JPAFieldVortex::~JPAFieldVortex()
  * Address:	800938D0
  * Size:	00005C
  */
-void JPAFieldNewton::~JPAFieldNewton()
+JPAFieldNewton::~JPAFieldNewton()
 {
 	/*
 	.loc_0x0:
@@ -2960,7 +2960,7 @@ void JPAFieldNewton::~JPAFieldNewton()
  * Address:	8009392C
  * Size:	00005C
  */
-void JPAFieldMagnet::~JPAFieldMagnet()
+JPAFieldMagnet::~JPAFieldMagnet()
 {
 	/*
 	.loc_0x0:
@@ -2999,7 +2999,7 @@ void JPAFieldMagnet::~JPAFieldMagnet()
  * Address:	80093988
  * Size:	00005C
  */
-void JPAFieldAir::~JPAFieldAir()
+JPAFieldAir::~JPAFieldAir()
 {
 	/*
 	.loc_0x0:
@@ -3038,7 +3038,7 @@ void JPAFieldAir::~JPAFieldAir()
  * Address:	800939E4
  * Size:	00005C
  */
-void JPAFieldGravity::~JPAFieldGravity()
+JPAFieldGravity::~JPAFieldGravity()
 {
 	/*
 	.loc_0x0:

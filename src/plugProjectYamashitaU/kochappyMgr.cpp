@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801122B4
  * Size:	000050
  */
-void Game::Kochappy::Mgr::Mgr(int, unsigned char)
+Kochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Kochappy::Mgr::Mgr(int, unsigned char)
  * Address:	80112304
  * Size:	0000B0
  */
-void Game::KochappyBase::Mgr::~Mgr()
+KochappyBase::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -97,7 +99,7 @@ void Game::KochappyBase::Mgr::~Mgr()
  * Address:	801123B4
  * Size:	000048
  */
-void Game::Kochappy::Mgr::doAlloc()
+void Kochappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -131,7 +133,7 @@ void Game::Kochappy::Mgr::doAlloc()
  * Address:	801123FC
  * Size:	000118
  */
-void Game::KochappyBase::Parms::Parms()
+KochappyBase::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -213,7 +215,7 @@ void Game::KochappyBase::Parms::Parms()
  * Address:	80112514
  * Size:	000048
  */
-void Game::Kochappy::Mgr::loadTexData()
+void Kochappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -243,7 +245,7 @@ void Game::Kochappy::Mgr::loadTexData()
  * Address:	8011255C
  * Size:	0000C8
  */
-void Game::Kochappy::Mgr::~Mgr()
+Kochappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -309,14 +311,14 @@ void Game::Kochappy::Mgr::~Mgr()
  * Address:	80112624
  * Size:	000008
  */
-u32 Game::Kochappy::Mgr::getEnemyTypeID() { return 0x1; }
+u32 Kochappy::Mgr::getEnemyTypeID() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8011262C
  * Size:	000060
  */
-void Game::Kochappy::Mgr::createObj(int)
+void Kochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -352,7 +354,7 @@ void Game::Kochappy::Mgr::createObj(int)
  * Address:	8011268C
  * Size:	000010
  */
-void Game::Kochappy::Mgr::getEnemy(int)
+void Kochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -368,7 +370,7 @@ void Game::Kochappy::Mgr::getEnemy(int)
  * Address:	8011269C
  * Size:	000050
  */
-void Game::KochappyBase::Parms::read(Stream&)
+void KochappyBase::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +402,7 @@ void Game::KochappyBase::Parms::read(Stream&)
  * Address:	801126EC
  * Size:	000008
  */
-void Game::Kochappy::Mgr::@4 @__dt()
+Kochappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -408,3 +410,4 @@ void Game::Kochappy::Mgr::@4 @__dt()
 	  b         -0x194
 	*/
 }
+} // namespace Game

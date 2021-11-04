@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8010BA00
  * Size:	00007C
  */
-void Game::InteractHipdrop::actEnemy(Game::EnemyBase*)
+void InteractHipdrop::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -50,7 +52,7 @@ void Game::InteractHipdrop::actEnemy(Game::EnemyBase*)
  * Address:	8010BA7C
  * Size:	000074
  */
-void Game::InteractEarthquake::actEnemy(Game::EnemyBase*)
+void InteractEarthquake::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -93,7 +95,7 @@ void Game::InteractEarthquake::actEnemy(Game::EnemyBase*)
  * Address:	8010BAF0
  * Size:	000040
  */
-void Game::InteractPress::actEnemy(Game::EnemyBase*)
+void InteractPress::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -121,7 +123,7 @@ void Game::InteractPress::actEnemy(Game::EnemyBase*)
  * Address:	8010BB30
  * Size:	000040
  */
-void Game::InteractFlyCollision::actEnemy(Game::EnemyBase*)
+void InteractFlyCollision::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -149,7 +151,7 @@ void Game::InteractFlyCollision::actEnemy(Game::EnemyBase*)
  * Address:	8010BB70
  * Size:	00011C
  */
-void Game::InteractAttack::actEnemy(Game::EnemyBase*)
+void InteractAttack::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +244,7 @@ void Game::InteractAttack::actEnemy(Game::EnemyBase*)
  * Address:	8010BC8C
  * Size:	000038
  */
-void Game::InteractDrop::actEnemy(Game::EnemyBase*)
+void InteractDrop::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +270,7 @@ void Game::InteractDrop::actEnemy(Game::EnemyBase*)
  * Address:	8010BCC4
  * Size:	000078
  */
-void Game::InteractBomb::actEnemy(Game::EnemyBase*)
+void InteractBomb::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -306,3 +308,4 @@ void Game::InteractBomb::actEnemy(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8021EED8
  * Size:	00008C
  */
-void Game::SingleGame::MovieState::__ct(void)
+SingleGame::MovieState::MovieState(void)
 {
 	/*
 	.loc_0x0:
@@ -64,8 +56,7 @@ void Game::SingleGame::MovieState::__ct(void)
  * Address:	8021EF64
  * Size:	000290
  */
-void Game::SingleGame::MovieState::init((Game::SingleGameSection*,
-                                         Game::StateArg*))
+void SingleGame::MovieState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -279,7 +270,7 @@ void Game::SingleGame::MovieState::init((Game::SingleGameSection*,
  * Address:	8021F1F4
  * Size:	000114
  */
-void Game::SingleGame::MovieState::exec((Game::SingleGameSection*))
+void SingleGame::MovieState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -368,7 +359,7 @@ void Game::SingleGame::MovieState::exec((Game::SingleGameSection*))
  * Address:	8021F308
  * Size:	000040
  */
-void Game::SingleGame::MovieState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::MovieState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +389,7 @@ void Game::SingleGame::MovieState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8021F348
  * Size:	000048
  */
-void Game::SingleGame::MovieState::cleanup((Game::SingleGameSection*))
+void SingleGame::MovieState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -422,6 +413,8 @@ void Game::SingleGame::MovieState::cleanup((Game::SingleGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

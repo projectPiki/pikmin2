@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B624C
  * Size:	000130
  */
-void Game::OtakaraBase::Obj::Obj()
+OtakaraBase::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -99,14 +101,14 @@ void Game::OtakaraBase::Obj::Obj()
  * Address:	802B637C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void OtakaraBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802B6380
  * Size:	000104
  */
-void Game::OtakaraBase::Obj::onInit(Game::CreatureInitArg*)
+void OtakaraBase::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -189,21 +191,21 @@ void Game::OtakaraBase::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802B6484
  * Size:	000008
  */
-u32 Game::OtakaraBase::Obj::getEnemyTypeID() { return 0x3B; }
+u32 OtakaraBase::Obj::getEnemyTypeID() { return 0x3B; }
 
 /*
  * --INFO--
  * Address:	802B648C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::setupEffect() { }
+void OtakaraBase::Obj::setupEffect() { }
 
 /*
  * --INFO--
  * Address:	802B6490
  * Size:	00005C
  */
-void Game::OtakaraBase::Obj::onKill(Game::CreatureKillArg*)
+void OtakaraBase::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +240,7 @@ void Game::OtakaraBase::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802B64EC
  * Size:	000034
  */
-void Game::OtakaraBase::Obj::doUpdate()
+void OtakaraBase::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -263,7 +265,7 @@ void Game::OtakaraBase::Obj::doUpdate()
  * Address:	802B6520
  * Size:	0000F0
  */
-void Game::OtakaraBase::Obj::doUpdateCommon()
+void OtakaraBase::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -343,14 +345,14 @@ void Game::OtakaraBase::Obj::doUpdateCommon()
  * Address:	802B6610
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::startDisChargeSE() { }
+void OtakaraBase::Obj::startDisChargeSE() { }
 
 /*
  * --INFO--
  * Address:	802B6614
  * Size:	00007C
  */
-void Game::OtakaraBase::Obj::doAnimationCullingOff()
+void OtakaraBase::Obj::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -397,14 +399,14 @@ void Game::OtakaraBase::Obj::doAnimationCullingOff()
  * Address:	802B6690
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::doDirectDraw(Graphics&) { }
+void OtakaraBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802B6694
  * Size:	000020
  */
-void Game::OtakaraBase::Obj::doDebugDraw(Graphics&)
+void OtakaraBase::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -424,7 +426,7 @@ void Game::OtakaraBase::Obj::doDebugDraw(Graphics&)
  * Address:	802B66B4
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::setFSM(Game::OtakaraBase::FSM*)
+void OtakaraBase::Obj::setFSM(Game::OtakaraBase::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +457,7 @@ void Game::OtakaraBase::Obj::setFSM(Game::OtakaraBase::FSM*)
  * Address:	802B6700
  * Size:	0000EC
  */
-void Game::OtakaraBase::Obj::getShadowParam(Game::ShadowParam&)
+void OtakaraBase::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -536,7 +538,7 @@ void Game::OtakaraBase::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802B67EC
  * Size:	000034
  */
-void Game::OtakaraBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void OtakaraBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -565,7 +567,7 @@ void Game::OtakaraBase::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	802B6820
  * Size:	000078
  */
-void Game::OtakaraBase::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void OtakaraBase::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -611,7 +613,7 @@ void Game::OtakaraBase::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	802B6898
  * Size:	000070
  */
-void Game::OtakaraBase::Obj::earthquakeCallBack(Game::Creature*, float)
+void OtakaraBase::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -653,8 +655,7 @@ void Game::OtakaraBase::Obj::earthquakeCallBack(Game::Creature*, float)
  * Address:	802B6908
  * Size:	000024
  */
-void Game::OtakaraBase::Obj::bombCallBack(Game::Creature*, Vector3<float>&,
-                                          float)
+void OtakaraBase::Obj::bombCallBack(Game::Creature*, Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -675,7 +676,7 @@ void Game::OtakaraBase::Obj::bombCallBack(Game::Creature*, Vector3<float>&,
  * Address:	802B692C
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::doStartStoneState()
+void OtakaraBase::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -706,7 +707,7 @@ void Game::OtakaraBase::Obj::doStartStoneState()
  * Address:	802B6978
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::doFinishStoneState()
+void OtakaraBase::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -739,7 +740,7 @@ void Game::OtakaraBase::Obj::doFinishStoneState()
  * Address:	802B69C4
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::doStartEarthquakeState(float)
+void OtakaraBase::Obj::doStartEarthquakeState(float)
 {
 	/*
 	.loc_0x0:
@@ -770,7 +771,7 @@ void Game::OtakaraBase::Obj::doStartEarthquakeState(float)
  * Address:	802B6A10
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::doFinishEarthquakeState()
+void OtakaraBase::Obj::doFinishEarthquakeState()
 {
 	/*
 	.loc_0x0:
@@ -803,7 +804,7 @@ void Game::OtakaraBase::Obj::doFinishEarthquakeState()
  * Address:	802B6A5C
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::doStartEarthquakeFitState()
+void OtakaraBase::Obj::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -834,7 +835,7 @@ void Game::OtakaraBase::Obj::doStartEarthquakeFitState()
  * Address:	802B6AA8
  * Size:	00004C
  */
-void Game::OtakaraBase::Obj::doFinishEarthquakeFitState()
+void OtakaraBase::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -867,7 +868,7 @@ void Game::OtakaraBase::Obj::doFinishEarthquakeFitState()
  * Address:	802B6AF4
  * Size:	000040
  */
-void Game::OtakaraBase::Obj::doStartWaitingBirthTypeDrop()
+void OtakaraBase::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -895,14 +896,14 @@ void Game::OtakaraBase::Obj::doStartWaitingBirthTypeDrop()
  * Address:	802B6B34
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::effectDrawOff() { }
+void OtakaraBase::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
  * Address:	802B6B38
  * Size:	000064
  */
-void Game::OtakaraBase::Obj::doFinishWaitingBirthTypeDrop()
+void OtakaraBase::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -941,14 +942,14 @@ void Game::OtakaraBase::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802B6B9C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::effectDrawOn() { }
+void OtakaraBase::Obj::effectDrawOn() { }
 
 /*
  * --INFO--
  * Address:	802B6BA0
  * Size:	000028
  */
-void Game::OtakaraBase::Obj::startCarcassMotion()
+void OtakaraBase::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -970,7 +971,7 @@ void Game::OtakaraBase::Obj::startCarcassMotion()
  * Address:	802B6BC8
  * Size:	00002C
  */
-void Game::OtakaraBase::Obj::doStartMovie()
+void OtakaraBase::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -993,7 +994,7 @@ void Game::OtakaraBase::Obj::doStartMovie()
  * Address:	802B6BF4
  * Size:	00002C
  */
-void Game::OtakaraBase::Obj::doEndMovie()
+void OtakaraBase::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -1016,7 +1017,7 @@ void Game::OtakaraBase::Obj::doEndMovie()
  * Address:	802B6C20
  * Size:	000140
  */
-void Game::OtakaraBase::Obj::isMovePositionSet(bool)
+void OtakaraBase::Obj::isMovePositionSet(bool)
 {
 	/*
 	.loc_0x0:
@@ -1124,7 +1125,7 @@ void Game::OtakaraBase::Obj::isMovePositionSet(bool)
  * Address:	802B6D60
  * Size:	000148
  */
-void Game::OtakaraBase::Obj::getNearestTreasure()
+void OtakaraBase::Obj::getNearestTreasure()
 {
 	/*
 	.loc_0x0:
@@ -1224,7 +1225,7 @@ void Game::OtakaraBase::Obj::getNearestTreasure()
  * Address:	802B6EA8
  * Size:	0001C8
  */
-void Game::OtakaraBase::Obj::getTargetPosition(Game::Creature*)
+void OtakaraBase::Obj::getTargetPosition(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1365,7 @@ void Game::OtakaraBase::Obj::getTargetPosition(Game::Creature*)
  * Address:	802B7070
  * Size:	000094
  */
-void Game::OtakaraBase::Obj::resetTreasure()
+void OtakaraBase::Obj::resetTreasure()
 {
 	/*
 	.loc_0x0:
@@ -1413,7 +1414,7 @@ void Game::OtakaraBase::Obj::resetTreasure()
  * Address:	802B7104
  * Size:	00010C
  */
-void Game::OtakaraBase::Obj::isTakeTreasure()
+void OtakaraBase::Obj::isTakeTreasure()
 {
 	/*
 	.loc_0x0:
@@ -1502,7 +1503,7 @@ void Game::OtakaraBase::Obj::isTakeTreasure()
  * Address:	802B7210
  * Size:	00024C
  */
-void Game::OtakaraBase::Obj::takeTreasure()
+void OtakaraBase::Obj::takeTreasure()
 {
 	/*
 	.loc_0x0:
@@ -1679,7 +1680,7 @@ void Game::OtakaraBase::Obj::takeTreasure()
  * Address:	802B745C
  * Size:	0000F8
  */
-void Game::OtakaraBase::Obj::fallTreasure(bool)
+void OtakaraBase::Obj::fallTreasure(bool)
 {
 	/*
 	.loc_0x0:
@@ -1759,7 +1760,7 @@ void Game::OtakaraBase::Obj::fallTreasure(bool)
  * Address:	802B7554
  * Size:	000028
  */
-void Game::OtakaraBase::Obj::isDropTreasure()
+void OtakaraBase::Obj::isDropTreasure()
 {
 	/*
 	.loc_0x0:
@@ -1783,7 +1784,7 @@ void Game::OtakaraBase::Obj::isDropTreasure()
  * Address:	802B757C
  * Size:	000054
  */
-void Game::OtakaraBase::Obj::damageTreasure(float)
+void OtakaraBase::Obj::damageTreasure(float)
 {
 	/*
 	.loc_0x0:
@@ -1820,7 +1821,7 @@ void Game::OtakaraBase::Obj::damageTreasure(float)
  * Address:	802B75D0
  * Size:	0001A8
  */
-void Game::OtakaraBase::Obj::attackTarget()
+void OtakaraBase::Obj::attackTarget()
 {
 	/*
 	.loc_0x0:
@@ -1946,14 +1947,14 @@ void Game::OtakaraBase::Obj::attackTarget()
  * Address:	802B7778
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::interactCreature(Game::Creature*) { }
+void OtakaraBase::Obj::interactCreature(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	802B777C
  * Size:	000134
  */
-void Game::OtakaraBase::Obj::createTreasureFallEffect()
+void OtakaraBase::Obj::createTreasureFallEffect()
 {
 	/*
 	.loc_0x0:
@@ -2044,7 +2045,7 @@ void Game::OtakaraBase::Obj::createTreasureFallEffect()
  * Address:	802B78B0
  * Size:	000088
  */
-void Game::OtakaraBase::Obj::startEscapeSE()
+void OtakaraBase::Obj::startEscapeSE()
 {
 	/*
 	.loc_0x0:
@@ -2094,7 +2095,7 @@ void Game::OtakaraBase::Obj::startEscapeSE()
  * Address:	802B7938
  * Size:	0000FC
  */
-void Game::OtakaraBase::Obj::initBombOtakara()
+void OtakaraBase::Obj::initBombOtakara()
 {
 	/*
 	.loc_0x0:
@@ -2171,7 +2172,7 @@ void Game::OtakaraBase::Obj::initBombOtakara()
  * Address:	802B7A34
  * Size:	000068
  */
-void Game::OtakaraBase::Obj::isTransitChaseState()
+void OtakaraBase::Obj::isTransitChaseState()
 {
 	/*
 	.loc_0x0:
@@ -2215,7 +2216,7 @@ void Game::OtakaraBase::Obj::isTransitChaseState()
  * Address:	802B7A9C
  * Size:	00008C
  */
-void Game::OtakaraBase::Obj::stimulateBomb()
+void OtakaraBase::Obj::stimulateBomb()
 {
 	/*
 	.loc_0x0:
@@ -2264,7 +2265,7 @@ void Game::OtakaraBase::Obj::stimulateBomb()
  * Address:	802B7B28
  * Size:	000038
  */
-void Game::OtakaraBase::Obj::getChaseTargetCreature()
+void OtakaraBase::Obj::getChaseTargetCreature()
 {
 	/*
 	.loc_0x0:
@@ -2290,7 +2291,7 @@ void Game::OtakaraBase::Obj::getChaseTargetCreature()
  * Address:	802B7B60
  * Size:	00009C
  */
-void Game::ConditionNotStickClientAndItem::satisfy(Game::Piki*)
+void ConditionNotStickClientAndItem::satisfy(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2347,7 +2348,7 @@ void Game::ConditionNotStickClientAndItem::satisfy(Game::Piki*)
  * Address:	802B7BFC
  * Size:	0000BC
  */
-void Game::OtakaraBase::Obj::~Obj()
+OtakaraBase::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -2410,7 +2411,7 @@ void Game::OtakaraBase::Obj::~Obj()
  * Address:	802B7CB8
  * Size:	000008
  */
-void Game::OtakaraBase::Obj::getDownSmokeScale()
+void OtakaraBase::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -2424,7 +2425,7 @@ void Game::OtakaraBase::Obj::getDownSmokeScale()
  * Address:	802B7CC0
  * Size:	000008
  */
-void Game::OtakaraBase::Obj::getCellRadius()
+void OtakaraBase::Obj::getCellRadius()
 {
 	/*
 	.loc_0x0:
@@ -2438,4 +2439,5 @@ void Game::OtakaraBase::Obj::getCellRadius()
  * Address:	802B7CC8
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::createEffect() { }
+void OtakaraBase::Obj::createEffect() { }
+} // namespace Game

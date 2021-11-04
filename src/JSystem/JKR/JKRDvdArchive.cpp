@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8001E57C
  * Size:	0000B0
  */
-void JKRDvdArchive::JKRDvdArchive(long, JKRArchive::EMountDirection)
+JKRDvdArchive::JKRDvdArchive(long, JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +65,7 @@ void JKRDvdArchive::JKRDvdArchive(long, JKRArchive::EMountDirection)
  * Address:	8001E62C
  * Size:	00012C
  */
-void JKRDvdArchive::~JKRDvdArchive()
+JKRDvdArchive::~JKRDvdArchive()
 {
 	/*
 	.loc_0x0:

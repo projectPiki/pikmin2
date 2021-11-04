@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8022D0E8
  * Size:	0000F0
  */
-void Game::VsGame::LoadState::__ct(void)
+VsGame::LoadState::LoadState(void)
 {
 	/*
 	.loc_0x0:
@@ -91,7 +83,7 @@ void Game::VsGame::LoadState::__ct(void)
  * Address:	8022D1D8
  * Size:	0000D0
  */
-void Game::VsGame::LoadState::init((Game::VsGameSection*, Game::StateArg*))
+void VsGame::LoadState::init(Game::VsGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +149,7 @@ void Game::VsGame::LoadState::init((Game::VsGameSection*, Game::StateArg*))
  * Address:	8022D2A8
  * Size:	000024
  */
-void Game::VsGame::LoadState::dvdLoad(void)
+void VsGame::LoadState::dvdLoad(void)
 {
 	/*
 	.loc_0x0:
@@ -178,7 +170,7 @@ void Game::VsGame::LoadState::dvdLoad(void)
  * Address:	8022D2CC
  * Size:	0002C4
  */
-void Game::VsGame::LoadState::exec((Game::VsGameSection*))
+void VsGame::LoadState::exec(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -395,7 +387,7 @@ void Game::VsGame::LoadState::exec((Game::VsGameSection*))
  * Address:	8022D590
  * Size:	00007C
  */
-void Game::VsGame::LoadState::draw((Game::VsGameSection*, Graphics&))
+void VsGame::LoadState::draw(Game::VsGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -438,45 +430,55 @@ void Game::VsGame::LoadState::draw((Game::VsGameSection*, Graphics&))
  * Address:	8022D60C
  * Size:	000004
  */
-void Game::VsGame::LoadState::cleanup((Game::VsGameSection*)) { }
+void VsGame::LoadState::cleanup(Game::VsGameSection*) { }
 
-/*
- * --INFO--
- * Address:	8022D610
- * Size:	000008
- */
-u32 og::Screen::DispMemberFloor::getSize(void) { return 0x14; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	8022D618
- * Size:	00000C
- */
-void og::Screen::DispMemberFloor::getOwnerID(void)
-{
+namespace og {
+
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022D610
+	 * Size:	000008
+	 */
+	u32 DispMemberFloor::getSize(void) { return 0x14; }
 
-/*
- * --INFO--
- * Address:	8022D624
- * Size:	000010
- */
-void og::Screen::DispMemberFloor::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4C4F
-	  li        r3, 0x46
-	  addi      r4, r4, 0x4F52
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022D618
+	 * Size:	00000C
+	 */
+	void DispMemberFloor::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8022D624
+	 * Size:	000010
+	 */
+	void DispMemberFloor::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4C4F
+		  li        r3, 0x46
+		  addi      r4, r4, 0x4F52
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--

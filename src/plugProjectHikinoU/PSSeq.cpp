@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	80330D20
  * Size:	000060
  */
-void PSSystem::SeqDataList::__ct(void)
+SeqDataList::SeqDataList(void)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +45,7 @@ void PSSystem::SeqDataList::__ct(void)
  * Address:	80330D80
  * Size:	000088
  */
-void PSSystem::SeqDataList::__dt(void)
+SeqDataList::~SeqDataList(void)
 {
 	/*
 	.loc_0x0:
@@ -93,7 +95,7 @@ void PSSystem::SeqDataList::__dt(void)
  * Address:	80330E08
  * Size:	000108
  */
-void PSSystem::SeqDataList::getSeqVolume((char const*))
+void SeqDataList::getSeqVolume(char const*)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +185,7 @@ void PSSystem::SeqDataList::getSeqVolume((char const*))
  * Address:	80330F10
  * Size:	000060
  */
-void PSSystem::StreamDataList::__ct(void)
+StreamDataList::StreamDataList(void)
 {
 	/*
 	.loc_0x0:
@@ -221,7 +223,7 @@ void PSSystem::StreamDataList::__ct(void)
  * Address:	80330F70
  * Size:	000088
  */
-void PSSystem::StreamDataList::__dt(void)
+StreamDataList::~StreamDataList(void)
 {
 	/*
 	.loc_0x0:
@@ -271,7 +273,7 @@ void PSSystem::StreamDataList::__dt(void)
  * Address:	80330FF8
  * Size:	000110
  */
-void PSSystem::StreamDataList::getStreamVolume((unsigned long))
+void StreamDataList::getStreamVolume(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -363,7 +365,7 @@ void PSSystem::StreamDataList::getStreamVolume((unsigned long))
  * Address:	80331108
  * Size:	000094
  */
-void PSSystem::SeqSoundBase::stop((unsigned long))
+void SeqSoundBase::stop(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +416,7 @@ void PSSystem::SeqSoundBase::stop((unsigned long))
  * Address:	8033119C
  * Size:	000020
  */
-void PSSystem::SeqSound::stopInner((unsigned long))
+void SeqSound::stopInner(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -434,7 +436,7 @@ void PSSystem::SeqSound::stopInner((unsigned long))
  * Address:	803311BC
  * Size:	000020
  */
-void PSSystem::StreamSound::stopInner((unsigned long))
+void StreamSound::stopInner(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -454,7 +456,7 @@ void PSSystem::StreamSound::stopInner((unsigned long))
  * Address:	........
  * Size:	0000EC
  */
-void PSSystem::SeqHeap::__ct((unsigned long, PSSystem::SeqBase*))
+SeqHeap::SeqHeap(unsigned long, PSSystem::SeqBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -464,7 +466,7 @@ void PSSystem::SeqHeap::__ct((unsigned long, PSSystem::SeqBase*))
  * Address:	803311DC
  * Size:	000060
  */
-void PSSystem::SeqHeap::__dt(void)
+SeqHeap::~SeqHeap(void)
 {
 	/*
 	.loc_0x0:
@@ -502,8 +504,7 @@ void PSSystem::SeqHeap::__dt(void)
  * Address:	8033123C
  * Size:	000200
  */
-void PSSystem::SeqHeap::requestCallback((unsigned long, unsigned short,
-                                         JAISequence*))
+void SeqHeap::requestCallback(unsigned long, unsigned short, JAISequence*)
 {
 	/*
 	.loc_0x0:
@@ -671,7 +672,7 @@ void PSSystem::SeqHeap::requestCallback((unsigned long, unsigned short,
  * Address:	8033143C
  * Size:	0000D4
  */
-void PSSystem::SeqHeap::loadSeqAsync((PSSystem::TaskChecker*))
+void SeqHeap::loadSeqAsync(PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -742,7 +743,7 @@ void PSSystem::SeqHeap::loadSeqAsync((PSSystem::TaskChecker*))
  * Address:	80331510
  * Size:	000098
  */
-void PSSystem::SeqHeap::loadedCallback((unsigned long, unsigned long))
+void SeqHeap::loadedCallback(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -796,7 +797,7 @@ void PSSystem::SeqHeap::loadedCallback((unsigned long, unsigned long))
  * Address:	803315A8
  * Size:	000030
  */
-void PSSystem::SeqPlayReservator::reservatorTask(void)
+void SeqPlayReservator::reservatorTask(void)
 {
 	/*
 	.loc_0x0:
@@ -820,7 +821,7 @@ void PSSystem::SeqPlayReservator::reservatorTask(void)
  * Address:	803315D8
  * Size:	000030
  */
-void PSSystem::SeqPauseOffReservator::reservatorTask(void)
+void SeqPauseOffReservator::reservatorTask(void)
 {
 	/*
 	.loc_0x0:
@@ -844,7 +845,7 @@ void PSSystem::SeqPauseOffReservator::reservatorTask(void)
  * Address:	80331608
  * Size:	000100
  */
-void PSSystem::SeqBase::__ct((char const*, JAInter::SoundInfo const&))
+SeqBase::SeqBase(char const*, JAInter::SoundInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -917,6 +918,8 @@ void PSSystem::SeqBase::__ct((char const*, JAInter::SoundInfo const&))
 	*/
 }
 
+} // namespace PSSystem
+
 /*
  * --INFO--
  * Address:	........
@@ -927,12 +930,14 @@ void JSULink<PSSystem::SeqBase>::~JSULink()
 	// UNUSED FUNCTION
 }
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	80331708
  * Size:	000134
  */
-void PSSystem::SeqBase::init(void)
+void SeqBase::init(void)
 {
 	/*
 	.loc_0x0:
@@ -1031,7 +1036,7 @@ void PSSystem::SeqBase::init(void)
  * Address:	8033183C
  * Size:	000098
  */
-void PSSystem::SeqBase::__dt(void)
+SeqBase::~SeqBase(void)
 {
 	/*
 	.loc_0x0:
@@ -1087,7 +1092,7 @@ void PSSystem::SeqBase::__dt(void)
  * Address:	803318D4
  * Size:	00003C
  */
-void PSSystem::SeqBase::isPlaying(void)
+void SeqBase::isPlaying(void)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1125,7 @@ void PSSystem::SeqBase::isPlaying(void)
  * Address:	80331910
  * Size:	000090
  */
-void PSSystem::SeqBase::getFileEntry(void)
+void SeqBase::getFileEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -1172,7 +1177,7 @@ void PSSystem::SeqBase::getFileEntry(void)
  * Address:	803319A0
  * Size:	0001D4
  */
-void PSSystem::SeqBase::pauseOn((PSSystem::SeqBase::PauseMode))
+void SeqBase::pauseOn(PSSystem::SeqBase::PauseMode)
 {
 	/*
 	.loc_0x0:
@@ -1331,7 +1336,7 @@ void PSSystem::SeqBase::pauseOn((PSSystem::SeqBase::PauseMode))
  * Address:	80331B74
  * Size:	00013C
  */
-void PSSystem::SeqBase::pauseOff(void)
+void SeqBase::pauseOff(void)
 {
 	/*
 	.loc_0x0:
@@ -1432,7 +1437,7 @@ void PSSystem::SeqBase::pauseOff(void)
  * Address:	80331CB0
  * Size:	0000D4
  */
-void PSSystem::SeqBase::exec(void)
+void SeqBase::exec(void)
 {
 	/*
 	.loc_0x0:
@@ -1505,14 +1510,14 @@ void PSSystem::SeqBase::exec(void)
  * Address:	80331D84
  * Size:	000004
  */
-void PSSystem::SeqBase::onPlayingFrame(void) { }
+void SeqBase::onPlayingFrame(void) { }
 
 /*
  * --INFO--
  * Address:	80331D88
  * Size:	000154
  */
-void PSSystem::SeqBase::startSeq(void)
+void SeqBase::startSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -1617,7 +1622,7 @@ void PSSystem::SeqBase::startSeq(void)
  * Address:	80331EDC
  * Size:	0000D0
  */
-void PSSystem::SeqBase::setConfigVolume(void)
+void SeqBase::setConfigVolume(void)
 {
 	/*
 	.loc_0x0:
@@ -1683,7 +1688,7 @@ void PSSystem::SeqBase::setConfigVolume(void)
  * Address:	80331FAC
  * Size:	000038
  */
-void PSSystem::SeqBase::scene1st((PSSystem::TaskChecker*))
+void SeqBase::scene1st(PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -1711,7 +1716,7 @@ void PSSystem::SeqBase::scene1st((PSSystem::TaskChecker*))
  * Address:	80331FE4
  * Size:	000060
  */
-void PSSystem::SeqBase::stopSeq((unsigned long))
+void SeqBase::stopSeq(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1749,7 +1754,7 @@ void PSSystem::SeqBase::stopSeq((unsigned long))
  * Address:	80332044
  * Size:	000114
  */
-void PSSystem::BgmSeq::__ct((char const*, JAInter::SoundInfo const&))
+BgmSeq::BgmSeq(char const*, JAInter::SoundInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -1832,7 +1837,7 @@ void PSSystem::BgmSeq::__ct((char const*, JAInter::SoundInfo const&))
  * Address:	80332158
  * Size:	0000C0
  */
-void PSSystem::BgmSeq::__dt(void)
+BgmSeq::~BgmSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -1898,7 +1903,7 @@ void PSSystem::BgmSeq::__dt(void)
  * Address:	80332218
  * Size:	000100
  */
-void PSSystem::StreamBgm::__ct((unsigned long, JAInter::SoundInfo const&))
+StreamBgm::StreamBgm(unsigned long, JAInter::SoundInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -1974,14 +1979,14 @@ void PSSystem::StreamBgm::__ct((unsigned long, JAInter::SoundInfo const&))
  * Address:	80332318
  * Size:	000004
  */
-void PSSystem::StreamBgm::init(void) { }
+void StreamBgm::init(void) { }
 
 /*
  * --INFO--
  * Address:	8033231C
  * Size:	0000EC
  */
-void PSSystem::StreamBgm::__dt(void)
+StreamBgm::~StreamBgm(void)
 {
 	/*
 	.loc_0x0:
@@ -2058,13 +2063,10 @@ void PSSystem::StreamBgm::__dt(void)
  * Address:	80332408
  * Size:	000008
  */
-void PSSystem::StreamBgm::setId((unsigned long))
+void StreamBgm::setId(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x70(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x70(r3)
+	_70 = a1;
 }
 
 /*
@@ -2072,7 +2074,7 @@ void PSSystem::StreamBgm::setId((unsigned long))
  * Address:	80332410
  * Size:	00015C
  */
-void PSSystem::StreamBgm::startSeq(void)
+void StreamBgm::startSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -2181,7 +2183,7 @@ void PSSystem::StreamBgm::startSeq(void)
  * Address:	8033256C
  * Size:	0000D0
  */
-void PSSystem::StreamBgm::setConfigVolume(void)
+void StreamBgm::setConfigVolume(void)
 {
 	/*
 	.loc_0x0:
@@ -2247,7 +2249,7 @@ void PSSystem::StreamBgm::setConfigVolume(void)
  * Address:	8033263C
  * Size:	000014
  */
-void PSSystem::StreamBgm::isPlaying(void)
+void StreamBgm::isPlaying(void)
 {
 	/*
 	.loc_0x0:
@@ -2264,7 +2266,7 @@ void PSSystem::StreamBgm::isPlaying(void)
  * Address:	80332650
  * Size:	0000C0
  */
-void PSSystem::SeSeq::__dt(void)
+SeSeq::~SeSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -2330,7 +2332,7 @@ void PSSystem::SeSeq::__dt(void)
  * Address:	80332710
  * Size:	00002C
  */
-void PSSystem::SeSeq::seqLoadAfter(void)
+void SeSeq::seqLoadAfter(void)
 {
 	/*
 	.loc_0x0:
@@ -2353,7 +2355,7 @@ void PSSystem::SeSeq::seqLoadAfter(void)
  * Address:	8033273C
  * Size:	0000D0
  */
-void PSSystem::SeSeq::setConfigVolume(void)
+void SeSeq::setConfigVolume(void)
 {
 	/*
 	.loc_0x0:
@@ -2419,7 +2421,7 @@ void PSSystem::SeSeq::setConfigVolume(void)
  * Address:	8033280C
  * Size:	0000A4
  */
-void PSSystem::SeSeq::stopSeq((unsigned long))
+void SeSeq::stopSeq(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2478,8 +2480,8 @@ void PSSystem::SeSeq::stopSeq((unsigned long))
  * Address:	803328B0
  * Size:	000138
  */
-void PSSystem::DirectedBgm::__ct((char const*, JAInter::SoundInfo const&,
-                                  PSSystem::DirectorMgrBase*))
+DirectedBgm::DirectedBgm(char const*, JAInter::SoundInfo const&,
+                         PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:
@@ -2571,7 +2573,7 @@ void PSSystem::DirectedBgm::__ct((char const*, JAInter::SoundInfo const&,
  * Address:	803329E8
  * Size:	0000C0
  */
-void PSSystem::DirectedBgm::initRootTrack_onPlaying((JASTrack*))
+void DirectedBgm::initRootTrack_onPlaying(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -2637,7 +2639,7 @@ void PSSystem::DirectedBgm::initRootTrack_onPlaying((JASTrack*))
  * Address:	80332AA8
  * Size:	0000D4
  */
-void PSSystem::DirectedBgm::initChildTrack_onPlaying((JASTrack*, unsigned char))
+void DirectedBgm::initChildTrack_onPlaying(JASTrack*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2708,7 +2710,7 @@ void PSSystem::DirectedBgm::initChildTrack_onPlaying((JASTrack*, unsigned char))
  * Address:	........
  * Size:	000098
  */
-void PSSystem::DirectedBgm::getDirector((unsigned char))
+void DirectedBgm::getDirector(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -2718,7 +2720,7 @@ void PSSystem::DirectedBgm::getDirector((unsigned char))
  * Address:	80332B7C
  * Size:	000098
  */
-void PSSystem::DirectedBgm::getDirectorP((unsigned char))
+void DirectedBgm::getDirectorP(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2772,7 +2774,7 @@ void PSSystem::DirectedBgm::getDirectorP((unsigned char))
  * Address:	80332C14
  * Size:	000064
  */
-void PSSystem::DirectedBgm::newSeqTrackRoot(void)
+void DirectedBgm::newSeqTrackRoot(void)
 {
 	/*
 	.loc_0x0:
@@ -2813,8 +2815,7 @@ void PSSystem::DirectedBgm::newSeqTrackRoot(void)
  * Address:	80332C78
  * Size:	000074
  */
-void PSSystem::DirectedBgm::newSeqTrackChild((unsigned char,
-                                              PSSystem::SeqTrackRoot&))
+void DirectedBgm::newSeqTrackChild(unsigned char, PSSystem::SeqTrackRoot&)
 {
 	/*
 	.loc_0x0:
@@ -2859,7 +2860,7 @@ void PSSystem::DirectedBgm::newSeqTrackChild((unsigned char,
  * Address:	80332CEC
  * Size:	0001F0
  */
-void PSSystem::DirectedBgm::init(void)
+void DirectedBgm::init(void)
 {
 	/*
 	.loc_0x0:
@@ -3015,7 +3016,7 @@ void PSSystem::DirectedBgm::init(void)
  * Address:	80332EDC
  * Size:	000154
  */
-void PSSystem::DirectedBgm::startSeq(void)
+void DirectedBgm::startSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -3120,7 +3121,7 @@ void PSSystem::DirectedBgm::startSeq(void)
  * Address:	80333030
  * Size:	0000F0
  */
-void PSSystem::DirectedBgm::stopSeq((unsigned long))
+void DirectedBgm::stopSeq(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3200,7 +3201,7 @@ void PSSystem::DirectedBgm::stopSeq((unsigned long))
  * Address:	80333120
  * Size:	00002C
  */
-void PSSystem::DirectedBgm::onPlayingFrame(void)
+void DirectedBgm::onPlayingFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -3225,7 +3226,7 @@ void PSSystem::DirectedBgm::onPlayingFrame(void)
  * Address:	8033314C
  * Size:	00002C
  */
-void PSSystem::SeqTrackRoot_JumpBgm::onBeatTop(void)
+void SeqTrackRoot_JumpBgm::onBeatTop(void)
 {
 	/*
 	.loc_0x0:
@@ -3250,7 +3251,7 @@ void PSSystem::SeqTrackRoot_JumpBgm::onBeatTop(void)
  * Address:	........
  * Size:	000084
  */
-void PSSystem::JumpBgmPort::__ct((PSSystem::JumpBgmSeq*))
+JumpBgmPort::JumpBgmPort(PSSystem::JumpBgmSeq*)
 {
 	// UNUSED FUNCTION
 }
@@ -3260,7 +3261,7 @@ void PSSystem::JumpBgmPort::__ct((PSSystem::JumpBgmSeq*))
  * Address:	80333178
  * Size:	0000B8
  */
-void PSSystem::JumpBgmPort::onBeatTop((PSSystem::BeatMgr&))
+void JumpBgmPort::onBeatTop(PSSystem::BeatMgr&)
 {
 	/*
 	.loc_0x0:
@@ -3322,7 +3323,7 @@ void PSSystem::JumpBgmPort::onBeatTop((PSSystem::BeatMgr&))
  * Address:	........
  * Size:	000048
  */
-void PSSystem::JumpBgmPort::requestQuickly((unsigned short))
+void JumpBgmPort::requestQuickly(unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -3332,7 +3333,7 @@ void PSSystem::JumpBgmPort::requestQuickly((unsigned short))
  * Address:	........
  * Size:	000048
  */
-void PSSystem::JumpBgmPort::requestOnBeat((unsigned short))
+void JumpBgmPort::requestOnBeat(unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -3342,7 +3343,7 @@ void PSSystem::JumpBgmPort::requestOnBeat((unsigned short))
  * Address:	........
  * Size:	000044
  */
-void PSSystem::JumpBgmPort::requestEveryBeat((unsigned short))
+void JumpBgmPort::requestEveryBeat(unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -3352,7 +3353,7 @@ void PSSystem::JumpBgmPort::requestEveryBeat((unsigned short))
  * Address:	........
  * Size:	0000AC
  */
-void PSSystem::JumpBgmPort::output(void)
+void JumpBgmPort::output(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3362,8 +3363,8 @@ void PSSystem::JumpBgmPort::output(void)
  * Address:	80333230
  * Size:	000190
  */
-void PSSystem::JumpBgmSeq::__ct((char const*, JAInter::SoundInfo const&,
-                                 PSSystem::DirectorMgrBase*))
+JumpBgmSeq::JumpBgmSeq(char const*, JAInter::SoundInfo const&,
+                       PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:
@@ -3477,7 +3478,7 @@ void PSSystem::JumpBgmSeq::__ct((char const*, JAInter::SoundInfo const&,
  * Address:	803333C0
  * Size:	000080
  */
-void PSSystem::JumpBgmSeq::newSeqTrackRoot(void)
+void JumpBgmSeq::newSeqTrackRoot(void)
 {
 	/*
 	.loc_0x0:
@@ -3525,7 +3526,7 @@ void PSSystem::JumpBgmSeq::newSeqTrackRoot(void)
  * Address:	........
  * Size:	000420
  */
-void PSSystem::SeqTrackRoot::__dt(void)
+SeqTrackRoot::~SeqTrackRoot(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3535,7 +3536,7 @@ void PSSystem::SeqTrackRoot::__dt(void)
  * Address:	80333440
  * Size:	000170
  */
-void PSSystem::JumpBgmSeq::startSeq(void)
+void JumpBgmSeq::startSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -3647,7 +3648,7 @@ void PSSystem::JumpBgmSeq::startSeq(void)
  * Address:	803335B0
  * Size:	000178
  */
-void PSSystem::JumpBgmSeq::startSeq((unsigned short))
+void JumpBgmSeq::startSeq(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3761,7 +3762,7 @@ void PSSystem::JumpBgmSeq::startSeq((unsigned short))
  * Address:	80333728
  * Size:	000060
  */
-void PSSystem::JumpBgmSeq::requestJumpBgmQuickly((unsigned short))
+void JumpBgmSeq::requestJumpBgmQuickly(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3799,7 +3800,7 @@ void PSSystem::JumpBgmSeq::requestJumpBgmQuickly((unsigned short))
  * Address:	80333788
  * Size:	000060
  */
-void PSSystem::JumpBgmSeq::requestJumpBgmOnBeat((unsigned short))
+void JumpBgmSeq::requestJumpBgmOnBeat(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3837,7 +3838,7 @@ void PSSystem::JumpBgmSeq::requestJumpBgmOnBeat((unsigned short))
  * Address:	803337E8
  * Size:	000054
  */
-void PSSystem::JumpBgmSeq::requestJumpBgmEveryBeat((unsigned short))
+void JumpBgmSeq::requestJumpBgmEveryBeat(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3872,7 +3873,7 @@ void PSSystem::JumpBgmSeq::requestJumpBgmEveryBeat((unsigned short))
  * Address:	8033383C
  * Size:	00004C
  */
-void PSSystem::JumpBgmSeq::onPlayingFrame(void)
+void JumpBgmSeq::onPlayingFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -3907,7 +3908,7 @@ void PSSystem::JumpBgmSeq::onPlayingFrame(void)
  * Address:	80333888
  * Size:	0000C8
  */
-void PSSystem::JumpBgmSeq::outputJumpRequest(void)
+void JumpBgmSeq::outputJumpRequest(void)
 {
 	/*
 	.loc_0x0:
@@ -3975,7 +3976,7 @@ void PSSystem::JumpBgmSeq::outputJumpRequest(void)
  * Address:	80333950
  * Size:	000040
  */
-void PSSystem::JumpBgmSeq::getSeqStartPoint(void)
+void JumpBgmSeq::getSeqStartPoint(void)
 {
 	/*
 	.loc_0x0:
@@ -4003,7 +4004,7 @@ void PSSystem::JumpBgmSeq::getSeqStartPoint(void)
  * Address:	80333990
  * Size:	000014
  */
-void PSSystem::JumpBgmSeq::setAvoidJumpTimer_Checked((unsigned long))
+void JumpBgmSeq::setAvoidJumpTimer_Checked(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4020,7 +4021,7 @@ void PSSystem::JumpBgmSeq::setAvoidJumpTimer_Checked((unsigned long))
  * Address:	803339A4
  * Size:	000060
  */
-void PSSystem::SeqMgr::isPlaying(void)
+void SeqMgr::isPlaying(void)
 {
 	/*
 	.loc_0x0:
@@ -4064,7 +4065,7 @@ void PSSystem::SeqMgr::isPlaying(void)
  * Address:	80333A04
  * Size:	0000C8
  */
-void PSSystem::SeqMgr::__dt(void)
+SeqMgr::~SeqMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -4136,7 +4137,7 @@ void PSSystem::SeqMgr::__dt(void)
  * Address:	80333ACC
  * Size:	00005C
  */
-void PSSystem::SeqMgr::pauseOnAllSeq((PSSystem::SeqBase::PauseMode))
+void SeqMgr::pauseOnAllSeq(PSSystem::SeqBase::PauseMode)
 {
 	/*
 	.loc_0x0:
@@ -4175,7 +4176,7 @@ void PSSystem::SeqMgr::pauseOnAllSeq((PSSystem::SeqBase::PauseMode))
  * Address:	80333B28
  * Size:	00004C
  */
-void PSSystem::SeqMgr::pauseOffAllSeq(void)
+void SeqMgr::pauseOffAllSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -4210,7 +4211,7 @@ void PSSystem::SeqMgr::pauseOffAllSeq(void)
  * Address:	80333B74
  * Size:	000024
  */
-void PSSystem::SeqMgr::reservePauseOffAllSeq(void)
+void SeqMgr::reservePauseOffAllSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -4235,7 +4236,7 @@ void PSSystem::SeqMgr::reservePauseOffAllSeq(void)
  * Address:	80333B98
  * Size:	000024
  */
-void PSSystem::SeqMgr::cancelPauseOffAllSeq(void)
+void SeqMgr::cancelPauseOffAllSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -4260,7 +4261,7 @@ void PSSystem::SeqMgr::cancelPauseOffAllSeq(void)
  * Address:	80333BBC
  * Size:	000080
  */
-void PSSystem::SeqMgr::exec(void)
+void SeqMgr::exec(void)
 {
 	/*
 	.loc_0x0:
@@ -4310,7 +4311,7 @@ void PSSystem::SeqMgr::exec(void)
  * Address:	80333C3C
  * Size:	00005C
  */
-void PSSystem::SeqMgr::stopAllSound((unsigned long))
+void SeqMgr::stopAllSound(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4349,7 +4350,7 @@ void PSSystem::SeqMgr::stopAllSound((unsigned long))
  * Address:	80333C98
  * Size:	00005C
  */
-void PSSystem::SeqMgr::scene1st((PSSystem::TaskChecker*))
+void SeqMgr::scene1st(PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -4388,7 +4389,7 @@ void PSSystem::SeqMgr::scene1st((PSSystem::TaskChecker*))
  * Address:	80333CF4
  * Size:	0000E8
  */
-void PSSystem::SeqMgr::findSeq((JASTrack*))
+void SeqMgr::findSeq(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -4474,7 +4475,7 @@ void PSSystem::SeqMgr::findSeq((JASTrack*))
  * Address:	80333DDC
  * Size:	000080
  */
-void PSSystem::SeqMgr::getPlayingSeq((JASTrack*))
+void SeqMgr::getPlayingSeq(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -4526,7 +4527,7 @@ void PSSystem::SeqMgr::getPlayingSeq((JASTrack*))
  * Address:	80333E5C
  * Size:	00001C
  */
-void PSSystem::SeqMgr::getFirstSeq(void)
+void SeqMgr::getFirstSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -4547,7 +4548,7 @@ void PSSystem::SeqMgr::getFirstSeq(void)
  * Address:	80333E78
  * Size:	000024
  */
-void PSSystem::SeqMgr::getFirstSeqA(void)
+void SeqMgr::getFirstSeqA(void)
 {
 	/*
 	.loc_0x0:
@@ -4570,7 +4571,7 @@ void PSSystem::SeqMgr::getFirstSeqA(void)
  * Address:	80333E9C
  * Size:	000034
  */
-void PSSystem::SeqMgr::getSeq((unsigned long))
+void SeqMgr::getSeq(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4599,7 +4600,7 @@ void PSSystem::SeqMgr::getSeq((unsigned long))
  * Address:	80333ED0
  * Size:	0000E0
  */
-void PSSystem::JumpBgmSeq::__dt(void)
+JumpBgmSeq::~JumpBgmSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -4667,6 +4668,8 @@ void PSSystem::JumpBgmSeq::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace PSSystem
 
 /*
  * --INFO--
@@ -4741,7 +4744,7 @@ void __dt__Q28PSSystem42SingletonBase<PSSystem::StreamDataList> Fv(void)
  * Address:	80334050
  * Size:	000008
  */
-void @28 @PSSystem::SeqDataList::__dt(void)
+@28 @PSSystem::SeqDataList::~SeqDataList(void)
 {
 	/*
 	.loc_0x0:
@@ -4755,7 +4758,7 @@ void @28 @PSSystem::SeqDataList::__dt(void)
  * Address:	80334058
  * Size:	000008
  */
-void @28 @PSSystem::StreamDataList::__dt(void)
+@28 @PSSystem::StreamDataList::~StreamDataList(void)
 {
 	/*
 	.loc_0x0:
@@ -4769,7 +4772,7 @@ void @28 @PSSystem::StreamDataList::__dt(void)
  * Address:	80334060
  * Size:	000008
  */
-void @1696 @PSSystem::SeqSound::stopInner((unsigned long))
+void @1696 @PSSystem::SeqSound::stopInner(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4783,7 +4786,7 @@ void @1696 @PSSystem::SeqSound::stopInner((unsigned long))
  * Address:	80334068
  * Size:	000008
  */
-void @472 @PSSystem::StreamSound::stopInner((unsigned long))
+void @472 @PSSystem::StreamSound::stopInner(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4792,19 +4795,21 @@ void @472 @PSSystem::StreamSound::stopInner((unsigned long))
 	*/
 }
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	80334070
  * Size:	000004
  */
-void PSSystem::SeqBase::seqLoadAfter(void) { }
+void SeqBase::seqLoadAfter(void) { }
 
 /*
  * --INFO--
  * Address:	80334074
  * Size:	000008
  */
-void PSSystem::BgmSeq::getHandleP(void)
+void BgmSeq::getHandleP(void)
 {
 	/*
 	.loc_0x0:
@@ -4818,7 +4823,7 @@ void PSSystem::BgmSeq::getHandleP(void)
  * Address:	8033407C
  * Size:	0000D0
  */
-void PSSystem::DirectedBgm::__dt(void)
+DirectedBgm::~DirectedBgm(void)
 {
 	/*
 	.loc_0x0:
@@ -4888,21 +4893,21 @@ void PSSystem::DirectedBgm::__dt(void)
  * Address:	8033414C
  * Size:	000004
  */
-void PSSystem::JumpBgmSeq::onJump((unsigned short)) { }
+void JumpBgmSeq::onJump(unsigned short) { }
 
 /*
  * --INFO--
  * Address:	80334150
  * Size:	000008
  */
-u32 PSSystem::JumpBgmSeq::getCastType(void) { return 0x4; }
+u32 JumpBgmSeq::getCastType(void) { return 0x4; }
 
 /*
  * --INFO--
  * Address:	80334158
  * Size:	000008
  */
-void PSSystem::BgmSeq::getSeqType(void)
+void BgmSeq::getSeqType(void)
 {
 	/*
 	.loc_0x0:
@@ -4916,14 +4921,14 @@ void PSSystem::BgmSeq::getSeqType(void)
  * Address:	80334160
  * Size:	000008
  */
-u32 PSSystem::DirectedBgm::getCastType(void) { return 0x2; }
+u32 DirectedBgm::getCastType(void) { return 0x2; }
 
 /*
  * --INFO--
  * Address:	80334168
  * Size:	00000C
  */
-void PSSystem::SeSeq::getSeqType(void)
+void SeSeq::getSeqType(void)
 {
 	/*
 	.loc_0x0:
@@ -4938,14 +4943,14 @@ void PSSystem::SeSeq::getSeqType(void)
  * Address:	80334174
  * Size:	000008
  */
-u32 PSSystem::SeSeq::getCastType(void) { return 0x5; }
+u32 SeSeq::getCastType(void) { return 0x5; }
 
 /*
  * --INFO--
  * Address:	8033417C
  * Size:	000008
  */
-void PSSystem::SeSeq::getHandleP(void)
+void SeSeq::getHandleP(void)
 {
 	/*
 	.loc_0x0:
@@ -4959,7 +4964,7 @@ void PSSystem::SeSeq::getHandleP(void)
  * Address:	80334184
  * Size:	000008
  */
-void PSSystem::StreamBgm::getHandleP(void)
+void StreamBgm::getHandleP(void)
 {
 	/*
 	.loc_0x0:
@@ -4973,49 +4978,49 @@ void PSSystem::StreamBgm::getHandleP(void)
  * Address:	8033418C
  * Size:	000004
  */
-void PSSystem::StreamBgm::scene1st((PSSystem::TaskChecker*)) { }
+void StreamBgm::scene1st(PSSystem::TaskChecker*) { }
 
 /*
  * --INFO--
  * Address:	80334190
  * Size:	000008
  */
-u32 PSSystem::StreamBgm::getSeqType(void) { return 0x0; }
+u32 StreamBgm::getSeqType(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80334198
  * Size:	000008
  */
-u32 PSSystem::StreamBgm::getCastType(void) { return 0x1; }
+u32 StreamBgm::getCastType(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	803341A0
  * Size:	000008
  */
-u32 PSSystem::BgmSeq::getCastType(void) { return 0x0; }
+u32 BgmSeq::getCastType(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803341A8
  * Size:	000008
  */
-u32 PSSystem::StreamDataList::read((Stream&)) { return 0x0; }
+u32 StreamDataList::read(Stream&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803341B0
  * Size:	000008
  */
-u32 PSSystem::SeqDataList::read((Stream&)) { return 0x0; }
+u32 SeqDataList::read(Stream&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803341B8
  * Size:	00001C
  */
-void PSSystem::TriangleTableModTask::getTgtWithTable((unsigned char))
+void TriangleTableModTask::getTgtWithTable(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -5034,14 +5039,14 @@ void PSSystem::TriangleTableModTask::getTgtWithTable((unsigned char))
  * Address:	803341D4
  * Size:	000008
  */
-u32 PSSystem::TriangleTableModTask::getTableIdxNum(void) { return 0x28; }
+u32 TriangleTableModTask::getTableIdxNum(void) { return 0x28; }
 
 /*
  * --INFO--
  * Address:	803341DC
  * Size:	000034
  */
-void PSSystem::PitchResetTask::task((JASTrack&))
+void PitchResetTask::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -5066,7 +5071,7 @@ void PSSystem::PitchResetTask::task((JASTrack&))
  * Address:	80334210
  * Size:	000008
  */
-void PSSystem::FlagWaitTask::task((JASTrack&))
+void FlagWaitTask::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -5080,7 +5085,7 @@ void PSSystem::FlagWaitTask::task((JASTrack&))
  * Address:	80334218
  * Size:	00000C
  */
-void PSSystem::BankRandTask::timeTask((JASTrack&, float))
+void BankRandTask::timeTask(JASTrack&, float)
 {
 	/*
 	.loc_0x0:
@@ -5095,7 +5100,7 @@ void PSSystem::BankRandTask::timeTask((JASTrack&, float))
  * Address:	80334224
  * Size:	00000C
  */
-void PSSystem::BankRandTask::getPreParam((JASTrack&))
+void BankRandTask::getPreParam(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -5110,7 +5115,7 @@ void PSSystem::BankRandTask::getPreParam((JASTrack&))
  * Address:	80334230
  * Size:	000038
  */
-void PSSystem::SeqTrackRoot::update(void)
+void SeqTrackRoot::update(void)
 {
 	/*
 	.loc_0x0:
@@ -5130,3 +5135,4 @@ void PSSystem::SeqTrackRoot::update(void)
 	  blr
 	*/
 }
+} // namespace PSSystem

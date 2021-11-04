@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8002D144
  * Size:	00002C
  */
-void JUTFont::JUTFont()
+JUTFont::JUTFont()
 {
 	/*
 	.loc_0x0:
@@ -220,7 +220,7 @@ void JUTFont::drawString_size_scale(float, float, float, float, const char*,
  * Address:	8002D38C
  * Size:	000048
  */
-void JUTFont::~JUTFont()
+JUTFont::~JUTFont()
 {
 	/*
 	.loc_0x0:

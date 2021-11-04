@@ -1,22 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00007C
  */
-void efx::OnyonSpot::initAnimators((Sys::MatTexAnimation*,
-                                    Sys::MatTevRegAnimation*))
+void OnyonSpot::initAnimators(Sys::MatTexAnimation*, Sys::MatTevRegAnimation*)
 {
 	// UNUSED FUNCTION
 }
@@ -26,7 +17,7 @@ void efx::OnyonSpot::initAnimators((Sys::MatTexAnimation*,
  * Address:	802055A4
  * Size:	000024
  */
-void efx::OnyonSpot::getLODSphere((Sys::Sphere&))
+void OnyonSpot::getLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +38,7 @@ void efx::OnyonSpot::getLODSphere((Sys::Sphere&))
  * Address:	802055C8
  * Size:	000054
  */
-void efx::OnyonSpot::getLODCylinder((Sys::Cylinder&))
+void OnyonSpot::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -80,7 +71,7 @@ void efx::OnyonSpot::getLODCylinder((Sys::Cylinder&))
  * Address:	8020561C
  * Size:	000050
  */
-void efx::OnyonSpot::changeMaterial(void)
+void OnyonSpot::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -114,7 +105,7 @@ void efx::OnyonSpot::changeMaterial(void)
  * Address:	8020566C
  * Size:	0001A4
  */
-void efx::OnyonSpotData::loadResources(void)
+void OnyonSpotData::loadResources(void)
 {
 	/*
 	.loc_0x0:
@@ -235,7 +226,7 @@ void efx::OnyonSpotData::loadResources(void)
  * Address:	80205810
  * Size:	000180
  */
-void efx::OnyonSpotData::onCreate((ModelEffectCreateArg*))
+void OnyonSpotData::onCreate(ModelEffectCreateArg*)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +340,7 @@ void efx::OnyonSpotData::onCreate((ModelEffectCreateArg*))
  * Address:	80205990
  * Size:	000014
  */
-void efx::OnyonSpotData::getID(void)
+void OnyonSpotData::getID(void)
 {
 	/*
 	.loc_0x0:
@@ -366,7 +357,7 @@ void efx::OnyonSpotData::getID(void)
  * Address:	802059A4
  * Size:	000070
  */
-void efx::OnyonSpotData::__dt(void)
+OnyonSpotData::~OnyonSpotData(void)
 {
 	/*
 	.loc_0x0:
@@ -410,7 +401,9 @@ void efx::OnyonSpotData::__dt(void)
  * Address:	80205A14
  * Size:	000008
  */
-u32 efx::OnyonSpot::useCylinderLOD(void) { return 0x1; }
+u32 OnyonSpot::useCylinderLOD(void) { return 0x1; }
+
+} // namespace efx
 
 /*
  * --INFO--

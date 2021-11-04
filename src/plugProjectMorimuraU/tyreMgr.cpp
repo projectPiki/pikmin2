@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803ABE60
  * Size:	000050
  */
-void Game::Tyre::Mgr::__ct((int, unsigned char))
+Tyre::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Tyre::Mgr::__ct((int, unsigned char))
  * Address:	803ABEB0
  * Size:	000048
  */
-void Game::Tyre::Mgr::doAlloc(void)
+void Tyre::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::Tyre::Mgr::doAlloc(void)
  * Address:	803ABEF8
  * Size:	0000DC
  */
-void Game::Tyre::Parms::__ct(void)
+Tyre::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -148,7 +140,7 @@ void Game::Tyre::Parms::__ct(void)
  * Address:	803ABFD4
  * Size:	000020
  */
-void Game::Tyre::Mgr::birth((Game::EnemyBirthArg&))
+void Tyre::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -168,7 +160,7 @@ void Game::Tyre::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	803ABFF4
  * Size:	000094
  */
-void Game::Tyre::Mgr::loadModelData(void)
+void Tyre::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -223,7 +215,7 @@ void Game::Tyre::Mgr::loadModelData(void)
  * Address:	803AC088
  * Size:	00002C
  */
-void Game::Tyre::Mgr::doLoadBmd((void*))
+void Tyre::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +238,7 @@ void Game::Tyre::Mgr::doLoadBmd((void*))
  * Address:	803AC0B4
  * Size:	0000B0
  */
-void Game::Tyre::Mgr::__dt(void)
+Tyre::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -306,14 +298,14 @@ void Game::Tyre::Mgr::__dt(void)
  * Address:	803AC164
  * Size:	000008
  */
-u32 Game::Tyre::Mgr::getEnemyTypeID(void) { return 0x62; }
+u32 Tyre::Mgr::getEnemyTypeID(void) { return 0x62; }
 
 /*
  * --INFO--
  * Address:	803AC16C
  * Size:	000060
  */
-void Game::Tyre::Mgr::createObj((int))
+void Tyre::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +341,7 @@ void Game::Tyre::Mgr::createObj((int))
  * Address:	803AC1CC
  * Size:	0000BC
  */
-void Game::Tyre::Obj::__dt(void)
+Tyre::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -412,7 +404,7 @@ void Game::Tyre::Obj::__dt(void)
  * Address:	803AC288
  * Size:	000010
  */
-void Game::Tyre::Mgr::getEnemy((int))
+void Tyre::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -428,7 +420,7 @@ void Game::Tyre::Mgr::getEnemy((int))
  * Address:	803AC298
  * Size:	000050
  */
-void Game::Tyre::Parms::read((Stream&))
+void Tyre::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +452,7 @@ void Game::Tyre::Parms::read((Stream&))
  * Address:	803AC2E8
  * Size:	000008
  */
-void @4 @Game::Tyre::Mgr::__dt(void)
+@4 @Game::Tyre::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -468,3 +460,4 @@ void @4 @Game::Tyre::Mgr::__dt(void)
 	  b         -0x238
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802A50CC
  * Size:	000050
  */
-void Game::Damagumo::Mgr::Mgr(int, unsigned char)
+Damagumo::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Damagumo::Mgr::Mgr(int, unsigned char)
  * Address:	802A511C
  * Size:	000048
  */
-void Game::Damagumo::Mgr::doAlloc()
+void Damagumo::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Damagumo::Mgr::doAlloc()
  * Address:	802A5164
  * Size:	0001C8
  */
-void Game::Damagumo::Parms::Parms()
+Damagumo::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::Damagumo::Parms::Parms()
  * Address:	802A532C
  * Size:	000060
  */
-void Game::Damagumo::Mgr::createObj(int)
+void Damagumo::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -233,7 +235,7 @@ void Game::Damagumo::Mgr::createObj(int)
  * Address:	802A538C
  * Size:	0000BC
  */
-void Game::Damagumo::Obj::~Obj()
+Damagumo::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::Damagumo::Obj::~Obj()
  * Address:	802A5448
  * Size:	000010
  */
-void Game::Damagumo::Mgr::getEnemy(int)
+void Damagumo::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +314,7 @@ void Game::Damagumo::Mgr::getEnemy(int)
  * Address:	802A5458
  * Size:	000068
  */
-void Game::Damagumo::Mgr::loadModelData()
+void Damagumo::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -354,7 +356,7 @@ void Game::Damagumo::Mgr::loadModelData()
  * Address:	802A54C0
  * Size:	00012C
  */
-void Game::Damagumo::Mgr::loadTexData()
+void Damagumo::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -453,7 +455,7 @@ void Game::Damagumo::Mgr::loadTexData()
  * Address:	802A55EC
  * Size:	00007C
  */
-void Game::Damagumo::Mgr::createModel()
+void Damagumo::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -500,7 +502,7 @@ void Game::Damagumo::Mgr::createModel()
  * Address:	802A5668
  * Size:	0000B0
  */
-void Game::Damagumo::Mgr::~Mgr()
+Damagumo::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -560,14 +562,14 @@ void Game::Damagumo::Mgr::~Mgr()
  * Address:	802A5718
  * Size:	000008
  */
-u32 Game::Damagumo::Mgr::getEnemyTypeID() { return 0x38; }
+u32 Damagumo::Mgr::getEnemyTypeID() { return 0x38; }
 
 /*
  * --INFO--
  * Address:	802A5720
  * Size:	00002C
  */
-void Game::Damagumo::Mgr::doLoadBmd(void*)
+void Damagumo::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +592,7 @@ void Game::Damagumo::Mgr::doLoadBmd(void*)
  * Address:	802A574C
  * Size:	000050
  */
-void Game::Damagumo::Parms::read(Stream&)
+void Damagumo::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -622,7 +624,7 @@ void Game::Damagumo::Parms::read(Stream&)
  * Address:	802A579C
  * Size:	000008
  */
-void Game::Damagumo::Mgr::@4 @__dt()
+Damagumo::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -630,3 +632,4 @@ void Game::Damagumo::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

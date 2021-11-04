@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802BED6C
  * Size:	000008
  */
-void Game::Houdai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Houdai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -19,7 +21,7 @@ void Game::Houdai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802BED74
  * Size:	000008
  */
-void Game::Houdai::ProperAnimator::getAnimator(int)
+void Houdai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +35,7 @@ void Game::Houdai::ProperAnimator::getAnimator(int)
  * Address:	802BED7C
  * Size:	00005C
  */
-void Game::Houdai::ProperAnimator::~ProperAnimator()
+Houdai::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +74,7 @@ void Game::Houdai::ProperAnimator::~ProperAnimator()
  * Address:	802BEDD8
  * Size:	000008
  */
-void Game::Houdai::ProperAnimator::getAnimator()
+void Houdai::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +82,4 @@ void Game::Houdai::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

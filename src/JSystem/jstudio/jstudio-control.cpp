@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace JStudio {
 
 /*
  * --INFO--
  * Address:	8000CAA4
  * Size:	000090
  */
-void JStudio::TControl::__ct(void)
+TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +55,7 @@ void JStudio::TControl::__ct(void)
  * Address:	8000CB34
  * Size:	000070
  */
-void JStudio::TControl::__dt(void)
+TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -95,7 +97,7 @@ void JStudio::TControl::__dt(void)
  * Address:	8000CBA4
  * Size:	000080
  */
-void JStudio::TControl::transformOnSet_setOrigin((Vec const&, float))
+void TControl::transformOnSet_setOrigin(Vec const&, float)
 {
 	/*
 	.loc_0x0:
@@ -139,7 +141,7 @@ void JStudio::TControl::transformOnSet_setOrigin((Vec const&, float))
  * Address:	8000CC24
  * Size:	000094
  */
-void JStudio::TControl::transformOnGet_setOrigin((Vec const&, float))
+void TControl::transformOnGet_setOrigin(Vec const&, float)
 {
 	/*
 	.loc_0x0:
@@ -188,7 +190,7 @@ void JStudio::TControl::transformOnGet_setOrigin((Vec const&, float))
  * Address:	........
  * Size:	000090
  */
-void JStudio::TControl::forward_value((unsigned long))
+void TControl::forward_value(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -198,7 +200,7 @@ void JStudio::TControl::forward_value((unsigned long))
  * Address:	8000CCB8
  * Size:	000048
  */
-void JStudio::TCreateObject::__dt(void)
+TCreateObject::~TCreateObject(void)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +232,7 @@ void JStudio::TCreateObject::__dt(void)
  * Address:	8000CD00
  * Size:	000084
  */
-void JStudio::TFactory::__dt(void)
+TFactory::~TFactory(void)
 {
 	/*
 	.loc_0x0:
@@ -279,7 +281,7 @@ void JStudio::TFactory::__dt(void)
  * Address:	8000CD84
  * Size:	000050
  */
-void JStudio::TFactory::appendCreateObject((JStudio::TCreateObject*))
+void TFactory::appendCreateObject(JStudio::TCreateObject*)
 {
 	/*
 	.loc_0x0:
@@ -311,7 +313,7 @@ void JStudio::TFactory::appendCreateObject((JStudio::TCreateObject*))
  * Address:	........
  * Size:	000034
  */
-void JStudio::TFactory::removeCreateObject((JStudio::TCreateObject*))
+void TFactory::removeCreateObject(JStudio::TCreateObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -321,7 +323,7 @@ void JStudio::TFactory::removeCreateObject((JStudio::TCreateObject*))
  * Address:	........
  * Size:	000024
  */
-void JStudio::TFactory::removeCreateObject_all(void)
+void TFactory::removeCreateObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -331,8 +333,7 @@ void JStudio::TFactory::removeCreateObject_all(void)
  * Address:	8000CDD4
  * Size:	0000B4
  */
-void
-    JStudio::TFactory::create((JStudio::stb::data::TParse_TBlock_object const&))
+void TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
 {
 	/*
 	.loc_0x0:
@@ -395,7 +396,7 @@ void
  * Address:	8000CE88
  * Size:	000054
  */
-void JStudio::TParse::__ct((JStudio::TControl*))
+TParse::TParse(JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -428,7 +429,7 @@ void JStudio::TParse::__ct((JStudio::TControl*))
  * Address:	8000CEDC
  * Size:	000070
  */
-void JStudio::TParse::__dt(void)
+TParse::~TParse(void)
 {
 	/*
 	.loc_0x0:
@@ -470,8 +471,8 @@ void JStudio::TParse::__dt(void)
  * Address:	8000CF4C
  * Size:	000078
  */
-void JStudio::TParse::parseHeader((JStudio::stb::data::TParse_THeader const&,
-                                   unsigned long))
+void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
+                         unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -519,8 +520,8 @@ void JStudio::TParse::parseHeader((JStudio::stb::data::TParse_THeader const&,
  * Address:	8000CFC4
  * Size:	000044
  */
-void JStudio::TParse::parseBlock_block(
-    (JStudio::stb::data::TParse_TBlock const&, unsigned long))
+void TParse::parseBlock_block((JStudio::stb::data::TParse_TBlock const&,
+                               unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -557,8 +558,8 @@ void JStudio::TParse::parseBlock_block(
  * Address:	8000D008
  * Size:	000060
  */
-void JStudio::TParse::parseBlock_block_fvb_(
-    (JStudio::stb::data::TParse_TBlock const&, unsigned long))
+void TParse::parseBlock_block_fvb_((JStudio::stb::data::TParse_TBlock const&,
+                                    unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -594,3 +595,4 @@ void JStudio::TParse::parseBlock_block_fvb_(
 	  blr
 	*/
 }
+} // namespace JStudio

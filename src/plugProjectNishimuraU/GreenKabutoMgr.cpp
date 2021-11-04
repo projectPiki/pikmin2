@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802FF7CC
  * Size:	000050
  */
-void Game::GreenKabuto::Mgr::Mgr(int, unsigned char)
+GreenKabuto::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::GreenKabuto::Mgr::Mgr(int, unsigned char)
  * Address:	802FF81C
  * Size:	000048
  */
-void Game::GreenKabuto::Mgr::doAlloc()
+void GreenKabuto::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::GreenKabuto::Mgr::doAlloc()
  * Address:	802FF864
  * Size:	000058
  */
-void Game::Kabuto::Parms::Parms()
+Kabuto::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Kabuto::Parms::Parms()
  * Address:	802FF8BC
  * Size:	000060
  */
-void Game::GreenKabuto::Mgr::createObj(int)
+void GreenKabuto::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Game::GreenKabuto::Mgr::createObj(int)
  * Address:	802FF91C
  * Size:	0000EC
  */
-void Game::GreenKabuto::Obj::~Obj()
+GreenKabuto::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -216,7 +218,7 @@ void Game::GreenKabuto::Obj::~Obj()
  * Address:	802FFA08
  * Size:	000010
  */
-void Game::GreenKabuto::Mgr::getEnemy(int)
+void GreenKabuto::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -232,7 +234,7 @@ void Game::GreenKabuto::Mgr::getEnemy(int)
  * Address:	802FFA18
  * Size:	000080
  */
-void Game::GreenKabuto::Mgr::loadTexData()
+void GreenKabuto::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -280,7 +282,7 @@ void Game::GreenKabuto::Mgr::loadTexData()
  * Address:	802FFA98
  * Size:	0000C8
  */
-void Game::GreenKabuto::Mgr::~Mgr()
+GreenKabuto::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -346,14 +348,14 @@ void Game::GreenKabuto::Mgr::~Mgr()
  * Address:	802FFB60
  * Size:	000008
  */
-u32 Game::GreenKabuto::Mgr::getEnemyTypeID() { return 0x4B; }
+u32 GreenKabuto::Mgr::getEnemyTypeID() { return 0x4B; }
 
 /*
  * --INFO--
  * Address:	802FFB68
  * Size:	000008
  */
-void Game::GreenKabuto::Mgr::getChangeTexture()
+void GreenKabuto::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -367,7 +369,7 @@ void Game::GreenKabuto::Mgr::getChangeTexture()
  * Address:	802FFB70
  * Size:	000050
  */
-void Game::Kabuto::Parms::read(Stream&)
+void Kabuto::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -399,7 +401,7 @@ void Game::Kabuto::Parms::read(Stream&)
  * Address:	802FFBC0
  * Size:	000008
  */
-void Game::GreenKabuto::Mgr::@4 @__dt()
+GreenKabuto::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -407,3 +409,4 @@ void Game::GreenKabuto::Mgr::@4 @__dt()
 	  b         -0x12C
 	*/
 }
+} // namespace Game

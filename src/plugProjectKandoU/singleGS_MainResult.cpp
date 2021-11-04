@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80219F48
  * Size:	000150
  */
-void Game::SingleGame::MainResultState::__ct(void)
+SingleGame::MainResultState::MainResultState(void)
 {
 	/*
 	.loc_0x0:
@@ -117,7 +109,7 @@ void Game::SingleGame::MainResultState::__ct(void)
  * Address:	8021A098
  * Size:	000060
  */
-void Game::Result::TNode::__dt(void)
+Result::TNode::~TNode(void)
 {
 	/*
 	.loc_0x0:
@@ -155,8 +147,8 @@ void Game::Result::TNode::__dt(void)
  * Address:	8021A0F8
  * Size:	000104
  */
-void Game::SingleGame::MainResultState::init((Game::SingleGameSection*,
-                                              Game::StateArg*))
+void SingleGame::MainResultState::init(Game::SingleGameSection*,
+                                       Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +229,7 @@ void Game::SingleGame::MainResultState::init((Game::SingleGameSection*,
  * Address:	8021A1FC
  * Size:	000024
  */
-void Game::SingleGame::MainResultState::beforeSave(void)
+void SingleGame::MainResultState::beforeSave(void)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +250,7 @@ void Game::SingleGame::MainResultState::beforeSave(void)
  * Address:	8021A220
  * Size:	000088
  */
-void Game::SingleGame::MainResultState::loadResource(void)
+void SingleGame::MainResultState::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -304,7 +296,7 @@ void Game::SingleGame::MainResultState::loadResource(void)
  * Address:	........
  * Size:	000148
  */
-void Game::SingleGame::MainResultState::open2D((Game::SingleGameSection*))
+void SingleGame::MainResultState::open2D(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -314,7 +306,7 @@ void Game::SingleGame::MainResultState::open2D((Game::SingleGameSection*))
  * Address:	8021A2A8
  * Size:	0003E8
  */
-void Game::SingleGame::MainResultState::exec((Game::SingleGameSection*))
+void SingleGame::MainResultState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -622,8 +614,9 @@ void Game::SingleGame::MainResultState::exec((Game::SingleGameSection*))
  * Address:	8021A690
  * Size:	000030
  */
-void Game::SingleGame::MainResultState::onMovieDone((
-    Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long))
+void SingleGame::MainResultState::onMovieDone(Game::SingleGameSection*,
+                                              Game::MovieConfig*, unsigned long,
+                                              unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +640,7 @@ void Game::SingleGame::MainResultState::onMovieDone((
  * Address:	8021A6C0
  * Size:	00035C
  */
-void Game::SingleGame::MainResultState::createResultNodes(void)
+void SingleGame::MainResultState::createResultNodes(void)
 {
 	/*
 	.loc_0x0:
@@ -902,8 +895,7 @@ void Game::SingleGame::MainResultState::createResultNodes(void)
  * Address:	8021AA1C
  * Size:	000094
  */
-void Game::SingleGame::MainResultState::draw((Game::SingleGameSection*,
-                                              Graphics&))
+void SingleGame::MainResultState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -956,7 +948,7 @@ void Game::SingleGame::MainResultState::draw((Game::SingleGameSection*,
  * Address:	8021AAB0
  * Size:	00007C
  */
-void Game::SingleGame::MainResultState::cleanup((Game::SingleGameSection*))
+void SingleGame::MainResultState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -996,100 +988,110 @@ void Game::SingleGame::MainResultState::cleanup((Game::SingleGameSection*))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8021AB2C
- * Size:	000008
- */
-u32 kh::Screen::DispDayEndResultTitl::getSize(void) { return 0x8; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	8021AB34
- * Size:	000008
- */
-u32 kh::Screen::DispDayEndResultTitl::getOwnerID(void) { return 0x4B48; }
+namespace kh {
 
-/*
- * --INFO--
- * Address:	8021AB3C
- * Size:	000014
- */
-void kh::Screen::DispDayEndResultTitl::getMemberID(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5449
-	  lis       r3, 0x4445
-	  addi      r4, r4, 0x544C
-	  addi      r3, r3, 0x525F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8021AB2C
+	 * Size:	000008
+	 */
+	u32 DispDayEndResultTitl::getSize(void) { return 0x8; }
 
-/*
- * --INFO--
- * Address:	8021AB50
- * Size:	000008
- */
-u32 kh::Screen::DispDayEndResult::getSize(void) { return 0x68; }
-
-/*
- * --INFO--
- * Address:	8021AB58
- * Size:	000008
- */
-u32 kh::Screen::DispDayEndResult::getOwnerID(void) { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8021AB60
- * Size:	000014
- */
-void kh::Screen::DispDayEndResult::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5253
-	  lis       r3, 0x44
-	  addi      r4, r4, 0x4C54
-	  addi      r3, r3, 0x455F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8021AB34
+	 * Size:	000008
+	 */
+	u32 DispDayEndResultTitl::getOwnerID(void) { return 0x4B48; }
 
-/*
- * --INFO--
- * Address:	8021AB74
- * Size:	000054
- */
-void kh::Screen::DispDayEndResult::doSetSubMemberAll(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r4, r31, 0x8
-	  bl        0xF4850
-	  mr        r3, r31
-	  addi      r4, r31, 0x10
-	  bl        0xF4844
-	  mr        r3, r31
-	  addi      r4, r31, 0x34
-	  bl        0xF4838
-	  mr        r3, r31
-	  addi      r4, r31, 0x44
-	  bl        0xF482C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8021AB3C
+	 * Size:	000014
+	 */
+	void DispDayEndResultTitl::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5449
+		  lis       r3, 0x4445
+		  addi      r4, r4, 0x544C
+		  addi      r3, r3, 0x525F
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8021AB50
+	 * Size:	000008
+	 */
+	u32 DispDayEndResult::getSize(void) { return 0x68; }
+
+	/*
+	 * --INFO--
+	 * Address:	8021AB58
+	 * Size:	000008
+	 */
+	u32 DispDayEndResult::getOwnerID(void) { return 0x4B48; }
+
+	/*
+	 * --INFO--
+	 * Address:	8021AB60
+	 * Size:	000014
+	 */
+	void DispDayEndResult::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5253
+		  lis       r3, 0x44
+		  addi      r4, r4, 0x4C54
+		  addi      r3, r3, 0x455F
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8021AB74
+	 * Size:	000054
+	 */
+	void DispDayEndResult::doSetSubMemberAll(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r3
+		  addi      r4, r31, 0x8
+		  bl        0xF4850
+		  mr        r3, r31
+		  addi      r4, r31, 0x10
+		  bl        0xF4844
+		  mr        r3, r31
+		  addi      r4, r31, 0x34
+		  bl        0xF4838
+		  mr        r3, r31
+		  addi      r4, r31, 0x44
+		  bl        0xF482C
+		  lwz       r0, 0x14(r1)
+		  lwz       r31, 0xC(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace kh
 
 /*
  * --INFO--

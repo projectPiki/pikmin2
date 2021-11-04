@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8029DD44
  * Size:	000090
  */
-void Game::Koganemushi::Obj::Obj()
+Koganemushi::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::Koganemushi::Obj::Obj()
  * Address:	8029DDD4
  * Size:	0001F0
  */
-void Game::Koganemushi::Obj::changeMaterial()
+void Koganemushi::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -195,7 +197,7 @@ void Game::Koganemushi::Obj::changeMaterial()
  * Address:	8029DFC4
  * Size:	00011C
  */
-void Game::Koganemushi::Obj::createItem()
+void Koganemushi::Obj::createItem()
 {
 	/*
 	.loc_0x0:
@@ -300,7 +302,7 @@ void Game::Koganemushi::Obj::createItem()
  * Address:	8029E0E0
  * Size:	000044
  */
-void Game::Koganemushi::Obj::createPressSENormal()
+void Koganemushi::Obj::createPressSENormal()
 {
 	/*
 	.loc_0x0:
@@ -329,4 +331,5 @@ void Game::Koganemushi::Obj::createPressSENormal()
  * Address:	8029E124
  * Size:	000008
  */
-u32 Game::Koganemushi::Obj::getEnemyTypeID() { return 0x9; }
+u32 Koganemushi::Obj::getEnemyTypeID() { return 0x9; }
+} // namespace Game

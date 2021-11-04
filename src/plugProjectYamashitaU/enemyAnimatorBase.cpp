@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80127974
  * Size:	000044
  */
-void Game::EnemyAnimatorBase::EnemyAnimatorBase()
+EnemyAnimatorBase::EnemyAnimatorBase()
 {
 	/*
 	.loc_0x0:
@@ -34,7 +36,7 @@ void Game::EnemyAnimatorBase::EnemyAnimatorBase()
  * Address:	801279B8
  * Size:	000124
  */
-void Game::EnemyAnimatorBase::animate(float)
+void EnemyAnimatorBase::animate(float)
 {
 	/*
 	.loc_0x0:
@@ -127,7 +129,7 @@ void Game::EnemyAnimatorBase::animate(float)
  * Address:	80127ADC
  * Size:	000124
  */
-void Game::EnemyAnimatorBase::animate(int, float)
+void EnemyAnimatorBase::animate(int, float)
 {
 	/*
 	.loc_0x0:
@@ -214,3 +216,4 @@ void Game::EnemyAnimatorBase::animate(int, float)
 	  blr
 	*/
 }
+} // namespace Game

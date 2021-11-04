@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801F316C
  * Size:	000084
  */
-void Game::ItemTreasure::FSM::init((Game::ItemTreasure::Item*))
+void ItemTreasure::FSM::init(Game::ItemTreasure::Item*)
 {
 	/*
 	.loc_0x0:
@@ -62,8 +54,7 @@ void Game::ItemTreasure::FSM::init((Game::ItemTreasure::Item*))
  * Address:	801F31F0
  * Size:	00000C
  */
-void Game::ItemTreasure::NormalState::init((Game::ItemTreasure::Item*,
-                                            Game::StateArg*))
+void ItemTreasure::NormalState::init(Game::ItemTreasure::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -78,22 +69,21 @@ void Game::ItemTreasure::NormalState::init((Game::ItemTreasure::Item*,
  * Address:	801F31FC
  * Size:	000004
  */
-void Game::ItemTreasure::NormalState::exec((Game::ItemTreasure::Item*)) { }
+void ItemTreasure::NormalState::exec(Game::ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F3200
  * Size:	000004
  */
-void Game::ItemTreasure::NormalState::cleanup((Game::ItemTreasure::Item*)) { }
+void ItemTreasure::NormalState::cleanup(Game::ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F3204
  * Size:	0003C8
  */
-void Game::ItemTreasure::NormalState::onDamage((Game::ItemTreasure::Item*,
-                                                float))
+void ItemTreasure::NormalState::onDamage(Game::ItemTreasure::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +363,7 @@ void Game::ItemTreasure::NormalState::onDamage((Game::ItemTreasure::Item*,
  * Address:	801F35CC
  * Size:	000298
  */
-void Game::ItemTreasure::Item::releasePellet(void)
+void ItemTreasure::Item::releasePellet(void)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +549,7 @@ void Game::ItemTreasure::Item::releasePellet(void)
  * Address:	........
  * Size:	00010C
  */
-void Game::ItemTreasure::Item::__ct(void)
+ItemTreasure::Item::Item(void)
 {
 	// UNUSED FUNCTION
 }
@@ -569,7 +559,7 @@ void Game::ItemTreasure::Item::__ct(void)
  * Address:	801F3864
  * Size:	000048
  */
-void Game::ItemTreasure::Item::constructor(void)
+void ItemTreasure::Item::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -601,7 +591,7 @@ void Game::ItemTreasure::Item::constructor(void)
  * Address:	801F38AC
  * Size:	000080
  */
-void Game::ItemTreasure::Item::onInit((Game::CreatureInitArg*))
+void ItemTreasure::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -671,7 +661,7 @@ FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
  * Address:	801F3960
  * Size:	000044
  */
-void Game::ItemTreasure::Item::onSetPosition(void)
+void ItemTreasure::Item::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -700,7 +690,7 @@ void Game::ItemTreasure::Item::onSetPosition(void)
  * Address:	801F39A4
  * Size:	000048
  */
-void Game::ItemTreasure::Item::updateBoundSphere(void)
+void ItemTreasure::Item::updateBoundSphere(void)
 {
 	/*
 	.loc_0x0:
@@ -730,7 +720,7 @@ void Game::ItemTreasure::Item::updateBoundSphere(void)
  * Address:	801F39EC
  * Size:	000180
  */
-void Game::ItemTreasure::Item::doAI(void)
+void ItemTreasure::Item::doAI(void)
 {
 	/*
 	.loc_0x0:
@@ -848,7 +838,7 @@ void Game::ItemTreasure::Item::doAI(void)
  * Address:	801F3B6C
  * Size:	000050
  */
-void Game::ItemTreasure::Item::doDirectDraw((Graphics&))
+void ItemTreasure::Item::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -875,13 +865,14 @@ void Game::ItemTreasure::Item::doDirectDraw((Graphics&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801F3BBC
  * Size:	00011C
  */
-void getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3<float>(
-    void)
+void getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -971,12 +962,14 @@ void getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3<float>(
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801F3CD8
  * Size:	000088
  */
-void Game::ItemTreasure::Item::getWorkDistance((Sys::Sphere&))
+void ItemTreasure::Item::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1026,7 +1019,7 @@ void Game::ItemTreasure::Item::getWorkDistance((Sys::Sphere&))
  * Address:	801F3D60
  * Size:	0000B8
  */
-void Game::ItemTreasure::Item::setTreasure((Game::Pellet*))
+void ItemTreasure::Item::setTreasure(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -1090,7 +1083,7 @@ void Game::ItemTreasure::Item::setTreasure((Game::Pellet*))
  * Address:	801F3E18
  * Size:	000030
  */
-void Game::ItemTreasure::Item::setLife(void)
+void ItemTreasure::Item::setLife(void)
 {
 	/*
 	.loc_0x0:
@@ -1116,7 +1109,7 @@ void Game::ItemTreasure::Item::setLife(void)
  * Address:	801F3E48
  * Size:	000098
  */
-void Game::ItemTreasure::Item::getCurrMaxLife(void)
+void ItemTreasure::Item::getCurrMaxLife(void)
 {
 	/*
 	.loc_0x0:
@@ -1174,7 +1167,7 @@ void Game::ItemTreasure::Item::getCurrMaxLife(void)
  * Address:	........
  * Size:	000144
  */
-void Game::ItemTreasure::Item::createTreasure(void)
+void ItemTreasure::Item::createTreasure(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1184,7 +1177,7 @@ void Game::ItemTreasure::Item::createTreasure(void)
  * Address:	801F3EE0
  * Size:	00011C
  */
-void Game::ItemTreasure::Item::interactAttack((Game::InteractAttack&))
+void ItemTreasure::Item::interactAttack(Game::InteractAttack&)
 {
 	/*
 	.loc_0x0:
@@ -1279,14 +1272,14 @@ void Game::ItemTreasure::Item::interactAttack((Game::InteractAttack&))
  * Address:	801F3FFC
  * Size:	000004
  */
-void Game::ItemTreasure::State::onDamage((Game::ItemTreasure::Item*, float)) { }
+void ItemTreasure::State::onDamage(Game::ItemTreasure::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801F4000
  * Size:	000058
  */
-void Game::ItemTreasure::Item::getWorkRadius(void)
+void ItemTreasure::Item::getWorkRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -1324,7 +1317,7 @@ void Game::ItemTreasure::Item::getWorkRadius(void)
  * Address:	801F4058
  * Size:	000060
  */
-void Game::ItemTreasure::Item::isVisible(void)
+void ItemTreasure::Item::isVisible(void)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1357,7 @@ void Game::ItemTreasure::Item::isVisible(void)
  * Address:	801F40B8
  * Size:	0000B0
  */
-void Game::ItemTreasure::Item::ignoreAtari((Game::Creature*))
+void ItemTreasure::Item::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1432,7 +1425,7 @@ void Game::ItemTreasure::Item::ignoreAtari((Game::Creature*))
  * Address:	801F4168
  * Size:	000114
  */
-void Game::ItemTreasure::Mgr::__ct(void)
+ItemTreasure::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1521,7 +1514,7 @@ void Game::ItemTreasure::Mgr::__ct(void)
  * Address:	801F427C
  * Size:	000024
  */
-void Game::ItemTreasure::TreasureParms::read((Stream&))
+void ItemTreasure::TreasureParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1542,7 +1535,7 @@ void Game::ItemTreasure::TreasureParms::read((Stream&))
  * Address:	801F42A0
  * Size:	0002A0
  */
-void Game::ItemTreasure::TreasureParms::__ct(void)
+ItemTreasure::TreasureParms::TreasureParms(void)
 {
 	/*
 	.loc_0x0:
@@ -1722,7 +1715,7 @@ void Game::ItemTreasure::TreasureParms::__ct(void)
  * Address:	801F4540
  * Size:	000130
  */
-void Game::ItemTreasure::Mgr::birth(void)
+void ItemTreasure::Mgr::birth(void)
 {
 	/*
 	.loc_0x0:
@@ -1814,8 +1807,8 @@ void Game::ItemTreasure::Mgr::birth(void)
  * Address:	801F4670
  * Size:	000060
  */
-void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3<float>
-    R10Vector3<float> PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3f R10Vector3f
+PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1851,14 +1844,14 @@ void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3<float>
  * Address:	801F46D0
  * Size:	000004
  */
-void Game::ItemTreasure::Mgr::onLoadResources(void) { }
+void ItemTreasure::Mgr::onLoadResources(void) { }
 
 /*
  * --INFO--
  * Address:	801F46D4
  * Size:	000134
  */
-void Game::ItemTreasure::Mgr::__dt(void)
+ItemTreasure::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1955,7 +1948,7 @@ void Game::ItemTreasure::Mgr::__dt(void)
  * Address:	801F4808
  * Size:	000118
  */
-void Game::ItemTreasure::Mgr::doNew(void)
+void ItemTreasure::Mgr::doNew(void)
 {
 	/*
 	.loc_0x0:
@@ -2041,7 +2034,7 @@ void Game::ItemTreasure::Mgr::doNew(void)
  * Address:	801F4920
  * Size:	00000C
  */
-void Game::ItemTreasure::Mgr::generatorGetID(void)
+void ItemTreasure::Mgr::generatorGetID(void)
 {
 	/*
 	.loc_0x0:
@@ -2056,7 +2049,7 @@ void Game::ItemTreasure::Mgr::generatorGetID(void)
  * Address:	801F492C
  * Size:	00000C
  */
-void Game::ItemTreasure::Item::getCreatureName(void)
+void ItemTreasure::Item::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -2071,7 +2064,7 @@ void Game::ItemTreasure::Item::getCreatureName(void)
  * Address:	801F4938
  * Size:	000008
  */
-void Game::ItemTreasure::Item::DummyShape::getMatrix((int))
+void ItemTreasure::Item::DummyShape::getMatrix(int)
 {
 	/*
 	.loc_0x0:
@@ -2080,12 +2073,16 @@ void Game::ItemTreasure::Item::DummyShape::getMatrix((int))
 	*/
 }
 
+} // namespace Game
+
+namespace SysShape {
+
 /*
  * --INFO--
  * Address:	801F4940
  * Size:	000008
  */
-u32 SysShape::MtxObject::isModel(void) { return 0x0; }
+u32 MtxObject::isModel(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2277,6 +2274,8 @@ FPQ34Game12ItemTreasure4Item(void)
 	  blr
 	*/
 }
+
+} // namespace SysShape
 
 /*
  * --INFO--
@@ -2605,7 +2604,7 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	801F4CD4
  * Size:	000008
  */
-void @48 @Game::ItemTreasure::Mgr::__dt(void)
+@48 @Game::ItemTreasure::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

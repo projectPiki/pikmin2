@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8002766C
  * Size:	000008
  */
-void JGadget::vector::extend_default((unsigned long, unsigned long,
-                                      unsigned long))
+void JGadget::vector::extend_default(unsigned long, unsigned long,
+                                     unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +507,7 @@ void __dt__Q37JGadget38TVector<
  * Address:	80027B88
  * Size:	000108
  */
-void JGadget::TVector_pointer_void::__dt(void)
+JGadget::TVector_pointer_void::~TVector_pointer_void(void)
 {
 	/*
 	.loc_0x0:
@@ -601,7 +601,7 @@ void JGadget::TVector_pointer_void::__dt(void)
  * Address:	80027C90
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::insert((void**, void* const&))
+void JGadget::TVector_pointer_void::insert(void**, void* const&)
 {
 	/*
 	.loc_0x0:
@@ -658,8 +658,7 @@ FPPvRCPv(void)
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::insert((void**, unsigned long,
-                                            void* const&))
+void JGadget::TVector_pointer_void::insert(void**, unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -669,7 +668,7 @@ void JGadget::TVector_pointer_void::insert((void**, unsigned long,
  * Address:	........
  * Size:	0000BC
  */
-void JGadget::TVector_pointer_void::erase((void**))
+void JGadget::TVector_pointer_void::erase(void**)
 {
 	// UNUSED FUNCTION
 }
@@ -679,7 +678,7 @@ void JGadget::TVector_pointer_void::erase((void**))
  * Address:	80027D08
  * Size:	0000B8
  */
-void JGadget::TVector_pointer_void::erase((void**, void**))
+void JGadget::TVector_pointer_void::erase(void**, void**)
 {
 	/*
 	.loc_0x0:
@@ -749,7 +748,7 @@ void JGadget::TVector_pointer_void::erase((void**, void**))
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::assign((unsigned long, void* const&))
+void JGadget::TVector_pointer_void::assign(unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -770,7 +769,7 @@ FUlRCPv(void)
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::resize((unsigned long, void* const&))
+void JGadget::TVector_pointer_void::resize(unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -802,7 +801,7 @@ FUl(void)
  * Address:	........
  * Size:	00013C
  */
-void JGadget::TVector_pointer_void::reserve((unsigned long))
+void JGadget::TVector_pointer_void::reserve(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -834,7 +833,7 @@ FRCQ27JGadget38TVector<void*, JGadget::TAllocator<void*>>(void)
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::Insert_raw((void**, unsigned long))
+void JGadget::TVector_pointer_void::Insert_raw(void**, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -844,7 +843,7 @@ void JGadget::TVector_pointer_void::Insert_raw((void**, unsigned long))
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::Resize_raw((unsigned long))
+void JGadget::TVector_pointer_void::Resize_raw(unsigned long)
 {
 	// UNUSED FUNCTION
 }

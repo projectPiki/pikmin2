@@ -161,7 +161,7 @@ void J3DMaterial::createColorBlock(unsigned long)
  * Address:	800616E0
  * Size:	00005C
  */
-void J3DColorBlockLightOff::~J3DColorBlockLightOff()
+J3DColorBlockLightOff::~J3DColorBlockLightOff()
 {
 	/*
 	.loc_0x0:
@@ -200,7 +200,7 @@ void J3DColorBlockLightOff::~J3DColorBlockLightOff()
  * Address:	8006173C
  * Size:	0000B4
  */
-void J3DColorChan::J3DColorChan()
+J3DColorChan::J3DColorChan()
 {
 	/*
 	.loc_0x0:
@@ -257,14 +257,14 @@ void J3DColorChan::J3DColorChan()
  * Address:	800617F0
  * Size:	000004
  */
-void J3DGXColor::J3DGXColor() { }
+J3DGXColor::J3DGXColor() { }
 
 /*
  * --INFO--
  * Address:	800617F4
  * Size:	000048
  */
-void J3DColorBlock::~J3DColorBlock()
+J3DColorBlock::~J3DColorBlock()
 {
 	/*
 	.loc_0x0:
@@ -407,7 +407,7 @@ void J3DMaterial::createTexGenBlock(unsigned long)
  * Address:	800619A0
  * Size:	00005C
  */
-void J3DTexGenBlockPatched::~J3DTexGenBlockPatched()
+J3DTexGenBlockPatched::~J3DTexGenBlockPatched()
 {
 	/*
 	.loc_0x0:
@@ -446,7 +446,7 @@ void J3DTexGenBlockPatched::~J3DTexGenBlockPatched()
  * Address:	800619FC
  * Size:	000028
  */
-void J3DTexCoord::J3DTexCoord()
+J3DTexCoord::J3DTexCoord()
 {
 	/*
 	.loc_0x0:
@@ -468,7 +468,7 @@ void J3DTexCoord::J3DTexCoord()
  * Address:	80061A24
  * Size:	000048
  */
-void J3DTexGenBlock::~J3DTexGenBlock()
+J3DTexGenBlock::~J3DTexGenBlock()
 {
 	/*
 	.loc_0x0:
@@ -749,7 +749,7 @@ void J3DMaterial::createTevBlock(int)
  * Address:	80061DE0
  * Size:	00000C
  */
-void J3DTevSwapModeTable::J3DTevSwapModeTable()
+J3DTevSwapModeTable::J3DTevSwapModeTable()
 {
 	/*
 	.loc_0x0:
@@ -764,14 +764,14 @@ void J3DTevSwapModeTable::J3DTevSwapModeTable()
  * Address:	80061DEC
  * Size:	000004
  */
-void J3DGXColorS10::J3DGXColorS10() { }
+J3DGXColorS10::J3DGXColorS10() { }
 
 /*
  * --INFO--
  * Address:	80061DF0
  * Size:	0000E4
  */
-void J3DIndTevStage::J3DIndTevStage()
+J3DIndTevStage::J3DIndTevStage()
 {
 	/*
 	.loc_0x0:
@@ -840,7 +840,7 @@ void J3DIndTevStage::J3DIndTevStage()
  * Address:	80061ED4
  * Size:	000068
  */
-void J3DTevStage::J3DTevStage()
+J3DTevStage::J3DTevStage()
 {
 	/*
 	.loc_0x0:
@@ -1018,7 +1018,7 @@ void J3DTevStage::setTevStageInfo(const J3DTevStageInfo&)
  * Address:	80062114
  * Size:	000020
  */
-void J3DTevOrder::J3DTevOrder()
+J3DTevOrder::J3DTevOrder()
 {
 	/*
 	.loc_0x0:
@@ -1038,7 +1038,7 @@ void J3DTevOrder::J3DTevOrder()
  * Address:	80062134
  * Size:	000048
  */
-void J3DTevBlock::~J3DTevBlock()
+J3DTevBlock::~J3DTevBlock()
 {
 	/*
 	.loc_0x0:
@@ -1146,7 +1146,7 @@ void J3DMaterial::createIndBlock(int)
  * Address:	80062264
  * Size:	00003C
  */
-void J3DIndTexCoordScale::~J3DIndTexCoordScale()
+J3DIndTexCoordScale::~J3DIndTexCoordScale()
 {
 	/*
 	.loc_0x0:
@@ -1175,7 +1175,7 @@ void J3DIndTexCoordScale::~J3DIndTexCoordScale()
  * Address:	800622A0
  * Size:	000018
  */
-void J3DIndTexCoordScale::J3DIndTexCoordScale()
+J3DIndTexCoordScale::J3DIndTexCoordScale()
 {
 	/*
 	.loc_0x0:
@@ -1193,7 +1193,7 @@ void J3DIndTexCoordScale::J3DIndTexCoordScale()
  * Address:	800622B8
  * Size:	00003C
  */
-void J3DIndTexMtx::~J3DIndTexMtx()
+J3DIndTexMtx::~J3DIndTexMtx()
 {
 	/*
 	.loc_0x0:
@@ -1222,7 +1222,7 @@ void J3DIndTexMtx::~J3DIndTexMtx()
  * Address:	800622F4
  * Size:	000040
  */
-void J3DIndTexMtx::J3DIndTexMtx()
+J3DIndTexMtx::J3DIndTexMtx()
 {
 	/*
 	.loc_0x0:
@@ -1250,7 +1250,7 @@ void J3DIndTexMtx::J3DIndTexMtx()
  * Address:	80062334
  * Size:	000018
  */
-void J3DIndTexOrder::J3DIndTexOrder()
+J3DIndTexOrder::J3DIndTexOrder()
 {
 	/*
 	.loc_0x0:
@@ -1268,7 +1268,7 @@ void J3DIndTexOrder::J3DIndTexOrder()
  * Address:	8006234C
  * Size:	000048
  */
-void J3DIndBlock::~J3DIndBlock()
+J3DIndBlock::~J3DIndBlock()
 {
 	/*
 	.loc_0x0:
@@ -1487,7 +1487,7 @@ void J3DMaterial::createPEBlock(unsigned long, unsigned long)
  * Address:	80062610
  * Size:	000048
  */
-void J3DPEBlock::~J3DPEBlock()
+J3DPEBlock::~J3DPEBlock()
 {
 	/*
 	.loc_0x0:
@@ -3517,7 +3517,7 @@ void J3DIndBlockNull::getType()
  * Address:	800639F4
  * Size:	00005C
  */
-void J3DIndBlockNull::~J3DIndBlockNull()
+J3DIndBlockNull::~J3DIndBlockNull()
 {
 	/*
 	.loc_0x0:

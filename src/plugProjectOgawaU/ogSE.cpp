@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	8030C9B0
  * Size:	000028
  */
-void og::Sound::setSE((unsigned long))
+void Sound::setSE(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -27,7 +29,7 @@ void og::Sound::setSE((unsigned long))
  * Address:	8030C9D8
  * Size:	00002C
  */
-void og::Sound::setLifeDanger(void)
+void Sound::setLifeDanger(void)
 {
 	/*
 	.loc_0x0:
@@ -50,7 +52,7 @@ void og::Sound::setLifeDanger(void)
  * Address:	8030CA04
  * Size:	0000F4
  */
-void og::Sound::setChimeNoon(void)
+void Sound::setChimeNoon(void)
 {
 	/*
 	.loc_0x0:
@@ -135,7 +137,7 @@ void og::Sound::setChimeNoon(void)
  * Address:	8030CAF8
  * Size:	00002C
  */
-void og::Sound::setChime(void)
+void Sound::setChime(void)
 {
 	/*
 	.loc_0x0:
@@ -158,7 +160,7 @@ void og::Sound::setChime(void)
  * Address:	8030CB24
  * Size:	00002C
  */
-void og::Sound::setDecide(void)
+void Sound::setDecide(void)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void og::Sound::setDecide(void)
  * Address:	8030CB50
  * Size:	00002C
  */
-void og::Sound::setCancel(void)
+void Sound::setCancel(void)
 {
 	/*
 	.loc_0x0:
@@ -204,7 +206,7 @@ void og::Sound::setCancel(void)
  * Address:	8030CB7C
  * Size:	00002C
  */
-void og::Sound::setCursor(void)
+void Sound::setCursor(void)
 {
 	/*
 	.loc_0x0:
@@ -227,7 +229,7 @@ void og::Sound::setCursor(void)
  * Address:	8030CBA8
  * Size:	00002C
  */
-void og::Sound::setOpen(void)
+void Sound::setOpen(void)
 {
 	/*
 	.loc_0x0:
@@ -250,7 +252,7 @@ void og::Sound::setOpen(void)
  * Address:	8030CBD4
  * Size:	00002C
  */
-void og::Sound::setClose(void)
+void Sound::setClose(void)
 {
 	/*
 	.loc_0x0:
@@ -273,7 +275,7 @@ void og::Sound::setClose(void)
  * Address:	........
  * Size:	00002C
  */
-void og::Sound::setPause(void)
+void Sound::setPause(void)
 {
 	// UNUSED FUNCTION
 }
@@ -283,7 +285,7 @@ void og::Sound::setPause(void)
  * Address:	8030CC00
  * Size:	000048
  */
-void og::Sound::setPlusMinus((bool))
+void Sound::setPlusMinus(bool)
 {
 	/*
 	.loc_0x0:
@@ -317,7 +319,7 @@ void og::Sound::setPlusMinus((bool))
  * Address:	8030CC48
  * Size:	00002C
  */
-void og::Sound::setSMenuLR(void)
+void Sound::setSMenuLR(void)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +342,7 @@ void og::Sound::setSMenuLR(void)
  * Address:	8030CC74
  * Size:	00002C
  */
-void og::Sound::setError(void)
+void Sound::setError(void)
 {
 	/*
 	.loc_0x0:
@@ -363,7 +365,7 @@ void og::Sound::setError(void)
  * Address:	8030CCA0
  * Size:	00002C
  */
-void og::Sound::setZoomIn(void)
+void Sound::setZoomIn(void)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +388,7 @@ void og::Sound::setZoomIn(void)
  * Address:	8030CCCC
  * Size:	00002C
  */
-void og::Sound::setZoomOut(void)
+void Sound::setZoomOut(void)
 {
 	/*
 	.loc_0x0:
@@ -409,7 +411,7 @@ void og::Sound::setZoomOut(void)
  * Address:	8030CCF8
  * Size:	00002C
  */
-void og::Sound::setScroll(void)
+void Sound::setScroll(void)
 {
 	/*
 	.loc_0x0:
@@ -432,7 +434,7 @@ void og::Sound::setScroll(void)
  * Address:	8030CD24
  * Size:	00002C
  */
-void og::Sound::setOpenDoukutu(void)
+void Sound::setOpenDoukutu(void)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +457,7 @@ void og::Sound::setOpenDoukutu(void)
  * Address:	8030CD50
  * Size:	00002C
  */
-void og::Sound::setSaveCave(void)
+void Sound::setSaveCave(void)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +480,7 @@ void og::Sound::setSaveCave(void)
  * Address:	8030CD7C
  * Size:	00002C
  */
-void og::Sound::setOpenWMapMenu(void)
+void Sound::setOpenWMapMenu(void)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +503,7 @@ void og::Sound::setOpenWMapMenu(void)
  * Address:	8030CDA8
  * Size:	00002C
  */
-void og::Sound::setOpenTotalPoko(void)
+void Sound::setOpenTotalPoko(void)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +526,7 @@ void og::Sound::setOpenTotalPoko(void)
  * Address:	8030CDD4
  * Size:	00002C
  */
-void og::Sound::setCloseTotalPoko(void)
+void Sound::setCloseTotalPoko(void)
 {
 	/*
 	.loc_0x0:
@@ -547,7 +549,7 @@ void og::Sound::setCloseTotalPoko(void)
  * Address:	8030CE00
  * Size:	00002C
  */
-void og::Sound::setPlusTotalPoko(void)
+void Sound::setPlusTotalPoko(void)
 {
 	/*
 	.loc_0x0:
@@ -570,7 +572,7 @@ void og::Sound::setPlusTotalPoko(void)
  * Address:	8030CE2C
  * Size:	00002C
  */
-void og::Sound::setOpenFinalMsg(void)
+void Sound::setOpenFinalMsg(void)
 {
 	/*
 	.loc_0x0:
@@ -593,7 +595,7 @@ void og::Sound::setOpenFinalMsg(void)
  * Address:	8030CE58
  * Size:	00002C
  */
-void og::Sound::setSprayAdd(void)
+void Sound::setSprayAdd(void)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +618,7 @@ void og::Sound::setSprayAdd(void)
  * Address:	8030CE84
  * Size:	00002C
  */
-void og::Sound::setTimeCarry(void)
+void Sound::setTimeCarry(void)
 {
 	/*
 	.loc_0x0:
@@ -639,7 +641,7 @@ void og::Sound::setTimeCarry(void)
  * Address:	........
  * Size:	00002C
  */
-void og::Sound::setSensorSE(void)
+void Sound::setSensorSE(void)
 {
 	// UNUSED FUNCTION
 }
@@ -649,7 +651,7 @@ void og::Sound::setSensorSE(void)
  * Address:	8030CEB0
  * Size:	00002C
  */
-void og::Sound::setGetSensor(void)
+void Sound::setGetSensor(void)
 {
 	/*
 	.loc_0x0:
@@ -672,7 +674,7 @@ void og::Sound::setGetSensor(void)
  * Address:	8030CEDC
  * Size:	00002C
  */
-void og::Sound::setFloorComplete(void)
+void Sound::setFloorComplete(void)
 {
 	/*
 	.loc_0x0:
@@ -695,7 +697,7 @@ void og::Sound::setFloorComplete(void)
  * Address:	8030CF08
  * Size:	00002C
  */
-void og::Sound::setGraySensor(void)
+void Sound::setGraySensor(void)
 {
 	/*
 	.loc_0x0:
@@ -718,7 +720,7 @@ void og::Sound::setGraySensor(void)
  * Address:	8030CF34
  * Size:	00002C
  */
-void og::Sound::setGetSpray(void)
+void Sound::setGetSpray(void)
 {
 	/*
 	.loc_0x0:
@@ -741,7 +743,7 @@ void og::Sound::setGetSpray(void)
  * Address:	........
  * Size:	00002C
  */
-void og::Sound::setItemName(void)
+void Sound::setItemName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -751,7 +753,7 @@ void og::Sound::setItemName(void)
  * Address:	8030CF60
  * Size:	00002C
  */
-void og::Sound::setKanteiExit(void)
+void Sound::setKanteiExit(void)
 {
 	/*
 	.loc_0x0:
@@ -774,14 +776,14 @@ void og::Sound::setKanteiExit(void)
  * Address:	8030CF8C
  * Size:	000004
  */
-void og::Sound::setFloorTitle(void) { }
+void Sound::setFloorTitle(void) { }
 
 /*
  * --INFO--
  * Address:	8030CF90
  * Size:	00002C
  */
-void og::Sound::setVsTitle(void)
+void Sound::setVsTitle(void)
 {
 	/*
 	.loc_0x0:
@@ -804,7 +806,7 @@ void og::Sound::setVsTitle(void)
  * Address:	8030CFBC
  * Size:	00002C
  */
-void og::Sound::setBdamaGet(void)
+void Sound::setBdamaGet(void)
 {
 	/*
 	.loc_0x0:
@@ -827,14 +829,14 @@ void og::Sound::setBdamaGet(void)
  * Address:	8030CFE8
  * Size:	000004
  */
-void og::Sound::setNaviChange((int)) { }
+void Sound::setNaviChange(int) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void og::Sound::setVsTitleAbutton(void)
+void Sound::setVsTitleAbutton(void)
 {
 	// UNUSED FUNCTION
 }
@@ -844,7 +846,7 @@ void og::Sound::setVsTitleAbutton(void)
  * Address:	........
  * Size:	0000D4
  */
-void og::Sound::stopSound(void)
+void Sound::stopSound(void)
 {
 	// UNUSED FUNCTION
 }
@@ -854,7 +856,7 @@ void og::Sound::stopSound(void)
  * Address:	8030CFEC
  * Size:	0000E0
  */
-void og::Sound::setVsWin1P(void)
+void Sound::setVsWin1P(void)
 {
 	/*
 	.loc_0x0:
@@ -930,7 +932,7 @@ void og::Sound::setVsWin1P(void)
  * Address:	8030D0CC
  * Size:	0000E0
  */
-void og::Sound::setVsWin2P(void)
+void Sound::setVsWin2P(void)
 {
 	/*
 	.loc_0x0:
@@ -1006,7 +1008,7 @@ void og::Sound::setVsWin2P(void)
  * Address:	8030D1AC
  * Size:	0000E0
  */
-void og::Sound::setVsDraw(void)
+void Sound::setVsDraw(void)
 {
 	/*
 	.loc_0x0:
@@ -1082,7 +1084,7 @@ void og::Sound::setVsDraw(void)
  * Address:	8030D28C
  * Size:	00002C
  */
-void og::Sound::setWarning(void)
+void Sound::setWarning(void)
 {
 	/*
 	.loc_0x0:
@@ -1099,3 +1101,4 @@ void og::Sound::setWarning(void)
 	  blr
 	*/
 }
+} // namespace og

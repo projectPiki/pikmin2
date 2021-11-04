@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Screen {
+
 /*
  * --INFO--
  * Address:	803FBEEC
  * Size:	000060
  */
-void Screen::Game2DMgr::create()
+void Game2DMgr::create()
 {
 	/*
 	.loc_0x0:
@@ -47,7 +49,7 @@ void Screen::Game2DMgr::create()
  * Address:	803FBF4C
  * Size:	000058
  */
-void Screen::Game2DMgr::Game2DMgr()
+Game2DMgr::Game2DMgr()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +83,7 @@ void Screen::Game2DMgr::Game2DMgr()
  * Address:	803FBFA4
  * Size:	000068
  */
-void Screen::Game2DMgr::~Game2DMgr()
+Game2DMgr::~Game2DMgr()
 {
 	/*
 	.loc_0x0:
@@ -121,7 +123,7 @@ void Screen::Game2DMgr::~Game2DMgr()
  * Address:	803FC00C
  * Size:	000020
  */
-void Screen::Game2DMgr::initInCourse()
+void Game2DMgr::initInCourse()
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Screen::Game2DMgr::initInCourse()
  * Address:	803FC02C
  * Size:	000024
  */
-void Screen::Game2DMgr::update()
+void Game2DMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -162,7 +164,7 @@ void Screen::Game2DMgr::update()
  * Address:	803FC050
  * Size:	000024
  */
-void Screen::Game2DMgr::draw(Graphics&)
+void Game2DMgr::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -183,14 +185,14 @@ void Screen::Game2DMgr::draw(Graphics&)
  * Address:	803FC074
  * Size:	000004
  */
-void Screen::Game2DMgr::drawIndirect(Graphics&) { }
+void Game2DMgr::drawIndirect(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	803FC078
  * Size:	000024
  */
-void Screen::Game2DMgr::setGamePad(Controller*)
+void Game2DMgr::setGamePad(Controller*)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +213,7 @@ void Screen::Game2DMgr::setGamePad(Controller*)
  * Address:	803FC09C
  * Size:	000034
  */
-void Screen::Game2DMgr::setDispMember(og::Screen::DispMemberBase*)
+void Game2DMgr::setDispMember(og::Screen::DispMemberBase*)
 {
 	/*
 	.loc_0x0:
@@ -240,7 +242,7 @@ void Screen::Game2DMgr::setDispMember(og::Screen::DispMemberBase*)
  * Address:	803FC0D0
  * Size:	000038
  */
-void Screen::Game2DMgr::setToumeiBG()
+void Game2DMgr::setToumeiBG()
 {
 	/*
 	.loc_0x0:
@@ -266,7 +268,7 @@ void Screen::Game2DMgr::setToumeiBG()
  * Address:	803FC108
  * Size:	0000BC
  */
-void Screen::Game2DMgr::open_GameGround(og::Screen::DispMemberGround&)
+void Game2DMgr::open_GameGround(og::Screen::DispMemberGround&)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +331,7 @@ void Screen::Game2DMgr::open_GameGround(og::Screen::DispMemberGround&)
  * Address:	803FC1C4
  * Size:	000060
  */
-void Screen::Game2DMgr::is_GameGround()
+void Game2DMgr::is_GameGround()
 {
 	/*
 	.loc_0x0:
@@ -367,7 +369,7 @@ void Screen::Game2DMgr::is_GameGround()
  * Address:	803FC224
  * Size:	0001B4
  */
-void Screen::Game2DMgr::open_GameCave(og::Screen::DispMemberCave&, int)
+void Game2DMgr::open_GameCave(og::Screen::DispMemberCave&, int)
 {
 	/*
 	.loc_0x0:
@@ -494,7 +496,7 @@ void Screen::Game2DMgr::open_GameCave(og::Screen::DispMemberCave&, int)
  * Address:	803FC3D8
  * Size:	000060
  */
-void Screen::Game2DMgr::is_GameCave()
+void Game2DMgr::is_GameCave()
 {
 	/*
 	.loc_0x0:
@@ -532,7 +534,7 @@ void Screen::Game2DMgr::is_GameCave()
  * Address:	803FC438
  * Size:	0001A0
  */
-void Screen::Game2DMgr::open_GameVs(og::Screen::DispMemberVs&, int)
+void Game2DMgr::open_GameVs(og::Screen::DispMemberVs&, int)
 {
 	/*
 	.loc_0x0:
@@ -652,7 +654,7 @@ void Screen::Game2DMgr::open_GameVs(og::Screen::DispMemberVs&, int)
  * Address:	803FC5D8
  * Size:	00009C
  */
-void Screen::Game2DMgr::check_VsStatus()
+void Game2DMgr::check_VsStatus()
 {
 	/*
 	.loc_0x0:
@@ -713,8 +715,7 @@ void Screen::Game2DMgr::check_VsStatus()
  * Address:	803FC674
  * Size:	000334
  */
-void Screen::Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P&,
-                                             int)
+void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P&, int)
 {
 	/*
 	.loc_0x0:
@@ -939,8 +940,7 @@ void Screen::Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P&,
  * Address:	803FC9A8
  * Size:	000328
  */
-void Screen::Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P&,
-                                             int)
+void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P&, int)
 {
 	/*
 	.loc_0x0:
@@ -1162,7 +1162,7 @@ void Screen::Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P&,
  * Address:	803FCCD0
  * Size:	0000B0
  */
-void Screen::Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll&)
+void Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll&)
 {
 	/*
 	.loc_0x0:
@@ -1232,7 +1232,7 @@ void Screen::Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll&)
  * Address:	803FCD80
  * Size:	0001B0
  */
-void Screen::Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll&)
+void Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll&)
 {
 	/*
 	.loc_0x0:
@@ -1370,7 +1370,7 @@ void Screen::Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll&)
  * Address:	803FCF30
  * Size:	000128
  */
-void Screen::Game2DMgr::check_SMenu()
+void Game2DMgr::check_SMenu()
 {
 	/*
 	.loc_0x0:
@@ -1468,8 +1468,7 @@ void Screen::Game2DMgr::check_SMenu()
  * Address:	803FD058
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_WorldMapInfoWin0(
-    og::Screen::DispMemberWorldMapInfoWin0&)
+void Game2DMgr::open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0&)
 {
 	/*
 	.loc_0x0:
@@ -1527,7 +1526,7 @@ void Screen::Game2DMgr::open_WorldMapInfoWin0(
  * Address:	803FD100
  * Size:	00007C
  */
-void Screen::Game2DMgr::check_WorldMapInfoWin0() const
+void Game2DMgr::check_WorldMapInfoWin0() const
 {
 	/*
 	.loc_0x0:
@@ -1578,8 +1577,7 @@ void Screen::Game2DMgr::check_WorldMapInfoWin0() const
  * Address:	803FD17C
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_WorldMapInfoWin1(
-    og::Screen::DispMemberWorldMapInfoWin1&)
+void Game2DMgr::open_WorldMapInfoWin1(og::Screen::DispMemberWorldMapInfoWin1&)
 {
 	/*
 	.loc_0x0:
@@ -1637,7 +1635,7 @@ void Screen::Game2DMgr::open_WorldMapInfoWin1(
  * Address:	803FD224
  * Size:	00007C
  */
-void Screen::Game2DMgr::check_WorldMapInfoWin1() const
+void Game2DMgr::check_WorldMapInfoWin1() const
 {
 	/*
 	.loc_0x0:
@@ -1688,7 +1686,7 @@ void Screen::Game2DMgr::check_WorldMapInfoWin1() const
  * Address:	803FD2A0
  * Size:	000124
  */
-void Screen::Game2DMgr::open_Kantei(og::Screen::DispMemberKantei&)
+void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei&)
 {
 	/*
 	.loc_0x0:
@@ -1789,7 +1787,7 @@ void Screen::Game2DMgr::open_Kantei(og::Screen::DispMemberKantei&)
  * Address:	803FD3C4
  * Size:	000084
  */
-void Screen::Game2DMgr::close_Kantei()
+void Game2DMgr::close_Kantei()
 {
 	/*
 	.loc_0x0:
@@ -1838,7 +1836,7 @@ void Screen::Game2DMgr::close_Kantei()
  * Address:	803FD448
  * Size:	000074
  */
-void Screen::Game2DMgr::update_Kantei()
+void Game2DMgr::update_Kantei()
 {
 	/*
 	.loc_0x0:
@@ -1881,7 +1879,7 @@ void Screen::Game2DMgr::update_Kantei()
  * Address:	803FD4BC
  * Size:	000090
  */
-void Screen::Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem&)
+void Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem&)
 {
 	/*
 	.loc_0x0:
@@ -1929,7 +1927,7 @@ void Screen::Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem&)
  * Address:	803FD54C
  * Size:	000084
  */
-void Screen::Game2DMgr::close_SpecialItem()
+void Game2DMgr::close_SpecialItem()
 {
 	/*
 	.loc_0x0:
@@ -1978,7 +1976,7 @@ void Screen::Game2DMgr::close_SpecialItem()
  * Address:	803FD5D0
  * Size:	000090
  */
-void Screen::Game2DMgr::open_Floor(og::Screen::DispMemberFloor&)
+void Game2DMgr::open_Floor(og::Screen::DispMemberFloor&)
 {
 	/*
 	.loc_0x0:
@@ -2026,7 +2024,7 @@ void Screen::Game2DMgr::open_Floor(og::Screen::DispMemberFloor&)
  * Address:	803FD660
  * Size:	000070
  */
-void Screen::Game2DMgr::close_Floor()
+void Game2DMgr::close_Floor()
 {
 	/*
 	.loc_0x0:
@@ -2068,7 +2066,7 @@ void Screen::Game2DMgr::close_Floor()
  * Address:	803FD6D0
  * Size:	00005C
  */
-void Screen::Game2DMgr::set_FloorVS_LoadEnd()
+void Game2DMgr::set_FloorVS_LoadEnd()
 {
 	/*
 	.loc_0x0:
@@ -2105,7 +2103,7 @@ void Screen::Game2DMgr::set_FloorVS_LoadEnd()
  * Address:	803FD72C
  * Size:	000048
  */
-void Screen::Game2DMgr::startCount_Floor()
+void Game2DMgr::startCount_Floor()
 {
 	/*
 	.loc_0x0:
@@ -2137,7 +2135,7 @@ void Screen::Game2DMgr::startCount_Floor()
  * Address:	803FD774
  * Size:	000048
  */
-void Screen::Game2DMgr::startFadeBG_Floor()
+void Game2DMgr::startFadeBG_Floor()
 {
 	/*
 	.loc_0x0:
@@ -2169,7 +2167,7 @@ void Screen::Game2DMgr::startFadeBG_Floor()
  * Address:	803FD7BC
  * Size:	000090
  */
-void Screen::Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
+void Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
 {
 	/*
 	.loc_0x0:
@@ -2217,7 +2215,7 @@ void Screen::Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
  * Address:	803FD84C
  * Size:	000048
  */
-void Screen::Game2DMgr::startFadeBG_CourseName()
+void Game2DMgr::startFadeBG_CourseName()
 {
 	/*
 	.loc_0x0:
@@ -2249,7 +2247,7 @@ void Screen::Game2DMgr::startFadeBG_CourseName()
  * Address:	803FD894
  * Size:	000070
  */
-void Screen::Game2DMgr::close_CourseName()
+void Game2DMgr::close_CourseName()
 {
 	/*
 	.loc_0x0:
@@ -2291,7 +2289,7 @@ void Screen::Game2DMgr::close_CourseName()
  * Address:	803FD904
  * Size:	000048
  */
-void Screen::Game2DMgr::startCount_CourseName()
+void Game2DMgr::startCount_CourseName()
 {
 	/*
 	.loc_0x0:
@@ -2323,7 +2321,7 @@ void Screen::Game2DMgr::startCount_CourseName()
  * Address:	803FD94C
  * Size:	000258
  */
-void Screen::Game2DMgr::open_GameOver(Screen::Game2DMgr::GameOverTitle)
+void Game2DMgr::open_GameOver(Screen::Game2DMgr::GameOverTitle)
 {
 	/*
 	.loc_0x0:
@@ -2499,7 +2497,7 @@ void Screen::Game2DMgr::open_GameOver(Screen::Game2DMgr::GameOverTitle)
  * Address:	803FDBA4
  * Size:	0000AC
  */
-void Screen::Game2DMgr::close_GameOver()
+void Game2DMgr::close_GameOver()
 {
 	/*
 	.loc_0x0:
@@ -2562,7 +2560,7 @@ void Screen::Game2DMgr::close_GameOver()
  * Address:	803FDC50
  * Size:	0000E0
  */
-void Screen::Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo&)
+void Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo&)
 {
 	/*
 	.loc_0x0:
@@ -2636,7 +2634,7 @@ void Screen::Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo&)
  * Address:	803FDD30
  * Size:	00009C
  */
-void Screen::Game2DMgr::check_CaveInMenu()
+void Game2DMgr::check_CaveInMenu()
 {
 	/*
 	.loc_0x0:
@@ -2697,7 +2695,7 @@ void Screen::Game2DMgr::check_CaveInMenu()
  * Address:	803FDDCC
  * Size:	0000E0
  */
-void Screen::Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu&)
+void Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu&)
 {
 	/*
 	.loc_0x0:
@@ -2771,8 +2769,7 @@ void Screen::Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu&)
  * Address:	803FDEAC
  * Size:	0000F4
  */
-void Screen::Game2DMgr::open_ChallengeKanketuMenu(
-    og::Screen::DispMemberKanketuMenu&)
+void Game2DMgr::open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu&)
 {
 	/*
 	.loc_0x0:
@@ -2853,7 +2850,7 @@ void Screen::Game2DMgr::open_ChallengeKanketuMenu(
  * Address:	803FDFA0
  * Size:	00009C
  */
-void Screen::Game2DMgr::check_KanketuMenu()
+void Game2DMgr::check_KanketuMenu()
 {
 	/*
 	.loc_0x0:
@@ -2914,7 +2911,7 @@ void Screen::Game2DMgr::check_KanketuMenu()
  * Address:	803FE03C
  * Size:	000100
  */
-void Screen::Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore&)
+void Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore&)
 {
 	/*
 	.loc_0x0:
@@ -2998,7 +2995,7 @@ void Screen::Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore&)
  * Address:	803FE13C
  * Size:	00009C
  */
-void Screen::Game2DMgr::check_CaveMoreMenu()
+void Game2DMgr::check_CaveMoreMenu()
 {
 	/*
 	.loc_0x0:
@@ -3059,7 +3056,7 @@ void Screen::Game2DMgr::check_CaveMoreMenu()
  * Address:	803FE1D8
  * Size:	0000AC
  */
-void Screen::Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult&)
+void Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult&)
 {
 	/*
 	.loc_0x0:
@@ -3118,7 +3115,7 @@ void Screen::Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult&)
  * Address:	803FE284
  * Size:	00008C
  */
-void Screen::Game2DMgr::check_FinalResult() const
+void Game2DMgr::check_FinalResult() const
 {
 	/*
 	.loc_0x0:
@@ -3171,7 +3168,7 @@ void Screen::Game2DMgr::check_FinalResult() const
  * Address:	803FE310
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult&)
+void Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult&)
 {
 	/*
 	.loc_0x0:
@@ -3229,7 +3226,7 @@ void Screen::Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult&)
  * Address:	803FE3B8
  * Size:	00008C
  */
-void Screen::Game2DMgr::check_CaveResult() const
+void Game2DMgr::check_CaveResult() const
 {
 	/*
 	.loc_0x0:
@@ -3282,7 +3279,7 @@ void Screen::Game2DMgr::check_CaveResult() const
  * Address:	803FE444
  * Size:	0000AC
  */
-void Screen::Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult&)
+void Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult&)
 {
 	/*
 	.loc_0x0:
@@ -3341,7 +3338,7 @@ void Screen::Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult&)
  * Address:	803FE4F0
  * Size:	0000B0
  */
-void Screen::Game2DMgr::check_DayEndResult() const
+void Game2DMgr::check_DayEndResult() const
 {
 	/*
 	.loc_0x0:
@@ -3403,7 +3400,7 @@ void Screen::Game2DMgr::check_DayEndResult() const
  * Address:	803FE5A0
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_PayDept(kh::Screen::DispPayDept&)
+void Game2DMgr::open_PayDept(kh::Screen::DispPayDept&)
 {
 	/*
 	.loc_0x0:
@@ -3461,7 +3458,7 @@ void Screen::Game2DMgr::open_PayDept(kh::Screen::DispPayDept&)
  * Address:	803FE648
  * Size:	00005C
  */
-void Screen::Game2DMgr::check_PayDept() const
+void Game2DMgr::check_PayDept() const
 {
 	/*
 	.loc_0x0:
@@ -3498,7 +3495,7 @@ void Screen::Game2DMgr::check_PayDept() const
  * Address:	803FE6A4
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_Save(og::Screen::DispMemberSave&)
+void Game2DMgr::open_Save(og::Screen::DispMemberSave&)
 {
 	/*
 	.loc_0x0:
@@ -3556,7 +3553,7 @@ void Screen::Game2DMgr::open_Save(og::Screen::DispMemberSave&)
  * Address:	803FE74C
  * Size:	00005C
  */
-void Screen::Game2DMgr::check_Save() const
+void Game2DMgr::check_Save() const
 {
 	/*
 	.loc_0x0:
@@ -3593,7 +3590,7 @@ void Screen::Game2DMgr::check_Save() const
  * Address:	803FE7A8
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
+void Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
 {
 	/*
 	.loc_0x0:
@@ -3651,7 +3648,7 @@ void Screen::Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
  * Address:	803FE850
  * Size:	000048
  */
-void Screen::Game2DMgr::check_FinalMessage() const
+void Game2DMgr::check_FinalMessage() const
 {
 	/*
 	.loc_0x0:
@@ -3685,7 +3682,7 @@ void Screen::Game2DMgr::check_FinalMessage() const
  * Address:	803FE898
  * Size:	000070
  */
-void Screen::Game2DMgr::stopFinalFloorSound()
+void Game2DMgr::stopFinalFloorSound()
 {
 	/*
 	.loc_0x0:
@@ -3729,7 +3726,7 @@ void Screen::Game2DMgr::stopFinalFloorSound()
  * Address:	803FE908
  * Size:	000070
  */
-void Screen::Game2DMgr::restartFinalFloorSound()
+void Game2DMgr::restartFinalFloorSound()
 {
 	/*
 	.loc_0x0:
@@ -3773,7 +3770,7 @@ void Screen::Game2DMgr::restartFinalFloorSound()
  * Address:	803FE978
  * Size:	000090
  */
-void Screen::Game2DMgr::check_ReadyGo() const
+void Game2DMgr::check_ReadyGo() const
 {
 	/*
 	.loc_0x0:
@@ -3827,7 +3824,7 @@ void Screen::Game2DMgr::check_ReadyGo() const
  * Address:	803FEA08
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason&)
+void Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason&)
 {
 	/*
 	.loc_0x0:
@@ -3885,7 +3882,7 @@ void Screen::Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason&)
  * Address:	803FEAB0
  * Size:	000068
  */
-void Screen::Game2DMgr::check_WinLoseReason() const
+void Game2DMgr::check_WinLoseReason() const
 {
 	/*
 	.loc_0x0:
@@ -3927,7 +3924,7 @@ void Screen::Game2DMgr::check_WinLoseReason() const
  * Address:	803FEB18
  * Size:	0000A8
  */
-void Screen::Game2DMgr::open_WinLose(kh::Screen::DispWinLose&)
+void Game2DMgr::open_WinLose(kh::Screen::DispWinLose&)
 {
 	/*
 	.loc_0x0:
@@ -3985,7 +3982,7 @@ void Screen::Game2DMgr::open_WinLose(kh::Screen::DispWinLose&)
  * Address:	803FEBC0
  * Size:	000090
  */
-void Screen::Game2DMgr::check_WinLose() const
+void Game2DMgr::check_WinLose() const
 {
 	/*
 	.loc_0x0:
@@ -4039,7 +4036,7 @@ void Screen::Game2DMgr::check_WinLose() const
  * Address:	803FEC50
  * Size:	0000D4
  */
-void Screen::Game2DMgr::open_TimeUp1P()
+void Game2DMgr::open_TimeUp1P()
 {
 	/*
 	.loc_0x0:
@@ -4108,7 +4105,7 @@ void Screen::Game2DMgr::open_TimeUp1P()
  * Address:	803FED24
  * Size:	0000D4
  */
-void Screen::Game2DMgr::open_TimeUp2P()
+void Game2DMgr::open_TimeUp2P()
 {
 	/*
 	.loc_0x0:
@@ -4177,7 +4174,7 @@ void Screen::Game2DMgr::open_TimeUp2P()
  * Address:	803FEDF8
  * Size:	000158
  */
-void Screen::Game2DMgr::open_Contena(og::Screen::DispMemberContena&)
+void Game2DMgr::open_Contena(og::Screen::DispMemberContena&)
 {
 	/*
 	.loc_0x0:
@@ -4301,7 +4298,7 @@ void Screen::Game2DMgr::open_Contena(og::Screen::DispMemberContena&)
  * Address:	803FEF50
  * Size:	0000C8
  */
-void Screen::Game2DMgr::check_Contena()
+void Game2DMgr::check_Contena()
 {
 	/*
 	.loc_0x0:
@@ -4377,7 +4374,7 @@ void Screen::Game2DMgr::check_Contena()
  * Address:	803FF018
  * Size:	0000A8
  */
-void Screen::Game2DMgr::result_Contena()
+void Game2DMgr::result_Contena()
 {
 	/*
 	.loc_0x0:
@@ -4437,7 +4434,7 @@ void Screen::Game2DMgr::result_Contena()
  * Address:	803FF0C0
  * Size:	000244
  */
-void Screen::Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup&)
+void Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup&)
 {
 	/*
 	.loc_0x0:
@@ -4606,7 +4603,7 @@ void Screen::Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup&)
  * Address:	803FF304
  * Size:	000130
  */
-void Screen::Game2DMgr::check_UfoMenu()
+void Game2DMgr::check_UfoMenu()
 {
 	/*
 	.loc_0x0:
@@ -4720,7 +4717,7 @@ void Screen::Game2DMgr::check_UfoMenu()
  * Address:	803FF434
  * Size:	000098
  */
-void Screen::Game2DMgr::result_UfoMenu(int*, int*)
+void Game2DMgr::result_UfoMenu(int*, int*)
 {
 	/*
 	.loc_0x0:
@@ -4776,7 +4773,7 @@ void Screen::Game2DMgr::result_UfoMenu(int*, int*)
  * Address:	803FF4CC
  * Size:	00009C
  */
-void Screen::Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy&)
+void Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy&)
 {
 	/*
 	.loc_0x0:
@@ -4831,7 +4828,7 @@ void Screen::Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy&)
  * Address:	803FF568
  * Size:	00009C
  */
-void Screen::Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem&)
+void Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem&)
 {
 	/*
 	.loc_0x0:
@@ -4886,7 +4883,7 @@ void Screen::Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem&)
  * Address:	803FF604
  * Size:	000030
  */
-void Screen::Game2DMgr::isZukanEnemy()
+void Game2DMgr::isZukanEnemy()
 {
 	/*
 	.loc_0x0:
@@ -4910,7 +4907,7 @@ void Screen::Game2DMgr::isZukanEnemy()
  * Address:	803FF634
  * Size:	000030
  */
-void Screen::Game2DMgr::isZukanItem()
+void Game2DMgr::isZukanItem()
 {
 	/*
 	.loc_0x0:
@@ -4934,7 +4931,7 @@ void Screen::Game2DMgr::isZukanItem()
  * Address:	803FF664
  * Size:	000084
  */
-void Screen::Game2DMgr::check_ZukanItemRequest(int&)
+void Game2DMgr::check_ZukanItemRequest(int&)
 {
 	/*
 	.loc_0x0:
@@ -4985,7 +4982,7 @@ void Screen::Game2DMgr::check_ZukanItemRequest(int&)
  * Address:	803FF6E8
  * Size:	000084
  */
-void Screen::Game2DMgr::check_ZukanEnemyRequest(int&)
+void Game2DMgr::check_ZukanEnemyRequest(int&)
 {
 	/*
 	.loc_0x0:
@@ -5036,7 +5033,7 @@ void Screen::Game2DMgr::check_ZukanEnemyRequest(int&)
  * Address:	803FF76C
  * Size:	000090
  */
-void Screen::Game2DMgr::getZukanEnemyCurrSelectId()
+void Game2DMgr::getZukanEnemyCurrSelectId()
 {
 	/*
 	.loc_0x0:
@@ -5092,7 +5089,7 @@ void Screen::Game2DMgr::getZukanEnemyCurrSelectId()
  * Address:	803FF7FC
  * Size:	000090
  */
-void Screen::Game2DMgr::getZukanItemCurrSelectId()
+void Game2DMgr::getZukanItemCurrSelectId()
 {
 	/*
 	.loc_0x0:
@@ -5148,7 +5145,7 @@ void Screen::Game2DMgr::getZukanItemCurrSelectId()
  * Address:	803FF88C
  * Size:	0000BC
  */
-void Screen::Game2DMgr::requireZukanRequest()
+void Game2DMgr::requireZukanRequest()
 {
 	/*
 	.loc_0x0:
@@ -5215,7 +5212,7 @@ void Screen::Game2DMgr::requireZukanRequest()
  * Address:	803FF948
  * Size:	0000BC
  */
-void Screen::Game2DMgr::requireZukanEffectOff()
+void Game2DMgr::requireZukanEffectOff()
 {
 	/*
 	.loc_0x0:
@@ -5282,7 +5279,7 @@ void Screen::Game2DMgr::requireZukanEffectOff()
  * Address:	803FFA04
  * Size:	0000E4
  */
-void Screen::Game2DMgr::isZukanEnlargedWindow()
+void Game2DMgr::isZukanEnlargedWindow()
 {
 	/*
 	.loc_0x0:
@@ -5367,7 +5364,7 @@ void Screen::Game2DMgr::isZukanEnlargedWindow()
  * Address:	803FFAE8
  * Size:	0000E4
  */
-void Screen::Game2DMgr::isZukanMemoWindow()
+void Game2DMgr::isZukanMemoWindow()
 {
 	/*
 	.loc_0x0:
@@ -5452,7 +5449,7 @@ void Screen::Game2DMgr::isZukanMemoWindow()
  * Address:	803FFBCC
  * Size:	0000C4
  */
-void Screen::Game2DMgr::isAppearConfirmWindow()
+void Game2DMgr::isAppearConfirmWindow()
 {
 	/*
 	.loc_0x0:
@@ -5521,8 +5518,7 @@ void Screen::Game2DMgr::isAppearConfirmWindow()
  * Address:	803FFC90
  * Size:	00009C
  */
-void Screen::Game2DMgr::open_ChallengeSelect(
-    Morimura::DispMemberChallengeSelect&)
+void Game2DMgr::open_ChallengeSelect(Morimura::DispMemberChallengeSelect&)
 {
 	/*
 	.loc_0x0:
@@ -5577,7 +5573,7 @@ void Screen::Game2DMgr::open_ChallengeSelect(
  * Address:	803FFD2C
  * Size:	00006C
  */
-void Screen::Game2DMgr::check_ChallengeSelect(int&, int&)
+void Game2DMgr::check_ChallengeSelect(int&, int&)
 {
 	/*
 	.loc_0x0:
@@ -5618,8 +5614,7 @@ void Screen::Game2DMgr::check_ChallengeSelect(int&, int&)
  * Address:	803FFD98
  * Size:	00009C
  */
-void Screen::Game2DMgr::open_ChallengeResult(
-    Morimura::DispMemberChallengeResult&)
+void Game2DMgr::open_ChallengeResult(Morimura::DispMemberChallengeResult&)
 {
 	/*
 	.loc_0x0:
@@ -5674,7 +5669,7 @@ void Screen::Game2DMgr::open_ChallengeResult(
  * Address:	803FFE34
  * Size:	000034
  */
-void Screen::Game2DMgr::isEndChallengeResult()
+void Game2DMgr::isEndChallengeResult()
 {
 	/*
 	.loc_0x0:
@@ -5699,7 +5694,7 @@ void Screen::Game2DMgr::isEndChallengeResult()
  * Address:	803FFE68
  * Size:	00009C
  */
-void Screen::Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect&)
+void Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect&)
 {
 	/*
 	.loc_0x0:
@@ -5754,7 +5749,7 @@ void Screen::Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect&)
  * Address:	803FFF04
  * Size:	000078
  */
-void Screen::Game2DMgr::check_VsSelect(int&, int&, int&)
+void Game2DMgr::check_VsSelect(int&, int&, int&)
 {
 	/*
 	.loc_0x0:
@@ -5798,7 +5793,7 @@ void Screen::Game2DMgr::check_VsSelect(int&, int&, int&)
  * Address:	803FFF7C
  * Size:	00009C
  */
-void Screen::Game2DMgr::open_HighScore(Morimura::DispMemberHighScore&)
+void Game2DMgr::open_HighScore(Morimura::DispMemberHighScore&)
 {
 	/*
 	.loc_0x0:
@@ -5853,7 +5848,7 @@ void Screen::Game2DMgr::open_HighScore(Morimura::DispMemberHighScore&)
  * Address:	80400018
  * Size:	000058
  */
-void Screen::Game2DMgr::isEndHighScore()
+void Game2DMgr::isEndHighScore()
 {
 	/*
 	.loc_0x0:
@@ -5891,7 +5886,7 @@ void Screen::Game2DMgr::isEndHighScore()
  * Address:	80400070
  * Size:	00006C
  */
-void Screen::Game2DMgr::drawKanteiMsg(Graphics&)
+void Game2DMgr::drawKanteiMsg(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -5936,7 +5931,7 @@ void Screen::Game2DMgr::drawKanteiMsg(Graphics&)
  * Address:	804000DC
  * Size:	00008C
  */
-void Screen::Game2DMgr::checkDayEnd(float) const
+void Game2DMgr::checkDayEnd(float) const
 {
 	/*
 	.loc_0x0:
@@ -5987,94 +5982,106 @@ void Screen::Game2DMgr::checkDayEnd(float) const
  * Address:	80400168
  * Size:	000008
  */
-u32 Screen::EndSceneArg::getClassSize() { return 0x8; }
+u32 EndSceneArg::getClassSize() { return 0x8; }
+
+namespace og {
+
+} // namespace og
 
 /*
  * --INFO--
  * Address:	80400170
  * Size:	000008
  */
-u32 og::newScreen::SArgChallenge1P::getSceneType() const { return 0x2727; }
+u32 newScreen::SArgChallenge1P::getSceneType() const { return 0x2727; }
 
 /*
  * --INFO--
  * Address:	80400178
  * Size:	000008
  */
-u32 og::newScreen::SArgChallenge1P::getClassSize() { return 0x8; }
+u32 newScreen::SArgChallenge1P::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80400180
  * Size:	000008
  */
-u32 og::newScreen::SArgChallenge2P::getSceneType() const { return 0x2724; }
+u32 newScreen::SArgChallenge2P::getSceneType() const { return 0x2724; }
 
 /*
  * --INFO--
  * Address:	80400188
  * Size:	000008
  */
-u32 og::newScreen::SArgChallenge2P::getClassSize() { return 0x8; }
+u32 newScreen::SArgChallenge2P::getClassSize() { return 0x8; }
 
-/*
- * --INFO--
- * Address:	80400190
- * Size:	000008
- */
-u32 kh::Screen::DispReadyGo::getSize() { return 0x14; }
+namespace kh {
 
-/*
- * --INFO--
- * Address:	80400198
- * Size:	000008
- */
-u32 kh::Screen::DispReadyGo::getOwnerID() { return 0x4B48; }
+} // namespace kh
 
-/*
- * --INFO--
- * Address:	804001A0
- * Size:	000014
- */
-void kh::Screen::DispReadyGo::getMemberID()
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r4, 0x595F
-	  lis       r3, 0x5245
-	  addi      r4, r4, 0x474F
-	  addi      r3, r3, 0x4144
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80400190
+	 * Size:	000008
+	 */
+	u32 DispReadyGo::getSize() { return 0x14; }
 
-/*
- * --INFO--
- * Address:	804001B4
- * Size:	000008
- */
-u32 kh::Screen::DispFinalFloor::getSize() { return 0xC; }
-
-/*
- * --INFO--
- * Address:	804001BC
- * Size:	000008
- */
-u32 kh::Screen::DispFinalFloor::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	804001C4
- * Size:	000014
- */
-void kh::Screen::DispFinalFloor::getMemberID()
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5F46
-	  lis       r3, 0x46
-	  addi      r4, r4, 0x4C52
-	  addi      r3, r3, 0x494E
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80400198
+	 * Size:	000008
+	 */
+	u32 DispReadyGo::getOwnerID() { return 0x4B48; }
+
+	/*
+	 * --INFO--
+	 * Address:	804001A0
+	 * Size:	000014
+	 */
+	void DispReadyGo::getMemberID()
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x595F
+		  lis       r3, 0x5245
+		  addi      r4, r4, 0x474F
+		  addi      r3, r3, 0x4144
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	804001B4
+	 * Size:	000008
+	 */
+	u32 DispFinalFloor::getSize() { return 0xC; }
+
+	/*
+	 * --INFO--
+	 * Address:	804001BC
+	 * Size:	000008
+	 */
+	u32 DispFinalFloor::getOwnerID() { return 0x4B48; }
+
+	/*
+	 * --INFO--
+	 * Address:	804001C4
+	 * Size:	000014
+	 */
+	void DispFinalFloor::getMemberID()
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5F46
+		  lis       r3, 0x46
+		  addi      r4, r4, 0x4C52
+		  addi      r3, r3, 0x494E
+		  blr
+		*/
+	}
+} // namespace Screen
+} // namespace Screen

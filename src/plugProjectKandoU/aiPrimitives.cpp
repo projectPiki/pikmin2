@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801972DC
  * Size:	00003C
  */
-void PikiAI::ActGotoPos::__ct((Game::Piki*))
+PikiAI::ActGotoPos::ActGotoPos(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +32,7 @@ void PikiAI::ActGotoPos::__ct((Game::Piki*))
  * Address:	80197318
  * Size:	000078
  */
-void PikiAI::ActGotoPos::init((PikiAI::ActionArg*))
+void PikiAI::ActGotoPos::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -186,7 +176,7 @@ void PikiAI::ActGotoPos::cleanup(void) { }
  * Address:	801974B0
  * Size:	00003C
  */
-void PikiAI::ActApproachPos::__ct((Game::Piki*))
+PikiAI::ActApproachPos::ActApproachPos(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -213,7 +203,7 @@ void PikiAI::ActApproachPos::__ct((Game::Piki*))
  * Address:	801974EC
  * Size:	000104
  */
-void PikiAI::ActApproachPos::init((PikiAI::ActionArg*))
+void PikiAI::ActApproachPos::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -563,7 +553,7 @@ void PikiAI::ActApproachPos::cleanup(void)
  * Address:	8019794C
  * Size:	00003C
  */
-void PikiAI::ActGotoSlot::__ct((Game::Piki*))
+PikiAI::ActGotoSlot::ActGotoSlot(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +580,7 @@ void PikiAI::ActGotoSlot::__ct((Game::Piki*))
  * Address:	80197988
  * Size:	00018C
  */
-void PikiAI::ActGotoSlot::init((PikiAI::ActionArg*))
+void PikiAI::ActGotoSlot::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -711,7 +701,7 @@ void PikiAI::ActGotoSlot::init((PikiAI::ActionArg*))
  * Address:	80197B14
  * Size:	000018
  */
-void wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<float>(void)
+void wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1548,7 +1538,7 @@ void PikiAI::ActGotoSlot::cleanup(void) { }
  * Address:	801985D8
  * Size:	00007C
  */
-void PikiAI::ActPathMove::__ct((Game::Piki*))
+PikiAI::ActPathMove::ActPathMove(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1593,7 +1583,7 @@ void PikiAI::ActPathMove::__ct((Game::Piki*))
  * Address:	80198654
  * Size:	0001BC
  */
-void PikiAI::ActPathMove::init((PikiAI::ActionArg*))
+void PikiAI::ActPathMove::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -1726,7 +1716,7 @@ void PikiAI::ActPathMove::init((PikiAI::ActionArg*))
  * Address:	80198810
  * Size:	0003AC
  */
-void PikiAI::ActPathMove::initPathfinding((bool))
+void PikiAI::ActPathMove::initPathfinding(bool)
 {
 	/*
 	.loc_0x0:
@@ -2934,7 +2924,7 @@ void PikiAI::ActPathMove::isAllBlue(void)
  * Address:	80199728
  * Size:	0000A8
  */
-void carry__Q26PikiAI11ActPathMoveFR10Vector3<float>(void)
+void carry__Q26PikiAI11ActPathMoveFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3728,7 +3718,7 @@ void PikiAI::ActPathMove::execMoveGuru(void)
  * Address:	8019A170
  * Size:	0000B8
  */
-void PikiAI::ActPathMove::getWayPoint((int))
+void PikiAI::ActPathMove::getWayPoint(int)
 {
 	/*
 	.loc_0x0:
@@ -3798,7 +3788,7 @@ void PikiAI::ActPathMove::getWayPoint((int))
  * Address:	8019A228
  * Size:	00018C
  */
-void PikiAI::ActPathMove::crGetPoint((int))
+void PikiAI::ActPathMove::crGetPoint(int)
 {
 	/*
 	.loc_0x0:
@@ -3929,7 +3919,7 @@ void PikiAI::ActPathMove::crGetPoint((int))
  * Address:	8019A3B4
  * Size:	0003C4
  */
-void PikiAI::ActPathMove::contextCheck((int))
+void PikiAI::ActPathMove::contextCheck(int)
 {
 	/*
 	.loc_0x0:
@@ -4222,7 +4212,7 @@ void PikiAI::ActPathMove::contextCheck((int))
  * Address:	........
  * Size:	0000F0
  */
-void PikiAI::ActPathMove::crPointOpen((int))
+void PikiAI::ActPathMove::crPointOpen(int)
 {
 	// UNUSED FUNCTION
 }
@@ -4232,7 +4222,7 @@ void PikiAI::ActPathMove::crPointOpen((int))
  * Address:	8019A778
  * Size:	000134
  */
-void PikiAI::ActPathMove::crGetRadius((int))
+void PikiAI::ActPathMove::crGetRadius(int)
 {
 	/*
 	.loc_0x0:
@@ -5938,7 +5928,7 @@ void PikiAI::ActPathMove::crMove(void)
  * Address:	8019BCB8
  * Size:	00007C
  */
-void PikiAI::ActStickAttack::__ct((Game::Piki*))
+PikiAI::ActStickAttack::ActStickAttack(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -5983,7 +5973,7 @@ void PikiAI::ActStickAttack::__ct((Game::Piki*))
  * Address:	8019BD34
  * Size:	0001F0
  */
-void PikiAI::ActStickAttack::init((PikiAI::ActionArg*))
+void PikiAI::ActStickAttack::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -6692,7 +6682,7 @@ void PikiAI::ActStickAttack::createEfx(void)
  * Address:	8019C6D8
  * Size:	000080
  */
-void PikiAI::ActStickAttack::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActStickAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -6771,7 +6761,7 @@ void PikiAI::ActStickAttack::cleanup(void)
  * Address:	8019C77C
  * Size:	00003C
  */
-void PikiAI::ActClimb::__ct((Game::Piki*))
+PikiAI::ActClimb::ActClimb(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6798,7 +6788,7 @@ void PikiAI::ActClimb::__ct((Game::Piki*))
  * Address:	8019C7B8
  * Size:	000100
  */
-void PikiAI::ActClimb::init((PikiAI::ActionArg*))
+void PikiAI::ActClimb::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -6960,7 +6950,7 @@ void PikiAI::ActClimb::cleanup(void) { }
  * Address:	8019C9A0
  * Size:	00003C
  */
-void PikiAI::ActGather::__ct((Game::Piki*))
+PikiAI::ActGather::ActGather(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6987,7 +6977,7 @@ void PikiAI::ActGather::__ct((Game::Piki*))
  * Address:	8019C9DC
  * Size:	0000E0
  */
-void PikiAI::ActGather::init((PikiAI::ActionArg*))
+void PikiAI::ActGather::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -7175,7 +7165,7 @@ void PikiAI::ActGather::cleanup(void) { }
  * Address:	8019CC14
  * Size:	00003C
  */
-void PikiAI::ActFollowVectorField::__ct((Game::Piki*))
+PikiAI::ActFollowVectorField::ActFollowVectorField(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7202,7 +7192,7 @@ void PikiAI::ActFollowVectorField::__ct((Game::Piki*))
  * Address:	8019CC50
  * Size:	000060
  */
-void PikiAI::ActFollowVectorField::init((PikiAI::ActionArg*))
+void PikiAI::ActFollowVectorField::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -7315,7 +7305,7 @@ void __sinit_aiPrimitives_cpp(void)
  * Address:	8019CD5C
  * Size:	000014
  */
-void @36 @4 @PikiAI::ActStickAttack::onKeyEvent((SysShape::KeyEvent const&))
+void @36 @4 @PikiAI::ActStickAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800177EC
  * Size:	00005C
  */
-void J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
+J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 {
 	/*
 	.loc_0x0:
@@ -44,7 +44,7 @@ void J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
  * Address:	80017848
  * Size:	000084
  */
-void J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel*, J3DAnmTransform*)
+J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel*, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:

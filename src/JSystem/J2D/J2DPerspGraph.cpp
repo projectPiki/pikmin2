@@ -5,7 +5,7 @@
  * Address:	80035DC8
  * Size:	00004C
  */
-void J2DPerspGraph::J2DPerspGraph()
+J2DPerspGraph::J2DPerspGraph()
 {
 	/*
 	.loc_0x0:
@@ -229,7 +229,7 @@ void J2DPerspGraph::makeLookat()
  * Address:	80036010
  * Size:	00005C
  */
-void J2DPerspGraph::~J2DPerspGraph()
+J2DPerspGraph::~J2DPerspGraph()
 {
 	/*
 	.loc_0x0:

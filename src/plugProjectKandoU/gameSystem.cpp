@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801B4A80
  * Size:	000100
  */
-void Game::GameSystem::__ct((Game::BaseGameSection*))
+GameSystem::GameSystem(Game::BaseGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -91,7 +83,7 @@ void Game::GameSystem::__ct((Game::BaseGameSection*))
  * Address:	801B4B80
  * Size:	0000E8
  */
-void Game::GameSystem::__dt(void)
+GameSystem::~GameSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +159,7 @@ void Game::GameSystem::__dt(void)
  * Address:	801B4C68
  * Size:	0000F0
  */
-void Game::GameSystem::init(void)
+void GameSystem::init(void)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +237,7 @@ void Game::GameSystem::init(void)
  * Address:	801B4D58
  * Size:	000020
  */
-void Game::GameSystem::calcFrameDist((int))
+void GameSystem::calcFrameDist(int)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +257,7 @@ void Game::GameSystem::calcFrameDist((int))
  * Address:	801B4D78
  * Size:	0000DC
  */
-void Game::GameSystem::startFrame(void)
+void GameSystem::startFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +332,7 @@ void Game::GameSystem::startFrame(void)
  * Address:	801B4E54
  * Size:	000018
  */
-void Game::GameSystem::endFrame(void)
+void GameSystem::endFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +350,7 @@ void Game::GameSystem::endFrame(void)
  * Address:	801B4E6C
  * Size:	000038
  */
-void Game::GameSystem::startFadeout((float))
+void GameSystem::startFadeout(float)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +378,7 @@ void Game::GameSystem::startFadeout((float))
  * Address:	801B4EA4
  * Size:	000038
  */
-void Game::GameSystem::startFadein((float))
+void GameSystem::startFadein(float)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +406,7 @@ void Game::GameSystem::startFadein((float))
  * Address:	801B4EDC
  * Size:	000038
  */
-void Game::GameSystem::startFadeoutin((float))
+void GameSystem::startFadeoutin(float)
 {
 	/*
 	.loc_0x0:
@@ -442,7 +434,7 @@ void Game::GameSystem::startFadeoutin((float))
  * Address:	801B4F14
  * Size:	000038
  */
-void Game::GameSystem::startFadeblack(void)
+void GameSystem::startFadeblack(void)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +462,7 @@ void Game::GameSystem::startFadeblack(void)
  * Address:	801B4F4C
  * Size:	000038
  */
-void Game::GameSystem::startFadewhite(void)
+void GameSystem::startFadewhite(void)
 {
 	/*
 	.loc_0x0:
@@ -498,13 +490,10 @@ void Game::GameSystem::startFadewhite(void)
  * Address:	801B4F84
  * Size:	000008
  */
-void Game::GameSystem::setMoviePause((bool, char*))
+void GameSystem::setMoviePause(bool, char* a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x4D(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x4D(r3)
+	_4D = a1;
 }
 
 /*
@@ -512,13 +501,10 @@ void Game::GameSystem::setMoviePause((bool, char*))
  * Address:	801B4F8C
  * Size:	000008
  */
-void Game::GameSystem::setFrozen((bool, char*))
+void GameSystem::setFrozen(bool, char* a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x4A(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x4A(r3)
+	_4A = a1;
 }
 
 /*
@@ -526,7 +512,7 @@ void Game::GameSystem::setFrozen((bool, char*))
  * Address:	801B4F94
  * Size:	00002C
  */
-void Game::GameSystem::setPause((bool, char*, int))
+void GameSystem::setPause(bool, char*, int)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +535,7 @@ void Game::GameSystem::setPause((bool, char*, int))
  * Address:	801B4FC0
  * Size:	000008
  */
-void Game::GameSystem::paused_soft(void)
+void GameSystem::paused_soft(void)
 {
 	/*
 	.loc_0x0:
@@ -563,7 +549,7 @@ void Game::GameSystem::paused_soft(void)
  * Address:	801B4FC8
  * Size:	000028
  */
-void Game::GameSystem::paused(void)
+void GameSystem::paused(void)
 {
 	/*
 	.loc_0x0:
@@ -587,7 +573,7 @@ void Game::GameSystem::paused(void)
  * Address:	801B4FF0
  * Size:	000050
  */
-void Game::GameSystem::startPause((bool, int, char*))
+void GameSystem::startPause(bool, int, char*)
 {
 	/*
 	.loc_0x0:
@@ -625,7 +611,7 @@ void Game::GameSystem::startPause((bool, int, char*))
  * Address:	801B5040
  * Size:	00002C
  */
-void Game::GameSystem::setDrawBuffer((int))
+void GameSystem::setDrawBuffer(int)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +636,7 @@ void Game::GameSystem::setDrawBuffer((int))
  * Address:	801B506C
  * Size:	00000C
  */
-void Game::GameSystem::getLightMgr(void)
+void GameSystem::getLightMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -665,7 +651,7 @@ void Game::GameSystem::getLightMgr(void)
  * Address:	801B5078
  * Size:	000274
  */
-void Game::GameSystem::doAnimation(void)
+void GameSystem::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -860,7 +846,7 @@ void Game::GameSystem::doAnimation(void)
  * Address:	801B52EC
  * Size:	0001E4
  */
-void Game::GameSystem::doEntry(void)
+void GameSystem::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -1009,7 +995,7 @@ void Game::GameSystem::doEntry(void)
  * Address:	801B54D0
  * Size:	0001F4
  */
-void Game::GameSystem::doSetView((int))
+void GameSystem::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -1162,7 +1148,7 @@ void Game::GameSystem::doSetView((int))
  * Address:	801B56C4
  * Size:	000404
  */
-void Game::GameSystem::doViewCalc(void)
+void GameSystem::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -1473,7 +1459,7 @@ void Game::GameSystem::doViewCalc(void)
  * Address:	801B5AC8
  * Size:	000284
  */
-void Game::GameSystem::doSimulation((float))
+void GameSystem::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1672,7 +1658,7 @@ void Game::GameSystem::doSimulation((float))
  * Address:	801B5D4C
  * Size:	0001F4
  */
-void Game::GameSystem::doSimpleDraw((Viewport*))
+void GameSystem::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -1825,21 +1811,21 @@ void Game::GameSystem::doSimpleDraw((Viewport*))
  * Address:	801B5F40
  * Size:	000004
  */
-void Game::GameSystem::doDirectDraw((Graphics&)) { }
+void GameSystem::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801B5F44
  * Size:	000004
  */
-void Game::GameSystem::directDraw((Graphics&)) { }
+void GameSystem::directDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801B5F48
  * Size:	00006C
  */
-void Game::GameSystem::addObjectMgr((GenericObjectMgr*))
+void GameSystem::addObjectMgr(GenericObjectMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1880,7 +1866,7 @@ void Game::GameSystem::addObjectMgr((GenericObjectMgr*))
  * Address:	801B5FB4
  * Size:	000020
  */
-void Game::GameSystem::detachObjectMgr((GenericObjectMgr*))
+void GameSystem::detachObjectMgr(GenericObjectMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1900,10 +1886,12 @@ void Game::GameSystem::detachObjectMgr((GenericObjectMgr*))
  * Address:	........
  * Size:	000054
  */
-void Game::GameSystem::detachAllMgr(void)
+void GameSystem::detachAllMgr(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1927,12 +1915,14 @@ void addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<GenericObjectMgr>(
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801B5FF8
  * Size:	000058
  */
-void Game::GameSystem::detachObjectMgr_reuse((GenericObjectMgr*))
+void GameSystem::detachObjectMgr_reuse(GenericObjectMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1974,7 +1964,7 @@ void Game::GameSystem::detachObjectMgr_reuse((GenericObjectMgr*))
  * Address:	........
  * Size:	0000FC
  */
-void Game::OptimiseController::__ct(void)
+OptimiseController::OptimiseController(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1984,7 +1974,7 @@ void Game::OptimiseController::__ct(void)
  * Address:	801B6050
  * Size:	000068
  */
-void Game::OptimiseController::__dt(void)
+OptimiseController::~OptimiseController(void)
 {
 	/*
 	.loc_0x0:
@@ -2024,7 +2014,7 @@ void Game::OptimiseController::__dt(void)
  * Address:	801B60B8
  * Size:	00010C
  */
-void Game::OptimiseController::globalInstance(void)
+void OptimiseController::globalInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -2111,7 +2101,7 @@ void Game::OptimiseController::globalInstance(void)
  * Address:	801B61C4
  * Size:	000048
  */
-void Game::OptimiseController::deleteInstance(void)
+void OptimiseController::deleteInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -2137,6 +2127,8 @@ void Game::OptimiseController::deleteInstance(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2202,7 +2194,7 @@ void __sinit_gameSystem_cpp(void)
  * Address:	801B6278
  * Size:	000008
  */
-void @28 @Game::GameSystem::doSimpleDraw((Viewport*))
+void @28 @Game::GameSystem::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -2216,7 +2208,7 @@ void @28 @Game::GameSystem::doSimpleDraw((Viewport*))
  * Address:	801B6280
  * Size:	000008
  */
-void @28 @Game::GameSystem::doDirectDraw((Graphics&))
+void @28 @Game::GameSystem::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2230,7 +2222,7 @@ void @28 @Game::GameSystem::doDirectDraw((Graphics&))
  * Address:	801B6288
  * Size:	000008
  */
-void @28 @Game::GameSystem::doSimulation((float))
+void @28 @Game::GameSystem::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -2258,7 +2250,7 @@ void @28 @Game::GameSystem::doViewCalc(void)
  * Address:	801B6298
  * Size:	000008
  */
-void @28 @Game::GameSystem::doSetView((int))
+void @28 @Game::GameSystem::doSetView(int)
 {
 	/*
 	.loc_0x0:

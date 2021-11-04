@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "game/interactBattle.h"
 #include "game/Creature.h"
 
@@ -21,7 +23,7 @@ bool InteractFlick::actCommon(Creature* param_1)
 // * Address:	8019FEBC
 // * Size:	00006C
 // */
-// void Game::InteractAttack::actCommon((Game::Creature*))
+// void Game::InteractAttack::actCommon(Game::Creature*)
 //{
 //    /*
 //    .loc_0x0:
@@ -64,7 +66,7 @@ bool InteractFlick::actCommon(Creature* param_1)
 // * Address:	8019FF28
 // * Size:	000008
 // */
-// void Game::InteractSwallow::actCommon((Game::Creature*))
+// void Game::InteractSwallow::actCommon(Game::Creature*)
 //{
 //    /*
 //    .loc_0x0:
@@ -78,7 +80,7 @@ bool InteractFlick::actCommon(Creature* param_1)
 // * Address:	8019FF30
 // * Size:	000008
 // */
-// void Game::InteractKill::actCommon((Game::Creature*))
+// void Game::InteractKill::actCommon(Game::Creature*)
 //{
 //    /*
 //    .loc_0x0:

@@ -1,13 +1,13 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800A3204
  * Size:	000160
  */
-void JASChannel::JASChannel(void (*)(unsigned long, JASChannel*,
-                                     JASDsp::TChannel*, void*),
-                            void*)
+JASChannel::JASChannel(void (*)(unsigned long, JASChannel*, JASDsp::TChannel*,
+                                void*),
+                       void*)
 {
 	/*
 	.loc_0x0:
@@ -109,7 +109,7 @@ void JASChannel::JASChannel(void (*)(unsigned long, JASChannel*,
  * Address:	800A3364
  * Size:	000030
  */
-void JASOscillator::JASOscillator()
+JASOscillator::JASOscillator()
 {
 	/*
 	.loc_0x0:
@@ -206,7 +206,7 @@ void JSULink<JASChannel>::~JSULink()
  * Address:	800A3438
  * Size:	00010C
  */
-void JASChannel::~JASChannel()
+JASChannel::~JASChannel()
 {
 	/*
 	.loc_0x0:
@@ -342,13 +342,10 @@ void JASChannel::setMixConfig(int, unsigned short)
  * Address:	800A3588
  * Size:	000008
  */
-void JASChannel::directReleaseOsc(unsigned short)
+void JASChannel::directReleaseOsc(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x4A(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x4A(r3)
+	_4A = a1;
 }
 
 /*
@@ -477,13 +474,10 @@ void JASChannel::setKeySweepTarget(unsigned char, unsigned long)
  * Address:	800A3694
  * Size:	000008
  */
-void JASChannel::setPauseFlag(bool)
+void JASChannel::setPauseFlag(bool a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x1C(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x1C(r3)
+	_1C = a1;
 }
 
 /*

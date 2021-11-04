@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8024E38C
  * Size:	000064
  */
-void Game::Cave::RandItemUnit::RandItemUnit(Game::Cave::MapUnitGenerator*)
+Cave::RandItemUnit::RandItemUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -44,13 +46,10 @@ void Game::Cave::RandItemUnit::RandItemUnit(Game::Cave::MapUnitGenerator*)
  * Address:	8024E3F0
  * Size:	000008
  */
-void Game::Cave::RandItemUnit::setManageClassPtr(Game::Cave::RandMapScore*)
+void Cave::RandItemUnit::setManageClassPtr(Game::Cave::RandMapScore* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xC(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0xC(r3)
+	_0C = a1;
 }
 
 /*
@@ -58,7 +57,7 @@ void Game::Cave::RandItemUnit::setManageClassPtr(Game::Cave::RandMapScore*)
  * Address:	8024E3F8
  * Size:	000104
  */
-void Game::Cave::RandItemUnit::setItemSlot()
+void Cave::RandItemUnit::setItemSlot()
 {
 	/*
 	.loc_0x0:
@@ -147,8 +146,8 @@ void Game::Cave::RandItemUnit::setItemSlot()
  * Address:	8024E4FC
  * Size:	000110
  */
-void Game::Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*,
-                                             Game::Cave::BaseGen*)
+void Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*,
+                                       Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -252,7 +251,7 @@ void Game::Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*,
  * Address:	8024E60C
  * Size:	0000E8
  */
-void Game::Cave::RandItemUnit::isGroundCapEnemySetDone(Game::Cave::MapNode*)
+void Cave::RandItemUnit::isGroundCapEnemySetDone(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -338,7 +337,7 @@ void Game::Cave::RandItemUnit::isGroundCapEnemySetDone(Game::Cave::MapNode*)
  * Address:	8024E6F4
  * Size:	0000D0
  */
-void Game::Cave::RandItemUnit::isFallCapEnemySetDone(Game::Cave::MapNode*)
+void Cave::RandItemUnit::isFallCapEnemySetDone(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -416,8 +415,8 @@ void Game::Cave::RandItemUnit::isFallCapEnemySetDone(Game::Cave::MapNode*)
  * Address:	8024E7C4
  * Size:	00000C
  */
-void Game::Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**,
-                                                       Game::Cave::BaseGen**)
+void Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**,
+                                                 Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -432,7 +431,7 @@ void Game::Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**,
  * Address:	8024E7D0
  * Size:	000228
  */
-void Game::Cave::RandItemUnit::getItemDropPosition(Vector3<float>&, float, int)
+void Cave::RandItemUnit::getItemDropPosition(Vector3f&, float, int)
 {
 	/*
 	.loc_0x0:
@@ -602,7 +601,7 @@ void Game::Cave::RandItemUnit::getItemDropPosition(Vector3<float>&, float, int)
  * Address:	8024E9F8
  * Size:	00038C
  */
-void Game::Cave::RandItemUnit::getItemNormalSetMapNode(Game::Cave::BaseGen**)
+void Cave::RandItemUnit::getItemNormalSetMapNode(Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -901,7 +900,7 @@ void Game::Cave::RandItemUnit::getItemNormalSetMapNode(Game::Cave::BaseGen**)
  * Address:	8024ED84
  * Size:	000340
  */
-void Game::Cave::RandItemUnit::getItemHardSetMapNode(Game::Cave::BaseGen**)
+void Cave::RandItemUnit::getItemHardSetMapNode(Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -1181,7 +1180,7 @@ void Game::Cave::RandItemUnit::getItemHardSetMapNode(Game::Cave::BaseGen**)
  * Address:	8024F0C4
  * Size:	000180
  */
-void Game::Cave::RandItemUnit::getItemUnit()
+void Cave::RandItemUnit::getItemUnit()
 {
 	/*
 	.loc_0x0:
@@ -1305,7 +1304,7 @@ void Game::Cave::RandItemUnit::getItemUnit()
  * Address:	8024F244
  * Size:	000060
  */
-void Game::Cave::RandItemUnit::getItemSlotNum(Game::Cave::MapNode*)
+void Cave::RandItemUnit::getItemSlotNum(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -1349,7 +1348,7 @@ void Game::Cave::RandItemUnit::getItemSlotNum(Game::Cave::MapNode*)
  * Address:	8024F2A4
  * Size:	00005C
  */
-void Game::Cave::RandItemUnit::isItemSetHard()
+void Cave::RandItemUnit::isItemSetHard()
 {
 	/*
 	.loc_0x0:
@@ -1394,9 +1393,8 @@ void Game::Cave::RandItemUnit::isItemSetHard()
  * Address:	8024F300
  * Size:	000148
  */
-void Game::Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*,
-                                                  Game::Cave::MapNode**, int,
-                                                  int&)
+void Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*,
+                                            Game::Cave::MapNode**, int, int&)
 {
 	/*
 	.loc_0x0:
@@ -1502,7 +1500,7 @@ void Game::Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*,
  * Address:	8024F448
  * Size:	000314
  */
-void Game::Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode*, int)
+void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -1739,9 +1737,9 @@ void Game::Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode*, int)
  * Address:	8024F75C
  * Size:	00018C
  */
-void Game::Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*,
-                                               Game::Cave::MapNode**,
-                                               Game::Cave::BaseGen**, int&)
+void Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*,
+                                         Game::Cave::MapNode**,
+                                         Game::Cave::BaseGen**, int&)
 {
 	/*
 	.loc_0x0:
@@ -1866,9 +1864,9 @@ void Game::Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*,
  * Address:	8024F8E8
  * Size:	0002CC
  */
-void Game::Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**,
-                                                      Game::Cave::BaseGen**,
-                                                      int, int, int)
+void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**,
+                                                Game::Cave::BaseGen**, int, int,
+                                                int)
 {
 	/*
 	.loc_0x0:
@@ -2095,9 +2093,9 @@ void Game::Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**,
  * Address:	8024FBB4
  * Size:	000114
  */
-void Game::Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**,
-                                                      Game::Cave::BaseGen**,
-                                                      int*, int)
+void Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**,
+                                                Game::Cave::BaseGen**, int*,
+                                                int)
 {
 	/*
 	.loc_0x0:
@@ -2184,3 +2182,4 @@ void Game::Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**,
 	  blr
 	*/
 }
+} // namespace Game

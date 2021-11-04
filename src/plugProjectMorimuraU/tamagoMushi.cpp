@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8036EBA8
  * Size:	000020
  */
-void Game::TamagoMushi::Obj::setParameters(void)
+void TamagoMushi::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -30,12 +22,14 @@ void Game::TamagoMushi::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8036EBC8
  * Size:	000020
  */
-void birth__Q34Game11TamagoMushi3ObjFR10Vector3<float> f(void)
+void birth__Q34Game11TamagoMushi3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -50,12 +44,14 @@ void birth__Q34Game11TamagoMushi3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8036EBE8
  * Size:	0002D0
  */
-void Game::TamagoMushi::Obj::onInit((Game::CreatureInitArg*))
+void TamagoMushi::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -259,7 +255,7 @@ void Game::TamagoMushi::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8036EEB8
  * Size:	00013C
  */
-void Game::TamagoMushi::Obj::__ct(void)
+TamagoMushi::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -356,7 +352,7 @@ void Game::TamagoMushi::Obj::__ct(void)
  * Address:	8036EFF4
  * Size:	00004C
  */
-void Game::TamagoMushi::Obj::setFSM((Game::TamagoMushi::FSM*))
+void TamagoMushi::Obj::setFSM(Game::TamagoMushi::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -387,7 +383,7 @@ void Game::TamagoMushi::Obj::setFSM((Game::TamagoMushi::FSM*))
  * Address:	8036F040
  * Size:	0000A0
  */
-void Game::TamagoMushi::Obj::doUpdate(void)
+void TamagoMushi::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -443,7 +439,7 @@ void Game::TamagoMushi::Obj::doUpdate(void)
  * Address:	8036F0E0
  * Size:	000158
  */
-void Game::TamagoMushi::Obj::doAnimationCullingOff(void)
+void TamagoMushi::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -549,14 +545,14 @@ void Game::TamagoMushi::Obj::doAnimationCullingOff(void)
  * Address:	8036F238
  * Size:	000004
  */
-void Game::TamagoMushi::Obj::doDirectDraw((Graphics&)) { }
+void TamagoMushi::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8036F23C
  * Size:	000020
  */
-void Game::TamagoMushi::Obj::doDebugDraw((Graphics&))
+void TamagoMushi::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -576,7 +572,7 @@ void Game::TamagoMushi::Obj::doDebugDraw((Graphics&))
  * Address:	8036F25C
  * Size:	0000DC
  */
-void Game::TamagoMushi::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void TamagoMushi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -651,8 +647,7 @@ void Game::TamagoMushi::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8036F338
  * Size:	0000BC
  */
-void bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<float>
-f(void)
+void bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -715,7 +710,7 @@ f(void)
  * Address:	8036F3F4
  * Size:	000134
  */
-void Game::TamagoMushi::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void TamagoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -812,7 +807,7 @@ void Game::TamagoMushi::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	8036F528
  * Size:	0000F8
  */
-void Game::TamagoMushi::Obj::collisionCallback((Game::CollEvent&))
+void TamagoMushi::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -888,7 +883,7 @@ void Game::TamagoMushi::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8036F620
  * Size:	000178
  */
-void Game::TamagoMushi::Obj::bounceCallback((Sys::Triangle*))
+void TamagoMushi::Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -1002,8 +997,7 @@ void Game::TamagoMushi::Obj::bounceCallback((Sys::Triangle*))
  * Address:	8036F798
  * Size:	00002C
  */
-void Game::TamagoMushi::Obj::hipdropCallBack((Game::Creature*, float,
-                                              CollPart*))
+void TamagoMushi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1026,7 +1020,7 @@ void Game::TamagoMushi::Obj::hipdropCallBack((Game::Creature*, float,
  * Address:	8036F7C4
  * Size:	000030
  */
-void Game::TamagoMushi::Obj::earthquakeCallBack((Game::Creature*, float))
+void TamagoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -1050,7 +1044,7 @@ void Game::TamagoMushi::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	8036F7F4
  * Size:	0000A8
  */
-void Game::TamagoMushi::Obj::getShadowParam((Game::ShadowParam&))
+void TamagoMushi::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -1108,7 +1102,7 @@ void Game::TamagoMushi::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8036F89C
  * Size:	000030
  */
-void Game::TamagoMushi::Obj::needShadow(void)
+void TamagoMushi::Obj::needShadow(void)
 {
 	/*
 	.loc_0x0:
@@ -1132,7 +1126,7 @@ void Game::TamagoMushi::Obj::needShadow(void)
  * Address:	8036F8CC
  * Size:	000208
  */
-void Game::TamagoMushi::Obj::genItem(void)
+void TamagoMushi::Obj::genItem(void)
 {
 	/*
 	.loc_0x0:
@@ -1288,7 +1282,7 @@ void Game::TamagoMushi::Obj::genItem(void)
  * Address:	8036FAD4
  * Size:	000310
  */
-void Game::TamagoMushi::Obj::walkFunc(void)
+void TamagoMushi::Obj::walkFunc(void)
 {
 	/*
 	.loc_0x0:
@@ -1516,7 +1510,7 @@ void Game::TamagoMushi::Obj::walkFunc(void)
  * Address:	8036FDE4
  * Size:	000168
  */
-void Game::TamagoMushi::Obj::setGoalRandom(void)
+void TamagoMushi::Obj::setGoalRandom(void)
 {
 	/*
 	.loc_0x0:
@@ -1619,12 +1613,14 @@ void Game::TamagoMushi::Obj::setGoalRandom(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8036FF4C
  * Size:	0000B8
  */
-void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<float>(void)
+void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1677,12 +1673,14 @@ void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80370004
  * Size:	00015C
  */
-void Game::TamagoMushi::Obj::turnFunc(void)
+void TamagoMushi::Obj::turnFunc(void)
 {
 	/*
 	.loc_0x0:
@@ -1789,7 +1787,7 @@ void Game::TamagoMushi::Obj::turnFunc(void)
  * Address:	80370160
  * Size:	000034
  */
-void Game::TamagoMushi::Obj::isReachToGoal((float))
+void TamagoMushi::Obj::isReachToGoal(float)
 {
 	/*
 	.loc_0x0:
@@ -1814,7 +1812,7 @@ void Game::TamagoMushi::Obj::isReachToGoal((float))
  * Address:	80370194
  * Size:	00002C
  */
-void Game::TamagoMushi::Obj::resetWalkParm(void)
+void TamagoMushi::Obj::resetWalkParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1837,7 +1835,7 @@ void Game::TamagoMushi::Obj::resetWalkParm(void)
  * Address:	803701C0
  * Size:	000028
  */
-void Game::TamagoMushi::Obj::startCarcassMotion(void)
+void TamagoMushi::Obj::startCarcassMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -1859,7 +1857,7 @@ void Game::TamagoMushi::Obj::startCarcassMotion(void)
  * Address:	803701E8
  * Size:	000058
  */
-void Game::TamagoMushi::Obj::setLeader((Game::TamagoMushi::Obj*))
+void TamagoMushi::Obj::setLeader(Game::TamagoMushi::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -1899,7 +1897,7 @@ void Game::TamagoMushi::Obj::setLeader((Game::TamagoMushi::Obj*))
  * Address:	80370240
  * Size:	000054
  */
-void Game::TamagoMushi::Obj::setTypeBall(void)
+void TamagoMushi::Obj::setTypeBall(void)
 {
 	/*
 	.loc_0x0:
@@ -1932,7 +1930,7 @@ void Game::TamagoMushi::Obj::setTypeBall(void)
  * Address:	80370294
  * Size:	000344
  */
-void Game::TamagoMushi::Obj::appearPanic(void)
+void TamagoMushi::Obj::appearPanic(void)
 {
 	/*
 	.loc_0x0:
@@ -2177,7 +2175,7 @@ void Game::TamagoMushi::Obj::appearPanic(void)
  * Address:	803705D8
  * Size:	0003BC
  */
-void Game::TamagoMushi::Obj::isFound(void)
+void TamagoMushi::Obj::isFound(void)
 {
 	/*
 	.loc_0x0:
@@ -2473,6 +2471,8 @@ void Game::TamagoMushi::Obj::isFound(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80370994
@@ -2487,12 +2487,14 @@ void Parm<float>::operator()()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8037099C
  * Size:	000014
  */
-void Game::GameSystem::isZukanMode(void)
+void GameSystem::isZukanMode(void)
 {
 	/*
 	.loc_0x0:
@@ -2509,7 +2511,7 @@ void Game::GameSystem::isZukanMode(void)
  * Address:	803709B0
  * Size:	000044
  */
-void Game::TamagoMushi::Obj::createFellow(void)
+void TamagoMushi::Obj::createFellow(void)
 {
 	/*
 	.loc_0x0:
@@ -2542,7 +2544,7 @@ void Game::TamagoMushi::Obj::createFellow(void)
  * Address:	803709F4
  * Size:	00009C
  */
-void Game::TamagoMushi::Obj::ballMove(void)
+void TamagoMushi::Obj::ballMove(void)
 {
 	/*
 	.loc_0x0:
@@ -2595,7 +2597,7 @@ void Game::TamagoMushi::Obj::ballMove(void)
  * Address:	80370A90
  * Size:	0000A8
  */
-void Game::TamagoMushi::Obj::createHideEffect(void)
+void TamagoMushi::Obj::createHideEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2649,7 +2651,7 @@ void Game::TamagoMushi::Obj::createHideEffect(void)
  * Address:	80370B38
  * Size:	0000A8
  */
-void Game::TamagoMushi::Obj::createAppearEffect(void)
+void TamagoMushi::Obj::createAppearEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2703,16 +2705,14 @@ void Game::TamagoMushi::Obj::createAppearEffect(void)
  * Address:	80370BE0
  * Size:	000004
  */
-void Game::TamagoMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-}
+void TamagoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	80370BE4
  * Size:	000014
  */
-void Game::TamagoMushi::Obj::isLivingThing(void)
+void TamagoMushi::Obj::isLivingThing(void)
 {
 	/*
 	.loc_0x0:
@@ -2729,7 +2729,7 @@ void Game::TamagoMushi::Obj::isLivingThing(void)
  * Address:	80370BF8
  * Size:	000008
  */
-void Game::TamagoMushi::Obj::getDownSmokeScale(void)
+void TamagoMushi::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -2743,4 +2743,5 @@ void Game::TamagoMushi::Obj::getDownSmokeScale(void)
  * Address:	80370C00
  * Size:	000008
  */
-u32 Game::TamagoMushi::Obj::getEnemyTypeID(void) { return 0x44; }
+u32 TamagoMushi::Obj::getEnemyTypeID(void) { return 0x44; }
+} // namespace Game

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8023D41C
  * Size:	00000C
  */
-void Game::PelletBirthBuffer::clear(void)
+void PelletBirthBuffer::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -30,7 +22,7 @@ void Game::PelletBirthBuffer::clear(void)
  * Address:	8023D428
  * Size:	0000F0
  */
-void Game::PelletBirthBuffer::entry((Game::PelletInitArg&))
+void PelletBirthBuffer::entry(Game::PelletInitArg&)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +100,7 @@ void Game::PelletBirthBuffer::entry((Game::PelletInitArg&))
  * Address:	8023D518
  * Size:	0000A0
  */
-void Game::PelletBirthBuffer::birthAll(void)
+void PelletBirthBuffer::birthAll(void)
 {
 	/*
 	.loc_0x0:
@@ -163,6 +155,8 @@ void Game::PelletBirthBuffer::birthAll(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8023D5B8
@@ -190,12 +184,14 @@ void __sinit_pelletBirthBuffer_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8023D5F4
  * Size:	000058
  */
-void Game::PelletInitArg::__ct(void)
+PelletInitArg::PelletInitArg(void)
 {
 	/*
 	.loc_0x0:
@@ -223,3 +219,4 @@ void Game::PelletInitArg::__ct(void)
 	  blr
 	*/
 }
+} // namespace Game

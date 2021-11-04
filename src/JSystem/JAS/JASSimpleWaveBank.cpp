@@ -5,7 +5,7 @@
  * Address:	8009B6C4
  * Size:	000060
  */
-void JASSimpleWaveBank::JASSimpleWaveBank()
+JASSimpleWaveBank::JASSimpleWaveBank()
 {
 	/*
 	.loc_0x0:
@@ -41,7 +41,7 @@ void JASSimpleWaveBank::JASSimpleWaveBank()
  * Address:	8009B724
  * Size:	0000D4
  */
-void JASSimpleWaveBank::~JASSimpleWaveBank()
+JASSimpleWaveBank::~JASSimpleWaveBank()
 {
 	/*
 	.loc_0x0:
@@ -114,7 +114,7 @@ void JASSimpleWaveBank::~JASSimpleWaveBank()
  * Address:	8009B7F8
  * Size:	00005C
  */
-void JASSimpleWaveBank::TWaveHandle::__dt(void)
+JASSimpleWaveBank::TWaveHandle::~TWaveHandle(void)
 {
 	/*
 	.loc_0x0:
@@ -198,7 +198,7 @@ void JASSimpleWaveBank::setWaveTableSize(unsigned long)
  * Address:	8009B8D8
  * Size:	000024
  */
-void JASSimpleWaveBank::TWaveHandle::__ct(void)
+JASSimpleWaveBank::TWaveHandle::TWaveHandle(void)
 {
 	/*
 	.loc_0x0:
@@ -313,7 +313,7 @@ void JASSimpleWaveBank::getWaveArc(int)
  * Address:	8009B9D4
  * Size:	000008
  */
-void JASSimpleWaveBank::TWaveHandle::getWaveInfo( const
+void JASSimpleWaveBank::TWaveHandle::getWaveInfo() const
 {
 	/*
 	.loc_0x0:
@@ -327,7 +327,7 @@ void JASSimpleWaveBank::TWaveHandle::getWaveInfo( const
  * Address:	8009B9DC
  * Size:	000024
  */
-void JASSimpleWaveBank::TWaveHandle::getWavePtr( const
+void JASSimpleWaveBank::TWaveHandle::getWavePtr() const
 {
 	/*
 	.loc_0x0:
@@ -350,15 +350,11 @@ void JASSimpleWaveBank::TWaveHandle::getWavePtr( const
  * Address:	8009BA00
  * Size:	000004
  */
-void JASWaveArc::onLoadDone()
-{
-}
+void JASWaveArc::onLoadDone() { }
 
 /*
  * --INFO--
  * Address:	8009BA04
  * Size:	000004
  */
-void JASWaveArc::onEraseDone()
-{
-}
+void JASWaveArc::onEraseDone() { }

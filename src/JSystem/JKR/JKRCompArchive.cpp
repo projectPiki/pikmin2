@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8001BBB8
  * Size:	0000B0
  */
-void JKRCompArchive::JKRCompArchive(long, JKRArchive::EMountDirection)
+JKRCompArchive::JKRCompArchive(long, JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +65,7 @@ void JKRCompArchive::JKRCompArchive(long, JKRArchive::EMountDirection)
  * Address:	8001BC68
  * Size:	000150
  */
-void JKRCompArchive::~JKRCompArchive()
+JKRCompArchive::~JKRCompArchive()
 {
 	/*
 	.loc_0x0:

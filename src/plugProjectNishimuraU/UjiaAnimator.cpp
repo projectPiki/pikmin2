@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80265CA0
  * Size:	000008
  */
-void Game::Ujia::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Ujia::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Ujia::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80265CA8
  * Size:	000008
  */
-void Game::Ujia::ProperAnimator::getAnimator(int)
+void Ujia::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Ujia::ProperAnimator::getAnimator(int)
  * Address:	80265CB0
  * Size:	00005C
  */
-void Game::Ujia::ProperAnimator::~ProperAnimator()
+Ujia::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Ujia::ProperAnimator::~ProperAnimator()
  * Address:	80265D0C
  * Size:	000008
  */
-void Game::Ujia::ProperAnimator::getAnimator()
+void Ujia::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Ujia::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	8033836C
  * Size:	000050
  */
-void PSSystem::getObject(JASTrack*, unsigned char)
+void getObject(JASTrack*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -39,7 +41,7 @@ void PSSystem::getObject(JASTrack*, unsigned char)
  * Address:	803383BC
  * Size:	000060
  */
-void PSSystem::setObject(JASTrack*, void*, unsigned char)
+void setObject(JASTrack*, void*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -75,7 +77,7 @@ void PSSystem::setObject(JASTrack*, void*, unsigned char)
  * Address:	8033841C
  * Size:	000134
  */
-void PSSystem::SysIF::SysIF(const PSSystem::SetupArg&)
+SysIF::SysIF(const PSSystem::SetupArg&)
 {
 	/*
 	.loc_0x0:
@@ -168,7 +170,7 @@ void PSSystem::SysIF::SysIF(const PSSystem::SetupArg&)
  * Address:	80338550
  * Size:	0000E0
  */
-void PSSystem::SysIF::stopSoundSystem()
+void SysIF::stopSoundSystem()
 {
 	/*
 	.loc_0x0:
@@ -246,7 +248,7 @@ void PSSystem::SysIF::stopSoundSystem()
  * Address:	80338630
  * Size:	000040
  */
-void PSSystem::SysIF::playSystemSe(unsigned long, unsigned long)
+void SysIF::playSystemSe(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -274,7 +276,7 @@ void PSSystem::SysIF::playSystemSe(unsigned long, unsigned long)
  * Address:	80338670
  * Size:	00002C
  */
-void PSSystem::SysIF::playSystemSe(unsigned long, JAISound**, unsigned long)
+void SysIF::playSystemSe(unsigned long, JAISound**, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -297,7 +299,7 @@ void PSSystem::SysIF::playSystemSe(unsigned long, JAISound**, unsigned long)
  * Address:	8033869C
  * Size:	000078
  */
-void PSSystem::SysIF::initIF(const PSSystem::SetupArg&)
+void SysIF::initIF(const PSSystem::SetupArg&)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +345,7 @@ void PSSystem::SysIF::initIF(const PSSystem::SetupArg&)
  * Address:	80338714
  * Size:	000038
  */
-void PSSystem::SysIF::makeSe()
+void SysIF::makeSe()
 {
 	/*
 	.loc_0x0:
@@ -373,7 +375,7 @@ void PSSystem::SysIF::makeSe()
  * Address:	8033874C
  * Size:	0000DC
  */
-void PSSystem::SysIF::mainLoop()
+void SysIF::mainLoop()
 {
 	/*
 	.loc_0x0:
@@ -450,7 +452,7 @@ void PSSystem::SysIF::mainLoop()
  * Address:	80338828
  * Size:	00008C
  */
-void PSSystem::SysIF::setConfigVol_Se(float)
+void SysIF::setConfigVol_Se(float)
 {
 	/*
 	.loc_0x0:
@@ -499,7 +501,7 @@ void PSSystem::SysIF::setConfigVol_Se(float)
  * Address:	803388B4
  * Size:	0000C8
  */
-void PSSystem::SysIF::setConfigVol_Bgm(float)
+void SysIF::setConfigVol_Bgm(float)
 {
 	/*
 	.loc_0x0:
@@ -571,14 +573,14 @@ void PSSystem::SysIF::setConfigVol_Bgm(float)
  * Address:	8033897C
  * Size:	000004
  */
-void PSSystem::FxMgr::FxMgr() { }
+FxMgr::FxMgr() { }
 
 /*
  * --INFO--
  * Address:	80338980
  * Size:	000044
  */
-void PSSystem::TextDataBase::TextDataBase()
+TextDataBase::TextDataBase()
 {
 	/*
 	.loc_0x0:
@@ -607,7 +609,7 @@ void PSSystem::TextDataBase::TextDataBase()
  * Address:	803389C4
  * Size:	000070
  */
-void PSSystem::TextDataBase::~TextDataBase()
+TextDataBase::~TextDataBase()
 {
 	/*
 	.loc_0x0:
@@ -649,7 +651,7 @@ void PSSystem::TextDataBase::~TextDataBase()
  * Address:	80338A34
  * Size:	00007C
  */
-void PSSystem::TextDataBase::load(const char*, JKRDvdRipper::EAllocDirection)
+void TextDataBase::load(const char*, JKRDvdRipper::EAllocDirection)
 {
 	/*
 	.loc_0x0:
@@ -700,8 +702,7 @@ void PSSystem::TextDataBase::load(const char*, JKRDvdRipper::EAllocDirection)
  * Address:	80338AB0
  * Size:	000068
  */
-void PSSystem::TextDataBase::onlyLoad(const char*,
-                                      JKRDvdRipper::EAllocDirection)
+void TextDataBase::onlyLoad(const char*, JKRDvdRipper::EAllocDirection)
 {
 	/*
 	.loc_0x0:
@@ -739,7 +740,7 @@ void PSSystem::TextDataBase::onlyLoad(const char*,
  * Address:	80338B18
  * Size:	00000C
  */
-void PSSystem::SysIF::start1stSeq()
+void SysIF::start1stSeq()
 {
 	/*
 	.loc_0x0:
@@ -754,7 +755,7 @@ void PSSystem::SysIF::start1stSeq()
  * Address:	80338B24
  * Size:	000070
  */
-void PSSystem::SysIF::makeSequence()
+void SysIF::makeSequence()
 {
 	/*
 	.loc_0x0:
@@ -804,7 +805,7 @@ void PSSystem::SysIF::makeSequence()
  * Address:	80338B94
  * Size:	000058
  */
-void PSSystem::SeqSound::SeqSound()
+SeqSound::SeqSound()
 {
 	/*
 	.loc_0x0:
@@ -838,7 +839,7 @@ void PSSystem::SeqSound::SeqSound()
  * Address:	80338BEC
  * Size:	000070
  */
-void PSSystem::SysIF::makeStream()
+void SysIF::makeStream()
 {
 	/*
 	.loc_0x0:
@@ -888,7 +889,7 @@ void PSSystem::SysIF::makeStream()
  * Address:	80338C5C
  * Size:	000058
  */
-void PSSystem::StreamSound::StreamSound()
+StreamSound::StreamSound()
 {
 	/*
 	.loc_0x0:
@@ -916,6 +917,8 @@ void PSSystem::StreamSound::StreamSound()
 	  blr
 	*/
 }
+
+} // namespace PSSystem
 
 /*
  * --INFO--

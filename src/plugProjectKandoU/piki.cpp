@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801476DC
  * Size:	0001A4
  */
-void Game::Piki::__ct(void)
+Piki::Piki(void)
 {
 	/*
 	.loc_0x0:
@@ -139,434 +131,438 @@ void Game::Piki::__ct(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80147880
- * Size:	0002BC
- */
-void efx::TPkEffect::__ct(void)
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  li        r9, -0x1
-	  lis       r7, 0x804B
-	  stw       r0, 0x44(r1)
-	  li        r0, 0
-	  lis       r6, 0x804A
-	  lis       r4, 0x804E
-	  stmw      r18, 0x8(r1)
-	  addi      r23, r4, 0x68A8
-	  subi      r20, r7, 0x5808
-	  subi      r21, r6, 0x1D84
-	  lis       r4, 0x804B
-	  mr        r31, r3
-	  addi      r30, r4, 0xC08
-	  li        r22, 0x2B2
-	  lis       r4, 0x8014
-	  addi      r24, r23, 0x14
-	  li        r25, 0x174
-	  li        r29, 0x16F
-	  addi      r12, r30, 0x14
-	  li        r11, 0x14A
-	  addi      r4, r4, 0x5C
-	  li        r6, 0x1C
-	  li        r7, 0x1
-	  stb       r0, 0x0(r3)
-	  lis       r3, 0x804E
-	  addi      r8, r3, 0x698C
-	  stb       r0, 0x1(r31)
-	  lis       r3, 0x804E
-	  addi      r26, r3, 0x7318
-	  addi      r19, r8, 0x14
-	  stb       r0, 0x2(r31)
-	  lis       r3, 0x804E
-	  addi      r28, r3, 0x6940
-	  addi      r27, r26, 0x14
-	  stb       r0, 0x3(r31)
-	  lis       r3, 0x804B
-	  addi      r10, r3, 0xBBC
-	  addi      r18, r28, 0x14
-	  stb       r0, 0x4(r31)
-	  lis       r3, 0x8014
-	  subi      r5, r3, 0x4
-	  stb       r0, 0x5(r31)
-	  addi      r3, r31, 0x70
-	  stb       r0, 0x6(r31)
-	  stb       r0, 0x7(r31)
-	  stw       r9, 0x8(r31)
-	  addi      r9, r10, 0x14
-	  stw       r0, 0xC(r31)
-	  stw       r0, 0x10(r31)
-	  stw       r0, 0x14(r31)
-	  stw       r0, 0x18(r31)
-	  stw       r0, 0x1C(r31)
-	  stw       r0, 0x20(r31)
-	  stw       r0, 0x24(r31)
-	  stw       r20, 0x34(r31)
-	  stw       r21, 0x38(r31)
-	  stw       r8, 0x34(r31)
-	  stw       r19, 0x38(r31)
-	  stw       r0, 0x3C(r31)
-	  sth       r22, 0x40(r31)
-	  stb       r0, 0x42(r31)
-	  stw       r23, 0x34(r31)
-	  stw       r24, 0x38(r31)
-	  stw       r0, 0x44(r31)
-	  sth       r25, 0x40(r31)
-	  stw       r26, 0x34(r31)
-	  stw       r27, 0x38(r31)
-	  stw       r20, 0x48(r31)
-	  stw       r21, 0x4C(r31)
-	  stw       r8, 0x48(r31)
-	  stw       r19, 0x4C(r31)
-	  stw       r0, 0x50(r31)
-	  sth       r22, 0x54(r31)
-	  stb       r0, 0x56(r31)
-	  stw       r28, 0x48(r31)
-	  stw       r18, 0x4C(r31)
-	  stw       r0, 0x58(r31)
-	  sth       r29, 0x54(r31)
-	  stw       r30, 0x48(r31)
-	  stw       r12, 0x4C(r31)
-	  stw       r20, 0x5C(r31)
-	  stw       r21, 0x60(r31)
-	  stw       r8, 0x5C(r31)
-	  stw       r19, 0x60(r31)
-	  stw       r0, 0x64(r31)
-	  sth       r22, 0x68(r31)
-	  stb       r0, 0x6A(r31)
-	  stw       r28, 0x5C(r31)
-	  stw       r18, 0x60(r31)
-	  stw       r0, 0x6C(r31)
-	  sth       r11, 0x68(r31)
-	  stw       r10, 0x5C(r31)
-	  stw       r9, 0x60(r31)
-	  bl        -0x861C0
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x90
-	  subi      r5, r5, 0x4
-	  li        r7, 0x1
-	  bl        -0x861E0
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0xAC
-	  subi      r5, r5, 0x4
-	  li        r7, 0x1
-	  bl        -0x86200
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0xC8
-	  subi      r5, r5, 0x4
-	  li        r7, 0x2
-	  bl        -0x86220
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x100
-	  subi      r5, r5, 0x4
-	  li        r7, 0x1
-	  bl        -0x86240
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x11C
-	  subi      r5, r5, 0x4
-	  li        r7, 0x2
-	  bl        -0x86260
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x154
-	  subi      r5, r5, 0x4
-	  li        r7, 0x1
-	  bl        -0x86280
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x170
-	  subi      r5, r5, 0x4
-	  li        r7, 0x1
-	  bl        -0x862A0
-	  lis       r3, 0x8014
-	  lis       r5, 0x8014
-	  addi      r4, r3, 0x5C
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x18C
-	  subi      r5, r5, 0x4
-	  li        r7, 0x1
-	  bl        -0x862C0
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x0(r31)
-	  stb       r0, 0x1(r31)
-	  stb       r0, 0x2(r31)
-	  stb       r0, 0x3(r31)
-	  stb       r0, 0x4(r31)
-	  stb       r0, 0x5(r31)
-	  stb       r0, 0x6(r31)
-	  stb       r0, 0x7(r31)
-	  lmw       r18, 0x8(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80147880
+	 * Size:	0002BC
+	 */
+	TPkEffect::TPkEffect(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x40(r1)
+		  mflr      r0
+		  li        r9, -0x1
+		  lis       r7, 0x804B
+		  stw       r0, 0x44(r1)
+		  li        r0, 0
+		  lis       r6, 0x804A
+		  lis       r4, 0x804E
+		  stmw      r18, 0x8(r1)
+		  addi      r23, r4, 0x68A8
+		  subi      r20, r7, 0x5808
+		  subi      r21, r6, 0x1D84
+		  lis       r4, 0x804B
+		  mr        r31, r3
+		  addi      r30, r4, 0xC08
+		  li        r22, 0x2B2
+		  lis       r4, 0x8014
+		  addi      r24, r23, 0x14
+		  li        r25, 0x174
+		  li        r29, 0x16F
+		  addi      r12, r30, 0x14
+		  li        r11, 0x14A
+		  addi      r4, r4, 0x5C
+		  li        r6, 0x1C
+		  li        r7, 0x1
+		  stb       r0, 0x0(r3)
+		  lis       r3, 0x804E
+		  addi      r8, r3, 0x698C
+		  stb       r0, 0x1(r31)
+		  lis       r3, 0x804E
+		  addi      r26, r3, 0x7318
+		  addi      r19, r8, 0x14
+		  stb       r0, 0x2(r31)
+		  lis       r3, 0x804E
+		  addi      r28, r3, 0x6940
+		  addi      r27, r26, 0x14
+		  stb       r0, 0x3(r31)
+		  lis       r3, 0x804B
+		  addi      r10, r3, 0xBBC
+		  addi      r18, r28, 0x14
+		  stb       r0, 0x4(r31)
+		  lis       r3, 0x8014
+		  subi      r5, r3, 0x4
+		  stb       r0, 0x5(r31)
+		  addi      r3, r31, 0x70
+		  stb       r0, 0x6(r31)
+		  stb       r0, 0x7(r31)
+		  stw       r9, 0x8(r31)
+		  addi      r9, r10, 0x14
+		  stw       r0, 0xC(r31)
+		  stw       r0, 0x10(r31)
+		  stw       r0, 0x14(r31)
+		  stw       r0, 0x18(r31)
+		  stw       r0, 0x1C(r31)
+		  stw       r0, 0x20(r31)
+		  stw       r0, 0x24(r31)
+		  stw       r20, 0x34(r31)
+		  stw       r21, 0x38(r31)
+		  stw       r8, 0x34(r31)
+		  stw       r19, 0x38(r31)
+		  stw       r0, 0x3C(r31)
+		  sth       r22, 0x40(r31)
+		  stb       r0, 0x42(r31)
+		  stw       r23, 0x34(r31)
+		  stw       r24, 0x38(r31)
+		  stw       r0, 0x44(r31)
+		  sth       r25, 0x40(r31)
+		  stw       r26, 0x34(r31)
+		  stw       r27, 0x38(r31)
+		  stw       r20, 0x48(r31)
+		  stw       r21, 0x4C(r31)
+		  stw       r8, 0x48(r31)
+		  stw       r19, 0x4C(r31)
+		  stw       r0, 0x50(r31)
+		  sth       r22, 0x54(r31)
+		  stb       r0, 0x56(r31)
+		  stw       r28, 0x48(r31)
+		  stw       r18, 0x4C(r31)
+		  stw       r0, 0x58(r31)
+		  sth       r29, 0x54(r31)
+		  stw       r30, 0x48(r31)
+		  stw       r12, 0x4C(r31)
+		  stw       r20, 0x5C(r31)
+		  stw       r21, 0x60(r31)
+		  stw       r8, 0x5C(r31)
+		  stw       r19, 0x60(r31)
+		  stw       r0, 0x64(r31)
+		  sth       r22, 0x68(r31)
+		  stb       r0, 0x6A(r31)
+		  stw       r28, 0x5C(r31)
+		  stw       r18, 0x60(r31)
+		  stw       r0, 0x6C(r31)
+		  sth       r11, 0x68(r31)
+		  stw       r10, 0x5C(r31)
+		  stw       r9, 0x60(r31)
+		  bl        -0x861C0
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0x90
+		  subi      r5, r5, 0x4
+		  li        r7, 0x1
+		  bl        -0x861E0
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0xAC
+		  subi      r5, r5, 0x4
+		  li        r7, 0x1
+		  bl        -0x86200
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0xC8
+		  subi      r5, r5, 0x4
+		  li        r7, 0x2
+		  bl        -0x86220
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0x100
+		  subi      r5, r5, 0x4
+		  li        r7, 0x1
+		  bl        -0x86240
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0x11C
+		  subi      r5, r5, 0x4
+		  li        r7, 0x2
+		  bl        -0x86260
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0x154
+		  subi      r5, r5, 0x4
+		  li        r7, 0x1
+		  bl        -0x86280
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0x170
+		  subi      r5, r5, 0x4
+		  li        r7, 0x1
+		  bl        -0x862A0
+		  lis       r3, 0x8014
+		  lis       r5, 0x8014
+		  addi      r4, r3, 0x5C
+		  li        r6, 0x1C
+		  addi      r3, r31, 0x18C
+		  subi      r5, r5, 0x4
+		  li        r7, 0x1
+		  bl        -0x862C0
+		  li        r0, 0
+		  mr        r3, r31
+		  stb       r0, 0x0(r31)
+		  stb       r0, 0x1(r31)
+		  stb       r0, 0x2(r31)
+		  stb       r0, 0x3(r31)
+		  stb       r0, 0x4(r31)
+		  stb       r0, 0x5(r31)
+		  stb       r0, 0x6(r31)
+		  stb       r0, 0x7(r31)
+		  lmw       r18, 0x8(r1)
+		  lwz       r0, 0x44(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x40
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeMoeSmoke::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeWater::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeChudoku::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeMoeBC::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeNagekira::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeDoping::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void efx::ToeKourin::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	80147B3C
- * Size:	00009C
- */
-void efx::TPkBlackDown::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0xBBC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x6940
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xB7F0C
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeMoeSmoke::~ToeMoeSmoke(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x123B04
-
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147BD8
- * Size:	00009C
- */
-void efx::TPkMoeA::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0xC08
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x6940
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xB7FA8
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeWater::~ToeWater(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x123BA0
-
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147C74
- * Size:	00009C
- */
-void efx::TPkNageBlur::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x7318
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xB8044
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeChudoku::~ToeChudoku(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x123C3C
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeMoeBC::~ToeMoeBC(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeNagekira::~ToeNagekira(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeDoping::~ToeDoping(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	ToeKourin::~ToeKourin(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80147B3C
+	 * Size:	00009C
+	 */
+	TPkBlackDown::~TPkBlackDown(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804B
+		  addi      r3, r3, 0xBBC
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x6940
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0xB7F0C
+
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x123B04
+
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80147BD8
+	 * Size:	00009C
+	 */
+	TPkMoeA::~TPkMoeA(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804B
+		  addi      r3, r3, 0xC08
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x6940
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0xB7FA8
+
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x123BA0
+
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80147C74
+	 * Size:	00009C
+	 */
+	TPkNageBlur::~TPkNageBlur(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x80
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x7318
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x68A8
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0xB8044
+
+		.loc_0x70:
+		  extsh.    r0, r31
+		  ble-      .loc_0x80
+		  mr        r3, r30
+		  bl        -0x123C3C
+
+		.loc_0x80:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	80147D10
  * Size:	0000B4
  */
-void Game::Piki::isWalking(void)
+void Piki::isWalking(void)
 {
 	/*
 	.loc_0x0:
@@ -631,7 +627,7 @@ void Game::Piki::isWalking(void)
  * Address:	80147DC4
  * Size:	000050
  */
-void Game::Piki::getFormationSlotID(void)
+void Piki::getFormationSlotID(void)
 {
 	/*
 	.loc_0x0:
@@ -669,7 +665,7 @@ void Game::Piki::getFormationSlotID(void)
  * Address:	80147E14
  * Size:	000024
  */
-void Game::Piki::getCurrAction(void)
+void Piki::getCurrAction(void)
 {
 	/*
 	.loc_0x0:
@@ -690,7 +686,7 @@ void Game::Piki::getCurrAction(void)
  * Address:	80147E38
  * Size:	000010
  */
-void Game::Piki::clearCurrAction(void)
+void Piki::clearCurrAction(void)
 {
 	/*
 	.loc_0x0:
@@ -706,7 +702,7 @@ void Game::Piki::clearCurrAction(void)
  * Address:	80147E48
  * Size:	00000C
  */
-void Game::Piki::getCurrActionID(void)
+void Piki::getCurrActionID(void)
 {
 	/*
 	.loc_0x0:
@@ -721,7 +717,7 @@ void Game::Piki::getCurrActionID(void)
  * Address:	80147E54
  * Size:	000280
  */
-void Game::Piki::onInit((Game::CreatureInitArg*))
+void Piki::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -933,7 +929,7 @@ FPQ24Game4PikiiPQ24Game8StateArg(void)
  * Address:	80148108
  * Size:	00038C
  */
-void Game::Piki::onKill((Game::CreatureKillArg*))
+void Piki::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1187,6 +1183,8 @@ void Game::Piki::onKill((Game::CreatureKillArg*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80148494
@@ -1194,12 +1192,14 @@ void Game::Piki::onKill((Game::CreatureKillArg*))
  */
 void PikiAI::Action::cleanup(void) { }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80148498
  * Size:	00001C
  */
-void Game::Piki::onSetPosition(void)
+void Piki::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -1218,7 +1218,7 @@ void Game::Piki::onSetPosition(void)
  * Address:	801484B4
  * Size:	000024
  */
-void Game::Piki::getLODSphere((Sys::Sphere&))
+void Piki::getLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1239,7 +1239,7 @@ void Game::Piki::getLODSphere((Sys::Sphere&))
  * Address:	801484D8
  * Size:	000210
  */
-void Game::Piki::update(void)
+void Piki::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1389,14 +1389,14 @@ void Game::Piki::update(void)
  * Address:	801486E8
  * Size:	000008
  */
-u32 Game::PikiState::dead(void) { return 0x0; }
+u32 PikiState::dead(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801486F0
  * Size:	000058
  */
-void Game::Piki::isAlive(void)
+void Piki::isAlive(void)
 {
 	/*
 	.loc_0x0:
@@ -1434,14 +1434,14 @@ void Game::Piki::isAlive(void)
  * Address:	80148748
  * Size:	000004
  */
-void Game::Piki::on_movie_begin((bool)) { }
+void Piki::on_movie_begin(bool) { }
 
 /*
  * --INFO--
  * Address:	8014874C
  * Size:	000064
  */
-void Game::Piki::on_movie_end((bool))
+void Piki::on_movie_end(bool)
 {
 	/*
 	.loc_0x0:
@@ -1480,7 +1480,7 @@ void Game::Piki::on_movie_end((bool))
  * Address:	801487B0
  * Size:	000008
  */
-void Game::Piki::getCreatureID(void)
+void Piki::getCreatureID(void)
 {
 	/*
 	.loc_0x0:
@@ -1494,14 +1494,14 @@ void Game::Piki::getCreatureID(void)
  * Address:	801487B8
  * Size:	000004
  */
-void Game::Piki::movieUserCommand((unsigned long, Game::MoviePlayer*)) { }
+void Piki::movieUserCommand(unsigned long, Game::MoviePlayer*) { }
 
 /*
  * --INFO--
  * Address:	801487BC
  * Size:	000038
  */
-void Game::Piki::movieStartAnimation((unsigned long))
+void Piki::movieStartAnimation(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1527,7 +1527,7 @@ void Game::Piki::movieStartAnimation((unsigned long))
  * Address:	801487F4
  * Size:	000048
  */
-void Game::Piki::movieStartDemoAnimation((SysShape::AnimInfo*))
+void Piki::movieStartDemoAnimation(SysShape::AnimInfo*)
 {
 	/*
 	.loc_0x0:
@@ -1552,12 +1552,14 @@ void Game::Piki::movieStartDemoAnimation((SysShape::AnimInfo*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8014883C
  * Size:	000088
  */
-void movieSetTranslation__Q24Game4PikiFR10Vector3<float> f(void)
+void movieSetTranslation__Q24Game4PikiFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -1603,14 +1605,16 @@ void movieSetTranslation__Q24Game4PikiFR10Vector3<float> f(void)
  * Address:	801488C4
  * Size:	000008
  */
-u32 movieGotoPosition__Q24Game4PikiFR10Vector3<float>(void) { return 0x0; }
+u32 movieGotoPosition__Q24Game4PikiFR10Vector3f(void) { return 0x0; }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801488CC
  * Size:	000040
  */
-void Game::Piki::startSound((unsigned long, bool))
+void Piki::startSound(unsigned long, bool)
 {
 	/*
 	.loc_0x0:
@@ -1644,7 +1648,7 @@ void Game::Piki::startSound((unsigned long, bool))
  * Address:	8014890C
  * Size:	000048
  */
-void Game::Piki::startSound((unsigned long, PSGame::SeMgr::SetSeId))
+void Piki::startSound(unsigned long, PSGame::SeMgr::SetSeId)
 {
 	/*
 	.loc_0x0:
@@ -1678,7 +1682,7 @@ void Game::Piki::startSound((unsigned long, PSGame::SeMgr::SetSeId))
  * Address:	80148954
  * Size:	000070
  */
-void Game::Piki::startSound((Game::Creature*, unsigned long, bool))
+void Piki::startSound(Game::Creature*, unsigned long, bool)
 {
 	/*
 	.loc_0x0:
@@ -1724,8 +1728,7 @@ void Game::Piki::startSound((Game::Creature*, unsigned long, bool))
  * Address:	801489C4
  * Size:	0000CC
  */
-void Game::Piki::startSound((Game::Creature*, unsigned long,
-                             PSGame::SeMgr::SetSeId))
+void Piki::startSound(Game::Creature*, unsigned long, PSGame::SeMgr::SetSeId)
 {
 	/*
 	.loc_0x0:
@@ -1792,7 +1795,7 @@ void Game::Piki::startSound((Game::Creature*, unsigned long,
  * Address:	80148A90
  * Size:	000014
  */
-void Game::Piki::getJAIObject(void)
+void Piki::getJAIObject(void)
 {
 	/*
 	.loc_0x0:
@@ -1809,7 +1812,7 @@ void Game::Piki::getJAIObject(void)
  * Address:	80148AA4
  * Size:	000008
  */
-void Game::Piki::getPSCreature(void)
+void Piki::getPSCreature(void)
 {
 	/*
 	.loc_0x0:
@@ -1823,7 +1826,7 @@ void Game::Piki::getPSCreature(void)
  * Address:	80148AAC
  * Size:	000030
  */
-void Game::Piki::canVsBattle(void)
+void Piki::canVsBattle(void)
 {
 	/*
 	.loc_0x0:
@@ -1847,14 +1850,14 @@ void Game::Piki::canVsBattle(void)
  * Address:	80148ADC
  * Size:	000008
  */
-u32 Game::PikiState::battleOK(void) { return 0x0; }
+u32 PikiState::battleOK(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80148AE4
  * Size:	00003C
  */
-void Game::Piki::getVsBattlePiki(void)
+void Piki::getVsBattlePiki(void)
 {
 	/*
 	.loc_0x0:
@@ -1885,7 +1888,7 @@ void Game::Piki::getVsBattlePiki(void)
  * Address:	80148B20
  * Size:	0000B0
  */
-void Game::Piki::attachRadar((bool))
+void Piki::attachRadar(bool)
 {
 	/*
 	.loc_0x0:
@@ -1957,7 +1960,7 @@ void Game::Piki::attachRadar((bool))
  * Address:	80148BD0
  * Size:	000148
  */
-void Game::Piki::inWaterCallback((Game::WaterBox*))
+void Piki::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -2057,7 +2060,7 @@ void Game::Piki::inWaterCallback((Game::WaterBox*))
  * Address:	80148D18
  * Size:	000068
  */
-void Game::Piki::outWaterCallback(void)
+void Piki::outWaterCallback(void)
 {
 	/*
 	.loc_0x0:
@@ -2097,14 +2100,14 @@ void Game::Piki::outWaterCallback(void)
  * Address:	80148D80
  * Size:	000004
  */
-void Game::PikiState::outWaterCallback((Game::Piki*)) { }
+void PikiState::outWaterCallback(Game::Piki*) { }
 
 /*
  * --INFO--
  * Address:	80148D84
  * Size:	000154
  */
-void Game::Piki::might_bury(void)
+void Piki::might_bury(void)
 {
 	/*
 	.loc_0x0:
@@ -2217,7 +2220,7 @@ void Game::Piki::might_bury(void)
  * Address:	80148ED8
  * Size:	000014
  */
-void Game::Piki::surviveDayEnd(void)
+void Piki::surviveDayEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -2234,7 +2237,7 @@ void Game::Piki::surviveDayEnd(void)
  * Address:	80148EEC
  * Size:	000044
  */
-void Game::Piki::onKeyEvent((SysShape::KeyEvent const&))
+void Piki::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -2265,14 +2268,14 @@ void Game::Piki::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80148F30
  * Size:	000004
  */
-void Game::PikiState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&)) { }
+void PikiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	80148F34
  * Size:	00001C
  */
-void Game::Piki::getStateID(void)
+void Piki::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -2293,7 +2296,7 @@ void Game::Piki::getStateID(void)
  * Address:	80148F50
  * Size:	0000C8
  */
-void Game::Piki::getSpeed((float))
+void Piki::getSpeed(float)
 {
 	/*
 	.loc_0x0:
@@ -2360,12 +2363,14 @@ void Game::Piki::getSpeed((float))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80149018
  * Size:	0001C0
  */
-void setSpeed__Q24Game4PikiFfR10Vector3<float>(void)
+void setSpeed__Q24Game4PikiFfR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2508,22 +2513,26 @@ void setSpeed__Q24Game4PikiFfR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000F8
  */
-void Game::Piki::getSpeed((float, float))
+void Piki::getSpeed(float, float)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	801491D8
  * Size:	00020C
  */
-void setSpeed__Q24Game4PikiFfR10Vector3<float> f(void)
+void setSpeed__Q24Game4PikiFfR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -2693,12 +2702,14 @@ void setSpeed__Q24Game4PikiFfR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801493E4
  * Size:	000040
  */
-void Game::Piki::isPikmin(void)
+void Piki::isPikmin(void)
 {
 	/*
 	.loc_0x0:
@@ -2730,7 +2741,7 @@ void Game::Piki::isPikmin(void)
  * Address:	80149424
  * Size:	00004C
  */
-void Game::Piki::isThrowable(void)
+void Piki::isThrowable(void)
 {
 	/*
 	.loc_0x0:
@@ -2765,14 +2776,14 @@ void Game::Piki::isThrowable(void)
  * Address:	80149470
  * Size:	000008
  */
-u32 Game::PikiState::throwable(void) { return 0x0; }
+u32 PikiState::throwable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80149478
  * Size:	000040
  */
-void Game::Piki::getDownfloorMass(void)
+void Piki::getDownfloorMass(void)
 {
 	/*
 	.loc_0x0:
@@ -2806,7 +2817,7 @@ void Game::Piki::getDownfloorMass(void)
  * Address:	801494B8
  * Size:	000014
  */
-void Game::Piki::gasInvicible(void)
+void Piki::gasInvicible(void)
 {
 	/*
 	.loc_0x0:
@@ -2823,13 +2834,10 @@ void Game::Piki::gasInvicible(void)
  * Address:	801494CC
  * Size:	000008
  */
-void Game::Piki::setGasInvincible((unsigned char))
+void Piki::setGasInvincible(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x2A6(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x2A6(r3)
+	_2A6 = a1;
 }
 
 /*
@@ -2837,7 +2845,7 @@ void Game::Piki::setGasInvincible((unsigned char))
  * Address:	801494D4
  * Size:	000018
  */
-void Game::Piki::updateGasInvincible(void)
+void Piki::updateGasInvincible(void)
 {
 	/*
 	.loc_0x0:
@@ -2855,7 +2863,7 @@ void Game::Piki::updateGasInvincible(void)
  * Address:	801494EC
  * Size:	0000F8
  */
-void Game::Piki::getAttackDamage(void)
+void Piki::getAttackDamage(void)
 {
 	/*
 	.loc_0x0:
@@ -2949,7 +2957,7 @@ void Game::Piki::getAttackDamage(void)
  * Address:	801495E4
  * Size:	0000C0
  */
-void Game::Piki::getThrowHeight(void)
+void Piki::getThrowHeight(void)
 {
 	/*
 	.loc_0x0:
@@ -3025,7 +3033,7 @@ void Game::Piki::getThrowHeight(void)
  * Address:	801496A4
  * Size:	0000C4
  */
-void Game::Piki::getPelletCarryPower(void)
+void Piki::getPelletCarryPower(void)
 {
 	/*
 	.loc_0x0:
@@ -3100,14 +3108,14 @@ void Game::Piki::getPelletCarryPower(void)
  * Address:	80149768
  * Size:	000004
  */
-void Game::Piki::onStickStartSelf((Game::Creature*)) { }
+void Piki::onStickStartSelf(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	8014976C
  * Size:	0000E8
  */
-void Game::Piki::onStickEndSelf((Game::Creature*))
+void Piki::onStickEndSelf(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -3179,7 +3187,7 @@ void Game::Piki::onStickEndSelf((Game::Creature*))
  * Address:	80149854
  * Size:	000088
  */
-void Game::Piki::stimulate((Game::Interaction&))
+void Piki::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -3231,7 +3239,7 @@ void Game::Piki::stimulate((Game::Interaction&))
  * Address:	801498DC
  * Size:	0000A4
  */
-void Game::Piki::bounceCallback((Sys::Triangle*))
+void Piki::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -3283,33 +3291,39 @@ void Game::Piki::bounceCallback((Sys::Triangle*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80149980
  * Size:	000004
  */
-void PikiAI::Action::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
+void PikiAI::Action::bounceCallback(Game::Piki*, Sys::Triangle*) { }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80149984
  * Size:	000008
  */
-u32 Game::PikiState::aiActive(void) { return 0x0; }
+u32 PikiState::aiActive(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8014998C
  * Size:	000004
  */
-void Game::PikiState::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
+void PikiState::bounceCallback(Game::Piki*, Sys::Triangle*) { }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	80149990
  * Size:	0000A0
  */
-void wallCallback__Q24Game4PikiFR10Vector3<float>(void)
+void wallCallback__Q24Game4PikiFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3365,21 +3379,23 @@ void wallCallback__Q24Game4PikiFR10Vector3<float>(void)
  * Address:	80149A30
  * Size:	000004
  */
-void wallCallback__Q26PikiAI6ActionFR10Vector3<float>(void) { }
+void wallCallback__Q26PikiAI6ActionFR10Vector3f(void) { }
 
 /*
  * --INFO--
  * Address:	80149A34
  * Size:	000004
  */
-void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<float>(void) { }
+void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3f(void) { }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80149A38
  * Size:	0000AC
  */
-void Game::Piki::collisionCallback((Game::CollEvent&))
+void Piki::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3433,26 +3449,30 @@ void Game::Piki::collisionCallback((Game::CollEvent&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80149AE4
  * Size:	000004
  */
-void PikiAI::Action::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
+void PikiAI::Action::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80149AE8
  * Size:	000004
  */
-void Game::PikiState::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
+void PikiState::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	80149AEC
  * Size:	000178
  */
-void Game::Piki::platCallback((Game::PlatEvent&))
+void Piki::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3559,26 +3579,30 @@ void Game::Piki::platCallback((Game::PlatEvent&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80149C64
  * Size:	000004
  */
-void PikiAI::Action::platCallback((Game::Piki*, Game::PlatEvent&)) { }
+void PikiAI::Action::platCallback(Game::Piki*, Game::PlatEvent&) { }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80149C68
  * Size:	000004
  */
-void Game::PikiState::platCallback((Game::Piki*, Game::PlatEvent&)) { }
+void PikiState::platCallback(Game::Piki*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	80149C6C
  * Size:	000050
  */
-void Game::Piki::ignoreAtari((Game::Creature*))
+void Piki::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -3612,14 +3636,14 @@ void Game::Piki::ignoreAtari((Game::Creature*))
  * Address:	80149CBC
  * Size:	000008
  */
-u32 Game::PikiState::ignoreAtari((Game::Piki*, Game::Creature*)) { return 0x0; }
+u32 PikiState::ignoreAtari(Game::Piki*, Game::Creature*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80149CC4
  * Size:	000060
  */
-void Game::Piki::setFreeLightEffect((bool))
+void Piki::setFreeLightEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -3659,7 +3683,7 @@ void Game::Piki::setFreeLightEffect((bool))
  * Address:	80149D24
  * Size:	000084
  */
-void Game::Piki::setDopeEffect((bool))
+void Piki::setDopeEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -3708,7 +3732,7 @@ void Game::Piki::setDopeEffect((bool))
  * Address:	80149DA8
  * Size:	000088
  */
-void Game::Piki::clearDope(void)
+void Piki::clearDope(void)
 {
 	/*
 	.loc_0x0:
@@ -3758,7 +3782,7 @@ void Game::Piki::clearDope(void)
  * Address:	80149E30
  * Size:	000014
  */
-void Game::Piki::extendDopeTime(void)
+void Piki::extendDopeTime(void)
 {
 	/*
 	.loc_0x0:
@@ -3775,7 +3799,7 @@ void Game::Piki::extendDopeTime(void)
  * Address:	80149E44
  * Size:	00019C
  */
-void Game::Piki::startDope((int))
+void Piki::startDope(int)
 {
 	/*
 	.loc_0x0:
@@ -3898,7 +3922,7 @@ void Game::Piki::startDope((int))
  * Address:	80149FE0
  * Size:	000018
  */
-void Game::Piki::doped(void)
+void Piki::doped(void)
 {
 	/*
 	.loc_0x0:
@@ -3916,7 +3940,7 @@ void Game::Piki::doped(void)
  * Address:	........
  * Size:	0000E0
  */
-void Game::Piki::updateDope(void)
+void Piki::updateDope(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3926,7 +3950,7 @@ void Game::Piki::updateDope(void)
  * Address:	80149FF8
  * Size:	000040
  */
-void Game::Piki::initColor(void)
+void Piki::initColor(void)
 {
 	/*
 	.loc_0x0:
@@ -3954,7 +3978,7 @@ void Game::Piki::initColor(void)
  * Address:	........
  * Size:	000194
  */
-void Game::Piki::updateColor(void)
+void Piki::updateColor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3964,7 +3988,7 @@ void Game::Piki::updateColor(void)
  * Address:	8014A038
  * Size:	000100
  */
-void Game::Piki::setPastel((bool))
+void Piki::setPastel(bool)
 {
 	/*
 	.loc_0x0:
@@ -4048,7 +4072,7 @@ void Game::Piki::setPastel((bool))
  * Address:	8014A138
  * Size:	0000D0
  */
-void Game::Piki::getShadowParam((Game::ShadowParam&))
+void Piki::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -4120,7 +4144,7 @@ void Game::Piki::getShadowParam((Game::ShadowParam&))
  * Address:	8014A208
  * Size:	000080
  */
-void Game::Piki::isMyPikmin((Game::Creature*))
+void Piki::isMyPikmin(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -4170,7 +4194,7 @@ void Game::Piki::isMyPikmin((Game::Creature*))
  * Address:	8014A288
  * Size:	000018
  */
-void Game::Piki::isTekiFollowAI(void)
+void Piki::isTekiFollowAI(void)
 {
 	/*
 	.loc_0x0:
@@ -4188,7 +4212,7 @@ void Game::Piki::isTekiFollowAI(void)
  * Address:	8014A2A0
  * Size:	0000EC
  */
-void Game::Piki::doColorChange(void)
+void Piki::doColorChange(void)
 {
 	/*
 	.loc_0x0:
@@ -4263,7 +4287,7 @@ void Game::Piki::doColorChange(void)
  * Address:	8014A38C
  * Size:	00002C
  */
-void Game::Piki::doDebugDL(void)
+void Piki::doDebugDL(void)
 {
 	/*
 	.loc_0x0:
@@ -4290,8 +4314,8 @@ void Game::Piki::doDebugDL(void)
  * Address:	8014A3B8
  * Size:	0000F8
  */
-void Game::Piki::startMotion((int, int, SysShape::MotionListener*,
-                              SysShape::MotionListener*))
+void Piki::startMotion(int, int, SysShape::MotionListener*,
+                       SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -4375,7 +4399,7 @@ void Game::Piki::startMotion((int, int, SysShape::MotionListener*,
  * Address:	8014A4B0
  * Size:	0000E4
  */
-void Game::Piki::doAnimation(void)
+void Piki::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -4448,14 +4472,14 @@ void Game::Piki::doAnimation(void)
  * Address:	8014A594
  * Size:	000004
  */
-void Game::Piki::doDirectDraw((Graphics&)) { }
+void Piki::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8014A598
  * Size:	000028
  */
-void Game::Piki::getBaseScale(void)
+void Piki::getBaseScale(void)
 {
 	/*
 	.loc_0x0:
@@ -4479,7 +4503,7 @@ void Game::Piki::getBaseScale(void)
  * Address:	8014A5C0
  * Size:	0001B0
  */
-void Game::Piki::changeShape((int))
+void Piki::changeShape(int)
 {
 	/*
 	.loc_0x0:
@@ -4611,13 +4635,10 @@ void Game::Piki::changeShape((int))
  * Address:	8014A770
  * Size:	000008
  */
-void Game::Piki::changeHappa((int))
+void Piki::changeHappa(int a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x2B9(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x2B9(r3)
+	_2B9 = a1;
 }
 
 /*
@@ -4625,7 +4646,7 @@ void Game::Piki::changeHappa((int))
  * Address:	8014A778
  * Size:	000344
  */
-void Game::Piki::do_updateLookCreature(void)
+void Piki::do_updateLookCreature(void)
 {
 	/*
 	.loc_0x0:
@@ -4882,7 +4903,7 @@ void Game::Piki::do_updateLookCreature(void)
  * Address:	8014AABC
  * Size:	000014
  */
-void Game::Piki::setTekiKillID((int))
+void Piki::setTekiKillID(int)
 {
 	/*
 	.loc_0x0:
@@ -4901,14 +4922,14 @@ void Game::Piki::setTekiKillID((int))
  * Address:	8014AAD0
  * Size:	000008
  */
-u32 Game::Piki::deferPikiCollision(void) { return 0x1; }
+u32 Piki::deferPikiCollision(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8014AAD8
  * Size:	000008
  */
-void Game::Piki::getCreatureName(void)
+void Piki::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -4916,6 +4937,8 @@ void Game::Piki::getCreatureName(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -5179,7 +5202,7 @@ void __sinit_piki_cpp(void)
  * Address:	8014AD88
  * Size:	000008
  */
-void @4 @efx::TPkMoeA::__dt(void)
+@4 @efx::TPkMoeA::~TPkMoeA(void)
 {
 	/*
 	.loc_0x0:
@@ -5193,7 +5216,7 @@ void @4 @efx::TPkMoeA::__dt(void)
  * Address:	8014AD90
  * Size:	000008
  */
-void @4 @efx::TPkBlackDown::__dt(void)
+@4 @efx::TPkBlackDown::~TPkBlackDown(void)
 {
 	/*
 	.loc_0x0:
@@ -5207,7 +5230,7 @@ void @4 @efx::TPkBlackDown::__dt(void)
  * Address:	8014AD98
  * Size:	000008
  */
-void @376 @Game::Piki::onKeyEvent((SysShape::KeyEvent const&))
+void @376 @Game::Piki::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

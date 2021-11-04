@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8001A4BC
  * Size:	0000A8
  */
-void JKRArchive::JKRArchive(long, JKRArchive::EMountMode)
+JKRArchive::JKRArchive(long, JKRArchive::EMountMode)
 {
 	/*
 	.loc_0x0:
@@ -63,7 +63,7 @@ void JKRArchive::JKRArchive(long, JKRArchive::EMountMode)
  * Address:	8001A564
  * Size:	000060
  */
-void JKRArchive::~JKRArchive()
+JKRArchive::~JKRArchive()
 {
 	/*
 	.loc_0x0:
@@ -404,7 +404,7 @@ void JKRArchive::findDirectory(const char*, unsigned long) const
  * Address:	8001A92C
  * Size:	000044
  */
-void JKRArchive::CArcName::CArcName(const char**, char)
+JKRArchive::CArcName::CArcName(const char**, char)
 {
 	/*
 	.loc_0x0:

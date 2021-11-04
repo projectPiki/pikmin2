@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80019444
  * Size:	00006C
  */
-void JKRAramBlock::JKRAramBlock(unsigned long, unsigned long, unsigned long,
-                                unsigned char, bool)
+JKRAramBlock::JKRAramBlock(unsigned long, unsigned long, unsigned long,
+                           unsigned char, bool)
 {
 	/*
 	.loc_0x0:
@@ -45,7 +45,7 @@ void JKRAramBlock::JKRAramBlock(unsigned long, unsigned long, unsigned long,
  * Address:	800194B0
  * Size:	0000BC
  */
-void JKRAramBlock::~JKRAramBlock()
+JKRAramBlock::~JKRAramBlock()
 {
 	/*
 	.loc_0x0:

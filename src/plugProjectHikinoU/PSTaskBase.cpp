@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	8033E1F8
  * Size:	000054
  */
-void PSSystem::TaskBase::TaskBase()
+TaskBase::TaskBase()
 {
 	/*
 	.loc_0x0:
@@ -38,7 +40,7 @@ void PSSystem::TaskBase::TaskBase()
  * Address:	8033E24C
  * Size:	000024
  */
-void PSSystem::TaskEntry::append(PSSystem::TaskBase*)
+void TaskEntry::append(PSSystem::TaskBase*)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +61,7 @@ void PSSystem::TaskEntry::append(PSSystem::TaskBase*)
  * Address:	8033E270
  * Size:	000034
  */
-void PSSystem::TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
+void TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -90,7 +92,7 @@ void PSSystem::TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
  * Address:	8033E2A4
  * Size:	000150
  */
-void PSSystem::TaskEntryMgr::update()
+void TaskEntryMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -204,8 +206,7 @@ void PSSystem::TaskEntryMgr::update()
  * Address:	8033E3F4
  * Size:	0000A0
  */
-void PSSystem::TaskEntryMgr::appendEntry(PSSystem::TaskEntry*,
-                                         PSSystem::DirectorBase*)
+void TaskEntryMgr::appendEntry(PSSystem::TaskEntry*, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +264,7 @@ void PSSystem::TaskEntryMgr::appendEntry(PSSystem::TaskEntry*,
  * Address:	8033E494
  * Size:	000074
  */
-void PSSystem::TaskEntryMgr::removeEntry(PSSystem::TaskEntry*)
+void TaskEntryMgr::removeEntry(PSSystem::TaskEntry*)
 {
 	/*
 	.loc_0x0:
@@ -310,7 +311,7 @@ void PSSystem::TaskEntryMgr::removeEntry(PSSystem::TaskEntry*)
  * Address:	8033E508
  * Size:	0000A4
  */
-void PSSystem::TaskEntryMgr::removeAllEntry()
+void TaskEntryMgr::removeAllEntry()
 {
 	/*
 	.loc_0x0:
@@ -371,8 +372,7 @@ void PSSystem::TaskEntryMgr::removeAllEntry()
  * Address:	8033E5AC
  * Size:	000058
  */
-void PSSystem::MutexList<PSSystem::TaskEntry>::remove_Lock(
-    JSULink<PSSystem::TaskEntry>*)
+void MutexList<PSSystem::TaskEntry>::remove_Lock(JSULink<PSSystem::TaskEntry>*)
 {
 	/*
 	.loc_0x0:
@@ -406,8 +406,7 @@ void PSSystem::MutexList<PSSystem::TaskEntry>::remove_Lock(
  * Address:	8033E604
  * Size:	000058
  */
-void PSSystem::MutexList<PSSystem::TaskBase>::append_Lock(
-    JSULink<PSSystem::TaskBase>*)
+void MutexList<PSSystem::TaskBase>::append_Lock(JSULink<PSSystem::TaskBase>*)
 {
 	/*
 	.loc_0x0:
@@ -441,8 +440,7 @@ void PSSystem::MutexList<PSSystem::TaskBase>::append_Lock(
  * Address:	8033E65C
  * Size:	000058
  */
-void PSSystem::MutexList<PSSystem::TaskEntry>::append_Lock(
-    JSULink<PSSystem::TaskEntry>*)
+void MutexList<PSSystem::TaskEntry>::append_Lock(JSULink<PSSystem::TaskEntry>*)
 {
 	/*
 	.loc_0x0:
@@ -470,3 +468,4 @@ void PSSystem::MutexList<PSSystem::TaskEntry>::append_Lock(
 	  blr
 	*/
 }
+} // namespace PSSystem

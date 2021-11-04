@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800196C8
  * Size:	0000D8
  */
-void JKRAramHeap::JKRAramHeap(unsigned long, unsigned long)
+JKRAramHeap::JKRAramHeap(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -73,7 +73,7 @@ void JKRAramHeap::JKRAramHeap(unsigned long, unsigned long)
  * Address:	800197A0
  * Size:	0000A8
  */
-void JKRAramHeap::~JKRAramHeap()
+JKRAramHeap::~JKRAramHeap()
 {
 	/*
 	.loc_0x0:

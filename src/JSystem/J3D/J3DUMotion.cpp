@@ -428,7 +428,7 @@ void J3DMtxCalc::setAnmTransform(unsigned char, J3DAnmTransform*) { }
  * Address:	80016388
  * Size:	00005C
  */
-void J3DMtxCalcBlendAnmBase::~J3DMtxCalcBlendAnmBase()
+J3DMtxCalcBlendAnmBase::~J3DMtxCalcBlendAnmBase()
 {
 	/*
 	.loc_0x0:
@@ -467,7 +467,7 @@ void J3DMtxCalcBlendAnmBase::~J3DMtxCalcBlendAnmBase()
  * Address:	800163E4
  * Size:	000048
  */
-void J3DMtxCalc::~J3DMtxCalc()
+J3DMtxCalc::~J3DMtxCalc()
 {
 	/*
 	.loc_0x0:
@@ -1126,13 +1126,10 @@ void J3DMtxCalcScaleBlendMaya::calcScaleBlend(const Vec&, const Vec&)
  * Address:	80016C9C
  * Size:	000008
  */
-void J3DMtxCalcBlendAnmBase::setAnmTransform(J3DAnmTransform*)
+void J3DMtxCalcBlendAnmBase::setAnmTransform(J3DAnmTransform* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*

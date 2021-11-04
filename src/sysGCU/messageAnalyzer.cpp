@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	804560C8
  * Size:	00003C
  */
-void P2JME::Analyzer::__ct((JMessage::TReference const*))
+Analyzer::Analyzer(JMessage::TReference const*)
 {
 	/*
 	.loc_0x0:
@@ -32,14 +34,14 @@ void P2JME::Analyzer::__ct((JMessage::TReference const*))
  * Address:	80456104
  * Size:	000004
  */
-void P2JME::Analyzer::do_character((int)) { }
+void Analyzer::do_character(int) { }
 
 /*
  * --INFO--
  * Address:	80456108
  * Size:	00007C
  */
-void P2JME::Analyzer::exec((char*))
+void Analyzer::exec(char*)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +84,7 @@ void P2JME::Analyzer::exec((char*))
  * Address:	........
  * Size:	000064
  */
-void P2JME::Analyzer::exec((unsigned short, unsigned short))
+void Analyzer::exec(unsigned short, unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -92,7 +94,8 @@ void P2JME::Analyzer::exec((unsigned short, unsigned short))
  * Address:	........
  * Size:	000058
  */
-void P2JME::Analyzer::exec((unsigned long))
+void Analyzer::exec(unsigned long)
 {
 	// UNUSED FUNCTION
 }
+} // namespace P2JME

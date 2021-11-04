@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802427A8
  * Size:	0000A4
  */
-void Game::Cave::MapUnits::__ct((JUTTexture*))
+Cave::MapUnits::MapUnits(JUTTexture*)
 {
 	/*
 	.loc_0x0:
@@ -72,7 +64,7 @@ void Game::Cave::MapUnits::__ct((JUTTexture*))
  * Address:	8024284C
  * Size:	000060
  */
-void Game::Cave::MapUnits::setDoorNum((int))
+void Cave::MapUnits::setDoorNum(int)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +100,7 @@ void Game::Cave::MapUnits::setDoorNum((int))
  * Address:	802428AC
  * Size:	000060
  */
-void Game::Cave::AdjustNode::__dt(void)
+Cave::AdjustNode::~AdjustNode(void)
 {
 	/*
 	.loc_0x0:
@@ -146,13 +138,10 @@ void Game::Cave::AdjustNode::__dt(void)
  * Address:	8024290C
  * Size:	000008
  */
-void Game::Cave::MapUnits::setUnitName((char*))
+void Cave::MapUnits::setUnitName(char* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x10(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x10(r3)
+	_10 = a1;
 }
 
 /*
@@ -160,13 +149,10 @@ void Game::Cave::MapUnits::setUnitName((char*))
  * Address:	80242914
  * Size:	000008
  */
-void Game::Cave::MapUnits::setUnitIndex((int))
+void Cave::MapUnits::setUnitIndex(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x14(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x14(r3)
+	_14 = a1;
 }
 
 /*
@@ -174,13 +160,10 @@ void Game::Cave::MapUnits::setUnitIndex((int))
  * Address:	8024291C
  * Size:	000008
  */
-void Game::Cave::MapUnits::setUnitKind((int))
+void Cave::MapUnits::setUnitKind(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x18(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x18(r3)
+	_18 = a1;
 }
 
 /*
@@ -188,7 +171,7 @@ void Game::Cave::MapUnits::setUnitKind((int))
  * Address:	80242924
  * Size:	00000C
  */
-void Game::Cave::MapUnits::setUnitSize((int, int))
+void Cave::MapUnits::setUnitSize(int, int)
 {
 	/*
 	.loc_0x0:
@@ -203,13 +186,10 @@ void Game::Cave::MapUnits::setUnitSize((int, int))
  * Address:	80242930
  * Size:	000008
  */
-void Game::Cave::MapUnits::setBaseGenPtr((Game::Cave::BaseGen*))
+void Cave::MapUnits::setBaseGenPtr(Game::Cave::BaseGen* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xC(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0xC(r3)
+	_0C = a1;
 }
 
 /*
@@ -217,7 +197,7 @@ void Game::Cave::MapUnits::setBaseGenPtr((Game::Cave::BaseGen*))
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::setUnitTexture((JUTTexture*))
+void Cave::MapUnits::setUnitTexture(JUTTexture*)
 {
 	// UNUSED FUNCTION
 }
@@ -227,7 +207,7 @@ void Game::Cave::MapUnits::setUnitTexture((JUTTexture*))
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getUnitName(void)
+void Cave::MapUnits::getUnitName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -237,7 +217,7 @@ void Game::Cave::MapUnits::getUnitName(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getUnitIndex(void)
+void Cave::MapUnits::getUnitIndex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -247,7 +227,7 @@ void Game::Cave::MapUnits::getUnitIndex(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getUnitKind(void)
+void Cave::MapUnits::getUnitKind(void)
 {
 	// UNUSED FUNCTION
 }
@@ -257,7 +237,7 @@ void Game::Cave::MapUnits::getUnitKind(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getUnitSizeX(void)
+void Cave::MapUnits::getUnitSizeX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -267,7 +247,7 @@ void Game::Cave::MapUnits::getUnitSizeX(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getUnitSizeY(void)
+void Cave::MapUnits::getUnitSizeY(void)
 {
 	// UNUSED FUNCTION
 }
@@ -277,7 +257,7 @@ void Game::Cave::MapUnits::getUnitSizeY(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getBaseGen(void)
+void Cave::MapUnits::getBaseGen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -287,7 +267,7 @@ void Game::Cave::MapUnits::getBaseGen(void)
  * Address:	........
  * Size:	000008
  */
-void Game::Cave::MapUnits::getUnitTexture(void)
+void Cave::MapUnits::getUnitTexture(void)
 {
 	// UNUSED FUNCTION
 }
@@ -297,7 +277,7 @@ void Game::Cave::MapUnits::getUnitTexture(void)
  * Address:	80242938
  * Size:	000064
  */
-void Game::Cave::UnitInfo::__ct((Game::Cave::MapUnits*))
+Cave::UnitInfo::UnitInfo(Game::Cave::MapUnits*)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +316,7 @@ void Game::Cave::UnitInfo::__ct((Game::Cave::MapUnits*))
  * Address:	8024299C
  * Size:	00000C
  */
-void Game::Cave::UnitInfo::setUnitTexture((JUTTexture*))
+void Cave::UnitInfo::setUnitTexture(JUTTexture*)
 {
 	/*
 	.loc_0x0:
@@ -351,13 +331,10 @@ void Game::Cave::UnitInfo::setUnitTexture((JUTTexture*))
  * Address:	802429A8
  * Size:	000008
  */
-void Game::Cave::UnitInfo::setUnitRotation((int))
+void Cave::UnitInfo::setUnitRotation(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xC(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0xC(r3)
+	_0C = a1;
 }
 
 /*
@@ -365,7 +342,7 @@ void Game::Cave::UnitInfo::setUnitRotation((int))
  * Address:	802429B0
  * Size:	0001BC
  */
-void Game::Cave::UnitInfo::create(void)
+void Cave::UnitInfo::create(void)
 {
 	/*
 	.loc_0x0:
@@ -520,7 +497,7 @@ void Game::Cave::UnitInfo::create(void)
  * Address:	80242B6C
  * Size:	00000C
  */
-void Game::Cave::UnitInfo::getUnitName(void)
+void Cave::UnitInfo::getUnitName(void)
 {
 	/*
 	.loc_0x0:
@@ -535,7 +512,7 @@ void Game::Cave::UnitInfo::getUnitName(void)
  * Address:	........
  * Size:	00000C
  */
-void Game::Cave::UnitInfo::getUnitIndex(void)
+void Cave::UnitInfo::getUnitIndex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -545,7 +522,7 @@ void Game::Cave::UnitInfo::getUnitIndex(void)
  * Address:	80242B78
  * Size:	00000C
  */
-void Game::Cave::UnitInfo::getUnitKind(void)
+void Cave::UnitInfo::getUnitKind(void)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +537,7 @@ void Game::Cave::UnitInfo::getUnitKind(void)
  * Address:	80242B84
  * Size:	000008
  */
-void Game::Cave::UnitInfo::getUnitSizeX(void)
+void Cave::UnitInfo::getUnitSizeX(void)
 {
 	/*
 	.loc_0x0:
@@ -574,7 +551,7 @@ void Game::Cave::UnitInfo::getUnitSizeX(void)
  * Address:	80242B8C
  * Size:	000008
  */
-void Game::Cave::UnitInfo::getUnitSizeY(void)
+void Cave::UnitInfo::getUnitSizeY(void)
 {
 	/*
 	.loc_0x0:
@@ -588,7 +565,7 @@ void Game::Cave::UnitInfo::getUnitSizeY(void)
  * Address:	80242B94
  * Size:	000008
  */
-void Game::Cave::UnitInfo::getUnitRotation(void)
+void Cave::UnitInfo::getUnitRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -602,7 +579,7 @@ void Game::Cave::UnitInfo::getUnitRotation(void)
  * Address:	80242B9C
  * Size:	000024
  */
-void Game::Cave::UnitInfo::getDoorNode((int))
+void Cave::UnitInfo::getDoorNode(int)
 {
 	/*
 	.loc_0x0:
@@ -623,7 +600,7 @@ void Game::Cave::UnitInfo::getDoorNode((int))
  * Address:	80242BC0
  * Size:	00000C
  */
-void Game::Cave::UnitInfo::getBaseGen(void)
+void Cave::UnitInfo::getBaseGen(void)
 {
 	/*
 	.loc_0x0:
@@ -638,7 +615,7 @@ void Game::Cave::UnitInfo::getBaseGen(void)
  * Address:	80242BCC
  * Size:	00018C
  */
-void Game::Cave::UnitInfo::draw((float, float, float, float))
+void Cave::UnitInfo::draw(float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -755,3 +732,4 @@ void Game::Cave::UnitInfo::draw((float, float, float, float))
 	  blr
 	*/
 }
+} // namespace Game

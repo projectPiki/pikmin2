@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80389634
  * Size:	0000A4
  */
-void Game::ShijimiChou::Obj::setParameters(void)
+void ShijimiChou::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -63,12 +55,14 @@ void Game::ShijimiChou::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	803896D8
  * Size:	000020
  */
-void birth__Q34Game11ShijimiChou3ObjFR10Vector3<float> f(void)
+void birth__Q34Game11ShijimiChou3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -83,12 +77,14 @@ void birth__Q34Game11ShijimiChou3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803896F8
  * Size:	00024C
  */
-void Game::ShijimiChou::Obj::onInit((Game::CreatureInitArg*))
+void ShijimiChou::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +247,7 @@ void Game::ShijimiChou::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80389944
  * Size:	000250
  */
-void Game::ShijimiChou::Obj::__ct(void)
+ShijimiChou::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -423,7 +419,7 @@ void Game::ShijimiChou::Obj::__ct(void)
  * Address:	80389B94
  * Size:	00004C
  */
-void Game::ShijimiChou::Obj::setFSM((Game::ShijimiChou::FSM*))
+void ShijimiChou::Obj::setFSM(Game::ShijimiChou::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -454,7 +450,7 @@ void Game::ShijimiChou::Obj::setFSM((Game::ShijimiChou::FSM*))
  * Address:	80389BE0
  * Size:	0000AC
  */
-void Game::ShijimiChou::Obj::doUpdate(void)
+void ShijimiChou::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -513,14 +509,14 @@ void Game::ShijimiChou::Obj::doUpdate(void)
  * Address:	80389C8C
  * Size:	000004
  */
-void Game::ShijimiChou::Obj::doDirectDraw((Graphics&)) { }
+void ShijimiChou::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80389C90
  * Size:	000020
  */
-void Game::ShijimiChou::Obj::doDebugDraw((Graphics&))
+void ShijimiChou::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +536,7 @@ void Game::ShijimiChou::Obj::doDebugDraw((Graphics&))
  * Address:	80389CB0
  * Size:	000020
  */
-void Game::ShijimiChou::Obj::doAnimation(void)
+void ShijimiChou::Obj::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +556,7 @@ void Game::ShijimiChou::Obj::doAnimation(void)
  * Address:	80389CD0
  * Size:	00004C
  */
-void Game::ShijimiChou::Obj::doEntry(void)
+void ShijimiChou::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -595,7 +591,7 @@ void Game::ShijimiChou::Obj::doEntry(void)
  * Address:	80389D1C
  * Size:	0001A0
  */
-void Game::ShijimiChou::Obj::doAnimationCullingOff(void)
+void ShijimiChou::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -721,7 +717,7 @@ void Game::ShijimiChou::Obj::doAnimationCullingOff(void)
  * Address:	80389EBC
  * Size:	0000B8
  */
-void Game::ShijimiChou::Obj::doAnimationCullingOn(void)
+void ShijimiChou::Obj::doAnimationCullingOn(void)
 {
 	/*
 	.loc_0x0:
@@ -785,7 +781,7 @@ void Game::ShijimiChou::Obj::doAnimationCullingOn(void)
  * Address:	80389F74
  * Size:	000084
  */
-void Game::ShijimiChou::Obj::onKill((Game::CreatureKillArg*))
+void ShijimiChou::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -832,7 +828,7 @@ void Game::ShijimiChou::Obj::onKill((Game::CreatureKillArg*))
  * Address:	80389FF8
  * Size:	000438
  */
-void Game::ShijimiChou::Obj::doSimulation((float))
+void ShijimiChou::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1146,7 +1142,7 @@ void Game::ShijimiChou::Obj::doSimulation((float))
  * Address:	8038A430
  * Size:	00026C
  */
-void Game::ShijimiChou::Obj::changeMaterial(void)
+void ShijimiChou::Obj::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -1323,7 +1319,7 @@ void Game::ShijimiChou::Obj::changeMaterial(void)
  * Address:	8038A69C
  * Size:	000030
  */
-void Game::ShijimiChou::Obj::doStartMovie(void)
+void ShijimiChou::Obj::doStartMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -1347,7 +1343,7 @@ void Game::ShijimiChou::Obj::doStartMovie(void)
  * Address:	8038A6CC
  * Size:	000030
  */
-void Game::ShijimiChou::Obj::doEndMovie(void)
+void ShijimiChou::Obj::doEndMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -1371,7 +1367,7 @@ void Game::ShijimiChou::Obj::doEndMovie(void)
  * Address:	8038A6FC
  * Size:	000034
  */
-void Game::ShijimiChou::Obj::doStartStoneState(void)
+void ShijimiChou::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -1396,7 +1392,7 @@ void Game::ShijimiChou::Obj::doStartStoneState(void)
  * Address:	8038A730
  * Size:	000008
  */
-u32 Game::ShijimiChou::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+u32 ShijimiChou::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	return 0x0;
 }
@@ -1406,7 +1402,7 @@ u32 Game::ShijimiChou::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	8038A738
  * Size:	000094
  */
-void Game::ShijimiChou::Obj::wallCallback((Game::MoveInfo const&))
+void ShijimiChou::Obj::wallCallback(Game::MoveInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -1461,7 +1457,7 @@ void Game::ShijimiChou::Obj::wallCallback((Game::MoveInfo const&))
  * Address:	8038A7CC
  * Size:	000064
  */
-void Game::ShijimiChou::Obj::collisionCallback((Game::CollEvent&))
+void ShijimiChou::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1500,7 +1496,7 @@ void Game::ShijimiChou::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8038A830
  * Size:	000028
  */
-void Game::ShijimiChou::Obj::startCarcassMotion(void)
+void ShijimiChou::Obj::startCarcassMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -1522,7 +1518,7 @@ void Game::ShijimiChou::Obj::startCarcassMotion(void)
  * Address:	8038A858
  * Size:	000124
  */
-void Game::ShijimiChou::Obj::getShadowParam((Game::ShadowParam&))
+void ShijimiChou::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -1617,7 +1613,7 @@ void Game::ShijimiChou::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8038A97C
  * Size:	00023C
  */
-void Game::ShijimiChou::Obj::genItem(void)
+void ShijimiChou::Obj::genItem(void)
 {
 	/*
 	.loc_0x0:
@@ -1790,7 +1786,7 @@ void Game::ShijimiChou::Obj::genItem(void)
  * Address:	8038ABB8
  * Size:	000080
  */
-void Game::ShijimiChou::Obj::checkFlyStart(void)
+void ShijimiChou::Obj::checkFlyStart(void)
 {
 	/*
 	.loc_0x0:
@@ -1842,7 +1838,7 @@ void Game::ShijimiChou::Obj::checkFlyStart(void)
  * Address:	8038AC38
  * Size:	0003BC
  */
-void Game::ShijimiChou::Obj::fly(void)
+void ShijimiChou::Obj::fly(void)
 {
 	/*
 	.loc_0x0:
@@ -2123,7 +2119,7 @@ void Game::ShijimiChou::Obj::fly(void)
  * Address:	8038AFF4
  * Size:	000108
  */
-void Game::ShijimiChou::Obj::restFly(void)
+void ShijimiChou::Obj::restFly(void)
 {
 	/*
 	.loc_0x0:
@@ -2209,7 +2205,7 @@ void Game::ShijimiChou::Obj::restFly(void)
  * Address:	8038B0FC
  * Size:	0000B4
  */
-void Game::ShijimiChou::Obj::restCheck(void)
+void ShijimiChou::Obj::restCheck(void)
 {
 	/*
 	.loc_0x0:
@@ -2268,7 +2264,7 @@ void Game::ShijimiChou::Obj::restCheck(void)
  * Address:	8038B1B0
  * Size:	000370
  */
-void Game::ShijimiChou::Obj::checkRestOn(void)
+void ShijimiChou::Obj::checkRestOn(void)
 {
 	/*
 	.loc_0x0:
@@ -2524,7 +2520,7 @@ void Game::ShijimiChou::Obj::checkRestOn(void)
  * Address:	8038B520
  * Size:	0002AC
  */
-void Game::ShijimiChou::Obj::checkRestOff(void)
+void ShijimiChou::Obj::checkRestOff(void)
 {
 	/*
 	.loc_0x0:
@@ -2725,7 +2721,7 @@ void Game::ShijimiChou::Obj::checkRestOff(void)
  * Address:	8038B7CC
  * Size:	0000FC
  */
-void Game::ShijimiChou::Obj::resetRestPos(void)
+void ShijimiChou::Obj::resetRestPos(void)
 {
 	/*
 	.loc_0x0:
@@ -2802,7 +2798,7 @@ void Game::ShijimiChou::Obj::resetRestPos(void)
  * Address:	8038B8C8
  * Size:	000174
  */
-void Game::ShijimiChou::Obj::leave(void)
+void ShijimiChou::Obj::leave(void)
 {
 	/*
 	.loc_0x0:
@@ -2919,7 +2915,7 @@ void Game::ShijimiChou::Obj::leave(void)
  * Address:	8038BA3C
  * Size:	0001AC
  */
-void Game::ShijimiChou::Obj::leaveInit(void)
+void ShijimiChou::Obj::leaveInit(void)
 {
 	/*
 	.loc_0x0:
@@ -3048,7 +3044,7 @@ void Game::ShijimiChou::Obj::leaveInit(void)
  * Address:	8038BBE8
  * Size:	000210
  */
-void Game::ShijimiChou::Obj::setNextGoal(void)
+void ShijimiChou::Obj::setNextGoal(void)
 {
 	/*
 	.loc_0x0:
@@ -3208,7 +3204,7 @@ void Game::ShijimiChou::Obj::setNextGoal(void)
  * Address:	8038BDF8
  * Size:	000100
  */
-void Game::ShijimiChou::Obj::setTraceGoal(void)
+void ShijimiChou::Obj::setTraceGoal(void)
 {
 	/*
 	.loc_0x0:
@@ -3288,7 +3284,7 @@ void Game::ShijimiChou::Obj::setTraceGoal(void)
  * Address:	8038BEF8
  * Size:	000060
  */
-void Game::ShijimiChou::Obj::isFallEnd(void)
+void ShijimiChou::Obj::isFallEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -3330,7 +3326,7 @@ void Game::ShijimiChou::Obj::isFallEnd(void)
  * Address:	8038BF58
  * Size:	000028
  */
-void Game::ShijimiChou::Obj::deadEffect(void)
+void ShijimiChou::Obj::deadEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -3352,7 +3348,7 @@ void Game::ShijimiChou::Obj::deadEffect(void)
  * Address:	8038BF80
  * Size:	0001C4
  */
-void Game::ShijimiChou::Obj::fallBehavior(void)
+void ShijimiChou::Obj::fallBehavior(void)
 {
 	/*
 	.loc_0x0:
@@ -3491,7 +3487,7 @@ void Game::ShijimiChou::Obj::fallBehavior(void)
  * Address:	8038C144
  * Size:	0000B0
  */
-void Game::ShijimiChou::Obj::updateCluster(void)
+void ShijimiChou::Obj::updateCluster(void)
 {
 	/*
 	.loc_0x0:
@@ -3555,7 +3551,7 @@ void Game::ShijimiChou::Obj::updateCluster(void)
  * Address:	8038C1F4
  * Size:	000020
  */
-void Game::ShijimiChou::Obj::getFlyType(void)
+void ShijimiChou::Obj::getFlyType(void)
 {
 	/*
 	.loc_0x0:
@@ -3577,7 +3573,7 @@ void Game::ShijimiChou::Obj::getFlyType(void)
  * Address:	8038C214
  * Size:	00006C
  */
-void Game::ShijimiChou::Obj::leaderInit(void)
+void ShijimiChou::Obj::leaderInit(void)
 {
 	/*
 	.loc_0x0:
@@ -3618,7 +3614,7 @@ void Game::ShijimiChou::Obj::leaderInit(void)
  * Address:	8038C280
  * Size:	0000A8
  */
-void Game::ShijimiChou::Obj::createAppearEffect(void)
+void ShijimiChou::Obj::createAppearEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -3678,7 +3674,7 @@ void Game::ShijimiChou::Obj::createAppearEffect(void)
  * Address:	8038C328
  * Size:	000030
  */
-void Game::ShijimiChou::Obj::fadeAppearEffect(void)
+void ShijimiChou::Obj::fadeAppearEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -3697,12 +3693,16 @@ void Game::ShijimiChou::Obj::fadeAppearEffect(void)
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8038C358
  * Size:	000008
  */
-void efx::ArgChou::getName(void)
+void ArgChou::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -3711,21 +3711,23 @@ void efx::ArgChou::getName(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8038C360
  * Size:	000004
  */
-void Game::ShijimiChou::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-}
+void ShijimiChou::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8038C364
  * Size:	000088
  */
-void Game::ShijimiChou::Obj::ignoreAtari((Game::Creature*))
+void ShijimiChou::Obj::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -3781,7 +3783,7 @@ void Game::ShijimiChou::Obj::ignoreAtari((Game::Creature*))
  * Address:	8038C3EC
  * Size:	000008
  */
-u32 Game::ShijimiChou::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+u32 ShijimiChou::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	return 0x0;
 }
@@ -3791,8 +3793,7 @@ u32 Game::ShijimiChou::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8038C3F4
  * Size:	000008
  */
-void Game::ShijimiChou::Obj::hipdropCallBack((Game::Creature*, float,
-                                              CollPart*))
+void ShijimiChou::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	return 0x0;
 }
@@ -3802,17 +3803,16 @@ void Game::ShijimiChou::Obj::hipdropCallBack((Game::Creature*, float,
  * Address:	8038C3FC
  * Size:	000008
  */
-u32 Game::ShijimiChou::Obj::earthquakeCallBack((Game::Creature*, float))
-{
-	return 0x0;
-}
+u32 ShijimiChou::Obj::earthquakeCallBack(Game::Creature*, float) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8038C404
  * Size:	000008
  */
-u32 Game::ShijimiChou::Obj::getEnemyTypeID(void) { return 0x4D; }
+u32 ShijimiChou::Obj::getEnemyTypeID(void) { return 0x4D; }
+
+} // namespace efx
 
 /*
  * --INFO--

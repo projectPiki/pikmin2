@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void Game::PlayData::prepareSave(void)
+void PlayData::prepareSave(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::PlayData::prepareSave(void)
  * Address:	8021CFF4
  * Size:	000740
  */
-void Game::PlayData::write((Stream&))
+void PlayData::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -525,7 +517,7 @@ void Game::PlayData::write((Stream&))
  * Address:	8021D734
  * Size:	000404
  */
-void Game::PlayData::read((Stream&))
+void PlayData::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +828,7 @@ void Game::PlayData::read((Stream&))
  * Address:	8021DB38
  * Size:	000044
  */
-void Game::PlayData::LimitGen::read((Stream&))
+void PlayData::LimitGen::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -865,7 +857,7 @@ void Game::PlayData::LimitGen::read((Stream&))
  * Address:	8021DB7C
  * Size:	000078
  */
-void Game::PlayData::LimitGen::write((Stream&))
+void PlayData::LimitGen::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -907,7 +899,7 @@ void Game::PlayData::LimitGen::write((Stream&))
  * Address:	........
  * Size:	0000C8
  */
-void Game::KindCounter::write((Stream&))
+void KindCounter::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -917,7 +909,7 @@ void Game::KindCounter::write((Stream&))
  * Address:	........
  * Size:	000098
  */
-void Game::KindCounter::read((Stream&))
+void KindCounter::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -927,7 +919,7 @@ void Game::KindCounter::read((Stream&))
  * Address:	8021DBF4
  * Size:	000208
  */
-void Game::PelletCropMemory::write((Stream&))
+void PelletCropMemory::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1081,7 +1073,7 @@ void Game::PelletCropMemory::write((Stream&))
  * Address:	8021DDFC
  * Size:	000150
  */
-void Game::PelletCropMemory::read((Stream&))
+void PelletCropMemory::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1195,7 +1187,7 @@ void Game::PelletCropMemory::read((Stream&))
  * Address:	8021DF4C
  * Size:	00007C
  */
-void Game::OlimarData::write((Stream&))
+void OlimarData::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1240,7 +1232,7 @@ void Game::OlimarData::write((Stream&))
  * Address:	8021DFC8
  * Size:	00005C
  */
-void Game::OlimarData::read((Stream&))
+void OlimarData::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1277,7 +1269,7 @@ void Game::OlimarData::read((Stream&))
  * Address:	8021E024
  * Size:	000198
  */
-void Game::CaveSaveData::write((Stream&))
+void CaveSaveData::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1391,7 +1383,7 @@ void Game::CaveSaveData::write((Stream&))
  * Address:	8021E1BC
  * Size:	0000D0
  */
-void Game::CaveSaveData::read((Stream&, unsigned long))
+void CaveSaveData::read(Stream&, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1451,3 +1443,4 @@ void Game::CaveSaveData::read((Stream&, unsigned long))
 	  blr
 	*/
 }
+} // namespace Game

@@ -5,7 +5,7 @@
  * Address:	80035530
  * Size:	000060
  */
-void J2DOrthoGraph::J2DOrthoGraph()
+J2DOrthoGraph::J2DOrthoGraph()
 {
 	/*
 	.loc_0x0:
@@ -41,7 +41,7 @@ void J2DOrthoGraph::J2DOrthoGraph()
  * Address:	80035590
  * Size:	000048
  */
-void J2DGrafContext::~J2DGrafContext()
+J2DGrafContext::~J2DGrafContext()
 {
 	/*
 	.loc_0x0:
@@ -73,7 +73,7 @@ void J2DGrafContext::~J2DGrafContext()
  * Address:	800355D8
  * Size:	0000E4
  */
-void J2DOrthoGraph::J2DOrthoGraph(float, float, float, float, float, float)
+J2DOrthoGraph::J2DOrthoGraph(float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:

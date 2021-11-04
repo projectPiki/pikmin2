@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000048
  */
-void JUTDbPrint::JUTDbPrint(JUTFont*, JKRHeap*)
+JUTDbPrint::JUTDbPrint(JUTFont*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JUTDbPrint::JUTDbPrint(JUTFont*, JKRHeap*)
  * Address:	........
  * Size:	000050
  */
-void JUTDbPrint::~JUTDbPrint()
+JUTDbPrint::~JUTDbPrint()
 {
 	// UNUSED FUNCTION
 }

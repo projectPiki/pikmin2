@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	8031CC90
  * Size:	00003C
  */
-void og::newScreen::Cave::__ct(void)
+newScreen::Cave::Cave(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +34,7 @@ void og::newScreen::Cave::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::Cave::__dt(void)
+newScreen::Cave::~Cave(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,14 +44,14 @@ void og::newScreen::Cave::__dt(void)
  * Address:	8031CCCC
  * Size:	000004
  */
-void og::newScreen::Cave::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::Cave::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	8031CCD0
  * Size:	000078
  */
-void og::newScreen::Cave::doCreateObj((JKRArchive*))
+void newScreen::Cave::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -93,7 +95,7 @@ void og::newScreen::Cave::doCreateObj((JKRArchive*))
  * Address:	8031CD48
  * Size:	00000C
  */
-void og::newScreen::Cave::getResName( const
+void newScreen::Cave::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -108,17 +110,14 @@ void og::newScreen::Cave::getResName( const
  * Address:	8031CD54
  * Size:	000008
  */
-u32  og::newScreen::Cave::getSceneType(void)
-{
-	return 0x2711;
-}
+u32 newScreen::Cave::getSceneType(void) { return 0x2711; }
 
 /*
  * --INFO--
  * Address:	8031CD5C
  * Size:	00000C
  */
-void og::newScreen::Cave::getOwnerID(void)
+void newScreen::Cave::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -133,7 +132,7 @@ void og::newScreen::Cave::getOwnerID(void)
  * Address:	8031CD68
  * Size:	000010
  */
-void og::newScreen::Cave::getMemberID(void)
+void newScreen::Cave::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -149,7 +148,5 @@ void og::newScreen::Cave::getMemberID(void)
  * Address:	8031CD78
  * Size:	000008
  */
-u32  og::newScreen::Cave::isDrawInDemo( const
-{
-	return 0x0;
-}
+u32 newScreen::Cave::isDrawInDemo() const { return 0x0; }
+} // namespace og

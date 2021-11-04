@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80434AC0
  * Size:	000064
  */
-void P2DScreen::Mgr::__ct(void)
+P2DScreen::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +42,7 @@ void P2DScreen::Mgr::__ct(void)
  * Address:	80434B24
  * Size:	000138
  */
-void P2DScreen::Mgr::addCallBack((unsigned long long, P2DScreen::Node*))
+void P2DScreen::Mgr::addCallBack(unsigned long long, P2DScreen::Node*)
 {
 	/*
 	.loc_0x0:
@@ -152,7 +152,7 @@ void P2DScreen::Mgr::addCallBack((unsigned long long, P2DScreen::Node*))
  * Address:	80434C5C
  * Size:	000084
  */
-void P2DScreen::Mgr::addCallBackPane((J2DPane*, P2DScreen::Node*))
+void P2DScreen::Mgr::addCallBackPane(J2DPane*, P2DScreen::Node*)
 {
 	/*
 	.loc_0x0:
@@ -234,7 +234,7 @@ void P2DScreen::Mgr::update(void)
  * Address:	80434D2C
  * Size:	000080
  */
-void P2DScreen::Mgr::draw((Graphics&, J2DGrafContext&))
+void P2DScreen::Mgr::draw(Graphics&, J2DGrafContext&)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +282,7 @@ void P2DScreen::Mgr::draw((Graphics&, J2DGrafContext&))
  * Address:	80434DAC
  * Size:	000088
  */
-void P2DScreen::Mgr_tuning::__ct(void)
+P2DScreen::Mgr_tuning::Mgr_tuning(void)
 {
 	/*
 	.loc_0x0:
@@ -328,7 +328,7 @@ void P2DScreen::Mgr_tuning::__ct(void)
  * Address:	80434E34
  * Size:	000128
  */
-void P2DScreen::Mgr_tuning::draw((Graphics&, J2DGrafContext&))
+void P2DScreen::Mgr_tuning::draw(Graphics&, J2DGrafContext&)
 {
 	/*
 	.loc_0x0:

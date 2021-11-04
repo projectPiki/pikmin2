@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80265D14
  * Size:	000050
  */
-void Game::Ujia::Mgr::Mgr(int, unsigned char)
+Ujia::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Ujia::Mgr::Mgr(int, unsigned char)
  * Address:	80265D64
  * Size:	000048
  */
-void Game::Ujia::Mgr::doAlloc()
+void Ujia::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Ujia::Mgr::doAlloc()
  * Address:	80265DAC
  * Size:	000098
  */
-void Game::Ujia::Parms::Parms()
+Ujia::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -121,7 +123,7 @@ void Game::Ujia::Parms::Parms()
  * Address:	80265E44
  * Size:	000060
  */
-void Game::Ujia::Mgr::createObj(int)
+void Ujia::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -157,7 +159,7 @@ void Game::Ujia::Mgr::createObj(int)
  * Address:	80265EA4
  * Size:	0000BC
  */
-void Game::Ujia::Obj::~Obj()
+Ujia::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -220,7 +222,7 @@ void Game::Ujia::Obj::~Obj()
  * Address:	80265F60
  * Size:	000010
  */
-void Game::Ujia::Mgr::getEnemy(int)
+void Ujia::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -236,7 +238,7 @@ void Game::Ujia::Mgr::getEnemy(int)
  * Address:	80265F70
  * Size:	000050
  */
-void Game::Ujia::Parms::read(Stream&)
+void Ujia::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +270,7 @@ void Game::Ujia::Parms::read(Stream&)
  * Address:	80265FC0
  * Size:	0000B0
  */
-void Game::Ujia::Mgr::~Mgr()
+Ujia::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -328,14 +330,14 @@ void Game::Ujia::Mgr::~Mgr()
  * Address:	80266070
  * Size:	000008
  */
-u32 Game::Ujia::Mgr::getEnemyTypeID() { return 0xC; }
+u32 Ujia::Mgr::getEnemyTypeID() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	80266078
  * Size:	000008
  */
-void Game::Ujia::Mgr::@4 @__dt()
+Ujia::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -343,3 +345,4 @@ void Game::Ujia::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

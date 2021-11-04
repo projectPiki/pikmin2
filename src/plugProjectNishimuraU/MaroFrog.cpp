@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802617E0
  * Size:	000098
  */
-void Game::MaroFrog::Obj::Obj()
+MaroFrog::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -57,7 +59,7 @@ void Game::MaroFrog::Obj::Obj()
  * Address:	80261878
  * Size:	00045C
  */
-void Game::MaroFrog::Obj::attackNaviPosition()
+void MaroFrog::Obj::attackNaviPosition()
 {
 	/*
 	.loc_0x0:
@@ -368,7 +370,7 @@ void Game::MaroFrog::Obj::attackNaviPosition()
  * Address:	80261CD4
  * Size:	0000B0
  */
-void Game::MaroFrog::Obj::createEffect()
+void MaroFrog::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -426,4 +428,5 @@ void Game::MaroFrog::Obj::createEffect()
  * Address:	80261D84
  * Size:	000008
  */
-u32 Game::MaroFrog::Obj::getEnemyTypeID() { return 0x12; }
+u32 MaroFrog::Obj::getEnemyTypeID() { return 0x12; }
+} // namespace Game

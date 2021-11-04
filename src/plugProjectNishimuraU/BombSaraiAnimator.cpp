@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802B2130
  * Size:	000008
  */
-void Game::BombSarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void BombSarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::BombSarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802B2138
  * Size:	000008
  */
-void Game::BombSarai::ProperAnimator::getAnimator(int)
+void BombSarai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::BombSarai::ProperAnimator::getAnimator(int)
  * Address:	802B2140
  * Size:	00005C
  */
-void Game::BombSarai::ProperAnimator::~ProperAnimator()
+BombSarai::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::BombSarai::ProperAnimator::~ProperAnimator()
  * Address:	802B219C
  * Size:	000008
  */
-void Game::BombSarai::ProperAnimator::getAnimator()
+void BombSarai::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::BombSarai::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

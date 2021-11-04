@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802352F0
  * Size:	000044
  */
-void Game::VsGame::TekiMgr::__ct(void)
+VsGame::TekiMgr::TekiMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -44,7 +36,7 @@ void Game::VsGame::TekiMgr::__ct(void)
  * Address:	80235334
  * Size:	000060
  */
-void Game::VsGame::TekiNode::__dt(void)
+VsGame::TekiNode::~TekiNode(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +74,7 @@ void Game::VsGame::TekiNode::__dt(void)
  * Address:	80235394
  * Size:	0000A0
  */
-void Game::VsGame::TekiMgr::entry((Game::EnemyTypeID::EEnemyTypeID, int))
+void VsGame::TekiMgr::entry(Game::EnemyTypeID::EEnemyTypeID, int)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +128,7 @@ void Game::VsGame::TekiMgr::entry((Game::EnemyTypeID::EEnemyTypeID, int))
  * Address:	........
  * Size:	000020
  */
-void Game::VsGame::TekiMgr::getNode((int))
+void VsGame::TekiMgr::getNode(int)
 {
 	// UNUSED FUNCTION
 }
@@ -146,17 +138,19 @@ void Game::VsGame::TekiMgr::getNode((int))
  * Address:	........
  * Size:	00002C
  */
-void Game::VsGame::TekiMgr::birthable((int))
+void VsGame::TekiMgr::birthable(int)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	80235434
  * Size:	0000D8
  */
-void birth__Q34Game6VsGame7TekiMgrFiR10Vector3<float> b(void)
+void birth__Q34Game6VsGame7TekiMgrFiR10Vector3f b(void)
 {
 	/*
 	.loc_0x0:
@@ -225,12 +219,15 @@ void birth__Q34Game6VsGame7TekiMgrFiR10Vector3<float> b(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-void Game::VsGame::TekiMgr::getID((int))
+void VsGame::TekiMgr::getID(int)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Game

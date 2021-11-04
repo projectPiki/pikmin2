@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802BBCD4
  * Size:	000050
  */
-void Game::Imomushi::Mgr::Mgr(int, unsigned char)
+Imomushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Imomushi::Mgr::Mgr(int, unsigned char)
  * Address:	802BBD24
  * Size:	000048
  */
-void Game::Imomushi::Mgr::doAlloc()
+void Imomushi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Imomushi::Mgr::doAlloc()
  * Address:	802BBD6C
  * Size:	000190
  */
-void Game::Imomushi::Parms::Parms()
+Imomushi::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -183,7 +185,7 @@ void Game::Imomushi::Parms::Parms()
  * Address:	802BBEFC
  * Size:	000060
  */
-void Game::Imomushi::Mgr::createObj(int)
+void Imomushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -219,7 +221,7 @@ void Game::Imomushi::Mgr::createObj(int)
  * Address:	802BBF5C
  * Size:	0000BC
  */
-void Game::Imomushi::Obj::~Obj()
+Imomushi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -282,7 +284,7 @@ void Game::Imomushi::Obj::~Obj()
  * Address:	802BC018
  * Size:	000010
  */
-void Game::Imomushi::Mgr::getEnemy(int)
+void Imomushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +300,7 @@ void Game::Imomushi::Mgr::getEnemy(int)
  * Address:	802BC028
  * Size:	000050
  */
-void Game::Imomushi::Parms::read(Stream&)
+void Imomushi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -330,7 +332,7 @@ void Game::Imomushi::Parms::read(Stream&)
  * Address:	802BC078
  * Size:	0000B0
  */
-void Game::Imomushi::Mgr::~Mgr()
+Imomushi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -390,14 +392,14 @@ void Game::Imomushi::Mgr::~Mgr()
  * Address:	802BC128
  * Size:	000008
  */
-u32 Game::Imomushi::Mgr::getEnemyTypeID() { return 0x41; }
+u32 Imomushi::Mgr::getEnemyTypeID() { return 0x41; }
 
 /*
  * --INFO--
  * Address:	802BC130
  * Size:	000008
  */
-void Game::Imomushi::Mgr::@4 @__dt()
+Imomushi::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -405,3 +407,4 @@ void Game::Imomushi::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

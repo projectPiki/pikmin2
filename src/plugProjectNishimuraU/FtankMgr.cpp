@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8029E12C
  * Size:	000050
  */
-void Game::Ftank::Mgr::Mgr(int, unsigned char)
+Ftank::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Ftank::Mgr::Mgr(int, unsigned char)
  * Address:	8029E17C
  * Size:	000048
  */
-void Game::Ftank::Mgr::doAlloc()
+void Ftank::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::Ftank::Mgr::doAlloc()
  * Address:	8029E1C4
  * Size:	000060
  */
-void Game::Ftank::Mgr::createObj(int)
+void Ftank::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Ftank::Mgr::createObj(int)
  * Address:	8029E224
  * Size:	0000F0
  */
-void Game::Ftank::Obj::~Obj()
+Ftank::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::Ftank::Obj::~Obj()
  * Address:	8029E314
  * Size:	000010
  */
-void Game::Ftank::Mgr::getEnemy(int)
+void Ftank::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::Ftank::Mgr::getEnemy(int)
  * Address:	8029E324
  * Size:	000080
  */
-void Game::Ftank::Mgr::loadTexData()
+void Ftank::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -245,7 +247,7 @@ void Game::Ftank::Mgr::loadTexData()
  * Address:	8029E3A4
  * Size:	0000C8
  */
-void Game::Ftank::Mgr::~Mgr()
+Ftank::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -311,14 +313,14 @@ void Game::Ftank::Mgr::~Mgr()
  * Address:	8029E46C
  * Size:	000008
  */
-u32 Game::Ftank::Mgr::getEnemyTypeID() { return 0x18; }
+u32 Ftank::Mgr::getEnemyTypeID() { return 0x18; }
 
 /*
  * --INFO--
  * Address:	8029E474
  * Size:	000008
  */
-void Game::Ftank::Mgr::getChangeTexture()
+void Ftank::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -332,7 +334,7 @@ void Game::Ftank::Mgr::getChangeTexture()
  * Address:	8029E47C
  * Size:	000008
  */
-void Game::Ftank::Mgr::@4 @__dt()
+Ftank::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -340,3 +342,4 @@ void Game::Ftank::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

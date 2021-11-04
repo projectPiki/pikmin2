@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80253304
  * Size:	000048
  */
-void Game::RumbleMgr::RumbleMgr()
+RumbleMgr::RumbleMgr()
 {
 	/*
 	.loc_0x0:
@@ -35,7 +37,7 @@ void Game::RumbleMgr::RumbleMgr()
  * Address:	8025334C
  * Size:	000158
  */
-void Game::RumbleMgr::loadResource()
+void RumbleMgr::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -141,7 +143,7 @@ void Game::RumbleMgr::loadResource()
  * Address:	802534A4
  * Size:	000108
  */
-void Game::RumbleMgr::init()
+void RumbleMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -229,7 +231,7 @@ void Game::RumbleMgr::init()
  * Address:	802535AC
  * Size:	0001D4
  */
-void Game::RumbleMgr::update()
+void RumbleMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -380,7 +382,7 @@ void Game::RumbleMgr::update()
  * Address:	80253780
  * Size:	0001A4
  */
-void Game::RumbleMgr::startRumble(int, Vector3<float>&, int)
+void RumbleMgr::startRumble(int, Vector3f&, int)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +517,7 @@ void Game::RumbleMgr::startRumble(int, Vector3<float>&, int)
  * Address:	80253924
  * Size:	0000B8
  */
-void Game::RumbleMgr::startRumble(int, int)
+void RumbleMgr::startRumble(int, int)
 {
 	/*
 	.loc_0x0:
@@ -581,7 +583,7 @@ void Game::RumbleMgr::startRumble(int, int)
  * Address:	802539DC
  * Size:	000094
  */
-void Game::RumbleMgr::stopRumble(int, int)
+void RumbleMgr::stopRumble(int, int)
 {
 	/*
 	.loc_0x0:
@@ -636,7 +638,7 @@ void Game::RumbleMgr::stopRumble(int, int)
  * Address:	80253A70
  * Size:	000088
  */
-void Game::RumbleMgr::stopRumble(int)
+void RumbleMgr::stopRumble(int)
 {
 	/*
 	.loc_0x0:
@@ -688,7 +690,7 @@ void Game::RumbleMgr::stopRumble(int)
  * Address:	80253AF8
  * Size:	00007C
  */
-void Game::RumbleMgr::isRumbleUpdateOn()
+void RumbleMgr::isRumbleUpdateOn()
 {
 	/*
 	.loc_0x0:
@@ -737,7 +739,7 @@ void Game::RumbleMgr::isRumbleUpdateOn()
  * Address:	80253B74
  * Size:	00005C
  */
-void Game::RumbleMgr::setZukanRumble(Controller*, Vector3<float>*)
+void RumbleMgr::setZukanRumble(Controller*, Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -776,7 +778,7 @@ void Game::RumbleMgr::setZukanRumble(Controller*, Vector3<float>*)
  * Address:	80253BD0
  * Size:	000068
  */
-void Game::RumbleMgr::isStartAndEnd(int*, int)
+void RumbleMgr::isStartAndEnd(int*, int)
 {
 	/*
 	.loc_0x0:
@@ -820,7 +822,7 @@ void Game::RumbleMgr::isStartAndEnd(int*, int)
  * Address:	80253C38
  * Size:	0000C0
  */
-void Game::RumbleMgr::readRumbleParms(char*)
+void RumbleMgr::readRumbleParms(char*)
 {
 	/*
 	.loc_0x0:
@@ -886,7 +888,7 @@ void Game::RumbleMgr::readRumbleParms(char*)
  * Address:	80253CF8
  * Size:	0000C0
  */
-void Game::RumbleMgr::readRumbleData(char*)
+void RumbleMgr::readRumbleData(char*)
 {
 	/*
 	.loc_0x0:
@@ -952,7 +954,7 @@ void Game::RumbleMgr::readRumbleData(char*)
  * Address:	80253DB8
  * Size:	000060
  */
-void Game::RumbleMgr::~RumbleMgr()
+RumbleMgr::~RumbleMgr()
 {
 	/*
 	.loc_0x0:
@@ -984,3 +986,4 @@ void Game::RumbleMgr::~RumbleMgr()
 	  blr
 	*/
 }
+} // namespace Game

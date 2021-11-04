@@ -1009,7 +1009,7 @@ void CarryInfoList::isFinish()
  * Address:	8011BC94
  * Size:	0000D4
  */
-void CarryInfoMgr::CarryInfoMgr(int)
+CarryInfoMgr::CarryInfoMgr(int)
 {
 	/*
 	.loc_0x0:
@@ -1078,7 +1078,7 @@ void CarryInfoMgr::CarryInfoMgr(int)
  * Address:	8011BD68
  * Size:	00006C
  */
-void PokoInfoOwner::~PokoInfoOwner()
+PokoInfoOwner::~PokoInfoOwner()
 {
 	/*
 	.loc_0x0:
@@ -1119,7 +1119,7 @@ void PokoInfoOwner::~PokoInfoOwner()
  * Address:	8011BDD4
  * Size:	000078
  */
-void PokoInfoOwner::PokoInfoOwner()
+PokoInfoOwner::PokoInfoOwner()
 {
 	/*
 	.loc_0x0:
@@ -1268,7 +1268,7 @@ void InfoMgr<CarryInfoOwner, CarryInfoList>::~InfoMgr()
  * Address:	8011BF88
  * Size:	000170
  */
-void CarryInfoMgr::~CarryInfoMgr()
+CarryInfoMgr::~CarryInfoMgr()
 {
 	/*
 	.loc_0x0:
@@ -1388,7 +1388,7 @@ void CarryInfoMgr::~CarryInfoMgr()
  * Address:	8011C0F8
  * Size:	0000C0
  */
-void CarryInfoMgr::appearPoko(const Vector3<float>&, int)
+void CarryInfoMgr::appearPoko(const Vector3f&, int)
 {
 	/*
 	.loc_0x0:
@@ -1817,7 +1817,7 @@ void CarryInfoMgr::scratch(CarryInfoOwner*)
  * Address:	8011C5A4
  * Size:	000048
  */
-void InfoMgrBase::~InfoMgrBase()
+InfoMgrBase::~InfoMgrBase()
 {
 	/*
 	.loc_0x0:
@@ -1912,7 +1912,7 @@ void InfoListBase<CarryInfoOwner, CarryInfoList>::~InfoListBase()
  * Address:	8011C688
  * Size:	0000A8
  */
-void CarryInfoList::~CarryInfoList()
+CarryInfoList::~CarryInfoList()
 {
 	/*
 	.loc_0x0:

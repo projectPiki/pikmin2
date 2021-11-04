@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802C6EE4
  * Size:	000008
  */
-void Game::BigFoot::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void BigFoot::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::BigFoot::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802C6EEC
  * Size:	000008
  */
-void Game::BigFoot::ProperAnimator::getAnimator(int)
+void BigFoot::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::BigFoot::ProperAnimator::getAnimator(int)
  * Address:	802C6EF4
  * Size:	00005C
  */
-void Game::BigFoot::ProperAnimator::~ProperAnimator()
+BigFoot::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::BigFoot::ProperAnimator::~ProperAnimator()
  * Address:	802C6F50
  * Size:	000008
  */
-void Game::BigFoot::ProperAnimator::getAnimator()
+void BigFoot::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::BigFoot::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

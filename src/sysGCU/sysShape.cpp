@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace SysShape {
 
 /*
  * --INFO--
  * Address:	80428C50
  * Size:	000038
  */
-void SysShape::Model::clearAnimatorAll(void)
+void Model::clearAnimatorAll(void)
 {
 	/*
 	.loc_0x0:
@@ -45,7 +37,7 @@ void SysShape::Model::clearAnimatorAll(void)
  * Address:	........
  * Size:	000080
  */
-void SysShape::Model::setAnimatorAll((SysShape::BaseAnimator&))
+void Model::setAnimatorAll(SysShape::BaseAnimator&)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +47,7 @@ void SysShape::Model::setAnimatorAll((SysShape::BaseAnimator&))
  * Address:	80428C88
  * Size:	0000C8
  */
-void SysShape::Animator::startAnim((int, SysShape::MotionListener*))
+void Animator::startAnim(int, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +123,7 @@ void SysShape::Animator::startAnim((int, SysShape::MotionListener*))
  * Address:	80428D50
  * Size:	000068
  */
-void SysShape::Animator::startExAnim((SysShape::AnimInfo*))
+void Animator::startExAnim(SysShape::AnimInfo*)
 {
 	/*
 	.loc_0x0:
@@ -171,14 +163,14 @@ void SysShape::Animator::startExAnim((SysShape::AnimInfo*))
  * Address:	80428DB8
  * Size:	000008
  */
-u32 SysShape::Animator::assertValid((SysShape::Model*)) { return 0x1; }
+u32 Animator::assertValid(SysShape::Model*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80428DC0
  * Size:	000040
  */
-void SysShape::Animator::setCurrFrame((float))
+void Animator::setCurrFrame(float)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +198,7 @@ void SysShape::Animator::setCurrFrame((float))
  * Address:	80428E00
  * Size:	000100
  */
-void SysShape::Animator::setFrameByKeyType((unsigned long))
+void Animator::setFrameByKeyType(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -288,7 +280,7 @@ void SysShape::Animator::setFrameByKeyType((unsigned long))
  * Address:	80428F00
  * Size:	000078
  */
-void SysShape::Animator::setLastFrame(void)
+void Animator::setLastFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -332,7 +324,7 @@ void SysShape::Animator::setLastFrame(void)
  * Address:	80428F78
  * Size:	0002AC
  */
-void SysShape::Animator::animate((float))
+void Animator::animate(float)
 {
 	/*
 	.loc_0x0:
@@ -537,7 +529,7 @@ void SysShape::Animator::animate((float))
  * Address:	80429224
  * Size:	000080
  */
-void SysShape::BlendAnimator::__ct(void)
+BlendAnimator::BlendAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -581,7 +573,7 @@ void SysShape::BlendAnimator::__ct(void)
  * Address:	804292A4
  * Size:	000154
  */
-void SysShape::BlendAnimator::setAnimMgr((SysShape::AnimMgr*))
+void BlendAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -700,7 +692,7 @@ void SysShape::BlendAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	........
  * Size:	000124
  */
-void SysShape::BlendAnimator::setWeight((float))
+void BlendAnimator::setWeight(float)
 {
 	// UNUSED FUNCTION
 }
@@ -710,8 +702,8 @@ void SysShape::BlendAnimator::setWeight((float))
  * Address:	804293F8
  * Size:	00015C
  */
-void SysShape::BlendAnimator::startBlend((SysShape::BlendFunction*, float,
-                                          SysShape::MotionListener*))
+void BlendAnimator::startBlend(SysShape::BlendFunction*, float,
+                               SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -822,7 +814,7 @@ void SysShape::BlendAnimator::startBlend((SysShape::BlendFunction*, float,
  * Address:	80429554
  * Size:	000018
  */
-void SysShape::BlendAnimator::endBlend(void)
+void BlendAnimator::endBlend(void)
 {
 	/*
 	.loc_0x0:
@@ -840,8 +832,7 @@ void SysShape::BlendAnimator::endBlend(void)
  * Address:	8042956C
  * Size:	000278
  */
-void SysShape::BlendAnimator::animate((SysShape::BlendFunction*, float, float,
-                                       float))
+void BlendAnimator::animate(SysShape::BlendFunction*, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1029,7 +1020,7 @@ void SysShape::BlendAnimator::animate((SysShape::BlendFunction*, float, float,
  * Address:	804297E4
  * Size:	000040
  */
-void SysShape::BlendAnimator::getCalc(void)
+void BlendAnimator::getCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1052,7 @@ void SysShape::BlendAnimator::getCalc(void)
  * Address:	80429824
  * Size:	00007C
  */
-void SysShape::Joint::init((unsigned short, SysShape::Model*, J3DJoint*))
+void Joint::init(unsigned short, SysShape::Model*, J3DJoint*)
 {
 	/*
 	.loc_0x0:
@@ -1104,7 +1095,7 @@ void SysShape::Joint::init((unsigned short, SysShape::Model*, J3DJoint*))
  * Address:	804298A0
  * Size:	000020
  */
-void SysShape::Joint::getWorldMatrix(void)
+void Joint::getWorldMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -1124,7 +1115,7 @@ void SysShape::Joint::getWorldMatrix(void)
  * Address:	........
  * Size:	00000C
  */
-void SysShape::Joint::setCallback((SysShape::JointCallback*))
+void Joint::setCallback(SysShape::JointCallback*)
 {
 	// UNUSED FUNCTION
 }
@@ -1134,7 +1125,7 @@ void SysShape::Joint::setCallback((SysShape::JointCallback*))
  * Address:	........
  * Size:	000078
  */
-void SysShape::JointCallback::calc(void)
+void JointCallback::calc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1144,7 +1135,7 @@ void SysShape::JointCallback::calc(void)
  * Address:	........
  * Size:	00005C
  */
-void SysShape::AnimInfo::attach((SysShape::Model*, void*))
+void AnimInfo::attach(SysShape::Model*, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -1154,7 +1145,7 @@ void SysShape::AnimInfo::attach((SysShape::Model*, void*))
  * Address:	804298C0
  * Size:	00006C
  */
-void SysShape::AnimInfo::getLowestAnimKey((float))
+void AnimInfo::getLowestAnimKey(float)
 {
 	/*
 	.loc_0x0:
@@ -1199,7 +1190,7 @@ void SysShape::AnimInfo::getLowestAnimKey((float))
  * Address:	........
  * Size:	00002C
  */
-void SysShape::AnimInfo::dump(void)
+void AnimInfo::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1209,7 +1200,7 @@ void SysShape::AnimInfo::dump(void)
  * Address:	........
  * Size:	000064
  */
-void SysShape::AnimInfo::getLastLoopStart((float))
+void AnimInfo::getLastLoopStart(float)
 {
 	// UNUSED FUNCTION
 }
@@ -1219,7 +1210,7 @@ void SysShape::AnimInfo::getLastLoopStart((float))
  * Address:	8042992C
  * Size:	000028
  */
-void SysShape::AnimInfo::getLastLoopStart((SysShape::KeyEvent*))
+void AnimInfo::getLastLoopStart(SysShape::KeyEvent*)
 {
 	/*
 	.loc_0x0:
@@ -1245,7 +1236,7 @@ void SysShape::AnimInfo::getLastLoopStart((SysShape::KeyEvent*))
  * Address:	80429954
  * Size:	000028
  */
-void SysShape::AnimInfo::getAnimKeyByType((unsigned long))
+void AnimInfo::getAnimKeyByType(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1271,7 +1262,7 @@ void SysShape::AnimInfo::getAnimKeyByType((unsigned long))
  * Address:	8042997C
  * Size:	000020
  */
-void SysShape::AnimInfo::read((Stream&))
+void AnimInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1293,7 +1284,7 @@ void SysShape::AnimInfo::read((Stream&))
  * Address:	8042999C
  * Size:	00010C
  */
-void SysShape::AnimInfo::readEditor((Stream&))
+void AnimInfo::readEditor(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1380,7 +1371,7 @@ void SysShape::AnimInfo::readEditor((Stream&))
  * Address:	80429AA8
  * Size:	00013C
  */
-void SysShape::AnimMgr::load((char*, J3DModelData*, JKRFileLoader*))
+void AnimMgr::load(char*, J3DModelData*, JKRFileLoader*)
 {
 	/*
 	.loc_0x0:
@@ -1479,7 +1470,7 @@ void SysShape::AnimMgr::load((char*, J3DModelData*, JKRFileLoader*))
  * Address:	80429BE4
  * Size:	000084
  */
-void SysShape::AnimInfo::__dt(void)
+AnimInfo::~AnimInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -1528,7 +1519,7 @@ void SysShape::AnimInfo::__dt(void)
  * Address:	80429C68
  * Size:	000080
  */
-void SysShape::AnimMgr::dump(void)
+void AnimMgr::dump(void)
 {
 	/*
 	.loc_0x0:
@@ -1584,7 +1575,7 @@ void SysShape::AnimMgr::dump(void)
  * Address:	........
  * Size:	0000CC
  */
-void SysShape::AnimMgr::load((Stream&, SysShape::Model*, JKRFileLoader*, char*))
+void AnimMgr::load(Stream&, SysShape::Model*, JKRFileLoader*, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1594,7 +1585,7 @@ void SysShape::AnimMgr::load((Stream&, SysShape::Model*, JKRFileLoader*, char*))
  * Address:	80429CE8
  * Size:	0000A0
  */
-void SysShape::AnimMgr::__dt(void)
+AnimMgr::~AnimMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1652,7 +1643,7 @@ void SysShape::AnimMgr::__dt(void)
  * Address:	........
  * Size:	00005C
  */
-void SysShape::JointCallback::__dt(void)
+JointCallback::~JointCallback(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1662,10 +1653,12 @@ void SysShape::JointCallback::__dt(void)
  * Address:	........
  * Size:	000004
  */
-void SysShape::JointCallback::init((Vec const&, float const (&)[3][4]))
+void JointCallback::init(Vec const&, float const (&)[3][4])
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace SysShape
 
 /*
  * --INFO--

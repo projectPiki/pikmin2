@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801E4B98
  * Size:	000664
  */
-void Game::ItemMgr::createManagers(unsigned long)
+void ItemMgr::createManagers(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -490,7 +492,7 @@ void Game::ItemMgr::createManagers(unsigned long)
  * Address:	801E51FC
  * Size:	000048
  */
-void Game::ItemMgr::clearGlobalPointers()
+void ItemMgr::clearGlobalPointers()
 {
 	/*
 	.loc_0x0:
@@ -520,7 +522,7 @@ void Game::ItemMgr::clearGlobalPointers()
  * Address:	801E5244
  * Size:	0000E8
  */
-void Game::ItemMgr::killAllExceptOnyonMgr()
+void ItemMgr::killAllExceptOnyonMgr()
 {
 	/*
 	.loc_0x0:
@@ -596,6 +598,8 @@ void Game::ItemMgr::killAllExceptOnyonMgr()
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

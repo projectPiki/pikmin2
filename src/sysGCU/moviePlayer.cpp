@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void Game::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8042C700
  * Size:	000150
  */
-void Game::MoviePlayer::__ct(void)
+MoviePlayer::MoviePlayer(void)
 {
 	/*
 	.loc_0x0:
@@ -113,7 +105,7 @@ void Game::MoviePlayer::__ct(void)
  * Address:	8042C850
  * Size:	000060
  */
-void Game::MovieContext::__dt(void)
+MovieContext::~MovieContext(void)
 {
 	/*
 	.loc_0x0:
@@ -151,7 +143,7 @@ void Game::MovieContext::__dt(void)
  * Address:	8042C8B0
  * Size:	00002C
  */
-void Game::MoviePlayer::reset(void)
+void MoviePlayer::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +168,7 @@ void Game::MoviePlayer::reset(void)
  * Address:	8042C8DC
  * Size:	00001C
  */
-void Game::MoviePlayer::getActiveOrima(void)
+void MoviePlayer::getActiveOrima(void)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +189,7 @@ void Game::MoviePlayer::getActiveOrima(void)
  * Address:	8042C8F8
  * Size:	00001C
  */
-void Game::MoviePlayer::getActiveGameCamera(void)
+void MoviePlayer::getActiveGameCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -218,7 +210,7 @@ void Game::MoviePlayer::getActiveGameCamera(void)
  * Address:	........
  * Size:	00006C
  */
-void Game::MoviePlayer::setMovieHeap((JKRHeap*))
+void MoviePlayer::setMovieHeap(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -228,7 +220,7 @@ void Game::MoviePlayer::setMovieHeap((JKRHeap*))
  * Address:	8042C914
  * Size:	0000BC
  */
-void Game::MoviePlayer::allocMovieHeap((unsigned long))
+void MoviePlayer::allocMovieHeap(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -291,7 +283,7 @@ void Game::MoviePlayer::allocMovieHeap((unsigned long))
  * Address:	........
  * Size:	000038
  */
-void Game::MoviePlayer::clearMovieHeap(void)
+void MoviePlayer::clearMovieHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -301,7 +293,7 @@ void Game::MoviePlayer::clearMovieHeap(void)
  * Address:	8042C9D0
  * Size:	000060
  */
-void Game::MoviePlayer::play((Game::MoviePlayArg&))
+void MoviePlayer::play(Game::MoviePlayArg&)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +335,7 @@ void Game::MoviePlayer::play((Game::MoviePlayArg&))
  * Address:	8042CA30
  * Size:	00033C
  */
-void Game::MoviePlayer::play((Game::MovieConfig*, Game::MoviePlayArg&, bool))
+void MoviePlayer::play(Game::MovieConfig*, Game::MoviePlayArg&, bool)
 {
 	/*
 	.loc_0x0:
@@ -592,7 +584,7 @@ void Game::MoviePlayer::play((Game::MovieConfig*, Game::MoviePlayArg&, bool))
  * Address:	........
  * Size:	000064
  */
-void Game::MoviePlayer::doStartMovie(void)
+void MoviePlayer::doStartMovie(void)
 {
 	// UNUSED FUNCTION
 }
@@ -602,7 +594,7 @@ void Game::MoviePlayer::doStartMovie(void)
  * Address:	8042CD6C
  * Size:	000024
  */
-void Game::MoviePlayer::findConfig((char*, char*))
+void MoviePlayer::findConfig(char*, char*)
 {
 	/*
 	.loc_0x0:
@@ -623,7 +615,7 @@ void Game::MoviePlayer::findConfig((char*, char*))
  * Address:	8042CD90
  * Size:	0000B0
  */
-void Game::MovieContext::__ct(void)
+MovieContext::MovieContext(void)
 {
 	/*
 	.loc_0x0:
@@ -679,7 +671,7 @@ void Game::MovieContext::__ct(void)
  * Address:	8042CE40
  * Size:	00009C
  */
-void Game::MoviePlayer::allocContexts(void)
+void MoviePlayer::allocContexts(void)
 {
 	/*
 	.loc_0x0:
@@ -732,7 +724,7 @@ void Game::MoviePlayer::allocContexts(void)
  * Address:	8042CEDC
  * Size:	0000AC
  */
-void Game::MoviePlayer::clearContexts(void)
+void MoviePlayer::clearContexts(void)
 {
 	/*
 	.loc_0x0:
@@ -791,7 +783,7 @@ void Game::MoviePlayer::clearContexts(void)
  * Address:	........
  * Size:	0000F0
  */
-void Game::MoviePlayer::playSuspended(void)
+void MoviePlayer::playSuspended(void)
 {
 	// UNUSED FUNCTION
 }
@@ -801,7 +793,7 @@ void Game::MoviePlayer::playSuspended(void)
  * Address:	8042CF88
  * Size:	0000AC
  */
-void Game::MoviePlayer::clearSuspendedDemo(void)
+void MoviePlayer::clearSuspendedDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -860,7 +852,7 @@ void Game::MoviePlayer::clearSuspendedDemo(void)
  * Address:	........
  * Size:	000020
  */
-void Game::MoviePlayer::hasSuspendedDemo(void)
+void MoviePlayer::hasSuspendedDemo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -870,7 +862,7 @@ void Game::MoviePlayer::hasSuspendedDemo(void)
  * Address:	8042D034
  * Size:	00006C
  */
-void Game::MoviePlayer::getNewContext(void)
+void MoviePlayer::getNewContext(void)
 {
 	/*
 	.loc_0x0:
@@ -911,7 +903,7 @@ void Game::MoviePlayer::getNewContext(void)
  * Address:	8042D0A0
  * Size:	000008
  */
-void Game::MovieContext::getChild(void)
+void MovieContext::getChild(void)
 {
 	/*
 	.loc_0x0:
@@ -925,7 +917,7 @@ void Game::MovieContext::getChild(void)
  * Address:	........
  * Size:	000038
  */
-void Game::MoviePlayer::hasSuspendedContext(void)
+void MoviePlayer::hasSuspendedContext(void)
 {
 	// UNUSED FUNCTION
 }
@@ -935,7 +927,7 @@ void Game::MoviePlayer::hasSuspendedContext(void)
  * Address:	........
  * Size:	00006C
  */
-void Game::MoviePlayer::getSuspendedContext(void)
+void MoviePlayer::getSuspendedContext(void)
 {
 	// UNUSED FUNCTION
 }
@@ -945,8 +937,8 @@ void Game::MoviePlayer::getSuspendedContext(void)
  * Address:	8042D0A8
  * Size:	000088
  */
-void Game::MoviePlayer::setContext((Game::MovieContext*, Game::MovieConfig*,
-                                    Game::MoviePlayArg&))
+void MoviePlayer::setContext(Game::MovieContext*, Game::MovieConfig*,
+                             Game::MoviePlayArg&)
 {
 	/*
 	.loc_0x0:
@@ -992,7 +984,7 @@ void Game::MoviePlayer::setContext((Game::MovieContext*, Game::MovieConfig*,
  * Address:	8042D130
  * Size:	000478
  */
-void Game::MoviePlayer::loadResource(void)
+void MoviePlayer::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -1323,6 +1315,8 @@ void Game::MoviePlayer::loadResource(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -1333,12 +1327,14 @@ void __dt__Q27JGadget39TLinkList<JStudio::TCreateObject, -4> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8042D5A8
  * Size:	0000C0
  */
-void Game::MoviePlayer::parse((bool))
+void MoviePlayer::parse(bool)
 {
 	/*
 	.loc_0x0:
@@ -1404,7 +1400,7 @@ void Game::MoviePlayer::parse((bool))
  * Address:	8042D668
  * Size:	0007C4
  */
-void Game::MoviePlayer::update((Controller*, Controller*))
+void MoviePlayer::update(Controller*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2002,12 +1998,16 @@ void Game::MoviePlayer::update((Controller*, Controller*))
 	*/
 }
 
+} // namespace Game
+
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	8042DE2C
  * Size:	00002C
  */
-void P2JME::TControl::update((Controller*, Controller*))
+void TControl::update(Controller*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2025,12 +2025,16 @@ void P2JME::TControl::update((Controller*, Controller*))
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8042DE58
  * Size:	000078
  */
-void Game::MoviePlayer::draw((Graphics&))
+void MoviePlayer::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2074,7 +2078,7 @@ void Game::MoviePlayer::draw((Graphics&))
  * Address:	8042DED0
  * Size:	000074
  */
-void Game::MoviePlayer::start((Camera*))
+void MoviePlayer::start(Camera*)
 {
 	/*
 	.loc_0x0:
@@ -2119,7 +2123,7 @@ void Game::MoviePlayer::start((Camera*))
  * Address:	8042DF44
  * Size:	000120
  */
-void Game::MoviePlayer::stop(void)
+void MoviePlayer::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -2213,7 +2217,7 @@ void Game::MoviePlayer::stop(void)
  * Address:	........
  * Size:	00010C
  */
-void Game::MoviePlayer::do_stop(void)
+void MoviePlayer::do_stop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2223,7 +2227,7 @@ void Game::MoviePlayer::do_stop(void)
  * Address:	8042E064
  * Size:	000324
  */
-void Game::MoviePlayer::setCamera((Camera*))
+void MoviePlayer::setCamera(Camera*)
 {
 	/*
 	.loc_0x0:
@@ -2478,7 +2482,7 @@ void Game::MoviePlayer::setCamera((Camera*))
  * Address:	........
  * Size:	000014
  */
-void Game::MoviePlayer::suspend((long))
+void MoviePlayer::suspend(long)
 {
 	// UNUSED FUNCTION
 }
@@ -2488,7 +2492,7 @@ void Game::MoviePlayer::suspend((long))
  * Address:	8042E388
  * Size:	0000D0
  */
-void Game::MoviePlayer::unsuspend((long, bool))
+void MoviePlayer::unsuspend(long, bool)
 {
 	/*
 	.loc_0x0:
@@ -2564,7 +2568,7 @@ void Game::MoviePlayer::unsuspend((long, bool))
  * Address:	8042E458
  * Size:	0000C4
  */
-void Game::MoviePlayer::resetFrame(void)
+void MoviePlayer::resetFrame(void)
 {
 	/*
 	.loc_0x0:
@@ -2626,12 +2630,14 @@ void Game::MoviePlayer::resetFrame(void)
 	*/
 }
 
+} // namespace P2JME
+
 /*
  * --INFO--
  * Address:	8042E51C
  * Size:	00009C
  */
-void setTransform__Q24Game11MoviePlayerFR10Vector3<float> f(void)
+void setTransform__Q24Game11MoviePlayerFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -2677,12 +2683,14 @@ void setTransform__Q24Game11MoviePlayerFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8042E5B8
  * Size:	000034
  */
-void Game::MoviePlayer::isPlaying((char*))
+void MoviePlayer::isPlaying(char*)
 {
 	/*
 	.loc_0x0:
@@ -2711,7 +2719,7 @@ void Game::MoviePlayer::isPlaying((char*))
  * Address:	........
  * Size:	000020
  */
-void Game::MoviePlayer::isLoadingBlack(void)
+void MoviePlayer::isLoadingBlack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2721,7 +2729,7 @@ void Game::MoviePlayer::isLoadingBlack(void)
  * Address:	8042E5EC
  * Size:	000148
  */
-void Game::MoviePlayer::drawLoading((Graphics&))
+void MoviePlayer::drawLoading(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2825,7 +2833,7 @@ void Game::MoviePlayer::drawLoading((Graphics&))
  * Address:	8042E734
  * Size:	000108
  */
-void Game::MoviePlayer::skip(void)
+void MoviePlayer::skip(void)
 {
 	/*
 	.loc_0x0:
@@ -2909,7 +2917,7 @@ void Game::MoviePlayer::skip(void)
  * Address:	........
  * Size:	000404
  */
-void Game::MoviePlayer::draw2d(void)
+void MoviePlayer::draw2d(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2919,7 +2927,7 @@ void Game::MoviePlayer::draw2d(void)
  * Address:	8042E83C
  * Size:	000008
  */
-void Game::MovieContext::getNext(void)
+void MovieContext::getNext(void)
 {
 	/*
 	.loc_0x0:
@@ -2933,7 +2941,7 @@ void Game::MovieContext::getNext(void)
  * Address:	8042E844
  * Size:	0000C4
  */
-void Game::MoviePlayer::__dt(void)
+MoviePlayer::~MoviePlayer(void)
 {
 	/*
 	.loc_0x0:
@@ -2996,6 +3004,8 @@ void Game::MoviePlayer::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

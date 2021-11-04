@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802A9E5C
  * Size:	000070
  */
-void Game::IKSystemBase::IKSystemBase()
+IKSystemBase::IKSystemBase()
 {
 	/*
 	.loc_0x0:
@@ -45,7 +47,7 @@ void Game::IKSystemBase::IKSystemBase()
  * Address:	802A9ECC
  * Size:	000030
  */
-void Game::IKSystemBase::init()
+void IKSystemBase::init()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::IKSystemBase::init()
  * Address:	802A9EFC
  * Size:	000010
  */
-void Game::IKSystemBase::setLegJointMatrix(int, Matrixf*)
+void IKSystemBase::setLegJointMatrix(int, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -85,13 +87,10 @@ void Game::IKSystemBase::setLegJointMatrix(int, Matrixf*)
  * Address:	802A9F0C
  * Size:	000008
  */
-void Game::IKSystemBase::setParameters(Game::IKSystemParms*)
+void IKSystemBase::setParameters(Game::IKSystemParms* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x58(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x58(r3)
+	_58 = a1;
 }
 
 /*
@@ -99,7 +98,7 @@ void Game::IKSystemBase::setParameters(Game::IKSystemParms*)
  * Address:	802A9F14
  * Size:	0000F0
  */
-void Game::IKSystemBase::startProgramedIK()
+void IKSystemBase::startProgramedIK()
 {
 	/*
 	.loc_0x0:
@@ -179,7 +178,7 @@ void Game::IKSystemBase::startProgramedIK()
  * Address:	802AA004
  * Size:	0000F4
  */
-void Game::IKSystemBase::startMovePosition(Vector3<float>&)
+void IKSystemBase::startMovePosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -252,14 +251,10 @@ void Game::IKSystemBase::startMovePosition(Vector3<float>&)
  * Address:	802AA0F8
  * Size:	00000C
  */
-void Game::IKSystemBase::startBlendMotion()
+void IKSystemBase::startBlendMotion()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x1(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x1(r3)
+	_01 = 1;
 }
 
 /*
@@ -267,14 +262,10 @@ void Game::IKSystemBase::startBlendMotion()
  * Address:	802AA104
  * Size:	00000C
  */
-void Game::IKSystemBase::finishBlendMotion()
+void IKSystemBase::finishBlendMotion()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x1(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x1(r3)
+	_01 = 0;
 }
 
 /*
@@ -282,14 +273,10 @@ void Game::IKSystemBase::finishBlendMotion()
  * Address:	802AA110
  * Size:	00000C
  */
-void Game::IKSystemBase::checkJointScaleOn()
+void IKSystemBase::checkJointScaleOn()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x4(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x4(r3)
+	_04 = 1;
 }
 
 /*
@@ -297,7 +284,7 @@ void Game::IKSystemBase::checkJointScaleOn()
  * Address:	802AA11C
  * Size:	00007C
  */
-void Game::IKSystemBase::update()
+void IKSystemBase::update()
 {
 	/*
 	.loc_0x0:
@@ -344,7 +331,7 @@ void Game::IKSystemBase::update()
  * Address:	802AA198
  * Size:	0000F8
  */
-void Game::IKSystemBase::makeMatrix()
+void IKSystemBase::makeMatrix()
 {
 	/*
 	.loc_0x0:
@@ -420,7 +407,7 @@ void Game::IKSystemBase::makeMatrix()
  * Address:	802AA290
  * Size:	0000C4
  */
-void Game::IKSystemBase::moveBottomJointPosition()
+void IKSystemBase::moveBottomJointPosition()
 {
 	/*
 	.loc_0x0:
@@ -491,7 +478,7 @@ void Game::IKSystemBase::moveBottomJointPosition()
  * Address:	802AA354
  * Size:	000008
  */
-void Game::IKSystemBase::onGround()
+void IKSystemBase::onGround()
 {
 	/*
 	.loc_0x0:
@@ -505,7 +492,7 @@ void Game::IKSystemBase::onGround()
  * Address:	802AA35C
  * Size:	00001C
  */
-void Game::IKSystemBase::getBottomJointPosition()
+void IKSystemBase::getBottomJointPosition()
 {
 	/*
 	.loc_0x0:
@@ -524,7 +511,7 @@ void Game::IKSystemBase::getBottomJointPosition()
  * Address:	802AA378
  * Size:	00004C
  */
-void Game::IKSystemBase::getCollisionCentre()
+void IKSystemBase::getCollisionCentre()
 {
 	/*
 	.loc_0x0:
@@ -555,7 +542,7 @@ void Game::IKSystemBase::getCollisionCentre()
  * Address:	802AA3C4
  * Size:	000008
  */
-void Game::IKSystemBase::getMoveRatio()
+void IKSystemBase::getMoveRatio()
 {
 	/*
 	.loc_0x0:
@@ -569,7 +556,7 @@ void Game::IKSystemBase::getMoveRatio()
  * Address:	802AA3CC
  * Size:	000280
  */
-void Game::IKSystemBase::onGroundPosition()
+void IKSystemBase::onGroundPosition()
 {
 	/*
 	.loc_0x0:
@@ -759,7 +746,7 @@ void Game::IKSystemBase::onGroundPosition()
  * Address:	802AA64C
  * Size:	000084
  */
-void Game::IKSystemBase::makeBendRatio()
+void IKSystemBase::makeBendRatio()
 {
 	/*
 	.loc_0x0:
@@ -816,7 +803,7 @@ void Game::IKSystemBase::makeBendRatio()
  * Address:	802AA6D0
  * Size:	00009C
  */
-void Game::IKSystemBase::getMiddleDirection(Vector3<float>&)
+void IKSystemBase::getMiddleDirection(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -877,7 +864,7 @@ void Game::IKSystemBase::getMiddleDirection(Vector3<float>&)
  * Address:	802AA76C
  * Size:	000294
  */
-void Game::IKSystemBase::setTopJointRotation(Vector3<float>&, Vector3<float>&)
+void IKSystemBase::setTopJointRotation(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1086,8 +1073,7 @@ void Game::IKSystemBase::setTopJointRotation(Vector3<float>&, Vector3<float>&)
  * Address:	802AAA00
  * Size:	000294
  */
-void Game::IKSystemBase::setMiddleJointRotation(Vector3<float>&,
-                                                Vector3<float>&)
+void IKSystemBase::setMiddleJointRotation(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1296,7 +1282,7 @@ void Game::IKSystemBase::setMiddleJointRotation(Vector3<float>&,
  * Address:	802AAC94
  * Size:	000100
  */
-void Game::IKSystemBase::makeBottomMatrix(Vector3<float>&)
+void IKSystemBase::makeBottomMatrix(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1374,3 +1360,4 @@ void Game::IKSystemBase::makeBottomMatrix(Vector3<float>&)
 	  blr
 	*/
 }
+} // namespace Game

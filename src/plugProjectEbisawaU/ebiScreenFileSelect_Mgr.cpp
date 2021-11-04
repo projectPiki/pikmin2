@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803DE2C0
  * Size:	0005B0
  */
-void ebi::FS::FSMStateMachine::init((ebi::FS::TMgr*))
+void FS::FSMStateMachine::init(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -421,7 +413,7 @@ void ebi::FS::FSMStateMachine::init((ebi::FS::TMgr*))
  * Address:	803DE870
  * Size:	00002C
  */
-void ebi::FS::FSMState::init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState::init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -444,7 +436,7 @@ void ebi::FS::FSMState::init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DE89C
  * Size:	00002C
  */
-void ebi::FS::FSMState::exec((ebi::FS::TMgr*))
+void FS::FSMState::exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -467,7 +459,7 @@ void ebi::FS::FSMState::exec((ebi::FS::TMgr*))
  * Address:	803DE8C8
  * Size:	000070
  */
-void ebi::FS::FSMState_SelectYesNo::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState_SelectYesNo::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +499,7 @@ void ebi::FS::FSMState_SelectYesNo::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DE938
  * Size:	000204
  */
-void ebi::FS::FSMState_SelectYesNo::do_exec((ebi::FS::TMgr*))
+void FS::FSMState_SelectYesNo::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -674,7 +666,7 @@ void ebi::FS::FSMState_SelectYesNo::do_exec((ebi::FS::TMgr*))
  * Address:	803DEB3C
  * Size:	000060
  */
-void ebi::FS::FSMState01_DataBroken::do_set((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState01_DataBroken::do_set(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -710,7 +702,7 @@ void ebi::FS::FSMState01_DataBroken::do_set((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DEB9C
  * Size:	000024
  */
-void ebi::FS::FSMState03_DoYouDelete::do_set((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState03_DoYouDelete::do_set(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -731,7 +723,7 @@ void ebi::FS::FSMState03_DoYouDelete::do_set((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DEBC0
  * Size:	000024
  */
-void ebi::FS::FSMState03_DoYouDelete::do_decide((ebi::FS::TMgr*))
+void FS::FSMState03_DoYouDelete::do_decide(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -752,8 +744,7 @@ void ebi::FS::FSMState03_DoYouDelete::do_decide((ebi::FS::TMgr*))
  * Address:	803DEBE4
  * Size:	000024
  */
-void ebi::FS::FSMState07_DoYouOverwrite::do_set((ebi::FS::TMgr*,
-                                                 Game::StateArg*))
+void FS::FSMState07_DoYouOverwrite::do_set(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -774,7 +765,7 @@ void ebi::FS::FSMState07_DoYouOverwrite::do_set((ebi::FS::TMgr*,
  * Address:	803DEC08
  * Size:	000038
  */
-void ebi::FS::FSMState07_DoYouOverwrite::do_decide((ebi::FS::TMgr*))
+void FS::FSMState07_DoYouOverwrite::do_decide(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -800,7 +791,7 @@ void ebi::FS::FSMState07_DoYouOverwrite::do_decide((ebi::FS::TMgr*))
  * Address:	803DEC40
  * Size:	000060
  */
-void ebi::FS::FSMState_Warning::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState_Warning::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +827,7 @@ void ebi::FS::FSMState_Warning::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DECA0
  * Size:	0000C4
  */
-void ebi::FS::FSMState_Warning::do_exec((ebi::FS::TMgr*))
+void FS::FSMState_Warning::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -905,7 +896,7 @@ void ebi::FS::FSMState_Warning::do_exec((ebi::FS::TMgr*))
  * Address:	803DED64
  * Size:	000028
  */
-void ebi::FS::FSMState05_FailToDelete::do_open((ebi::FS::TMgr*))
+void FS::FSMState05_FailToDelete::do_open(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -927,7 +918,7 @@ void ebi::FS::FSMState05_FailToDelete::do_open((ebi::FS::TMgr*))
  * Address:	803DED8C
  * Size:	000044
  */
-void ebi::FS::FSMState05_FailToDelete::do_transit((ebi::FS::TMgr*))
+void FS::FSMState05_FailToDelete::do_transit(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -960,7 +951,7 @@ void ebi::FS::FSMState05_FailToDelete::do_transit((ebi::FS::TMgr*))
  * Address:	803DEDD0
  * Size:	000028
  */
-void ebi::FS::FSMState06_FinishDelete::do_open((ebi::FS::TMgr*))
+void FS::FSMState06_FinishDelete::do_open(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -982,7 +973,7 @@ void ebi::FS::FSMState06_FinishDelete::do_open((ebi::FS::TMgr*))
  * Address:	803DEDF8
  * Size:	000034
  */
-void ebi::FS::FSMState06_FinishDelete::do_transit((ebi::FS::TMgr*))
+void FS::FSMState06_FinishDelete::do_transit(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1007,7 +998,7 @@ void ebi::FS::FSMState06_FinishDelete::do_transit((ebi::FS::TMgr*))
  * Address:	803DEE2C
  * Size:	000028
  */
-void ebi::FS::FSMState08_FailToCopy::do_open((ebi::FS::TMgr*))
+void FS::FSMState08_FailToCopy::do_open(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1029,7 +1020,7 @@ void ebi::FS::FSMState08_FailToCopy::do_open((ebi::FS::TMgr*))
  * Address:	803DEE54
  * Size:	000044
  */
-void ebi::FS::FSMState08_FailToCopy::do_transit((ebi::FS::TMgr*))
+void FS::FSMState08_FailToCopy::do_transit(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1062,7 +1053,7 @@ void ebi::FS::FSMState08_FailToCopy::do_transit((ebi::FS::TMgr*))
  * Address:	803DEE98
  * Size:	000028
  */
-void ebi::FS::FSMState10_FinishCopy::do_open((ebi::FS::TMgr*))
+void FS::FSMState10_FinishCopy::do_open(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1084,7 +1075,7 @@ void ebi::FS::FSMState10_FinishCopy::do_open((ebi::FS::TMgr*))
  * Address:	803DEEC0
  * Size:	000034
  */
-void ebi::FS::FSMState10_FinishCopy::do_transit((ebi::FS::TMgr*))
+void FS::FSMState10_FinishCopy::do_transit(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1109,7 +1100,7 @@ void ebi::FS::FSMState10_FinishCopy::do_transit((ebi::FS::TMgr*))
  * Address:	803DEEF4
  * Size:	00006C
  */
-void ebi::FS::FSMState_CardTask::init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState_CardTask::init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1148,7 +1139,7 @@ void ebi::FS::FSMState_CardTask::init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DEF60
  * Size:	0002C0
  */
-void ebi::FS::FSMState_CardTask::exec((ebi::FS::TMgr*))
+void FS::FSMState_CardTask::exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1374,8 +1365,7 @@ void ebi::FS::FSMState_CardTask::exec((ebi::FS::TMgr*))
  * Address:	803DF220
  * Size:	000034
  */
-void
-    ebi::FS::FSMState_CardTask::do_transitCardPlayerDataBroken((ebi::FS::TMgr*))
+void FS::FSMState_CardTask::do_transitCardPlayerDataBroken(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1400,7 +1390,7 @@ void
  * Address:	803DF254
  * Size:	000040
  */
-void ebi::FS::FSMState02_NowDelete::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState02_NowDelete::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1428,7 +1418,7 @@ void ebi::FS::FSMState02_NowDelete::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DF294
  * Size:	000024
  */
-void ebi::FS::FSMState02_NowDelete::do_close((ebi::FS::TMgr*))
+void FS::FSMState02_NowDelete::do_close(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1449,7 +1439,7 @@ void ebi::FS::FSMState02_NowDelete::do_close((ebi::FS::TMgr*))
  * Address:	803DF2B8
  * Size:	00002C
  */
-void ebi::FS::FSMState02_NowDelete::do_cardRequest((ebi::FS::TMgr*))
+void FS::FSMState02_NowDelete::do_cardRequest(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1472,7 +1462,7 @@ void ebi::FS::FSMState02_NowDelete::do_cardRequest((ebi::FS::TMgr*))
  * Address:	803DF2E4
  * Size:	000060
  */
-void ebi::FS::FSMState02_NowDelete::do_transitCardReady((ebi::FS::TMgr*))
+void FS::FSMState02_NowDelete::do_transitCardReady(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1508,7 +1498,7 @@ void ebi::FS::FSMState02_NowDelete::do_transitCardReady((ebi::FS::TMgr*))
  * Address:	803DF344
  * Size:	000034
  */
-void ebi::FS::FSMState02_NowDelete::do_transitCardNoCard((ebi::FS::TMgr*))
+void FS::FSMState02_NowDelete::do_transitCardNoCard(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1533,7 +1523,7 @@ void ebi::FS::FSMState02_NowDelete::do_transitCardNoCard((ebi::FS::TMgr*))
  * Address:	803DF378
  * Size:	000034
  */
-void ebi::FS::FSMState02_NowDelete::do_transitCardIOError((ebi::FS::TMgr*))
+void FS::FSMState02_NowDelete::do_transitCardIOError(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1558,7 +1548,7 @@ void ebi::FS::FSMState02_NowDelete::do_transitCardIOError((ebi::FS::TMgr*))
  * Address:	803DF3AC
  * Size:	000024
  */
-void ebi::FS::FSMState02_NowDelete::cleanup((ebi::FS::TMgr*))
+void FS::FSMState02_NowDelete::cleanup(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1579,7 +1569,7 @@ void ebi::FS::FSMState02_NowDelete::cleanup((ebi::FS::TMgr*))
  * Address:	803DF3D0
  * Size:	000044
  */
-void ebi::FS::FSMState09_NowCopy::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState09_NowCopy::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1608,7 +1598,7 @@ void ebi::FS::FSMState09_NowCopy::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DF414
  * Size:	000024
  */
-void ebi::FS::FSMState09_NowCopy::do_close((ebi::FS::TMgr*))
+void FS::FSMState09_NowCopy::do_close(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1629,7 +1619,7 @@ void ebi::FS::FSMState09_NowCopy::do_close((ebi::FS::TMgr*))
  * Address:	803DF438
  * Size:	000034
  */
-void ebi::FS::FSMState09_NowCopy::do_cardRequest((ebi::FS::TMgr*))
+void FS::FSMState09_NowCopy::do_cardRequest(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1654,7 +1644,7 @@ void ebi::FS::FSMState09_NowCopy::do_cardRequest((ebi::FS::TMgr*))
  * Address:	803DF46C
  * Size:	000064
  */
-void ebi::FS::FSMState09_NowCopy::do_transitCardReady((ebi::FS::TMgr*))
+void FS::FSMState09_NowCopy::do_transitCardReady(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1691,7 +1681,7 @@ void ebi::FS::FSMState09_NowCopy::do_transitCardReady((ebi::FS::TMgr*))
  * Address:	803DF4D0
  * Size:	000034
  */
-void ebi::FS::FSMState09_NowCopy::do_transitCardNoCard((ebi::FS::TMgr*))
+void FS::FSMState09_NowCopy::do_transitCardNoCard(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1716,7 +1706,7 @@ void ebi::FS::FSMState09_NowCopy::do_transitCardNoCard((ebi::FS::TMgr*))
  * Address:	803DF504
  * Size:	000034
  */
-void ebi::FS::FSMState09_NowCopy::do_transitCardIOError((ebi::FS::TMgr*))
+void FS::FSMState09_NowCopy::do_transitCardIOError(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1741,7 +1731,7 @@ void ebi::FS::FSMState09_NowCopy::do_transitCardIOError((ebi::FS::TMgr*))
  * Address:	803DF538
  * Size:	000024
  */
-void ebi::FS::FSMState09_NowCopy::cleanup((ebi::FS::TMgr*))
+void FS::FSMState09_NowCopy::cleanup(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1762,7 +1752,7 @@ void ebi::FS::FSMState09_NowCopy::cleanup((ebi::FS::TMgr*))
  * Address:	803DF55C
  * Size:	00004C
  */
-void ebi::FS::FSMState00a_OpenScene::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState00a_OpenScene::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1793,7 +1783,7 @@ void ebi::FS::FSMState00a_OpenScene::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DF5A8
  * Size:	000064
  */
-void ebi::FS::FSMState00a_OpenScene::do_exec((ebi::FS::TMgr*))
+void FS::FSMState00a_OpenScene::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1832,7 +1822,7 @@ void ebi::FS::FSMState00a_OpenScene::do_exec((ebi::FS::TMgr*))
  * Address:	803DF60C
  * Size:	0000AC
  */
-void ebi::FS::FSMState00_SelectData::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState00_SelectData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1891,7 +1881,7 @@ void ebi::FS::FSMState00_SelectData::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DF6B8
  * Size:	000254
  */
-void ebi::FS::FSMState00_SelectData::do_exec((ebi::FS::TMgr*))
+void FS::FSMState00_SelectData::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -2074,7 +2064,7 @@ void ebi::FS::FSMState00_SelectData::do_exec((ebi::FS::TMgr*))
  * Address:	803DF90C
  * Size:	000064
  */
-void ebi::FS::FSMState00b_CheckData::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState00b_CheckData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2111,7 +2101,7 @@ void ebi::FS::FSMState00b_CheckData::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DF970
  * Size:	0001E0
  */
-void ebi::FS::FSMState00b_CheckData::do_exec((ebi::FS::TMgr*))
+void FS::FSMState00b_CheckData::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -2265,7 +2255,7 @@ void ebi::FS::FSMState00b_CheckData::do_exec((ebi::FS::TMgr*))
  * Address:	803DFB50
  * Size:	00003C
  */
-void ebi::FS::FSMState00c_DecideData::do_init((ebi::FS::TMgr*, Game::StateArg*))
+void FS::FSMState00c_DecideData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2292,7 +2282,7 @@ void ebi::FS::FSMState00c_DecideData::do_init((ebi::FS::TMgr*, Game::StateArg*))
  * Address:	803DFB8C
  * Size:	0000B4
  */
-void ebi::FS::FSMState00c_DecideData::do_exec((ebi::FS::TMgr*))
+void FS::FSMState00c_DecideData::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -2355,8 +2345,8 @@ void ebi::FS::FSMState00c_DecideData::do_exec((ebi::FS::TMgr*))
  * Address:	803DFC40
  * Size:	0000B0
  */
-void ebi::FS::FSMState04_WhichDataDoYouCopyTo::do_init((ebi::FS::TMgr*,
-                                                        Game::StateArg*))
+void FS::FSMState04_WhichDataDoYouCopyTo::do_init(ebi::FS::TMgr*,
+                                                  Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2422,7 +2412,7 @@ void ebi::FS::FSMState04_WhichDataDoYouCopyTo::do_init((ebi::FS::TMgr*,
  * Address:	803DFCF0
  * Size:	00029C
  */
-void ebi::FS::FSMState04_WhichDataDoYouCopyTo::do_exec((ebi::FS::TMgr*))
+void FS::FSMState04_WhichDataDoYouCopyTo::do_exec(ebi::FS::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -2647,7 +2637,7 @@ void ebi::FS::FSMState04_WhichDataDoYouCopyTo::do_exec((ebi::FS::TMgr*))
  * Address:	803DFF8C
  * Size:	0000A4
  */
-void ebi::FS::TMgr::__ct(void)
+FS::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2700,7 +2690,7 @@ void ebi::FS::TMgr::__ct(void)
  * Address:	803E0030
  * Size:	000048
  */
-void ebi::FS::TMgr::setController((Controller*))
+void FS::TMgr::setController(Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2730,7 +2720,7 @@ void ebi::FS::TMgr::setController((Controller*))
  * Address:	803E0078
  * Size:	0000FC
  */
-void ebi::FS::TMgr::perseInfo((Game::MemoryCard::PlayerFileInfo&))
+void FS::TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2807,7 +2797,7 @@ void ebi::FS::TMgr::perseInfo((Game::MemoryCard::PlayerFileInfo&))
  * Address:	803E0174
  * Size:	000098
  */
-void ebi::FS::TMgr::update(void)
+void FS::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2859,7 +2849,7 @@ void ebi::FS::TMgr::update(void)
  * Address:	803E020C
  * Size:	000048
  */
-void ebi::FS::TMgr::draw(void)
+void FS::TMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -2891,7 +2881,7 @@ void ebi::FS::TMgr::draw(void)
  * Address:	803E0254
  * Size:	000044
  */
-void ebi::FS::TMgr::startSeq(void)
+void FS::TMgr::startSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -2920,7 +2910,7 @@ void ebi::FS::TMgr::startSeq(void)
  * Address:	803E0298
  * Size:	000058
  */
-void ebi::FS::TMgr::forceQuitSeq(void)
+void FS::TMgr::forceQuitSeq(void)
 {
 	/*
 	.loc_0x0:
@@ -2954,7 +2944,7 @@ void ebi::FS::TMgr::forceQuitSeq(void)
  * Address:	803E02F0
  * Size:	000028
  */
-void ebi::FS::TMgr::isFinish(void)
+void FS::TMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2976,7 +2966,7 @@ void ebi::FS::TMgr::isFinish(void)
  * Address:	803E0318
  * Size:	000060
  */
-void ebi::FS::TMgr::goEnd_((ebi::FS::TMgr::enumEnd))
+void FS::TMgr::goEnd_(ebi::FS::TMgr::enumEnd)
 {
 	/*
 	.loc_0x0:
@@ -3012,7 +3002,7 @@ void ebi::FS::TMgr::goEnd_((ebi::FS::TMgr::enumEnd))
  * Address:	803E0378
  * Size:	0000D0
  */
-void ebi::FS::TMgr::checkAndTransitNoCard_(void)
+void FS::TMgr::checkAndTransitNoCard_(void)
 {
 	/*
 	.loc_0x0:
@@ -3084,7 +3074,7 @@ void ebi::FS::TMgr::checkAndTransitNoCard_(void)
  * Address:	803E0448
  * Size:	000058
  */
-void ebi::FS::TMgr::getStateID(void)
+void FS::TMgr::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -3120,35 +3110,35 @@ void ebi::FS::TMgr::getStateID(void)
  * Address:	803E04A0
  * Size:	000004
  */
-void ebi::FS::FSMState::do_init((ebi::FS::TMgr*, Game::StateArg*)) { }
+void FS::FSMState::do_init(ebi::FS::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803E04A4
  * Size:	000004
  */
-void ebi::FS::FSMState::do_exec((ebi::FS::TMgr*)) { }
+void FS::FSMState::do_exec(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E04A8
  * Size:	000004
  */
-void ebi::FS::FSMState_SelectYesNo::do_decide((ebi::FS::TMgr*)) { }
+void FS::FSMState_SelectYesNo::do_decide(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E04AC
  * Size:	000004
  */
-void ebi::FS::FSMState_CardTask::do_init((ebi::FS::TMgr*, Game::StateArg*)) { }
+void FS::FSMState_CardTask::do_init(ebi::FS::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803E04B0
  * Size:	000004
  */
-void ebi::FS::FSMState_CardTask::do_close((ebi::FS::TMgr*)) { }
+void FS::FSMState_CardTask::do_close(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
@@ -3201,884 +3191,890 @@ FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803E0518
- * Size:	000BF4
- */
-void ebi::Screen::FileSelect::TMainScreen::__dt(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xBD8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xAB0
-	  subi      r0, r3, 0x7274
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xAB0
-	  subi      r3, r3, 0x71B0
-	  stw       r3, 0xAB0(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xAB8(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0xAB8
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0xAB0(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0xAB8(r30)
-	  bl        -0x3508E8
+	 * --INFO--
+	 * Address:	803E0518
+	 * Size:	000BF4
+	 */
+	FileSelect::TMainScreen::~TMainScreen(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0xBD8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xAB0
+		  subi      r0, r3, 0x7274
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xAB0
+		  subi      r3, r3, 0x71B0
+		  stw       r3, 0xAB0(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xAB8(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0xAB8
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0xAB0(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0xAB8(r30)
+		  bl        -0x3508E8
 
-	.loc_0x70:
-	  addic.    r0, r30, 0xA9C
-	  beq-      .loc_0xB4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xA9C
-	  subi      r3, r3, 0x7178
-	  stw       r3, 0xA9C(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xAA4(r30)
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0xAA4
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0xA9C(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0xAA4(r30)
-	  bl        -0x35092C
+		.loc_0x70:
+		  addic.    r0, r30, 0xA9C
+		  beq-      .loc_0xB4
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xA9C
+		  subi      r3, r3, 0x7178
+		  stw       r3, 0xA9C(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xAA4(r30)
+		  beq-      .loc_0xB4
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0xAA4
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0xA9C(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0xAA4(r30)
+		  bl        -0x35092C
 
-	.loc_0xB4:
-	  addic.    r0, r30, 0xA70
-	  beq-      .loc_0x114
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xA70
-	  subi      r3, r3, 0x7140
-	  stw       r3, 0xA70(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xA78(r30)
-	  beq-      .loc_0x114
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0xA70
-	  addi      r3, r3, 0x7560
-	  stw       r3, 0xA70(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xA78(r30)
-	  beq-      .loc_0x114
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0xA78
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0xA70(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0xA78(r30)
-	  bl        -0x35098C
+		.loc_0xB4:
+		  addic.    r0, r30, 0xA70
+		  beq-      .loc_0x114
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xA70
+		  subi      r3, r3, 0x7140
+		  stw       r3, 0xA70(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xA78(r30)
+		  beq-      .loc_0x114
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0xA70
+		  addi      r3, r3, 0x7560
+		  stw       r3, 0xA70(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xA78(r30)
+		  beq-      .loc_0x114
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0xA78
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0xA70(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0xA78(r30)
+		  bl        -0x35098C
 
-	.loc_0x114:
-	  addic.    r0, r30, 0xA5C
-	  beq-      .loc_0x174
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xA5C
-	  subi      r3, r3, 0x7108
-	  stw       r3, 0xA5C(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xA64(r30)
-	  beq-      .loc_0x174
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0xA5C
-	  addi      r3, r3, 0x7560
-	  stw       r3, 0xA5C(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xA64(r30)
-	  beq-      .loc_0x174
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0xA64
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0xA5C(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0xA64(r30)
-	  bl        -0x3509EC
+		.loc_0x114:
+		  addic.    r0, r30, 0xA5C
+		  beq-      .loc_0x174
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xA5C
+		  subi      r3, r3, 0x7108
+		  stw       r3, 0xA5C(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xA64(r30)
+		  beq-      .loc_0x174
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0xA5C
+		  addi      r3, r3, 0x7560
+		  stw       r3, 0xA5C(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xA64(r30)
+		  beq-      .loc_0x174
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0xA64
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0xA5C(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0xA64(r30)
+		  bl        -0x3509EC
 
-	.loc_0x174:
-	  addic.    r0, r30, 0xA24
-	  beq-      .loc_0x1DC
-	  addic.    r0, r30, 0xA24
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0xA24
-	  addi      r3, r3, 0x7648
-	  stw       r3, 0xA24(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xA2C(r30)
-	  beq-      .loc_0x1DC
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0xA24
-	  addi      r3, r3, 0x73CC
-	  stw       r3, 0xA24(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0xA2C(r30)
-	  beq-      .loc_0x1DC
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0xA2C
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0xA24(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0xA2C(r30)
-	  bl        -0x350A54
+		.loc_0x174:
+		  addic.    r0, r30, 0xA24
+		  beq-      .loc_0x1DC
+		  addic.    r0, r30, 0xA24
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0xA24
+		  addi      r3, r3, 0x7648
+		  stw       r3, 0xA24(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xA2C(r30)
+		  beq-      .loc_0x1DC
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0xA24
+		  addi      r3, r3, 0x73CC
+		  stw       r3, 0xA24(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0xA2C(r30)
+		  beq-      .loc_0x1DC
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0xA2C
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0xA24(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0xA2C(r30)
+		  bl        -0x350A54
 
-	.loc_0x1DC:
-	  addic.    r0, r30, 0x9EC
-	  beq-      .loc_0x244
-	  addic.    r0, r30, 0x9EC
-	  beq-      .loc_0x244
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x9EC
-	  addi      r3, r3, 0x7648
-	  stw       r3, 0x9EC(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x9F4(r30)
-	  beq-      .loc_0x244
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x9EC
-	  addi      r3, r3, 0x73CC
-	  stw       r3, 0x9EC(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x9F4(r30)
-	  beq-      .loc_0x244
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x9F4
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0x9EC(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0x9F4(r30)
-	  bl        -0x350ABC
+		.loc_0x1DC:
+		  addic.    r0, r30, 0x9EC
+		  beq-      .loc_0x244
+		  addic.    r0, r30, 0x9EC
+		  beq-      .loc_0x244
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x9EC
+		  addi      r3, r3, 0x7648
+		  stw       r3, 0x9EC(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0x9F4(r30)
+		  beq-      .loc_0x244
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x9EC
+		  addi      r3, r3, 0x73CC
+		  stw       r3, 0x9EC(r30)
+		  addi      r0, r3, 0x18
+		  stw       r0, 0x9F4(r30)
+		  beq-      .loc_0x244
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x9F4
+		  addi      r5, r4, 0x7420
+		  li        r4, 0
+		  stw       r5, 0x9EC(r30)
+		  addi      r0, r5, 0x18
+		  stw       r0, 0x9F4(r30)
+		  bl        -0x350ABC
 
-	.loc_0x244:
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x954
-	  subi      r4, r4, 0x81C
-	  li        r5, 0x40
-	  li        r6, 0x2
-	  bl        -0x31EFAC
-	  addic.    r0, r30, 0x908
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x908
-	  subi      r0, r3, 0x75AC
-	  stw       r0, 0x908(r30)
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x908
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x908(r30)
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x908
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x908(r30)
-	  beq-      .loc_0x2B8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x908
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x908(r30)
-	  bl        0x30DBC
+		.loc_0x244:
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x954
+		  subi      r4, r4, 0x81C
+		  li        r5, 0x40
+		  li        r6, 0x2
+		  bl        -0x31EFAC
+		  addic.    r0, r30, 0x908
+		  beq-      .loc_0x2B8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x908
+		  subi      r0, r3, 0x75AC
+		  stw       r0, 0x908(r30)
+		  beq-      .loc_0x2B8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x908
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x908(r30)
+		  beq-      .loc_0x2B8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x908
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x908(r30)
+		  beq-      .loc_0x2B8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x908
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x908(r30)
+		  bl        0x30DBC
 
-	.loc_0x2B8:
-	  addic.    r0, r30, 0x8BC
-	  beq-      .loc_0x314
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x8BC
-	  subi      r0, r3, 0x75AC
-	  stw       r0, 0x8BC(r30)
-	  beq-      .loc_0x314
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x8BC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x8BC(r30)
-	  beq-      .loc_0x314
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x8BC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x8BC(r30)
-	  beq-      .loc_0x314
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x8BC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x8BC(r30)
-	  bl        0x30D60
+		.loc_0x2B8:
+		  addic.    r0, r30, 0x8BC
+		  beq-      .loc_0x314
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x8BC
+		  subi      r0, r3, 0x75AC
+		  stw       r0, 0x8BC(r30)
+		  beq-      .loc_0x314
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x8BC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x8BC(r30)
+		  beq-      .loc_0x314
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x8BC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x8BC(r30)
+		  beq-      .loc_0x314
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x8BC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x8BC(r30)
+		  bl        0x30D60
 
-	.loc_0x314:
-	  addic.    r0, r30, 0x89C
-	  beq-      .loc_0x370
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x89C
-	  subi      r0, r3, 0x77F4
-	  stw       r0, 0x89C(r30)
-	  beq-      .loc_0x370
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x89C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x89C(r30)
-	  beq-      .loc_0x370
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x89C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x89C(r30)
-	  beq-      .loc_0x370
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x89C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x89C(r30)
-	  bl        0x30D04
+		.loc_0x314:
+		  addic.    r0, r30, 0x89C
+		  beq-      .loc_0x370
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x89C
+		  subi      r0, r3, 0x77F4
+		  stw       r0, 0x89C(r30)
+		  beq-      .loc_0x370
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x89C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x89C(r30)
+		  beq-      .loc_0x370
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x89C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x89C(r30)
+		  beq-      .loc_0x370
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x89C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x89C(r30)
+		  bl        0x30D04
 
-	.loc_0x370:
-	  addic.    r0, r30, 0x860
-	  beq-      .loc_0x3E0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x880
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x860(r30)
-	  beq-      .loc_0x398
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x880(r30)
+		.loc_0x370:
+		  addic.    r0, r30, 0x860
+		  beq-      .loc_0x3E0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x880
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x860(r30)
+		  beq-      .loc_0x398
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x880(r30)
 
-	.loc_0x398:
-	  addic.    r0, r30, 0x860
-	  beq-      .loc_0x3E0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x860
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x860(r30)
-	  beq-      .loc_0x3E0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x860
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x860(r30)
-	  beq-      .loc_0x3E0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x860
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x860(r30)
-	  bl        0x30C94
+		.loc_0x398:
+		  addic.    r0, r30, 0x860
+		  beq-      .loc_0x3E0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x860
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x860(r30)
+		  beq-      .loc_0x3E0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x860
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x860(r30)
+		  beq-      .loc_0x3E0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x860
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x860(r30)
+		  bl        0x30C94
 
-	.loc_0x3E0:
-	  addic.    r0, r30, 0x824
-	  beq-      .loc_0x450
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x844
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x824(r30)
-	  beq-      .loc_0x408
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x844(r30)
+		.loc_0x3E0:
+		  addic.    r0, r30, 0x824
+		  beq-      .loc_0x450
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x844
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x824(r30)
+		  beq-      .loc_0x408
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x844(r30)
 
-	.loc_0x408:
-	  addic.    r0, r30, 0x824
-	  beq-      .loc_0x450
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x824
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x824(r30)
-	  beq-      .loc_0x450
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x824
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x824(r30)
-	  beq-      .loc_0x450
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x824
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x824(r30)
-	  bl        0x30C24
+		.loc_0x408:
+		  addic.    r0, r30, 0x824
+		  beq-      .loc_0x450
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x824
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x824(r30)
+		  beq-      .loc_0x450
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x824
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x824(r30)
+		  beq-      .loc_0x450
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x824
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x824(r30)
+		  bl        0x30C24
 
-	.loc_0x450:
-	  addic.    r0, r30, 0x7E8
-	  beq-      .loc_0x4C0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x808
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x7E8(r30)
-	  beq-      .loc_0x478
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x808(r30)
+		.loc_0x450:
+		  addic.    r0, r30, 0x7E8
+		  beq-      .loc_0x4C0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x808
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x7E8(r30)
+		  beq-      .loc_0x478
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x808(r30)
 
-	.loc_0x478:
-	  addic.    r0, r30, 0x7E8
-	  beq-      .loc_0x4C0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x7E8
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x7E8(r30)
-	  beq-      .loc_0x4C0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x7E8
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x7E8(r30)
-	  beq-      .loc_0x4C0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x7E8
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x7E8(r30)
-	  bl        0x30BB4
+		.loc_0x478:
+		  addic.    r0, r30, 0x7E8
+		  beq-      .loc_0x4C0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x7E8
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x7E8(r30)
+		  beq-      .loc_0x4C0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x7E8
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x7E8(r30)
+		  beq-      .loc_0x4C0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x7E8
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x7E8(r30)
+		  bl        0x30BB4
 
-	.loc_0x4C0:
-	  addic.    r0, r30, 0x7AC
-	  beq-      .loc_0x530
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x7CC
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x7AC(r30)
-	  beq-      .loc_0x4E8
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x7CC(r30)
+		.loc_0x4C0:
+		  addic.    r0, r30, 0x7AC
+		  beq-      .loc_0x530
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x7CC
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x7AC(r30)
+		  beq-      .loc_0x4E8
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x7CC(r30)
 
-	.loc_0x4E8:
-	  addic.    r0, r30, 0x7AC
-	  beq-      .loc_0x530
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x7AC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x7AC(r30)
-	  beq-      .loc_0x530
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x7AC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x7AC(r30)
-	  beq-      .loc_0x530
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x7AC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x7AC(r30)
-	  bl        0x30B44
+		.loc_0x4E8:
+		  addic.    r0, r30, 0x7AC
+		  beq-      .loc_0x530
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x7AC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x7AC(r30)
+		  beq-      .loc_0x530
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x7AC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x7AC(r30)
+		  beq-      .loc_0x530
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x7AC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x7AC(r30)
+		  bl        0x30B44
 
-	.loc_0x530:
-	  addic.    r0, r30, 0x770
-	  beq-      .loc_0x5A0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x790
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x770(r30)
-	  beq-      .loc_0x558
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x790(r30)
+		.loc_0x530:
+		  addic.    r0, r30, 0x770
+		  beq-      .loc_0x5A0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x790
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x770(r30)
+		  beq-      .loc_0x558
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x790(r30)
 
-	.loc_0x558:
-	  addic.    r0, r30, 0x770
-	  beq-      .loc_0x5A0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x770
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x770(r30)
-	  beq-      .loc_0x5A0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x770
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x770(r30)
-	  beq-      .loc_0x5A0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x770
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x770(r30)
-	  bl        0x30AD4
+		.loc_0x558:
+		  addic.    r0, r30, 0x770
+		  beq-      .loc_0x5A0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x770
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x770(r30)
+		  beq-      .loc_0x5A0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x770
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x770(r30)
+		  beq-      .loc_0x5A0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x770
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x770(r30)
+		  bl        0x30AD4
 
-	.loc_0x5A0:
-	  addic.    r0, r30, 0x734
-	  beq-      .loc_0x610
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x754
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x734(r30)
-	  beq-      .loc_0x5C8
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x754(r30)
+		.loc_0x5A0:
+		  addic.    r0, r30, 0x734
+		  beq-      .loc_0x610
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x754
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x734(r30)
+		  beq-      .loc_0x5C8
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x754(r30)
 
-	.loc_0x5C8:
-	  addic.    r0, r30, 0x734
-	  beq-      .loc_0x610
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x734
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x734(r30)
-	  beq-      .loc_0x610
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x734
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x734(r30)
-	  beq-      .loc_0x610
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x734
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x734(r30)
-	  bl        0x30A64
+		.loc_0x5C8:
+		  addic.    r0, r30, 0x734
+		  beq-      .loc_0x610
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x734
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x734(r30)
+		  beq-      .loc_0x610
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x734
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x734(r30)
+		  beq-      .loc_0x610
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x734
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x734(r30)
+		  bl        0x30A64
 
-	.loc_0x610:
-	  addic.    r0, r30, 0x6F8
-	  beq-      .loc_0x680
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x718
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x6F8(r30)
-	  beq-      .loc_0x638
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x718(r30)
+		.loc_0x610:
+		  addic.    r0, r30, 0x6F8
+		  beq-      .loc_0x680
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x718
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x6F8(r30)
+		  beq-      .loc_0x638
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x718(r30)
 
-	.loc_0x638:
-	  addic.    r0, r30, 0x6F8
-	  beq-      .loc_0x680
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x6F8
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x6F8(r30)
-	  beq-      .loc_0x680
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x6F8
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x6F8(r30)
-	  beq-      .loc_0x680
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x6F8
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x6F8(r30)
-	  bl        0x309F4
+		.loc_0x638:
+		  addic.    r0, r30, 0x6F8
+		  beq-      .loc_0x680
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x6F8
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x6F8(r30)
+		  beq-      .loc_0x680
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x6F8
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x6F8(r30)
+		  beq-      .loc_0x680
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x6F8
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x6F8(r30)
+		  bl        0x309F4
 
-	.loc_0x680:
-	  addic.    r0, r30, 0x6BC
-	  beq-      .loc_0x6F0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x6DC
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x6BC(r30)
-	  beq-      .loc_0x6A8
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x6DC(r30)
+		.loc_0x680:
+		  addic.    r0, r30, 0x6BC
+		  beq-      .loc_0x6F0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x6DC
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x6BC(r30)
+		  beq-      .loc_0x6A8
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x6DC(r30)
 
-	.loc_0x6A8:
-	  addic.    r0, r30, 0x6BC
-	  beq-      .loc_0x6F0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x6BC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x6BC(r30)
-	  beq-      .loc_0x6F0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x6BC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x6BC(r30)
-	  beq-      .loc_0x6F0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x6BC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x6BC(r30)
-	  bl        0x30984
+		.loc_0x6A8:
+		  addic.    r0, r30, 0x6BC
+		  beq-      .loc_0x6F0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x6BC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x6BC(r30)
+		  beq-      .loc_0x6F0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x6BC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x6BC(r30)
+		  beq-      .loc_0x6F0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x6BC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x6BC(r30)
+		  bl        0x30984
 
-	.loc_0x6F0:
-	  addic.    r0, r30, 0x680
-	  beq-      .loc_0x760
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x6A0
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x680(r30)
-	  beq-      .loc_0x718
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x6A0(r30)
+		.loc_0x6F0:
+		  addic.    r0, r30, 0x680
+		  beq-      .loc_0x760
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x6A0
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x680(r30)
+		  beq-      .loc_0x718
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x6A0(r30)
 
-	.loc_0x718:
-	  addic.    r0, r30, 0x680
-	  beq-      .loc_0x760
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x680
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x680(r30)
-	  beq-      .loc_0x760
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x680
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x680(r30)
-	  beq-      .loc_0x760
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x680
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x680(r30)
-	  bl        0x30914
+		.loc_0x718:
+		  addic.    r0, r30, 0x680
+		  beq-      .loc_0x760
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x680
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x680(r30)
+		  beq-      .loc_0x760
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x680
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x680(r30)
+		  beq-      .loc_0x760
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x680
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x680(r30)
+		  bl        0x30914
 
-	.loc_0x760:
-	  addic.    r0, r30, 0x644
-	  beq-      .loc_0x7D0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x664
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x644(r30)
-	  beq-      .loc_0x788
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x664(r30)
+		.loc_0x760:
+		  addic.    r0, r30, 0x644
+		  beq-      .loc_0x7D0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x664
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x644(r30)
+		  beq-      .loc_0x788
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x664(r30)
 
-	.loc_0x788:
-	  addic.    r0, r30, 0x644
-	  beq-      .loc_0x7D0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x644
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x644(r30)
-	  beq-      .loc_0x7D0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x644
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x644(r30)
-	  beq-      .loc_0x7D0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x644
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x644(r30)
-	  bl        0x308A4
+		.loc_0x788:
+		  addic.    r0, r30, 0x644
+		  beq-      .loc_0x7D0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x644
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x644(r30)
+		  beq-      .loc_0x7D0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x644
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x644(r30)
+		  beq-      .loc_0x7D0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x644
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x644(r30)
+		  bl        0x308A4
 
-	.loc_0x7D0:
-	  addic.    r0, r30, 0x608
-	  beq-      .loc_0x840
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x628
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x608(r30)
-	  beq-      .loc_0x7F8
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x628(r30)
+		.loc_0x7D0:
+		  addic.    r0, r30, 0x608
+		  beq-      .loc_0x840
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x628
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x608(r30)
+		  beq-      .loc_0x7F8
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x628(r30)
 
-	.loc_0x7F8:
-	  addic.    r0, r30, 0x608
-	  beq-      .loc_0x840
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x608
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x608(r30)
-	  beq-      .loc_0x840
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x608
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x608(r30)
-	  beq-      .loc_0x840
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x608
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x608(r30)
-	  bl        0x30834
+		.loc_0x7F8:
+		  addic.    r0, r30, 0x608
+		  beq-      .loc_0x840
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x608
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x608(r30)
+		  beq-      .loc_0x840
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x608
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x608(r30)
+		  beq-      .loc_0x840
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x608
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x608(r30)
+		  bl        0x30834
 
-	.loc_0x840:
-	  addic.    r0, r30, 0x5CC
-	  beq-      .loc_0x8B0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x5EC
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x5CC(r30)
-	  beq-      .loc_0x868
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x5EC(r30)
+		.loc_0x840:
+		  addic.    r0, r30, 0x5CC
+		  beq-      .loc_0x8B0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x5EC
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x5CC(r30)
+		  beq-      .loc_0x868
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x5EC(r30)
 
-	.loc_0x868:
-	  addic.    r0, r30, 0x5CC
-	  beq-      .loc_0x8B0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x5CC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x5CC(r30)
-	  beq-      .loc_0x8B0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x5CC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x5CC(r30)
-	  beq-      .loc_0x8B0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x5CC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x5CC(r30)
-	  bl        0x307C4
+		.loc_0x868:
+		  addic.    r0, r30, 0x5CC
+		  beq-      .loc_0x8B0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x5CC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x5CC(r30)
+		  beq-      .loc_0x8B0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x5CC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x5CC(r30)
+		  beq-      .loc_0x8B0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x5CC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x5CC(r30)
+		  bl        0x307C4
 
-	.loc_0x8B0:
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x518
-	  subi      r4, r4, 0x6C
-	  li        r5, 0x3C
-	  li        r6, 0x3
-	  bl        -0x31F618
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x464
-	  subi      r4, r4, 0x6C
-	  li        r5, 0x3C
-	  li        r6, 0x3
-	  bl        -0x31F630
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x3B0
-	  subi      r4, r4, 0x6C
-	  li        r5, 0x3C
-	  li        r6, 0x3
-	  bl        -0x31F648
-	  addic.    r0, r30, 0x374
-	  beq-      .loc_0x968
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x394
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x374(r30)
-	  beq-      .loc_0x920
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x394(r30)
+		.loc_0x8B0:
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x518
+		  subi      r4, r4, 0x6C
+		  li        r5, 0x3C
+		  li        r6, 0x3
+		  bl        -0x31F618
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x464
+		  subi      r4, r4, 0x6C
+		  li        r5, 0x3C
+		  li        r6, 0x3
+		  bl        -0x31F630
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x3B0
+		  subi      r4, r4, 0x6C
+		  li        r5, 0x3C
+		  li        r6, 0x3
+		  bl        -0x31F648
+		  addic.    r0, r30, 0x374
+		  beq-      .loc_0x968
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x394
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x374(r30)
+		  beq-      .loc_0x920
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x394(r30)
 
-	.loc_0x920:
-	  addic.    r0, r30, 0x374
-	  beq-      .loc_0x968
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x374
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x374(r30)
-	  beq-      .loc_0x968
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x374
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x374(r30)
-	  beq-      .loc_0x968
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x374
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x374(r30)
-	  bl        0x3070C
+		.loc_0x920:
+		  addic.    r0, r30, 0x374
+		  beq-      .loc_0x968
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x374
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x374(r30)
+		  beq-      .loc_0x968
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x374
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x374(r30)
+		  beq-      .loc_0x968
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x374
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x374(r30)
+		  bl        0x3070C
 
-	.loc_0x968:
-	  addic.    r0, r30, 0x338
-	  beq-      .loc_0x9D8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x358
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x338(r30)
-	  beq-      .loc_0x990
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x358(r30)
+		.loc_0x968:
+		  addic.    r0, r30, 0x338
+		  beq-      .loc_0x9D8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x358
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x338(r30)
+		  beq-      .loc_0x990
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x358(r30)
 
-	.loc_0x990:
-	  addic.    r0, r30, 0x338
-	  beq-      .loc_0x9D8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x338
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x338(r30)
-	  beq-      .loc_0x9D8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x338
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x338(r30)
-	  beq-      .loc_0x9D8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x338
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x338(r30)
-	  bl        0x3069C
+		.loc_0x990:
+		  addic.    r0, r30, 0x338
+		  beq-      .loc_0x9D8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x338
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x338(r30)
+		  beq-      .loc_0x9D8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x338
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x338(r30)
+		  beq-      .loc_0x9D8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x338
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x338(r30)
+		  bl        0x3069C
 
-	.loc_0x9D8:
-	  addic.    r0, r30, 0x2FC
-	  beq-      .loc_0xA48
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x31C
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x2FC(r30)
-	  beq-      .loc_0xA00
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x31C(r30)
+		.loc_0x9D8:
+		  addic.    r0, r30, 0x2FC
+		  beq-      .loc_0xA48
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x31C
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x2FC(r30)
+		  beq-      .loc_0xA00
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x31C(r30)
 
-	.loc_0xA00:
-	  addic.    r0, r30, 0x2FC
-	  beq-      .loc_0xA48
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x2FC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x2FC(r30)
-	  beq-      .loc_0xA48
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x2FC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x2FC(r30)
-	  beq-      .loc_0xA48
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x2FC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x2FC(r30)
-	  bl        0x3062C
+		.loc_0xA00:
+		  addic.    r0, r30, 0x2FC
+		  beq-      .loc_0xA48
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x2FC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x2FC(r30)
+		  beq-      .loc_0xA48
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x2FC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x2FC(r30)
+		  beq-      .loc_0xA48
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x2FC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x2FC(r30)
+		  bl        0x3062C
 
-	.loc_0xA48:
-	  addic.    r0, r30, 0x2C0
-	  beq-      .loc_0xAB8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x2E0
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x2C0(r30)
-	  beq-      .loc_0xA70
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x2E0(r30)
+		.loc_0xA48:
+		  addic.    r0, r30, 0x2C0
+		  beq-      .loc_0xAB8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x2E0
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x2C0(r30)
+		  beq-      .loc_0xA70
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x2E0(r30)
 
-	.loc_0xA70:
-	  addic.    r0, r30, 0x2C0
-	  beq-      .loc_0xAB8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x2C0
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x2C0(r30)
-	  beq-      .loc_0xAB8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x2C0
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x2C0(r30)
-	  beq-      .loc_0xAB8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x2C0
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x2C0(r30)
-	  bl        0x305BC
+		.loc_0xA70:
+		  addic.    r0, r30, 0x2C0
+		  beq-      .loc_0xAB8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x2C0
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x2C0(r30)
+		  beq-      .loc_0xAB8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x2C0
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x2C0(r30)
+		  beq-      .loc_0xAB8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x2C0
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x2C0(r30)
+		  bl        0x305BC
 
-	.loc_0xAB8:
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x20C
-	  subi      r4, r4, 0x6C
-	  li        r5, 0x3C
-	  li        r6, 0x3
-	  bl        -0x31F820
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x158
-	  subi      r4, r4, 0x6C
-	  li        r5, 0x3C
-	  li        r6, 0x3
-	  bl        -0x31F838
-	  addic.    r0, r30, 0x11C
-	  beq-      .loc_0xB58
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x13C
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x11C(r30)
-	  beq-      .loc_0xB10
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x13C(r30)
+		.loc_0xAB8:
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x20C
+		  subi      r4, r4, 0x6C
+		  li        r5, 0x3C
+		  li        r6, 0x3
+		  bl        -0x31F820
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x158
+		  subi      r4, r4, 0x6C
+		  li        r5, 0x3C
+		  li        r6, 0x3
+		  bl        -0x31F838
+		  addic.    r0, r30, 0x11C
+		  beq-      .loc_0xB58
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x13C
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x11C(r30)
+		  beq-      .loc_0xB10
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x13C(r30)
 
-	.loc_0xB10:
-	  addic.    r0, r30, 0x11C
-	  beq-      .loc_0xB58
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x11C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x11C(r30)
-	  beq-      .loc_0xB58
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x11C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x11C(r30)
-	  beq-      .loc_0xB58
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x11C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x11C(r30)
-	  bl        0x3051C
+		.loc_0xB10:
+		  addic.    r0, r30, 0x11C
+		  beq-      .loc_0xB58
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x11C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x11C(r30)
+		  beq-      .loc_0xB58
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x11C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x11C(r30)
+		  beq-      .loc_0xB58
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x11C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x11C(r30)
+		  bl        0x3051C
 
-	.loc_0xB58:
-	  addic.    r0, r30, 0xE0
-	  beq-      .loc_0xBC8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x100
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0xE0(r30)
-	  beq-      .loc_0xB80
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x100(r30)
+		.loc_0xB58:
+		  addic.    r0, r30, 0xE0
+		  beq-      .loc_0xBC8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x100
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0xE0(r30)
+		  beq-      .loc_0xB80
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x100(r30)
 
-	.loc_0xB80:
-	  addic.    r0, r30, 0xE0
-	  beq-      .loc_0xBC8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xE0
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0xE0(r30)
-	  beq-      .loc_0xBC8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0xE0
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0xE0(r30)
-	  beq-      .loc_0xBC8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0xE0
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0xE0(r30)
-	  bl        0x304AC
+		.loc_0xB80:
+		  addic.    r0, r30, 0xE0
+		  beq-      .loc_0xBC8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xE0
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0xE0(r30)
+		  beq-      .loc_0xBC8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0xE0
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0xE0(r30)
+		  beq-      .loc_0xBC8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0xE0
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0xE0(r30)
+		  bl        0x304AC
 
-	.loc_0xBC8:
-	  extsh.    r0, r31
-	  ble-      .loc_0xBD8
-	  mr        r3, r30
-	  bl        -0x3BD038
+		.loc_0xBC8:
+		  extsh.    r0, r31
+		  ble-      .loc_0xBD8
+		  mr        r3, r30
+		  bl        -0x3BD038
 
-	.loc_0xBD8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0xBD8:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803E110C
- * Size:	000004
- */
-void init__Q24Game24FSMState<ebi::FS::TMgr>
-FPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
-{
-}
+	/*
+	 * --INFO--
+	 * Address:	803E110C
+	 * Size:	000004
+	 */
+	void init__Q24Game24FSMState<ebi::FS::TMgr>
+	FPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+	{
+	}
+
+} // namespace Screen
+
+} // namespace ebi
 
 /*
  * --INFO--

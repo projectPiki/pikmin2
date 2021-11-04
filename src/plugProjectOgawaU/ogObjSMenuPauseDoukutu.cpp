@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8032208C
  * Size:	0000B0
  */
-void og::newScreen::ObjSMenuPauseDoukutu::__ct((char const*))
+newScreen::ObjSMenuPauseDoukutu::ObjSMenuPauseDoukutu(char const*)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +63,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::__ct((char const*))
  * Address:	8032213C
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuPauseDoukutu::__dt(void)
+newScreen::ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu(void)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +128,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::__dt(void)
  * Address:	80322200
  * Size:	000574
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doCreate((JKRArchive*))
+void newScreen::ObjSMenuPauseDoukutu::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +507,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doCreate((JKRArchive*))
  * Address:	80322774
  * Size:	000094
  */
-void og::newScreen::ObjSMenuPauseDoukutu::commonUpdate(void)
+void newScreen::ObjSMenuPauseDoukutu::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -564,7 +556,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::commonUpdate(void)
  * Address:	80322808
  * Size:	0000B0
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdate(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -628,7 +620,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdate(void)
  * Address:	803228B8
  * Size:	00008C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doDraw((Graphics&))
+void newScreen::ObjSMenuPauseDoukutu::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -677,8 +669,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doDraw((Graphics&))
  * Address:	80322944
  * Size:	0000A4
  */
-void
-    og::newScreen::ObjSMenuPauseDoukutu::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjSMenuPauseDoukutu::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -731,7 +722,7 @@ void
  * Address:	803229E8
  * Size:	000008
  */
-u32 og::newScreen::ObjSMenuPauseDoukutu::doEnd((Screen::EndSceneArg const*))
+u32 newScreen::ObjSMenuPauseDoukutu::doEnd(Screen::EndSceneArg const*)
 {
 	return 0x1;
 }
@@ -741,7 +732,7 @@ u32 og::newScreen::ObjSMenuPauseDoukutu::doEnd((Screen::EndSceneArg const*))
  * Address:	803229F0
  * Size:	00003C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdateFinish(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -768,7 +759,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdateFinish(void)
  * Address:	80322A2C
  * Size:	00004C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdateFadeout(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -799,7 +790,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdateFadeout(void)
  * Address:	80322A78
  * Size:	000158
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdateFadeoutFinish(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -917,7 +908,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdateFadeoutFinish(void)
  * Address:	80322BD0
  * Size:	0001D8
  */
-void og::newScreen::ObjSMenuPauseDoukutu::menu_pause(void)
+void newScreen::ObjSMenuPauseDoukutu::menu_pause(void)
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1052,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::menu_pause(void)
  * Address:	80322DA8
  * Size:	000010
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdateCancelAction(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdateCancelAction(void)
 {
 	/*
 	.loc_0x0:
@@ -1077,7 +1068,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdateCancelAction(void)
  * Address:	80322DB8
  * Size:	00006C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdateLAction(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdateLAction(void)
 {
 	/*
 	.loc_0x0:
@@ -1116,7 +1107,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdateLAction(void)
  * Address:	80322E24
  * Size:	0000C8
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doUpdateRAction(void)
+void newScreen::ObjSMenuPauseDoukutu::doUpdateRAction(void)
 {
 	/*
 	.loc_0x0:
@@ -1182,7 +1173,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::doUpdateRAction(void)
  * Address:	80322EEC
  * Size:	0001E8
  */
-void og::newScreen::ObjSMenuPauseDoukutu::menu_giveup(void)
+void newScreen::ObjSMenuPauseDoukutu::menu_giveup(void)
 {
 	/*
 	.loc_0x0:
@@ -1332,7 +1323,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::menu_giveup(void)
  * Address:	803230D4
  * Size:	000038
  */
-void og::newScreen::ObjSMenuPauseDoukutu::finishPause(void)
+void newScreen::ObjSMenuPauseDoukutu::finishPause(void)
 {
 	/*
 	.loc_0x0:
@@ -1358,7 +1349,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::finishPause(void)
  * Address:	8032310C
  * Size:	0000A8
  */
-void og::newScreen::ObjSMenuPauseDoukutu::menu(void)
+void newScreen::ObjSMenuPauseDoukutu::menu(void)
 {
 	/*
 	.loc_0x0:
@@ -1420,7 +1411,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::menu(void)
  * Address:	803231B4
  * Size:	000014
  */
-void og::newScreen::ObjSMenuPauseDoukutu::in_L(void)
+void newScreen::ObjSMenuPauseDoukutu::in_L(void)
 {
 	/*
 	.loc_0x0:
@@ -1437,7 +1428,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::in_L(void)
  * Address:	803231C8
  * Size:	000014
  */
-void og::newScreen::ObjSMenuPauseDoukutu::in_R(void)
+void newScreen::ObjSMenuPauseDoukutu::in_R(void)
 {
 	/*
 	.loc_0x0:
@@ -1454,14 +1445,10 @@ void og::newScreen::ObjSMenuPauseDoukutu::in_R(void)
  * Address:	803231DC
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::wait(void)
+void newScreen::ObjSMenuPauseDoukutu::wait(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x4
-	  stw       r0, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x38(r3)
+	_38 = 4;
 }
 
 /*
@@ -1469,7 +1456,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::wait(void)
  * Address:	803231E8
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::out_L(void)
+void newScreen::ObjSMenuPauseDoukutu::out_L(void)
 {
 	/*
 	.loc_0x0:
@@ -1492,7 +1479,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::out_L(void)
  * Address:	80323214
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::out_R(void)
+void newScreen::ObjSMenuPauseDoukutu::out_R(void)
 {
 	/*
 	.loc_0x0:
@@ -1515,7 +1502,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::out_R(void)
  * Address:	80323240
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuPauseDoukutu::set_Blink_Normal(void)
+void newScreen::ObjSMenuPauseDoukutu::set_Blink_Normal(void)
 {
 	/*
 	.loc_0x0:
@@ -1586,7 +1573,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::set_Blink_Normal(void)
  * Address:	80323304
  * Size:	000078
  */
-void og::newScreen::ObjSMenuPauseDoukutu::set_Blink_YesNo(void)
+void newScreen::ObjSMenuPauseDoukutu::set_Blink_YesNo(void)
 {
 	/*
 	.loc_0x0:
@@ -1632,7 +1619,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::set_Blink_YesNo(void)
  * Address:	8032337C
  * Size:	00010C
  */
-void og::newScreen::ObjSMenuPauseDoukutu::set_Menu_Normal(void)
+void newScreen::ObjSMenuPauseDoukutu::set_Menu_Normal(void)
 {
 	/*
 	.loc_0x0:
@@ -1721,7 +1708,7 @@ void og::newScreen::ObjSMenuPauseDoukutu::set_Menu_Normal(void)
  * Address:	80323488
  * Size:	0000D4
  */
-void og::newScreen::ObjSMenuPauseDoukutu::set_Menu_YesNo(void)
+void newScreen::ObjSMenuPauseDoukutu::set_Menu_YesNo(void)
 {
 	/*
 	.loc_0x0:
@@ -1785,6 +1772,8 @@ void og::newScreen::ObjSMenuPauseDoukutu::set_Menu_YesNo(void)
 	*/
 }
 
+} // namespace og
+
 /*
  * --INFO--
  * Address:	8032355C
@@ -1810,7 +1799,7 @@ void __sinit_ogObjSMenuPauseDoukutu_cpp(void)
  * Address:	8032357C
  * Size:	000008
  */
-void @24 @og::newScreen::ObjSMenuPauseDoukutu::__dt(void)
+@24 @og::newScreen::ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu(void)
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80238EB0
  * Size:	0000B8
  */
-void PikiAI::ActRescue::__ct((Game::Piki*))
+PikiAI::ActRescue::ActRescue(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -77,7 +67,7 @@ void PikiAI::ActRescue::__ct((Game::Piki*))
  * Address:	80238F68
  * Size:	0000C4
  */
-void PikiAI::ActRescue::init((PikiAI::ActionArg*))
+void PikiAI::ActRescue::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -841,7 +831,7 @@ void PikiAI::ActRescue::execThrow(void)
  * Address:	80239860
  * Size:	00002C
  */
-void PikiAI::ActRescue::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActRescue::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -873,7 +863,7 @@ void PikiAI::ActRescue::emotion_success(void) { }
  * Address:	80239890
  * Size:	000004
  */
-void PikiAI::ActRescue::doDirectDraw((Graphics&)) { }
+void PikiAI::ActRescue::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -887,7 +877,7 @@ void PikiAI::ActRescue::cleanup(void) { }
  * Address:	80239898
  * Size:	000004
  */
-void PikiAI::ActRescue::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
+void PikiAI::ActRescue::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
@@ -921,7 +911,7 @@ u32 PikiAI::ActRescue::getNextAIType(void) { return 0x1; }
  * Address:	802398C4
  * Size:	000014
  */
-void @40 @4 @PikiAI::ActRescue::onKeyEvent((SysShape::KeyEvent const&))
+void @40 @4 @PikiAI::ActRescue::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

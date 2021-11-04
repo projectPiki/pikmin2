@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80262FF0
  * Size:	000138
  */
-void Game::Rock::Obj::Obj()
+Rock::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,7 +103,7 @@ void Game::Rock::Obj::Obj()
  * Address:	80263128
  * Size:	00005C
  */
-void Game::Rock::Obj::birth(Vector3<float>&, float)
+void Rock::Obj::birth(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +138,7 @@ void Game::Rock::Obj::birth(Vector3<float>&, float)
  * Address:	80263184
  * Size:	000028
  */
-void Game::Rock::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
+void Rock::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -158,7 +160,7 @@ void Game::Rock::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
  * Address:	802631AC
  * Size:	0001E0
  */
-void Game::Rock::Obj::onInit(Game::CreatureInitArg*)
+void Rock::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +304,7 @@ void Game::Rock::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8026338C
  * Size:	000008
  */
-void Game::Rock::Obj::getEnemyTypeID()
+void Rock::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -316,7 +318,7 @@ void Game::Rock::Obj::getEnemyTypeID()
  * Address:	80263394
  * Size:	000054
  */
-void Game::Rock::Obj::onKill(Game::CreatureKillArg*)
+void Rock::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +351,7 @@ void Game::Rock::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802633E8
  * Size:	000034
  */
-void Game::Rock::Obj::doUpdate()
+void Rock::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -374,7 +376,7 @@ void Game::Rock::Obj::doUpdate()
  * Address:	8026341C
  * Size:	00004C
  */
-void Game::Rock::Obj::setFSM(Game::Rock::FSM*)
+void Rock::Obj::setFSM(Game::Rock::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -405,14 +407,14 @@ void Game::Rock::Obj::setFSM(Game::Rock::FSM*)
  * Address:	80263468
  * Size:	000004
  */
-void Game::Rock::Obj::doDirectDraw(Graphics&) { }
+void Rock::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8026346C
  * Size:	000020
  */
-void Game::Rock::Obj::doDebugDraw(Graphics&)
+void Rock::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -432,7 +434,7 @@ void Game::Rock::Obj::doDebugDraw(Graphics&)
  * Address:	8026348C
  * Size:	0000E4
  */
-void Game::Rock::Obj::getShadowParam(Game::ShadowParam&)
+void Rock::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +509,7 @@ void Game::Rock::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80263570
  * Size:	000060
  */
-void Game::Rock::Obj::needShadow()
+void Rock::Obj::needShadow()
 {
 	/*
 	.loc_0x0:
@@ -551,7 +553,7 @@ void Game::Rock::Obj::needShadow()
  * Address:	802635D0
  * Size:	000088
  */
-void Game::Rock::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Rock::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -601,7 +603,7 @@ void Game::Rock::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	80263658
  * Size:	0001A4
  */
-void Game::Rock::Obj::collisionCallback(Game::CollEvent&)
+void Rock::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -730,7 +732,7 @@ void Game::Rock::Obj::collisionCallback(Game::CollEvent&)
  * Address:	802637FC
  * Size:	000054
  */
-void Game::Rock::Obj::wallCallback(const Game::MoveInfo&)
+void Rock::Obj::wallCallback(const Game::MoveInfo&)
 {
 	/*
 	.loc_0x0:
@@ -765,7 +767,7 @@ void Game::Rock::Obj::wallCallback(const Game::MoveInfo&)
  * Address:	80263850
  * Size:	00006C
  */
-void Game::Rock::Obj::inWaterCallback(Game::WaterBox*)
+void Rock::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -806,7 +808,7 @@ void Game::Rock::Obj::inWaterCallback(Game::WaterBox*)
  * Address:	802638BC
  * Size:	000060
  */
-void Game::Rock::Obj::outWaterCallback()
+void Rock::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -844,7 +846,7 @@ void Game::Rock::Obj::outWaterCallback()
  * Address:	8026391C
  * Size:	000020
  */
-void Game::Rock::Obj::doStartMovie()
+void Rock::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -864,7 +866,7 @@ void Game::Rock::Obj::doStartMovie()
  * Address:	8026393C
  * Size:	000020
  */
-void Game::Rock::Obj::doEndMovie()
+void Rock::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -884,7 +886,7 @@ void Game::Rock::Obj::doEndMovie()
  * Address:	8026395C
  * Size:	00002C
  */
-void Game::Rock::Obj::ignoreAtari(Game::Creature*)
+void Rock::Obj::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -909,7 +911,7 @@ void Game::Rock::Obj::ignoreAtari(Game::Creature*)
  * Address:	80263988
  * Size:	00007C
  */
-void Game::Rock::Obj::fallRockScaleUp()
+void Rock::Obj::fallRockScaleUp()
 {
 	/*
 	.loc_0x0:
@@ -956,7 +958,7 @@ void Game::Rock::Obj::fallRockScaleUp()
  * Address:	80263A04
  * Size:	00007C
  */
-void Game::Rock::Obj::moveRockScaleUp()
+void Rock::Obj::moveRockScaleUp()
 {
 	/*
 	.loc_0x0:
@@ -1003,7 +1005,7 @@ void Game::Rock::Obj::moveRockScaleUp()
  * Address:	80263A80
  * Size:	000100
  */
-void Game::Rock::Obj::initMoveVelocity()
+void Rock::Obj::initMoveVelocity()
 {
 	/*
 	.loc_0x0:
@@ -1085,7 +1087,7 @@ void Game::Rock::Obj::initMoveVelocity()
  * Address:	80263B80
  * Size:	0003A0
  */
-void Game::Rock::Obj::updateMoveVelocity()
+void Rock::Obj::updateMoveVelocity()
 {
 	/*
 	.loc_0x0:
@@ -1353,7 +1355,7 @@ void Game::Rock::Obj::updateMoveVelocity()
  * Address:	80263F20
  * Size:	0001A4
  */
-void Game::Rock::Obj::createEffect()
+void Rock::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1476,7 +1478,7 @@ void Game::Rock::Obj::createEffect()
  * Address:	802640C4
  * Size:	000018
  */
-void Game::Rock::Obj::setupEffect()
+void Rock::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1494,7 +1496,7 @@ void Game::Rock::Obj::setupEffect()
  * Address:	802640DC
  * Size:	000034
  */
-void Game::Rock::Obj::startFallEffect()
+void Rock::Obj::startFallEffect()
 {
 	/*
 	.loc_0x0:
@@ -1519,7 +1521,7 @@ void Game::Rock::Obj::startFallEffect()
  * Address:	80264110
  * Size:	000030
  */
-void Game::Rock::Obj::finishFallEffect()
+void Rock::Obj::finishFallEffect()
 {
 	/*
 	.loc_0x0:
@@ -1543,7 +1545,7 @@ void Game::Rock::Obj::finishFallEffect()
  * Address:	80264140
  * Size:	000034
  */
-void Game::Rock::Obj::startRollingGroundEffect()
+void Rock::Obj::startRollingGroundEffect()
 {
 	/*
 	.loc_0x0:
@@ -1568,7 +1570,7 @@ void Game::Rock::Obj::startRollingGroundEffect()
  * Address:	80264174
  * Size:	000030
  */
-void Game::Rock::Obj::finishRollingGroundEffect()
+void Rock::Obj::finishRollingGroundEffect()
 {
 	/*
 	.loc_0x0:
@@ -1592,7 +1594,7 @@ void Game::Rock::Obj::finishRollingGroundEffect()
  * Address:	802641A4
  * Size:	0000E8
  */
-void Game::Rock::Obj::startRollingWaterEffect()
+void Rock::Obj::startRollingWaterEffect()
 {
 	/*
 	.loc_0x0:
@@ -1663,12 +1665,16 @@ void Game::Rock::Obj::startRollingWaterEffect()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8026428C
  * Size:	000010
  */
-void efx::TRockWRun::create(efx::Arg*)
+void TRockWRun::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1679,12 +1685,16 @@ void efx::TRockWRun::create(efx::Arg*)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8026429C
  * Size:	000030
  */
-void Game::Rock::Obj::finishRollingWaterEffect()
+void Rock::Obj::finishRollingWaterEffect()
 {
 	/*
 	.loc_0x0:
@@ -1703,12 +1713,16 @@ void Game::Rock::Obj::finishRollingWaterEffect()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802642CC
  * Size:	000044
  */
-void efx::TRockWRun::fade()
+void TRockWRun::fade()
 {
 	/*
 	.loc_0x0:
@@ -1732,12 +1746,16 @@ void efx::TRockWRun::fade()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80264310
  * Size:	0000A4
  */
-void Game::Rock::Obj::updateWaterEffectPosition()
+void Rock::Obj::updateWaterEffectPosition()
 {
 	/*
 	.loc_0x0:
@@ -1794,7 +1812,7 @@ void Game::Rock::Obj::updateWaterEffectPosition()
  * Address:	802643B4
  * Size:	000098
  */
-void Game::Rock::Obj::createRockDeadEffect()
+void Rock::Obj::createRockDeadEffect()
 {
 	/*
 	.loc_0x0:
@@ -1844,7 +1862,7 @@ void Game::Rock::Obj::createRockDeadEffect()
  * Address:	8026444C
  * Size:	000064
  */
-void Game::Rock::Obj::effectDrawOn()
+void Rock::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1881,7 +1899,7 @@ void Game::Rock::Obj::effectDrawOn()
  * Address:	802644B0
  * Size:	000064
  */
-void Game::Rock::Obj::effectDrawOff()
+void Rock::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1913,12 +1931,16 @@ void Game::Rock::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	80264514
  * Size:	000044
  */
-void efx::TRockWRun::forceKill()
+void TRockWRun::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -1947,7 +1969,7 @@ void efx::TRockWRun::forceKill()
  * Address:	80264558
  * Size:	00009C
  */
-void efx::TRockGrRun::~TRockGrRun()
+TRockGrRun::~TRockGrRun()
 {
 	/*
 	.loc_0x0:
@@ -2002,7 +2024,7 @@ void efx::TRockGrRun::~TRockGrRun()
  * Address:	802645F4
  * Size:	00009C
  */
-void efx::TRockRun::~TRockRun()
+TRockRun::~TRockRun()
 {
 	/*
 	.loc_0x0:
@@ -2052,19 +2074,23 @@ void efx::TRockRun::~TRockRun()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80264690
  * Size:	000008
  */
-u32 Game::Rock::Obj::isLivingThing() { return 0x0; }
+u32 Rock::Obj::isLivingThing() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80264698
  * Size:	000014
  */
-void Game::EnemyBase::@744 @12 @viewOnPelletKilled()
+void EnemyBase::@744 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -2081,7 +2107,7 @@ void Game::EnemyBase::@744 @12 @viewOnPelletKilled()
  * Address:	802646AC
  * Size:	000014
  */
-void Game::EnemyBase::@744 @12 @viewStartCarryMotion()
+void EnemyBase::@744 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2098,7 +2124,7 @@ void Game::EnemyBase::@744 @12 @viewStartCarryMotion()
  * Address:	802646C0
  * Size:	000014
  */
-void Game::EnemyBase::@744 @12 @viewStartPreCarryMotion()
+void EnemyBase::@744 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2115,7 +2141,7 @@ void Game::EnemyBase::@744 @12 @viewStartPreCarryMotion()
  * Address:	802646D4
  * Size:	000014
  */
-void Game::EnemyBase::@744 @12 @view_finish_carrymotion()
+void EnemyBase::@744 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2132,7 +2158,7 @@ void Game::EnemyBase::@744 @12 @view_finish_carrymotion()
  * Address:	802646E8
  * Size:	000014
  */
-void Game::EnemyBase::@744 @12 @view_start_carrymotion()
+void EnemyBase::@744 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2149,7 +2175,7 @@ void Game::EnemyBase::@744 @12 @view_start_carrymotion()
  * Address:	802646FC
  * Size:	000014
  */
-void Game::EnemyBase::@744 @12 @viewGetShape()
+void EnemyBase::@744 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -2161,30 +2187,35 @@ void Game::EnemyBase::@744 @12 @viewGetShape()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80264710
- * Size:	000008
- */
-void efx::TRockRun::@4 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x120
-	*/
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	80264718
- * Size:	000008
- */
-void efx::TRockGrRun::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x1C4
-	*/
-}
+	 * --INFO--
+	 * Address:	80264710
+	 * Size:	000008
+	 */
+	TRockRun::@4 @~TRockRun()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x120
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80264718
+	 * Size:	000008
+	 */
+	TRockGrRun::@4 @~TRockGrRun()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x1C4
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

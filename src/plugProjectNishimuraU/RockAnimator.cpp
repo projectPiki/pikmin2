@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8026287C
  * Size:	000008
  */
-void Game::Rock::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Rock::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Rock::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80262884
  * Size:	000008
  */
-void Game::Rock::ProperAnimator::getAnimator(int)
+void Rock::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Rock::ProperAnimator::getAnimator(int)
  * Address:	8026288C
  * Size:	00005C
  */
-void Game::Rock::ProperAnimator::~ProperAnimator()
+Rock::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Rock::ProperAnimator::~ProperAnimator()
  * Address:	802628E8
  * Size:	000008
  */
-void Game::Rock::ProperAnimator::getAnimator()
+void Rock::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Rock::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

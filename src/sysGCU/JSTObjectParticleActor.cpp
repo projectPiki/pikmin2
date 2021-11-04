@@ -1,22 +1,14 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	804544D4
  * Size:	000168
  */
-void Game::P2JST::ObjectParticleActor::__ct((char const*, Game::MoviePlayer*,
-                                             Game::Creature*))
+P2JST::ObjectParticleActor::ObjectParticleActor(char const*, Game::MoviePlayer*,
+                                                Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -132,7 +124,7 @@ void Game::P2JST::ObjectParticleActor::__ct((char const*, Game::MoviePlayer*,
  * Address:	8045463C
  * Size:	000028
  */
-void Game::P2JST::ObjectParticleActor::reset(void)
+void P2JST::ObjectParticleActor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -154,7 +146,7 @@ void Game::P2JST::ObjectParticleActor::reset(void)
  * Address:	80454664
  * Size:	000020
  */
-void Game::P2JST::ObjectParticleActor::stop(void)
+void P2JST::ObjectParticleActor::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +166,7 @@ void Game::P2JST::ObjectParticleActor::stop(void)
  * Address:	80454684
  * Size:	0000C0
  */
-void Game::P2JST::ObjectParticleActor::update(void)
+void P2JST::ObjectParticleActor::update(void)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +234,7 @@ void Game::P2JST::ObjectParticleActor::update(void)
  * Address:	80454744
  * Size:	00003C
  */
-void Game::P2JST::ObjectParticleActor::JSGSetShape((unsigned long))
+void P2JST::ObjectParticleActor::JSGSetShape(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -269,8 +261,7 @@ void Game::P2JST::ObjectParticleActor::JSGSetShape((unsigned long))
  * Address:	80454780
  * Size:	000178
  */
-void Game::P2JST::ObjectParticleActor::parseUserData_((unsigned long,
-                                                       void const*))
+void P2JST::ObjectParticleActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:
@@ -394,7 +385,7 @@ void Game::P2JST::ObjectParticleActor::parseUserData_((unsigned long,
  * Address:	804548F8
  * Size:	00001C
  */
-void Game::P2JST::ObjectParticleActor::JSGSetTranslation((Vec const&))
+void P2JST::ObjectParticleActor::JSGSetTranslation(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -413,7 +404,7 @@ void Game::P2JST::ObjectParticleActor::JSGSetTranslation((Vec const&))
  * Address:	80454914
  * Size:	00001C
  */
-void Game::P2JST::ObjectParticleActor::JSGGetTranslation(const(Vec*))
+void P2JST::ObjectParticleActor::JSGGetTranslation(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -432,7 +423,7 @@ void Game::P2JST::ObjectParticleActor::JSGGetTranslation(const(Vec*))
  * Address:	80454930
  * Size:	0001F0
  */
-void Game::P2JST::ObjectParticleActor::emit(void)
+void P2JST::ObjectParticleActor::emit(void)
 {
 	/*
 	.loc_0x0:
@@ -580,7 +571,7 @@ void Game::P2JST::ObjectParticleActor::emit(void)
  * Address:	80454B20
  * Size:	0000F4
  */
-void Game::P2JST::ObjectParticleActor::executeAfter((JPABaseEmitter*))
+void P2JST::ObjectParticleActor::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -661,7 +652,7 @@ void Game::P2JST::ObjectParticleActor::executeAfter((JPABaseEmitter*))
  * Address:	80454C14
  * Size:	000044
  */
-void Game::P2JST::ObjectParticleActor::killEmitter(void)
+void P2JST::ObjectParticleActor::killEmitter(void)
 {
 	/*
 	.loc_0x0:
@@ -692,7 +683,7 @@ void Game::P2JST::ObjectParticleActor::killEmitter(void)
  * Address:	80454C58
  * Size:	000080
  */
-void Game::P2JST::ObjectParticleActor::__dt(void)
+P2JST::ObjectParticleActor::~ObjectParticleActor(void)
 {
 	/*
 	.loc_0x0:
@@ -733,6 +724,8 @@ void Game::P2JST::ObjectParticleActor::__dt(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80454CD8
@@ -760,8 +753,8 @@ void __sinit_JSTObjectParticleActor_cpp(void)
  * Address:	80454D00
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectParticleActor::parseUserData_((unsigned long,
-                                                           void const*))
+void @4 @Game::P2JST::ObjectParticleActor::parseUserData_(unsigned long,
+                                                          void const*)
 {
 	/*
 	.loc_0x0:
@@ -817,7 +810,7 @@ void @4 @Game::P2JST::ObjectParticleActor::reset(void)
  * Address:	80454D20
  * Size:	000008
  */
-void @112 @Game::P2JST::ObjectParticleActor::executeAfter((JPABaseEmitter*))
+void @112 @Game::P2JST::ObjectParticleActor::executeAfter(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -831,7 +824,7 @@ void @112 @Game::P2JST::ObjectParticleActor::executeAfter((JPABaseEmitter*))
  * Address:	80454D28
  * Size:	000008
  */
-void @112 @Game::P2JST::ObjectParticleActor::__dt(void)
+@112 @Game::P2JST::ObjectParticleActor::~ObjectParticleActor(void)
 {
 	/*
 	.loc_0x0:

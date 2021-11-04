@@ -1,28 +1,20 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801F90D4
  * Size:	000004
  */
-void Game::PelletNumber::Object::do_onInit((Game::CreatureInitArg*)) { }
+void PelletNumber::Object::do_onInit(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
  * Address:	801F90D8
  * Size:	0000C0
  */
-void Game::PelletNumber::Object::constructor(void)
+void PelletNumber::Object::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -79,12 +71,14 @@ void Game::PelletNumber::Object::constructor(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801F9198
  * Size:	00006C
  */
-void createKiraEffect__Q34Game12PelletNumber6ObjectFR10Vector3<float>(void)
+void createKiraEffect__Q34Game12PelletNumber6ObjectFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -118,12 +112,14 @@ void createKiraEffect__Q34Game12PelletNumber6ObjectFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801F9204
  * Size:	000108
  */
-void Game::PelletNumber::Object::changeMaterial(void)
+void PelletNumber::Object::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +207,7 @@ void Game::PelletNumber::Object::changeMaterial(void)
  * Address:	801F930C
  * Size:	0000B0
  */
-void Game::PelletNumber::Mgr::__ct(void)
+PelletNumber::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -263,6 +259,8 @@ void Game::PelletNumber::Mgr::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -487,12 +485,14 @@ void Container<Game::PelletNumber::Object>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E0
  */
-void Game::BasePelletMgr::__dt(void)
+BasePelletMgr::~BasePelletMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -502,7 +502,7 @@ void Game::BasePelletMgr::__dt(void)
  * Address:	801F9668
  * Size:	0000F4
  */
-void Game::PelletNumber::Mgr::setupResources(void)
+void PelletNumber::Mgr::setupResources(void)
 {
 	/*
 	.loc_0x0:
@@ -575,7 +575,7 @@ void Game::PelletNumber::Mgr::setupResources(void)
  * Address:	801F975C
  * Size:	00007C
  */
-void Game::PelletNumber::Mgr::onCreateModel((SysShape::Model*))
+void PelletNumber::Mgr::onCreateModel(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +618,7 @@ void Game::PelletNumber::Mgr::onCreateModel((SysShape::Model*))
  * Address:	801F97D8
  * Size:	00003C
  */
-void Game::PelletNumber::Mgr::generatorNewPelletParm(void)
+void PelletNumber::Mgr::generatorNewPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -647,8 +647,8 @@ void Game::PelletNumber::Mgr::generatorNewPelletParm(void)
  * Address:	801F9814
  * Size:	0000D8
  */
-void generatorBirth__Q34Game12PelletNumber3MgrFR10Vector3<float>
-    R10Vector3<float> PQ24Game13GenPelletParm(void)
+void generatorBirth__Q34Game12PelletNumber3MgrFR10Vector3f R10Vector3f
+PQ24Game13GenPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -718,7 +718,7 @@ void generatorBirth__Q34Game12PelletNumber3MgrFR10Vector3<float>
  * Address:	801F98EC
  * Size:	000054
  */
-void Game::PelletNumber::Mgr::generatorWrite((Stream&, Game::GenPelletParm*))
+void PelletNumber::Mgr::generatorWrite(Stream&, Game::GenPelletParm*)
 {
 	/*
 	.loc_0x0:
@@ -751,8 +751,8 @@ void Game::PelletNumber::Mgr::generatorWrite((Stream&, Game::GenPelletParm*))
  * Address:	801F9940
  * Size:	0000C4
  */
-void Game::PelletNumber::Mgr::generatorRead((Stream&, Game::GenPelletParm*,
-                                             unsigned long))
+void PelletNumber::Mgr::generatorRead(Stream&, Game::GenPelletParm*,
+                                      unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -817,7 +817,7 @@ void Game::PelletNumber::Mgr::generatorRead((Stream&, Game::GenPelletParm*,
  * Address:	801F9A04
  * Size:	0001B4
  */
-void Game::PelletNumber::Mgr::__dt(void)
+PelletNumber::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -946,7 +946,7 @@ void Game::PelletNumber::Mgr::__dt(void)
  * Address:	801F9BB8
  * Size:	000008
  */
-void Game::PelletNumber::Mgr::getMgrName(void)
+void PelletNumber::Mgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -960,14 +960,14 @@ void Game::PelletNumber::Mgr::getMgrName(void)
  * Address:	801F9BC0
  * Size:	000008
  */
-u32 Game::PelletNumber::Mgr::getMgrID(void) { return 0x0; }
+u32 PelletNumber::Mgr::getMgrID(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801F9BC8
  * Size:	00000C
  */
-void Game::PelletNumber::Mgr::generatorLocalVersion(void)
+void PelletNumber::Mgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -976,6 +976,8 @@ void Game::PelletNumber::Mgr::generatorLocalVersion(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1027,12 +1029,14 @@ void ObjectMgr<Game::PelletNumber::Object>::~ObjectMgr()
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	801F9C5C
  * Size:	00000C
  */
-void efx::ArgPelType::getName(void)
+void ArgPelType::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -1042,12 +1046,16 @@ void efx::ArgPelType::getName(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801F9C68
  * Size:	000008
  */
-u32 Game::PelletNumber::Object::getKind(void) { return 0x0; }
+u32 PelletNumber::Object::getKind(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -1117,6 +1125,8 @@ void onCreateModel__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
 FPQ28SysShape5Model(void)
 {
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -3691,12 +3701,14 @@ void MonoObjectMgr<Game::PelletNumber::Object>::alloc(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801FB7E8
  * Size:	00004C
  */
-void Game::PelletNumber::Object::__ct(void)
+PelletNumber::Object::Object(void)
 {
 	/*
 	.loc_0x0:
@@ -3721,6 +3733,8 @@ void Game::PelletNumber::Object::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3982,7 +3996,7 @@ void @84 @get__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPv(void)
  * Address:	801FB8C4
  * Size:	000008
  */
-void @84 @Game::PelletNumber::Mgr::__dt(void)
+@84 @Game::PelletNumber::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

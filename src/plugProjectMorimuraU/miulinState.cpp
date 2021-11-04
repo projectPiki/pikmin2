@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80362618
  * Size:	000150
  */
-void Game::Miulin::FSM::init((Game::EnemyBase*))
+void Miulin::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -129,7 +121,7 @@ void Game::Miulin::FSM::init((Game::EnemyBase*))
  * Address:	80362768
  * Size:	00003C
  */
-void Game::Miulin::StateWait::__ct((int))
+Miulin::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -156,7 +148,7 @@ void Game::Miulin::StateWait::__ct((int))
  * Address:	803627A4
  * Size:	00008C
  */
-void Game::Miulin::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -203,7 +195,7 @@ void Game::Miulin::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80362830
  * Size:	000118
  */
-void Game::Miulin::StateWait::exec((Game::EnemyBase*))
+void Miulin::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -295,7 +287,7 @@ void Game::Miulin::StateWait::exec((Game::EnemyBase*))
  * Address:	80362948
  * Size:	00003C
  */
-void Game::Miulin::StateWalk::__ct((int))
+Miulin::StateWalk::StateWalk(int)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +314,7 @@ void Game::Miulin::StateWalk::__ct((int))
  * Address:	80362984
  * Size:	00016C
  */
-void Game::Miulin::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -427,7 +419,7 @@ void Game::Miulin::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80362AF0
  * Size:	000364
  */
-void Game::Miulin::StateWalk::exec((Game::EnemyBase*))
+void Miulin::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -684,7 +676,7 @@ void Game::Miulin::StateWalk::exec((Game::EnemyBase*))
  * Address:	80362E54
  * Size:	000040
  */
-void Game::Miulin::StateAttackStart::__ct((int))
+Miulin::StateAttackStart::StateAttackStart(int)
 {
 	/*
 	.loc_0x0:
@@ -712,7 +704,7 @@ void Game::Miulin::StateAttackStart::__ct((int))
  * Address:	80362E94
  * Size:	00004C
  */
-void Game::Miulin::StateAttackStart::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateAttackStart::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -743,7 +735,7 @@ void Game::Miulin::StateAttackStart::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80362EE0
  * Size:	000050
  */
-void Game::Miulin::StateAttackStart::exec((Game::EnemyBase*))
+void Miulin::StateAttackStart::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -777,7 +769,7 @@ void Game::Miulin::StateAttackStart::exec((Game::EnemyBase*))
  * Address:	80362F30
  * Size:	000040
  */
-void Game::Miulin::StateAttacking::__ct((int))
+Miulin::StateAttacking::StateAttacking(int)
 {
 	/*
 	.loc_0x0:
@@ -805,7 +797,7 @@ void Game::Miulin::StateAttacking::__ct((int))
  * Address:	80362F70
  * Size:	000058
  */
-void Game::Miulin::StateAttacking::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateAttacking::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -839,7 +831,7 @@ void Game::Miulin::StateAttacking::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80362FC8
  * Size:	00082C
  */
-void Game::Miulin::StateAttacking::exec((Game::EnemyBase*))
+void Miulin::StateAttacking::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1434,7 +1426,7 @@ void Game::Miulin::StateAttacking::exec((Game::EnemyBase*))
  * Address:	803637F4
  * Size:	000040
  */
-void Game::Miulin::StateAttackEnd::__ct((int))
+Miulin::StateAttackEnd::StateAttackEnd(int)
 {
 	/*
 	.loc_0x0:
@@ -1462,7 +1454,7 @@ void Game::Miulin::StateAttackEnd::__ct((int))
  * Address:	80363834
  * Size:	000054
  */
-void Game::Miulin::StateAttackEnd::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateAttackEnd::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1495,7 +1487,7 @@ void Game::Miulin::StateAttackEnd::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80363888
  * Size:	0000AC
  */
-void Game::Miulin::StateAttackEnd::exec((Game::EnemyBase*))
+void Miulin::StateAttackEnd::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1556,7 +1548,7 @@ void Game::Miulin::StateAttackEnd::exec((Game::EnemyBase*))
  * Address:	80363934
  * Size:	00003C
  */
-void Game::Miulin::StateTurn::__ct((int))
+Miulin::StateTurn::StateTurn(int)
 {
 	/*
 	.loc_0x0:
@@ -1583,7 +1575,7 @@ void Game::Miulin::StateTurn::__ct((int))
  * Address:	80363970
  * Size:	0000F4
  */
-void Game::Miulin::StateTurn::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1664,7 +1656,7 @@ void Game::Miulin::StateTurn::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80363A64
  * Size:	000178
  */
-void Game::Miulin::StateTurn::exec((Game::EnemyBase*))
+void Miulin::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1786,7 +1778,7 @@ void Game::Miulin::StateTurn::exec((Game::EnemyBase*))
  * Address:	80363BDC
  * Size:	00003C
  */
-void Game::Miulin::StateFlick::__ct((int))
+Miulin::StateFlick::StateFlick(int)
 {
 	/*
 	.loc_0x0:
@@ -1813,7 +1805,7 @@ void Game::Miulin::StateFlick::__ct((int))
  * Address:	80363C18
  * Size:	00004C
  */
-void Game::Miulin::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1844,7 +1836,7 @@ void Game::Miulin::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80363C64
  * Size:	000190
  */
-void Game::Miulin::StateFlick::exec((Game::EnemyBase*))
+void Miulin::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1964,7 +1956,7 @@ void Game::Miulin::StateFlick::exec((Game::EnemyBase*))
  * Address:	80363DF4
  * Size:	00003C
  */
-void Game::Miulin::StateDead::__ct((int))
+Miulin::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -1991,7 +1983,7 @@ void Game::Miulin::StateDead::__ct((int))
  * Address:	80363E30
  * Size:	000054
  */
-void Game::Miulin::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Miulin::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2024,7 +2016,7 @@ void Game::Miulin::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80363E84
  * Size:	000060
  */
-void Game::Miulin::StateDead::exec((Game::EnemyBase*))
+void Miulin::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2060,3 +2052,4 @@ void Game::Miulin::StateDead::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

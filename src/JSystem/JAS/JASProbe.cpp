@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000130
  */
-void JASProbe::JASProbe()
+JASProbe::JASProbe()
 {
 	// UNUSED FUNCTION
 }

@@ -70,7 +70,7 @@ void MapCode::Code::isBald(void)
  * Address:	........
  * Size:	00002C
  */
-void MapCode::Code::write((Stream&))
+void MapCode::Code::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -80,7 +80,7 @@ void MapCode::Code::write((Stream&))
  * Address:	........
  * Size:	000034
  */
-void MapCode::Code::read((Stream&))
+void MapCode::Code::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -90,7 +90,7 @@ void MapCode::Code::read((Stream&))
  * Address:	8041C458
  * Size:	000024
  */
-void MapCode::Code::setCode((int, int, bool))
+void MapCode::Code::setCode(int, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -111,7 +111,7 @@ void MapCode::Code::setCode((int, int, bool))
  * Address:	8041C47C
  * Size:	00007C
  */
-void MapCode::Mgr::__ct(void)
+MapCode::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -154,7 +154,7 @@ void MapCode::Mgr::__ct(void)
  * Address:	8041C4F8
  * Size:	000090
  */
-void MapCode::Mgr::CodeArray::__dt(void)
+MapCode::Mgr::CodeArray::~CodeArray(void)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +298,7 @@ void Container<MapCode::Code>::~Container()
  * Address:	........
  * Size:	000094
  */
-void MapCode::Mgr::__dt(void)
+MapCode::Mgr::~Mgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -308,7 +308,7 @@ void MapCode::Mgr::__dt(void)
  * Address:	........
  * Size:	00002C
  */
-void MapCode::Mgr::write((Stream&))
+void MapCode::Mgr::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -398,7 +398,7 @@ void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&) { }
  * Address:	8041C760
  * Size:	00002C
  */
-void MapCode::Mgr::read((Stream&))
+void MapCode::Mgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +515,7 @@ void ArrayContainer<MapCode::Code>::alloc(int)
  * Address:	8041C87C
  * Size:	000044
  */
-void MapCode::Mgr::attachCodes((Sys::TriangleTable*))
+void MapCode::Mgr::attachCodes(Sys::TriangleTable*)
 {
 	/*
 	.loc_0x0:
@@ -548,7 +548,7 @@ void MapCode::Mgr::attachCodes((Sys::TriangleTable*))
  * Address:	8041C8C0
  * Size:	00002C
  */
-void MapCode::Mgr::CodeArray::writeObject((Stream&, MapCode::Code&))
+void MapCode::Mgr::CodeArray::writeObject(Stream&, MapCode::Code&)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +571,7 @@ void MapCode::Mgr::CodeArray::writeObject((Stream&, MapCode::Code&))
  * Address:	8041C8EC
  * Size:	000034
  */
-void MapCode::Mgr::CodeArray::readObject((Stream&, MapCode::Code&))
+void MapCode::Mgr::CodeArray::readObject(Stream&, MapCode::Code&)
 {
 	/*
 	.loc_0x0:

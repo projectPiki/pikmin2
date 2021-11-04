@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80429DB0
  * Size:	0000C8
  */
-void ResetManager::ResetManager(float)
+ResetManager::ResetManager(float)
 {
 	/*
 	.loc_0x0:

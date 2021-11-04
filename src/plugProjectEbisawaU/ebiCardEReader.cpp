@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803ECB40
  * Size:	00005C
  */
-void ebi::gCardEMgr_ThreadFunc(void*)
+void gCardEMgr_ThreadFunc(void*)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +44,7 @@ void ebi::gCardEMgr_ThreadFunc(void*)
  * Address:	........
  * Size:	000018
  */
-void ebi::CardEReader::changeEndian((unsigned long))
+void CardEReader::changeEndian(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -62,7 +54,7 @@ void ebi::CardEReader::changeEndian((unsigned long))
  * Address:	........
  * Size:	00000C
  */
-void ebi::CardEReader::roundup4b((unsigned long))
+void CardEReader::roundup4b(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -72,7 +64,7 @@ void ebi::CardEReader::roundup4b((unsigned long))
  * Address:	........
  * Size:	000070
  */
-void ebi::CardEReader::CardE_probeAGB(void)
+void CardEReader::CardE_probeAGB(void)
 {
 	// UNUSED FUNCTION
 }
@@ -82,7 +74,7 @@ void ebi::CardEReader::CardE_probeAGB(void)
  * Address:	803ECB9C
  * Size:	000274
  */
-void ebi::CardEReader::CardE_uploadToGBA((long, unsigned char*, unsigned long))
+void CardEReader::CardE_uploadToGBA(long, unsigned char*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -295,7 +287,7 @@ void ebi::CardEReader::CardE_uploadToGBA((long, unsigned char*, unsigned long))
  * Address:	803ECE10
  * Size:	000068
  */
-void ebi::CardEReader::TMgr::__dt(void)
+CardEReader::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +327,7 @@ void ebi::CardEReader::TMgr::__dt(void)
  * Address:	803ECE78
  * Size:	00006C
  */
-void ebi::CardEReader::TMgr::globalInstance(void)
+void CardEReader::TMgr::globalInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -378,7 +370,7 @@ void ebi::CardEReader::TMgr::globalInstance(void)
  * Address:	........
  * Size:	000048
  */
-void ebi::CardEReader::TMgr::deleteInstance(void)
+void CardEReader::TMgr::deleteInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -388,7 +380,7 @@ void ebi::CardEReader::TMgr::deleteInstance(void)
  * Address:	803ECEE4
  * Size:	00011C
  */
-void ebi::CardEReader::TMgr::loadResource(void)
+void CardEReader::TMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -481,7 +473,7 @@ void ebi::CardEReader::TMgr::loadResource(void)
  * Address:	803ED000
  * Size:	00003C
  */
-void ebi::CardEReader::TMgr::init(void)
+void CardEReader::TMgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +500,7 @@ void ebi::CardEReader::TMgr::init(void)
  * Address:	803ED03C
  * Size:	00001C
  */
-void ebi::CardEReader::TMgr::uploadToGBA((long))
+void CardEReader::TMgr::uploadToGBA(long)
 {
 	/*
 	.loc_0x0:
@@ -527,7 +519,7 @@ void ebi::CardEReader::TMgr::uploadToGBA((long))
  * Address:	803ED058
  * Size:	000018
  */
-void ebi::CardEReader::TMgr::probeAGB(void)
+void CardEReader::TMgr::probeAGB(void)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +537,7 @@ void ebi::CardEReader::TMgr::probeAGB(void)
  * Address:	803ED070
  * Size:	000150
  */
-void ebi::CardEReader::TMgr::update(void)
+void CardEReader::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -661,7 +653,7 @@ void ebi::CardEReader::TMgr::update(void)
  * Address:	803ED1C0
  * Size:	000010
  */
-void ebi::CardEReader::TMgr::isFinish(void)
+void CardEReader::TMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -677,7 +669,7 @@ void ebi::CardEReader::TMgr::isFinish(void)
  * Address:	803ED1D0
  * Size:	000074
  */
-void ebi::CardEReader::TMgr::threadProc((void*))
+void CardEReader::TMgr::threadProc(void*)
 {
 	/*
 	.loc_0x0:
@@ -724,7 +716,7 @@ void ebi::CardEReader::TMgr::threadProc((void*))
  * Address:	803ED244
  * Size:	000054
  */
-void ebi::CardEReader::TMgr::tryUploadToGBA_(void)
+void CardEReader::TMgr::tryUploadToGBA_(void)
 {
 	/*
 	.loc_0x0:
@@ -761,7 +753,7 @@ void ebi::CardEReader::TMgr::tryUploadToGBA_(void)
  * Address:	803ED298
  * Size:	000010
  */
-void ebi::CardEReader::TMgr::goEnd_((ebi::CardEReader::TMgr::enumErr))
+void CardEReader::TMgr::goEnd_(ebi::CardEReader::TMgr::enumErr)
 {
 	/*
 	.loc_0x0:
@@ -771,3 +763,4 @@ void ebi::CardEReader::TMgr::goEnd_((ebi::CardEReader::TMgr::enumErr))
 	  blr
 	*/
 }
+} // namespace ebi

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8024B874
  * Size:	000014
  */
-void Game::Cave::Adjust::__ct(void)
+Cave::Adjust::Adjust(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +24,7 @@ void Game::Cave::Adjust::__ct(void)
  * Address:	8024B888
  * Size:	000044
  */
-void Game::Cave::AdjustNode::__ct(void)
+Cave::AdjustNode::AdjustNode(void)
 {
 	/*
 	.loc_0x0:
@@ -61,7 +53,7 @@ void Game::Cave::AdjustNode::__ct(void)
  * Address:	8024B8CC
  * Size:	00004C
  */
-void Game::Cave::AdjustNode::__ct((Game::Cave::Adjust*))
+Cave::AdjustNode::AdjustNode(Game::Cave::Adjust*)
 {
 	/*
 	.loc_0x0:
@@ -92,7 +84,7 @@ void Game::Cave::AdjustNode::__ct((Game::Cave::Adjust*))
  * Address:	8024B918
  * Size:	000010
  */
-void Game::Cave::Door::__ct(void)
+Cave::Door::Door(void)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +100,7 @@ void Game::Cave::Door::__ct(void)
  * Address:	8024B928
  * Size:	000050
  */
-void Game::Cave::DoorNode::__ct(void)
+Cave::DoorNode::DoorNode(void)
 {
 	/*
 	.loc_0x0:
@@ -140,7 +132,7 @@ void Game::Cave::DoorNode::__ct(void)
  * Address:	8024B978
  * Size:	000064
  */
-void Game::Cave::DoorNode::__ct((Game::Cave::Door&))
+Cave::DoorNode::DoorNode(Game::Cave::Door&)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +169,7 @@ void Game::Cave::DoorNode::__ct((Game::Cave::Door&))
  * Address:	8024B9DC
  * Size:	000070
  */
-void Game::Cave::DoorNode::isDoorAdjust((Game::Cave::DoorNode*))
+void Cave::DoorNode::isDoorAdjust(Game::Cave::DoorNode*)
 {
 	/*
 	.loc_0x0:
@@ -225,7 +217,7 @@ void Game::Cave::DoorNode::isDoorAdjust((Game::Cave::DoorNode*))
  * Address:	8024BA4C
  * Size:	000060
  */
-void Game::Cave::DoorNode::__dt(void)
+Cave::DoorNode::~DoorNode(void)
 {
 	/*
 	.loc_0x0:
@@ -257,3 +249,4 @@ void Game::Cave::DoorNode::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

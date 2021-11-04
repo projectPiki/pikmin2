@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803CA358
  * Size:	00008C
  */
-void ebi::E2DScreen_searchAssert(J2DScreen*, unsigned long long)
+void E2DScreen_searchAssert(J2DScreen*, unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -64,7 +56,7 @@ void ebi::E2DScreen_searchAssert(J2DScreen*, unsigned long long)
  * Address:	803CA3E4
  * Size:	0001D8
  */
-void ebi::E2DPane_setTreeInfluencedAlpha(J2DPane*, bool)
+void E2DPane_setTreeInfluencedAlpha(J2DPane*, bool)
 {
 	/*
 	.loc_0x0:
@@ -220,7 +212,7 @@ void ebi::E2DPane_setTreeInfluencedAlpha(J2DPane*, bool)
  * Address:	803CA5BC
  * Size:	0001A4
  */
-void ebi::E2DPane_setTreeShow(J2DPane*)
+void E2DPane_setTreeShow(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -360,6 +352,8 @@ void ebi::E2DPane_setTreeShow(J2DPane*)
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803CA760
@@ -367,20 +361,18 @@ void ebi::E2DPane_setTreeShow(J2DPane*)
  */
 void J2DPane::show()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0xB0(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0xB0(r3)
+	_B0 = 1;
 }
+
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803CA76C
  * Size:	0001A4
  */
-void ebi::E2DPane_setTreeHide(J2DPane*)
+void E2DPane_setTreeHide(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -520,6 +512,8 @@ void ebi::E2DPane_setTreeHide(J2DPane*)
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803CA910
@@ -527,20 +521,18 @@ void ebi::E2DPane_setTreeHide(J2DPane*)
  */
 void J2DPane::hide()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0xB0(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0xB0(r3)
+	_B0 = 0;
 }
+
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803CA91C
  * Size:	0003DC
  */
-void ebi::E2DPane_setTreeCallBackMessage(P2DScreen::Mgr*, J2DPane*)
+void E2DPane_setTreeCallBackMessage(P2DScreen::Mgr*, J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -841,7 +833,7 @@ void ebi::E2DPane_setTreeCallBackMessage(P2DScreen::Mgr*, J2DPane*)
  * Address:	........
  * Size:	000194
  */
-void ebi::E2DPane_getCalcGlbVisible(J2DPane*)
+void E2DPane_getCalcGlbVisible(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -851,7 +843,7 @@ void ebi::E2DPane_getCalcGlbVisible(J2DPane*)
  * Address:	803CACF8
  * Size:	0000D0
  */
-void ebi::E2DPane_getGlbCenter(J2DPane*)
+void E2DPane_getGlbCenter(J2DPane*)
 {
 	/*
 	.loc_0x0:
@@ -917,7 +909,7 @@ void ebi::E2DPane_getGlbCenter(J2DPane*)
  * Address:	........
  * Size:	0002C0
  */
-void ebi::EUTDrawWindow(J2DGrafContext&, long, long, long, long)
+void EUTDrawWindow(J2DGrafContext&, long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -927,7 +919,8 @@ void ebi::EUTDrawWindow(J2DGrafContext&, long, long, long, long)
  * Address:	........
  * Size:	000004
  */
-void ebi::E2DDebugWindow::draw(void)
+void E2DDebugWindow::draw(void)
 {
 	// UNUSED FUNCTION
 }
+} // namespace ebi

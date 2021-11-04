@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803884C0
  * Size:	00005C
  */
-void Game::ShijimiChou::Mgr::__ct((int, unsigned char))
+ShijimiChou::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -50,7 +42,7 @@ void Game::ShijimiChou::Mgr::__ct((int, unsigned char))
  * Address:	8038851C
  * Size:	000150
  */
-void Game::ShijimiChou::Mgr::doAlloc(void)
+void ShijimiChou::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +154,7 @@ void Game::ShijimiChou::Mgr::doAlloc(void)
  * Address:	8038866C
  * Size:	000010
  */
-void Game::ShijimiChou::Mgr::getEnemy((int))
+void ShijimiChou::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -178,7 +170,7 @@ void Game::ShijimiChou::Mgr::getEnemy((int))
  * Address:	8038867C
  * Size:	0000B0
  */
-void Game::ShijimiChou::Parms::__ct(void)
+ShijimiChou::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -236,7 +228,7 @@ void Game::ShijimiChou::Parms::__ct(void)
  * Address:	8038872C
  * Size:	000238
  */
-void Game::ShijimiChou::Parms::ProperParms::__ct(void)
+ShijimiChou::Parms::ProperParms::ProperParms(void)
 {
 	/*
 	.loc_0x0:
@@ -392,7 +384,7 @@ void Game::ShijimiChou::Parms::ProperParms::__ct(void)
  * Address:	80388964
  * Size:	000038
  */
-void Game::ShijimiChou::Mgr::loadModelData(void)
+void ShijimiChou::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -418,7 +410,7 @@ void Game::ShijimiChou::Mgr::loadModelData(void)
  * Address:	8038899C
  * Size:	000138
  */
-void Game::ShijimiChou::Mgr::createModel(void)
+void ShijimiChou::Mgr::createModel(void)
 {
 	/*
 	.loc_0x0:
@@ -518,7 +510,7 @@ void Game::ShijimiChou::Mgr::createModel(void)
  * Address:	80388AD4
  * Size:	0000C8
  */
-void Game::ShijimiChou::Mgr::birth((Game::EnemyBirthArg&))
+void ShijimiChou::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -584,7 +576,7 @@ void Game::ShijimiChou::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	80388B9C
  * Size:	000050
  */
-void Game::ShijimiChou::Mgr::doAnimation(void)
+void ShijimiChou::Mgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +610,7 @@ void Game::ShijimiChou::Mgr::doAnimation(void)
  * Address:	80388BEC
  * Size:	000058
  */
-void Game::ShijimiChou::Mgr::fetch((J3DModel*, float))
+void ShijimiChou::Mgr::fetch(J3DModel*, float)
 {
 	/*
 	.loc_0x0:
@@ -654,7 +646,7 @@ void Game::ShijimiChou::Mgr::fetch((J3DModel*, float))
  * Address:	80388C44
  * Size:	0004BC
  */
-void Game::ShijimiChou::Mgr::createGroup((Game::ShijimiChou::Obj*, int))
+void ShijimiChou::Mgr::createGroup(Game::ShijimiChou::Obj*, int)
 {
 	/*
 	.loc_0x0:
@@ -1001,7 +993,7 @@ void Game::ShijimiChou::Mgr::createGroup((Game::ShijimiChou::Obj*, int))
  * Address:	80389100
  * Size:	0000B8
  */
-void Game::ShijimiChou::Mgr::createGroupByBigFoot((Game::EnemyBirthArg&, int))
+void ShijimiChou::Mgr::createGroupByBigFoot(Game::EnemyBirthArg&, int)
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1053,7 @@ void Game::ShijimiChou::Mgr::createGroupByBigFoot((Game::EnemyBirthArg&, int))
  * Address:	803891B8
  * Size:	0000B8
  */
-void Game::ShijimiChou::Mgr::createGroupByPlants((Game::EnemyBirthArg&, int))
+void ShijimiChou::Mgr::createGroupByPlants(Game::EnemyBirthArg&, int)
 {
 	/*
 	.loc_0x0:
@@ -1121,8 +1113,8 @@ void Game::ShijimiChou::Mgr::createGroupByPlants((Game::EnemyBirthArg&, int))
  * Address:	80389270
  * Size:	000198
  */
-void Game::ShijimiChou::Mgr::createGroupByEnemy((Game::EnemyBirthArg&,
-                                                 Game::EnemyBase*, int, bool))
+void ShijimiChou::Mgr::createGroupByEnemy(Game::EnemyBirthArg&,
+                                          Game::EnemyBase*, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1246,7 +1238,7 @@ void Game::ShijimiChou::Mgr::createGroupByEnemy((Game::EnemyBirthArg&,
  * Address:	80389408
  * Size:	0000B0
  */
-void Game::ShijimiChou::Mgr::__dt(void)
+ShijimiChou::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1306,14 +1298,14 @@ void Game::ShijimiChou::Mgr::__dt(void)
  * Address:	803894B8
  * Size:	000008
  */
-u32 Game::ShijimiChou::Mgr::getEnemyTypeID(void) { return 0x4D; }
+u32 ShijimiChou::Mgr::getEnemyTypeID(void) { return 0x4D; }
 
 /*
  * --INFO--
  * Address:	803894C0
  * Size:	000060
  */
-void Game::ShijimiChou::Mgr::createObj((int))
+void ShijimiChou::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -1349,7 +1341,7 @@ void Game::ShijimiChou::Mgr::createObj((int))
  * Address:	80389520
  * Size:	0000BC
  */
-void Game::ShijimiChou::Obj::__dt(void)
+ShijimiChou::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -1412,7 +1404,7 @@ void Game::ShijimiChou::Obj::__dt(void)
  * Address:	803895DC
  * Size:	000050
  */
-void Game::ShijimiChou::Parms::read((Stream&))
+void ShijimiChou::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1444,7 +1436,7 @@ void Game::ShijimiChou::Parms::read((Stream&))
  * Address:	8038962C
  * Size:	000008
  */
-void @4 @Game::ShijimiChou::Mgr::__dt(void)
+@4 @Game::ShijimiChou::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1452,3 +1444,4 @@ void @4 @Game::ShijimiChou::Mgr::__dt(void)
 	  b         -0x228
 	*/
 }
+} // namespace Game

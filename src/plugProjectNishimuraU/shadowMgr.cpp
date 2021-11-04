@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000048
  */
-void Game::JointShadowRootNode::__ct(void)
+JointShadowRootNode::JointShadowRootNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::JointShadowRootNode::__ct(void)
  * Address:	8024127C
  * Size:	000060
  */
-void Game::JointShadowRootNode::__ct((Game::Creature*))
+JointShadowRootNode::JointShadowRootNode(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -61,7 +53,7 @@ void Game::JointShadowRootNode::__ct((Game::Creature*))
  * Address:	........
  * Size:	000058
  */
-void Game::JointShadowRootNode::init((int))
+void JointShadowRootNode::init(int)
 {
 	// UNUSED FUNCTION
 }
@@ -71,7 +63,7 @@ void Game::JointShadowRootNode::init((int))
  * Address:	........
  * Size:	00004C
  */
-void Game::JointShadowNode::__ct(void)
+JointShadowNode::JointShadowNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -81,7 +73,7 @@ void Game::JointShadowNode::__ct(void)
  * Address:	802412DC
  * Size:	000074
  */
-void Game::JointShadowNode::__ct((int))
+JointShadowNode::JointShadowNode(int)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +116,7 @@ void Game::JointShadowNode::__ct((int))
  * Address:	80241350
  * Size:	000074
  */
-void Game::JointShadowNode::init((int))
+void JointShadowNode::init(int)
 {
 	/*
 	.loc_0x0:
@@ -169,7 +161,7 @@ void Game::JointShadowNode::init((int))
  * Address:	........
  * Size:	00004C
  */
-void Game::ShadowNode::__ct(void)
+ShadowNode::ShadowNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -179,7 +171,7 @@ void Game::ShadowNode::__ct(void)
  * Address:	........
  * Size:	000070
  */
-void Game::ShadowNode::__ct((Game::Creature*, int))
+ShadowNode::ShadowNode(Game::Creature*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -189,7 +181,7 @@ void Game::ShadowNode::__ct((Game::Creature*, int))
  * Address:	........
  * Size:	000070
  */
-void Game::ShadowNode::init((int))
+void ShadowNode::init(int)
 {
 	// UNUSED FUNCTION
 }
@@ -199,7 +191,7 @@ void Game::ShadowNode::init((int))
  * Address:	802413C4
  * Size:	000080
  */
-void Game::ShadowMgr::__ct((int))
+ShadowMgr::ShadowMgr(int)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +237,7 @@ void Game::ShadowMgr::__ct((int))
  * Address:	80241444
  * Size:	000210
  */
-void Game::ShadowMgr::loadResource(void)
+void ShadowMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -403,14 +395,14 @@ void Game::ShadowMgr::loadResource(void)
  * Address:	80241654
  * Size:	000004
  */
-void Game::ShadowMgr::init(void) { }
+void ShadowMgr::init(void) { }
 
 /*
  * --INFO--
  * Address:	80241658
  * Size:	000010
  */
-void Game::ShadowMgr::setViewport((Viewport*, int))
+void ShadowMgr::setViewport(Viewport*, int)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +418,7 @@ void Game::ShadowMgr::setViewport((Viewport*, int))
  * Address:	80241668
  * Size:	000048
  */
-void Game::ShadowMgr::setShadowColor((Color4*))
+void ShadowMgr::setShadowColor(Color4*)
 {
 	/*
 	.loc_0x0:
@@ -456,7 +448,7 @@ void Game::ShadowMgr::setShadowColor((Color4*))
  * Address:	........
  * Size:	000040
  */
-void Game::ShadowMgr::resetShadowColor(void)
+void ShadowMgr::resetShadowColor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -466,7 +458,7 @@ void Game::ShadowMgr::resetShadowColor(void)
  * Address:	........
  * Size:	00000C
  */
-void Game::ShadowMgr::drawShadowOn(void)
+void ShadowMgr::drawShadowOn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -476,7 +468,7 @@ void Game::ShadowMgr::drawShadowOn(void)
  * Address:	........
  * Size:	00000C
  */
-void Game::ShadowMgr::drawShadowOff(void)
+void ShadowMgr::drawShadowOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -486,7 +478,7 @@ void Game::ShadowMgr::drawShadowOff(void)
  * Address:	802416B0
  * Size:	000260
  */
-void Game::ShadowMgr::update(void)
+void ShadowMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -686,7 +678,7 @@ void Game::ShadowMgr::update(void)
  * Address:	........
  * Size:	000250
  */
-void Game::ShadowMgr::draw((Graphics&))
+void ShadowMgr::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -696,7 +688,7 @@ void Game::ShadowMgr::draw((Graphics&))
  * Address:	80241910
  * Size:	000210
  */
-void Game::ShadowMgr::draw((Graphics&, int))
+void ShadowMgr::draw(Graphics&, int)
 {
 	/*
 	.loc_0x0:
@@ -858,7 +850,7 @@ void Game::ShadowMgr::draw((Graphics&, int))
  * Address:	80241B20
  * Size:	0000F0
  */
-void Game::ShadowMgr::createShadow((Game::Creature*))
+void ShadowMgr::createShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -946,7 +938,7 @@ void Game::ShadowMgr::createShadow((Game::Creature*))
  * Address:	80241C10
  * Size:	000058
  */
-void Game::ShadowMgr::killAll(void)
+void ShadowMgr::killAll(void)
 {
 	/*
 	.loc_0x0:
@@ -980,7 +972,7 @@ void Game::ShadowMgr::killAll(void)
  * Address:	80241C68
  * Size:	000044
  */
-void Game::ShadowMgr::killShadow((Game::Creature*))
+void ShadowMgr::killShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1009,7 +1001,7 @@ void Game::ShadowMgr::killShadow((Game::Creature*))
  * Address:	80241CAC
  * Size:	000044
  */
-void Game::ShadowMgr::addShadow((Game::Creature*))
+void ShadowMgr::addShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1038,7 +1030,7 @@ void Game::ShadowMgr::addShadow((Game::Creature*))
  * Address:	........
  * Size:	000044
  */
-void Game::ShadowMgr::addHeadShadow((Game::Creature*))
+void ShadowMgr::addHeadShadow(Game::Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -1048,7 +1040,7 @@ void Game::ShadowMgr::addHeadShadow((Game::Creature*))
  * Address:	80241CF0
  * Size:	000044
  */
-void Game::ShadowMgr::delShadow((Game::Creature*))
+void ShadowMgr::delShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1077,7 +1069,7 @@ void Game::ShadowMgr::delShadow((Game::Creature*))
  * Address:	80241D34
  * Size:	0000AC
  */
-void Game::ShadowMgr::addNormalShadow((Game::Creature*))
+void ShadowMgr::addNormalShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1144,7 +1136,7 @@ void Game::ShadowMgr::addNormalShadow((Game::Creature*))
  * Address:	80241DE0
  * Size:	0000B8
  */
-void Game::ShadowMgr::addJointShadow((Game::Creature*))
+void ShadowMgr::addJointShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1216,7 +1208,7 @@ void Game::ShadowMgr::addJointShadow((Game::Creature*))
  * Address:	........
  * Size:	0000AC
  */
-void Game::ShadowMgr::addHeadNormalShadow((Game::Creature*))
+void ShadowMgr::addHeadNormalShadow(Game::Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -1226,7 +1218,7 @@ void Game::ShadowMgr::addHeadNormalShadow((Game::Creature*))
  * Address:	........
  * Size:	0000B8
  */
-void Game::ShadowMgr::addHeadJointShadow((Game::Creature*))
+void ShadowMgr::addHeadJointShadow(Game::Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -1236,7 +1228,7 @@ void Game::ShadowMgr::addHeadJointShadow((Game::Creature*))
  * Address:	80241E98
  * Size:	00006C
  */
-void Game::ShadowMgr::delNormalShadow((Game::Creature*))
+void ShadowMgr::delNormalShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1283,7 +1275,7 @@ void Game::ShadowMgr::delNormalShadow((Game::Creature*))
  * Address:	80241F04
  * Size:	000080
  */
-void Game::ShadowMgr::delJointShadow((Game::Creature*))
+void ShadowMgr::delJointShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1333,7 +1325,7 @@ void Game::ShadowMgr::delJointShadow((Game::Creature*))
  * Address:	80241F84
  * Size:	0000AC
  */
-void Game::ShadowMgr::killNormalShadow((Game::Creature*))
+void ShadowMgr::killNormalShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1400,7 +1392,7 @@ void Game::ShadowMgr::killNormalShadow((Game::Creature*))
  * Address:	80242030
  * Size:	0000AC
  */
-void Game::ShadowMgr::killJointShadow((Game::Creature*))
+void ShadowMgr::killJointShadow(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1467,7 +1459,7 @@ void Game::ShadowMgr::killJointShadow((Game::Creature*))
  * Address:	802420DC
  * Size:	000024
  */
-void Game::ShadowMgr::setJointShadowRootNode((Game::JointShadowRootNode*))
+void ShadowMgr::setJointShadowRootNode(Game::JointShadowRootNode*)
 {
 	/*
 	.loc_0x0:
@@ -1488,7 +1480,7 @@ void Game::ShadowMgr::setJointShadowRootNode((Game::JointShadowRootNode*))
  * Address:	80242100
  * Size:	0000F0
  */
-void Game::ShadowMgr::setForceVisible((Game::Creature*, bool))
+void ShadowMgr::setForceVisible(Game::Creature*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1592,7 +1584,7 @@ void Game::ShadowMgr::setForceVisible((Game::Creature*, bool))
  * Address:	802421F0
  * Size:	000030
  */
-void Game::ShadowMgr::getSize(void)
+void ShadowMgr::getSize(void)
 {
 	/*
 	.loc_0x0:
@@ -1616,7 +1608,7 @@ void Game::ShadowMgr::getSize(void)
  * Address:	80242220
  * Size:	000008
  */
-void Game::ShadowMgr::getMax(void)
+void ShadowMgr::getMax(void)
 {
 	/*
 	.loc_0x0:
@@ -1630,7 +1622,7 @@ void Game::ShadowMgr::getMax(void)
  * Address:	80242228
  * Size:	000038
  */
-void Game::ShadowMgr::getCreature((int))
+void ShadowMgr::getCreature(int)
 {
 	/*
 	.loc_0x0:
@@ -1660,14 +1652,14 @@ void Game::ShadowMgr::getCreature((int))
  * Address:	80242260
  * Size:	000008
  */
-u32 Game::ShadowMgr::getFirst(void) { return 0x0; }
+u32 ShadowMgr::getFirst(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80242268
  * Size:	000008
  */
-void Game::ShadowMgr::getNext((int))
+void ShadowMgr::getNext(int)
 {
 	/*
 	.loc_0x0:
@@ -1681,7 +1673,7 @@ void Game::ShadowMgr::getNext((int))
  * Address:	80242270
  * Size:	00004C
  */
-void Game::ShadowMgr::isDone((int))
+void ShadowMgr::isDone(int)
 {
 	/*
 	.loc_0x0:
@@ -1712,7 +1704,7 @@ void Game::ShadowMgr::isDone((int))
  * Address:	802422BC
  * Size:	00004C
  */
-void Game::ShadowMgr::getShadowMaskType((int, int))
+void ShadowMgr::getShadowMaskType(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1749,7 +1741,7 @@ void Game::ShadowMgr::getShadowMaskType((int, int))
  * Address:	80242308
  * Size:	00004C
  */
-void Game::ShadowMgr::getShadowType((int, int))
+void ShadowMgr::getShadowType(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1786,7 +1778,7 @@ void Game::ShadowMgr::getShadowType((int, int))
  * Address:	80242354
  * Size:	000080
  */
-void Game::ShadowMgr::isDrawNormalShadow((Game::ShadowNode*, int))
+void ShadowMgr::isDrawNormalShadow(Game::ShadowNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -1836,7 +1828,7 @@ void Game::ShadowMgr::isDrawNormalShadow((Game::ShadowNode*, int))
  * Address:	802423D4
  * Size:	000080
  */
-void Game::ShadowMgr::isDrawJointShadow((Game::JointShadowRootNode*, int))
+void ShadowMgr::isDrawJointShadow(Game::JointShadowRootNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -1886,7 +1878,7 @@ void Game::ShadowMgr::isDrawJointShadow((Game::JointShadowRootNode*, int))
  * Address:	80242454
  * Size:	0000AC
  */
-void Game::ShadowMgr::readShadowParms((char*))
+void ShadowMgr::readShadowParms(char*)
 {
 	/*
 	.loc_0x0:
@@ -1945,7 +1937,7 @@ void Game::ShadowMgr::readShadowParms((char*))
  * Address:	80242500
  * Size:	000084
  */
-void Game::ShadowMgr::write((Stream&))
+void ShadowMgr::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1990,7 +1982,7 @@ void Game::ShadowMgr::write((Stream&))
  * Address:	80242584
  * Size:	00007C
  */
-void Game::ShadowMgr::read((Stream&))
+void ShadowMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2033,7 +2025,7 @@ void Game::ShadowMgr::read((Stream&))
  * Address:	80242600
  * Size:	000060
  */
-void Game::ShadowMgr::__dt(void)
+ShadowMgr::~ShadowMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2071,7 +2063,7 @@ void Game::ShadowMgr::__dt(void)
  * Address:	80242660
  * Size:	000060
  */
-void Game::ShadowNode::__dt(void)
+ShadowNode::~ShadowNode(void)
 {
 	/*
 	.loc_0x0:
@@ -2109,7 +2101,7 @@ void Game::ShadowNode::__dt(void)
  * Address:	802426C0
  * Size:	000060
  */
-void Game::JointShadowNode::__dt(void)
+JointShadowNode::~JointShadowNode(void)
 {
 	/*
 	.loc_0x0:
@@ -2147,7 +2139,7 @@ void Game::JointShadowNode::__dt(void)
  * Address:	80242720
  * Size:	000060
  */
-void Game::JointShadowRootNode::__dt(void)
+JointShadowRootNode::~JointShadowRootNode(void)
 {
 	/*
 	.loc_0x0:
@@ -2179,6 +2171,8 @@ void Game::JointShadowRootNode::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

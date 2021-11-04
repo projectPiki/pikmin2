@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80192C84
  * Size:	0000E4
  */
-void Game::InteractFueFuki::actPiki((Game::Piki*))
+void InteractFueFuki::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -94,7 +86,7 @@ void Game::InteractFueFuki::actPiki((Game::Piki*))
  * Address:	80192D68
  * Size:	000BD0
  */
-void Game::InteractFue::actPiki((Game::Piki*))
+void InteractFue::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -964,7 +956,7 @@ void Game::InteractFue::actPiki((Game::Piki*))
  * Address:	80193938
  * Size:	00015C
  */
-void Game::InteractDope::actPiki((Game::Piki*))
+void InteractDope::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1071,7 +1063,7 @@ void Game::InteractDope::actPiki((Game::Piki*))
  * Address:	80193A94
  * Size:	000100
  */
-void Game::InteractWind::actPiki((Game::Piki*))
+void InteractWind::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1157,7 +1149,7 @@ void Game::InteractWind::actPiki((Game::Piki*))
  * Address:	80193B94
  * Size:	000120
  */
-void Game::InteractHanaChirashi::actPiki((Game::Piki*))
+void InteractHanaChirashi::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1251,7 +1243,7 @@ void Game::InteractHanaChirashi::actPiki((Game::Piki*))
  * Address:	80193CB4
  * Size:	00015C
  */
-void Game::InteractBomb::actPiki((Game::Piki*))
+void InteractBomb::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1356,7 @@ void Game::InteractBomb::actPiki((Game::Piki*))
  * Address:	80193E10
  * Size:	000114
  */
-void Game::InteractDenki::actPiki((Game::Piki*))
+void InteractDenki::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1455,7 +1447,7 @@ void Game::InteractDenki::actPiki((Game::Piki*))
  * Address:	80193F24
  * Size:	0000A0
  */
-void Game::InteractFallMeck::actPiki((Game::Piki*))
+void InteractFallMeck::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1513,7 +1505,7 @@ void Game::InteractFallMeck::actPiki((Game::Piki*))
  * Address:	80193FC4
  * Size:	000288
  */
-void Game::InteractBury::actPiki((Game::Piki*))
+void InteractBury::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1697,7 +1689,7 @@ void Game::InteractBury::actPiki((Game::Piki*))
  * Address:	8019424C
  * Size:	0000DC
  */
-void Game::InteractSuikomi_Test::actPiki((Game::Piki*))
+void InteractSuikomi_Test::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1772,7 +1764,7 @@ void Game::InteractSuikomi_Test::actPiki((Game::Piki*))
  * Address:	80194328
  * Size:	000118
  */
-void Game::InteractFire::actPiki((Game::Piki*))
+void InteractFire::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1864,7 +1856,7 @@ void Game::InteractFire::actPiki((Game::Piki*))
  * Address:	80194440
  * Size:	000134
  */
-void Game::InteractAstonish::actPiki((Game::Piki*))
+void InteractAstonish::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1963,7 +1955,7 @@ void Game::InteractAstonish::actPiki((Game::Piki*))
  * Address:	80194574
  * Size:	000118
  */
-void Game::InteractBubble::actPiki((Game::Piki*))
+void InteractBubble::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2055,7 +2047,7 @@ void Game::InteractBubble::actPiki((Game::Piki*))
  * Address:	8019468C
  * Size:	00013C
  */
-void Game::InteractGas::actPiki((Game::Piki*))
+void InteractGas::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2158,7 +2150,7 @@ void Game::InteractGas::actPiki((Game::Piki*))
  * Address:	801947C8
  * Size:	0000C0
  */
-void Game::InteractBattle::actPiki((Game::Piki*))
+void InteractBattle::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2224,7 +2216,7 @@ void Game::InteractBattle::actPiki((Game::Piki*))
  * Address:	80194888
  * Size:	000120
  */
-void Game::InteractPress::actPiki((Game::Piki*))
+void InteractPress::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2320,7 +2312,7 @@ void Game::InteractPress::actPiki((Game::Piki*))
  * Address:	801949A8
  * Size:	000260
  */
-void Game::InteractFlick::actPiki((Game::Piki*))
+void InteractFlick::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2502,7 +2494,7 @@ void Game::InteractFlick::actPiki((Game::Piki*))
  * Address:	80194C08
  * Size:	0002EC
  */
-void Game::InteractSwallow::actPiki((Game::Piki*))
+void InteractSwallow::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2727,7 +2719,7 @@ void Game::InteractSwallow::actPiki((Game::Piki*))
  * Address:	80194EF4
  * Size:	0000CC
  */
-void Game::InteractKill::actPiki((Game::Piki*))
+void InteractKill::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -2792,6 +2784,8 @@ void Game::InteractKill::actPiki((Game::Piki*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

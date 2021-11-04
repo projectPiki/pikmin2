@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace P2JME {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00001C
  */
-void P2JME::getCurrentFontResName()
+void getCurrentFontResName()
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +17,7 @@ void P2JME::getCurrentFontResName()
  * Address:	........
  * Size:	00001C
  */
-void P2JME::getCurrentMesResName()
+void getCurrentMesResName()
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +27,7 @@ void P2JME::getCurrentMesResName()
  * Address:	80437EAC
  * Size:	000040
  */
-void P2JME::Mgr::create((JKRExpHeap*))
+void Mgr::create(JKRExpHeap*)
 {
 	/*
 	.loc_0x0:
@@ -57,7 +59,7 @@ void P2JME::Mgr::create((JKRExpHeap*))
  * Address:	80437EEC
  * Size:	000170
  */
-void P2JME::Mgr::__ct((JKRExpHeap*))
+Mgr::Mgr(JKRExpHeap*)
 {
 	/*
 	.loc_0x0:
@@ -163,7 +165,7 @@ void P2JME::Mgr::__ct((JKRExpHeap*))
  * Address:	8043805C
  * Size:	000068
  */
-void P2JME::Mgr::__dt(void)
+Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -203,7 +205,7 @@ void P2JME::Mgr::__dt(void)
  * Address:	........
  * Size:	000004
  */
-void P2JME::Mgr::reloadMessageResource(void)
+void Mgr::reloadMessageResource(void)
 {
 	// UNUSED FUNCTION
 }
@@ -213,7 +215,7 @@ void P2JME::Mgr::reloadMessageResource(void)
  * Address:	804380C4
  * Size:	000100
  */
-void P2JME::Mgr::setupMessage(void)
+void Mgr::setupMessage(void)
 {
 	/*
 	.loc_0x0:
@@ -295,7 +297,7 @@ void P2JME::Mgr::setupMessage(void)
  * Address:	804381C4
  * Size:	0000F8
  */
-void P2JME::Mgr::setupTex(void)
+void Mgr::setupTex(void)
 {
 	/*
 	.loc_0x0:
@@ -377,7 +379,7 @@ void P2JME::Mgr::setupTex(void)
  * Address:	804382BC
  * Size:	000248
  */
-void P2JME::Mgr::setupFont((char const*, JKRExpHeap*))
+void Mgr::setupFont(char const*, JKRExpHeap*)
 {
 	/*
 	.loc_0x0:
@@ -553,7 +555,7 @@ void P2JME::Mgr::setupFont((char const*, JKRExpHeap*))
  * Address:	80438504
  * Size:	0001A8
  */
-void P2JME::Mgr::createImage((P2JME::ImageGroup::EID, int))
+void Mgr::createImage(P2JME::ImageGroup::EID, int)
 {
 	/*
 	.loc_0x0:
@@ -685,7 +687,7 @@ void P2JME::Mgr::createImage((P2JME::ImageGroup::EID, int))
  * Address:	804386AC
  * Size:	0000C4
  */
-void P2JME::Mgr::setImage((P2JME::ImageGroup::EID, int, JUTTexture*))
+void Mgr::setImage(P2JME::ImageGroup::EID, int, JUTTexture*)
 {
 	/*
 	.loc_0x0:
@@ -752,7 +754,7 @@ void P2JME::Mgr::setImage((P2JME::ImageGroup::EID, int, JUTTexture*))
  * Address:	80438770
  * Size:	0000B8
  */
-void P2JME::Mgr::getImage((P2JME::ImageGroup::EID, int))
+void Mgr::getImage(P2JME::ImageGroup::EID, int)
 {
 	/*
 	.loc_0x0:
@@ -816,7 +818,7 @@ void P2JME::Mgr::getImage((P2JME::ImageGroup::EID, int))
  * Address:	80438828
  * Size:	000104
  */
-void P2JME::Mgr::setupMessageResource((JKRArchive*, char const*))
+void Mgr::setupMessageResource(JKRArchive*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -897,7 +899,7 @@ void P2JME::Mgr::setupMessageResource((JKRArchive*, char const*))
  * Address:	8043892C
  * Size:	0000E0
  */
-void P2JME::Mgr::setupColor((JKRArchive*, char const*))
+void Mgr::setupColor(JKRArchive*, char const*)
 {
 	/*
 	.loc_0x0:
@@ -963,6 +965,8 @@ void P2JME::Mgr::setupColor((JKRArchive*, char const*))
 	  blr
 	*/
 }
+
+} // namespace P2JME
 
 /*
  * --INFO--

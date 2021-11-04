@@ -88,23 +88,22 @@ void Footmarks::add(Footmark& mark)
 	float v5;
 	float v6;
 	if (this->_08 < 2
-	    || ((v2 = &this->m_marks[this->_04 + this->m_count - 1
-	                             - (this->_04 + this->m_count - 1)
-	                                   / this->m_count * this->m_count],
-	         v3 = (v2->position.x - mark.position.y),
-	         v4 = (v2->position.z - mark.position.z),
-	         v5 = ((v4 * v4)
-	               + (((v2->position.x - mark.position.x)
-	                   * (v2->position.x - mark.position.x))
-	                  + (v3 * v3))),
-	         v5 <= 0.0f)
-	            ? (v6 = 0.0f)
-	            : (v6 = (__frsqrte(v5)
-	                     * ((v4 * v4)
-	                        + (((v2->position.x - mark.position.x)
-	                            * (v2->position.x - mark.position.x))
-	                           + (v3 * v3))))),
-	        v6 >= 20.0f)) {
+	            || (v2 = &this->m_marks[this->_04 + this->m_count - 1
+	                                    - (this->_04 + this->m_count - 1)
+	                                          / this->m_count * this->m_count],
+	                v3 = (v2->position.x - mark.position.y),
+	                v4 = (v2->position.z - mark.position.z),
+	                v5 = (v4 * v4)
+	                     + ((v2->position.x - mark.position.x)
+	                            * (v2->position.x - mark.position.x)
+	                        + (v3 * v3)),
+	                v5 <= 0.0f)
+	        ? (v6 = 0.0f)
+	        : (v6 = (__frsqrte(v5) * (v4 * v4)
+	                 + ((v2->position.x - mark.position.x)
+	                        * (v2->position.x - mark.position.x)
+	                    + (v3 * v3))),
+	           v6 >= 20.0f)) {
 		this->m_marks[this->_04].position = mark.position;
 		this->m_marks[this->_04].flag     = Game::gameSystem->_50;
 		this->_04
@@ -114,12 +113,14 @@ void Footmarks::add(Footmark& mark)
 		if (v8 < this->m_count)
 			this->_08 = v8 + 1;
 		this->_10 = Game::gameSystem->_50;
+		namespace Game {
+
+		}
 	}
-}
 
 } // namespace Game
 #ifdef UNFINISHED
-void Game::Footmarks::add((Game::Footmark&))
+void Footmarks::add(Game::Footmark&)
 {
 	/*
 	.loc_0x0:
@@ -216,7 +217,7 @@ void Game::Footmarks::add((Game::Footmark&))
  * Address:	801B496C
  * Size:	00004C
  */
-void Game::Footmarks::get((int))
+void Footmarks::get(int)
 {
 	/*
 	.loc_0x0:
@@ -246,12 +247,14 @@ void Game::Footmarks::get((int))
 	*/
 }
 
+} // Game
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00014C
  */
-void findNearest__Q24Game9FootmarksFR10Vector3<float> i(void)
+void findNearest__Q24Game9FootmarksFR10Vector3f i(void)
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +264,7 @@ void findNearest__Q24Game9FootmarksFR10Vector3<float> i(void)
  * Address:	801B49B8
  * Size:	0000C8
  */
-void findNearest2__Q24Game9FootmarksFR10Vector3<float> i(void)
+void findNearest2__Q24Game9FootmarksFR10Vector3f i(void)
 {
 	/*
 	.loc_0x0:
@@ -328,13 +331,16 @@ void findNearest2__Q24Game9FootmarksFR10Vector3<float> i(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::Footmarks::draw((Graphics&))
+void Footmarks::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 #endif
+} // Game

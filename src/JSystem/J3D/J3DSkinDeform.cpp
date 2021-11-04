@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -166,7 +166,7 @@ void J3DVtxColorCalc::calc(J3DVertexBuffer*)
  * Address:	80088804
  * Size:	000048
  */
-void J3DVtxColorCalc::~J3DVtxColorCalc()
+J3DVtxColorCalc::~J3DVtxColorCalc()
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::TDispTriangleArray::__ct(void)
+TDispTriangleArray::TDispTriangleArray(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::TDispTriangleArray::__ct(void)
  * Address:	........
  * Size:	000068
  */
-void Game::TDispTriangleArray::alloc((int))
+void TDispTriangleArray::alloc(int)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::TDispTriangleArray::alloc((int))
  * Address:	........
  * Size:	000054
  */
-void Game::TDispTriangle::__ct(void)
+TDispTriangle::TDispTriangle(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void Game::TDispTriangle::__ct(void)
  * Address:	........
  * Size:	00000C
  */
-void Game::TDispTriangleArray::clear(void)
+void TDispTriangleArray::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +47,7 @@ void Game::TDispTriangleArray::clear(void)
  * Address:	8016239C
  * Size:	000044
  */
-void Game::TDispTriangleArray::store((Sys::Triangle&, Sys::VertexTable&, int))
+void TDispTriangleArray::store(Sys::Triangle&, Sys::VertexTable&, int)
 {
 	/*
 	.loc_0x0:
@@ -86,8 +78,7 @@ void Game::TDispTriangleArray::store((Sys::Triangle&, Sys::VertexTable&, int))
  * Address:	801623E0
  * Size:	000044
  */
-void Game::TDispTriangleArray::store((Matrixf&, Sys::Triangle&,
-                                      Sys::VertexTable&, int))
+void TDispTriangleArray::store(Matrixf&, Sys::Triangle&, Sys::VertexTable&, int)
 {
 	/*
 	.loc_0x0:
@@ -118,7 +109,7 @@ void Game::TDispTriangleArray::store((Matrixf&, Sys::Triangle&,
  * Address:	........
  * Size:	000074
  */
-void Game::TDispTriangleArray::draw((Graphics&))
+void TDispTriangleArray::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +119,7 @@ void Game::TDispTriangleArray::draw((Graphics&))
  * Address:	80162424
  * Size:	0000C0
  */
-void Game::TDispTriangle::store((Sys::Triangle&, Sys::VertexTable&, int))
+void TDispTriangle::store(Sys::Triangle&, Sys::VertexTable&, int)
 {
 	/*
 	.loc_0x0:
@@ -188,8 +179,7 @@ void Game::TDispTriangle::store((Sys::Triangle&, Sys::VertexTable&, int))
  * Address:	801624E4
  * Size:	000100
  */
-void Game::TDispTriangle::store((Matrixf&, Sys::Triangle&, Sys::VertexTable&,
-                                 int))
+void TDispTriangle::store(Matrixf&, Sys::Triangle&, Sys::VertexTable&, int)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +255,7 @@ void Game::TDispTriangle::store((Matrixf&, Sys::Triangle&, Sys::VertexTable&,
  * Address:	........
  * Size:	000004
  */
-void Game::TDispTriangle::draw((Graphics&))
+void TDispTriangle::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -275,7 +265,7 @@ void Game::TDispTriangle::draw((Graphics&))
  * Address:	801625E4
  * Size:	000098
  */
-void Game::MapMgr::__ct(void)
+MapMgr::MapMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -324,12 +314,14 @@ void Game::MapMgr::__ct(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8016267C
  * Size:	00007C
  */
-void getStartPosition__Q24Game6MapMgrFR10Vector3<float> i(void)
+void getStartPosition__Q24Game6MapMgrFR10Vector3f i(void)
 {
 	/*
 	.loc_0x0:
@@ -371,12 +363,14 @@ void getStartPosition__Q24Game6MapMgrFR10Vector3<float> i(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801626F8
  * Size:	00002C
  */
-void Game::MapMgr::getMapRotation(void)
+void MapMgr::getMapRotation(void)
 {
 	/*
 	.loc_0x0:
@@ -401,7 +395,7 @@ void Game::MapMgr::getMapRotation(void)
  * Address:	80162724
  * Size:	00001C
  */
-void Game::MapMgr::getDemoMatrix(void)
+void MapMgr::getDemoMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -417,12 +411,14 @@ void Game::MapMgr::getDemoMatrix(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80162740
  * Size:	000704
  */
-void getBestAngle__Q24Game6MapMgrFR10Vector3<float> ff(void)
+void getBestAngle__Q24Game6MapMgrFR10Vector3f ff(void)
 {
 	/*
 	.loc_0x0:
@@ -910,12 +906,14 @@ void getBestAngle__Q24Game6MapMgrFR10Vector3<float> ff(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80162E44
  * Size:	0002A4
  */
-void Game::MapMgr::checkBeamCollision((Game::MapMgr::BeamCollisionArg&))
+void MapMgr::checkBeamCollision(Game::MapMgr::BeamCollisionArg&)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1118,7 @@ void Game::MapMgr::checkBeamCollision((Game::MapMgr::BeamCollisionArg&))
  * Address:	801630E8
  * Size:	000804
  */
-void Game::ShapeMapMgr::load((Game::ShapeMapMgr::LoadArg&))
+void ShapeMapMgr::load(Game::ShapeMapMgr::LoadArg&)
 {
 	/*
 	.loc_0x0:
@@ -1706,39 +1704,43 @@ void Game::ShapeMapMgr::load((Game::ShapeMapMgr::LoadArg&))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801638EC
- * Size:	00003C
- */
-void Sys::MatLoopAnimator::__ct(void)
-{
+namespace Sys {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x2D0A54
-	  lis       r4, 0x804F
-	  mr        r3, r31
-	  subi      r0, r4, 0x3B74
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	801638EC
+	 * Size:	00003C
+	 */
+	MatLoopAnimator::MatLoopAnimator(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r3
+		  bl        0x2D0A54
+		  lis       r4, 0x804F
+		  mr        r3, r31
+		  subi      r0, r4, 0x3B74
+		  stw       r0, 0x0(r31)
+		  lwz       r31, 0xC(r1)
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace Sys
 
 /*
  * --INFO--
  * Address:	80163928
  * Size:	000034
  */
-void Game::MapMgr::findWater((Sys::Sphere&))
+void MapMgr::findWater(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1767,7 +1769,7 @@ void Game::MapMgr::findWater((Sys::Sphere&))
  * Address:	8016395C
  * Size:	00009C
  */
-void Game::ShapeMapMgr::do_update(void)
+void ShapeMapMgr::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -1824,7 +1826,7 @@ void Game::ShapeMapMgr::do_update(void)
  * Address:	801639F8
  * Size:	000050
  */
-void Game::MapMgr::update(void)
+void MapMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1858,14 +1860,14 @@ void Game::MapMgr::update(void)
  * Address:	80163A48
  * Size:	000004
  */
-void Game::MapMgr::do_update(void) { }
+void MapMgr::do_update(void) { }
 
 /*
  * --INFO--
  * Address:	80163A4C
  * Size:	000018
  */
-void Game::MapMgr::clearPerfMonitor(void)
+void MapMgr::clearPerfMonitor(void)
 {
 	/*
 	.loc_0x0:
@@ -1883,7 +1885,7 @@ void Game::MapMgr::clearPerfMonitor(void)
  * Address:	........
  * Size:	000258
  */
-void Game::MapMgr::draw2d((Graphics&))
+void MapMgr::draw2d(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1893,7 +1895,7 @@ void Game::MapMgr::draw2d((Graphics&))
  * Address:	80163A64
  * Size:	0000AC
  */
-void Game::ShapeMapMgr::drawCollision((Graphics&, Sys::Sphere&))
+void ShapeMapMgr::drawCollision(Graphics&, Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1950,7 +1952,7 @@ void Game::ShapeMapMgr::drawCollision((Graphics&, Sys::Sphere&))
  * Address:	80163B10
  * Size:	00002C
  */
-void Game::ShapeMapMgr::createTriangles((Sys::CreateTriangleArg&))
+void ShapeMapMgr::createTriangles(Sys::CreateTriangleArg&)
 {
 	/*
 	.loc_0x0:
@@ -1967,6 +1969,8 @@ void Game::ShapeMapMgr::createTriangles((Sys::CreateTriangleArg&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1992,19 +1996,23 @@ void MapCollision::createTriangles(Sys::CreateTriangleArg&)
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	80163B6C
  * Size:	000004
  */
-void Sys::TriDivider::createTriangles((Sys::CreateTriangleArg&)) { }
+void TriDivider::createTriangles(Sys::CreateTriangleArg&) { }
+
+} // namespace Sys
 
 /*
  * --INFO--
  * Address:	80163B70
  * Size:	00008C
  */
-void getMinY__Q24Game11ShapeMapMgrFR10Vector3<float>(void)
+void getMinY__Q24Game11ShapeMapMgrFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2046,12 +2054,14 @@ void getMinY__Q24Game11ShapeMapMgrFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80163BFC
  * Size:	00002C
  */
-void Game::ShapeMapMgr::getCurrTri((Game::CurrTriInfo&))
+void ShapeMapMgr::getCurrTri(Game::CurrTriInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2074,7 +2084,7 @@ void Game::ShapeMapMgr::getCurrTri((Game::CurrTriInfo&))
  * Address:	80163C28
  * Size:	000038
  */
-void Game::ShapeMapMgr::doAnimation(void)
+void ShapeMapMgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -2102,7 +2112,7 @@ void Game::ShapeMapMgr::doAnimation(void)
  * Address:	80163C60
  * Size:	000060
  */
-void Game::ShapeMapMgr::doSetView((int))
+void ShapeMapMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -2140,7 +2150,7 @@ void Game::ShapeMapMgr::doSetView((int))
  * Address:	80163CC0
  * Size:	00004C
  */
-void Game::ShapeMapMgr::doViewCalc(void)
+void ShapeMapMgr::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -2173,7 +2183,7 @@ void Game::ShapeMapMgr::doViewCalc(void)
  * Address:	80163D0C
  * Size:	0000C0
  */
-void Game::ShapeMapMgr::doEntry(void)
+void ShapeMapMgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -2239,7 +2249,7 @@ void Game::ShapeMapMgr::doEntry(void)
  * Address:	80163DCC
  * Size:	000214
  */
-void Game::ShapeMapMgr::findRayIntersection((Sys::RayIntersectInfo&))
+void ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2398,7 +2408,7 @@ void Game::ShapeMapMgr::findRayIntersection((Sys::RayIntersectInfo&))
  * Address:	80163FE0
  * Size:	000080
  */
-void Game::ShapeMapMgr::getBoundBox2d((BoundBox2d&))
+void ShapeMapMgr::getBoundBox2d(BoundBox2d&)
 {
 	/*
 	.loc_0x0:
@@ -2442,7 +2452,7 @@ void Game::ShapeMapMgr::getBoundBox2d((BoundBox2d&))
  * Address:	80164060
  * Size:	000090
  */
-void Game::ShapeMapMgr::getBoundBox((BoundBox&))
+void ShapeMapMgr::getBoundBox(BoundBox&)
 {
 	/*
 	.loc_0x0:
@@ -2490,35 +2500,37 @@ void Game::ShapeMapMgr::getBoundBox((BoundBox&))
  * Address:	801640F0
  * Size:	000008
  */
-u32 Game::MapMgr::frozenable(void) { return 0x0; }
+u32 MapMgr::frozenable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801640F8
  * Size:	000004
  */
-void Game::MapMgr::doDirectDraw((Graphics&)) { }
+void MapMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801640FC
  * Size:	000004
  */
-void Game::MapMgr::doSimulation((float)) { }
+void MapMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80164100
  * Size:	000008
  */
-u32 Game::MapMgr::findRayIntersection((Sys::RayIntersectInfo&)) { return 0x0; }
+u32 MapMgr::findRayIntersection(Sys::RayIntersectInfo&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80164108
  * Size:	000004
  */
-void Game::MapMgr::createTriangles((Sys::CreateTriangleArg&)) { }
+void MapMgr::createTriangles(Sys::CreateTriangleArg&) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2669,12 +2681,16 @@ void ObjectMgr<Game::WaterBox>::doViewCalc()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801642F0
  * Size:	000004
  */
-void Game::WaterBox::doViewCalc(void) { }
+void WaterBox::doViewCalc(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2860,12 +2876,16 @@ void ObjectMgr<Game::WaterBox>::doSetView(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80164534
  * Size:	000004
  */
-void Game::WaterBox::doSetView((int)) { }
+void WaterBox::doSetView(int) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3016,12 +3036,16 @@ void ObjectMgr<Game::WaterBox>::doEntry()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8016471C
  * Size:	000004
  */
-void Game::WaterBox::doEntry(void) { }
+void WaterBox::doEntry(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3172,12 +3196,16 @@ void ObjectMgr<Game::WaterBox>::doAnimation()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80164904
  * Size:	000004
  */
-void Game::WaterBox::doAnimation(void) { }
+void WaterBox::doAnimation(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3401,7 +3429,7 @@ void @36 @4 @Game::MapMgr::frozenable(void)
  * Address:	80164B3C
  * Size:	000014
  */
-void @36 @4 @Game::MapMgr::doDirectDraw((Graphics&))
+void @36 @4 @Game::MapMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -3418,7 +3446,7 @@ void @36 @4 @Game::MapMgr::doDirectDraw((Graphics&))
  * Address:	80164B50
  * Size:	000014
  */
-void @36 @4 @Game::MapMgr::doSimulation((float))
+void @36 @4 @Game::MapMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -3452,7 +3480,7 @@ void @84 @4 @Game::MapMgr::frozenable(void)
  * Address:	80164B78
  * Size:	000014
  */
-void @84 @4 @Game::MapMgr::doDirectDraw((Graphics&))
+void @84 @4 @Game::MapMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -3469,7 +3497,7 @@ void @84 @4 @Game::MapMgr::doDirectDraw((Graphics&))
  * Address:	80164B8C
  * Size:	000014
  */
-void @84 @4 @Game::MapMgr::doSimulation((float))
+void @84 @4 @Game::MapMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -3503,7 +3531,7 @@ void @84 @4 @Game::ShapeMapMgr::doViewCalc(void)
  * Address:	80164BB4
  * Size:	000014
  */
-void @84 @4 @Game::ShapeMapMgr::doSetView((int))
+void @84 @4 @Game::ShapeMapMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:

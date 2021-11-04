@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A0
  */
-void Resource::Mgr2D::__ct((JKRHeap*))
+Resource::Mgr2D::Mgr2D(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void Resource::Mgr2D::__ct((JKRHeap*))
  * Address:	........
  * Size:	000070
  */
-void Resource::Mgr::__dt(void)
+Resource::Mgr::~Mgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void Resource::Mgr::__dt(void)
  * Address:	80433F70
  * Size:	0000B0
  */
-void Resource::Mgr2D::init((JKRHeap*))
+void Resource::Mgr2D::init(JKRHeap*)
 {
 	/*
 	.loc_0x0:

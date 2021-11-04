@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80301688
  * Size:	000050
  */
-void Game::FixMiniHoudai::Mgr::Mgr(int, unsigned char)
+FixMiniHoudai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::FixMiniHoudai::Mgr::Mgr(int, unsigned char)
  * Address:	803016D8
  * Size:	000048
  */
-void Game::FixMiniHoudai::Mgr::doAlloc()
+void FixMiniHoudai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::FixMiniHoudai::Mgr::doAlloc()
  * Address:	80301720
  * Size:	000060
  */
-void Game::FixMiniHoudai::Mgr::createObj(int)
+void FixMiniHoudai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::FixMiniHoudai::Mgr::createObj(int)
  * Address:	80301780
  * Size:	0000EC
  */
-void Game::FixMiniHoudai::Obj::~Obj()
+FixMiniHoudai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::FixMiniHoudai::Obj::~Obj()
  * Address:	8030186C
  * Size:	000010
  */
-void Game::FixMiniHoudai::Mgr::getEnemy(int)
+void FixMiniHoudai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -196,14 +198,14 @@ void Game::FixMiniHoudai::Mgr::getEnemy(int)
  * Address:	8030187C
  * Size:	000008
  */
-u32 Game::FixMiniHoudai::Obj::getEnemyTypeID() { return 0x61; }
+u32 FixMiniHoudai::Obj::getEnemyTypeID() { return 0x61; }
 
 /*
  * --INFO--
  * Address:	80301884
  * Size:	0000C8
  */
-void Game::FixMiniHoudai::Mgr::~Mgr()
+FixMiniHoudai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -269,14 +271,14 @@ void Game::FixMiniHoudai::Mgr::~Mgr()
  * Address:	8030194C
  * Size:	000008
  */
-u32 Game::FixMiniHoudai::Mgr::getEnemyTypeID() { return 0x61; }
+u32 FixMiniHoudai::Mgr::getEnemyTypeID() { return 0x61; }
 
 /*
  * --INFO--
  * Address:	80301954
  * Size:	000008
  */
-void Game::FixMiniHoudai::Mgr::@4 @__dt()
+FixMiniHoudai::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -284,3 +286,4 @@ void Game::FixMiniHoudai::Mgr::@4 @__dt()
 	  b         -0xD4
 	*/
 }
+} // namespace Game

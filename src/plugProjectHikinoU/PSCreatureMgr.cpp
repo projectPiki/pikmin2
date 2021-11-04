@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "PSGame/SoundCreatureMgr.h"
 
 namespace PSGame {

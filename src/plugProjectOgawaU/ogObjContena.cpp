@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00001C
  */
-void og::newScreen::ObjContena::setStartPos(void)
+void newScreen::ObjContena::setStartPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void og::newScreen::ObjContena::setStartPos(void)
  * Address:	8031FF44
  * Size:	0001C0
  */
-void og::newScreen::ObjContena::__ct((char const*))
+newScreen::ObjContena::ObjContena(char const*)
 {
 	/*
 	.loc_0x0:
@@ -149,7 +141,7 @@ void og::newScreen::ObjContena::__ct((char const*))
  * Address:	80320104
  * Size:	0000AC
  */
-void og::newScreen::ObjContena::__dt(void)
+newScreen::ObjContena::~ObjContena(void)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +200,7 @@ void og::newScreen::ObjContena::__dt(void)
  * Address:	803201B0
  * Size:	000934
  */
-void og::newScreen::ObjContena::doCreate((JKRArchive*))
+void newScreen::ObjContena::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -883,7 +875,7 @@ void og::newScreen::ObjContena::doCreate((JKRArchive*))
  * Address:	........
  * Size:	00005C
  */
-void og::newScreen::ObjContena::tairetuOnOff(void)
+void newScreen::ObjContena::tairetuOnOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -893,7 +885,7 @@ void og::newScreen::ObjContena::tairetuOnOff(void)
  * Address:	........
  * Size:	000070
  */
-void og::newScreen::ObjContena::changeMessage((unsigned long))
+void newScreen::ObjContena::changeMessage(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -903,7 +895,7 @@ void og::newScreen::ObjContena::changeMessage((unsigned long))
  * Address:	........
  * Size:	000014
  */
-void og::newScreen::ObjContena::isMessage((int))
+void newScreen::ObjContena::isMessage(int)
 {
 	// UNUSED FUNCTION
 }
@@ -913,7 +905,7 @@ void og::newScreen::ObjContena::isMessage((int))
  * Address:	........
  * Size:	000048
  */
-void og::newScreen::ObjContena::setStickUp(void)
+void newScreen::ObjContena::setStickUp(void)
 {
 	// UNUSED FUNCTION
 }
@@ -923,7 +915,7 @@ void og::newScreen::ObjContena::setStickUp(void)
  * Address:	........
  * Size:	000048
  */
-void og::newScreen::ObjContena::setStickDown(void)
+void newScreen::ObjContena::setStickDown(void)
 {
 	// UNUSED FUNCTION
 }
@@ -933,7 +925,7 @@ void og::newScreen::ObjContena::setStickDown(void)
  * Address:	........
  * Size:	000048
  */
-void og::newScreen::ObjContena::setStickUpDown(void)
+void newScreen::ObjContena::setStickUpDown(void)
 {
 	// UNUSED FUNCTION
 }
@@ -943,7 +935,7 @@ void og::newScreen::ObjContena::setStickUpDown(void)
  * Address:	80320AE4
  * Size:	000284
  */
-void og::newScreen::ObjContena::putinPiki((bool))
+void newScreen::ObjContena::putinPiki(bool)
 {
 	/*
 	.loc_0x0:
@@ -1134,7 +1126,7 @@ void og::newScreen::ObjContena::putinPiki((bool))
  * Address:	80320D68
  * Size:	000320
  */
-void og::newScreen::ObjContena::takeoutPiki((bool))
+void newScreen::ObjContena::takeoutPiki(bool)
 {
 	/*
 	.loc_0x0:
@@ -1370,7 +1362,7 @@ void og::newScreen::ObjContena::takeoutPiki((bool))
  * Address:	80321088
  * Size:	00033C
  */
-void og::newScreen::ObjContena::moveContena(void)
+void newScreen::ObjContena::moveContena(void)
 {
 	/*
 	.loc_0x0:
@@ -1635,7 +1627,7 @@ void og::newScreen::ObjContena::moveContena(void)
  * Address:	803213C4
  * Size:	0005FC
  */
-void og::newScreen::ObjContena::commonUpdate(void)
+void newScreen::ObjContena::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -2072,7 +2064,7 @@ void og::newScreen::ObjContena::commonUpdate(void)
  * Address:	803219C0
  * Size:	000040
  */
-void og::newScreen::ObjContena::doUpdate(void)
+void newScreen::ObjContena::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -2100,7 +2092,7 @@ void og::newScreen::ObjContena::doUpdate(void)
  * Address:	80321A00
  * Size:	000174
  */
-void og::newScreen::ObjContena::doDraw((Graphics&))
+void newScreen::ObjContena::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2207,7 +2199,7 @@ void og::newScreen::ObjContena::doDraw((Graphics&))
  * Address:	80321B74
  * Size:	000044
  */
-void og::newScreen::ObjContena::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjContena::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -2236,24 +2228,21 @@ void og::newScreen::ObjContena::doStart((Screen::StartSceneArg const*))
  * Address:	80321BB8
  * Size:	000008
  */
-u32 og::newScreen::ObjContena::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjContena::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80321BC0
  * Size:	000004
  */
-void og::newScreen::ObjContena::doUpdateFadeinFinish(void) { }
+void newScreen::ObjContena::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80321BC4
  * Size:	00000C
  */
-void og::newScreen::ObjContena::doUpdateFinish(void)
+void newScreen::ObjContena::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2268,14 +2257,14 @@ void og::newScreen::ObjContena::doUpdateFinish(void)
  * Address:	80321BD0
  * Size:	000004
  */
-void og::newScreen::ObjContena::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjContena::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80321BD4
  * Size:	0000A8
  */
-void og::newScreen::ObjContena::doUpdateFadein(void)
+void newScreen::ObjContena::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -2331,7 +2320,7 @@ void og::newScreen::ObjContena::doUpdateFadein(void)
  * Address:	80321C7C
  * Size:	0001DC
  */
-void og::newScreen::ObjContena::doUpdateFadeout(void)
+void newScreen::ObjContena::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -2465,6 +2454,8 @@ void og::newScreen::ObjContena::doUpdateFadeout(void)
 	*/
 }
 
+} // namespace og
+
 /*
  * --INFO--
  * Address:	80321E58
@@ -2524,7 +2515,7 @@ void __sinit_ogObjContena_cpp(void)
  * Address:	80321F00
  * Size:	000008
  */
-void @24 @og::newScreen::ObjContena::__dt(void)
+@24 @og::newScreen::ObjContena::~ObjContena(void)
 {
 	/*
 	.loc_0x0:

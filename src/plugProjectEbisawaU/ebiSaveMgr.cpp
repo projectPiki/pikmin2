@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803DB190
  * Size:	00034C
  */
-void ebi::Save::FSMStateMachine::init((ebi::Save::TMgr*))
+void Save::FSMStateMachine::init(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -256,7 +248,7 @@ void ebi::Save::FSMStateMachine::init((ebi::Save::TMgr*))
  * Address:	803DB4DC
  * Size:	00002C
  */
-void ebi::Save::FSMState::init((ebi::Save::TMgr*, Game::StateArg*))
+void Save::FSMState::init(ebi::Save::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -279,14 +271,14 @@ void ebi::Save::FSMState::init((ebi::Save::TMgr*, Game::StateArg*))
  * Address:	803DB508
  * Size:	000004
  */
-void ebi::Save::FSMState::do_init((ebi::Save::TMgr*, Game::StateArg*)) { }
+void Save::FSMState::do_init(ebi::Save::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803DB50C
  * Size:	00002C
  */
-void ebi::Save::FSMState::exec((ebi::Save::TMgr*))
+void Save::FSMState::exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -309,14 +301,14 @@ void ebi::Save::FSMState::exec((ebi::Save::TMgr*))
  * Address:	803DB538
  * Size:	000004
  */
-void ebi::Save::FSMState::do_exec((ebi::Save::TMgr*)) { }
+void Save::FSMState::do_exec(ebi::Save::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803DB53C
  * Size:	00004C
  */
-void ebi::Save::FSMState_DoYouSave::do_init((ebi::Save::TMgr*, Game::StateArg*))
+void Save::FSMState_DoYouSave::do_init(ebi::Save::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -347,7 +339,7 @@ void ebi::Save::FSMState_DoYouSave::do_init((ebi::Save::TMgr*, Game::StateArg*))
  * Address:	803DB588
  * Size:	000144
  */
-void ebi::Save::FSMState_DoYouSave::do_exec((ebi::Save::TMgr*))
+void Save::FSMState_DoYouSave::do_exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -477,8 +469,7 @@ FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
  * Address:	803DB6FC
  * Size:	000028
  */
-void ebi::Save::FSMState_DoYouContinue::do_init((ebi::Save::TMgr*,
-                                                 Game::StateArg*))
+void Save::FSMState_DoYouContinue::do_init(ebi::Save::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -500,7 +491,7 @@ void ebi::Save::FSMState_DoYouContinue::do_init((ebi::Save::TMgr*,
  * Address:	803DB724
  * Size:	000114
  */
-void ebi::Save::FSMState_DoYouContinue::do_exec((ebi::Save::TMgr*))
+void Save::FSMState_DoYouContinue::do_exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -591,15 +582,10 @@ void ebi::Save::FSMState_DoYouContinue::do_exec((ebi::Save::TMgr*))
  * Address:	803DB838
  * Size:	00000C
  */
-void ebi::Save::FSMState_CardRequest::do_init((ebi::Save::TMgr*,
-                                               Game::StateArg*))
+void Save::FSMState_CardRequest::do_init(ebi::Save::TMgr*, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x14(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x14(r3)
+	_14 = 0;
 }
 
 /*
@@ -607,7 +593,7 @@ void ebi::Save::FSMState_CardRequest::do_init((ebi::Save::TMgr*,
  * Address:	803DB844
  * Size:	000264
  */
-void ebi::Save::FSMState_CardRequest::do_exec((ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -790,7 +776,7 @@ void ebi::Save::FSMState_CardRequest::do_exec((ebi::Save::TMgr*))
  * Address:	803DBAA8
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardNoCard((ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardNoCard(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -817,7 +803,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardNoCard((ebi::Save::TMgr*))
  * Address:	803DBAE4
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardIOError((ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardIOError(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -844,8 +830,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardIOError((ebi::Save::TMgr*))
  * Address:	803DBB20
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardWrongDevice(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardWrongDevice(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -872,8 +857,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardWrongDevice(
  * Address:	803DBB5C
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardWrongSector(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardWrongSector(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -900,7 +884,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardWrongSector(
  * Address:	803DBB98
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardBroken((ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardBroken(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -927,7 +911,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardBroken((ebi::Save::TMgr*))
  * Address:	803DBBD4
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardEncoding((ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardEncoding(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -954,8 +938,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardEncoding((ebi::Save::TMgr*))
  * Address:	803DBC10
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardNoFileSpace(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardNoFileSpace(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -982,8 +965,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardNoFileSpace(
  * Address:	803DBC4C
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardNoFileEntry(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardNoFileEntry(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1010,8 +992,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardNoFileEntry(
  * Address:	803DBC88
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardFileOpenError(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardFileOpenError(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1038,8 +1019,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardFileOpenError(
  * Address:	803DBCC4
  * Size:	00003C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardSerialNoError(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardSerialNoError(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1066,7 +1046,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardSerialNoError(
  * Address:	803DBD00
  * Size:	00002C
  */
-void ebi::Save::FSMState_CardRequest::do_transitCardPlayerDataBroken(
+void Save::FSMState_CardRequest::do_transitCardPlayerDataBroken(
     (ebi::Save::TMgr*))
 {
 	/*
@@ -1090,7 +1070,7 @@ void ebi::Save::FSMState_CardRequest::do_transitCardPlayerDataBroken(
  * Address:	803DBD2C
  * Size:	000028
  */
-void ebi::Save::FSMState_MountCheck::do_cardRequest((ebi::Save::TMgr*))
+void Save::FSMState_MountCheck::do_cardRequest(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1112,7 +1092,7 @@ void ebi::Save::FSMState_MountCheck::do_cardRequest((ebi::Save::TMgr*))
  * Address:	803DBD54
  * Size:	000034
  */
-void ebi::Save::FSMState_MountCheck::do_transitCardReady((ebi::Save::TMgr*))
+void Save::FSMState_MountCheck::do_transitCardReady(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1137,7 +1117,7 @@ void ebi::Save::FSMState_MountCheck::do_transitCardReady((ebi::Save::TMgr*))
  * Address:	803DBD88
  * Size:	00002C
  */
-void ebi::Save::FSMState_GetPlayerHeader::do_cardRequest((ebi::Save::TMgr*))
+void Save::FSMState_GetPlayerHeader::do_cardRequest(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1160,8 +1140,7 @@ void ebi::Save::FSMState_GetPlayerHeader::do_cardRequest((ebi::Save::TMgr*))
  * Address:	803DBDB4
  * Size:	0000F8
  */
-void
-    ebi::Save::FSMState_GetPlayerHeader::do_transitCardReady((ebi::Save::TMgr*))
+void Save::FSMState_GetPlayerHeader::do_transitCardReady(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1245,7 +1224,7 @@ void
  * Address:	803DBEAC
  * Size:	000038
  */
-void ebi::Save::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
+void Save::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
     (ebi::Save::TMgr*))
 {
 	/*
@@ -1272,7 +1251,7 @@ void ebi::Save::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
  * Address:	803DBEE4
  * Size:	000028
  */
-void ebi::Save::FSMState_CheckBeforeSave::do_cardRequest((ebi::Save::TMgr*))
+void Save::FSMState_CheckBeforeSave::do_cardRequest(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1294,8 +1273,7 @@ void ebi::Save::FSMState_CheckBeforeSave::do_cardRequest((ebi::Save::TMgr*))
  * Address:	803DBF0C
  * Size:	00003C
  */
-void
-    ebi::Save::FSMState_CheckBeforeSave::do_transitCardReady((ebi::Save::TMgr*))
+void Save::FSMState_CheckBeforeSave::do_transitCardReady(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1322,7 +1300,7 @@ void
  * Address:	803DBF48
  * Size:	0000D0
  */
-void ebi::Save::FSMState_NowSave::do_init((ebi::Save::TMgr*, Game::StateArg*))
+void Save::FSMState_NowSave::do_init(ebi::Save::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1392,7 +1370,7 @@ void ebi::Save::FSMState_NowSave::do_init((ebi::Save::TMgr*, Game::StateArg*))
  * Address:	803DC018
  * Size:	000424
  */
-void ebi::Save::FSMState_NowSave::do_exec((ebi::Save::TMgr*))
+void Save::FSMState_NowSave::do_exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1729,7 +1707,7 @@ void ebi::Save::FSMState_NowSave::do_exec((ebi::Save::TMgr*))
  * Address:	803DC43C
  * Size:	000050
  */
-void ebi::Save::FSMState_AfterSave::do_init((ebi::Save::TMgr*, Game::StateArg*))
+void Save::FSMState_AfterSave::do_init(ebi::Save::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1761,7 +1739,7 @@ void ebi::Save::FSMState_AfterSave::do_init((ebi::Save::TMgr*, Game::StateArg*))
  * Address:	803DC48C
  * Size:	0000D8
  */
-void ebi::Save::FSMState_AfterSave::do_exec((ebi::Save::TMgr*))
+void Save::FSMState_AfterSave::do_exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1835,7 +1813,7 @@ void ebi::Save::FSMState_AfterSave::do_exec((ebi::Save::TMgr*))
  * Address:	803DC564
  * Size:	000068
  */
-void ebi::Save::FSMState_CardError::do_init((ebi::Save::TMgr*, Game::StateArg*))
+void Save::FSMState_CardError::do_init(ebi::Save::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1875,7 +1853,7 @@ void ebi::Save::FSMState_CardError::do_init((ebi::Save::TMgr*, Game::StateArg*))
  * Address:	803DC5CC
  * Size:	000104
  */
-void ebi::Save::FSMState_CardError::do_exec((ebi::Save::TMgr*))
+void Save::FSMState_CardError::do_exec(ebi::Save::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1962,7 +1940,7 @@ void ebi::Save::FSMState_CardError::do_exec((ebi::Save::TMgr*))
  * Address:	803DC6D0
  * Size:	00014C
  */
-void ebi::Save::TMgr::__dt(void)
+Save::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2065,7 +2043,7 @@ void ebi::Save::TMgr::__dt(void)
  * Address:	803DC81C
  * Size:	000054
  */
-void ebi::CardError::TMgr::__dt(void)
+CardError::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2100,7 +2078,7 @@ void ebi::CardError::TMgr::__dt(void)
  * Address:	803DC870
  * Size:	000048
  */
-void ebi::Save::TMgr::createInstance(void)
+void Save::TMgr::createInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -2134,7 +2112,7 @@ void ebi::Save::TMgr::createInstance(void)
  * Address:	........
  * Size:	000048
  */
-void ebi::Save::TMgr::deleteInstance(void)
+void Save::TMgr::deleteInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2144,7 +2122,7 @@ void ebi::Save::TMgr::deleteInstance(void)
  * Address:	........
  * Size:	000008
  */
-void ebi::Save::TMgr::getInstance(void)
+void Save::TMgr::getInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2154,7 +2132,7 @@ void ebi::Save::TMgr::getInstance(void)
  * Address:	803DC8B8
  * Size:	000058
  */
-void ebi::Save::TMgr::onDvdErrorOccured(void)
+void Save::TMgr::onDvdErrorOccured(void)
 {
 	/*
 	.loc_0x0:
@@ -2192,7 +2170,7 @@ void ebi::Save::TMgr::onDvdErrorOccured(void)
  * Address:	803DC910
  * Size:	000044
  */
-void ebi::Save::TMgr::onDvdErrorRecovered(void)
+void Save::TMgr::onDvdErrorRecovered(void)
 {
 	/*
 	.loc_0x0:
@@ -2223,7 +2201,7 @@ void ebi::Save::TMgr::onDvdErrorRecovered(void)
  * Address:	803DC954
  * Size:	0000D4
  */
-void ebi::Save::TMgr::__ct(void)
+Save::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2309,138 +2287,142 @@ FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void ebi::Screen::TSaveMenu::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
 
-/*
- * --INFO--
- * Address:	803DCA5C
- * Size:	0001A0
- */
-void ebi::Screen::TSaveMenu::__ct(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x7818
-	  lis       r10, 0x804C
-	  stw       r31, 0x1C(r1)
-	  lis       r9, 0x804C
-	  lis       r8, 0x804A
-	  lis       r4, 0x804F
-	  stw       r30, 0x18(r1)
-	  li        r12, 0
-	  lis       r5, 0x804F
-	  li        r11, 0xFF
-	  stw       r29, 0x14(r1)
-	  addi      r10, r10, 0x14F0
-	  addi      r9, r9, 0x14D8
-	  subi      r8, r8, 0x1D84
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x7370
-	  lis       r4, 0x804E
-	  lfs       f3, 0x1850(r2)
-	  stw       r0, 0x0(r3)
-	  addi      r7, r4, 0x7420
-	  lis       r4, 0x804E
-	  subi      r0, r5, 0x6D88
-	  stw       r12, 0x4(r3)
-	  addi      r6, r4, 0x73CC
-	  lis       r4, 0x804E
-	  addi      r31, r7, 0x18
-	  stw       r12, 0x8(r3)
-	  addi      r5, r4, 0x7648
-	  addi      r30, r6, 0x18
-	  addi      r4, r3, 0x88
-	  stw       r0, 0x0(r3)
-	  addi      r29, r5, 0x18
-	  lfs       f2, 0x1860(r2)
-	  addi      r0, r3, 0xC0
-	  stb       r12, 0x14(r3)
-	  lfs       f1, 0x1864(r2)
-	  stb       r12, 0x15(r3)
-	  stb       r12, 0x16(r3)
-	  stb       r11, 0x17(r3)
-	  stb       r11, 0x18(r3)
-	  stw       r12, 0x1C(r3)
-	  stw       r12, 0x20(r3)
-	  stw       r12, 0x24(r3)
-	  stw       r12, 0x28(r3)
-	  stw       r12, 0x34(r3)
-	  stw       r12, 0x38(r3)
-	  stw       r10, 0x6C(r3)
-	  stw       r9, 0x6C(r3)
-	  stb       r12, 0x70(r3)
-	  stb       r12, 0x71(r3)
-	  stw       r8, 0x74(r3)
-	  stw       r7, 0x6C(r3)
-	  stw       r31, 0x74(r3)
-	  sth       r12, 0x78(r3)
-	  stw       r12, 0x7C(r3)
-	  stw       r6, 0x6C(r3)
-	  stw       r30, 0x74(r3)
-	  stw       r4, 0x80(r3)
-	  stw       r5, 0x6C(r3)
-	  stw       r29, 0x74(r3)
-	  stfs      f3, 0x84(r3)
-	  lwz       r4, -0x6514(r13)
-	  lfs       f0, 0x54(r4)
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x90(r3)
-	  stfs      f1, 0x94(r3)
-	  stw       r12, 0x9C(r3)
-	  stw       r12, 0xA0(r3)
-	  stw       r10, 0xA4(r3)
-	  stw       r9, 0xA4(r3)
-	  stb       r12, 0xA8(r3)
-	  stb       r12, 0xA9(r3)
-	  stw       r8, 0xAC(r3)
-	  stw       r7, 0xA4(r3)
-	  stw       r31, 0xAC(r3)
-	  sth       r12, 0xB0(r3)
-	  stw       r12, 0xB4(r3)
-	  stw       r6, 0xA4(r3)
-	  stw       r30, 0xAC(r3)
-	  stw       r0, 0xB8(r3)
-	  stw       r5, 0xA4(r3)
-	  stw       r29, 0xAC(r3)
-	  stfs      f3, 0xBC(r3)
-	  lwz       r4, -0x6514(r13)
-	  lfs       f0, 0x54(r4)
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0xC8(r3)
-	  stfs      f1, 0xCC(r3)
-	  stw       r12, 0xD4(r3)
-	  stw       r12, 0xD8(r3)
-	  stw       r12, 0x44(r3)
-	  stw       r12, 0x48(r3)
-	  stw       r12, 0x4C(r3)
-	  stw       r12, 0x50(r3)
-	  stw       r12, 0x54(r3)
-	  stw       r12, 0x58(r3)
-	  stw       r12, 0x5C(r3)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000128
+	 */
+	TSaveMenu::~TSaveMenu(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	803DCA5C
+	 * Size:	0001A0
+	 */
+	TSaveMenu::TSaveMenu(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x7818
+		  lis       r10, 0x804C
+		  stw       r31, 0x1C(r1)
+		  lis       r9, 0x804C
+		  lis       r8, 0x804A
+		  lis       r4, 0x804F
+		  stw       r30, 0x18(r1)
+		  li        r12, 0
+		  lis       r5, 0x804F
+		  li        r11, 0xFF
+		  stw       r29, 0x14(r1)
+		  addi      r10, r10, 0x14F0
+		  addi      r9, r9, 0x14D8
+		  subi      r8, r8, 0x1D84
+		  stw       r0, 0x0(r3)
+		  subi      r0, r4, 0x7370
+		  lis       r4, 0x804E
+		  lfs       f3, 0x1850(r2)
+		  stw       r0, 0x0(r3)
+		  addi      r7, r4, 0x7420
+		  lis       r4, 0x804E
+		  subi      r0, r5, 0x6D88
+		  stw       r12, 0x4(r3)
+		  addi      r6, r4, 0x73CC
+		  lis       r4, 0x804E
+		  addi      r31, r7, 0x18
+		  stw       r12, 0x8(r3)
+		  addi      r5, r4, 0x7648
+		  addi      r30, r6, 0x18
+		  addi      r4, r3, 0x88
+		  stw       r0, 0x0(r3)
+		  addi      r29, r5, 0x18
+		  lfs       f2, 0x1860(r2)
+		  addi      r0, r3, 0xC0
+		  stb       r12, 0x14(r3)
+		  lfs       f1, 0x1864(r2)
+		  stb       r12, 0x15(r3)
+		  stb       r12, 0x16(r3)
+		  stb       r11, 0x17(r3)
+		  stb       r11, 0x18(r3)
+		  stw       r12, 0x1C(r3)
+		  stw       r12, 0x20(r3)
+		  stw       r12, 0x24(r3)
+		  stw       r12, 0x28(r3)
+		  stw       r12, 0x34(r3)
+		  stw       r12, 0x38(r3)
+		  stw       r10, 0x6C(r3)
+		  stw       r9, 0x6C(r3)
+		  stb       r12, 0x70(r3)
+		  stb       r12, 0x71(r3)
+		  stw       r8, 0x74(r3)
+		  stw       r7, 0x6C(r3)
+		  stw       r31, 0x74(r3)
+		  sth       r12, 0x78(r3)
+		  stw       r12, 0x7C(r3)
+		  stw       r6, 0x6C(r3)
+		  stw       r30, 0x74(r3)
+		  stw       r4, 0x80(r3)
+		  stw       r5, 0x6C(r3)
+		  stw       r29, 0x74(r3)
+		  stfs      f3, 0x84(r3)
+		  lwz       r4, -0x6514(r13)
+		  lfs       f0, 0x54(r4)
+		  fmuls     f0, f2, f0
+		  stfs      f0, 0x90(r3)
+		  stfs      f1, 0x94(r3)
+		  stw       r12, 0x9C(r3)
+		  stw       r12, 0xA0(r3)
+		  stw       r10, 0xA4(r3)
+		  stw       r9, 0xA4(r3)
+		  stb       r12, 0xA8(r3)
+		  stb       r12, 0xA9(r3)
+		  stw       r8, 0xAC(r3)
+		  stw       r7, 0xA4(r3)
+		  stw       r31, 0xAC(r3)
+		  sth       r12, 0xB0(r3)
+		  stw       r12, 0xB4(r3)
+		  stw       r6, 0xA4(r3)
+		  stw       r30, 0xAC(r3)
+		  stw       r0, 0xB8(r3)
+		  stw       r5, 0xA4(r3)
+		  stw       r29, 0xAC(r3)
+		  stfs      f3, 0xBC(r3)
+		  lwz       r4, -0x6514(r13)
+		  lfs       f0, 0x54(r4)
+		  fmuls     f0, f2, f0
+		  stfs      f0, 0xC8(r3)
+		  stfs      f1, 0xCC(r3)
+		  stw       r12, 0xD4(r3)
+		  stw       r12, 0xD8(r3)
+		  stw       r12, 0x44(r3)
+		  stw       r12, 0x48(r3)
+		  stw       r12, 0x4C(r3)
+		  stw       r12, 0x50(r3)
+		  stw       r12, 0x54(r3)
+		  stw       r12, 0x58(r3)
+		  stw       r12, 0x5C(r3)
+		  lwz       r31, 0x1C(r1)
+		  lwz       r30, 0x18(r1)
+		  lwz       r29, 0x14(r1)
+		  addi      r1, r1, 0x20
+		  blr
+		*/
+	}
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	803DCBFC
  * Size:	000080
  */
-void ebi::Save::TMgr::start(void)
+void Save::TMgr::start(void)
 {
 	/*
 	.loc_0x0:
@@ -2488,7 +2470,7 @@ void ebi::Save::TMgr::start(void)
  * Address:	803DCC7C
  * Size:	000064
  */
-void ebi::Save::TMgr::forceQuit(void)
+void Save::TMgr::forceQuit(void)
 {
 	/*
 	.loc_0x0:
@@ -2525,7 +2507,7 @@ void ebi::Save::TMgr::forceQuit(void)
  * Address:	803DCCE0
  * Size:	00004C
  */
-void ebi::Save::TMgr::isFinish(void)
+void Save::TMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2560,7 +2542,7 @@ void ebi::Save::TMgr::isFinish(void)
  * Address:	803DCD2C
  * Size:	000068
  */
-void ebi::Save::TMgr::goEnd_((ebi::Save::TMgr::enumEnd))
+void Save::TMgr::goEnd_(ebi::Save::TMgr::enumEnd)
 {
 	/*
 	.loc_0x0:
@@ -2598,7 +2580,7 @@ void ebi::Save::TMgr::goEnd_((ebi::Save::TMgr::enumEnd))
  * Address:	803DCD94
  * Size:	000098
  */
-void ebi::Save::TMgr::update(void)
+void Save::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2650,7 +2632,7 @@ void ebi::Save::TMgr::update(void)
  * Address:	803DCE2C
  * Size:	000050
  */
-void ebi::Save::TMgr::draw(void)
+void Save::TMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -2686,7 +2668,7 @@ void ebi::Save::TMgr::draw(void)
  * Address:	........
  * Size:	000034
  */
-void ebi::Save::TMgr::showInfo(void)
+void Save::TMgr::showInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2696,7 +2678,7 @@ void ebi::Save::TMgr::showInfo(void)
  * Address:	803DCE7C
  * Size:	000058
  */
-void ebi::Save::TMgr::getStateID(void)
+void Save::TMgr::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -2736,6 +2718,8 @@ void init__Q24Game26FSMState<ebi::Save::TMgr>
 FPQ33ebi4Save4TMgrPQ24Game8StateArg(void)
 {
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

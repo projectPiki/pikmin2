@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B5E98
  * Size:	000050
  */
-void Game::OtakaraBase::Mgr::Mgr(int, unsigned char)
+OtakaraBase::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::OtakaraBase::Mgr::Mgr(int, unsigned char)
  * Address:	802B5EE8
  * Size:	0000BC
  */
-void Game::OtakaraBase::Mgr::loadModelData()
+void OtakaraBase::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -102,7 +104,7 @@ void Game::OtakaraBase::Mgr::loadModelData()
  * Address:	802B5FA4
  * Size:	0000B0
  */
-void Game::OtakaraBase::Mgr::loadAnimData()
+void OtakaraBase::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -164,7 +166,7 @@ void Game::OtakaraBase::Mgr::loadAnimData()
  * Address:	802B6054
  * Size:	000138
  */
-void Game::OtakaraBase::Mgr::createModel()
+void OtakaraBase::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -264,7 +266,7 @@ void Game::OtakaraBase::Mgr::createModel()
  * Address:	802B618C
  * Size:	0000B0
  */
-void Game::OtakaraBase::Mgr::~Mgr()
+OtakaraBase::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -324,14 +326,14 @@ void Game::OtakaraBase::Mgr::~Mgr()
  * Address:	802B623C
  * Size:	000008
  */
-u32 Game::OtakaraBase::Mgr::getEnemyTypeID() { return 0x3B; }
+u32 OtakaraBase::Mgr::getEnemyTypeID() { return 0x3B; }
 
 /*
  * --INFO--
  * Address:	802B6244
  * Size:	000008
  */
-void Game::OtakaraBase::Mgr::@4 @__dt()
+OtakaraBase::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -339,3 +341,4 @@ void Game::OtakaraBase::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

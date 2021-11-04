@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80245418
  * Size:	000008
  */
-void Game::Cave::RandMapDraw::__ct((Game::Cave::MapUnitGenerator*))
+Cave::RandMapDraw::RandMapDraw(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -24,12 +16,14 @@ void Game::Cave::RandMapDraw::__ct((Game::Cave::MapUnitGenerator*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80245420
  * Size:	0001CC
  */
-void radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<float>(void)
+void radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -163,12 +157,14 @@ void radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802455EC
  * Size:	000078
  */
-void Game::Cave::RandMapDraw::draw((Graphics&, float, float, float))
+void Cave::RandMapDraw::draw(Graphics&, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -208,3 +204,4 @@ void Game::Cave::RandMapDraw::draw((Graphics&, float, float, float))
 	  blr
 	*/
 }
+} // namespace Game

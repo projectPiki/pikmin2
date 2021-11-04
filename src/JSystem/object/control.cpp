@@ -1,3 +1,4 @@
+#include "types.h"
 
 /*
  * --INFO--
@@ -76,7 +77,7 @@ void createObject_MESSAGE_JMS___Q216JStudio_JMessage21 @unnamed @control_cpp
  * Address:	........
  * Size:	000060
  */
-void JStudio_JMessage::TCreateObject_base::__dt(void)
+JStudio_JMessage::TCreateObject_base::~TCreateObject_base(void)
 {
 	// UNUSED FUNCTION
 }
@@ -152,7 +153,7 @@ void JStudio_JMessage::TCreateObject_base::create(
  * Address:	80014F60
  * Size:	000070
  */
-void JStudio_JMessage::TCreateObject::__dt(void)
+JStudio_JMessage::TCreateObject::~TCreateObject(void)
 {
 	/*
 	.loc_0x0:

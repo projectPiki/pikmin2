@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80287B70
  * Size:	000278
  */
-void Game::Queen::FSM::init(Game::EnemyBase*)
+void Queen::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -189,7 +191,7 @@ void Game::Queen::FSM::init(Game::EnemyBase*)
  * Address:	80287DE8
  * Size:	000058
  */
-void Game::Queen::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -223,7 +225,7 @@ void Game::Queen::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80287E40
  * Size:	0000B8
  */
-void Game::Queen::StateDead::exec(Game::EnemyBase*)
+void Queen::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -285,14 +287,14 @@ void Game::Queen::StateDead::exec(Game::EnemyBase*)
  * Address:	80287EF8
  * Size:	000004
  */
-void Game::Queen::StateDead::cleanup(Game::EnemyBase*) { }
+void Queen::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80287EFC
  * Size:	000070
  */
-void Game::Queen::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -332,7 +334,7 @@ void Game::Queen::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80287F6C
  * Size:	000154
  */
-void Game::Queen::StateSleep::exec(Game::EnemyBase*)
+void Queen::StateSleep::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -447,7 +449,7 @@ void Game::Queen::StateSleep::exec(Game::EnemyBase*)
  * Address:	802880C0
  * Size:	000040
  */
-void Game::Queen::StateSleep::cleanup(Game::EnemyBase*)
+void Queen::StateSleep::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +477,7 @@ void Game::Queen::StateSleep::cleanup(Game::EnemyBase*)
  * Address:	80288100
  * Size:	000070
  */
-void Game::Queen::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -515,7 +517,7 @@ void Game::Queen::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80288170
  * Size:	00013C
  */
-void Game::Queen::StateWait::exec(Game::EnemyBase*)
+void Queen::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +620,7 @@ void Game::Queen::StateWait::exec(Game::EnemyBase*)
  * Address:	802882AC
  * Size:	000024
  */
-void Game::Queen::StateWait::cleanup(Game::EnemyBase*)
+void Queen::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -639,7 +641,7 @@ void Game::Queen::StateWait::cleanup(Game::EnemyBase*)
  * Address:	802882D0
  * Size:	000078
  */
-void Game::Queen::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -681,7 +683,7 @@ void Game::Queen::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80288348
  * Size:	0000F4
  */
-void Game::Queen::StateDamage::exec(Game::EnemyBase*)
+void Queen::StateDamage::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -764,7 +766,7 @@ void Game::Queen::StateDamage::exec(Game::EnemyBase*)
  * Address:	8028843C
  * Size:	000040
  */
-void Game::Queen::StateDamage::cleanup(Game::EnemyBase*)
+void Queen::StateDamage::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -792,7 +794,7 @@ void Game::Queen::StateDamage::cleanup(Game::EnemyBase*)
  * Address:	8028847C
  * Size:	000080
  */
-void Game::Queen::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +838,7 @@ void Game::Queen::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802884FC
  * Size:	0000FC
  */
-void Game::Queen::StateFlick::exec(Game::EnemyBase*)
+void Queen::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -919,7 +921,7 @@ void Game::Queen::StateFlick::exec(Game::EnemyBase*)
  * Address:	802885F8
  * Size:	000038
  */
-void Game::Queen::StateFlick::cleanup(Game::EnemyBase*)
+void Queen::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -945,7 +947,7 @@ void Game::Queen::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	80288630
  * Size:	000088
  */
-void Game::Queen::StateRolling::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateRolling::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -995,7 +997,7 @@ void Game::Queen::StateRolling::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802886B8
  * Size:	0005BC
  */
-void Game::Queen::StateRolling::exec(Game::EnemyBase*)
+void Queen::StateRolling::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1426,7 +1428,7 @@ void Game::Queen::StateRolling::exec(Game::EnemyBase*)
  * Address:	80288C74
  * Size:	00004C
  */
-void Game::Queen::StateRolling::cleanup(Game::EnemyBase*)
+void Queen::StateRolling::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1457,7 +1459,7 @@ void Game::Queen::StateRolling::cleanup(Game::EnemyBase*)
  * Address:	80288CC0
  * Size:	000070
  */
-void Game::Queen::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
+void Queen::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1497,7 +1499,7 @@ void Game::Queen::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80288D30
  * Size:	0000A8
  */
-void Game::Queen::StateBorn::exec(Game::EnemyBase*)
+void Queen::StateBorn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1557,7 +1559,7 @@ void Game::Queen::StateBorn::exec(Game::EnemyBase*)
  * Address:	80288DD8
  * Size:	000040
  */
-void Game::Queen::StateBorn::cleanup(Game::EnemyBase*)
+void Queen::StateBorn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1579,6 +1581,8 @@ void Game::Queen::StateBorn::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

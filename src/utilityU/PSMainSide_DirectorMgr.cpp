@@ -1,12 +1,13 @@
 #include "types.h"
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	8046F2BC
  * Size:	0002D8
  */
-void PSM::DirectorMgr_Scene::DirectorMgr_Scene(PSM::DirectorMgr_Scene*,
-                                               unsigned char)
+DirectorMgr_Scene::DirectorMgr_Scene(PSM::DirectorMgr_Scene*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -236,7 +237,7 @@ void PSM::DirectorMgr_Scene::DirectorMgr_Scene(PSM::DirectorMgr_Scene*,
  * Address:	8046F594
  * Size:	00008C
  */
-void PSM::DirectorMgr_Scene::~DirectorMgr_Scene()
+DirectorMgr_Scene::~DirectorMgr_Scene()
 {
 	/*
 	.loc_0x0:
@@ -287,7 +288,7 @@ void PSM::DirectorMgr_Scene::~DirectorMgr_Scene()
  * Address:	8046F620
  * Size:	000294
  */
-void PSM::DirectorMgr_Scene::initTrackMap(PSSystem::DirectedBgm&)
+void DirectorMgr_Scene::initTrackMap(PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -486,7 +487,7 @@ void PSM::DirectorMgr_Scene::initTrackMap(PSSystem::DirectedBgm&)
  * Address:	8046F8B4
  * Size:	000770
  */
-void PSM::DirectorMgr_Scene::newDirector(unsigned char, PSSystem::DirectedBgm&)
+void DirectorMgr_Scene::newDirector(unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1086,8 +1087,8 @@ void PSM::DirectorMgr_Scene::newDirector(unsigned char, PSSystem::DirectedBgm&)
  * Address:	80470024
  * Size:	0000A8
  */
-void PSM::DirectorMgr_Scene::adaptDirectorActor(PSSystem::DirectorBase*,
-                                                unsigned char)
+void DirectorMgr_Scene::adaptDirectorActor(PSSystem::DirectorBase*,
+                                           unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1145,8 +1146,8 @@ void PSM::DirectorMgr_Scene::adaptDirectorActor(PSSystem::DirectorBase*,
  * Address:	804700CC
  * Size:	000094
  */
-void PSM::DirectorMgr_Scene::newPikminNumberDirector(int, unsigned char,
-                                                     PSSystem::DirectedBgm&)
+void DirectorMgr_Scene::newPikminNumberDirector(int, unsigned char,
+                                                PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1199,8 +1200,8 @@ void PSM::DirectorMgr_Scene::newPikminNumberDirector(int, unsigned char,
  * Address:	80470160
  * Size:	000090
  */
-void PSM::DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(
-    int, unsigned char, PSSystem::DirectedBgm&)
+void DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int, unsigned char,
+                                                        PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1252,7 +1253,7 @@ void PSM::DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(
  * Address:	804701F0
  * Size:	000050
  */
-void PSM::DirectorMgr_Battle::DirectorMgr_Battle()
+DirectorMgr_Battle::DirectorMgr_Battle()
 {
 	/*
 	.loc_0x0:
@@ -1284,7 +1285,7 @@ void PSM::DirectorMgr_Battle::DirectorMgr_Battle()
  * Address:	80470240
  * Size:	000244
  */
-void PSM::DirectorMgr_Battle::newDirector(unsigned char, PSSystem::DirectedBgm&)
+void DirectorMgr_Battle::newDirector(unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1479,7 +1480,7 @@ void PSM::DirectorMgr_Battle::newDirector(unsigned char, PSSystem::DirectedBgm&)
  * Address:	80470484
  * Size:	000050
  */
-void PSM::DirectorMgr_2PBattle::DirectorMgr_2PBattle()
+DirectorMgr_2PBattle::DirectorMgr_2PBattle()
 {
 	/*
 	.loc_0x0:
@@ -1511,8 +1512,7 @@ void PSM::DirectorMgr_2PBattle::DirectorMgr_2PBattle()
  * Address:	804704D4
  * Size:	0006B8
  */
-void PSM::DirectorMgr_2PBattle::newDirector(unsigned char,
-                                            PSSystem::DirectedBgm&)
+void DirectorMgr_2PBattle::newDirector(unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -2050,7 +2050,7 @@ void PSM::DirectorMgr_2PBattle::newDirector(unsigned char,
  * Address:	80470B8C
  * Size:	00008C
  */
-void PSM::DirectorMgr_2PBattle::~DirectorMgr_2PBattle()
+DirectorMgr_2PBattle::~DirectorMgr_2PBattle()
 {
 	/*
 	.loc_0x0:
@@ -2101,7 +2101,7 @@ void PSM::DirectorMgr_2PBattle::~DirectorMgr_2PBattle()
  * Address:	80470C18
  * Size:	00008C
  */
-void PSM::DirectorMgr_Battle::~DirectorMgr_Battle()
+DirectorMgr_Battle::~DirectorMgr_Battle()
 {
 	/*
 	.loc_0x0:
@@ -2152,7 +2152,7 @@ void PSM::DirectorMgr_Battle::~DirectorMgr_Battle()
  * Address:	80470CA4
  * Size:	0000A4
  */
-void PSM::DirectorMgr_Scene_AutoBgm::~DirectorMgr_Scene_AutoBgm()
+DirectorMgr_Scene_AutoBgm::~DirectorMgr_Scene_AutoBgm()
 {
 	/*
 	.loc_0x0:
@@ -2209,7 +2209,7 @@ void PSM::DirectorMgr_Scene_AutoBgm::~DirectorMgr_Scene_AutoBgm()
  * Address:	80470D48
  * Size:	000014
  */
-void PSM::DirectorMgr_Scene::isSlave()
+void DirectorMgr_Scene::isSlave()
 {
 	/*
 	.loc_0x0:
@@ -2226,7 +2226,7 @@ void PSM::DirectorMgr_Scene::isSlave()
  * Address:	80470D5C
  * Size:	000088
  */
-void PSM::BgmTrackMapFile::~BgmTrackMapFile()
+BgmTrackMapFile::~BgmTrackMapFile()
 {
 	/*
 	.loc_0x0:
@@ -2276,7 +2276,7 @@ void PSM::BgmTrackMapFile::~BgmTrackMapFile()
  * Address:	80470DE4
  * Size:	0000B0
  */
-void PSM::GroundDirector_Cave::~GroundDirector_Cave()
+GroundDirector_Cave::~GroundDirector_Cave()
 {
 	/*
 	.loc_0x0:
@@ -2336,21 +2336,25 @@ void PSM::GroundDirector_Cave::~GroundDirector_Cave()
  * Address:	80470E94
  * Size:	000004
  */
-void PSM::GroundDirector_Cave::directOn() { }
+void GroundDirector_Cave::directOn() { }
 
 /*
  * --INFO--
  * Address:	80470E98
  * Size:	000004
  */
-void PSM::GroundDirector_Cave::directOff() { }
+void GroundDirector_Cave::directOff() { }
+
+namespace PSSystem {
+
+} // namespace PSSystem
 
 /*
  * --INFO--
  * Address:	80470E9C
  * Size:	000050
  */
-void PSSystem::SingletonBase<PSM::BgmTrackMapFile>::~SingletonBase()
+void SingletonBase<PSM::BgmTrackMapFile>::~SingletonBase()
 {
 	/*
 	.loc_0x0:
@@ -2379,58 +2383,62 @@ void PSSystem::SingletonBase<PSM::BgmTrackMapFile>::~SingletonBase()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80470EEC
- * Size:	000008
- */
-void PSM::DirectorMgr_Scene::@12 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x195C
-	*/
-}
+namespace PSM {
 
-/*
- * --INFO--
- * Address:	80470EF4
- * Size:	000008
- */
-void PSM::DirectorMgr_Scene_AutoBgm::@12 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x254
-	*/
-}
+	 * --INFO--
+	 * Address:	80470EEC
+	 * Size:	000008
+	 */
+	DirectorMgr_Scene::@12 @~DirectorMgr_Scene()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0xC
+		  b         -0x195C
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80470EFC
- * Size:	000008
- */
-void PSM::DirectorMgr_Battle::@12 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x2E8
-	*/
-}
+	 * --INFO--
+	 * Address:	80470EF4
+	 * Size:	000008
+	 */
+	DirectorMgr_Scene_AutoBgm::@12 @~DirectorMgr_Scene_AutoBgm()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0xC
+		  b         -0x254
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80470F04
- * Size:	000008
- */
-void PSM::DirectorMgr_2PBattle::@12 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x37C
-	*/
-}
+	 * --INFO--
+	 * Address:	80470EFC
+	 * Size:	000008
+	 */
+	DirectorMgr_Battle::@12 @~DirectorMgr_Battle()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0xC
+		  b         -0x2E8
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80470F04
+	 * Size:	000008
+	 */
+	DirectorMgr_2PBattle::@12 @~DirectorMgr_2PBattle()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0xC
+		  b         -0x37C
+		*/
+	}
+} // namespace PSM
+} // namespace PSM

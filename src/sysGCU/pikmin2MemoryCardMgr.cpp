@@ -138,7 +138,7 @@ namespace MemoryCard {
  * Address:	80442BCC
  * Size:	000120
  */
-// void Game::MemoryCard::Mgr::loadResource((JKRHeap*))
+// void Game::MemoryCard::Mgr::loadResource(JKRHeap*)
 // {
 /*
 .loc_0x0:
@@ -227,12 +227,14 @@ namespace MemoryCard {
 
 }
 
+namespace Game {
+
 /*
 * --INFO--
 * Address:	80442CEC
 * Size:	000010
 
-void Game::MemoryCard::Mgr::destroyResource(void)
+void MemoryCard::Mgr::destroyResource(void)
 {
 /*
 .loc_0x0:
@@ -248,7 +250,7 @@ void Game::MemoryCard::Mgr::destroyResource(void)
 * Address:	80442CFC
 * Size:	000020
 
-void Game::MemoryCard::Mgr::update(void)
+void MemoryCard::Mgr::update(void)
 {
 /*
 .loc_0x0:
@@ -268,7 +270,7 @@ void Game::MemoryCard::Mgr::update(void)
 * Address:	80442D1C
 * Size:	00006C
 
-void Game::MemoryCard::Mgr::format(void)
+void MemoryCard::Mgr::format(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +311,7 @@ void Game::MemoryCard::Mgr::format(void)
 * Address:	........
 * Size:	000080
 
-void Game::MemoryCard::Mgr::setCommandFlag((int))
+void MemoryCard::Mgr::setCommandFlag(int)
 {
 // UNUSED FUNCTION
 }
@@ -319,7 +321,7 @@ void Game::MemoryCard::Mgr::setCommandFlag((int))
 * Address:	........
 * Size:	000074
 
-void Game::MemoryCard::Mgr::verifySerialNo(void)
+void MemoryCard::Mgr::verifySerialNo(void)
 {
 // UNUSED FUNCTION
 }
@@ -329,7 +331,7 @@ void Game::MemoryCard::Mgr::verifySerialNo(void)
 * Address:	80442D88
 * Size:	000074
 
-void Game::MemoryCard::Mgr::checkBeforeSave(void)
+void MemoryCard::Mgr::checkBeforeSave(void)
 {
 /*
 .loc_0x0:
@@ -374,7 +376,7 @@ void Game::MemoryCard::Mgr::checkBeforeSave(void)
 * Address:	80442DFC
 * Size:	000074
 
-void Game::MemoryCard::Mgr::checkError(void)
+void MemoryCard::Mgr::checkError(void)
 {
 /*
 .loc_0x0:
@@ -417,7 +419,7 @@ void Game::MemoryCard::Mgr::checkError(void)
 * Address:	80442E70
 * Size:	000074
 
-void Game::MemoryCard::Mgr::createNewFile(void)
+void MemoryCard::Mgr::createNewFile(void)
 {
 /*
 .loc_0x0:
@@ -460,7 +462,7 @@ void Game::MemoryCard::Mgr::createNewFile(void)
 * Address:	80442EE4
 * Size:	0000B8
 
-void Game::MemoryCard::Mgr::saveGameOption(void)
+void MemoryCard::Mgr::saveGameOption(void)
 {
 /*
 .loc_0x0:
@@ -522,7 +524,7 @@ void Game::MemoryCard::Mgr::saveGameOption(void)
 * Address:	80442F9C
 * Size:	0000B8
 
-void Game::MemoryCard::Mgr::loadGameOption(void)
+void MemoryCard::Mgr::loadGameOption(void)
 {
 /*
 .loc_0x0:
@@ -584,7 +586,7 @@ void Game::MemoryCard::Mgr::loadGameOption(void)
 * Address:	80443054
 * Size:	000124
 
-void Game::MemoryCard::Mgr::savePlayerNoCheckSerialNumber((int))
+void MemoryCard::Mgr::savePlayerNoCheckSerialNumber(int)
 {
 /*
 .loc_0x0:
@@ -681,7 +683,7 @@ void Game::MemoryCard::Mgr::savePlayerNoCheckSerialNumber((int))
 * Address:	80443178
 * Size:	000114
 
-void Game::MemoryCard::Mgr::savePlayer((int))
+void MemoryCard::Mgr::savePlayer(int)
 {
 /*
 .loc_0x0:
@@ -778,7 +780,7 @@ void Game::MemoryCard::Mgr::savePlayer((int))
 * Address:	8044328C
 * Size:	000124
 
-void Game::MemoryCard::Mgr::loadPlayer((int))
+void MemoryCard::Mgr::loadPlayer(int)
 {
 /*
 .loc_0x0:
@@ -871,7 +873,7 @@ void Game::MemoryCard::Mgr::loadPlayer((int))
 * Address:	804433B0
 * Size:	000124
 
-void Game::MemoryCard::Mgr::deletePlayer((int))
+void MemoryCard::Mgr::deletePlayer(int)
 {
 /*
 .loc_0x0:
@@ -964,7 +966,7 @@ void Game::MemoryCard::Mgr::deletePlayer((int))
 * Address:	804434D4
 * Size:	000150
 
-void Game::MemoryCard::Mgr::copyPlayer((int, int))
+void MemoryCard::Mgr::copyPlayer(int, int)
 {
 /*
 .loc_0x0:
@@ -1073,7 +1075,7 @@ void Game::MemoryCard::Mgr::copyPlayer((int, int))
 * Size:	0000E8
 
 void
-Game::MemoryCard::Mgr::getPlayerHeader((Game::MemoryCard::PlayerFileInfo*))
+MemoryCard::Mgr::getPlayerHeader(Game::MemoryCard::PlayerFileInfo*)
 {
 /*
 .loc_0x0:
@@ -1147,7 +1149,7 @@ Game::MemoryCard::Mgr::getPlayerHeader((Game::MemoryCard::PlayerFileInfo*))
 * Address:	8044370C
 * Size:	000354
 
-void Game::MemoryCard::Mgr::doCardProc((void*, MemoryCardMgrCommand*))
+void MemoryCard::Mgr::doCardProc(void*, MemoryCardMgrCommand*)
 {
 /*
 .loc_0x0:
@@ -1392,7 +1394,7 @@ void Game::MemoryCard::Mgr::doCardProc((void*, MemoryCardMgrCommand*))
 * Address:	80443A60
 * Size:	000390
 
-void Game::MemoryCard::Mgr::commandUpdatePlayerHeader(
+void MemoryCard::Mgr::commandUpdatePlayerHeader(
 (Game::MemoryCard::PlayerFileInfo*))
 {
 /*
@@ -1669,7 +1671,7 @@ void Game::MemoryCard::Mgr::commandUpdatePlayerHeader(
 * Address:	80443DF0
 * Size:	00007C
 
-void Game::MemoryCard::Mgr::commandCheckBeforeSave(void)
+void MemoryCard::Mgr::commandCheckBeforeSave(void)
 {
 /*
 .loc_0x0:
@@ -1718,7 +1720,7 @@ void Game::MemoryCard::Mgr::commandCheckBeforeSave(void)
 * Address:	80443E6C
 * Size:	000080
 
-void Game::MemoryCard::Mgr::commandCheckError(void)
+void MemoryCard::Mgr::commandCheckError(void)
 {
 /*
 .loc_0x0:
@@ -1770,7 +1772,7 @@ void Game::MemoryCard::Mgr::commandCheckError(void)
 * Address:	80443EEC
 * Size:	0000B8
 
-void Game::MemoryCard::Mgr::checkSpace((MemoryCardMgr::ECardSlot))
+void MemoryCard::Mgr::checkSpace(MemoryCardMgr::ECardSlot)
 {
 /*
 .loc_0x0:
@@ -1840,7 +1842,7 @@ void Game::MemoryCard::Mgr::checkSpace((MemoryCardMgr::ECardSlot))
 * Address:	80443FA4
 * Size:	000118
 
-void Game::MemoryCard::Mgr::commandSaveHeader(void)
+void MemoryCard::Mgr::commandSaveHeader(void)
 {
 /*
 .loc_0x0:
@@ -1930,7 +1932,7 @@ void Game::MemoryCard::Mgr::commandSaveHeader(void)
 * Address:	804440BC
 * Size:	0001A0
 
-void Game::MemoryCard::Mgr::commandCreateNewFile(void)
+void MemoryCard::Mgr::commandCreateNewFile(void)
 {
 /*
 .loc_0x0:
@@ -2072,7 +2074,7 @@ void Game::MemoryCard::Mgr::commandCreateNewFile(void)
 * Address:	8044425C
 * Size:	000100
 
-void Game::MemoryCard::Mgr::dataFormat((MemoryCardMgr::ECardSlot))
+void MemoryCard::Mgr::dataFormat(MemoryCardMgr::ECardSlot)
 {
 /*
 .loc_0x0:
@@ -2156,7 +2158,7 @@ void Game::MemoryCard::Mgr::dataFormat((MemoryCardMgr::ECardSlot))
 * Address:	........
 * Size:	000114
 
-void Game::MemoryCard::Mgr::writeBrokenData((MemoryCardMgr::ECardSlot))
+void MemoryCard::Mgr::writeBrokenData(MemoryCardMgr::ECardSlot)
 {
 // UNUSED FUNCTION
 }
@@ -2166,7 +2168,7 @@ void Game::MemoryCard::Mgr::writeBrokenData((MemoryCardMgr::ECardSlot))
 * Address:	8044435C
 * Size:	000170
 
-void Game::MemoryCard::Mgr::varifyCardStatus(void)
+void MemoryCard::Mgr::varifyCardStatus(void)
 {
 /*
 .loc_0x0:
@@ -2284,7 +2286,7 @@ void Game::MemoryCard::Mgr::varifyCardStatus(void)
 * Address:	804444CC
 * Size:	0001C0
 
-void Game::MemoryCard::Mgr::commandSaveGameOption((bool, bool))
+void MemoryCard::Mgr::commandSaveGameOption(bool, bool)
 {
 /*
 .loc_0x0:
@@ -2428,7 +2430,7 @@ void Game::MemoryCard::Mgr::commandSaveGameOption((bool, bool))
 * Address:	8044468C
 * Size:	000248
 
-void Game::MemoryCard::Mgr::commandLoadGameOption(void)
+void MemoryCard::Mgr::commandLoadGameOption(void)
 {
 /*
 .loc_0x0:
@@ -2610,7 +2612,7 @@ void Game::MemoryCard::Mgr::commandLoadGameOption(void)
 * Address:	804448D4
 * Size:	000028
 
-void Game::MemoryCard::Mgr::writeGameOption((Stream&))
+void MemoryCard::Mgr::writeGameOption(Stream&)
 {
 /*
 .loc_0x0:
@@ -2632,7 +2634,7 @@ void Game::MemoryCard::Mgr::writeGameOption((Stream&))
 * Address:	804448FC
 * Size:	000028
 
-void Game::MemoryCard::Mgr::readGameOption((Stream&))
+void MemoryCard::Mgr::readGameOption(Stream&)
 {
 /*
 .loc_0x0:
@@ -2654,7 +2656,7 @@ void Game::MemoryCard::Mgr::readGameOption((Stream&))
 * Address:	80444924
 * Size:	000070
 
-void Game::MemoryCard::Mgr::checkSerialNo((bool))
+void MemoryCard::Mgr::checkSerialNo(bool)
 {
 /*
 .loc_0x0:
@@ -2700,7 +2702,7 @@ void Game::MemoryCard::Mgr::checkSerialNo((bool))
 * Address:	80444994
 * Size:	0000D0
 
-void Game::MemoryCard::Mgr::commandSavePlayer((signed char, bool))
+void MemoryCard::Mgr::commandSavePlayer(signed char, bool)
 {
 /*
 .loc_0x0:
@@ -2776,8 +2778,8 @@ void Game::MemoryCard::Mgr::commandSavePlayer((signed char, bool))
 * Address:	80444A64
 * Size:	000374
 
-void Game::MemoryCard::Mgr::commandSavePlayerNoCheckSerialNo((signed char,
-                                                          bool))
+void MemoryCard::Mgr::commandSavePlayerNoCheckSerialNo(signed char,
+                                                          bool)
 {
 /*
 .loc_0x0:
@@ -3030,9 +3032,9 @@ void Game::MemoryCard::Mgr::commandSavePlayerNoCheckSerialNo((signed char,
 * Address:	80444DD8
 * Size:	000070
 
-void Game::MemoryCard::Mgr::getPlayerInfo((signed char,
+void MemoryCard::Mgr::getPlayerInfo(signed char,
                                        Game::MemoryCard::PlayerInfoHeader*,
-                                       bool*))
+                                       bool*)
 {
 /*
 .loc_0x0:
@@ -3076,7 +3078,7 @@ void Game::MemoryCard::Mgr::getPlayerInfo((signed char,
 * Address:	80444E48
 * Size:	0002B0
 
-void Game::MemoryCard::Mgr::getIndexPlayerInfo(
+void MemoryCard::Mgr::getIndexPlayerInfo(
 (signed char, Game::MemoryCard::PlayerInfoHeader*, bool*))
 {
 /*
@@ -3283,7 +3285,7 @@ void Game::MemoryCard::Mgr::getIndexPlayerInfo(
 * Address:	804450F8
 * Size:	00019C
 
-void Game::MemoryCard::Mgr::commandLoadPlayer((signed char))
+void MemoryCard::Mgr::commandLoadPlayer(signed char)
 {
 /*
 .loc_0x0:
@@ -3410,7 +3412,7 @@ void Game::MemoryCard::Mgr::commandLoadPlayer((signed char))
 * Address:	80445294
 * Size:	00009C
 
-void Game::MemoryCard::Mgr::loadPlayerForNoCard((signed char))
+void MemoryCard::Mgr::loadPlayerForNoCard(signed char)
 {
 /*
 .loc_0x0:
@@ -3465,7 +3467,7 @@ void Game::MemoryCard::Mgr::loadPlayerForNoCard((signed char))
 * Address:	80445330
 * Size:	000178
 
-void Game::MemoryCard::Mgr::loadPlayerProc((signed char, unsigned char*))
+void MemoryCard::Mgr::loadPlayerProc(signed char, unsigned char*)
 {
 /*
 .loc_0x0:
@@ -3581,7 +3583,7 @@ void Game::MemoryCard::Mgr::loadPlayerProc((signed char, unsigned char*))
 * Address:	804454A8
 * Size:	000094
 
-void Game::MemoryCard::Mgr::commandDeletePlayer((signed char))
+void MemoryCard::Mgr::commandDeletePlayer(signed char)
 {
 /*
 .loc_0x0:
@@ -3634,8 +3636,8 @@ void Game::MemoryCard::Mgr::commandDeletePlayer((signed char))
 * Address:	8044553C
 * Size:	00019C
 
-void Game::MemoryCard::Mgr::savePlayerProc((signed char, unsigned char*,
-bool))
+void MemoryCard::Mgr::savePlayerProc(signed char, unsigned char*,
+bool)
 {
 /*
 .loc_0x0:
@@ -3766,7 +3768,7 @@ bool))
 * Address:	804456D8
 * Size:	000068
 
-void Game::MemoryCard::Mgr::commandCheckSerialNo(void)
+void MemoryCard::Mgr::commandCheckSerialNo(void)
 {
 /*
 .loc_0x0:
@@ -3808,7 +3810,7 @@ void Game::MemoryCard::Mgr::commandCheckSerialNo(void)
 * Address:	80445740
 * Size:	0001C8
 
-void Game::MemoryCard::Mgr::commandCopyPlayer((signed char, signed char))
+void MemoryCard::Mgr::commandCopyPlayer(signed char, signed char)
 {
 /*
 .loc_0x0:
@@ -3948,7 +3950,7 @@ void Game::MemoryCard::Mgr::commandCopyPlayer((signed char, signed char))
 * Address:	80445908
 * Size:	000024
 
-void Game::MemoryCard::Mgr::writePlayer((Stream&))
+void MemoryCard::Mgr::writePlayer(Stream&)
 {
 /*
 .loc_0x0:
@@ -3969,7 +3971,7 @@ void Game::MemoryCard::Mgr::writePlayer((Stream&))
 * Address:	8044592C
 * Size:	000024
 
-void Game::MemoryCard::Mgr::readPlayer((Stream&))
+void MemoryCard::Mgr::readPlayer(Stream&)
 {
 /*
 .loc_0x0:
@@ -3990,7 +3992,7 @@ void Game::MemoryCard::Mgr::readPlayer((Stream&))
 * Address:	80445950
 * Size:	000074
 
-void Game::MemoryCard::Mgr::checkOptionInfo((Game::MemoryCard::OptionInfo*))
+void MemoryCard::Mgr::checkOptionInfo(Game::MemoryCard::OptionInfo*)
 {
 /*
 .loc_0x0:
@@ -4033,7 +4035,7 @@ void Game::MemoryCard::Mgr::checkOptionInfo((Game::MemoryCard::OptionInfo*))
 * Address:	804459C4
 * Size:	000024
 
-void Game::MemoryCard::Mgr::calcCheckSumOptionInfo(
+void MemoryCard::Mgr::calcCheckSumOptionInfo(
 (Game::MemoryCard::OptionInfo*))
 {
 /*
@@ -4055,7 +4057,7 @@ void Game::MemoryCard::Mgr::calcCheckSumOptionInfo(
 * Address:	804459E8
 * Size:	000040
 
-void Game::MemoryCard::Mgr::testCheckSumOptionInfo(
+void MemoryCard::Mgr::testCheckSumOptionInfo(
 (Game::MemoryCard::OptionInfo*))
 {
 /*
@@ -4084,7 +4086,7 @@ void Game::MemoryCard::Mgr::testCheckSumOptionInfo(
 * Address:	80445A28
 * Size:	000074
 
-void Game::MemoryCard::Mgr::checkPlayerInfo((Game::MemoryCard::PlayerInfo*))
+void MemoryCard::Mgr::checkPlayerInfo(Game::MemoryCard::PlayerInfo*)
 {
 /*
 .loc_0x0:
@@ -4127,7 +4129,7 @@ void Game::MemoryCard::Mgr::checkPlayerInfo((Game::MemoryCard::PlayerInfo*))
 * Address:	80445A9C
 * Size:	000028
 
-void Game::MemoryCard::Mgr::calcCheckSumPlayerInfo(
+void MemoryCard::Mgr::calcCheckSumPlayerInfo(
 (Game::MemoryCard::PlayerInfo*))
 {
 /*
@@ -4150,7 +4152,7 @@ void Game::MemoryCard::Mgr::calcCheckSumPlayerInfo(
 * Address:	80445AC4
 * Size:	000048
 
-void Game::MemoryCard::Mgr::testCheckSumPlayerInfo(
+void MemoryCard::Mgr::testCheckSumPlayerInfo(
 (Game::MemoryCard::PlayerInfo*))
 {
 /*
@@ -4181,7 +4183,7 @@ void Game::MemoryCard::Mgr::testCheckSumPlayerInfo(
 * Address:	80445B0C
 * Size:	0000B8
 
-void Game::MemoryCard::Mgr::getCardStatus(void)
+void MemoryCard::Mgr::getCardStatus(void)
 {
 /*
 .loc_0x0:
@@ -4255,7 +4257,7 @@ void Game::MemoryCard::Mgr::getCardStatus(void)
 * Address:	80445BC4
 * Size:	0000B8
 
-void Game::MemoryCard::Mgr::writeInvalidGameOption(void)
+void MemoryCard::Mgr::writeInvalidGameOption(void)
 {
 /*
 .loc_0x0:
@@ -4319,7 +4321,7 @@ void Game::MemoryCard::Mgr::writeInvalidGameOption(void)
 * Address:	80445C7C
 * Size:	000070
 
-void Game::MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
+void MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
 {
 /*
 .loc_0x0:
@@ -4365,7 +4367,7 @@ void Game::MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
 * Address:	80445CEC
 * Size:	000110
 
-void Game::MemoryCard::Mgr::writeInvalidPlayerInfo((int, signed char))
+void MemoryCard::Mgr::writeInvalidPlayerInfo(int, signed char)
 {
 /*
 .loc_0x0:
@@ -4451,7 +4453,7 @@ void Game::MemoryCard::Mgr::writeInvalidPlayerInfo((int, signed char))
 * Address:	80445DFC
 * Size:	0001A8
 
-void Game::MemoryCard::Mgr::checkPlayerNoPlayerInfo(
+void MemoryCard::Mgr::checkPlayerNoPlayerInfo(
 (int, signed char, Game::MemoryCard::PlayerInfoHeader*))
 {
 /*
@@ -4582,7 +4584,7 @@ void Game::MemoryCard::Mgr::checkPlayerNoPlayerInfo(
 * Address:	........
 * Size:	000040
 
-void Game::MemoryCard::Mgr::loadPlayerHeaderProc((int, unsigned char*))
+void MemoryCard::Mgr::loadPlayerHeaderProc(int, unsigned char*)
 {
 // UNUSED FUNCTION
 }
@@ -4592,9 +4594,9 @@ void Game::MemoryCard::Mgr::loadPlayerHeaderProc((int, unsigned char*))
 * Address:	80445FA4
 * Size:	000380
 
-void Game::MemoryCard::Mgr::getIndexInvalidPlayerInfo((int*, signed char*,
+void MemoryCard::Mgr::getIndexInvalidPlayerInfo(int*, signed char*,
                                                    signed char,
-                                                   unsigned long, bool))
+                                                   unsigned long, bool)
 {
 /*
 .loc_0x0:
@@ -4878,7 +4880,7 @@ void Game::MemoryCard::Mgr::getIndexInvalidPlayerInfo((int*, signed char*,
 * Address:	80446324
 * Size:	0004BC
 
-void Game::MemoryCard::Mgr::modifyPlayerInfo((signed char, bool*))
+void MemoryCard::Mgr::modifyPlayerInfo(signed char, bool*)
 {
 /*
 .loc_0x0:
@@ -5251,8 +5253,8 @@ void Game::MemoryCard::Mgr::modifyPlayerInfo((signed char, bool*))
 * Address:	804467E0
 * Size:	000084
 
-void Game::MemoryCard::Mgr::verifyCardSerialNo((unsigned long long*,
-                                            MemoryCardMgr::ECardSlot))
+void MemoryCard::Mgr::verifyCardSerialNo(unsigned long long*,
+                                            MemoryCardMgr::ECardSlot)
 {
 /*
 .loc_0x0:
@@ -5301,7 +5303,7 @@ void Game::MemoryCard::Mgr::verifyCardSerialNo((unsigned long long*,
 * Address:	80446864
 * Size:	00007C
 
-void Game::MemoryCard::Mgr::resetError(void)
+void MemoryCard::Mgr::resetError(void)
 {
 /*
 .loc_0x0:
@@ -5350,7 +5352,7 @@ void Game::MemoryCard::Mgr::resetError(void)
 * Address:	804468E0
 * Size:	00012C
 
-void Game::MemoryCard::Mgr::doMakeHeader((unsigned char*))
+void MemoryCard::Mgr::doMakeHeader(unsigned char*)
 {
 /*
 .loc_0x0:
@@ -5441,7 +5443,7 @@ void Game::MemoryCard::Mgr::doMakeHeader((unsigned char*))
 * Address:	80446A0C
 * Size:	000104
 
-void Game::MemoryCard::Mgr::doSetCardStat((CARDStat*))
+void MemoryCard::Mgr::doSetCardStat(CARDStat*)
 {
 /*
 .loc_0x0:
@@ -5518,7 +5520,7 @@ void Game::MemoryCard::Mgr::doSetCardStat((CARDStat*))
 * Address:	80446B10
 * Size:	0000DC
 
-void Game::MemoryCard::Mgr::doCheckCardStat((CARDStat*))
+void MemoryCard::Mgr::doCheckCardStat(CARDStat*)
 {
 /*
 .loc_0x0:
@@ -5589,7 +5591,7 @@ void Game::MemoryCard::Mgr::doCheckCardStat((CARDStat*))
 * Address:	80446BEC
 * Size:	000008
 
-u32  Game::MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
+u32 MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
 {
     return 0xC;
 }
@@ -5599,7 +5601,7 @@ u32  Game::MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
 * Address:	80446BF4
 * Size:	000008
 
-u32  Game::MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
+u32 MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
 {
     return 0xC;
 }
@@ -5609,7 +5611,7 @@ u32  Game::MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
 * Address:	80446BFC
 * Size:	000008
 
-u32  Game::MemoryCard::MgrCommandPlayerNo::getClassSize(void)
+u32 MemoryCard::MgrCommandPlayerNo::getClassSize(void)
 {
     return 0xC;
 }
@@ -5619,7 +5621,7 @@ u32  Game::MemoryCard::MgrCommandPlayerNo::getClassSize(void)
 * Address:	80446C04
 * Size:	00005C
 
-void Game::MemoryCard::Mgr::__dt(void)
+MemoryCard::Mgr::~Mgr(void)
 {
 /*
 .loc_0x0:
@@ -5658,8 +5660,9 @@ void Game::MemoryCard::Mgr::__dt(void)
 * Address:	80446C60
 * Size:	000008
 
-u32  Game::MemoryCard::Mgr::getHeaderSize(void)
+u32 MemoryCard::Mgr::getHeaderSize(void)
 {
     return 0x2000;
 }
 */
+} // Game

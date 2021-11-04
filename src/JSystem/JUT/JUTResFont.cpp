@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80031180
  * Size:	00004C
  */
-void JUTResFont::JUTResFont()
+JUTResFont::JUTResFont()
 {
 	/*
 	.loc_0x0:
@@ -36,7 +36,7 @@ void JUTResFont::JUTResFont()
  * Address:	800311CC
  * Size:	000074
  */
-void JUTResFont::JUTResFont(const ResFONT*, JKRHeap*)
+JUTResFont::JUTResFont(const ResFONT*, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -77,7 +77,7 @@ void JUTResFont::JUTResFont(const ResFONT*, JKRHeap*)
  * Address:	80031240
  * Size:	00008C
  */
-void JUTResFont::~JUTResFont()
+JUTResFont::~JUTResFont()
 {
 	/*
 	.loc_0x0:

@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "ebi/title/TTitleCameraMgr.h"
 
 namespace ebi {

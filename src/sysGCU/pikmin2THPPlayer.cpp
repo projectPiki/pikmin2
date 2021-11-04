@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8044FDF0
  * Size:	000118
  */
-void Game::THPPlayer::__ct(void)
+THPPlayer::THPPlayer(void)
 {
 	/*
 	.loc_0x0:
@@ -89,7 +91,7 @@ void Game::THPPlayer::__ct(void)
  * Address:	8044FF08
  * Size:	000098
  */
-void Game::THPPlayer::__dt(void)
+THPPlayer::~THPPlayer(void)
 {
 	/*
 	.loc_0x0:
@@ -143,7 +145,7 @@ void Game::THPPlayer::__dt(void)
  * Address:	8044FFA0
  * Size:	0000CC
  */
-void Game::THPPlayer::load((Game::THPPlayer::EMovieIndex))
+void THPPlayer::load(Game::THPPlayer::EMovieIndex)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +216,7 @@ void Game::THPPlayer::load((Game::THPPlayer::EMovieIndex))
  * Address:	8045006C
  * Size:	00006C
  */
-void Game::THPPlayer::load(void)
+void THPPlayer::load(void)
 {
 	/*
 	.loc_0x0:
@@ -255,7 +257,7 @@ void Game::THPPlayer::load(void)
  * Address:	........
  * Size:	00003C
  */
-void Game::THPPlayer::reset(void)
+void THPPlayer::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -265,7 +267,7 @@ void Game::THPPlayer::reset(void)
  * Address:	804500D8
  * Size:	000024
  */
-void Game::THPPlayer::loadResource(void)
+void THPPlayer::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -288,7 +290,7 @@ void Game::THPPlayer::loadResource(void)
  * Address:	804500FC
  * Size:	0001CC
  */
-void Game::THPPlayer::loadResource((Game::THPPlayerLoadResourceArg const&))
+void THPPlayer::loadResource(Game::THPPlayerLoadResourceArg const&)
 {
 	/*
 	.loc_0x0:
@@ -427,7 +429,7 @@ void Game::THPPlayer::loadResource((Game::THPPlayerLoadResourceArg const&))
  * Address:	804502C8
  * Size:	0000FC
  */
-void Game::THPPlayer::prepare(void)
+void THPPlayer::prepare(void)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +510,7 @@ void Game::THPPlayer::prepare(void)
  * Address:	804503C4
  * Size:	0000C0
  */
-void Game::THPPlayer::init((JKRHeap*))
+void THPPlayer::init(JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -574,7 +576,7 @@ void Game::THPPlayer::init((JKRHeap*))
  * Address:	80450484
  * Size:	0000A0
  */
-void Game::THPPlayer::play(void)
+void THPPlayer::play(void)
 {
 	/*
 	.loc_0x0:
@@ -634,7 +636,7 @@ void Game::THPPlayer::play(void)
  * Address:	80450524
  * Size:	000038
  */
-void Game::THPPlayer::pause(void)
+void THPPlayer::pause(void)
 {
 	/*
 	.loc_0x0:
@@ -664,7 +666,7 @@ void Game::THPPlayer::pause(void)
  * Address:	8045055C
  * Size:	000028
  */
-void Game::THPPlayer::stop(void)
+void THPPlayer::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -686,7 +688,7 @@ void Game::THPPlayer::stop(void)
  * Address:	80450584
  * Size:	000094
  */
-void Game::THPPlayer::update(void)
+void THPPlayer::update(void)
 {
 	/*
 	.loc_0x0:
@@ -745,7 +747,7 @@ void Game::THPPlayer::update(void)
  * Address:	80450618
  * Size:	0000DC
  */
-void Game::THPPlayer::draw((Graphics&))
+void THPPlayer::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -818,7 +820,7 @@ void Game::THPPlayer::draw((Graphics&))
  * Address:	804506F4
  * Size:	0000BC
  */
-void Game::THPPlayer::draw((Graphics&, long, long, float))
+void THPPlayer::draw(Graphics&, long, long, float)
 {
 	/*
 	.loc_0x0:
@@ -877,8 +879,7 @@ void Game::THPPlayer::draw((Graphics&, long, long, float))
  * Address:	804507B0
  * Size:	000088
  */
-void Game::THPPlayer::draw((Graphics&, long, long, unsigned long,
-                            unsigned long))
+void THPPlayer::draw(Graphics&, long, long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -928,7 +929,7 @@ void Game::THPPlayer::draw((Graphics&, long, long, unsigned long,
  * Address:	80450838
  * Size:	00005C
  */
-void Game::THPPlayer::isFinishLoading(void)
+void THPPlayer::isFinishLoading(void)
 {
 	/*
 	.loc_0x0:
@@ -967,7 +968,7 @@ void Game::THPPlayer::isFinishLoading(void)
  * Address:	80450894
  * Size:	00001C
  */
-void Game::THPPlayer::isFinishPlaying(void)
+void THPPlayer::isFinishPlaying(void)
 {
 	/*
 	.loc_0x0:
@@ -980,6 +981,8 @@ void Game::THPPlayer::isFinishPlaying(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1010,7 +1013,7 @@ void Delegate<Game::THPPlayer>::invoke()
  * Address:	804508E0
  * Size:	000008
  */
-void @24 @Game::THPPlayer::__dt(void)
+@24 @Game::THPPlayer::~THPPlayer(void)
 {
 	/*
 	.loc_0x0:

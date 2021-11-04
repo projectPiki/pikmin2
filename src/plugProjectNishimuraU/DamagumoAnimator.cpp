@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802A5058
  * Size:	000008
  */
-void Game::Damagumo::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Damagumo::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Damagumo::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802A5060
  * Size:	000008
  */
-void Game::Damagumo::ProperAnimator::getAnimator(int)
+void Damagumo::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Damagumo::ProperAnimator::getAnimator(int)
  * Address:	802A5068
  * Size:	00005C
  */
-void Game::Damagumo::ProperAnimator::~ProperAnimator()
+Damagumo::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Damagumo::ProperAnimator::~ProperAnimator()
  * Address:	802A50C4
  * Size:	000008
  */
-void Game::Damagumo::ProperAnimator::getAnimator()
+void Damagumo::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Damagumo::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

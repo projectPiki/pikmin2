@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801ACD20
  * Size:	00009C
  */
@@ -63,12 +53,14 @@ void makeItem()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801ACDBC
  * Size:	00008C
  */
-void Game::GenItem::initialise(void)
+void GenItem::initialise(void)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +107,7 @@ void Game::GenItem::initialise(void)
  * Address:	801ACE48
  * Size:	000038
  */
-void Game::GenItem::updateUseList((Game::Generator*, int))
+void GenItem::updateUseList(Game::Generator*, int)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +133,7 @@ void Game::GenItem::updateUseList((Game::Generator*, int))
  * Address:	801ACE80
  * Size:	00006C
  */
-void Game::GenItem::doEvent((unsigned long))
+void GenItem::doEvent(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -179,12 +171,14 @@ void Game::GenItem::doEvent((unsigned long))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801ACEEC
  * Size:	000068
  */
-void generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3<float>(void)
+void generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -217,12 +211,14 @@ void generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801ACF54
  * Size:	000050
  */
-void Game::GenItem::getShape(void)
+void GenItem::getShape(void)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +254,7 @@ void Game::GenItem::getShape(void)
  * Address:	801ACFA4
  * Size:	000154
  */
-void Game::GenItem::doWrite((Stream&))
+void GenItem::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -357,14 +353,14 @@ void Game::GenItem::doWrite((Stream&))
  * Address:	801AD0F8
  * Size:	000004
  */
-void Game::BaseItemMgr::generatorWrite((Stream&, Game::GenItemParm*)) { }
+void BaseItemMgr::generatorWrite(Stream&, Game::GenItemParm*) { }
 
 /*
  * --INFO--
  * Address:	801AD0FC
  * Size:	00000C
  */
-void Game::BaseItemMgr::generatorLocalVersion(void)
+void BaseItemMgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +375,7 @@ void Game::BaseItemMgr::generatorLocalVersion(void)
  * Address:	801AD108
  * Size:	000148
  */
-void Game::GenItem::doRead((Stream&))
+void GenItem::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -481,31 +477,28 @@ void Game::GenItem::doRead((Stream&))
  * Address:	801AD250
  * Size:	000004
  */
-void Game::BaseItemMgr::generatorRead((Stream&, Game::GenItemParm*,
-                                       unsigned long))
-{
-}
+void BaseItemMgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	801AD254
  * Size:	000004
  */
-void Game::GenItem::ramSaveParameters((Stream&)) { }
+void GenItem::ramSaveParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801AD258
  * Size:	000004
  */
-void Game::GenItem::ramLoadParameters((Stream&)) { }
+void GenItem::ramLoadParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801AD25C
  * Size:	000078
  */
-void Game::GenItem::generate((Game::Generator*))
+void GenItem::generate(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -547,7 +540,7 @@ void Game::GenItem::generate((Game::Generator*))
  * Address:	801AD2D4
  * Size:	0000A4
  */
-void Game::GenItem::birth((Game::GenArg*))
+void GenItem::birth(Game::GenArg*)
 {
 	/*
 	.loc_0x0:
@@ -597,6 +590,8 @@ void Game::GenItem::birth((Game::GenArg*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -607,12 +602,14 @@ void makeObjectItem()
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00008C
  */
-void Game::GenObjectItem::initialise(void)
+void GenObjectItem::initialise(void)
 {
 	// UNUSED FUNCTION
 }
@@ -622,7 +619,7 @@ void Game::GenObjectItem::initialise(void)
  * Address:	........
  * Size:	00004C
  */
-void Game::GenObjectItem::doWrite((Stream&))
+void GenObjectItem::doWrite(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -632,7 +629,7 @@ void Game::GenObjectItem::doWrite((Stream&))
  * Address:	........
  * Size:	00004C
  */
-void Game::GenObjectItem::doRead((Stream&))
+void GenObjectItem::doRead(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -642,7 +639,7 @@ void Game::GenObjectItem::doRead((Stream&))
  * Address:	........
  * Size:	000004
  */
-void Game::GenObjectItem::ramSaveParameters((Stream&))
+void GenObjectItem::ramSaveParameters(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -652,7 +649,7 @@ void Game::GenObjectItem::ramSaveParameters((Stream&))
  * Address:	........
  * Size:	000004
  */
-void Game::GenObjectItem::ramLoadParameters((Stream&))
+void GenObjectItem::ramLoadParameters(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +659,7 @@ void Game::GenObjectItem::ramLoadParameters((Stream&))
  * Address:	........
  * Size:	000078
  */
-void Game::GenObjectItem::generate((Game::Generator*))
+void GenObjectItem::generate(Game::Generator*)
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +669,8 @@ void Game::GenObjectItem::generate((Game::Generator*))
  * Address:	........
  * Size:	000074
  */
-void Game::GenObjectItem::birth((Game::GenArg*))
+void GenObjectItem::birth(Game::GenArg*)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Game

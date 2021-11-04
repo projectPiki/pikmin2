@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80032F1C
  * Size:	0000F4
  */
-void JUTTexture::JUTTexture(int, int, _GXTexFmt)
+JUTTexture::JUTTexture(int, int, _GXTexFmt)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +78,7 @@ void JUTTexture::JUTTexture(int, int, _GXTexFmt)
  * Address:	80033010
  * Size:	000074
  */
-void JUTTexture::~JUTTexture()
+JUTTexture::~JUTTexture()
 {
 	/*
 	.loc_0x0:

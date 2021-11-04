@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031CD80
  * Size:	00009C
  */
-void og::newScreen::caveIDtoMsgID((unsigned long))
+void newScreen::caveIDtoMsgID(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -74,7 +66,7 @@ void og::newScreen::caveIDtoMsgID((unsigned long))
  * Address:	........
  * Size:	000094
  */
-void og::newScreen::caveIDtoATB((unsigned long, bool*, bool*, bool*, bool*))
+void newScreen::caveIDtoATB(unsigned long, bool*, bool*, bool*, bool*)
 {
 	// UNUSED FUNCTION
 }
@@ -84,7 +76,7 @@ void og::newScreen::caveIDtoATB((unsigned long, bool*, bool*, bool*, bool*))
  * Address:	8031CE1C
  * Size:	0000BC
  */
-void og::newScreen::ObjAnaDemo::__ct((char const*))
+newScreen::ObjAnaDemo::ObjAnaDemo(char const*)
 {
 	/*
 	.loc_0x0:
@@ -143,7 +135,7 @@ void og::newScreen::ObjAnaDemo::__ct((char const*))
  * Address:	8031CED8
  * Size:	0000AC
  */
-void og::newScreen::ObjAnaDemo::__dt(void)
+newScreen::ObjAnaDemo::~ObjAnaDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -202,9 +194,8 @@ void og::newScreen::ObjAnaDemo::__dt(void)
  * Address:	........
  * Size:	0000B8
  */
-void og::newScreen::ObjAnaDemo::setWindowMsg((unsigned long long,
-                                              unsigned long long,
-                                              unsigned long long))
+void newScreen::ObjAnaDemo::setWindowMsg(unsigned long long, unsigned long long,
+                                         unsigned long long)
 {
 	// UNUSED FUNCTION
 }
@@ -214,7 +205,7 @@ void og::newScreen::ObjAnaDemo::setWindowMsg((unsigned long long,
  * Address:	8031CF84
  * Size:	001120
  */
-void og::newScreen::ObjAnaDemo::doCreate((JKRArchive*))
+void newScreen::ObjAnaDemo::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1436,7 +1427,7 @@ void og::newScreen::ObjAnaDemo::doCreate((JKRArchive*))
  * Address:	8031E0A4
  * Size:	000094
  */
-void og::newScreen::ObjAnaDemo::setBlinkMenu(void)
+void newScreen::ObjAnaDemo::setBlinkMenu(void)
 {
 	/*
 	.loc_0x0:
@@ -1491,7 +1482,7 @@ void og::newScreen::ObjAnaDemo::setBlinkMenu(void)
  * Address:	8031E138
  * Size:	0005D4
  */
-void og::newScreen::ObjAnaDemo::doUpdate(void)
+void newScreen::ObjAnaDemo::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1934,7 +1925,7 @@ void og::newScreen::ObjAnaDemo::doUpdate(void)
  * Address:	8031E70C
  * Size:	000080
  */
-void og::newScreen::ObjAnaDemo::commonUpdate(void)
+void newScreen::ObjAnaDemo::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1982,7 +1973,7 @@ void og::newScreen::ObjAnaDemo::commonUpdate(void)
  * Address:	8031E78C
  * Size:	000074
  */
-void og::newScreen::ObjAnaDemo::doDraw((Graphics&))
+void newScreen::ObjAnaDemo::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2027,7 +2018,7 @@ void og::newScreen::ObjAnaDemo::doDraw((Graphics&))
  * Address:	8031E800
  * Size:	000018
  */
-void og::newScreen::ObjAnaDemo::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjAnaDemo::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -2045,24 +2036,21 @@ void og::newScreen::ObjAnaDemo::doStart((Screen::StartSceneArg const*))
  * Address:	8031E818
  * Size:	000008
  */
-u32 og::newScreen::ObjAnaDemo::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjAnaDemo::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8031E820
  * Size:	000004
  */
-void og::newScreen::ObjAnaDemo::doUpdateFadeinFinish(void) { }
+void newScreen::ObjAnaDemo::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031E824
  * Size:	00000C
  */
-void og::newScreen::ObjAnaDemo::doUpdateFinish(void)
+void newScreen::ObjAnaDemo::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2077,7 +2065,7 @@ void og::newScreen::ObjAnaDemo::doUpdateFinish(void)
  * Address:	8031E830
  * Size:	000094
  */
-void og::newScreen::ObjAnaDemo::doUpdateFadeoutFinish(void)
+void newScreen::ObjAnaDemo::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2130,7 +2118,7 @@ void og::newScreen::ObjAnaDemo::doUpdateFadeoutFinish(void)
  * Address:	8031E8C4
  * Size:	0000E4
  */
-void og::newScreen::ObjAnaDemo::doUpdateFadein(void)
+void newScreen::ObjAnaDemo::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -2205,7 +2193,7 @@ void og::newScreen::ObjAnaDemo::doUpdateFadein(void)
  * Address:	8031E9A8
  * Size:	000084
  */
-void og::newScreen::ObjAnaDemo::doUpdateFadeout(void)
+void newScreen::ObjAnaDemo::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -2249,6 +2237,8 @@ void og::newScreen::ObjAnaDemo::doUpdateFadeout(void)
 	*/
 }
 
+} // namespace og
+
 /*
  * --INFO--
  * Address:	8031EA2C
@@ -2275,7 +2265,7 @@ void __sinit_ogObjAnaDemo_cpp(void)
  * Address:	8031EA50
  * Size:	000008
  */
-void @24 @og::newScreen::ObjAnaDemo::__dt(void)
+@24 @og::newScreen::ObjAnaDemo::~ObjAnaDemo(void)
 {
 	/*
 	.loc_0x0:

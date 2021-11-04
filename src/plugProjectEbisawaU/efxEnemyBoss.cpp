@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	803EB360
  * Size:	0001A8
  */
-void efx::TDangoCrash::create((efx::Arg*))
+void TDangoCrash::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +139,7 @@ void efx::TDangoCrash::create((efx::Arg*))
  * Address:	803EB508
  * Size:	00011C
  */
-void efx::TDangoTurn::create((efx::Arg*))
+void TDangoTurn::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +230,7 @@ void efx::TDangoTurn::create((efx::Arg*))
  * Address:	803EB624
  * Size:	000030
  */
-void efx::TKageMove::setGlobalPrmColor((Color4&))
+void TKageMove::setGlobalPrmColor(Color4&)
 {
 	/*
 	.loc_0x0:
@@ -262,7 +254,7 @@ void efx::TKageMove::setGlobalPrmColor((Color4&))
  * Address:	803EB654
  * Size:	000030
  */
-void efx::TKageRun::setGlobalPrmColor((Color4&))
+void TKageRun::setGlobalPrmColor(Color4&)
 {
 	/*
 	.loc_0x0:
@@ -286,7 +278,7 @@ void efx::TKageRun::setGlobalPrmColor((Color4&))
  * Address:	803EB684
  * Size:	000030
  */
-void efx::TKageDead1::setGlobalPrmColor((Color4&))
+void TKageDead1::setGlobalPrmColor(Color4&)
 {
 	/*
 	.loc_0x0:
@@ -310,7 +302,7 @@ void efx::TKageDead1::setGlobalPrmColor((Color4&))
  * Address:	803EB6B4
  * Size:	0000CC
  */
-void efx::TKageDead2::create((efx::Arg*))
+void TKageDead2::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +371,7 @@ void efx::TKageDead2::create((efx::Arg*))
  * Address:	........
  * Size:	000018
  */
-void efx::TOootaParticle::setGlobalDynamicsScale((float))
+void TOootaParticle::setGlobalDynamicsScale(float)
 {
 	// UNUSED FUNCTION
 }
@@ -389,7 +381,7 @@ void efx::TOootaParticle::setGlobalDynamicsScale((float))
  * Address:	803EB780
  * Size:	000174
  */
-void efx::TOootaBombLeg::create((efx::Arg*))
+void TOootaBombLeg::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -504,7 +496,7 @@ void efx::TOootaBombLeg::create((efx::Arg*))
  * Address:	803EB8F4
  * Size:	000150
  */
-void efx::TOootaFire::create((efx::Arg*))
+void TOootaFire::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -608,7 +600,7 @@ void efx::TOootaFire::create((efx::Arg*))
  * Address:	803EBA44
  * Size:	000154
  */
-void efx::TKchFlickSand::create((efx::Arg*))
+void TKchFlickSand::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -713,7 +705,7 @@ void efx::TKchFlickSand::create((efx::Arg*))
  * Address:	803EBB98
  * Size:	000154
  */
-void efx::TKchApSand::create((efx::Arg*))
+void TKchApSand::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -818,7 +810,7 @@ void efx::TKchApSand::create((efx::Arg*))
  * Address:	803EBCEC
  * Size:	000154
  */
-void efx::TKchApWat::create((efx::Arg*))
+void TKchApWat::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -923,7 +915,7 @@ void efx::TKchApWat::create((efx::Arg*))
  * Address:	803EBE40
  * Size:	000040
  */
-void efx::TKchDiveSand::setGlobalScale((float))
+void TKchDiveSand::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -955,7 +947,7 @@ void efx::TKchDiveSand::setGlobalScale((float))
  * Address:	803EBE80
  * Size:	000040
  */
-void efx::TKchDiveWat::setGlobalScale((float))
+void TKchDiveWat::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -987,7 +979,7 @@ void efx::TKchDiveWat::setGlobalScale((float))
  * Address:	803EBEC0
  * Size:	00002C
  */
-void efx::TKchCryAB::setGlobalScale((float))
+void TKchCryAB::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1012,7 +1004,7 @@ void efx::TKchCryAB::setGlobalScale((float))
  * Address:	803EBEEC
  * Size:	000018
  */
-void efx::TKchCryInd::setGlobalScale((float))
+void TKchCryInd::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1030,7 +1022,7 @@ void efx::TKchCryInd::setGlobalScale((float))
  * Address:	803EBF04
  * Size:	000118
  */
-void efx::TKchDamage::create((efx::Arg*))
+void TKchDamage::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1118,7 +1110,7 @@ void efx::TKchDamage::create((efx::Arg*))
  * Address:	803EC01C
  * Size:	000018
  */
-void efx::TKchSmokeHana::setGlobalScale((float))
+void TKchSmokeHana::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1136,7 +1128,7 @@ void efx::TKchSmokeHana::setGlobalScale((float))
  * Address:	803EC034
  * Size:	0000D0
  */
-void efx::TKchDownsmoke::create((efx::Arg*))
+void TKchDownsmoke::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1206,7 +1198,7 @@ void efx::TKchDownsmoke::create((efx::Arg*))
  * Address:	803EC104
  * Size:	00002C
  */
-void efx::TKchDeadHana::setGlobalScale((float))
+void TKchDeadHana::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1231,17 +1223,14 @@ void efx::TKchDeadHana::setGlobalScale((float))
  * Address:	803EC130
  * Size:	000004
  */
-void efx::TParticleCallBack_KchYodare::init((JPABaseEmitter*, JPABaseParticle*))
-{
-}
+void TParticleCallBack_KchYodare::init(JPABaseEmitter*, JPABaseParticle*) { }
 
 /*
  * --INFO--
  * Address:	803EC134
  * Size:	00017C
  */
-void efx::TParticleCallBack_KchYodare::execute((JPABaseEmitter*,
-                                                JPABaseParticle*))
+void TParticleCallBack_KchYodare::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	/*
 	.loc_0x0:
@@ -1356,7 +1345,7 @@ void efx::TParticleCallBack_KchYodare::execute((JPABaseEmitter*,
  * Address:	803EC2B0
  * Size:	000108
  */
-void efx::TKchYodareBaseChaseMtx::create((efx::Arg*))
+void TKchYodareBaseChaseMtx::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1440,7 +1429,7 @@ void efx::TKchYodareBaseChaseMtx::create((efx::Arg*))
  * Address:	803EC3B8
  * Size:	000018
  */
-void efx::TKchYodareBaseChaseMtx::setGlobalScale((float))
+void TKchYodareBaseChaseMtx::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -1453,12 +1442,14 @@ void efx::TKchYodareBaseChaseMtx::setGlobalScale((float))
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	803EC3D0
  * Size:	000108
  */
-void setPosNrm__Q23efx11THdamaSightFR10Vector3<float> R10Vector3<float>(void)
+void setPosNrm__Q23efx11THdamaSightFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1539,12 +1530,14 @@ void setPosNrm__Q23efx11THdamaSightFR10Vector3<float> R10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803EC4D8
  * Size:	0000D0
  */
-void efx::THdamaShell::create((efx::Arg*))
+void THdamaShell::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1614,7 +1607,7 @@ void efx::THdamaShell::create((efx::Arg*))
  * Address:	803EC5A8
  * Size:	0001BC
  */
-void efx::THdamaHit2W::create((efx::Arg*))
+void THdamaHit2W::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1745,7 +1738,7 @@ void efx::THdamaHit2W::create((efx::Arg*))
  * Address:	803EC764
  * Size:	000174
  */
-void efx::THdamaDeadHahen1::create((efx::Arg*))
+void THdamaDeadHahen1::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1860,7 +1853,7 @@ void efx::THdamaDeadHahen1::create((efx::Arg*))
  * Address:	803EC8D8
  * Size:	00018C
  */
-void efx::THdamaDeadHahen2::create((efx::Arg*))
+void THdamaDeadHahen2::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1983,7 +1976,7 @@ void efx::THdamaDeadHahen2::create((efx::Arg*))
  * Address:	803ECA64
  * Size:	000018
  */
-void efx::TOdamaFur1::setGlobalScale((float))
+void TOdamaFur1::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -2001,7 +1994,7 @@ void efx::TOdamaFur1::setGlobalScale((float))
  * Address:	803ECA7C
  * Size:	000018
  */
-void efx::TOdamaFur2::setGlobalScale((float))
+void TOdamaFur2::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -2019,7 +2012,7 @@ void efx::TOdamaFur2::setGlobalScale((float))
  * Address:	803ECA94
  * Size:	00009C
  */
-void efx::THdamaShell::__dt(void)
+THdamaShell::~THdamaShell(void)
 {
 	/*
 	.loc_0x0:
@@ -2074,7 +2067,7 @@ void efx::THdamaShell::__dt(void)
  * Address:	803ECB30
  * Size:	000008
  */
-void @4 @efx::TKchYodareBaseChaseMtx::__dt(void)
+@4 @efx::TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx(void)
 {
 	/*
 	.loc_0x0:
@@ -2088,7 +2081,7 @@ void @4 @efx::TKchYodareBaseChaseMtx::__dt(void)
  * Address:	803ECB38
  * Size:	000008
  */
-void @4 @efx::THdamaShell::__dt(void)
+@4 @efx::THdamaShell::~THdamaShell(void)
 {
 	/*
 	.loc_0x0:
@@ -2096,3 +2089,4 @@ void @4 @efx::THdamaShell::__dt(void)
 	  b         -0xA8
 	*/
 }
+} // namespace efx

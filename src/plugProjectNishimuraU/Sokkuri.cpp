@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F1264
  * Size:	000130
  */
-void Game::Sokkuri::Obj::__ct(void)
+Sokkuri::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -109,14 +101,14 @@ void Game::Sokkuri::Obj::__ct(void)
  * Address:	802F1394
  * Size:	000004
  */
-void Game::Sokkuri::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void Sokkuri::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802F1398
  * Size:	00008C
  */
-void Game::Sokkuri::Obj::onInit((Game::CreatureInitArg*))
+void Sokkuri::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -163,7 +155,7 @@ void Game::Sokkuri::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802F1424
  * Size:	000034
  */
-void Game::Sokkuri::Obj::doUpdate(void)
+void Sokkuri::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -188,14 +180,14 @@ void Game::Sokkuri::Obj::doUpdate(void)
  * Address:	802F1458
  * Size:	000004
  */
-void Game::Sokkuri::Obj::doDirectDraw((Graphics&)) { }
+void Sokkuri::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802F145C
  * Size:	000020
  */
-void Game::Sokkuri::Obj::doDebugDraw((Graphics&))
+void Sokkuri::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -215,7 +207,7 @@ void Game::Sokkuri::Obj::doDebugDraw((Graphics&))
  * Address:	802F147C
  * Size:	00004C
  */
-void Game::Sokkuri::Obj::setFSM((Game::Sokkuri::FSM*))
+void Sokkuri::Obj::setFSM(Game::Sokkuri::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +238,7 @@ void Game::Sokkuri::Obj::setFSM((Game::Sokkuri::FSM*))
  * Address:	802F14C8
  * Size:	000118
  */
-void Game::Sokkuri::Obj::getShadowParam((Game::ShadowParam&))
+void Sokkuri::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +328,7 @@ void Game::Sokkuri::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802F15E0
  * Size:	000008
  */
-void Game::Sokkuri::Obj::isUnderground(void)
+void Sokkuri::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +342,7 @@ void Game::Sokkuri::Obj::isUnderground(void)
  * Address:	802F15E8
  * Size:	00009C
  */
-void Game::Sokkuri::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Sokkuri::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -405,7 +397,7 @@ void Game::Sokkuri::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	802F1684
  * Size:	00009C
  */
-void Game::Sokkuri::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Sokkuri::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +452,7 @@ void Game::Sokkuri::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	802F1720
  * Size:	0000FC
  */
-void Game::Sokkuri::Obj::wallCallback((Game::MoveInfo const&))
+void Sokkuri::Obj::wallCallback(Game::MoveInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -541,7 +533,7 @@ void Game::Sokkuri::Obj::wallCallback((Game::MoveInfo const&))
  * Address:	802F181C
  * Size:	000040
  */
-void Game::Sokkuri::Obj::doStartStoneState(void)
+void Sokkuri::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -569,7 +561,7 @@ void Game::Sokkuri::Obj::doStartStoneState(void)
  * Address:	802F185C
  * Size:	000020
  */
-void Game::Sokkuri::Obj::doFinishStoneState(void)
+void Sokkuri::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -589,7 +581,7 @@ void Game::Sokkuri::Obj::doFinishStoneState(void)
  * Address:	802F187C
  * Size:	000028
  */
-void Game::Sokkuri::Obj::startCarcassMotion(void)
+void Sokkuri::Obj::startCarcassMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -611,7 +603,7 @@ void Game::Sokkuri::Obj::startCarcassMotion(void)
  * Address:	802F18A4
  * Size:	0000AC
  */
-void Game::Sokkuri::Obj::getOffsetForMapCollision(void)
+void Sokkuri::Obj::getOffsetForMapCollision(void)
 {
 	/*
 	.loc_0x0:
@@ -670,7 +662,7 @@ void Game::Sokkuri::Obj::getOffsetForMapCollision(void)
  * Address:	........
  * Size:	000068
  */
-void Game::Sokkuri::Obj::getSearchedTarget(void)
+void Sokkuri::Obj::getSearchedTarget(void)
 {
 	// UNUSED FUNCTION
 }
@@ -680,7 +672,7 @@ void Game::Sokkuri::Obj::getSearchedTarget(void)
  * Address:	802F1950
  * Size:	00007C
  */
-void Game::Sokkuri::Obj::isAppear(void)
+void Sokkuri::Obj::isAppear(void)
 {
 	/*
 	.loc_0x0:
@@ -731,7 +723,7 @@ void Game::Sokkuri::Obj::isAppear(void)
  * Address:	802F19CC
  * Size:	0000A8
  */
-void Game::Sokkuri::Obj::isDisappear(void)
+void Sokkuri::Obj::isDisappear(void)
 {
 	/*
 	.loc_0x0:
@@ -793,7 +785,7 @@ void Game::Sokkuri::Obj::isDisappear(void)
  * Address:	802F1A74
  * Size:	0001E0
  */
-void Game::Sokkuri::Obj::setNextMoveInfo(void)
+void Sokkuri::Obj::setNextMoveInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -935,7 +927,7 @@ void Game::Sokkuri::Obj::setNextMoveInfo(void)
  * Address:	802F1C54
  * Size:	00016C
  */
-void Game::Sokkuri::Obj::updateMoveState(void)
+void Sokkuri::Obj::updateMoveState(void)
 {
 	/*
 	.loc_0x0:
@@ -1064,7 +1056,7 @@ void Game::Sokkuri::Obj::updateMoveState(void)
  * Address:	802F1DC0
  * Size:	00002C
  */
-void Game::Sokkuri::Obj::resetMoveVelocity(void)
+void Sokkuri::Obj::resetMoveVelocity(void)
 {
 	/*
 	.loc_0x0:
@@ -1089,7 +1081,7 @@ void Game::Sokkuri::Obj::resetMoveVelocity(void)
  * Address:	802F1DEC
  * Size:	000078
  */
-void Game::Sokkuri::Obj::setNextWaitInfo(void)
+void Sokkuri::Obj::setNextWaitInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -1131,7 +1123,7 @@ void Game::Sokkuri::Obj::setNextWaitInfo(void)
  * Address:	802F1E64
  * Size:	0000C4
  */
-void Game::Sokkuri::Obj::createDownEffect((float, float))
+void Sokkuri::Obj::createDownEffect(float, float)
 {
 	/*
 	.loc_0x0:
@@ -1196,7 +1188,7 @@ void Game::Sokkuri::Obj::createDownEffect((float, float))
  * Address:	802F1F28
  * Size:	0000C0
  */
-void Game::Sokkuri::Obj::createBubbleEffect(void)
+void Sokkuri::Obj::createBubbleEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -1258,7 +1250,7 @@ void Game::Sokkuri::Obj::createBubbleEffect(void)
  * Address:	802F1FE8
  * Size:	000048
  */
-void Game::Sokkuri::Obj::createEfxHamon(void)
+void Sokkuri::Obj::createEfxHamon(void)
 {
 	/*
 	.loc_0x0:
@@ -1290,7 +1282,7 @@ void Game::Sokkuri::Obj::createEfxHamon(void)
  * Address:	802F2030
  * Size:	000008
  */
-void Game::Sokkuri::Obj::getDownSmokeScale(void)
+void Sokkuri::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -1304,4 +1296,5 @@ void Game::Sokkuri::Obj::getDownSmokeScale(void)
  * Address:	802F2038
  * Size:	000008
  */
-u32 Game::Sokkuri::Obj::getEnemyTypeID(void) { return 0x4F; }
+u32 Sokkuri::Obj::getEnemyTypeID(void) { return 0x4F; }
+} // namespace Game

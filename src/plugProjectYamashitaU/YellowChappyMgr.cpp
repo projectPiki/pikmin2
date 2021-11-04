@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012BFF0
  * Size:	000058
  */
-void Game::YellowChappy::Mgr::Mgr(int, unsigned char)
+YellowChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -39,7 +41,7 @@ void Game::YellowChappy::Mgr::Mgr(int, unsigned char)
  * Address:	8012C048
  * Size:	00006C
  */
-void Game::YellowChappy::Mgr::loadTexData()
+void YellowChappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -78,7 +80,7 @@ void Game::YellowChappy::Mgr::loadTexData()
  * Address:	8012C0B4
  * Size:	000048
  */
-void Game::YellowChappy::Mgr::doAlloc()
+void YellowChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -110,7 +112,7 @@ void Game::YellowChappy::Mgr::doAlloc()
  * Address:	8012C0FC
  * Size:	000034
  */
-void Game::YellowChappy::Mgr::loadAnimData()
+void YellowChappy::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -135,7 +137,7 @@ void Game::YellowChappy::Mgr::loadAnimData()
  * Address:	8012C130
  * Size:	0000C8
  */
-void Game::YellowChappy::Mgr::~Mgr()
+YellowChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -201,14 +203,14 @@ void Game::YellowChappy::Mgr::~Mgr()
  * Address:	8012C1F8
  * Size:	000008
  */
-u32 Game::YellowChappy::Mgr::getEnemyTypeID() { return 0x2B; }
+u32 YellowChappy::Mgr::getEnemyTypeID() { return 0x2B; }
 
 /*
  * --INFO--
  * Address:	8012C200
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::getChangeTexture0()
+void YellowChappy::Mgr::getChangeTexture0()
 {
 	/*
 	.loc_0x0:
@@ -222,7 +224,7 @@ void Game::YellowChappy::Mgr::getChangeTexture0()
  * Address:	8012C208
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::getChangeTexture1()
+void YellowChappy::Mgr::getChangeTexture1()
 {
 	/*
 	.loc_0x0:
@@ -236,7 +238,7 @@ void Game::YellowChappy::Mgr::getChangeTexture1()
  * Address:	8012C210
  * Size:	000060
  */
-void Game::YellowChappy::Mgr::createObj(int)
+void YellowChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -272,7 +274,7 @@ void Game::YellowChappy::Mgr::createObj(int)
  * Address:	8012C270
  * Size:	0000F0
  */
-void Game::YellowChappy::Obj::~Obj()
+YellowChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -348,7 +350,7 @@ void Game::YellowChappy::Obj::~Obj()
  * Address:	8012C360
  * Size:	000010
  */
-void Game::YellowChappy::Mgr::getEnemy(int)
+void YellowChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +366,7 @@ void Game::YellowChappy::Mgr::getEnemy(int)
  * Address:	8012C370
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::@4 @__dt()
+YellowChappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -372,3 +374,4 @@ void Game::YellowChappy::Mgr::@4 @__dt()
 	  b         -0x244
 	*/
 }
+} // namespace Game

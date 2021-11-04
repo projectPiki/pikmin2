@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B27CC
  * Size:	000138
  */
-void Game::BombSarai::Obj::Obj()
+BombSarai::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,14 +103,14 @@ void Game::BombSarai::Obj::Obj()
  * Address:	802B2904
  * Size:	000004
  */
-void Game::BombSarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void BombSarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802B2908
  * Size:	000098
  */
-void Game::BombSarai::Obj::onInit(Game::CreatureInitArg*)
+void BombSarai::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -160,7 +162,7 @@ void Game::BombSarai::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802B29A0
  * Size:	000050
  */
-void Game::BombSarai::Obj::onKill(Game::CreatureKillArg*)
+void BombSarai::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -192,7 +194,7 @@ void Game::BombSarai::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802B29F0
  * Size:	0000A4
  */
-void Game::BombSarai::Obj::doUpdate()
+void BombSarai::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -247,14 +249,14 @@ void Game::BombSarai::Obj::doUpdate()
  * Address:	802B2A94
  * Size:	000004
  */
-void Game::BombSarai::Obj::doDirectDraw(Graphics&) { }
+void BombSarai::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802B2A98
  * Size:	000020
  */
-void Game::BombSarai::Obj::doDebugDraw(Graphics&)
+void BombSarai::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -274,7 +276,7 @@ void Game::BombSarai::Obj::doDebugDraw(Graphics&)
  * Address:	802B2AB8
  * Size:	00004C
  */
-void Game::BombSarai::Obj::setFSM(Game::BombSarai::FSM*)
+void BombSarai::Obj::setFSM(Game::BombSarai::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -305,7 +307,7 @@ void Game::BombSarai::Obj::setFSM(Game::BombSarai::FSM*)
  * Address:	802B2B04
  * Size:	0000D4
  */
-void Game::BombSarai::Obj::getShadowParam(Game::ShadowParam&)
+void BombSarai::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -374,7 +376,7 @@ void Game::BombSarai::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802B2BD8
  * Size:	00003C
  */
-void Game::BombSarai::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
+void BombSarai::Obj::bombCallBack(Game::Creature*, Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -405,7 +407,7 @@ void Game::BombSarai::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
  * Address:	802B2C14
  * Size:	00008C
  */
-void Game::BombSarai::Obj::doFinishStoneState()
+void BombSarai::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -456,7 +458,7 @@ void Game::BombSarai::Obj::doFinishStoneState()
  * Address:	802B2CA0
  * Size:	000034
  */
-void Game::BombSarai::Obj::doStartWaitingBirthTypeDrop()
+void BombSarai::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -481,7 +483,7 @@ void Game::BombSarai::Obj::doStartWaitingBirthTypeDrop()
  * Address:	802B2CD4
  * Size:	000034
  */
-void Game::BombSarai::Obj::doFinishWaitingBirthTypeDrop()
+void BombSarai::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -506,7 +508,7 @@ void Game::BombSarai::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802B2D08
  * Size:	000028
  */
-void Game::BombSarai::Obj::startCarcassMotion()
+void BombSarai::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -528,7 +530,7 @@ void Game::BombSarai::Obj::startCarcassMotion()
  * Address:	802B2D30
  * Size:	000020
  */
-void Game::BombSarai::Obj::doStartMovie()
+void BombSarai::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -548,7 +550,7 @@ void Game::BombSarai::Obj::doStartMovie()
  * Address:	802B2D50
  * Size:	000020
  */
-void Game::BombSarai::Obj::doEndMovie()
+void BombSarai::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -568,7 +570,7 @@ void Game::BombSarai::Obj::doEndMovie()
  * Address:	802B2D70
  * Size:	0001A0
  */
-void Game::BombSarai::Obj::setHeightVelocity(bool)
+void BombSarai::Obj::setHeightVelocity(bool)
 {
 	/*
 	.loc_0x0:
@@ -696,7 +698,7 @@ void Game::BombSarai::Obj::setHeightVelocity(bool)
  * Address:	802B2F10
  * Size:	0001E8
  */
-void Game::BombSarai::Obj::setRandTarget()
+void BombSarai::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -840,7 +842,7 @@ void Game::BombSarai::Obj::setRandTarget()
  * Address:	802B30F8
  * Size:	000038
  */
-void Game::BombSarai::Obj::addPitchRatio()
+void BombSarai::Obj::addPitchRatio()
 {
 	/*
 	.loc_0x0:
@@ -866,7 +868,7 @@ void Game::BombSarai::Obj::addPitchRatio()
  * Address:	802B3130
  * Size:	0000C8
  */
-void Game::BombSarai::Obj::supplyBomb()
+void BombSarai::Obj::supplyBomb()
 {
 	/*
 	.loc_0x0:
@@ -930,7 +932,7 @@ void Game::BombSarai::Obj::supplyBomb()
  * Address:	802B31F8
  * Size:	000078
  */
-void Game::BombSarai::Obj::throwBomb(Vector3<float>&)
+void BombSarai::Obj::throwBomb(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -974,7 +976,7 @@ void Game::BombSarai::Obj::throwBomb(Vector3<float>&)
  * Address:	802B3270
  * Size:	000070
  */
-void Game::BombSarai::Obj::getAttackablePikmin()
+void BombSarai::Obj::getAttackablePikmin()
 {
 	/*
 	.loc_0x0:
@@ -1018,7 +1020,7 @@ void Game::BombSarai::Obj::getAttackablePikmin()
  * Address:	802B32E0
  * Size:	000144
  */
-void Game::BombSarai::Obj::getNextStateOnHeight()
+void BombSarai::Obj::getNextStateOnHeight()
 {
 	/*
 	.loc_0x0:
@@ -1125,7 +1127,7 @@ void Game::BombSarai::Obj::getNextStateOnHeight()
  * Address:	802B3424
  * Size:	0000B0
  */
-void Game::BombSarai::Obj::createEffect()
+void BombSarai::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1183,7 +1185,7 @@ void Game::BombSarai::Obj::createEffect()
  * Address:	802B34D4
  * Size:	000044
  */
-void Game::BombSarai::Obj::setupEffect()
+void BombSarai::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1212,7 +1214,7 @@ void Game::BombSarai::Obj::setupEffect()
  * Address:	802B3518
  * Size:	000034
  */
-void Game::BombSarai::Obj::createSupliEffect()
+void BombSarai::Obj::createSupliEffect()
 {
 	/*
 	.loc_0x0:
@@ -1237,7 +1239,7 @@ void Game::BombSarai::Obj::createSupliEffect()
  * Address:	802B354C
  * Size:	00011C
  */
-void Game::BombSarai::Obj::createBalloonEffect(int)
+void BombSarai::Obj::createBalloonEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -1332,7 +1334,7 @@ void Game::BombSarai::Obj::createBalloonEffect(int)
  * Address:	802B3668
  * Size:	000024
  */
-void Game::BombSarai::Obj::createDownEffect(float)
+void BombSarai::Obj::createDownEffect(float)
 {
 	/*
 	.loc_0x0:
@@ -1353,7 +1355,7 @@ void Game::BombSarai::Obj::createDownEffect(float)
  * Address:	802B368C
  * Size:	000030
  */
-void Game::BombSarai::Obj::effectDrawOn()
+void BombSarai::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1377,7 +1379,7 @@ void Game::BombSarai::Obj::effectDrawOn()
  * Address:	802B36BC
  * Size:	000030
  */
-void Game::BombSarai::Obj::effectDrawOff()
+void BombSarai::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1396,12 +1398,16 @@ void Game::BombSarai::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802B36EC
  * Size:	00009C
  */
-void efx::TBsaraiSupli::~TBsaraiSupli()
+TBsaraiSupli::~TBsaraiSupli()
 {
 	/*
 	.loc_0x0:
@@ -1451,26 +1457,30 @@ void efx::TBsaraiSupli::~TBsaraiSupli()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802B3788
  * Size:	000004
  */
-void Game::BombSarai::Obj::inWaterCallback(Game::WaterBox*) { }
+void BombSarai::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802B378C
  * Size:	000004
  */
-void Game::BombSarai::Obj::outWaterCallback() { }
+void BombSarai::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802B3790
  * Size:	000008
  */
-void Game::BombSarai::Obj::getDownSmokeScale()
+void BombSarai::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1484,18 +1494,23 @@ void Game::BombSarai::Obj::getDownSmokeScale()
  * Address:	802B3798
  * Size:	000008
  */
-u32 Game::BombSarai::Obj::getEnemyTypeID() { return 0x3A; }
+u32 BombSarai::Obj::getEnemyTypeID() { return 0x3A; }
 
-/*
- * --INFO--
- * Address:	802B37A0
- * Size:	000008
- */
-void efx::TBsaraiSupli::@4 @__dt()
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xB8
-	*/
-}
+	 * --INFO--
+	 * Address:	802B37A0
+	 * Size:	000008
+	 */
+	TBsaraiSupli::@4 @~TBsaraiSupli()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0xB8
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

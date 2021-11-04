@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802F92D0
  * Size:	000050
  */
-void Game::BombOtakara::Mgr::Mgr(int, unsigned char)
+BombOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::BombOtakara::Mgr::Mgr(int, unsigned char)
  * Address:	802F9320
  * Size:	000048
  */
-void Game::BombOtakara::Mgr::doAlloc()
+void BombOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::BombOtakara::Mgr::doAlloc()
  * Address:	802F9368
  * Size:	000060
  */
-void Game::BombOtakara::Mgr::createObj(int)
+void BombOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::BombOtakara::Mgr::createObj(int)
  * Address:	802F93C8
  * Size:	0000EC
  */
-void Game::BombOtakara::Obj::~Obj()
+BombOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::BombOtakara::Obj::~Obj()
  * Address:	802F94B4
  * Size:	000010
  */
-void Game::BombOtakara::Mgr::getEnemy(int)
+void BombOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -196,7 +198,7 @@ void Game::BombOtakara::Mgr::getEnemy(int)
  * Address:	802F94C4
  * Size:	000080
  */
-void Game::BombOtakara::Mgr::loadTexData()
+void BombOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -244,7 +246,7 @@ void Game::BombOtakara::Mgr::loadTexData()
  * Address:	802F9544
  * Size:	0000C8
  */
-void Game::BombOtakara::Mgr::~Mgr()
+BombOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -310,14 +312,14 @@ void Game::BombOtakara::Mgr::~Mgr()
  * Address:	802F960C
  * Size:	000008
  */
-u32 Game::BombOtakara::Mgr::getEnemyTypeID() { return 0x5D; }
+u32 BombOtakara::Mgr::getEnemyTypeID() { return 0x5D; }
 
 /*
  * --INFO--
  * Address:	802F9614
  * Size:	000008
  */
-void Game::BombOtakara::Mgr::getChangeTexture()
+void BombOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -331,7 +333,7 @@ void Game::BombOtakara::Mgr::getChangeTexture()
  * Address:	802F961C
  * Size:	000008
  */
-void Game::BombOtakara::Mgr::@4 @__dt()
+BombOtakara::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -339,3 +341,4 @@ void Game::BombOtakara::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

@@ -5,7 +5,7 @@
  * Address:	8006C3A4
  * Size:	000248
  */
-void J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock&)
+J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock&)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +167,7 @@ void J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock&)
  * Address:	8006C5EC
  * Size:	000088
  */
-void J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialDLBlock&)
+J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialDLBlock&)
 {
 	/*
 	.loc_0x0:
@@ -1821,7 +1821,7 @@ void J3DMaterialFactory::createPatchedMaterial(J3DMaterial*, int,
  * Address:	8006DA94
  * Size:	000048
  */
-void J3DMaterial::~J3DMaterial()
+J3DMaterial::~J3DMaterial()
 {
 	/*
 	.loc_0x0:
@@ -2190,13 +2190,10 @@ void J3DTevBlock::setTevRegOffset(unsigned long) { }
  * Address:	8006DF3C
  * Size:	000008
  */
-void J3DTevBlock::setTexNoOffset(unsigned long)
+void J3DTevBlock::setTexNoOffset(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*
@@ -3309,7 +3306,7 @@ void J3DMaterialFactory::newTevStage(int, int) const
  * Address:	8006EB2C
  * Size:	000060
  */
-void J3DTevStage::J3DTevStage(const J3DTevStageInfo&)
+J3DTevStage::J3DTevStage(const J3DTevStageInfo&)
 {
 	/*
 	.loc_0x0:
@@ -4115,7 +4112,7 @@ void J3DPEBlockNull::getType()
  * Address:	8006F454
  * Size:	00005C
  */
-void J3DPEBlockNull::~J3DPEBlockNull()
+J3DPEBlockNull::~J3DPEBlockNull()
 {
 	/*
 	.loc_0x0:
@@ -4204,7 +4201,7 @@ void J3DTevBlockNull::getType()
  * Address:	8006F4E8
  * Size:	00005C
  */
-void J3DTevBlockNull::~J3DTevBlockNull()
+J3DTevBlockNull::~J3DTevBlockNull()
 {
 	/*
 	.loc_0x0:
@@ -4514,7 +4511,7 @@ void J3DTexGenBlockNull::getType()
  * Address:	8006F5FC
  * Size:	00005C
  */
-void J3DTexGenBlockNull::~J3DTexGenBlockNull()
+J3DTexGenBlockNull::~J3DTexGenBlockNull()
 {
 	/*
 	.loc_0x0:
@@ -4568,7 +4565,7 @@ void J3DColorBlockNull::getType()
  * Address:	8006F664
  * Size:	00005C
  */
-void J3DColorBlockNull::~J3DColorBlockNull()
+J3DColorBlockNull::~J3DColorBlockNull()
 {
 	/*
 	.loc_0x0:

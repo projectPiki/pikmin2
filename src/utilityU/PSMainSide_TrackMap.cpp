@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSM {
 
 /*
  * --INFO--
  * Address:	804718D0
  * Size:	0000A8
  */
-void PSM::BgmTrackMapFile::BgmTrackMapFile(bool)
+BgmTrackMapFile::BgmTrackMapFile(bool)
 {
 	/*
 	.loc_0x0:
@@ -63,7 +65,7 @@ void PSM::BgmTrackMapFile::BgmTrackMapFile(bool)
  * Address:	80471978
  * Size:	00077C
  */
-void PSM::BgmTrackMapFile::readTrackMap(const char*)
+void BgmTrackMapFile::readTrackMap(const char*)
 {
 	/*
 	.loc_0x0:
@@ -608,7 +610,7 @@ void PSM::BgmTrackMapFile::readTrackMap(const char*)
  * Address:	804720F4
  * Size:	000294
  */
-void PSM::BgmTrackMapFile::read(Stream&)
+void BgmTrackMapFile::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -819,7 +821,7 @@ void PSM::BgmTrackMapFile::read(Stream&)
  * Address:	80472388
  * Size:	000110
  */
-void PSM::BgmTrackMap::BgmTrackMap()
+BgmTrackMap::BgmTrackMap()
 {
 	/*
 	.loc_0x0:
@@ -903,7 +905,7 @@ void PSM::BgmTrackMap::BgmTrackMap()
  * Address:	80472498
  * Size:	000008
  */
-void PSM::BgmTrackMapFile::@28 @__dt()
+BgmTrackMapFile::@28 @~BgmTrackMapFile()
 {
 	/*
 	.loc_0x0:
@@ -911,3 +913,4 @@ void PSM::BgmTrackMapFile::@28 @__dt()
 	  b         -0x1740
 	*/
 }
+} // namespace PSM

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F2DEC
  * Size:	000050
  */
-void Game::Hana::Mgr::__ct((int, unsigned char))
+Hana::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::Hana::Mgr::__ct((int, unsigned char))
  * Address:	802F2E3C
  * Size:	000048
  */
-void Game::Hana::Mgr::doAlloc(void)
+void Hana::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +71,7 @@ void Game::Hana::Mgr::doAlloc(void)
  * Address:	802F2E84
  * Size:	000060
  */
-void Game::Hana::Mgr::createObj((int))
+void Hana::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +107,7 @@ void Game::Hana::Mgr::createObj((int))
  * Address:	802F2EE4
  * Size:	0000F0
  */
-void Game::Hana::Obj::__dt(void)
+Hana::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -191,7 +183,7 @@ void Game::Hana::Obj::__dt(void)
  * Address:	802F2FD4
  * Size:	000010
  */
-void Game::Hana::Mgr::getEnemy((int))
+void Hana::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +199,7 @@ void Game::Hana::Mgr::getEnemy((int))
  * Address:	802F2FE4
  * Size:	000068
  */
-void Game::Hana::Mgr::loadModelData(void)
+void Hana::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +241,7 @@ void Game::Hana::Mgr::loadModelData(void)
  * Address:	802F304C
  * Size:	0000B0
  */
-void Game::Hana::Mgr::__dt(void)
+Hana::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -309,14 +301,14 @@ void Game::Hana::Mgr::__dt(void)
  * Address:	802F30FC
  * Size:	000008
  */
-u32 Game::Hana::Mgr::getEnemyTypeID(void) { return 0x54; }
+u32 Hana::Mgr::getEnemyTypeID(void) { return 0x54; }
 
 /*
  * --INFO--
  * Address:	802F3104
  * Size:	00002C
  */
-void Game::Hana::Mgr::doLoadBmd((void*))
+void Hana::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -339,7 +331,7 @@ void Game::Hana::Mgr::doLoadBmd((void*))
  * Address:	802F3130
  * Size:	000008
  */
-void @4 @Game::Hana::Mgr::__dt(void)
+@4 @Game::Hana::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -347,3 +339,4 @@ void @4 @Game::Hana::Mgr::__dt(void)
 	  b         -0xE8
 	*/
 }
+} // namespace Game

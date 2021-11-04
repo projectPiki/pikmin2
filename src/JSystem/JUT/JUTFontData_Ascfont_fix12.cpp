@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "JSystem/JUT/ResFONT.h"
 
 const int JUTResFONT_Ascfont_fix12[]

@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802EBCE0
  * Size:	000008
  */
-void Game::MiniHoudai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void MiniHoudai::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::MiniHoudai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802EBCE8
  * Size:	000008
  */
-void Game::MiniHoudai::ProperAnimator::getAnimator((int))
+void MiniHoudai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::MiniHoudai::ProperAnimator::getAnimator((int))
  * Address:	802EBCF0
  * Size:	00005C
  */
-void Game::MiniHoudai::ProperAnimator::__dt(void)
+MiniHoudai::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::MiniHoudai::ProperAnimator::__dt(void)
  * Address:	802EBD4C
  * Size:	000008
  */
-void Game::MiniHoudai::ProperAnimator::getAnimator(void)
+void MiniHoudai::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::MiniHoudai::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

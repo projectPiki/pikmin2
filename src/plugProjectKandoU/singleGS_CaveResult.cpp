@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8021AC20
  * Size:	0000F8
  */
-void Game::SingleGame::CaveResultState::__ct(void)
+SingleGame::CaveResultState::CaveResultState(void)
 {
 	/*
 	.loc_0x0:
@@ -93,8 +85,8 @@ void Game::SingleGame::CaveResultState::__ct(void)
  * Address:	8021AD18
  * Size:	000124
  */
-void Game::SingleGame::CaveResultState::init((Game::SingleGameSection*,
-                                              Game::StateArg*))
+void SingleGame::CaveResultState::init(Game::SingleGameSection*,
+                                       Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +175,7 @@ void Game::SingleGame::CaveResultState::init((Game::SingleGameSection*,
  * Address:	........
  * Size:	00007C
  */
-void Game::SingleGame::CaveResultState::initNext((Game::SingleGameSection*))
+void SingleGame::CaveResultState::initNext(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -193,7 +185,7 @@ void Game::SingleGame::CaveResultState::initNext((Game::SingleGameSection*))
  * Address:	8021AE3C
  * Size:	000240
  */
-void Game::SingleGame::CaveResultState::loadResource(void)
+void SingleGame::CaveResultState::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -367,7 +359,7 @@ void Game::SingleGame::CaveResultState::loadResource(void)
  * Address:	........
  * Size:	000134
  */
-void Game::SingleGame::CaveResultState::open2D((Game::SingleGameSection*))
+void SingleGame::CaveResultState::open2D(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -377,7 +369,7 @@ void Game::SingleGame::CaveResultState::open2D((Game::SingleGameSection*))
  * Address:	8021B07C
  * Size:	0002E8
  */
-void Game::SingleGame::CaveResultState::exec((Game::SingleGameSection*))
+void SingleGame::CaveResultState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -597,8 +589,7 @@ void Game::SingleGame::CaveResultState::exec((Game::SingleGameSection*))
  * Address:	8021B364
  * Size:	0000C0
  */
-void Game::SingleGame::CaveResultState::draw((Game::SingleGameSection*,
-                                              Graphics&))
+void SingleGame::CaveResultState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -660,7 +651,7 @@ void Game::SingleGame::CaveResultState::draw((Game::SingleGameSection*,
  * Address:	8021B424
  * Size:	0000C4
  */
-void Game::SingleGame::CaveResultState::cleanup((Game::SingleGameSection*))
+void SingleGame::CaveResultState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -725,7 +716,7 @@ void Game::SingleGame::CaveResultState::cleanup((Game::SingleGameSection*))
  * Address:	8021B4E8
  * Size:	00040C
  */
-void Game::SingleGame::CaveResultState::createResultNodes(void)
+void SingleGame::CaveResultState::createResultNodes(void)
 {
 	/*
 	.loc_0x0:
@@ -1028,6 +1019,8 @@ void Game::SingleGame::CaveResultState::createResultNodes(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

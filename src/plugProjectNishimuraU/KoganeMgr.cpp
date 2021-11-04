@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8025D898
  * Size:	000050
  */
-void Game::Kogane::Mgr::Mgr(int, unsigned char)
+Kogane::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Kogane::Mgr::Mgr(int, unsigned char)
  * Address:	8025D8E8
  * Size:	0000E8
  */
-void Game::Kogane::Mgr::loadModelData()
+void Kogane::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -117,7 +119,7 @@ void Game::Kogane::Mgr::loadModelData()
  * Address:	8025D9D0
  * Size:	0000A0
  */
-void Game::Kogane::Mgr::loadAnimData()
+void Kogane::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -175,7 +177,7 @@ void Game::Kogane::Mgr::loadAnimData()
  * Address:	8025DA70
  * Size:	000130
  */
-void Game::Kogane::Mgr::createModel()
+void Kogane::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -273,7 +275,7 @@ void Game::Kogane::Mgr::createModel()
  * Address:	8025DBA0
  * Size:	0000B0
  */
-void Game::Kogane::Mgr::~Mgr()
+Kogane::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -333,14 +335,14 @@ void Game::Kogane::Mgr::~Mgr()
  * Address:	8025DC50
  * Size:	000008
  */
-u32 Game::Kogane::Mgr::getEnemyTypeID() { return 0x9; }
+u32 Kogane::Mgr::getEnemyTypeID() { return 0x9; }
 
 /*
  * --INFO--
  * Address:	8025DC58
  * Size:	00002C
  */
-void Game::Kogane::Mgr::doLoadBmd(void*)
+void Kogane::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -363,7 +365,7 @@ void Game::Kogane::Mgr::doLoadBmd(void*)
  * Address:	8025DC84
  * Size:	000008
  */
-void Game::Kogane::Mgr::@4 @__dt()
+Kogane::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -371,3 +373,4 @@ void Game::Kogane::Mgr::@4 @__dt()
 	  b         -0xE8
 	*/
 }
+} // namespace Game

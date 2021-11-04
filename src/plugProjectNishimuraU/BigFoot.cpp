@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802C7EF0
  * Size:	000024
  */
-void Game::BigFoot::BigFootGroundCallBack::invokeOnGround(int, Game::WaterBox*)
+void BigFoot::BigFootGroundCallBack::invokeOnGround(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -26,7 +28,7 @@ void Game::BigFoot::BigFootGroundCallBack::invokeOnGround(int, Game::WaterBox*)
  * Address:	802C7F14
  * Size:	000024
  */
-void Game::BigFoot::BigFootGroundCallBack::invokeOffGround(int, Game::WaterBox*)
+void BigFoot::BigFootGroundCallBack::invokeOffGround(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +49,7 @@ void Game::BigFoot::BigFootGroundCallBack::invokeOffGround(int, Game::WaterBox*)
  * Address:	802C7F38
  * Size:	00016C
  */
-void Game::BigFoot::Obj::Obj()
+BigFoot::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -156,14 +158,14 @@ void Game::BigFoot::Obj::Obj()
  * Address:	802C80A4
  * Size:	000004
  */
-void Game::BigFoot::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void BigFoot::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802C80A8
  * Size:	000148
  */
-void Game::BigFoot::Obj::onInit(Game::CreatureInitArg*)
+void BigFoot::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -261,7 +263,7 @@ void Game::BigFoot::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802C81F0
  * Size:	000044
  */
-void Game::BigFoot::Obj::onKill(Game::CreatureKillArg*)
+void BigFoot::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -290,7 +292,7 @@ void Game::BigFoot::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802C8234
  * Size:	000050
  */
-void Game::BigFoot::Obj::doUpdate()
+void BigFoot::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -322,7 +324,7 @@ void Game::BigFoot::Obj::doUpdate()
  * Address:	802C8284
  * Size:	000034
  */
-void Game::BigFoot::Obj::doUpdateCommon()
+void BigFoot::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -347,7 +349,7 @@ void Game::BigFoot::Obj::doUpdateCommon()
  * Address:	802C82B8
  * Size:	000098
  */
-void Game::BigFoot::Obj::doAnimationCullingOff()
+void BigFoot::Obj::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -397,14 +399,14 @@ void Game::BigFoot::Obj::doAnimationCullingOff()
  * Address:	802C8350
  * Size:	000004
  */
-void Game::BigFoot::Obj::doDirectDraw(Graphics&) { }
+void BigFoot::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802C8354
  * Size:	000020
  */
-void Game::BigFoot::Obj::doDebugDraw(Graphics&)
+void BigFoot::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -424,7 +426,7 @@ void Game::BigFoot::Obj::doDebugDraw(Graphics&)
  * Address:	802C8374
  * Size:	00004C
  */
-void Game::BigFoot::Obj::setFSM(Game::BigFoot::FSM*)
+void BigFoot::Obj::setFSM(Game::BigFoot::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +457,7 @@ void Game::BigFoot::Obj::setFSM(Game::BigFoot::FSM*)
  * Address:	802C83C0
  * Size:	00003C
  */
-void Game::BigFoot::Obj::getShadowParam(Game::ShadowParam&)
+void BigFoot::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -482,7 +484,7 @@ void Game::BigFoot::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802C83FC
  * Size:	000050
  */
-void Game::BigFoot::Obj::needShadow()
+void BigFoot::Obj::needShadow()
 {
 	/*
 	.loc_0x0:
@@ -518,7 +520,7 @@ void Game::BigFoot::Obj::needShadow()
  * Address:	802C844C
  * Size:	00009C
  */
-void Game::BigFoot::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void BigFoot::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -573,7 +575,7 @@ void Game::BigFoot::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	802C84E8
  * Size:	0001AC
  */
-void Game::BigFoot::Obj::collisionCallback(Game::CollEvent&)
+void BigFoot::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -698,7 +700,7 @@ void Game::BigFoot::Obj::collisionCallback(Game::CollEvent&)
  * Address:	802C8694
  * Size:	000044
  */
-void Game::BigFoot::Obj::doStartStoneState()
+void BigFoot::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -727,7 +729,7 @@ void Game::BigFoot::Obj::doStartStoneState()
  * Address:	802C86D8
  * Size:	00006C
  */
-void Game::BigFoot::Obj::doFinishStoneState()
+void BigFoot::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -768,7 +770,7 @@ void Game::BigFoot::Obj::doFinishStoneState()
  * Address:	802C8744
  * Size:	000020
  */
-void Game::BigFoot::Obj::doStartMovie()
+void BigFoot::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -788,7 +790,7 @@ void Game::BigFoot::Obj::doStartMovie()
  * Address:	802C8764
  * Size:	000020
  */
-void Game::BigFoot::Obj::doEndMovie()
+void BigFoot::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -808,7 +810,7 @@ void Game::BigFoot::Obj::doEndMovie()
  * Address:	802C8784
  * Size:	000060
  */
-void Game::BigFoot::Obj::getThrowupItemPosition(Vector3<float>*)
+void BigFoot::Obj::getThrowupItemPosition(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -844,7 +846,7 @@ void Game::BigFoot::Obj::getThrowupItemPosition(Vector3<float>*)
  * Address:	802C87E4
  * Size:	000014
  */
-void Game::BigFoot::Obj::getThrowupItemVelocity(Vector3<float>*)
+void BigFoot::Obj::getThrowupItemVelocity(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -861,7 +863,7 @@ void Game::BigFoot::Obj::getThrowupItemVelocity(Vector3<float>*)
  * Address:	802C87F8
  * Size:	00008C
  */
-void Game::BigFoot::Obj::resetFlickWalkTimeMax()
+void BigFoot::Obj::resetFlickWalkTimeMax()
 {
 	/*
 	.loc_0x0:
@@ -908,7 +910,7 @@ void Game::BigFoot::Obj::resetFlickWalkTimeMax()
  * Address:	802C8884
  * Size:	00008C
  */
-void Game::BigFoot::Obj::setFlickWalkTimeMax()
+void BigFoot::Obj::setFlickWalkTimeMax()
 {
 	/*
 	.loc_0x0:
@@ -955,7 +957,7 @@ void Game::BigFoot::Obj::setFlickWalkTimeMax()
  * Address:	802C8910
  * Size:	0003F0
  */
-void Game::BigFoot::Obj::getTargetPosition()
+void BigFoot::Obj::getTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -1241,7 +1243,7 @@ void Game::BigFoot::Obj::getTargetPosition()
  * Address:	802C8D00
  * Size:	00010C
  */
-void Game::BigFoot::Obj::createIKSystem()
+void BigFoot::Obj::createIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1326,7 +1328,7 @@ void Game::BigFoot::Obj::createIKSystem()
  * Address:	802C8E0C
  * Size:	000124
  */
-void Game::BigFoot::Obj::setupIKSystem()
+void BigFoot::Obj::setupIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1413,7 +1415,7 @@ void Game::BigFoot::Obj::setupIKSystem()
  * Address:	802C8F30
  * Size:	000124
  */
-void Game::BigFoot::Obj::setIKParameter()
+void BigFoot::Obj::setIKParameter()
 {
 	/*
 	.loc_0x0:
@@ -1500,7 +1502,7 @@ void Game::BigFoot::Obj::setIKParameter()
  * Address:	802C9054
  * Size:	000020
  */
-void Game::BigFoot::Obj::setIKSystemTargetPosition(Vector3<float>&)
+void BigFoot::Obj::setIKSystemTargetPosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1520,7 +1522,7 @@ void Game::BigFoot::Obj::setIKSystemTargetPosition(Vector3<float>&)
  * Address:	802C9074
  * Size:	000060
  */
-void Game::BigFoot::Obj::updateIKSystem()
+void BigFoot::Obj::updateIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1556,7 +1558,7 @@ void Game::BigFoot::Obj::updateIKSystem()
  * Address:	802C90D4
  * Size:	000060
  */
-void Game::BigFoot::Obj::doAnimationIKSystem()
+void BigFoot::Obj::doAnimationIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1592,7 +1594,7 @@ void Game::BigFoot::Obj::doAnimationIKSystem()
  * Address:	802C9134
  * Size:	000024
  */
-void Game::BigFoot::Obj::finishAnimationIKSystem()
+void BigFoot::Obj::finishAnimationIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1613,7 +1615,7 @@ void Game::BigFoot::Obj::finishAnimationIKSystem()
  * Address:	802C9158
  * Size:	000024
  */
-void Game::BigFoot::Obj::startProgramedIK()
+void BigFoot::Obj::startProgramedIK()
 {
 	/*
 	.loc_0x0:
@@ -1634,7 +1636,7 @@ void Game::BigFoot::Obj::startProgramedIK()
  * Address:	802C917C
  * Size:	000024
  */
-void Game::BigFoot::Obj::startIKMotion()
+void BigFoot::Obj::startIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1655,7 +1657,7 @@ void Game::BigFoot::Obj::startIKMotion()
  * Address:	802C91A0
  * Size:	000024
  */
-void Game::BigFoot::Obj::finishIKMotion()
+void BigFoot::Obj::finishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1676,7 +1678,7 @@ void Game::BigFoot::Obj::finishIKMotion()
  * Address:	802C91C4
  * Size:	000024
  */
-void Game::BigFoot::Obj::forceFinishIKMotion()
+void BigFoot::Obj::forceFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1697,7 +1699,7 @@ void Game::BigFoot::Obj::forceFinishIKMotion()
  * Address:	802C91E8
  * Size:	000024
  */
-void Game::BigFoot::Obj::isFinishIKMotion()
+void BigFoot::Obj::isFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1718,7 +1720,7 @@ void Game::BigFoot::Obj::isFinishIKMotion()
  * Address:	802C920C
  * Size:	000024
  */
-void Game::BigFoot::Obj::startBlendMotion()
+void BigFoot::Obj::startBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -1739,7 +1741,7 @@ void Game::BigFoot::Obj::startBlendMotion()
  * Address:	802C9230
  * Size:	000024
  */
-void Game::BigFoot::Obj::finishBlendMotion()
+void BigFoot::Obj::finishBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -1760,7 +1762,7 @@ void Game::BigFoot::Obj::finishBlendMotion()
  * Address:	802C9254
  * Size:	000020
  */
-void Game::BigFoot::Obj::getTraceCentrePosition()
+void BigFoot::Obj::getTraceCentrePosition()
 {
 	/*
 	.loc_0x0:
@@ -1780,7 +1782,7 @@ void Game::BigFoot::Obj::getTraceCentrePosition()
  * Address:	802C9274
  * Size:	000024
  */
-void Game::BigFoot::Obj::isCollisionCheck(CollPart*)
+void BigFoot::Obj::isCollisionCheck(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1801,7 +1803,7 @@ void Game::BigFoot::Obj::isCollisionCheck(CollPart*)
  * Address:	802C9298
  * Size:	000048
  */
-void Game::BigFoot::Obj::createShadowSystem()
+void BigFoot::Obj::createShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1833,7 +1835,7 @@ void Game::BigFoot::Obj::createShadowSystem()
  * Address:	802C92E0
  * Size:	000074
  */
-void Game::BigFoot::Obj::setupShadowSystem()
+void BigFoot::Obj::setupShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1878,7 +1880,7 @@ void Game::BigFoot::Obj::setupShadowSystem()
  * Address:	802C9354
  * Size:	000024
  */
-void Game::BigFoot::Obj::doAnimationShadowSystem()
+void BigFoot::Obj::doAnimationShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1899,7 +1901,7 @@ void Game::BigFoot::Obj::doAnimationShadowSystem()
  * Address:	802C9378
  * Size:	000054
  */
-void Game::BigFoot::Obj::createMaterialAnimation()
+void BigFoot::Obj::createMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1934,7 +1936,7 @@ void Game::BigFoot::Obj::createMaterialAnimation()
  * Address:	802C93CC
  * Size:	00003C
  */
-void Game::BigFoot::Obj::startMaterialAnimation()
+void BigFoot::Obj::startMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1961,7 +1963,7 @@ void Game::BigFoot::Obj::startMaterialAnimation()
  * Address:	802C9408
  * Size:	0000F0
  */
-void Game::BigFoot::Obj::updateMaterialAnimation()
+void BigFoot::Obj::updateMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -2045,7 +2047,7 @@ void Game::BigFoot::Obj::updateMaterialAnimation()
  * Address:	802C94F8
  * Size:	000090
  */
-void Game::BigFoot::Obj::setupCollision()
+void BigFoot::Obj::setupCollision()
 {
 	/*
 	.loc_0x0:
@@ -2097,7 +2099,7 @@ void Game::BigFoot::Obj::setupCollision()
  * Address:	802C9588
  * Size:	0000A4
  */
-void Game::BigFoot::Obj::createItemAndEnemy()
+void BigFoot::Obj::createItemAndEnemy()
 {
 	/*
 	.loc_0x0:
@@ -2152,7 +2154,7 @@ void Game::BigFoot::Obj::createItemAndEnemy()
  * Address:	802C962C
  * Size:	0000C8
  */
-void Game::BigFoot::Obj::startBossChargeBGM()
+void BigFoot::Obj::startBossChargeBGM()
 {
 	/*
 	.loc_0x0:
@@ -2220,7 +2222,7 @@ void Game::BigFoot::Obj::startBossChargeBGM()
  * Address:	802C96F4
  * Size:	0000C8
  */
-void Game::BigFoot::Obj::startBossAttackLoopBGM()
+void BigFoot::Obj::startBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2288,7 +2290,7 @@ void Game::BigFoot::Obj::startBossAttackLoopBGM()
  * Address:	802C97BC
  * Size:	0000C8
  */
-void Game::BigFoot::Obj::finishBossAttackLoopBGM()
+void BigFoot::Obj::finishBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2356,7 +2358,7 @@ void Game::BigFoot::Obj::finishBossAttackLoopBGM()
  * Address:	802C9884
  * Size:	0000D4
  */
-void Game::BigFoot::Obj::startStoneStateBossAttackLoopBGM()
+void BigFoot::Obj::startStoneStateBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2429,7 +2431,7 @@ void Game::BigFoot::Obj::startStoneStateBossAttackLoopBGM()
  * Address:	802C9958
  * Size:	0000D4
  */
-void Game::BigFoot::Obj::finishStoneStateBossAttackLoopBGM()
+void BigFoot::Obj::finishStoneStateBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2502,7 +2504,7 @@ void Game::BigFoot::Obj::finishStoneStateBossAttackLoopBGM()
  * Address:	802C9A2C
  * Size:	0000FC
  */
-void Game::BigFoot::Obj::updateBossBGM()
+void BigFoot::Obj::updateBossBGM()
 {
 	/*
 	.loc_0x0:
@@ -2587,7 +2589,7 @@ void Game::BigFoot::Obj::updateBossBGM()
  * Address:	802C9B28
  * Size:	0000BC
  */
-void Game::BigFoot::Obj::resetBossAppearBGM()
+void BigFoot::Obj::resetBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -2652,7 +2654,7 @@ void Game::BigFoot::Obj::resetBossAppearBGM()
  * Address:	802C9BE4
  * Size:	0000BC
  */
-void Game::BigFoot::Obj::setBossAppearBGM()
+void BigFoot::Obj::setBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -2717,7 +2719,7 @@ void Game::BigFoot::Obj::setBossAppearBGM()
  * Address:	802C9CA0
  * Size:	0006C8
  */
-void Game::BigFoot::Obj::createEffect()
+void BigFoot::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -3195,7 +3197,7 @@ void Game::BigFoot::Obj::createEffect()
  * Address:	802CA368
  * Size:	0001E4
  */
-void Game::BigFoot::Obj::setupEffect()
+void BigFoot::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -3330,7 +3332,7 @@ void Game::BigFoot::Obj::setupEffect()
  * Address:	802CA54C
  * Size:	000228
  */
-void Game::BigFoot::Obj::createOnGroundEffect(int, Game::WaterBox*)
+void BigFoot::Obj::createOnGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -3488,7 +3490,7 @@ void Game::BigFoot::Obj::createOnGroundEffect(int, Game::WaterBox*)
  * Address:	802CA774
  * Size:	000164
  */
-void Game::BigFoot::Obj::createOffGroundEffect(int, Game::WaterBox*)
+void BigFoot::Obj::createOffGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -3601,7 +3603,7 @@ void Game::BigFoot::Obj::createOffGroundEffect(int, Game::WaterBox*)
  * Address:	802CA8D8
  * Size:	0001A0
  */
-void Game::BigFoot::Obj::startPinchJointEffect()
+void BigFoot::Obj::startPinchJointEffect()
 {
 	/*
 	.loc_0x0:
@@ -3723,7 +3725,7 @@ void Game::BigFoot::Obj::startPinchJointEffect()
  * Address:	802CAA78
  * Size:	000058
  */
-void Game::BigFoot::Obj::finishPinchJointEffect()
+void BigFoot::Obj::finishPinchJointEffect()
 {
 	/*
 	.loc_0x0:
@@ -3759,7 +3761,7 @@ void Game::BigFoot::Obj::finishPinchJointEffect()
  * Address:	802CAAD0
  * Size:	0001C0
  */
-void Game::BigFoot::Obj::startDeadEffect()
+void BigFoot::Obj::startDeadEffect()
 {
 	/*
 	.loc_0x0:
@@ -3893,7 +3895,7 @@ void Game::BigFoot::Obj::startDeadEffect()
  * Address:	802CAC90
  * Size:	000254
  */
-void Game::BigFoot::Obj::updatePinchLife()
+void BigFoot::Obj::updatePinchLife()
 {
 	/*
 	.loc_0x0:
@@ -4066,7 +4068,7 @@ void Game::BigFoot::Obj::updatePinchLife()
  * Address:	802CAEE4
  * Size:	000074
  */
-void Game::BigFoot::Obj::startFurEffect()
+void BigFoot::Obj::startFurEffect()
 {
 	/*
 	.loc_0x0:
@@ -4109,7 +4111,7 @@ void Game::BigFoot::Obj::startFurEffect()
  * Address:	802CAF58
  * Size:	00006C
  */
-void Game::BigFoot::Obj::finishFurEffect()
+void BigFoot::Obj::finishFurEffect()
 {
 	/*
 	.loc_0x0:
@@ -4150,7 +4152,7 @@ void Game::BigFoot::Obj::finishFurEffect()
  * Address:	802CAFC4
  * Size:	000068
  */
-void Game::BigFoot::Obj::updateDeadFurEffect()
+void BigFoot::Obj::updateDeadFurEffect()
 {
 	/*
 	.loc_0x0:
@@ -4190,7 +4192,7 @@ void Game::BigFoot::Obj::updateDeadFurEffect()
  * Address:	802CB02C
  * Size:	0001D8
  */
-void Game::BigFoot::Obj::effectDrawOn()
+void BigFoot::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -4336,7 +4338,7 @@ void Game::BigFoot::Obj::effectDrawOn()
  * Address:	802CB204
  * Size:	0001D8
  */
-void Game::BigFoot::Obj::effectDrawOff()
+void BigFoot::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -4482,7 +4484,7 @@ void Game::BigFoot::Obj::effectDrawOff()
  * Address:	802CB3DC
  * Size:	000038
  */
-void Game::BigFoot::Obj::addShadowScale()
+void BigFoot::Obj::addShadowScale()
 {
 	/*
 	.loc_0x0:
@@ -4503,12 +4505,16 @@ void Game::BigFoot::Obj::addShadowScale()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802CB414
  * Size:	00009C
  */
-void efx::TOdamaFur1::~TOdamaFur1()
+TOdamaFur1::~TOdamaFur1()
 {
 	/*
 	.loc_0x0:
@@ -4563,7 +4569,7 @@ void efx::TOdamaFur1::~TOdamaFur1()
  * Address:	802CB4B0
  * Size:	00009C
  */
-void efx::TOdamaDeadHahenC2::~TOdamaDeadHahenC2()
+TOdamaDeadHahenC2::~TOdamaDeadHahenC2()
 {
 	/*
 	.loc_0x0:
@@ -4618,7 +4624,7 @@ void efx::TOdamaDeadHahenC2::~TOdamaDeadHahenC2()
  * Address:	802CB54C
  * Size:	00009C
  */
-void efx::TOdamaDeadHahenC1::~TOdamaDeadHahenC1()
+TOdamaDeadHahenC1::~TOdamaDeadHahenC1()
 {
 	/*
 	.loc_0x0:
@@ -4673,7 +4679,7 @@ void efx::TOdamaDeadHahenC1::~TOdamaDeadHahenC1()
  * Address:	802CB5E8
  * Size:	00009C
  */
-void efx::TOdamaFur2::~TOdamaFur2()
+TOdamaFur2::~TOdamaFur2()
 {
 	/*
 	.loc_0x0:
@@ -4728,7 +4734,7 @@ void efx::TOdamaFur2::~TOdamaFur2()
  * Address:	802CB684
  * Size:	00009C
  */
-void efx::TOdamaDeadHahenB::~TOdamaDeadHahenB()
+TOdamaDeadHahenB::~TOdamaDeadHahenB()
 {
 	/*
 	.loc_0x0:
@@ -4783,7 +4789,7 @@ void efx::TOdamaDeadHahenB::~TOdamaDeadHahenB()
  * Address:	802CB720
  * Size:	00009C
  */
-void efx::TOdamaDeadHahenA::~TOdamaDeadHahenA()
+TOdamaDeadHahenA::~TOdamaDeadHahenA()
 {
 	/*
 	.loc_0x0:
@@ -4838,7 +4844,7 @@ void efx::TOdamaDeadHahenA::~TOdamaDeadHahenA()
  * Address:	802CB7BC
  * Size:	00009C
  */
-void efx::TOdamaHahen::~TOdamaHahen()
+TOdamaHahen::~TOdamaHahen()
 {
 	/*
 	.loc_0x0:
@@ -4888,26 +4894,30 @@ void efx::TOdamaHahen::~TOdamaHahen()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	802CB858
  * Size:	000004
  */
-void Game::BigFoot::Obj::inWaterCallback(Game::WaterBox*) { }
+void BigFoot::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802CB85C
  * Size:	000004
  */
-void Game::BigFoot::Obj::outWaterCallback() { }
+void BigFoot::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802CB860
  * Size:	000008
  */
-void Game::BigFoot::Obj::getDamageCoeStoneState()
+void BigFoot::Obj::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -4921,14 +4931,16 @@ void Game::BigFoot::Obj::getDamageCoeStoneState()
  * Address:	802CB868
  * Size:	000004
  */
-void Game::BigFoot::Obj::throwupItemInDeathProcedure() { }
+void BigFoot::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--
  * Address:	802CB86C
  * Size:	000008
  */
-u32 Game::BigFoot::Obj::getEnemyTypeID() { return 0x45; }
+u32 BigFoot::Obj::getEnemyTypeID() { return 0x45; }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -4952,12 +4964,14 @@ void __sinit_BigFoot_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802CB89C
  * Size:	000014
  */
-void Game::EnemyBase::@1196 @12 @viewOnPelletKilled()
+void EnemyBase::@1196 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -4974,7 +4988,7 @@ void Game::EnemyBase::@1196 @12 @viewOnPelletKilled()
  * Address:	802CB8B0
  * Size:	000014
  */
-void Game::EnemyBase::@1196 @12 @viewStartCarryMotion()
+void EnemyBase::@1196 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4991,7 +5005,7 @@ void Game::EnemyBase::@1196 @12 @viewStartCarryMotion()
  * Address:	802CB8C4
  * Size:	000014
  */
-void Game::EnemyBase::@1196 @12 @viewStartPreCarryMotion()
+void EnemyBase::@1196 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -5008,7 +5022,7 @@ void Game::EnemyBase::@1196 @12 @viewStartPreCarryMotion()
  * Address:	802CB8D8
  * Size:	000014
  */
-void Game::EnemyBase::@1196 @12 @view_finish_carrymotion()
+void EnemyBase::@1196 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -5025,7 +5039,7 @@ void Game::EnemyBase::@1196 @12 @view_finish_carrymotion()
  * Address:	802CB8EC
  * Size:	000014
  */
-void Game::EnemyBase::@1196 @12 @view_start_carrymotion()
+void EnemyBase::@1196 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -5042,7 +5056,7 @@ void Game::EnemyBase::@1196 @12 @view_start_carrymotion()
  * Address:	802CB900
  * Size:	000014
  */
-void Game::EnemyBase::@1196 @12 @viewGetShape()
+void EnemyBase::@1196 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -5054,100 +5068,105 @@ void Game::EnemyBase::@1196 @12 @viewGetShape()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802CB914
- * Size:	000008
- */
-void efx::TOdamaHahen::@4 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x15C
-	*/
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	802CB91C
- * Size:	000008
- */
-void efx::TOdamaDeadHahenA::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x200
-	*/
-}
+	 * --INFO--
+	 * Address:	802CB914
+	 * Size:	000008
+	 */
+	TOdamaHahen::@4 @~TOdamaHahen()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x15C
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802CB924
- * Size:	000008
- */
-void efx::TOdamaDeadHahenB::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x2A4
-	*/
-}
+	 * --INFO--
+	 * Address:	802CB91C
+	 * Size:	000008
+	 */
+	TOdamaDeadHahenA::@4 @~TOdamaDeadHahenA()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x200
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802CB92C
- * Size:	000008
- */
-void efx::TOdamaFur2::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x348
-	*/
-}
+	 * --INFO--
+	 * Address:	802CB924
+	 * Size:	000008
+	 */
+	TOdamaDeadHahenB::@4 @~TOdamaDeadHahenB()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x2A4
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802CB934
- * Size:	000008
- */
-void efx::TOdamaDeadHahenC1::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x3EC
-	*/
-}
+	 * --INFO--
+	 * Address:	802CB92C
+	 * Size:	000008
+	 */
+	TOdamaFur2::@4 @~TOdamaFur2()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x348
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802CB93C
- * Size:	000008
- */
-void efx::TOdamaDeadHahenC2::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x490
-	*/
-}
+	 * --INFO--
+	 * Address:	802CB934
+	 * Size:	000008
+	 */
+	TOdamaDeadHahenC1::@4 @~TOdamaDeadHahenC1()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x3EC
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	802CB944
- * Size:	000008
- */
-void efx::TOdamaFur1::@4 @__dt()
-{
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x534
-	*/
-}
+	 * --INFO--
+	 * Address:	802CB93C
+	 * Size:	000008
+	 */
+	TOdamaDeadHahenC2::@4 @~TOdamaDeadHahenC2()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x490
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	802CB944
+	 * Size:	000008
+	 */
+	TOdamaFur1::@4 @~TOdamaFur1()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x534
+		*/
+	}
+} // namespace efx
+
+} // namespace Game

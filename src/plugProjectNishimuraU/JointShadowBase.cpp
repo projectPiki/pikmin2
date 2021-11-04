@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -18,7 +8,7 @@ void _Print(char*, ...)
 void
     makeShadowSRT__Q24Game19TubeShadowTransNodeFRQ24Game15JointShadowParmR10Vector3<
         float>
-    R10Vector3<float>(void)
+    R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +187,7 @@ void
 void
     makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3<
         float>
-    R10Vector3<float>(void)
+    R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -376,7 +366,7 @@ void
 void
     makeShadowSRT__Q24Game17TubeShadowPosNodeFRQ24Game15JointShadowParmR10Vector3<
         float>
-    R10Vector3<float>(void)
+    R10Vector3f(void)
 {
 	/*
 	.loc_0x0:

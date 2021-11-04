@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80252B20
  * Size:	000158
  */
-void Game::ContRumble::ContRumble(int, int)
+ContRumble::ContRumble(int, int)
 {
 	/*
 	.loc_0x0:
@@ -113,7 +115,7 @@ void Game::ContRumble::ContRumble(int, int)
  * Address:	80252C78
  * Size:	00008C
  */
-void Game::ContRumble::init()
+void ContRumble::init()
 {
 	/*
 	.loc_0x0:
@@ -164,7 +166,7 @@ void Game::ContRumble::init()
  * Address:	80252D04
  * Size:	000290
  */
-void Game::ContRumble::update()
+void ContRumble::update()
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void Game::ContRumble::update()
  * Address:	80252F94
  * Size:	000058
  */
-void Game::ContRumble::setController(bool)
+void ContRumble::setController(bool)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +410,7 @@ void Game::ContRumble::setController(bool)
  * Address:	80252FEC
  * Size:	000104
  */
-void Game::ContRumble::startRumble(int, float)
+void ContRumble::startRumble(int, float)
 {
 	/*
 	.loc_0x0:
@@ -491,7 +493,7 @@ void Game::ContRumble::startRumble(int, float)
  * Address:	802530F0
  * Size:	000088
  */
-void Game::ContRumble::rumbleStop()
+void ContRumble::rumbleStop()
 {
 	/*
 	.loc_0x0:
@@ -543,7 +545,7 @@ void Game::ContRumble::rumbleStop()
  * Address:	80253178
  * Size:	000090
  */
-void Game::ContRumble::rumbleStop(int)
+void ContRumble::rumbleStop(int)
 {
 	/*
 	.loc_0x0:
@@ -599,7 +601,7 @@ void Game::ContRumble::rumbleStop(int)
  * Address:	80253208
  * Size:	00009C
  */
-void Game::ContRumble::getRumbleParameter(int, float&, float&)
+void ContRumble::getRumbleParameter(int, float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +652,7 @@ void Game::ContRumble::getRumbleParameter(int, float&, float&)
  * Address:	802532A4
  * Size:	000060
  */
-void Game::RumbleNode::~RumbleNode()
+RumbleNode::~RumbleNode()
 {
 	/*
 	.loc_0x0:
@@ -682,3 +684,4 @@ void Game::RumbleNode::~RumbleNode()
 	  blr
 	*/
 }
+} // namespace Game

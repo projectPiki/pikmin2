@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	80321F08
  * Size:	000044
  */
-void og::newScreen::Contena::__ct(void)
+newScreen::Contena::Contena(void)
 {
 	/*
 	.loc_0x0:
@@ -34,7 +36,7 @@ void og::newScreen::Contena::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::Contena::__dt(void)
+newScreen::Contena::~Contena(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,14 +46,14 @@ void og::newScreen::Contena::__dt(void)
  * Address:	80321F4C
  * Size:	000004
  */
-void og::newScreen::Contena::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::Contena::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80321F50
  * Size:	000100
  */
-void og::newScreen::Contena::doCreateObj((JKRArchive*))
+void newScreen::Contena::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -137,7 +139,7 @@ void og::newScreen::Contena::doCreateObj((JKRArchive*))
  * Address:	80322050
  * Size:	00000C
  */
-void og::newScreen::Contena::getResName( const
+void newScreen::Contena::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -152,7 +154,7 @@ void og::newScreen::Contena::getResName( const
  * Address:	8032205C
  * Size:	000008
  */
-void og::newScreen::Contena::getSceneType(void)
+void newScreen::Contena::getSceneType(void)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +168,7 @@ void og::newScreen::Contena::getSceneType(void)
  * Address:	80322064
  * Size:	00000C
  */
-void og::newScreen::Contena::getOwnerID(void)
+void newScreen::Contena::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void og::newScreen::Contena::getOwnerID(void)
  * Address:	80322070
  * Size:	000014
  */
-void og::newScreen::Contena::getMemberID(void)
+void newScreen::Contena::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -198,7 +200,5 @@ void og::newScreen::Contena::getMemberID(void)
  * Address:	80322084
  * Size:	000008
  */
-u32  og::newScreen::Contena::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::Contena::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

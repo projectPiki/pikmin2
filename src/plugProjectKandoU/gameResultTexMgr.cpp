@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80227418
  * Size:	000050
  */
-void Game::ResultTexMgr::Mgr::__ct(void)
+ResultTexMgr::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::ResultTexMgr::Mgr::__ct(void)
  * Address:	80227468
  * Size:	000060
  */
-void Game::ResultTexMgr::Mgr::__dt(void)
+ResultTexMgr::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -85,7 +77,7 @@ void Game::ResultTexMgr::Mgr::__dt(void)
  * Address:	802274C8
  * Size:	000340
  */
-void Game::ResultTexMgr::Mgr::create((Game::ResultTexMgr::Arg&))
+void ResultTexMgr::Mgr::create(Game::ResultTexMgr::Arg&)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +335,7 @@ void Game::ResultTexMgr::Mgr::create((Game::ResultTexMgr::Arg&))
  * Address:	........
  * Size:	000058
  */
-void Game::ResultTexMgr::Mgr::getOtakaraNum(void)
+void ResultTexMgr::Mgr::getOtakaraNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -353,7 +345,7 @@ void Game::ResultTexMgr::Mgr::getOtakaraNum(void)
  * Address:	........
  * Size:	000058
  */
-void Game::ResultTexMgr::Mgr::getItemNum(void)
+void ResultTexMgr::Mgr::getItemNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -363,7 +355,7 @@ void Game::ResultTexMgr::Mgr::getItemNum(void)
  * Address:	80227808
  * Size:	0000B8
  */
-void Game::ResultTexMgr::Mgr::getOtakaraItemTexture((int))
+void ResultTexMgr::Mgr::getOtakaraItemTexture(int)
 {
 	/*
 	.loc_0x0:
@@ -431,7 +423,7 @@ void Game::ResultTexMgr::Mgr::getOtakaraItemTexture((int))
  * Address:	802278C0
  * Size:	000024
  */
-void Game::ResultTexMgr::Mgr::getOtakaraTexture((int))
+void ResultTexMgr::Mgr::getOtakaraTexture(int)
 {
 	/*
 	.loc_0x0:
@@ -452,7 +444,7 @@ void Game::ResultTexMgr::Mgr::getOtakaraTexture((int))
  * Address:	802278E4
  * Size:	000024
  */
-void Game::ResultTexMgr::Mgr::getItemTexture((int))
+void ResultTexMgr::Mgr::getItemTexture(int)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +465,7 @@ void Game::ResultTexMgr::Mgr::getItemTexture((int))
  * Address:	80227908
  * Size:	000028
  */
-void Game::ResultTexMgr::Mgr::getCarcassTexture(void)
+void ResultTexMgr::Mgr::getCarcassTexture(void)
 {
 	/*
 	.loc_0x0:
@@ -495,7 +487,7 @@ void Game::ResultTexMgr::Mgr::getCarcassTexture(void)
  * Address:	80227930
  * Size:	000064
  */
-void Game::ResultTexMgr::Mgr::Textures::alloc((int))
+void ResultTexMgr::Mgr::Textures::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -532,7 +524,7 @@ void Game::ResultTexMgr::Mgr::Textures::alloc((int))
  * Address:	80227994
  * Size:	000074
  */
-void Game::ResultTexMgr::Mgr::Textures::getTexture((int))
+void ResultTexMgr::Mgr::Textures::getTexture(int)
 {
 	/*
 	.loc_0x0:
@@ -577,7 +569,7 @@ void Game::ResultTexMgr::Mgr::Textures::getTexture((int))
  * Address:	80227A08
  * Size:	00005C
  */
-void Game::Result::TNode::__ct(void)
+Result::TNode::TNode(void)
 {
 	/*
 	.loc_0x0:
@@ -612,8 +604,7 @@ void Game::Result::TNode::__ct(void)
  * Address:	80227A64
  * Size:	00001C
  */
-void Game::Result::TNode::setTNode((unsigned long long, JUTTexture*, int, int,
-                                    int))
+void Result::TNode::setTNode(unsigned long long, JUTTexture*, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -632,8 +623,8 @@ void Game::Result::TNode::setTNode((unsigned long long, JUTTexture*, int, int,
  * Address:	80227A80
  * Size:	000024
  */
-void Game::Result::TNode::setTNode((unsigned long long, JUTTexture*, int, int,
-                                    int, int))
+void Result::TNode::setTNode(unsigned long long, JUTTexture*, int, int, int,
+                             int)
 {
 	/*
 	.loc_0x0:
@@ -654,7 +645,7 @@ void Game::Result::TNode::setTNode((unsigned long long, JUTTexture*, int, int,
  * Address:	80227AA4
  * Size:	000078
  */
-void Game::Result::TNode::convertByMorimun((int))
+void Result::TNode::convertByMorimun(int)
 {
 	/*
 	.loc_0x0:
@@ -696,7 +687,7 @@ void Game::Result::TNode::convertByMorimun((int))
  * Address:	80227B1C
  * Size:	00005C
  */
-void Game::DNode::__ct(void)
+DNode::DNode(void)
 {
 	/*
 	.loc_0x0:
@@ -731,7 +722,7 @@ void Game::DNode::__ct(void)
  * Address:	........
  * Size:	000020
  */
-void Game::DNode::addHead((Game::DNode*))
+void DNode::addHead(Game::DNode*)
 {
 	// UNUSED FUNCTION
 }
@@ -741,7 +732,7 @@ void Game::DNode::addHead((Game::DNode*))
  * Address:	80227B78
  * Size:	0000B0
  */
-void Game::DNode::add((Game::DNode*))
+void DNode::add(Game::DNode*)
 {
 	/*
 	.loc_0x0:
@@ -813,7 +804,7 @@ void Game::DNode::add((Game::DNode*))
  * Address:	........
  * Size:	000020
  */
-void Game::DNode::calcNextCount(void)
+void DNode::calcNextCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -823,7 +814,7 @@ void Game::DNode::calcNextCount(void)
  * Address:	........
  * Size:	0000B0
  */
-void Game::DNode::concat((Game::DNode*))
+void DNode::concat(Game::DNode*)
 {
 	// UNUSED FUNCTION
 }
@@ -833,7 +824,7 @@ void Game::DNode::concat((Game::DNode*))
  * Address:	80227C28
  * Size:	000068
  */
-void Game::DNode::__dt(void)
+DNode::~DNode(void)
 {
 	/*
 	.loc_0x0:
@@ -875,7 +866,7 @@ void Game::DNode::__dt(void)
  * Address:	80227C90
  * Size:	000098
  */
-void Game::DNode::del(void)
+void DNode::del(void)
 {
 	/*
 	.loc_0x0:
@@ -937,7 +928,7 @@ void Game::DNode::del(void)
  * Address:	80227D28
  * Size:	000034
  */
-void Game::DNode::getChildCount(void)
+void DNode::getChildCount(void)
 {
 	/*
 	.loc_0x0:
@@ -968,7 +959,8 @@ void Game::DNode::getChildCount(void)
  * Address:	........
  * Size:	000094
  */
-void Game::DNode::getChildAt((int))
+void DNode::getChildAt(int)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Game

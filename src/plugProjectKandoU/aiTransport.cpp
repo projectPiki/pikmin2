@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801A1914
  * Size:	000064
  */
-void PikiAI::ActTransport::getInfo((char*))
+void PikiAI::ActTransport::getInfo(char*)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +42,7 @@ void PikiAI::ActTransport::getInfo((char*))
  * Address:	801A1978
  * Size:	0000D0
  */
-void PikiAI::ActTransport::__ct((Game::Piki*))
+PikiAI::ActTransport::ActTransport(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +112,7 @@ void PikiAI::ActTransport::__ct((Game::Piki*))
  * Address:	801A1A48
  * Size:	00017C
  */
-void PikiAI::ActTransport::init((PikiAI::ActionArg*))
+void PikiAI::ActTransport::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -617,7 +607,7 @@ void PikiAI::ActTransport::cleanup(void)
  * Address:	801A206C
  * Size:	00011C
  */
-void PikiAI::ActTransport::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActTransport::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1191,7 +1181,7 @@ void PikiAI::GotoSlotArg::getName(void)
  * Address:	801A270C
  * Size:	000014
  */
-void @60 @4 @PikiAI::ActTransport::onKeyEvent((SysShape::KeyEvent const&))
+void @60 @4 @PikiAI::ActTransport::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

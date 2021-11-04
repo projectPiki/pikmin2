@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80233484
  * Size:	000048
  */
-void Game::IconTexture::Loader::__ct(void)
+IconTexture::Loader::Loader(void)
 {
 	/*
 	.loc_0x0:
@@ -45,7 +37,7 @@ void Game::IconTexture::Loader::__ct(void)
  * Address:	802334CC
  * Size:	00008C
  */
-void Game::IconTexture::Loader::__dt(void)
+IconTexture::Loader::~Loader(void)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +90,7 @@ void Game::IconTexture::Loader::__dt(void)
  * Address:	80233558
  * Size:	000084
  */
-void Game::IconTexture::Loader::loadResource((char*))
+void IconTexture::Loader::loadResource(char*)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +139,7 @@ void Game::IconTexture::Loader::loadResource((char*))
  * Address:	802335DC
  * Size:	000030
  */
-void Game::IconTexture::Loader::getResTIMG((char*))
+void IconTexture::Loader::getResTIMG(char*)
 {
 	/*
 	.loc_0x0:
@@ -171,7 +163,7 @@ void Game::IconTexture::Loader::getResTIMG((char*))
  * Address:	8023360C
  * Size:	000048
  */
-void Game::IconTexture::Mgr::__ct(void)
+IconTexture::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -201,7 +193,7 @@ void Game::IconTexture::Mgr::__ct(void)
  * Address:	80233654
  * Size:	00008C
  */
-void Game::IconTexture::Mgr::__dt(void)
+IconTexture::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -252,7 +244,7 @@ void Game::IconTexture::Mgr::__dt(void)
  * Address:	802336E0
  * Size:	000084
  */
-void Game::IconTexture::Mgr::create((int))
+void IconTexture::Mgr::create(int)
 {
 	/*
 	.loc_0x0:
@@ -299,7 +291,7 @@ void Game::IconTexture::Mgr::create((int))
  * Address:	80233764
  * Size:	00008C
  */
-void Game::IconTexture::Mgr::setTexture((int, ResTIMG*))
+void IconTexture::Mgr::setTexture(int, ResTIMG*)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +342,7 @@ void Game::IconTexture::Mgr::setTexture((int, ResTIMG*))
  * Address:	802337F0
  * Size:	00002C
  */
-void Game::IconTexture::Mgr::getTexture((int))
+void IconTexture::Mgr::getTexture(int)
 {
 	/*
 	.loc_0x0:
@@ -371,3 +363,4 @@ void Game::IconTexture::Mgr::getTexture((int))
 	  blr
 	*/
 }
+} // namespace Game

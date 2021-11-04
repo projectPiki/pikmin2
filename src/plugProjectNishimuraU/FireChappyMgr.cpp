@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8028F138
  * Size:	000050
  */
-void Game::FireChappy::Mgr::Mgr(int, unsigned char)
+FireChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::FireChappy::Mgr::Mgr(int, unsigned char)
  * Address:	8028F188
  * Size:	000048
  */
-void Game::FireChappy::Mgr::doAlloc()
+void FireChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::FireChappy::Mgr::doAlloc()
  * Address:	8028F1D0
  * Size:	000060
  */
-void Game::FireChappy::Mgr::createObj(int)
+void FireChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::FireChappy::Mgr::createObj(int)
  * Address:	8028F230
  * Size:	0000F0
  */
-void Game::FireChappy::Obj::~Obj()
+FireChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::FireChappy::Obj::~Obj()
  * Address:	8028F320
  * Size:	000010
  */
-void Game::FireChappy::Mgr::getEnemy(int)
+void FireChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void Game::FireChappy::Mgr::getEnemy(int)
  * Address:	8028F330
  * Size:	000068
  */
-void Game::FireChappy::Mgr::loadModelData()
+void FireChappy::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -239,7 +241,7 @@ void Game::FireChappy::Mgr::loadModelData()
  * Address:	8028F398
  * Size:	00012C
  */
-void Game::FireChappy::Mgr::loadTexData()
+void FireChappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -338,7 +340,7 @@ void Game::FireChappy::Mgr::loadTexData()
  * Address:	8028F4C4
  * Size:	00007C
  */
-void Game::FireChappy::Mgr::createModel()
+void FireChappy::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -385,7 +387,7 @@ void Game::FireChappy::Mgr::createModel()
  * Address:	8028F540
  * Size:	0000B0
  */
-void Game::FireChappy::Mgr::~Mgr()
+FireChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -445,14 +447,14 @@ void Game::FireChappy::Mgr::~Mgr()
  * Address:	8028F5F0
  * Size:	000008
  */
-u32 Game::FireChappy::Mgr::getEnemyTypeID() { return 0x21; }
+u32 FireChappy::Mgr::getEnemyTypeID() { return 0x21; }
 
 /*
  * --INFO--
  * Address:	8028F5F8
  * Size:	00002C
  */
-void Game::FireChappy::Mgr::doLoadBmd(void*)
+void FireChappy::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +477,7 @@ void Game::FireChappy::Mgr::doLoadBmd(void*)
  * Address:	8028F624
  * Size:	000008
  */
-void Game::FireChappy::Mgr::@4 @__dt()
+FireChappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -483,3 +485,4 @@ void Game::FireChappy::Mgr::@4 @__dt()
 	  b         -0xE8
 	*/
 }
+} // namespace Game

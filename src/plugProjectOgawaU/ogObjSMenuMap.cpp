@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000228
  */
-void og::newScreen::getNaviPtr((int))
+void newScreen::getNaviPtr(int)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void og::newScreen::getNaviPtr((int))
  * Address:	8030F6F0
  * Size:	000114
  */
-void og::newScreen::ObjSMenuMap::__ct((char const*))
+newScreen::ObjSMenuMap::ObjSMenuMap(char const*)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +98,7 @@ void og::newScreen::ObjSMenuMap::__ct((char const*))
  * Address:	8030F804
  * Size:	0000AC
  */
-void og::newScreen::ObjSMenuBase::__dt(void)
+newScreen::ObjSMenuBase::~ObjSMenuBase(void)
 {
 	/*
 	.loc_0x0:
@@ -165,7 +157,7 @@ void og::newScreen::ObjSMenuBase::__dt(void)
  * Address:	8030F8B0
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuMap::__dt(void)
+newScreen::ObjSMenuMap::~ObjSMenuMap(void)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +222,7 @@ void og::newScreen::ObjSMenuMap::__dt(void)
  * Address:	........
  * Size:	000024
  */
-void og::newScreen::ObjSMenuMap::calcMapScale(void)
+void newScreen::ObjSMenuMap::calcMapScale(void)
 {
 	// UNUSED FUNCTION
 }
@@ -251,7 +243,7 @@ P10Vector2<float>(void)
  * Address:	8030F974
  * Size:	00026C
  */
-void og::newScreen::ObjSMenuMap::setMapTexture(void)
+void newScreen::ObjSMenuMap::setMapTexture(void)
 {
 	/*
 	.loc_0x0:
@@ -434,7 +426,7 @@ void og::newScreen::ObjSMenuMap::setMapTexture(void)
  * Address:	........
  * Size:	0001B0
  */
-void og::newScreen::ObjSMenuMap::setMapPos(void)
+void newScreen::ObjSMenuMap::setMapPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -444,7 +436,7 @@ void og::newScreen::ObjSMenuMap::setMapPos(void)
  * Address:	........
  * Size:	0000BC
  */
-void og::newScreen::ObjSMenuMap::setCompass(void)
+void newScreen::ObjSMenuMap::setCompass(void)
 {
 	// UNUSED FUNCTION
 }
@@ -454,7 +446,7 @@ void og::newScreen::ObjSMenuMap::setCompass(void)
  * Address:	8030FBE0
  * Size:	0001B8
  */
-void og::newScreen::ObjSMenuMap::tuningIcon(void)
+void newScreen::ObjSMenuMap::tuningIcon(void)
 {
 	/*
 	.loc_0x0:
@@ -594,7 +586,7 @@ void og::newScreen::ObjSMenuMap::tuningIcon(void)
  * Address:	8030FD98
  * Size:	000C74
  */
-void og::newScreen::ObjSMenuMap::initMapIcon((JKRArchive*))
+void newScreen::ObjSMenuMap::initMapIcon(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1501,8 +1493,8 @@ void og::newScreen::ObjSMenuMap::initMapIcon((JKRArchive*))
  * Address:	80310A0C
  * Size:	0001E4
  */
-void og::newScreen::ObjSMenuMap::appendCaveName((J2DPane*, unsigned short,
-                                                 unsigned long long))
+void newScreen::ObjSMenuMap::appendCaveName(J2DPane*, unsigned short,
+                                            unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -1641,7 +1633,7 @@ void og::newScreen::ObjSMenuMap::appendCaveName((J2DPane*, unsigned short,
  * Address:	........
  * Size:	000004
  */
-void og::newScreen::ObjSMenuMap::rotateMap(void)
+void newScreen::ObjSMenuMap::rotateMap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1651,7 +1643,7 @@ void og::newScreen::ObjSMenuMap::rotateMap(void)
  * Address:	80310BF0
  * Size:	0002E8
  */
-void og::newScreen::ObjSMenuMap::transMap(void)
+void newScreen::ObjSMenuMap::transMap(void)
 {
 	/*
 	.loc_0x0:
@@ -1889,7 +1881,7 @@ void og::newScreen::ObjSMenuMap::transMap(void)
  * Address:	........
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuMap::scaleMap(void)
+void newScreen::ObjSMenuMap::scaleMap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1899,7 +1891,7 @@ void og::newScreen::ObjSMenuMap::scaleMap(void)
  * Address:	........
  * Size:	0000B0
  */
-void og::newScreen::ObjSMenuMap::setMapColor(void)
+void newScreen::ObjSMenuMap::setMapColor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1909,7 +1901,7 @@ void og::newScreen::ObjSMenuMap::setMapColor(void)
  * Address:	........
  * Size:	000054
  */
-void og::newScreen::ObjSMenuMap::calcCaveNameAlpha(void)
+void newScreen::ObjSMenuMap::calcCaveNameAlpha(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1919,7 +1911,7 @@ void og::newScreen::ObjSMenuMap::calcCaveNameAlpha(void)
  * Address:	80310ED8
  * Size:	000960
  */
-void og::newScreen::ObjSMenuMap::doCreate((JKRArchive*))
+void newScreen::ObjSMenuMap::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -2593,7 +2585,7 @@ void og::newScreen::ObjSMenuMap::doCreate((JKRArchive*))
  * Address:	80311838
  * Size:	000598
  */
-void og::newScreen::ObjSMenuMap::updateMap(void)
+void newScreen::ObjSMenuMap::updateMap(void)
 {
 	/*
 	.loc_0x0:
@@ -2991,7 +2983,7 @@ void og::newScreen::ObjSMenuMap::updateMap(void)
  * Address:	80311DD0
  * Size:	0000A8
  */
-void og::newScreen::ObjSMenuMap::commonUpdate(void)
+void newScreen::ObjSMenuMap::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -3045,7 +3037,7 @@ void og::newScreen::ObjSMenuMap::commonUpdate(void)
  * Address:	80311E78
  * Size:	00006C
  */
-void og::newScreen::ObjSMenuMap::doUpdateLAction(void)
+void newScreen::ObjSMenuMap::doUpdateLAction(void)
 {
 	/*
 	.loc_0x0:
@@ -3084,7 +3076,7 @@ void og::newScreen::ObjSMenuMap::doUpdateLAction(void)
  * Address:	80311EE4
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuMap::doUpdateRAction(void)
+void newScreen::ObjSMenuMap::doUpdateRAction(void)
 {
 	/*
 	.loc_0x0:
@@ -3149,7 +3141,7 @@ void og::newScreen::ObjSMenuMap::doUpdateRAction(void)
  * Address:	80311FA8
  * Size:	00010C
  */
-void og::newScreen::ObjSMenuMap::doUpdate(void)
+void newScreen::ObjSMenuMap::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -3240,7 +3232,7 @@ void og::newScreen::ObjSMenuMap::doUpdate(void)
  * Address:	803120B4
  * Size:	000138
  */
-void og::newScreen::ObjSMenuMap::doDraw((Graphics&))
+void newScreen::ObjSMenuMap::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -3338,7 +3330,7 @@ void og::newScreen::ObjSMenuMap::doDraw((Graphics&))
  * Address:	803121EC
  * Size:	00032C
  */
-void og::newScreen::ObjSMenuMap::drawMap((Graphics&))
+void newScreen::ObjSMenuMap::drawMap(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -3694,8 +3686,8 @@ R6Color4f(void)
  * Address:	803126F8
  * Size:	000214
  */
-void og::newScreen::ObjSMenuMap::drawVecZ((Graphics&, Vec&, Vec&, Vec&, Vec&,
-                                           Color4&, float))
+void newScreen::ObjSMenuMap::drawVecZ(Graphics&, Vec&, Vec&, Vec&, Vec&,
+                                      Color4&, float)
 {
 	/*
 	.loc_0x0:
@@ -3840,7 +3832,7 @@ void og::newScreen::ObjSMenuMap::drawVecZ((Graphics&, Vec&, Vec&, Vec&, Vec&,
  * Address:	8031290C
  * Size:	0000A4
  */
-void og::newScreen::ObjSMenuMap::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjSMenuMap::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -3893,17 +3885,14 @@ void og::newScreen::ObjSMenuMap::doStart((Screen::StartSceneArg const*))
  * Address:	803129B0
  * Size:	000008
  */
-u32 og::newScreen::ObjSMenuMap::doEnd((Screen::EndSceneArg const*))
-{
-	return 0x1;
-}
+u32 newScreen::ObjSMenuMap::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	803129B8
  * Size:	000020
  */
-void og::newScreen::ObjSMenuMap::doUpdateFinish(void)
+void newScreen::ObjSMenuMap::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -3923,7 +3912,7 @@ void og::newScreen::ObjSMenuMap::doUpdateFinish(void)
  * Address:	803129D8
  * Size:	00004C
  */
-void og::newScreen::ObjSMenuMap::doUpdateFadeout(void)
+void newScreen::ObjSMenuMap::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -3954,7 +3943,7 @@ void og::newScreen::ObjSMenuMap::doUpdateFadeout(void)
  * Address:	80312A24
  * Size:	000014
  */
-void og::newScreen::ObjSMenuMap::in_L(void)
+void newScreen::ObjSMenuMap::in_L(void)
 {
 	/*
 	.loc_0x0:
@@ -3971,7 +3960,7 @@ void og::newScreen::ObjSMenuMap::in_L(void)
  * Address:	80312A38
  * Size:	000014
  */
-void og::newScreen::ObjSMenuMap::in_R(void)
+void newScreen::ObjSMenuMap::in_R(void)
 {
 	/*
 	.loc_0x0:
@@ -3988,14 +3977,10 @@ void og::newScreen::ObjSMenuMap::in_R(void)
  * Address:	80312A4C
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuMap::wait(void)
+void newScreen::ObjSMenuMap::wait(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x4
-	  stw       r0, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x38(r3)
+	_38 = 4;
 }
 
 /*
@@ -4003,7 +3988,7 @@ void og::newScreen::ObjSMenuMap::wait(void)
  * Address:	80312A58
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuMap::out_L(void)
+void newScreen::ObjSMenuMap::out_L(void)
 {
 	/*
 	.loc_0x0:
@@ -4026,7 +4011,7 @@ void og::newScreen::ObjSMenuMap::out_L(void)
  * Address:	80312A84
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuMap::out_R(void)
+void newScreen::ObjSMenuMap::out_R(void)
 {
 	/*
 	.loc_0x0:
@@ -4044,19 +4029,23 @@ void og::newScreen::ObjSMenuMap::out_R(void)
 	*/
 }
 
+} // namespace og
+
+namespace Screen {
+
 /*
  * --INFO--
  * Address:	80312AB0
  * Size:	000008
  */
-u32 Screen::SetSceneArg::getClassSize(void) { return 0x10; }
+u32 SetSceneArg::getClassSize(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	80312AB8
  * Size:	000008
  */
-void Screen::SetSceneArg::getSceneType( const
+void SetSceneArg::getSceneType() const
 {
 	/*
 	.loc_0x0:
@@ -4070,19 +4059,19 @@ void Screen::SetSceneArg::getSceneType( const
  * Address:	80312AC0
  * Size:	000008
  */
-u32  Screen::SceneArgBase::getSceneType( const
-{
-	return 0x0;
-}
+u32 SceneArgBase::getSceneType() const { return 0x0; }
+
+namespace og {
+} // namespace og
 
 /*
  * --INFO--
  * Address:	80312AC8
  * Size:	000004
  */
-void og::newScreen::ObjSMenuMap::doUpdateCancelAction(void)
-{
-}
+void newScreen::ObjSMenuMap::doUpdateCancelAction(void) { }
+
+} // namespace Screen
 
 /*
  * --INFO--
@@ -4175,7 +4164,7 @@ void __sinit_ogObjSMenuMap_cpp(void)
  * Address:	80312BF4
  * Size:	000008
  */
-void @24@og::newScreen::ObjSMenuMap::__dt(void)
+@24 @og::newScreen::ObjSMenuMap::~ObjSMenuMap(void)
 {
 	/*
 	.loc_0x0:

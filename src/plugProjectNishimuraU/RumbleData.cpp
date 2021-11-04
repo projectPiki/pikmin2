@@ -1,18 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802613C0
  * Size:	00000C
  */
-void Game::RumbleData::RumbleData()
+RumbleData::RumbleData()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x0(r3)
+	_00 = 0;
 }
 
 /*
@@ -20,14 +18,10 @@ void Game::RumbleData::RumbleData()
  * Address:	802613CC
  * Size:	00000C
  */
-void Game::RumbleDataMgr::RumbleDataMgr()
+RumbleDataMgr::RumbleDataMgr()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x0(r3)
+	_00 = 0;
 }
 
 /*
@@ -35,7 +29,7 @@ void Game::RumbleDataMgr::RumbleDataMgr()
  * Address:	802613D8
  * Size:	00002C
  */
-void Game::RumbleDataMgr::getRumbleData(int)
+void RumbleDataMgr::getRumbleData(int)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +54,7 @@ void Game::RumbleDataMgr::getRumbleData(int)
  * Address:	80261404
  * Size:	000128
  */
-void Game::RumbleDataMgr::read(Stream&)
+void RumbleDataMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -156,3 +150,4 @@ void Game::RumbleDataMgr::read(Stream&)
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,28 +1,20 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8017D44C
  * Size:	000004
  */
-void Game::NaviState::draw2d((J2DGrafContext&, int&)) { }
+void NaviState::draw2d(J2DGrafContext&, int&) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void Game::NaviState::getBackupStateID(void)
+void NaviState::getBackupStateID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -32,7 +24,7 @@ void Game::NaviState::getBackupStateID(void)
  * Address:	........
  * Size:	000094
  */
-void Game::NaviState::playBiku((Game::Navi*))
+void NaviState::playBiku(Game::Navi*)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +34,7 @@ void Game::NaviState::playBiku((Game::Navi*))
  * Address:	........
  * Size:	000070
  */
-void Game::NaviState::playChangeVoice((Game::Navi*))
+void NaviState::playChangeVoice(Game::Navi*)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +44,7 @@ void Game::NaviState::playChangeVoice((Game::Navi*))
  * Address:	........
  * Size:	000094
  */
-void Game::NaviState::playPikon((Game::Navi*))
+void NaviState::playPikon(Game::Navi*)
 {
 	// UNUSED FUNCTION
 }
@@ -62,7 +54,7 @@ void Game::NaviState::playPikon((Game::Navi*))
  * Address:	........
  * Size:	00000C
  */
-void Game::NaviFSM::clearBackupState(void)
+void NaviFSM::clearBackupState(void)
 {
 	// UNUSED FUNCTION
 }
@@ -72,7 +64,7 @@ void Game::NaviFSM::clearBackupState(void)
  * Address:	8017D450
  * Size:	000084
  */
-void Game::NaviFSM::transit((Game::Navi*, int, Game::StateArg*))
+void NaviFSM::transit(Game::Navi*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -121,7 +113,7 @@ void Game::NaviFSM::transit((Game::Navi*, int, Game::StateArg*))
  * Address:	8017D4D4
  * Size:	000820
  */
-void Game::NaviFSM::init((Game::Navi*))
+void NaviFSM::init(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -707,7 +699,7 @@ void Game::NaviFSM::init((Game::Navi*))
  * Address:	8017DCF4
  * Size:	0000D8
  */
-void Game::NaviCarryBombState::init((Game::Navi*, Game::StateArg*))
+void NaviCarryBombState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -804,7 +796,7 @@ FPQ24Game4NaviiPQ24Game8StateArg(void)
  * Address:	8017DDFC
  * Size:	000148
  */
-void Game::NaviCarryBombState::updateMatrix((Game::Navi*))
+void NaviCarryBombState::updateMatrix(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -904,7 +896,7 @@ void Game::NaviCarryBombState::updateMatrix((Game::Navi*))
  * Address:	8017DF44
  * Size:	00024C
  */
-void Game::NaviCarryBombState::exec((Game::Navi*))
+void NaviCarryBombState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -1079,8 +1071,7 @@ void Game::NaviCarryBombState::exec((Game::Navi*))
  * Address:	8017E190
  * Size:	00017C
  */
-void Game::NaviCarryBombState::onKeyEvent((Game::Navi*,
-                                           SysShape::KeyEvent const&))
+void NaviCarryBombState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1199,7 +1190,7 @@ void Game::NaviCarryBombState::onKeyEvent((Game::Navi*,
  * Address:	8017E30C
  * Size:	00002C
  */
-void Game::NaviCarryBombState::cleanup((Game::Navi*))
+void NaviCarryBombState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -1224,7 +1215,7 @@ void Game::NaviCarryBombState::cleanup((Game::Navi*))
  * Address:	8017E338
  * Size:	000058
  */
-void Game::NaviStuckState::init((Game::Navi*, Game::StateArg*))
+void NaviStuckState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1260,7 +1251,7 @@ void Game::NaviStuckState::init((Game::Navi*, Game::StateArg*))
  * Address:	8017E390
  * Size:	0004BC
  */
-void Game::NaviStuckState::exec((Game::Navi*))
+void NaviStuckState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -1609,14 +1600,14 @@ void Game::NaviStuckState::exec((Game::Navi*))
  * Address:	8017E84C
  * Size:	000004
  */
-void Game::NaviStuckState::cleanup((Game::Navi*)) { }
+void NaviStuckState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8017E850
  * Size:	0000DC
  */
-void Game::NaviWalkState::init((Game::Navi*, Game::StateArg*))
+void NaviWalkState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1685,7 +1676,7 @@ void Game::NaviWalkState::init((Game::Navi*, Game::StateArg*))
  * Address:	8017E92C
  * Size:	000634
  */
-void Game::NaviWalkState::exec((Game::Navi*))
+void NaviWalkState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -2152,21 +2143,21 @@ void Game::NaviWalkState::exec((Game::Navi*))
  * Address:	8017EF60
  * Size:	000008
  */
-u32 Game::NaviState::needYChangeMotion(void) { return 0x0; }
+u32 NaviState::needYChangeMotion(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017EF68
  * Size:	000004
  */
-void Game::NaviWalkState::cleanup((Game::Navi*)) { }
+void NaviWalkState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8017EF6C
  * Size:	000198
  */
-void Game::NaviWalkState::collisionCallback((Game::Navi*, Game::CollEvent&))
+void NaviWalkState::collisionCallback(Game::Navi*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2286,7 +2277,7 @@ void Game::NaviWalkState::collisionCallback((Game::Navi*, Game::CollEvent&))
  * Address:	8017F104
  * Size:	000094
  */
-void Game::NaviWalkState::execAI((Game::Navi*))
+void NaviWalkState::execAI(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -2349,7 +2340,7 @@ void Game::NaviWalkState::execAI((Game::Navi*))
  * Address:	8017F198
  * Size:	00023C
  */
-void Game::NaviWalkState::checkAI((Game::Navi*))
+void NaviWalkState::checkAI(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -2530,7 +2521,7 @@ void Game::NaviWalkState::checkAI((Game::Navi*))
  * Address:	8017F3D4
  * Size:	000100
  */
-void Game::NaviWalkState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviWalkState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -2611,12 +2602,14 @@ void Game::NaviWalkState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017F4D4
  * Size:	000034
  */
-void wallCallback__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3<float>(void)
+void wallCallback__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2636,12 +2629,14 @@ void wallCallback__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017F508
  * Size:	000048
  */
-void Game::NaviWalkState::initAI_wait((Game::Navi*))
+void NaviWalkState::initAI_wait(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -2671,7 +2666,7 @@ void Game::NaviWalkState::initAI_wait((Game::Navi*))
  * Address:	8017F550
  * Size:	0001C4
  */
-void Game::NaviWalkState::execAI_wait((Game::Navi*))
+void NaviWalkState::execAI_wait(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -2810,7 +2805,7 @@ void Game::NaviWalkState::execAI_wait((Game::Navi*))
  * Address:	8017F714
  * Size:	00026C
  */
-void Game::NaviWalkState::initAI_animation((Game::Navi*))
+void NaviWalkState::initAI_animation(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -3001,7 +2996,7 @@ void Game::NaviWalkState::initAI_animation((Game::Navi*))
  * Address:	8017F980
  * Size:	000080
  */
-void Game::NaviWalkState::execAI_animation((Game::Navi*))
+void NaviWalkState::execAI_animation(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -3047,7 +3042,7 @@ void Game::NaviWalkState::execAI_animation((Game::Navi*))
  * Address:	........
  * Size:	00000C
  */
-void Game::NaviWalkState::initAI_attack((Game::Navi*))
+void NaviWalkState::initAI_attack(Game::Navi*)
 {
 	// UNUSED FUNCTION
 }
@@ -3057,7 +3052,7 @@ void Game::NaviWalkState::initAI_attack((Game::Navi*))
  * Address:	8017FA00
  * Size:	000240
  */
-void Game::NaviWalkState::execAI_attack((Game::Navi*))
+void NaviWalkState::execAI_attack(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -3225,7 +3220,7 @@ void Game::NaviWalkState::execAI_attack((Game::Navi*))
  * Address:	8017FC40
  * Size:	00008C
  */
-void Game::NaviWalkState::initAI_escape((Game::Navi*))
+void NaviWalkState::initAI_escape(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -3272,7 +3267,7 @@ void Game::NaviWalkState::initAI_escape((Game::Navi*))
  * Address:	8017FCCC
  * Size:	0002B4
  */
-void Game::NaviWalkState::execAI_escape((Game::Navi*))
+void NaviWalkState::execAI_escape(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -3472,12 +3467,14 @@ void Game::NaviWalkState::execAI_escape((Game::Navi*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017FF80
  * Size:	000034
  */
-void blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3<float>(void)
+void blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3497,12 +3494,14 @@ void blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017FFB4
  * Size:	0000A8
  */
-void Game::NaviChangeState::init((Game::Navi*, Game::StateArg*))
+void NaviChangeState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3560,7 +3559,7 @@ void Game::NaviChangeState::init((Game::Navi*, Game::StateArg*))
  * Address:	8018005C
  * Size:	000058
  */
-void Game::NaviChangeState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviChangeState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -3596,7 +3595,7 @@ void Game::NaviChangeState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	801800B4
  * Size:	0000AC
  */
-void Game::NaviChangeState::exec((Game::Navi*))
+void NaviChangeState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -3655,14 +3654,14 @@ void Game::NaviChangeState::exec((Game::Navi*))
  * Address:	80180160
  * Size:	000004
  */
-void Game::NaviChangeState::cleanup((Game::Navi*)) { }
+void NaviChangeState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80180164
  * Size:	00016C
  */
-void Game::NaviFollowState::init((Game::Navi*, Game::StateArg*))
+void NaviFollowState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3775,7 +3774,7 @@ void Game::NaviFollowState::init((Game::Navi*, Game::StateArg*))
  * Address:	801802D0
  * Size:	000174
  */
-void Game::NaviFollowState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviFollowState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -3896,7 +3895,7 @@ void Game::NaviFollowState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	........
  * Size:	00007C
  */
-void Game::NaviFollowState::messageAttack((Game::Creature*))
+void NaviFollowState::messageAttack(Game::Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -3906,7 +3905,7 @@ void Game::NaviFollowState::messageAttack((Game::Creature*))
  * Address:	80180444
  * Size:	0009A0
  */
-void Game::NaviFollowState::exec((Game::Navi*))
+void NaviFollowState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -4632,14 +4631,14 @@ void Game::NaviFollowState::exec((Game::Navi*))
  * Address:	80180DE4
  * Size:	000004
  */
-void Game::NaviFollowState::cleanup((Game::Navi*)) { }
+void NaviFollowState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80180DE8
  * Size:	000040
  */
-void Game::NaviPunchState::__ct(void)
+NaviPunchState::NaviPunchState(void)
 {
 	/*
 	.loc_0x0:
@@ -4667,7 +4666,7 @@ void Game::NaviPunchState::__ct(void)
  * Address:	80180E28
  * Size:	0000D4
  */
-void Game::NaviPunchState::init((Game::Navi*, Game::StateArg*))
+void NaviPunchState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4738,7 +4737,7 @@ void Game::NaviPunchState::init((Game::Navi*, Game::StateArg*))
  * Address:	........
  * Size:	000108
  */
-void Game::NaviPunchState::renzokuInit((Game::Navi*))
+void NaviPunchState::renzokuInit(Game::Navi*)
 {
 	// UNUSED FUNCTION
 }
@@ -4748,7 +4747,7 @@ void Game::NaviPunchState::renzokuInit((Game::Navi*))
  * Address:	80180EFC
  * Size:	000300
  */
-void Game::NaviPunchState::hitCallback((CollPart*))
+void NaviPunchState::hitCallback(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -4972,7 +4971,7 @@ void Game::NaviPunchState::hitCallback((CollPart*))
  * Address:	801811FC
  * Size:	0003A4
  */
-void Game::NaviPunchState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviPunchState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -5243,7 +5242,7 @@ void Game::NaviPunchState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	801815A0
  * Size:	00017C
  */
-void Game::NaviPunchState::exec((Game::Navi*))
+void NaviPunchState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -5358,14 +5357,14 @@ void Game::NaviPunchState::exec((Game::Navi*))
  * Address:	8018171C
  * Size:	000004
  */
-void Game::NaviPunchState::cleanup((Game::Navi*)) { }
+void NaviPunchState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80181720
  * Size:	0000A0
  */
-void Game::NaviPathMoveState::init((Game::Navi*, Game::StateArg*))
+void NaviPathMoveState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -5421,7 +5420,7 @@ void Game::NaviPathMoveState::init((Game::Navi*, Game::StateArg*))
  * Address:	801817C0
  * Size:	0000D8
  */
-void Game::NaviPathMoveState::exec((Game::Navi*))
+void NaviPathMoveState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -5501,7 +5500,7 @@ void Game::NaviPathMoveState::exec((Game::Navi*))
  * Address:	80181898
  * Size:	000044
  */
-void Game::NaviPathMoveState::cleanup((Game::Navi*))
+void NaviPathMoveState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -5532,7 +5531,7 @@ void Game::NaviPathMoveState::cleanup((Game::Navi*))
  * Address:	801818DC
  * Size:	0001BC
  */
-void Game::NaviPathMoveState::initPathfinding((Game::Navi*))
+void NaviPathMoveState::initPathfinding(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -5673,7 +5672,7 @@ void Game::NaviPathMoveState::initPathfinding((Game::Navi*))
  * Address:	80181A98
  * Size:	000090
  */
-void Game::NaviPathMoveState::execPathfinding((Game::Navi*))
+void NaviPathMoveState::execPathfinding(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -5731,7 +5730,7 @@ void Game::NaviPathMoveState::execPathfinding((Game::Navi*))
  * Address:	80181B28
  * Size:	00015C
  */
-void Game::NaviPathMoveState::execMove((Game::Navi*))
+void NaviPathMoveState::execMove(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -5842,14 +5841,14 @@ void Game::NaviPathMoveState::execMove((Game::Navi*))
  * Address:	80181C84
  * Size:	000008
  */
-u32 Game::NaviPathMoveState::execMoveGoal((Game::Navi*)) { return 0x0; }
+u32 NaviPathMoveState::execMoveGoal(Game::Navi*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Game::NaviPathMoveState::getWayPont((int))
+void NaviPathMoveState::getWayPont(int)
 {
 	// UNUSED FUNCTION
 }
@@ -5859,7 +5858,7 @@ void Game::NaviPathMoveState::getWayPont((int))
  * Address:	80181C8C
  * Size:	0000E4
  */
-void Game::NaviNukuState::init((Game::Navi*, Game::StateArg*))
+void NaviNukuState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -5938,7 +5937,7 @@ void Game::NaviNukuState::init((Game::Navi*, Game::StateArg*))
  * Address:	80181D70
  * Size:	00018C
  */
-void Game::NaviNukuState::exec((Game::Navi*))
+void NaviNukuState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -6063,7 +6062,7 @@ void Game::NaviNukuState::exec((Game::Navi*))
  * Address:	80181EFC
  * Size:	00002C
  */
-void Game::NaviNukuState::cleanup((Game::Navi*))
+void NaviNukuState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -6086,7 +6085,7 @@ void Game::NaviNukuState::cleanup((Game::Navi*))
  * Address:	80181F28
  * Size:	000178
  */
-void Game::NaviNukuState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviNukuState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -6210,7 +6209,7 @@ void Game::NaviNukuState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	801820A0
  * Size:	000240
  */
-void Game::NaviNukuAdjustState::init((Game::Navi*, Game::StateArg*))
+void NaviNukuAdjustState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6369,13 +6368,14 @@ void Game::NaviNukuAdjustState::init((Game::Navi*, Game::StateArg*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801822E0
  * Size:	000010
  */
-void wallCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviR10Vector3<float>(
-    void)
+void wallCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -6386,12 +6386,14 @@ void wallCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviR10Vector3<float>(
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801822F0
  * Size:	000064
  */
-void Game::NaviNukuAdjustState::ignoreAtari((Game::Creature*))
+void NaviNukuAdjustState::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -6432,8 +6434,7 @@ void Game::NaviNukuAdjustState::ignoreAtari((Game::Creature*))
  * Address:	80182354
  * Size:	0000C4
  */
-void Game::NaviNukuAdjustState::collisionCallback((Game::Navi*,
-                                                   Game::CollEvent&))
+void NaviNukuAdjustState::collisionCallback(Game::Navi*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6498,7 +6499,7 @@ void Game::NaviNukuAdjustState::collisionCallback((Game::Navi*,
  * Address:	80182418
  * Size:	000784
  */
-void Game::NaviNukuAdjustState::exec((Game::Navi*))
+void NaviNukuAdjustState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -7053,7 +7054,7 @@ void Game::NaviNukuAdjustState::exec((Game::Navi*))
  * Address:	80182B9C
  * Size:	000050
  */
-void Game::NaviNukuAdjustState::cleanup((Game::Navi*))
+void NaviNukuAdjustState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -7085,7 +7086,7 @@ void Game::NaviNukuAdjustState::cleanup((Game::Navi*))
  * Address:	80182BEC
  * Size:	0005EC
  */
-void Game::NaviDopeState::init((Game::Navi*, Game::StateArg*))
+void NaviDopeState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -7528,7 +7529,7 @@ void Game::NaviDopeState::init((Game::Navi*, Game::StateArg*))
  * Address:	801831D8
  * Size:	0000A0
  */
-void Game::NaviDopeState::exec((Game::Navi*))
+void NaviDopeState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -7584,14 +7585,14 @@ void Game::NaviDopeState::exec((Game::Navi*))
  * Address:	80183278
  * Size:	000004
  */
-void Game::NaviDopeState::cleanup((Game::Navi*)) { }
+void NaviDopeState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8018327C
  * Size:	00004C
  */
-void Game::NaviDopeState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviDopeState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -7624,7 +7625,7 @@ void Game::NaviDopeState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	801832C8
  * Size:	0000E0
  */
-void Game::NaviClimbState::init((Game::Navi*, Game::StateArg*))
+void NaviClimbState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -7698,7 +7699,7 @@ void Game::NaviClimbState::init((Game::Navi*, Game::StateArg*))
  * Address:	801833A8
  * Size:	0000BC
  */
-void Game::NaviClimbState::prepare((Game::Navi*))
+void NaviClimbState::prepare(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -7761,7 +7762,7 @@ void Game::NaviClimbState::prepare((Game::Navi*))
  * Address:	80183464
  * Size:	0002BC
  */
-void Game::NaviClimbState::exec((Game::Navi*))
+void NaviClimbState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -7970,7 +7971,7 @@ void Game::NaviClimbState::exec((Game::Navi*))
  * Address:	80183720
  * Size:	000024
  */
-void Game::NaviClimbState::cleanup((Game::Navi*))
+void NaviClimbState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -7991,7 +7992,7 @@ void Game::NaviClimbState::cleanup((Game::Navi*))
  * Address:	80183744
  * Size:	0000B8
  */
-void Game::NaviFallMeckState::init((Game::Navi*, Game::StateArg*))
+void NaviFallMeckState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -8057,7 +8058,7 @@ void Game::NaviFallMeckState::init((Game::Navi*, Game::StateArg*))
  * Address:	801837FC
  * Size:	00009C
  */
-void Game::NaviFallMeckState::exec((Game::Navi*))
+void NaviFallMeckState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -8112,15 +8113,14 @@ void Game::NaviFallMeckState::exec((Game::Navi*))
  * Address:	80183898
  * Size:	000004
  */
-void Game::NaviFallMeckState::cleanup((Game::Navi*)) { }
+void NaviFallMeckState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8018389C
  * Size:	00009C
  */
-void Game::NaviFallMeckState::onKeyEvent((Game::Navi*,
-                                          SysShape::KeyEvent const&))
+void NaviFallMeckState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -8177,7 +8177,7 @@ void Game::NaviFallMeckState::onKeyEvent((Game::Navi*,
  * Address:	80183938
  * Size:	000268
  */
-void Game::NaviFallMeckState::bounceCallback((Game::Navi*, Sys::Triangle*))
+void NaviFallMeckState::bounceCallback(Game::Navi*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -8351,7 +8351,7 @@ void Game::NaviFallMeckState::bounceCallback((Game::Navi*, Sys::Triangle*))
  * Address:	80183BA0
  * Size:	00012C
  */
-void Game::NaviFlickState::init((Game::Navi*, Game::StateArg*))
+void NaviFlickState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -8446,7 +8446,7 @@ void Game::NaviFlickState::init((Game::Navi*, Game::StateArg*))
  * Address:	80183CCC
  * Size:	000118
  */
-void Game::NaviFlickState::exec((Game::Navi*))
+void NaviFlickState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -8534,14 +8534,14 @@ void Game::NaviFlickState::exec((Game::Navi*))
  * Address:	80183DE4
  * Size:	000004
  */
-void Game::NaviFlickState::cleanup((Game::Navi*)) { }
+void NaviFlickState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80183DE8
  * Size:	000064
  */
-void Game::NaviFlickState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviFlickState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -8580,7 +8580,7 @@ void Game::NaviFlickState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	80183E4C
  * Size:	000070
  */
-void Game::NaviFlickState::bounceCallback((Game::Navi*, Sys::Triangle*))
+void NaviFlickState::bounceCallback(Game::Navi*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -8620,7 +8620,7 @@ void Game::NaviFlickState::bounceCallback((Game::Navi*, Sys::Triangle*))
  * Address:	80183EBC
  * Size:	0000C0
  */
-void Game::NaviKokeDamageState::init((Game::Navi*, Game::StateArg*))
+void NaviKokeDamageState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -8686,7 +8686,7 @@ void Game::NaviKokeDamageState::init((Game::Navi*, Game::StateArg*))
  * Address:	80183F7C
  * Size:	000208
  */
-void Game::NaviKokeDamageState::exec((Game::Navi*))
+void NaviKokeDamageState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -8844,15 +8844,14 @@ void Game::NaviKokeDamageState::exec((Game::Navi*))
  * Address:	80184184
  * Size:	000004
  */
-void Game::NaviKokeDamageState::cleanup((Game::Navi*)) { }
+void NaviKokeDamageState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80184188
  * Size:	00009C
  */
-void Game::NaviKokeDamageState::onKeyEvent((Game::Navi*,
-                                            SysShape::KeyEvent const&))
+void NaviKokeDamageState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -8909,7 +8908,7 @@ void Game::NaviKokeDamageState::onKeyEvent((Game::Navi*,
  * Address:	80184224
  * Size:	00006C
  */
-void Game::NaviSaraiState::init((Game::Navi*, Game::StateArg*))
+void NaviSaraiState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -8948,7 +8947,7 @@ void Game::NaviSaraiState::init((Game::Navi*, Game::StateArg*))
  * Address:	80184290
  * Size:	000380
  */
-void Game::NaviSaraiState::exec((Game::Navi*))
+void NaviSaraiState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9210,7 +9209,7 @@ void Game::NaviSaraiState::exec((Game::Navi*))
  * Address:	80184610
  * Size:	00000C
  */
-void Game::NaviSaraiState::cleanup((Game::Navi*))
+void NaviSaraiState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9225,7 +9224,7 @@ void Game::NaviSaraiState::cleanup((Game::Navi*))
  * Address:	8018461C
  * Size:	00006C
  */
-void Game::NaviSaraiExitState::init((Game::Navi*, Game::StateArg*))
+void NaviSaraiExitState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -9264,7 +9263,7 @@ void Game::NaviSaraiExitState::init((Game::Navi*, Game::StateArg*))
  * Address:	80184688
  * Size:	00004C
  */
-void Game::NaviSaraiExitState::exec((Game::Navi*))
+void NaviSaraiExitState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9299,7 +9298,7 @@ void Game::NaviSaraiExitState::exec((Game::Navi*))
  * Address:	801846D4
  * Size:	000034
  */
-void Game::NaviSaraiExitState::cleanup((Game::Navi*))
+void NaviSaraiExitState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9324,7 +9323,7 @@ void Game::NaviSaraiExitState::cleanup((Game::Navi*))
  * Address:	80184708
  * Size:	000034
  */
-void Game::NaviSaraiExitState::bounceCallback((Game::Navi*, Sys::Triangle*))
+void NaviSaraiExitState::bounceCallback(Game::Navi*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -9349,7 +9348,7 @@ void Game::NaviSaraiExitState::bounceCallback((Game::Navi*, Sys::Triangle*))
  * Address:	8018473C
  * Size:	0005FC
  */
-void Game::NaviContainerState::init((Game::Navi*, Game::StateArg*))
+void NaviContainerState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -9782,7 +9781,7 @@ void Game::NaviContainerState::init((Game::Navi*, Game::StateArg*))
  * Address:	80184D38
  * Size:	000270
  */
-void Game::NaviContainerState::exec((Game::Navi*))
+void NaviContainerState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -9992,7 +9991,7 @@ void Game::NaviContainerState::exec((Game::Navi*))
  * Address:	80184FA8
  * Size:	0002A0
  */
-void Game::NaviContainerState::enterPikis((Game::Navi*, int))
+void NaviContainerState::enterPikis(Game::Navi*, int)
 {
 	/*
 	.loc_0x0:
@@ -10200,7 +10199,7 @@ void Game::NaviContainerState::enterPikis((Game::Navi*, int))
  * Address:	80185248
  * Size:	000044
  */
-void Game::NaviContainerState::cleanup((Game::Navi*))
+void NaviContainerState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10229,7 +10228,7 @@ void Game::NaviContainerState::cleanup((Game::Navi*))
  * Address:	8018528C
  * Size:	000140
  */
-void Game::NaviAbsorbState::init((Game::Navi*, Game::StateArg*))
+void NaviAbsorbState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -10327,7 +10326,7 @@ void Game::NaviAbsorbState::init((Game::Navi*, Game::StateArg*))
  * Address:	801853CC
  * Size:	0000F0
  */
-void Game::NaviAbsorbState::exec((Game::Navi*))
+void NaviAbsorbState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10403,7 +10402,7 @@ void Game::NaviAbsorbState::exec((Game::Navi*))
  * Address:	801854BC
  * Size:	000174
  */
-void Game::NaviAbsorbState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviAbsorbState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -10526,7 +10525,7 @@ void Game::NaviAbsorbState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	80185630
  * Size:	000040
  */
-void Game::NaviAbsorbState::cleanup((Game::Navi*))
+void NaviAbsorbState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10554,7 +10553,7 @@ void Game::NaviAbsorbState::cleanup((Game::Navi*))
  * Address:	80185670
  * Size:	000084
  */
-void Game::NaviDamagedState::init((Game::Navi*, Game::StateArg*))
+void NaviDamagedState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -10603,7 +10602,7 @@ void Game::NaviDamagedState::init((Game::Navi*, Game::StateArg*))
  * Address:	801856F4
  * Size:	000098
  */
-void Game::NaviDamagedState::exec((Game::Navi*))
+void NaviDamagedState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10657,7 +10656,7 @@ void Game::NaviDamagedState::exec((Game::Navi*))
  * Address:	8018578C
  * Size:	000028
  */
-void Game::NaviDamagedState::cleanup((Game::Navi*))
+void NaviDamagedState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10679,8 +10678,7 @@ void Game::NaviDamagedState::cleanup((Game::Navi*))
  * Address:	801857B4
  * Size:	000068
  */
-void Game::NaviDamagedState::onKeyEvent((Game::Navi*,
-                                         SysShape::KeyEvent const&))
+void NaviDamagedState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -10722,7 +10720,7 @@ void Game::NaviDamagedState::onKeyEvent((Game::Navi*,
  * Address:	8018581C
  * Size:	00005C
  */
-void Game::NaviDeadState::init((Game::Navi*, Game::StateArg*))
+void NaviDeadState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -10757,7 +10755,7 @@ void Game::NaviDeadState::init((Game::Navi*, Game::StateArg*))
  * Address:	80185878
  * Size:	000020
  */
-void Game::NaviDeadState::exec((Game::Navi*))
+void NaviDeadState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10777,14 +10775,14 @@ void Game::NaviDeadState::exec((Game::Navi*))
  * Address:	80185898
  * Size:	000004
  */
-void Game::NaviDeadState::cleanup((Game::Navi*)) { }
+void NaviDeadState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8018589C
  * Size:	000040
  */
-void Game::NaviDeadState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviDeadState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -10814,7 +10812,7 @@ void Game::NaviDeadState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	........
  * Size:	0002FC
  */
-void Game::NaviGatherInitArg::findTargetPikmin((Game::Navi*))
+void NaviGatherInitArg::findTargetPikmin(Game::Navi*)
 {
 	// UNUSED FUNCTION
 }
@@ -10824,7 +10822,7 @@ void Game::NaviGatherInitArg::findTargetPikmin((Game::Navi*))
  * Address:	801858DC
  * Size:	0000F8
  */
-void Game::NaviGatherState::init((Game::Navi*, Game::StateArg*))
+void NaviGatherState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -10904,7 +10902,7 @@ void Game::NaviGatherState::init((Game::Navi*, Game::StateArg*))
  * Address:	801859D4
  * Size:	00012C
  */
-void Game::NaviGatherState::exec((Game::Navi*))
+void NaviGatherState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -10997,7 +10995,7 @@ void Game::NaviGatherState::exec((Game::Navi*))
  * Address:	80185B00
  * Size:	000060
  */
-void Game::NaviGatherState::cleanup((Game::Navi*))
+void NaviGatherState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -11035,7 +11033,7 @@ void Game::NaviGatherState::cleanup((Game::Navi*))
  * Address:	80185B60
  * Size:	0000F4
  */
-void Game::NaviThrowWaitState::__ct(void)
+NaviThrowWaitState::NaviThrowWaitState(void)
 {
 	/*
 	.loc_0x0:
@@ -11112,14 +11110,14 @@ void Game::NaviThrowWaitState::__ct(void)
  * Address:	80185C54
  * Size:	000004
  */
-void Game::NaviThrowWaitState::draw2d((J2DGrafContext&, int&)) { }
+void NaviThrowWaitState::draw2d(J2DGrafContext&, int&) { }
 
 /*
  * --INFO--
  * Address:	80185C58
  * Size:	00002C
  */
-void Game::NaviThrowWaitState::resume((Game::Navi*))
+void NaviThrowWaitState::resume(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -11142,7 +11140,7 @@ void Game::NaviThrowWaitState::resume((Game::Navi*))
  * Address:	80185C84
  * Size:	000034
  */
-void Game::NaviThrowWaitState::restart((Game::Navi*))
+void NaviThrowWaitState::restart(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -11167,7 +11165,7 @@ void Game::NaviThrowWaitState::restart((Game::Navi*))
  * Address:	80185CB8
  * Size:	000558
  */
-void Game::NaviThrowWaitState::init((Game::Navi*, Game::StateArg*))
+void NaviThrowWaitState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -11565,7 +11563,7 @@ void Game::NaviThrowWaitState::init((Game::Navi*, Game::StateArg*))
  * Address:	80186210
  * Size:	00003C
  */
-void Game::NaviThrowWaitState::onKeyEvent((SysShape::KeyEvent const&))
+void NaviThrowWaitState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -11596,7 +11594,7 @@ void Game::NaviThrowWaitState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8018624C
  * Size:	000024
  */
-void Game::NaviThrowWaitState::doAnimCallback(void)
+void NaviThrowWaitState::doAnimCallback(void)
 {
 	/*
 	.loc_0x0:
@@ -11619,7 +11617,7 @@ void Game::NaviThrowWaitState::doAnimCallback(void)
  * Address:	80186270
  * Size:	000084
  */
-void Game::NaviThrowWaitState::lockHangPiki((Game::Navi*))
+void NaviThrowWaitState::lockHangPiki(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -11666,7 +11664,7 @@ void Game::NaviThrowWaitState::lockHangPiki((Game::Navi*))
  * Address:	801862F4
  * Size:	000AE0
  */
-void Game::NaviThrowWaitState::exec((Game::Navi*))
+void NaviThrowWaitState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -12448,7 +12446,7 @@ void Game::NaviThrowWaitState::exec((Game::Navi*))
  * Address:	80186DD4
  * Size:	0002FC
  */
-void Game::NaviThrowWaitState::findNearestColorPiki((Game::Navi*, int))
+void NaviThrowWaitState::findNearestColorPiki(Game::Navi*, int)
 {
 	/*
 	.loc_0x0:
@@ -12675,7 +12673,7 @@ void Game::NaviThrowWaitState::findNearestColorPiki((Game::Navi*, int))
  * Address:	801870D0
  * Size:	000270
  */
-void Game::NaviThrowWaitState::sortPikis((Game::Navi*))
+void NaviThrowWaitState::sortPikis(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -12861,7 +12859,7 @@ void Game::NaviThrowWaitState::sortPikis((Game::Navi*))
  * Address:	80187340
  * Size:	000068
  */
-void Game::NaviThrowWaitState::cleanup((Game::Navi*))
+void NaviThrowWaitState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -12899,7 +12897,7 @@ void Game::NaviThrowWaitState::cleanup((Game::Navi*))
  * Address:	801873A8
  * Size:	0000C8
  */
-void Game::NaviThrowState::init((Game::Navi*, Game::StateArg*))
+void NaviThrowState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -12965,7 +12963,7 @@ void Game::NaviThrowState::init((Game::Navi*, Game::StateArg*))
  * Address:	80187470
  * Size:	0000D4
  */
-void Game::NaviThrowState::onKeyEvent((SysShape::KeyEvent const&))
+void NaviThrowState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -13038,7 +13036,7 @@ void Game::NaviThrowState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80187544
  * Size:	0000F0
  */
-void Game::NaviThrowState::exec((Game::Navi*))
+void NaviThrowState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -13116,14 +13114,14 @@ void Game::NaviThrowState::exec((Game::Navi*))
  * Address:	80187634
  * Size:	000004
  */
-void Game::NaviThrowState::cleanup((Game::Navi*)) { }
+void NaviThrowState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80187638
  * Size:	0001C0
  */
-void Game::NaviPelletState::init((Game::Navi*, Game::StateArg*))
+void NaviPelletState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -13259,7 +13257,7 @@ void Game::NaviPelletState::init((Game::Navi*, Game::StateArg*))
  * Address:	801877F8
  * Size:	0003F8
  */
-void Game::NaviPelletState::exec((Game::Navi*))
+void NaviPelletState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -13567,7 +13565,7 @@ void Game::NaviPelletState::exec((Game::Navi*))
  * Address:	80187BF0
  * Size:	00012C
  */
-void Game::NaviPelletState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
+void NaviPelletState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -13674,7 +13672,7 @@ void Game::NaviPelletState::onKeyEvent((Game::Navi*, SysShape::KeyEvent const&))
  * Address:	80187D1C
  * Size:	000080
  */
-void Game::NaviPelletState::cleanup((Game::Navi*))
+void NaviPelletState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -13720,7 +13718,7 @@ void Game::NaviPelletState::cleanup((Game::Navi*))
  * Address:	80187D9C
  * Size:	000048
  */
-void Game::NaviDemo_UfoState::init((Game::Navi*, Game::StateArg*))
+void NaviDemo_UfoState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -13750,7 +13748,7 @@ void Game::NaviDemo_UfoState::init((Game::Navi*, Game::StateArg*))
  * Address:	80187DE4
  * Size:	0000B0
  */
-void Game::NaviDemo_UfoState::exec((Game::Navi*))
+void NaviDemo_UfoState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -13816,14 +13814,14 @@ void Game::NaviDemo_UfoState::exec((Game::Navi*))
  * Address:	80187E94
  * Size:	000004
  */
-void Game::NaviDemo_UfoState::cleanup((Game::Navi*)) { }
+void NaviDemo_UfoState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80187E98
  * Size:	00017C
  */
-void Game::NaviDemo_UfoState::execGoto((Game::Navi*))
+void NaviDemo_UfoState::execGoto(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -13940,7 +13938,7 @@ void Game::NaviDemo_UfoState::execGoto((Game::Navi*))
  * Address:	80188014
  * Size:	000118
  */
-void Game::NaviDemo_UfoState::initSuck((Game::Navi*))
+void NaviDemo_UfoState::initSuck(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -14026,7 +14024,7 @@ void Game::NaviDemo_UfoState::initSuck((Game::Navi*))
  * Address:	8018812C
  * Size:	000120
  */
-void Game::NaviDemo_UfoState::execSuck((Game::Navi*))
+void NaviDemo_UfoState::execSuck(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -14110,7 +14108,7 @@ void Game::NaviDemo_UfoState::execSuck((Game::Navi*))
  * Address:	8018824C
  * Size:	00058C
  */
-void Game::NaviDemo_HoleInState::init((Game::Navi*, Game::StateArg*))
+void NaviDemo_HoleInState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -14529,7 +14527,7 @@ void Game::NaviDemo_HoleInState::init((Game::Navi*, Game::StateArg*))
  * Address:	801887D8
  * Size:	0000A8
  */
-void Game::NaviDemo_HoleInState::exec((Game::Navi*))
+void NaviDemo_HoleInState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -14593,15 +14591,10 @@ void Game::NaviDemo_HoleInState::exec((Game::Navi*))
  * Address:	80188880
  * Size:	00000C
  */
-void Game::NaviDemo_HoleInState::onKeyEvent((Game::Navi*,
-                                             SysShape::KeyEvent const&))
+void NaviDemo_HoleInState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x12(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x12(r3)
+	_12 = 1;
 }
 
 /*
@@ -14609,14 +14602,14 @@ void Game::NaviDemo_HoleInState::onKeyEvent((Game::Navi*,
  * Address:	8018888C
  * Size:	000004
  */
-void Game::NaviDemo_HoleInState::cleanup((Game::Navi*)) { }
+void NaviDemo_HoleInState::cleanup(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80188890
  * Size:	000178
  */
-void Game::NaviDemo_HoleInState::execGoto((Game::Navi*))
+void NaviDemo_HoleInState::execGoto(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -14732,7 +14725,7 @@ void Game::NaviDemo_HoleInState::execGoto((Game::Navi*))
  * Address:	80188A08
  * Size:	000060
  */
-void Game::NaviDemo_HoleInState::initHesitate((Game::Navi*))
+void NaviDemo_HoleInState::initHesitate(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -14770,7 +14763,7 @@ void Game::NaviDemo_HoleInState::initHesitate((Game::Navi*))
  * Address:	80188A68
  * Size:	00016C
  */
-void Game::NaviDemo_HoleInState::execHesitate((Game::Navi*))
+void NaviDemo_HoleInState::execHesitate(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -14883,21 +14876,21 @@ void Game::NaviDemo_HoleInState::execHesitate((Game::Navi*))
  * Address:	80188BD4
  * Size:	000004
  */
-void Game::NaviDemo_HoleInState::initFall((Game::Navi*)) { }
+void NaviDemo_HoleInState::initFall(Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	80188BD8
  * Size:	000008
  */
-u32 Game::NaviDemo_HoleInState::execFall((Game::Navi*)) { return 0x0; }
+u32 NaviDemo_HoleInState::execFall(Game::Navi*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80188BE0
  * Size:	000144
  */
-void Game::NaviPressedState::init((Game::Navi*, Game::StateArg*))
+void NaviPressedState::init(Game::Navi*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -14992,7 +14985,7 @@ void Game::NaviPressedState::init((Game::Navi*, Game::StateArg*))
  * Address:	80188D24
  * Size:	000270
  */
-void Game::NaviPressedState::exec((Game::Navi*))
+void NaviPressedState::exec(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -15176,7 +15169,7 @@ void Game::NaviPressedState::exec((Game::Navi*))
  * Address:	80188F94
  * Size:	00007C
  */
-void Game::NaviPressedState::cleanup((Game::Navi*))
+void NaviPressedState::cleanup(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -15219,308 +15212,324 @@ void Game::NaviPressedState::cleanup((Game::Navi*))
  * Address:	80189010
  * Size:	000008
  */
-u32 Game::NaviPressedState::pressable(void) { return 0x0; }
+u32 NaviPressedState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189018
  * Size:	000008
  */
-u32 Game::NaviPressedState::invincible(void) { return 0x1; }
+u32 NaviPressedState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189020
  * Size:	000008
  */
-u32 Game::NaviPressedState::vsUsableY(void) { return 0x0; }
+u32 NaviPressedState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189028
  * Size:	000008
  */
-u32 Game::NaviState::callable(void) { return 0x0; }
+u32 NaviState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189030
  * Size:	000008
  */
-u32 Game::NaviState::pressable(void) { return 0x1; }
+u32 NaviState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189038
  * Size:	000008
  */
-u32 Game::NaviPelletState::callable(void) { return 0x1; }
+u32 NaviPelletState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189040
  * Size:	000008
  */
-u32 Game::NaviDeadState::invincible(void) { return 0x1; }
+u32 NaviDeadState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189048
  * Size:	000008
  */
-u32 Game::NaviDeadState::pressable(void) { return 0x0; }
+u32 NaviDeadState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189050
  * Size:	000008
  */
-u32 Game::NaviDeadState::vsUsableY(void) { return 0x0; }
+u32 NaviDeadState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189058
  * Size:	000008
  */
-u32 Game::NaviDamagedState::invincible(void) { return 0x1; }
+u32 NaviDamagedState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189060
  * Size:	000008
  */
-u32 Game::NaviDamagedState::vsUsableY(void) { return 0x0; }
+u32 NaviDamagedState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189068
  * Size:	000008
  */
-u32 Game::NaviAbsorbState::vsUsableY(void) { return 0x0; }
+u32 NaviAbsorbState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189070
  * Size:	000008
  */
-u32 Game::NaviAbsorbState::invincible(void) { return 0x1; }
+u32 NaviAbsorbState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189078
  * Size:	000008
  */
-u32 Game::NaviAbsorbState::pressable(void) { return 0x0; }
+u32 NaviAbsorbState::pressable(void) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80189080
- * Size:	000008
- */
-u32 og::Screen::DispMemberContena::getSize(void) { return 0x38; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	80189088
- * Size:	00000C
- */
-void og::Screen::DispMemberContena::getOwnerID(void)
-{
+namespace og {
+
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80189080
+	 * Size:	000008
+	 */
+	u32 DispMemberContena::getSize(void) { return 0x38; }
 
-/*
- * --INFO--
- * Address:	80189094
- * Size:	000014
- */
-void og::Screen::DispMemberContena::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5445
-	  lis       r3, 0x43
-	  addi      r4, r4, 0x4E41
-	  addi      r3, r3, 0x4F4E
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80189088
+	 * Size:	00000C
+	 */
+	void DispMemberContena::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	801890A8
- * Size:	000008
- */
-u32 og::Screen::DispMemberUfoMenu::getSize(void) { return 0x10; }
-
-/*
- * --INFO--
- * Address:	801890B0
- * Size:	00000C
- */
-void og::Screen::DispMemberUfoMenu::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80189094
+	 * Size:	000014
+	 */
+	void DispMemberContena::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5445
+		  lis       r3, 0x43
+		  addi      r4, r4, 0x4E41
+		  addi      r3, r3, 0x4F4E
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	801890BC
- * Size:	000014
- */
-void og::Screen::DispMemberUfoMenu::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4D45
-	  lis       r3, 0x55
-	  addi      r4, r4, 0x4E55
-	  addi      r3, r3, 0x464F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	801890A8
+	 * Size:	000008
+	 */
+	u32 DispMemberUfoMenu::getSize(void) { return 0x10; }
 
-/*
- * --INFO--
- * Address:	801890D0
- * Size:	000008
- */
-u32 og::Screen::DispMemberUfoGroup::getSize(void) { return 0x8C; }
-
-/*
- * --INFO--
- * Address:	801890D8
- * Size:	00000C
- */
-void og::Screen::DispMemberUfoGroup::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	801890B0
+	 * Size:	00000C
+	 */
+	void DispMemberUfoMenu::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	801890E4
- * Size:	000014
- */
-void og::Screen::DispMemberUfoGroup::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5F47
-	  lis       r3, 0x55
-	  addi      r4, r4, 0x5250
-	  addi      r3, r3, 0x464F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	801890BC
+	 * Size:	000014
+	 */
+	void DispMemberUfoMenu::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4D45
+		  lis       r3, 0x55
+		  addi      r4, r4, 0x4E55
+		  addi      r3, r3, 0x464F
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	801890F8
- * Size:	000048
- */
-void og::Screen::DispMemberUfoGroup::doSetSubMemberAll(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r4, r31, 0x8
-	  bl        0x1862CC
-	  mr        r3, r31
-	  addi      r4, r31, 0x18
-	  bl        0x1862C0
-	  mr        r3, r31
-	  addi      r4, r31, 0x50
-	  bl        0x1862B4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	801890D0
+	 * Size:	000008
+	 */
+	u32 DispMemberUfoGroup::getSize(void) { return 0x8C; }
+
+	/*
+	 * --INFO--
+	 * Address:	801890D8
+	 * Size:	00000C
+	 */
+	void DispMemberUfoGroup::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	801890E4
+	 * Size:	000014
+	 */
+	void DispMemberUfoGroup::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5F47
+		  lis       r3, 0x55
+		  addi      r4, r4, 0x5250
+		  addi      r3, r3, 0x464F
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	801890F8
+	 * Size:	000048
+	 */
+	void DispMemberUfoGroup::doSetSubMemberAll(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r3
+		  addi      r4, r31, 0x8
+		  bl        0x1862CC
+		  mr        r3, r31
+		  addi      r4, r31, 0x18
+		  bl        0x1862C0
+		  mr        r3, r31
+		  addi      r4, r31, 0x50
+		  bl        0x1862B4
+		  lwz       r0, 0x14(r1)
+		  lwz       r31, 0xC(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+	namespace Game {
+
+	} // namespace Game
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	80189140
  * Size:	000008
  */
-u32 Game::NaviContainerState::invincible(void) { return 0x1; }
+u32 NaviContainerState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189148
  * Size:	000008
  */
-u32 Game::NaviSaraiExitState::pressable(void) { return 0x0; }
+u32 NaviSaraiExitState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189150
  * Size:	000008
  */
-u32 Game::NaviSaraiState::pressable(void) { return 0x0; }
+u32 NaviSaraiState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189158
  * Size:	000008
  */
-u32 Game::NaviKokeDamageState::pressable(void) { return 0x1; }
+u32 NaviKokeDamageState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189160
  * Size:	000008
  */
-u32 Game::NaviKokeDamageState::vsUsableY(void) { return 0x0; }
+u32 NaviKokeDamageState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189168
  * Size:	000008
  */
-u32 Game::NaviFlickState::pressable(void) { return 0x1; }
+u32 NaviFlickState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189170
  * Size:	000008
  */
-u32 Game::NaviFlickState::vsUsableY(void) { return 0x0; }
+u32 NaviFlickState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189178
  * Size:	000008
  */
-u32 Game::NaviFallMeckState::pressable(void) { return 0x0; }
+u32 NaviFallMeckState::pressable(void) { return 0x0; }
+
+} // namespace og
+
+namespace efx {
 
 /*
  * --INFO--
  * Address:	80189180
  * Size:	00000C
  */
-void efx::ArgDopingSmoke::getName(void)
+void ArgDopingSmoke::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -15530,47 +15539,53 @@ void efx::ArgDopingSmoke::getName(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8018918C
  * Size:	000008
  */
-u32 Game::NaviDopeState::invincible(void) { return 0x1; }
+u32 NaviDopeState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189194
  * Size:	000008
  */
-u32 Game::NaviNukuState::invincible(void) { return 0x1; }
+u32 NaviNukuState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8018919C
  * Size:	000008
  */
-u32 Game::NaviFollowState::needYChangeMotion(void) { return 0x1; }
+u32 NaviFollowState::needYChangeMotion(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891A4
  * Size:	000008
  */
-u32 Game::NaviWalkState::callable(void) { return 0x1; }
+u32 NaviWalkState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891AC
  * Size:	000008
  */
-u32 Game::NaviWalkState::needYChangeMotion(void) { return 0x1; }
+u32 NaviWalkState::needYChangeMotion(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891B4
  * Size:	000008
  */
-u32 Game::NaviStuckState::vsUsableY(void) { return 0x0; }
+u32 NaviStuckState::vsUsableY(void) { return 0x0; }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -15771,7 +15786,7 @@ void __sinit_naviState_cpp(void)
  * Address:	80189350
  * Size:	000014
  */
-void @60 @4 @Game::NaviThrowWaitState::onKeyEvent((SysShape::KeyEvent const&))
+void @60 @4 @Game::NaviThrowWaitState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -15788,7 +15803,7 @@ void @60 @4 @Game::NaviThrowWaitState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80189364
  * Size:	000014
  */
-void @32 @4 @Game::NaviThrowState::onKeyEvent((SysShape::KeyEvent const&))
+void @32 @4 @Game::NaviThrowState::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

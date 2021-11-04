@@ -5,7 +5,7 @@
  * Address:	801E3E50
  * Size:	0000D4
  */
-void PikiAI::ActCrop::ActCrop(Game::Piki*)
+PikiAI::ActCrop::ActCrop(Game::Piki*)
 {
 	/*
 	.loc_0x0:

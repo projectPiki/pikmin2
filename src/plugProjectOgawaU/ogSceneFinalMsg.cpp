@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	803258E8
  * Size:	00003C
  */
-void og::newScreen::FinalMsg::__ct(void)
+newScreen::FinalMsg::FinalMsg(void)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +34,7 @@ void og::newScreen::FinalMsg::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::FinalMsg::__dt(void)
+newScreen::FinalMsg::~FinalMsg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,14 +44,14 @@ void og::newScreen::FinalMsg::__dt(void)
  * Address:	80325924
  * Size:	000004
  */
-void og::newScreen::FinalMsg::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::FinalMsg::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80325928
  * Size:	000078
  */
-void og::newScreen::FinalMsg::doCreateObj((JKRArchive*))
+void newScreen::FinalMsg::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -103,7 +95,7 @@ void og::newScreen::FinalMsg::doCreateObj((JKRArchive*))
  * Address:	803259A0
  * Size:	000064
  */
-void og::newScreen::FinalMsg::doGetFinishState(void)
+void newScreen::FinalMsg::doGetFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -142,7 +134,7 @@ void og::newScreen::FinalMsg::doGetFinishState(void)
  * Address:	80325A04
  * Size:	00000C
  */
-void og::newScreen::FinalMsg::getResName( const
+void newScreen::FinalMsg::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -157,17 +149,14 @@ void og::newScreen::FinalMsg::getResName( const
  * Address:	80325A10
  * Size:	000008
  */
-u32  og::newScreen::FinalMsg::getSceneType(void)
-{
-	return 0x2726;
-}
+u32 newScreen::FinalMsg::getSceneType(void) { return 0x2726; }
 
 /*
  * --INFO--
  * Address:	80325A18
  * Size:	00000C
  */
-void og::newScreen::FinalMsg::getOwnerID(void)
+void newScreen::FinalMsg::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -182,7 +171,7 @@ void og::newScreen::FinalMsg::getOwnerID(void)
  * Address:	80325A24
  * Size:	000014
  */
-void og::newScreen::FinalMsg::getMemberID(void)
+void newScreen::FinalMsg::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +188,5 @@ void og::newScreen::FinalMsg::getMemberID(void)
  * Address:	80325A38
  * Size:	000008
  */
-u32  og::newScreen::FinalMsg::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::FinalMsg::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

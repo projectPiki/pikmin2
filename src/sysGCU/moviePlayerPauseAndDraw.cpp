@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80436ED0
  * Size:	000070
  */
-void Game::MoviePlayer::setPauseAndDraw((Game::MovieConfig*))
+void MoviePlayer::setPauseAndDraw(Game::MovieConfig*)
 {
 	/*
 	.loc_0x0:
@@ -57,7 +49,7 @@ void Game::MoviePlayer::setPauseAndDraw((Game::MovieConfig*))
  * Address:	80436F40
  * Size:	000498
  */
-void Game::MoviePlayer::clearPauseAndDraw(void)
+void MoviePlayer::clearPauseAndDraw(void)
 {
 	/*
 	.loc_0x0:
@@ -409,6 +401,8 @@ void Game::MoviePlayer::clearPauseAndDraw(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

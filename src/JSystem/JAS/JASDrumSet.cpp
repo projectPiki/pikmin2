@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -201,7 +201,7 @@ void JASDrumSet::getPerc(int) const
  * Address:	8009B2C8
  * Size:	000034
  */
-void JASDrumSet::TPerc::__ct(void)
+JASDrumSet::TPerc::TPerc(void)
 {
 	/*
 	.loc_0x0:
@@ -226,7 +226,7 @@ void JASDrumSet::TPerc::__ct(void)
  * Address:	8009B2FC
  * Size:	00005C
  */
-void JASDrumSet::TPerc::__dt(void)
+JASDrumSet::TPerc::~TPerc(void)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +263,7 @@ void JASDrumSet::TPerc::__dt(void)
  * Address:	8009B358
  * Size:	000078
  */
-void JASDrumSet::TPerc::setEffectCount((unsigned long))
+void JASDrumSet::TPerc::setEffectCount(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -309,7 +309,7 @@ void JASDrumSet::TPerc::setEffectCount((unsigned long))
  * Address:	8009B3D0
  * Size:	000058
  */
-void JASDrumSet::TPerc::setVeloRegionCount((unsigned long))
+void JASDrumSet::TPerc::setVeloRegionCount(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +343,7 @@ void JASDrumSet::TPerc::setVeloRegionCount((unsigned long))
  * Address:	8009B428
  * Size:	000010
  */
-void JASDrumSet::TPerc::getVeloRegion((int))
+void JASDrumSet::TPerc::getVeloRegion(int)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +369,7 @@ void JASDrumSet::TPerc::getVeloRegion(const(int))
  * Address:	8009B438
  * Size:	000010
  */
-void JASDrumSet::TPerc::setEffect((int, JASInstEffect*))
+void JASDrumSet::TPerc::setEffect(int, JASInstEffect*)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +385,7 @@ void JASDrumSet::TPerc::setEffect((int, JASInstEffect*))
  * Address:	........
  * Size:	000024
  */
-void JASDrumSet::TPerc::getEffect((int))
+void JASDrumSet::TPerc::getEffect(int)
 {
 	// UNUSED FUNCTION
 }
@@ -395,13 +395,10 @@ void JASDrumSet::TPerc::getEffect((int))
  * Address:	8009B448
  * Size:	000008
  */
-void JASDrumSet::TPerc::setRelease((unsigned long))
+void JASDrumSet::TPerc::setRelease(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0xC(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0xC(r3)
+	_0C = a1;
 }
 
 /*
@@ -409,7 +406,7 @@ void JASDrumSet::TPerc::setRelease((unsigned long))
  * Address:	8009B450
  * Size:	000084
  */
-void JASDrumSet::~JASDrumSet()
+JASDrumSet::~JASDrumSet()
 {
 	/*
 	.loc_0x0:

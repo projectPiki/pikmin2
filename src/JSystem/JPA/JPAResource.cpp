@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800955EC
  * Size:	000070
  */
-void JPAResource::JPAResource()
+JPAResource::JPAResource()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8028EB68
  * Size:	0001AC
  */
-void Game::Queen::QueenShadowNode::makeShadowSRT()
+void Queen::QueenShadowNode::makeShadowSRT()
 {
 	/*
 	.loc_0x0:
@@ -128,7 +130,7 @@ void Game::Queen::QueenShadowNode::makeShadowSRT()
  * Address:	8028ED14
  * Size:	0000B4
  */
-void Game::Queen::QueenShadowMgr::QueenShadowMgr(Game::Queen::Obj*)
+Queen::QueenShadowMgr::QueenShadowMgr(Game::Queen::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -191,7 +193,7 @@ void Game::Queen::QueenShadowMgr::QueenShadowMgr(Game::Queen::Obj*)
  * Address:	8028EDC8
  * Size:	0002A4
  */
-void Game::Queen::QueenShadowMgr::init()
+void Queen::QueenShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void Game::Queen::QueenShadowMgr::init()
  * Address:	8028F06C
  * Size:	00005C
  */
-void Game::Queen::QueenShadowMgr::update()
+void Queen::QueenShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -409,7 +411,7 @@ void Game::Queen::QueenShadowMgr::update()
  * Address:	8028F0C8
  * Size:	000070
  */
-void Game::Queen::QueenShadowNode::~QueenShadowNode()
+Queen::QueenShadowNode::~QueenShadowNode()
 {
 	/*
 	.loc_0x0:
@@ -447,3 +449,4 @@ void Game::Queen::QueenShadowNode::~QueenShadowNode()
 	  blr
 	*/
 }
+} // namespace Game

@@ -5,7 +5,7 @@
  * Address:	80036AF0
  * Size:	0000C0
  */
-void J2DPane::J2DPane()
+J2DPane::J2DPane()
 {
 	/*
 	.loc_0x0:
@@ -168,8 +168,8 @@ void J2DPane::initiate()
  * Address:	80036CB4
  * Size:	000088
  */
-void J2DPane::J2DPane(J2DPane*, bool, unsigned long long,
-                      const JGeometry::TBox2<float>&)
+J2DPane::J2DPane(J2DPane*, bool, unsigned long long,
+                 const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +306,7 @@ void J2DPane::initialize(J2DPane*, bool, unsigned long long,
  * Address:	80036E5C
  * Size:	000078
  */
-void J2DPane::J2DPane(unsigned long long, const JGeometry::TBox2<float>&)
+J2DPane::J2DPane(unsigned long long, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -423,7 +423,7 @@ void J2DPane::initialize(unsigned long long, const JGeometry::TBox2<float>&)
  * Address:	80036FC8
  * Size:	000120
  */
-void J2DPane::J2DPane(J2DPane*, JSURandomInputStream*, unsigned char)
+J2DPane::J2DPane(J2DPane*, JSURandomInputStream*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -886,7 +886,7 @@ void J2DPane::changeUseTrans(J2DPane*)
  * Address:	800375E4
  * Size:	0000E0
  */
-void J2DPane::~J2DPane()
+J2DPane::~J2DPane()
 {
 	/*
 	.loc_0x0:
@@ -2518,13 +2518,10 @@ void JSUTreeIterator<J2DPane>::operator++()
  * Address:	80038914
  * Size:	000008
  */
-void JSUTreeIterator<J2DPane>::JSUTreeIterator(JSUTree<J2DPane>*)
+void JSUTreeIterator<J2DPane>::JSUTreeIterator(JSUTree<J2DPane>* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x0(r3)
+	_00 = a1;
 }
 
 /*
@@ -3121,13 +3118,10 @@ void J2DPane::setInfluencedAlpha(bool, bool)
  * Address:	80038F90
  * Size:	000008
  */
-void J2DPane::setAlpha(unsigned char)
+void J2DPane::setAlpha(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0xB2(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0xB2(r3)
+	_B2 = a1;
 }
 
 /*
@@ -3738,13 +3732,10 @@ void J2DPane::setAnimation(J2DAnmColor*) { }
  * Address:	800395F4
  * Size:	000008
  */
-void J2DPane::setAnimation(J2DAnmTransform*)
+void J2DPane::setAnimation(J2DAnmTransform* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xF8(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0xF8(r3)
+	_F8 = a1;
 }
 
 /*

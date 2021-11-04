@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000028
  */
-void Game::WaterBox::__ct(void)
+WaterBox::WaterBox(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::WaterBox::__ct(void)
  * Address:	........
  * Size:	0000B8
  */
-void Game::AABBWaterBox::__ct(void)
+AABBWaterBox::AABBWaterBox(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::AABBWaterBox::__ct(void)
  * Address:	801AE448
  * Size:	000028
  */
-void Game::AABBWaterBox::startDown((float))
+void AABBWaterBox::startDown(float)
 {
 	/*
 	.loc_0x0:
@@ -57,7 +49,7 @@ void Game::AABBWaterBox::startDown((float))
  * Address:	801AE470
  * Size:	000038
  */
-void Game::AABBWaterBox::startUp((float))
+void AABBWaterBox::startUp(float)
 {
 	/*
 	.loc_0x0:
@@ -83,7 +75,7 @@ void Game::AABBWaterBox::startUp((float))
  * Address:	801AE4A8
  * Size:	0000B8
  */
-void Game::AABBWaterBox::update(void)
+void AABBWaterBox::update(void)
 {
 	/*
 	.loc_0x0:
@@ -147,8 +139,7 @@ void Game::AABBWaterBox::update(void)
  * Address:	801AE560
  * Size:	0001B0
  */
-void Game::AABBWaterBox::attachModel((J3DModelData*, Sys::MatTexAnimation*,
-                                      float))
+void AABBWaterBox::attachModel(J3DModelData*, Sys::MatTexAnimation*, float)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +267,7 @@ void Game::AABBWaterBox::attachModel((J3DModelData*, Sys::MatTexAnimation*,
  * Address:	801AE710
  * Size:	0000A0
  */
-void Game::AABBWaterBox::calcMatrix(void)
+void AABBWaterBox::calcMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -330,7 +321,7 @@ void Game::AABBWaterBox::calcMatrix(void)
  * Address:	801AE7B0
  * Size:	000048
  */
-void Game::AABBWaterBox::doAnimation(void)
+void AABBWaterBox::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -360,7 +351,7 @@ void Game::AABBWaterBox::doAnimation(void)
  * Address:	801AE7F8
  * Size:	000030
  */
-void Game::AABBWaterBox::doSetView((int))
+void AABBWaterBox::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +377,7 @@ void Game::AABBWaterBox::doSetView((int))
  * Address:	801AE828
  * Size:	00002C
  */
-void Game::AABBWaterBox::doViewCalc(void)
+void AABBWaterBox::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +402,7 @@ void Game::AABBWaterBox::doViewCalc(void)
  * Address:	801AE854
  * Size:	000538
  */
-void Game::AABBWaterBox::doEntry(void)
+void AABBWaterBox::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -775,7 +766,7 @@ void Game::AABBWaterBox::doEntry(void)
  * Address:	801AED8C
  * Size:	000210
  */
-void Game::SeaMgr::update(void)
+void SeaMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -939,7 +930,7 @@ void Game::SeaMgr::update(void)
  * Address:	801AEF9C
  * Size:	000104
  */
-void Game::AABBWaterBox::inWater((Sys::Sphere&))
+void AABBWaterBox::inWater(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1038,7 +1029,7 @@ void Game::AABBWaterBox::inWater((Sys::Sphere&))
  * Address:	801AF0A0
  * Size:	0000E4
  */
-void Game::AABBWaterBox::inWater2d((Sys::Sphere&))
+void AABBWaterBox::inWater2d(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1122,22 +1113,26 @@ void Game::AABBWaterBox::inWater2d((Sys::Sphere&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
  */
-void create__Q24Game12AABBWaterBoxFR10Vector3<float> R10Vector3<float>(void)
+void create__Q24Game12AABBWaterBoxFR10Vector3f R10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801AF184
  * Size:	0001C8
  */
-void Game::AABBWaterBox::globalise((Game::AABBWaterBox*, Matrixf&))
+void AABBWaterBox::globalise(Game::AABBWaterBox*, Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -1277,14 +1272,14 @@ void Game::AABBWaterBox::globalise((Game::AABBWaterBox*, Matrixf&))
  * Address:	801AF34C
  * Size:	000004
  */
-void Game::AABBWaterBox::directDraw((Graphics&)) { }
+void AABBWaterBox::directDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801AF350
  * Size:	0002F8
  */
-void Game::SeaMgr::__ct(void)
+SeaMgr::SeaMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1517,6 +1512,8 @@ void Game::SeaMgr::__ct(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801AF648
@@ -1717,12 +1714,14 @@ void Container<Game::WaterBox>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000090
  */
-void Game::SeaMgr::addWaterBox((Game::WaterBox*))
+void SeaMgr::addWaterBox(Game::WaterBox*)
 {
 	// UNUSED FUNCTION
 }
@@ -1732,16 +1731,14 @@ void Game::SeaMgr::addWaterBox((Game::WaterBox*))
  * Address:	801AF868
  * Size:	000004
  */
-void Game::WaterBox::attachModel((J3DModelData*, Sys::MatTexAnimation*, float))
-{
-}
+void WaterBox::attachModel(J3DModelData*, Sys::MatTexAnimation*, float) { }
 
 /*
  * --INFO--
  * Address:	801AF86C
  * Size:	000214
  */
-void Game::SeaMgr::findWater((Sys::Sphere&))
+void SeaMgr::findWater(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -1906,7 +1903,7 @@ void Game::SeaMgr::findWater((Sys::Sphere&))
  * Address:	801AFA80
  * Size:	000214
  */
-void Game::SeaMgr::findWater2d((Sys::Sphere&))
+void SeaMgr::findWater2d(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2071,14 +2068,14 @@ void Game::SeaMgr::findWater2d((Sys::Sphere&))
  * Address:	801AFC94
  * Size:	000008
  */
-u32 Game::WaterBox::inWater2d((Sys::Sphere&)) { return 0x0; }
+u32 WaterBox::inWater2d(Sys::Sphere&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Game::SeaMgr::directDraw((Graphics&))
+void SeaMgr::directDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -2088,7 +2085,7 @@ void Game::SeaMgr::directDraw((Graphics&))
  * Address:	801AFC9C
  * Size:	00020C
  */
-void Game::SeaMgr::read((Stream&))
+void SeaMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2239,7 +2236,7 @@ void Game::SeaMgr::read((Stream&))
  * Address:	801AFEA8
  * Size:	000308
  */
-void Game::SeaMgr::addSeaMgr((Game::SeaMgr*, Matrixf&))
+void SeaMgr::addSeaMgr(Game::SeaMgr*, Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -2465,7 +2462,7 @@ void Game::SeaMgr::addSeaMgr((Game::SeaMgr*, Matrixf&))
  * Address:	801B01B0
  * Size:	0000E0
  */
-void Game::SeaMgr::__dt(void)
+SeaMgr::~SeaMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2539,7 +2536,7 @@ void Game::SeaMgr::__dt(void)
  * Address:	801B0290
  * Size:	000010
  */
-void Game::AABBWaterBox::getSeaLevel(void)
+void AABBWaterBox::getSeaLevel(void)
 {
 	/*
 	.loc_0x0:
@@ -2555,7 +2552,7 @@ void Game::AABBWaterBox::getSeaLevel(void)
  * Address:	801B02A0
  * Size:	000008
  */
-void Game::AABBWaterBox::getSeaHeightPtr(void)
+void AABBWaterBox::getSeaHeightPtr(void)
 {
 	/*
 	.loc_0x0:
@@ -2569,42 +2566,44 @@ void Game::AABBWaterBox::getSeaHeightPtr(void)
  * Address:	801B02A8
  * Size:	000004
  */
-void Game::WaterBox::doSimulation((float)) { }
+void WaterBox::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801B02AC
  * Size:	000004
  */
-void Game::WaterBox::doDirectDraw((Graphics&)) { }
+void WaterBox::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801B02B0
  * Size:	000004
  */
-void Game::WaterBox::startDown((float)) { }
+void WaterBox::startDown(float) { }
 
 /*
  * --INFO--
  * Address:	801B02B4
  * Size:	000004
  */
-void Game::WaterBox::startUp((float)) { }
+void WaterBox::startUp(float) { }
 
 /*
  * --INFO--
  * Address:	801B02B8
  * Size:	000004
  */
-void Game::WaterBox::directDraw((Graphics&)) { }
+void WaterBox::directDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801B02BC
  * Size:	000004
  */
-void Game::WaterBox::calcMatrix(void) { }
+void WaterBox::calcMatrix(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--

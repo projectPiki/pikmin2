@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F0B90
  * Size:	000008
  */
-void Game::Sokkuri::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Sokkuri::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::Sokkuri::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802F0B98
  * Size:	000008
  */
-void Game::Sokkuri::ProperAnimator::getAnimator((int))
+void Sokkuri::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::Sokkuri::ProperAnimator::getAnimator((int))
  * Address:	802F0BA0
  * Size:	00005C
  */
-void Game::Sokkuri::ProperAnimator::__dt(void)
+Sokkuri::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::Sokkuri::ProperAnimator::__dt(void)
  * Address:	802F0BFC
  * Size:	000008
  */
-void Game::Sokkuri::ProperAnimator::getAnimator(void)
+void Sokkuri::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::Sokkuri::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

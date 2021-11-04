@@ -42,7 +42,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C4C1C
 //  * Size:	000050
 //  */
-// void Game::PlatInstance::getBoundingSphere((Sys::Sphere&))
+// void Game::PlatInstance::getBoundingSphere(Sys::Sphere&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -74,7 +74,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	........
 //  * Size:	0000FC
 //  */
-// void getMinY__Q24Game12PlatInstanceFR10Vector3<float>(void)
+// void getMinY__Q24Game12PlatInstanceFR10Vector3f(void)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -84,7 +84,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C4C6C
 //  * Size:	000254
 //  */
-// void Game::PlatInstance::getCurrTri((Game::CurrTriInfo&))
+// void Game::PlatInstance::getCurrTri(Game::CurrTriInfo&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -259,7 +259,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C4EC0
 //  * Size:	0002E4
 //  */
-// void Game::PlatInstance::traceMove((Game::MoveInfo&, float))
+// void Game::PlatInstance::traceMove(Game::MoveInfo&, float)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -480,7 +480,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C51A4
 //  * Size:	000018
 //  */
-// void Game::PlatInstanceAttacher::__ct(void)
+// void Game::PlatInstanceAttacher::PlatInstanceAttacher(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -498,8 +498,8 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C51BC
 //  * Size:	0001B0
 //  */
-// void Game::PlatInstanceAttacher::addToMgr((Game::Creature*, ID32&,
-//                                            PlatAttacher*, bool))
+// void Game::PlatInstanceAttacher::addToMgr(Game::Creature*, ID32&,
+//                                            PlatAttacher*, bool)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -625,7 +625,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C536C
 //  * Size:	000094
 //  */
-// void Game::PlatInstanceAttacher::setCollision((bool, unsigned short))
+// void Game::PlatInstanceAttacher::setCollision(bool, unsigned short)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -682,7 +682,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	........
 //  * Size:	0000A0
 //  */
-// void Game::PlatInstanceAttacher::fixCollision((bool, unsigned short))
+// void Game::PlatInstanceAttacher::fixCollision(bool, unsigned short)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -692,7 +692,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C5400
 //  * Size:	00009C
 //  */
-// void Game::PlatInstanceAttacher::fixCollision((bool))
+// void Game::PlatInstanceAttacher::fixCollision(bool)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -751,7 +751,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C549C
 //  * Size:	00008C
 //  */
-// void Game::PlatInstanceAttacher::setCode((ID32&, unsigned short))
+// void Game::PlatInstanceAttacher::setCode(ID32&, unsigned short)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -804,7 +804,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	........
 //  * Size:	000098
 //  */
-// void Game::PlatInstanceAttacher::setCode((ID32&, char*))
+// void Game::PlatInstanceAttacher::setCode(ID32&, char*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -814,7 +814,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	........
 //  * Size:	0000A4
 //  */
-// void Game::PlatInstanceAttacher::setCollision((bool, char*))
+// void Game::PlatInstanceAttacher::setCollision(bool, char*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -824,7 +824,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	........
 //  * Size:	0000AC
 //  */
-// void Game::PlatInstanceAttacher::fixCollision((bool, char*))
+// void Game::PlatInstanceAttacher::fixCollision(bool, char*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -902,7 +902,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C55E8
 //  * Size:	0000B8
 //  */
-// void Game::PlatMgr::__ct(void)
+// void Game::PlatMgr::PlatMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1160,7 +1160,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C58C0
 //  * Size:	000064
 //  */
-// void Game::PlatAddInstanceArg::__ct(void)
+// void Game::PlatAddInstanceArg::PlatAddInstanceArg(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1197,7 +1197,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C5924
 //  * Size:	000270
 //  */
-// void Game::PlatMgr::addInstance((Game::PlatAddInstanceArg&))
+// void Game::PlatMgr::addInstance(Game::PlatAddInstanceArg&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1386,7 +1386,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C5B98
 //  * Size:	000020
 //  */
-// void Game::PlatMgr::delInstance((Game::PlatInstance*))
+// void Game::PlatMgr::delInstance(Game::PlatInstance*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1406,7 +1406,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C5BB8
 //  * Size:	0002A4
 //  */
-// void Game::PlatMgr::traceMove((Game::MoveInfo&, float))
+// void Game::PlatMgr::traceMove(Game::MoveInfo&, float)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1646,7 +1646,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	........
 //  * Size:	0002FC
 //  */
-// void getMinY__Q24Game7PlatMgrFR10Vector3<float>(void)
+// void getMinY__Q24Game7PlatMgrFR10Vector3f(void)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1656,7 +1656,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C5EA8
 //  * Size:	0002B0
 //  */
-// void Game::PlatMgr::getCurrTri((Game::CurrTriInfo&))
+// void Game::PlatMgr::getCurrTri(Game::CurrTriInfo&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1868,7 +1868,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C6158
 //  * Size:	000338
 //  */
-// void Game::PlatMgr::findRayIntersection((Sys::RayIntersectInfo&))
+// void Game::PlatMgr::findRayIntersection(Sys::RayIntersectInfo&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2261,7 +2261,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C666C
 //  * Size:	000004
 //  */
-// void Game::PlatMgr::doDirectDraw((Graphics&))
+// void Game::PlatMgr::doDirectDraw(Graphics&)
 // {
 // }
 
@@ -2270,7 +2270,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C6670
 //  * Size:	0000E0
 //  */
-// void Game::PlatMgr::__dt(void)
+// void Game::PlatMgr::~PlatMgr(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2522,7 +2522,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C6948
 //  * Size:	000004
 //  */
-// void Game::PlatInstance::checkCollision((Game::CellObject*))
+// void Game::PlatInstance::checkCollision(Game::CellObject*)
 // {
 // }
 
@@ -2549,7 +2549,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C6954
 //  * Size:	000004
 //  */
-// void Game::PlatInstance::doSetView((int))
+// void Game::PlatInstance::doSetView(int)
 // {
 // }
 
@@ -2567,7 +2567,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C695C
 //  * Size:	000004
 //  */
-// void Game::PlatInstance::doSimulation((float))
+// void Game::PlatInstance::doSimulation(float)
 // {
 // }
 
@@ -2576,7 +2576,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C6960
 //  * Size:	000004
 //  */
-// void Game::PlatInstance::doDirectDraw((Graphics&))
+// void Game::PlatInstance::doDirectDraw(Graphics&)
 // {
 // }
 
@@ -3725,7 +3725,7 @@ void PlatInstance::setCollision(bool flag)
 //  * Address:	801C75D4
 //  * Size:	000008
 //  */
-// void @28 @Game::PlatMgr::doDirectDraw((Graphics&))
+// void @28 @Game::PlatMgr::doDirectDraw(Graphics&)
 // {
 // 	/*
 // 	.loc_0x0:

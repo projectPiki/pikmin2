@@ -278,7 +278,7 @@ void J2DTexGenBlock::setGX()
  * Address:	80049E64
  * Size:	000090
  */
-void J2DTexGenBlock::~J2DTexGenBlock()
+J2DTexGenBlock::~J2DTexGenBlock()
 {
 	/*
 	.loc_0x0:
@@ -512,7 +512,7 @@ u32 J2DTevBlock::getPalette(unsigned long) { return 0x0; }
  * Address:	8004A114
  * Size:	00010C
  */
-void J2DTevBlock1::J2DTevBlock1()
+J2DTevBlock1::J2DTevBlock1()
 {
 	/*
 	.loc_0x0:
@@ -591,7 +591,7 @@ void J2DTevBlock1::J2DTevBlock1()
  * Address:	8004A220
  * Size:	000094
  */
-void J2DIndTevStage::J2DIndTevStage()
+J2DIndTevStage::J2DIndTevStage()
 {
 	/*
 	.loc_0x0:
@@ -640,7 +640,7 @@ void J2DIndTevStage::J2DIndTevStage()
  * Address:	8004A2B4
  * Size:	00000C
  */
-void J2DTevSwapModeTable::J2DTevSwapModeTable()
+J2DTevSwapModeTable::J2DTevSwapModeTable()
 {
 	/*
 	.loc_0x0:
@@ -655,14 +655,14 @@ void J2DTevSwapModeTable::J2DTevSwapModeTable()
  * Address:	8004A2C0
  * Size:	000004
  */
-void J2DGXColorS10::J2DGXColorS10() { }
+J2DGXColorS10::J2DGXColorS10() { }
 
 /*
  * --INFO--
  * Address:	8004A2C4
  * Size:	000020
  */
-void J2DTevOrder::J2DTevOrder()
+J2DTevOrder::J2DTevOrder()
 {
 	/*
 	.loc_0x0:
@@ -682,7 +682,7 @@ void J2DTevOrder::J2DTevOrder()
  * Address:	8004A2E4
  * Size:	000048
  */
-void J2DTevBlock::~J2DTevBlock()
+J2DTevBlock::~J2DTevBlock()
 {
 	/*
 	.loc_0x0:
@@ -714,7 +714,7 @@ void J2DTevBlock::~J2DTevBlock()
  * Address:	8004A32C
  * Size:	0000B8
  */
-void J2DTevBlock1::~J2DTevBlock1()
+J2DTevBlock1::~J2DTevBlock1()
 {
 	/*
 	.loc_0x0:
@@ -1848,7 +1848,7 @@ void J2DTevBlock1::loadTexture(_GXTexMapID, unsigned long)
  * Address:	8004B03C
  * Size:	000110
  */
-void J2DTevBlock2::J2DTevBlock2()
+J2DTevBlock2::J2DTevBlock2()
 {
 	/*
 	.loc_0x0:
@@ -1928,7 +1928,7 @@ void J2DTevBlock2::J2DTevBlock2()
  * Address:	8004B14C
  * Size:	0000D8
  */
-void J2DTevBlock2::~J2DTevBlock2()
+J2DTevBlock2::~J2DTevBlock2()
 {
 	/*
 	.loc_0x0:
@@ -3488,7 +3488,7 @@ void J2DTevBlock2::loadTexture(_GXTexMapID, unsigned long)
  * Address:	8004C3E4
  * Size:	000118
  */
-void J2DTevBlock4::J2DTevBlock4()
+J2DTevBlock4::J2DTevBlock4()
 {
 	/*
 	.loc_0x0:
@@ -3570,7 +3570,7 @@ void J2DTevBlock4::J2DTevBlock4()
  * Address:	8004C4FC
  * Size:	0000D0
  */
-void J2DTevBlock4::~J2DTevBlock4()
+J2DTevBlock4::~J2DTevBlock4()
 {
 	/*
 	.loc_0x0:
@@ -5390,7 +5390,7 @@ void J2DTevBlock4::loadTexture(_GXTexMapID, unsigned long)
  * Address:	8004DB0C
  * Size:	000128
  */
-void J2DTevBlock8::J2DTevBlock8()
+J2DTevBlock8::J2DTevBlock8()
 {
 	/*
 	.loc_0x0:
@@ -5476,7 +5476,7 @@ void J2DTevBlock8::J2DTevBlock8()
  * Address:	8004DC34
  * Size:	0000D0
  */
-void J2DTevBlock8::~J2DTevBlock8()
+J2DTevBlock8::~J2DTevBlock8()
 {
 	/*
 	.loc_0x0:
@@ -7348,7 +7348,7 @@ void J2DTevBlock8::loadTexture(_GXTexMapID, unsigned long)
  * Address:	8004F31C
  * Size:	000128
  */
-void J2DTevBlock16::J2DTevBlock16()
+J2DTevBlock16::J2DTevBlock16()
 {
 	/*
 	.loc_0x0:
@@ -7434,7 +7434,7 @@ void J2DTevBlock16::J2DTevBlock16()
  * Address:	8004F444
  * Size:	0000D0
  */
-void J2DTevBlock16::~J2DTevBlock16()
+J2DTevBlock16::~J2DTevBlock16()
 {
 	/*
 	.loc_0x0:
@@ -9603,13 +9603,10 @@ void J2DIndBlockFull::getType()
  * Address:	80050EA0
  * Size:	000008
  */
-void J2DIndBlockFull::setIndTexStageNum(unsigned char)
+void J2DIndBlockFull::setIndTexStageNum(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*
@@ -9749,7 +9746,7 @@ void J2DIndBlockFull::getIndTexCoordScale(unsigned long)
  * Address:	80050F68
  * Size:	00009C
  */
-void J2DIndBlockFull::~J2DIndBlockFull()
+J2DIndBlockFull::~J2DIndBlockFull()
 {
 	/*
 	.loc_0x0:
@@ -9804,7 +9801,7 @@ void J2DIndBlockFull::~J2DIndBlockFull()
  * Address:	80051004
  * Size:	00003C
  */
-void J2DIndTexMtx::~J2DIndTexMtx()
+J2DIndTexMtx::~J2DIndTexMtx()
 {
 	/*
 	.loc_0x0:
@@ -9833,7 +9830,7 @@ void J2DIndTexMtx::~J2DIndTexMtx()
  * Address:	80051040
  * Size:	00003C
  */
-void J2DIndTexCoordScale::~J2DIndTexCoordScale()
+J2DIndTexCoordScale::~J2DIndTexCoordScale()
 {
 	/*
 	.loc_0x0:
@@ -9925,7 +9922,7 @@ u32 J2DIndBlock::getIndTexCoordScale(unsigned long) { return 0x0; }
  * Address:	800510AC
  * Size:	000048
  */
-void J2DIndBlock::~J2DIndBlock()
+J2DIndBlock::~J2DIndBlock()
 {
 	/*
 	.loc_0x0:
@@ -10011,13 +10008,10 @@ void J2DTevBlock16::getTexNo(unsigned long) const
  * Address:	80051128
  * Size:	000008
  */
-void J2DTevBlock16::setFontNo(unsigned short)
+void J2DTevBlock16::setFontNo(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x14(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x14(r3)
+	_14 = a1;
 }
 
 /*
@@ -10217,13 +10211,10 @@ void J2DTevBlock16::getTevKAlphaSel(unsigned long)
  * Address:	80051220
  * Size:	000008
  */
-void J2DTevBlock16::setTevStageNum(unsigned char)
+void J2DTevBlock16::setTevStageNum(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x76(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x76(r3)
+	_76 = a1;
 }
 
 /*
@@ -10481,12 +10472,8 @@ void J2DTevBlock16::setUndeleteFlag(unsigned char)
  */
 void J2DTevBlock16::setFontUndeleteFlag()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x1B1(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x1B1(r3)
+	_1B1 = 0;
 }
 
 /*
@@ -10548,13 +10535,10 @@ void J2DTevBlock8::getTexNo(unsigned long) const
  * Address:	800513C8
  * Size:	000008
  */
-void J2DTevBlock8::setFontNo(unsigned short)
+void J2DTevBlock8::setFontNo(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x14(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x14(r3)
+	_14 = a1;
 }
 
 /*
@@ -10754,13 +10738,10 @@ void J2DTevBlock8::getTevKAlphaSel(unsigned long)
  * Address:	800514C0
  * Size:	000008
  */
-void J2DTevBlock8::setTevStageNum(unsigned char)
+void J2DTevBlock8::setTevStageNum(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x56(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x56(r3)
+	_56 = a1;
 }
 
 /*
@@ -11018,12 +10999,8 @@ void J2DTevBlock8::setUndeleteFlag(unsigned char)
  */
 void J2DTevBlock8::setFontUndeleteFlag()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x121(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x121(r3)
+	_121 = 0;
 }
 
 /*
@@ -11085,13 +11062,10 @@ void J2DTevBlock4::getTexNo(unsigned long) const
  * Address:	80051668
  * Size:	000008
  */
-void J2DTevBlock4::setFontNo(unsigned short)
+void J2DTevBlock4::setFontNo(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0xC(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0xC(r3)
+	_0C = a1;
 }
 
 /*
@@ -11291,13 +11265,10 @@ void J2DTevBlock4::getTevKAlphaSel(unsigned long)
  * Address:	80051760
  * Size:	000008
  */
-void J2DTevBlock4::setTevStageNum(unsigned char)
+void J2DTevBlock4::setTevStageNum(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x3E(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x3E(r3)
+	_3E = a1;
 }
 
 /*
@@ -11623,13 +11594,10 @@ void J2DTevBlock2::getTexNo(unsigned long) const
  * Address:	8005190C
  * Size:	000008
  */
-void J2DTevBlock2::setFontNo(unsigned short)
+void J2DTevBlock2::setFontNo(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x8(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x8(r3)
+	_08 = a1;
 }
 
 /*
@@ -11829,13 +11797,10 @@ void J2DTevBlock2::getTevKAlphaSel(unsigned long)
  * Address:	80051A04
  * Size:	000008
  */
-void J2DTevBlock2::setTevStageNum(unsigned char)
+void J2DTevBlock2::setTevStageNum(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x32(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x32(r3)
+	_32 = a1;
 }
 
 /*
@@ -12161,13 +12126,10 @@ void J2DTevBlock1::getTexNo(unsigned long) const
  * Address:	80051BB0
  * Size:	000008
  */
-void J2DTevBlock1::setFontNo(unsigned short)
+void J2DTevBlock1::setFontNo(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x6(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x6(r3)
+	_06 = a1;
 }
 
 /*

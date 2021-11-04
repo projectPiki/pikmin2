@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8021295C
  * Size:	000090
  */
-void PikiAI::ActTeki::__ct((Game::Piki*))
+PikiAI::ActTeki::ActTeki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void PikiAI::ActTeki::__ct((Game::Piki*))
  * Address:	802129EC
  * Size:	00010C
  */
-void PikiAI::ActTeki::init((PikiAI::ActionArg*))
+void PikiAI::ActTeki::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -796,7 +786,7 @@ void PikiAI::ActTeki::test_0(void)
  * Address:	80213318
  * Size:	000058
  */
-void PikiAI::ActTeki::doDirectDraw((Graphics&))
+void PikiAI::ActTeki::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -955,7 +945,7 @@ void PikiAI::ActTeki::cleanup(void) { }
  * Address:	802134A4
  * Size:	0000E8
  */
-void PikiAI::ActTeki::collisionCallback((Game::Piki*, Game::CollEvent&))
+void PikiAI::ActTeki::collisionCallback(Game::Piki*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1029,7 +1019,7 @@ void PikiAI::ActTeki::collisionCallback((Game::Piki*, Game::CollEvent&))
  * Address:	8021358C
  * Size:	000004
  */
-void PikiAI::ActTeki::onKeyEvent((SysShape::KeyEvent const&)) { }
+void PikiAI::ActTeki::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
@@ -1043,7 +1033,7 @@ u32 PikiAI::ActTeki::getNextAIType(void) { return 0x1; }
  * Address:	80213598
  * Size:	000014
  */
-void @72 @4 @PikiAI::ActTeki::onKeyEvent((SysShape::KeyEvent const&))
+void @72 @4 @PikiAI::ActTeki::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

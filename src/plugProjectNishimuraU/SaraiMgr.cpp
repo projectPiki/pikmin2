@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80272504
  * Size:	000050
  */
-void Game::Sarai::Mgr::Mgr(int, unsigned char)
+Sarai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Sarai::Mgr::Mgr(int, unsigned char)
  * Address:	80272554
  * Size:	000048
  */
-void Game::Sarai::Mgr::doAlloc()
+void Sarai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Sarai::Mgr::doAlloc()
  * Address:	8027259C
  * Size:	000048
  */
-void Game::Sarai::Parms::Parms()
+Sarai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Sarai::Parms::Parms()
  * Address:	802725E4
  * Size:	0003A4
  */
-void Game::Sarai::Parms::ProperParms::ProperParms()
+Sarai::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -350,7 +352,7 @@ void Game::Sarai::Parms::ProperParms::ProperParms()
  * Address:	80272988
  * Size:	000060
  */
-void Game::Sarai::Mgr::createObj(int)
+void Sarai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +388,7 @@ void Game::Sarai::Mgr::createObj(int)
  * Address:	802729E8
  * Size:	0000BC
  */
-void Game::Sarai::Obj::~Obj()
+Sarai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -449,7 +451,7 @@ void Game::Sarai::Obj::~Obj()
  * Address:	80272AA4
  * Size:	000010
  */
-void Game::Sarai::Mgr::getEnemy(int)
+void Sarai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -465,7 +467,7 @@ void Game::Sarai::Mgr::getEnemy(int)
  * Address:	80272AB4
  * Size:	000050
  */
-void Game::Sarai::Parms::read(Stream&)
+void Sarai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -497,7 +499,7 @@ void Game::Sarai::Parms::read(Stream&)
  * Address:	80272B04
  * Size:	0000B0
  */
-void Game::Sarai::Mgr::~Mgr()
+Sarai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -557,14 +559,14 @@ void Game::Sarai::Mgr::~Mgr()
  * Address:	80272BB4
  * Size:	000008
  */
-u32 Game::Sarai::Mgr::getEnemyTypeID() { return 0x17; }
+u32 Sarai::Mgr::getEnemyTypeID() { return 0x17; }
 
 /*
  * --INFO--
  * Address:	80272BBC
  * Size:	000008
  */
-void Game::Sarai::Mgr::@4 @__dt()
+Sarai::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -572,3 +574,4 @@ void Game::Sarai::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

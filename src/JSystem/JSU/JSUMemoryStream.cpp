@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -125,7 +125,7 @@ void JSUMemoryInputStream::seekPos(long, JSUStreamSeekFrom)
  * Address:	80026E64
  * Size:	000070
  */
-void JSUMemoryInputStream::~JSUMemoryInputStream()
+JSUMemoryInputStream::~JSUMemoryInputStream()
 {
 	/*
 	.loc_0x0:

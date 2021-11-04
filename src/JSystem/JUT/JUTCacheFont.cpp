@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JUTCacheFont::JUTCacheFont()
+JUTCacheFont::JUTCacheFont()
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JUTCacheFont::JUTCacheFont()
  * Address:	........
  * Size:	00007C
  */
-void JUTCacheFont::JUTCacheFont(const ResFONT*, void*, unsigned long, JKRHeap*)
+JUTCacheFont::JUTCacheFont(const ResFONT*, void*, unsigned long, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void JUTCacheFont::JUTCacheFont(const ResFONT*, void*, unsigned long, JKRHeap*)
  * Address:	80033F94
  * Size:	000090
  */
-void JUTCacheFont::JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*)
+JUTCacheFont::JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -73,7 +73,7 @@ void JUTCacheFont::JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*)
  * Address:	80034024
  * Size:	000094
  */
-void JUTCacheFont::~JUTCacheFont()
+JUTCacheFont::~JUTCacheFont()
 {
 	/*
 	.loc_0x0:

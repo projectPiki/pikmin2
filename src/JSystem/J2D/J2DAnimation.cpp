@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2119,7 +2119,7 @@ void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen*)
  * Address:	8005C884
  * Size:	000010
  */
-void J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::__ct(void)
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer(void)
 {
 	/*
 	.loc_0x0:
@@ -2135,7 +2135,8 @@ void J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::__ct(void)
  * Address:	8005C894
  * Size:	000054
  */
-void J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::__dt(void)
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer(
+    void)
 {
 	/*
 	.loc_0x0:
@@ -3011,7 +3012,7 @@ void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen*)
  * Address:	8005D274
  * Size:	000088
  */
-void J2DAnmTevRegKey::~J2DAnmTevRegKey()
+J2DAnmTevRegKey::~J2DAnmTevRegKey()
 {
 	/*
 	.loc_0x0:
@@ -3065,7 +3066,7 @@ void J2DAnmTevRegKey::~J2DAnmTevRegKey()
  * Address:	8005D2FC
  * Size:	000090
  */
-void J2DAnmTexPattern::~J2DAnmTexPattern()
+J2DAnmTexPattern::~J2DAnmTexPattern()
 {
 	/*
 	.loc_0x0:
@@ -3119,7 +3120,7 @@ void J2DAnmTexPattern::~J2DAnmTexPattern()
  * Address:	8005D38C
  * Size:	000088
  */
-void J2DAnmTextureSRTKey::~J2DAnmTextureSRTKey()
+J2DAnmTextureSRTKey::~J2DAnmTextureSRTKey()
 {
 	/*
 	.loc_0x0:
@@ -3173,7 +3174,7 @@ void J2DAnmTextureSRTKey::~J2DAnmTextureSRTKey()
  * Address:	8005D414
  * Size:	00006C
  */
-void J2DAnmVtxColorKey::~J2DAnmVtxColorKey()
+J2DAnmVtxColorKey::~J2DAnmVtxColorKey()
 {
 	/*
 	.loc_0x0:
@@ -3216,7 +3217,7 @@ void J2DAnmVtxColorKey::~J2DAnmVtxColorKey()
  * Address:	8005D480
  * Size:	00006C
  */
-void J2DAnmVtxColorFull::~J2DAnmVtxColorFull()
+J2DAnmVtxColorFull::~J2DAnmVtxColorFull()
 {
 	/*
 	.loc_0x0:
@@ -3259,7 +3260,7 @@ void J2DAnmVtxColorFull::~J2DAnmVtxColorFull()
  * Address:	8005D4EC
  * Size:	000084
  */
-void J2DAnmColorKey::~J2DAnmColorKey()
+J2DAnmColorKey::~J2DAnmColorKey()
 {
 	/*
 	.loc_0x0:
@@ -3310,7 +3311,7 @@ void J2DAnmColorKey::~J2DAnmColorKey()
  * Address:	8005D570
  * Size:	000084
  */
-void J2DAnmColorFull::~J2DAnmColorFull()
+J2DAnmColorFull::~J2DAnmColorFull()
 {
 	/*
 	.loc_0x0:
@@ -3361,7 +3362,7 @@ void J2DAnmColorFull::~J2DAnmColorFull()
  * Address:	8005D5F4
  * Size:	00006C
  */
-void J2DAnmTransformKey::~J2DAnmTransformKey()
+J2DAnmTransformKey::~J2DAnmTransformKey()
 {
 	/*
 	.loc_0x0:
@@ -3428,7 +3429,7 @@ void J2DAnmTransformKey::getTransform(unsigned short, J3DTransformInfo*) const
  * Address:	8005D690
  * Size:	00006C
  */
-void J2DAnmTransformFull::~J2DAnmTransformFull()
+J2DAnmTransformFull::~J2DAnmTransformFull()
 {
 	/*
 	.loc_0x0:

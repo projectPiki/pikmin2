@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80012198
  * Size:	0000C8
  */
-void JStudio_JStage::TAdaptor_actor::TAdaptor_actor(const JStage::TSystem*,
-                                                    JStage::TActor*)
+JStudio_JStage::TAdaptor_actor::TAdaptor_actor(const JStage::TSystem*,
+                                               JStage::TActor*)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +68,7 @@ void JStudio_JStage::TAdaptor_actor::TAdaptor_actor(const JStage::TSystem*,
  * Address:	80012260
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_actor::~TAdaptor_actor()
+JStudio_JStage::TAdaptor_actor::~TAdaptor_actor()
 {
 	/*
 	.loc_0x0:

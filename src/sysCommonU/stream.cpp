@@ -3,19 +3,9 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	000034
  */
-void Stream::Stream()
+Stream::Stream()
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void Stream::Stream()
  * Address:	........
  * Size:	000030
  */
-void Stream::Stream(int)
+Stream::Stream(int)
 {
 	// UNUSED FUNCTION
 }
@@ -2485,7 +2475,7 @@ void Stream::writeFloat(float)
  * Address:	804158F8
  * Size:	000050
  */
-void RamStream::RamStream(void*, int)
+RamStream::RamStream(void*, int)
 {
 	/*
 	.loc_0x0:

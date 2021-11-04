@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801275B0
  * Size:	000098
  */
-void Game::Pelplant::Generator::Generator()
+Pelplant::Generator::Generator()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::Pelplant::Generator::Generator()
  * Address:	80127648
  * Size:	00008C
  */
-void Game::Pelplant::Generator::doRead(Stream&)
+void Pelplant::Generator::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +108,7 @@ void Game::Pelplant::Generator::doRead(Stream&)
  * Address:	801276D4
  * Size:	00000C
  */
-void Game::Pelplant::Generator::getLatestVersion()
+void Pelplant::Generator::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -121,7 +123,7 @@ void Game::Pelplant::Generator::getLatestVersion()
  * Address:	801276E0
  * Size:	000064
  */
-void Game::Pelplant::Generator::doReadOldVersion(Stream&)
+void Pelplant::Generator::doReadOldVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +164,7 @@ void Game::Pelplant::Generator::doReadOldVersion(Stream&)
  * Address:	80127744
  * Size:	0000C8
  */
-void Game::Pelplant::Generator::doWrite(Stream&)
+void Pelplant::Generator::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -224,7 +226,7 @@ void Game::Pelplant::Generator::doWrite(Stream&)
  * Address:	8012780C
  * Size:	000070
  */
-void Game::Pelplant::Generator::~Generator()
+Pelplant::Generator::~Generator()
 {
 	/*
 	.loc_0x0:
@@ -268,7 +270,7 @@ void Game::Pelplant::Generator::~Generator()
  * Address:	8012787C
  * Size:	000008
  */
-void Game::Pelplant::Generator::getInitialParam()
+void Pelplant::Generator::getInitialParam()
 {
 	/*
 	.loc_0x0:
@@ -276,3 +278,4 @@ void Game::Pelplant::Generator::getInitialParam()
 	  blr
 	*/
 }
+} // namespace Game

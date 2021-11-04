@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	8041CEBC
  * Size:	000170
  */
-void Sys::OBBTree::clone((Matrixf&))
+void OBBTree::clone(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -127,17 +119,19 @@ void Sys::OBBTree::clone((Matrixf&))
  * Address:	........
  * Size:	000108
  */
-void Sys::OBB::__ct(void)
+OBB::OBB(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Sys
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C8
  */
-void calcPointDist__Q23Sys3OBBFR10Vector3<float>(void)
+void calcPointDist__Q23Sys3OBBFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -147,17 +141,19 @@ void calcPointDist__Q23Sys3OBBFR10Vector3<float>(void)
  * Address:	........
  * Size:	0000C0
  */
-void intersect__Q23Sys3OBBFR10Vector3<float>(void)
+void intersect__Q23Sys3OBBFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Sys::OBB::intersect((Sys::Sphere&))
+void OBB::intersect(Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
@@ -167,7 +163,7 @@ void Sys::OBB::intersect((Sys::Sphere&))
  * Address:	........
  * Size:	0002AC
  */
-void Sys::OBB::intersect((Sys::VertexTable&, Sys::Triangle&))
+void OBB::intersect(Sys::VertexTable&, Sys::Triangle&)
 {
 	// UNUSED FUNCTION
 }
@@ -177,7 +173,7 @@ void Sys::OBB::intersect((Sys::VertexTable&, Sys::Triangle&))
  * Address:	........
  * Size:	000004
  */
-void Sys::TriDivider::drawTriList((Graphics&, Sys::TriIndexList*))
+void TriDivider::drawTriList(Graphics&, Sys::TriIndexList*)
 {
 	// UNUSED FUNCTION
 }
@@ -187,7 +183,7 @@ void Sys::TriDivider::drawTriList((Graphics&, Sys::TriIndexList*))
  * Address:	........
  * Size:	000004
  */
-void Sys::OBB::draw((Graphics&, Sys::VertexTable&, Sys::TriangleTable&))
+void OBB::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&)
 {
 	// UNUSED FUNCTION
 }
@@ -661,7 +657,7 @@ void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8M
  * Address:	........
  * Size:	000084
  */
-void Sys::OBB::constructOBB2((Sys::VertexTable&, Sys::TriangleTable&))
+void OBB::constructOBB2(Sys::VertexTable&, Sys::TriangleTable&)
 {
 	// UNUSED FUNCTION
 }
@@ -671,7 +667,7 @@ void Sys::OBB::constructOBB2((Sys::VertexTable&, Sys::TriangleTable&))
  * Address:	8041D730
  * Size:	0002D8
  */
-void Sys::OBB::autoDivide((Sys::VertexTable&, Sys::TriangleTable&, int, int))
+void OBB::autoDivide(Sys::VertexTable&, Sys::TriangleTable&, int, int)
 {
 	/*
 	.loc_0x0:
@@ -878,6 +874,8 @@ void Sys::OBB::autoDivide((Sys::VertexTable&, Sys::TriangleTable&, int, int))
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	8041DA08
@@ -892,13 +890,15 @@ void ArrayContainer<int>::getNum()
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000128
  */
-void Sys::OBB::countDivResult((Sys::VertexTable&, Sys::TriangleTable&, int,
-                               int&, int&))
+void OBB::countDivResult(Sys::VertexTable&, Sys::TriangleTable&, int, int&,
+                         int&)
 {
 	// UNUSED FUNCTION
 }
@@ -908,7 +908,7 @@ void Sys::OBB::countDivResult((Sys::VertexTable&, Sys::TriangleTable&, int,
  * Address:	8041DA10
  * Size:	0001C4
  */
-void Sys::OBB::determineDivPlane((Sys::VertexTable&, Sys::TriangleTable&))
+void OBB::determineDivPlane(Sys::VertexTable&, Sys::TriangleTable&)
 {
 	/*
 	.loc_0x0:
@@ -1051,7 +1051,7 @@ void Sys::OBB::determineDivPlane((Sys::VertexTable&, Sys::TriangleTable&))
  * Address:	8041DBD4
  * Size:	000480
  */
-void Sys::OBB::divide((Sys::VertexTable&, Sys::TriangleTable&))
+void OBB::divide(Sys::VertexTable&, Sys::TriangleTable&)
 {
 	/*
 	.loc_0x0:
@@ -1387,7 +1387,7 @@ void Sys::OBB::divide((Sys::VertexTable&, Sys::TriangleTable&))
  * Address:	8041E054
  * Size:	000144
  */
-void Sys::OBBTree::__ct(void)
+OBBTree::OBBTree(void)
 {
 	/*
 	.loc_0x0:
@@ -1480,7 +1480,7 @@ void Sys::OBBTree::__ct(void)
  * Address:	8041E198
  * Size:	00002C
  */
-void Sys::OBBTree::getCurrTri((Game::CurrTriInfo&))
+void OBBTree::getCurrTri(Game::CurrTriInfo&)
 {
 	/*
 	.loc_0x0:
@@ -1505,7 +1505,7 @@ void Sys::OBBTree::getCurrTri((Game::CurrTriInfo&))
  * Address:	8041E1C4
  * Size:	000498
  */
-void Sys::OBB::getCurrTri((Game::CurrTriInfo&))
+void OBB::getCurrTri(Game::CurrTriInfo&)
 {
 	/*
 	.loc_0x0:
@@ -1864,12 +1864,14 @@ void Sys::OBB::getCurrTri((Game::CurrTriInfo&))
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	8041E65C
  * Size:	000030
  */
-void Plane::calcDist(const Vector3<float>&) const
+void Plane::calcDist(const Vector3f&) const
 {
 	/*
 	.loc_0x0:
@@ -1888,12 +1890,14 @@ void Plane::calcDist(const Vector3<float>&) const
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	8041E68C
  * Size:	000028
  */
-void Sys::OBB::isLeaf(void)
+void OBB::isLeaf(void)
 {
 	/*
 	.loc_0x0:
@@ -1917,7 +1921,7 @@ void Sys::OBB::isLeaf(void)
  * Address:	8041E6B4
  * Size:	000118
  */
-void Sys::OBB::getCurrTriTriList((Game::CurrTriInfo&))
+void OBB::getCurrTriTriList(Game::CurrTriInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2007,7 +2011,7 @@ void Sys::OBB::getCurrTriTriList((Game::CurrTriInfo&))
  * Address:	8041E7CC
  * Size:	0000B4
  */
-void Sys::OBBTree::construct((Sys::VertexTable*, Sys::TriangleTable*, int, int))
+void OBBTree::construct(Sys::VertexTable*, Sys::TriangleTable*, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2064,7 +2068,7 @@ void Sys::OBBTree::construct((Sys::VertexTable*, Sys::TriangleTable*, int, int))
  * Address:	........
  * Size:	000004
  */
-void Sys::OBBTree::draw((Graphics&))
+void OBBTree::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -2074,7 +2078,7 @@ void Sys::OBBTree::draw((Graphics&))
  * Address:	........
  * Size:	00006C
  */
-void Sys::OBBTree::write((Stream&))
+void OBBTree::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -2084,7 +2088,7 @@ void Sys::OBBTree::write((Stream&))
  * Address:	8041E880
  * Size:	000118
  */
-void Sys::OBBTree::read((Stream&))
+void OBBTree::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2170,7 +2174,7 @@ void Sys::OBBTree::read((Stream&))
  * Address:	........
  * Size:	000030
  */
-void Sys::OBBTree::writeVertsOnly((Stream&))
+void OBBTree::writeVertsOnly(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -2180,7 +2184,7 @@ void Sys::OBBTree::writeVertsOnly((Stream&))
  * Address:	........
  * Size:	000054
  */
-void Sys::OBBTree::writeWithoutVerts((Stream&))
+void OBBTree::writeWithoutVerts(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -2190,7 +2194,7 @@ void Sys::OBBTree::writeWithoutVerts((Stream&))
  * Address:	8041E998
  * Size:	000078
  */
-void Sys::OBBTree::readWithoutVerts((Stream&, Sys::VertexTable&))
+void OBBTree::readWithoutVerts(Stream&, Sys::VertexTable&)
 {
 	/*
 	.loc_0x0:
@@ -2234,7 +2238,7 @@ void Sys::OBBTree::readWithoutVerts((Stream&, Sys::VertexTable&))
  * Address:	8041EA10
  * Size:	000024
  */
-void Sys::OBBTree::traceMove((Matrixf&, Matrixf&, Game::MoveInfo&, float))
+void OBBTree::traceMove(Matrixf&, Matrixf&, Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -2255,7 +2259,7 @@ void Sys::OBBTree::traceMove((Matrixf&, Matrixf&, Game::MoveInfo&, float))
  * Address:	8041EA34
  * Size:	000024
  */
-void Sys::OBBTree::traceMove_global((Game::MoveInfo&, float))
+void OBBTree::traceMove_global(Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -2276,8 +2280,7 @@ void Sys::OBBTree::traceMove_global((Game::MoveInfo&, float))
  * Address:	........
  * Size:	0003A4
  */
-void Sys::OBBTree::traceMove_original((Matrixf&, Matrixf&, Game::MoveInfo&,
-                                       float))
+void OBBTree::traceMove_original(Matrixf&, Matrixf&, Game::MoveInfo&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -2287,8 +2290,7 @@ void Sys::OBBTree::traceMove_original((Matrixf&, Matrixf&, Game::MoveInfo&,
  * Address:	8041EA58
  * Size:	000214
  */
-void Sys::OBBTree::findRayIntersection((Sys::RayIntersectInfo&, Matrixf&,
-                                        Matrixf&))
+void OBBTree::findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -2434,12 +2436,14 @@ void Sys::OBBTree::findRayIntersection((Sys::RayIntersectInfo&, Matrixf&,
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000070
  */
-void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3<float>(void)
+void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2449,7 +2453,7 @@ void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3<float>(void)
  * Address:	........
  * Size:	000180
  */
-void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3<float>
+void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f
 RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
 {
 	// UNUSED FUNCTION
@@ -2460,7 +2464,7 @@ RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
  * Address:	........
  * Size:	00019C
  */
-void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3<float>
+void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f
 RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
 {
 	// UNUSED FUNCTION
@@ -2488,12 +2492,14 @@ void traceMove_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys
 	// UNUSED FUNCTION
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	8041EC6C
  * Size:	0005C0
  */
-void Sys::OBB::findRayIntersection((Sys::RayIntersectInfo&, Matrixf&, Matrixf&))
+void OBB::findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -2963,8 +2969,7 @@ void Sys::OBB::findRayIntersection((Sys::RayIntersectInfo&, Matrixf&, Matrixf&))
  * Address:	8041F22C
  * Size:	000114
  */
-void Sys::OBB::findRayIntersectionTriList((Sys::RayIntersectInfo&, Matrixf&,
-                                           Matrixf&))
+void OBB::findRayIntersectionTriList(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -3051,7 +3056,7 @@ void Sys::OBB::findRayIntersectionTriList((Sys::RayIntersectInfo&, Matrixf&,
  * Address:	8041F340
  * Size:	000178
  */
-void Sys::OBB::findTriLists((Sys::Sphere&))
+void OBB::findTriLists(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -3176,12 +3181,14 @@ void Sys::OBB::findTriLists((Sys::Sphere&))
 	*/
 }
 
+} // namespace Sys
+
 /*
  * --INFO--
  * Address:	8041F4B8
  * Size:	00002C
  */
-void getMinY__Q23Sys7OBBTreeFR10Vector3<float>(void)
+void getMinY__Q23Sys7OBBTreeFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3206,7 +3213,7 @@ void getMinY__Q23Sys7OBBTreeFR10Vector3<float>(void)
  * Address:	8041F4E4
  * Size:	0006C0
  */
-void getMinY__Q23Sys3OBBFR10Vector3<float> RQ23Sys13TriangleTablef(void)
+void getMinY__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTablef(void)
 {
 	/*
 	.loc_0x0:
@@ -3764,7 +3771,7 @@ void getMinY__Q23Sys3OBBFR10Vector3<float> RQ23Sys13TriangleTablef(void)
  * Address:	8041FBA4
  * Size:	0000B4
  */
-void getMinYTriList__Q23Sys3OBBFR10Vector3<float> RQ23Sys13TriangleTable(void)
+void getMinYTriList__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTable(void)
 {
 	/*
 	.loc_0x0:
@@ -3822,12 +3829,14 @@ void getMinYTriList__Q23Sys3OBBFR10Vector3<float> RQ23Sys13TriangleTable(void)
 	*/
 }
 
+namespace Sys {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000304
  */
-void Sys::OBB::write((Stream&))
+void OBB::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -3837,7 +3846,7 @@ void Sys::OBB::write((Stream&))
  * Address:	8041FC58
  * Size:	000320
  */
-void Sys::OBB::read((Stream&))
+void OBB::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -4069,7 +4078,7 @@ void Sys::OBB::read((Stream&))
  * Address:	8041FF78
  * Size:	000024
  */
-void Sys::OBBTree::findTriLists((Sys::Sphere&))
+void OBBTree::findTriLists(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -4090,15 +4099,15 @@ void Sys::OBBTree::findTriLists((Sys::Sphere&))
  * Address:	8041FF9C
  * Size:	000004
  */
-void Sys::OBBTree::getBoundBox((BoundBox&)) { }
+void OBBTree::getBoundBox(BoundBox&) { }
 
 /*
  * --INFO--
  * Address:	8041FFA0
  * Size:	000008
  */
-void Sys::TriDivider::do_clone((Matrixf&, Sys::VertexTable*,
-                                Sys::TriangleTable*))
+void TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*)
 {
 	return 0x0;
 }
+} // namespace Sys

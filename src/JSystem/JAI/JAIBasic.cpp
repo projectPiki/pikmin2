@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800AC158
  * Size:	00007C
  */
-void JAIBasic::JAIBasic()
+JAIBasic::JAIBasic()
 {
 	/*
 	.loc_0x0:
@@ -522,13 +522,10 @@ void JAInter::Camera::__defctor(void)
  * Address:	800AC6A4
  * Size:	000008
  */
-void JAIBasic::setInitFileLoadSwitch(unsigned char)
+void JAIBasic::setInitFileLoadSwitch(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0xC(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0xC(r3)
+	_0C = a1;
 }
 
 /*

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	8041FFA8
  * Size:	0001C0
  */
-void Sys::OBBTree::traceMove_new((Matrixf&, Matrixf&, Game::MoveInfo&, float))
+void OBBTree::traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -952,7 +944,7 @@ void traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13Tri
  * Address:	80420C54
  * Size:	000098
  */
-void Sys::OBBTree::traceMove_new_global((Game::MoveInfo&, float))
+void OBBTree::traceMove_new_global(Game::MoveInfo&, float)
 {
 	/*
 	.loc_0x0:
@@ -1695,3 +1687,4 @@ void traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23S
 	  blr
 	*/
 }
+} // namespace Sys

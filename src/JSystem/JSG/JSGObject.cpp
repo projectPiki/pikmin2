@@ -5,7 +5,7 @@
  * Address:	800988D4
  * Size:	000048
  */
-void JStage::TObject::__dt(void)
+JStage::TObject::~TObject(void)
 {
 	/*
 	.loc_0x0:
@@ -37,45 +37,35 @@ void JStage::TObject::__dt(void)
  * Address:	8009891C
  * Size:	000008
  */
-u32  JStage::TObject::JSGGetName( const
-{
-	return 0x0;
-}
+u32 JStage::TObject::JSGGetName() const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80098924
  * Size:	000004
  */
-void JStage::TObject::JSGUpdate(void)
-{
-}
+void JStage::TObject::JSGUpdate(void) { }
 
 /*
  * --INFO--
  * Address:	80098928
  * Size:	000008
  */
-u32  JStage::TObject::JSGGetFlag( const
-{
-	return 0x0;
-}
+u32 JStage::TObject::JSGGetFlag() const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80098930
  * Size:	000004
  */
-void JStage::TObject::JSGSetFlag( (unsigned long))
-{
-}
+void JStage::TObject::JSGSetFlag(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098934
  * Size:	000008
  */
-u32  JStage::TObject::JSGGetData( const(unsigned long, void *, unsigned long))
+u32 JStage::TObject::JSGGetData(const(unsigned long, void*, unsigned long))
 {
 	return 0x0;
 }
@@ -85,53 +75,43 @@ u32  JStage::TObject::JSGGetData( const(unsigned long, void *, unsigned long))
  * Address:	8009893C
  * Size:	000004
  */
-void JStage::TObject::JSGSetData( (unsigned long, void const *, unsigned long))
-{
-}
+void JStage::TObject::JSGSetData(unsigned long, void const*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098940
  * Size:	000004
  */
-void JStage::TObject::JSGGetParent( const(JStage::TObject **, unsigned long *))
-{
-}
+void JStage::TObject::JSGGetParent(const(JStage::TObject**, unsigned long*)) { }
 
 /*
  * --INFO--
  * Address:	80098944
  * Size:	000004
  */
-void JStage::TObject::JSGSetParent( (JStage::TObject *, unsigned long))
-{
-}
+void JStage::TObject::JSGSetParent(JStage::TObject*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098948
  * Size:	000004
  */
-void JStage::TObject::JSGSetRelation( (bool, JStage::TObject *, unsigned long))
-{
-}
+void JStage::TObject::JSGSetRelation(bool, JStage::TObject*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	8009894C
  * Size:	000008
  */
-s32  JStage::TObject::JSGFindNodeID( const(char const *))
-{
-	return -0x1;
-}
+s32 JStage::TObject::JSGFindNodeID(const(char const*)) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80098954
  * Size:	00003C
  */
-void JStage::TObject::JSGGetNodeTransformation( const(unsigned long, float (*)[4]))
+void JStage::TObject::JSGGetNodeTransformation(const(unsigned long,
+                                                     float (*)[4]))
 {
 	/*
 	.loc_0x0:

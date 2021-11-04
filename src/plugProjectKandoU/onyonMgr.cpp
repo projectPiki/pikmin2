@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80174CA0
  * Size:	00080C
  */
-void Game::Onyon::movieUserCommand((unsigned long, Game::MoviePlayer*))
+void Onyon::movieUserCommand(unsigned long, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +610,7 @@ void Game::Onyon::movieUserCommand((unsigned long, Game::MoviePlayer*))
  * Address:	........
  * Size:	000034
  */
-void Game::Onyon::openUFO(void)
+void Onyon::openUFO(void)
 {
 	// UNUSED FUNCTION
 }
@@ -628,7 +620,7 @@ void Game::Onyon::openUFO(void)
  * Address:	........
  * Size:	000068
  */
-void Game::Onyon::closeUFO(void)
+void Onyon::closeUFO(void)
 {
 	// UNUSED FUNCTION
 }
@@ -638,7 +630,7 @@ void Game::Onyon::closeUFO(void)
  * Address:	801754AC
  * Size:	0000E4
  */
-void Game::Onyon::isSuckReady(void)
+void Onyon::isSuckReady(void)
 {
 	/*
 	.loc_0x0:
@@ -721,7 +713,7 @@ void Game::Onyon::isSuckReady(void)
  * Address:	80175590
  * Size:	000028
  */
-void Game::Onyon::isSuckArriveWait(void)
+void Onyon::isSuckArriveWait(void)
 {
 	/*
 	.loc_0x0:
@@ -745,7 +737,7 @@ void Game::Onyon::isSuckArriveWait(void)
  * Address:	801755B8
  * Size:	00068C
  */
-void Game::Onyon::setType((int))
+void Onyon::setType(int)
 {
 	/*
 	.loc_0x0:
@@ -1207,130 +1199,134 @@ void Game::Onyon::setType((int))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChasePosYRot2::__dt(void)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
-/*
- * --INFO--
- * Address:	80175C44
- * Size:	000084
- */
-void efx::TChasePosYRot::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68F4
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x58
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xE5FFC
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000080
+	 */
+	TChasePosYRot2::~TChasePosYRot2(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x151BF4
-
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TForever2::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	80175CC8
- * Size:	000084
- */
-void efx::TForever::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2C24
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x58
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xE6080
+	 * --INFO--
+	 * Address:	80175C44
+	 * Size:	000084
+	 */
+	TChasePosYRot::~TChasePosYRot(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x68
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x68F4
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x58
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0xE5FFC
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x151C78
+		.loc_0x58:
+		  extsh.    r0, r31
+		  ble-      .loc_0x68
+		  mr        r3, r30
+		  bl        -0x151BF4
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x68:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000080
+	 */
+	TForever2::~TForever2(void)
+	{
+		// UNUSED FUNCTION
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80175CC8
+	 * Size:	000084
+	 */
+	TForever::~TForever(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x68
+		  lis       r3, 0x804B
+		  addi      r3, r3, 0x2C24
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x58
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0xE6080
+
+		.loc_0x58:
+		  extsh.    r0, r31
+		  ble-      .loc_0x68
+		  mr        r3, r30
+		  bl        -0x151C78
+
+		.loc_0x68:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	80175D4C
  * Size:	0000D0
  */
-void Game::Onyon::setupTevRegAnim((int))
+void Onyon::setupTevRegAnim(int)
 {
 	/*
 	.loc_0x0:
@@ -1400,7 +1396,7 @@ void Game::Onyon::setupTevRegAnim((int))
  * Address:	80175E1C
  * Size:	000074
  */
-void Game::Onyon::stimulate((Game::Interaction&))
+void Onyon::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -1445,7 +1441,7 @@ void Game::Onyon::stimulate((Game::Interaction&))
  * Address:	80175E90
  * Size:	000158
  */
-void Game::InteractSuckArrive::actOnyon((Game::Onyon*))
+void InteractSuckArrive::actOnyon(Game::Onyon*)
 {
 	/*
 	.loc_0x0:
@@ -1555,14 +1551,14 @@ void Game::InteractSuckArrive::actOnyon((Game::Onyon*))
  * Address:	80175FE8
  * Size:	000008
  */
-u32 Game::Onyon::needShadow(void) { return 0x0; }
+u32 Onyon::needShadow(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80175FF0
  * Size:	0000A4
  */
-void Game::Onyon::getShadowParam((Game::ShadowParam&))
+void Onyon::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -1617,7 +1613,7 @@ void Game::Onyon::getShadowParam((Game::ShadowParam&))
  * Address:	80176094
  * Size:	000034
  */
-void Game::Onyon::sound_culling(void)
+void Onyon::sound_culling(void)
 {
 	/*
 	.loc_0x0:
@@ -1646,7 +1642,7 @@ void Game::Onyon::sound_culling(void)
  * Address:	801760C8
  * Size:	000DBC
  */
-void Game::InteractSuckDone::actOnyon((Game::Onyon*))
+void InteractSuckDone::actOnyon(Game::Onyon*)
 {
 	/*
 	.loc_0x0:
@@ -2643,7 +2639,7 @@ void Game::InteractSuckDone::actOnyon((Game::Onyon*))
  * Address:	80176E84
  * Size:	00000C
  */
-void Game::Onyon::startPropera(void)
+void Onyon::startPropera(void)
 {
 	/*
 	.loc_0x0:
@@ -2658,7 +2654,7 @@ void Game::Onyon::startPropera(void)
  * Address:	80176E90
  * Size:	00000C
  */
-void Game::Onyon::stopPropera(void)
+void Onyon::stopPropera(void)
 {
 	/*
 	.loc_0x0:
@@ -2673,7 +2669,7 @@ void Game::Onyon::stopPropera(void)
  * Address:	80176E9C
  * Size:	00016C
  */
-void Game::Onyon::doDirectDraw((Graphics&))
+void Onyon::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2778,7 +2774,7 @@ void Game::Onyon::doDirectDraw((Graphics&))
  * Address:	........
  * Size:	0000B0
  */
-void Game::Onyon::__ct(void)
+Onyon::Onyon(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2788,7 +2784,7 @@ void Game::Onyon::__ct(void)
  * Address:	80177008
  * Size:	000034
  */
-void Game::Onyon::onInit((Game::CreatureInitArg*))
+void Onyon::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -2813,14 +2809,14 @@ void Game::Onyon::onInit((Game::CreatureInitArg*))
  * Address:	8017703C
  * Size:	000004
  */
-void Game::Onyon::onKill((Game::CreatureKillArg*)) { }
+void Onyon::onKill(Game::CreatureKillArg*) { }
 
 /*
  * --INFO--
  * Address:	80177040
  * Size:	00023C
  */
-void Game::Onyon::onSetPosition(void)
+void Onyon::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -3003,7 +2999,7 @@ void Game::Onyon::onSetPosition(void)
  * Address:	8017727C
  * Size:	000110
  */
-void Game::Onyon::setSpotState((Game::Onyon::cSpotState))
+void Onyon::setSpotState(Game::Onyon::cSpotState)
 {
 	/*
 	.loc_0x0:
@@ -3099,7 +3095,7 @@ void Game::Onyon::setSpotState((Game::Onyon::cSpotState))
  * Address:	........
  * Size:	000154
  */
-void Game::Onyon::updateSpot(void)
+void Onyon::updateSpot(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3109,7 +3105,7 @@ void Game::Onyon::updateSpot(void)
  * Address:	8017738C
  * Size:	0000AC
  */
-void Game::Onyon::getSuckPos(void)
+void Onyon::getSuckPos(void)
 {
 	/*
 	.loc_0x0:
@@ -3168,7 +3164,7 @@ void Game::Onyon::getSuckPos(void)
  * Address:	80177438
  * Size:	0000D8
  */
-void Game::Onyon::getGoalPos(void)
+void Onyon::getGoalPos(void)
 {
 	/*
 	.loc_0x0:
@@ -3242,7 +3238,7 @@ void Game::Onyon::getGoalPos(void)
  * Address:	80177510
  * Size:	000318
  */
-void Game::Onyon::doAI(void)
+void Onyon::doAI(void)
 {
 	/*
 	.loc_0x0:
@@ -3478,7 +3474,7 @@ void Game::Onyon::doAI(void)
  * Address:	80177828
  * Size:	000078
  */
-void Game::Onyon::forceClose(void)
+void Onyon::forceClose(void)
 {
 	/*
 	.loc_0x0:
@@ -3522,7 +3518,7 @@ void Game::Onyon::forceClose(void)
  * Address:	801778A0
  * Size:	000078
  */
-void Game::Onyon::do_updateLOD(void)
+void Onyon::do_updateLOD(void)
 {
 	/*
 	.loc_0x0:
@@ -3568,7 +3564,7 @@ void Game::Onyon::do_updateLOD(void)
  * Address:	80177918
  * Size:	000064
  */
-void Game::Onyon::getLODCylinder((Sys::Cylinder&))
+void Onyon::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -3605,7 +3601,7 @@ void Game::Onyon::getLODCylinder((Sys::Cylinder&))
  * Address:	8017797C
  * Size:	000470
  */
-void Game::Onyon::do_doAnimation(void)
+void Onyon::do_doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -3935,7 +3931,7 @@ void Game::Onyon::do_doAnimation(void)
  * Address:	80177DEC
  * Size:	000008
  */
-void Game::BaseItem::getSound_PosPtr(void)
+void BaseItem::getSound_PosPtr(void)
 {
 	/*
 	.loc_0x0:
@@ -3949,7 +3945,7 @@ void Game::BaseItem::getSound_PosPtr(void)
  * Address:	........
  * Size:	0000E0
  */
-void Game::Onyon::initTube(void)
+void Onyon::initTube(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3959,7 +3955,7 @@ void Game::Onyon::initTube(void)
  * Address:	80177DF4
  * Size:	000198
  */
-void Game::Onyon::startWaitMotion(void)
+void Onyon::startWaitMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -4093,7 +4089,7 @@ void Game::Onyon::startWaitMotion(void)
  * Address:	80177F8C
  * Size:	000078
  */
-void Game::Onyon::onKeyEvent_UFO((SysShape::KeyEvent const&))
+void Onyon::onKeyEvent_UFO(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -4143,7 +4139,7 @@ void Game::Onyon::onKeyEvent_UFO((SysShape::KeyEvent const&))
  * Address:	80178004
  * Size:	00013C
  */
-void Game::Onyon::getFlagSetPos(void)
+void Onyon::getFlagSetPos(void)
 {
 	/*
 	.loc_0x0:
@@ -4240,7 +4236,7 @@ void Game::Onyon::getFlagSetPos(void)
  * Address:	80178140
  * Size:	00004C
  */
-void Game::Onyon::onKeyEvent((SysShape::KeyEvent const&))
+void Onyon::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -4275,7 +4271,7 @@ void Game::Onyon::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8017818C
  * Size:	0000AC
  */
-void Game::Onyon::vsChargePikmin(void)
+void Onyon::vsChargePikmin(void)
 {
 	/*
 	.loc_0x0:
@@ -4342,7 +4338,7 @@ void Game::Onyon::vsChargePikmin(void)
  * Address:	80178238
  * Size:	000648
  */
-void Game::Onyon::onKeyEvent_Onyon((SysShape::KeyEvent const&))
+void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -4836,7 +4832,7 @@ void Game::Onyon::onKeyEvent_Onyon((SysShape::KeyEvent const&))
  * Address:	80178880
  * Size:	000298
  */
-void Game::Onyon::doEmit((Game::Creature*, bool))
+void Onyon::doEmit(Game::Creature*, bool)
 {
 	/*
 	.loc_0x0:
@@ -5028,7 +5024,7 @@ void Game::Onyon::doEmit((Game::Creature*, bool))
  * Address:	80178B18
  * Size:	0000A0
  */
-void Game::Onyon::getLegPart((int))
+void Onyon::getLegPart(int)
 {
 	/*
 	.loc_0x0:
@@ -5084,7 +5080,7 @@ void Game::Onyon::getLegPart((int))
  * Address:	80178BB8
  * Size:	0000C0
  */
-void Game::Onyon::getFootPart((int))
+void Onyon::getFootPart(int)
 {
 	/*
 	.loc_0x0:
@@ -5150,7 +5146,7 @@ void Game::Onyon::getFootPart((int))
  * Address:	80178C78
  * Size:	00012C
  */
-void Game::Onyon::makeTrMatrix(void)
+void Onyon::makeTrMatrix(void)
 {
 	/*
 	.loc_0x0:
@@ -5247,7 +5243,7 @@ void Game::Onyon::makeTrMatrix(void)
  * Address:	80178DA4
  * Size:	000138
  */
-void Game::Onyon::changeMaterial(void)
+void Onyon::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -5361,7 +5357,7 @@ void Game::Onyon::changeMaterial(void)
  * Address:	80178EDC
  * Size:	0001D4
  */
-void Game::Onyon::setSpotEffect((bool))
+void Onyon::setSpotEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -5502,7 +5498,7 @@ void Game::Onyon::setSpotEffect((bool))
  * Address:	801790B0
  * Size:	000134
  */
-void Game::Onyon::setSpotEffectActive((bool))
+void Onyon::setSpotEffectActive(bool)
 {
 	/*
 	.loc_0x0:
@@ -5601,7 +5597,7 @@ void Game::Onyon::setSpotEffectActive((bool))
  * Address:	801791E4
  * Size:	000168
  */
-void Game::Onyon::efxSuikomi(void)
+void Onyon::efxSuikomi(void)
 {
 	/*
 	.loc_0x0:
@@ -5709,7 +5705,7 @@ void Game::Onyon::efxSuikomi(void)
  * Address:	8017934C
  * Size:	0001A0
  */
-void Game::Onyon::efxPafuPafu(void)
+void Onyon::efxPafuPafu(void)
 {
 	/*
 	.loc_0x0:
@@ -5827,7 +5823,7 @@ void Game::Onyon::efxPafuPafu(void)
  * Address:	801794EC
  * Size:	0000B0
  */
-void Game::Onyon::efxPafuKira(void)
+void Onyon::efxPafuKira(void)
 {
 	/*
 	.loc_0x0:
@@ -5885,7 +5881,7 @@ void Game::Onyon::efxPafuKira(void)
  * Address:	8017959C
  * Size:	00002C
  */
-void Game::Onyon::getStoreCount(void)
+void Onyon::getStoreCount(void)
 {
 	/*
 	.loc_0x0:
@@ -5908,7 +5904,7 @@ void Game::Onyon::getStoreCount(void)
  * Address:	801795C8
  * Size:	000244
  */
-void Game::Onyon::enterPiki((Game::Piki*))
+void Onyon::enterPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -6093,7 +6089,7 @@ void Game::Onyon::enterPiki((Game::Piki*))
  * Address:	8017980C
  * Size:	000048
  */
-void Game::Onyon::exitPikis((int, int))
+void Onyon::exitPikis(int, int)
 {
 	/*
 	.loc_0x0:
@@ -6125,7 +6121,7 @@ void Game::Onyon::exitPikis((int, int))
  * Address:	80179854
  * Size:	000454
  */
-void Game::Onyon::exitPiki(void)
+void Onyon::exitPiki(void)
 {
 	/*
 	.loc_0x0:
@@ -6449,12 +6445,14 @@ void Game::Onyon::exitPiki(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80179CA8
  * Size:	0000B8
  */
-void insideAccessArea__Q24Game5OnyonFR10Vector3<float>(void)
+void insideAccessArea__Q24Game5OnyonFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -6518,17 +6516,19 @@ void insideAccessArea__Q24Game5OnyonFR10Vector3<float>(void)
  * Address:	........
  * Size:	000048
  */
-void insideBootArea__Q24Game5OnyonFR10Vector3<float>(void)
+void insideBootArea__Q24Game5OnyonFR10Vector3f(void)
 {
 	// UNUSED FUNCTION
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000088
  */
-void Game::Onyon::getOnyonState(void)
+void Onyon::getOnyonState(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6538,7 +6538,7 @@ void Game::Onyon::getOnyonState(void)
  * Address:	80179D60
  * Size:	00011C
  */
-void generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3<float> R10Vector3<float>
+void generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3f R10Vector3f
 PQ24Game11GenItemParm(void)
 {
 	/*
@@ -6642,14 +6642,14 @@ PQ24Game11GenItemParm(void)
  * Address:	80179E7C
  * Size:	000004
  */
-void Game::ItemOnyon::Mgr::setupSoundViewerAndBas(void) { }
+void ItemOnyon::Mgr::setupSoundViewerAndBas(void) { }
 
 /*
  * --INFO--
  * Address:	80179E80
  * Size:	0000C4
  */
-void Game::Onyon::getInEnd_UFO(void)
+void Onyon::getInEnd_UFO(void)
 {
 	/*
 	.loc_0x0:
@@ -6714,7 +6714,7 @@ void Game::Onyon::getInEnd_UFO(void)
  * Address:	80179F44
  * Size:	000168
  */
-void Game::Onyon::getInStart_UFO(void)
+void Onyon::getInStart_UFO(void)
 {
 	/*
 	.loc_0x0:
@@ -6826,7 +6826,7 @@ void Game::Onyon::getInStart_UFO(void)
  * Address:	8017A0AC
  * Size:	0000C4
  */
-void Game::Onyon::getOutStart_UFO(void)
+void Onyon::getOutStart_UFO(void)
 {
 	/*
 	.loc_0x0:
@@ -6891,42 +6891,46 @@ void Game::Onyon::getOutStart_UFO(void)
  * Address:	........
  * Size:	000124
  */
-void Game::Onyon::init_pmotions(void)
+void Onyon::init_pmotions(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8017A170
- * Size:	000034
- */
-void SysShape::Animator::__ct(void)
-{
+namespace SysShape {
+
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r4, 0x804F
-	  subi      r5, r5, 0x4678
-	  li        r0, 0
-	  stw       r5, 0x0(r3)
-	  subi      r4, r4, 0x4200
-	  stw       r4, 0x0(r3)
-	  stb       r0, 0x18(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x4(r3)
-	  stb       r0, 0x18(r3)
-	  stw       r0, 0x10(r3)
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8017A170
+	 * Size:	000034
+	 */
+	Animator::Animator(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r5, 0x804B
+		  lis       r4, 0x804F
+		  subi      r5, r5, 0x4678
+		  li        r0, 0
+		  stw       r5, 0x0(r3)
+		  subi      r4, r4, 0x4200
+		  stw       r4, 0x0(r3)
+		  stb       r0, 0x18(r3)
+		  stw       r0, 0xC(r3)
+		  stw       r0, 0x4(r3)
+		  stb       r0, 0x18(r3)
+		  stw       r0, 0x10(r3)
+		  blr
+		*/
+	}
+
+} // namespace SysShape
 
 /*
  * --INFO--
  * Address:	8017A1A4
  * Size:	00007C
  */
-void Game::Onyon::getPMotionSpeed((int))
+void Onyon::getPMotionSpeed(int)
 {
 	/*
 	.loc_0x0:
@@ -6973,7 +6977,7 @@ void Game::Onyon::getPMotionSpeed((int))
  * Address:	8017A220
  * Size:	00007C
  */
-void Game::Onyon::getPAnimator((int))
+void Onyon::getPAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -7020,7 +7024,7 @@ void Game::Onyon::getPAnimator((int))
  * Address:	........
  * Size:	000094
  */
-void Game::Onyon::start_pmotion((int, int))
+void Onyon::start_pmotion(int, int)
 {
 	// UNUSED FUNCTION
 }
@@ -7030,7 +7034,7 @@ void Game::Onyon::start_pmotion((int, int))
  * Address:	8017A29C
  * Size:	000198
  */
-void Game::Onyon::update_pmotions(void)
+void Onyon::update_pmotions(void)
 {
 	/*
 	.loc_0x0:
@@ -7162,7 +7166,7 @@ void Game::Onyon::update_pmotions(void)
  * Address:	8017A434
  * Size:	0001E8
  */
-void Game::ItemOnyon::Mgr::initDependency(void)
+void ItemOnyon::Mgr::initDependency(void)
 {
 	/*
 	.loc_0x0:
@@ -7312,14 +7316,14 @@ void Game::ItemOnyon::Mgr::initDependency(void)
  * Address:	8017A61C
  * Size:	000004
  */
-void Game::BaseItem::initDependency(void) { }
+void BaseItem::initDependency(void) { }
 
 /*
  * --INFO--
  * Address:	8017A620
  * Size:	00004C
  */
-void Game::ItemOnyon::Mgr::generatorGetShape((Game::GenItemParm*))
+void ItemOnyon::Mgr::generatorGetShape(Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -7360,7 +7364,7 @@ void Game::ItemOnyon::Mgr::generatorGetShape((Game::GenItemParm*))
  * Address:	8017A66C
  * Size:	000054
  */
-void Game::ItemOnyon::Mgr::generatorNewItemParm(void)
+void ItemOnyon::Mgr::generatorNewItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -7395,7 +7399,7 @@ void Game::ItemOnyon::Mgr::generatorNewItemParm(void)
  * Address:	8017A6C0
  * Size:	00008C
  */
-void Game::ItemOnyon::Mgr::generatorWrite((Stream&, Game::GenItemParm*))
+void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -7442,8 +7446,7 @@ void Game::ItemOnyon::Mgr::generatorWrite((Stream&, Game::GenItemParm*))
  * Address:	8017A74C
  * Size:	000078
  */
-void Game::ItemOnyon::Mgr::generatorRead((Stream&, Game::GenItemParm*,
-                                          unsigned long))
+void ItemOnyon::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7487,7 +7490,7 @@ void Game::ItemOnyon::Mgr::generatorRead((Stream&, Game::GenItemParm*,
  * Address:	8017A7C4
  * Size:	000188
  */
-void Game::ItemOnyon::Mgr::__ct(void)
+ItemOnyon::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7593,6 +7596,8 @@ void Game::ItemOnyon::Mgr::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -7794,12 +7799,14 @@ void Container<Game::Onyon>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017AB6C
  * Size:	00011C
  */
-void Game::ItemOnyon::Mgr::__dt(void)
+ItemOnyon::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -7890,7 +7897,7 @@ void Game::ItemOnyon::Mgr::__dt(void)
  * Address:	8017AC88
  * Size:	000254
  */
-void Game::Onyon::on_movie_end((bool))
+void Onyon::on_movie_end(bool)
 {
 	/*
 	.loc_0x0:
@@ -8089,7 +8096,7 @@ void Game::Onyon::on_movie_end((bool))
  * Address:	8017AEDC
  * Size:	000BC0
  */
-void Game::ItemOnyon::Mgr::birth((int, int))
+void ItemOnyon::Mgr::birth(int, int)
 {
 	/*
 	.loc_0x0:
@@ -8991,7 +8998,7 @@ void Game::ItemOnyon::Mgr::birth((int, int))
  * Address:	8017BA9C
  * Size:	000060
  */
-void Game::ItemOnyon::Mgr::getOnyon((int))
+void ItemOnyon::Mgr::getOnyon(int)
 {
 	/*
 	.loc_0x0:
@@ -9031,7 +9038,7 @@ void Game::ItemOnyon::Mgr::getOnyon((int))
  * Address:	8017BAFC
  * Size:	000020
  */
-void Game::ItemOnyon::Mgr::init(void)
+void ItemOnyon::Mgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -9053,7 +9060,7 @@ void Game::ItemOnyon::Mgr::init(void)
  * Address:	8017BB1C
  * Size:	000528
  */
-void Game::ItemOnyon::Mgr::load(void)
+void ItemOnyon::Mgr::load(void)
 {
 	/*
 	.loc_0x0:
@@ -9457,7 +9464,7 @@ void Game::ItemOnyon::Mgr::load(void)
  * Address:	8017C044
  * Size:	00000C
  */
-void Game::ItemOnyon::Mgr::generatorGetID(void)
+void ItemOnyon::Mgr::generatorGetID(void)
 {
 	/*
 	.loc_0x0:
@@ -9472,7 +9479,7 @@ void Game::ItemOnyon::Mgr::generatorGetID(void)
  * Address:	8017C050
  * Size:	00000C
  */
-void Game::ItemOnyon::Mgr::generatorLocalVersion(void)
+void ItemOnyon::Mgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -9487,7 +9494,7 @@ void Game::ItemOnyon::Mgr::generatorLocalVersion(void)
  * Address:	8017C05C
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::doAnimation(void)
+void ItemOnyon::Mgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -9510,7 +9517,7 @@ void Game::ItemOnyon::Mgr::doAnimation(void)
  * Address:	8017C088
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::doEntry(void)
+void ItemOnyon::Mgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -9533,7 +9540,7 @@ void Game::ItemOnyon::Mgr::doEntry(void)
  * Address:	8017C0B4
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::doSetView((int))
+void ItemOnyon::Mgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -9556,7 +9563,7 @@ void Game::ItemOnyon::Mgr::doSetView((int))
  * Address:	8017C0E0
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::doViewCalc(void)
+void ItemOnyon::Mgr::doViewCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -9579,7 +9586,7 @@ void Game::ItemOnyon::Mgr::doViewCalc(void)
  * Address:	8017C10C
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::doSimulation((float))
+void ItemOnyon::Mgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -9602,7 +9609,7 @@ void Game::ItemOnyon::Mgr::doSimulation((float))
  * Address:	8017C138
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::doDirectDraw((Graphics&))
+void ItemOnyon::Mgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -9625,42 +9632,42 @@ void Game::ItemOnyon::Mgr::doDirectDraw((Graphics&))
  * Address:	8017C164
  * Size:	000004
  */
-void Game::BaseItemMgr::killAll(void) { }
+void BaseItemMgr::killAll(void) { }
 
 /*
  * --INFO--
  * Address:	8017C168
  * Size:	000004
  */
-void Game::BaseItemMgr::setup((Game::BaseItem*)) { }
+void BaseItemMgr::setup(Game::BaseItem*) { }
 
 /*
  * --INFO--
  * Address:	8017C16C
  * Size:	000004
  */
-void Game::BaseItemMgr::onLoadResources(void) { }
+void BaseItemMgr::onLoadResources(void) { }
 
 /*
  * --INFO--
  * Address:	8017C170
  * Size:	000008
  */
-u32 Game::BaseItemMgr::loadEverytime(void) { return 0x1; }
+u32 BaseItemMgr::loadEverytime(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8017C178
  * Size:	000004
  */
-void Game::BaseItemMgr::onUpdateUseList((Game::GenItemParm*, int)) { }
+void BaseItemMgr::onUpdateUseList(Game::GenItemParm*, int) { }
 
 /*
  * --INFO--
  * Address:	8017C17C
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::getEnd(void)
+void ItemOnyon::Mgr::getEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -9678,6 +9685,8 @@ void Game::ItemOnyon::Mgr::getEnd(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C1A8
@@ -9685,12 +9694,14 @@ void Game::ItemOnyon::Mgr::getEnd(void)
  */
 u32 NodeObjectMgr<Game::Onyon>::getEnd() { return 0x0; }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017C1B0
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::getStart(void)
+void ItemOnyon::Mgr::getStart(void)
 {
 	/*
 	.loc_0x0:
@@ -9708,6 +9719,8 @@ void Game::ItemOnyon::Mgr::getStart(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C1DC
@@ -9722,12 +9735,14 @@ void NodeObjectMgr<Game::Onyon>::getStart()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017C1E4
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::getNext((void*))
+void ItemOnyon::Mgr::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -9745,6 +9760,8 @@ void Game::ItemOnyon::Mgr::getNext((void*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C210
@@ -9759,12 +9776,14 @@ void NodeObjectMgr<Game::Onyon>::getNext(void*)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017C218
  * Size:	00002C
  */
-void Game::ItemOnyon::Mgr::get((void*))
+void ItemOnyon::Mgr::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -9782,6 +9801,8 @@ void Game::ItemOnyon::Mgr::get((void*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C244
@@ -9796,19 +9817,25 @@ void NodeObjectMgr<Game::Onyon>::get(void*)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017C24C
  * Size:	000008
  */
-u32 Game::GenItemParm::getShapeID(void) { return 0x0; }
+u32 GenItemParm::getShapeID(void) { return 0x0; }
+
+} // namespace Game
+
+namespace efx {
 
 /*
  * --INFO--
  * Address:	8017C254
  * Size:	000008
  */
-void efx::ArgType::getName(void)
+void ArgType::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -9822,7 +9849,7 @@ void efx::ArgType::getName(void)
  * Address:	8017C25C
  * Size:	000014
  */
-void efx::OnyonSpotArg::getID(void)
+void OnyonSpotArg::getID(void)
 {
 	/*
 	.loc_0x0:
@@ -9834,12 +9861,16 @@ void efx::OnyonSpotArg::getID(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C270
  * Size:	000008
  */
-void Game::Onyon::getCreatureName(void)
+void Onyon::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -9853,21 +9884,21 @@ void Game::Onyon::getCreatureName(void)
  * Address:	8017C278
  * Size:	000008
  */
-s32 Game::BaseItem::getCreatureID(void) { return -0x1; }
+s32 BaseItem::getCreatureID(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	8017C280
  * Size:	000004
  */
-void Game::BaseItem::do_setLODParm((Game::AILODParm&)) { }
+void BaseItem::do_setLODParm(Game::AILODParm&) { }
 
 /*
  * --INFO--
  * Address:	8017C284
  * Size:	000008
  */
-void Game::BaseItem::getMapCollisionRadius(void)
+void BaseItem::getMapCollisionRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -9881,92 +9912,84 @@ void Game::BaseItem::getMapCollisionRadius(void)
  * Address:	8017C28C
  * Size:	000008
  */
-u32 Game::BaseItem::interactAttack((Game::InteractAttack&)) { return 0x0; }
+u32 BaseItem::interactAttack(Game::InteractAttack&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C294
  * Size:	000008
  */
-u32 Game::BaseItem::interactBreakBridge((Game::InteractBreakBridge&))
-{
-	return 0x0;
-}
+u32 BaseItem::interactBreakBridge(Game::InteractBreakBridge&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C29C
  * Size:	000008
  */
-u32 Game::BaseItem::interactEat((Game::InteractEat&)) { return 0x0; }
+u32 BaseItem::interactEat(Game::InteractEat&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2A4
  * Size:	000008
  */
-u32 Game::BaseItem::interactFlockAttack((Game::InteractFlockAttack&))
-{
-	return 0x0;
-}
+u32 BaseItem::interactFlockAttack(Game::InteractFlockAttack&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2AC
  * Size:	000008
  */
-u32 Game::BaseItem::interactAbsorb((Game::InteractAbsorb&)) { return 0x0; }
+u32 BaseItem::interactAbsorb(Game::InteractAbsorb&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2B4
  * Size:	000008
  */
-u32 Game::BaseItem::interactFue((Game::InteractFue&)) { return 0x0; }
+u32 BaseItem::interactFue(Game::InteractFue&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2BC
  * Size:	000008
  */
-u32 Game::BaseItem::interactFarmKarero((Game::InteractFarmKarero&))
-{
-	return 0x0;
-}
+u32 BaseItem::interactFarmKarero(Game::InteractFarmKarero&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2C4
  * Size:	000008
  */
-u32 Game::BaseItem::interactFarmHaero((Game::InteractFarmHaero&))
-{
-	return 0x0;
-}
+u32 BaseItem::interactFarmHaero(Game::InteractFarmHaero&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2CC
  * Size:	000008
  */
-u32 Game::BaseItem::interactGotKey((Game::InteractGotKey&)) { return 0x0; }
+u32 BaseItem::interactGotKey(Game::InteractGotKey&) { return 0x0; }
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	8017C2D4
  * Size:	000008
  */
-u32 getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<float>(void)
+u32 getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3f(void)
 {
 	return 0x1;
 }
+
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8017C2DC
  * Size:	000008
  */
-void Game::BaseItem::getWorkDistance((Sys::Sphere&))
+void BaseItem::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -9980,35 +10003,35 @@ void Game::BaseItem::getWorkDistance((Sys::Sphere&))
  * Address:	8017C2E4
  * Size:	000004
  */
-void Game::BaseItem::bounceCallback((Sys::Triangle*)) { }
+void BaseItem::bounceCallback(Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	8017C2E8
  * Size:	000004
  */
-void Game::BaseItem::collisionCallback((Game::CollEvent&)) { }
+void BaseItem::collisionCallback(Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8017C2EC
  * Size:	000004
  */
-void Game::BaseItem::platCallback((Game::PlatEvent&)) { }
+void BaseItem::platCallback(Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	8017C2F0
  * Size:	000004
  */
-void Game::BaseItem::updateBoundSphere(void) { }
+void BaseItem::updateBoundSphere(void) { }
 
 /*
  * --INFO--
  * Address:	8017C2F4
  * Size:	000024
  */
-void Game::BaseItem::getBoundingSphere((Sys::Sphere&))
+void BaseItem::getBoundingSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -10024,12 +10047,14 @@ void Game::BaseItem::getBoundingSphere((Sys::Sphere&))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C318
  * Size:	000044
  */
-void onSetPosition__Q24Game8BaseItemFR10Vector3<float>(void)
+void onSetPosition__Q24Game8BaseItemFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -10053,19 +10078,21 @@ void onSetPosition__Q24Game8BaseItemFR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8017C35C
  * Size:	000004
  */
-void Game::BaseItem::onSetPosition(void) { }
+void BaseItem::onSetPosition(void) { }
 
 /*
  * --INFO--
  * Address:	8017C360
  * Size:	00001C
  */
-void Game::BaseItem::getVelocity(void)
+void BaseItem::getVelocity(void)
 {
 	/*
 	.loc_0x0:
@@ -10079,12 +10106,14 @@ void Game::BaseItem::getVelocity(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C37C
  * Size:	000014
  */
-void getVelocityAt__Q24Game8BaseItemFR10Vector3<float> R10Vector3<float>(void)
+void getVelocityAt__Q24Game8BaseItemFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -10096,12 +10125,14 @@ void getVelocityAt__Q24Game8BaseItemFR10Vector3<float> R10Vector3<float>(void)
 	*/
 }
 
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8017C390
  * Size:	00009C
  */
-void efx::TPodKira::__dt(void)
+TPodKira::~TPodKira(void)
 {
 	/*
 	.loc_0x0:
@@ -10156,7 +10187,7 @@ void efx::TPodKira::__dt(void)
  * Address:	8017C42C
  * Size:	00009C
  */
-void efx::TPodOpenB::__dt(void)
+TPodOpenB::~TPodOpenB(void)
 {
 	/*
 	.loc_0x0:
@@ -10211,7 +10242,7 @@ void efx::TPodOpenB::__dt(void)
  * Address:	8017C4C8
  * Size:	00009C
  */
-void efx::TPodOpenA::__dt(void)
+TPodOpenA::~TPodOpenA(void)
 {
 	/*
 	.loc_0x0:
@@ -10266,14 +10297,14 @@ void efx::TPodOpenA::__dt(void)
  * Address:	8017C564
  * Size:	000004
  */
-void efx::TForever::doExecuteEmitterOperation((JPABaseEmitter*)) { }
+void TForever::doExecuteEmitterOperation(JPABaseEmitter*) { }
 
 /*
  * --INFO--
  * Address:	8017C568
  * Size:	00009C
  */
-void efx::TUfoGasOut::__dt(void)
+TUfoGasOut::~TUfoGasOut(void)
 {
 	/*
 	.loc_0x0:
@@ -10328,7 +10359,7 @@ void efx::TUfoGasOut::__dt(void)
  * Address:	8017C604
  * Size:	00009C
  */
-void efx::TUfoGasIn::__dt(void)
+TUfoGasIn::~TUfoGasIn(void)
 {
 	/*
 	.loc_0x0:
@@ -10383,7 +10414,7 @@ void efx::TUfoGasIn::__dt(void)
  * Address:	8017C6A0
  * Size:	00009C
  */
-void efx::TUfoPodOpenSuck::__dt(void)
+TUfoPodOpenSuck::~TUfoPodOpenSuck(void)
 {
 	/*
 	.loc_0x0:
@@ -10433,12 +10464,16 @@ void efx::TUfoPodOpenSuck::__dt(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8017C73C
  * Size:	00000C
  */
-void Game::ItemPikihead::InitArg::getName(void)
+void ItemPikihead::InitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -10453,7 +10488,7 @@ void Game::ItemPikihead::InitArg::getName(void)
  * Address:	8017C748
  * Size:	00000C
  */
-void Game::ItemInitArg::getName(void)
+void ItemInitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -10462,6 +10497,8 @@ void Game::ItemInitArg::getName(void)
 	  blr
 	*/
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -11451,7 +11488,7 @@ void __sinit_onyonMgr_cpp(void)
  * Address:	8017D358
  * Size:	000008
  */
-void @4 @efx::TForever::__dt(void)
+@4 @efx::TForever::~TForever(void)
 {
 	/*
 	.loc_0x0:
@@ -11465,7 +11502,7 @@ void @4 @efx::TForever::__dt(void)
  * Address:	8017D360
  * Size:	000008
  */
-void @4 @efx::TUfoPodOpenSuck::__dt(void)
+@4 @efx::TUfoPodOpenSuck::~TUfoPodOpenSuck(void)
 {
 	/*
 	.loc_0x0:
@@ -11479,7 +11516,7 @@ void @4 @efx::TUfoPodOpenSuck::__dt(void)
  * Address:	8017D368
  * Size:	000008
  */
-void @4 @efx::TUfoGasIn::__dt(void)
+@4 @efx::TUfoGasIn::~TUfoGasIn(void)
 {
 	/*
 	.loc_0x0:
@@ -11493,7 +11530,7 @@ void @4 @efx::TUfoGasIn::__dt(void)
  * Address:	8017D370
  * Size:	000008
  */
-void @4 @efx::TUfoGasOut::__dt(void)
+@4 @efx::TUfoGasOut::~TUfoGasOut(void)
 {
 	/*
 	.loc_0x0:
@@ -11507,7 +11544,7 @@ void @4 @efx::TUfoGasOut::__dt(void)
  * Address:	8017D378
  * Size:	000008
  */
-void @4 @efx::TPodOpenA::__dt(void)
+@4 @efx::TPodOpenA::~TPodOpenA(void)
 {
 	/*
 	.loc_0x0:
@@ -11521,7 +11558,7 @@ void @4 @efx::TPodOpenA::__dt(void)
  * Address:	8017D380
  * Size:	000008
  */
-void @4 @efx::TPodOpenB::__dt(void)
+@4 @efx::TPodOpenB::~TPodOpenB(void)
 {
 	/*
 	.loc_0x0:
@@ -11535,7 +11572,7 @@ void @4 @efx::TPodOpenB::__dt(void)
  * Address:	8017D388
  * Size:	000008
  */
-void @4 @efx::TPodKira::__dt(void)
+@4 @efx::TPodKira::~TPodKira(void)
 {
 	/*
 	.loc_0x0:
@@ -11549,7 +11586,7 @@ void @4 @efx::TPodKira::__dt(void)
  * Address:	8017D390
  * Size:	000008
  */
-void @376 @Game::Onyon::onKeyEvent((SysShape::KeyEvent const&))
+void @376 @Game::Onyon::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -11689,7 +11726,7 @@ void @48 @Game::ItemOnyon::Mgr::getStart(void)
  * Address:	8017D3E0
  * Size:	000008
  */
-void @48 @Game::ItemOnyon::Mgr::getNext((void*))
+void @48 @Game::ItemOnyon::Mgr::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -11703,7 +11740,7 @@ void @48 @Game::ItemOnyon::Mgr::getNext((void*))
  * Address:	8017D3E8
  * Size:	000008
  */
-void @48 @Game::ItemOnyon::Mgr::get((void*))
+void @48 @Game::ItemOnyon::Mgr::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -11717,7 +11754,7 @@ void @48 @Game::ItemOnyon::Mgr::get((void*))
  * Address:	8017D3F0
  * Size:	000008
  */
-void @48 @Game::ItemOnyon::Mgr::__dt(void)
+@48 @Game::ItemOnyon::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

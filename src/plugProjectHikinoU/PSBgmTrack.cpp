@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	803422A8
  * Size:	00002C
  */
-void PSSystem::BeatMgr::proc()
+void BeatMgr::proc()
 {
 	/*
 	.loc_0x0:
@@ -30,7 +32,7 @@ void PSSystem::BeatMgr::proc()
  * Address:	803422D4
  * Size:	000028
  */
-void PSSystem::SeqTrackBase::update()
+void SeqTrackBase::update()
 {
 	/*
 	.loc_0x0:
@@ -52,13 +54,10 @@ void PSSystem::SeqTrackBase::update()
  * Address:	803422FC
  * Size:	000008
  */
-void PSSystem::SeqTrackBase::init(JASTrack*)
+void SeqTrackBase::init(JASTrack* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x28(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x28(r3)
+	_28 = a1;
 }
 
 /*
@@ -66,7 +65,7 @@ void PSSystem::SeqTrackBase::init(JASTrack*)
  * Address:	80342304
  * Size:	000008
  */
-void PSSystem::SeqTrackBase::getTaskEntryList()
+void SeqTrackBase::getTaskEntryList()
 {
 	/*
 	.loc_0x0:
@@ -80,7 +79,7 @@ void PSSystem::SeqTrackBase::getTaskEntryList()
  * Address:	8034230C
  * Size:	0003A4
  */
-void PSSystem::SeqTrackRoot::SeqTrackRoot()
+SeqTrackRoot::SeqTrackRoot()
 {
 	/*
 	.loc_0x0:
@@ -329,7 +328,7 @@ void PSSystem::SeqTrackRoot::SeqTrackRoot()
  * Address:	803426B0
  * Size:	000078
  */
-void PSSystem::SeqTrackRoot::init(JASTrack*)
+void SeqTrackRoot::init(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -375,7 +374,7 @@ void PSSystem::SeqTrackRoot::init(JASTrack*)
  * Address:	80342728
  * Size:	00007C
  */
-void PSSystem::SeqTrackRoot::initSwingRatio()
+void SeqTrackRoot::initSwingRatio()
 {
 	/*
 	.loc_0x0:
@@ -418,8 +417,8 @@ void PSSystem::SeqTrackRoot::initSwingRatio()
  * Address:	803427A4
  * Size:	000088
  */
-void PSSystem::SeqTrackRoot::pitchModulation(float, float, unsigned long,
-                                             PSSystem::DirectorBase*)
+void SeqTrackRoot::pitchModulation(float, float, unsigned long,
+                                   PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -465,8 +464,7 @@ void PSSystem::SeqTrackRoot::pitchModulation(float, float, unsigned long,
  * Address:	8034282C
  * Size:	000078
  */
-void PSSystem::SeqTrackRoot::tempoChange(float, unsigned long,
-                                         PSSystem::DirectorBase*)
+void SeqTrackRoot::tempoChange(float, unsigned long, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +506,7 @@ void PSSystem::SeqTrackRoot::tempoChange(float, unsigned long,
  * Address:	803428A4
  * Size:	000024
  */
-void PSSystem::SeqTrackRoot::onStopSeq()
+void SeqTrackRoot::onStopSeq()
 {
 	/*
 	.loc_0x0:
@@ -529,7 +527,7 @@ void PSSystem::SeqTrackRoot::onStopSeq()
  * Address:	803428C8
  * Size:	00009C
  */
-void PSSystem::SeqTrackRoot::beatUpdate()
+void SeqTrackRoot::beatUpdate()
 {
 	/*
 	.loc_0x0:
@@ -586,7 +584,7 @@ void PSSystem::SeqTrackRoot::beatUpdate()
  * Address:	80342964
  * Size:	0002EC
  */
-void PSSystem::SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
+SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
 {
 	/*
 	.loc_0x0:
@@ -785,8 +783,8 @@ void PSSystem::SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
  * Address:	80342C50
  * Size:	000084
  */
-void PSSystem::SeqTrackChild::muteOffAndFadeIn(float, unsigned long,
-                                               PSSystem::DirectorBase*)
+void SeqTrackChild::muteOffAndFadeIn(float, unsigned long,
+                                     PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -831,8 +829,7 @@ void PSSystem::SeqTrackChild::muteOffAndFadeIn(float, unsigned long,
  * Address:	80342CD4
  * Size:	000074
  */
-void PSSystem::SeqTrackChild::fadeoutAndMute(unsigned long,
-                                             PSSystem::DirectorBase*)
+void SeqTrackChild::fadeoutAndMute(unsigned long, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -873,8 +870,7 @@ void PSSystem::SeqTrackChild::fadeoutAndMute(unsigned long,
  * Address:	80342D48
  * Size:	000078
  */
-void PSSystem::SeqTrackChild::fade(float, unsigned long,
-                                   PSSystem::DirectorBase*)
+void SeqTrackChild::fade(float, unsigned long, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -916,7 +912,7 @@ void PSSystem::SeqTrackChild::fade(float, unsigned long,
  * Address:	80342DC0
  * Size:	000068
  */
-void PSSystem::SeqTrackChild::setIdMask(unsigned char, PSSystem::DirectorBase*)
+void SeqTrackChild::setIdMask(unsigned char, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -954,7 +950,7 @@ void PSSystem::SeqTrackChild::setIdMask(unsigned char, PSSystem::DirectorBase*)
  * Address:	80342E28
  * Size:	000024
  */
-void PSSystem::SeqTrackChild::onStopSeq()
+void SeqTrackChild::onStopSeq()
 {
 	/*
 	.loc_0x0:
@@ -975,7 +971,7 @@ void PSSystem::SeqTrackChild::onStopSeq()
  * Address:	80342E4C
  * Size:	000030
  */
-void PSSystem::IdMaskTask::task(JASTrack&)
+void IdMaskTask::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -999,7 +995,7 @@ void PSSystem::IdMaskTask::task(JASTrack&)
  * Address:	80342E7C
  * Size:	000038
  */
-void PSSystem::MuteTask::task(JASTrack&)
+void MuteTask::task(JASTrack&)
 {
 	/*
 	.loc_0x0:
@@ -1019,3 +1015,4 @@ void PSSystem::MuteTask::task(JASTrack&)
 	  blr
 	*/
 }
+} // namespace PSSystem

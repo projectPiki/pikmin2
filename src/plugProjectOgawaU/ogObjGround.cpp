@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8030DEB8
  * Size:	000094
  */
-void og::newScreen::ObjGround::__ct((char const*))
+newScreen::ObjGround::ObjGround(char const*)
 {
 	/*
 	.loc_0x0:
@@ -64,7 +56,7 @@ void og::newScreen::ObjGround::__ct((char const*))
  * Address:	8030DF4C
  * Size:	0000AC
  */
-void og::newScreen::ObjGround::__dt(void)
+newScreen::ObjGround::~ObjGround(void)
 {
 	/*
 	.loc_0x0:
@@ -123,7 +115,7 @@ void og::newScreen::ObjGround::__dt(void)
  * Address:	8030DFF8
  * Size:	000464
  */
-void og::newScreen::ObjGround::doCreate((JKRArchive*))
+void newScreen::ObjGround::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -444,7 +436,7 @@ void og::newScreen::ObjGround::doCreate((JKRArchive*))
  * Address:	8030E45C
  * Size:	00029C
  */
-void og::newScreen::ObjGround::commonUpdate(void)
+void newScreen::ObjGround::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -641,7 +633,7 @@ void og::newScreen::ObjGround::commonUpdate(void)
  * Address:	8030E6F8
  * Size:	000024
  */
-void og::newScreen::ObjGround::doUpdate(void)
+void newScreen::ObjGround::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -662,7 +654,7 @@ void og::newScreen::ObjGround::doUpdate(void)
  * Address:	8030E71C
  * Size:	000090
  */
-void og::newScreen::ObjGround::doDraw((Graphics&))
+void newScreen::ObjGround::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -718,7 +710,7 @@ void og::newScreen::ObjGround::doDraw((Graphics&))
  * Address:	8030E7AC
  * Size:	000014
  */
-void og::newScreen::ObjGround::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjGround::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -735,7 +727,7 @@ void og::newScreen::ObjGround::doStart((Screen::StartSceneArg const*))
  * Address:	8030E7C0
  * Size:	000010
  */
-void og::newScreen::ObjGround::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjGround::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -751,7 +743,7 @@ void og::newScreen::ObjGround::doEnd((Screen::EndSceneArg const*))
  * Address:	8030E7D0
  * Size:	000074
  */
-void og::newScreen::ObjGround::doUpdateFadein(void)
+void newScreen::ObjGround::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -794,14 +786,14 @@ void og::newScreen::ObjGround::doUpdateFadein(void)
  * Address:	8030E844
  * Size:	000004
  */
-void og::newScreen::ObjGround::doUpdateFadeinFinish(void) { }
+void newScreen::ObjGround::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8030E848
  * Size:	00000C
  */
-void og::newScreen::ObjGround::doUpdateFinish(void)
+void newScreen::ObjGround::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -816,7 +808,7 @@ void og::newScreen::ObjGround::doUpdateFinish(void)
  * Address:	8030E854
  * Size:	00007C
  */
-void og::newScreen::ObjGround::doUpdateFadeout(void)
+void newScreen::ObjGround::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -861,7 +853,9 @@ void og::newScreen::ObjGround::doUpdateFadeout(void)
  * Address:	8030E8D0
  * Size:	000004
  */
-void og::newScreen::ObjGround::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjGround::doUpdateFadeoutFinish(void) { }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -911,7 +905,7 @@ void __sinit_ogObjGround_cpp(void)
  * Address:	8030E950
  * Size:	000008
  */
-void @24 @og::newScreen::ObjGround::__dt(void)
+@24 @og::newScreen::ObjGround::~ObjGround(void)
 {
 	/*
 	.loc_0x0:

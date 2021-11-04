@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801A35EC
  * Size:	000060
  */
-void Game::Pathfinder::__ct(void)
+Pathfinder::Pathfinder(void)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +45,7 @@ void Game::Pathfinder::__ct(void)
  * Address:	801A364C
  * Size:	0000C4
  */
-void Game::Pathfinder::create((int, Game::RouteMgr*))
+void Pathfinder::create(int, Game::RouteMgr*)
 {
 	/*
 	.loc_0x0:
@@ -118,7 +110,7 @@ void Game::Pathfinder::create((int, Game::RouteMgr*))
  * Address:	801A3710
  * Size:	000020
  */
-void Game::AStarContext::__ct(void)
+AStarContext::AStarContext(void)
 {
 	/*
 	.loc_0x0:
@@ -138,7 +130,7 @@ void Game::AStarContext::__ct(void)
  * Address:	801A3730
  * Size:	000124
  */
-void Game::Pathfinder::update(void)
+void Pathfinder::update(void)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +233,7 @@ void Game::Pathfinder::update(void)
  * Address:	........
  * Size:	000024
  */
-void Game::Pathfinder::getFreeContext(void)
+void Pathfinder::getFreeContext(void)
 {
 	// UNUSED FUNCTION
 }
@@ -251,7 +243,7 @@ void Game::Pathfinder::getFreeContext(void)
  * Address:	........
  * Size:	00004C
  */
-void Game::Pathfinder::getContext((unsigned long))
+void Pathfinder::getContext(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +253,7 @@ void Game::Pathfinder::getContext((unsigned long))
  * Address:	801A3854
  * Size:	00014C
  */
-void Game::Pathfinder::start((Game::PathfindRequest&))
+void Pathfinder::start(Game::PathfindRequest&)
 {
 	/*
 	.loc_0x0:
@@ -372,7 +364,7 @@ void Game::Pathfinder::start((Game::PathfindRequest&))
  * Address:	801A39A0
  * Size:	0000C0
  */
-void Game::Pathfinder::makepath((unsigned long, Game::PathNode**))
+void Pathfinder::makepath(unsigned long, Game::PathNode**)
 {
 	/*
 	.loc_0x0:
@@ -448,7 +440,7 @@ void Game::Pathfinder::makepath((unsigned long, Game::PathNode**))
  * Address:	........
  * Size:	0000C8
  */
-void Game::Pathfinder::makepath((unsigned long, short*, int))
+void Pathfinder::makepath(unsigned long, short*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -458,7 +450,7 @@ void Game::Pathfinder::makepath((unsigned long, short*, int))
  * Address:	801A3A60
  * Size:	000070
  */
-void Game::Pathfinder::release((unsigned long))
+void Pathfinder::release(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -506,7 +498,7 @@ void Game::Pathfinder::release((unsigned long))
  * Address:	801A3AD0
  * Size:	000098
  */
-void Game::Pathfinder::check((unsigned long))
+void Pathfinder::check(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -568,7 +560,7 @@ void Game::Pathfinder::check((unsigned long))
  * Address:	........
  * Size:	000018
  */
-void Game::PathNode::initNode(void)
+void PathNode::initNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -578,7 +570,7 @@ void Game::PathNode::initNode(void)
  * Address:	........
  * Size:	000038
  */
-void Game::PathNode::add((Game::PathNode*))
+void PathNode::add(Game::PathNode*)
 {
 	// UNUSED FUNCTION
 }
@@ -588,7 +580,7 @@ void Game::PathNode::add((Game::PathNode*))
  * Address:	........
  * Size:	000098
  */
-void Game::PathNode::del(void)
+void PathNode::del(void)
 {
 	// UNUSED FUNCTION
 }
@@ -598,7 +590,7 @@ void Game::PathNode::del(void)
  * Address:	........
  * Size:	000018
  */
-void Game::PathNode::dump((char*))
+void PathNode::dump(char*)
 {
 	// UNUSED FUNCTION
 }
@@ -608,7 +600,7 @@ void Game::PathNode::dump((char*))
  * Address:	........
  * Size:	0000DC
  */
-void Game::PathNode::pop(void)
+void PathNode::pop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -618,7 +610,7 @@ void Game::PathNode::pop(void)
  * Address:	........
  * Size:	000038
  */
-void Game::PathNode::countLinks((Game::PathNode**))
+void PathNode::countLinks(Game::PathNode**)
 {
 	// UNUSED FUNCTION
 }
@@ -628,7 +620,7 @@ void Game::PathNode::countLinks((Game::PathNode**))
  * Address:	801A3B68
  * Size:	000078
  */
-void Game::AStarContext::init((Game::RouteMgr*, int))
+void AStarContext::init(Game::RouteMgr*, int)
 {
 	/*
 	.loc_0x0:
@@ -676,7 +668,7 @@ void Game::AStarContext::init((Game::RouteMgr*, int))
  * Address:	801A3BE0
  * Size:	00000C
  */
-void Game::AStarPathfinder::__ct(void)
+AStarPathfinder::AStarPathfinder(void)
 {
 	/*
 	.loc_0x0:
@@ -691,13 +683,10 @@ void Game::AStarPathfinder::__ct(void)
  * Address:	801A3BEC
  * Size:	000008
  */
-void Game::AStarPathfinder::setContext((Game::AStarContext*))
+void AStarPathfinder::setContext(Game::AStarContext* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x0(r3)
+	_00 = a1;
 }
 
 /*
@@ -705,7 +694,7 @@ void Game::AStarPathfinder::setContext((Game::AStarContext*))
  * Address:	........
  * Size:	0000A0
  */
-void Game::AStarContext::getNode((short))
+void AStarContext::getNode(short)
 {
 	// UNUSED FUNCTION
 }
@@ -715,7 +704,7 @@ void Game::AStarContext::getNode((short))
  * Address:	........
  * Size:	000558
  */
-void Game::AStarPathfinder::search((short, short, short*, int))
+void AStarPathfinder::search(short, short, short*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -725,8 +714,8 @@ void Game::AStarPathfinder::search((short, short, short*, int))
  * Address:	........
  * Size:	00057C
  */
-void Game::AStarPathfinder::search((Game::AStarContext*, short, short, short*,
-                                    int, int, int&))
+void AStarPathfinder::search(Game::AStarContext*, short, short, short*, int,
+                             int, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -736,7 +725,7 @@ void Game::AStarPathfinder::search((Game::AStarContext*, short, short, short*,
  * Address:	801A3BF4
  * Size:	00017C
  */
-void Game::AStarPathfinder::initsearch((Game::AStarContext*))
+void AStarPathfinder::initsearch(Game::AStarContext*)
 {
 	/*
 	.loc_0x0:
@@ -861,7 +850,7 @@ void Game::AStarPathfinder::initsearch((Game::AStarContext*))
  * Address:	801A3D70
  * Size:	0004B8
  */
-void Game::AStarPathfinder::search((Game::AStarContext*, int, Game::PathNode**))
+void AStarPathfinder::search(Game::AStarContext*, int, Game::PathNode**)
 {
 	/*
 	.loc_0x0:
@@ -1275,7 +1264,7 @@ void Game::AStarPathfinder::search((Game::AStarContext*, int, Game::PathNode**))
  * Address:	801A4228
  * Size:	0000B4
  */
-void Game::AStarPathfinder::estimate((short, short))
+void AStarPathfinder::estimate(short, short)
 {
 	/*
 	.loc_0x0:
@@ -1336,7 +1325,7 @@ void Game::AStarPathfinder::estimate((short, short))
  * Address:	801A42DC
  * Size:	000034
  */
-void Game::AStarContext::makepath((Game::PathNode*, Game::PathNode**))
+void AStarContext::makepath(Game::PathNode*, Game::PathNode**)
 {
 	/*
 	.loc_0x0:
@@ -1365,7 +1354,8 @@ void Game::AStarContext::makepath((Game::PathNode*, Game::PathNode**))
  * Address:	........
  * Size:	000070
  */
-void Game::AStarPathfinder::constructPath((Game::PathNode*, short*, int))
+void AStarPathfinder::constructPath(Game::PathNode*, short*, int)
 {
 	// UNUSED FUNCTION
 }
+} // namespace Game

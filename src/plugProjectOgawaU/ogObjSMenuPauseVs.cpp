@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80329190
  * Size:	000080
  */
-void og::newScreen::ObjSMenuPauseVS::__ct((char const*))
+newScreen::ObjSMenuPauseVS::ObjSMenuPauseVS(char const*)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +51,7 @@ void og::newScreen::ObjSMenuPauseVS::__ct((char const*))
  * Address:	80329210
  * Size:	0000C4
  */
-void og::newScreen::ObjSMenuPauseVS::__dt(void)
+newScreen::ObjSMenuPauseVS::~ObjSMenuPauseVS(void)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +116,7 @@ void og::newScreen::ObjSMenuPauseVS::__dt(void)
  * Address:	803292D4
  * Size:	000334
  */
-void og::newScreen::ObjSMenuPauseVS::doCreate((JKRArchive*))
+void newScreen::ObjSMenuPauseVS::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -357,7 +349,7 @@ void og::newScreen::ObjSMenuPauseVS::doCreate((JKRArchive*))
  * Address:	80329608
  * Size:	000074
  */
-void og::newScreen::ObjSMenuPauseVS::blink_Menu((int))
+void newScreen::ObjSMenuPauseVS::blink_Menu(int)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +392,7 @@ void og::newScreen::ObjSMenuPauseVS::blink_Menu((int))
  * Address:	8032967C
  * Size:	000068
  */
-void og::newScreen::ObjSMenuPauseVS::commonUpdate(void)
+void newScreen::ObjSMenuPauseVS::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -438,7 +430,7 @@ void og::newScreen::ObjSMenuPauseVS::commonUpdate(void)
  * Address:	803296E4
  * Size:	000060
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdate(void)
+void newScreen::ObjSMenuPauseVS::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +470,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdate(void)
  * Address:	80329744
  * Size:	000230
  */
-void og::newScreen::ObjSMenuPauseVS::menu(void)
+void newScreen::ObjSMenuPauseVS::menu(void)
 {
 	/*
 	.loc_0x0:
@@ -648,7 +640,7 @@ void og::newScreen::ObjSMenuPauseVS::menu(void)
  * Address:	80329974
  * Size:	000038
  */
-void og::newScreen::ObjSMenuPauseVS::out_cancel(void)
+void newScreen::ObjSMenuPauseVS::out_cancel(void)
 {
 	/*
 	.loc_0x0:
@@ -674,7 +666,7 @@ void og::newScreen::ObjSMenuPauseVS::out_cancel(void)
  * Address:	803299AC
  * Size:	000038
  */
-void og::newScreen::ObjSMenuPauseVS::out_menu_0(void)
+void newScreen::ObjSMenuPauseVS::out_menu_0(void)
 {
 	/*
 	.loc_0x0:
@@ -700,7 +692,7 @@ void og::newScreen::ObjSMenuPauseVS::out_menu_0(void)
  * Address:	803299E4
  * Size:	000038
  */
-void og::newScreen::ObjSMenuPauseVS::out_menu_1(void)
+void newScreen::ObjSMenuPauseVS::out_menu_1(void)
 {
 	/*
 	.loc_0x0:
@@ -726,7 +718,7 @@ void og::newScreen::ObjSMenuPauseVS::out_menu_1(void)
  * Address:	80329A1C
  * Size:	000010
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateCancelAction(void)
+void newScreen::ObjSMenuPauseVS::doUpdateCancelAction(void)
 {
 	/*
 	.loc_0x0:
@@ -742,7 +734,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdateCancelAction(void)
  * Address:	80329A2C
  * Size:	000060
  */
-void og::newScreen::ObjSMenuPauseVS::doDraw((Graphics&))
+void newScreen::ObjSMenuPauseVS::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -780,7 +772,7 @@ void og::newScreen::ObjSMenuPauseVS::doDraw((Graphics&))
  * Address:	80329A8C
  * Size:	000044
  */
-void og::newScreen::ObjSMenuPauseVS::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjSMenuPauseVS::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -809,7 +801,7 @@ void og::newScreen::ObjSMenuPauseVS::doStart((Screen::StartSceneArg const*))
  * Address:	80329AD0
  * Size:	000008
  */
-u32 og::newScreen::ObjSMenuPauseVS::doEnd((Screen::EndSceneArg const*))
+u32 newScreen::ObjSMenuPauseVS::doEnd(Screen::EndSceneArg const*)
 {
 	return 0x1;
 }
@@ -819,7 +811,7 @@ u32 og::newScreen::ObjSMenuPauseVS::doEnd((Screen::EndSceneArg const*))
  * Address:	80329AD8
  * Size:	00004C
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateFadein(void)
+void newScreen::ObjSMenuPauseVS::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -850,7 +842,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdateFadein(void)
  * Address:	80329B24
  * Size:	000048
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish(void)
+void newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -880,7 +872,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish(void)
  * Address:	80329B6C
  * Size:	000048
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateFinish(void)
+void newScreen::ObjSMenuPauseVS::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -910,7 +902,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdateFinish(void)
  * Address:	80329BB4
  * Size:	00004C
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateFadeout(void)
+void newScreen::ObjSMenuPauseVS::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -941,7 +933,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdateFadeout(void)
  * Address:	80329C00
  * Size:	0000AC
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateFadeoutFinish(void)
+void newScreen::ObjSMenuPauseVS::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1002,7 +994,7 @@ void og::newScreen::ObjSMenuPauseVS::doUpdateFadeoutFinish(void)
  * Address:	80329CAC
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuPauseVS::getResult(void)
+void newScreen::ObjSMenuPauseVS::getResult(void)
 {
 	/*
 	.loc_0x0:
@@ -1017,7 +1009,7 @@ void og::newScreen::ObjSMenuPauseVS::getResult(void)
  * Address:	80329CB8
  * Size:	000014
  */
-void og::newScreen::ObjSMenuPauseVS::in_L(void)
+void newScreen::ObjSMenuPauseVS::in_L(void)
 {
 	/*
 	.loc_0x0:
@@ -1034,14 +1026,10 @@ void og::newScreen::ObjSMenuPauseVS::in_L(void)
  * Address:	80329CCC
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuPauseVS::wait(void)
+void newScreen::ObjSMenuPauseVS::wait(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x4
-	  stw       r0, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x38(r3)
+	_38 = 4;
 }
 
 /*
@@ -1049,14 +1037,10 @@ void og::newScreen::ObjSMenuPauseVS::wait(void)
  * Address:	80329CD8
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuPauseVS::out_L(void)
+void newScreen::ObjSMenuPauseVS::out_L(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x2
-	  stw       r0, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x38(r3)
+	_38 = 2;
 }
 
 /*
@@ -1064,35 +1048,35 @@ void og::newScreen::ObjSMenuPauseVS::out_L(void)
  * Address:	80329CE4
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateRAction(void) { }
+void newScreen::ObjSMenuPauseVS::doUpdateRAction(void) { }
 
 /*
  * --INFO--
  * Address:	80329CE8
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateLAction(void) { }
+void newScreen::ObjSMenuPauseVS::doUpdateLAction(void) { }
 
 /*
  * --INFO--
  * Address:	80329CEC
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::in_R(void) { }
+void newScreen::ObjSMenuPauseVS::in_R(void) { }
 
 /*
  * --INFO--
  * Address:	80329CF0
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::out_R(void) { }
+void newScreen::ObjSMenuPauseVS::out_R(void) { }
 
 /*
  * --INFO--
  * Address:	80329CF4
  * Size:	000008
  */
-void @24 @og::newScreen::ObjSMenuPauseVS::__dt(void)
+@24 @og::newScreen::ObjSMenuPauseVS::~ObjSMenuPauseVS(void)
 {
 	/*
 	.loc_0x0:
@@ -1100,3 +1084,4 @@ void @24 @og::newScreen::ObjSMenuPauseVS::__dt(void)
 	  b         -0xAE8
 	*/
 }
+} // namespace og

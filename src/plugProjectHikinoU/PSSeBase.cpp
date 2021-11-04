@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	80340838
  * Size:	0000A4
  */
-void PSSystem::EnvSeBase::EnvSeBase(unsigned long, float)
+EnvSeBase::EnvSeBase(unsigned long, float)
 {
 	/*
 	.loc_0x0:
@@ -58,7 +60,7 @@ void PSSystem::EnvSeBase::EnvSeBase(unsigned long, float)
  * Address:	803408DC
  * Size:	00035C
  */
-void PSSystem::EnvSeBase::exec()
+void EnvSeBase::exec()
 {
 	/*
 	.loc_0x0:
@@ -313,7 +315,7 @@ void PSSystem::EnvSeBase::exec()
  * Address:	80340C38
  * Size:	000040
  */
-void PSSystem::EnvSeBase::play()
+void EnvSeBase::play()
 {
 	/*
 	.loc_0x0:
@@ -341,7 +343,7 @@ void PSSystem::EnvSeBase::play()
  * Address:	80340C78
  * Size:	000034
  */
-void PSSystem::EnvSeMgr::setAllPauseFlag(unsigned char)
+void EnvSeMgr::setAllPauseFlag(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void PSSystem::EnvSeMgr::setAllPauseFlag(unsigned char)
  * Address:	80340CAC
  * Size:	000024
  */
-void PSSystem::EnvSeMgr::on()
+void EnvSeMgr::on()
 {
 	/*
 	.loc_0x0:
@@ -397,7 +399,7 @@ void PSSystem::EnvSeMgr::on()
  * Address:	80340CD0
  * Size:	000050
  */
-void PSSystem::EnvSeMgr::on(unsigned long, bool)
+void EnvSeMgr::on(unsigned long, bool)
 {
 	/*
 	.loc_0x0:
@@ -439,7 +441,7 @@ void PSSystem::EnvSeMgr::on(unsigned long, bool)
  * Address:	80340D20
  * Size:	000024
  */
-void PSSystem::EnvSeMgr::off()
+void EnvSeMgr::off()
 {
 	/*
 	.loc_0x0:
@@ -464,7 +466,7 @@ void PSSystem::EnvSeMgr::off()
  * Address:	80340D44
  * Size:	000050
  */
-void PSSystem::EnvSeMgr::off(unsigned long, bool)
+void EnvSeMgr::off(unsigned long, bool)
 {
 	/*
 	.loc_0x0:
@@ -506,14 +508,10 @@ void PSSystem::EnvSeMgr::off(unsigned long, bool)
  * Address:	80340D94
  * Size:	00000C
  */
-void PSSystem::EnvSeMgr::reservePauseOff()
+void EnvSeMgr::reservePauseOff()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1F
-	  sth       r0, 0x10(r3)
-	  blr
-	*/
+	// Generated from sth r0, 0x10(r3)
+	_10 = 31;
 }
 
 /*
@@ -521,7 +519,7 @@ void PSSystem::EnvSeMgr::reservePauseOff()
  * Address:	80340DA0
  * Size:	000070
  */
-void PSSystem::EnvSeMgr::setVolumeRequest(float, unsigned long, unsigned char)
+void EnvSeMgr::setVolumeRequest(float, unsigned long, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -567,7 +565,7 @@ void PSSystem::EnvSeMgr::setVolumeRequest(float, unsigned long, unsigned char)
  * Address:	80340E10
  * Size:	000080
  */
-void PSSystem::EnvSeMgr::exec()
+void EnvSeMgr::exec()
 {
 	/*
 	.loc_0x0:
@@ -617,7 +615,7 @@ void PSSystem::EnvSeMgr::exec()
  * Address:	80340E90
  * Size:	000038
  */
-void PSSystem::EnvSe_PauseOffReservator::reservatorTask()
+void EnvSe_PauseOffReservator::reservatorTask()
 {
 	/*
 	.loc_0x0:
@@ -649,7 +647,7 @@ void PSSystem::EnvSe_PauseOffReservator::reservatorTask()
  * Address:	80340EC8
  * Size:	000020
  */
-void PSSystem::ClusterSe::PartInitArg::PartInitArg()
+ClusterSe::PartInitArg::PartInitArg()
 {
 	/*
 	.loc_0x0:
@@ -669,7 +667,7 @@ void PSSystem::ClusterSe::PartInitArg::PartInitArg()
  * Address:	80340EE8
  * Size:	00002C
  */
-void PSSystem::ClusterSe::Part::Part()
+ClusterSe::Part::Part()
 {
 	/*
 	.loc_0x0:
@@ -692,7 +690,7 @@ void PSSystem::ClusterSe::Part::Part()
  * Address:	80340F14
  * Size:	00003C
  */
-void PSSystem::ClusterSe::Part::callSe(JAInter::Object*)
+void ClusterSe::Part::callSe(JAInter::Object*)
 {
 	/*
 	.loc_0x0:
@@ -719,7 +717,7 @@ void PSSystem::ClusterSe::Part::callSe(JAInter::Object*)
  * Address:	80340F50
  * Size:	000060
  */
-void PSSystem::ClusterSe::Factory::Factory(unsigned char)
+ClusterSe::Factory::Factory(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -757,7 +755,7 @@ void PSSystem::ClusterSe::Factory::Factory(unsigned char)
  * Address:	80340FB0
  * Size:	000074
  */
-void PSSystem::ClusterSe::Factory::constructPart()
+void ClusterSe::Factory::constructPart()
 {
 	/*
 	.loc_0x0:
@@ -800,7 +798,7 @@ void PSSystem::ClusterSe::Factory::constructPart()
  * Address:	80341024
  * Size:	0002B4
  */
-void PSSystem::ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory&)
+void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory&)
 {
 	/*
 	.loc_0x0:
@@ -1011,7 +1009,7 @@ void PSSystem::ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory&)
  * Address:	803412D8
  * Size:	0001A4
  */
-void PSSystem::ClusterSe::Mgr::play(unsigned char, JAInter::Object*)
+void ClusterSe::Mgr::play(unsigned char, JAInter::Object*)
 {
 	/*
 	.loc_0x0:
@@ -1134,3 +1132,4 @@ void PSSystem::ClusterSe::Mgr::play(unsigned char, JAInter::Object*)
 	  blr
 	*/
 }
+} // namespace PSSystem

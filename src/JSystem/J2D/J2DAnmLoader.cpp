@@ -564,7 +564,7 @@ void J2DAnmLoaderDataBase::load(const void*)
  * Address:	800480B8
  * Size:	00005C
  */
-void J2DAnmVtxColor::~J2DAnmVtxColor()
+J2DAnmVtxColor::~J2DAnmVtxColor()
 {
 	/*
 	.loc_0x0:
@@ -603,7 +603,7 @@ void J2DAnmVtxColor::~J2DAnmVtxColor()
  * Address:	80048114
  * Size:	000074
  */
-void J2DAnmColor::~J2DAnmColor()
+J2DAnmColor::~J2DAnmColor()
 {
 	/*
 	.loc_0x0:
@@ -650,7 +650,7 @@ void J2DAnmColor::~J2DAnmColor()
  * Address:	80048188
  * Size:	00005C
  */
-void J2DAnmTransform::~J2DAnmTransform()
+J2DAnmTransform::~J2DAnmTransform()
 {
 	/*
 	.loc_0x0:
@@ -689,7 +689,7 @@ void J2DAnmTransform::~J2DAnmTransform()
  * Address:	800481E4
  * Size:	000048
  */
-void J2DAnmBase::~J2DAnmBase()
+J2DAnmBase::~J2DAnmBase()
 {
 	/*
 	.loc_0x0:
@@ -721,7 +721,7 @@ void J2DAnmBase::~J2DAnmBase()
  * Address:	8004822C
  * Size:	00001C
  */
-void J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15()
+J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -740,7 +740,7 @@ void J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15()
  * Address:	80048248
  * Size:	000048
  */
-void J2DAnmLoader::~J2DAnmLoader()
+J2DAnmLoader::~J2DAnmLoader()
 {
 	/*
 	.loc_0x0:
@@ -772,7 +772,7 @@ void J2DAnmLoader::~J2DAnmLoader()
  * Address:	80048290
  * Size:	00005C
  */
-void J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15()
+J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -1673,7 +1673,7 @@ void J2DAnmFullLoader_v15::setResource(J2DAnmBase*, const void*)
  * Address:	80048CAC
  * Size:	00001C
  */
-void J2DAnmFullLoader_v15::J2DAnmFullLoader_v15()
+J2DAnmFullLoader_v15::J2DAnmFullLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -1692,7 +1692,7 @@ void J2DAnmFullLoader_v15::J2DAnmFullLoader_v15()
  * Address:	80048CC8
  * Size:	00005C
  */
-void J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15()
+J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15()
 {
 	/*
 	.loc_0x0:
@@ -2275,7 +2275,7 @@ void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull*,
  * Address:	8004931C
  * Size:	00005C
  */
-void J2DAnmVisibilityFull::~J2DAnmVisibilityFull()
+J2DAnmVisibilityFull::~J2DAnmVisibilityFull()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8019CD70
  * Size:	0000F8
  */
-void PikiAI::ActFormation::__ct((Game::Piki*))
+PikiAI::ActFormation::ActFormation(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -91,13 +81,10 @@ void PikiAI::ActFormation::__ct((Game::Piki*))
  * Address:	8019CE68
  * Size:	000008
  */
-void PikiAI::ActFormation::inform((int))
+void PikiAI::ActFormation::inform(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x34(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x34(r3)
+	_34 = a1;
 }
 
 /*
@@ -107,12 +94,8 @@ void PikiAI::ActFormation::inform((int))
  */
 void PikiAI::ActFormation::startSort(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x2
-	  sth       r0, 0x28(r3)
-	  blr
-	*/
+	// Generated from sth r0, 0x28(r3)
+	_28 = 2;
 }
 
 /*
@@ -120,7 +103,7 @@ void PikiAI::ActFormation::startSort(void)
  * Address:	8019CE7C
  * Size:	0001B4
  */
-void PikiAI::ActFormation::init((PikiAI::ActionArg*))
+void PikiAI::ActFormation::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -255,7 +238,7 @@ void PikiAI::ActFormation::init((PikiAI::ActionArg*))
  * Address:	8019D030
  * Size:	000058
  */
-void wallCallback__Q26PikiAI12ActFormationFR10Vector3<float>(void)
+void wallCallback__Q26PikiAI12ActFormationFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +599,7 @@ void PikiAI::ActFormation::setFormed(void)
  * Address:	8019D4E4
  * Size:	0000F8
  */
-void PikiAI::ActFormation::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActFormation::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -2439,7 +2422,7 @@ void PikiAI::ActFormation::exec(void)
  * Address:	8019ED68
  * Size:	000074
  */
-void PikiAI::ActFormation::collisionCallback((Game::Piki*, Game::CollEvent&))
+void PikiAI::ActFormation::collisionCallback(Game::Piki*, Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2482,7 +2465,7 @@ void PikiAI::ActFormation::collisionCallback((Game::Piki*, Game::CollEvent&))
  * Address:	8019EDDC
  * Size:	000058
  */
-void PikiAI::ActFormation::platCallback((Game::Piki*, Game::PlatEvent&))
+void PikiAI::ActFormation::platCallback(Game::Piki*, Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2561,7 +2544,7 @@ void __sinit_aiFormation_cpp(void)
  * Address:	8019EE6C
  * Size:	000014
  */
-void @100 @4 @PikiAI::ActFormation::inform((int))
+void @100 @4 @PikiAI::ActFormation::inform(int)
 {
 	/*
 	.loc_0x0:
@@ -2578,7 +2561,7 @@ void @100 @4 @PikiAI::ActFormation::inform((int))
  * Address:	8019EE80
  * Size:	000014
  */
-void @108 @4 @PikiAI::ActFormation::onKeyEvent((SysShape::KeyEvent const&))
+void @108 @4 @PikiAI::ActFormation::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F3138
  * Size:	0000A4
  */
-void Game::Hana::Obj::__ct(void)
+Hana::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -70,14 +62,14 @@ void Game::Hana::Obj::__ct(void)
  * Address:	802F31DC
  * Size:	000004
  */
-void Game::Hana::Obj::createEffect(void) { }
+void Hana::Obj::createEffect(void) { }
 
 /*
  * --INFO--
  * Address:	802F31E0
  * Size:	000064
  */
-void Game::Hana::Obj::onInit((Game::CreatureInitArg*))
+void Hana::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -114,21 +106,21 @@ void Game::Hana::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802F3244
  * Size:	000004
  */
-void Game::Hana::Obj::setupEffect(void) { }
+void Hana::Obj::setupEffect(void) { }
 
 /*
  * --INFO--
  * Address:	802F3248
  * Size:	000004
  */
-void Game::Hana::Obj::doDirectDraw((Graphics&)) { }
+void Hana::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802F324C
  * Size:	0000E8
  */
-void Game::Hana::Obj::getShadowParam((Game::ShadowParam&))
+void Hana::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +198,7 @@ void Game::Hana::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802F3334
  * Size:	0000B4
  */
-void Game::Hana::Obj::initMouthSlots(void)
+void Hana::Obj::initMouthSlots(void)
 {
 	/*
 	.loc_0x0:
@@ -267,7 +259,7 @@ void Game::Hana::Obj::initMouthSlots(void)
  * Address:	802F33E8
  * Size:	000080
  */
-void Game::Hana::Obj::isWakeup(void)
+void Hana::Obj::isWakeup(void)
 {
 	/*
 	.loc_0x0:
@@ -317,7 +309,7 @@ void Game::Hana::Obj::isWakeup(void)
  * Address:	802F3468
  * Size:	000084
  */
-void Game::Hana::Obj::flickStatePikmin(void)
+void Hana::Obj::flickStatePikmin(void)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +354,7 @@ void Game::Hana::Obj::flickStatePikmin(void)
  * Address:	802F34EC
  * Size:	0000F0
  */
-void Game::Hana::Obj::flickAttackBomb(void)
+void Hana::Obj::flickAttackBomb(void)
 {
 	/*
 	.loc_0x0:
@@ -434,7 +426,7 @@ void Game::Hana::Obj::flickAttackBomb(void)
  * Address:	802F35DC
  * Size:	00003C
  */
-void Game::Hana::Obj::eatAttackPikmin(void)
+void Hana::Obj::eatAttackPikmin(void)
 {
 	/*
 	.loc_0x0:
@@ -461,7 +453,7 @@ void Game::Hana::Obj::eatAttackPikmin(void)
  * Address:	802F3618
  * Size:	000070
  */
-void Game::Hana::Obj::resetUnderGround(void)
+void Hana::Obj::resetUnderGround(void)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +493,7 @@ void Game::Hana::Obj::resetUnderGround(void)
  * Address:	802F3688
  * Size:	000084
  */
-void Game::Hana::Obj::setUnderGround(void)
+void Hana::Obj::setUnderGround(void)
 {
 	/*
 	.loc_0x0:
@@ -546,7 +538,7 @@ void Game::Hana::Obj::setUnderGround(void)
  * Address:	802F370C
  * Size:	0001C0
  */
-void Game::Hana::Obj::createSmokeEffect(void)
+void Hana::Obj::createSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -682,7 +674,7 @@ void Game::Hana::Obj::createSmokeEffect(void)
  * Address:	802F38CC
  * Size:	00007C
  */
-void Game::ConditionNotStickSlot::satisfy((Game::Piki*))
+void ConditionNotStickSlot::satisfy(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -729,14 +721,14 @@ void Game::ConditionNotStickSlot::satisfy((Game::Piki*))
  * Address:	802F3948
  * Size:	000004
  */
-void Game::Hana::Obj::changeMaterial(void) { }
+void Hana::Obj::changeMaterial(void) { }
 
 /*
  * --INFO--
  * Address:	802F394C
  * Size:	000008
  */
-void Game::Hana::Obj::isUnderground(void)
+void Hana::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -750,21 +742,21 @@ void Game::Hana::Obj::isUnderground(void)
  * Address:	802F3954
  * Size:	000004
  */
-void Game::Hana::Obj::initWalkSmokeEffect(void) { }
+void Hana::Obj::initWalkSmokeEffect(void) { }
 
 /*
  * --INFO--
  * Address:	802F3958
  * Size:	000008
  */
-u32 Game::Hana::Obj::getWalkSmokeEffectMgr(void) { return 0x0; }
+u32 Hana::Obj::getWalkSmokeEffectMgr(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	802F3960
  * Size:	000008
  */
-void Game::Hana::Obj::getDownSmokeScale(void)
+void Hana::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -778,35 +770,37 @@ void Game::Hana::Obj::getDownSmokeScale(void)
  * Address:	802F3968
  * Size:	000008
  */
-u32 Game::Hana::Obj::getEnemyTypeID(void) { return 0x54; }
+u32 Hana::Obj::getEnemyTypeID(void) { return 0x54; }
 
 /*
  * --INFO--
  * Address:	802F3970
  * Size:	000004
  */
-void Game::Hana::Obj::setAnimationSpeed((float)) { }
+void Hana::Obj::setAnimationSpeed(float) { }
 
 /*
  * --INFO--
  * Address:	802F3974
  * Size:	000004
  */
-void Game::Hana::Obj::flickAttackFail(void) { }
+void Hana::Obj::flickAttackFail(void) { }
 
 /*
  * --INFO--
  * Address:	802F3978
  * Size:	000004
  */
-void Game::Hana::Obj::startSleepEffect(void) { }
+void Hana::Obj::startSleepEffect(void) { }
 
 /*
  * --INFO--
  * Address:	802F397C
  * Size:	000004
  */
-void Game::Hana::Obj::finishSleepEffect(void) { }
+void Hana::Obj::finishSleepEffect(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--

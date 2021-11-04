@@ -3,16 +3,6 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	00000C
  */
 void MemoryCardMgr::setTmpHeap(JKRHeap*)
@@ -25,7 +15,7 @@ void MemoryCardMgr::setTmpHeap(JKRHeap*)
  * Address:	804405F0
  * Size:	00007C
  */
-void MemoryCardMgr::MemoryCardMgr()
+MemoryCardMgr::MemoryCardMgr()
 {
 	/*
 	.loc_0x0:
@@ -2962,13 +2952,10 @@ void MemoryCardMgr::setInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag)
  * Address:	80442854
  * Size:	000008
  */
-void MemoryCardMgr::resetInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag)
+void MemoryCardMgr::resetInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xD4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0xD4(r3)
+	_D4 = a1;
 }
 
 /*
@@ -2976,7 +2963,7 @@ void MemoryCardMgr::resetInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag)
  * Address:	8044285C
  * Size:	000048
  */
-void MemoryCardMgr::~MemoryCardMgr()
+MemoryCardMgr::~MemoryCardMgr()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801E9FB8
  * Size:	0000D8
  */
-void Game::ItemCave::FSM::init(Game::ItemCave::Item*)
+void ItemCave::FSM::init(Game::ItemCave::Item*)
 {
 	/*
 	.loc_0x0:
@@ -75,51 +77,49 @@ void Game::ItemCave::FSM::init(Game::ItemCave::Item*)
  * Address:	801EA090
  * Size:	000004
  */
-void Game::ItemCave::NormalState::init(Game::ItemCave::Item*, Game::StateArg*)
-{
-}
+void ItemCave::NormalState::init(Game::ItemCave::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801EA094
  * Size:	000004
  */
-void Game::ItemCave::NormalState::exec(Game::ItemCave::Item*) { }
+void ItemCave::NormalState::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA098
  * Size:	000004
  */
-void Game::ItemCave::NormalState::cleanup(Game::ItemCave::Item*) { }
+void ItemCave::NormalState::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA09C
  * Size:	000004
  */
-void Game::ItemCave::OpenState::init(Game::ItemCave::Item*, Game::StateArg*) { }
+void ItemCave::OpenState::init(Game::ItemCave::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801EA0A0
  * Size:	000004
  */
-void Game::ItemCave::OpenState::exec(Game::ItemCave::Item*) { }
+void ItemCave::OpenState::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA0A4
  * Size:	000004
  */
-void Game::ItemCave::OpenState::cleanup(Game::ItemCave::Item*) { }
+void ItemCave::OpenState::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA0A8
  * Size:	0000E4
  */
-void Game::ItemCave::Item::Item()
+ItemCave::Item::Item()
 {
 	/*
 	.loc_0x0:
@@ -192,7 +192,7 @@ void Game::ItemCave::Item::Item()
  * Address:	801EA18C
  * Size:	0002B4
  */
-void Game::ItemCave::FogParm::FogParm()
+ItemCave::FogParm::FogParm()
 {
 	/*
 	.loc_0x0:
@@ -379,7 +379,7 @@ void Game::ItemCave::FogParm::FogParm()
  * Address:	801EA440
  * Size:	000078
  */
-void Game::ItemCave::Item::onInit(Game::CreatureInitArg*)
+void ItemCave::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -421,8 +421,8 @@ void Game::ItemCave::Item::onInit(Game::CreatureInitArg*)
  * Address:	801EA4B8
  * Size:	000034
  */
-void Game::StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int,
-                                                     Game::StateArg*)
+void StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -447,7 +447,7 @@ void Game::StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int,
  * Address:	801EA4EC
  * Size:	000044
  */
-void Game::ItemCave::Item::makeTrMatrix()
+void ItemCave::Item::makeTrMatrix()
 {
 	/*
 	.loc_0x0:
@@ -476,7 +476,7 @@ void Game::ItemCave::Item::makeTrMatrix()
  * Address:	801EA530
  * Size:	000264
  */
-void Game::ItemCave::Item::onSetPosition()
+void ItemCave::Item::onSetPosition()
 {
 	/*
 	.loc_0x0:
@@ -651,7 +651,7 @@ void Game::ItemCave::Item::onSetPosition()
  * Address:	801EA794
  * Size:	000314
  */
-void Game::ItemCave::Item::initDependency()
+void ItemCave::Item::initDependency()
 {
 	/*
 	.loc_0x0:
@@ -888,7 +888,7 @@ void Game::ItemCave::Item::initDependency()
  * Address:	801EAAA8
  * Size:	00008C
  */
-void Game::ItemCave::Item::sound_culling()
+void ItemCave::Item::sound_culling()
 {
 	/*
 	.loc_0x0:
@@ -939,7 +939,7 @@ void Game::ItemCave::Item::sound_culling()
  * Address:	801EAB34
  * Size:	00005C
  */
-void Game::ItemCave::Item::changeMaterial()
+void ItemCave::Item::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -976,7 +976,7 @@ void Game::ItemCave::Item::changeMaterial()
  * Address:	801EAB90
  * Size:	00014C
  */
-void Game::ItemCave::Item::createLightEvent()
+void ItemCave::Item::createLightEvent()
 {
 	/*
 	.loc_0x0:
@@ -1073,7 +1073,7 @@ void Game::ItemCave::Item::createLightEvent()
  * Address:	801EACDC
  * Size:	000014
  */
-void Game::ItemCave::Item::do_setLODParm(Game::AILODParm&)
+void ItemCave::Item::do_setLODParm(Game::AILODParm&)
 {
 	/*
 	.loc_0x0:
@@ -1090,7 +1090,7 @@ void Game::ItemCave::Item::do_setLODParm(Game::AILODParm&)
  * Address:	801EACF0
  * Size:	000214
  */
-void Game::ItemCave::Item::doAI()
+void ItemCave::Item::doAI()
 {
 	/*
 	.loc_0x0:
@@ -1247,7 +1247,7 @@ void Game::ItemCave::Item::doAI()
  * Address:	801EAF04
  * Size:	000060
  */
-void Game::ItemCave::Item::getCaveOtakaraNum()
+void ItemCave::Item::getCaveOtakaraNum()
 {
 	/*
 	.loc_0x0:
@@ -1287,7 +1287,7 @@ void Game::ItemCave::Item::getCaveOtakaraNum()
  * Address:	801EAF64
  * Size:	000060
  */
-void Game::ItemCave::Item::getCaveOtakaraMax()
+void ItemCave::Item::getCaveOtakaraMax()
 {
 	/*
 	.loc_0x0:
@@ -1327,7 +1327,7 @@ void Game::ItemCave::Item::getCaveOtakaraMax()
  * Address:	801EAFC4
  * Size:	0000B4
  */
-void Game::ItemCave::Item::complete()
+void ItemCave::Item::complete()
 {
 	/*
 	.loc_0x0:
@@ -1392,7 +1392,7 @@ void Game::ItemCave::Item::complete()
  * Address:	801EB078
  * Size:	0001F0
  */
-void Game::ItemCave::Item::doDirectDraw(Graphics&)
+void ItemCave::Item::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1536,7 +1536,7 @@ void Game::ItemCave::Item::doDirectDraw(Graphics&)
  * Address:	801EB268
  * Size:	00007C
  */
-void Game::ItemCave::Mgr::Mgr()
+ItemCave::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -1581,7 +1581,7 @@ void Game::ItemCave::Mgr::Mgr()
  * Address:	801EB2E4
  * Size:	0000E4
  */
-void Game::ItemCave::Mgr::onLoadResources()
+void ItemCave::Mgr::onLoadResources()
 {
 	/*
 	.loc_0x0:
@@ -1650,7 +1650,7 @@ void Game::ItemCave::Mgr::onLoadResources()
  * Address:	801EB3C8
  * Size:	000074
  */
-void Game::ItemCave::Mgr::setup(Game::BaseItem*)
+void ItemCave::Mgr::setup(Game::BaseItem*)
 {
 	/*
 	.loc_0x0:
@@ -1693,7 +1693,7 @@ void Game::ItemCave::Mgr::setup(Game::BaseItem*)
  * Address:	801EB43C
  * Size:	000038
  */
-void Game::ItemCave::Mgr::generatorNewItemParm()
+void ItemCave::Mgr::generatorNewItemParm()
 {
 	/*
 	.loc_0x0:
@@ -1718,12 +1718,14 @@ void Game::ItemCave::Mgr::generatorNewItemParm()
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801EB474
  * Size:	00010C
  */
-void GenCaveParm::GenCaveParm()
+GenCaveParm::GenCaveParm()
 {
 	/*
 	.loc_0x0:
@@ -1799,12 +1801,14 @@ void GenCaveParm::GenCaveParm()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801EB580
  * Size:	0000E0
  */
-void Game::ItemCave::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
+void ItemCave::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -1874,8 +1878,7 @@ void Game::ItemCave::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
  * Address:	801EB660
  * Size:	000218
  */
-void Game::ItemCave::Mgr::generatorRead(Stream&, Game::GenItemParm*,
-                                        unsigned long)
+void ItemCave::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2031,8 +2034,7 @@ void Game::ItemCave::Mgr::generatorRead(Stream&, Game::GenItemParm*,
  * Address:	801EB878
  * Size:	0000FC
  */
-void Game::ItemCave::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
-                                         Game::GenItemParm*)
+void ItemCave::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -2111,7 +2113,7 @@ void Game::ItemCave::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
  * Address:	801EB974
  * Size:	0002E4
  */
-void Game::ItemCave::FogParm::operator=(const Game::ItemCave::FogParm&)
+void ItemCave::FogParm::operator=(const Game::ItemCave::FogParm&)
 {
 	/*
 	.loc_0x0:
@@ -2308,7 +2310,7 @@ void Game::ItemCave::FogParm::operator=(const Game::ItemCave::FogParm&)
  * Address:	801EBC58
  * Size:	000134
  */
-void Game::ItemCave::Mgr::~Mgr()
+ItemCave::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -2405,7 +2407,7 @@ void Game::ItemCave::Mgr::~Mgr()
  * Address:	801EBD8C
  * Size:	000038
  */
-void Game::ItemCave::Mgr::doNew()
+void ItemCave::Mgr::doNew()
 {
 	/*
 	.loc_0x0:
@@ -2433,7 +2435,7 @@ void Game::ItemCave::Mgr::doNew()
  * Address:	801EBDC4
  * Size:	00000C
  */
-void Game::ItemCave::Mgr::generatorGetID()
+void ItemCave::Mgr::generatorGetID()
 {
 	/*
 	.loc_0x0:
@@ -2448,7 +2450,7 @@ void Game::ItemCave::Mgr::generatorGetID()
  * Address:	801EBDD0
  * Size:	00000C
  */
-void Game::ItemCave::Mgr::generatorLocalVersion()
+void ItemCave::Mgr::generatorLocalVersion()
 {
 	/*
 	.loc_0x0:
@@ -2463,7 +2465,7 @@ void Game::ItemCave::Mgr::generatorLocalVersion()
  * Address:	801EBDDC
  * Size:	000008
  */
-void Game::ItemCave::Item::getCreatureName()
+void ItemCave::Item::getCreatureName()
 {
 	/*
 	.loc_0x0:
@@ -2477,7 +2479,7 @@ void Game::ItemCave::Item::getCreatureName()
  * Address:	801EBDE4
  * Size:	000008
  */
-void Game::ItemCave::Item::getFaceDir()
+void ItemCave::Item::getFaceDir()
 {
 	/*
 	.loc_0x0:
@@ -2492,7 +2494,7 @@ void Game::ItemCave::Item::getFaceDir()
  * Size:	000034
  */
 void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   Game::ItemCave::State>::doAI()
+                   ItemCave::State>::doAI()
 {
 	/*
 	.loc_0x0:
@@ -2517,18 +2519,15 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Address:	801EBE20
  * Size:	000004
  */
-void Game::ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*,
-                                                     float)
-{
-}
+void ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801EBE24
  * Size:	000004
  */
-void Game::ItemState<Game::ItemCave::Item>::onKeyEvent(
-    Game::ItemCave::Item*, const SysShape::KeyEvent&)
+void ItemState<Game::ItemCave::Item>::onKeyEvent(Game::ItemCave::Item*,
+                                                 const SysShape::KeyEvent&)
 {
 }
 
@@ -2537,8 +2536,8 @@ void Game::ItemState<Game::ItemCave::Item>::onKeyEvent(
  * Address:	801EBE28
  * Size:	000004
  */
-void Game::ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*,
-                                                     Sys::Triangle*)
+void ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*,
+                                               Sys::Triangle*)
 {
 }
 
@@ -2547,8 +2546,8 @@ void Game::ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*,
  * Address:	801EBE2C
  * Size:	000004
  */
-void Game::ItemState<Game::ItemCave::Item>::onPlatCollision(
-    Game::ItemCave::Item*, Game::PlatEvent&)
+void ItemState<Game::ItemCave::Item>::onPlatCollision(Game::ItemCave::Item*,
+                                                      Game::PlatEvent&)
 {
 }
 
@@ -2557,8 +2556,8 @@ void Game::ItemState<Game::ItemCave::Item>::onPlatCollision(
  * Address:	801EBE30
  * Size:	000004
  */
-void Game::ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*,
-                                                        Game::CollEvent&)
+void ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*,
+                                                  Game::CollEvent&)
 {
 }
 
@@ -2567,8 +2566,8 @@ void Game::ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*,
  * Address:	801EBE34
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*,
-                                                Game::StateArg*)
+void FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*,
+                                          Game::StateArg*)
 {
 }
 
@@ -2577,36 +2576,36 @@ void Game::FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*,
  * Address:	801EBE38
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::exec(Game::ItemCave::Item*) { }
+void FSMState<Game::ItemCave::Item>::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE3C
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::cleanup(Game::ItemCave::Item*) { }
+void FSMState<Game::ItemCave::Item>::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE40
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::resume(Game::ItemCave::Item*) { }
+void FSMState<Game::ItemCave::Item>::resume(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE44
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*) { }
+void FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE48
  * Size:	000030
  */
-void Game::FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
-                                                   Game::StateArg*)
+void FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
+                                             Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2630,14 +2629,14 @@ void Game::FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
  * Address:	801EBE78
  * Size:	000004
  */
-void Game::StateMachine<Game::ItemCave::Item>::init(Game::ItemCave::Item*) { }
+void StateMachine<Game::ItemCave::Item>::init(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE7C
  * Size:	000064
  */
-void Game::StateMachine<Game::ItemCave::Item>::create(int)
+void StateMachine<Game::ItemCave::Item>::create(int)
 {
 	/*
 	.loc_0x0:
@@ -2669,6 +2668,8 @@ void Game::StateMachine<Game::ItemCave::Item>::create(int)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801EBEE0
@@ -2676,13 +2677,15 @@ void Game::StateMachine<Game::ItemCave::Item>::create(int)
  */
 u32 Parm<unsigned char>::size() { return 0x1; }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801EBEE8
  * Size:	00009C
  */
-void Game::StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*,
-                                                       int, Game::StateArg*)
+void StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
+                                                 Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2739,7 +2742,7 @@ void Game::StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*,
  * Address:	801EBF84
  * Size:	000084
  */
-void Game::StateMachine<Game::ItemCave::Item>::registerState(
+void StateMachine<Game::ItemCave::Item>::registerState(
     Game::FSMState<Game::ItemCave::Item>*)
 {
 	/*
@@ -2791,7 +2794,7 @@ void Game::StateMachine<Game::ItemCave::Item>::registerState(
  * Address:	801EC008
  * Size:	000038
  */
-void Game::StateMachine<Game::ItemCave::Item>::exec(Game::ItemCave::Item*)
+void StateMachine<Game::ItemCave::Item>::exec(Game::ItemCave::Item*)
 {
 	/*
 	.loc_0x0:
@@ -2820,7 +2823,7 @@ void Game::StateMachine<Game::ItemCave::Item>::exec(Game::ItemCave::Item*)
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   Game::ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&)
+                   ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2852,7 +2855,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   Game::ItemCave::State>::platCallback(Game::PlatEvent&)
+                   ItemCave::State>::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2884,7 +2887,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   Game::ItemCave::State>::collisionCallback(Game::CollEvent&)
+                   ItemCave::State>::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2916,7 +2919,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   Game::ItemCave::State>::bounceCallback(Sys::Triangle*)
+                   ItemCave::State>::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -2941,6 +2944,8 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -2980,12 +2985,14 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801EC180
  * Size:	000008
  */
-void Game::ItemCave::Mgr::@48 @__dt()
+ItemCave::Mgr::@48 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -2993,3 +3000,4 @@ void Game::ItemCave::Mgr::@48 @__dt()
 	  b         -0x52C
 	*/
 }
+} // namespace Game

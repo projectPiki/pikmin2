@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	8031EBE8
  * Size:	000064
  */
-void og::newScreen::ObjChallenge2P::__ct((char const*))
+newScreen::ObjChallenge2P::ObjChallenge2P(char const*)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +44,7 @@ void og::newScreen::ObjChallenge2P::__ct((char const*))
  * Address:	8031EC4C
  * Size:	000068
  */
-void og::newScreen::ObjChallenge2P::__dt(void)
+newScreen::ObjChallenge2P::~ObjChallenge2P(void)
 {
 	/*
 	.loc_0x0:
@@ -92,7 +84,7 @@ void og::newScreen::ObjChallenge2P::__dt(void)
  * Address:	8031ECB4
  * Size:	0006C4
  */
-void og::newScreen::ObjChallenge2P::doCreate((JKRArchive*))
+void newScreen::ObjChallenge2P::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -581,7 +573,7 @@ void og::newScreen::ObjChallenge2P::doCreate((JKRArchive*))
  * Address:	8031F378
  * Size:	0002BC
  */
-void og::newScreen::ObjChallenge2P::ScreenSet::init(
+void newScreen::ObjChallenge2P::ScreenSet::init(
     (og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*))
 {
 	/*
@@ -771,7 +763,7 @@ void og::newScreen::ObjChallenge2P::ScreenSet::init(
  * Address:	........
  * Size:	0000EC
  */
-void og::newScreen::ObjChallenge2P::ScreenSet::update((og::Screen::DataNavi&))
+void newScreen::ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi&)
 {
 	// UNUSED FUNCTION
 }
@@ -781,7 +773,7 @@ void og::newScreen::ObjChallenge2P::ScreenSet::update((og::Screen::DataNavi&))
  * Address:	8031F634
  * Size:	000260
  */
-void og::newScreen::ObjChallenge2P::commonUpdate(void)
+void newScreen::ObjChallenge2P::commonUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -955,7 +947,7 @@ void og::newScreen::ObjChallenge2P::commonUpdate(void)
  * Address:	8031F894
  * Size:	000024
  */
-void og::newScreen::ObjChallenge2P::doUpdate(void)
+void newScreen::ObjChallenge2P::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -976,7 +968,7 @@ void og::newScreen::ObjChallenge2P::doUpdate(void)
  * Address:	8031F8B8
  * Size:	0001F8
  */
-void og::newScreen::ObjChallenge2P::doDraw((Graphics&))
+void newScreen::ObjChallenge2P::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1114,14 +1106,14 @@ void og::newScreen::ObjChallenge2P::doDraw((Graphics&))
  * Address:	8031FAB0
  * Size:	000004
  */
-void og::newScreen::ObjChallenge2P::doUpdateFadeinFinish(void) { }
+void newScreen::ObjChallenge2P::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031FAB4
  * Size:	00000C
  */
-void og::newScreen::ObjChallenge2P::doUpdateFinish(void)
+void newScreen::ObjChallenge2P::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1136,14 +1128,14 @@ void og::newScreen::ObjChallenge2P::doUpdateFinish(void)
  * Address:	8031FAC0
  * Size:	000004
  */
-void og::newScreen::ObjChallenge2P::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjChallenge2P::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8031FAC4
  * Size:	000074
  */
-void og::newScreen::ObjChallenge2P::doUpdateFadein(void)
+void newScreen::ObjChallenge2P::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -1186,7 +1178,7 @@ void og::newScreen::ObjChallenge2P::doUpdateFadein(void)
  * Address:	8031FB38
  * Size:	00007C
  */
-void og::newScreen::ObjChallenge2P::doUpdateFadeout(void)
+void newScreen::ObjChallenge2P::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -1231,7 +1223,7 @@ void og::newScreen::ObjChallenge2P::doUpdateFadeout(void)
  * Address:	8031FBB4
  * Size:	000074
  */
-void og::newScreen::ObjChallenge2P::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjChallenge2P::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -1270,6 +1262,8 @@ void og::newScreen::ObjChallenge2P::doStart((Screen::StartSceneArg const*))
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -1341,7 +1335,7 @@ void __sinit_ogObjChallenge2P_cpp(void)
  * Address:	8031FCFC
  * Size:	000008
  */
-void @24 @og::newScreen::ObjChallenge2P::__dt(void)
+@24 @og::newScreen::ObjChallenge2P::~ObjChallenge2P(void)
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80365FF4
  * Size:	000204
  */
-void Game::Jigumo::FSM::init((Game::EnemyBase*))
+void Jigumo::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +176,7 @@ void Game::Jigumo::FSM::init((Game::EnemyBase*))
  * Address:	803661F8
  * Size:	00003C
  */
-void Game::Jigumo::StateWait::__ct((int))
+Jigumo::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +203,7 @@ void Game::Jigumo::StateWait::__ct((int))
  * Address:	80366234
  * Size:	000060
  */
-void Game::Jigumo::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +239,7 @@ void Game::Jigumo::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80366294
  * Size:	000100
  */
-void Game::Jigumo::StateWait::exec((Game::EnemyBase*))
+void Jigumo::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +321,7 @@ void Game::Jigumo::StateWait::exec((Game::EnemyBase*))
  * Address:	80366394
  * Size:	00003C
  */
-void Game::Jigumo::StateAppear::__ct((int))
+Jigumo::StateAppear::StateAppear(int)
 {
 	/*
 	.loc_0x0:
@@ -356,7 +348,7 @@ void Game::Jigumo::StateAppear::__ct((int))
  * Address:	803663D0
  * Size:	000138
  */
-void Game::Jigumo::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -448,7 +440,7 @@ void Game::Jigumo::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80366508
  * Size:	000324
  */
-void Game::Jigumo::StateAppear::exec((Game::EnemyBase*))
+void Jigumo::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -681,7 +673,7 @@ void Game::Jigumo::StateAppear::exec((Game::EnemyBase*))
  * Address:	8036682C
  * Size:	00003C
  */
-void Game::Jigumo::StateHide::__ct((int))
+Jigumo::StateHide::StateHide(int)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +700,7 @@ void Game::Jigumo::StateHide::__ct((int))
  * Address:	80366868
  * Size:	000128
  */
-void Game::Jigumo::StateHide::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateHide::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -798,7 +790,7 @@ void Game::Jigumo::StateHide::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80366990
  * Size:	000170
  */
-void Game::Jigumo::StateHide::exec((Game::EnemyBase*))
+void Jigumo::StateHide::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -908,7 +900,7 @@ void Game::Jigumo::StateHide::exec((Game::EnemyBase*))
  * Address:	80366B00
  * Size:	00003C
  */
-void Game::Jigumo::StateDead::__ct((int))
+Jigumo::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -935,7 +927,7 @@ void Game::Jigumo::StateDead::__ct((int))
  * Address:	80366B3C
  * Size:	00005C
  */
-void Game::Jigumo::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -970,7 +962,7 @@ void Game::Jigumo::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80366B98
  * Size:	0000C0
  */
-void Game::Jigumo::StateDead::exec((Game::EnemyBase*))
+void Jigumo::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1034,7 +1026,7 @@ void Game::Jigumo::StateDead::exec((Game::EnemyBase*))
  * Address:	80366C58
  * Size:	00003C
  */
-void Game::Jigumo::StateAttack::__ct((int))
+Jigumo::StateAttack::StateAttack(int)
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1053,7 @@ void Game::Jigumo::StateAttack::__ct((int))
  * Address:	80366C94
  * Size:	0000BC
  */
-void Game::Jigumo::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1120,7 +1112,7 @@ void Game::Jigumo::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80366D50
  * Size:	000488
  */
-void Game::Jigumo::StateAttack::exec((Game::EnemyBase*))
+void Jigumo::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1438,7 +1430,7 @@ void Game::Jigumo::StateAttack::exec((Game::EnemyBase*))
  * Address:	803671D8
  * Size:	00001C
  */
-void Game::Jigumo::Obj::getGoalPos(void)
+void Jigumo::Obj::getGoalPos(void)
 {
 	/*
 	.loc_0x0:
@@ -1457,7 +1449,7 @@ void Game::Jigumo::Obj::getGoalPos(void)
  * Address:	803671F4
  * Size:	000038
  */
-void Game::Jigumo::StateAttack::cleanup((Game::EnemyBase*))
+void Jigumo::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1483,7 +1475,7 @@ void Game::Jigumo::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	8036722C
  * Size:	00003C
  */
-void Game::Jigumo::StateMiss::__ct((int))
+Jigumo::StateMiss::StateMiss(int)
 {
 	/*
 	.loc_0x0:
@@ -1510,7 +1502,7 @@ void Game::Jigumo::StateMiss::__ct((int))
  * Address:	80367268
  * Size:	00004C
  */
-void Game::Jigumo::StateMiss::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateMiss::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1541,7 +1533,7 @@ void Game::Jigumo::StateMiss::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803672B4
  * Size:	000200
  */
-void Game::Jigumo::StateMiss::exec((Game::EnemyBase*))
+void Jigumo::StateMiss::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1691,7 +1683,7 @@ void Game::Jigumo::StateMiss::exec((Game::EnemyBase*))
  * Address:	803674B4
  * Size:	00003C
  */
-void Game::Jigumo::StateReturn::__ct((int))
+Jigumo::StateReturn::StateReturn(int)
 {
 	/*
 	.loc_0x0:
@@ -1718,7 +1710,7 @@ void Game::Jigumo::StateReturn::__ct((int))
  * Address:	803674F0
  * Size:	000040
  */
-void Game::Jigumo::StateReturn::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1746,7 +1738,7 @@ void Game::Jigumo::StateReturn::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80367530
  * Size:	000174
  */
-void Game::Jigumo::StateReturn::exec((Game::EnemyBase*))
+void Jigumo::StateReturn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1861,7 +1853,7 @@ void Game::Jigumo::StateReturn::exec((Game::EnemyBase*))
  * Address:	803676A4
  * Size:	00002C
  */
-void Game::Jigumo::StateReturn::cleanup((Game::EnemyBase*))
+void Jigumo::StateReturn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1884,7 +1876,7 @@ void Game::Jigumo::StateReturn::cleanup((Game::EnemyBase*))
  * Address:	803676D0
  * Size:	00003C
  */
-void Game::Jigumo::StateCarry::__ct((int))
+Jigumo::StateCarry::StateCarry(int)
 {
 	/*
 	.loc_0x0:
@@ -1911,7 +1903,7 @@ void Game::Jigumo::StateCarry::__ct((int))
  * Address:	8036770C
  * Size:	000040
  */
-void Game::Jigumo::StateCarry::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateCarry::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1939,7 +1931,7 @@ void Game::Jigumo::StateCarry::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036774C
  * Size:	000190
  */
-void Game::Jigumo::StateCarry::exec((Game::EnemyBase*))
+void Jigumo::StateCarry::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2061,7 +2053,7 @@ void Game::Jigumo::StateCarry::exec((Game::EnemyBase*))
  * Address:	803678DC
  * Size:	00002C
  */
-void Game::Jigumo::StateCarry::cleanup((Game::EnemyBase*))
+void Jigumo::StateCarry::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2084,7 +2076,7 @@ void Game::Jigumo::StateCarry::cleanup((Game::EnemyBase*))
  * Address:	80367908
  * Size:	00003C
  */
-void Game::Jigumo::StateFlick::__ct((int))
+Jigumo::StateFlick::StateFlick(int)
 {
 	/*
 	.loc_0x0:
@@ -2111,7 +2103,7 @@ void Game::Jigumo::StateFlick::__ct((int))
  * Address:	80367944
  * Size:	0000CC
  */
-void Game::Jigumo::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2178,7 +2170,7 @@ void Game::Jigumo::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80367A10
  * Size:	0000FC
  */
-void Game::Jigumo::StateFlick::exec((Game::EnemyBase*))
+void Jigumo::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2259,7 +2251,7 @@ void Game::Jigumo::StateFlick::exec((Game::EnemyBase*))
  * Address:	80367B0C
  * Size:	00003C
  */
-void Game::Jigumo::StateEat::__ct((int))
+Jigumo::StateEat::StateEat(int)
 {
 	/*
 	.loc_0x0:
@@ -2286,7 +2278,7 @@ void Game::Jigumo::StateEat::__ct((int))
  * Address:	80367B48
  * Size:	000058
  */
-void Game::Jigumo::StateEat::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2320,7 +2312,7 @@ void Game::Jigumo::StateEat::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80367BA0
  * Size:	000120
  */
-void Game::Jigumo::StateEat::exec((Game::EnemyBase*))
+void Jigumo::StateEat::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2418,7 +2410,7 @@ void Game::Jigumo::StateEat::exec((Game::EnemyBase*))
  * Address:	80367CC0
  * Size:	00003C
  */
-void Game::Jigumo::StateSearch::__ct((int))
+Jigumo::StateSearch::StateSearch(int)
 {
 	/*
 	.loc_0x0:
@@ -2445,7 +2437,7 @@ void Game::Jigumo::StateSearch::__ct((int))
  * Address:	80367CFC
  * Size:	000088
  */
-void Game::Jigumo::StateSearch::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateSearch::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2491,7 +2483,7 @@ void Game::Jigumo::StateSearch::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80367D84
  * Size:	000614
  */
-void Game::Jigumo::StateSearch::exec((Game::EnemyBase*))
+void Jigumo::StateSearch::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2920,7 +2912,7 @@ void Game::Jigumo::StateSearch::exec((Game::EnemyBase*))
  * Address:	80368398
  * Size:	00003C
  */
-void Game::Jigumo::StateSAttack::__ct((int))
+Jigumo::StateSAttack::StateSAttack(int)
 {
 	/*
 	.loc_0x0:
@@ -2947,7 +2939,7 @@ void Game::Jigumo::StateSAttack::__ct((int))
  * Address:	803683D4
  * Size:	000058
  */
-void Game::Jigumo::StateSAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateSAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2981,7 +2973,7 @@ void Game::Jigumo::StateSAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8036842C
  * Size:	000238
  */
-void Game::Jigumo::StateSAttack::exec((Game::EnemyBase*))
+void Jigumo::StateSAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3159,7 +3151,7 @@ void Game::Jigumo::StateSAttack::exec((Game::EnemyBase*))
  * Address:	80368664
  * Size:	000024
  */
-void Game::Jigumo::StateSAttack::cleanup((Game::EnemyBase*))
+void Jigumo::StateSAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3180,7 +3172,7 @@ void Game::Jigumo::StateSAttack::cleanup((Game::EnemyBase*))
  * Address:	80368688
  * Size:	00003C
  */
-void Game::Jigumo::StateSMiss::__ct((int))
+Jigumo::StateSMiss::StateSMiss(int)
 {
 	/*
 	.loc_0x0:
@@ -3207,7 +3199,7 @@ void Game::Jigumo::StateSMiss::__ct((int))
  * Address:	803686C4
  * Size:	00002C
  */
-void Game::Jigumo::StateSMiss::init((Game::EnemyBase*, Game::StateArg*))
+void Jigumo::StateSMiss::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3230,7 +3222,7 @@ void Game::Jigumo::StateSMiss::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803686F0
  * Size:	000050
  */
-void Game::Jigumo::StateSMiss::exec((Game::EnemyBase*))
+void Jigumo::StateSMiss::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3264,7 +3256,7 @@ void Game::Jigumo::StateSMiss::exec((Game::EnemyBase*))
  * Address:	80368740
  * Size:	0000F0
  */
-void Game::Jigumo::ConditionHeightCheckPiki::satisfy((Game::Piki*))
+void Jigumo::ConditionHeightCheckPiki::satisfy(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -3338,6 +3330,8 @@ void Game::Jigumo::ConditionHeightCheckPiki::satisfy((Game::Piki*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

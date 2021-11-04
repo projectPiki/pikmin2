@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -226,9 +226,9 @@ void JAInter::StreamMgr::init(void)
  * Address:	800B7968
  * Size:	000358
  */
-void JAInter::StreamMgr::storeStreamBuffer((JAIStream**, JAInter::Actor*,
-                                            unsigned long, unsigned long,
-                                            unsigned char, JAInter::SoundInfo*))
+void JAInter::StreamMgr::storeStreamBuffer(JAIStream**, JAInter::Actor*,
+                                           unsigned long, unsigned long,
+                                           unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -468,7 +468,7 @@ void JAInter::StreamMgr::storeStreamBuffer((JAIStream**, JAInter::Actor*,
  * Address:	800B7CC0
  * Size:	000088
  */
-void JAInter::StreamMgr::releaseStreamBuffer((JAIStream*, unsigned long))
+void JAInter::StreamMgr::releaseStreamBuffer(JAIStream*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1633,7 +1633,7 @@ void JAInter::StreamMgr::checkEntriedStream(void)
  * Address:	800B8AB4
  * Size:	000070
  */
-void JAInter::StreamMgr::systemCallBack((unsigned long, JASAramStream*, void*))
+void JAInter::StreamMgr::systemCallBack(unsigned long, JASAramStream*, void*)
 {
 	/*
 	.loc_0x0:
@@ -1679,7 +1679,7 @@ void JAInter::StreamMgr::systemCallBack((unsigned long, JASAramStream*, void*))
  * Address:	800B8B24
  * Size:	0000C8
  */
-void JAInter::StreamMgr::prepareSystem((long))
+void JAInter::StreamMgr::prepareSystem(long)
 {
 	/*
 	.loc_0x0:
@@ -1747,7 +1747,7 @@ void JAInter::StreamMgr::prepareSystem((long))
  * Address:	800B8BEC
  * Size:	000198
  */
-void JAInter::StreamMgr::playDirect((char*))
+void JAInter::StreamMgr::playDirect(char*)
 {
 	/*
 	.loc_0x0:
@@ -2023,7 +2023,7 @@ void JAInter::StreamMgr::getSystemStatus(void)
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setParentHeap((JASHeap*))
+void JAInter::StreamMgr::setParentHeap(JASHeap*)
 {
 	// UNUSED FUNCTION
 }

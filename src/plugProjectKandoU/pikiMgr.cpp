@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8015CD14
  * Size:	0000B4
  */
-void Game::PikiMgr::__ct(void)
+PikiMgr::PikiMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +70,7 @@ void Game::PikiMgr::__ct(void)
  * Address:	8015CDC8
  * Size:	000060
  */
-void Game::PikiParms::__ct(void)
+PikiParms::PikiParms(void)
 {
 	/*
 	.loc_0x0:
@@ -116,7 +108,7 @@ void Game::PikiParms::__ct(void)
  * Address:	8015CE28
  * Size:	0017C4
  */
-void Game::PikiParms::Parms::__ct(void)
+PikiParms::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -1646,6 +1638,8 @@ void Game::PikiParms::Parms::__ct(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8015E5EC
@@ -1702,12 +1696,14 @@ void MonoObjectMgr<Game::Piki>::~MonoObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-void Game::PikiMgr::init(void)
+void PikiMgr::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1717,7 +1713,7 @@ void Game::PikiMgr::init(void)
  * Address:	8015E68C
  * Size:	000038
  */
-void Game::PikiMgr::resetMgr(void)
+void PikiMgr::resetMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1743,7 +1739,7 @@ void Game::PikiMgr::resetMgr(void)
  * Address:	8015E6C4
  * Size:	000064
  */
-void Game::PikiMgr::onAlloc(void)
+void PikiMgr::onAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -1779,6 +1775,8 @@ void Game::PikiMgr::onAlloc(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8015E728
@@ -1795,12 +1793,14 @@ void MonoObjectMgr<Game::Piki>::getAt(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8015E738
  * Size:	000060
  */
-void Game::PikiMgr::setupPiki((Game::Piki*))
+void PikiMgr::setupPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1836,7 +1836,7 @@ void Game::PikiMgr::setupPiki((Game::Piki*))
  * Address:	8015E798
  * Size:	000324
  */
-void Game::PikiMgr::birth(void)
+void PikiMgr::birth(void)
 {
 	/*
 	.loc_0x0:
@@ -2089,7 +2089,7 @@ void Game::PikiMgr::birth(void)
  * Address:	8015EABC
  * Size:	0000CC
  */
-void Game::PikiMgr::loadResources((int))
+void PikiMgr::loadResources(int)
 {
 	/*
 	.loc_0x0:
@@ -2156,7 +2156,7 @@ void Game::PikiMgr::loadResources((int))
  * Address:	8015EB88
  * Size:	000050
  */
-void Game::PikiParms::read((Stream&))
+void PikiParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2188,7 +2188,7 @@ void Game::PikiParms::read((Stream&))
  * Address:	8015EBD8
  * Size:	000298
  */
-void Game::PikiMgr::load((int))
+void PikiMgr::load(int)
 {
 	/*
 	.loc_0x0:
@@ -2376,7 +2376,7 @@ void Game::PikiMgr::load((int))
  * Address:	8015EE70
  * Size:	000098
  */
-void Game::PikiMgr::loadBmd((int, char*))
+void PikiMgr::loadBmd(int, char*)
 {
 	/*
 	.loc_0x0:
@@ -2426,7 +2426,7 @@ void Game::PikiMgr::loadBmd((int, char*))
  * Address:	8015EF08
  * Size:	00004C
  */
-void Game::PikiMgr::createModelCallback((SysShape::Model*))
+void PikiMgr::createModelCallback(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -2457,7 +2457,7 @@ void Game::PikiMgr::createModelCallback((SysShape::Model*))
  * Address:	8015EF54
  * Size:	000024
  */
-void Game::PikiMgr::createModel((int, int))
+void PikiMgr::createModel(int, int)
 {
 	/*
 	.loc_0x0:
@@ -2478,14 +2478,14 @@ void Game::PikiMgr::createModel((int, int))
  * Address:	8015EF78
  * Size:	000008
  */
-u32 Game::PikiMgr::createLeafModel((int, int)) { return 0x0; }
+u32 PikiMgr::createLeafModel(int, int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8015EF80
  * Size:	000280
  */
-void Game::PikiMgr::setMovieDraw((bool))
+void PikiMgr::setMovieDraw(bool)
 {
 	/*
 	.loc_0x0:
@@ -2683,7 +2683,7 @@ void Game::PikiMgr::setMovieDraw((bool))
  * Address:	8015F200
  * Size:	000084
  */
-void Game::PikiMgr::debugShapeDL((char*))
+void PikiMgr::debugShapeDL(char*)
 {
 	/*
 	.loc_0x0:
@@ -2734,7 +2734,7 @@ void Game::PikiMgr::debugShapeDL((char*))
  * Address:	8015F284
  * Size:	000198
  */
-void Game::PikiMgr::doSimpleDraw((Viewport*))
+void PikiMgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -2864,7 +2864,7 @@ void Game::PikiMgr::doSimpleDraw((Viewport*))
  * Address:	8015F41C
  * Size:	0001D8
  */
-void Game::PikiMgr::doAnimation(void)
+void PikiMgr::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -3012,7 +3012,7 @@ void Game::PikiMgr::doAnimation(void)
  * Address:	8015F5F4
  * Size:	000058
  */
-void Game::PikiMgr::setVsXlu((int, bool))
+void PikiMgr::setVsXlu(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -3052,7 +3052,7 @@ void Game::PikiMgr::setVsXlu((int, bool))
  * Address:	8015F64C
  * Size:	0001FC
  */
-void Game::PikiMgr::doEntry(void)
+void PikiMgr::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -3219,14 +3219,14 @@ void Game::PikiMgr::doEntry(void)
  * Address:	8015F848
  * Size:	000004
  */
-void Game::PikiMgr::setupSoundViewerAndBas(void) { }
+void PikiMgr::setupSoundViewerAndBas(void) { }
 
 /*
  * --INFO--
  * Address:	8015F84C
  * Size:	000074
  */
-void Game::PikiMgr::getColorTransportScale((int))
+void PikiMgr::getColorTransportScale(int)
 {
 	/*
 	.loc_0x0:
@@ -3275,7 +3275,7 @@ void Game::PikiMgr::getColorTransportScale((int))
  * Address:	8015F8C0
  * Size:	00003C
  */
-void Game::PikiMgr::allocStorePikmins(void)
+void PikiMgr::allocStorePikmins(void)
 {
 	/*
 	.loc_0x0:
@@ -3304,7 +3304,7 @@ void Game::PikiMgr::allocStorePikmins(void)
  * Address:	8015F8FC
  * Size:	00006C
  */
-void Game::PikiMgr::clearStorePikmins(void)
+void PikiMgr::clearStorePikmins(void)
 {
 	/*
 	.loc_0x0:
@@ -3340,6 +3340,8 @@ void Game::PikiMgr::clearStorePikmins(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -3350,12 +3352,14 @@ void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>(void)
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C8
  */
-void Game::PikiMgr::getStorePikmin((int, int))
+void PikiMgr::getStorePikmin(int, int)
 {
 	// UNUSED FUNCTION
 }
@@ -3365,8 +3369,7 @@ void Game::PikiMgr::getStorePikmin((int, int))
  * Address:	8015F968
  * Size:	00034C
  */
-void moveAllPikmins__Q24Game7PikiMgrFR10Vector3<float>
-fP23Condition<Game::Piki>(void)
+void moveAllPikmins__Q24Game7PikiMgrFR10Vector3f fP23Condition<Game::Piki>(void)
 {
 	/*
 	.loc_0x0:
@@ -3611,7 +3614,7 @@ fP23Condition<Game::Piki>(void)
  * Address:	8015FCB4
  * Size:	000298
  */
-void Game::PikiMgr::forceEnterPikmins((unsigned char))
+void PikiMgr::forceEnterPikmins(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -3809,7 +3812,7 @@ void Game::PikiMgr::forceEnterPikmins((unsigned char))
  * Address:	8015FF4C
  * Size:	00060C
  */
-void Game::PikiMgr::killDayEndPikmins((Game::PikiContainer&))
+void PikiMgr::killDayEndPikmins(Game::PikiContainer&)
 {
 	/*
 	.loc_0x0:
@@ -4256,7 +4259,7 @@ void Game::PikiMgr::killDayEndPikmins((Game::PikiContainer&))
  * Address:	80160558
  * Size:	000258
  */
-void Game::PikiMgr::killAllPikmins(void)
+void PikiMgr::killAllPikmins(void)
 {
 	/*
 	.loc_0x0:
@@ -4440,7 +4443,7 @@ void Game::PikiMgr::killAllPikmins(void)
  * Address:	801607B0
  * Size:	0002C8
  */
-void Game::PikiMgr::caveSaveFormationPikmins((bool))
+void PikiMgr::caveSaveFormationPikmins(bool)
 {
 	/*
 	.loc_0x0:
@@ -4658,7 +4661,7 @@ void Game::PikiMgr::caveSaveFormationPikmins((bool))
  * Address:	80160A78
  * Size:	0002C4
  */
-void Game::PikiMgr::caveSaveAllPikmins((bool, bool))
+void PikiMgr::caveSaveAllPikmins(bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -4875,7 +4878,7 @@ void Game::PikiMgr::caveSaveAllPikmins((bool, bool))
  * Address:	........
  * Size:	000290
  */
-void Game::PikiMgr::saveFormationPikmins((Game::PikiContainer&))
+void PikiMgr::saveFormationPikmins(Game::PikiContainer&)
 {
 	// UNUSED FUNCTION
 }
@@ -4885,7 +4888,7 @@ void Game::PikiMgr::saveFormationPikmins((Game::PikiContainer&))
  * Address:	80160D3C
  * Size:	0002A8
  */
-void Game::PikiMgr::saveAllPikmins((Game::PikiContainer&))
+void PikiMgr::saveAllPikmins(Game::PikiContainer&)
 {
 	/*
 	.loc_0x0:
@@ -5091,7 +5094,7 @@ void Game::PikiMgr::saveAllPikmins((Game::PikiContainer&))
  * Address:	80160FE4
  * Size:	0000B8
  */
-void Game::PikiMgr::__dt(void)
+PikiMgr::~PikiMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5153,7 +5156,7 @@ void Game::PikiMgr::__dt(void)
  * Address:	8016109C
  * Size:	000008
  */
-void Game::PikiMgr::getMgrName(void)
+void PikiMgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -5167,14 +5170,16 @@ void Game::PikiMgr::getMgrName(void)
  * Address:	801610A4
  * Size:	000008
  */
-u32 Game::PikiMgr::getMatrixLoadType(void) { return 0x1; }
+u32 PikiMgr::getMatrixLoadType(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801610AC
  * Size:	000004
  */
-void Game::PikiMgr::loadResources(void) { }
+void PikiMgr::loadResources(void) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -7016,7 +7021,7 @@ void @28 @Game::PikiMgr::loadResources(void)
  * Address:	80162364
  * Size:	000008
  */
-void @28 @Game::PikiMgr::doSimpleDraw((Viewport*))
+void @28 @Game::PikiMgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:

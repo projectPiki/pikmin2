@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803A5DB0
  * Size:	00003C
  */
-void Game::BlackMan::lHandCallBack((J3DJoint*, int))
+void BlackMan::lHandCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -44,7 +36,7 @@ void Game::BlackMan::lHandCallBack((J3DJoint*, int))
  * Address:	803A5DEC
  * Size:	00003C
  */
-void Game::BlackMan::rHandCallBack((J3DJoint*, int))
+void BlackMan::rHandCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -73,7 +65,7 @@ void Game::BlackMan::rHandCallBack((J3DJoint*, int))
  * Address:	803A5E28
  * Size:	00003C
  */
-void Game::BlackMan::lFootCallBack((J3DJoint*, int))
+void BlackMan::lFootCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -102,7 +94,7 @@ void Game::BlackMan::lFootCallBack((J3DJoint*, int))
  * Address:	803A5E64
  * Size:	00003C
  */
-void Game::BlackMan::rFootCallBack((J3DJoint*, int))
+void BlackMan::rFootCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +123,7 @@ void Game::BlackMan::rFootCallBack((J3DJoint*, int))
  * Address:	803A5EA0
  * Size:	000038
  */
-void Game::BlackMan::bodyCallBack((J3DJoint*, int))
+void BlackMan::bodyCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +151,7 @@ void Game::BlackMan::bodyCallBack((J3DJoint*, int))
  * Address:	803A5ED8
  * Size:	0000F0
  */
-void Game::BlackMan::Obj::setParameters(void)
+void BlackMan::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -230,12 +222,14 @@ void Game::BlackMan::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	803A5FC8
  * Size:	000020
  */
-void birth__Q34Game8BlackMan3ObjFR10Vector3<float> f(void)
+void birth__Q34Game8BlackMan3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -250,12 +244,14 @@ void birth__Q34Game8BlackMan3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803A5FE8
  * Size:	0006B4
  */
-void Game::BlackMan::Obj::onInit((Game::CreatureInitArg*))
+void BlackMan::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -722,7 +718,7 @@ void Game::BlackMan::Obj::onInit((Game::CreatureInitArg*))
  * Address:	803A669C
  * Size:	000560
  */
-void Game::BlackMan::Obj::__ct(void)
+BlackMan::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1094,7 @@ void Game::BlackMan::Obj::__ct(void)
  * Address:	803A6BFC
  * Size:	00004C
  */
-void Game::BlackMan::Obj::setFSM((Game::BlackMan::FSM*))
+void BlackMan::Obj::setFSM(Game::BlackMan::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -1129,7 +1125,7 @@ void Game::BlackMan::Obj::setFSM((Game::BlackMan::FSM*))
  * Address:	803A6C48
  * Size:	0006C4
  */
-void Game::BlackMan::Obj::doUpdate(void)
+void BlackMan::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1616,14 +1612,14 @@ void Game::BlackMan::Obj::doUpdate(void)
  * Address:	803A730C
  * Size:	000004
  */
-void Game::BlackMan::Obj::doDirectDraw((Graphics&)) { }
+void BlackMan::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	803A7310
  * Size:	000020
  */
-void Game::BlackMan::Obj::doDebugDraw((Graphics&))
+void BlackMan::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1643,7 +1639,7 @@ void Game::BlackMan::Obj::doDebugDraw((Graphics&))
  * Address:	803A7330
  * Size:	000174
  */
-void Game::BlackMan::Obj::doSimulation((float))
+void BlackMan::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1758,7 +1754,7 @@ void Game::BlackMan::Obj::doSimulation((float))
  * Address:	803A74A4
  * Size:	000238
  */
-void Game::BlackMan::Obj::doAnimationCullingOff(void)
+void BlackMan::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -1928,7 +1924,7 @@ void Game::BlackMan::Obj::doAnimationCullingOff(void)
  * Address:	803A76DC
  * Size:	00003C
  */
-void Game::BlackMan::Obj::onKill((Game::CreatureKillArg*))
+void BlackMan::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1955,7 +1951,7 @@ void Game::BlackMan::Obj::onKill((Game::CreatureKillArg*))
  * Address:	803A7718
  * Size:	0000DC
  */
-void Game::BlackMan::Obj::doStartStoneState(void)
+void BlackMan::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -2026,7 +2022,7 @@ void Game::BlackMan::Obj::doStartStoneState(void)
  * Address:	803A77F4
  * Size:	0000BC
  */
-void Game::BlackMan::Obj::doFinishStoneState(void)
+void BlackMan::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -2087,7 +2083,7 @@ void Game::BlackMan::Obj::doFinishStoneState(void)
  * Address:	803A78B0
  * Size:	000058
  */
-void Game::BlackMan::Obj::isUnderground(void)
+void BlackMan::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -2127,7 +2123,7 @@ void Game::BlackMan::Obj::isUnderground(void)
  * Address:	803A7908
  * Size:	0000A4
  */
-void Game::BlackMan::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -2188,7 +2184,7 @@ void Game::BlackMan::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	803A79AC
  * Size:	0001B8
  */
-void Game::BlackMan::Obj::collisionCallback((Game::CollEvent&))
+void BlackMan::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2320,7 +2316,7 @@ void Game::BlackMan::Obj::collisionCallback((Game::CollEvent&))
  * Address:	803A7B64
  * Size:	00016C
  */
-void Game::BlackMan::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void BlackMan::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -2435,7 +2431,7 @@ void Game::BlackMan::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	803A7CD0
  * Size:	000134
  */
-void Game::BlackMan::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void BlackMan::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -2538,7 +2534,7 @@ void Game::BlackMan::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	803A7E04
  * Size:	0000DC
  */
-void Game::BlackMan::Obj::earthquakeCallBack((Game::Creature*, float))
+void BlackMan::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -2613,7 +2609,7 @@ void Game::BlackMan::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	803A7EE0
  * Size:	000068
  */
-void Game::BlackMan::Obj::doEntry(void)
+void BlackMan::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -2655,7 +2651,7 @@ void Game::BlackMan::Obj::doEntry(void)
  * Address:	803A7F48
  * Size:	00031C
  */
-void Game::BlackMan::Obj::changeMaterial(void)
+void BlackMan::Obj::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -2870,7 +2866,7 @@ void Game::BlackMan::Obj::changeMaterial(void)
  * Address:	803A8264
  * Size:	000050
  */
-void Game::BlackMan::Obj::getShadowParam((Game::ShadowParam&))
+void BlackMan::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -2902,7 +2898,7 @@ void Game::BlackMan::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	803A82B4
  * Size:	000064
  */
-void Game::BlackMan::Obj::initWalkSmokeEffect(void)
+void BlackMan::Obj::initWalkSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2939,7 +2935,7 @@ void Game::BlackMan::Obj::initWalkSmokeEffect(void)
  * Address:	803A8318
  * Size:	00001C
  */
-void Game::BlackMan::Obj::getWalkSmokeEffectMgr(void)
+void BlackMan::Obj::getWalkSmokeEffectMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2960,7 +2956,7 @@ void Game::BlackMan::Obj::getWalkSmokeEffectMgr(void)
  * Address:	803A8334
  * Size:	000848
  */
-void Game::BlackMan::Obj::walkFunc(void)
+void BlackMan::Obj::walkFunc(void)
 {
 	/*
 	.loc_0x0:
@@ -3590,7 +3586,7 @@ void Game::BlackMan::Obj::walkFunc(void)
  * Address:	803A8B7C
  * Size:	000034
  */
-void Game::BlackMan::Obj::isReachToGoal((float))
+void BlackMan::Obj::isReachToGoal(float)
 {
 	/*
 	.loc_0x0:
@@ -3615,7 +3611,7 @@ void Game::BlackMan::Obj::isReachToGoal((float))
  * Address:	803A8BB0
  * Size:	000ED0
  */
-void Game::BlackMan::Obj::findNextRoutePoint(void)
+void BlackMan::Obj::findNextRoutePoint(void)
 {
 	/*
 	.loc_0x0:
@@ -4713,7 +4709,7 @@ void Game::BlackMan::Obj::findNextRoutePoint(void)
  * Address:	803A9A80
  * Size:	0000D0
  */
-void Game::BlackMan::Obj::findNextTraceRoutePoint(void)
+void BlackMan::Obj::findNextTraceRoutePoint(void)
 {
 	/*
 	.loc_0x0:
@@ -4789,7 +4785,7 @@ void Game::BlackMan::Obj::findNextTraceRoutePoint(void)
  * Address:	803A9B50
  * Size:	000114
  */
-void Game::BlackMan::Obj::isEndPathFinder(void)
+void BlackMan::Obj::isEndPathFinder(void)
 {
 	/*
 	.loc_0x0:
@@ -4890,7 +4886,7 @@ void Game::BlackMan::Obj::isEndPathFinder(void)
  * Address:	803A9C64
  * Size:	0001D8
  */
-void Game::BlackMan::Obj::setPathFinder((bool))
+void BlackMan::Obj::setPathFinder(bool)
 {
 	/*
 	.loc_0x0:
@@ -5034,7 +5030,7 @@ void Game::BlackMan::Obj::setPathFinder((bool))
  * Address:	803A9E3C
  * Size:	000044
  */
-void Game::BlackMan::Obj::releasePathFinder(void)
+void BlackMan::Obj::releasePathFinder(void)
 {
 	/*
 	.loc_0x0:
@@ -5065,7 +5061,7 @@ void Game::BlackMan::Obj::releasePathFinder(void)
  * Address:	803A9E80
  * Size:	000590
  */
-void Game::BlackMan::Obj::jointMtxCalc((int))
+void BlackMan::Obj::jointMtxCalc(int)
 {
 	/*
 	.loc_0x0:
@@ -5465,7 +5461,7 @@ void Game::BlackMan::Obj::jointMtxCalc((int))
  * Address:	803AA410
  * Size:	00028C
  */
-void Game::BlackMan::Obj::bodyMtxCalc(void)
+void BlackMan::Obj::bodyMtxCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -5660,7 +5656,7 @@ void Game::BlackMan::Obj::bodyMtxCalc(void)
  * Address:	803AA69C
  * Size:	000040
  */
-void Game::BlackMan::Obj::isTyreFreeze(void)
+void BlackMan::Obj::isTyreFreeze(void)
 {
 	/*
 	.loc_0x0:
@@ -5692,7 +5688,7 @@ void Game::BlackMan::Obj::isTyreFreeze(void)
  * Address:	803AA6DC
  * Size:	00009C
  */
-void Game::BlackMan::Obj::isTyreDead(void)
+void BlackMan::Obj::isTyreDead(void)
 {
 	/*
 	.loc_0x0:
@@ -5749,7 +5745,7 @@ void Game::BlackMan::Obj::isTyreDead(void)
  * Address:	803AA778
  * Size:	000074
  */
-void Game::BlackMan::Obj::isFallEnd(void)
+void BlackMan::Obj::isFallEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -5796,7 +5792,7 @@ void Game::BlackMan::Obj::isFallEnd(void)
  * Address:	803AA7EC
  * Size:	0001D4
  */
-void Game::BlackMan::Obj::moveRestart(void)
+void BlackMan::Obj::moveRestart(void)
 {
 	/*
 	.loc_0x0:
@@ -5943,14 +5939,14 @@ void Game::BlackMan::Obj::moveRestart(void)
  * Address:	803AA9C0
  * Size:	000004
  */
-void Game::BlackMan::Obj::escape(void) { }
+void BlackMan::Obj::escape(void) { }
 
 /*
  * --INFO--
  * Address:	803AA9C4
  * Size:	000008
  */
-void Game::BlackMan::Obj::setTimer((float))
+void BlackMan::Obj::setTimer(float)
 {
 	/*
 	.loc_0x0:
@@ -5964,7 +5960,7 @@ void Game::BlackMan::Obj::setTimer((float))
  * Address:	803AA9CC
  * Size:	000008
  */
-void Game::BlackMan::Obj::getTimer(void)
+void BlackMan::Obj::getTimer(void)
 {
 	/*
 	.loc_0x0:
@@ -5978,7 +5974,7 @@ void Game::BlackMan::Obj::getTimer(void)
  * Address:	803AA9D4
  * Size:	0000A0
  */
-void Game::BlackMan::Obj::collisionStOn(void)
+void BlackMan::Obj::collisionStOn(void)
 {
 	/*
 	.loc_0x0:
@@ -6032,7 +6028,7 @@ void Game::BlackMan::Obj::collisionStOn(void)
  * Address:	803AAA74
  * Size:	000098
  */
-void Game::BlackMan::Obj::collisionStOff(void)
+void BlackMan::Obj::collisionStOff(void)
 {
 	/*
 	.loc_0x0:
@@ -6084,7 +6080,7 @@ void Game::BlackMan::Obj::collisionStOff(void)
  * Address:	803AAB0C
  * Size:	00004C
  */
-void Game::BlackMan::Obj::flick(void)
+void BlackMan::Obj::flick(void)
 {
 	/*
 	.loc_0x0:
@@ -6115,7 +6111,7 @@ void Game::BlackMan::Obj::flick(void)
  * Address:	803AAB58
  * Size:	000150
  */
-void Game::BlackMan::Obj::recover(void)
+void BlackMan::Obj::recover(void)
 {
 	/*
 	.loc_0x0:
@@ -6219,7 +6215,7 @@ void Game::BlackMan::Obj::recover(void)
  * Address:	803AACA8
  * Size:	0000F8
  */
-void Game::BlackMan::Obj::recoverFlick(void)
+void BlackMan::Obj::recoverFlick(void)
 {
 	/*
 	.loc_0x0:
@@ -6295,7 +6291,7 @@ void Game::BlackMan::Obj::recoverFlick(void)
  * Address:	803AADA0
  * Size:	00002C
  */
-void Game::BlackMan::Obj::tyreFlick(void)
+void BlackMan::Obj::tyreFlick(void)
 {
 	/*
 	.loc_0x0:
@@ -6320,7 +6316,7 @@ void Game::BlackMan::Obj::tyreFlick(void)
  * Address:	803AADCC
  * Size:	0000D0
  */
-void Game::BlackMan::Obj::deadEffect(void)
+void BlackMan::Obj::deadEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6384,7 +6380,7 @@ void Game::BlackMan::Obj::deadEffect(void)
  * Address:	803AAE9C
  * Size:	000034
  */
-void Game::BlackMan::Obj::deadTraceEffect(void)
+void BlackMan::Obj::deadTraceEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6409,7 +6405,7 @@ void Game::BlackMan::Obj::deadTraceEffect(void)
  * Address:	803AAED0
  * Size:	000074
  */
-void Game::BlackMan::Obj::tyreUpEffect(void)
+void BlackMan::Obj::tyreUpEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6454,7 +6450,7 @@ void Game::BlackMan::Obj::tyreUpEffect(void)
  * Address:	803AAF44
  * Size:	000050
  */
-void Game::BlackMan::Obj::tyreDownEffect(void)
+void BlackMan::Obj::tyreDownEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6488,7 +6484,7 @@ void Game::BlackMan::Obj::tyreDownEffect(void)
  * Address:	803AAF94
  * Size:	000094
  */
-void Game::BlackMan::Obj::bendEffect(void)
+void BlackMan::Obj::bendEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6539,7 +6535,7 @@ void Game::BlackMan::Obj::bendEffect(void)
  * Address:	803AB028
  * Size:	00005C
  */
-void Game::BlackMan::Obj::createTraceEffect(void)
+void BlackMan::Obj::createTraceEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6578,7 +6574,7 @@ void Game::BlackMan::Obj::createTraceEffect(void)
  * Address:	803AB084
  * Size:	000050
  */
-void Game::BlackMan::Obj::fadeTraceEffect(void)
+void BlackMan::Obj::fadeTraceEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6610,7 +6606,7 @@ void Game::BlackMan::Obj::fadeTraceEffect(void)
  * Address:	803AB0D4
  * Size:	000058
  */
-void Game::BlackMan::Obj::createFlickEffect(void)
+void BlackMan::Obj::createFlickEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6644,7 +6640,7 @@ void Game::BlackMan::Obj::createFlickEffect(void)
  * Address:	803AB12C
  * Size:	000050
  */
-void Game::BlackMan::Obj::fadeFlickEffect(void)
+void BlackMan::Obj::fadeFlickEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6676,7 +6672,7 @@ void Game::BlackMan::Obj::fadeFlickEffect(void)
  * Address:	803AB17C
  * Size:	0000C4
  */
-void Game::BlackMan::Obj::isFinalFloor(void)
+void BlackMan::Obj::isFinalFloor(void)
 {
 	/*
 	.loc_0x0:
@@ -6743,7 +6739,7 @@ void Game::BlackMan::Obj::isFinalFloor(void)
  * Address:	803AB240
  * Size:	0001C0
  */
-void Game::BlackMan::Obj::appearFanfare(void)
+void BlackMan::Obj::appearFanfare(void)
 {
 	/*
 	.loc_0x0:
@@ -6884,12 +6880,16 @@ void Game::BlackMan::Obj::appearFanfare(void)
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	803AB400
  * Size:	00000C
  */
-void efx::ArgPrmColor::getName(void)
+void ArgPrmColor::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -6904,7 +6904,7 @@ void efx::ArgPrmColor::getName(void)
  * Address:	803AB40C
  * Size:	00009C
  */
-void efx::TKageFlick::__dt(void)
+TKageFlick::~TKageFlick(void)
 {
 	/*
 	.loc_0x0:
@@ -6959,7 +6959,7 @@ void efx::TKageFlick::__dt(void)
  * Address:	803AB4A8
  * Size:	00009C
  */
-void efx::TKageTyreup::__dt(void)
+TKageTyreup::~TKageTyreup(void)
 {
 	/*
 	.loc_0x0:
@@ -7014,7 +7014,7 @@ void efx::TKageTyreup::__dt(void)
  * Address:	803AB544
  * Size:	00009C
  */
-void efx::TKageDead1::__dt(void)
+TKageDead1::~TKageDead1(void)
 {
 	/*
 	.loc_0x0:
@@ -7069,7 +7069,7 @@ void efx::TKageDead1::__dt(void)
  * Address:	803AB5E0
  * Size:	00009C
  */
-void efx::TKageRun::__dt(void)
+TKageRun::~TKageRun(void)
 {
 	/*
 	.loc_0x0:
@@ -7124,7 +7124,7 @@ void efx::TKageRun::__dt(void)
  * Address:	803AB67C
  * Size:	00009C
  */
-void efx::TKageMove::__dt(void)
+TKageMove::~TKageMove(void)
 {
 	/*
 	.loc_0x0:
@@ -7174,26 +7174,30 @@ void efx::TKageMove::__dt(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	803AB718
  * Size:	000004
  */
-void Game::BlackMan::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
+void BlackMan::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	803AB71C
  * Size:	000004
  */
-void Game::BlackMan::Obj::throwupItemInDeathProcedure(void) { }
+void BlackMan::Obj::throwupItemInDeathProcedure(void) { }
 
 /*
  * --INFO--
  * Address:	803AB720
  * Size:	00002C
  */
-void Game::BlackMan::Obj::createEfxHamon(void)
+void BlackMan::Obj::createEfxHamon(void)
 {
 	/*
 	.loc_0x0:
@@ -7218,7 +7222,7 @@ void Game::BlackMan::Obj::createEfxHamon(void)
  * Address:	803AB74C
  * Size:	000040
  */
-void Game::BlackMan::Obj::updateEfxHamon(void)
+void BlackMan::Obj::updateEfxHamon(void)
 {
 	/*
 	.loc_0x0:
@@ -7250,8 +7254,7 @@ void Game::BlackMan::Obj::updateEfxHamon(void)
  * Address:	803AB78C
  * Size:	000008
  */
-void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3<float>
-f(void)
+void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3f f(void)
 {
 	return 0x0;
 }
@@ -7261,7 +7264,9 @@ f(void)
  * Address:	803AB794
  * Size:	000008
  */
-u32 Game::BlackMan::Obj::getEnemyTypeID(void) { return 0x63; }
+u32 BlackMan::Obj::getEnemyTypeID(void) { return 0x63; }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -7392,7 +7397,7 @@ void @940 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803AB83C
  * Size:	000008
  */
-void @4 @efx::TKageMove::__dt(void)
+@4 @efx::TKageMove::~TKageMove(void)
 {
 	/*
 	.loc_0x0:
@@ -7406,7 +7411,7 @@ void @4 @efx::TKageMove::__dt(void)
  * Address:	803AB844
  * Size:	000008
  */
-void @4 @efx::TKageRun::__dt(void)
+@4 @efx::TKageRun::~TKageRun(void)
 {
 	/*
 	.loc_0x0:
@@ -7420,7 +7425,7 @@ void @4 @efx::TKageRun::__dt(void)
  * Address:	803AB84C
  * Size:	000008
  */
-void @4 @efx::TKageDead1::__dt(void)
+@4 @efx::TKageDead1::~TKageDead1(void)
 {
 	/*
 	.loc_0x0:
@@ -7434,7 +7439,7 @@ void @4 @efx::TKageDead1::__dt(void)
  * Address:	803AB854
  * Size:	000008
  */
-void @4 @efx::TKageTyreup::__dt(void)
+@4 @efx::TKageTyreup::~TKageTyreup(void)
 {
 	/*
 	.loc_0x0:
@@ -7448,7 +7453,7 @@ void @4 @efx::TKageTyreup::__dt(void)
  * Address:	803AB85C
  * Size:	000008
  */
-void @4 @efx::TKageFlick::__dt(void)
+@4 @efx::TKageFlick::~TKageFlick(void)
 {
 	/*
 	.loc_0x0:

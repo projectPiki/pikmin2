@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801E5354
  * Size:	000010
  */
-void Game::KindCounter::KindCounter()
+KindCounter::KindCounter()
 {
 	/*
 	.loc_0x0:
@@ -21,7 +23,7 @@ void Game::KindCounter::KindCounter()
  * Address:	801E5364
  * Size:	000074
  */
-void Game::KindCounter::alloc(int)
+void KindCounter::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -66,7 +68,7 @@ void Game::KindCounter::alloc(int)
  * Address:	801E53D8
  * Size:	000028
  */
-void Game::KindCounter::clear()
+void KindCounter::clear()
 {
 	/*
 	.loc_0x0:
@@ -92,7 +94,7 @@ void Game::KindCounter::clear()
  * Address:	801E5400
  * Size:	000078
  */
-void Game::KindCounter::operator()(int)
+void KindCounter::operator()(int)
 {
 	/*
 	.loc_0x0:
@@ -138,7 +140,7 @@ void Game::KindCounter::operator()(int)
  * Address:	801E5478
  * Size:	000280
  */
-void Game::PelletCropMemory::createClone()
+void PelletCropMemory::createClone()
 {
 	/*
 	.loc_0x0:
@@ -348,7 +350,7 @@ void Game::PelletCropMemory::createClone()
  * Address:	801E56F8
  * Size:	000148
  */
-void Game::PelletCropMemory::addTo(Game::PelletCropMemory*)
+void PelletCropMemory::addTo(Game::PelletCropMemory*)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +462,7 @@ void Game::PelletCropMemory::addTo(Game::PelletCropMemory*)
  * Address:	801E5840
  * Size:	000070
  */
-void Game::PelletCropMemory::clear()
+void PelletCropMemory::clear()
 {
 	/*
 	.loc_0x0:
@@ -512,7 +514,7 @@ void Game::PelletCropMemory::clear()
  * Address:	801E58B0
  * Size:	000048
  */
-void Game::PelletCropMemory::calcEarnKinds()
+void PelletCropMemory::calcEarnKinds()
 {
 	/*
 	.loc_0x0:
@@ -542,7 +544,7 @@ void Game::PelletCropMemory::calcEarnKinds()
  * Address:	801E58F8
  * Size:	0002C8
  */
-void Game::PelletFirstMemory::firstCarryPellet(Game::Pellet*)
+void PelletFirstMemory::firstCarryPellet(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -764,7 +766,7 @@ void Game::PelletFirstMemory::firstCarryPellet(Game::Pellet*)
  * Address:	801E5BC0
  * Size:	000154
  */
-void Game::PelletFirstMemory::obtainPellet(Game::BasePelletMgr*, int)
+void PelletFirstMemory::obtainPellet(Game::BasePelletMgr*, int)
 {
 	/*
 	.loc_0x0:
@@ -875,7 +877,7 @@ void Game::PelletFirstMemory::obtainPellet(Game::BasePelletMgr*, int)
  * Address:	801E5D14
  * Size:	000154
  */
-void Game::PelletFirstMemory::losePellet(Game::BasePelletMgr*, int)
+void PelletFirstMemory::losePellet(Game::BasePelletMgr*, int)
 {
 	/*
 	.loc_0x0:
@@ -986,7 +988,7 @@ void Game::PelletFirstMemory::losePellet(Game::BasePelletMgr*, int)
  * Address:	801E5E68
  * Size:	00004C
  */
-void Game::PlayData::isCompletePelletTrigger()
+void PlayData::isCompletePelletTrigger()
 {
 	/*
 	.loc_0x0:
@@ -1023,7 +1025,7 @@ void Game::PlayData::isCompletePelletTrigger()
  * Address:	801E5EB4
  * Size:	000058
  */
-void Game::PelletCropMemory::completeAll()
+void PelletCropMemory::completeAll()
 {
 	/*
 	.loc_0x0:
@@ -1063,7 +1065,7 @@ void Game::PelletCropMemory::completeAll()
  * Address:	801E5F0C
  * Size:	00003C
  */
-void Game::KindCounter::completeAll()
+void KindCounter::completeAll()
 {
 	/*
 	.loc_0x0:
@@ -1096,7 +1098,7 @@ void Game::KindCounter::completeAll()
  * Address:	801E5F48
  * Size:	00003C
  */
-void Game::KindCounter::getEarnKinds()
+void KindCounter::getEarnKinds()
 {
 	/*
 	.loc_0x0:
@@ -1129,7 +1131,7 @@ void Game::KindCounter::getEarnKinds()
  * Address:	801E5F84
  * Size:	00003C
  */
-void Game::OlimarData::OlimarData()
+OlimarData::OlimarData()
 {
 	/*
 	.loc_0x0:
@@ -1158,7 +1160,7 @@ void Game::OlimarData::OlimarData()
  * Address:	801E5FC0
  * Size:	000010
  */
-void Game::OlimarData::clear()
+void OlimarData::clear()
 {
 	/*
 	.loc_0x0:
@@ -1174,7 +1176,7 @@ void Game::OlimarData::clear()
  * Address:	801E5FD0
  * Size:	000098
  */
-void Game::OlimarData::hasItem(int)
+void OlimarData::hasItem(int)
 {
 	/*
 	.loc_0x0:
@@ -1228,7 +1230,7 @@ void Game::OlimarData::hasItem(int)
  * Address:	801E6068
  * Size:	0000CC
  */
-void Game::OlimarData::getItem(int)
+void OlimarData::getItem(int)
 {
 	/*
 	.loc_0x0:
@@ -1303,7 +1305,7 @@ void Game::OlimarData::getItem(int)
  * Address:	801E6134
  * Size:	000084
  */
-void Game::PlayData::construct()
+void PlayData::construct()
 {
 	/*
 	.loc_0x0:
@@ -1354,7 +1356,7 @@ void Game::PlayData::construct()
  * Address:	801E61B8
  * Size:	000854
  */
-void Game::PlayData::PlayData()
+PlayData::PlayData()
 {
 	/*
 	.loc_0x0:
@@ -1989,7 +1991,7 @@ void Game::PlayData::PlayData()
  * Address:	801E6A0C
  * Size:	000014
  */
-void Game::PlayData::CaveOtakara::CaveOtakara()
+PlayData::CaveOtakara::CaveOtakara()
 {
 	/*
 	.loc_0x0:
@@ -2006,7 +2008,7 @@ void Game::PlayData::CaveOtakara::CaveOtakara()
  * Address:	801E6A20
  * Size:	000038
  */
-void Game::PlayData::LimitGen::LimitGen()
+PlayData::LimitGen::LimitGen()
 {
 	/*
 	.loc_0x0:
@@ -2032,7 +2034,7 @@ void Game::PlayData::LimitGen::LimitGen()
  * Address:	801E6A58
  * Size:	000068
  */
-void Game::PlayData::~PlayData()
+PlayData::~PlayData()
 {
 	/*
 	.loc_0x0:
@@ -2072,7 +2074,7 @@ void Game::PlayData::~PlayData()
  * Address:	801E6AC0
  * Size:	0003D0
  */
-void Game::PlayData::reset()
+void PlayData::reset()
 {
 	/*
 	.loc_0x0:
@@ -2378,7 +2380,7 @@ void Game::PlayData::reset()
  * Address:	801E6E90
  * Size:	0000C8
  */
-void Game::PlayData::setDevelopSetting(bool, bool)
+void PlayData::setDevelopSetting(bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -2442,7 +2444,7 @@ void Game::PlayData::setDevelopSetting(bool, bool)
  * Address:	801E6F58
  * Size:	0000B4
  */
-void Game::PlayData::calcPlayMinutes()
+void PlayData::calcPlayMinutes()
 {
 	/*
 	.loc_0x0:
@@ -2499,7 +2501,7 @@ void Game::PlayData::calcPlayMinutes()
  * Address:	801E700C
  * Size:	000014
  */
-void Game::PlayData::resetContainerFlag()
+void PlayData::resetContainerFlag()
 {
 	/*
 	.loc_0x0:
@@ -2516,7 +2518,7 @@ void Game::PlayData::resetContainerFlag()
  * Address:	801E7020
  * Size:	000088
  */
-void Game::PlayData::hasContainer(int)
+void PlayData::hasContainer(int)
 {
 	/*
 	.loc_0x0:
@@ -2566,7 +2568,7 @@ void Game::PlayData::hasContainer(int)
  * Address:	801E70A8
  * Size:	000030
  */
-void Game::PlayData::hasMetPikmin(int)
+void PlayData::hasMetPikmin(int)
 {
 	/*
 	.loc_0x0:
@@ -2592,7 +2594,7 @@ void Game::PlayData::hasMetPikmin(int)
  * Address:	801E70D8
  * Size:	0000A4
  */
-void Game::PlayData::hasBootContainer(int)
+void PlayData::hasBootContainer(int)
 {
 	/*
 	.loc_0x0:
@@ -2655,7 +2657,7 @@ void Game::PlayData::hasBootContainer(int)
  * Address:	801E717C
  * Size:	000080
  */
-void Game::PlayData::setContainer(int)
+void PlayData::setContainer(int)
 {
 	/*
 	.loc_0x0:
@@ -2703,7 +2705,7 @@ void Game::PlayData::setContainer(int)
  * Address:	801E71FC
  * Size:	000080
  */
-void Game::PlayData::setMeetPikmin(int)
+void PlayData::setMeetPikmin(int)
 {
 	/*
 	.loc_0x0:
@@ -2751,7 +2753,7 @@ void Game::PlayData::setMeetPikmin(int)
  * Address:	801E727C
  * Size:	000080
  */
-void Game::PlayData::setBootContainer(int)
+void PlayData::setBootContainer(int)
 {
 	/*
 	.loc_0x0:
@@ -2799,7 +2801,7 @@ void Game::PlayData::setBootContainer(int)
  * Address:	801E72FC
  * Size:	0000A8
  */
-void Game::PlayData::debugSetContainerFlagOn()
+void PlayData::debugSetContainerFlagOn()
 {
 	/*
 	.loc_0x0:
@@ -2853,7 +2855,7 @@ void Game::PlayData::debugSetContainerFlagOn()
  * Address:	801E73A4
  * Size:	00003C
  */
-void Game::PlayData::setDemoFlag(int)
+void PlayData::setDemoFlag(int)
 {
 	/*
 	.loc_0x0:
@@ -2880,7 +2882,7 @@ void Game::PlayData::setDemoFlag(int)
  * Address:	801E73E0
  * Size:	000028
  */
-void Game::PlayData::isDemoFlag(int)
+void PlayData::isDemoFlag(int)
 {
 	/*
 	.loc_0x0:
@@ -2902,7 +2904,7 @@ void Game::PlayData::isDemoFlag(int)
  * Address:	801E7408
  * Size:	00003C
  */
-void Game::PlayData::setFindItemDemoFlag(int)
+void PlayData::setFindItemDemoFlag(int)
 {
 	/*
 	.loc_0x0:
@@ -2929,7 +2931,7 @@ void Game::PlayData::setFindItemDemoFlag(int)
  * Address:	801E7444
  * Size:	000028
  */
-void Game::PlayData::isFindItemDemoFlag(int)
+void PlayData::isFindItemDemoFlag(int)
 {
 	/*
 	.loc_0x0:
@@ -2951,13 +2953,10 @@ void Game::PlayData::isFindItemDemoFlag(int)
  * Address:	801E746C
  * Size:	000008
  */
-void Game::PlayData::setCurrentCourse(int)
+void PlayData::setCurrentCourse(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x50(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x50(r3)
+	_50 = a1;
 }
 
 /*
@@ -2965,14 +2964,10 @@ void Game::PlayData::setCurrentCourse(int)
  * Address:	801E7474
  * Size:	00000C
  */
-void Game::PlayData::clearCurrentCave()
+void PlayData::clearCurrentCave()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x4C(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x4C(r3)
+	_4C = 0;
 }
 
 /*
@@ -2980,7 +2975,7 @@ void Game::PlayData::clearCurrentCave()
  * Address:	801E7480
  * Size:	00004C
  */
-void Game::PlayData::setCurrentCave(ID32&, int)
+void PlayData::setCurrentCave(ID32&, int)
 {
 	/*
 	.loc_0x0:
@@ -3011,7 +3006,7 @@ void Game::PlayData::setCurrentCave(ID32&, int)
  * Address:	801E74CC
  * Size:	000010
  */
-void Game::PlayData::setCurrentCaveFloor(int)
+void PlayData::setCurrentCaveFloor(int)
 {
 	/*
 	.loc_0x0:
@@ -3027,7 +3022,7 @@ void Game::PlayData::setCurrentCaveFloor(int)
  * Address:	801E74DC
  * Size:	000008
  */
-void Game::PlayData::getCurrentCourseIndex()
+void PlayData::getCurrentCourseIndex()
 {
 	/*
 	.loc_0x0:
@@ -3041,7 +3036,7 @@ void Game::PlayData::getCurrentCourseIndex()
  * Address:	801E74E4
  * Size:	000038
  */
-void Game::PlayData::getCurrentCourse()
+void PlayData::getCurrentCourse()
 {
 	/*
 	.loc_0x0:
@@ -3071,7 +3066,7 @@ void Game::PlayData::getCurrentCourse()
  * Address:	801E751C
  * Size:	000048
  */
-void Game::PlayData::getCurrentCave(ID32&, int&)
+void PlayData::getCurrentCave(ID32&, int&)
 {
 	/*
 	.loc_0x0:
@@ -3101,7 +3096,7 @@ void Game::PlayData::getCurrentCave(ID32&, int&)
  * Address:	801E7564
  * Size:	000030
  */
-void Game::PlayData::firstCarryPellet(Game::Pellet*)
+void PlayData::firstCarryPellet(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -3125,7 +3120,7 @@ void Game::PlayData::firstCarryPellet(Game::Pellet*)
  * Address:	801E7594
  * Size:	000030
  */
-void Game::PlayData::obtainPellet(Game::BasePelletMgr*, int)
+void PlayData::obtainPellet(Game::BasePelletMgr*, int)
 {
 	/*
 	.loc_0x0:
@@ -3149,7 +3144,7 @@ void Game::PlayData::obtainPellet(Game::BasePelletMgr*, int)
  * Address:	801E75C4
  * Size:	000030
  */
-void Game::PlayData::losePellet(Game::BasePelletMgr*, int)
+void PlayData::losePellet(Game::BasePelletMgr*, int)
 {
 	/*
 	.loc_0x0:
@@ -3173,7 +3168,7 @@ void Game::PlayData::losePellet(Game::BasePelletMgr*, int)
  * Address:	801E75F4
  * Size:	000320
  */
-void Game::PlayData::obtainPellet_Main(Game::Pellet*)
+void PlayData::obtainPellet_Main(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -3415,7 +3410,7 @@ void Game::PlayData::obtainPellet_Main(Game::Pellet*)
  * Address:	801E7914
  * Size:	000284
  */
-void Game::PlayData::obtainPellet_Cave(Game::Pellet*)
+void PlayData::obtainPellet_Cave(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -3612,7 +3607,7 @@ void Game::PlayData::obtainPellet_Cave(Game::Pellet*)
  * Address:	801E7B98
  * Size:	000104
  */
-void Game::PlayData::isPelletEverGot(unsigned char, unsigned char)
+void PlayData::isPelletEverGot(unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -3703,7 +3698,7 @@ void Game::PlayData::isPelletEverGot(unsigned char, unsigned char)
  * Address:	801E7C9C
  * Size:	000128
  */
-void Game::PlayData::isPelletZukanVisible(int)
+void PlayData::isPelletZukanVisible(int)
 {
 	/*
 	.loc_0x0:
@@ -3803,7 +3798,7 @@ void Game::PlayData::isPelletZukanVisible(int)
  * Address:	801E7DC4
  * Size:	000138
  */
-void Game::PlayData::isPelletZukanWhatsNew(int)
+void PlayData::isPelletZukanWhatsNew(int)
 {
 	/*
 	.loc_0x0:
@@ -3907,7 +3902,7 @@ void Game::PlayData::isPelletZukanWhatsNew(int)
  * Address:	801E7EFC
  * Size:	0001BC
  */
-void Game::PlayData::hasPelletZukanWhatsNew()
+void PlayData::hasPelletZukanWhatsNew()
 {
 	/*
 	.loc_0x0:
@@ -4060,7 +4055,7 @@ void Game::PlayData::hasPelletZukanWhatsNew()
  * Address:	801E80B8
  * Size:	0001A8
  */
-void Game::PlayData::setPelletZukanOutOfDateAll()
+void PlayData::setPelletZukanOutOfDateAll()
 {
 	/*
 	.loc_0x0:
@@ -4206,7 +4201,7 @@ void Game::PlayData::setPelletZukanOutOfDateAll()
  * Address:	801E8260
  * Size:	00007C
  */
-void Game::PlayData::getGroundOtakaraNum(int)
+void PlayData::getGroundOtakaraNum(int)
 {
 	/*
 	.loc_0x0:
@@ -4253,7 +4248,7 @@ void Game::PlayData::getGroundOtakaraNum(int)
  * Address:	801E82DC
  * Size:	000078
  */
-void Game::PlayData::getGroundOtakaraMax(int)
+void PlayData::getGroundOtakaraMax(int)
 {
 	/*
 	.loc_0x0:
@@ -4299,7 +4294,7 @@ void Game::PlayData::getGroundOtakaraMax(int)
  * Address:	801E8354
  * Size:	000084
  */
-void Game::PlayData::incGroundOtakara(int)
+void PlayData::incGroundOtakara(int)
 {
 	/*
 	.loc_0x0:
@@ -4348,7 +4343,7 @@ void Game::PlayData::incGroundOtakara(int)
  * Address:	801E83D8
  * Size:	000078
  */
-void Game::PlayData::getDopeCount(int)
+void PlayData::getDopeCount(int)
 {
 	/*
 	.loc_0x0:
@@ -4394,7 +4389,7 @@ void Game::PlayData::getDopeCount(int)
  * Address:	801E8450
  * Size:	000084
  */
-void Game::PlayData::setDopeCount(int, int)
+void PlayData::setDopeCount(int, int)
 {
 	/*
 	.loc_0x0:
@@ -4443,7 +4438,7 @@ void Game::PlayData::setDopeCount(int, int)
  * Address:	801E84D4
  * Size:	000080
  */
-void Game::PlayData::incDopeCount(int)
+void PlayData::incDopeCount(int)
 {
 	/*
 	.loc_0x0:
@@ -4491,7 +4486,7 @@ void Game::PlayData::incDopeCount(int)
  * Address:	801E8554
  * Size:	000084
  */
-void Game::PlayData::hasDope(int)
+void PlayData::hasDope(int)
 {
 	/*
 	.loc_0x0:
@@ -4540,7 +4535,7 @@ void Game::PlayData::hasDope(int)
  * Address:	801E85D8
  * Size:	000078
  */
-void Game::PlayData::getDopeFruitCount(int)
+void PlayData::getDopeFruitCount(int)
 {
 	/*
 	.loc_0x0:
@@ -4586,7 +4581,7 @@ void Game::PlayData::getDopeFruitCount(int)
  * Address:	801E8650
  * Size:	0000B4
  */
-void Game::PlayData::addDopeFruit(int)
+void PlayData::addDopeFruit(int)
 {
 	/*
 	.loc_0x0:
@@ -4651,7 +4646,7 @@ void Game::PlayData::addDopeFruit(int)
  * Address:	801E8704
  * Size:	0000C4
  */
-void Game::PlayData::useDope(int)
+void PlayData::useDope(int)
 {
 	/*
 	.loc_0x0:
@@ -4722,7 +4717,7 @@ void Game::PlayData::useDope(int)
  * Address:	801E87C8
  * Size:	0000DC
  */
-void Game::PlayData::isCaveFirstTime(int, ID32&)
+void PlayData::isCaveFirstTime(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -4795,7 +4790,7 @@ void Game::PlayData::isCaveFirstTime(int, ID32&)
  * Address:	801E88A4
  * Size:	0000BC
  */
-void Game::PlayData::setCaveVisit(int, ID32&)
+void PlayData::setCaveVisit(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -4860,7 +4855,7 @@ void Game::PlayData::setCaveVisit(int, ID32&)
  * Address:	801E8960
  * Size:	0000B8
  */
-void Game::PlayData::incCaveOtakara(int, ID32&)
+void PlayData::incCaveOtakara(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -4924,7 +4919,7 @@ void Game::PlayData::incCaveOtakara(int, ID32&)
  * Address:	801E8A18
  * Size:	0000B8
  */
-void Game::PlayData::getOtakaraNum_Course_CaveID(int, ID32&)
+void PlayData::getOtakaraNum_Course_CaveID(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -4990,7 +4985,7 @@ void Game::PlayData::getOtakaraNum_Course_CaveID(int, ID32&)
  * Address:	801E8AD0
  * Size:	000048
  */
-void Game::PlayData::getOtakaraMax_Course_CaveID(int, ID32&)
+void PlayData::getOtakaraMax_Course_CaveID(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -5024,7 +5019,7 @@ void Game::PlayData::getOtakaraMax_Course_CaveID(int, ID32&)
  * Address:	801E8B18
  * Size:	0000D4
  */
-void Game::PlayData::initCaveOtakaras()
+void PlayData::initCaveOtakaras()
 {
 	/*
 	.loc_0x0:
@@ -5107,7 +5102,7 @@ void Game::PlayData::initCaveOtakaras()
  * Address:	801E8BEC
  * Size:	000060
  */
-void Game::PlayData::read_CaveOtakara(Stream&)
+void PlayData::read_CaveOtakara(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -5147,7 +5142,7 @@ void Game::PlayData::read_CaveOtakara(Stream&)
  * Address:	801E8C4C
  * Size:	000078
  */
-void Game::PlayData::write_CaveOtakara(Stream&)
+void PlayData::write_CaveOtakara(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -5195,7 +5190,7 @@ void Game::PlayData::write_CaveOtakara(Stream&)
  * Address:	801E8CC4
  * Size:	0000D8
  */
-void Game::PlayData::CaveOtakara::write(Stream&)
+void PlayData::CaveOtakara::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -5265,7 +5260,7 @@ void Game::PlayData::CaveOtakara::write(Stream&)
  * Address:	801E8D9C
  * Size:	0000C0
  */
-void Game::PlayData::CaveOtakara::read(Stream&)
+void PlayData::CaveOtakara::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -5331,7 +5326,7 @@ void Game::PlayData::CaveOtakara::read(Stream&)
  * Address:	801E8E5C
  * Size:	000124
  */
-void Game::PlayData::getRepayLevel()
+void PlayData::getRepayLevel()
 {
 	/*
 	.loc_0x0:
@@ -5438,7 +5433,7 @@ void Game::PlayData::getRepayLevel()
  * Address:	801E8F80
  * Size:	000044
  */
-void Game::PlayData::getRepayLevelPercent(int)
+void PlayData::getRepayLevelPercent(int)
 {
 	/*
 	.loc_0x0:
@@ -5471,7 +5466,7 @@ void Game::PlayData::getRepayLevelPercent(int)
  * Address:	801E8FC4
  * Size:	000160
  */
-void Game::PlayData::checkRepayLevelFirstClear()
+void PlayData::checkRepayLevelFirstClear()
 {
 	/*
 	.loc_0x0:
@@ -5597,7 +5592,7 @@ void Game::PlayData::checkRepayLevelFirstClear()
  * Address:	801E9124
  * Size:	000174
  */
-void Game::PlayData::experienceRepayLevelFirstClear()
+void PlayData::experienceRepayLevelFirstClear()
 {
 	/*
 	.loc_0x0:
@@ -5730,7 +5725,7 @@ void Game::PlayData::experienceRepayLevelFirstClear()
  * Address:	801E9298
  * Size:	000064
  */
-void Game::PlayData::initLimitGens()
+void PlayData::initLimitGens()
 {
 	/*
 	.loc_0x0:
@@ -5771,7 +5766,7 @@ void Game::PlayData::initLimitGens()
  * Address:	801E92FC
  * Size:	00006C
  */
-void Game::PlayData::initCourses(bool)
+void PlayData::initCourses(bool)
 {
 	/*
 	.loc_0x0:
@@ -5820,7 +5815,7 @@ void Game::PlayData::initCourses(bool)
  * Address:	801E9368
  * Size:	000094
  */
-void Game::PlayData::openCourse(int)
+void PlayData::openCourse(int)
 {
 	/*
 	.loc_0x0:
@@ -5875,7 +5870,7 @@ void Game::PlayData::openCourse(int)
  * Address:	801E93FC
  * Size:	000084
  */
-void Game::PlayData::visitCourse(int)
+void PlayData::visitCourse(int)
 {
 	/*
 	.loc_0x0:
@@ -5924,7 +5919,7 @@ void Game::PlayData::visitCourse(int)
  * Address:	801E9480
  * Size:	000080
  */
-void Game::PlayData::courseOpen(int)
+void PlayData::courseOpen(int)
 {
 	/*
 	.loc_0x0:
@@ -5972,7 +5967,7 @@ void Game::PlayData::courseOpen(int)
  * Address:	801E9500
  * Size:	0000E4
  */
-void Game::PlayData::courseJustOpen(int)
+void PlayData::courseJustOpen(int)
 {
 	/*
 	.loc_0x0:
@@ -6053,7 +6048,7 @@ void Game::PlayData::courseJustOpen(int)
  * Address:	801E95E4
  * Size:	0000DC
  */
-void Game::PlayData::courseFirstTime(int)
+void PlayData::courseFirstTime(int)
 {
 	/*
 	.loc_0x0:
@@ -6132,7 +6127,7 @@ void Game::PlayData::courseFirstTime(int)
  * Address:	801E96C0
  * Size:	000080
  */
-void Game::PlayData::courseVisited(int)
+void PlayData::courseVisited(int)
 {
 	/*
 	.loc_0x0:
@@ -6180,7 +6175,7 @@ void Game::PlayData::courseVisited(int)
  * Address:	801E9740
  * Size:	000084
  */
-void Game::CaveSaveData::CaveSaveData()
+CaveSaveData::CaveSaveData()
 {
 	/*
 	.loc_0x0:
@@ -6225,7 +6220,7 @@ void Game::CaveSaveData::CaveSaveData()
  * Address:	801E97C4
  * Size:	000068
  */
-void Game::CaveSaveData::clear()
+void CaveSaveData::clear()
 {
 	/*
 	.loc_0x0:
@@ -6263,7 +6258,7 @@ void Game::CaveSaveData::clear()
  * Address:	801E982C
  * Size:	000194
  */
-void Game::PlayData::doneWorldMapEffect()
+void PlayData::doneWorldMapEffect()
 {
 	/*
 	.loc_0x0:
@@ -6392,7 +6387,7 @@ void Game::PlayData::doneWorldMapEffect()
  * Address:	801E99C0
  * Size:	00007C
  */
-void Game::PlayData::getGroundOtakaraNum_Old(int)
+void PlayData::getGroundOtakaraNum_Old(int)
 {
 	/*
 	.loc_0x0:
@@ -6439,7 +6434,7 @@ void Game::PlayData::getGroundOtakaraNum_Old(int)
  * Address:	801E9A3C
  * Size:	0000B8
  */
-void Game::PlayData::getOtakaraNum_Course_CaveID_Old(int, ID32&)
+void PlayData::getOtakaraNum_Course_CaveID_Old(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -6505,7 +6500,7 @@ void Game::PlayData::getOtakaraNum_Course_CaveID_Old(int, ID32&)
  * Address:	801E9AF4
  * Size:	000008
  */
-void Game::PlayData::getMoney_Old()
+void PlayData::getMoney_Old()
 {
 	/*
 	.loc_0x0:
@@ -6519,7 +6514,7 @@ void Game::PlayData::getMoney_Old()
  * Address:	801E9AFC
  * Size:	0000A4
  */
-void Game::PlayData::isCaveFirstTime_Old(int, ID32&)
+void PlayData::isCaveFirstTime_Old(int, ID32&)
 {
 	/*
 	.loc_0x0:
@@ -6578,7 +6573,7 @@ void Game::PlayData::isCaveFirstTime_Old(int, ID32&)
  * Address:	801E9BA0
  * Size:	0000D4
  */
-void Game::PlayData::read_CaveOtakara_Old(Stream&)
+void PlayData::read_CaveOtakara_Old(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -6653,7 +6648,7 @@ void Game::PlayData::read_CaveOtakara_Old(Stream&)
  * Address:	801E9C74
  * Size:	000118
  */
-void Game::PlayData::write_CaveOtakara_Old(Stream&)
+void PlayData::write_CaveOtakara_Old(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -6743,7 +6738,7 @@ void Game::PlayData::write_CaveOtakara_Old(Stream&)
  * Address:	801E9D8C
  * Size:	000078
  */
-void Game::PlayData::getPikminCount_Today(int)
+void PlayData::getPikminCount_Today(int)
 {
 	/*
 	.loc_0x0:
@@ -6789,7 +6784,7 @@ void Game::PlayData::getPikminCount_Today(int)
  * Address:	801E9E04
  * Size:	000078
  */
-void Game::PlayData::getPikminCount_Yesterday(int)
+void PlayData::getPikminCount_Yesterday(int)
 {
 	/*
 	.loc_0x0:
@@ -6835,7 +6830,7 @@ void Game::PlayData::getPikminCount_Yesterday(int)
  * Address:	801E9E7C
  * Size:	000108
  */
-void Game::PlayData::setPikminCounts_Today()
+void PlayData::setPikminCounts_Today()
 {
 	/*
 	.loc_0x0:
@@ -6923,7 +6918,7 @@ void Game::PlayData::setPikminCounts_Today()
  * Address:	801E9F84
  * Size:	000034
  */
-void Game::PlayData::setPikminCounts_Yesterday()
+void PlayData::setPikminCounts_Yesterday()
 {
 	/*
 	.loc_0x0:
@@ -6942,3 +6937,4 @@ void Game::PlayData::setPikminCounts_Yesterday()
 	  blr
 	*/
 }
+} // namespace Game

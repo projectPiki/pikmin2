@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00003C
  */
-void ARAM::Node::__ct(void)
+ARAM::Node::Node(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void ARAM::Node::__ct(void)
  * Address:	........
  * Size:	0000A8
  */
-void ARAM::Node::dvdToAram((char const*, bool))
+void ARAM::Node::dvdToAram(char const*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -35,10 +25,10 @@ void ARAM::Node::dvdToAram((char const*, bool))
  * Address:	........
  * Size:	000140
  */
-void ARAM::Node::aramToMainRam((unsigned char*, unsigned long, unsigned long,
-                                JKRExpandSwitch, unsigned long, JKRHeap*,
-                                JKRDvdRipper::EAllocDirection, int,
-                                unsigned long*))
+void ARAM::Node::aramToMainRam(unsigned char*, unsigned long, unsigned long,
+                               JKRExpandSwitch, unsigned long, JKRHeap*,
+                               JKRDvdRipper::EAllocDirection, int,
+                               unsigned long*)
 {
 	// UNUSED FUNCTION
 }
@@ -86,7 +76,7 @@ void ARAM::Mgr::init(void)
  * Address:	80432B48
  * Size:	000080
  */
-void ARAM::Mgr::__ct(void)
+ARAM::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -132,7 +122,7 @@ void ARAM::Mgr::__ct(void)
  * Address:	80432BC8
  * Size:	00024C
  */
-void ARAM::Mgr::dvdToAram((char const*, bool))
+void ARAM::Mgr::dvdToAram(char const*, bool)
 {
 	/*
 	.loc_0x0:
@@ -317,7 +307,7 @@ void ARAM::Mgr::dvdToAram((char const*, bool))
  * Address:	80432E14
  * Size:	000060
  */
-void ARAM::Node::__dt(void)
+ARAM::Node::~Node(void)
 {
 	/*
 	.loc_0x0:
@@ -355,10 +345,10 @@ void ARAM::Node::__dt(void)
  * Address:	80432E74
  * Size:	000154
  */
-void ARAM::Mgr::aramToMainRam((char const*, unsigned char*, unsigned long,
-                               unsigned long, JKRExpandSwitch, unsigned long,
-                               JKRHeap*, JKRDvdRipper::EAllocDirection, int,
-                               unsigned long*))
+void ARAM::Mgr::aramToMainRam(char const*, unsigned char*, unsigned long,
+                              unsigned long, JKRExpandSwitch, unsigned long,
+                              JKRHeap*, JKRDvdRipper::EAllocDirection, int,
+                              unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -531,7 +521,7 @@ void ARAM::Mgr::dump(void)
  * Address:	80433068
  * Size:	000070
  */
-void ARAM::Mgr::search((char const*))
+void ARAM::Mgr::search(char const*)
 {
 	/*
 	.loc_0x0:

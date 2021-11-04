@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8009C400
  * Size:	00004C
  */
-void JASOuterParam::JASOuterParam()
+JASOuterParam::JASOuterParam()
 {
 	/*
 	.loc_0x0:
@@ -52,13 +52,10 @@ void JASOuterParam::initExtBuffer()
  * Address:	8009C45C
  * Size:	000008
  */
-void JASOuterParam::setOuterSwitch(unsigned short)
+void JASOuterParam::setOuterSwitch(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x0(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x0(r3)
+	_00 = a1;
 }
 
 /*
@@ -95,13 +92,10 @@ void JASOuterParam::checkOuterSwitch(unsigned short)
  * Address:	8009C480
  * Size:	000008
  */
-void JASOuterParam::setOuterUpdate(unsigned short)
+void JASOuterParam::setOuterUpdate(unsigned short a1)
 {
-	/*
-	.loc_0x0:
-	  sth       r4, 0x2(r3)
-	  blr
-	*/
+	// Generated from sth r4, 0x2(r3)
+	_02 = a1;
 }
 
 /*

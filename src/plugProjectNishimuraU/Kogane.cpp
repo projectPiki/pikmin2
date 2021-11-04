@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8025DC8C
  * Size:	000130
  */
-void Game::Kogane::Obj::Obj()
+Kogane::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -99,14 +101,14 @@ void Game::Kogane::Obj::Obj()
  * Address:	8025DDBC
  * Size:	000004
  */
-void Game::Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8025DDC0
  * Size:	000130
  */
-void Game::Kogane::Obj::onInit(Game::CreatureInitArg*)
+void Kogane::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -198,14 +200,14 @@ void Game::Kogane::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8025DEF0
  * Size:	000004
  */
-void Game::Kogane::Obj::resetFartTimer() { }
+void Kogane::Obj::resetFartTimer() { }
 
 /*
  * --INFO--
  * Address:	8025DEF4
  * Size:	000050
  */
-void Game::Kogane::Obj::onKill(Game::CreatureKillArg*)
+void Kogane::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +239,7 @@ void Game::Kogane::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8025DF44
  * Size:	000034
  */
-void Game::Kogane::Obj::doUpdate()
+void Kogane::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -262,7 +264,7 @@ void Game::Kogane::Obj::doUpdate()
  * Address:	8025DF78
  * Size:	000020
  */
-void Game::Kogane::Obj::doUpdateCommon()
+void Kogane::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -282,14 +284,14 @@ void Game::Kogane::Obj::doUpdateCommon()
  * Address:	8025DF98
  * Size:	000004
  */
-void Game::Kogane::Obj::doDirectDraw(Graphics&) { }
+void Kogane::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8025DF9C
  * Size:	000020
  */
-void Game::Kogane::Obj::doDebugDraw(Graphics&)
+void Kogane::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -309,7 +311,7 @@ void Game::Kogane::Obj::doDebugDraw(Graphics&)
  * Address:	8025DFBC
  * Size:	00004C
  */
-void Game::Kogane::Obj::setFSM(Game::Kogane::FSM*)
+void Kogane::Obj::setFSM(Game::Kogane::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +342,7 @@ void Game::Kogane::Obj::setFSM(Game::Kogane::FSM*)
  * Address:	8025E008
  * Size:	0000A0
  */
-void Game::Kogane::Obj::getShadowParam(Game::ShadowParam&)
+void Kogane::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -392,7 +394,7 @@ void Game::Kogane::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8025E0A8
  * Size:	00006C
  */
-void Game::Kogane::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Kogane::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -435,7 +437,7 @@ void Game::Kogane::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	8025E114
  * Size:	00003C
  */
-void Game::Kogane::Obj::wallCallback(const Game::MoveInfo&)
+void Kogane::Obj::wallCallback(const Game::MoveInfo&)
 {
 	/*
 	.loc_0x0:
@@ -462,7 +464,7 @@ void Game::Kogane::Obj::wallCallback(const Game::MoveInfo&)
  * Address:	8025E150
  * Size:	000060
  */
-void Game::Kogane::Obj::earthquakeCallBack(Game::Creature*, float)
+void Kogane::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -502,7 +504,7 @@ void Game::Kogane::Obj::earthquakeCallBack(Game::Creature*, float)
  * Address:	8025E1B0
  * Size:	00006C
  */
-void Game::Kogane::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Kogane::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +547,7 @@ void Game::Kogane::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8025E21C
  * Size:	000050
  */
-void Game::Kogane::Obj::doStartStoneState()
+void Kogane::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -577,7 +579,7 @@ void Game::Kogane::Obj::doStartStoneState()
  * Address:	8025E26C
  * Size:	000050
  */
-void Game::Kogane::Obj::doFinishStoneState()
+void Kogane::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -609,7 +611,7 @@ void Game::Kogane::Obj::doFinishStoneState()
  * Address:	8025E2BC
  * Size:	00002C
  */
-void Game::Kogane::Obj::doStartMovie()
+void Kogane::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -632,14 +634,14 @@ void Game::Kogane::Obj::doStartMovie()
  * Address:	8025E2E8
  * Size:	000004
  */
-void Game::Kogane::Obj::effectDrawOff() { }
+void Kogane::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
  * Address:	8025E2EC
  * Size:	00002C
  */
-void Game::Kogane::Obj::doEndMovie()
+void Kogane::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -662,14 +664,14 @@ void Game::Kogane::Obj::doEndMovie()
  * Address:	8025E318
  * Size:	000004
  */
-void Game::Kogane::Obj::effectDrawOn() { }
+void Kogane::Obj::effectDrawOn() { }
 
 /*
  * --INFO--
  * Address:	8025E31C
  * Size:	000084
  */
-void Game::Kogane::Obj::transitDamageState(float)
+void Kogane::Obj::transitDamageState(float)
 {
 	/*
 	.loc_0x0:
@@ -722,7 +724,7 @@ void Game::Kogane::Obj::transitDamageState(float)
  * Address:	8025E3A0
  * Size:	000108
  */
-void Game::Kogane::Obj::transitDisappear()
+void Kogane::Obj::transitDisappear()
 {
 	/*
 	.loc_0x0:
@@ -804,7 +806,7 @@ void Game::Kogane::Obj::transitDisappear()
  * Address:	8025E4A8
  * Size:	000050
  */
-void Game::Kogane::Obj::getBodyJointPos()
+void Kogane::Obj::getBodyJointPos()
 {
 	/*
 	.loc_0x0:
@@ -836,7 +838,7 @@ void Game::Kogane::Obj::getBodyJointPos()
  * Address:	8025E4F8
  * Size:	0000A4
  */
-void Game::Kogane::Obj::koganeScaleUp()
+void Kogane::Obj::koganeScaleUp()
 {
 	/*
 	.loc_0x0:
@@ -893,7 +895,7 @@ void Game::Kogane::Obj::koganeScaleUp()
  * Address:	8025E59C
  * Size:	00008C
  */
-void Game::Kogane::Obj::koganeScaleDown()
+void Kogane::Obj::koganeScaleDown()
 {
 	/*
 	.loc_0x0:
@@ -944,7 +946,7 @@ void Game::Kogane::Obj::koganeScaleDown()
  * Address:	8025E628
  * Size:	0001AC
  */
-void Game::Kogane::Obj::setTargetPosition(Vector3<float>*)
+void Kogane::Obj::setTargetPosition(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -1075,7 +1077,7 @@ void Game::Kogane::Obj::setTargetPosition(Vector3<float>*)
  * Address:	8025E7D4
  * Size:	000078
  */
-void Game::Kogane::Obj::resetAppearTimer()
+void Kogane::Obj::resetAppearTimer()
 {
 	/*
 	.loc_0x0:
@@ -1117,7 +1119,7 @@ void Game::Kogane::Obj::resetAppearTimer()
  * Address:	8025E84C
  * Size:	000080
  */
-void Game::Kogane::Obj::isAppear()
+void Kogane::Obj::isAppear()
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1169,7 @@ void Game::Kogane::Obj::isAppear()
  * Address:	8025E8CC
  * Size:	000084
  */
-void Game::Kogane::Obj::resetMoveTimer(float, float)
+void Kogane::Obj::resetMoveTimer(float, float)
 {
 	/*
 	.loc_0x0:
@@ -1212,7 +1214,7 @@ void Game::Kogane::Obj::resetMoveTimer(float, float)
  * Address:	8025E950
  * Size:	000194
  */
-void Game::Kogane::Obj::createTreasureItem()
+void Kogane::Obj::createTreasureItem()
 {
 	/*
 	.loc_0x0:
@@ -1331,7 +1333,7 @@ void Game::Kogane::Obj::createTreasureItem()
  * Address:	8025EAE4
  * Size:	000294
  */
-void Game::Kogane::Obj::createPellet(int, int)
+void Kogane::Obj::createPellet(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1524,7 +1526,7 @@ void Game::Kogane::Obj::createPellet(int, int)
  * Address:	8025ED78
  * Size:	0001DC
  */
-void Game::Kogane::Obj::createDoping(unsigned char, int)
+void Kogane::Obj::createDoping(unsigned char, int)
 {
 	/*
 	.loc_0x0:
@@ -1667,7 +1669,7 @@ void Game::Kogane::Obj::createDoping(unsigned char, int)
  * Address:	8025EF54
  * Size:	0000BC
  */
-void Game::Kogane::Obj::~Obj()
+Kogane::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -1730,18 +1732,19 @@ void Game::Kogane::Obj::~Obj()
  * Address:	8025F010
  * Size:	000004
  */
-void Game::Kogane::Obj::inWaterCallback(Game::WaterBox*) { }
+void Kogane::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8025F014
  * Size:	000004
  */
-void Game::Kogane::Obj::outWaterCallback() { }
+void Kogane::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8025F018
  * Size:	000008
  */
-u32 Game::Kogane::Obj::getEnemyTypeID() { return 0x9; }
+u32 Kogane::Obj::getEnemyTypeID() { return 0x9; }
+} // namespace Game

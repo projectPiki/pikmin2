@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -123,7 +123,7 @@ void JSUOutputStream::write(const char*)
  * Address:	80026330
  * Size:	000048
  */
-void JSUIosBase::~JSUIosBase()
+JSUIosBase::~JSUIosBase()
 {
 	/*
 	.loc_0x0:

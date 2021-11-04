@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -138,13 +138,10 @@ void JPACalcChildScaleOut(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008EFC8
  * Size:	000008
  */
-void JPAChildShape::JPAChildShape(const unsigned char*)
+JPAChildShape::JPAChildShape(const unsigned char* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x0(r3)
+	_00 = a1;
 }
 
 /*

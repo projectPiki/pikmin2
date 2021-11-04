@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000040
  */
-void Game::VsGame::CardSelector::__ct(void)
+VsGame::CardSelector::CardSelector(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::VsGame::CardSelector::__ct(void)
  * Address:	........
  * Size:	000064
  */
-void Game::VsGame::CardSelector::getTotalWeight(void)
+void VsGame::CardSelector::getTotalWeight(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +27,7 @@ void Game::VsGame::CardSelector::getTotalWeight(void)
  * Address:	........
  * Size:	000274
  */
-void Game::VsGame::CardSelector::selectCard(void)
+void VsGame::CardSelector::selectCard(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +37,7 @@ void Game::VsGame::CardSelector::selectCard(void)
  * Address:	8023550C
  * Size:	000148
  */
-void Game::VsGame::CardMgr::__ct((Game::VsGameSection*, Game::VsGame::TekiMgr*))
+VsGame::CardMgr::CardMgr(Game::VsGameSection*, Game::VsGame::TekiMgr*)
 {
 	/*
 	.loc_0x0:
@@ -141,7 +133,7 @@ void Game::VsGame::CardMgr::__ct((Game::VsGameSection*, Game::VsGame::TekiMgr*))
  * Address:	80235654
  * Size:	000058
  */
-void Game::VsGame::CardMgr::SlotMachine::__ct(void)
+VsGame::CardMgr::SlotMachine::SlotMachine(void)
 {
 	/*
 	.loc_0x0:
@@ -175,7 +167,7 @@ void Game::VsGame::CardMgr::SlotMachine::__ct(void)
  * Address:	........
  * Size:	000020
  */
-void Game::VsGame::CardMgr::clear(void)
+void VsGame::CardMgr::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -185,7 +177,7 @@ void Game::VsGame::CardMgr::clear(void)
  * Address:	802356AC
  * Size:	0002B8
  */
-void Game::VsGame::CardMgr::loadResource(void)
+void VsGame::CardMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -399,7 +391,7 @@ void Game::VsGame::CardMgr::loadResource(void)
  * Address:	80235964
  * Size:	000048
  */
-void Game::VsGame::CardMgr::update(void)
+void VsGame::CardMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -431,7 +423,7 @@ void Game::VsGame::CardMgr::update(void)
  * Address:	........
  * Size:	000040
  */
-void Game::VsGame::CardMgr::getSlotOrigin((int))
+void VsGame::CardMgr::getSlotOrigin(int)
 {
 	// UNUSED FUNCTION
 }
@@ -441,7 +433,7 @@ void Game::VsGame::CardMgr::getSlotOrigin((int))
  * Address:	........
  * Size:	000078
  */
-void Game::VsGame::CardMgr::getLampPos((int, int))
+void VsGame::CardMgr::getLampPos(int, int)
 {
 	// UNUSED FUNCTION
 }
@@ -451,7 +443,7 @@ void Game::VsGame::CardMgr::getLampPos((int, int))
  * Address:	802359AC
  * Size:	0000A4
  */
-void Game::VsGame::CardMgr::draw((Graphics&))
+void VsGame::CardMgr::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -508,7 +500,7 @@ void Game::VsGame::CardMgr::draw((Graphics&))
  * Address:	........
  * Size:	000078
  */
-void Game::VsGame::CardMgr::getPlayerCard((int))
+void VsGame::CardMgr::getPlayerCard(int)
 {
 	// UNUSED FUNCTION
 }
@@ -518,7 +510,7 @@ void Game::VsGame::CardMgr::getPlayerCard((int))
  * Address:	80235A50
  * Size:	000030
  */
-void Game::VsGame::CardMgr::stopSlot((int))
+void VsGame::CardMgr::stopSlot(int)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +534,7 @@ void Game::VsGame::CardMgr::stopSlot((int))
  * Address:	80235A80
  * Size:	000D8C
  */
-void Game::VsGame::CardMgr::usePlayerCard((int, Game::VsGame::TekiMgr*))
+void VsGame::CardMgr::usePlayerCard(int, Game::VsGame::TekiMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1547,7 +1539,7 @@ void Game::VsGame::CardMgr::usePlayerCard((int, Game::VsGame::TekiMgr*))
  * Address:	8023680C
  * Size:	0001BC
  */
-void Game::VsGame::CardMgr::gotPlayerCard((int))
+void VsGame::CardMgr::gotPlayerCard(int)
 {
 	/*
 	.loc_0x0:
@@ -1678,7 +1670,7 @@ void Game::VsGame::CardMgr::gotPlayerCard((int))
  * Address:	........
  * Size:	00004C
  */
-void Game::VsGame::CardMgr::clearPlayerCard(void)
+void VsGame::CardMgr::clearPlayerCard(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1688,7 +1680,7 @@ void Game::VsGame::CardMgr::clearPlayerCard(void)
  * Address:	802369C8
  * Size:	000058
  */
-void Game::VsGame::CardMgr::SlotMachine::clear(void)
+void VsGame::CardMgr::SlotMachine::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -1722,7 +1714,7 @@ void Game::VsGame::CardMgr::SlotMachine::clear(void)
  * Address:	80236A20
  * Size:	0005F0
  */
-void Game::VsGame::CardMgr::SlotMachine::start(void)
+void VsGame::CardMgr::SlotMachine::start(void)
 {
 	/*
 	.loc_0x0:
@@ -2172,7 +2164,7 @@ void Game::VsGame::CardMgr::SlotMachine::start(void)
  * Address:	80237010
  * Size:	000050
  */
-void Game::VsGame::CardMgr::SlotMachine::startStop(void)
+void VsGame::CardMgr::SlotMachine::startStop(void)
 {
 	/*
 	.loc_0x0:
@@ -2206,7 +2198,7 @@ void Game::VsGame::CardMgr::SlotMachine::startStop(void)
  * Address:	........
  * Size:	0000B4
  */
-void Game::VsGame::CardMgr::SlotMachine::equalTo((int))
+void VsGame::CardMgr::SlotMachine::equalTo(int)
 {
 	// UNUSED FUNCTION
 }
@@ -2216,7 +2208,7 @@ void Game::VsGame::CardMgr::SlotMachine::equalTo((int))
  * Address:	........
  * Size:	00004C
  */
-void Game::VsGame::CardMgr::SlotMachine::goodPlace(void)
+void VsGame::CardMgr::SlotMachine::goodPlace(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2226,7 +2218,7 @@ void Game::VsGame::CardMgr::SlotMachine::goodPlace(void)
  * Address:	80237060
  * Size:	0007B8
  */
-void Game::VsGame::CardMgr::SlotMachine::update(void)
+void VsGame::CardMgr::SlotMachine::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2768,7 +2760,7 @@ void Game::VsGame::CardMgr::SlotMachine::update(void)
  * Address:	80237818
  * Size:	000150
  */
-void Game::VsGame::CardMgr::SlotMachine::updateAppear(void)
+void VsGame::CardMgr::SlotMachine::updateAppear(void)
 {
 	/*
 	.loc_0x0:
@@ -2878,7 +2870,7 @@ void Game::VsGame::CardMgr::SlotMachine::updateAppear(void)
  * Address:	........
  * Size:	000078
  */
-void Game::VsGame::CardMgr::getTexture((Game::VsGame::eCardType))
+void VsGame::CardMgr::getTexture(Game::VsGame::eCardType)
 {
 	// UNUSED FUNCTION
 }
@@ -2888,7 +2880,7 @@ void Game::VsGame::CardMgr::getTexture((Game::VsGame::eCardType))
  * Address:	80237968
  * Size:	000354
  */
-void Game::VsGame::CardMgr::initDraw(void)
+void VsGame::CardMgr::initDraw(void)
 {
 	/*
 	.loc_0x0:
@@ -3137,7 +3129,7 @@ void Game::VsGame::CardMgr::initDraw(void)
  * Address:	........
  * Size:	000020
  */
-void Game::VsGame::CardMgr::vert((int))
+void VsGame::CardMgr::vert(int)
 {
 	// UNUSED FUNCTION
 }
@@ -3147,7 +3139,7 @@ void Game::VsGame::CardMgr::vert((int))
  * Address:	........
  * Size:	000020
  */
-void Game::VsGame::CardMgr::norm((int))
+void VsGame::CardMgr::norm(int)
 {
 	// UNUSED FUNCTION
 }
@@ -3157,7 +3149,7 @@ void Game::VsGame::CardMgr::norm((int))
  * Address:	80237CBC
  * Size:	000E4C
  */
-void drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<float>
+void drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3f
 RQ44Game6VsGame7CardMgr11SlotMachine(void)
 {
 	/*
@@ -4110,6 +4102,8 @@ RQ44Game6VsGame7CardMgr11SlotMachine(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80238B08
@@ -4117,12 +4111,14 @@ RQ44Game6VsGame7CardMgr11SlotMachine(void)
  */
 void LightObj::update() { }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80238B0C
  * Size:	000028
  */
-void Game::VsGame::CardMgr::SlotMachine::startZoomIn(void)
+void VsGame::CardMgr::SlotMachine::startZoomIn(void)
 {
 	/*
 	.loc_0x0:
@@ -4144,7 +4140,7 @@ void Game::VsGame::CardMgr::SlotMachine::startZoomIn(void)
  * Address:	80238B34
  * Size:	000020
  */
-void Game::VsGame::CardMgr::SlotMachine::startZoomUse(void)
+void VsGame::CardMgr::SlotMachine::startZoomUse(void)
 {
 	/*
 	.loc_0x0:
@@ -4164,7 +4160,7 @@ void Game::VsGame::CardMgr::SlotMachine::startZoomUse(void)
  * Address:	80238B54
  * Size:	0001F0
  */
-void Game::VsGame::CardMgr::SlotMachine::updateZoomIn(void)
+void VsGame::CardMgr::SlotMachine::updateZoomIn(void)
 {
 	/*
 	.loc_0x0:
@@ -4316,7 +4312,7 @@ void Game::VsGame::CardMgr::SlotMachine::updateZoomIn(void)
  * Address:	80238D44
  * Size:	000128
  */
-void Game::VsGame::CardMgr::SlotMachine::updateZoomUse(void)
+void VsGame::CardMgr::SlotMachine::updateZoomUse(void)
 {
 	/*
 	.loc_0x0:
@@ -4405,18 +4401,17 @@ void Game::VsGame::CardMgr::SlotMachine::updateZoomUse(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80238E6C
  * Size:	000008
  */
-void efx2d::TBase::setGroup((unsigned char))
+void efx2d::TBase::setGroup(unsigned char a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x5(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x5(r3)
+	_05 = a1;
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -23,7 +23,7 @@ void J3DModelData::clear()
  * Address:	800837AC
  * Size:	000080
  */
-void J3DModelData::J3DModelData()
+J3DModelData::J3DModelData()
 {
 	/*
 	.loc_0x0:
@@ -67,7 +67,7 @@ void J3DModelData::J3DModelData()
  * Address:	8008382C
  * Size:	000048
  */
-void J3DShapeTable::~J3DShapeTable()
+J3DShapeTable::~J3DShapeTable()
 {
 	/*
 	.loc_0x0:
@@ -99,7 +99,7 @@ void J3DShapeTable::~J3DShapeTable()
  * Address:	80083874
  * Size:	000064
  */
-void J3DJointTree::~J3DJointTree()
+J3DJointTree::~J3DJointTree()
 {
 	/*
 	.loc_0x0:
@@ -417,7 +417,7 @@ void J3DModelData::syncJ3DSysFlags() const
  * Address:	80083BB4
  * Size:	000098
  */
-void J3DModelData::~J3DModelData()
+J3DModelData::~J3DModelData()
 {
 	/*
 	.loc_0x0:

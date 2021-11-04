@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -263,7 +263,7 @@ void JKRAramPiece::doneDMA(unsigned long)
  * Address:	80019DC4
  * Size:	000070
  */
-void JKRAMCommand::JKRAMCommand()
+JKRAMCommand::JKRAMCommand()
 {
 	/*
 	.loc_0x0:
@@ -303,7 +303,7 @@ void JKRAMCommand::JKRAMCommand()
  * Address:	80019E34
  * Size:	0000A8
  */
-void JKRAMCommand::~JKRAMCommand()
+JKRAMCommand::~JKRAMCommand()
 {
 	/*
 	.loc_0x0:

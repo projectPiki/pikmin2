@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8002D458
  * Size:	0000D4
  */
-void JUTGamePad::JUTGamePad(JUTGamePad::EPadPort)
+JUTGamePad::JUTGamePad(JUTGamePad::EPadPort)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +82,7 @@ void JSULink<JUTGamePad>::~JSULink()
  * Address:	........
  * Size:	0000A8
  */
-void JUTGamePad::JUTGamePad()
+JUTGamePad::JUTGamePad()
 {
 	// UNUSED FUNCTION
 }
@@ -92,7 +92,7 @@ void JUTGamePad::JUTGamePad()
  * Address:	8002D52C
  * Size:	0000AC
  */
-void JUTGamePad::~JUTGamePad()
+JUTGamePad::~JUTGamePad()
 {
 	/*
 	.loc_0x0:
@@ -926,7 +926,7 @@ void JUTGamePad::CButton::clear(void)
  * Address:	8002DE50
  * Size:	000190
  */
-void JUTGamePad::CButton::update((PADStatus const*, unsigned long))
+void JUTGamePad::CButton::update(PADStatus const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1073,9 +1073,9 @@ void JUTGamePad::CStick::clear(void)
  * Address:	8002DFFC
  * Size:	0002B8
  */
-void JUTGamePad::CStick::update((signed char, signed char,
-                                 JUTGamePad::EStickMode,
-                                 JUTGamePad::EWhichStick, unsigned long))
+void JUTGamePad::CStick::update(signed char, signed char,
+                                JUTGamePad::EStickMode, JUTGamePad::EWhichStick,
+                                unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1301,7 +1301,7 @@ void JUTGamePad::CStick::update((signed char, signed char,
  * Address:	8002E2B4
  * Size:	0000B4
  */
-void JUTGamePad::CStick::getButton((unsigned long))
+void JUTGamePad::CStick::getButton(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1380,7 +1380,7 @@ void JUTGamePad::CRumble::clear(void)
  * Address:	8002E368
  * Size:	000074
  */
-void JUTGamePad::CRumble::clear((JUTGamePad*))
+void JUTGamePad::CRumble::clear(JUTGamePad*)
 {
 	/*
 	.loc_0x0:
@@ -1425,7 +1425,7 @@ void JUTGamePad::CRumble::clear((JUTGamePad*))
  * Address:	........
  * Size:	000058
  */
-void JUTGamePad::CRumble::startMotor((int))
+void JUTGamePad::CRumble::startMotor(int)
 {
 	// UNUSED FUNCTION
 }
@@ -1435,7 +1435,7 @@ void JUTGamePad::CRumble::startMotor((int))
  * Address:	8002E3DC
  * Size:	000070
  */
-void JUTGamePad::CRumble::stopMotor((int, bool))
+void JUTGamePad::CRumble::stopMotor(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1487,7 +1487,7 @@ void getNumBit(unsigned char*, int)
  * Address:	8002E44C
  * Size:	00025C
  */
-void JUTGamePad::CRumble::update((short))
+void JUTGamePad::CRumble::update(short)
 {
 	/*
 	.loc_0x0:
@@ -1668,7 +1668,7 @@ void JUTGamePad::CRumble::update((short))
  * Address:	........
  * Size:	000028
  */
-void JUTGamePad::CRumble::triggerPatternedRumble((unsigned long))
+void JUTGamePad::CRumble::triggerPatternedRumble(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1678,7 +1678,7 @@ void JUTGamePad::CRumble::triggerPatternedRumble((unsigned long))
  * Address:	........
  * Size:	00005C
  */
-void JUTGamePad::CRumble::setPatternedRumble((short, unsigned short, void*))
+void JUTGamePad::CRumble::setPatternedRumble(short, unsigned short, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -1688,9 +1688,9 @@ void JUTGamePad::CRumble::setPatternedRumble((short, unsigned short, void*))
  * Address:	........
  * Size:	0000BC
  */
-void JUTGamePad::CRumble::startPatternedRumble((void*,
-                                                JUTGamePad::CRumble::ERumble,
-                                                unsigned long))
+void JUTGamePad::CRumble::startPatternedRumble(void*,
+                                               JUTGamePad::CRumble::ERumble,
+                                               unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1700,7 +1700,7 @@ void JUTGamePad::CRumble::startPatternedRumble((void*,
  * Address:	........
  * Size:	000070
  */
-void JUTGamePad::CRumble::stopPatternedRumble((short))
+void JUTGamePad::CRumble::stopPatternedRumble(short)
 {
 	// UNUSED FUNCTION
 }
@@ -1730,7 +1730,7 @@ void JUTGamePad::getGamePad(int)
  * Address:	8002E6A8
  * Size:	000124
  */
-void JUTGamePad::CRumble::setEnabled((unsigned long))
+void JUTGamePad::CRumble::setEnabled(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1829,8 +1829,7 @@ void JUTGamePad::CRumble::setEnabled((unsigned long))
  * Address:	8002E7CC
  * Size:	00001C
  */
-void JUTGamePad::CButton::setRepeat((unsigned long, unsigned long,
-                                     unsigned long))
+void JUTGamePad::CButton::setRepeat(unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1975,7 +1974,7 @@ void JUTGamePad::recalibrate(unsigned long)
  * Address:	........
  * Size:	000064
  */
-void JUTGamePadLongPress::JUTGamePadLongPress()
+JUTGamePadLongPress::JUTGamePadLongPress()
 {
 	// UNUSED FUNCTION
 }
@@ -2056,7 +2055,7 @@ void JUTGamePadLongPress::checkCallback(int, unsigned long)
  * Address:	........
  * Size:	000018
  */
-void JUTGamePadRecordBase::JUTGamePadRecordBase()
+JUTGamePadRecordBase::JUTGamePadRecordBase()
 {
 	// UNUSED FUNCTION
 }
@@ -2066,7 +2065,7 @@ void JUTGamePadRecordBase::JUTGamePadRecordBase()
  * Address:	........
  * Size:	000048
  */
-void JUTGamePadRecordBase::~JUTGamePadRecordBase()
+JUTGamePadRecordBase::~JUTGamePadRecordBase()
 {
 	// UNUSED FUNCTION
 }
@@ -2076,7 +2075,7 @@ void JUTGamePadRecordBase::~JUTGamePadRecordBase()
  * Address:	........
  * Size:	00003C
  */
-void JUTGamePadRecordFixed::JUTGamePadRecordFixed()
+JUTGamePadRecordFixed::JUTGamePadRecordFixed()
 {
 	// UNUSED FUNCTION
 }
@@ -2166,7 +2165,7 @@ void JUTGamePadRecordFixed::do_write(const PADStatus*)
  * Address:	........
  * Size:	00008C
  */
-void JUTGamePadRecord::JUTGamePadRecord()
+JUTGamePadRecord::JUTGamePadRecord()
 {
 	// UNUSED FUNCTION
 }
@@ -2176,7 +2175,7 @@ void JUTGamePadRecord::JUTGamePadRecord()
  * Address:	........
  * Size:	00005C
  */
-void JUTGamePadRecordFixed::~JUTGamePadRecordFixed()
+JUTGamePadRecordFixed::~JUTGamePadRecordFixed()
 {
 	// UNUSED FUNCTION
 }
@@ -2216,7 +2215,7 @@ void JUTGamePadRecord::do_writeFixed(const PADStatus*, void*)
  * Address:	........
  * Size:	00006C
  */
-void JUTGamePadRecord::~JUTGamePadRecord()
+JUTGamePadRecord::~JUTGamePadRecord()
 {
 	// UNUSED FUNCTION
 }
@@ -2341,7 +2340,7 @@ void JSUList<JUTGamePadLongPress>::~JSUList()
  * Address:	8002EA88
  * Size:	00001C
  */
-void JUTGamePad::CStick::__ct(void)
+JUTGamePad::CStick::CStick(void)
 {
 	/*
 	.loc_0x0:
@@ -2360,7 +2359,7 @@ void JUTGamePad::CStick::__ct(void)
  * Address:	8002EAA4
  * Size:	00003C
  */
-void JUTGamePad::CButton::__ct(void)
+JUTGamePad::CButton::CButton(void)
 {
 	/*
 	.loc_0x0:

@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80423770
  * Size:	000004
  */
@@ -22,7 +12,7 @@ void Section::init() { }
  * Address:	80423774
  * Size:	0001D0
  */
-void Section::Section(JFWDisplay*, JKRHeap*, bool)
+Section::Section(JFWDisplay*, JKRHeap*, bool)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +152,7 @@ void Section::Section(JFWDisplay*, JKRHeap*, bool)
  * Address:	80423944
  * Size:	000060
  */
-void ISection::~ISection()
+ISection::~ISection()
 {
 	/*
 	.loc_0x0:
@@ -200,7 +190,7 @@ void ISection::~ISection()
  * Address:	804239A4
  * Size:	000120
  */
-void Section::~Section()
+Section::~Section()
 {
 	/*
 	.loc_0x0:

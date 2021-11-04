@@ -51,7 +51,7 @@ void JKRAramStream::create(long)
  * Address:	80019F90
  * Size:	000050
  */
-void JKRAramStream::JKRAramStream(long)
+JKRAramStream::JKRAramStream(long)
 {
 	/*
 	.loc_0x0:
@@ -83,7 +83,7 @@ void JKRAramStream::JKRAramStream(long)
  * Address:	80019FE0
  * Size:	000060
  */
-void JKRAramStream::~JKRAramStream()
+JKRAramStream::~JKRAramStream()
 {
 	/*
 	.loc_0x0:
@@ -540,12 +540,8 @@ void JKRAramStream::setTransBuffer(unsigned char*, unsigned long, JKRHeap*)
  * Address:	8001A4B0
  * Size:	00000C
  */
-void JKRAramStreamCommand::JKRAramStreamCommand()
+JKRAramStreamCommand::JKRAramStreamCommand()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x28(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x28(r3)
+	_28 = 0;
 }

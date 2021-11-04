@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -18,7 +8,7 @@ void _Print(char*, ...)
 void
     makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<
         float>
-    R10Vector3<float>(void)
+    R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -220,12 +210,14 @@ void
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802F2A84
  * Size:	0000C4
  */
-void Game::UmiMushi::UmimushiShadowMgr::__ct((Game::UmiMushi::Obj*))
+UmiMushi::UmimushiShadowMgr::UmimushiShadowMgr(Game::UmiMushi::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -292,7 +284,7 @@ void Game::UmiMushi::UmimushiShadowMgr::__ct((Game::UmiMushi::Obj*))
  * Address:	802F2B48
  * Size:	000068
  */
-void Game::UmiMushi::UmimushiShadowMgr::init(void)
+void UmiMushi::UmimushiShadowMgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -330,7 +322,7 @@ void Game::UmiMushi::UmimushiShadowMgr::init(void)
  * Address:	802F2BB0
  * Size:	00015C
  */
-void Game::UmiMushi::UmimushiShadowMgr::update(void)
+void UmiMushi::UmimushiShadowMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -433,7 +425,7 @@ void Game::UmiMushi::UmimushiShadowMgr::update(void)
  * Address:	802F2D0C
  * Size:	000070
  */
-void Game::UmimushiSphereShadowNode::__dt(void)
+UmimushiSphereShadowNode::~UmimushiSphereShadowNode(void)
 {
 	/*
 	.loc_0x0:
@@ -477,7 +469,7 @@ void Game::UmimushiSphereShadowNode::__dt(void)
  * Address:	802F2D7C
  * Size:	000070
  */
-void Game::UmimushiTubeShadowNode::__dt(void)
+UmimushiTubeShadowNode::~UmimushiTubeShadowNode(void)
 {
 	/*
 	.loc_0x0:
@@ -515,3 +507,4 @@ void Game::UmimushiTubeShadowNode::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

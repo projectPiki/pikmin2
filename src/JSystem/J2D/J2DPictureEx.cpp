@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80054AF0
  * Size:	000048
  */
-void J2DPictureEx::J2DPictureEx()
+J2DPictureEx::J2DPictureEx()
 {
 	/*
 	.loc_0x0:
@@ -35,7 +35,7 @@ void J2DPictureEx::J2DPictureEx()
  * Address:	80054B38
  * Size:	00007C
  */
-void J2DPictureEx::J2DPictureEx(const ResTIMG*, unsigned long)
+J2DPictureEx::J2DPictureEx(const ResTIMG*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -249,8 +249,8 @@ void J2DPictureEx::initialize(unsigned long)
  * Address:	80054D90
  * Size:	00029C
  */
-void J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long,
-                                J2DMaterial*)
+J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long,
+                           J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -433,9 +433,8 @@ void J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long,
  * Address:	8005502C
  * Size:	000110
  */
-void J2DPictureEx::J2DPictureEx(unsigned long long,
-                                const JGeometry::TBox2<float>&, const ResTIMG*,
-                                unsigned long)
+J2DPictureEx::J2DPictureEx(unsigned long long, const JGeometry::TBox2<float>&,
+                           const ResTIMG*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -517,9 +516,8 @@ void J2DPictureEx::J2DPictureEx(unsigned long long,
  * Address:	8005513C
  * Size:	000110
  */
-void J2DPictureEx::J2DPictureEx(unsigned long long,
-                                const JGeometry::TBox2<float>&, const char*,
-                                unsigned long)
+J2DPictureEx::J2DPictureEx(unsigned long long, const JGeometry::TBox2<float>&,
+                           const char*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -601,7 +599,7 @@ void J2DPictureEx::J2DPictureEx(unsigned long long,
  * Address:	8005524C
  * Size:	000090
  */
-void J2DPictureEx::~J2DPictureEx()
+J2DPictureEx::~J2DPictureEx()
 {
 	/*
 	.loc_0x0:
@@ -5369,13 +5367,10 @@ void J2DPictureEx::setAnimation(J2DAnmTevRegKey*)
  * Address:	80058BF8
  * Size:	000008
  */
-void J2DPictureEx::setAnimation(J2DAnmVisibilityFull*)
+void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x19C(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x19C(r3)
+	_19C = a1;
 }
 
 /*

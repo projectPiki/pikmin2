@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8036C194
  * Size:	000070
  */
-void Game::Nest::Mgr::__ct((int, unsigned char))
+Nest::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -55,7 +47,7 @@ void Game::Nest::Mgr::__ct((int, unsigned char))
  * Address:	8036C204
  * Size:	000048
  */
-void Game::Nest::Mgr::doAlloc(void)
+void Nest::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -87,7 +79,7 @@ void Game::Nest::Mgr::doAlloc(void)
  * Address:	8036C24C
  * Size:	000020
  */
-void Game::Nest::Mgr::birth((Game::EnemyBirthArg&))
+void Nest::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +99,7 @@ void Game::Nest::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8036C26C
  * Size:	00012C
  */
-void Game::Nest::Mgr::loadModelData((JKRArchive*))
+void Nest::Mgr::loadModelData(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -202,7 +194,7 @@ void Game::Nest::Mgr::loadModelData((JKRArchive*))
  * Address:	8036C398
  * Size:	000320
  */
-void Game::Nest::Mgr::doSimpleDraw((Viewport*))
+void Nest::Mgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -434,7 +426,7 @@ void Game::Nest::Mgr::doSimpleDraw((Viewport*))
  * Address:	8036C6B8
  * Size:	000010
  */
-void Game::Nest::Mgr::getEnemy((int))
+void Nest::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -450,7 +442,7 @@ void Game::Nest::Mgr::getEnemy((int))
  * Address:	8036C6C8
  * Size:	0001E8
  */
-void Game::Nest::Mgr::initObjects(void)
+void Nest::Mgr::initObjects(void)
 {
 	/*
 	.loc_0x0:
@@ -604,14 +596,14 @@ void Game::Nest::Mgr::initObjects(void)
  * Address:	8036C8B0
  * Size:	000008
  */
-u32 Game::Nest::Mgr::getEnemyTypeID(void) { return 0x53; }
+u32 Nest::Mgr::getEnemyTypeID(void) { return 0x53; }
 
 /*
  * --INFO--
  * Address:	8036C8B8
  * Size:	0000B0
  */
-void Game::Nest::Mgr::__dt(void)
+Nest::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -671,14 +663,14 @@ void Game::Nest::Mgr::__dt(void)
  * Address:	8036C968
  * Size:	000004
  */
-void Game::Nest::Mgr::loadAnimData(void) { }
+void Nest::Mgr::loadAnimData(void) { }
 
 /*
  * --INFO--
  * Address:	8036C96C
  * Size:	000060
  */
-void Game::Nest::Mgr::createObj((int))
+void Nest::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -714,7 +706,7 @@ void Game::Nest::Mgr::createObj((int))
  * Address:	8036C9CC
  * Size:	0000BC
  */
-void Game::Nest::Obj::__dt(void)
+Nest::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -772,6 +764,8 @@ void Game::Nest::Obj::__dt(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8036CA88
@@ -784,7 +778,7 @@ void __sinit_enemyNestMgr_cpp(void) { }
  * Address:	8036CA8C
  * Size:	000008
  */
-void @4 @Game::Nest::Mgr::__dt(void)
+@4 @Game::Nest::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

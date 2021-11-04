@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8022C7F4
  * Size:	000104
  */
-void Game::VsGame::ResultState::__ct(void)
+VsGame::ResultState::ResultState(void)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +90,7 @@ void Game::VsGame::ResultState::__ct(void)
  * Address:	8022C8F8
  * Size:	0000BC
  */
-void Game::VsGame::ResultState::init((Game::VsGameSection*, Game::StateArg*))
+void VsGame::ResultState::init(Game::VsGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +151,7 @@ void Game::VsGame::ResultState::init((Game::VsGameSection*, Game::StateArg*))
  * Address:	8022C9B4
  * Size:	0002A8
  */
-void Game::VsGame::ResultState::prepareMorimuraInfo((Game::VsGameSection*))
+void VsGame::ResultState::prepareMorimuraInfo(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -367,7 +359,7 @@ void Game::VsGame::ResultState::prepareMorimuraInfo((Game::VsGameSection*))
  * Address:	........
  * Size:	000094
  */
-void Game::VsGame::ResultState::initNext((Game::VsGameSection*))
+void VsGame::ResultState::initNext(Game::VsGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -377,7 +369,7 @@ void Game::VsGame::ResultState::initNext((Game::VsGameSection*))
  * Address:	8022CC5C
  * Size:	00013C
  */
-void Game::VsGame::ResultState::dvdload(void)
+void VsGame::ResultState::dvdload(void)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +470,7 @@ void Game::VsGame::ResultState::dvdload(void)
  * Address:	8022CD98
  * Size:	00017C
  */
-void Game::VsGame::ResultState::exec((Game::VsGameSection*))
+void VsGame::ResultState::exec(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -599,7 +591,7 @@ void Game::VsGame::ResultState::exec((Game::VsGameSection*))
  * Address:	8022CF14
  * Size:	000088
  */
-void Game::VsGame::ResultState::draw((Game::VsGameSection*, Graphics&))
+void VsGame::ResultState::draw(Game::VsGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +639,7 @@ void Game::VsGame::ResultState::draw((Game::VsGameSection*, Graphics&))
  * Address:	8022CF9C
  * Size:	0000CC
  */
-void Game::VsGame::ResultState::cleanup((Game::VsGameSection*))
+void VsGame::ResultState::cleanup(Game::VsGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -708,6 +700,8 @@ void Game::VsGame::ResultState::cleanup((Game::VsGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

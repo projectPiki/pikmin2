@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	8045CE64
  * Size:	000080
  */
-void PSM::ObjBase::~ObjBase()
+ObjBase::~ObjBase()
 {
 	/*
 	.loc_0x0:
@@ -53,7 +55,7 @@ void PSM::ObjBase::~ObjBase()
  * Address:	8045CEE4
  * Size:	00004C
  */
-void PSM::ObjMgr::frameEnd_onPlaySe()
+void ObjMgr::frameEnd_onPlaySe()
 {
 	/*
 	.loc_0x0:
@@ -88,7 +90,7 @@ void PSM::ObjMgr::frameEnd_onPlaySe()
  * Address:	8045CF30
  * Size:	000104
  */
-void PSM::ObjMgr::~ObjMgr()
+ObjMgr::~ObjMgr()
 {
 	/*
 	.loc_0x0:
@@ -175,7 +177,7 @@ void PSM::ObjMgr::~ObjMgr()
  * Address:	8045D034
  * Size:	000058
  */
-void PSM::Creature::exec()
+void Creature::exec()
 {
 	/*
 	.loc_0x0:
@@ -211,7 +213,7 @@ void PSM::Creature::exec()
  * Address:	8045D08C
  * Size:	000128
  */
-void PSM::Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+void Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -317,7 +319,7 @@ void PSM::Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
  * Address:	8045D1B4
  * Size:	0000A0
  */
-void PSM::Creature::isNear(Game::Creature*, float)
+void Creature::isNear(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +371,7 @@ void PSM::Creature::isNear(Game::Creature*, float)
  * Address:	8045D254
  * Size:	000070
  */
-void PSM::Creature::getPlayingHandleNum()
+void Creature::getPlayingHandleNum()
 {
 	/*
 	.loc_0x0:
@@ -415,7 +417,7 @@ void PSM::Creature::getPlayingHandleNum()
  * Address:	8045D2C4
  * Size:	00015C
  */
-void PSM::Creature::loopCalc(PSM::FrameCalcArg&)
+void Creature::loopCalc(PSM::FrameCalcArg&)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +524,7 @@ void PSM::Creature::loopCalc(PSM::FrameCalcArg&)
  * Address:	8045D420
  * Size:	000380
  */
-void PSM::Creature::startSoundInner(PSM::StartSoundArg&)
+void Creature::startSoundInner(PSM::StartSoundArg&)
 {
 	/*
 	.loc_0x0:
@@ -794,14 +796,14 @@ void PSM::Creature::startSoundInner(PSM::StartSoundArg&)
  * Address:	8045D7A0
  * Size:	000004
  */
-void PSM::Creature::onPlayingSe(unsigned long, JAISound*) { }
+void Creature::onPlayingSe(unsigned long, JAISound*) { }
 
 /*
  * --INFO--
  * Address:	8045D7A4
  * Size:	00010C
  */
-void PSM::CreatureObj::CreatureObj(Game::Creature*, unsigned char)
+CreatureObj::CreatureObj(Game::Creature*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -884,7 +886,7 @@ void PSM::CreatureObj::CreatureObj(Game::Creature*, unsigned char)
  * Address:	8045D8B0
  * Size:	000098
  */
-void PSM::Creature::~Creature()
+Creature::~Creature()
 {
 	/*
 	.loc_0x0:
@@ -938,7 +940,7 @@ void PSM::Creature::~Creature()
  * Address:	8045D948
  * Size:	00003C
  */
-void PSM::CreatureObj::startSound(unsigned long, unsigned long)
+void CreatureObj::startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -965,7 +967,7 @@ void PSM::CreatureObj::startSound(unsigned long, unsigned long)
  * Address:	8045D984
  * Size:	00008C
  */
-void PSM::CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
+void CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1012,7 +1014,7 @@ void PSM::CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
  * Address:	8045DA10
  * Size:	0000A8
  */
-void PSM::CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
+void CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1066,7 +1068,7 @@ void PSM::CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
  * Address:	8045DAB8
  * Size:	00004C
  */
-void PSM::CreatureObj::frameEnd_onPlaySe()
+void CreatureObj::frameEnd_onPlaySe()
 {
 	/*
 	.loc_0x0:
@@ -1097,8 +1099,8 @@ void PSM::CreatureObj::frameEnd_onPlaySe()
  * Address:	8045DB04
  * Size:	000148
  */
-void PSM::CreatureAnime::startAnimSound(unsigned long, JAISound**,
-                                        JAInter::Actor*, unsigned char)
+void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
+                                   unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1202,7 +1204,7 @@ void PSM::CreatureAnime::startAnimSound(unsigned long, JAISound**,
  * Address:	8045DC4C
  * Size:	00003C
  */
-void PSM::CreatureAnime::startSound(unsigned long, unsigned long)
+void CreatureAnime::startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1229,7 +1231,7 @@ void PSM::CreatureAnime::startSound(unsigned long, unsigned long)
  * Address:	8045DC88
  * Size:	0000B0
  */
-void PSM::CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
+void CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1285,7 +1287,7 @@ void PSM::CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
  * Address:	8045DD38
  * Size:	0000A8
  */
-void PSM::CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
+void CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1339,8 +1341,7 @@ void PSM::CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
  * Address:	8045DDE0
  * Size:	000040
  */
-void PSM::CreatureAnime::setAnime(JAIAnimeSoundData*, unsigned long, float,
-                                  float)
+void CreatureAnime::setAnime(JAIAnimeSoundData*, unsigned long, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1372,8 +1373,7 @@ void PSM::CreatureAnime::setAnime(JAIAnimeSoundData*, unsigned long, float,
  * Address:	8045DE20
  * Size:	000304
  */
-void PSM::CreatureAnime::playActorAnimSound(JAInter::Actor*, float,
-                                            unsigned char)
+void CreatureAnime::playActorAnimSound(JAInter::Actor*, float, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1612,7 +1612,7 @@ void PSM::CreatureAnime::playActorAnimSound(JAInter::Actor*, float,
  * Address:	8045E124
  * Size:	0000B4
  */
-void PSM::CreatureAnime::exec()
+void CreatureAnime::exec()
 {
 	/*
 	.loc_0x0:
@@ -1675,7 +1675,7 @@ void PSM::CreatureAnime::exec()
  * Address:	8045E1D8
  * Size:	0000C8
  */
-void PSM::CreatureAnime::onCalcOn()
+void CreatureAnime::onCalcOn()
 {
 	/*
 	.loc_0x0:
@@ -1741,7 +1741,7 @@ void PSM::CreatureAnime::onCalcOn()
  * Address:	8045E2A0
  * Size:	000024
  */
-void PSM::CreatureAnime::onCalcTurnOn()
+void CreatureAnime::onCalcTurnOn()
 {
 	/*
 	.loc_0x0:
@@ -1762,14 +1762,14 @@ void PSM::CreatureAnime::onCalcTurnOn()
  * Address:	8045E2C4
  * Size:	000004
  */
-void PSM::CreatureAnime::onCalcTurnOff() { }
+void CreatureAnime::onCalcTurnOff() { }
 
 /*
  * --INFO--
  * Address:	8045E2C8
  * Size:	00004C
  */
-void PSM::CreatureAnime::frameEnd_onPlaySe()
+void CreatureAnime::frameEnd_onPlaySe()
 {
 	/*
 	.loc_0x0:
@@ -1800,7 +1800,7 @@ void PSM::CreatureAnime::frameEnd_onPlaySe()
  * Address:	8045E314
  * Size:	00004C
  */
-void PSM::BattleLink::battleOn()
+void BattleLink::battleOn()
 {
 	/*
 	.loc_0x0:
@@ -1833,7 +1833,7 @@ void PSM::BattleLink::battleOn()
  * Address:	8045E360
  * Size:	00004C
  */
-void PSM::BattleLink::battleOff()
+void BattleLink::battleOff()
 {
 	/*
 	.loc_0x0:
@@ -1866,7 +1866,7 @@ void PSM::BattleLink::battleOff()
  * Address:	8045E3AC
  * Size:	00004C
  */
-void PSM::KehaiLink::kehaiOn()
+void KehaiLink::kehaiOn()
 {
 	/*
 	.loc_0x0:
@@ -1899,7 +1899,7 @@ void PSM::KehaiLink::kehaiOn()
  * Address:	8045E3F8
  * Size:	00004C
  */
-void PSM::KehaiLink::kehaiOff()
+void KehaiLink::kehaiOff()
 {
 	/*
 	.loc_0x0:
@@ -1932,7 +1932,7 @@ void PSM::KehaiLink::kehaiOff()
  * Address:	8045E444
  * Size:	000180
  */
-void PSM::EnemyBase::EnemyBase(Game::EnemyBase*, unsigned char)
+EnemyBase::EnemyBase(Game::EnemyBase*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2044,7 +2044,7 @@ void PSM::EnemyBase::EnemyBase(Game::EnemyBase*, unsigned char)
  * Address:	8045E5C4
  * Size:	0000DC
  */
-void PSM::CreatureAnime::~CreatureAnime()
+CreatureAnime::~CreatureAnime()
 {
 	/*
 	.loc_0x0:
@@ -2117,8 +2117,8 @@ void PSM::CreatureAnime::~CreatureAnime()
  * Address:	8045E6A0
  * Size:	000174
  */
-void PSM::EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
-                                    unsigned char)
+void EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
+                               unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2235,7 +2235,7 @@ void PSM::EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
  * Address:	8045E814
  * Size:	00005C
  */
-void PSM::EnemyBase::startSoundInner(PSM::StartSoundArg&)
+void EnemyBase::startSoundInner(PSM::StartSoundArg&)
 {
 	/*
 	.loc_0x0:
@@ -2274,7 +2274,7 @@ void PSM::EnemyBase::startSoundInner(PSM::StartSoundArg&)
  * Address:	8045E870
  * Size:	000044
  */
-void PSM::EnemyBase::onCalcTurnOn()
+void EnemyBase::onCalcTurnOn()
 {
 	/*
 	.loc_0x0:
@@ -2303,7 +2303,7 @@ void PSM::EnemyBase::onCalcTurnOn()
  * Address:	8045E8B4
  * Size:	00004C
  */
-void PSM::EnemyBase::onCalcTurnOff()
+void EnemyBase::onCalcTurnOff()
 {
 	/*
 	.loc_0x0:
@@ -2334,7 +2334,7 @@ void PSM::EnemyBase::onCalcTurnOff()
  * Address:	8045E900
  * Size:	0000F0
  */
-void PSM::EnemyBase::onCalcOn()
+void EnemyBase::onCalcOn()
 {
 	/*
 	.loc_0x0:
@@ -2410,7 +2410,7 @@ void PSM::EnemyBase::onCalcOn()
  * Address:	8045E9F0
  * Size:	000060
  */
-void PSM::EnemyBase::battleOff()
+void EnemyBase::battleOff()
 {
 	/*
 	.loc_0x0:
@@ -2448,7 +2448,7 @@ void PSM::EnemyBase::battleOff()
  * Address:	8045EA50
  * Size:	000088
  */
-void PSM::EnemyBase::updateKehai()
+void EnemyBase::updateKehai()
 {
 	/*
 	.loc_0x0:
@@ -2498,7 +2498,7 @@ void PSM::EnemyBase::updateKehai()
  * Address:	8045EAD8
  * Size:	0000C8
  */
-void PSM::EnemyBase::updateBattle()
+void EnemyBase::updateBattle()
 {
 	/*
 	.loc_0x0:
@@ -2566,7 +2566,7 @@ void PSM::EnemyBase::updateBattle()
  * Address:	8045EBA0
  * Size:	000338
  */
-void PSM::EnemyBase::calcKehai()
+void EnemyBase::calcKehai()
 {
 	/*
 	.loc_0x0:
@@ -2808,7 +2808,7 @@ void PSM::EnemyBase::calcKehai()
  * Address:	8045EED8
  * Size:	000094
  */
-void PSM::EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+void EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -2871,8 +2871,7 @@ void PSM::EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
  * Address:	8045EF6C
  * Size:	0001AC
  */
-void PSM::EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase*,
-                                                 unsigned char)
+EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2995,7 +2994,7 @@ void PSM::EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase*,
  * Address:	8045F118
  * Size:	000160
  */
-void PSM::Tsuyukusa::Tsuyukusa(Game::Creature*)
+Tsuyukusa::Tsuyukusa(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -3101,7 +3100,7 @@ void PSM::Tsuyukusa::Tsuyukusa(Game::Creature*)
  * Address:	8045F278
  * Size:	0000B8
  */
-void PSM::Tsuyukusa::noukouFrameWork(bool)
+void Tsuyukusa::noukouFrameWork(bool)
 {
 	/*
 	.loc_0x0:
@@ -3165,7 +3164,7 @@ void PSM::Tsuyukusa::noukouFrameWork(bool)
  * Address:	8045F330
  * Size:	000128
  */
-void PSM::EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+void EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3271,7 +3270,7 @@ void PSM::EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
  * Address:	8045F458
  * Size:	000074
  */
-void PSM::EnemyBoss::onPlayingSe(unsigned long, JAISound*)
+void EnemyBoss::onPlayingSe(unsigned long, JAISound*)
 {
 	/*
 	.loc_0x0:
@@ -3314,7 +3313,7 @@ void PSM::EnemyBoss::onPlayingSe(unsigned long, JAISound*)
  * Address:	8045F4CC
  * Size:	000014
  */
-void PSM::EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+void EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3331,7 +3330,7 @@ void PSM::EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
  * Address:	8045F4E0
  * Size:	0000B4
  */
-void PSM::EnemyBoss::exec()
+void EnemyBoss::exec()
 {
 	/*
 	.loc_0x0:
@@ -3394,7 +3393,7 @@ void PSM::EnemyBoss::exec()
  * Address:	8045F594
  * Size:	0000F8
  */
-void PSM::EnemyBoss::onCalcOn()
+void EnemyBoss::onCalcOn()
 {
 	/*
 	.loc_0x0:
@@ -3474,7 +3473,7 @@ void PSM::EnemyBoss::onCalcOn()
  * Address:	8045F68C
  * Size:	000364
  */
-void PSM::EnemyBoss::calcDistance()
+void EnemyBoss::calcDistance()
 {
 	/*
 	.loc_0x0:
@@ -3723,7 +3722,7 @@ void PSM::EnemyBoss::calcDistance()
  * Address:	8045F9F0
  * Size:	000140
  */
-void PSM::EnemyBoss::setAppearFlag(bool)
+void EnemyBoss::setAppearFlag(bool)
 {
 	/*
 	.loc_0x0:
@@ -3827,7 +3826,7 @@ void PSM::EnemyBoss::setAppearFlag(bool)
  * Address:	8045FB30
  * Size:	00005C
  */
-void PSM::EnemyBoss::dyingFrameWork()
+void EnemyBoss::dyingFrameWork()
 {
 	/*
 	.loc_0x0:
@@ -3866,7 +3865,7 @@ void PSM::EnemyBoss::dyingFrameWork()
  * Address:	8045FB8C
  * Size:	000234
  */
-void PSM::EnemyBoss::onDeathMotionTop()
+void EnemyBoss::onDeathMotionTop()
 {
 	/*
 	.loc_0x0:
@@ -4055,7 +4054,7 @@ void PSM::EnemyBoss::onDeathMotionTop()
  * Address:	8045FDC0
  * Size:	00015C
  */
-void PSM::EnemyBoss::setKilled()
+void EnemyBoss::setKilled()
 {
 	/*
 	.loc_0x0:
@@ -4174,7 +4173,7 @@ void PSM::EnemyBoss::setKilled()
  * Address:	8045FF1C
  * Size:	000024
  */
-void PSM::EnemyBoss::isOnDisappearing()
+void EnemyBoss::isOnDisappearing()
 {
 	/*
 	.loc_0x0:
@@ -4195,7 +4194,7 @@ void PSM::EnemyBoss::isOnDisappearing()
  * Address:	8045FF40
  * Size:	000030
  */
-void PSM::EnemyBoss::updateDisappearing()
+void EnemyBoss::updateDisappearing()
 {
 	/*
 	.loc_0x0:
@@ -4219,7 +4218,7 @@ void PSM::EnemyBoss::updateDisappearing()
  * Address:	8045FF70
  * Size:	000260
  */
-void PSM::EnemyMidBoss::EnemyMidBoss(Game::EnemyBase*)
+EnemyMidBoss::EnemyMidBoss(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -4389,7 +4388,7 @@ void PSM::EnemyMidBoss::EnemyMidBoss(Game::EnemyBase*)
  * Address:	804601D0
  * Size:	0001A8
  */
-void PSM::EnemyBoss::~EnemyBoss()
+EnemyBoss::~EnemyBoss()
 {
 	/*
 	.loc_0x0:
@@ -4519,7 +4518,7 @@ void PSM::EnemyBoss::~EnemyBoss()
  * Address:	80460378
  * Size:	00021C
  */
-void PSM::EnemyMidBoss::onCalcOn()
+void EnemyMidBoss::onCalcOn()
 {
 	/*
 	.loc_0x0:
@@ -4690,7 +4689,7 @@ void PSM::EnemyMidBoss::onCalcOn()
  * Address:	80460594
  * Size:	0000EC
  */
-void PSM::EnemyMidBoss::jumpRequest(unsigned short)
+void EnemyMidBoss::jumpRequest(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -4773,7 +4772,7 @@ void PSM::EnemyMidBoss::jumpRequest(unsigned short)
  * Address:	80460680
  * Size:	00010C
  */
-void PSM::EnemyMidBoss::onAppear1st()
+void EnemyMidBoss::onAppear1st()
 {
 	/*
 	.loc_0x0:
@@ -4866,7 +4865,7 @@ void PSM::EnemyMidBoss::onAppear1st()
  * Address:	8046078C
  * Size:	000060
  */
-void PSM::EnemyMidBoss::postPikiAttack(bool)
+void EnemyMidBoss::postPikiAttack(bool)
 {
 	/*
 	.loc_0x0:
@@ -4906,7 +4905,7 @@ void PSM::EnemyMidBoss::postPikiAttack(bool)
  * Address:	804607EC
  * Size:	000068
  */
-void PSM::EnemyBigBoss::EnemyBigBoss(Game::EnemyBase*)
+EnemyBigBoss::EnemyBigBoss(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -4944,7 +4943,7 @@ void PSM::EnemyBigBoss::EnemyBigBoss(Game::EnemyBase*)
  * Address:	80460854
  * Size:	0001F0
  */
-void PSM::EnemyMidBoss::~EnemyMidBoss()
+EnemyMidBoss::~EnemyMidBoss()
 {
 	/*
 	.loc_0x0:
@@ -5094,7 +5093,7 @@ void PSM::EnemyMidBoss::~EnemyMidBoss()
  * Address:	80460A44
  * Size:	000088
  */
-void PSM::EnemyBigBoss::~EnemyBigBoss()
+EnemyBigBoss::~EnemyBigBoss()
 {
 	/*
 	.loc_0x0:
@@ -5142,7 +5141,7 @@ void PSM::EnemyBigBoss::~EnemyBigBoss()
  * Address:	80460ACC
  * Size:	0000E8
  */
-void PSM::EnemyBigBoss::jumpRequest(unsigned short)
+void EnemyBigBoss::jumpRequest(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -5224,7 +5223,7 @@ void PSM::EnemyBigBoss::jumpRequest(unsigned short)
  * Address:	80460BB4
  * Size:	000038
  */
-void PSM::EnemyBigBoss::onDeathMotionTop()
+void EnemyBigBoss::onDeathMotionTop()
 {
 	/*
 	.loc_0x0:
@@ -5250,7 +5249,7 @@ void PSM::EnemyBigBoss::onDeathMotionTop()
  * Address:	80460BEC
  * Size:	00010C
  */
-void PSM::EnemyBigBoss::onAppear1st()
+void EnemyBigBoss::onAppear1st()
 {
 	/*
 	.loc_0x0:
@@ -5343,7 +5342,7 @@ void PSM::EnemyBigBoss::onAppear1st()
  * Address:	80460CF8
  * Size:	0000BC
  */
-void PSM::Enemy_SpecialChappy::onPlayingSe(unsigned long, JAISound*)
+void Enemy_SpecialChappy::onPlayingSe(unsigned long, JAISound*)
 {
 	/*
 	.loc_0x0:
@@ -5408,7 +5407,7 @@ void PSM::Enemy_SpecialChappy::onPlayingSe(unsigned long, JAISound*)
  * Address:	80460DB4
  * Size:	00002C
  */
-void PSM::DirectorLink::eventStart()
+void DirectorLink::eventStart()
 {
 	/*
 	.loc_0x0:
@@ -5431,7 +5430,7 @@ void PSM::DirectorLink::eventStart()
  * Address:	80460DE0
  * Size:	00004C
  */
-void PSM::DirectorLink::eventRestart()
+void DirectorLink::eventRestart()
 {
 	/*
 	.loc_0x0:
@@ -5464,7 +5463,7 @@ void PSM::DirectorLink::eventRestart()
  * Address:	80460E2C
  * Size:	00004C
  */
-void PSM::DirectorLink::eventStop()
+void DirectorLink::eventStop()
 {
 	/*
 	.loc_0x0:
@@ -5497,7 +5496,7 @@ void PSM::DirectorLink::eventStop()
  * Address:	80460E78
  * Size:	00002C
  */
-void PSM::DirectorLink::eventFinish()
+void DirectorLink::eventFinish()
 {
 	/*
 	.loc_0x0:
@@ -5520,7 +5519,7 @@ void PSM::DirectorLink::eventFinish()
  * Address:	80460EA4
  * Size:	000034
  */
-void PSM::EventLink::getListDirectorActor()
+void EventLink::getListDirectorActor()
 {
 	/*
 	.loc_0x0:
@@ -5549,7 +5548,7 @@ void PSM::EventLink::getListDirectorActor()
  * Address:	80460ED8
  * Size:	000034
  */
-void PSM::OtakaraEventLink::getListDirectorActor()
+void OtakaraEventLink::getListDirectorActor()
 {
 	/*
 	.loc_0x0:
@@ -5578,14 +5577,14 @@ void PSM::OtakaraEventLink::getListDirectorActor()
  * Address:	80460F0C
  * Size:	000004
  */
-void PSM::OtakaraEventLink::eventFinish() { }
+void OtakaraEventLink::eventFinish() { }
 
 /*
  * --INFO--
  * Address:	80460F10
  * Size:	000250
  */
-void PSM::OtakaraEventLink_2PBattle::getTargetDirector()
+void OtakaraEventLink_2PBattle::getTargetDirector()
 {
 	/*
 	.loc_0x0:
@@ -5781,7 +5780,7 @@ void PSM::OtakaraEventLink_2PBattle::getTargetDirector()
  * Address:	80461160
  * Size:	000194
  */
-void PSM::OtakaraEventLink_2PBattle::eventStart()
+void OtakaraEventLink_2PBattle::eventStart()
 {
 	/*
 	.loc_0x0:
@@ -5918,7 +5917,7 @@ void PSM::OtakaraEventLink_2PBattle::eventStart()
  * Address:	804612F4
  * Size:	00002C
  */
-void PSM::OtakaraEventLink_2PBattle::eventRestart()
+void OtakaraEventLink_2PBattle::eventRestart()
 {
 	/*
 	.loc_0x0:
@@ -5941,7 +5940,7 @@ void PSM::OtakaraEventLink_2PBattle::eventRestart()
  * Address:	80461320
  * Size:	000194
  */
-void PSM::OtakaraEventLink_2PBattle::eventStop()
+void OtakaraEventLink_2PBattle::eventStop()
 {
 	/*
 	.loc_0x0:
@@ -6078,7 +6077,7 @@ void PSM::OtakaraEventLink_2PBattle::eventStop()
  * Address:	804614B4
  * Size:	00002C
  */
-void PSM::OtakaraEventLink_2PBattle::eventFinish()
+void OtakaraEventLink_2PBattle::eventFinish()
 {
 	/*
 	.loc_0x0:
@@ -6101,7 +6100,7 @@ void PSM::OtakaraEventLink_2PBattle::eventFinish()
  * Address:	804614E0
  * Size:	000140
  */
-void PSM::OtakaraEventLink_2PBattle::getListDirectorActor()
+void OtakaraEventLink_2PBattle::getListDirectorActor()
 {
 	/*
 	.loc_0x0:
@@ -6205,7 +6204,7 @@ void PSM::OtakaraEventLink_2PBattle::getListDirectorActor()
  * Address:	80461620
  * Size:	000170
  */
-void PSM::WorkItem::WorkItem(Game::BaseItem*)
+WorkItem::WorkItem(Game::BaseItem*)
 {
 	/*
 	.loc_0x0:
@@ -6313,7 +6312,7 @@ void PSM::WorkItem::WorkItem(Game::BaseItem*)
  * Address:	80461790
  * Size:	000030
  */
-void PSM::WorkItem::eventStart()
+void WorkItem::eventStart()
 {
 	/*
 	.loc_0x0:
@@ -6337,7 +6336,7 @@ void PSM::WorkItem::eventStart()
  * Address:	804617C0
  * Size:	000030
  */
-void PSM::WorkItem::eventRestart()
+void WorkItem::eventRestart()
 {
 	/*
 	.loc_0x0:
@@ -6361,7 +6360,7 @@ void PSM::WorkItem::eventRestart()
  * Address:	804617F0
  * Size:	000030
  */
-void PSM::WorkItem::eventStop()
+void WorkItem::eventStop()
 {
 	/*
 	.loc_0x0:
@@ -6385,7 +6384,7 @@ void PSM::WorkItem::eventStop()
  * Address:	80461820
  * Size:	000030
  */
-void PSM::WorkItem::eventFinish()
+void WorkItem::eventFinish()
 {
 	/*
 	.loc_0x0:
@@ -6409,7 +6408,7 @@ void PSM::WorkItem::eventFinish()
  * Address:	80461850
  * Size:	0001A0
  */
-void PSM::Otakara::setGoalOnyon(Game::Creature*)
+void Otakara::setGoalOnyon(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -6541,7 +6540,7 @@ void PSM::Otakara::setGoalOnyon(Game::Creature*)
  * Address:	804619F0
  * Size:	0000DC
  */
-void PSM::Otakara::otakaraEventStart()
+void Otakara::otakaraEventStart()
 {
 	/*
 	.loc_0x0:
@@ -6618,7 +6617,7 @@ void PSM::Otakara::otakaraEventStart()
  * Address:	80461ACC
  * Size:	0000DC
  */
-void PSM::Otakara::otakaraEventRestart()
+void Otakara::otakaraEventRestart()
 {
 	/*
 	.loc_0x0:
@@ -6695,7 +6694,7 @@ void PSM::Otakara::otakaraEventRestart()
  * Address:	80461BA8
  * Size:	0000DC
  */
-void PSM::Otakara::otakaraEventStop()
+void Otakara::otakaraEventStop()
 {
 	/*
 	.loc_0x0:
@@ -6772,7 +6771,7 @@ void PSM::Otakara::otakaraEventStop()
  * Address:	80461C84
  * Size:	0000DC
  */
-void PSM::Otakara::otakaraEventFinish()
+void Otakara::otakaraEventFinish()
 {
 	/*
 	.loc_0x0:
@@ -6849,7 +6848,7 @@ void PSM::Otakara::otakaraEventFinish()
  * Address:	80461D60
  * Size:	000224
  */
-void PSM::PelletOtakara::PelletOtakara(Game::PelletOtakara::Object*, bool)
+PelletOtakara::PelletOtakara(Game::PelletOtakara::Object*, bool)
 {
 	/*
 	.loc_0x0:
@@ -7010,7 +7009,7 @@ void PSM::PelletOtakara::PelletOtakara(Game::PelletOtakara::Object*, bool)
  * Address:	80461F84
  * Size:	000148
  */
-void PSM::Otakara::~Otakara()
+Otakara::~Otakara()
 {
 	/*
 	.loc_0x0:
@@ -7110,7 +7109,7 @@ void PSM::Otakara::~Otakara()
  * Address:	804620CC
  * Size:	0001D4
  */
-void PSM::PelletItem::PelletItem(Game::PelletItem::Object*)
+PelletItem::PelletItem(Game::PelletItem::Object*)
 {
 	/*
 	.loc_0x0:
@@ -7245,7 +7244,7 @@ void PSM::PelletItem::PelletItem(Game::PelletItem::Object*)
  * Address:	804622A0
  * Size:	000148
  */
-void PSM::Piki::Piki(Game::Piki*)
+Piki::Piki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -7343,7 +7342,7 @@ void PSM::Piki::Piki(Game::Piki*)
  * Address:	804623E8
  * Size:	000180
  */
-void PSM::Piki::onCalcOn()
+void Piki::onCalcOn()
 {
 	/*
 	.loc_0x0:
@@ -7475,14 +7474,10 @@ void PSM::Piki::onCalcOn()
  * Address:	80462568
  * Size:	00000C
  */
-void PSM::Piki::becomeFree()
+void Piki::becomeFree()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x70(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x70(r3)
+	_70 = 0;
 }
 
 /*
@@ -7490,14 +7485,10 @@ void PSM::Piki::becomeFree()
  * Address:	80462574
  * Size:	00000C
  */
-void PSM::Piki::becomeNotFree()
+void Piki::becomeNotFree()
 {
-	/*
-	.loc_0x0:
-	  li        r0, -0x1
-	  stw       r0, 0x70(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x70(r3)
+	_70 = -1;
 }
 
 /*
@@ -7505,7 +7496,7 @@ void PSM::Piki::becomeNotFree()
  * Address:	80462580
  * Size:	000144
  */
-void PSM::Piki::startFreePikiSound(unsigned long, unsigned long, unsigned long)
+void Piki::startFreePikiSound(unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7614,7 +7605,7 @@ void PSM::Piki::startFreePikiSound(unsigned long, unsigned long, unsigned long)
  * Address:	804626C4
  * Size:	000070
  */
-void PSM::Piki::startPikiSound(JAInter::Object*, unsigned long, unsigned long)
+void Piki::startPikiSound(JAInter::Object*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7658,8 +7649,8 @@ void PSM::Piki::startPikiSound(JAInter::Object*, unsigned long, unsigned long)
  * Address:	80462734
  * Size:	0000B4
  */
-void PSM::Piki::startPikiSetSound(JAInter::Object*, unsigned long,
-                                  PSGame::SeMgr::SetSeId, unsigned long)
+void Piki::startPikiSetSound(JAInter::Object*, unsigned long,
+                             PSGame::SeMgr::SetSeId, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7722,8 +7713,8 @@ void PSM::Piki::startPikiSetSound(JAInter::Object*, unsigned long,
  * Address:	804627E8
  * Size:	0001D4
  */
-void PSM::Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId,
-                                      unsigned long, unsigned long)
+void Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId,
+                                 unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7880,7 +7871,7 @@ void PSM::Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId,
  * Address:	804629BC
  * Size:	000104
  */
-void PSM::Piki::checkHappaChappySE(unsigned long)
+void Piki::checkHappaChappySE(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7963,7 +7954,7 @@ void PSM::Piki::checkHappaChappySE(unsigned long)
  * Address:	80462AC0
  * Size:	000138
  */
-void PSM::Navi::Navi(Game::Navi*)
+Navi::Navi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -8057,7 +8048,7 @@ void PSM::Navi::Navi(Game::Navi*)
  * Address:	80462BF8
  * Size:	000024
  */
-void PSM::Navi::init(unsigned short)
+void Navi::init(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -8078,7 +8069,7 @@ void PSM::Navi::init(unsigned short)
  * Address:	80462C1C
  * Size:	000028
  */
-void PSM::Navi::setShacho()
+void Navi::setShacho()
 {
 	/*
 	.loc_0x0:
@@ -8100,7 +8091,7 @@ void PSM::Navi::setShacho()
  * Address:	80462C44
  * Size:	000050
  */
-void PSM::Navi::stopWaitVoice()
+void Navi::stopWaitVoice()
 {
 	/*
 	.loc_0x0:
@@ -8134,7 +8125,7 @@ void PSM::Navi::stopWaitVoice()
  * Address:	80462C94
  * Size:	000108
  */
-void PSM::Navi::startSound(unsigned long, unsigned long)
+void Navi::startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -8226,7 +8217,7 @@ void PSM::Navi::startSound(unsigned long, unsigned long)
  * Address:	80462D9C
  * Size:	000028
  */
-void PSM::Navi::getManType()
+void Navi::getManType()
 {
 	/*
 	.loc_0x0:
@@ -8250,7 +8241,7 @@ void PSM::Navi::getManType()
  * Address:	80462DC4
  * Size:	0000A0
  */
-void PSM::Navi::playShugoSE()
+void Navi::playShugoSE()
 {
 	/*
 	.loc_0x0:
@@ -8318,7 +8309,7 @@ void PSM::Navi::playShugoSE()
  * Address:	80462E64
  * Size:	0000A0
  */
-void PSM::Navi::playKaisanSE()
+void Navi::playKaisanSE()
 {
 	/*
 	.loc_0x0:
@@ -8386,7 +8377,7 @@ void PSM::Navi::playKaisanSE()
  * Address:	80462F04
  * Size:	000130
  */
-void PSM::Navi::playWalkSound(PSM::Navi::FootType, int)
+void Navi::playWalkSound(PSM::Navi::FootType, int)
 {
 	/*
 	.loc_0x0:
@@ -8488,7 +8479,7 @@ void PSM::Navi::playWalkSound(PSM::Navi::FootType, int)
  * Address:	80463034
  * Size:	000158
  */
-void PSM::Cluster::Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&)
+Cluster::Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&)
 {
 	/*
 	.loc_0x0:
@@ -8592,7 +8583,7 @@ void PSM::Cluster::Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&)
  * Address:	8046318C
  * Size:	000060
  */
-void PSM::Cluster::startClusterSound(unsigned char)
+void Cluster::startClusterSound(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -8624,6 +8615,8 @@ void PSM::Cluster::startClusterSound(unsigned char)
 	  blr
 	*/
 }
+
+} // namespace PSM
 
 /*
  * --INFO--
@@ -8723,12 +8716,14 @@ void PSSetLastBeedamaDirection(bool, bool)
 	*/
 }
 
+namespace PSM {
+
 /*
  * --INFO--
  * Address:	804632BC
  * Size:	0000E8
  */
-void PSM::Cluster::~Cluster()
+Cluster::~Cluster()
 {
 	/*
 	.loc_0x0:
@@ -8802,49 +8797,49 @@ void PSM::Cluster::~Cluster()
  * Address:	804633A4
  * Size:	000008
  */
-u32 PSM::SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long) { return 0x1; }
+u32 SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804633AC
  * Size:	000008
  */
-u32 PSM::SceneBase::isDemoScene() { return 0x0; }
+u32 SceneBase::isDemoScene() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	804633B4
  * Size:	000004
  */
-void PSM::EnemyBoss::onDisappear() { }
+void EnemyBoss::onDisappear() { }
 
 /*
  * --INFO--
  * Address:	804633B8
  * Size:	000004
  */
-void PSM::EnemyBoss::onAppear() { }
+void EnemyBoss::onAppear() { }
 
 /*
  * --INFO--
  * Address:	804633BC
  * Size:	000004
  */
-void PSM::EnemyBoss::onAppear1st() { }
+void EnemyBoss::onAppear1st() { }
 
 /*
  * --INFO--
  * Address:	804633C0
  * Size:	000008
  */
-u32 PSM::Navi::getCastType() { return 0xF; }
+u32 Navi::getCastType() { return 0xF; }
 
 /*
  * --INFO--
  * Address:	804633C8
  * Size:	0000E8
  */
-void PSM::Piki::~Piki()
+Piki::~Piki()
 {
 	/*
 	.loc_0x0:
@@ -8918,14 +8913,14 @@ void PSM::Piki::~Piki()
  * Address:	804634B0
  * Size:	000008
  */
-u32 PSM::Piki::getCastType() { return 0xE; }
+u32 Piki::getCastType() { return 0xE; }
 
 /*
  * --INFO--
  * Address:	804634B8
  * Size:	000168
  */
-void PSM::PelletItem::~PelletItem()
+PelletItem::~PelletItem()
 {
 	/*
 	.loc_0x0:
@@ -9033,14 +9028,14 @@ void PSM::PelletItem::~PelletItem()
  * Address:	80463620
  * Size:	000008
  */
-u32 PSM::PelletItem::getCastType() { return 0xD; }
+u32 PelletItem::getCastType() { return 0xD; }
 
 /*
  * --INFO--
  * Address:	80463628
  * Size:	000168
  */
-void PSM::PelletOtakara::~PelletOtakara()
+PelletOtakara::~PelletOtakara()
 {
 	/*
 	.loc_0x0:
@@ -9148,21 +9143,21 @@ void PSM::PelletOtakara::~PelletOtakara()
  * Address:	80463790
  * Size:	000008
  */
-u32 PSM::PelletOtakara::getCastType() { return 0xC; }
+u32 PelletOtakara::getCastType() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	80463798
  * Size:	000008
  */
-u32 PSM::Otakara::getCastType() { return 0xB; }
+u32 Otakara::getCastType() { return 0xB; }
 
 /*
  * --INFO--
  * Address:	804637A0
  * Size:	000148
  */
-void PSM::WorkItem::~WorkItem()
+WorkItem::~WorkItem()
 {
 	/*
 	.loc_0x0:
@@ -9262,21 +9257,21 @@ void PSM::WorkItem::~WorkItem()
  * Address:	804638E8
  * Size:	000008
  */
-u32 PSM::WorkItem::getCastType() { return 0xA; }
+u32 WorkItem::getCastType() { return 0xA; }
 
 /*
  * --INFO--
  * Address:	804638F0
  * Size:	000008
  */
-u32 PSM::OtakaraEventLink_2PBattle::is2PBattle() { return 0x1; }
+u32 OtakaraEventLink_2PBattle::is2PBattle() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804638F8
  * Size:	0001C0
  */
-void PSM::Enemy_SpecialChappy::~Enemy_SpecialChappy()
+Enemy_SpecialChappy::~Enemy_SpecialChappy()
 {
 	/*
 	.loc_0x0:
@@ -9410,35 +9405,35 @@ void PSM::Enemy_SpecialChappy::~Enemy_SpecialChappy()
  * Address:	80463AB8
  * Size:	000008
  */
-u32 PSM::EnemyBig::getCastType() { return 0x8; }
+u32 EnemyBig::getCastType() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80463AC0
  * Size:	000008
  */
-u32 PSM::EnemyBigBoss::getCastType() { return 0x7; }
+u32 EnemyBigBoss::getCastType() { return 0x7; }
 
 /*
  * --INFO--
  * Address:	80463AC8
  * Size:	000008
  */
-u32 PSM::EnemyMidBoss::getCastType() { return 0x6; }
+u32 EnemyMidBoss::getCastType() { return 0x6; }
 
 /*
  * --INFO--
  * Address:	80463AD0
  * Size:	000008
  */
-u32 PSM::EnemyBoss::getCastType() { return 0x4; }
+u32 EnemyBoss::getCastType() { return 0x4; }
 
 /*
  * --INFO--
  * Address:	80463AD8
  * Size:	000100
  */
-void PSM::Tsuyukusa::~Tsuyukusa()
+Tsuyukusa::~Tsuyukusa()
 {
 	/*
 	.loc_0x0:
@@ -9520,7 +9515,7 @@ void PSM::Tsuyukusa::~Tsuyukusa()
  * Address:	80463BD8
  * Size:	000190
  */
-void PSM::EnemyNotAggressive::~EnemyNotAggressive()
+EnemyNotAggressive::~EnemyNotAggressive()
 {
 	/*
 	.loc_0x0:
@@ -9642,63 +9637,63 @@ void PSM::EnemyNotAggressive::~EnemyNotAggressive()
  * Address:	80463D68
  * Size:	000008
  */
-u32 PSM::EnemyNotAggressive::getCastType() { return 0x9; }
+u32 EnemyNotAggressive::getCastType() { return 0x9; }
 
 /*
  * --INFO--
  * Address:	80463D70
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::updateKehai() { }
+void EnemyNotAggressive::updateKehai() { }
 
 /*
  * --INFO--
  * Address:	80463D74
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::updateBattle() { }
+void EnemyNotAggressive::updateBattle() { }
 
 /*
  * --INFO--
  * Address:	80463D78
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::battleOff() { }
+void EnemyNotAggressive::battleOff() { }
 
 /*
  * --INFO--
  * Address:	80463D7C
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::battleOn() { }
+void EnemyNotAggressive::battleOn() { }
 
 /*
  * --INFO--
  * Address:	80463D80
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::kehaiOff() { }
+void EnemyNotAggressive::kehaiOff() { }
 
 /*
  * --INFO--
  * Address:	80463D84
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::kehaiOn() { }
+void EnemyNotAggressive::kehaiOn() { }
 
 /*
  * --INFO--
  * Address:	80463D88
  * Size:	000008
  */
-u32 PSM::CreatureAnime::getCastType() { return 0x1; }
+u32 CreatureAnime::getCastType() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80463D90
  * Size:	0000F8
  */
-void PSM::Navi::~Navi()
+Navi::~Navi()
 {
 	/*
 	.loc_0x0:
@@ -9776,7 +9771,7 @@ void PSM::Navi::~Navi()
  * Address:	80463E88
  * Size:	000008
  */
-void PSM::ObjBase::@16 @__dt()
+ObjBase::@16 @~ObjBase()
 {
 	/*
 	.loc_0x0:
@@ -9790,7 +9785,7 @@ void PSM::ObjBase::@16 @__dt()
  * Address:	80463E90
  * Size:	000008
  */
-void PSM::ObjMgr::@12 @__dt()
+ObjMgr::@12 @~ObjMgr()
 {
 	/*
 	.loc_0x0:
@@ -9804,7 +9799,7 @@ void PSM::ObjMgr::@12 @__dt()
  * Address:	80463E98
  * Size:	000008
  */
-void PSM::ObjMgr::@16 @__dt()
+ObjMgr::@16 @~ObjMgr()
 {
 	/*
 	.loc_0x0:
@@ -9818,7 +9813,7 @@ void PSM::ObjMgr::@16 @__dt()
  * Address:	80463EA0
  * Size:	000008
  */
-void PSM::Creature::@16 @__dt()
+Creature::@16 @~Creature()
 {
 	/*
 	.loc_0x0:
@@ -9832,7 +9827,7 @@ void PSM::Creature::@16 @__dt()
  * Address:	80463EA8
  * Size:	000008
  */
-void PSM::CreatureObj::@16 @__dt()
+CreatureObj::@16 @~CreatureObj()
 {
 	/*
 	.loc_0x0:
@@ -9846,7 +9841,7 @@ void PSM::CreatureObj::@16 @__dt()
  * Address:	80463EB0
  * Size:	000008
  */
-void PSM::CreatureObj::@48 @__dt()
+CreatureObj::@48 @~CreatureObj()
 {
 	/*
 	.loc_0x0:
@@ -9860,7 +9855,7 @@ void PSM::CreatureObj::@48 @__dt()
  * Address:	80463EB8
  * Size:	000008
  */
-void PSM::CreatureAnime::@16 @__dt()
+CreatureAnime::@16 @~CreatureAnime()
 {
 	/*
 	.loc_0x0:
@@ -9874,7 +9869,7 @@ void PSM::CreatureAnime::@16 @__dt()
  * Address:	80463EC0
  * Size:	000008
  */
-void PSM::CreatureAnime::@48 @__dt()
+CreatureAnime::@48 @~CreatureAnime()
 {
 	/*
 	.loc_0x0:
@@ -9903,7 +9898,7 @@ void PSM::CreatureAnime::@48
  * Address:	80463ED0
  * Size:	000008
  */
-void PSM::EnemyBase::@16 @__dt()
+EnemyBase::@16 @~EnemyBase()
 {
 	/*
 	.loc_0x0:
@@ -9917,7 +9912,7 @@ void PSM::EnemyBase::@16 @__dt()
  * Address:	80463ED8
  * Size:	000008
  */
-void PSM::EnemyBase::@48 @__dt()
+EnemyBase::@48 @~EnemyBase()
 {
 	/*
 	.loc_0x0:
@@ -9931,7 +9926,7 @@ void PSM::EnemyBase::@48 @__dt()
  * Address:	80463EE0
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::@16 @__dt()
+EnemyNotAggressive::@16 @~EnemyNotAggressive()
 {
 	/*
 	.loc_0x0:
@@ -9945,7 +9940,7 @@ void PSM::EnemyNotAggressive::@16 @__dt()
  * Address:	80463EE8
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::@48 @__dt()
+EnemyNotAggressive::@48 @~EnemyNotAggressive()
 {
 	/*
 	.loc_0x0:
@@ -9959,7 +9954,7 @@ void PSM::EnemyNotAggressive::@48 @__dt()
  * Address:	80463EF0
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::@184 @battleOff()
+void EnemyNotAggressive::@184 @battleOff()
 {
 	/*
 	.loc_0x0:
@@ -9973,7 +9968,7 @@ void PSM::EnemyNotAggressive::@184 @battleOff()
  * Address:	80463EF8
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::@184 @battleOn()
+void EnemyNotAggressive::@184 @battleOn()
 {
 	/*
 	.loc_0x0:
@@ -9987,7 +9982,7 @@ void PSM::EnemyNotAggressive::@184 @battleOn()
  * Address:	80463F00
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::@204 @kehaiOff()
+void EnemyNotAggressive::@204 @kehaiOff()
 {
 	/*
 	.loc_0x0:
@@ -10001,7 +9996,7 @@ void PSM::EnemyNotAggressive::@204 @kehaiOff()
  * Address:	80463F08
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::@204 @kehaiOn()
+void EnemyNotAggressive::@204 @kehaiOn()
 {
 	/*
 	.loc_0x0:
@@ -10015,7 +10010,7 @@ void PSM::EnemyNotAggressive::@204 @kehaiOn()
  * Address:	80463F10
  * Size:	000008
  */
-void PSM::Tsuyukusa::@16 @__dt()
+Tsuyukusa::@16 @~Tsuyukusa()
 {
 	/*
 	.loc_0x0:
@@ -10029,7 +10024,7 @@ void PSM::Tsuyukusa::@16 @__dt()
  * Address:	80463F18
  * Size:	000008
  */
-void PSM::Tsuyukusa::@48 @__dt()
+Tsuyukusa::@48 @~Tsuyukusa()
 {
 	/*
 	.loc_0x0:
@@ -10043,7 +10038,7 @@ void PSM::Tsuyukusa::@48 @__dt()
  * Address:	80463F20
  * Size:	000008
  */
-void PSM::EnemyBig::@16 @__dt()
+EnemyBig::@16 @~EnemyBig()
 {
 	/*
 	.loc_0x0:
@@ -10057,7 +10052,7 @@ void PSM::EnemyBig::@16 @__dt()
  * Address:	80463F28
  * Size:	000008
  */
-void PSM::EnemyBig::@48 @__dt()
+EnemyBig::@48 @~EnemyBig()
 {
 	/*
 	.loc_0x0:
@@ -10071,7 +10066,7 @@ void PSM::EnemyBig::@48 @__dt()
  * Address:	80463F30
  * Size:	000008
  */
-void PSM::EnemyBoss::@16 @__dt()
+EnemyBoss::@16 @~EnemyBoss()
 {
 	/*
 	.loc_0x0:
@@ -10085,7 +10080,7 @@ void PSM::EnemyBoss::@16 @__dt()
  * Address:	80463F38
  * Size:	000008
  */
-void PSM::EnemyBoss::@48 @__dt()
+EnemyBoss::@48 @~EnemyBoss()
 {
 	/*
 	.loc_0x0:
@@ -10099,7 +10094,7 @@ void PSM::EnemyBoss::@48 @__dt()
  * Address:	80463F40
  * Size:	000008
  */
-void PSM::EnemyMidBoss::@16 @__dt()
+EnemyMidBoss::@16 @~EnemyMidBoss()
 {
 	/*
 	.loc_0x0:
@@ -10113,7 +10108,7 @@ void PSM::EnemyMidBoss::@16 @__dt()
  * Address:	80463F48
  * Size:	000008
  */
-void PSM::EnemyMidBoss::@48 @__dt()
+EnemyMidBoss::@48 @~EnemyMidBoss()
 {
 	/*
 	.loc_0x0:
@@ -10127,7 +10122,7 @@ void PSM::EnemyMidBoss::@48 @__dt()
  * Address:	80463F50
  * Size:	000008
  */
-void PSM::EnemyBigBoss::@16 @__dt()
+EnemyBigBoss::@16 @~EnemyBigBoss()
 {
 	/*
 	.loc_0x0:
@@ -10141,7 +10136,7 @@ void PSM::EnemyBigBoss::@16 @__dt()
  * Address:	80463F58
  * Size:	000008
  */
-void PSM::EnemyBigBoss::@48 @__dt()
+EnemyBigBoss::@48 @~EnemyBigBoss()
 {
 	/*
 	.loc_0x0:
@@ -10155,7 +10150,7 @@ void PSM::EnemyBigBoss::@48 @__dt()
  * Address:	80463F60
  * Size:	000008
  */
-void PSM::Enemy_SpecialChappy::@16 @__dt()
+Enemy_SpecialChappy::@16 @~Enemy_SpecialChappy()
 {
 	/*
 	.loc_0x0:
@@ -10169,7 +10164,7 @@ void PSM::Enemy_SpecialChappy::@16 @__dt()
  * Address:	80463F68
  * Size:	000008
  */
-void PSM::Enemy_SpecialChappy::@48 @__dt()
+Enemy_SpecialChappy::@48 @~Enemy_SpecialChappy()
 {
 	/*
 	.loc_0x0:
@@ -10183,7 +10178,7 @@ void PSM::Enemy_SpecialChappy::@48 @__dt()
  * Address:	80463F70
  * Size:	000008
  */
-void PSM::WorkItem::@16 @__dt()
+WorkItem::@16 @~WorkItem()
 {
 	/*
 	.loc_0x0:
@@ -10197,7 +10192,7 @@ void PSM::WorkItem::@16 @__dt()
  * Address:	80463F78
  * Size:	000008
  */
-void PSM::WorkItem::@48 @__dt()
+WorkItem::@48 @~WorkItem()
 {
 	/*
 	.loc_0x0:
@@ -10211,7 +10206,7 @@ void PSM::WorkItem::@48 @__dt()
  * Address:	80463F80
  * Size:	000008
  */
-void PSM::Otakara::@16 @__dt()
+Otakara::@16 @~Otakara()
 {
 	/*
 	.loc_0x0:
@@ -10225,7 +10220,7 @@ void PSM::Otakara::@16 @__dt()
  * Address:	80463F88
  * Size:	000008
  */
-void PSM::Otakara::@48 @__dt()
+Otakara::@48 @~Otakara()
 {
 	/*
 	.loc_0x0:
@@ -10239,7 +10234,7 @@ void PSM::Otakara::@48 @__dt()
  * Address:	80463F90
  * Size:	000008
  */
-void PSM::PelletOtakara::@16 @__dt()
+PelletOtakara::@16 @~PelletOtakara()
 {
 	/*
 	.loc_0x0:
@@ -10253,7 +10248,7 @@ void PSM::PelletOtakara::@16 @__dt()
  * Address:	80463F98
  * Size:	000008
  */
-void PSM::PelletOtakara::@48 @__dt()
+PelletOtakara::@48 @~PelletOtakara()
 {
 	/*
 	.loc_0x0:
@@ -10267,7 +10262,7 @@ void PSM::PelletOtakara::@48 @__dt()
  * Address:	80463FA0
  * Size:	000008
  */
-void PSM::PelletItem::@16 @__dt()
+PelletItem::@16 @~PelletItem()
 {
 	/*
 	.loc_0x0:
@@ -10281,7 +10276,7 @@ void PSM::PelletItem::@16 @__dt()
  * Address:	80463FA8
  * Size:	000008
  */
-void PSM::PelletItem::@48 @__dt()
+PelletItem::@48 @~PelletItem()
 {
 	/*
 	.loc_0x0:
@@ -10295,7 +10290,7 @@ void PSM::PelletItem::@48 @__dt()
  * Address:	80463FB0
  * Size:	000008
  */
-void PSM::Piki::@16 @__dt()
+Piki::@16 @~Piki()
 {
 	/*
 	.loc_0x0:
@@ -10309,7 +10304,7 @@ void PSM::Piki::@16 @__dt()
  * Address:	80463FB8
  * Size:	000008
  */
-void PSM::Piki::@48 @__dt()
+Piki::@48 @~Piki()
 {
 	/*
 	.loc_0x0:
@@ -10323,7 +10318,7 @@ void PSM::Piki::@48 @__dt()
  * Address:	80463FC0
  * Size:	000008
  */
-void PSM::Navi::@16 @__dt()
+Navi::@16 @~Navi()
 {
 	/*
 	.loc_0x0:
@@ -10337,7 +10332,7 @@ void PSM::Navi::@16 @__dt()
  * Address:	80463FC8
  * Size:	000008
  */
-void PSM::Navi::@48 @startSound(unsigned long, unsigned long)
+void Navi::@48 @startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -10351,7 +10346,7 @@ void PSM::Navi::@48 @startSound(unsigned long, unsigned long)
  * Address:	80463FD0
  * Size:	000008
  */
-void PSM::Navi::@48 @__dt()
+Navi::@48 @~Navi()
 {
 	/*
 	.loc_0x0:
@@ -10365,7 +10360,7 @@ void PSM::Navi::@48 @__dt()
  * Address:	80463FD8
  * Size:	000008
  */
-void PSM::Cluster::@16 @__dt()
+Cluster::@16 @~Cluster()
 {
 	/*
 	.loc_0x0:
@@ -10379,7 +10374,7 @@ void PSM::Cluster::@16 @__dt()
  * Address:	80463FE0
  * Size:	000008
  */
-void PSM::Cluster::@48 @__dt()
+Cluster::@48 @~Cluster()
 {
 	/*
 	.loc_0x0:
@@ -10387,3 +10382,4 @@ void PSM::Cluster::@48 @__dt()
 	  b         -0xD28
 	*/
 }
+} // namespace PSM

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8042BD0C
  * Size:	00005C
  */
-void WipeBase::WipeBase()
+WipeBase::WipeBase()
 {
 	/*
 	.loc_0x0:
@@ -210,7 +200,7 @@ void WipeInFader::isBlack()
  * Address:	8042BEB8
  * Size:	000078
  */
-void WipeInFader::WipeInFader()
+WipeInFader::WipeInFader()
 {
 	/*
 	.loc_0x0:
@@ -349,7 +339,7 @@ void WipeInFader::do_draw(float)
  * Address:	8042C074
  * Size:	000078
  */
-void WipeOutFader::WipeOutFader()
+WipeOutFader::WipeOutFader()
 {
 	/*
 	.loc_0x0:
@@ -675,7 +665,7 @@ void WipeOutInFader::do_draw(float)
  * Address:	8042C3C4
  * Size:	00007C
  */
-void BlackFader::BlackFader()
+BlackFader::BlackFader()
 {
 	/*
 	.loc_0x0:
@@ -834,7 +824,7 @@ void BlackFader::do_draw(float)
  * Address:	........
  * Size:	000164
  */
-void BallFader::BallFader(int)
+BallFader::BallFader(int)
 {
 	// UNUSED FUNCTION
 }
@@ -844,7 +834,7 @@ void BallFader::BallFader(int)
  * Address:	........
  * Size:	000004
  */
-void BallFader::Ball::__ct(void)
+BallFader::Ball::Ball(void)
 {
 	// UNUSED FUNCTION
 }
@@ -954,7 +944,7 @@ void BallFader::birth()
  * Address:	........
  * Size:	000070
  */
-void BallFader::~BallFader()
+BallFader::~BallFader()
 {
 	// UNUSED FUNCTION
 }
@@ -978,7 +968,7 @@ u32 WipeBase::isBlack() { return 0x0; }
  * Address:	8042C588
  * Size:	000070
  */
-void BlackFader::~BlackFader()
+BlackFader::~BlackFader()
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1012,7 @@ void BlackFader::~BlackFader()
  * Address:	8042C5F8
  * Size:	0000E0
  */
-void WipeOutInFader::~WipeOutInFader()
+WipeOutInFader::~WipeOutInFader()
 {
 	/*
 	.loc_0x0:

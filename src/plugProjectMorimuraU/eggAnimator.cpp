@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034B63C
  * Size:	000008
  */
-void Game::Egg::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Egg::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::Egg::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8034B644
  * Size:	000008
  */
-void Game::Egg::ProperAnimator::getAnimator((int))
+void Egg::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::Egg::ProperAnimator::getAnimator((int))
  * Address:	8034B64C
  * Size:	00005C
  */
-void Game::Egg::ProperAnimator::__dt(void)
+Egg::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::Egg::ProperAnimator::__dt(void)
  * Address:	8034B6A8
  * Size:	000008
  */
-void Game::Egg::ProperAnimator::getAnimator(void)
+void Egg::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::Egg::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

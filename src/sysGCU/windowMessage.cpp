@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	8043F188
  * Size:	000050
  */
-void P2JME::Window::DrawInfo::__ct(void)
+Window::DrawInfo::DrawInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void P2JME::Window::DrawInfo::__ct(void)
  * Address:	........
  * Size:	00002C
  */
-void P2JME::Window::DrawInfo::update(void)
+void Window::DrawInfo::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -47,7 +49,7 @@ void P2JME::Window::DrawInfo::update(void)
  * Address:	........
  * Size:	000010
  */
-void P2JME::Window::DrawInfo::init((int))
+void Window::DrawInfo::init(int)
 {
 	// UNUSED FUNCTION
 }
@@ -57,7 +59,7 @@ void P2JME::Window::DrawInfo::init((int))
  * Address:	........
  * Size:	000038
  */
-void P2JME::Window::DrawInfoMgr::__ct(void)
+Window::DrawInfoMgr::DrawInfoMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -67,7 +69,7 @@ void P2JME::Window::DrawInfoMgr::__ct(void)
  * Address:	........
  * Size:	000100
  */
-void P2JME::Window::DrawInfoMgr::init((unsigned long))
+void Window::DrawInfoMgr::init(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -77,7 +79,7 @@ void P2JME::Window::DrawInfoMgr::init((unsigned long))
  * Address:	8043F1D8
  * Size:	000060
  */
-void P2JME::Window::DrawInfo::__dt(void)
+Window::DrawInfo::~DrawInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +117,7 @@ void P2JME::Window::DrawInfo::__dt(void)
  * Address:	........
  * Size:	000040
  */
-void P2JME::Window::DrawInfoMgr::update(void)
+void Window::DrawInfoMgr::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -125,7 +127,7 @@ void P2JME::Window::DrawInfoMgr::update(void)
  * Address:	........
  * Size:	000050
  */
-void P2JME::Window::DrawInfoMgr::reset(void)
+void Window::DrawInfoMgr::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +137,7 @@ void P2JME::Window::DrawInfoMgr::reset(void)
  * Address:	8043F238
  * Size:	000030
  */
-void P2JME::Window::DrawInfoMgr::searchDrawInfo((int))
+void Window::DrawInfoMgr::searchDrawInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -165,7 +167,7 @@ void P2JME::Window::DrawInfoMgr::searchDrawInfo((int))
  * Address:	8043F268
  * Size:	000060
  */
-void P2JME::Window::DrawInfoMgr::getDrawInfo((int))
+void Window::DrawInfoMgr::getDrawInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -203,7 +205,7 @@ void P2JME::Window::DrawInfoMgr::getDrawInfo((int))
  * Address:	........
  * Size:	000078
  */
-void P2JME::Window::DrawInfoMgr::releaseDrawInfo((P2JME::Window::DrawInfo*))
+void Window::DrawInfoMgr::releaseDrawInfo(P2JME::Window::DrawInfo*)
 {
 	// UNUSED FUNCTION
 }
@@ -213,8 +215,8 @@ void P2JME::Window::DrawInfoMgr::releaseDrawInfo((P2JME::Window::DrawInfo*))
  * Address:	8043F2C8
  * Size:	00003C
  */
-void P2JME::Window::TSequenceProcessor::__ct((JMessage::TReference*,
-                                              JMessage::TControl*))
+Window::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*,
+                                               JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +243,7 @@ void P2JME::Window::TSequenceProcessor::__ct((JMessage::TReference*,
  * Address:	8043F304
  * Size:	0000A4
  */
-void P2JME::Window::TSequenceProcessor::doCharacterSE((int))
+void Window::TSequenceProcessor::doCharacterSE(int)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +304,7 @@ void P2JME::Window::TSequenceProcessor::doCharacterSE((int))
  * Address:	8043F3A8
  * Size:	00007C
  */
-void P2JME::Window::TSequenceProcessor::doCharacterSEStart(void)
+void Window::TSequenceProcessor::doCharacterSEStart(void)
 {
 	/*
 	.loc_0x0:
@@ -351,7 +353,7 @@ void P2JME::Window::TSequenceProcessor::doCharacterSEStart(void)
  * Address:	8043F424
  * Size:	00007C
  */
-void P2JME::Window::TSequenceProcessor::doCharacterSEEnd(void)
+void Window::TSequenceProcessor::doCharacterSEEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +402,7 @@ void P2JME::Window::TSequenceProcessor::doCharacterSEEnd(void)
  * Address:	8043F4A0
  * Size:	00005C
  */
-void P2JME::Window::TSequenceProcessor::doFastForwardSE(void)
+void Window::TSequenceProcessor::doFastForwardSE(void)
 {
 	/*
 	.loc_0x0:
@@ -437,7 +439,7 @@ void P2JME::Window::TSequenceProcessor::doFastForwardSE(void)
  * Address:	8043F4FC
  * Size:	000060
  */
-void P2JME::Window::TRenderingProcessor::__ct((JMessage::TReference*))
+Window::TRenderingProcessor::TRenderingProcessor(JMessage::TReference*)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +475,7 @@ void P2JME::Window::TRenderingProcessor::__ct((JMessage::TReference*))
  * Address:	........
  * Size:	000064
  */
-void P2JME::Window::DrawInfoMgr::__dt(void)
+Window::DrawInfoMgr::~DrawInfoMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -483,7 +485,7 @@ void P2JME::Window::DrawInfoMgr::__dt(void)
  * Address:	........
  * Size:	000100
  */
-void P2JME::Window::TRenderingProcessor::initDrawInfoMgr((unsigned long))
+void Window::TRenderingProcessor::initDrawInfoMgr(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -493,8 +495,7 @@ void P2JME::Window::TRenderingProcessor::initDrawInfoMgr((unsigned long))
  * Address:	8043F55C
  * Size:	000344
  */
-void P2JME::Window::TRenderingProcessor::doDrawCommon((float, float, Matrixf*,
-                                                       Matrixf*))
+void Window::TRenderingProcessor::doDrawCommon(float, float, Matrixf*, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -755,10 +756,7 @@ void P2JME::Window::TRenderingProcessor::doDrawCommon((float, float, Matrixf*,
  * Address:	8043F8A0
  * Size:	000004
  */
-void P2JME::Window::TRenderingProcessor::doGetDrawInfo(
-    (P2JME::Window::DrawInfo*))
-{
-}
+void Window::TRenderingProcessor::doGetDrawInfo(P2JME::Window::DrawInfo*) { }
 
 /*
  * --INFO--
@@ -957,8 +955,8 @@ void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8
  * Address:	8043FB28
  * Size:	000188
  */
-void P2JME::Window::TRenderingProcessor::doDrawLetter((float, float, float,
-                                                       float, int, bool))
+void Window::TRenderingProcessor::doDrawLetter(float, float, float, float, int,
+                                               bool)
 {
 	/*
 	.loc_0x0:
@@ -1072,8 +1070,8 @@ void P2JME::Window::TRenderingProcessor::doDrawLetter((float, float, float,
  * Address:	8043FCB0
  * Size:	00017C
  */
-void P2JME::Window::TRenderingProcessor::doDrawRuby((float, float, float, float,
-                                                     int, bool))
+void Window::TRenderingProcessor::doDrawRuby(float, float, float, float, int,
+                                             bool)
 {
 	/*
 	.loc_0x0:
@@ -1184,8 +1182,8 @@ void P2JME::Window::TRenderingProcessor::doDrawRuby((float, float, float, float,
  * Address:	8043FE2C
  * Size:	0001DC
  */
-void P2JME::Window::TRenderingProcessor::doDrawImage((JUTTexture*, float, float,
-                                                      float, float))
+void Window::TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float,
+                                              float)
 {
 	/*
 	.loc_0x0:
@@ -1318,7 +1316,7 @@ void P2JME::Window::TRenderingProcessor::doDrawImage((JUTTexture*, float, float,
  * Address:	80440008
  * Size:	000040
  */
-void P2JME::Window::TRenderingProcessor::update(void)
+void Window::TRenderingProcessor::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1352,7 +1350,7 @@ void P2JME::Window::TRenderingProcessor::update(void)
  * Address:	80440048
  * Size:	0000A4
  */
-void P2JME::Window::TRenderingProcessor::reset(void)
+void Window::TRenderingProcessor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -1411,7 +1409,7 @@ void P2JME::Window::TRenderingProcessor::reset(void)
  * Address:	804400EC
  * Size:	000050
  */
-void P2JME::Window::TControl::__ct(void)
+Window::TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -1443,7 +1441,7 @@ void P2JME::Window::TControl::__ct(void)
  * Address:	8044013C
  * Size:	000100
  */
-void P2JME::Window::TControl::initRenderingProcessor((unsigned long))
+void Window::TControl::initRenderingProcessor(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1527,7 +1525,7 @@ void P2JME::Window::TControl::initRenderingProcessor((unsigned long))
  * Address:	8044023C
  * Size:	000188
  */
-void P2JME::Window::TControl::update((Controller*, Controller*))
+void Window::TControl::update(Controller*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -1653,7 +1651,7 @@ void P2JME::Window::TControl::update((Controller*, Controller*))
  * Address:	804403C4
  * Size:	000020
  */
-void P2JME::Window::TControl::reset(void)
+void Window::TControl::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -1673,7 +1671,7 @@ void P2JME::Window::TControl::reset(void)
  * Address:	804403E4
  * Size:	00007C
  */
-void P2JME::Window::TControl::draw((Graphics&))
+void Window::TControl::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1716,7 +1714,7 @@ void P2JME::Window::TControl::draw((Graphics&))
  * Address:	80440460
  * Size:	000050
  */
-void P2JME::Window::TControl::onInit(void)
+void Window::TControl::onInit(void)
 {
 	/*
 	.loc_0x0:
@@ -1750,7 +1748,7 @@ void P2JME::Window::TControl::onInit(void)
  * Address:	804404B0
  * Size:	0000A8
  */
-void P2JME::Window::TRenderingProcessor::__dt(void)
+Window::TRenderingProcessor::~TRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -1810,7 +1808,7 @@ void P2JME::Window::TRenderingProcessor::__dt(void)
  * Address:	80440558
  * Size:	000070
  */
-void P2JME::Window::TSequenceProcessor::__dt(void)
+Window::TSequenceProcessor::~TSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -1848,6 +1846,8 @@ void P2JME::Window::TSequenceProcessor::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace P2JME
 
 /*
  * --INFO--

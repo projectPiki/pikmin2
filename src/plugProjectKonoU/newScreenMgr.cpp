@@ -656,12 +656,14 @@ void newScreen::Mgr::create()
 	*/
 }
 
+namespace Screen {
+
 /*
  * --INFO--
  * Address:	804009E8
  * Size:	0000B0
  */
-void Screen::Mgr::~Mgr()
+Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -715,6 +717,8 @@ void Screen::Mgr::~Mgr()
 	  blr
 	*/
 }
+
+} // namespace Screen
 
 /*
  * --INFO--
@@ -888,7 +892,7 @@ void newScreen::Mgr::reset()
  * Address:	80400C9C
  * Size:	0000C0
  */
-void newScreen::Mgr::~Mgr()
+newScreen::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -973,28 +977,27 @@ void newScreen::Mgr::setColorBG(JUtility::TColor&)
  * Address:	80400D80
  * Size:	000008
  */
-void newScreen::Mgr::setBGMode(int)
+void newScreen::Mgr::setBGMode(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xA4(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0xA4(r3)
+	_A4 = a1;
 }
+
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	80400D88
  * Size:	000004
  */
-void Screen::Mgr::drawWipe(Graphics&) { }
+void Mgr::drawWipe(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80400D8C
  * Size:	000060
  */
-void Screen::MgrBase::~MgrBase()
+MgrBase::~MgrBase()
 {
 	/*
 	.loc_0x0:
@@ -1026,6 +1029,8 @@ void Screen::MgrBase::~MgrBase()
 	  blr
 	*/
 }
+
+} // namespace Screen
 
 /*
  * --INFO--

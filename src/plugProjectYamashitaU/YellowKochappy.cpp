@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012D214
  * Size:	000130
  */
-void Game::YellowKochappy::Obj::Obj()
+YellowKochappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -99,7 +101,7 @@ void Game::YellowKochappy::Obj::Obj()
  * Address:	8012D344
  * Size:	0001A4
  */
-void Game::YellowKochappy::Obj::changeMaterial()
+void YellowKochappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -220,7 +222,7 @@ void Game::YellowKochappy::Obj::changeMaterial()
  * Address:	8012D4E8
  * Size:	000008
  */
-void Game::YellowKochappy::Mgr::getChangeTexture()
+void YellowKochappy::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -234,7 +236,7 @@ void Game::YellowKochappy::Mgr::getChangeTexture()
  * Address:	8012D4F0
  * Size:	0000EC
  */
-void Game::YellowKochappy::Obj::~Obj()
+YellowKochappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -309,4 +311,5 @@ void Game::YellowKochappy::Obj::~Obj()
  * Address:	8012D5DC
  * Size:	000008
  */
-u32 Game::YellowKochappy::Obj::getEnemyTypeID() { return 0x2D; }
+u32 YellowKochappy::Obj::getEnemyTypeID() { return 0x2D; }
+} // namespace Game

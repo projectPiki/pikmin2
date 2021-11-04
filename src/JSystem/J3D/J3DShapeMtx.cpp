@@ -1694,7 +1694,7 @@ void J3DShapeMtxYBBoardConcatView::load() const
  * Address:	80087544
  * Size:	00006C
  */
-void J3DShapeMtxYBBoardConcatView::~J3DShapeMtxYBBoardConcatView()
+J3DShapeMtxYBBoardConcatView::~J3DShapeMtxYBBoardConcatView()
 {
 	/*
 	.loc_0x0:
@@ -1759,7 +1759,7 @@ void J3DShapeMtxConcatView::loadNrmMtx(int, unsigned short) const { }
  * Address:	800875C0
  * Size:	00006C
  */
-void J3DShapeMtxBBoardConcatView::~J3DShapeMtxBBoardConcatView()
+J3DShapeMtxBBoardConcatView::~J3DShapeMtxBBoardConcatView()
 {
 	/*
 	.loc_0x0:
@@ -1817,7 +1817,7 @@ void J3DShapeMtxBBoardConcatView::getType() const
  * Address:	80087638
  * Size:	00006C
  */
-void J3DShapeMtxMultiConcatView::~J3DShapeMtxMultiConcatView()
+J3DShapeMtxMultiConcatView::~J3DShapeMtxMultiConcatView()
 {
 	/*
 	.loc_0x0:
@@ -1912,7 +1912,7 @@ void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short) const { }
  * Address:	800876CC
  * Size:	00005C
  */
-void J3DShapeMtxMulti::~J3DShapeMtxMulti()
+J3DShapeMtxMulti::~J3DShapeMtxMulti()
 {
 	/*
 	.loc_0x0:

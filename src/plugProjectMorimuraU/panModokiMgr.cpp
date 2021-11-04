@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034E9C0
  * Size:	000050
  */
-void Game::PanModoki::Mgr::__ct((int, unsigned char))
+PanModoki::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::PanModoki::Mgr::__ct((int, unsigned char))
  * Address:	8034EA10
  * Size:	000048
  */
-void Game::PanModoki::Mgr::doAlloc(void)
+void PanModoki::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::PanModoki::Mgr::doAlloc(void)
  * Address:	8034EA58
  * Size:	000064
  */
-void Game::PanModokiBase::Parms::__ct(void)
+PanModokiBase::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -120,7 +112,7 @@ void Game::PanModokiBase::Parms::__ct(void)
  * Address:	8034EABC
  * Size:	0002B4
  */
-void Game::PanModokiBase::Parms::ProperParms::__ct(void)
+PanModokiBase::Parms::ProperParms::ProperParms(void)
 {
 	/*
 	.loc_0x0:
@@ -307,7 +299,7 @@ void Game::PanModokiBase::Parms::ProperParms::__ct(void)
  * Address:	8034ED70
  * Size:	000020
  */
-void Game::PanModoki::Mgr::birth((Game::EnemyBirthArg&))
+void PanModoki::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -327,7 +319,7 @@ void Game::PanModoki::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8034ED90
  * Size:	000050
  */
-void Game::OoPanModoki::Mgr::__ct((int, unsigned char))
+OoPanModoki::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -359,7 +351,7 @@ void Game::OoPanModoki::Mgr::__ct((int, unsigned char))
  * Address:	8034EDE0
  * Size:	000048
  */
-void Game::OoPanModoki::Mgr::doAlloc(void)
+void OoPanModoki::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -391,7 +383,7 @@ void Game::OoPanModoki::Mgr::doAlloc(void)
  * Address:	8034EE28
  * Size:	000020
  */
-void Game::OoPanModoki::Mgr::birth((Game::EnemyBirthArg&))
+void OoPanModoki::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +403,7 @@ void Game::OoPanModoki::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8034EE48
  * Size:	00002C
  */
-void Game::OoPanModoki::Mgr::doLoadBmd((void*))
+void OoPanModoki::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -434,7 +426,7 @@ void Game::OoPanModoki::Mgr::doLoadBmd((void*))
  * Address:	8034EE74
  * Size:	000068
  */
-void Game::OoPanModoki::Mgr::loadModelData(void)
+void OoPanModoki::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -476,7 +468,7 @@ void Game::OoPanModoki::Mgr::loadModelData(void)
  * Address:	8034EEDC
  * Size:	0000B0
  */
-void Game::OoPanModoki::Mgr::__dt(void)
+OoPanModoki::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -536,14 +528,14 @@ void Game::OoPanModoki::Mgr::__dt(void)
  * Address:	8034EF8C
  * Size:	000008
  */
-u32 Game::OoPanModoki::Mgr::getEnemyTypeID(void) { return 0x28; }
+u32 OoPanModoki::Mgr::getEnemyTypeID(void) { return 0x28; }
 
 /*
  * --INFO--
  * Address:	8034EF94
  * Size:	000060
  */
-void Game::OoPanModoki::Mgr::createObj((int))
+void OoPanModoki::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -579,7 +571,7 @@ void Game::OoPanModoki::Mgr::createObj((int))
  * Address:	8034EFF4
  * Size:	0000EC
  */
-void Game::OoPanModoki::Obj::__dt(void)
+OoPanModoki::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -654,7 +646,7 @@ void Game::OoPanModoki::Obj::__dt(void)
  * Address:	8034F0E0
  * Size:	000010
  */
-void Game::OoPanModoki::Mgr::getEnemy((int))
+void OoPanModoki::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -670,7 +662,7 @@ void Game::OoPanModoki::Mgr::getEnemy((int))
  * Address:	8034F0F0
  * Size:	0000B0
  */
-void Game::PanModoki::Mgr::__dt(void)
+PanModoki::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -730,14 +722,14 @@ void Game::PanModoki::Mgr::__dt(void)
  * Address:	8034F1A0
  * Size:	000008
  */
-u32 Game::PanModoki::Mgr::getEnemyTypeID(void) { return 0x26; }
+u32 PanModoki::Mgr::getEnemyTypeID(void) { return 0x26; }
 
 /*
  * --INFO--
  * Address:	8034F1A8
  * Size:	000060
  */
-void Game::PanModoki::Mgr::createObj((int))
+void PanModoki::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -773,7 +765,7 @@ void Game::PanModoki::Mgr::createObj((int))
  * Address:	8034F208
  * Size:	0000EC
  */
-void Game::PanModoki::Obj::__dt(void)
+PanModoki::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -848,7 +840,7 @@ void Game::PanModoki::Obj::__dt(void)
  * Address:	8034F2F4
  * Size:	000090
  */
-void Game::PanModoki::Obj::__ct(void)
+PanModoki::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -898,7 +890,7 @@ void Game::PanModoki::Obj::__ct(void)
  * Address:	8034F384
  * Size:	0000BC
  */
-void Game::PanModokiBase::Obj::__dt(void)
+PanModokiBase::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -961,7 +953,7 @@ void Game::PanModokiBase::Obj::__dt(void)
  * Address:	8034F440
  * Size:	000010
  */
-void Game::PanModoki::Mgr::getEnemy((int))
+void PanModoki::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -977,7 +969,7 @@ void Game::PanModoki::Mgr::getEnemy((int))
  * Address:	8034F450
  * Size:	000018
  */
-void Game::PanModoki::Obj::canTarget((int, int))
+void PanModoki::Obj::canTarget(int, int)
 {
 	/*
 	.loc_0x0:
@@ -995,7 +987,7 @@ void Game::PanModoki::Obj::canTarget((int, int))
  * Address:	8034F468
  * Size:	000008
  */
-void Game::PanModoki::Obj::getDownSmokeScale(void)
+void PanModoki::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -1009,33 +1001,28 @@ void Game::PanModoki::Obj::getDownSmokeScale(void)
  * Address:	8034F470
  * Size:	000008
  */
-u32 Game::PanModoki::Obj::getEnemyTypeID(void) { return 0x26; }
+u32 PanModoki::Obj::getEnemyTypeID(void) { return 0x26; }
 
 /*
  * --INFO--
  * Address:	8034F478
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-}
+void PanModokiBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8034F47C
  * Size:	000004
  */
-void applyImpulse__Q34Game13PanModokiBase3ObjFR10Vector3<float>
-R10Vector3<float>(void)
-{
-}
+void applyImpulse__Q34Game13PanModokiBase3ObjFR10Vector3f R10Vector3f(void) { }
 
 /*
  * --INFO--
  * Address:	8034F480
  * Size:	00000C
  */
-void Game::PanModokiBase::Obj::isLivingThing(void)
+void PanModokiBase::Obj::isLivingThing(void)
 {
 	/*
 	.loc_0x0:
@@ -1050,7 +1037,7 @@ void Game::PanModokiBase::Obj::isLivingThing(void)
  * Address:	8034F48C
  * Size:	000014
  */
-void Game::PanModokiBase::Obj::isUnderground(void)
+void PanModokiBase::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -1067,7 +1054,7 @@ void Game::PanModokiBase::Obj::isUnderground(void)
  * Address:	8034F4A0
  * Size:	000014
  */
-void Game::PanModokiBase::Obj::ignoreAtari((Game::Creature*))
+void PanModokiBase::Obj::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1084,7 +1071,7 @@ void Game::PanModokiBase::Obj::ignoreAtari((Game::Creature*))
  * Address:	8034F4B4
  * Size:	000008
  */
-void Game::PanModokiBase::Obj::getMouthSlots(void)
+void PanModokiBase::Obj::getMouthSlots(void)
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1085,7 @@ void Game::PanModokiBase::Obj::getMouthSlots(void)
  * Address:	8034F4BC
  * Size:	00004C
  */
-void Game::PanModokiBase::Obj::setFSM((Game::PanModokiBase::FSM*))
+void PanModokiBase::Obj::setFSM(Game::PanModokiBase::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -1129,7 +1116,7 @@ void Game::PanModokiBase::Obj::setFSM((Game::PanModokiBase::FSM*))
  * Address:	8034F508
  * Size:	000050
  */
-void Game::PanModokiBase::Parms::read((Stream&))
+void PanModokiBase::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1155,6 +1142,8 @@ void Game::PanModokiBase::Parms::read((Stream&))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1263,7 +1252,7 @@ void @968 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	8034F5D0
  * Size:	000008
  */
-void @4 @Game::PanModoki::Mgr::__dt(void)
+@4 @Game::PanModoki::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1277,7 +1266,7 @@ void @4 @Game::PanModoki::Mgr::__dt(void)
  * Address:	8034F5D8
  * Size:	000008
  */
-void @4 @Game::OoPanModoki::Mgr::__dt(void)
+@4 @Game::OoPanModoki::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

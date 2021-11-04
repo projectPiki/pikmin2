@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "ebi/screen/TScreenBase.h"
 
 namespace ebi {

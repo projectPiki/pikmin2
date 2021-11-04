@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803CE8F8
  * Size:	0002D8
  */
-void ebi::Option::FSMStateMachine::init((ebi::Option::TMgr*))
+void Option::FSMStateMachine::init(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -225,7 +217,7 @@ void ebi::Option::FSMStateMachine::init((ebi::Option::TMgr*))
  * Address:	803CEBD0
  * Size:	00002C
  */
-void ebi::Option::FSMState::init((ebi::Option::TMgr*, Game::StateArg*))
+void Option::FSMState::init(ebi::Option::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -248,14 +240,14 @@ void ebi::Option::FSMState::init((ebi::Option::TMgr*, Game::StateArg*))
  * Address:	803CEBFC
  * Size:	000004
  */
-void ebi::Option::FSMState::do_init((ebi::Option::TMgr*, Game::StateArg*)) { }
+void Option::FSMState::do_init(ebi::Option::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803CEC00
  * Size:	00002C
  */
-void ebi::Option::FSMState::exec((ebi::Option::TMgr*))
+void Option::FSMState::exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -278,15 +270,14 @@ void ebi::Option::FSMState::exec((ebi::Option::TMgr*))
  * Address:	803CEC2C
  * Size:	000004
  */
-void ebi::Option::FSMState::do_exec((ebi::Option::TMgr*)) { }
+void Option::FSMState::do_exec(ebi::Option::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803CEC30
  * Size:	000050
  */
-void ebi::Option::FSMState_ScreenOpen::do_init((ebi::Option::TMgr*,
-                                                Game::StateArg*))
+void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +309,7 @@ void ebi::Option::FSMState_ScreenOpen::do_init((ebi::Option::TMgr*,
  * Address:	803CEC80
  * Size:	000064
  */
-void ebi::Option::FSMState_ScreenOpen::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_ScreenOpen::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -382,8 +373,7 @@ FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
  * Address:	803CED14
  * Size:	00000C
  */
-void ebi::Option::FSMState_ScreenWait::do_init((ebi::Option::TMgr*,
-                                                Game::StateArg*))
+void Option::FSMState_ScreenWait::do_init(ebi::Option::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +388,7 @@ void ebi::Option::FSMState_ScreenWait::do_init((ebi::Option::TMgr*,
  * Address:	803CED20
  * Size:	000144
  */
-void ebi::Option::FSMState_ScreenWait::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_ScreenWait::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -509,8 +499,7 @@ void ebi::Option::FSMState_ScreenWait::do_exec((ebi::Option::TMgr*))
  * Address:	803CEE64
  * Size:	00003C
  */
-void ebi::Option::FSMState_ScreenClose::do_init((ebi::Option::TMgr*,
-                                                 Game::StateArg*))
+void Option::FSMState_ScreenClose::do_init(ebi::Option::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -537,7 +526,7 @@ void ebi::Option::FSMState_ScreenClose::do_init((ebi::Option::TMgr*,
  * Address:	803CEEA0
  * Size:	00004C
  */
-void ebi::Option::FSMState_ScreenClose::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_ScreenClose::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -570,8 +559,8 @@ void ebi::Option::FSMState_ScreenClose::do_exec((ebi::Option::TMgr*))
  * Address:	803CEEEC
  * Size:	000044
  */
-void ebi::Option::FSMState_WaitCloseForNoCard::do_init((ebi::Option::TMgr*,
-                                                        Game::StateArg*))
+void Option::FSMState_WaitCloseForNoCard::do_init(ebi::Option::TMgr*,
+                                                  Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -600,7 +589,7 @@ void ebi::Option::FSMState_WaitCloseForNoCard::do_init((ebi::Option::TMgr*,
  * Address:	803CEF30
  * Size:	000084
  */
-void ebi::Option::FSMState_WaitCloseForNoCard::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_WaitCloseForNoCard::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -649,8 +638,8 @@ void ebi::Option::FSMState_WaitCloseForNoCard::do_exec((ebi::Option::TMgr*))
  * Address:	803CEFB4
  * Size:	0000B8
  */
-void ebi::Option::FSMState_WorldMapInfoWindow::do_init((ebi::Option::TMgr*,
-                                                        Game::StateArg*))
+void Option::FSMState_WorldMapInfoWindow::do_init(ebi::Option::TMgr*,
+                                                  Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +697,7 @@ void ebi::Option::FSMState_WorldMapInfoWindow::do_init((ebi::Option::TMgr*,
  * Address:	803CF06C
  * Size:	0000A0
  */
-void ebi::Option::FSMState_WorldMapInfoWindow::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_WorldMapInfoWindow::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -766,15 +755,10 @@ void ebi::Option::FSMState_WorldMapInfoWindow::do_exec((ebi::Option::TMgr*))
  * Address:	803CF10C
  * Size:	00000C
  */
-void ebi::Option::FSMState_LoadOption::do_init((ebi::Option::TMgr*,
-                                                Game::StateArg*))
+void Option::FSMState_LoadOption::do_init(ebi::Option::TMgr*, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x10(r3)
+	_10 = 0;
 }
 
 /*
@@ -782,7 +766,7 @@ void ebi::Option::FSMState_LoadOption::do_init((ebi::Option::TMgr*,
  * Address:	803CF118
  * Size:	0001A0
  */
-void ebi::Option::FSMState_LoadOption::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_LoadOption::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -918,8 +902,7 @@ void ebi::Option::FSMState_LoadOption::do_exec((ebi::Option::TMgr*))
  * Address:	803CF2B8
  * Size:	00002C
  */
-void ebi::Option::FSMState_SaveMgr::do_init((ebi::Option::TMgr*,
-                                             Game::StateArg*))
+void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -942,7 +925,7 @@ void ebi::Option::FSMState_SaveMgr::do_init((ebi::Option::TMgr*,
  * Address:	803CF2E4
  * Size:	000100
  */
-void ebi::Option::FSMState_SaveMgr::do_exec((ebi::Option::TMgr*))
+void Option::FSMState_SaveMgr::do_exec(ebi::Option::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1030,7 +1013,7 @@ void ebi::Option::FSMState_SaveMgr::do_exec((ebi::Option::TMgr*))
  * Address:	803CF3E4
  * Size:	0000C0
  */
-void ebi::Option::TMgr::__ct(void)
+Option::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1111,952 +1094,956 @@ FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803CF4D8
- * Size:	00030C
- */
-void ebi::Screen::TOption::__dt(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x2F0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xEAC
-	  subi      r0, r3, 0x7878
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xEAC
-	  subi      r0, r3, 0x7618
-	  stw       r0, 0xEAC(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xEAC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0xEAC(r30)
-	  beq-      .loc_0x88
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0xEAC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0xEAC(r30)
-	  beq-      .loc_0x88
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0xEAC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0xEAC(r30)
-	  bl        0x4202C
+	 * --INFO--
+	 * Address:	803CF4D8
+	 * Size:	00030C
+	 */
+	TOption::~TOption(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x2F0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xEAC
+		  subi      r0, r3, 0x7878
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xEAC
+		  subi      r0, r3, 0x7618
+		  stw       r0, 0xEAC(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0xEAC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0xEAC(r30)
+		  beq-      .loc_0x88
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0xEAC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0xEAC(r30)
+		  beq-      .loc_0x88
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0xEAC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0xEAC(r30)
+		  bl        0x4202C
 
-	.loc_0x88:
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0xC2C
-	  subi      r4, r4, 0x81C
-	  li        r5, 0x40
-	  li        r6, 0xA
-	  bl        -0x30DDB0
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x9AC
-	  subi      r4, r4, 0x81C
-	  li        r5, 0x40
-	  li        r6, 0xA
-	  bl        -0x30DDC8
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x72C
-	  subi      r4, r4, 0x81C
-	  li        r5, 0x40
-	  li        r6, 0xA
-	  bl        -0x30DDE0
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x4AC
-	  subi      r4, r4, 0x81C
-	  li        r5, 0x40
-	  li        r6, 0xA
-	  bl        -0x30DDF8
-	  lis       r4, 0x803D
-	  addi      r3, r30, 0x2EC
-	  subi      r4, r4, 0x81C
-	  li        r5, 0x40
-	  li        r6, 0x7
-	  bl        -0x30DE10
-	  addic.    r0, r30, 0x2BC
-	  beq-      .loc_0x15C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x2BC
-	  subi      r0, r3, 0x75D0
-	  stw       r0, 0x2BC(r30)
-	  beq-      .loc_0x15C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x2BC
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x2BC(r30)
-	  beq-      .loc_0x15C
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x2BC
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x2BC(r30)
-	  beq-      .loc_0x15C
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x2BC
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x2BC(r30)
-	  bl        0x41F58
+		.loc_0x88:
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0xC2C
+		  subi      r4, r4, 0x81C
+		  li        r5, 0x40
+		  li        r6, 0xA
+		  bl        -0x30DDB0
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x9AC
+		  subi      r4, r4, 0x81C
+		  li        r5, 0x40
+		  li        r6, 0xA
+		  bl        -0x30DDC8
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x72C
+		  subi      r4, r4, 0x81C
+		  li        r5, 0x40
+		  li        r6, 0xA
+		  bl        -0x30DDE0
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x4AC
+		  subi      r4, r4, 0x81C
+		  li        r5, 0x40
+		  li        r6, 0xA
+		  bl        -0x30DDF8
+		  lis       r4, 0x803D
+		  addi      r3, r30, 0x2EC
+		  subi      r4, r4, 0x81C
+		  li        r5, 0x40
+		  li        r6, 0x7
+		  bl        -0x30DE10
+		  addic.    r0, r30, 0x2BC
+		  beq-      .loc_0x15C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x2BC
+		  subi      r0, r3, 0x75D0
+		  stw       r0, 0x2BC(r30)
+		  beq-      .loc_0x15C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x2BC
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x2BC(r30)
+		  beq-      .loc_0x15C
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x2BC
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x2BC(r30)
+		  beq-      .loc_0x15C
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x2BC
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x2BC(r30)
+		  bl        0x41F58
 
-	.loc_0x15C:
-	  addic.    r0, r30, 0x28C
-	  beq-      .loc_0x1B8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x28C
-	  subi      r0, r3, 0x75D0
-	  stw       r0, 0x28C(r30)
-	  beq-      .loc_0x1B8
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x28C
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x28C(r30)
-	  beq-      .loc_0x1B8
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x28C
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x28C(r30)
-	  beq-      .loc_0x1B8
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x28C
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x28C(r30)
-	  bl        0x41EFC
+		.loc_0x15C:
+		  addic.    r0, r30, 0x28C
+		  beq-      .loc_0x1B8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x28C
+		  subi      r0, r3, 0x75D0
+		  stw       r0, 0x28C(r30)
+		  beq-      .loc_0x1B8
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x28C
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x28C(r30)
+		  beq-      .loc_0x1B8
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x28C
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x28C(r30)
+		  beq-      .loc_0x1B8
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x28C
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x28C(r30)
+		  bl        0x41EFC
 
-	.loc_0x1B8:
-	  addic.    r0, r30, 0x240
-	  beq-      .loc_0x214
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x240
-	  subi      r0, r3, 0x75AC
-	  stw       r0, 0x240(r30)
-	  beq-      .loc_0x214
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x240
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x240(r30)
-	  beq-      .loc_0x214
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x240
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x240(r30)
-	  beq-      .loc_0x214
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x240
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x240(r30)
-	  bl        0x41EA0
+		.loc_0x1B8:
+		  addic.    r0, r30, 0x240
+		  beq-      .loc_0x214
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x240
+		  subi      r0, r3, 0x75AC
+		  stw       r0, 0x240(r30)
+		  beq-      .loc_0x214
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x240
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x240(r30)
+		  beq-      .loc_0x214
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x240
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x240(r30)
+		  beq-      .loc_0x214
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x240
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x240(r30)
+		  bl        0x41EA0
 
-	.loc_0x214:
-	  addic.    r0, r30, 0x220
-	  beq-      .loc_0x270
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x220
-	  subi      r0, r3, 0x77F4
-	  stw       r0, 0x220(r30)
-	  beq-      .loc_0x270
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x220
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x220(r30)
-	  beq-      .loc_0x270
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x220
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x220(r30)
-	  beq-      .loc_0x270
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x220
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x220(r30)
-	  bl        0x41E44
+		.loc_0x214:
+		  addic.    r0, r30, 0x220
+		  beq-      .loc_0x270
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x220
+		  subi      r0, r3, 0x77F4
+		  stw       r0, 0x220(r30)
+		  beq-      .loc_0x270
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x220
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x220(r30)
+		  beq-      .loc_0x270
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x220
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x220(r30)
+		  beq-      .loc_0x270
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x220
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x220(r30)
+		  bl        0x41E44
 
-	.loc_0x270:
-	  addic.    r0, r30, 0x1E4
-	  beq-      .loc_0x2E0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x204
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x1E4(r30)
-	  beq-      .loc_0x298
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x204(r30)
+		.loc_0x270:
+		  addic.    r0, r30, 0x1E4
+		  beq-      .loc_0x2E0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x204
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x1E4(r30)
+		  beq-      .loc_0x298
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x204(r30)
 
-	.loc_0x298:
-	  addic.    r0, r30, 0x1E4
-	  beq-      .loc_0x2E0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x1E4
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x1E4(r30)
-	  beq-      .loc_0x2E0
-	  lis       r3, 0x804D
-	  addic.    r0, r30, 0x1E4
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x1E4(r30)
-	  beq-      .loc_0x2E0
-	  lis       r4, 0x804D
-	  addi      r3, r30, 0x1E4
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x1E4(r30)
-	  bl        0x41DD4
+		.loc_0x298:
+		  addic.    r0, r30, 0x1E4
+		  beq-      .loc_0x2E0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x1E4
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x1E4(r30)
+		  beq-      .loc_0x2E0
+		  lis       r3, 0x804D
+		  addic.    r0, r30, 0x1E4
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x1E4(r30)
+		  beq-      .loc_0x2E0
+		  lis       r4, 0x804D
+		  addi      r3, r30, 0x1E4
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x1E4(r30)
+		  bl        0x41DD4
 
-	.loc_0x2E0:
-	  extsh.    r0, r31
-	  ble-      .loc_0x2F0
-	  mr        r3, r30
-	  bl        -0x3AB710
+		.loc_0x2E0:
+		  extsh.    r0, r31
+		  ble-      .loc_0x2F0
+		  mr        r3, r30
+		  bl        -0x3AB710
 
-	.loc_0x2F0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x2F0:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CF7E4
- * Size:	000090
- */
-void ebi::E2DCallBack_Purupuru::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x7588
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x41D44
+	 * --INFO--
+	 * Address:	803CF7E4
+	 * Size:	000090
+	 */
+	E2DCallBack_Purupuru::~E2DCallBack_Purupuru(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x74
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x7588
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x7B0C
+		  stw       r0, 0x0(r30)
+		  bl        0x41D44
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3AB7A0
+		.loc_0x64:
+		  extsh.    r0, r31
+		  ble-      .loc_0x74
+		  mr        r3, r30
+		  bl        -0x3AB7A0
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x74:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CF874
- * Size:	00043C
- */
-void ebi::Screen::TOption::__ct(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804F
-	  li        r7, 0
-	  stw       r0, 0x24(r1)
-	  subi      r0, r4, 0x7818
-	  li        r5, 0x1
-	  li        r4, 0xFF
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lis       r3, 0x804F
-	  stw       r29, 0x14(r1)
-	  addi      r31, r30, 0x1E4
-	  stw       r0, 0x0(r30)
-	  subi      r0, r3, 0x7370
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r30)
-	  subi      r6, r3, 0x7878
-	  li        r0, -0x1
-	  mr        r3, r31
-	  stw       r7, 0x4(r30)
-	  stw       r7, 0x8(r30)
-	  stw       r6, 0x0(r30)
-	  stb       r5, 0x10(r30)
-	  stw       r7, 0x18(r30)
-	  stw       r7, 0x1C(r30)
-	  stw       r7, 0x44(r30)
-	  stw       r7, 0x48(r30)
-	  stw       r7, 0x70(r30)
-	  stw       r7, 0x74(r30)
-	  stw       r7, 0x9C(r30)
-	  stw       r7, 0xA0(r30)
-	  stb       r7, 0xC8(r30)
-	  stb       r7, 0xC9(r30)
-	  stw       r7, 0xCC(r30)
-	  stw       r7, 0xD0(r30)
-	  stw       r7, 0xD4(r30)
-	  stb       r7, 0xD8(r30)
-	  stb       r7, 0xDC(r30)
-	  stb       r7, 0xDD(r30)
-	  stw       r7, 0xE0(r30)
-	  stw       r7, 0xE4(r30)
-	  stw       r7, 0xE8(r30)
-	  stb       r7, 0xEC(r30)
-	  stb       r7, 0xF0(r30)
-	  stb       r7, 0xF1(r30)
-	  stb       r7, 0xF2(r30)
-	  stb       r4, 0xF3(r30)
-	  stb       r4, 0xF4(r30)
-	  stw       r7, 0xF8(r30)
-	  stw       r7, 0xFC(r30)
-	  stw       r7, 0x100(r30)
-	  stw       r0, 0x1C4(r30)
-	  stw       r0, 0x1C8(r30)
-	  stw       r0, 0x1CC(r30)
-	  stw       r0, 0x1D0(r30)
-	  stw       r0, 0x1D4(r30)
-	  stw       r0, 0x1D8(r30)
-	  stw       r0, 0x1DC(r30)
-	  stw       r0, 0x1E0(r30)
-	  bl        0x41A28
-	  lis       r3, 0x804D
-	  lis       r6, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r0, 0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r31)
-	  addi      r0, r6, 0x7F2C
-	  subi      r7, r5, 0x77D0
-	  li        r6, 0x1
-	  stw       r0, 0x0(r31)
-	  subi      r5, r4, 0x75F4
-	  addi      r0, r3, 0x798C
-	  addi      r3, r31, 0x20
-	  stw       r7, 0x0(r31)
-	  li        r4, 0
-	  stb       r6, 0x1C(r31)
-	  stw       r5, 0x0(r31)
-	  stw       r0, 0x20(r31)
-	  bl        -0x368348
-	  addi      r29, r30, 0x220
-	  mr        r3, r29
-	  bl        0x419C4
-	  lis       r3, 0x804D
-	  lis       r5, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r0, 0
-	  lis       r3, 0x804F
-	  addi      r31, r30, 0x240
-	  stw       r0, 0x18(r29)
-	  addi      r0, r5, 0x7F2C
-	  subi      r5, r4, 0x77D0
-	  li        r4, 0x1
-	  stw       r0, 0x0(r29)
-	  subi      r0, r3, 0x77F4
-	  mr        r3, r31
-	  stw       r5, 0x0(r29)
-	  stb       r4, 0x1C(r29)
-	  stw       r0, 0x0(r29)
-	  bl        0x41978
-	  lis       r3, 0x804D
-	  lis       r4, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r6, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r0, 0
-	  lis       r3, 0x803D
-	  li        r7, 0x1
-	  stw       r0, 0x18(r31)
-	  addi      r0, r4, 0x7F2C
-	  subi      r4, r3, 0x114
-	  subi      r3, r6, 0x77D0
-	  stw       r0, 0x0(r31)
-	  lis       r5, 0x804F
-	  subi      r0, r5, 0x75AC
-	  li        r6, 0x10
-	  stw       r3, 0x0(r31)
-	  addi      r3, r31, 0x20
-	  li        r5, 0
-	  stb       r7, 0x1C(r31)
-	  li        r7, 0x2
-	  stw       r0, 0x0(r31)
-	  bl        -0x30E238
-	  lfs       f1, 0x172C(r2)
-	  addi      r29, r30, 0x28C
-	  lfs       f0, 0x1730(r2)
-	  li        r4, 0x1
-	  stfs      f1, 0x40(r31)
-	  li        r0, 0
-	  mr        r3, r29
-	  stfs      f0, 0x44(r31)
-	  stb       r4, 0x48(r31)
-	  stb       r0, 0x49(r31)
-	  stb       r0, 0x1C(r31)
-	  bl        0x418EC
-	  lis       r3, 0x804D
-	  lis       r5, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r7, 0
-	  lis       r3, 0x804F
-	  addi      r31, r30, 0x2BC
-	  stw       r7, 0x18(r29)
-	  addi      r0, r5, 0x7F2C
-	  subi      r6, r4, 0x77D0
-	  li        r5, 0x1
-	  stw       r0, 0x0(r29)
-	  subi      r4, r3, 0x75D0
-	  lfs       f1, 0x172C(r2)
-	  li        r0, 0xFF
-	  stw       r6, 0x0(r29)
-	  mr        r3, r31
-	  lfs       f0, 0x1730(r2)
-	  stb       r5, 0x1C(r29)
-	  stw       r4, 0x0(r29)
-	  stfs      f1, 0x20(r29)
-	  stfs      f0, 0x24(r29)
-	  stb       r5, 0x28(r29)
-	  stb       r7, 0x29(r29)
-	  stb       r0, 0x2C(r29)
-	  stb       r7, 0x2D(r29)
-	  bl        0x4187C
-	  lis       r4, 0x804D
-	  li        r9, 0
-	  addi      r0, r4, 0x7B0C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0x7F2C
-	  lis       r4, 0x803D
-	  lis       r5, 0x804F
-	  stw       r9, 0x18(r31)
-	  li        r8, 0x1
-	  lis       r6, 0x804F
-	  lis       r3, 0x803D
-	  stw       r0, 0x0(r31)
-	  subi      r0, r5, 0x77D0
-	  subi      r5, r3, 0x81C
-	  subi      r3, r6, 0x75D0
-	  stw       r0, 0x0(r31)
-	  li        r0, 0xFF
-	  lfs       f1, 0x172C(r2)
-	  subi      r4, r4, 0x2C0
-	  stb       r8, 0x1C(r31)
-	  li        r6, 0x40
-	  lfs       f0, 0x1730(r2)
-	  li        r7, 0x7
-	  stw       r3, 0x0(r31)
-	  addi      r3, r30, 0x2EC
-	  stfs      f1, 0x20(r31)
-	  stfs      f0, 0x24(r31)
-	  stb       r8, 0x28(r31)
-	  stb       r9, 0x29(r31)
-	  stb       r0, 0x2C(r31)
-	  stb       r9, 0x2D(r31)
-	  bl        -0x30E35C
-	  lis       r3, 0x803D
-	  lis       r5, 0x803D
-	  subi      r4, r3, 0x2C0
-	  li        r6, 0x40
-	  addi      r3, r30, 0x4AC
-	  subi      r5, r5, 0x81C
-	  li        r7, 0xA
-	  bl        -0x30E37C
-	  lis       r3, 0x803D
-	  lis       r5, 0x803D
-	  subi      r4, r3, 0x2C0
-	  li        r6, 0x40
-	  addi      r3, r30, 0x72C
-	  subi      r5, r5, 0x81C
-	  li        r7, 0xA
-	  bl        -0x30E39C
-	  lis       r3, 0x803D
-	  lis       r5, 0x803D
-	  subi      r4, r3, 0x2C0
-	  li        r6, 0x40
-	  addi      r3, r30, 0x9AC
-	  subi      r5, r5, 0x81C
-	  li        r7, 0xA
-	  bl        -0x30E3BC
-	  lis       r3, 0x803D
-	  lis       r5, 0x803D
-	  subi      r4, r3, 0x2C0
-	  li        r6, 0x40
-	  addi      r3, r30, 0xC2C
-	  subi      r5, r5, 0x81C
-	  li        r7, 0xA
-	  bl        -0x30E3DC
-	  addi      r29, r30, 0xEAC
-	  mr        r3, r29
-	  bl        0x4176C
-	  lis       r3, 0x804D
-	  lis       r5, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r29)
-	  li        r7, 0
-	  lis       r3, 0x804F
-	  addi      r6, r5, 0x7F2C
-	  stw       r7, 0x18(r29)
-	  subi      r5, r4, 0x77D0
-	  li        r4, 0x1
-	  subi      r0, r3, 0x7618
-	  stw       r6, 0x0(r29)
-	  addi      r3, r29, 0x48
-	  stw       r5, 0x0(r29)
-	  stb       r4, 0x1C(r29)
-	  stw       r0, 0x0(r29)
-	  stw       r7, 0x40(r29)
-	  stw       r7, 0x44(r29)
-	  bl        -0xA6E70
-	  lfs       f0, 0x1728(r2)
-	  li        r0, 0
-	  addi      r3, r30, 0xC8
-	  stfs      f0, 0x64(r29)
-	  stw       r0, 0x68(r29)
-	  bl        -0x4CC8
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803CF874
+	 * Size:	00043C
+	 */
+	TOption::TOption(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  lis       r4, 0x804F
+		  li        r7, 0
+		  stw       r0, 0x24(r1)
+		  subi      r0, r4, 0x7818
+		  li        r5, 0x1
+		  li        r4, 0xFF
+		  stw       r31, 0x1C(r1)
+		  stw       r30, 0x18(r1)
+		  mr        r30, r3
+		  lis       r3, 0x804F
+		  stw       r29, 0x14(r1)
+		  addi      r31, r30, 0x1E4
+		  stw       r0, 0x0(r30)
+		  subi      r0, r3, 0x7370
+		  lis       r3, 0x804F
+		  stw       r0, 0x0(r30)
+		  subi      r6, r3, 0x7878
+		  li        r0, -0x1
+		  mr        r3, r31
+		  stw       r7, 0x4(r30)
+		  stw       r7, 0x8(r30)
+		  stw       r6, 0x0(r30)
+		  stb       r5, 0x10(r30)
+		  stw       r7, 0x18(r30)
+		  stw       r7, 0x1C(r30)
+		  stw       r7, 0x44(r30)
+		  stw       r7, 0x48(r30)
+		  stw       r7, 0x70(r30)
+		  stw       r7, 0x74(r30)
+		  stw       r7, 0x9C(r30)
+		  stw       r7, 0xA0(r30)
+		  stb       r7, 0xC8(r30)
+		  stb       r7, 0xC9(r30)
+		  stw       r7, 0xCC(r30)
+		  stw       r7, 0xD0(r30)
+		  stw       r7, 0xD4(r30)
+		  stb       r7, 0xD8(r30)
+		  stb       r7, 0xDC(r30)
+		  stb       r7, 0xDD(r30)
+		  stw       r7, 0xE0(r30)
+		  stw       r7, 0xE4(r30)
+		  stw       r7, 0xE8(r30)
+		  stb       r7, 0xEC(r30)
+		  stb       r7, 0xF0(r30)
+		  stb       r7, 0xF1(r30)
+		  stb       r7, 0xF2(r30)
+		  stb       r4, 0xF3(r30)
+		  stb       r4, 0xF4(r30)
+		  stw       r7, 0xF8(r30)
+		  stw       r7, 0xFC(r30)
+		  stw       r7, 0x100(r30)
+		  stw       r0, 0x1C4(r30)
+		  stw       r0, 0x1C8(r30)
+		  stw       r0, 0x1CC(r30)
+		  stw       r0, 0x1D0(r30)
+		  stw       r0, 0x1D4(r30)
+		  stw       r0, 0x1D8(r30)
+		  stw       r0, 0x1DC(r30)
+		  stw       r0, 0x1E0(r30)
+		  bl        0x41A28
+		  lis       r3, 0x804D
+		  lis       r6, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r5, 0x804F
+		  stw       r0, 0x0(r31)
+		  li        r0, 0
+		  lis       r4, 0x804F
+		  lis       r3, 0x804E
+		  stw       r0, 0x18(r31)
+		  addi      r0, r6, 0x7F2C
+		  subi      r7, r5, 0x77D0
+		  li        r6, 0x1
+		  stw       r0, 0x0(r31)
+		  subi      r5, r4, 0x75F4
+		  addi      r0, r3, 0x798C
+		  addi      r3, r31, 0x20
+		  stw       r7, 0x0(r31)
+		  li        r4, 0
+		  stb       r6, 0x1C(r31)
+		  stw       r5, 0x0(r31)
+		  stw       r0, 0x20(r31)
+		  bl        -0x368348
+		  addi      r29, r30, 0x220
+		  mr        r3, r29
+		  bl        0x419C4
+		  lis       r3, 0x804D
+		  lis       r5, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r4, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r0, 0
+		  lis       r3, 0x804F
+		  addi      r31, r30, 0x240
+		  stw       r0, 0x18(r29)
+		  addi      r0, r5, 0x7F2C
+		  subi      r5, r4, 0x77D0
+		  li        r4, 0x1
+		  stw       r0, 0x0(r29)
+		  subi      r0, r3, 0x77F4
+		  mr        r3, r31
+		  stw       r5, 0x0(r29)
+		  stb       r4, 0x1C(r29)
+		  stw       r0, 0x0(r29)
+		  bl        0x41978
+		  lis       r3, 0x804D
+		  lis       r4, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r6, 0x804F
+		  stw       r0, 0x0(r31)
+		  li        r0, 0
+		  lis       r3, 0x803D
+		  li        r7, 0x1
+		  stw       r0, 0x18(r31)
+		  addi      r0, r4, 0x7F2C
+		  subi      r4, r3, 0x114
+		  subi      r3, r6, 0x77D0
+		  stw       r0, 0x0(r31)
+		  lis       r5, 0x804F
+		  subi      r0, r5, 0x75AC
+		  li        r6, 0x10
+		  stw       r3, 0x0(r31)
+		  addi      r3, r31, 0x20
+		  li        r5, 0
+		  stb       r7, 0x1C(r31)
+		  li        r7, 0x2
+		  stw       r0, 0x0(r31)
+		  bl        -0x30E238
+		  lfs       f1, 0x172C(r2)
+		  addi      r29, r30, 0x28C
+		  lfs       f0, 0x1730(r2)
+		  li        r4, 0x1
+		  stfs      f1, 0x40(r31)
+		  li        r0, 0
+		  mr        r3, r29
+		  stfs      f0, 0x44(r31)
+		  stb       r4, 0x48(r31)
+		  stb       r0, 0x49(r31)
+		  stb       r0, 0x1C(r31)
+		  bl        0x418EC
+		  lis       r3, 0x804D
+		  lis       r5, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r4, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r7, 0
+		  lis       r3, 0x804F
+		  addi      r31, r30, 0x2BC
+		  stw       r7, 0x18(r29)
+		  addi      r0, r5, 0x7F2C
+		  subi      r6, r4, 0x77D0
+		  li        r5, 0x1
+		  stw       r0, 0x0(r29)
+		  subi      r4, r3, 0x75D0
+		  lfs       f1, 0x172C(r2)
+		  li        r0, 0xFF
+		  stw       r6, 0x0(r29)
+		  mr        r3, r31
+		  lfs       f0, 0x1730(r2)
+		  stb       r5, 0x1C(r29)
+		  stw       r4, 0x0(r29)
+		  stfs      f1, 0x20(r29)
+		  stfs      f0, 0x24(r29)
+		  stb       r5, 0x28(r29)
+		  stb       r7, 0x29(r29)
+		  stb       r0, 0x2C(r29)
+		  stb       r7, 0x2D(r29)
+		  bl        0x4187C
+		  lis       r4, 0x804D
+		  li        r9, 0
+		  addi      r0, r4, 0x7B0C
+		  lis       r3, 0x804D
+		  stw       r0, 0x0(r31)
+		  addi      r0, r3, 0x7F2C
+		  lis       r4, 0x803D
+		  lis       r5, 0x804F
+		  stw       r9, 0x18(r31)
+		  li        r8, 0x1
+		  lis       r6, 0x804F
+		  lis       r3, 0x803D
+		  stw       r0, 0x0(r31)
+		  subi      r0, r5, 0x77D0
+		  subi      r5, r3, 0x81C
+		  subi      r3, r6, 0x75D0
+		  stw       r0, 0x0(r31)
+		  li        r0, 0xFF
+		  lfs       f1, 0x172C(r2)
+		  subi      r4, r4, 0x2C0
+		  stb       r8, 0x1C(r31)
+		  li        r6, 0x40
+		  lfs       f0, 0x1730(r2)
+		  li        r7, 0x7
+		  stw       r3, 0x0(r31)
+		  addi      r3, r30, 0x2EC
+		  stfs      f1, 0x20(r31)
+		  stfs      f0, 0x24(r31)
+		  stb       r8, 0x28(r31)
+		  stb       r9, 0x29(r31)
+		  stb       r0, 0x2C(r31)
+		  stb       r9, 0x2D(r31)
+		  bl        -0x30E35C
+		  lis       r3, 0x803D
+		  lis       r5, 0x803D
+		  subi      r4, r3, 0x2C0
+		  li        r6, 0x40
+		  addi      r3, r30, 0x4AC
+		  subi      r5, r5, 0x81C
+		  li        r7, 0xA
+		  bl        -0x30E37C
+		  lis       r3, 0x803D
+		  lis       r5, 0x803D
+		  subi      r4, r3, 0x2C0
+		  li        r6, 0x40
+		  addi      r3, r30, 0x72C
+		  subi      r5, r5, 0x81C
+		  li        r7, 0xA
+		  bl        -0x30E39C
+		  lis       r3, 0x803D
+		  lis       r5, 0x803D
+		  subi      r4, r3, 0x2C0
+		  li        r6, 0x40
+		  addi      r3, r30, 0x9AC
+		  subi      r5, r5, 0x81C
+		  li        r7, 0xA
+		  bl        -0x30E3BC
+		  lis       r3, 0x803D
+		  lis       r5, 0x803D
+		  subi      r4, r3, 0x2C0
+		  li        r6, 0x40
+		  addi      r3, r30, 0xC2C
+		  subi      r5, r5, 0x81C
+		  li        r7, 0xA
+		  bl        -0x30E3DC
+		  addi      r29, r30, 0xEAC
+		  mr        r3, r29
+		  bl        0x4176C
+		  lis       r3, 0x804D
+		  lis       r5, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r4, 0x804F
+		  stw       r0, 0x0(r29)
+		  li        r7, 0
+		  lis       r3, 0x804F
+		  addi      r6, r5, 0x7F2C
+		  stw       r7, 0x18(r29)
+		  subi      r5, r4, 0x77D0
+		  li        r4, 0x1
+		  subi      r0, r3, 0x7618
+		  stw       r6, 0x0(r29)
+		  addi      r3, r29, 0x48
+		  stw       r5, 0x0(r29)
+		  stb       r4, 0x1C(r29)
+		  stw       r0, 0x0(r29)
+		  stw       r7, 0x40(r29)
+		  stw       r7, 0x44(r29)
+		  bl        -0xA6E70
+		  lfs       f0, 0x1728(r2)
+		  li        r0, 0
+		  addi      r3, r30, 0xC8
+		  stfs      f0, 0x64(r29)
+		  stw       r0, 0x68(r29)
+		  bl        -0x4CC8
+		  lwz       r0, 0x24(r1)
+		  mr        r3, r30
+		  lwz       r31, 0x1C(r1)
+		  lwz       r30, 0x18(r1)
+		  lwz       r29, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFCB0
- * Size:	000090
- */
-void ebi::E2DCallBack_WindowCursor::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x7618
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x41878
+	 * --INFO--
+	 * Address:	803CFCB0
+	 * Size:	000090
+	 */
+	E2DCallBack_WindowCursor::~E2DCallBack_WindowCursor(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x74
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x7618
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x7B0C
+		  stw       r0, 0x0(r30)
+		  bl        0x41878
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3ABC6C
+		.loc_0x64:
+		  extsh.    r0, r31
+		  ble-      .loc_0x74
+		  mr        r3, r30
+		  bl        -0x3ABC6C
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x74:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFD40
- * Size:	00008C
- */
-void ebi::E2DCallBack_Purupuru::__ct(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r31, r30
-	  bl        0x41634
-	  lis       r3, 0x804D
-	  lis       r5, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r0, 0
-	  lis       r3, 0x804F
-	  addi      r6, r5, 0x7F2C
-	  stw       r0, 0x18(r31)
-	  subi      r5, r4, 0x77D0
-	  li        r4, 0x1
-	  subi      r0, r3, 0x7588
-	  stw       r6, 0x0(r31)
-	  addi      r3, r30, 0x20
-	  stw       r5, 0x0(r31)
-	  stb       r4, 0x1C(r31)
-	  stw       r0, 0x0(r30)
-	  bl        -0xA6FA0
-	  lfs       f0, 0x1728(r2)
-	  mr        r3, r30
-	  stfs      f0, 0x3C(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803CFD40
+	 * Size:	00008C
+	 */
+	E2DCallBack_Purupuru::E2DCallBack_Purupuru(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  stw       r30, 0x8(r1)
+		  mr        r30, r3
+		  mr        r31, r30
+		  bl        0x41634
+		  lis       r3, 0x804D
+		  lis       r5, 0x804D
+		  addi      r0, r3, 0x7B0C
+		  lis       r4, 0x804F
+		  stw       r0, 0x0(r31)
+		  li        r0, 0
+		  lis       r3, 0x804F
+		  addi      r6, r5, 0x7F2C
+		  stw       r0, 0x18(r31)
+		  subi      r5, r4, 0x77D0
+		  li        r4, 0x1
+		  subi      r0, r3, 0x7588
+		  stw       r6, 0x0(r31)
+		  addi      r3, r30, 0x20
+		  stw       r5, 0x0(r31)
+		  stb       r4, 0x1C(r31)
+		  stw       r0, 0x0(r30)
+		  bl        -0xA6FA0
+		  lfs       f0, 0x1728(r2)
+		  mr        r3, r30
+		  stfs      f0, 0x3C(r30)
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFDCC
- * Size:	000090
- */
-void ebi::E2DCallBack_BlinkAlpha::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x75D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x4175C
+	 * --INFO--
+	 * Address:	803CFDCC
+	 * Size:	000090
+	 */
+	E2DCallBack_BlinkAlpha::~E2DCallBack_BlinkAlpha(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x74
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x75D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x7B0C
+		  stw       r0, 0x0(r30)
+		  bl        0x4175C
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3ABD88
+		.loc_0x64:
+		  extsh.    r0, r31
+		  ble-      .loc_0x74
+		  mr        r3, r30
+		  bl        -0x3ABD88
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x74:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFE5C
- * Size:	000090
- */
-void ebi::E2DCallBack_BlinkFontColor::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x75AC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x416CC
+	 * --INFO--
+	 * Address:	803CFE5C
+	 * Size:	000090
+	 */
+	E2DCallBack_BlinkFontColor::~E2DCallBack_BlinkFontColor(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x74
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x75AC
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x7B0C
+		  stw       r0, 0x0(r30)
+		  bl        0x416CC
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3ABE18
+		.loc_0x64:
+		  extsh.    r0, r31
+		  ble-      .loc_0x74
+		  mr        r3, r30
+		  bl        -0x3ABE18
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x74:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFEEC
- * Size:	000018
- */
-void ebi::E2DFullFontColor::__ct(void)
-{
 	/*
-	.loc_0x0:
-	  li        r0, -0x1
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803CFEEC
+	 * Size:	000018
+	 */
+	E2DFullFontColor::E2DFullFontColor(void)
+	{
+		/*
+		.loc_0x0:
+		  li        r0, -0x1
+		  stw       r0, 0x0(r3)
+		  stw       r0, 0x4(r3)
+		  stw       r0, 0x8(r3)
+		  stw       r0, 0xC(r3)
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFF04
- * Size:	000090
- */
-void ebi::E2DCallBack_CalcAnimation::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77F4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x41624
+	 * --INFO--
+	 * Address:	803CFF04
+	 * Size:	000090
+	 */
+	E2DCallBack_CalcAnimation::~E2DCallBack_CalcAnimation(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x74
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77F4
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x64
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x7B0C
+		  stw       r0, 0x0(r30)
+		  bl        0x41624
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3ABEC0
+		.loc_0x64:
+		  extsh.    r0, r31
+		  ble-      .loc_0x74
+		  mr        r3, r30
+		  bl        -0x3ABEC0
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x74:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803CFF94
- * Size:	0000AC
- */
-void ebi::E2DCallBack_AnmBase::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x90
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x20
-	  subi      r0, r3, 0x75F4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x40
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x798C
-	  stw       r0, 0x20(r30)
+	 * --INFO--
+	 * Address:	803CFF94
+	 * Size:	0000AC
+	 */
+	E2DCallBack_AnmBase::~E2DCallBack_AnmBase(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x90
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x20
+		  subi      r0, r3, 0x75F4
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x40
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x798C
+		  stw       r0, 0x20(r30)
 
-	.loc_0x40:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x80
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x80
-	  lis       r4, 0x804D
-	  mr        r3, r30
-	  addi      r0, r4, 0x7B0C
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        0x41578
+		.loc_0x40:
+		  cmplwi    r30, 0
+		  beq-      .loc_0x80
+		  lis       r3, 0x804F
+		  subi      r0, r3, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x80
+		  lis       r3, 0x804D
+		  addi      r0, r3, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x80
+		  lis       r4, 0x804D
+		  mr        r3, r30
+		  addi      r0, r4, 0x7B0C
+		  li        r4, 0
+		  stw       r0, 0x0(r30)
+		  bl        0x41578
 
-	.loc_0x80:
-	  extsh.    r0, r31
-	  ble-      .loc_0x90
-	  mr        r3, r30
-	  bl        -0x3ABF6C
+		.loc_0x80:
+		  extsh.    r0, r31
+		  ble-      .loc_0x90
+		  mr        r3, r30
+		  bl        -0x3ABF6C
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x90:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	803D0040
- * Size:	000080
- */
-void ebi::E2DCallBack_Base::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x77D0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x7F2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x414F8
+	 * --INFO--
+	 * Address:	803D0040
+	 * Size:	000080
+	 */
+	E2DCallBack_Base::~E2DCallBack_Base(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x64
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x77D0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x54
+		  lis       r4, 0x804D
+		  addi      r0, r4, 0x7F2C
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x54
+		  lis       r5, 0x804D
+		  li        r4, 0
+		  addi      r0, r5, 0x7B0C
+		  stw       r0, 0x0(r30)
+		  bl        0x414F8
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x3ABFEC
+		.loc_0x54:
+		  extsh.    r0, r31
+		  ble-      .loc_0x64
+		  mr        r3, r30
+		  bl        -0x3ABFEC
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x64:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	803D00C0
  * Size:	000088
  */
-void ebi::Option::TMgr::loadResource(void)
+void Option::TMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -2102,7 +2089,7 @@ void ebi::Option::TMgr::loadResource(void)
  * Address:	803D0148
  * Size:	00004C
  */
-void ebi::Option::TMgr::setController((Controller*))
+void Option::TMgr::setController(Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2133,7 +2120,7 @@ void ebi::Option::TMgr::setController((Controller*))
  * Address:	803D0194
  * Size:	00003C
  */
-void ebi::Option::TMgr::start(void)
+void Option::TMgr::start(void)
 {
 	/*
 	.loc_0x0:
@@ -2160,7 +2147,7 @@ void ebi::Option::TMgr::start(void)
  * Address:	........
  * Size:	000064
  */
-void ebi::Option::TMgr::forceQuit(void)
+void Option::TMgr::forceQuit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2170,7 +2157,7 @@ void ebi::Option::TMgr::forceQuit(void)
  * Address:	803D01D0
  * Size:	000028
  */
-void ebi::Option::TMgr::isFinish(void)
+void Option::TMgr::isFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2192,7 +2179,7 @@ void ebi::Option::TMgr::isFinish(void)
  * Address:	803D01F8
  * Size:	00007C
  */
-void ebi::Option::TMgr::goEnd_(void)
+void Option::TMgr::goEnd_(void)
 {
 	/*
 	.loc_0x0:
@@ -2235,7 +2222,7 @@ void ebi::Option::TMgr::goEnd_(void)
  * Address:	803D0274
  * Size:	000094
  */
-void ebi::Option::TMgr::update(void)
+void Option::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2286,7 +2273,7 @@ void ebi::Option::TMgr::update(void)
  * Address:	803D0308
  * Size:	000090
  */
-void ebi::Option::TMgr::draw(void)
+void Option::TMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -2338,7 +2325,7 @@ void ebi::Option::TMgr::draw(void)
  * Address:	........
  * Size:	000024
  */
-void ebi::Option::TMgr::showInfo(void)
+void Option::TMgr::showInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2348,7 +2335,7 @@ void ebi::Option::TMgr::showInfo(void)
  * Address:	803D0398
  * Size:	000058
  */
-void ebi::Option::TMgr::getStateID(void)
+void Option::TMgr::getStateID(void)
 {
 	/*
 	.loc_0x0:
@@ -2384,7 +2371,7 @@ void ebi::Option::TMgr::getStateID(void)
  * Address:	803D03F0
  * Size:	000050
  */
-void ebi::E2DCallBack_CalcAnimation::do_update(void)
+void E2DCallBack_CalcAnimation::do_update(void)
 {
 	/*
 	.loc_0x0:
@@ -2418,7 +2405,7 @@ void ebi::E2DCallBack_CalcAnimation::do_update(void)
  * Address:	803D0440
  * Size:	000038
  */
-void ebi::E2DCallBack_Base::update(void)
+void E2DCallBack_Base::update(void)
 {
 	/*
 	.loc_0x0:
@@ -2446,14 +2433,14 @@ void ebi::E2DCallBack_Base::update(void)
  * Address:	803D0478
  * Size:	000004
  */
-void ebi::E2DCallBack_Base::do_update(void) { }
+void E2DCallBack_Base::do_update(void) { }
 
 /*
  * --INFO--
  * Address:	803D047C
  * Size:	000038
  */
-void ebi::E2DCallBack_Base::draw((Graphics&, J2DGrafContext&))
+void E2DCallBack_Base::draw(Graphics&, J2DGrafContext&)
 {
 	/*
 	.loc_0x0:
@@ -2481,7 +2468,7 @@ void ebi::E2DCallBack_Base::draw((Graphics&, J2DGrafContext&))
  * Address:	803D04B4
  * Size:	000004
  */
-void ebi::E2DCallBack_Base::do_draw((Graphics&, J2DGrafContext&)) { }
+void E2DCallBack_Base::do_draw(Graphics&, J2DGrafContext&) { }
 
 /*
  * --INFO--
@@ -2492,6 +2479,8 @@ void init__Q24Game28FSMState<ebi::Option::TMgr>
 FPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
 {
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

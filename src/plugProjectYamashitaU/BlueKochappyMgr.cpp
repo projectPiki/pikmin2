@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012CC1C
  * Size:	000050
  */
-void Game::BlueKochappy::Mgr::Mgr(int, unsigned char)
+BlueKochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::BlueKochappy::Mgr::Mgr(int, unsigned char)
  * Address:	8012CC6C
  * Size:	000048
  */
-void Game::BlueKochappy::Mgr::doAlloc()
+void BlueKochappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::BlueKochappy::Mgr::doAlloc()
  * Address:	8012CCB4
  * Size:	000048
  */
-void Game::BlueKochappy::Mgr::loadTexData()
+void BlueKochappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -99,7 +101,7 @@ void Game::BlueKochappy::Mgr::loadTexData()
  * Address:	8012CCFC
  * Size:	0000C8
  */
-void Game::BlueKochappy::Mgr::~Mgr()
+BlueKochappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -165,7 +167,7 @@ void Game::BlueKochappy::Mgr::~Mgr()
  * Address:	8012CDC4
  * Size:	000008
  */
-void Game::BlueKochappy::Mgr::getChangeTexture()
+void BlueKochappy::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -179,14 +181,14 @@ void Game::BlueKochappy::Mgr::getChangeTexture()
  * Address:	8012CDCC
  * Size:	000008
  */
-u32 Game::BlueKochappy::Mgr::getEnemyTypeID() { return 0x2C; }
+u32 BlueKochappy::Mgr::getEnemyTypeID() { return 0x2C; }
 
 /*
  * --INFO--
  * Address:	8012CDD4
  * Size:	000060
  */
-void Game::BlueKochappy::Mgr::createObj(int)
+void BlueKochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -222,7 +224,7 @@ void Game::BlueKochappy::Mgr::createObj(int)
  * Address:	8012CE34
  * Size:	0000EC
  */
-void Game::BlueKochappy::Obj::~Obj()
+BlueKochappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -297,7 +299,7 @@ void Game::BlueKochappy::Obj::~Obj()
  * Address:	8012CF20
  * Size:	000010
  */
-void Game::BlueKochappy::Mgr::getEnemy(int)
+void BlueKochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -313,7 +315,7 @@ void Game::BlueKochappy::Mgr::getEnemy(int)
  * Address:	8012CF30
  * Size:	000008
  */
-void Game::BlueKochappy::Mgr::@4 @__dt()
+BlueKochappy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -321,3 +323,4 @@ void Game::BlueKochappy::Mgr::@4 @__dt()
 	  b         -0x238
 	*/
 }
+} // namespace Game

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8044A03C
  * Size:	0000F0
  */
-void Title::Section::__ct((JKRHeap*))
+Title::Section::Section(JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -84,12 +74,14 @@ void Title::Section::__ct((JKRHeap*))
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	8044A12C
  * Size:	000070
  */
-void ebi::Omake::TMgr::__dt(void)
+Omake::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +123,7 @@ void ebi::Omake::TMgr::__dt(void)
  * Address:	8044A19C
  * Size:	000054
  */
-void ebi::Option::TMgr::__dt(void)
+Option::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +158,7 @@ void ebi::Option::TMgr::__dt(void)
  * Address:	8044A1F0
  * Size:	000270
  */
-void ebi::TMainTitleMgr::__dt(void)
+TMainTitleMgr::~TMainTitleMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +342,7 @@ void ebi::TMainTitleMgr::__dt(void)
  * Address:	8044A460
  * Size:	0000A4
  */
-void Title::Section::__dt(void)
+Title::Section::~Section(void)
 {
 	/*
 	.loc_0x0:
@@ -401,6 +393,8 @@ void Title::Section::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--
@@ -872,7 +866,7 @@ void Title::Section::init(void)
  * Address:	8044AB00
  * Size:	00002C
  */
-void Title::Section::menuCancel((Menu&))
+void Title::Section::menuCancel(Menu&)
 {
 	/*
 	.loc_0x0:
@@ -895,7 +889,7 @@ void Title::Section::menuCancel((Menu&))
  * Address:	8044AB2C
  * Size:	000054
  */
-void Title::Section::menuSelect((Menu&))
+void Title::Section::menuSelect(Menu&)
 {
 	/*
 	.loc_0x0:
@@ -932,7 +926,7 @@ void Title::Section::menuSelect((Menu&))
  * Address:	8044AB80
  * Size:	000110
  */
-void Title::Section::doDraw((Graphics&))
+void Title::Section::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1026,7 +1020,7 @@ void Title::Section::doDraw((Graphics&))
  * Address:	........
  * Size:	000200
  */
-void Title::Section::drawShortCuts((Graphics&))
+void Title::Section::drawShortCuts(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1036,7 +1030,7 @@ void Title::Section::drawShortCuts((Graphics&))
  * Address:	........
  * Size:	000150
  */
-void Title::Section::drawShortCut((Graphics&, int, int, int, char*))
+void Title::Section::drawShortCut(Graphics&, int, int, int, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1046,7 +1040,7 @@ void Title::Section::drawShortCut((Graphics&, int, int, int, char*))
  * Address:	........
  * Size:	000004
  */
-void Title::Section::drawDebugInfo((Graphics&))
+void Title::Section::drawDebugInfo(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -2934,7 +2928,7 @@ void Title::Section::loadResource(void)
  * Address:	........
  * Size:	000100
  */
-void TitleDummy::Section::__ct((JKRHeap*))
+TitleDummy::Section::Section(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -2974,7 +2968,7 @@ void TitleDummy::Section::doUpdate(void)
  * Address:	........
  * Size:	0000C0
  */
-void TitleDummy::Section::doDraw((Graphics&))
+void TitleDummy::Section::doDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -2984,7 +2978,7 @@ void TitleDummy::Section::doDraw((Graphics&))
  * Address:	........
  * Size:	000060
  */
-void TitleDummy::Section::__dt(void)
+TitleDummy::Section::~Section(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3001,7 +2995,7 @@ u32 Title::Section::forceReset(void) { return 0x0; }
  * Address:	8044C428
  * Size:	000070
  */
-void HIORootNode::~HIORootNode()
+HIORootNode::~HIORootNode()
 {
 	/*
 	.loc_0x0:

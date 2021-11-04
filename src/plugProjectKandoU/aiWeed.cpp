@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8020D784
  * Size:	00004C
  */
-void PikiAI::ActWeed::getInfo((char*))
+void PikiAI::ActWeed::getInfo(char*)
 {
 	/*
 	.loc_0x0:
@@ -46,7 +36,7 @@ void PikiAI::ActWeed::getInfo((char*))
  * Address:	8020D7D0
  * Size:	000094
  */
-void PikiAI::ActWeed::__ct((Game::Piki*))
+PikiAI::ActWeed::ActWeed(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -99,7 +89,7 @@ void PikiAI::ActWeed::__ct((Game::Piki*))
  * Address:	8020D864
  * Size:	000170
  */
-void PikiAI::ActWeed::init((PikiAI::ActionArg*))
+void PikiAI::ActWeed::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -1105,14 +1095,14 @@ void PikiAI::ActWeed::cleanup(void)
  * Address:	8020E53C
  * Size:	000004
  */
-void PikiAI::ActWeed::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
+void PikiAI::ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8020E540
  * Size:	000088
  */
-void PikiAI::ActFlockAttack::__ct((Game::Piki*))
+PikiAI::ActFlockAttack::ActFlockAttack(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1160,7 +1150,7 @@ void PikiAI::ActFlockAttack::__ct((Game::Piki*))
  * Address:	8020E5C8
  * Size:	000138
  */
-void PikiAI::ActFlockAttack::init((PikiAI::ActionArg*))
+void PikiAI::ActFlockAttack::init(PikiAI::ActionArg*)
 {
 	/*
 	.loc_0x0:
@@ -1493,7 +1483,7 @@ void PikiAI::ActFlockAttack::exec(void)
  * Address:	8020EA24
  * Size:	000064
  */
-void PikiAI::ActFlockAttack::onKeyEvent((SysShape::KeyEvent const&))
+void PikiAI::ActFlockAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1540,12 +1530,8 @@ void PikiAI::ActFlockAttack::onKeyEvent((SysShape::KeyEvent const&))
  */
 void PikiAI::ActFlockAttack::cleanup(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x14(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x14(r3)
+	_14 = 0;
 }
 
 /*
@@ -1590,7 +1576,7 @@ void __sinit_aiWeed_cpp(void)
  * Address:	8020EAC8
  * Size:	000014
  */
-void @40 @4 @PikiAI::ActFlockAttack::onKeyEvent((SysShape::KeyEvent const&))
+void @40 @4 @PikiAI::ActFlockAttack::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:

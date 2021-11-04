@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8029EF0C
  * Size:	00005C
  */
-void Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator*)
+Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -46,7 +48,7 @@ void Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator*)
  * Address:	8029EF68
  * Size:	0000DC
  */
-void Game::Cave::RandPlantUnit::setPlantSlot()
+void Cave::RandPlantUnit::setPlantSlot()
 {
 	/*
 	.loc_0x0:
@@ -123,7 +125,7 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
  * Address:	8029F044
  * Size:	000134
  */
-void Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen**)
+void Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -228,7 +230,7 @@ void Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen**)
  * Address:	8029F178
  * Size:	000068
  */
-void Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen*)
+void Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -274,8 +276,7 @@ void Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen*)
  * Address:	8029F1E0
  * Size:	000048
  */
-void Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode*,
-                                           Game::Cave::BaseGen*)
+void Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode*, Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -309,3 +310,4 @@ void Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode*,
 	  blr
 	*/
 }
+} // namespace Game

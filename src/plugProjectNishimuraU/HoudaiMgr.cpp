@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802BEDE0
  * Size:	000050
  */
-void Game::Houdai::Mgr::Mgr(int, unsigned char)
+Houdai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Houdai::Mgr::Mgr(int, unsigned char)
  * Address:	802BEE30
  * Size:	000048
  */
-void Game::Houdai::Mgr::doAlloc()
+void Houdai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Houdai::Mgr::doAlloc()
  * Address:	802BEE78
  * Size:	000048
  */
-void Game::Houdai::Parms::Parms()
+Houdai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Houdai::Parms::Parms()
  * Address:	802BEEC0
  * Size:	0002EC
  */
-void Game::Houdai::Parms::ProperParms::ProperParms()
+Houdai::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -304,7 +306,7 @@ void Game::Houdai::Parms::ProperParms::ProperParms()
  * Address:	802BF1AC
  * Size:	000060
  */
-void Game::Houdai::Mgr::createObj(int)
+void Houdai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +342,7 @@ void Game::Houdai::Mgr::createObj(int)
  * Address:	802BF20C
  * Size:	0000BC
  */
-void Game::Houdai::Obj::~Obj()
+Houdai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -403,7 +405,7 @@ void Game::Houdai::Obj::~Obj()
  * Address:	802BF2C8
  * Size:	000010
  */
-void Game::Houdai::Mgr::getEnemy(int)
+void Houdai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -419,7 +421,7 @@ void Game::Houdai::Mgr::getEnemy(int)
  * Address:	802BF2D8
  * Size:	000068
  */
-void Game::Houdai::Mgr::loadModelData()
+void Houdai::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -461,7 +463,7 @@ void Game::Houdai::Mgr::loadModelData()
  * Address:	802BF340
  * Size:	0000B0
  */
-void Game::Houdai::Mgr::~Mgr()
+Houdai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -521,14 +523,14 @@ void Game::Houdai::Mgr::~Mgr()
  * Address:	802BF3F0
  * Size:	000008
  */
-u32 Game::Houdai::Mgr::getEnemyTypeID() { return 0x42; }
+u32 Houdai::Mgr::getEnemyTypeID() { return 0x42; }
 
 /*
  * --INFO--
  * Address:	802BF3F8
  * Size:	00002C
  */
-void Game::Houdai::Mgr::doLoadBmd(void*)
+void Houdai::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -551,7 +553,7 @@ void Game::Houdai::Mgr::doLoadBmd(void*)
  * Address:	802BF424
  * Size:	000050
  */
-void Game::Houdai::Parms::read(Stream&)
+void Houdai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -583,7 +585,7 @@ void Game::Houdai::Parms::read(Stream&)
  * Address:	802BF474
  * Size:	000008
  */
-void Game::Houdai::Mgr::@4 @__dt()
+Houdai::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -591,3 +593,4 @@ void Game::Houdai::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

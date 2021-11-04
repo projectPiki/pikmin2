@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -76,7 +76,7 @@ void JAInter::DummyObjectMgr::init(void)
  * Address:	800AD56C
  * Size:	000068
  */
-void JAInter::DummyObjectMgr::getPointer((unsigned long))
+void JAInter::DummyObjectMgr::getPointer(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +122,7 @@ void JAInter::DummyObjectMgr::getPointer((unsigned long))
  * Address:	........
  * Size:	000074
  */
-void JAInter::DummyObjectMgr::releasePointer((JAInter::DummyVec*))
+void JAInter::DummyObjectMgr::releasePointer(JAInter::DummyVec*)
 {
 	// UNUSED FUNCTION
 }

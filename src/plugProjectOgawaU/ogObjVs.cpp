@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80325A40
  * Size:	00015C
  */
-void og::newScreen::ObjVs::__ct((char const*))
+newScreen::ObjVs::ObjVs(char const*)
 {
 	/*
 	.loc_0x0:
@@ -114,7 +106,7 @@ void og::newScreen::ObjVs::__ct((char const*))
  * Address:	80325B9C
  * Size:	0000AC
  */
-void og::newScreen::ObjVs::__dt(void)
+newScreen::ObjVs::~ObjVs(void)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +165,7 @@ void og::newScreen::ObjVs::__dt(void)
  * Address:	80325C48
  * Size:	000800
  */
-void og::newScreen::ObjVs::doCreate((JKRArchive*))
+void newScreen::ObjVs::doCreate(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -749,7 +741,7 @@ void og::newScreen::ObjVs::doCreate((JKRArchive*))
  * Address:	........
  * Size:	000020
  */
-void og::newScreen::ObjVs::isCompBdama((int))
+void newScreen::ObjVs::isCompBdama(int)
 {
 	// UNUSED FUNCTION
 }
@@ -759,7 +751,7 @@ void og::newScreen::ObjVs::isCompBdama((int))
  * Address:	........
  * Size:	000138
  */
-void og::newScreen::ObjVs::startGetBdama((J2DPane*))
+void newScreen::ObjVs::startGetBdama(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -769,7 +761,7 @@ void og::newScreen::ObjVs::startGetBdama((J2DPane*))
  * Address:	........
  * Size:	0000C8
  */
-void og::newScreen::ObjVs::startBdamaComp((J2DPane*))
+void newScreen::ObjVs::startBdamaComp(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -779,7 +771,7 @@ void og::newScreen::ObjVs::startBdamaComp((J2DPane*))
  * Address:	........
  * Size:	000124
  */
-void og::newScreen::ObjVs::startBdamaWinRed((J2DPane*))
+void newScreen::ObjVs::startBdamaWinRed(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -789,7 +781,7 @@ void og::newScreen::ObjVs::startBdamaWinRed((J2DPane*))
  * Address:	........
  * Size:	00013C
  */
-void og::newScreen::ObjVs::startBdamaWinBlue((J2DPane*))
+void newScreen::ObjVs::startBdamaWinBlue(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -799,7 +791,7 @@ void og::newScreen::ObjVs::startBdamaWinBlue((J2DPane*))
  * Address:	80326448
  * Size:	000A28
  */
-void og::newScreen::ObjVs::setOnOffBdama((bool))
+void newScreen::ObjVs::setOnOffBdama(bool)
 {
 	/*
 	.loc_0x0:
@@ -1501,8 +1493,8 @@ void og::newScreen::ObjVs::setOnOffBdama((bool))
  * Address:	80326E70
  * Size:	0002B8
  */
-void og::newScreen::ObjVs::ScreenSet::init((og::Screen::DataNavi*, JKRArchive*,
-                                            unsigned long*))
+void newScreen::ObjVs::ScreenSet::init(og::Screen::DataNavi*, JKRArchive*,
+                                       unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -1690,7 +1682,7 @@ void og::newScreen::ObjVs::ScreenSet::init((og::Screen::DataNavi*, JKRArchive*,
  * Address:	........
  * Size:	0000EC
  */
-void og::newScreen::ObjVs::ScreenSet::update((og::Screen::DataNavi&))
+void newScreen::ObjVs::ScreenSet::update(og::Screen::DataNavi&)
 {
 	// UNUSED FUNCTION
 }
@@ -1700,7 +1692,7 @@ void og::newScreen::ObjVs::ScreenSet::update((og::Screen::DataNavi&))
  * Address:	80327128
  * Size:	00056C
  */
-void og::newScreen::ObjVs::checkObake(void)
+void newScreen::ObjVs::checkObake(void)
 {
 	/*
 	.loc_0x0:
@@ -2103,7 +2095,7 @@ void og::newScreen::ObjVs::checkObake(void)
  * Address:	80327694
  * Size:	0002AC
  */
-void og::newScreen::ObjVs::doUpdateCommon(void)
+void newScreen::ObjVs::doUpdateCommon(void)
 {
 	/*
 	.loc_0x0:
@@ -2302,7 +2294,7 @@ void og::newScreen::ObjVs::doUpdateCommon(void)
  * Address:	80327940
  * Size:	000044
  */
-void og::newScreen::ObjVs::doUpdate(void)
+void newScreen::ObjVs::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -2333,7 +2325,7 @@ void og::newScreen::ObjVs::doUpdate(void)
  * Address:	80327984
  * Size:	000130
  */
-void og::newScreen::ObjVs::doDraw((Graphics&))
+void newScreen::ObjVs::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2421,7 +2413,7 @@ void og::newScreen::ObjVs::doDraw((Graphics&))
  * Address:	80327AB4
  * Size:	000014
  */
-void og::newScreen::ObjVs::doStart((Screen::StartSceneArg const*))
+void newScreen::ObjVs::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -2438,7 +2430,7 @@ void og::newScreen::ObjVs::doStart((Screen::StartSceneArg const*))
  * Address:	80327AC8
  * Size:	000010
  */
-void og::newScreen::ObjVs::doEnd((Screen::EndSceneArg const*))
+void newScreen::ObjVs::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -2454,14 +2446,14 @@ void og::newScreen::ObjVs::doEnd((Screen::EndSceneArg const*))
  * Address:	80327AD8
  * Size:	000004
  */
-void og::newScreen::ObjVs::doUpdateFadeinFinish(void) { }
+void newScreen::ObjVs::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80327ADC
  * Size:	00000C
  */
-void og::newScreen::ObjVs::doUpdateFinish(void)
+void newScreen::ObjVs::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -2476,14 +2468,14 @@ void og::newScreen::ObjVs::doUpdateFinish(void)
  * Address:	80327AE8
  * Size:	000004
  */
-void og::newScreen::ObjVs::doUpdateFadeoutFinish(void) { }
+void newScreen::ObjVs::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80327AEC
  * Size:	000074
  */
-void og::newScreen::ObjVs::doUpdateFadein(void)
+void newScreen::ObjVs::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -2526,7 +2518,7 @@ void og::newScreen::ObjVs::doUpdateFadein(void)
  * Address:	80327B60
  * Size:	00007C
  */
-void og::newScreen::ObjVs::doUpdateFadeout(void)
+void newScreen::ObjVs::doUpdateFadeout(void)
 {
 	/*
 	.loc_0x0:
@@ -2565,6 +2557,8 @@ void og::newScreen::ObjVs::doUpdateFadeout(void)
 	  blr
 	*/
 }
+
+} // namespace og
 
 /*
  * --INFO--
@@ -2625,7 +2619,7 @@ void __sinit_ogObjVs_cpp(void)
  * Address:	80327C54
  * Size:	000008
  */
-void @24 @og::newScreen::ObjVs::__dt(void)
+@24 @og::newScreen::ObjVs::~ObjVs(void)
 {
 	/*
 	.loc_0x0:

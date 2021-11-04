@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000028
  */
-void SweepPrune::Node::insertBefore((SweepPrune::Node*))
+void SweepPrune::Node::insertBefore(SweepPrune::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void SweepPrune::Node::insertBefore((SweepPrune::Node*))
  * Address:	........
  * Size:	000020
  */
-void SweepPrune::Node::insertAfter((SweepPrune::Node*))
+void SweepPrune::Node::insertAfter(SweepPrune::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +25,7 @@ void SweepPrune::Node::insertAfter((SweepPrune::Node*))
  * Address:	8023C5B0
  * Size:	0001C8
  */
-void SweepPrune::Node::insertSort((SweepPrune::Node&))
+void SweepPrune::Node::insertSort(SweepPrune::Node&)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +187,7 @@ void SweepPrune::Node::insertSort((SweepPrune::Node&))
  * Address:	8023C778
  * Size:	000070
  */
-void SweepPrune::Object::__ct(void)
+SweepPrune::Object::Object(void)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +227,7 @@ void SweepPrune::Object::__ct(void)
  * Address:	8023C7E8
  * Size:	00002C
  */
-void SweepPrune::World::__ct(void)
+SweepPrune::World::World(void)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +250,7 @@ void SweepPrune::World::__ct(void)
  * Address:	........
  * Size:	00003C
  */
-void SweepPrune::World::__dt(void)
+SweepPrune::World::~World(void)
 {
 	// UNUSED FUNCTION
 }
@@ -270,7 +260,7 @@ void SweepPrune::World::__dt(void)
  * Address:	8023C814
  * Size:	000148
  */
-void SweepPrune::World::resolve((SweepPrune::World::ResolveArg&))
+void SweepPrune::World::resolve(SweepPrune::World::ResolveArg&)
 {
 	/*
 	.loc_0x0:

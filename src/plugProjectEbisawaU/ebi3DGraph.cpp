@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803C9D10
  * Size:	000104
  */
-void ebi::E3DAnimRes::load((J3DModelData*, JKRArchive*, char*))
+void E3DAnimRes::load(J3DModelData*, JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -94,7 +86,7 @@ void ebi::E3DAnimRes::load((J3DModelData*, JKRArchive*, char*))
  * Address:	803C9E14
  * Size:	000058
  */
-void ebi::E3DAnimCtrl::setAnimFolder((ebi::E3DAnimFolderBase*))
+void E3DAnimCtrl::setAnimFolder(ebi::E3DAnimFolderBase*)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +122,7 @@ void ebi::E3DAnimCtrl::setAnimFolder((ebi::E3DAnimFolderBase*))
  * Address:	803C9E6C
  * Size:	0000A4
  */
-void ebi::E3DAnimCtrl::init((long, float))
+void E3DAnimCtrl::init(long, float)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +177,7 @@ void ebi::E3DAnimCtrl::init((long, float))
  * Address:	........
  * Size:	000064
  */
-void ebi::E3DAnimCtrl::setStartFrame(void)
+void E3DAnimCtrl::setStartFrame(void)
 {
 	// UNUSED FUNCTION
 }
@@ -195,7 +187,7 @@ void ebi::E3DAnimCtrl::setStartFrame(void)
  * Address:	803C9F10
  * Size:	000080
  */
-void ebi::E3DAnimCtrl::play(void)
+void E3DAnimCtrl::play(void)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +237,7 @@ void ebi::E3DAnimCtrl::play(void)
  * Address:	803C9F90
  * Size:	000064
  */
-void ebi::E3DAnimCtrl::playStopEnd(void)
+void E3DAnimCtrl::playStopEnd(void)
 {
 	/*
 	.loc_0x0:
@@ -286,7 +278,8 @@ void ebi::E3DAnimCtrl::playStopEnd(void)
  * Address:	........
  * Size:	000064
  */
-void ebi::E3DAnimCtrl::stop(void)
+void E3DAnimCtrl::stop(void)
 {
 	// UNUSED FUNCTION
 }
+} // namespace ebi

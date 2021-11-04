@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1649,7 +1649,7 @@ void J3DModel::prepareShapePackets()
  * Address:	800675CC
  * Size:	000064
  */
-void J3DModel::~J3DModel()
+J3DModel::~J3DModel()
 {
 	/*
 	.loc_0x0:
@@ -1688,7 +1688,7 @@ void J3DModel::~J3DModel()
  * Address:	80067630
  * Size:	000048
  */
-void J3DMtxBuffer::~J3DMtxBuffer()
+J3DMtxBuffer::~J3DMtxBuffer()
 {
 	/*
 	.loc_0x0:

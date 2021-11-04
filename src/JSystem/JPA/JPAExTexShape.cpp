@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -84,13 +84,10 @@ void JPALoadExTex(JPAEmitterWorkData*)
  * Address:	80091028
  * Size:	000008
  */
-void JPAExTexShape::JPAExTexShape(const unsigned char*)
+JPAExTexShape::JPAExTexShape(const unsigned char* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x0(r3)
+	_00 = a1;
 }
 
 /*

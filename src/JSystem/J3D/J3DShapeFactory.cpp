@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80071D10
  * Size:	0000B0
  */
-void J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock&)
+J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock&)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +369,7 @@ void J3DShapeFactory::newShapeMtx(unsigned long, int, int) const
  * Address:	800721C0
  * Size:	00005C
  */
-void J3DShapeMtxConcatView::~J3DShapeMtxConcatView()
+J3DShapeMtxConcatView::~J3DShapeMtxConcatView()
 {
 	/*
 	.loc_0x0:
@@ -408,7 +408,7 @@ void J3DShapeMtxConcatView::~J3DShapeMtxConcatView()
  * Address:	8007221C
  * Size:	000048
  */
-void J3DShapeMtx::~J3DShapeMtx()
+J3DShapeMtx::~J3DShapeMtx()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	80319BDC
  * Size:	000044
  */
-void og::newScreen::KanteiDemo::__ct(void)
+newScreen::KanteiDemo::KanteiDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -34,7 +36,7 @@ void og::newScreen::KanteiDemo::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::KanteiDemo::__dt(void)
+newScreen::KanteiDemo::~KanteiDemo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,14 +46,14 @@ void og::newScreen::KanteiDemo::__dt(void)
  * Address:	80319C20
  * Size:	000004
  */
-void og::newScreen::KanteiDemo::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80319C24
  * Size:	000068
  */
-void og::newScreen::KanteiDemo::doCreateObj((JKRArchive*))
+void newScreen::KanteiDemo::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -91,7 +93,7 @@ void og::newScreen::KanteiDemo::doCreateObj((JKRArchive*))
  * Address:	80319C8C
  * Size:	00000C
  */
-void og::newScreen::KanteiDemo::getResName( const
+void newScreen::KanteiDemo::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -106,17 +108,14 @@ void og::newScreen::KanteiDemo::getResName( const
  * Address:	80319C98
  * Size:	000008
  */
-u32  og::newScreen::KanteiDemo::getSceneType(void)
-{
-	return 0x2722;
-}
+u32 newScreen::KanteiDemo::getSceneType(void) { return 0x2722; }
 
 /*
  * --INFO--
  * Address:	80319CA0
  * Size:	00000C
  */
-void og::newScreen::KanteiDemo::getOwnerID(void)
+void newScreen::KanteiDemo::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +130,7 @@ void og::newScreen::KanteiDemo::getOwnerID(void)
  * Address:	80319CAC
  * Size:	000010
  */
-void og::newScreen::KanteiDemo::getMemberID(void)
+void newScreen::KanteiDemo::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +146,5 @@ void og::newScreen::KanteiDemo::getMemberID(void)
  * Address:	80319CBC
  * Size:	000008
  */
-u32  og::newScreen::KanteiDemo::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::KanteiDemo::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80014134
  * Size:	0000A0
  */
-void JStudio_JStage::TAdaptor_fog::TAdaptor_fog(const JStage::TSystem*,
-                                                JStage::TFog*)
+JStudio_JStage::TAdaptor_fog::TAdaptor_fog(const JStage::TSystem*,
+                                           JStage::TFog*)
 {
 	/*
 	.loc_0x0:
@@ -58,7 +58,7 @@ void JStudio_JStage::TAdaptor_fog::TAdaptor_fog(const JStage::TSystem*,
  * Address:	800141D4
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_fog::~TAdaptor_fog()
+JStudio_JStage::TAdaptor_fog::~TAdaptor_fog()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8042B46C
  * Size:	0000C4
  */
-void LightObj::LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor)
+LightObj::LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -493,7 +483,7 @@ void LightObj::drawPos(Graphics&, Matrixf&)
  * Address:	8042BA8C
  * Size:	0000D8
  */
-void LightMgr::LightMgr(char*)
+LightMgr::LightMgr(char*)
 {
 	/*
 	.loc_0x0:

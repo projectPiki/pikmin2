@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013CC68
  * Size:	00012C
  */
-void Game::FakePiki::FakePiki()
+FakePiki::FakePiki()
 {
 	/*
 	.loc_0x0:
@@ -96,7 +98,7 @@ void Game::FakePiki::FakePiki()
  * Address:	8013CD94
  * Size:	0000B8
  */
-void Game::FakePiki::initFakePiki()
+void FakePiki::initFakePiki()
 {
 	/*
 	.loc_0x0:
@@ -156,7 +158,7 @@ void Game::FakePiki::initFakePiki()
  * Address:	8013CE4C
  * Size:	000028
  */
-void Game::FakePiki::killFakePiki()
+void FakePiki::killFakePiki()
 {
 	/*
 	.loc_0x0:
@@ -178,7 +180,7 @@ void Game::FakePiki::killFakePiki()
  * Address:	8013CE74
  * Size:	0000B8
  */
-void Game::FakePiki::initAnimator()
+void FakePiki::initAnimator()
 {
 	/*
 	.loc_0x0:
@@ -240,7 +242,7 @@ void Game::FakePiki::initAnimator()
  * Address:	8013CF2C
  * Size:	000028
  */
-void Game::FakePiki::assertMotion(int)
+void FakePiki::assertMotion(int)
 {
 	/*
 	.loc_0x0:
@@ -266,7 +268,7 @@ void Game::FakePiki::assertMotion(int)
  * Address:	8013CF54
  * Size:	00006C
  */
-void Game::FakePiki::enableMotionBlend()
+void FakePiki::enableMotionBlend()
 {
 	/*
 	.loc_0x0:
@@ -311,8 +313,8 @@ void Game::FakePiki::enableMotionBlend()
  * Address:	8013CFC0
  * Size:	000100
  */
-void Game::FakePiki::startMotion(int, int, SysShape::MotionListener*,
-                                 SysShape::MotionListener*)
+void FakePiki::startMotion(int, int, SysShape::MotionListener*,
+                           SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +400,7 @@ void Game::FakePiki::startMotion(int, int, SysShape::MotionListener*,
  * Address:	8013D0C0
  * Size:	00001C
  */
-void Game::FakePiki::finishMotion()
+void FakePiki::finishMotion()
 {
 	/*
 	.loc_0x0:
@@ -417,7 +419,7 @@ void Game::FakePiki::finishMotion()
  * Address:	8013D0DC
  * Size:	000008
  */
-void Game::FakePiki::movieSetFaceDir(float)
+void FakePiki::movieSetFaceDir(float)
 {
 	/*
 	.loc_0x0:
@@ -431,13 +433,10 @@ void Game::FakePiki::movieSetFaceDir(float)
  * Address:	8013D0E4
  * Size:	000008
  */
-void Game::FakePiki::setDoAnimCallback(IDelegate*)
+void FakePiki::setDoAnimCallback(IDelegate* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x188(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x188(r3)
+	_188 = a1;
 }
 
 /*
@@ -445,14 +444,10 @@ void Game::FakePiki::setDoAnimCallback(IDelegate*)
  * Address:	8013D0EC
  * Size:	00000C
  */
-void Game::FakePiki::clearDoAnimCallback()
+void FakePiki::clearDoAnimCallback()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x188(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x188(r3)
+	_188 = 0;
 }
 
 /*
@@ -460,7 +455,7 @@ void Game::FakePiki::clearDoAnimCallback()
  * Address:	8013D0F8
  * Size:	0003BC
  */
-void Game::FakePiki::updateWalkAnimation()
+void FakePiki::updateWalkAnimation()
 {
 	/*
 	.loc_0x0:
@@ -769,7 +764,7 @@ void Game::FakePiki::updateWalkAnimation()
  * Address:	8013D4B4
  * Size:	00023C
  */
-void Game::FakePiki::sNeckCallback(J3DJoint*, int)
+void FakePiki::sNeckCallback(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -938,7 +933,7 @@ void Game::FakePiki::sNeckCallback(J3DJoint*, int)
  * Address:	8013D6F0
  * Size:	0000C0
  */
-void Game::FakePiki::startLookCreature(Game::Creature*)
+void FakePiki::startLookCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1012,7 +1007,7 @@ void Game::FakePiki::startLookCreature(Game::Creature*)
  * Address:	8013D7B0
  * Size:	000070
  */
-void Game::FakePiki::updateLookCreature()
+void FakePiki::updateLookCreature()
 {
 	/*
 	.loc_0x0:
@@ -1054,14 +1049,14 @@ void Game::FakePiki::updateLookCreature()
  * Address:	8013D820
  * Size:	000004
  */
-void Game::FakePiki::do_updateLookCreature() { }
+void FakePiki::do_updateLookCreature() { }
 
 /*
  * --INFO--
  * Address:	8013D824
  * Size:	000018
  */
-void Game::FakePiki::finishLook()
+void FakePiki::finishLook()
 {
 	/*
 	.loc_0x0:
@@ -1079,7 +1074,7 @@ void Game::FakePiki::finishLook()
  * Address:	8013D83C
  * Size:	000398
  */
-void Game::FakePiki::updateLook()
+void FakePiki::updateLook()
 {
 	/*
 	.loc_0x0:
@@ -1359,7 +1354,7 @@ void Game::FakePiki::updateLook()
  * Address:	8013DBD4
  * Size:	000060
  */
-void Game::FakePiki::turnTo(Vector3<float>&)
+void FakePiki::turnTo(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1397,7 +1392,7 @@ void Game::FakePiki::turnTo(Vector3<float>&)
  * Address:	8013DC34
  * Size:	0003B4
  */
-void Game::FakePiki::moveVelocity()
+void FakePiki::moveVelocity()
 {
 	/*
 	.loc_0x0:
@@ -1670,7 +1665,7 @@ void Game::FakePiki::moveVelocity()
  * Address:	8013DFE8
  * Size:	0000B4
  */
-void Game::FakePiki::moveRotation()
+void FakePiki::moveRotation()
 {
 	/*
 	.loc_0x0:
@@ -1729,7 +1724,7 @@ void Game::FakePiki::moveRotation()
  * Address:	8013E09C
  * Size:	000014
  */
-void Game::FakePiki::useMoveRotation()
+void FakePiki::useMoveRotation()
 {
 	/*
 	.loc_0x0:
@@ -1746,7 +1741,7 @@ void Game::FakePiki::useMoveRotation()
  * Address:	8013E0B0
  * Size:	0006A4
  */
-void Game::FakePiki::move(float)
+void FakePiki::move(float)
 {
 	/*
 	.loc_0x0:
@@ -2227,7 +2222,7 @@ void Game::FakePiki::move(float)
  * Address:	8013E754
  * Size:	00003C
  */
-void Game::GameStat::PikiCounter::__opi()
+void GameStat::PikiCounter::__opi()
 {
 	/*
 	.loc_0x0:
@@ -2254,7 +2249,7 @@ void Game::GameStat::PikiCounter::__opi()
  * Address:	8013E790
  * Size:	000014
  */
-void Game::FakePiki::inWater()
+void FakePiki::inWater()
 {
 	/*
 	.loc_0x0:
@@ -2271,14 +2266,14 @@ void Game::FakePiki::inWater()
  * Address:	8013E7A4
  * Size:	000004
  */
-void Game::FakePiki::wallCallback(Vector3<float>&) { }
+void FakePiki::wallCallback(Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	8013E7A8
  * Size:	000014
  */
-void Game::FakePiki::useMapCollision()
+void FakePiki::useMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -2295,7 +2290,7 @@ void Game::FakePiki::useMapCollision()
  * Address:	8013E7BC
  * Size:	000008
  */
-void Game::FakePiki::getMapCollisionRadius()
+void FakePiki::getMapCollisionRadius()
 {
 	/*
 	.loc_0x0:
@@ -2309,7 +2304,7 @@ void Game::FakePiki::getMapCollisionRadius()
  * Address:	8013E7C4
  * Size:	0000BC
  */
-void Game::FakePiki::doEntry()
+void FakePiki::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -2380,14 +2375,14 @@ void Game::FakePiki::doEntry()
  * Address:	8013E880
  * Size:	000004
  */
-void Game::FakePiki::doColorChange() { }
+void FakePiki::doColorChange() { }
 
 /*
  * --INFO--
  * Address:	8013E884
  * Size:	000494
  */
-void Game::FakePiki::doAnimation()
+void FakePiki::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -2718,7 +2713,7 @@ void Game::FakePiki::doAnimation()
  * Address:	8013ED18
  * Size:	000024
  */
-void Game::FakePiki::getBoundingSphere(Sys::Sphere&)
+void FakePiki::getBoundingSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2739,7 +2734,7 @@ void Game::FakePiki::getBoundingSphere(Sys::Sphere&)
  * Address:	8013ED3C
  * Size:	000014
  */
-void Game::FakePiki::useMoveVelocity()
+void FakePiki::useMoveVelocity()
 {
 	/*
 	.loc_0x0:
@@ -2756,7 +2751,7 @@ void Game::FakePiki::useMoveVelocity()
  * Address:	8013ED50
  * Size:	000078
  */
-void Game::FakePiki::updateTrMatrix()
+void FakePiki::updateTrMatrix()
 {
 	/*
 	.loc_0x0:
@@ -2800,7 +2795,7 @@ void Game::FakePiki::updateTrMatrix()
  * Address:	8013EDC8
  * Size:	000014
  */
-void Game::FakePiki::useUpdateTrMatrix()
+void FakePiki::useUpdateTrMatrix()
 {
 	/*
 	.loc_0x0:
@@ -2817,7 +2812,7 @@ void Game::FakePiki::useUpdateTrMatrix()
  * Address:	8013EDDC
  * Size:	000560
  */
-void Game::FakePiki::doSimulation(float)
+void FakePiki::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -3219,7 +3214,7 @@ void Game::FakePiki::doSimulation(float)
  * Address:	8013F33C
  * Size:	00001C
  */
-void Game::BaseItem::getPosition()
+void BaseItem::getPosition()
 {
 	/*
 	.loc_0x0:
@@ -3238,14 +3233,10 @@ void Game::BaseItem::getPosition()
  * Address:	8013F358
  * Size:	00000C
  */
-void Game::FakePiki::initCaptureStomach()
+void FakePiki::initCaptureStomach()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x194(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x194(r3)
+	_194 = 0;
 }
 
 /*
@@ -3253,13 +3244,10 @@ void Game::FakePiki::initCaptureStomach()
  * Address:	8013F364
  * Size:	000008
  */
-void Game::FakePiki::startCaptureStomach(CollPart*)
+void FakePiki::startCaptureStomach(CollPart* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x194(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x194(r3)
+	_194 = a1;
 }
 
 /*
@@ -3267,14 +3255,10 @@ void Game::FakePiki::startCaptureStomach(CollPart*)
  * Address:	8013F36C
  * Size:	00000C
  */
-void Game::FakePiki::endCaptureStomach()
+void FakePiki::endCaptureStomach()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x194(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x194(r3)
+	_194 = 0;
 }
 
 /*
@@ -3282,7 +3266,7 @@ void Game::FakePiki::endCaptureStomach()
  * Address:	8013F378
  * Size:	000158
  */
-void Game::FakePiki::updateStomach()
+void FakePiki::updateStomach()
 {
 	/*
 	.loc_0x0:
@@ -3388,42 +3372,42 @@ void Game::FakePiki::updateStomach()
  * Address:	8013F4D0
  * Size:	000008
  */
-u32 Game::FakePiki::debugShapeDL(char*) { return 0x1; }
+u32 FakePiki::debugShapeDL(char*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8013F4D8
  * Size:	000008
  */
-u32 Game::FakePiki::getDownfloorMass() { return 0x0; }
+u32 FakePiki::getDownfloorMass() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013F4E0
  * Size:	000008
  */
-u32 Game::FakePiki::isPikmin() { return 0x1; }
+u32 FakePiki::isPikmin() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8013F4E8
  * Size:	000004
  */
-void Game::FakePiki::doDebugDL() { }
+void FakePiki::doDebugDL() { }
 
 /*
  * --INFO--
  * Address:	8013F4EC
  * Size:	000004
  */
-void Game::FakePiki::update() { }
+void FakePiki::update() { }
 
 /*
  * --INFO--
  * Address:	8013F4F0
  * Size:	000028
  */
-void Game::FakePiki::setMoveRotation(bool)
+void FakePiki::setMoveRotation(bool)
 {
 	/*
 	.loc_0x0:
@@ -3447,7 +3431,7 @@ void Game::FakePiki::setMoveRotation(bool)
  * Address:	8013F518
  * Size:	000028
  */
-void Game::FakePiki::setUpdateTrMatrix(bool)
+void FakePiki::setUpdateTrMatrix(bool)
 {
 	/*
 	.loc_0x0:
@@ -3471,7 +3455,7 @@ void Game::FakePiki::setUpdateTrMatrix(bool)
  * Address:	8013F540
  * Size:	000028
  */
-void Game::FakePiki::setMoveVelocity(bool)
+void FakePiki::setMoveVelocity(bool)
 {
 	/*
 	.loc_0x0:
@@ -3495,7 +3479,7 @@ void Game::FakePiki::setMoveVelocity(bool)
  * Address:	8013F568
  * Size:	000028
  */
-void Game::FakePiki::setMapCollision(bool)
+void FakePiki::setMapCollision(bool)
 {
 	/*
 	.loc_0x0:
@@ -3519,7 +3503,7 @@ void Game::FakePiki::setMapCollision(bool)
  * Address:	8013F590
  * Size:	00000C
  */
-void Game::FakePiki::isZikatu()
+void FakePiki::isZikatu()
 {
 	/*
 	.loc_0x0:
@@ -3534,7 +3518,7 @@ void Game::FakePiki::isZikatu()
  * Address:	8013F59C
  * Size:	00003C
  */
-void Game::FakePiki::setZikatu(bool)
+void FakePiki::setZikatu(bool)
 {
 	/*
 	.loc_0x0:
@@ -3565,7 +3549,7 @@ void Game::FakePiki::setZikatu(bool)
  * Address:	8013F5D8
  * Size:	00000C
  */
-void Game::FakePiki::wasZikatu()
+void FakePiki::wasZikatu()
 {
 	/*
 	.loc_0x0:
@@ -3580,28 +3564,28 @@ void Game::FakePiki::wasZikatu()
  * Address:	8013F5E4
  * Size:	000004
  */
-void Game::FakePiki::inWaterCallback(Game::WaterBox*) { }
+void FakePiki::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8013F5E8
  * Size:	000004
  */
-void Game::FakePiki::outWaterCallback() { }
+void FakePiki::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8013F5EC
  * Size:	000004
  */
-void Game::FakePiki::onSetPosition() { }
+void FakePiki::onSetPosition() { }
 
 /*
  * --INFO--
  * Address:	8013F5F0
  * Size:	000044
  */
-void Game::FakePiki::onSetPosition(Vector3<float>&)
+void FakePiki::onSetPosition(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -3630,7 +3614,7 @@ void Game::FakePiki::onSetPosition(Vector3<float>&)
  * Address:	8013F634
  * Size:	000008
  */
-void Game::FakePiki::getFaceDir()
+void FakePiki::getFaceDir()
 {
 	/*
 	.loc_0x0:
@@ -3644,7 +3628,7 @@ void Game::FakePiki::getFaceDir()
  * Address:	8013F63C
  * Size:	00001C
  */
-void Game::FakePiki::getVelocity()
+void FakePiki::getVelocity()
 {
 	/*
 	.loc_0x0:
@@ -3663,7 +3647,7 @@ void Game::FakePiki::getVelocity()
  * Address:	8013F658
  * Size:	00001C
  */
-void Game::FakePiki::setVelocity(Vector3<float>&)
+void FakePiki::setVelocity(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -3682,7 +3666,7 @@ void Game::FakePiki::setVelocity(Vector3<float>&)
  * Address:	8013F674
  * Size:	00001C
  */
-void Game::FakePiki::getVelocityAt(Vector3<float>&, Vector3<float>&)
+void FakePiki::getVelocityAt(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -3701,7 +3685,7 @@ void Game::FakePiki::getVelocityAt(Vector3<float>&, Vector3<float>&)
  * Address:	8013F690
  * Size:	000008
  */
-void Game::FakePiki::getSound_PosPtr()
+void FakePiki::getSound_PosPtr()
 {
 	/*
 	.loc_0x0:
@@ -3715,14 +3699,16 @@ void Game::FakePiki::getSound_PosPtr()
  * Address:	8013F698
  * Size:	000008
  */
-u32 Game::FakePiki::isWalking() { return 0x0; }
+u32 FakePiki::isWalking() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013F6A0
  * Size:	000004
  */
-void Game::FakePiki::onKeyEvent(const SysShape::KeyEvent&) { }
+void FakePiki::onKeyEvent(const SysShape::KeyEvent&) { }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3746,12 +3732,14 @@ void __sinit_fakePiki_cpp(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013F6CC
  * Size:	000008
  */
-void Game::FakePiki::@376 @onKeyEvent(const SysShape::KeyEvent&)
+void FakePiki::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3759,3 +3747,4 @@ void Game::FakePiki::@376 @onKeyEvent(const SysShape::KeyEvent&)
 	  b         -0x30
 	*/
 }
+} // namespace Game

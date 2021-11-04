@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012E0E8
  * Size:	000044
  */
-void Game::EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
+EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
 {
 	/*
 	.loc_0x0:
@@ -34,7 +36,7 @@ void Game::EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
  * Address:	8012E12C
  * Size:	000024
  */
-void Game::EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr*)
+void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -55,7 +57,7 @@ void Game::EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr*)
  * Address:	8012E150
  * Size:	000008
  */
-void Game::EnemyBlendAnimatorBase::getAnimator()
+void EnemyBlendAnimatorBase::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::EnemyBlendAnimatorBase::getAnimator()
  * Address:	8012E158
  * Size:	000014
  */
-void Game::EnemyBlendAnimatorBase::getAnimator(int)
+void EnemyBlendAnimatorBase::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -86,9 +88,8 @@ void Game::EnemyBlendAnimatorBase::getAnimator(int)
  * Address:	8012E16C
  * Size:	00009C
  */
-void Game::EnemyBlendAnimatorBase::startBlend(int, int,
-                                              SysShape::BlendFunction*, float,
-                                              SysShape::MotionListener*)
+void EnemyBlendAnimatorBase::startBlend(int, int, SysShape::BlendFunction*,
+                                        float, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -139,7 +140,7 @@ void Game::EnemyBlendAnimatorBase::startBlend(int, int,
  * Address:	8012E208
  * Size:	000024
  */
-void Game::EnemyBlendAnimatorBase::endBlend()
+void EnemyBlendAnimatorBase::endBlend()
 {
 	/*
 	.loc_0x0:
@@ -160,8 +161,8 @@ void Game::EnemyBlendAnimatorBase::endBlend()
  * Address:	8012E22C
  * Size:	000048
  */
-void Game::EnemyBlendAnimatorBase::animate(SysShape::BlendFunction*, float,
-                                           float, float)
+void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction*, float, float,
+                                     float)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +196,7 @@ void Game::EnemyBlendAnimatorBase::animate(SysShape::BlendFunction*, float,
  * Address:	8012E274
  * Size:	0000B0
  */
-void Game::EnemyBlendAnimatorBase::animate(float)
+void EnemyBlendAnimatorBase::animate(float)
 {
 	/*
 	.loc_0x0:
@@ -254,12 +255,18 @@ void Game::EnemyBlendAnimatorBase::animate(float)
 	*/
 }
 
+} // namespace Game
+
+namespace SysShape {
+
 /*
  * --INFO--
  * Address:	8012E324
  * Size:	000004
  */
-void SysShape::BlendLinearFun::getValue(float) { }
+void BlendLinearFun::getValue(float) { }
+
+} // namespace SysShape
 
 /*
  * --INFO--
@@ -280,12 +287,14 @@ void __sinit_enemyBlendAnimatorBase_cpp(void)
 	*/
 }
 
+namespace SysShape {
+
 /*
  * --INFO--
  * Address:	8012E344
  * Size:	000008
  */
-void SysShape::BlendQuadraticFunc::getValue(float)
+void BlendQuadraticFunc::getValue(float)
 {
 	/*
 	.loc_0x0:
@@ -293,3 +302,4 @@ void SysShape::BlendQuadraticFunc::getValue(float)
 	  blr
 	*/
 }
+} // namespace SysShape

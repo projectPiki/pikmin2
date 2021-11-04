@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	803248F4
  * Size:	00003C
  */
-void og::newScreen::UfoMenu::__ct(void)
+newScreen::UfoMenu::UfoMenu(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +34,7 @@ void og::newScreen::UfoMenu::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::UfoMenu::__dt(void)
+newScreen::UfoMenu::~UfoMenu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,14 +44,14 @@ void og::newScreen::UfoMenu::__dt(void)
  * Address:	80324930
  * Size:	000004
  */
-void og::newScreen::UfoMenu::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::UfoMenu::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	80324934
  * Size:	000078
  */
-void og::newScreen::UfoMenu::doCreateObj((JKRArchive*))
+void newScreen::UfoMenu::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -93,7 +95,7 @@ void og::newScreen::UfoMenu::doCreateObj((JKRArchive*))
  * Address:	803249AC
  * Size:	000060
  */
-void og::newScreen::UfoMenu::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::UfoMenu::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -135,7 +137,7 @@ void og::newScreen::UfoMenu::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	80324A0C
  * Size:	00000C
  */
-void og::newScreen::UfoMenu::doSetBackupScene((Screen::SetSceneArg&))
+void newScreen::UfoMenu::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -150,7 +152,7 @@ void og::newScreen::UfoMenu::doSetBackupScene((Screen::SetSceneArg&))
  * Address:	80324A18
  * Size:	00000C
  */
-void og::newScreen::UfoMenu::getResName( const
+void newScreen::UfoMenu::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -165,17 +167,14 @@ void og::newScreen::UfoMenu::getResName( const
  * Address:	80324A24
  * Size:	000008
  */
-u32  og::newScreen::UfoMenu::getSceneType(void)
-{
-	return 0x2719;
-}
+u32 newScreen::UfoMenu::getSceneType(void) { return 0x2719; }
 
 /*
  * --INFO--
  * Address:	80324A2C
  * Size:	00000C
  */
-void og::newScreen::UfoMenu::getOwnerID(void)
+void newScreen::UfoMenu::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -190,7 +189,7 @@ void og::newScreen::UfoMenu::getOwnerID(void)
  * Address:	80324A38
  * Size:	000014
  */
-void og::newScreen::UfoMenu::getMemberID(void)
+void newScreen::UfoMenu::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +206,5 @@ void og::newScreen::UfoMenu::getMemberID(void)
  * Address:	80324A4C
  * Size:	000008
  */
-u32  og::newScreen::UfoMenu::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::UfoMenu::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

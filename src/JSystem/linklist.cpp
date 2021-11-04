@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800272E4
  * Size:	00003C
  */
-void JGadget::TNodeLinkList::__dt(void)
+JGadget::TNodeLinkList::~TNodeLinkList(void)
 {
 	/*
 	.loc_0x0:
@@ -34,7 +34,7 @@ void JGadget::TNodeLinkList::__dt(void)
  * Address:	........
  * Size:	00004C
  */
-void JGadget::TNodeLinkList::erase((JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -44,8 +44,8 @@ void JGadget::TNodeLinkList::erase((JGadget::TNodeLinkList::iterator))
  * Address:	........
  * Size:	000060
  */
-void JGadget::TNodeLinkList::erase((JGadget::TNodeLinkList::iterator,
-                                    JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator,
+                                   JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -65,8 +65,8 @@ void JGadget::TNodeLinkList::clear(void)
  * Address:	........
  * Size:	00004C
  */
-void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
-                                     JGadget::TNodeLinkList&))
+void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
+                                    JGadget::TNodeLinkList&)
 {
 	// UNUSED FUNCTION
 }
@@ -76,9 +76,9 @@ void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
  * Address:	........
  * Size:	0000A8
  */
-void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
-                                     JGadget::TNodeLinkList&,
-                                     JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
+                                    JGadget::TNodeLinkList&,
+                                    JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -88,10 +88,10 @@ void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
  * Address:	........
  * Size:	0000C4
  */
-void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
-                                     JGadget::TNodeLinkList&,
-                                     JGadget::TNodeLinkList::iterator,
-                                     JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
+                                    JGadget::TNodeLinkList&,
+                                    JGadget::TNodeLinkList::iterator,
+                                    JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -101,7 +101,7 @@ void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
  * Address:	........
  * Size:	000094
  */
-void JGadget::TNodeLinkList::swap((JGadget::TNodeLinkList&))
+void JGadget::TNodeLinkList::swap(JGadget::TNodeLinkList&)
 {
 	// UNUSED FUNCTION
 }
@@ -121,7 +121,7 @@ void JGadget::TNodeLinkList::reverse(void)
  * Address:	........
  * Size:	000060
  */
-void JGadget::TNodeLinkList::Find((JGadget::TLinkListNode const*))
+void JGadget::TNodeLinkList::Find(JGadget::TLinkListNode const*)
 {
 	// UNUSED FUNCTION
 }
@@ -131,8 +131,8 @@ void JGadget::TNodeLinkList::Find((JGadget::TLinkListNode const*))
  * Address:	80027320
  * Size:	00002C
  */
-void JGadget::TNodeLinkList::Insert((JGadget::TNodeLinkList::iterator,
-                                     JGadget::TLinkListNode*))
+void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator,
+                                    JGadget::TLinkListNode*)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +155,7 @@ void JGadget::TNodeLinkList::Insert((JGadget::TNodeLinkList::iterator,
  * Address:	8002734C
  * Size:	000024
  */
-void JGadget::TNodeLinkList::Erase((JGadget::TLinkListNode*))
+void JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +176,7 @@ void JGadget::TNodeLinkList::Erase((JGadget::TLinkListNode*))
  * Address:	80027370
  * Size:	00002C
  */
-void JGadget::TNodeLinkList::Remove((JGadget::TLinkListNode*))
+void JGadget::TNodeLinkList::Remove(JGadget::TLinkListNode*)
 {
 	/*
 	.loc_0x0:

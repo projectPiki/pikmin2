@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80269448
  * Size:	000050
  */
-void Game::Tobi::Mgr::Mgr(int, unsigned char)
+Tobi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Tobi::Mgr::Mgr(int, unsigned char)
  * Address:	80269498
  * Size:	000048
  */
-void Game::Tobi::Mgr::doAlloc()
+void Tobi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Tobi::Mgr::doAlloc()
  * Address:	802694E0
  * Size:	000190
  */
-void Game::Tobi::Parms::Parms()
+Tobi::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -183,7 +185,7 @@ void Game::Tobi::Parms::Parms()
  * Address:	80269670
  * Size:	000060
  */
-void Game::Tobi::Mgr::createObj(int)
+void Tobi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -219,7 +221,7 @@ void Game::Tobi::Mgr::createObj(int)
  * Address:	802696D0
  * Size:	0000BC
  */
-void Game::Tobi::Obj::~Obj()
+Tobi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -282,7 +284,7 @@ void Game::Tobi::Obj::~Obj()
  * Address:	8026978C
  * Size:	000010
  */
-void Game::Tobi::Mgr::getEnemy(int)
+void Tobi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +300,7 @@ void Game::Tobi::Mgr::getEnemy(int)
  * Address:	8026979C
  * Size:	000050
  */
-void Game::Tobi::Parms::read(Stream&)
+void Tobi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -330,7 +332,7 @@ void Game::Tobi::Parms::read(Stream&)
  * Address:	802697EC
  * Size:	0000B0
  */
-void Game::Tobi::Mgr::~Mgr()
+Tobi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -390,14 +392,14 @@ void Game::Tobi::Mgr::~Mgr()
  * Address:	8026989C
  * Size:	000008
  */
-u32 Game::Tobi::Mgr::getEnemyTypeID() { return 0xE; }
+u32 Tobi::Mgr::getEnemyTypeID() { return 0xE; }
 
 /*
  * --INFO--
  * Address:	802698A4
  * Size:	000008
  */
-void Game::Tobi::Mgr::@4 @__dt()
+Tobi::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -405,3 +407,4 @@ void Game::Tobi::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

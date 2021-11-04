@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8023B534
  * Size:	000064
  */
-void Game::BaseGameSection::drawOtakaraWindow((Graphics&))
+void BaseGameSection::drawOtakaraWindow(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +44,7 @@ void Game::BaseGameSection::drawOtakaraWindow((Graphics&))
  * Address:	8023B598
  * Size:	000094
  */
-void Game::BaseGameSection::setDraw2DCreature((Game::Creature*))
+void BaseGameSection::setDraw2DCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -103,7 +95,7 @@ void Game::BaseGameSection::setDraw2DCreature((Game::Creature*))
  * Address:	8023B62C
  * Size:	0001E0
  */
-void Game::BaseGameSection::startZoomWindow(void)
+void BaseGameSection::startZoomWindow(void)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +243,7 @@ void Game::BaseGameSection::startZoomWindow(void)
  * Address:	8023B80C
  * Size:	000258
  */
-void Game::BaseGameSection::startKantei2D(void)
+void BaseGameSection::startKantei2D(void)
 {
 	/*
 	.loc_0x0:
@@ -424,6 +416,8 @@ void Game::BaseGameSection::startKantei2D(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8023BA64
@@ -487,12 +481,14 @@ void onKanteiDone__Q24Game15BaseGameSectionFR7Rect<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000038
  */
-void Game::BaseGameSection::closeZoomWindow(void)
+void BaseGameSection::closeZoomWindow(void)
 {
 	// UNUSED FUNCTION
 }
@@ -502,7 +498,7 @@ void Game::BaseGameSection::closeZoomWindow(void)
  * Address:	8023BB30
  * Size:	000114
  */
-void init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<float>
+void init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3f
 P10Controller(void)
 {
 	/*
@@ -594,7 +590,7 @@ P10Controller(void)
  * Address:	8023BC44
  * Size:	0002B0
  */
-void Game::BaseGameSection::ZoomCamera::makeLookAt(void)
+void BaseGameSection::ZoomCamera::makeLookAt(void)
 {
 	/*
 	.loc_0x0:
@@ -804,7 +800,7 @@ void Game::BaseGameSection::ZoomCamera::makeLookAt(void)
  * Address:	8023BEF4
  * Size:	000164
  */
-void Game::BaseGameSection::ZoomCamera::doUpdate(void)
+void BaseGameSection::ZoomCamera::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -925,7 +921,7 @@ void Game::BaseGameSection::ZoomCamera::doUpdate(void)
  * Address:	8023C058
  * Size:	000410
  */
-void Game::BaseGameSection::do_drawOtakaraWindow((Graphics&))
+void BaseGameSection::do_drawOtakaraWindow(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1213,7 +1209,7 @@ void Game::BaseGameSection::do_drawOtakaraWindow((Graphics&))
  * Address:	8023C468
  * Size:	0000D0
  */
-void Game::BaseGameSection::ZoomCamera::__dt(void)
+BaseGameSection::ZoomCamera::~ZoomCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -1276,6 +1272,8 @@ void Game::BaseGameSection::ZoomCamera::__dt(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8023C538
@@ -1283,82 +1281,90 @@ void Game::BaseGameSection::ZoomCamera::__dt(void)
  */
 void LookAtCamera::startVibration(int) { }
 
-/*
- * --INFO--
- * Address:	8023C53C
- * Size:	000008
- */
-u32 og::Screen::DispMemberSpecialItem::getSize(void) { return 0x10; }
+namespace og {
 
-/*
- * --INFO--
- * Address:	8023C544
- * Size:	00000C
- */
-void og::Screen::DispMemberSpecialItem::getOwnerID(void)
-{
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8023C53C
+	 * Size:	000008
+	 */
+	u32 DispMemberSpecialItem::getSize(void) { return 0x10; }
 
-/*
- * --INFO--
- * Address:	8023C550
- * Size:	000014
- */
-void og::Screen::DispMemberSpecialItem::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4954
-	  lis       r3, 0x53
-	  addi      r4, r4, 0x454D
-	  addi      r3, r3, 0x505F
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8023C544
+	 * Size:	00000C
+	 */
+	void DispMemberSpecialItem::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8023C564
- * Size:	000008
- */
-u32 og::Screen::DispMemberKantei::getSize(void) { return 0x40; }
-
-/*
- * --INFO--
- * Address:	8023C56C
- * Size:	00000C
- */
-void og::Screen::DispMemberKantei::getOwnerID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8023C550
+	 * Size:	000014
+	 */
+	void DispMemberSpecialItem::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4954
+		  lis       r3, 0x53
+		  addi      r4, r4, 0x454D
+		  addi      r3, r3, 0x505F
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8023C578
- * Size:	000010
- */
-void og::Screen::DispMemberKantei::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4E54
-	  li        r3, 0x4B41
-	  addi      r4, r4, 0x4549
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8023C564
+	 * Size:	000008
+	 */
+	u32 DispMemberKantei::getSize(void) { return 0x40; }
+
+	/*
+	 * --INFO--
+	 * Address:	8023C56C
+	 * Size:	00000C
+	 */
+	void DispMemberKantei::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8023C578
+	 * Size:	000010
+	 */
+	void DispMemberKantei::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x4E54
+		  li        r3, 0x4B41
+		  addi      r4, r4, 0x4549
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--

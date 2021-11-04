@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -67,7 +67,7 @@ void JASAramStream::setLoadThread(JASTaskThread*)
  * Address:	800A9034
  * Size:	000158
  */
-void JASAramStream::JASAramStream()
+JASAramStream::JASAramStream()
 {
 	/*
 	.loc_0x0:

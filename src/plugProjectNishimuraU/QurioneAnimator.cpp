@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8026134C
  * Size:	000008
  */
-void Game::Qurione::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Qurione::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Qurione::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80261354
  * Size:	000008
  */
-void Game::Qurione::ProperAnimator::getAnimator(int)
+void Qurione::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Qurione::ProperAnimator::getAnimator(int)
  * Address:	8026135C
  * Size:	00005C
  */
-void Game::Qurione::ProperAnimator::~ProperAnimator()
+Qurione::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Qurione::ProperAnimator::~ProperAnimator()
  * Address:	802613B8
  * Size:	000008
  */
-void Game::Qurione::ProperAnimator::getAnimator()
+void Qurione::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Qurione::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

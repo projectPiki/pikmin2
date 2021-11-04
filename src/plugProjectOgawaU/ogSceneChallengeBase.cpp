@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace og {
 
 /*
  * --INFO--
  * Address:	8032CD30
  * Size:	000044
  */
-void og::newScreen::ChallengeBase::__ct(void)
+newScreen::ChallengeBase::ChallengeBase(void)
 {
 	/*
 	.loc_0x0:
@@ -34,7 +36,7 @@ void og::newScreen::ChallengeBase::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::ChallengeBase::__dt(void)
+newScreen::ChallengeBase::~ChallengeBase(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +46,7 @@ void og::newScreen::ChallengeBase::__dt(void)
  * Address:	8032CD74
  * Size:	0000A4
  */
-void og::newScreen::ChallengeBase::updateCountDown(
+void newScreen::ChallengeBase::updateCountDown(
     (float, og::Screen::DispMemberDayEndCount*))
 {
 	/*
@@ -96,3 +98,4 @@ void og::newScreen::ChallengeBase::updateCountDown(
 	  blr
 	*/
 }
+} // namespace og

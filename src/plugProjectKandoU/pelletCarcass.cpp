@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801FB8CC
  * Size:	0000B0
  */
-void Game::PelletCarcass::Mgr::__ct(void)
+PelletCarcass::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -67,6 +59,8 @@ void Game::PelletCarcass::Mgr::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -291,12 +285,14 @@ void Container<Game::PelletCarcass::Object>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801FBC28
  * Size:	000064
  */
-void Game::PelletCarcass::Mgr::setupResources(void)
+void PelletCarcass::Mgr::setupResources(void)
 {
 	/*
 	.loc_0x0:
@@ -333,7 +329,7 @@ void Game::PelletCarcass::Mgr::setupResources(void)
  * Address:	801FBC8C
  * Size:	0001B4
  */
-void Game::PelletCarcass::Mgr::__dt(void)
+PelletCarcass::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -462,14 +458,14 @@ void Game::PelletCarcass::Mgr::__dt(void)
  * Address:	801FBE40
  * Size:	000008
  */
-u32 Game::PelletCarcass::Mgr::createShape((int, int)) { return 0x0; }
+u32 PelletCarcass::Mgr::createShape(int, int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801FBE48
  * Size:	000008
  */
-void Game::PelletCarcass::Mgr::getMgrName(void)
+void PelletCarcass::Mgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -483,7 +479,9 @@ void Game::PelletCarcass::Mgr::getMgrName(void)
  * Address:	801FBE50
  * Size:	000008
  */
-u32 Game::PelletCarcass::Mgr::getMgrID(void) { return 0x1; }
+u32 PelletCarcass::Mgr::getMgrID(void) { return 0x1; }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3055,12 +3053,14 @@ void MonoObjectMgr<Game::PelletCarcass::Object>::alloc(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801FD8CC
  * Size:	00004C
  */
-void Game::PelletCarcass::Object::__ct(void)
+PelletCarcass::Object::Object(void)
 {
 	/*
 	.loc_0x0:
@@ -3091,7 +3091,7 @@ void Game::PelletCarcass::Object::__ct(void)
  * Address:	801FD918
  * Size:	000008
  */
-u32 Game::PelletCarcass::Object::getKind(void) { return 0x1; }
+u32 PelletCarcass::Object::getKind(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -3107,6 +3107,8 @@ Fv(void)
 	  b         -0x1FA8
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3355,7 +3357,7 @@ FPv(void)
  * Address:	801FD9B0
  * Size:	000008
  */
-void @84 @Game::PelletCarcass::Mgr::__dt(void)
+@84 @Game::PelletCarcass::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

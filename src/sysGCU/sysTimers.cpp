@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8042A7FC
  * Size:	0000E0
  */
-void SysTimers::SysTimers()
+SysTimers::SysTimers()
 {
 	/*
 	.loc_0x0:
@@ -126,7 +116,7 @@ void TimerInf::__defctor()
  * Address:	8042A948
  * Size:	000068
  */
-void SysTimers::~SysTimers()
+SysTimers::~SysTimers()
 {
 	/*
 	.loc_0x0:
@@ -213,7 +203,7 @@ void SysTimers::get(int)
  * Address:	8042AA2C
  * Size:	000074
  */
-void TimerInf::~TimerInf()
+TimerInf::~TimerInf()
 {
 	/*
 	.loc_0x0:

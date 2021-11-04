@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800596A8
  * Size:	000330
  */
-void J2DTextBoxEx::J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long,
-                                J2DMaterial*)
+J2DTextBoxEx::J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long,
+                           J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -232,7 +232,7 @@ void J2DTextBoxEx::J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long,
  * Address:	800599D8
  * Size:	000090
  */
-void J2DTextBoxEx::~J2DTextBoxEx()
+J2DTextBoxEx::~J2DTextBoxEx()
 {
 	/*
 	.loc_0x0:

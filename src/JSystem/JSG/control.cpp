@@ -1,10 +1,11 @@
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80014734
  * Size:	000060
  */
-void JStudio_JStage::TCreateObject::__dt(void)
+JStudio_JStage::TCreateObject::~TCreateObject(void)
 {
 	/*
 	.loc_0x0:

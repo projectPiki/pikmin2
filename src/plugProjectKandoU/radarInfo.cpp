@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -57,8 +47,8 @@ void Radar::Point::getPosition(void)
  * Address:	........
  * Size:	000010
  */
-void Radar::Point::entry((Game::TPositionObject*, Radar::cRadarType,
-                          unsigned long))
+void Radar::Point::entry(Game::TPositionObject*, Radar::cRadarType,
+                         unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -78,7 +68,7 @@ void Radar::Point::clear(void)
  * Address:	8021E2F4
  * Size:	0000F4
  */
-void Radar::Mgr::__ct(void)
+Radar::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -151,7 +141,7 @@ void Radar::Mgr::__ct(void)
  * Address:	8021E3E8
  * Size:	000050
  */
-void Radar::Point::__ct(void)
+Radar::Point::Point(void)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +173,7 @@ void Radar::Point::__ct(void)
  * Address:	8021E438
  * Size:	000060
  */
-void Radar::Point::__dt(void)
+Radar::Point::~Point(void)
 {
 	/*
 	.loc_0x0:
@@ -332,8 +322,7 @@ void Radar::Mgr::fuefuki(void)
  * Address:	8021E584
  * Size:	000070
  */
-void Radar::Mgr::entry((Game::TPositionObject*, Radar::cRadarType,
-                        unsigned long))
+void Radar::Mgr::entry(Game::TPositionObject*, Radar::cRadarType, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -377,7 +366,7 @@ void Radar::Mgr::entry((Game::TPositionObject*, Radar::cRadarType,
  * Address:	8021E5F4
  * Size:	00003C
  */
-void Radar::Mgr::exit((Game::TPositionObject*))
+void Radar::Mgr::exit(Game::TPositionObject*)
 {
 	/*
 	.loc_0x0:
@@ -429,8 +418,8 @@ void Radar::Mgr::getNumOtakaraItems(void)
  * Address:	8021E64C
  * Size:	000064
  */
-void Radar::Mgr::attach((Game::TPositionObject*, Radar::cRadarType,
-                         unsigned long))
+void Radar::Mgr::attach(Game::TPositionObject*, Radar::cRadarType,
+                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -471,7 +460,7 @@ void Radar::Mgr::attach((Game::TPositionObject*, Radar::cRadarType,
  * Address:	8021E6B0
  * Size:	0000C4
  */
-void Radar::Mgr::detach((Game::TPositionObject*))
+void Radar::Mgr::detach(Game::TPositionObject*)
 {
 	/*
 	.loc_0x0:
@@ -544,8 +533,7 @@ void Radar::Mgr::detach((Game::TPositionObject*))
  * Address:	8021E774
  * Size:	0001E0
  */
-void calcNearestTreasure__Q25Radar3MgrFR10Vector3<float> fR10Vector3<float>
-Rf(void)
+void calcNearestTreasure__Q25Radar3MgrFR10Vector3f fR10Vector3f Rf(void)
 {
 	/*
 	.loc_0x0:

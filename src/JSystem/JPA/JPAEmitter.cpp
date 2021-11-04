@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8008FC9C
  * Size:	000048
  */
-void JPAEmitterCallBack::~JPAEmitterCallBack()
+JPAEmitterCallBack::~JPAEmitterCallBack()
 {
 	/*
 	.loc_0x0:

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -97,7 +97,7 @@ void JKRFileCache::mount(const char*, JKRHeap*, const char*)
  * Address:	80021ABC
  * Size:	0001C0
  */
-void JKRFileCache::JKRFileCache(const char*, const char*)
+JKRFileCache::JKRFileCache(const char*, const char*)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +229,7 @@ void JKRFileCache::JKRFileCache(const char*, const char*)
  * Address:	80021C7C
  * Size:	0000D4
  */
-void JKRFileCache::~JKRFileCache()
+JKRFileCache::~JKRFileCache()
 {
 	/*
 	.loc_0x0:
@@ -923,7 +923,7 @@ void JKRFileCache::getFirstFile(const char*) const
  * Address:	800223E0
  * Size:	000048
  */
-void JKRFileFinder::~JKRFileFinder()
+JKRFileFinder::~JKRFileFinder()
 {
 	/*
 	.loc_0x0:
@@ -1443,8 +1443,8 @@ void JKRFileCache::convStrLower(char*) const
  * Address:	800229C0
  * Size:	00006C
  */
-void JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long,
-                                            const void*)
+JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long,
+                                       const void*)
 {
 	/*
 	.loc_0x0:

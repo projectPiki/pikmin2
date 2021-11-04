@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801E0E84
  * Size:	000134
  */
-void Game::ItemRock::FSM::init(Game::ItemRock::Item*)
+void ItemRock::FSM::init(Game::ItemRock::Item*)
 {
 	/*
 	.loc_0x0:
@@ -100,7 +102,7 @@ void Game::ItemRock::FSM::init(Game::ItemRock::Item*)
  * Address:	801E0FB8
  * Size:	00003C
  */
-void Game::ItemRock::NormalState::init(Game::ItemRock::Item*, Game::StateArg*)
+void ItemRock::NormalState::init(Game::ItemRock::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -127,7 +129,7 @@ void Game::ItemRock::NormalState::init(Game::ItemRock::Item*, Game::StateArg*)
  * Address:	801E0FF4
  * Size:	000090
  */
-void Game::ItemRock::NormalState::exec(Game::ItemRock::Item*)
+void ItemRock::NormalState::exec(Game::ItemRock::Item*)
 {
 	/*
 	.loc_0x0:
@@ -177,8 +179,8 @@ void Game::ItemRock::NormalState::exec(Game::ItemRock::Item*)
  * Address:	801E1084
  * Size:	000030
  */
-void Game::FSMState<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
-                                                   Game::StateArg*)
+void FSMState<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
+                                             Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -202,14 +204,14 @@ void Game::FSMState<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
  * Address:	801E10B4
  * Size:	000004
  */
-void Game::ItemRock::NormalState::cleanup(Game::ItemRock::Item*) { }
+void ItemRock::NormalState::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E10B8
  * Size:	0000BC
  */
-void Game::ItemRock::NormalState::onDamage(Game::ItemRock::Item*, float)
+void ItemRock::NormalState::onDamage(Game::ItemRock::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -270,8 +272,8 @@ void Game::ItemRock::NormalState::onDamage(Game::ItemRock::Item*, float)
  * Address:	801E1174
  * Size:	0000F8
  */
-void Game::ItemRock::NormalState::onKeyEvent(Game::ItemRock::Item*,
-                                             const SysShape::KeyEvent&)
+void ItemRock::NormalState::onKeyEvent(Game::ItemRock::Item*,
+                                       const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -353,7 +355,7 @@ void Game::ItemRock::NormalState::onKeyEvent(Game::ItemRock::Item*,
  * Address:	801E126C
  * Size:	000048
  */
-void Game::ItemRock::DownState::init(Game::ItemRock::Item*, Game::StateArg*)
+void ItemRock::DownState::init(Game::ItemRock::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -383,21 +385,21 @@ void Game::ItemRock::DownState::init(Game::ItemRock::Item*, Game::StateArg*)
  * Address:	801E12B4
  * Size:	000004
  */
-void Game::ItemRock::DownState::exec(Game::ItemRock::Item*) { }
+void ItemRock::DownState::exec(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E12B8
  * Size:	000004
  */
-void Game::ItemRock::DownState::cleanup(Game::ItemRock::Item*) { }
+void ItemRock::DownState::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E12BC
  * Size:	000010
  */
-void Game::ItemRock::DownState::onDamage(Game::ItemRock::Item*, float)
+void ItemRock::DownState::onDamage(Game::ItemRock::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -413,8 +415,8 @@ void Game::ItemRock::DownState::onDamage(Game::ItemRock::Item*, float)
  * Address:	801E12CC
  * Size:	0000F0
  */
-void Game::ItemRock::DownState::onKeyEvent(Game::ItemRock::Item*,
-                                           const SysShape::KeyEvent&)
+void ItemRock::DownState::onKeyEvent(Game::ItemRock::Item*,
+                                     const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -488,7 +490,7 @@ void Game::ItemRock::DownState::onKeyEvent(Game::ItemRock::Item*,
  * Address:	801E13BC
  * Size:	000058
  */
-void Game::ItemRock::UpState::init(Game::ItemRock::Item*, Game::StateArg*)
+void ItemRock::UpState::init(Game::ItemRock::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -522,21 +524,21 @@ void Game::ItemRock::UpState::init(Game::ItemRock::Item*, Game::StateArg*)
  * Address:	801E1414
  * Size:	000004
  */
-void Game::ItemRock::UpState::exec(Game::ItemRock::Item*) { }
+void ItemRock::UpState::exec(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E1418
  * Size:	000004
  */
-void Game::ItemRock::UpState::cleanup(Game::ItemRock::Item*) { }
+void ItemRock::UpState::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E141C
  * Size:	000010
  */
-void Game::ItemRock::UpState::onDamage(Game::ItemRock::Item*, float)
+void ItemRock::UpState::onDamage(Game::ItemRock::Item*, float)
 {
 	/*
 	.loc_0x0:
@@ -552,8 +554,8 @@ void Game::ItemRock::UpState::onDamage(Game::ItemRock::Item*, float)
  * Address:	801E142C
  * Size:	0000CC
  */
-void Game::ItemRock::UpState::onKeyEvent(Game::ItemRock::Item*,
-                                         const SysShape::KeyEvent&)
+void ItemRock::UpState::onKeyEvent(Game::ItemRock::Item*,
+                                   const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +618,7 @@ void Game::ItemRock::UpState::onKeyEvent(Game::ItemRock::Item*,
  * Address:	801E14F8
  * Size:	000048
  */
-void Game::ItemRock::Item::constructor()
+void ItemRock::Item::constructor()
 {
 	/*
 	.loc_0x0:
@@ -648,7 +650,7 @@ void Game::ItemRock::Item::constructor()
  * Address:	801E1540
  * Size:	00020C
  */
-void Game::ItemRock::Item::onInit(Game::CreatureInitArg*)
+void ItemRock::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -801,8 +803,8 @@ void Game::ItemRock::Item::onInit(Game::CreatureInitArg*)
  * Address:	801E174C
  * Size:	000034
  */
-void Game::StateMachine<Game::ItemRock::Item>::start(Game::ItemRock::Item*, int,
-                                                     Game::StateArg*)
+void StateMachine<Game::ItemRock::Item>::start(Game::ItemRock::Item*, int,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -827,7 +829,7 @@ void Game::StateMachine<Game::ItemRock::Item>::start(Game::ItemRock::Item*, int,
  * Address:	801E1780
  * Size:	000034
  */
-void Game::ItemRock::Item::onKill(Game::CreatureKillArg*)
+void ItemRock::Item::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -852,7 +854,7 @@ void Game::ItemRock::Item::onKill(Game::CreatureKillArg*)
  * Address:	801E17B4
  * Size:	00005C
  */
-void Game::ItemRock::Item::onSetPosition()
+void ItemRock::Item::onSetPosition()
 {
 	/*
 	.loc_0x0:
@@ -887,7 +889,7 @@ void Game::ItemRock::Item::onSetPosition()
  * Address:	801E1810
  * Size:	000044
  */
-void Game::ItemRock::Item::onKeyEvent(const SysShape::KeyEvent&)
+void ItemRock::Item::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -918,8 +920,8 @@ void Game::ItemRock::Item::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	801E1854
  * Size:	000004
  */
-void Game::ItemState<Game::ItemRock::Item>::onKeyEvent(
-    Game::ItemRock::Item*, const SysShape::KeyEvent&)
+void ItemState<Game::ItemRock::Item>::onKeyEvent(Game::ItemRock::Item*,
+                                                 const SysShape::KeyEvent&)
 {
 }
 
@@ -928,7 +930,7 @@ void Game::ItemState<Game::ItemRock::Item>::onKeyEvent(
  * Address:	801E1858
  * Size:	00010C
  */
-void Game::ItemRock::Item::startLoopEffect()
+void ItemRock::Item::startLoopEffect()
 {
 	/*
 	.loc_0x0:
@@ -1019,7 +1021,7 @@ void Game::ItemRock::Item::startLoopEffect()
  * Address:	801E1964
  * Size:	000064
  */
-void Game::ItemRock::Item::finishLoopEffect()
+void ItemRock::Item::finishLoopEffect()
 {
 	/*
 	.loc_0x0:
@@ -1056,7 +1058,7 @@ void Game::ItemRock::Item::finishLoopEffect()
  * Address:	801E19C8
  * Size:	0000B0
  */
-void Game::ItemRock::Item::startFukuEffect(Vector3<float>&)
+void ItemRock::Item::startFukuEffect(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1112,7 +1114,7 @@ void Game::ItemRock::Item::startFukuEffect(Vector3<float>&)
  * Address:	801E1A78
  * Size:	000204
  */
-void Game::ItemRock::Item::doLoad(Stream&)
+void ItemRock::Item::doLoad(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1267,7 +1269,7 @@ void Game::ItemRock::Item::doLoad(Stream&)
  * Address:	801E1C7C
  * Size:	000058
  */
-void Game::ItemRock::Item::doSave(Stream&)
+void ItemRock::Item::doSave(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1301,7 +1303,7 @@ void Game::ItemRock::Item::doSave(Stream&)
  * Address:	801E1CD4
  * Size:	000048
  */
-void Game::ItemRock::Item::updateBoundSphere()
+void ItemRock::Item::updateBoundSphere()
 {
 	/*
 	.loc_0x0:
@@ -1331,7 +1333,7 @@ void Game::ItemRock::Item::updateBoundSphere()
  * Address:	801E1D1C
  * Size:	0001B4
  */
-void Game::ItemRock::Item::doAI()
+void ItemRock::Item::doAI()
 {
 	/*
 	.loc_0x0:
@@ -1468,7 +1470,7 @@ void Game::ItemRock::Item::doAI()
  * Address:	801E1ED0
  * Size:	000020
  */
-void Game::ItemRock::Item::initMotion()
+void ItemRock::Item::initMotion()
 {
 	/*
 	.loc_0x0:
@@ -1488,7 +1490,7 @@ void Game::ItemRock::Item::initMotion()
  * Address:	801E1EF0
  * Size:	000020
  */
-void Game::ItemRock::Item::on_movie_end(bool)
+void ItemRock::Item::on_movie_end(bool)
 {
 	/*
 	.loc_0x0:
@@ -1510,7 +1512,7 @@ void Game::ItemRock::Item::on_movie_end(bool)
  * Address:	801E1F10
  * Size:	00012C
  */
-void Game::ItemRock::Item::startWaitMotion()
+void ItemRock::Item::startWaitMotion()
 {
 	/*
 	.loc_0x0:
@@ -1619,7 +1621,7 @@ void Game::ItemRock::Item::startWaitMotion()
  * Address:	801E203C
  * Size:	00009C
  */
-void Game::ItemRock::Item::startDamageMotion()
+void ItemRock::Item::startDamageMotion()
 {
 	/*
 	.loc_0x0:
@@ -1684,7 +1686,7 @@ void Game::ItemRock::Item::startDamageMotion()
  * Address:	801E20D8
  * Size:	00028C
  */
-void Game::ItemRock::Item::startDownMotion()
+void ItemRock::Item::startDownMotion()
 {
 	/*
 	.loc_0x0:
@@ -1873,7 +1875,7 @@ void Game::ItemRock::Item::startDownMotion()
  * Address:	801E2364
  * Size:	0000EC
  */
-void Game::ItemRock::Item::startUpMotion()
+void ItemRock::Item::startUpMotion()
 {
 	/*
 	.loc_0x0:
@@ -1960,7 +1962,7 @@ void Game::ItemRock::Item::startUpMotion()
  * Address:	801E2450
  * Size:	000114
  */
-void Game::ItemRock::Item::getVectorField(Sys::Sphere&, Vector3<float>&)
+void ItemRock::Item::getVectorField(Sys::Sphere&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2053,7 +2055,7 @@ void Game::ItemRock::Item::getVectorField(Sys::Sphere&, Vector3<float>&)
  * Address:	801E2564
  * Size:	000088
  */
-void Game::ItemRock::Item::getWorkDistance(Sys::Sphere&)
+void ItemRock::Item::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2103,7 +2105,7 @@ void Game::ItemRock::Item::getWorkDistance(Sys::Sphere&)
  * Address:	801E25EC
  * Size:	000194
  */
-void Game::ItemRock::Item::createRock(int)
+void ItemRock::Item::createRock(int)
 {
 	/*
 	.loc_0x0:
@@ -2224,7 +2226,7 @@ void Game::ItemRock::Item::createRock(int)
  * Address:	801E2780
  * Size:	000174
  */
-void Game::ItemRock::Item::interactAttack(Game::InteractAttack&)
+void ItemRock::Item::interactAttack(Game::InteractAttack&)
 {
 	/*
 	.loc_0x0:
@@ -2341,14 +2343,14 @@ void Game::ItemRock::Item::interactAttack(Game::InteractAttack&)
  * Address:	801E28F4
  * Size:	000004
  */
-void Game::ItemRock::State::onDamage(Game::ItemRock::Item*, float) { }
+void ItemRock::State::onDamage(Game::ItemRock::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801E28F8
  * Size:	000028
  */
-void Game::ItemRock::Item::getWorkRadius()
+void ItemRock::Item::getWorkRadius()
 {
 	/*
 	.loc_0x0:
@@ -2372,7 +2374,7 @@ void Game::ItemRock::Item::getWorkRadius()
  * Address:	801E2920
  * Size:	000120
  */
-void Game::ItemRock::Mgr::Mgr()
+ItemRock::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -2464,7 +2466,7 @@ void Game::ItemRock::Mgr::Mgr()
  * Address:	801E2A40
  * Size:	000024
  */
-void Game::ItemRock::RockParms::read(Stream&)
+void ItemRock::RockParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2485,7 +2487,7 @@ void Game::ItemRock::RockParms::read(Stream&)
  * Address:	801E2A64
  * Size:	0001A4
  */
-void Game::ItemRock::RockParms::RockParms()
+ItemRock::RockParms::RockParms()
 {
 	/*
 	.loc_0x0:
@@ -2604,7 +2606,7 @@ void Game::ItemRock::RockParms::RockParms()
  * Address:	801E2C08
  * Size:	0002F0
  */
-void Game::ItemRock::RockParms::Parms::Parms()
+ItemRock::RockParms::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -2806,7 +2808,7 @@ void Game::ItemRock::RockParms::Parms::Parms()
  * Address:	801E2EF8
  * Size:	000110
  */
-void Game::ItemRock::Mgr::birth()
+void ItemRock::Mgr::birth()
 {
 	/*
 	.loc_0x0:
@@ -2890,8 +2892,7 @@ void Game::ItemRock::Mgr::birth()
  * Address:	801E3008
  * Size:	000060
  */
-void Game::ItemRock::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
-                                         Game::GenItemParm*)
+void ItemRock::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -2927,7 +2928,7 @@ void Game::ItemRock::Mgr::generatorBirth(Vector3<float>&, Vector3<float>&,
  * Address:	801E3068
  * Size:	0000A8
  */
-void Game::ItemRock::Mgr::onLoadResources()
+void ItemRock::Mgr::onLoadResources()
 {
 	/*
 	.loc_0x0:
@@ -2981,7 +2982,7 @@ void Game::ItemRock::Mgr::onLoadResources()
  * Address:	801E3110
  * Size:	000134
  */
-void Game::ItemRock::Mgr::~Mgr()
+ItemRock::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -3078,7 +3079,7 @@ void Game::ItemRock::Mgr::~Mgr()
  * Address:	801E3244
  * Size:	0000F8
  */
-void Game::ItemRock::Mgr::doNew()
+void ItemRock::Mgr::doNew()
 {
 	/*
 	.loc_0x0:
@@ -3156,7 +3157,7 @@ void Game::ItemRock::Mgr::doNew()
  * Address:	801E333C
  * Size:	00000C
  */
-void Game::ItemRock::Mgr::generatorGetID()
+void ItemRock::Mgr::generatorGetID()
 {
 	/*
 	.loc_0x0:
@@ -3166,12 +3167,16 @@ void Game::ItemRock::Mgr::generatorGetID()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	801E3348
  * Size:	00000C
  */
-void efx::ArgKouhai::getName()
+void ArgKouhai::getName()
 {
 	/*
 	.loc_0x0:
@@ -3181,12 +3186,16 @@ void efx::ArgKouhai::getName()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801E3354
  * Size:	00000C
  */
-void Game::ItemRock::Item::getCreatureName()
+void ItemRock::Item::getCreatureName()
 {
 	/*
 	.loc_0x0:
@@ -3202,7 +3211,7 @@ void Game::ItemRock::Item::getCreatureName()
  * Size:	000034
  */
 void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   Game::ItemRock::State>::doAI()
+                   ItemRock::State>::doAI()
 {
 	/*
 	.loc_0x0:
@@ -3228,7 +3237,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   Game::ItemRock::State>::onKeyEvent(const SysShape::KeyEvent&)
+                   ItemRock::State>::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3259,18 +3268,15 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Address:	801E33D8
  * Size:	000004
  */
-void Game::ItemState<Game::ItemRock::Item>::onDamage(Game::ItemRock::Item*,
-                                                     float)
-{
-}
+void ItemState<Game::ItemRock::Item>::onDamage(Game::ItemRock::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801E33DC
  * Size:	000004
  */
-void Game::ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*,
-                                                     Sys::Triangle*)
+void ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*,
+                                               Sys::Triangle*)
 {
 }
 
@@ -3279,8 +3285,8 @@ void Game::ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*,
  * Address:	801E33E0
  * Size:	000004
  */
-void Game::ItemState<Game::ItemRock::Item>::onPlatCollision(
-    Game::ItemRock::Item*, Game::PlatEvent&)
+void ItemState<Game::ItemRock::Item>::onPlatCollision(Game::ItemRock::Item*,
+                                                      Game::PlatEvent&)
 {
 }
 
@@ -3289,8 +3295,8 @@ void Game::ItemState<Game::ItemRock::Item>::onPlatCollision(
  * Address:	801E33E4
  * Size:	000004
  */
-void Game::ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*,
-                                                        Game::CollEvent&)
+void ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*,
+                                                  Game::CollEvent&)
 {
 }
 
@@ -3299,8 +3305,8 @@ void Game::ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*,
  * Address:	801E33E8
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*,
-                                                Game::StateArg*)
+void FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*,
+                                          Game::StateArg*)
 {
 }
 
@@ -3309,42 +3315,42 @@ void Game::FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*,
  * Address:	801E33EC
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::exec(Game::ItemRock::Item*) { }
+void FSMState<Game::ItemRock::Item>::exec(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33F0
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::cleanup(Game::ItemRock::Item*) { }
+void FSMState<Game::ItemRock::Item>::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33F4
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::resume(Game::ItemRock::Item*) { }
+void FSMState<Game::ItemRock::Item>::resume(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33F8
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::restart(Game::ItemRock::Item*) { }
+void FSMState<Game::ItemRock::Item>::restart(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33FC
  * Size:	000004
  */
-void Game::StateMachine<Game::ItemRock::Item>::init(Game::ItemRock::Item*) { }
+void StateMachine<Game::ItemRock::Item>::init(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E3400
  * Size:	000038
  */
-void Game::StateMachine<Game::ItemRock::Item>::exec(Game::ItemRock::Item*)
+void StateMachine<Game::ItemRock::Item>::exec(Game::ItemRock::Item*)
 {
 	/*
 	.loc_0x0:
@@ -3372,7 +3378,7 @@ void Game::StateMachine<Game::ItemRock::Item>::exec(Game::ItemRock::Item*)
  * Address:	801E3438
  * Size:	000064
  */
-void Game::StateMachine<Game::ItemRock::Item>::create(int)
+void StateMachine<Game::ItemRock::Item>::create(int)
 {
 	/*
 	.loc_0x0:
@@ -3409,8 +3415,8 @@ void Game::StateMachine<Game::ItemRock::Item>::create(int)
  * Address:	801E349C
  * Size:	00009C
  */
-void Game::StateMachine<Game::ItemRock::Item>::transit(Game::ItemRock::Item*,
-                                                       int, Game::StateArg*)
+void StateMachine<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
+                                                 Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3467,7 +3473,7 @@ void Game::StateMachine<Game::ItemRock::Item>::transit(Game::ItemRock::Item*,
  * Address:	801E3538
  * Size:	000084
  */
-void Game::StateMachine<Game::ItemRock::Item>::registerState(
+void StateMachine<Game::ItemRock::Item>::registerState(
     Game::FSMState<Game::ItemRock::Item>*)
 {
 	/*
@@ -3520,7 +3526,7 @@ void Game::StateMachine<Game::ItemRock::Item>::registerState(
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   Game::ItemRock::State>::platCallback(Game::PlatEvent&)
+                   ItemRock::State>::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3552,7 +3558,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   Game::ItemRock::State>::collisionCallback(Game::CollEvent&)
+                   ItemRock::State>::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3584,7 +3590,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Size:	000044
  */
 void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   Game::ItemRock::State>::bounceCallback(Sys::Triangle*)
+                   ItemRock::State>::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -3631,7 +3637,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Address:	801E3690
  * Size:	000008
  */
-void Game::ItemRock::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
+void ItemRock::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3645,7 +3651,7 @@ void Game::ItemRock::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
  * Address:	801E3698
  * Size:	000008
  */
-void Game::ItemRock::Mgr::@48 @__dt()
+ItemRock::Mgr::@48 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -3653,3 +3659,4 @@ void Game::ItemRock::Mgr::@48 @__dt()
 	  b         -0x58C
 	*/
 }
+} // namespace efx

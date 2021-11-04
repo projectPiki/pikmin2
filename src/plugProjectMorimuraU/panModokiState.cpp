@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8034C93C
  * Size:	0001BC
  */
-void Game::PanModokiBase::FSM::init((Game::EnemyBase*))
+void PanModokiBase::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +154,7 @@ void Game::PanModokiBase::FSM::init((Game::EnemyBase*))
  * Address:	8034CAF8
  * Size:	00003C
  */
-void Game::PanModokiBase::StateDead::__ct((int))
+PanModokiBase::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -189,7 +181,7 @@ void Game::PanModokiBase::StateDead::__ct((int))
  * Address:	8034CB34
  * Size:	000090
  */
-void Game::PanModokiBase::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +231,7 @@ void Game::PanModokiBase::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034CBC4
  * Size:	000058
  */
-void Game::PanModokiBase::StateDead::exec((Game::EnemyBase*))
+void PanModokiBase::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -277,7 +269,7 @@ void Game::PanModokiBase::StateDead::exec((Game::EnemyBase*))
  * Address:	8034CC1C
  * Size:	00003C
  */
-void Game::PanModokiBase::StateWalk::__ct((int))
+PanModokiBase::StateWalk::StateWalk(int)
 {
 	/*
 	.loc_0x0:
@@ -304,7 +296,7 @@ void Game::PanModokiBase::StateWalk::__ct((int))
  * Address:	8034CC58
  * Size:	000070
  */
-void Game::PanModokiBase::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +338,7 @@ void Game::PanModokiBase::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034CCC8
  * Size:	00010C
  */
-void Game::PanModokiBase::StateWalk::exec((Game::EnemyBase*))
+void PanModokiBase::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -435,7 +427,7 @@ void Game::PanModokiBase::StateWalk::exec((Game::EnemyBase*))
  * Address:	8034CDD4
  * Size:	00003C
  */
-void Game::PanModokiBase::StateBack::__ct((int))
+PanModokiBase::StateBack::StateBack(int)
 {
 	/*
 	.loc_0x0:
@@ -462,7 +454,7 @@ void Game::PanModokiBase::StateBack::__ct((int))
  * Address:	8034CE10
  * Size:	000104
  */
-void Game::PanModokiBase::StateBack::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateBack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +537,7 @@ void Game::PanModokiBase::StateBack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034CF14
  * Size:	0004D0
  */
-void Game::PanModokiBase::StateBack::exec((Game::EnemyBase*))
+void PanModokiBase::StateBack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -909,7 +901,7 @@ void Game::PanModokiBase::StateBack::exec((Game::EnemyBase*))
  * Address:	8034D3E4
  * Size:	00003C
  */
-void Game::PanModokiBase::StatePulled::__ct((int))
+PanModokiBase::StatePulled::StatePulled(int)
 {
 	/*
 	.loc_0x0:
@@ -936,7 +928,7 @@ void Game::PanModokiBase::StatePulled::__ct((int))
  * Address:	8034D420
  * Size:	0000B0
  */
-void Game::PanModokiBase::StatePulled::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StatePulled::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -994,7 +986,7 @@ void Game::PanModokiBase::StatePulled::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034D4D0
  * Size:	0004CC
  */
-void Game::PanModokiBase::StatePulled::exec((Game::EnemyBase*))
+void PanModokiBase::StatePulled::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1355,7 +1347,7 @@ void Game::PanModokiBase::StatePulled::exec((Game::EnemyBase*))
  * Address:	8034D99C
  * Size:	000024
  */
-void Game::PanModokiBase::StatePulled::cleanup((Game::EnemyBase*))
+void PanModokiBase::StatePulled::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1376,7 +1368,7 @@ void Game::PanModokiBase::StatePulled::cleanup((Game::EnemyBase*))
  * Address:	8034D9C0
  * Size:	00003C
  */
-void Game::PanModokiBase::StateAppear::__ct((int))
+PanModokiBase::StateAppear::StateAppear(int)
 {
 	/*
 	.loc_0x0:
@@ -1403,7 +1395,7 @@ void Game::PanModokiBase::StateAppear::__ct((int))
  * Address:	8034D9FC
  * Size:	000070
  */
-void Game::PanModokiBase::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1443,14 +1435,14 @@ void Game::PanModokiBase::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034DA6C
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::appearRumble(void) { }
+void PanModokiBase::Obj::appearRumble(void) { }
 
 /*
  * --INFO--
  * Address:	8034DA70
  * Size:	000064
  */
-void Game::PanModokiBase::StateAppear::exec((Game::EnemyBase*))
+void PanModokiBase::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1489,7 +1481,7 @@ void Game::PanModokiBase::StateAppear::exec((Game::EnemyBase*))
  * Address:	8034DAD4
  * Size:	00003C
  */
-void Game::PanModokiBase::StateHide::__ct((int))
+PanModokiBase::StateHide::StateHide(int)
 {
 	/*
 	.loc_0x0:
@@ -1516,7 +1508,7 @@ void Game::PanModokiBase::StateHide::__ct((int))
  * Address:	8034DB10
  * Size:	000068
  */
-void Game::PanModokiBase::StateHide::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateHide::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1554,7 +1546,7 @@ void Game::PanModokiBase::StateHide::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034DB78
  * Size:	000118
  */
-void Game::PanModokiBase::StateHide::exec((Game::EnemyBase*))
+void PanModokiBase::StateHide::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1642,14 +1634,14 @@ void Game::PanModokiBase::StateHide::exec((Game::EnemyBase*))
  * Address:	8034DC90
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::hideRumble(void) { }
+void PanModokiBase::Obj::hideRumble(void) { }
 
 /*
  * --INFO--
  * Address:	8034DC94
  * Size:	00003C
  */
-void Game::PanModokiBase::StateDamage::__ct((int))
+PanModokiBase::StateDamage::StateDamage(int)
 {
 	/*
 	.loc_0x0:
@@ -1676,7 +1668,7 @@ void Game::PanModokiBase::StateDamage::__ct((int))
  * Address:	8034DCD0
  * Size:	00010C
  */
-void Game::PanModokiBase::StateDamage::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1759,7 +1751,7 @@ void Game::PanModokiBase::StateDamage::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034DDDC
  * Size:	000080
  */
-void Game::PanModokiBase::StateDamage::exec((Game::EnemyBase*))
+void PanModokiBase::StateDamage::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1807,7 +1799,7 @@ void Game::PanModokiBase::StateDamage::exec((Game::EnemyBase*))
  * Address:	8034DE5C
  * Size:	00003C
  */
-void Game::PanModokiBase::StateWait::__ct((int))
+PanModokiBase::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -1834,7 +1826,7 @@ void Game::PanModokiBase::StateWait::__ct((int))
  * Address:	8034DE98
  * Size:	000070
  */
-void Game::PanModokiBase::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1874,7 +1866,7 @@ void Game::PanModokiBase::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034DF08
  * Size:	0000F4
  */
-void Game::PanModokiBase::StateWait::exec((Game::EnemyBase*))
+void PanModokiBase::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1953,7 +1945,7 @@ void Game::PanModokiBase::StateWait::exec((Game::EnemyBase*))
  * Address:	8034DFFC
  * Size:	00003C
  */
-void Game::PanModokiBase::StateStick::__ct((int))
+PanModokiBase::StateStick::StateStick(int)
 {
 	/*
 	.loc_0x0:
@@ -1980,7 +1972,7 @@ void Game::PanModokiBase::StateStick::__ct((int))
  * Address:	8034E038
  * Size:	000108
  */
-void Game::PanModokiBase::StateStick::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateStick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2066,7 +2058,7 @@ void Game::PanModokiBase::StateStick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034E140
  * Size:	0003BC
  */
-void Game::PanModokiBase::StateStick::exec((Game::EnemyBase*))
+void PanModokiBase::StateStick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2333,7 +2325,7 @@ void Game::PanModokiBase::StateStick::exec((Game::EnemyBase*))
  * Address:	8034E4FC
  * Size:	00003C
  */
-void Game::PanModokiBase::StateSucked::__ct((int))
+PanModokiBase::StateSucked::StateSucked(int)
 {
 	/*
 	.loc_0x0:
@@ -2360,7 +2352,7 @@ void Game::PanModokiBase::StateSucked::__ct((int))
  * Address:	8034E538
  * Size:	00006C
  */
-void Game::PanModokiBase::StateSucked::init((Game::EnemyBase*, Game::StateArg*))
+void PanModokiBase::StateSucked::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2401,7 +2393,7 @@ void Game::PanModokiBase::StateSucked::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034E5A4
  * Size:	00000C
  */
-void Game::PanModokiBase::StateSucked::exec((Game::EnemyBase*))
+void PanModokiBase::StateSucked::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2416,7 +2408,7 @@ void Game::PanModokiBase::StateSucked::exec((Game::EnemyBase*))
  * Address:	8034E5B0
  * Size:	000040
  */
-void Game::PanModokiBase::StateCarryEnd::__ct((int))
+PanModokiBase::StateCarryEnd::StateCarryEnd(int)
 {
 	/*
 	.loc_0x0:
@@ -2444,8 +2436,7 @@ void Game::PanModokiBase::StateCarryEnd::__ct((int))
  * Address:	8034E5F0
  * Size:	00006C
  */
-void Game::PanModokiBase::StateCarryEnd::init((Game::EnemyBase*,
-                                               Game::StateArg*))
+void PanModokiBase::StateCarryEnd::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2484,7 +2475,7 @@ void Game::PanModokiBase::StateCarryEnd::init((Game::EnemyBase*,
  * Address:	8034E65C
  * Size:	0002F0
  */
-void Game::PanModokiBase::StateCarryEnd::exec((Game::EnemyBase*))
+void PanModokiBase::StateCarryEnd::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2690,3 +2681,4 @@ void Game::PanModokiBase::StateCarryEnd::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

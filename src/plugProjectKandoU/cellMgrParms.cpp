@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "CellMgrParms.h"
 
 #pragma text_encoding "SHIFT_JIS"
@@ -7,25 +9,15 @@ CellMgrParms* CellMgrParms::mInstance;
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	00015C
  */
 inline CellMgrParms::CellMgrParms()
-	: Parameters(&m_end, nullptr, "CellMgr")
-	, JKRDisposer()
-	, m_p000(this, 0x70303030, "ƒoƒbƒtƒ@‚ğg‚¤", false, false, true)
-	, m_p001(this, 0x70303031, "ƒ}ƒWƒbƒNƒiƒ“ƒo[", true, false, true)
-	, m_p002(this, 0x70303032, "G-Half", false, false, true)
-	, m_p003(this, 0x70303033, "UpdateMgr", false, false, true)
+    : Parameters(&m_end, nullptr, "CellMgr")
+    , JKRDisposer()
+    , m_p000(this, 0x70303030, "ï¿½oï¿½bï¿½tï¿½@ï¿½ï¿½ï¿½gï¿½ï¿½", false, false, true)
+    , m_p001(this, 0x70303031, "ï¿½}ï¿½Wï¿½bï¿½Nï¿½iï¿½ï¿½ï¿½oï¿½[", true, false, true)
+    , m_p002(this, 0x70303032, "G-Half", false, false, true)
+    , m_p003(this, 0x70303033, "UpdateMgr", false, false, true)
 {
 }
 

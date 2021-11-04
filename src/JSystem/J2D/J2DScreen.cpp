@@ -5,7 +5,7 @@
  * Address:	8003F474
  * Size:	0000A8
  */
-void J2DScreen::J2DScreen()
+J2DScreen::J2DScreen()
 {
 	/*
 	.loc_0x0:
@@ -59,7 +59,7 @@ void J2DScreen::J2DScreen()
  * Address:	8003F51C
  * Size:	000068
  */
-void J2DScreen::~J2DScreen()
+J2DScreen::~J2DScreen()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80295E28
  * Size:	000328
  */
-void Game::KumaChappy::FSM::init(Game::EnemyBase*)
+void KumaChappy::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +239,7 @@ void Game::KumaChappy::FSM::init(Game::EnemyBase*)
  * Address:	80296150
  * Size:	000050
  */
-void Game::KumaChappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -269,7 +271,7 @@ void Game::KumaChappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802961A0
  * Size:	000098
  */
-void Game::KumaChappy::StateDead::exec(Game::EnemyBase*)
+void KumaChappy::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -325,21 +327,21 @@ void Game::KumaChappy::StateDead::exec(Game::EnemyBase*)
  * Address:	80296238
  * Size:	000008
  */
-u32 Game::KumaChappy::Obj::getEnemyTypeID() { return 0x23; }
+u32 KumaChappy::Obj::getEnemyTypeID() { return 0x23; }
 
 /*
  * --INFO--
  * Address:	80296240
  * Size:	000004
  */
-void Game::KumaChappy::StateDead::cleanup(Game::EnemyBase*) { }
+void KumaChappy::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80296244
  * Size:	000058
  */
-void Game::KumaChappy::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +375,7 @@ void Game::KumaChappy::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029629C
  * Size:	0005B0
  */
-void Game::KumaChappy::StateRebirth::exec(Game::EnemyBase*)
+void KumaChappy::StateRebirth::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -771,7 +773,7 @@ void Game::KumaChappy::StateRebirth::exec(Game::EnemyBase*)
  * Address:	8029684C
  * Size:	000010
  */
-void Game::KumaChappy::StateRebirth::cleanup(Game::EnemyBase*)
+void KumaChappy::StateRebirth::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +789,7 @@ void Game::KumaChappy::StateRebirth::cleanup(Game::EnemyBase*)
  * Address:	8029685C
  * Size:	00004C
  */
-void Game::KumaChappy::StateLost::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateLost::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -818,7 +820,7 @@ void Game::KumaChappy::StateLost::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802968A8
  * Size:	00045C
  */
-void Game::KumaChappy::StateLost::exec(Game::EnemyBase*)
+void KumaChappy::StateLost::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1125,14 +1127,14 @@ void Game::KumaChappy::StateLost::exec(Game::EnemyBase*)
  * Address:	80296D04
  * Size:	000004
  */
-void Game::KumaChappy::StateLost::cleanup(Game::EnemyBase*) { }
+void KumaChappy::StateLost::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80296D08
  * Size:	000058
  */
-void Game::KumaChappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1166,7 +1168,7 @@ void Game::KumaChappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80296D60
  * Size:	000550
  */
-void Game::KumaChappy::StateAttack::exec(Game::EnemyBase*)
+void KumaChappy::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1540,7 +1542,7 @@ void Game::KumaChappy::StateAttack::exec(Game::EnemyBase*)
  * Address:	802972B0
  * Size:	00003C
  */
-void Game::KumaChappy::StateAttack::cleanup(Game::EnemyBase*)
+void KumaChappy::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1567,7 +1569,7 @@ void Game::KumaChappy::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802972EC
  * Size:	000064
  */
-void Game::KumaChappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1604,7 +1606,7 @@ void Game::KumaChappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80297350
  * Size:	0004D4
  */
-void Game::KumaChappy::StateFlick::exec(Game::EnemyBase*)
+void KumaChappy::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1941,7 +1943,7 @@ void Game::KumaChappy::StateFlick::exec(Game::EnemyBase*)
  * Address:	80297824
  * Size:	00003C
  */
-void Game::KumaChappy::StateFlick::cleanup(Game::EnemyBase*)
+void KumaChappy::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1968,7 +1970,7 @@ void Game::KumaChappy::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	80297860
  * Size:	000060
  */
-void Game::KumaChappy::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2004,7 +2006,7 @@ void Game::KumaChappy::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802978C0
  * Size:	000670
  */
-void Game::KumaChappy::StateTurn::exec(Game::EnemyBase*)
+void KumaChappy::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2460,7 +2462,7 @@ void Game::KumaChappy::StateTurn::exec(Game::EnemyBase*)
  * Address:	80297F30
  * Size:	00003C
  */
-void Game::KumaChappy::StateTurn::cleanup(Game::EnemyBase*)
+void KumaChappy::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2487,7 +2489,7 @@ void Game::KumaChappy::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	80297F6C
  * Size:	000044
  */
-void Game::KumaChappy::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2516,7 +2518,7 @@ void Game::KumaChappy::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80297FB0
  * Size:	0004E0
  */
-void Game::KumaChappy::StateTurnPath::exec(Game::EnemyBase*)
+void KumaChappy::StateTurnPath::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2864,7 +2866,7 @@ void Game::KumaChappy::StateTurnPath::exec(Game::EnemyBase*)
  * Address:	80298490
  * Size:	000028
  */
-void Game::KumaChappy::StateTurnPath::cleanup(Game::EnemyBase*)
+void KumaChappy::StateTurnPath::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2886,7 +2888,7 @@ void Game::KumaChappy::StateTurnPath::cleanup(Game::EnemyBase*)
  * Address:	802984B8
  * Size:	000050
  */
-void Game::KumaChappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2918,7 +2920,7 @@ void Game::KumaChappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80298508
  * Size:	00070C
  */
-void Game::KumaChappy::StateWalk::exec(Game::EnemyBase*)
+void KumaChappy::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3419,7 +3421,7 @@ void Game::KumaChappy::StateWalk::exec(Game::EnemyBase*)
  * Address:	80298C14
  * Size:	00003C
  */
-void Game::KumaChappy::StateWalk::cleanup(Game::EnemyBase*)
+void KumaChappy::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3446,7 +3448,7 @@ void Game::KumaChappy::StateWalk::cleanup(Game::EnemyBase*)
  * Address:	80298C50
  * Size:	000034
  */
-void Game::KumaChappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
+void KumaChappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3471,7 +3473,7 @@ void Game::KumaChappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80298C84
  * Size:	000594
  */
-void Game::KumaChappy::StateWalkPath::exec(Game::EnemyBase*)
+void KumaChappy::StateWalkPath::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3870,7 +3872,7 @@ void Game::KumaChappy::StateWalkPath::exec(Game::EnemyBase*)
  * Address:	80299218
  * Size:	000028
  */
-void Game::KumaChappy::StateWalkPath::cleanup(Game::EnemyBase*)
+void KumaChappy::StateWalkPath::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3886,3 +3888,4 @@ void Game::KumaChappy::StateWalkPath::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

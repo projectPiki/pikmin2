@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,7 +15,7 @@ void JUTDirectFile::fetch32byte()
  * Address:	8002982C
  * Size:	000024
  */
-void JUTDirectFile::JUTDirectFile()
+JUTDirectFile::JUTDirectFile()
 {
 	/*
 	.loc_0x0:
@@ -36,7 +36,7 @@ void JUTDirectFile::JUTDirectFile()
  * Address:	80029850
  * Size:	000044
  */
-void JUTDirectFile::~JUTDirectFile()
+JUTDirectFile::~JUTDirectFile()
 {
 	/*
 	.loc_0x0:

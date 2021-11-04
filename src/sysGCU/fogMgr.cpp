@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80432948
  * Size:	000074
  */
-void FogMgr::FogMgr()
+FogMgr::FogMgr()
 {
 	/*
 	.loc_0x0:

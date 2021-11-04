@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8029D9F0
  * Size:	000050
  */
-void Game::Koganemushi::Mgr::Mgr(int, unsigned char)
+Koganemushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Koganemushi::Mgr::Mgr(int, unsigned char)
  * Address:	8029DA40
  * Size:	000048
  */
-void Game::Koganemushi::Mgr::doAlloc()
+void Koganemushi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::Koganemushi::Mgr::doAlloc()
  * Address:	8029DA88
  * Size:	000060
  */
-void Game::Koganemushi::Mgr::createObj(int)
+void Koganemushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::Koganemushi::Mgr::createObj(int)
  * Address:	8029DAE8
  * Size:	0000EC
  */
-void Game::Koganemushi::Obj::~Obj()
+Koganemushi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::Koganemushi::Obj::~Obj()
  * Address:	8029DBD4
  * Size:	000010
  */
-void Game::Koganemushi::Mgr::getEnemy(int)
+void Koganemushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -196,7 +198,7 @@ void Game::Koganemushi::Mgr::getEnemy(int)
  * Address:	8029DBE4
  * Size:	000080
  */
-void Game::Koganemushi::Mgr::loadTexData()
+void Koganemushi::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -244,7 +246,7 @@ void Game::Koganemushi::Mgr::loadTexData()
  * Address:	8029DC64
  * Size:	0000C8
  */
-void Game::Koganemushi::Mgr::~Mgr()
+Koganemushi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -310,14 +312,14 @@ void Game::Koganemushi::Mgr::~Mgr()
  * Address:	8029DD2C
  * Size:	000008
  */
-u32 Game::Koganemushi::Mgr::getEnemyTypeID() { return 0x9; }
+u32 Koganemushi::Mgr::getEnemyTypeID() { return 0x9; }
 
 /*
  * --INFO--
  * Address:	8029DD34
  * Size:	000008
  */
-void Game::Koganemushi::Mgr::getChangeTexture()
+void Koganemushi::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -331,7 +333,7 @@ void Game::Koganemushi::Mgr::getChangeTexture()
  * Address:	8029DD3C
  * Size:	000008
  */
-void Game::Koganemushi::Mgr::@4 @__dt()
+Koganemushi::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -339,3 +341,4 @@ void Game::Koganemushi::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

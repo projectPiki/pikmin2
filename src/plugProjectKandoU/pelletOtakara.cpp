@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801FFE64
  * Size:	000094
  */
-void Game::PelletOtakara::Object::constructor(void)
+void PelletOtakara::Object::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +60,7 @@ void Game::PelletOtakara::Object::constructor(void)
  * Address:	801FFEF8
  * Size:	0000F4
  */
-void Game::PelletOtakara::Object::do_onInit((Game::CreatureInitArg*))
+void PelletOtakara::Object::do_onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -153,7 +145,7 @@ void Game::PelletOtakara::Object::do_onInit((Game::CreatureInitArg*))
  * Address:	801FFFEC
  * Size:	000020
  */
-void Game::PelletOtakara::Object::getShadowParam((Game::ShadowParam&))
+void PelletOtakara::Object::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +165,7 @@ void Game::PelletOtakara::Object::getShadowParam((Game::ShadowParam&))
  * Address:	8020000C
  * Size:	000148
  */
-void Game::PelletOtakara::Object::sound_otakaraEventStart(void)
+void PelletOtakara::Object::sound_otakaraEventStart(void)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +275,7 @@ void Game::PelletOtakara::Object::sound_otakaraEventStart(void)
  * Address:	80200154
  * Size:	000148
  */
-void Game::PelletOtakara::Object::sound_otakaraEventRestart(void)
+void PelletOtakara::Object::sound_otakaraEventRestart(void)
 {
 	/*
 	.loc_0x0:
@@ -393,7 +385,7 @@ void Game::PelletOtakara::Object::sound_otakaraEventRestart(void)
  * Address:	8020029C
  * Size:	000074
  */
-void Game::PelletOtakara::Object::sound_otakaraEventStop(void)
+void PelletOtakara::Object::sound_otakaraEventStop(void)
 {
 	/*
 	.loc_0x0:
@@ -436,7 +428,7 @@ void Game::PelletOtakara::Object::sound_otakaraEventStop(void)
  * Address:	80200310
  * Size:	000074
  */
-void Game::PelletOtakara::Object::sound_otakaraEventFinish(void)
+void PelletOtakara::Object::sound_otakaraEventFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -479,7 +471,7 @@ void Game::PelletOtakara::Object::sound_otakaraEventFinish(void)
  * Address:	80200384
  * Size:	0000D8
  */
-void Game::PelletOtakara::Object::onCreateShape(void)
+void PelletOtakara::Object::onCreateShape(void)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +547,7 @@ void Game::PelletOtakara::Object::onCreateShape(void)
  * Address:	8020045C
  * Size:	0000B8
  */
-void Game::PelletOtakara::Object::theEntry(void)
+void PelletOtakara::Object::theEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -617,7 +609,7 @@ void Game::PelletOtakara::Object::theEntry(void)
  * Address:	80200514
  * Size:	000268
  */
-void Game::PelletOtakara::Object::changeMaterial(void)
+void PelletOtakara::Object::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -789,7 +781,7 @@ void Game::PelletOtakara::Object::changeMaterial(void)
  * Address:	8020077C
  * Size:	0000B0
  */
-void Game::PelletOtakara::Mgr::__ct(void)
+PelletOtakara::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -841,6 +833,8 @@ void Game::PelletOtakara::Mgr::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1065,12 +1059,14 @@ void Container<Game::PelletOtakara::Object>::~Container()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80200AD8
  * Size:	00006C
  */
-void Game::PelletOtakara::Mgr::setupResources(void)
+void PelletOtakara::Mgr::setupResources(void)
 {
 	/*
 	.loc_0x0:
@@ -1109,7 +1105,7 @@ void Game::PelletOtakara::Mgr::setupResources(void)
  * Address:	80200B44
  * Size:	000024
  */
-void Game::PelletOtakara::Mgr::generatorNewPelletParm(void)
+void PelletOtakara::Mgr::generatorNewPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1130,8 +1126,8 @@ void Game::PelletOtakara::Mgr::generatorNewPelletParm(void)
  * Address:	80200B68
  * Size:	000148
  */
-void generatorBirth__Q34Game13PelletOtakara3MgrFR10Vector3<float>
-    R10Vector3<float> PQ24Game13GenPelletParm(void)
+void generatorBirth__Q34Game13PelletOtakara3MgrFR10Vector3f R10Vector3f
+PQ24Game13GenPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1229,7 +1225,7 @@ void generatorBirth__Q34Game13PelletOtakara3MgrFR10Vector3<float>
  * Address:	80200CB0
  * Size:	000030
  */
-void Game::PelletOtakara::Mgr::generatorWrite((Stream&, Game::GenPelletParm*))
+void PelletOtakara::Mgr::generatorWrite(Stream&, Game::GenPelletParm*)
 {
 	/*
 	.loc_0x0:
@@ -1253,8 +1249,8 @@ void Game::PelletOtakara::Mgr::generatorWrite((Stream&, Game::GenPelletParm*))
  * Address:	80200CE0
  * Size:	000038
  */
-void Game::PelletOtakara::Mgr::generatorRead((Stream&, Game::GenPelletParm*,
-                                              unsigned long))
+void PelletOtakara::Mgr::generatorRead(Stream&, Game::GenPelletParm*,
+                                       unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1280,7 +1276,7 @@ void Game::PelletOtakara::Mgr::generatorRead((Stream&, Game::GenPelletParm*,
  * Address:	80200D18
  * Size:	0001B4
  */
-void Game::PelletOtakara::Mgr::__dt(void)
+PelletOtakara::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1409,7 +1405,7 @@ void Game::PelletOtakara::Mgr::__dt(void)
  * Address:	80200ECC
  * Size:	000008
  */
-void Game::PelletOtakara::Mgr::getMgrName(void)
+void PelletOtakara::Mgr::getMgrName(void)
 {
 	/*
 	.loc_0x0:
@@ -1423,14 +1419,14 @@ void Game::PelletOtakara::Mgr::getMgrName(void)
  * Address:	80200ED4
  * Size:	000008
  */
-u32 Game::PelletOtakara::Mgr::getMgrID(void) { return 0x3; }
+u32 PelletOtakara::Mgr::getMgrID(void) { return 0x3; }
 
 /*
  * --INFO--
  * Address:	80200EDC
  * Size:	00000C
  */
-void Game::PelletOtakara::Mgr::generatorLocalVersion(void)
+void PelletOtakara::Mgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -1439,6 +1435,8 @@ void Game::PelletOtakara::Mgr::generatorLocalVersion(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -1490,19 +1488,21 @@ void ObjectMgr<Game::PelletOtakara::Object>::~ObjectMgr()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80200F70
  * Size:	000008
  */
-u32 Game::PelletOtakara::Object::getKind(void) { return 0x3; }
+u32 PelletOtakara::Object::getKind(void) { return 0x3; }
 
 /*
  * --INFO--
  * Address:	80200F78
  * Size:	00000C
  */
-void Game::PelletOtakara::Object::getBedamaColor(void)
+void PelletOtakara::Object::getBedamaColor(void)
 {
 	/*
 	.loc_0x0:
@@ -1521,6 +1521,8 @@ void onCreateModel__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
 FPQ28SysShape5Model(void)
 {
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -3749,12 +3751,14 @@ void MonoObjectMgr<Game::PelletOtakara::Object>::alloc(int)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80202680
  * Size:	00004C
  */
-void Game::PelletOtakara::Object::__ct(void)
+PelletOtakara::Object::Object(void)
 {
 	/*
 	.loc_0x0:
@@ -3779,6 +3783,8 @@ void Game::PelletOtakara::Object::__ct(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4064,7 +4070,7 @@ FPv(void)
  * Address:	80202784
  * Size:	000008
  */
-void @84 @Game::PelletOtakara::Mgr::__dt(void)
+@84 @Game::PelletOtakara::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

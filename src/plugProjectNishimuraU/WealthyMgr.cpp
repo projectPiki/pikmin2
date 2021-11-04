@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80284470
  * Size:	000050
  */
-void Game::Wealthy::Mgr::Mgr(int, unsigned char)
+Wealthy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::Wealthy::Mgr::Mgr(int, unsigned char)
  * Address:	802844C0
  * Size:	000048
  */
-void Game::Wealthy::Mgr::doAlloc()
+void Wealthy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::Wealthy::Mgr::doAlloc()
  * Address:	80284508
  * Size:	000048
  */
-void Game::Kogane::Parms::Parms()
+Kogane::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +105,7 @@ void Game::Kogane::Parms::Parms()
  * Address:	80284550
  * Size:	00023C
  */
-void Game::Kogane::Parms::ProperParms::ProperParms()
+Kogane::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -260,7 +262,7 @@ void Game::Kogane::Parms::ProperParms::ProperParms()
  * Address:	8028478C
  * Size:	000060
  */
-void Game::Wealthy::Mgr::createObj(int)
+void Wealthy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void Game::Wealthy::Mgr::createObj(int)
  * Address:	802847EC
  * Size:	0000F0
  */
-void Game::Wealthy::Obj::~Obj()
+Wealthy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void Game::Wealthy::Obj::~Obj()
  * Address:	802848DC
  * Size:	000010
  */
-void Game::Wealthy::Mgr::getEnemy(int)
+void Wealthy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -388,7 +390,7 @@ void Game::Wealthy::Mgr::getEnemy(int)
  * Address:	802848EC
  * Size:	000080
  */
-void Game::Wealthy::Mgr::loadTexData()
+void Wealthy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -436,7 +438,7 @@ void Game::Wealthy::Mgr::loadTexData()
  * Address:	8028496C
  * Size:	000050
  */
-void Game::Kogane::Parms::read(Stream&)
+void Kogane::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -468,7 +470,7 @@ void Game::Kogane::Parms::read(Stream&)
  * Address:	802849BC
  * Size:	0000C8
  */
-void Game::Wealthy::Mgr::~Mgr()
+Wealthy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -534,14 +536,14 @@ void Game::Wealthy::Mgr::~Mgr()
  * Address:	80284A84
  * Size:	000008
  */
-u32 Game::Wealthy::Mgr::getEnemyTypeID() { return 0xA; }
+u32 Wealthy::Mgr::getEnemyTypeID() { return 0xA; }
 
 /*
  * --INFO--
  * Address:	80284A8C
  * Size:	000008
  */
-void Game::Wealthy::Mgr::getChangeTexture()
+void Wealthy::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -555,7 +557,7 @@ void Game::Wealthy::Mgr::getChangeTexture()
  * Address:	80284A94
  * Size:	000008
  */
-void Game::Wealthy::Mgr::@4 @__dt()
+Wealthy::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -563,3 +565,4 @@ void Game::Wealthy::Mgr::@4 @__dt()
 	  b         -0xDC
 	*/
 }
+} // namespace Game

@@ -1,22 +1,14 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8042FDA8
  * Size:	000094
  */
-void Game::P2JST::ObjectGameActor::__ct((char const*, Game::MoviePlayer*,
-                                         Game::Creature*))
+P2JST::ObjectGameActor::ObjectGameActor(char const*, Game::MoviePlayer*,
+                                        Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +57,7 @@ void Game::P2JST::ObjectGameActor::__ct((char const*, Game::MoviePlayer*,
  * Address:	8042FE3C
  * Size:	000054
  */
-void Game::P2JST::ObjectGameActor::reset(void)
+void P2JST::ObjectGameActor::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +90,7 @@ void Game::P2JST::ObjectGameActor::reset(void)
  * Address:	8042FE90
  * Size:	000124
  */
-void Game::P2JST::ObjectGameActor::stop(void)
+void P2JST::ObjectGameActor::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +185,7 @@ void Game::P2JST::ObjectGameActor::stop(void)
  * Address:	8042FFB4
  * Size:	0004D8
  */
-void Game::P2JST::ObjectGameActor::update(void)
+void P2JST::ObjectGameActor::update(void)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +547,7 @@ void Game::P2JST::ObjectGameActor::update(void)
  * Address:	8043048C
  * Size:	000074
  */
-void Game::P2JST::ObjectGameActor::JSGSetAnimation((unsigned long))
+void P2JST::ObjectGameActor::JSGSetAnimation(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -598,13 +590,10 @@ void Game::P2JST::ObjectGameActor::JSGSetAnimation((unsigned long))
  * Address:	80430500
  * Size:	000008
  */
-void Game::P2JST::ObjectGameActor::JSGSetShape((unsigned long))
+void P2JST::ObjectGameActor::JSGSetShape(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x88(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x88(r3)
+	_88 = a1;
 }
 
 /*
@@ -612,7 +601,7 @@ void Game::P2JST::ObjectGameActor::JSGSetShape((unsigned long))
  * Address:	80430508
  * Size:	00001C
  */
-void Game::P2JST::ObjectGameActor::JSGSetTranslation((Vec const&))
+void P2JST::ObjectGameActor::JSGSetTranslation(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -631,7 +620,7 @@ void Game::P2JST::ObjectGameActor::JSGSetTranslation((Vec const&))
  * Address:	80430524
  * Size:	000058
  */
-void Game::P2JST::ObjectGameActor::JSGGetTranslation(const(Vec*))
+void P2JST::ObjectGameActor::JSGGetTranslation(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -665,7 +654,7 @@ void Game::P2JST::ObjectGameActor::JSGGetTranslation(const(Vec*))
  * Address:	8043057C
  * Size:	00001C
  */
-void Game::P2JST::ObjectGameActor::JSGSetRotation((Vec const&))
+void P2JST::ObjectGameActor::JSGSetRotation(Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -684,7 +673,7 @@ void Game::P2JST::ObjectGameActor::JSGSetRotation((Vec const&))
  * Address:	80430598
  * Size:	00001C
  */
-void Game::P2JST::ObjectGameActor::JSGGetRotation(const(Vec*))
+void P2JST::ObjectGameActor::JSGGetRotation(const(Vec*))
 {
 	/*
 	.loc_0x0:
@@ -703,7 +692,7 @@ void Game::P2JST::ObjectGameActor::JSGGetRotation(const(Vec*))
  * Address:	804305B4
  * Size:	0000E0
  */
-void Game::P2JST::ObjectGameActor::JSGFindNodeID(const(char const*))
+void P2JST::ObjectGameActor::JSGFindNodeID(const(char const*))
 {
 	/*
 	.loc_0x0:
@@ -777,8 +766,8 @@ void Game::P2JST::ObjectGameActor::JSGFindNodeID(const(char const*))
  * Address:	80430694
  * Size:	0000D8
  */
-void Game::P2JST::ObjectGameActor::JSGGetNodeTransformation(const(unsigned long,
-                                                                  float (*)[4]))
+void P2JST::ObjectGameActor::JSGGetNodeTransformation(const(unsigned long,
+                                                            float (*)[4]))
 {
 	/*
 	.loc_0x0:
@@ -850,7 +839,7 @@ void Game::P2JST::ObjectGameActor::JSGGetNodeTransformation(const(unsigned long,
  * Address:	8043076C
  * Size:	000138
  */
-void Game::P2JST::ObjectGameActor::parseUserData_((unsigned long, void const*))
+void P2JST::ObjectGameActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:
@@ -952,7 +941,7 @@ void Game::P2JST::ObjectGameActor::parseUserData_((unsigned long, void const*))
  * Address:	804308A4
  * Size:	000068
  */
-void Game::P2JST::ObjectGameActor::__dt(void)
+P2JST::ObjectGameActor::~ObjectGameActor(void)
 {
 	/*
 	.loc_0x0:
@@ -987,6 +976,8 @@ void Game::P2JST::ObjectGameActor::__dt(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8043090C
@@ -1015,7 +1006,7 @@ void __sinit_JSTObjectGameActor_cpp(void)
  * Size:	000008
  */
 void @4
-    @Game::P2JST::ObjectGameActor::parseUserData_((unsigned long, void const*))
+    @Game::P2JST::ObjectGameActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000114
  */
-void JUTProcBar::JUTProcBar()
+JUTProcBar::JUTProcBar()
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JUTProcBar::JUTProcBar()
  * Address:	8002EFE0
  * Size:	000014
  */
-void JUTProcBar::CTime::__ct(void)
+JUTProcBar::CTime::CTime(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +32,7 @@ void JUTProcBar::CTime::__ct(void)
  * Address:	........
  * Size:	000044
  */
-void JUTProcBar::~JUTProcBar()
+JUTProcBar::~JUTProcBar()
 {
 	// UNUSED FUNCTION
 }

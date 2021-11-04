@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80261D8C
  * Size:	000228
  */
-void Game::Rock::FSM::init(Game::EnemyBase*)
+void Rock::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +169,7 @@ void Game::Rock::FSM::init(Game::EnemyBase*)
  * Address:	80261FB4
  * Size:	000098
  */
-void Game::Rock::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Rock::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::Rock::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026204C
  * Size:	000108
  */
-void Game::Rock::StateWait::exec(Game::EnemyBase*)
+void Rock::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -305,7 +307,7 @@ void Game::Rock::StateWait::exec(Game::EnemyBase*)
  * Address:	80262154
  * Size:	000048
  */
-void Game::Rock::StateWait::cleanup(Game::EnemyBase*)
+void Rock::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +337,7 @@ void Game::Rock::StateWait::cleanup(Game::EnemyBase*)
  * Address:	8026219C
  * Size:	000104
  */
-void Game::Rock::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void Rock::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -412,7 +414,7 @@ void Game::Rock::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802622A0
  * Size:	000064
  */
-void Game::Rock::StateAppear::exec(Game::EnemyBase*)
+void Rock::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -451,7 +453,7 @@ void Game::Rock::StateAppear::exec(Game::EnemyBase*)
  * Address:	80262304
  * Size:	00005C
  */
-void Game::Rock::StateAppear::cleanup(Game::EnemyBase*)
+void Rock::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -486,7 +488,7 @@ void Game::Rock::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	80262360
  * Size:	00002C
  */
-void Game::Rock::StateDropWait::init(Game::EnemyBase*, Game::StateArg*)
+void Rock::StateDropWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -509,7 +511,7 @@ void Game::Rock::StateDropWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026238C
  * Size:	000034
  */
-void Game::Rock::StateDropWait::exec(Game::EnemyBase*)
+void Rock::StateDropWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -534,7 +536,7 @@ void Game::Rock::StateDropWait::exec(Game::EnemyBase*)
  * Address:	802623C0
  * Size:	000058
  */
-void Game::Rock::StateDropWait::cleanup(Game::EnemyBase*)
+void Rock::StateDropWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -568,7 +570,7 @@ void Game::Rock::StateDropWait::cleanup(Game::EnemyBase*)
  * Address:	80262418
  * Size:	000060
  */
-void Game::Rock::StateFall::init(Game::EnemyBase*, Game::StateArg*)
+void Rock::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -604,7 +606,7 @@ void Game::Rock::StateFall::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80262478
  * Size:	000068
  */
-void Game::Rock::StateFall::exec(Game::EnemyBase*)
+void Rock::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -646,7 +648,7 @@ void Game::Rock::StateFall::exec(Game::EnemyBase*)
  * Address:	802624E0
  * Size:	000094
  */
-void Game::Rock::StateFall::cleanup(Game::EnemyBase*)
+void Rock::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -695,7 +697,7 @@ void Game::Rock::StateFall::cleanup(Game::EnemyBase*)
  * Address:	80262574
  * Size:	00007C
  */
-void Game::Rock::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void Rock::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -742,7 +744,7 @@ void Game::Rock::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802625F0
  * Size:	0000D0
  */
-void Game::Rock::StateMove::exec(Game::EnemyBase*)
+void Rock::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -810,7 +812,7 @@ void Game::Rock::StateMove::exec(Game::EnemyBase*)
  * Address:	802626C0
  * Size:	00007C
  */
-void Game::Rock::StateMove::cleanup(Game::EnemyBase*)
+void Rock::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -853,7 +855,7 @@ void Game::Rock::StateMove::cleanup(Game::EnemyBase*)
  * Address:	8026273C
  * Size:	000088
  */
-void Game::Rock::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Rock::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -899,7 +901,7 @@ void Game::Rock::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802627C4
  * Size:	00008C
  */
-void Game::Rock::StateDead::exec(Game::EnemyBase*)
+void Rock::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -950,7 +952,9 @@ void Game::Rock::StateDead::exec(Game::EnemyBase*)
  * Address:	80262850
  * Size:	000004
  */
-void Game::Rock::StateDead::cleanup(Game::EnemyBase*) { }
+void Rock::StateDead::cleanup(Game::EnemyBase*) { }
+
+} // namespace Game
 
 /*
  * --INFO--

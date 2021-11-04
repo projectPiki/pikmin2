@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	803B9830
  * Size:	000098
  */
-void efx2d::TSimple1::create((efx2d::Arg*))
+void efx2d::TSimple1::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +61,7 @@ void efx2d::TSimple1::create((efx2d::Arg*))
  * Address:	803B98C8
  * Size:	0000B0
  */
-void efx2d::TSimple2::create((efx2d::Arg*))
+void efx2d::TSimple2::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -135,7 +125,7 @@ void efx2d::TSimple2::create((efx2d::Arg*))
  * Address:	803B9978
  * Size:	0000B0
  */
-void efx2d::TSimple3::create((efx2d::Arg*))
+void efx2d::TSimple3::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +189,7 @@ void efx2d::TSimple3::create((efx2d::Arg*))
  * Address:	803B9A28
  * Size:	0000A4
  */
-void efx2d::TForever::create((efx2d::Arg*))
+void efx2d::TForever::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +302,7 @@ void efx2d::TForever::fade(void)
  * Address:	803B9B44
  * Size:	000024
  */
-void efx2d::TForever::setGlobalScale((float))
+void efx2d::TForever::setGlobalScale(float)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +333,7 @@ void setGlobalTranslation__Q25efx2d8TForeverFR10Vector2<float>(void)
  * Address:	803B9B68
  * Size:	000028
  */
-void efx2d::TForever::setGlobalEnvColor((JUtility::TColor&))
+void efx2d::TForever::setGlobalEnvColor(JUtility::TColor&)
 {
 	/*
 	.loc_0x0:
@@ -365,7 +355,7 @@ void efx2d::TForever::setGlobalEnvColor((JUtility::TColor&))
  * Address:	803B9B90
  * Size:	000014
  */
-void efx2d::TForever::setGlobalAlpha((unsigned char))
+void efx2d::TForever::setGlobalAlpha(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -382,7 +372,7 @@ void efx2d::TForever::setGlobalAlpha((unsigned char))
  * Address:	803B9BA4
  * Size:	000080
  */
-void efx2d::TForeverN::__ct((unsigned char))
+efx2d::TForeverN::TForeverN(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +416,7 @@ void efx2d::TForeverN::__ct((unsigned char))
  * Address:	803B9C24
  * Size:	000050
  */
-void efx2d::TForever::__ct(void)
+efx2d::TForever::TForever(void)
 {
 	/*
 	.loc_0x0:
@@ -458,7 +448,7 @@ void efx2d::TForever::__ct(void)
  * Address:	803B9C74
  * Size:	000098
  */
-void efx2d::TForeverN::create((efx2d::Arg*))
+void efx2d::TForeverN::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -600,7 +590,7 @@ void efx2d::TForeverN::fade(void)
  * Address:	803B9DE4
  * Size:	00007C
  */
-void efx2d::TForeverN::setGroup((unsigned char))
+void efx2d::TForeverN::setGroup(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +637,7 @@ void efx2d::TForeverN::setGroup((unsigned char))
  * Address:	........
  * Size:	000050
  */
-void efx2d::TForeverN::setGlobalScale((float))
+void efx2d::TForeverN::setGlobalScale(float)
 {
 	// UNUSED FUNCTION
 }
@@ -667,7 +657,7 @@ void setGlobalTranslation__Q25efx2d9TForeverNFR10Vector2<float>(void)
  * Address:	........
  * Size:	000054
  */
-void efx2d::TForeverN::setGlobalEnvColor((JUtility::TColor&))
+void efx2d::TForeverN::setGlobalEnvColor(JUtility::TColor&)
 {
 	// UNUSED FUNCTION
 }
@@ -677,7 +667,7 @@ void efx2d::TForeverN::setGlobalEnvColor((JUtility::TColor&))
  * Address:	803B9E60
  * Size:	000040
  */
-void efx2d::TForeverN::setGlobalAlpha((unsigned char))
+void efx2d::TForeverN::setGlobalAlpha(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -711,7 +701,7 @@ void efx2d::TForeverN::setGlobalAlpha((unsigned char))
  * Address:	803B9EA0
  * Size:	000088
  */
-void efx2d::TChasePos::create((efx2d::Arg*))
+void efx2d::TChasePos::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -767,7 +757,7 @@ void efx2d::TChasePos::create((efx2d::Arg*))
  * Address:	803B9F28
  * Size:	000078
  */
-void efx2d::TChasePos::execute((JPABaseEmitter*))
+void efx2d::TChasePos::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -811,7 +801,7 @@ void efx2d::TChasePos::execute((JPABaseEmitter*))
  * Address:	803B9FA0
  * Size:	000088
  */
-void efx2d::TChasePosDir::create((efx2d::Arg*))
+void efx2d::TChasePosDir::create(efx2d::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -867,7 +857,7 @@ void efx2d::TChasePosDir::create((efx2d::Arg*))
  * Address:	803BA028
  * Size:	0000B8
  */
-void efx2d::TChasePosDir::execute((JPABaseEmitter*))
+void efx2d::TChasePosDir::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -929,7 +919,7 @@ void efx2d::TChasePosDir::execute((JPABaseEmitter*))
  * Address:	803BA0E0
  * Size:	000084
  */
-void efx2d::TChasePosDir::__dt(void)
+efx2d::TChasePosDir::~TChasePosDir(void)
 {
 	/*
 	.loc_0x0:
@@ -978,7 +968,7 @@ void efx2d::TChasePosDir::__dt(void)
  * Address:	803BA164
  * Size:	000008
  */
-void @8 @efx2d::TForever::__dt(void)
+@8 @efx2d::TForever::~TForever(void)
 {
 	/*
 	.loc_0x0:
@@ -992,7 +982,7 @@ void @8 @efx2d::TForever::__dt(void)
  * Address:	803BA16C
  * Size:	000008
  */
-void @8 @efx2d::TChasePos::execute((JPABaseEmitter*))
+void @8 @efx2d::TChasePos::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1006,7 +996,7 @@ void @8 @efx2d::TChasePos::execute((JPABaseEmitter*))
  * Address:	803BA174
  * Size:	000008
  */
-void @8 @efx2d::TChasePos::__dt(void)
+@8 @efx2d::TChasePos::~TChasePos(void)
 {
 	/*
 	.loc_0x0:
@@ -1020,7 +1010,7 @@ void @8 @efx2d::TChasePos::__dt(void)
  * Address:	803BA17C
  * Size:	000008
  */
-void @8 @efx2d::TChasePosDir::execute((JPABaseEmitter*))
+void @8 @efx2d::TChasePosDir::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:
@@ -1034,7 +1024,7 @@ void @8 @efx2d::TChasePosDir::execute((JPABaseEmitter*))
  * Address:	803BA184
  * Size:	000008
  */
-void @8 @efx2d::TChasePosDir::__dt(void)
+@8 @efx2d::TChasePosDir::~TChasePosDir(void)
 {
 	/*
 	.loc_0x0:

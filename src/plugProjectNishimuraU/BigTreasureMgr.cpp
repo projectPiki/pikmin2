@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802D90E4
  * Size:	000110
  */
-void Game::BigTreasure::Mgr::Mgr(int, unsigned char)
+BigTreasure::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -89,7 +91,7 @@ void Game::BigTreasure::Mgr::Mgr(int, unsigned char)
  * Address:	802D91F4
  * Size:	000048
  */
-void Game::BigTreasure::Mgr::doAlloc()
+void BigTreasure::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -123,7 +125,7 @@ void Game::BigTreasure::Mgr::doAlloc()
  * Address:	802D923C
  * Size:	000048
  */
-void Game::BigTreasure::Parms::Parms()
+BigTreasure::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -155,7 +157,7 @@ void Game::BigTreasure::Parms::Parms()
  * Address:	802D9284
  * Size:	000FF8
  */
-void Game::BigTreasure::Parms::ProperParms::ProperParms()
+BigTreasure::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -1191,7 +1193,7 @@ void Game::BigTreasure::Parms::ProperParms::ProperParms()
  * Address:	802DA27C
  * Size:	000060
  */
-void Game::BigTreasure::Mgr::createObj(int)
+void BigTreasure::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -1227,7 +1229,7 @@ void Game::BigTreasure::Mgr::createObj(int)
  * Address:	802DA2DC
  * Size:	0000BC
  */
-void Game::BigTreasure::Obj::~Obj()
+BigTreasure::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -1290,7 +1292,7 @@ void Game::BigTreasure::Obj::~Obj()
  * Address:	802DA398
  * Size:	000010
  */
-void Game::BigTreasure::Mgr::getEnemy(int)
+void BigTreasure::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -1306,7 +1308,7 @@ void Game::BigTreasure::Mgr::getEnemy(int)
  * Address:	802DA3A8
  * Size:	000068
  */
-void Game::BigTreasure::Mgr::loadModelData()
+void BigTreasure::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -1348,7 +1350,7 @@ void Game::BigTreasure::Mgr::loadModelData()
  * Address:	802DA410
  * Size:	00007C
  */
-void Game::BigTreasure::Mgr::createModel()
+void BigTreasure::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -1395,7 +1397,7 @@ void Game::BigTreasure::Mgr::createModel()
  * Address:	802DA48C
  * Size:	0000B0
  */
-void Game::BigTreasure::Mgr::~Mgr()
+BigTreasure::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -1455,14 +1457,14 @@ void Game::BigTreasure::Mgr::~Mgr()
  * Address:	802DA53C
  * Size:	000008
  */
-u32 Game::BigTreasure::Mgr::getEnemyTypeID() { return 0x49; }
+u32 BigTreasure::Mgr::getEnemyTypeID() { return 0x49; }
 
 /*
  * --INFO--
  * Address:	802DA544
  * Size:	00002C
  */
-void Game::BigTreasure::Mgr::doLoadBmd(void*)
+void BigTreasure::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -1485,7 +1487,7 @@ void Game::BigTreasure::Mgr::doLoadBmd(void*)
  * Address:	802DA570
  * Size:	000050
  */
-void Game::BigTreasure::Parms::read(Stream&)
+void BigTreasure::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1517,7 +1519,7 @@ void Game::BigTreasure::Parms::read(Stream&)
  * Address:	802DA5C0
  * Size:	000008
  */
-void Game::BigTreasure::Mgr::@4 @__dt()
+BigTreasure::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -1525,3 +1527,4 @@ void Game::BigTreasure::Mgr::@4 @__dt()
 	  b         -0x138
 	*/
 }
+} // namespace Game

@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801F1240
  * Size:	00004C
  */
-void Game::PikiContainer::__ct(void)
+PikiContainer::PikiContainer(void)
 {
 	/*
 	.loc_0x0:
@@ -48,7 +40,7 @@ void Game::PikiContainer::__ct(void)
  * Address:	801F128C
  * Size:	00006C
  */
-void Game::PikiContainer::clear(void)
+void PikiContainer::clear(void)
 {
 	/*
 	.loc_0x0:
@@ -89,7 +81,7 @@ void Game::PikiContainer::clear(void)
  * Address:	801F12F8
  * Size:	0000B0
  */
-void Game::PikiContainer::operator=((Game::PikiContainer&))
+void PikiContainer::operator=(Game::PikiContainer&)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +139,7 @@ void Game::PikiContainer::operator=((Game::PikiContainer&))
  * Address:	801F13A8
  * Size:	000074
  */
-void Game::PikiContainer::dump((char*))
+void PikiContainer::dump(char*)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +186,7 @@ void Game::PikiContainer::dump((char*))
  * Address:	801F141C
  * Size:	0000C8
  */
-void Game::PikiContainer::getCount((int, int))
+void PikiContainer::getCount(int, int)
 {
 	/*
 	.loc_0x0:
@@ -264,7 +256,7 @@ void Game::PikiContainer::getCount((int, int))
  * Address:	801F14E4
  * Size:	0000CC
  */
-void Game::PikiContainer::operator()((Game::Piki*))
+void PikiContainer::operator()(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +327,7 @@ void Game::PikiContainer::operator()((Game::Piki*))
  * Address:	801F15B0
  * Size:	0000D4
  */
-void Game::PikiContainer::getColorSum((int))
+void PikiContainer::getColorSum(int)
 {
 	/*
 	.loc_0x0:
@@ -410,7 +402,7 @@ void Game::PikiContainer::getColorSum((int))
  * Address:	........
  * Size:	0000D0
  */
-void Game::PikiContainer::getHappaSum((int))
+void PikiContainer::getHappaSum(int)
 {
 	// UNUSED FUNCTION
 }
@@ -420,7 +412,7 @@ void Game::PikiContainer::getHappaSum((int))
  * Address:	801F1684
  * Size:	0000E4
  */
-void Game::PikiContainer::getTotalSum(void)
+void PikiContainer::getTotalSum(void)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +493,7 @@ void Game::PikiContainer::getTotalSum(void)
  * Address:	801F1768
  * Size:	000134
  */
-void Game::PikiContainer::write((Stream&))
+void PikiContainer::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -602,7 +594,7 @@ void Game::PikiContainer::write((Stream&))
  * Address:	801F189C
  * Size:	00006C
  */
-void Game::PikiContainer::read((Stream&))
+void PikiContainer::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -637,3 +629,4 @@ void Game::PikiContainer::read((Stream&))
 	  blr
 	*/
 }
+} // namespace Game

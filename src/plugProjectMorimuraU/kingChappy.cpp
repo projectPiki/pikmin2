@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8035CCE8
  * Size:	000038
  */
-void Game::KingChappy::lFootCallBack((J3DJoint*, int))
+void KingChappy::lFootCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +35,7 @@ void Game::KingChappy::lFootCallBack((J3DJoint*, int))
  * Address:	8035CD20
  * Size:	000038
  */
-void Game::KingChappy::rFootCallBack((J3DJoint*, int))
+void KingChappy::rFootCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +63,7 @@ void Game::KingChappy::rFootCallBack((J3DJoint*, int))
  * Address:	8035CD58
  * Size:	0000A4
  */
-void Game::KingChappy::Obj::setParameters(void)
+void KingChappy::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -123,12 +115,14 @@ void Game::KingChappy::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8035CDFC
  * Size:	000020
  */
-void birth__Q34Game10KingChappy3ObjFR10Vector3<float> f(void)
+void birth__Q34Game10KingChappy3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -143,12 +137,14 @@ void birth__Q34Game10KingChappy3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8035CE1C
  * Size:	000448
  */
-void Game::KingChappy::Obj::onInit((Game::CreatureInitArg*))
+void KingChappy::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -460,7 +456,7 @@ void Game::KingChappy::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8035D264
  * Size:	0005AC
  */
-void Game::KingChappy::Obj::__ct(void)
+KingChappy::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -860,681 +856,685 @@ void Game::KingChappy::Obj::__ct(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8035D810
- * Size:	0001D8
- */
-void efx::TKchDeadYodare::__ct((float (*)[4]))
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  lis       r6, 0x804F
-	  stw       r0, 0x24(r1)
-	  lis       r5, 0x804B
-	  li        r10, 0x220
-	  addi      r7, r7, 0x3358
-	  stmw      r26, 0x8(r1)
-	  mr        r30, r3
-	  subi      r26, r5, 0x5808
-	  lis       r3, 0x804A
-	  subi      r27, r3, 0x1D84
-	  lis       r5, 0x804E
-	  addi      r5, r5, 0x698C
-	  lis       r3, 0x804E
-	  addi      r12, r3, 0x68A8
-	  li        r28, 0
-	  lis       r3, 0x804F
-	  addi      r0, r5, 0x14
-	  subi      r9, r3, 0x5FAC
-	  addi      r11, r12, 0x14
-	  addi      r8, r9, 0x14
-	  subi      r6, r6, 0x5F60
-	  stw       r26, 0x0(r30)
-	  lis       r3, 0x804E
-	  addi      r29, r30, 0x18
-	  stw       r27, 0x4(r30)
-	  stw       r5, 0x0(r30)
-	  addi      r5, r3, 0x6A8C
-	  addi      r31, r5, 0x14
-	  li        r3, 0x22C
-	  stw       r0, 0x4(r30)
-	  li        r0, 0x2B2
-	  stw       r28, 0x8(r30)
-	  sth       r0, 0xC(r30)
-	  li        r0, 0xA
-	  stb       r28, 0xE(r30)
-	  stw       r12, 0x0(r30)
-	  stw       r11, 0x4(r30)
-	  stw       r4, 0x10(r30)
-	  sth       r10, 0xC(r30)
-	  stw       r9, 0x0(r30)
-	  stw       r8, 0x4(r30)
-	  stw       r7, 0x14(r30)
-	  stw       r6, 0x14(r30)
-	  stw       r26, 0x18(r30)
-	  stw       r27, 0x1C(r30)
-	  stw       r5, 0x18(r30)
-	  stw       r31, 0x1C(r30)
-	  stw       r28, 0x20(r30)
-	  sth       r3, 0x24(r30)
-	  stw       r28, 0x2C(r30)
-	  stw       r0, 0x30(r30)
-	  lwz       r26, 0x30(r30)
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x339948
-	  lis       r4, 0x8012
-	  mr        r7, r26
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x29BF1C
-	  lis       r4, 0x804E
-	  stw       r3, 0x10(r29)
-	  addi      r4, r4, 0x1EAC
-	  lis       r3, 0x804B
-	  stw       r4, 0x0(r29)
-	  addi      r0, r4, 0x14
-	  addi      r28, r30, 0x34
-	  lis       r4, 0x804A
-	  stw       r0, 0x4(r29)
-	  subi      r5, r3, 0x5808
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x1D84
-	  stw       r5, 0x34(r30)
-	  addi      r5, r3, 0x6A8C
-	  li        r4, 0
-	  li        r3, 0x22D
-	  stw       r0, 0x38(r30)
-	  li        r0, 0xA
-	  mr        r27, r28
-	  stw       r5, 0x34(r30)
-	  stw       r31, 0x38(r30)
-	  stw       r4, 0x3C(r30)
-	  sth       r3, 0x40(r30)
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  lwz       r26, 0x4C(r30)
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x3399D4
-	  lis       r4, 0x8012
-	  mr        r7, r26
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x29BFA8
-	  stw       r3, 0x10(r27)
-	  lis       r3, 0x804E
-	  addi      r4, r3, 0x1E6C
-	  lis       r3, 0x804E
-	  stw       r4, 0x0(r28)
-	  addi      r0, r4, 0x14
-	  addi      r4, r3, 0x1E20
-	  lfs       f0, 0x32C(r2)
-	  stw       r0, 0x4(r28)
-	  addi      r0, r4, 0x14
-	  mr        r3, r30
-	  stfs      f0, 0x50(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8035D810
+	 * Size:	0001D8
+	 */
+	TKchDeadYodare::TKchDeadYodare(float (*)[4])
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  lis       r7, 0x804A
+		  lis       r6, 0x804F
+		  stw       r0, 0x24(r1)
+		  lis       r5, 0x804B
+		  li        r10, 0x220
+		  addi      r7, r7, 0x3358
+		  stmw      r26, 0x8(r1)
+		  mr        r30, r3
+		  subi      r26, r5, 0x5808
+		  lis       r3, 0x804A
+		  subi      r27, r3, 0x1D84
+		  lis       r5, 0x804E
+		  addi      r5, r5, 0x698C
+		  lis       r3, 0x804E
+		  addi      r12, r3, 0x68A8
+		  li        r28, 0
+		  lis       r3, 0x804F
+		  addi      r0, r5, 0x14
+		  subi      r9, r3, 0x5FAC
+		  addi      r11, r12, 0x14
+		  addi      r8, r9, 0x14
+		  subi      r6, r6, 0x5F60
+		  stw       r26, 0x0(r30)
+		  lis       r3, 0x804E
+		  addi      r29, r30, 0x18
+		  stw       r27, 0x4(r30)
+		  stw       r5, 0x0(r30)
+		  addi      r5, r3, 0x6A8C
+		  addi      r31, r5, 0x14
+		  li        r3, 0x22C
+		  stw       r0, 0x4(r30)
+		  li        r0, 0x2B2
+		  stw       r28, 0x8(r30)
+		  sth       r0, 0xC(r30)
+		  li        r0, 0xA
+		  stb       r28, 0xE(r30)
+		  stw       r12, 0x0(r30)
+		  stw       r11, 0x4(r30)
+		  stw       r4, 0x10(r30)
+		  sth       r10, 0xC(r30)
+		  stw       r9, 0x0(r30)
+		  stw       r8, 0x4(r30)
+		  stw       r7, 0x14(r30)
+		  stw       r6, 0x14(r30)
+		  stw       r26, 0x18(r30)
+		  stw       r27, 0x1C(r30)
+		  stw       r5, 0x18(r30)
+		  stw       r31, 0x1C(r30)
+		  stw       r28, 0x20(r30)
+		  sth       r3, 0x24(r30)
+		  stw       r28, 0x2C(r30)
+		  stw       r0, 0x30(r30)
+		  lwz       r26, 0x30(r30)
+		  mulli     r3, r26, 0xC
+		  addi      r3, r3, 0x10
+		  bl        -0x339948
+		  lis       r4, 0x8012
+		  mr        r7, r26
+		  subi      r4, r4, 0xCB8
+		  li        r5, 0
+		  li        r6, 0xC
+		  bl        -0x29BF1C
+		  lis       r4, 0x804E
+		  stw       r3, 0x10(r29)
+		  addi      r4, r4, 0x1EAC
+		  lis       r3, 0x804B
+		  stw       r4, 0x0(r29)
+		  addi      r0, r4, 0x14
+		  addi      r28, r30, 0x34
+		  lis       r4, 0x804A
+		  stw       r0, 0x4(r29)
+		  subi      r5, r3, 0x5808
+		  lis       r3, 0x804E
+		  subi      r0, r4, 0x1D84
+		  stw       r5, 0x34(r30)
+		  addi      r5, r3, 0x6A8C
+		  li        r4, 0
+		  li        r3, 0x22D
+		  stw       r0, 0x38(r30)
+		  li        r0, 0xA
+		  mr        r27, r28
+		  stw       r5, 0x34(r30)
+		  stw       r31, 0x38(r30)
+		  stw       r4, 0x3C(r30)
+		  sth       r3, 0x40(r30)
+		  stw       r4, 0x48(r30)
+		  stw       r0, 0x4C(r30)
+		  lwz       r26, 0x4C(r30)
+		  mulli     r3, r26, 0xC
+		  addi      r3, r3, 0x10
+		  bl        -0x3399D4
+		  lis       r4, 0x8012
+		  mr        r7, r26
+		  subi      r4, r4, 0xCB8
+		  li        r5, 0
+		  li        r6, 0xC
+		  bl        -0x29BFA8
+		  stw       r3, 0x10(r27)
+		  lis       r3, 0x804E
+		  addi      r4, r3, 0x1E6C
+		  lis       r3, 0x804E
+		  stw       r4, 0x0(r28)
+		  addi      r0, r4, 0x14
+		  addi      r4, r3, 0x1E20
+		  lfs       f0, 0x32C(r2)
+		  stw       r0, 0x4(r28)
+		  addi      r0, r4, 0x14
+		  mr        r3, r30
+		  stfs      f0, 0x50(r30)
+		  stw       r4, 0x0(r30)
+		  stw       r0, 0x4(r30)
+		  lmw       r26, 0x8(r1)
+		  lwz       r0, 0x24(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8035D9E8
- * Size:	000148
- */
-void efx::TKchYodareBaseChaseMtx::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x12C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x14
-	  subi      r3, r3, 0x5FAC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0xDC
-	  lis       r3, 0x804F
-	  addic.    r4, r30, 0x34
-	  subi      r0, r3, 0x5F60
-	  stw       r0, 0x14(r30)
-	  beq-      .loc_0x8C
-	  lis       r3, 0x804E
-	  cmplwi    r4, 0
-	  addi      r3, r3, 0x1E6C
-	  stw       r3, 0x34(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x38(r30)
-	  beq-      .loc_0x8C
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x38
-	  addi      r5, r4, 0x6A8C
-	  li        r4, 0
-	  stw       r5, 0x34(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x38(r30)
-	  bl        -0x2CDDD4
+	 * --INFO--
+	 * Address:	8035D9E8
+	 * Size:	000148
+	 */
+	TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x12C
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x14
+		  subi      r3, r3, 0x5FAC
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0xDC
+		  lis       r3, 0x804F
+		  addic.    r4, r30, 0x34
+		  subi      r0, r3, 0x5F60
+		  stw       r0, 0x14(r30)
+		  beq-      .loc_0x8C
+		  lis       r3, 0x804E
+		  cmplwi    r4, 0
+		  addi      r3, r3, 0x1E6C
+		  stw       r3, 0x34(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x38(r30)
+		  beq-      .loc_0x8C
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x38
+		  addi      r5, r4, 0x6A8C
+		  li        r4, 0
+		  stw       r5, 0x34(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x38(r30)
+		  bl        -0x2CDDD4
 
-	.loc_0x8C:
-	  addic.    r0, r30, 0x18
-	  beq-      .loc_0xD0
-	  lis       r3, 0x804E
-	  cmplwi    r0, 0
-	  addi      r3, r3, 0x1EAC
-	  stw       r3, 0x18(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0xD0
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x1C
-	  addi      r5, r4, 0x6A8C
-	  li        r4, 0
-	  stw       r5, 0x18(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x1C(r30)
-	  bl        -0x2CDE18
+		.loc_0x8C:
+		  addic.    r0, r30, 0x18
+		  beq-      .loc_0xD0
+		  lis       r3, 0x804E
+		  cmplwi    r0, 0
+		  addi      r3, r3, 0x1EAC
+		  stw       r3, 0x18(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x1C(r30)
+		  beq-      .loc_0xD0
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x1C
+		  addi      r5, r4, 0x6A8C
+		  li        r4, 0
+		  stw       r5, 0x18(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x1C(r30)
+		  bl        -0x2CDE18
 
-	.loc_0xD0:
-	  addi      r3, r30, 0x14
-	  li        r4, 0
-	  bl        -0x2C9A98
+		.loc_0xD0:
+		  addi      r3, r30, 0x14
+		  li        r4, 0
+		  bl        -0x2C9A98
 
-	.loc_0xDC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x11C
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x2CDE64
+		.loc_0xDC:
+		  cmplwi    r30, 0
+		  beq-      .loc_0x11C
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x68A8
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x11C
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x698C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x2CDE64
 
-	.loc_0x11C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x12C
-	  mr        r3, r30
-	  bl        -0x339A5C
+		.loc_0x11C:
+		  extsh.    r0, r31
+		  ble-      .loc_0x12C
+		  mr        r3, r30
+		  bl        -0x339A5C
 
-	.loc_0x12C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x12C:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8035DB30
- * Size:	0000EC
- */
-void efx::TParticleCallBack_KchYodare::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x20
-	  subi      r0, r3, 0x5F60
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x20
-	  addi      r3, r3, 0x1E6C
-	  stw       r3, 0x20(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x24(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x24
-	  addi      r5, r4, 0x6A8C
-	  li        r4, 0
-	  stw       r5, 0x20(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x24(r30)
-	  bl        -0x2CDF00
+	 * --INFO--
+	 * Address:	8035DB30
+	 * Size:	0000EC
+	 */
+	TParticleCallBack_KchYodare::~TParticleCallBack_KchYodare(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0xD0
+		  lis       r3, 0x804F
+		  addic.    r0, r30, 0x20
+		  subi      r0, r3, 0x5F60
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x70
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x20
+		  addi      r3, r3, 0x1E6C
+		  stw       r3, 0x20(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x24(r30)
+		  beq-      .loc_0x70
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x24
+		  addi      r5, r4, 0x6A8C
+		  li        r4, 0
+		  stw       r5, 0x20(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x24(r30)
+		  bl        -0x2CDF00
 
-	.loc_0x70:
-	  addic.    r0, r30, 0x4
-	  beq-      .loc_0xB4
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x4
-	  addi      r3, r3, 0x1EAC
-	  stw       r3, 0x4(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x8
-	  addi      r5, r4, 0x6A8C
-	  li        r4, 0
-	  stw       r5, 0x4(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x8(r30)
-	  bl        -0x2CDF44
+		.loc_0x70:
+		  addic.    r0, r30, 0x4
+		  beq-      .loc_0xB4
+		  lis       r3, 0x804E
+		  addic.    r0, r30, 0x4
+		  addi      r3, r3, 0x1EAC
+		  stw       r3, 0x4(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x8(r30)
+		  beq-      .loc_0xB4
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x8
+		  addi      r5, r4, 0x6A8C
+		  li        r4, 0
+		  stw       r5, 0x4(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x8(r30)
+		  bl        -0x2CDF44
 
-	.loc_0xB4:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x2C9BC4
-	  extsh.    r0, r31
-	  ble-      .loc_0xD0
-	  mr        r3, r30
-	  bl        -0x339B48
+		.loc_0xB4:
+		  mr        r3, r30
+		  li        r4, 0
+		  bl        -0x2C9BC4
+		  extsh.    r0, r31
+		  ble-      .loc_0xD0
+		  mr        r3, r30
+		  bl        -0x339B48
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0xD0:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8035DC1C
- * Size:	000084
- */
-void efx::TKchYodareHitWat::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x1E6C
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x58
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x6A8C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x2CDFD4
+	 * --INFO--
+	 * Address:	8035DC1C
+	 * Size:	000084
+	 */
+	TKchYodareHitWat::~TKchYodareHitWat(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x68
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x1E6C
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x58
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x6A8C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x2CDFD4
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x339BCC
+		.loc_0x58:
+		  extsh.    r0, r31
+		  ble-      .loc_0x68
+		  mr        r3, r30
+		  bl        -0x339BCC
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x68:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8035DCA0
- * Size:	000084
- */
-void efx::TKchYodareHitGr::__dt(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x1EAC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x58
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x6A8C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x2CE058
+	 * --INFO--
+	 * Address:	8035DCA0
+	 * Size:	000084
+	 */
+	TKchYodareHitGr::~TKchYodareHitGr(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x68
+		  lis       r3, 0x804E
+		  addi      r3, r3, 0x1EAC
+		  stw       r3, 0x0(r30)
+		  addi      r0, r3, 0x14
+		  stw       r0, 0x4(r30)
+		  beq-      .loc_0x58
+		  lis       r4, 0x804E
+		  addi      r3, r30, 0x4
+		  addi      r5, r4, 0x6A8C
+		  li        r4, 0
+		  stw       r5, 0x0(r30)
+		  addi      r0, r5, 0x14
+		  stw       r0, 0x4(r30)
+		  bl        -0x2CE058
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x339C50
+		.loc_0x58:
+		  extsh.    r0, r31
+		  ble-      .loc_0x68
+		  mr        r3, r30
+		  bl        -0x339C50
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x68:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8035DD24
- * Size:	0001D8
- */
-void efx::TKchAttackYodare::__ct((float (*)[4]))
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  lis       r6, 0x804F
-	  stw       r0, 0x24(r1)
-	  lis       r5, 0x804B
-	  li        r10, 0x216
-	  addi      r7, r7, 0x3358
-	  stmw      r26, 0x8(r1)
-	  mr        r30, r3
-	  subi      r26, r5, 0x5808
-	  lis       r3, 0x804A
-	  subi      r27, r3, 0x1D84
-	  lis       r5, 0x804E
-	  addi      r5, r5, 0x698C
-	  lis       r3, 0x804E
-	  addi      r12, r3, 0x68A8
-	  li        r28, 0
-	  lis       r3, 0x804F
-	  addi      r0, r5, 0x14
-	  subi      r9, r3, 0x5FAC
-	  addi      r11, r12, 0x14
-	  addi      r8, r9, 0x14
-	  subi      r6, r6, 0x5F60
-	  stw       r26, 0x0(r30)
-	  lis       r3, 0x804E
-	  addi      r29, r30, 0x18
-	  stw       r27, 0x4(r30)
-	  stw       r5, 0x0(r30)
-	  addi      r5, r3, 0x6A8C
-	  addi      r31, r5, 0x14
-	  li        r3, 0x22C
-	  stw       r0, 0x4(r30)
-	  li        r0, 0x2B2
-	  stw       r28, 0x8(r30)
-	  sth       r0, 0xC(r30)
-	  li        r0, 0xA
-	  stb       r28, 0xE(r30)
-	  stw       r12, 0x0(r30)
-	  stw       r11, 0x4(r30)
-	  stw       r4, 0x10(r30)
-	  sth       r10, 0xC(r30)
-	  stw       r9, 0x0(r30)
-	  stw       r8, 0x4(r30)
-	  stw       r7, 0x14(r30)
-	  stw       r6, 0x14(r30)
-	  stw       r26, 0x18(r30)
-	  stw       r27, 0x1C(r30)
-	  stw       r5, 0x18(r30)
-	  stw       r31, 0x1C(r30)
-	  stw       r28, 0x20(r30)
-	  sth       r3, 0x24(r30)
-	  stw       r28, 0x2C(r30)
-	  stw       r0, 0x30(r30)
-	  lwz       r26, 0x30(r30)
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x339E5C
-	  lis       r4, 0x8012
-	  mr        r7, r26
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x29C430
-	  lis       r4, 0x804E
-	  stw       r3, 0x10(r29)
-	  addi      r4, r4, 0x1EAC
-	  lis       r3, 0x804B
-	  stw       r4, 0x0(r29)
-	  addi      r0, r4, 0x14
-	  addi      r28, r30, 0x34
-	  lis       r4, 0x804A
-	  stw       r0, 0x4(r29)
-	  subi      r5, r3, 0x5808
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x1D84
-	  stw       r5, 0x34(r30)
-	  addi      r5, r3, 0x6A8C
-	  li        r4, 0
-	  li        r3, 0x22D
-	  stw       r0, 0x38(r30)
-	  li        r0, 0xA
-	  mr        r27, r28
-	  stw       r5, 0x34(r30)
-	  stw       r31, 0x38(r30)
-	  stw       r4, 0x3C(r30)
-	  sth       r3, 0x40(r30)
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  lwz       r26, 0x4C(r30)
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x339EE8
-	  lis       r4, 0x8012
-	  mr        r7, r26
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x29C4BC
-	  stw       r3, 0x10(r27)
-	  lis       r3, 0x804E
-	  addi      r4, r3, 0x1E6C
-	  lis       r3, 0x804E
-	  stw       r4, 0x0(r28)
-	  addi      r0, r4, 0x14
-	  addi      r4, r3, 0x1DD4
-	  lfs       f0, 0x32C(r2)
-	  stw       r0, 0x4(r28)
-	  addi      r0, r4, 0x14
-	  mr        r3, r30
-	  stfs      f0, 0x50(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8035DD24
+	 * Size:	0001D8
+	 */
+	TKchAttackYodare::TKchAttackYodare(float (*)[4])
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  lis       r7, 0x804A
+		  lis       r6, 0x804F
+		  stw       r0, 0x24(r1)
+		  lis       r5, 0x804B
+		  li        r10, 0x216
+		  addi      r7, r7, 0x3358
+		  stmw      r26, 0x8(r1)
+		  mr        r30, r3
+		  subi      r26, r5, 0x5808
+		  lis       r3, 0x804A
+		  subi      r27, r3, 0x1D84
+		  lis       r5, 0x804E
+		  addi      r5, r5, 0x698C
+		  lis       r3, 0x804E
+		  addi      r12, r3, 0x68A8
+		  li        r28, 0
+		  lis       r3, 0x804F
+		  addi      r0, r5, 0x14
+		  subi      r9, r3, 0x5FAC
+		  addi      r11, r12, 0x14
+		  addi      r8, r9, 0x14
+		  subi      r6, r6, 0x5F60
+		  stw       r26, 0x0(r30)
+		  lis       r3, 0x804E
+		  addi      r29, r30, 0x18
+		  stw       r27, 0x4(r30)
+		  stw       r5, 0x0(r30)
+		  addi      r5, r3, 0x6A8C
+		  addi      r31, r5, 0x14
+		  li        r3, 0x22C
+		  stw       r0, 0x4(r30)
+		  li        r0, 0x2B2
+		  stw       r28, 0x8(r30)
+		  sth       r0, 0xC(r30)
+		  li        r0, 0xA
+		  stb       r28, 0xE(r30)
+		  stw       r12, 0x0(r30)
+		  stw       r11, 0x4(r30)
+		  stw       r4, 0x10(r30)
+		  sth       r10, 0xC(r30)
+		  stw       r9, 0x0(r30)
+		  stw       r8, 0x4(r30)
+		  stw       r7, 0x14(r30)
+		  stw       r6, 0x14(r30)
+		  stw       r26, 0x18(r30)
+		  stw       r27, 0x1C(r30)
+		  stw       r5, 0x18(r30)
+		  stw       r31, 0x1C(r30)
+		  stw       r28, 0x20(r30)
+		  sth       r3, 0x24(r30)
+		  stw       r28, 0x2C(r30)
+		  stw       r0, 0x30(r30)
+		  lwz       r26, 0x30(r30)
+		  mulli     r3, r26, 0xC
+		  addi      r3, r3, 0x10
+		  bl        -0x339E5C
+		  lis       r4, 0x8012
+		  mr        r7, r26
+		  subi      r4, r4, 0xCB8
+		  li        r5, 0
+		  li        r6, 0xC
+		  bl        -0x29C430
+		  lis       r4, 0x804E
+		  stw       r3, 0x10(r29)
+		  addi      r4, r4, 0x1EAC
+		  lis       r3, 0x804B
+		  stw       r4, 0x0(r29)
+		  addi      r0, r4, 0x14
+		  addi      r28, r30, 0x34
+		  lis       r4, 0x804A
+		  stw       r0, 0x4(r29)
+		  subi      r5, r3, 0x5808
+		  lis       r3, 0x804E
+		  subi      r0, r4, 0x1D84
+		  stw       r5, 0x34(r30)
+		  addi      r5, r3, 0x6A8C
+		  li        r4, 0
+		  li        r3, 0x22D
+		  stw       r0, 0x38(r30)
+		  li        r0, 0xA
+		  mr        r27, r28
+		  stw       r5, 0x34(r30)
+		  stw       r31, 0x38(r30)
+		  stw       r4, 0x3C(r30)
+		  sth       r3, 0x40(r30)
+		  stw       r4, 0x48(r30)
+		  stw       r0, 0x4C(r30)
+		  lwz       r26, 0x4C(r30)
+		  mulli     r3, r26, 0xC
+		  addi      r3, r3, 0x10
+		  bl        -0x339EE8
+		  lis       r4, 0x8012
+		  mr        r7, r26
+		  subi      r4, r4, 0xCB8
+		  li        r5, 0
+		  li        r6, 0xC
+		  bl        -0x29C4BC
+		  stw       r3, 0x10(r27)
+		  lis       r3, 0x804E
+		  addi      r4, r3, 0x1E6C
+		  lis       r3, 0x804E
+		  stw       r4, 0x0(r28)
+		  addi      r0, r4, 0x14
+		  addi      r4, r3, 0x1DD4
+		  lfs       f0, 0x32C(r2)
+		  stw       r0, 0x4(r28)
+		  addi      r0, r4, 0x14
+		  mr        r3, r30
+		  stfs      f0, 0x50(r30)
+		  stw       r4, 0x0(r30)
+		  stw       r0, 0x4(r30)
+		  lmw       r26, 0x8(r1)
+		  lwz       r0, 0x24(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8035DEFC
- * Size:	0001D8
- */
-void efx::TKchYodare::__ct((float (*)[4]))
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  lis       r6, 0x804F
-	  stw       r0, 0x24(r1)
-	  lis       r5, 0x804B
-	  li        r10, 0x22B
-	  addi      r7, r7, 0x3358
-	  stmw      r26, 0x8(r1)
-	  mr        r30, r3
-	  subi      r26, r5, 0x5808
-	  lis       r3, 0x804A
-	  subi      r27, r3, 0x1D84
-	  lis       r5, 0x804E
-	  addi      r5, r5, 0x698C
-	  lis       r3, 0x804E
-	  addi      r12, r3, 0x68A8
-	  li        r28, 0
-	  lis       r3, 0x804F
-	  addi      r0, r5, 0x14
-	  subi      r9, r3, 0x5FAC
-	  addi      r11, r12, 0x14
-	  addi      r8, r9, 0x14
-	  subi      r6, r6, 0x5F60
-	  stw       r26, 0x0(r30)
-	  lis       r3, 0x804E
-	  addi      r29, r30, 0x18
-	  stw       r27, 0x4(r30)
-	  stw       r5, 0x0(r30)
-	  addi      r5, r3, 0x6A8C
-	  addi      r31, r5, 0x14
-	  li        r3, 0x22C
-	  stw       r0, 0x4(r30)
-	  li        r0, 0x2B2
-	  stw       r28, 0x8(r30)
-	  sth       r0, 0xC(r30)
-	  li        r0, 0xA
-	  stb       r28, 0xE(r30)
-	  stw       r12, 0x0(r30)
-	  stw       r11, 0x4(r30)
-	  stw       r4, 0x10(r30)
-	  sth       r10, 0xC(r30)
-	  stw       r9, 0x0(r30)
-	  stw       r8, 0x4(r30)
-	  stw       r7, 0x14(r30)
-	  stw       r6, 0x14(r30)
-	  stw       r26, 0x18(r30)
-	  stw       r27, 0x1C(r30)
-	  stw       r5, 0x18(r30)
-	  stw       r31, 0x1C(r30)
-	  stw       r28, 0x20(r30)
-	  sth       r3, 0x24(r30)
-	  stw       r28, 0x2C(r30)
-	  stw       r0, 0x30(r30)
-	  lwz       r26, 0x30(r30)
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x33A034
-	  lis       r4, 0x8012
-	  mr        r7, r26
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x29C608
-	  lis       r4, 0x804E
-	  stw       r3, 0x10(r29)
-	  addi      r4, r4, 0x1EAC
-	  lis       r3, 0x804B
-	  stw       r4, 0x0(r29)
-	  addi      r0, r4, 0x14
-	  addi      r28, r30, 0x34
-	  lis       r4, 0x804A
-	  stw       r0, 0x4(r29)
-	  subi      r5, r3, 0x5808
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x1D84
-	  stw       r5, 0x34(r30)
-	  addi      r5, r3, 0x6A8C
-	  li        r4, 0
-	  li        r3, 0x22D
-	  stw       r0, 0x38(r30)
-	  li        r0, 0xA
-	  mr        r27, r28
-	  stw       r5, 0x34(r30)
-	  stw       r31, 0x38(r30)
-	  stw       r4, 0x3C(r30)
-	  sth       r3, 0x40(r30)
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  lwz       r26, 0x4C(r30)
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x33A0C0
-	  lis       r4, 0x8012
-	  mr        r7, r26
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x29C694
-	  stw       r3, 0x10(r27)
-	  lis       r3, 0x804E
-	  addi      r4, r3, 0x1E6C
-	  lis       r3, 0x804E
-	  stw       r4, 0x0(r28)
-	  addi      r0, r4, 0x14
-	  addi      r4, r3, 0x1D88
-	  lfs       f0, 0x32C(r2)
-	  stw       r0, 0x4(r28)
-	  addi      r0, r4, 0x14
-	  mr        r3, r30
-	  stfs      f0, 0x50(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8035DEFC
+	 * Size:	0001D8
+	 */
+	TKchYodare::TKchYodare(float (*)[4])
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  lis       r7, 0x804A
+		  lis       r6, 0x804F
+		  stw       r0, 0x24(r1)
+		  lis       r5, 0x804B
+		  li        r10, 0x22B
+		  addi      r7, r7, 0x3358
+		  stmw      r26, 0x8(r1)
+		  mr        r30, r3
+		  subi      r26, r5, 0x5808
+		  lis       r3, 0x804A
+		  subi      r27, r3, 0x1D84
+		  lis       r5, 0x804E
+		  addi      r5, r5, 0x698C
+		  lis       r3, 0x804E
+		  addi      r12, r3, 0x68A8
+		  li        r28, 0
+		  lis       r3, 0x804F
+		  addi      r0, r5, 0x14
+		  subi      r9, r3, 0x5FAC
+		  addi      r11, r12, 0x14
+		  addi      r8, r9, 0x14
+		  subi      r6, r6, 0x5F60
+		  stw       r26, 0x0(r30)
+		  lis       r3, 0x804E
+		  addi      r29, r30, 0x18
+		  stw       r27, 0x4(r30)
+		  stw       r5, 0x0(r30)
+		  addi      r5, r3, 0x6A8C
+		  addi      r31, r5, 0x14
+		  li        r3, 0x22C
+		  stw       r0, 0x4(r30)
+		  li        r0, 0x2B2
+		  stw       r28, 0x8(r30)
+		  sth       r0, 0xC(r30)
+		  li        r0, 0xA
+		  stb       r28, 0xE(r30)
+		  stw       r12, 0x0(r30)
+		  stw       r11, 0x4(r30)
+		  stw       r4, 0x10(r30)
+		  sth       r10, 0xC(r30)
+		  stw       r9, 0x0(r30)
+		  stw       r8, 0x4(r30)
+		  stw       r7, 0x14(r30)
+		  stw       r6, 0x14(r30)
+		  stw       r26, 0x18(r30)
+		  stw       r27, 0x1C(r30)
+		  stw       r5, 0x18(r30)
+		  stw       r31, 0x1C(r30)
+		  stw       r28, 0x20(r30)
+		  sth       r3, 0x24(r30)
+		  stw       r28, 0x2C(r30)
+		  stw       r0, 0x30(r30)
+		  lwz       r26, 0x30(r30)
+		  mulli     r3, r26, 0xC
+		  addi      r3, r3, 0x10
+		  bl        -0x33A034
+		  lis       r4, 0x8012
+		  mr        r7, r26
+		  subi      r4, r4, 0xCB8
+		  li        r5, 0
+		  li        r6, 0xC
+		  bl        -0x29C608
+		  lis       r4, 0x804E
+		  stw       r3, 0x10(r29)
+		  addi      r4, r4, 0x1EAC
+		  lis       r3, 0x804B
+		  stw       r4, 0x0(r29)
+		  addi      r0, r4, 0x14
+		  addi      r28, r30, 0x34
+		  lis       r4, 0x804A
+		  stw       r0, 0x4(r29)
+		  subi      r5, r3, 0x5808
+		  lis       r3, 0x804E
+		  subi      r0, r4, 0x1D84
+		  stw       r5, 0x34(r30)
+		  addi      r5, r3, 0x6A8C
+		  li        r4, 0
+		  li        r3, 0x22D
+		  stw       r0, 0x38(r30)
+		  li        r0, 0xA
+		  mr        r27, r28
+		  stw       r5, 0x34(r30)
+		  stw       r31, 0x38(r30)
+		  stw       r4, 0x3C(r30)
+		  sth       r3, 0x40(r30)
+		  stw       r4, 0x48(r30)
+		  stw       r0, 0x4C(r30)
+		  lwz       r26, 0x4C(r30)
+		  mulli     r3, r26, 0xC
+		  addi      r3, r3, 0x10
+		  bl        -0x33A0C0
+		  lis       r4, 0x8012
+		  mr        r7, r26
+		  subi      r4, r4, 0xCB8
+		  li        r5, 0
+		  li        r6, 0xC
+		  bl        -0x29C694
+		  stw       r3, 0x10(r27)
+		  lis       r3, 0x804E
+		  addi      r4, r3, 0x1E6C
+		  lis       r3, 0x804E
+		  stw       r4, 0x0(r28)
+		  addi      r0, r4, 0x14
+		  addi      r4, r3, 0x1D88
+		  lfs       f0, 0x32C(r2)
+		  stw       r0, 0x4(r28)
+		  addi      r0, r4, 0x14
+		  mr        r3, r30
+		  stfs      f0, 0x50(r30)
+		  stw       r4, 0x0(r30)
+		  stw       r0, 0x4(r30)
+		  lmw       r26, 0x8(r1)
+		  lwz       r0, 0x24(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
+	}
+
+} // namespace efx
 
 /*
  * --INFO--
  * Address:	8035E0D4
  * Size:	00004C
  */
-void Game::KingChappy::Obj::setFSM((Game::KingChappy::FSM*))
+void KingChappy::Obj::setFSM(Game::KingChappy::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -1565,7 +1565,7 @@ void Game::KingChappy::Obj::setFSM((Game::KingChappy::FSM*))
  * Address:	8035E120
  * Size:	0001A0
  */
-void Game::KingChappy::Obj::doUpdate(void)
+void KingChappy::Obj::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -1691,14 +1691,14 @@ void Game::KingChappy::Obj::doUpdate(void)
  * Address:	8035E2C0
  * Size:	000004
  */
-void Game::KingChappy::Obj::doDirectDraw((Graphics&)) { }
+void KingChappy::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8035E2C4
  * Size:	000020
  */
-void Game::KingChappy::Obj::doDebugDraw((Graphics&))
+void KingChappy::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1718,7 +1718,7 @@ void Game::KingChappy::Obj::doDebugDraw((Graphics&))
  * Address:	8035E2E4
  * Size:	0000B8
  */
-void Game::KingChappy::Obj::doAnimationUpdateAnimator(void)
+void KingChappy::Obj::doAnimationUpdateAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -1780,7 +1780,7 @@ void Game::KingChappy::Obj::doAnimationUpdateAnimator(void)
  * Address:	8035E39C
  * Size:	000034
  */
-void Game::KingChappy::Obj::onKill((Game::CreatureKillArg*))
+void KingChappy::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -1805,7 +1805,7 @@ void Game::KingChappy::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8035E3D0
  * Size:	000588
  */
-void Game::KingChappy::Obj::doAnimationCullingOff(void)
+void KingChappy::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -2221,7 +2221,7 @@ void Game::KingChappy::Obj::doAnimationCullingOff(void)
  * Address:	8035E958
  * Size:	000040
  */
-void Game::KingChappy::Obj::doSimulation((float))
+void KingChappy::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -2251,7 +2251,7 @@ void Game::KingChappy::Obj::doSimulation((float))
  * Address:	8035E998
  * Size:	000098
  */
-void Game::KingChappy::Obj::getShadowParam((Game::ShadowParam&))
+void KingChappy::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -2301,7 +2301,7 @@ void Game::KingChappy::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8035EA30
  * Size:	000158
  */
-void Game::KingChappy::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void KingChappy::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -2409,7 +2409,7 @@ void Game::KingChappy::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	8035EB88
  * Size:	000030
  */
-void Game::KingChappy::Obj::collisionCallback((Game::CollEvent&))
+void KingChappy::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2433,7 +2433,7 @@ void Game::KingChappy::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8035EBB8
  * Size:	000030
  */
-void Game::KingChappy::Obj::wallCallback((Game::MoveInfo const&))
+void KingChappy::Obj::wallCallback(Game::MoveInfo const&)
 {
 	/*
 	.loc_0x0:
@@ -2457,8 +2457,7 @@ void Game::KingChappy::Obj::wallCallback((Game::MoveInfo const&))
  * Address:	8035EBE8
  * Size:	000028
  */
-void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3<float>
-f(void)
+void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -2480,7 +2479,7 @@ f(void)
  * Address:	8035EC10
  * Size:	00004C
  */
-void Game::KingChappy::Obj::inWaterCallback((Game::WaterBox*))
+void KingChappy::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -2513,7 +2512,7 @@ void Game::KingChappy::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	8035EC5C
  * Size:	000028
  */
-void Game::KingChappy::Obj::startCarcassMotion(void)
+void KingChappy::Obj::startCarcassMotion(void)
 {
 	/*
 	.loc_0x0:
@@ -2535,7 +2534,7 @@ void Game::KingChappy::Obj::startCarcassMotion(void)
  * Address:	8035EC84
  * Size:	000064
  */
-void Game::KingChappy::Obj::initWalkSmokeEffect(void)
+void KingChappy::Obj::initWalkSmokeEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -2572,7 +2571,7 @@ void Game::KingChappy::Obj::initWalkSmokeEffect(void)
  * Address:	8035ECE8
  * Size:	000008
  */
-void Game::KingChappy::Obj::getWalkSmokeEffectMgr(void)
+void KingChappy::Obj::getWalkSmokeEffectMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2586,7 +2585,7 @@ void Game::KingChappy::Obj::getWalkSmokeEffectMgr(void)
  * Address:	8035ECF0
  * Size:	000074
  */
-void Game::KingChappy::Obj::doStartStoneState(void)
+void KingChappy::Obj::doStartStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -2627,7 +2626,7 @@ void Game::KingChappy::Obj::doStartStoneState(void)
  * Address:	8035ED64
  * Size:	0000A0
  */
-void Game::KingChappy::Obj::doFinishStoneState(void)
+void KingChappy::Obj::doFinishStoneState(void)
 {
 	/*
 	.loc_0x0:
@@ -2679,7 +2678,7 @@ void Game::KingChappy::Obj::doFinishStoneState(void)
  * Address:	8035EE04
  * Size:	00013C
  */
-void Game::KingChappy::Obj::doStartMovie(void)
+void KingChappy::Obj::doStartMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -2765,12 +2764,16 @@ void Game::KingChappy::Obj::doStartMovie(void)
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8035EF40
  * Size:	00005C
  */
-void efx::TKchYodareBaseChaseMtx::startDemoDrawOff(void)
+void TKchYodareBaseChaseMtx::startDemoDrawOff(void)
 {
 	/*
 	.loc_0x0:
@@ -2800,12 +2803,16 @@ void efx::TKchYodareBaseChaseMtx::startDemoDrawOff(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8035EF9C
  * Size:	00013C
  */
-void Game::KingChappy::Obj::doEndMovie(void)
+void KingChappy::Obj::doEndMovie(void)
 {
 	/*
 	.loc_0x0:
@@ -2891,12 +2898,16 @@ void Game::KingChappy::Obj::doEndMovie(void)
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8035F0D8
  * Size:	00005C
  */
-void efx::TKchYodareBaseChaseMtx::endDemoDrawOn(void)
+void TKchYodareBaseChaseMtx::endDemoDrawOn(void)
 {
 	/*
 	.loc_0x0:
@@ -2926,12 +2937,16 @@ void efx::TKchYodareBaseChaseMtx::endDemoDrawOn(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8035F134
  * Size:	000134
  */
-void Game::KingChappy::Obj::initMouthSlots(void)
+void KingChappy::Obj::initMouthSlots(void)
 {
 	/*
 	.loc_0x0:
@@ -3024,7 +3039,7 @@ void Game::KingChappy::Obj::initMouthSlots(void)
  * Address:	8035F268
  * Size:	0001A4
  */
-void Game::KingChappy::Obj::eatBomb(void)
+void KingChappy::Obj::eatBomb(void)
 {
 	/*
 	.loc_0x0:
@@ -3159,7 +3174,7 @@ void Game::KingChappy::Obj::eatBomb(void)
  * Address:	8035F40C
  * Size:	000008
  */
-void Game::KingChappy::Obj::getMouthSlots(void)
+void KingChappy::Obj::getMouthSlots(void)
 {
 	/*
 	.loc_0x0:
@@ -3173,7 +3188,7 @@ void Game::KingChappy::Obj::getMouthSlots(void)
  * Address:	8035F414
  * Size:	0002C8
  */
-void Game::KingChappy::Obj::getPikminInMouth((bool))
+void KingChappy::Obj::getPikminInMouth(bool)
 {
 	/*
 	.loc_0x0:
@@ -3385,8 +3400,7 @@ void Game::KingChappy::Obj::getPikminInMouth((bool))
  * Address:	8035F6DC
  * Size:	00011C
  */
-void getTonguePosVel__Q34Game10KingChappy3ObjFR10Vector3<float>
-R10Vector3<float>(void)
+void getTonguePosVel__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -3475,7 +3489,7 @@ R10Vector3<float>(void)
  * Address:	8035F7F8
  * Size:	0001F0
  */
-void Game::KingChappy::Obj::setNextGoal(void)
+void KingChappy::Obj::setNextGoal(void)
 {
 	/*
 	.loc_0x0:
@@ -3623,7 +3637,7 @@ void Game::KingChappy::Obj::setNextGoal(void)
  * Address:	8035F9E8
  * Size:	000500
  */
-void Game::KingChappy::Obj::searchTarget(void)
+void KingChappy::Obj::searchTarget(void)
 {
 	/*
 	.loc_0x0:
@@ -3981,7 +3995,7 @@ void Game::KingChappy::Obj::searchTarget(void)
  * Address:	8035FEE8
  * Size:	000040
  */
-void Game::KingChappy::Obj::isOutOfTerritory((float))
+void KingChappy::Obj::isOutOfTerritory(float)
 {
 	/*
 	.loc_0x0:
@@ -4009,7 +4023,7 @@ void Game::KingChappy::Obj::isOutOfTerritory((float))
  * Address:	8035FF28
  * Size:	0000DC
  */
-void Game::KingChappy::Obj::forceTransit((int))
+void KingChappy::Obj::forceTransit(int)
 {
 	/*
 	.loc_0x0:
@@ -4090,7 +4104,7 @@ void Game::KingChappy::Obj::forceTransit((int))
  * Address:	80360004
  * Size:	000030
  */
-void Game::KingChappy::Obj::requestTransit((int))
+void KingChappy::Obj::requestTransit(int)
 {
 	/*
 	.loc_0x0:
@@ -4114,7 +4128,7 @@ void Game::KingChappy::Obj::requestTransit((int))
  * Address:	80360034
  * Size:	00012C
  */
-void Game::KingChappy::Obj::walkFunc(void)
+void KingChappy::Obj::walkFunc(void)
 {
 	/*
 	.loc_0x0:
@@ -4207,7 +4221,7 @@ void Game::KingChappy::Obj::walkFunc(void)
  * Address:	80360160
  * Size:	0001AC
  */
-void Game::KingChappy::Obj::turnFunc((float))
+void KingChappy::Obj::turnFunc(float)
 {
 	/*
 	.loc_0x0:
@@ -4334,7 +4348,7 @@ void Game::KingChappy::Obj::turnFunc((float))
  * Address:	8036030C
  * Size:	000034
  */
-void Game::KingChappy::Obj::isReachToGoal((float))
+void KingChappy::Obj::isReachToGoal(float)
 {
 	/*
 	.loc_0x0:
@@ -4359,7 +4373,7 @@ void Game::KingChappy::Obj::isReachToGoal((float))
  * Address:	........
  * Size:	0000D8
  */
-void Game::KingChappy::Obj::isUseTurn(void)
+void KingChappy::Obj::isUseTurn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4369,7 +4383,7 @@ void Game::KingChappy::Obj::isUseTurn(void)
  * Address:	80360340
  * Size:	000844
  */
-void Game::KingChappy::Obj::checkAttack((bool))
+void KingChappy::Obj::checkAttack(bool)
 {
 	/*
 	.loc_0x0:
@@ -4944,7 +4958,7 @@ void Game::KingChappy::Obj::checkAttack((bool))
  * Address:	80360B84
  * Size:	00042C
  */
-void Game::KingChappy::Obj::checkFlick((bool))
+void KingChappy::Obj::checkFlick(bool)
 {
 	/*
 	.loc_0x0:
@@ -5249,7 +5263,7 @@ void Game::KingChappy::Obj::checkFlick((bool))
  * Address:	80360FB0
  * Size:	0000EC
  */
-void Game::KingChappy::Obj::checkDead((bool))
+void KingChappy::Obj::checkDead(bool)
 {
 	/*
 	.loc_0x0:
@@ -5326,7 +5340,7 @@ void Game::KingChappy::Obj::checkDead((bool))
  * Address:	8036109C
  * Size:	000128
  */
-void Game::KingChappy::Obj::checkTurn((bool))
+void KingChappy::Obj::checkTurn(bool)
 {
 	/*
 	.loc_0x0:
@@ -5416,7 +5430,7 @@ void Game::KingChappy::Obj::checkTurn((bool))
  * Address:	803611C4
  * Size:	00013C
  */
-void Game::KingChappy::Obj::startMotionSelf((int, SysShape::MotionListener*))
+void KingChappy::Obj::startMotionSelf(int, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -5523,7 +5537,7 @@ void Game::KingChappy::Obj::startMotionSelf((int, SysShape::MotionListener*))
  * Address:	80361300
  * Size:	000098
  */
-void Game::KingChappy::Obj::endBlendAnimation(void)
+void KingChappy::Obj::endBlendAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -5577,7 +5591,7 @@ void Game::KingChappy::Obj::endBlendAnimation(void)
  * Address:	80361398
  * Size:	000044
  */
-void Game::KingChappy::Obj::leftFootMtxCalc(void)
+void KingChappy::Obj::leftFootMtxCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -5606,7 +5620,7 @@ void Game::KingChappy::Obj::leftFootMtxCalc(void)
  * Address:	803613DC
  * Size:	000044
  */
-void Game::KingChappy::Obj::rightFootMtxCalc(void)
+void KingChappy::Obj::rightFootMtxCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -5632,12 +5646,14 @@ void Game::KingChappy::Obj::rightFootMtxCalc(void)
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	80361420
  * Size:	000190
  */
-void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3<float> Pf(void)
+void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3f Pf(void)
 {
 	/*
 	.loc_0x0:
@@ -5754,12 +5770,14 @@ void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3<float> Pf(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803615B0
  * Size:	000078
  */
-void Game::KingChappy::Obj::resetFootPos(void)
+void KingChappy::Obj::resetFootPos(void)
 {
 	/*
 	.loc_0x0:
@@ -5801,7 +5819,7 @@ void Game::KingChappy::Obj::resetFootPos(void)
  * Address:	80361628
  * Size:	0000DC
  */
-void Game::KingChappy::Obj::fadeAllEffect(void)
+void KingChappy::Obj::fadeAllEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -5863,12 +5881,16 @@ void Game::KingChappy::Obj::fadeAllEffect(void)
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	80361704
  * Size:	000054
  */
-void efx::TKchYodareBaseChaseMtx::fade(void)
+void TKchYodareBaseChaseMtx::fade(void)
 {
 	/*
 	.loc_0x0:
@@ -5896,12 +5918,16 @@ void efx::TKchYodareBaseChaseMtx::fade(void)
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80361758
  * Size:	000474
  */
-void Game::KingChappy::Obj::createEffect((int))
+void KingChappy::Obj::createEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -6208,7 +6234,7 @@ void Game::KingChappy::Obj::createEffect((int))
  * Address:	80361BCC
  * Size:	000140
  */
-void Game::KingChappy::Obj::fadeEffect((int))
+void KingChappy::Obj::fadeEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -6302,7 +6328,7 @@ void Game::KingChappy::Obj::fadeEffect((int))
  * Address:	80361D0C
  * Size:	0000C8
  */
-void Game::KingChappy::Obj::createBounceEffect(void)
+void KingChappy::Obj::createBounceEffect(void)
 {
 	/*
 	.loc_0x0:
@@ -6363,12 +6389,16 @@ void Game::KingChappy::Obj::createBounceEffect(void)
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	80361DD4
  * Size:	00000C
  */
-void efx::ArgKchYodare::getName(void)
+void ArgKchYodare::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -6383,7 +6413,7 @@ void efx::ArgKchYodare::getName(void)
  * Address:	80361DE0
  * Size:	000160
  */
-void efx::TKchYodare::__dt(void)
+TKchYodare::~TKchYodare(void)
 {
 	/*
 	.loc_0x0:
@@ -6493,7 +6523,7 @@ void efx::TKchYodare::__dt(void)
  * Address:	80361F40
  * Size:	000054
  */
-void efx::TKchYodareBaseChaseMtx::forceKill(void)
+void TKchYodareBaseChaseMtx::forceKill(void)
 {
 	/*
 	.loc_0x0:
@@ -6526,7 +6556,7 @@ void efx::TKchYodareBaseChaseMtx::forceKill(void)
  * Address:	80361F94
  * Size:	000160
  */
-void efx::TKchAttackYodare::__dt(void)
+TKchAttackYodare::~TKchAttackYodare(void)
 {
 	/*
 	.loc_0x0:
@@ -6636,7 +6666,7 @@ void efx::TKchAttackYodare::__dt(void)
  * Address:	803620F4
  * Size:	000160
  */
-void efx::TKchDeadYodare::__dt(void)
+TKchDeadYodare::~TKchDeadYodare(void)
 {
 	/*
 	.loc_0x0:
@@ -6746,7 +6776,7 @@ void efx::TKchDeadYodare::__dt(void)
  * Address:	80362254
  * Size:	00009C
  */
-void efx::TKchSmokeHana::__dt(void)
+TKchSmokeHana::~TKchSmokeHana(void)
 {
 	/*
 	.loc_0x0:
@@ -6801,7 +6831,7 @@ void efx::TKchSmokeHana::__dt(void)
  * Address:	803622F0
  * Size:	00009C
  */
-void efx::TKchCryInd::__dt(void)
+TKchCryInd::~TKchCryInd(void)
 {
 	/*
 	.loc_0x0:
@@ -6851,73 +6881,73 @@ void efx::TKchCryInd::__dt(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8036238C
- * Size:	00006C
- */
-void Game::KingChappy::ProperAnimator::__dt(void)
-{
+namespace Game {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x1FF4
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x7DC
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x23A8
-	  stw       r0, 0x0(r31)
+	 * --INFO--
+	 * Address:	8036238C
+	 * Size:	00006C
+	 */
+	KingChappy::ProperAnimator::~ProperAnimator(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr.       r31, r3
+		  beq-      .loc_0x54
+		  lis       r3, 0x804E
+		  addi      r0, r3, 0x1FF4
+		  stw       r0, 0x0(r31)
+		  beq-      .loc_0x44
+		  lis       r3, 0x804B
+		  subi      r0, r3, 0x7DC
+		  stw       r0, 0x0(r31)
+		  beq-      .loc_0x44
+		  lis       r3, 0x804B
+		  subi      r0, r3, 0x23A8
+		  stw       r0, 0x0(r31)
 
-	.loc_0x44:
-	  extsh.    r0, r4
-	  ble-      .loc_0x54
-	  mr        r3, r31
-	  bl        -0x33E328
+		.loc_0x44:
+		  extsh.    r0, r4
+		  ble-      .loc_0x54
+		  mr        r3, r31
+		  bl        -0x33E328
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x54:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r31
+		  lwz       r31, 0xC(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	803623F8
  * Size:	000004
  */
-void Game::KingChappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) {
-}
+void KingChappy::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	803623FC
  * Size:	000004
  */
-void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3<float>
-R10Vector3<float>(void)
-{
-}
+void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f(void) { }
 
 /*
  * --INFO--
  * Address:	80362400
  * Size:	00003C
  */
-void Game::KingChappy::Obj::createEfxHamon(void)
+void KingChappy::Obj::createEfxHamon(void)
 {
 	/*
 	.loc_0x0:
@@ -6946,7 +6976,7 @@ void Game::KingChappy::Obj::createEfxHamon(void)
  * Address:	8036243C
  * Size:	000054
  */
-void Game::KingChappy::Obj::updateEfxHamon(void)
+void KingChappy::Obj::updateEfxHamon(void)
 {
 	/*
 	.loc_0x0:
@@ -6983,7 +7013,7 @@ void Game::KingChappy::Obj::updateEfxHamon(void)
  * Address:	80362490
  * Size:	000020
  */
-void Game::KingChappy::Obj::isUnderground(void)
+void KingChappy::Obj::isUnderground(void)
 {
 	/*
 	.loc_0x0:
@@ -7005,7 +7035,7 @@ void Game::KingChappy::Obj::isUnderground(void)
  * Address:	803624B0
  * Size:	000014
  */
-void Game::KingChappy::Obj::getCellRadius(void)
+void KingChappy::Obj::getCellRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -7022,7 +7052,7 @@ void Game::KingChappy::Obj::getCellRadius(void)
  * Address:	803624C4
  * Size:	000014
  */
-void Game::KingChappy::Obj::getBodyRadius(void)
+void KingChappy::Obj::getBodyRadius(void)
 {
 	/*
 	.loc_0x0:
@@ -7039,7 +7069,7 @@ void Game::KingChappy::Obj::getBodyRadius(void)
  * Address:	803624D8
  * Size:	000030
  */
-void Game::KingChappy::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void KingChappy::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -7063,7 +7093,7 @@ void Game::KingChappy::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	80362508
  * Size:	000028
  */
-void Game::KingChappy::Obj::eatWhitePikminCallBack((Game::Creature*, float))
+void KingChappy::Obj::eatWhitePikminCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -7085,14 +7115,14 @@ void Game::KingChappy::Obj::eatWhitePikminCallBack((Game::Creature*, float))
  * Address:	80362530
  * Size:	000008
  */
-u32 Game::KingChappy::Obj::getEnemyTypeID(void) { return 0x35; }
+u32 KingChappy::Obj::getEnemyTypeID(void) { return 0x35; }
 
 /*
  * --INFO--
  * Address:	80362538
  * Size:	000008
  */
-void Game::KingChappy::Obj::getDownSmokeScale(void)
+void KingChappy::Obj::getDownSmokeScale(void)
 {
 	/*
 	.loc_0x0:
@@ -7100,6 +7130,8 @@ void Game::KingChappy::Obj::getDownSmokeScale(void)
 	  blr
 	*/
 }
+
+} // namespace efx
 
 /*
  * --INFO--
@@ -7230,7 +7262,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803625E0
  * Size:	000008
  */
-void @4 @efx::TKchCryInd::__dt(void)
+@4 @efx::TKchCryInd::~TKchCryInd(void)
 {
 	/*
 	.loc_0x0:
@@ -7244,7 +7276,7 @@ void @4 @efx::TKchCryInd::__dt(void)
  * Address:	803625E8
  * Size:	000008
  */
-void @4 @efx::TKchSmokeHana::__dt(void)
+@4 @efx::TKchSmokeHana::~TKchSmokeHana(void)
 {
 	/*
 	.loc_0x0:
@@ -7258,7 +7290,7 @@ void @4 @efx::TKchSmokeHana::__dt(void)
  * Address:	803625F0
  * Size:	000008
  */
-void @4 @efx::TKchYodareHitGr::__dt(void)
+@4 @efx::TKchYodareHitGr::~TKchYodareHitGr(void)
 {
 	/*
 	.loc_0x0:
@@ -7272,7 +7304,7 @@ void @4 @efx::TKchYodareHitGr::__dt(void)
  * Address:	803625F8
  * Size:	000008
  */
-void @4 @efx::TKchYodareHitWat::__dt(void)
+@4 @efx::TKchYodareHitWat::~TKchYodareHitWat(void)
 {
 	/*
 	.loc_0x0:
@@ -7286,7 +7318,7 @@ void @4 @efx::TKchYodareHitWat::__dt(void)
  * Address:	80362600
  * Size:	000008
  */
-void @4 @efx::TKchDeadYodare::__dt(void)
+@4 @efx::TKchDeadYodare::~TKchDeadYodare(void)
 {
 	/*
 	.loc_0x0:
@@ -7300,7 +7332,7 @@ void @4 @efx::TKchDeadYodare::__dt(void)
  * Address:	80362608
  * Size:	000008
  */
-void @4 @efx::TKchAttackYodare::__dt(void)
+@4 @efx::TKchAttackYodare::~TKchAttackYodare(void)
 {
 	/*
 	.loc_0x0:
@@ -7314,7 +7346,7 @@ void @4 @efx::TKchAttackYodare::__dt(void)
  * Address:	80362610
  * Size:	000008
  */
-void @4 @efx::TKchYodare::__dt(void)
+@4 @efx::TKchYodare::~TKchYodare(void)
 {
 	/*
 	.loc_0x0:

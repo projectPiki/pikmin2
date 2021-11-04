@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8012C378
  * Size:	000154
  */
-void Game::YellowChappy::Obj::Obj()
+YellowChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -108,7 +110,7 @@ void Game::YellowChappy::Obj::Obj()
  * Address:	8012C4CC
  * Size:	000048
  */
-void Game::YellowChappy::Obj::onInit(Game::CreatureInitArg*)
+void YellowChappy::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -138,7 +140,7 @@ void Game::YellowChappy::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8012C514
  * Size:	0001B0
  */
-void Game::YellowChappy::Obj::doUpdateCommon()
+void YellowChappy::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -274,7 +276,7 @@ void Game::YellowChappy::Obj::doUpdateCommon()
  * Address:	8012C6C4
  * Size:	000040
  */
-void Game::YellowChappy::Obj::onKill(Game::CreatureKillArg*)
+void YellowChappy::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +304,7 @@ void Game::YellowChappy::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8012C704
  * Size:	000068
  */
-void Game::YellowChappy::Obj::createEffect()
+void YellowChappy::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -342,7 +344,7 @@ void Game::YellowChappy::Obj::createEffect()
  * Address:	8012C76C
  * Size:	0000B4
  */
-void Game::YellowChappy::Obj::setupEffect()
+void YellowChappy::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -403,7 +405,7 @@ void Game::YellowChappy::Obj::setupEffect()
  * Address:	8012C820
  * Size:	000028
  */
-void Game::YellowChappy::Obj::doStartMovie()
+void YellowChappy::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -425,14 +427,14 @@ void Game::YellowChappy::Obj::doStartMovie()
  * Address:	8012C848
  * Size:	000004
  */
-void Game::YellowChappy::Obj::doEndMovie() { }
+void YellowChappy::Obj::doEndMovie() { }
 
 /*
  * --INFO--
  * Address:	8012C84C
  * Size:	0002B0
  */
-void Game::YellowChappy::Obj::changeMaterial()
+void YellowChappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -620,7 +622,7 @@ void Game::YellowChappy::Obj::changeMaterial()
  * Address:	8012CAFC
  * Size:	00004C
  */
-void Game::YellowChappy::Obj::doStartWaitingBirthTypeDrop()
+void YellowChappy::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -651,7 +653,7 @@ void Game::YellowChappy::Obj::doStartWaitingBirthTypeDrop()
  * Address:	8012CB48
  * Size:	00004C
  */
-void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop()
+void YellowChappy::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -677,33 +679,41 @@ void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8012CB94
  * Size:	000004
  */
-void efx::TSimple1::forceKill() { }
+void TSimple1::forceKill() { }
 
 /*
  * --INFO--
  * Address:	8012CB98
  * Size:	000004
  */
-void efx::TSimple1::fade() { }
+void TSimple1::fade() { }
+
+namespace Game {
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	8012CB9C
  * Size:	000008
  */
-u32 Game::YellowChappy::Obj::getEnemyTypeID() { return 0x2B; }
+u32 YellowChappy::Obj::getEnemyTypeID() { return 0x2B; }
 
 /*
  * --INFO--
  * Address:	8012CBA4
  * Size:	000014
  */
-void Game::EnemyBase::@752 @12 @viewOnPelletKilled()
+void EnemyBase::@752 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -720,7 +730,7 @@ void Game::EnemyBase::@752 @12 @viewOnPelletKilled()
  * Address:	8012CBB8
  * Size:	000014
  */
-void Game::EnemyBase::@752 @12 @viewStartCarryMotion()
+void EnemyBase::@752 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -737,7 +747,7 @@ void Game::EnemyBase::@752 @12 @viewStartCarryMotion()
  * Address:	8012CBCC
  * Size:	000014
  */
-void Game::EnemyBase::@752 @12 @viewStartPreCarryMotion()
+void EnemyBase::@752 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -754,7 +764,7 @@ void Game::EnemyBase::@752 @12 @viewStartPreCarryMotion()
  * Address:	8012CBE0
  * Size:	000014
  */
-void Game::EnemyBase::@752 @12 @view_finish_carrymotion()
+void EnemyBase::@752 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -771,7 +781,7 @@ void Game::EnemyBase::@752 @12 @view_finish_carrymotion()
  * Address:	8012CBF4
  * Size:	000014
  */
-void Game::EnemyBase::@752 @12 @view_start_carrymotion()
+void EnemyBase::@752 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -788,7 +798,7 @@ void Game::EnemyBase::@752 @12 @view_start_carrymotion()
  * Address:	8012CC08
  * Size:	000014
  */
-void Game::EnemyBase::@752 @12 @viewGetShape()
+void EnemyBase::@752 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -799,3 +809,4 @@ void Game::EnemyBase::@752 @12 @viewGetShape()
 	  b         -0x26578
 	*/
 }
+} // namespace efx

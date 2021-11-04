@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	80316210
  * Size:	0000EC
  */
-void og::newScreen::ObjSMenuBase::__ct(void)
+newScreen::ObjSMenuBase::ObjSMenuBase(void)
 {
 	/*
 	.loc_0x0:
@@ -88,7 +80,7 @@ void og::newScreen::ObjSMenuBase::__ct(void)
  * Address:	803162FC
  * Size:	00003C
  */
-void og::newScreen::ObjSMenuBase::setFinishState((long))
+void newScreen::ObjSMenuBase::setFinishState(long)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +107,7 @@ void og::newScreen::ObjSMenuBase::setFinishState((long))
  * Address:	........
  * Size:	0000D4
  */
-void og::newScreen::ObjSMenuBase::registSMenuScreen((P2DScreen::Mgr*))
+void newScreen::ObjSMenuBase::registSMenuScreen(P2DScreen::Mgr*)
 {
 	// UNUSED FUNCTION
 }
@@ -125,7 +117,7 @@ void og::newScreen::ObjSMenuBase::registSMenuScreen((P2DScreen::Mgr*))
  * Address:	80316338
  * Size:	000040
  */
-void og::newScreen::ObjSMenuBase::setSMenuScale((float, float))
+void newScreen::ObjSMenuBase::setSMenuScale(float, float)
 {
 	/*
 	.loc_0x0:
@@ -155,7 +147,7 @@ void og::newScreen::ObjSMenuBase::setSMenuScale((float, float))
  * Address:	80316378
  * Size:	0001C4
  */
-void og::newScreen::ObjSMenuBase::doCreateAfter((JKRArchive*, P2DScreen::Mgr*))
+void newScreen::ObjSMenuBase::doCreateAfter(JKRArchive*, P2DScreen::Mgr*)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +274,7 @@ void og::newScreen::ObjSMenuBase::doCreateAfter((JKRArchive*, P2DScreen::Mgr*))
  * Address:	8031653C
  * Size:	000020
  */
-void og::newScreen::ObjSMenuBase::commonUpdateBase(void)
+void newScreen::ObjSMenuBase::commonUpdateBase(void)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +294,7 @@ void og::newScreen::ObjSMenuBase::commonUpdateBase(void)
  * Address:	8031655C
  * Size:	00012C
  */
-void og::newScreen::ObjSMenuBase::doUpdate(void)
+void newScreen::ObjSMenuBase::doUpdate(void)
 {
 	/*
 	.loc_0x0:
@@ -401,7 +393,7 @@ void og::newScreen::ObjSMenuBase::doUpdate(void)
  * Address:	80316688
  * Size:	0000D0
  */
-void og::newScreen::ObjSMenuBase::doUpdateFinish(void)
+void newScreen::ObjSMenuBase::doUpdateFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -479,7 +471,7 @@ void og::newScreen::ObjSMenuBase::doUpdateFinish(void)
  * Address:	80316758
  * Size:	000074
  */
-void og::newScreen::ObjSMenuBase::startBackupScene(void)
+void newScreen::ObjSMenuBase::startBackupScene(void)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +514,7 @@ void og::newScreen::ObjSMenuBase::startBackupScene(void)
  * Address:	........
  * Size:	0000EC
  */
-void og::newScreen::ObjSMenuBase::jump_LR((Screen::SetSceneArg&, bool))
+void newScreen::ObjSMenuBase::jump_LR(Screen::SetSceneArg&, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -532,7 +524,7 @@ void og::newScreen::ObjSMenuBase::jump_LR((Screen::SetSceneArg&, bool))
  * Address:	803167CC
  * Size:	00002C
  */
-void og::newScreen::ObjSMenuBase::close_L(void)
+void newScreen::ObjSMenuBase::close_L(void)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +547,7 @@ void og::newScreen::ObjSMenuBase::close_L(void)
  * Address:	803167F8
  * Size:	0000E4
  */
-void og::newScreen::ObjSMenuBase::jump_L((Screen::SetSceneArg&))
+void newScreen::ObjSMenuBase::jump_L(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -626,7 +618,7 @@ void og::newScreen::ObjSMenuBase::jump_L((Screen::SetSceneArg&))
  * Address:	803168DC
  * Size:	0000E4
  */
-void og::newScreen::ObjSMenuBase::jump_R((Screen::SetSceneArg&))
+void newScreen::ObjSMenuBase::jump_R(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -697,7 +689,7 @@ void og::newScreen::ObjSMenuBase::jump_R((Screen::SetSceneArg&))
  * Address:	803169C0
  * Size:	000150
  */
-void og::newScreen::ObjSMenuBase::start_LR((Screen::StartSceneArg const*))
+void newScreen::ObjSMenuBase::start_LR(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -801,9 +793,9 @@ void og::newScreen::ObjSMenuBase::start_LR((Screen::StartSceneArg const*))
  * Address:	80316B10
  * Size:	000068
  */
-void og::newScreen::ObjSMenuBase::setYajiName((unsigned long long,
-                                               unsigned long long,
-                                               unsigned long long))
+void newScreen::ObjSMenuBase::setYajiName(unsigned long long,
+                                          unsigned long long,
+                                          unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -845,14 +837,14 @@ void og::newScreen::ObjSMenuBase::setYajiName((unsigned long long,
  * Address:	80316B78
  * Size:	000004
  */
-void og::newScreen::ObjSMenuBase::loop(void) { }
+void newScreen::ObjSMenuBase::loop(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuBase::startYaji(void)
+void newScreen::ObjSMenuBase::startYaji(void)
 {
 	// UNUSED FUNCTION
 }
@@ -862,14 +854,10 @@ void og::newScreen::ObjSMenuBase::startYaji(void)
  * Address:	80316B7C
  * Size:	00000C
  */
-void og::newScreen::ObjSMenuBase::stopYaji(void)
+void newScreen::ObjSMenuBase::stopYaji(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x74(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0x74(r3)
+	_74 = 0;
 }
 
 /*
@@ -877,7 +865,7 @@ void og::newScreen::ObjSMenuBase::stopYaji(void)
  * Address:	80316B88
  * Size:	000304
  */
-void og::newScreen::ObjSMenuBase::updateYaji(void)
+void newScreen::ObjSMenuBase::updateYaji(void)
 {
 	/*
 	.loc_0x0:
@@ -1102,7 +1090,7 @@ void og::newScreen::ObjSMenuBase::updateYaji(void)
  * Address:	80316E8C
  * Size:	000034
  */
-void og::newScreen::ObjSMenuBase::drawYaji((Graphics&))
+void newScreen::ObjSMenuBase::drawYaji(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -1127,7 +1115,7 @@ void og::newScreen::ObjSMenuBase::drawYaji((Graphics&))
  * Address:	80316EC0
  * Size:	000170
  */
-void og::newScreen::ObjSMenuBase::updateFadeIn(void)
+void newScreen::ObjSMenuBase::updateFadeIn(void)
 {
 	/*
 	.loc_0x0:
@@ -1249,7 +1237,7 @@ void og::newScreen::ObjSMenuBase::updateFadeIn(void)
  * Address:	80317030
  * Size:	0000A8
  */
-void og::newScreen::ObjSMenuBase::doUpdateFadein(void)
+void newScreen::ObjSMenuBase::doUpdateFadein(void)
 {
 	/*
 	.loc_0x0:
@@ -1307,7 +1295,7 @@ void og::newScreen::ObjSMenuBase::doUpdateFadein(void)
  * Address:	803170D8
  * Size:	000054
  */
-void og::newScreen::ObjSMenuBase::doUpdateFadeinFinish(void)
+void newScreen::ObjSMenuBase::doUpdateFadeinFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1342,7 +1330,7 @@ void og::newScreen::ObjSMenuBase::doUpdateFadeinFinish(void)
  * Address:	8031712C
  * Size:	000104
  */
-void og::newScreen::ObjSMenuBase::updateFadeOut(void)
+void newScreen::ObjSMenuBase::updateFadeOut(void)
 {
 	/*
 	.loc_0x0:
@@ -1433,7 +1421,7 @@ void og::newScreen::ObjSMenuBase::updateFadeOut(void)
  * Address:	80317230
  * Size:	000164
  */
-void og::newScreen::ObjSMenuBase::doUpdateFadeoutFinish(void)
+void newScreen::ObjSMenuBase::doUpdateFadeoutFinish(void)
 {
 	/*
 	.loc_0x0:
@@ -1545,40 +1533,48 @@ void og::newScreen::ObjSMenuBase::doUpdateFadeoutFinish(void)
 	*/
 }
 
+} // namespace og
+
+namespace Screen {
+
 /*
  * --INFO--
  * Address:	80317394
  * Size:	000008
  */
-u32 Screen::ObjBase::doStart((Screen::StartSceneArg const*)) { return 0x1; }
+u32 ObjBase::doStart(Screen::StartSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8031739C
  * Size:	000008
  */
-u32 Screen::ObjBase::doEnd((Screen::EndSceneArg const*)) { return 0x1; }
+u32 ObjBase::doEnd(Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	803173A4
  * Size:	000004
  */
-void Screen::ObjBase::doCreate((JKRArchive*)) { }
+void ObjBase::doCreate(JKRArchive*) { }
 
 /*
  * --INFO--
  * Address:	803173A8
  * Size:	000008
  */
-u32 Screen::ObjBase::doUpdateFadeout(void) { return 0x1; }
+u32 ObjBase::doUpdateFadeout(void) { return 0x1; }
+
+namespace og {
+
+} // namespace og
 
 /*
  * --INFO--
  * Address:	803173B0
  * Size:	000008
  */
-void og::newScreen::StartSceneArgSMenu::getSceneType( const
+void newScreen::StartSceneArgSMenu::getSceneType() const
 {
 	/*
 	.loc_0x0:
@@ -1587,12 +1583,16 @@ void og::newScreen::StartSceneArgSMenu::getSceneType( const
 	*/
 }
 
+} // namespace Screen
+
 /*
  * --INFO--
  * Address:	803173B8
  * Size:	000008
  */
-u32  getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu>Fv(void)
+u32 getClassSize__Q26Screen58StartSceneArgTemplate<
+    og::newScreen::StartSceneArgSMenu>
+Fv(void)
 {
 	return 0xC;
 }
@@ -1635,7 +1635,7 @@ void __sinit_ogObjSMenuBase_cpp(void)
  * Address:	80317414
  * Size:	000008
  */
-void @24@og::newScreen::ObjSMenuBase::__dt(void)
+@24 @og::newScreen::ObjSMenuBase::~ObjSMenuBase(void)
 {
 	/*
 	.loc_0x0:

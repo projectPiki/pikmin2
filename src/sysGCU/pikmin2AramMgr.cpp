@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
@@ -57,7 +47,7 @@ void Pikmin2ARAM::Mgr::init(void)
  * Address:	80455C90
  * Size:	000018
  */
-void Pikmin2ARAM::Mgr::__ct(void)
+Pikmin2ARAM::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -75,13 +65,10 @@ void Pikmin2ARAM::Mgr::__ct(void)
  * Address:	80455CA8
  * Size:	000008
  */
-void Pikmin2ARAM::Mgr::setLoadPermission((bool))
+void Pikmin2ARAM::Mgr::setLoadPermission(bool a1)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0x4(r3)
-	  blr
-	*/
+	// Generated from stb r4, 0x4(r3)
+	_04 = a1;
 }
 
 /*
@@ -437,7 +424,7 @@ void Pikmin2ARAM::Mgr::loadItem(void)
  * Address:	80456080
  * Size:	000048
  */
-void Pikmin2ARAM::Mgr::__dt(void)
+Pikmin2ARAM::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

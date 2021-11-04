@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -60,7 +60,7 @@ void JKRAram::create(unsigned long, unsigned long, long, long, long)
  * Address:	80017AA4
  * Size:	00011C
  */
-void JKRAram::JKRAram(unsigned long, unsigned long, long)
+JKRAram::JKRAram(unsigned long, unsigned long, long)
 {
 	/*
 	.loc_0x0:
@@ -153,7 +153,7 @@ void JKRAram::JKRAram(unsigned long, unsigned long, long)
  * Address:	80017BC0
  * Size:	000090
  */
-void JKRAram::~JKRAram()
+JKRAram::~JKRAram()
 {
 	/*
 	.loc_0x0:

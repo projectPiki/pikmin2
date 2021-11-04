@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace P2JME {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000B8
  */
-void P2JME::Movie::WindowPane::__ct(void)
+Movie::WindowPane::WindowPane(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void P2JME::Movie::WindowPane::__ct(void)
  * Address:	80434F5C
  * Size:	000020
  */
-void P2JME::Movie::WindowPane::doInit(void)
+void Movie::WindowPane::doInit(void)
 {
 	/*
 	.loc_0x0:
@@ -45,7 +37,7 @@ void P2JME::Movie::WindowPane::doInit(void)
  * Address:	80434F7C
  * Size:	000164
  */
-void P2JME::Movie::WindowPane::update(void)
+void Movie::WindowPane::update(void)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +158,7 @@ void P2JME::Movie::WindowPane::update(void)
  * Address:	804350E0
  * Size:	000278
  */
-void P2JME::Movie::WindowPane::moveWindow((bool))
+void Movie::WindowPane::moveWindow(bool)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +338,7 @@ void P2JME::Movie::WindowPane::moveWindow((bool))
  * Address:	80435358
  * Size:	000048
  */
-void P2JME::Movie::WindowPane::open((float))
+void Movie::WindowPane::open(float)
 {
 	/*
 	.loc_0x0:
@@ -376,7 +368,7 @@ void P2JME::Movie::WindowPane::open((float))
  * Address:	........
  * Size:	000024
  */
-void P2JME::Movie::WindowPane::close((float))
+void Movie::WindowPane::close(float)
 {
 	// UNUSED FUNCTION
 }
@@ -386,7 +378,7 @@ void P2JME::Movie::WindowPane::close((float))
  * Address:	........
  * Size:	0000A4
  */
-void P2JME::Movie::AbtnPane::__ct((unsigned char))
+Movie::AbtnPane::AbtnPane(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -396,7 +388,7 @@ void P2JME::Movie::AbtnPane::__ct((unsigned char))
  * Address:	804353A0
  * Size:	000054
  */
-void P2JME::Movie::AbtnPane::doInit(void)
+void Movie::AbtnPane::doInit(void)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +421,7 @@ void P2JME::Movie::AbtnPane::doInit(void)
  * Address:	804353F4
  * Size:	000170
  */
-void P2JME::Movie::AbtnPane::update(void)
+void Movie::AbtnPane::update(void)
 {
 	/*
 	.loc_0x0:
@@ -547,7 +539,7 @@ void P2JME::Movie::AbtnPane::update(void)
  * Address:	........
  * Size:	0000CC
  */
-void P2JME::Movie::PodIconScreen::__ct(void)
+Movie::PodIconScreen::PodIconScreen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -557,7 +549,7 @@ void P2JME::Movie::PodIconScreen::__ct(void)
  * Address:	........
  * Size:	000078
  */
-void P2JME::Movie::PodIconScreen::setTrans(void)
+void Movie::PodIconScreen::setTrans(void)
 {
 	// UNUSED FUNCTION
 }
@@ -567,7 +559,7 @@ void P2JME::Movie::PodIconScreen::setTrans(void)
  * Address:	........
  * Size:	000168
  */
-void P2JME::Movie::PodIconScreen::reset(void)
+void Movie::PodIconScreen::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -577,7 +569,7 @@ void P2JME::Movie::PodIconScreen::reset(void)
  * Address:	........
  * Size:	000178
  */
-void P2JME::Movie::PodIconScreen::appear(void)
+void Movie::PodIconScreen::appear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -587,7 +579,7 @@ void P2JME::Movie::PodIconScreen::appear(void)
  * Address:	........
  * Size:	0002A0
  */
-void P2JME::Movie::PodIconScreen::disappear(void)
+void Movie::PodIconScreen::disappear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -597,7 +589,7 @@ void P2JME::Movie::PodIconScreen::disappear(void)
  * Address:	........
  * Size:	0001E0
  */
-void P2JME::Movie::PodIconScreen::set((JKRArchive*))
+void Movie::PodIconScreen::set(JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
@@ -607,7 +599,7 @@ void P2JME::Movie::PodIconScreen::set((JKRArchive*))
  * Address:	80435564
  * Size:	000438
  */
-void P2JME::Movie::PodIconScreen::update(void)
+void Movie::PodIconScreen::update(void)
 {
 	/*
 	.loc_0x0:
@@ -925,7 +917,7 @@ void P2JME::Movie::PodIconScreen::update(void)
  * Address:	........
  * Size:	00003C
  */
-void P2JME::Movie::MessageWindowScreen::__ct(void)
+Movie::MessageWindowScreen::MessageWindowScreen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -935,7 +927,7 @@ void P2JME::Movie::MessageWindowScreen::__ct(void)
  * Address:	........
  * Size:	00026C
  */
-void P2JME::Movie::MessageWindowScreen::set((JKRArchive*))
+void Movie::MessageWindowScreen::set(JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
@@ -945,7 +937,7 @@ void P2JME::Movie::MessageWindowScreen::set((JKRArchive*))
  * Address:	8043599C
  * Size:	000080
  */
-void P2JME::Movie::TControl::__ct(void)
+Movie::TControl::TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -989,7 +981,7 @@ void P2JME::Movie::TControl::__ct(void)
  * Address:	80435A1C
  * Size:	000070
  */
-void P2JME::Window::TControl::__dt(void)
+Window::TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -1033,7 +1025,7 @@ void P2JME::Window::TControl::__dt(void)
  * Address:	80435A8C
  * Size:	0007B0
  */
-void P2JME::Movie::TControl::onInit(void)
+void Movie::TControl::onInit(void)
 {
 	/*
 	.loc_0x0:
@@ -1587,7 +1579,7 @@ void P2JME::Movie::TControl::onInit(void)
  * Address:	8043623C
  * Size:	000038
  */
-void P2JME::Movie::TControl::reset(void)
+void Movie::TControl::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -1615,7 +1607,7 @@ void P2JME::Movie::TControl::reset(void)
  * Address:	80436274
  * Size:	0004E0
  */
-void P2JME::Movie::TControl::setMode((P2JME::Movie::TControl::EModeFlag))
+void Movie::TControl::setMode(P2JME::Movie::TControl::EModeFlag)
 {
 	/*
 	.loc_0x0:
@@ -1975,7 +1967,7 @@ void P2JME::Movie::TControl::setMode((P2JME::Movie::TControl::EModeFlag))
  * Address:	80436754
  * Size:	000024
  */
-void P2JME::Movie::MessageWindowScreen::open((float))
+void Movie::MessageWindowScreen::open(float)
 {
 	/*
 	.loc_0x0:
@@ -1996,7 +1988,7 @@ void P2JME::Movie::MessageWindowScreen::open((float))
  * Address:	80436778
  * Size:	000228
  */
-void P2JME::Movie::TControl::update((Controller*, Controller*))
+void Movie::TControl::update(Controller*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2176,7 +2168,7 @@ void P2JME::Movie::TControl::update((Controller*, Controller*))
  * Address:	804369A0
  * Size:	0000CC
  */
-void P2JME::Movie::TControl::draw((Graphics&))
+void Movie::TControl::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -2243,7 +2235,7 @@ void P2JME::Movie::TControl::draw((Graphics&))
  * Address:	80436A6C
  * Size:	000080
  */
-void P2JME::Movie::TControl::__dt(void)
+Movie::TControl::~TControl(void)
 {
 	/*
 	.loc_0x0:
@@ -2291,7 +2283,7 @@ void P2JME::Movie::TControl::__dt(void)
  * Address:	80436AEC
  * Size:	000020
  */
-void P2JME::Window::TControl::draw((float (*)[4], float (*)[4]))
+void Window::TControl::draw(float (*)[4], float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -2311,7 +2303,7 @@ void P2JME::Window::TControl::draw((float (*)[4], float (*)[4]))
  * Address:	80436B0C
  * Size:	00007C
  */
-void P2JME::Window::TControl::createRenderingProcessor(void)
+void Window::TControl::createRenderingProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -2358,7 +2350,7 @@ void P2JME::Window::TControl::createRenderingProcessor(void)
  * Address:	80436B88
  * Size:	000080
  */
-void P2JME::Window::TControl::createSequenceProcessor(void)
+void Window::TControl::createSequenceProcessor(void)
 {
 	/*
 	.loc_0x0:
@@ -2406,7 +2398,7 @@ void P2JME::Window::TControl::createSequenceProcessor(void)
  * Address:	80436C08
  * Size:	000038
  */
-void P2JME::TControl::setMessageID((unsigned long long))
+void TControl::setMessageID(unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -2432,7 +2424,7 @@ void P2JME::TControl::setMessageID((unsigned long long))
  * Address:	80436C40
  * Size:	000010
  */
-void P2JME::TControl::createReference(void)
+void TControl::createReference(void)
 {
 	/*
 	.loc_0x0:
@@ -2448,7 +2440,7 @@ void P2JME::TControl::createReference(void)
  * Address:	80436C50
  * Size:	000010
  */
-void P2JME::TControl::createResourceContainer(void)
+void TControl::createResourceContainer(void)
 {
 	/*
 	.loc_0x0:
@@ -2464,7 +2456,7 @@ void P2JME::TControl::createResourceContainer(void)
  * Address:	80436C60
  * Size:	0000A4
  */
-void P2JME::Movie::MessageWindowScreen::__dt(void)
+Movie::MessageWindowScreen::~MessageWindowScreen(void)
 {
 	/*
 	.loc_0x0:
@@ -2523,7 +2515,7 @@ void P2JME::Movie::MessageWindowScreen::__dt(void)
  * Address:	80436D04
  * Size:	0000A4
  */
-void P2JME::Movie::PodIconScreen::__dt(void)
+Movie::PodIconScreen::~PodIconScreen(void)
 {
 	/*
 	.loc_0x0:
@@ -2582,7 +2574,7 @@ void P2JME::Movie::PodIconScreen::__dt(void)
  * Address:	80436DA8
  * Size:	000080
  */
-void P2JME::Movie::AbtnPane::__dt(void)
+Movie::AbtnPane::~AbtnPane(void)
 {
 	/*
 	.loc_0x0:
@@ -2630,7 +2622,7 @@ void P2JME::Movie::AbtnPane::__dt(void)
  * Address:	80436E28
  * Size:	000080
  */
-void P2JME::Movie::WindowPane::__dt(void)
+Movie::WindowPane::~WindowPane(void)
 {
 	/*
 	.loc_0x0:
@@ -2672,6 +2664,8 @@ void P2JME::Movie::WindowPane::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace P2JME
 
 /*
  * --INFO--

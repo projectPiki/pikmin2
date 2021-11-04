@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800B8EE4
  * Size:	000030
  */
-void JAInter::SystemInterface::checkFileExsistence((char*))
+void JAInter::SystemInterface::checkFileExsistence(char*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +29,7 @@ void JAInter::SystemInterface::checkFileExsistence((char*))
  * Address:	800B8F14
  * Size:	0000EC
  */
-void JAInter::SystemInterface::checkSeqActiveFlag((JASTrack*))
+void JAInter::SystemInterface::checkSeqActiveFlag(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +106,7 @@ void JAInter::SystemInterface::checkSeqActiveFlag((JASTrack*))
  * Address:	800B9000
  * Size:	00004C
  */
-void JAInter::SystemInterface::trackToSeqp((JAISequence*, unsigned char))
+void JAInter::SystemInterface::trackToSeqp(JAISequence*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -141,8 +141,8 @@ void JAInter::SystemInterface::trackToSeqp((JAISequence*, unsigned char))
  * Address:	........
  * Size:	000048
  */
-void JAInter::SystemInterface::trackToSeqp((JASTrack*, unsigned char,
-                                            unsigned long))
+void JAInter::SystemInterface::trackToSeqp(JASTrack*, unsigned char,
+                                           unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -152,9 +152,9 @@ void JAInter::SystemInterface::trackToSeqp((JASTrack*, unsigned char,
  * Address:	800B904C
  * Size:	00001C
  */
-void JAInter::SystemInterface::setSeqPortargsF32((JAInter::SeqUpdateData*,
-                                                  unsigned long, unsigned char,
-                                                  float))
+void JAInter::SystemInterface::setSeqPortargsF32(JAInter::SeqUpdateData*,
+                                                 unsigned long, unsigned char,
+                                                 float)
 {
 	/*
 	.loc_0x0:
@@ -173,9 +173,9 @@ void JAInter::SystemInterface::setSeqPortargsF32((JAInter::SeqUpdateData*,
  * Address:	........
  * Size:	00001C
  */
-void JAInter::SystemInterface::setSeqPortargsPS16((JAInter::SeqUpdateData*,
-                                                   unsigned long, unsigned char,
-                                                   short*))
+void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData*,
+                                                  unsigned long, unsigned char,
+                                                  short*)
 {
 	// UNUSED FUNCTION
 }
@@ -185,9 +185,9 @@ void JAInter::SystemInterface::setSeqPortargsPS16((JAInter::SeqUpdateData*,
  * Address:	800B9068
  * Size:	00001C
  */
-void JAInter::SystemInterface::setSeqPortargsU32((JAInter::SeqUpdateData*,
-                                                  unsigned long, unsigned char,
-                                                  unsigned long))
+void JAInter::SystemInterface::setSeqPortargsU32(JAInter::SeqUpdateData*,
+                                                 unsigned long, unsigned char,
+                                                 unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +206,7 @@ void JAInter::SystemInterface::setSeqPortargsU32((JAInter::SeqUpdateData*,
  * Address:	800B9084
  * Size:	000058
  */
-void JAInter::SystemInterface::rootInit((JAInter::SeqUpdateData*))
+void JAInter::SystemInterface::rootInit(JAInter::SeqUpdateData*)
 {
 	/*
 	.loc_0x0:
@@ -240,7 +240,7 @@ void JAInter::SystemInterface::rootInit((JAInter::SeqUpdateData*))
  * Address:	800B90DC
  * Size:	000088
  */
-void JAInter::SystemInterface::trackInit((JAInter::SeqUpdateData*))
+void JAInter::SystemInterface::trackInit(JAInter::SeqUpdateData*)
 {
 	/*
 	.loc_0x0:
@@ -296,9 +296,9 @@ void JAInter::SystemInterface::trackInit((JAInter::SeqUpdateData*))
  * Address:	800B9164
  * Size:	000288
  */
-void JAInter::SystemInterface::outerInit((JAInter::SeqUpdateData*, JASTrack*,
-                                          unsigned long, unsigned short,
-                                          unsigned char))
+void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData*, JASTrack*,
+                                         unsigned long, unsigned short,
+                                         unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -494,8 +494,8 @@ void JAInter::SystemInterface::outerInit((JAInter::SeqUpdateData*, JASTrack*,
  * Address:	........
  * Size:	000068
  */
-void JAInter::SystemInterface::setPortParameter((JASPortArgs*, JASTrack*,
-                                                 unsigned long, unsigned long))
+void JAInter::SystemInterface::setPortParameter(JASPortArgs*, JASTrack*,
+                                                unsigned long, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -505,7 +505,7 @@ void JAInter::SystemInterface::setPortParameter((JASPortArgs*, JASTrack*,
  * Address:	800B93EC
  * Size:	0001BC
  */
-void JAInter::SystemInterface::setSePortParameter((JASPortArgs*))
+void JAInter::SystemInterface::setSePortParameter(JASPortArgs*)
 {
 	/*
 	.loc_0x0:
@@ -648,7 +648,7 @@ void JAInter::SystemInterface::setSePortParameter((JASPortArgs*))
  * Address:	........
  * Size:	000018
  */
-void JAInter::SystemInterface::JAIouterP((void*))
+void JAInter::SystemInterface::JAIouterP(void*)
 {
 	// UNUSED FUNCTION
 }
@@ -658,7 +658,7 @@ void JAInter::SystemInterface::JAIouterP((void*))
  * Address:	........
  * Size:	000040
  */
-void JAInter::SystemInterface::JAIouterSW((void*))
+void JAInter::SystemInterface::JAIouterSW(void*)
 {
 	// UNUSED FUNCTION
 }
@@ -668,7 +668,7 @@ void JAInter::SystemInterface::JAIouterSW((void*))
  * Address:	........
  * Size:	000094
  */
-void JAInter::SystemInterface::setAudioFrameParameter((JASPortArgs*))
+void JAInter::SystemInterface::setAudioFrameParameter(JASPortArgs*)
 {
 	// UNUSED FUNCTION
 }

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B9294
  * Size:	0000A4
  */
-void Game::GasOtakara::Obj::Obj()
+GasOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void Game::GasOtakara::Obj::Obj()
  * Address:	802B9338
  * Size:	0001A4
  */
-void Game::GasOtakara::Obj::changeMaterial()
+void GasOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -181,7 +183,7 @@ void Game::GasOtakara::Obj::changeMaterial()
  * Address:	802B94DC
  * Size:	000060
  */
-void Game::GasOtakara::Obj::interactCreature(Game::Creature*)
+void GasOtakara::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::GasOtakara::Obj::interactCreature(Game::Creature*)
  * Address:	802B953C
  * Size:	000060
  */
-void Game::GasOtakara::Obj::createEffect()
+void GasOtakara::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +257,7 @@ void Game::GasOtakara::Obj::createEffect()
  * Address:	802B959C
  * Size:	000048
  */
-void Game::GasOtakara::Obj::setupEffect()
+void GasOtakara::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -285,7 +287,7 @@ void Game::GasOtakara::Obj::setupEffect()
  * Address:	802B95E4
  * Size:	000034
  */
-void Game::GasOtakara::Obj::startChargeEffect()
+void GasOtakara::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -310,7 +312,7 @@ void Game::GasOtakara::Obj::startChargeEffect()
  * Address:	802B9618
  * Size:	000030
  */
-void Game::GasOtakara::Obj::finishChargeEffect()
+void GasOtakara::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +336,7 @@ void Game::GasOtakara::Obj::finishChargeEffect()
  * Address:	802B9648
  * Size:	00008C
  */
-void Game::GasOtakara::Obj::createDisChargeEffect()
+void GasOtakara::Obj::createDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -381,7 +383,7 @@ void Game::GasOtakara::Obj::createDisChargeEffect()
  * Address:	802B96D4
  * Size:	000030
  */
-void Game::GasOtakara::Obj::effectDrawOn()
+void GasOtakara::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -405,7 +407,7 @@ void Game::GasOtakara::Obj::effectDrawOn()
  * Address:	802B9704
  * Size:	000030
  */
-void Game::GasOtakara::Obj::effectDrawOff()
+void GasOtakara::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -429,7 +431,7 @@ void Game::GasOtakara::Obj::effectDrawOff()
  * Address:	802B9734
  * Size:	000044
  */
-void Game::GasOtakara::Obj::startDisChargeSE()
+void GasOtakara::Obj::startDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -458,4 +460,5 @@ void Game::GasOtakara::Obj::startDisChargeSE()
  * Address:	802B9778
  * Size:	000008
  */
-u32 Game::GasOtakara::Obj::getEnemyTypeID() { return 0x3D; }
+u32 GasOtakara::Obj::getEnemyTypeID() { return 0x3D; }
+} // namespace Game

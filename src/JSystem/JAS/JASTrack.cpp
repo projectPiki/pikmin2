@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8009EF94
  * Size:	00012C
  */
-void JASTrack::JASTrack()
+JASTrack::JASTrack()
 {
 	/*
 	.loc_0x0:
@@ -94,7 +94,7 @@ void JASTrack::JASTrack()
  * Address:	8009F0C0
  * Size:	00004C
  */
-void JASTrack::TimedParam_::__ct(void)
+JASTrack::TimedParam_::TimedParam_(void)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +125,7 @@ void JASTrack::TimedParam_::__ct(void)
  * Address:	8009F10C
  * Size:	000018
  */
-void JASTrack::MoveParam_::__ct(void)
+JASTrack::MoveParam_::MoveParam_(void)
 {
 	/*
 	.loc_0x0:
@@ -143,7 +143,7 @@ void JASTrack::MoveParam_::__ct(void)
  * Address:	8009F124
  * Size:	000130
  */
-void JASTrack::AInnerParam_::__ct(void)
+JASTrack::AInnerParam_::AInnerParam_(void)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +241,7 @@ void JSUList<JASChannel>::~JSUList()
  * Address:	........
  * Size:	0000C8
  */
-void JASTrack::~JASTrack()
+JASTrack::~JASTrack()
 {
 	// UNUSED FUNCTION
 }
@@ -640,13 +640,10 @@ void JASTrack::setBankNumber(unsigned char)
  * Address:	8009F6D0
  * Size:	000008
  */
-void JASTrack::assignExtBuffer(JASOuterParam*)
+void JASTrack::assignExtBuffer(JASOuterParam* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x33C(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x33C(r3)
+	_33C = a1;
 }
 
 /*
@@ -5251,7 +5248,7 @@ void JASTrack::getFreeMemCount()
  * Address:	800A2828
  * Size:	000030
  */
-void JASVibrate::JASVibrate()
+JASVibrate::JASVibrate()
 {
 	/*
 	.loc_0x0:

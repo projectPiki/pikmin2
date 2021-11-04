@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8021C718
  * Size:	0000A8
  */
-void Game::SingleGame::FileState::__ct(void)
+SingleGame::FileState::FileState(void)
 {
 	/*
 	.loc_0x0:
@@ -73,8 +65,7 @@ void Game::SingleGame::FileState::__ct(void)
  * Address:	8021C7C0
  * Size:	00009C
  */
-void Game::SingleGame::FileState::init((Game::SingleGameSection*,
-                                        Game::StateArg*))
+void SingleGame::FileState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +116,7 @@ void Game::SingleGame::FileState::init((Game::SingleGameSection*,
  * Address:	........
  * Size:	0000E4
  */
-void Game::SingleGame::FileState::first_init((Game::SingleGameSection*))
+void SingleGame::FileState::first_init(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +126,7 @@ void Game::SingleGame::FileState::first_init((Game::SingleGameSection*))
  * Address:	8021C85C
  * Size:	00019C
  */
-void Game::SingleGame::FileState::dvdload(void)
+void SingleGame::FileState::dvdload(void)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +251,7 @@ void Game::SingleGame::FileState::dvdload(void)
  * Address:	8021C9F8
  * Size:	000194
  */
-void Game::SingleGame::FileState::exec((Game::SingleGameSection*))
+void SingleGame::FileState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -391,7 +382,7 @@ void Game::SingleGame::FileState::exec((Game::SingleGameSection*))
  * Address:	8021CB8C
  * Size:	00027C
  */
-void Game::SingleGame::FileState::startGame((Game::SingleGameSection*))
+void SingleGame::FileState::startGame(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -584,7 +575,7 @@ void Game::SingleGame::FileState::startGame((Game::SingleGameSection*))
  * Address:	8021CE08
  * Size:	0000C0
  */
-void Game::SingleGame::FileState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::FileState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -646,7 +637,7 @@ void Game::SingleGame::FileState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8021CEC8
  * Size:	0000D4
  */
-void Game::SingleGame::FileState::cleanup((Game::SingleGameSection*))
+void SingleGame::FileState::cleanup(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -709,6 +700,8 @@ void Game::SingleGame::FileState::cleanup((Game::SingleGameSection*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

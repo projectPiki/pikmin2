@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803AB864
  * Size:	0000C0
  */
-void Game::Tyre::FSM::init((Game::EnemyBase*))
+void Tyre::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -85,7 +77,7 @@ void Game::Tyre::FSM::init((Game::EnemyBase*))
  * Address:	803AB924
  * Size:	00003C
  */
-void Game::Tyre::StateMove::__ct((int))
+Tyre::StateMove::StateMove(int)
 {
 	/*
 	.loc_0x0:
@@ -112,7 +104,7 @@ void Game::Tyre::StateMove::__ct((int))
  * Address:	803AB960
  * Size:	000048
  */
-void Game::Tyre::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Tyre::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -142,7 +134,7 @@ void Game::Tyre::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803AB9A8
  * Size:	0000BC
  */
-void Game::Tyre::StateMove::exec((Game::EnemyBase*))
+void Tyre::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -209,7 +201,7 @@ void Game::Tyre::StateMove::exec((Game::EnemyBase*))
  * Address:	803ABA64
  * Size:	000024
  */
-void Game::Tyre::StateMove::cleanup((Game::EnemyBase*))
+void Tyre::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +222,7 @@ void Game::Tyre::StateMove::cleanup((Game::EnemyBase*))
  * Address:	803ABA88
  * Size:	00003C
  */
-void Game::Tyre::StateLand::__ct((int))
+Tyre::StateLand::StateLand(int)
 {
 	/*
 	.loc_0x0:
@@ -257,7 +249,7 @@ void Game::Tyre::StateLand::__ct((int))
  * Address:	803ABAC4
  * Size:	000048
  */
-void Game::Tyre::StateLand::init((Game::EnemyBase*, Game::StateArg*))
+void Tyre::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -287,7 +279,7 @@ void Game::Tyre::StateLand::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803ABB0C
  * Size:	0000B4
  */
-void Game::Tyre::StateLand::exec((Game::EnemyBase*))
+void Tyre::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +338,7 @@ void Game::Tyre::StateLand::exec((Game::EnemyBase*))
  * Address:	803ABBC0
  * Size:	00003C
  */
-void Game::Tyre::StateFreeze::__ct((int))
+Tyre::StateFreeze::StateFreeze(int)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +365,7 @@ void Game::Tyre::StateFreeze::__ct((int))
  * Address:	803ABBFC
  * Size:	000074
  */
-void Game::Tyre::StateFreeze::init((Game::EnemyBase*, Game::StateArg*))
+void Tyre::StateFreeze::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +406,7 @@ void Game::Tyre::StateFreeze::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803ABC70
  * Size:	0000B4
  */
-void Game::Tyre::StateFreeze::exec((Game::EnemyBase*))
+void Tyre::StateFreeze::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -477,7 +469,7 @@ void Game::Tyre::StateFreeze::exec((Game::EnemyBase*))
  * Address:	803ABD24
  * Size:	00003C
  */
-void Game::Tyre::StateDead::__ct((int))
+Tyre::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -504,7 +496,7 @@ void Game::Tyre::StateDead::__ct((int))
  * Address:	803ABD60
  * Size:	000048
  */
-void Game::Tyre::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Tyre::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -534,7 +526,7 @@ void Game::Tyre::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803ABDA8
  * Size:	000044
  */
-void Game::Tyre::StateDead::exec((Game::EnemyBase*))
+void Tyre::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -559,3 +551,4 @@ void Game::Tyre::StateDead::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+} // namespace Game

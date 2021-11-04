@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8036D914
  * Size:	000008
  */
-void Game::TamagoMushi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void TamagoMushi::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::TamagoMushi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8036D91C
  * Size:	000008
  */
-void Game::TamagoMushi::ProperAnimator::getAnimator((int))
+void TamagoMushi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::TamagoMushi::ProperAnimator::getAnimator((int))
  * Address:	8036D924
  * Size:	00005C
  */
-void Game::TamagoMushi::ProperAnimator::__dt(void)
+TamagoMushi::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::TamagoMushi::ProperAnimator::__dt(void)
  * Address:	8036D980
  * Size:	000008
  */
-void Game::TamagoMushi::ProperAnimator::getAnimator(void)
+void TamagoMushi::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::TamagoMushi::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

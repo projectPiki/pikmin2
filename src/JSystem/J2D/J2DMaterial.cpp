@@ -5,7 +5,7 @@
  * Address:	80051EA4
  * Size:	000120
  */
-void J2DMaterial::J2DMaterial()
+J2DMaterial::J2DMaterial()
 {
 	/*
 	.loc_0x0:
@@ -89,7 +89,7 @@ void J2DMaterial::J2DMaterial()
  * Address:	80051FC4
  * Size:	000020
  */
-void J2DTexCoord::J2DTexCoord()
+J2DTexCoord::J2DTexCoord()
 {
 	/*
 	.loc_0x0:
@@ -109,7 +109,7 @@ void J2DTexCoord::J2DTexCoord()
  * Address:	80051FE4
  * Size:	000048
  */
-void J2DColorBlock::~J2DColorBlock()
+J2DColorBlock::~J2DColorBlock()
 {
 	/*
 	.loc_0x0:
@@ -141,7 +141,7 @@ void J2DColorBlock::~J2DColorBlock()
  * Address:	8005202C
  * Size:	000010
  */
-void J2DColorChan::J2DColorChan()
+J2DColorChan::J2DColorChan()
 {
 	/*
 	.loc_0x0:
@@ -157,7 +157,7 @@ void J2DColorChan::J2DColorChan()
  * Address:	8005203C
  * Size:	00014C
  */
-void J2DMaterial::J2DMaterial(unsigned long)
+J2DMaterial::J2DMaterial(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -252,7 +252,7 @@ void J2DMaterial::J2DMaterial(unsigned long)
  * Address:	80052188
  * Size:	0000C0
  */
-void J2DMaterial::~J2DMaterial()
+J2DMaterial::~J2DMaterial()
 {
 	/*
 	.loc_0x0:
@@ -674,7 +674,7 @@ void J2DMaterial::createIndBlock(int, bool)
  * Address:	80052658
  * Size:	000018
  */
-void J2DIndTexCoordScale::J2DIndTexCoordScale()
+J2DIndTexCoordScale::J2DIndTexCoordScale()
 {
 	/*
 	.loc_0x0:
@@ -692,7 +692,7 @@ void J2DIndTexCoordScale::J2DIndTexCoordScale()
  * Address:	80052670
  * Size:	000040
  */
-void J2DIndTexMtx::J2DIndTexMtx()
+J2DIndTexMtx::J2DIndTexMtx()
 {
 	/*
 	.loc_0x0:
@@ -720,7 +720,7 @@ void J2DIndTexMtx::J2DIndTexMtx()
  * Address:	800526B0
  * Size:	000018
  */
-void J2DIndTexOrder::J2DIndTexOrder()
+J2DIndTexOrder::J2DIndTexOrder()
 {
 	/*
 	.loc_0x0:
@@ -1691,7 +1691,7 @@ void J2DIndBlockNull::getType()
  * Address:	8005328C
  * Size:	00005C
  */
-void J2DIndBlockNull::~J2DIndBlockNull()
+J2DIndBlockNull::~J2DIndBlockNull()
 {
 	/*
 	.loc_0x0:

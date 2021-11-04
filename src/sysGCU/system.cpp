@@ -295,22 +295,13 @@ void myTask(void*)
 
 }
 
-/*
-* --INFO--
-* Address:	........
-* Size:	0000E0
-
-void _Print(char*, ...)
-{
-// UNUSED FUNCTION
-}
 
 /*
 * --INFO--
 * Address:	80422230
 * Size:	000054
 
-void System::FragmentationChecker::__ct((char*, bool))
+System::FragmentationChecker::FragmentationChecker(char*, bool)
 {
 /*
 .loc_0x0:
@@ -343,7 +334,7 @@ void System::FragmentationChecker::__ct((char*, bool))
 * Address:	80422284
 * Size:	00005C
 
-void System::FragmentationChecker::__dt(void)
+System::FragmentationChecker::~FragmentationChecker(void)
 {
 /*
 .loc_0x0:
@@ -498,7 +489,7 @@ void retraceCallback(unsigned long)
 * Address:	804223E8
 * Size:	00011C
 
-void System::System()
+System::System()
 {
 /*
 .loc_0x0:
@@ -585,7 +576,7 @@ void System::System()
 * Address:	........
 * Size:	00006C
 
-void System::~System()
+System::~System()
 {
 // UNUSED FUNCTION
 }
@@ -1193,7 +1184,7 @@ void System::loadSoundResource()
 * Address:	........
 * Size:	000014
 
-void System::GXVerifyArg::__ct(void)
+System::GXVerifyArg::GXVerifyArg(void)
 {
 // UNUSED FUNCTION
 }
@@ -1641,7 +1632,7 @@ void System::deleteThreads()
 * Address:	80422FE4
 * Size:	00008C
 
-void DvdThread::~DvdThread()
+DvdThread::~DvdThread()
 {
 /*
 .loc_0x0:
@@ -2482,7 +2473,7 @@ void System::dvdLoadSyncAllNoBlock()
 * Address:	80423690
 * Size:	000060
 
-void AppThread::~AppThread()
+AppThread::~AppThread()
 {
 /*
 .loc_0x0:
@@ -2515,12 +2506,14 @@ void AppThread::~AppThread()
 
 }
 
+namespace PSM {
+
 /*
 * --INFO--
 * Address:	804236F0
 * Size:	000038
 
-void PSM::Factory::newSceneMgr(void)
+void Factory::newSceneMgr(void)
 {
 /*
 .loc_0x0:
@@ -2542,6 +2535,8 @@ void PSM::Factory::newSceneMgr(void)
   blr
 
 }
+
+} // PSM
 
 /*
 * --INFO--

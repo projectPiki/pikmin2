@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802A12B4
  * Size:	000008
  */
-void Game::Hanachirashi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Hanachirashi::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Hanachirashi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802A12BC
  * Size:	000008
  */
-void Game::Hanachirashi::ProperAnimator::getAnimator(int)
+void Hanachirashi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Hanachirashi::ProperAnimator::getAnimator(int)
  * Address:	802A12C4
  * Size:	00005C
  */
-void Game::Hanachirashi::ProperAnimator::~ProperAnimator()
+Hanachirashi::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Hanachirashi::ProperAnimator::~ProperAnimator()
  * Address:	802A1320
  * Size:	000008
  */
-void Game::Hanachirashi::ProperAnimator::getAnimator()
+void Hanachirashi::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Hanachirashi::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

@@ -1,23 +1,15 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803C1A3C
  * Size:	000060
  */
-void ebi::EUTPadInterface_countNum::init(
-    (Controller*, long, long, long*, ebi::EUTPadInterface_countNum::enumMode,
-     float, float))
+void EUTPadInterface_countNum::init(Controller*, long, long, long*,
+                                    ebi::EUTPadInterface_countNum::enumMode,
+                                    float, float)
 {
 	/*
 	.loc_0x0:
@@ -57,7 +49,7 @@ void ebi::EUTPadInterface_countNum::init(
  * Address:	803C1A9C
  * Size:	000304
  */
-void ebi::EUTPadInterface_countNum::update(void)
+void EUTPadInterface_countNum::update(void)
 {
 	/*
 	.loc_0x0:
@@ -326,8 +318,8 @@ void ebi::EUTPadInterface_countNum::update(void)
  * Address:	803C1DA0
  * Size:	000114
  */
-void ebi::EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float,
-                              float, JUtility::TColor*)
+void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float,
+                         JUtility::TColor*)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +400,7 @@ void ebi::EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float,
  * Address:	........
  * Size:	000004
  */
-void ebi::EUTDebug_Wait()
+void EUTDebug_Wait()
 {
 	// UNUSED FUNCTION
 }
@@ -418,11 +410,12 @@ void ebi::EUTDebug_Wait()
  * Address:	803C1EB4
  * Size:	000004
  */
-void ebi::EUTDebug_Tag64ToName(unsigned long long, char*) { }
+void EUTDebug_Tag64ToName(unsigned long long, char*) { }
 
 /*
  * --INFO--
  * Address:	803C1EB8
  * Size:	000004
  */
-void ebi::EUTDebug_Tag32ToName(unsigned long, char*) { }
+void EUTDebug_Tag32ToName(unsigned long, char*) { }
+} // namespace ebi

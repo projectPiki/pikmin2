@@ -1,12 +1,12 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JGadget::binary::parseVariableUInt_16_32((void const**,
-                                               JGadget::binary::TEBit*))
+void JGadget::binary::parseVariableUInt_16_32(void const**,
+                                              JGadget::binary::TEBit*)
 {
 	// UNUSED FUNCTION
 }
@@ -16,8 +16,8 @@ void JGadget::binary::parseVariableUInt_16_32((void const**,
  * Address:	........
  * Size:	000084
  */
-void JGadget::binary::parseVariableUInt_8_16_32((void const**,
-                                                 JGadget::binary::TEBit*))
+void JGadget::binary::parseVariableUInt_8_16_32(void const**,
+                                                JGadget::binary::TEBit*)
 {
 	// UNUSED FUNCTION
 }
@@ -27,8 +27,8 @@ void JGadget::binary::parseVariableUInt_8_16_32((void const**,
  * Address:	........
  * Size:	000054
  */
-void JGadget::binary::parseVariableUInt_8_16((void const**,
-                                              JGadget::binary::TEBit*))
+void JGadget::binary::parseVariableUInt_8_16(void const**,
+                                             JGadget::binary::TEBit*)
 {
 	// UNUSED FUNCTION
 }
@@ -83,7 +83,7 @@ void JGadget::binary::parseVariableUInt_16_32_following(
  * Address:	80027190
  * Size:	000048
  */
-void JGadget::binary::TParse_header_block::__dt(void)
+JGadget::binary::TParse_header_block::~TParse_header_block(void)
 {
 	/*
 	.loc_0x0:
@@ -115,8 +115,8 @@ void JGadget::binary::TParse_header_block::__dt(void)
  * Address:	800271D8
  * Size:	00010C
  */
-void JGadget::binary::TParse_header_block::parse_next((void const**,
-                                                       unsigned long))
+void JGadget::binary::TParse_header_block::parse_next(void const**,
+                                                      unsigned long)
 {
 	/*
 	.loc_0x0:

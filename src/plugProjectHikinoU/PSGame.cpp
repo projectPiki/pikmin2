@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSGame {
+
 /*
  * --INFO--
  * Address:	80334268
  * Size:	000028
  */
-void PSGame::CaveFloorInfo::getCaveNoFromID(void)
+void CaveFloorInfo::getCaveNoFromID(void)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +31,7 @@ void PSGame::CaveFloorInfo::getCaveNoFromID(void)
  * Address:	........
  * Size:	000070
  */
-void PSGame::ConductorList::__ct(void)
+ConductorList::ConductorList(void)
 {
 	// UNUSED FUNCTION
 }
@@ -39,7 +41,7 @@ void PSGame::ConductorList::__ct(void)
  * Address:	80334290
  * Size:	0000D4
  */
-void PSGame::ConductorList::__dt(void)
+ConductorList::~ConductorList(void)
 {
 	/*
 	.loc_0x0:
@@ -114,7 +116,7 @@ void PSGame::ConductorList::__dt(void)
  * Address:	80334364
  * Size:	0001AC
  */
-void PSGame::ConductorList::read((Stream&))
+void ConductorList::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -253,7 +255,7 @@ void PSGame::ConductorList::read((Stream&))
  * Address:	80334510
  * Size:	000014
  */
-void PSGame::ConductorList::CaveInfo::__ct(void)
+ConductorList::CaveInfo::CaveInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -270,7 +272,7 @@ void PSGame::ConductorList::CaveInfo::__ct(void)
  * Address:	........
  * Size:	0000F4
  */
-void PSGame::ConductorList::getInfo((unsigned char, unsigned char))
+void ConductorList::getInfo(unsigned char, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -280,7 +282,7 @@ void PSGame::ConductorList::getInfo((unsigned char, unsigned char))
  * Address:	........
  * Size:	00012C
  */
-void PSGame::ConductorList::getAutoBgmInfo((unsigned char, unsigned char))
+void ConductorList::getAutoBgmInfo(unsigned char, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -290,8 +292,8 @@ void PSGame::ConductorList::getAutoBgmInfo((unsigned char, unsigned char))
  * Address:	80334524
  * Size:	0003D4
  */
-void PSGame::ConductorList::getSeqAndWaveFromConductor((char const*,
-                                                        unsigned char*, char**))
+void ConductorList::getSeqAndWaveFromConductor(char const*, unsigned char*,
+                                               char**)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +592,7 @@ void PSGame::ConductorList::getSeqAndWaveFromConductor((char const*,
  * Address:	803348F8
  * Size:	0000E0
  */
-void PSGame::SoundTable::CategoryMgr::__ct(void)
+SoundTable::CategoryMgr::CategoryMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -668,7 +670,7 @@ void PSGame::SoundTable::CategoryMgr::__ct(void)
  * Address:	803349D8
  * Size:	000174
  */
-void PSGame::SoundTable::CategoryMgr::initiate((unsigned char))
+void SoundTable::CategoryMgr::initiate(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -795,7 +797,7 @@ void PSGame::SoundTable::CategoryMgr::initiate((unsigned char))
  * Address:	80334B4C
  * Size:	000018
  */
-void PSGame::SoundTable::SePerspInfo::set((float, float, float, float, float))
+void SoundTable::SePerspInfo::set(float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -813,7 +815,7 @@ void PSGame::SoundTable::SePerspInfo::set((float, float, float, float, float))
  * Address:	80334B64
  * Size:	000164
  */
-void PSGame::SoundTable::SePerspInfo::getDistVol((float, unsigned char))
+void SoundTable::SePerspInfo::getDistVol(float, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -940,7 +942,7 @@ void PSGame::SoundTable::SePerspInfo::getDistVol((float, unsigned char))
  * Address:	80334CC8
  * Size:	0000A8
  */
-void PSGame::CameraMgr::__ct(void)
+CameraMgr::CameraMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -994,7 +996,7 @@ void PSGame::CameraMgr::__ct(void)
  * Address:	80334D70
  * Size:	000060
  */
-void PSGame::CameraMgr::__dt(void)
+CameraMgr::~CameraMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1032,7 +1034,7 @@ void PSGame::CameraMgr::__dt(void)
  * Address:	80334DD0
  * Size:	000024
  */
-void PSGame::CameraMgr::getBgmCamVol((unsigned char))
+void CameraMgr::getBgmCamVol(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1055,7 +1057,7 @@ void PSGame::CameraMgr::getBgmCamVol((unsigned char))
  * Address:	80334DF4
  * Size:	00004C
  */
-void PSGame::CameraMgr::update((unsigned char, float))
+void CameraMgr::update(unsigned char, float)
 {
 	/*
 	.loc_0x0:
@@ -1086,7 +1088,7 @@ void PSGame::CameraMgr::update((unsigned char, float))
  * Address:	80334E40
  * Size:	000010
  */
-void PSGame::CameraMgr::getCurrentCamDistVol((unsigned char))
+void CameraMgr::getCurrentCamDistVol(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1102,7 +1104,7 @@ void PSGame::CameraMgr::getCurrentCamDistVol((unsigned char))
  * Address:	80334E50
  * Size:	000088
  */
-void PSGame::CameraMgr::getVol_DistBetweenCamAndLookat((float))
+void CameraMgr::getVol_DistBetweenCamAndLookat(float)
 {
 	/*
 	.loc_0x0:
@@ -1154,7 +1156,7 @@ void PSGame::CameraMgr::getVol_DistBetweenCamAndLookat((float))
  * Address:	80334ED8
  * Size:	000034
  */
-void PSGame::SysFactory::__ct(void)
+SysFactory::SysFactory(void)
 {
 	/*
 	.loc_0x0:
@@ -1179,7 +1181,7 @@ void PSGame::SysFactory::__ct(void)
  * Address:	80334F0C
  * Size:	000404
  */
-void PSGame::SysFactory::newSoundSystem(void)
+void SysFactory::newSoundSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -1492,7 +1494,7 @@ void PSGame::SysFactory::newSoundSystem(void)
  * Address:	80335310
  * Size:	000080
  */
-void PSGame::SysFactory::preInitJAI(void)
+void SysFactory::preInitJAI(void)
 {
 	/*
 	.loc_0x0:
@@ -1536,7 +1538,7 @@ void PSGame::SysFactory::preInitJAI(void)
  * Address:	80335390
  * Size:	000120
  */
-void PSGame::SysFactory::postInitJAI(void)
+void SysFactory::postInitJAI(void)
 {
 	/*
 	.loc_0x0:
@@ -1632,7 +1634,7 @@ void PSGame::SysFactory::postInitJAI(void)
  * Address:	803354B0
  * Size:	000038
  */
-void PSGame::SceneInfo::__ct(void)
+SceneInfo::SceneInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -1658,8 +1660,8 @@ void PSGame::SceneInfo::__ct(void)
  * Address:	803354E8
  * Size:	000078
  */
-void PSGame::SceneInfo::setStageFlag((PSGame::SceneInfo::FlagDef,
-                                      PSGame::SceneInfo::FlagBitShift))
+void SceneInfo::setStageFlag(PSGame::SceneInfo::FlagDef,
+                             PSGame::SceneInfo::FlagBitShift)
 {
 	/*
 	.loc_0x0:
@@ -1707,7 +1709,7 @@ void PSGame::SceneInfo::setStageFlag((PSGame::SceneInfo::FlagDef,
  * Address:	80335560
  * Size:	000010
  */
-void PSGame::SceneInfo::getFlag(const(PSGame::SceneInfo::FlagBitShift))
+void SceneInfo::getFlag(const(PSGame::SceneInfo::FlagBitShift))
 {
 	/*
 	.loc_0x0:
@@ -1723,7 +1725,7 @@ void PSGame::SceneInfo::getFlag(const(PSGame::SceneInfo::FlagBitShift))
  * Address:	80335570
  * Size:	000074
  */
-void PSGame::SceneInfo::setStageCamera( const
+void SceneInfo::setStageCamera() const
 {
 	/*
 	.loc_0x0:
@@ -1768,7 +1770,7 @@ void PSGame::SceneInfo::setStageCamera( const
  * Address:	803355E4
  * Size:	00003C
  */
-void PSGame::PikScene::__ct( (unsigned char))
+PikScene::PikScene((unsigned char))
 {
 	/*
 	.loc_0x0:
@@ -1795,7 +1797,7 @@ void PSGame::PikScene::__ct( (unsigned char))
  * Address:	80335620
  * Size:	000060
  */
-void PSGame::PikScene::__dt(void)
+PikScene::~PikScene(void)
 {
 	/*
 	.loc_0x0:
@@ -1833,7 +1835,7 @@ void PSGame::PikScene::__dt(void)
  * Address:	80335680
  * Size:	0000A8
  */
-void PSGame::PikScene::getMiddleBossBgm(void)
+void PikScene::getMiddleBossBgm(void)
 {
 	/*
 	.loc_0x0:
@@ -1895,7 +1897,7 @@ void PSGame::PikScene::getMiddleBossBgm(void)
  * Address:	........
  * Size:	00007C
  */
-void PSGame::PikScene::getJumpMainBgm(void)
+void PikScene::getJumpMainBgm(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1905,7 +1907,7 @@ void PSGame::PikScene::getJumpMainBgm(void)
  * Address:	80335728
  * Size:	000378
  */
-void PSGame::PikSceneMgr::newAndSetGlobalScene(void)
+void PikSceneMgr::newAndSetGlobalScene(void)
 {
 	/*
 	.loc_0x0:
@@ -2175,7 +2177,7 @@ void PSGame::PikSceneMgr::newAndSetGlobalScene(void)
  * Address:	80335AA0
  * Size:	0004AC
  */
-void PSGame::PikSceneMgr::newAndSetCurrentScene( (PSGame::SceneInfo &))
+void PikSceneMgr::newAndSetCurrentScene(PSGame::SceneInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2532,7 +2534,7 @@ void PSGame::PikSceneMgr::newAndSetCurrentScene( (PSGame::SceneInfo &))
  * Address:	80335F4C
  * Size:	000098
  */
-void PSGame::PikSceneMgr::newBgmSeq( (char const *, JAInter::SoundInfo &))
+void PikSceneMgr::newBgmSeq(char const*, JAInter::SoundInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2586,7 +2588,7 @@ void PSGame::PikSceneMgr::newBgmSeq( (char const *, JAInter::SoundInfo &))
  * Address:	80335FE4
  * Size:	000088
  */
-void PSGame::PikSceneMgr::newStreamBgm( (unsigned long, JAInter::SoundInfo &))
+void PikSceneMgr::newStreamBgm(unsigned long, JAInter::SoundInfo&)
 {
 	/*
 	.loc_0x0:
@@ -2636,7 +2638,7 @@ void PSGame::PikSceneMgr::newStreamBgm( (unsigned long, JAInter::SoundInfo &))
  * Address:	8033606C
  * Size:	000150
  */
-void PSGame::PikSceneMgr::initBossBgm( (PSGame::SceneInfo &, unsigned char *))
+void PikSceneMgr::initBossBgm(PSGame::SceneInfo&, unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -2744,7 +2746,7 @@ void PSGame::PikSceneMgr::initBossBgm( (PSGame::SceneInfo &, unsigned char *))
  * Address:	803361BC
  * Size:	000400
  */
-void PSGame::PikSceneMgr::initAdditionalBgm( (PSGame::SceneInfo &, PSSystem::Scene *))
+void PikSceneMgr::initAdditionalBgm(PSGame::SceneInfo&, PSSystem::Scene*)
 {
 	/*
 	.loc_0x0:
@@ -3060,7 +3062,7 @@ void PSGame::PikSceneMgr::initAdditionalBgm( (PSGame::SceneInfo &, PSSystem::Sce
  * Address:	803365BC
  * Size:	000D24
  */
-void PSGame::PikSceneMgr::initMainBgm( (PSGame::SceneInfo &, unsigned char *))
+void PikSceneMgr::initMainBgm(PSGame::SceneInfo&, unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -4063,7 +4065,8 @@ void PSGame::PikSceneMgr::initMainBgm( (PSGame::SceneInfo &, unsigned char *))
  * Address:	........
  * Size:	0001A8
  */
-void PSGame::ConductorSelector::getConductorFile( (char const *, PSGame::CaveFloorInfo &, unsigned char *, char *))
+void ConductorSelector::getConductorFile(char const*, PSGame::CaveFloorInfo&,
+                                         unsigned char*, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -4073,7 +4076,7 @@ void PSGame::ConductorSelector::getConductorFile( (char const *, PSGame::CaveFlo
  * Address:	803372E0
  * Size:	00094C
  */
-void PSGame::seqCpuSync(JASTrack *, unsigned short)
+void seqCpuSync(JASTrack*, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -4841,6 +4844,8 @@ void PSGame::seqCpuSync(JASTrack *, unsigned short)
 	*/
 }
 
+} // namespace PSGame
+
 /*
  * --INFO--
  * Address:	80337C2C
@@ -5250,7 +5255,7 @@ void PSSetBgmSelectAsToolMode()
  * Address:	803380AC
  * Size:	000050
  */
-void __dt__Q28PSSystem39SingletonBase<PSGame::ConductorList>Fv(void)
+void __dt__Q28PSSystem39SingletonBase<PSGame::ConductorList> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -5284,7 +5289,7 @@ void __dt__Q28PSSystem39SingletonBase<PSGame::ConductorList>Fv(void)
  * Address:	803380FC
  * Size:	000050
  */
-void __dt__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>Fv(void)
+void __dt__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -5318,7 +5323,8 @@ void __dt__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>Fv(void)
  * Address:	8033814C
  * Size:	000098
  */
-void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>Fv(void)
+void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>
+Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -5376,7 +5382,7 @@ void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>Fv(
  * Address:	803381E4
  * Size:	000008
  */
-void @28@PSGame::ConductorList::__dt(void)
+@28 @PSGame::ConductorList::~ConductorList(void)
 {
 	/*
 	.loc_0x0:
@@ -5385,32 +5391,32 @@ void @28@PSGame::ConductorList::__dt(void)
 	*/
 }
 
+namespace PSGame {
+
 /*
  * --INFO--
  * Address:	803381EC
  * Size:	000008
  */
-u32  PSGame::SceneInfo::isCaveFloor(void)
-{
-	return 0x0;
-}
+u32 SceneInfo::isCaveFloor(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803381F4
  * Size:	000008
  */
-u32  PSGame::PikSceneMgr::curSceneIsBigBossFloor(void)
-{
-	return 0x0;
-}
+u32 PikSceneMgr::curSceneIsBigBossFloor(void) { return 0x0; }
+
+} // namespace PSGame
+
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	803381FC
  * Size:	000038
  */
-void PSSystem::SceneMgr::exec(void)
+void SceneMgr::exec(void)
 {
 	/*
 	.loc_0x0:
@@ -5438,16 +5444,14 @@ void PSSystem::SceneMgr::exec(void)
  * Address:	80338234
  * Size:	000004
  */
-void PSSystem::Scene::init(void)
-{
-}
+void Scene::init(void) { }
 
 /*
  * --INFO--
  * Address:	80338238
  * Size:	000050
  */
-void PSAutoBgm::ConductorArcMgr::__dt(void)
+PSAutoBgm::ConductorArcMgr::~ConductorArcMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5476,53 +5480,59 @@ void PSAutoBgm::ConductorArcMgr::__dt(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80338288
- * Size:	000064
- */
-void PSGame::SoundTable::CategoryMgr::__dt(void)
-{
+namespace PSGame {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x4C
-	  lis       r3, 0x804E
-	  subi      r0, r3, 0x55AC
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x3C
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r3, r3, 0x55A0
-	  stw       r3, 0x0(r31)
-	  stw       r0, -0x6E3C(r13)
+	 * --INFO--
+	 * Address:	80338288
+	 * Size:	000064
+	 */
+	SoundTable::CategoryMgr::~CategoryMgr(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr.       r31, r3
+		  beq-      .loc_0x4C
+		  lis       r3, 0x804E
+		  subi      r0, r3, 0x55AC
+		  stw       r0, 0x0(r31)
+		  beq-      .loc_0x3C
+		  lis       r3, 0x804E
+		  li        r0, 0
+		  subi      r3, r3, 0x55A0
+		  stw       r3, 0x0(r31)
+		  stw       r0, -0x6E3C(r13)
 
-	.loc_0x3C:
-	  extsh.    r0, r4
-	  ble-      .loc_0x4C
-	  mr        r3, r31
-	  bl        -0x31421C
+		.loc_0x3C:
+		  extsh.    r0, r4
+		  ble-      .loc_0x4C
+		  mr        r3, r31
+		  bl        -0x31421C
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x4C:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r31
+		  lwz       r31, 0xC(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace PSGame
+
+} // namespace PSSystem
 
 /*
  * --INFO--
  * Address:	803382EC
  * Size:	000080
  */
-void __dt__Q28PSSystem24ArcMgr<PSGame::BASARC>Fv(void)
+void __dt__Q28PSSystem24ArcMgr<PSGame::BASARC> Fv(void)
 {
 	/*
 	.loc_0x0:

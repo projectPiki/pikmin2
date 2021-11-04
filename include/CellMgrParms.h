@@ -8,6 +8,7 @@
 struct CellMgrParms : public Parameters, JKRDisposer {
 private:
 	CellMgrParms();
+
 public:
 	virtual ~CellMgrParms();
 
@@ -22,7 +23,7 @@ public:
 	Parm<bool> m_p002; // _5C  /* G-Half */
 	Parm<bool> m_p003; // _78  /* UpdateMgr */
 	// __vt  // _94
-	void*      m_end;  // _98
+	void* m_end; // _98
 
 	static CellMgrParms* mInstance;
 };

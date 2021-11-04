@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000064
  */
-void TexCaster::Caster::__ct(void)
+TexCaster::Caster::Caster(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +15,7 @@ void TexCaster::Caster::__ct(void)
  * Address:	8023C95C
  * Size:	000060
  */
-void TexCaster::Caster::__dt(void)
+TexCaster::Caster::~Caster(void)
 {
 	/*
 	.loc_0x0:
@@ -90,7 +80,7 @@ void TexCaster::Caster::hide(void)
  * Address:	8023C9D0
  * Size:	000080
  */
-void TexCaster::Caster::fadein((float))
+void TexCaster::Caster::fadein(float)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +126,7 @@ void TexCaster::Caster::fadein((float))
  * Address:	........
  * Size:	00007C
  */
-void TexCaster::Caster::fadeout((float))
+void TexCaster::Caster::fadeout(float)
 {
 	// UNUSED FUNCTION
 }
@@ -166,7 +156,7 @@ void TexCaster::Caster::update(void)
  * Address:	........
  * Size:	000138
  */
-void TexCaster::Caster::draw((Graphics&))
+void TexCaster::Caster::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -176,7 +166,7 @@ void TexCaster::Caster::draw((Graphics&))
  * Address:	........
  * Size:	000004
  */
-void TexCaster::Caster::drawLine((Graphics&))
+void TexCaster::Caster::drawLine(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -186,7 +176,7 @@ void TexCaster::Caster::drawLine((Graphics&))
  * Address:	........
  * Size:	000080
  */
-void TexCaster::Mgr::__ct(void)
+TexCaster::Mgr::Mgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -196,7 +186,7 @@ void TexCaster::Mgr::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void TexCaster::Mgr::__dt(void)
+TexCaster::Mgr::~Mgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -383,7 +373,7 @@ void TexCaster::Mgr::loadResource(void)
  * Address:	8023CC44
  * Size:	000550
  */
-void TexCaster::Mgr::create((Sys::Sphere&, float))
+void TexCaster::Mgr::create(Sys::Sphere&, float)
 {
 	/*
 	.loc_0x0:
@@ -757,7 +747,7 @@ void TexCaster::Mgr::create((Sys::Sphere&, float))
  * Address:	........
  * Size:	00007C
  */
-void TexCaster::Mgr::getTexture((int))
+void TexCaster::Mgr::getTexture(int)
 {
 	// UNUSED FUNCTION
 }
@@ -767,7 +757,7 @@ void TexCaster::Mgr::getTexture((int))
  * Address:	........
  * Size:	000118
  */
-void TexCaster::Mgr::drawInit((Graphics&))
+void TexCaster::Mgr::drawInit(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -777,7 +767,7 @@ void TexCaster::Mgr::drawInit((Graphics&))
  * Address:	8023D194
  * Size:	000288
  */
-void TexCaster::Mgr::draw((Graphics&))
+void TexCaster::Mgr::draw(Graphics&)
 {
 	/*
 	.loc_0x0:

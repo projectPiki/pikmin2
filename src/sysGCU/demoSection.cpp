@@ -5,7 +5,7 @@
  * Address:	8044CBB8
  * Size:	000054
  */
-void Demo::Section::__ct((JKRHeap*))
+Demo::Section::Section(JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -38,7 +38,7 @@ void Demo::Section::__ct((JKRHeap*))
  * Address:	8044CC0C
  * Size:	000088
  */
-void Demo::Section::__dt(void)
+Demo::Section::~Section(void)
 {
 	/*
 	.loc_0x0:
@@ -210,7 +210,7 @@ void Demo::Section::init(void)
  * Address:	8044CE34
  * Size:	0000E8
  */
-void Demo::Section::doDraw((Graphics&))
+void Demo::Section::doDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -550,7 +550,7 @@ void Demo::Section::loadResource(void)
  * Address:	8044D21C
  * Size:	000070
  */
-void Demo::HIORootNode::__dt(void)
+Demo::HIORootNode::~HIORootNode(void)
 {
 	/*
 	.loc_0x0:

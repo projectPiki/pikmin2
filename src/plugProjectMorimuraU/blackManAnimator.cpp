@@ -1,27 +1,16 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803A5354
  * Size:	000008
  */
-void Game::BlackMan::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void BlackMan::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -29,7 +18,7 @@ void Game::BlackMan::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	803A535C
  * Size:	000008
  */
-void Game::BlackMan::ProperAnimator::getAnimator((int))
+void BlackMan::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +32,7 @@ void Game::BlackMan::ProperAnimator::getAnimator((int))
  * Address:	803A5364
  * Size:	00005C
  */
-void Game::BlackMan::ProperAnimator::__dt(void)
+BlackMan::ProperAnimator::~ProperAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -82,7 +71,7 @@ void Game::BlackMan::ProperAnimator::__dt(void)
  * Address:	803A53C0
  * Size:	000008
  */
-void Game::BlackMan::ProperAnimator::getAnimator(void)
+void BlackMan::ProperAnimator::getAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -90,3 +79,4 @@ void Game::BlackMan::ProperAnimator::getAnimator(void)
 	  blr
 	*/
 }
+} // namespace Game

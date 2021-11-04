@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80242D58
  * Size:	000018
  */
-void Game::Cave::AdjustInfo::__ct(void)
+Cave::AdjustInfo::AdjustInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +25,7 @@ void Game::Cave::AdjustInfo::__ct(void)
  * Address:	80242D70
  * Size:	0002AC
  */
-void Game::Cave::MapNode::__ct((Game::Cave::UnitInfo*))
+Cave::MapNode::MapNode(Game::Cave::UnitInfo*)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +222,7 @@ void Game::Cave::MapNode::__ct((Game::Cave::UnitInfo*))
  * Address:	8024301C
  * Size:	00000C
  */
-void Game::Cave::MapNode::setOffset((int, int))
+void Cave::MapNode::setOffset(int, int)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +237,7 @@ void Game::Cave::MapNode::setOffset((int, int))
  * Address:	80243028
  * Size:	000024
  */
-void Game::Cave::MapNode::getDoorDirect((int))
+void Cave::MapNode::getDoorDirect(int)
 {
 	/*
 	.loc_0x0:
@@ -266,7 +258,7 @@ void Game::Cave::MapNode::getDoorDirect((int))
  * Address:	8024304C
  * Size:	000100
  */
-void Game::Cave::MapNode::getDoorOffset((int, int&, int&))
+void Cave::MapNode::getDoorOffset(int, int&, int&)
 {
 	/*
 	.loc_0x0:
@@ -354,7 +346,7 @@ void Game::Cave::MapNode::getDoorOffset((int, int&, int&))
  * Address:	8024314C
  * Size:	0000FC
  */
-void Game::Cave::MapNode::isDoorSet((Game::Cave::DoorNode*, int, int, int))
+void Cave::MapNode::isDoorSet(Game::Cave::DoorNode*, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -441,7 +433,7 @@ void Game::Cave::MapNode::isDoorSet((Game::Cave::DoorNode*, int, int, int))
  * Address:	80243248
  * Size:	000034
  */
-void Game::Cave::MapNode::setDoorClose((int, Game::Cave::MapNode*, int))
+void Cave::MapNode::setDoorClose(int, Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -466,7 +458,7 @@ void Game::Cave::MapNode::setDoorClose((int, Game::Cave::MapNode*, int))
  * Address:	8024327C
  * Size:	00009C
  */
-void Game::Cave::MapNode::detachDoorClose(void)
+void Cave::MapNode::detachDoorClose(void)
 {
 	/*
 	.loc_0x0:
@@ -523,7 +515,7 @@ void Game::Cave::MapNode::detachDoorClose(void)
  * Address:	80243318
  * Size:	00001C
  */
-void Game::Cave::MapNode::isDoorClose((int))
+void Cave::MapNode::isDoorClose(int)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +534,7 @@ void Game::Cave::MapNode::isDoorClose((int))
  * Address:	80243334
  * Size:	000100
  */
-void Game::Cave::MapNode::resetDoorScore(void)
+void Cave::MapNode::resetDoorScore(void)
 {
 	/*
 	.loc_0x0:
@@ -626,7 +618,7 @@ void Game::Cave::MapNode::resetDoorScore(void)
  * Address:	80243434
  * Size:	000034
  */
-void Game::Cave::MapNode::setDoorScore((int, int))
+void Cave::MapNode::setDoorScore(int, int)
 {
 	/*
 	.loc_0x0:
@@ -651,7 +643,7 @@ void Game::Cave::MapNode::setDoorScore((int, int))
  * Address:	80243468
  * Size:	00001C
  */
-void Game::Cave::MapNode::isDoorScoreSetDone((int))
+void Cave::MapNode::isDoorScoreSetDone(int)
 {
 	/*
 	.loc_0x0:
@@ -670,7 +662,7 @@ void Game::Cave::MapNode::isDoorScoreSetDone((int))
  * Address:	80243484
  * Size:	000024
  */
-void Game::Cave::MapNode::getDoorNode((int))
+void Cave::MapNode::getDoorNode(int)
 {
 	/*
 	.loc_0x0:
@@ -691,7 +683,7 @@ void Game::Cave::MapNode::getDoorNode((int))
  * Address:	802434A8
  * Size:	000014
  */
-void Game::Cave::MapNode::getAdjustNode((int))
+void Cave::MapNode::getAdjustNode(int)
 {
 	/*
 	.loc_0x0:
@@ -708,7 +700,7 @@ void Game::Cave::MapNode::getAdjustNode((int))
  * Address:	802434BC
  * Size:	000164
  */
-void Game::Cave::MapNode::isGateSetDoor((int))
+void Cave::MapNode::isGateSetDoor(int)
 {
 	/*
 	.loc_0x0:
@@ -835,7 +827,7 @@ void Game::Cave::MapNode::isGateSetDoor((int))
  * Address:	80243620
  * Size:	000198
  */
-void Game::Cave::MapNode::getGateScore((int))
+void Cave::MapNode::getGateScore(int)
 {
 	/*
 	.loc_0x0:
@@ -985,7 +977,7 @@ void Game::Cave::MapNode::getGateScore((int))
  * Address:	802437B8
  * Size:	0000AC
  */
-void Game::Cave::MapNode::setEnemyScore(void)
+void Cave::MapNode::setEnemyScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1048,13 +1040,10 @@ void Game::Cave::MapNode::setEnemyScore(void)
  * Address:	80243864
  * Size:	000008
  */
-void Game::Cave::MapNode::setNodeScore((int))
+void Cave::MapNode::setNodeScore(int a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x38(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x38(r3)
+	_38 = a1;
 }
 
 /*
@@ -1062,7 +1051,7 @@ void Game::Cave::MapNode::setNodeScore((int))
  * Address:	8024386C
  * Size:	00000C
  */
-void Game::Cave::MapNode::copyNodeScoreToVersusScore(void)
+void Cave::MapNode::copyNodeScoreToVersusScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1077,7 +1066,7 @@ void Game::Cave::MapNode::copyNodeScoreToVersusScore(void)
  * Address:	80243878
  * Size:	000014
  */
-void Game::Cave::MapNode::subNodeScoreToVersusScore(void)
+void Cave::MapNode::subNodeScoreToVersusScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1094,7 +1083,7 @@ void Game::Cave::MapNode::subNodeScoreToVersusScore(void)
  * Address:	8024388C
  * Size:	000110
  */
-void Game::Cave::MapNode::draw((float, float, float))
+void Cave::MapNode::draw(float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1174,7 +1163,7 @@ void Game::Cave::MapNode::draw((float, float, float))
  * Address:	8024399C
  * Size:	000008
  */
-void Game::Cave::MapNode::getNodeOffsetX(void)
+void Cave::MapNode::getNodeOffsetX(void)
 {
 	/*
 	.loc_0x0:
@@ -1188,7 +1177,7 @@ void Game::Cave::MapNode::getNodeOffsetX(void)
  * Address:	802439A4
  * Size:	000008
  */
-void Game::Cave::MapNode::getNodeOffsetY(void)
+void Cave::MapNode::getNodeOffsetY(void)
 {
 	/*
 	.loc_0x0:
@@ -1202,7 +1191,7 @@ void Game::Cave::MapNode::getNodeOffsetY(void)
  * Address:	802439AC
  * Size:	000008
  */
-void Game::Cave::MapNode::getEnemyScore(void)
+void Cave::MapNode::getEnemyScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1216,7 +1205,7 @@ void Game::Cave::MapNode::getEnemyScore(void)
  * Address:	802439B4
  * Size:	000008
  */
-void Game::Cave::MapNode::getNodeScore(void)
+void Cave::MapNode::getNodeScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1230,7 +1219,7 @@ void Game::Cave::MapNode::getNodeScore(void)
  * Address:	802439BC
  * Size:	000008
  */
-void Game::Cave::MapNode::getVersusScore(void)
+void Cave::MapNode::getVersusScore(void)
 {
 	/*
 	.loc_0x0:
@@ -1244,7 +1233,7 @@ void Game::Cave::MapNode::getVersusScore(void)
  * Address:	802439C4
  * Size:	000024
  */
-void Game::Cave::MapNode::getUnitName(void)
+void Cave::MapNode::getUnitName(void)
 {
 	/*
 	.loc_0x0:
@@ -1265,7 +1254,7 @@ void Game::Cave::MapNode::getUnitName(void)
  * Address:	802439E8
  * Size:	0000D0
  */
-void Game::Cave::MapNode::getNodeCentreOffset((float&, float&))
+void Cave::MapNode::getNodeCentreOffset(float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -1329,7 +1318,7 @@ void Game::Cave::MapNode::getNodeCentreOffset((float&, float&))
  * Address:	80243AB8
  * Size:	000024
  */
-void Game::Cave::MapNode::getDirection(void)
+void Cave::MapNode::getDirection(void)
 {
 	/*
 	.loc_0x0:
@@ -1350,7 +1339,7 @@ void Game::Cave::MapNode::getDirection(void)
  * Address:	80243ADC
  * Size:	0001C4
  */
-void Game::Cave::MapNode::getBaseGenGlobalPosition((Game::Cave::BaseGen*))
+void Cave::MapNode::getBaseGenGlobalPosition(Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -1493,7 +1482,7 @@ void Game::Cave::MapNode::getBaseGenGlobalPosition((Game::Cave::BaseGen*))
  * Address:	80243CA0
  * Size:	00025C
  */
-void Game::Cave::MapNode::getDoorGlobalPosition((int))
+void Cave::MapNode::getDoorGlobalPosition(int)
 {
 	/*
 	.loc_0x0:
@@ -1680,7 +1669,7 @@ void Game::Cave::MapNode::getDoorGlobalPosition((int))
  * Address:	80243EFC
  * Size:	0000EC
  */
-void Game::Cave::MapNode::getBaseGenGlobalDirection((Game::Cave::BaseGen*))
+void Cave::MapNode::getBaseGenGlobalDirection(Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -1763,7 +1752,7 @@ void Game::Cave::MapNode::getBaseGenGlobalDirection((Game::Cave::BaseGen*))
  * Address:	80243FE8
  * Size:	000078
  */
-void Game::Cave::MapNode::getDoorGlobalDirection((int))
+void Cave::MapNode::getDoorGlobalDirection(int)
 {
 	/*
 	.loc_0x0:
@@ -1809,7 +1798,7 @@ void Game::Cave::MapNode::getDoorGlobalDirection((int))
  * Address:	80244060
  * Size:	000034
  */
-void Game::Cave::MapNode::getNumDoors(void)
+void Cave::MapNode::getNumDoors(void)
 {
 	/*
 	.loc_0x0:
@@ -1834,7 +1823,7 @@ void Game::Cave::MapNode::getNumDoors(void)
  * Address:	80244094
  * Size:	000060
  */
-void Game::Cave::MapNode::__dt(void)
+Cave::MapNode::~MapNode(void)
 {
 	/*
 	.loc_0x0:
@@ -1866,3 +1855,4 @@ void Game::Cave::MapNode::__dt(void)
 	  blr
 	*/
 }
+} // namespace Game

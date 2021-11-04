@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	80451790
  * Size:	000134
  */
-void Screen::SceneBase::__ct(void)
+SceneBase::SceneBase(void)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +100,7 @@ void Screen::SceneBase::__ct(void)
  * Address:	804518C4
  * Size:	000030
  */
-void Screen::SceneBase::searchObj((char*))
+void SceneBase::searchObj(char*)
 {
 	/*
 	.loc_0x0:
@@ -132,7 +124,7 @@ void Screen::SceneBase::searchObj((char*))
  * Address:	804518F4
  * Size:	000038
  */
-void Screen::SceneBase::destroy(void)
+void SceneBase::destroy(void)
 {
 	/*
 	.loc_0x0:
@@ -160,7 +152,7 @@ void Screen::SceneBase::destroy(void)
  * Address:	8045192C
  * Size:	0000BC
  */
-void Screen::SceneBase::create(void)
+void SceneBase::create(void)
 {
 	/*
 	.loc_0x0:
@@ -225,7 +217,7 @@ void Screen::SceneBase::create(void)
  * Address:	804519E8
  * Size:	00015C
  */
-void Screen::SceneBase::update(void)
+void SceneBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -342,7 +334,7 @@ void Screen::SceneBase::update(void)
  * Address:	80451B44
  * Size:	000040
  */
-void Screen::SceneBase::updateActive(void)
+void SceneBase::updateActive(void)
 {
 	/*
 	.loc_0x0:
@@ -370,14 +362,14 @@ void Screen::SceneBase::updateActive(void)
  * Address:	80451B84
  * Size:	000004
  */
-void Screen::SceneBase::doUpdateActive(void) { }
+void SceneBase::doUpdateActive(void) { }
 
 /*
  * --INFO--
  * Address:	80451B88
  * Size:	000090
  */
-void Screen::SceneBase::draw((Graphics&))
+void SceneBase::draw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -431,7 +423,7 @@ void Screen::SceneBase::draw((Graphics&))
  * Address:	80451C18
  * Size:	000050
  */
-void Screen::SceneBase::start((Screen::StartSceneArg*))
+void SceneBase::start(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -467,7 +459,7 @@ void Screen::SceneBase::start((Screen::StartSceneArg*))
  * Address:	80451C68
  * Size:	000028
  */
-void Screen::SceneBase::doStart((Screen::StartSceneArg*))
+void SceneBase::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -489,7 +481,7 @@ void Screen::SceneBase::doStart((Screen::StartSceneArg*))
  * Address:	80451C90
  * Size:	000068
  */
-void Screen::SceneBase::end((Screen::EndSceneArg*))
+void SceneBase::end(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -535,7 +527,7 @@ void Screen::SceneBase::end((Screen::EndSceneArg*))
  * Address:	80451CF8
  * Size:	000024
  */
-void Screen::SceneBase::doEnd((Screen::EndSceneArg*))
+void SceneBase::doEnd(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -556,7 +548,7 @@ void Screen::SceneBase::doEnd((Screen::EndSceneArg*))
  * Address:	80451D1C
  * Size:	00002C
  */
-void Screen::SceneBase::userCallBackFunc((Resource::MgrCommand*))
+void SceneBase::userCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -579,7 +571,7 @@ void Screen::SceneBase::userCallBackFunc((Resource::MgrCommand*))
  * Address:	80451D48
  * Size:	00002C
  */
-void Screen::SceneBase::createObj((JKRArchive*))
+void SceneBase::createObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -602,7 +594,7 @@ void Screen::SceneBase::createObj((JKRArchive*))
  * Address:	80451D74
  * Size:	00005C
  */
-void Screen::SceneBase::registObj((Screen::ObjBase*, JKRArchive*))
+void SceneBase::registObj(Screen::ObjBase*, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -637,7 +629,7 @@ void Screen::SceneBase::registObj((Screen::ObjBase*, JKRArchive*))
  * Address:	80451DD0
  * Size:	000078
  */
-void Screen::SceneBase::confirmSetScene((Screen::SetSceneArg&))
+void SceneBase::confirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -681,7 +673,7 @@ void Screen::SceneBase::confirmSetScene((Screen::SetSceneArg&))
  * Address:	80451E48
  * Size:	000078
  */
-void Screen::SceneBase::confirmStartScene((Screen::StartSceneArg*))
+void SceneBase::confirmStartScene(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -725,7 +717,7 @@ void Screen::SceneBase::confirmStartScene((Screen::StartSceneArg*))
  * Address:	80451EC0
  * Size:	000070
  */
-void Screen::SceneBase::confirmEndScene((Screen::EndSceneArg*))
+void SceneBase::confirmEndScene(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -767,7 +759,7 @@ void Screen::SceneBase::confirmEndScene((Screen::EndSceneArg*))
  * Address:	80451F30
  * Size:	000030
  */
-void Screen::SceneBase::setScene((Screen::SetSceneArg&))
+void SceneBase::setScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -791,7 +783,7 @@ void Screen::SceneBase::setScene((Screen::SetSceneArg&))
  * Address:	80451F60
  * Size:	000030
  */
-void Screen::SceneBase::startScene((Screen::StartSceneArg*))
+void SceneBase::startScene(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -815,7 +807,7 @@ void Screen::SceneBase::startScene((Screen::StartSceneArg*))
  * Address:	80451F90
  * Size:	000030
  */
-void Screen::SceneBase::endScene((Screen::EndSceneArg*))
+void SceneBase::endScene(Screen::EndSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -839,7 +831,7 @@ void Screen::SceneBase::endScene((Screen::EndSceneArg*))
  * Address:	80451FC0
  * Size:	000100
  */
-void Screen::SceneBase::setBackupScene(void)
+void SceneBase::setBackupScene(void)
 {
 	/*
 	.loc_0x0:
@@ -919,7 +911,7 @@ void Screen::SceneBase::setBackupScene(void)
  * Address:	........
  * Size:	000020
  */
-void Screen::SceneBase::getBackupSceneType(void)
+void SceneBase::getBackupSceneType(void)
 {
 	// UNUSED FUNCTION
 }
@@ -929,7 +921,7 @@ void Screen::SceneBase::getBackupSceneType(void)
  * Address:	804520C0
  * Size:	000130
  */
-void Screen::SceneBase::setDispMember((og::Screen::DispMemberBase*))
+void SceneBase::setDispMember(og::Screen::DispMemberBase*)
 {
 	/*
 	.loc_0x0:
@@ -1023,7 +1015,7 @@ void Screen::SceneBase::setDispMember((og::Screen::DispMemberBase*))
  * Address:	804521F0
  * Size:	000040
  */
-void Screen::SceneBase::getFinishState(void)
+void SceneBase::getFinishState(void)
 {
 	/*
 	.loc_0x0:
@@ -1055,7 +1047,7 @@ void Screen::SceneBase::getFinishState(void)
  * Address:	80452230
  * Size:	000054
  */
-void Screen::SceneBase::getGamePad( const
+void SceneBase::getGamePad() const
 {
 	/*
 	.loc_0x0:
@@ -1090,7 +1082,8 @@ void Screen::SceneBase::getGamePad( const
  * Address:	80452284
  * Size:	000044
  */
-void Screen::SceneBase::setColorBG( (unsigned char, unsigned char, unsigned char, unsigned char))
+void SceneBase::setColorBG(unsigned char, unsigned char, unsigned char,
+                           unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1119,16 +1112,14 @@ void Screen::SceneBase::setColorBG( (unsigned char, unsigned char, unsigned char
  * Address:	804522C8
  * Size:	000004
  */
-void Screen::Mgr::setColorBG( (JUtility::TColor &))
-{
-}
+void Mgr::setColorBG(JUtility::TColor&) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000030
  */
-void Screen::SceneBase::setBGMode( (int))
+void SceneBase::setBGMode(int)
 {
 	// UNUSED FUNCTION
 }
@@ -1138,16 +1129,17 @@ void Screen::SceneBase::setBGMode( (int))
  * Address:	804522CC
  * Size:	000004
  */
-void Screen::Mgr::setBGMode( (int))
-{
-}
+void Mgr::setBGMode(int) { }
+
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	804522D0
  * Size:	000030
  */
-void Delegate1<Screen::SceneBase, Resource::MgrCommand *>::invoke(Resource::MgrCommand *)
+void Delegate1<Screen::SceneBase, Resource::MgrCommand*>::invoke(
+    Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:

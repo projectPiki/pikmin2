@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802E6CE4
  * Size:	000050
  */
-void Game::KumaKochappy::Mgr::__ct((int, unsigned char))
+KumaKochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::KumaKochappy::Mgr::__ct((int, unsigned char))
  * Address:	802E6D34
  * Size:	000048
  */
-void Game::KumaKochappy::Mgr::doAlloc(void)
+void KumaKochappy::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::KumaKochappy::Mgr::doAlloc(void)
  * Address:	802E6D7C
  * Size:	000098
  */
-void Game::KumaKochappy::Parms::__ct(void)
+KumaKochappy::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +123,7 @@ void Game::KumaKochappy::Parms::__ct(void)
  * Address:	802E6E14
  * Size:	000060
  */
-void Game::KumaKochappy::Mgr::createObj((int))
+void KumaKochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +159,7 @@ void Game::KumaKochappy::Mgr::createObj((int))
  * Address:	802E6E74
  * Size:	0000BC
  */
-void Game::KumaKochappy::Obj::__dt(void)
+KumaKochappy::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +222,7 @@ void Game::KumaKochappy::Obj::__dt(void)
  * Address:	802E6F30
  * Size:	000010
  */
-void Game::KumaKochappy::Mgr::getEnemy((int))
+void KumaKochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +238,7 @@ void Game::KumaKochappy::Mgr::getEnemy((int))
  * Address:	802E6F40
  * Size:	000050
  */
-void Game::KumaKochappy::Parms::read((Stream&))
+void KumaKochappy::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -278,7 +270,7 @@ void Game::KumaKochappy::Parms::read((Stream&))
  * Address:	802E6F90
  * Size:	0000B0
  */
-void Game::KumaKochappy::Mgr::__dt(void)
+KumaKochappy::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -338,14 +330,14 @@ void Game::KumaKochappy::Mgr::__dt(void)
  * Address:	802E7040
  * Size:	000008
  */
-u32 Game::KumaKochappy::Mgr::getEnemyTypeID(void) { return 0x4C; }
+u32 KumaKochappy::Mgr::getEnemyTypeID(void) { return 0x4C; }
 
 /*
  * --INFO--
  * Address:	802E7048
  * Size:	000008
  */
-void @4 @Game::KumaKochappy::Mgr::__dt(void)
+@4 @Game::KumaKochappy::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -353,3 +345,4 @@ void @4 @Game::KumaKochappy::Mgr::__dt(void)
 	  b         -0xBC
 	*/
 }
+} // namespace Game

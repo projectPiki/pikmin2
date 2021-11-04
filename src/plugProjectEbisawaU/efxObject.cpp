@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace efx {
 
 /*
  * --INFO--
  * Address:	803B57BC
  * Size:	000108
  */
-void efx::TOtakaraDive::create((efx::Arg*))
+void TOtakaraDive::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -99,7 +91,7 @@ void efx::TOtakaraDive::create((efx::Arg*))
  * Address:	803B58C4
  * Size:	000108
  */
-void efx::TTsuyuGrow0::create((efx::Arg*))
+void TTsuyuGrow0::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +175,7 @@ void efx::TTsuyuGrow0::create((efx::Arg*))
  * Address:	803B59CC
  * Size:	000100
  */
-void efx::TOtakaraApL::create((efx::Arg*))
+void TOtakaraApL::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +257,7 @@ void efx::TOtakaraApL::create((efx::Arg*))
  * Address:	803B5ACC
  * Size:	0000E8
  */
-void efx::TOtakaraApS::create((efx::Arg*))
+void TOtakaraApS::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +333,7 @@ void efx::TOtakaraApS::create((efx::Arg*))
  * Address:	803B5BB4
  * Size:	000314
  */
-void efx::TOtakaraAp::create((efx::Arg*))
+void TOtakaraAp::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -564,7 +556,7 @@ void efx::TOtakaraAp::create((efx::Arg*))
  * Address:	803B5EC8
  * Size:	000124
  */
-void efx::TEgateBC::create((efx::Arg*))
+void TEgateBC::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -659,7 +651,7 @@ void efx::TEgateBC::create((efx::Arg*))
  * Address:	803B5FEC
  * Size:	000124
  */
-void efx::TKouhaiDamage::create((efx::Arg*))
+void TKouhaiDamage::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -760,7 +752,7 @@ void efx::TKouhaiDamage::create((efx::Arg*))
  * Address:	803B6110
  * Size:	0000E8
  */
-void efx::TPelkira_ver01::create((efx::Arg*))
+void TPelkira_ver01::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -844,7 +836,7 @@ void efx::TPelkira_ver01::create((efx::Arg*))
  * Address:	803B61F8
  * Size:	0000D0
  */
-void efx::Container::create((efx::Arg*))
+void Container::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -920,7 +912,7 @@ void efx::Container::create((efx::Arg*))
  * Address:	803B62C8
  * Size:	0000E8
  */
-void efx::ContainerAct::create((efx::Arg*))
+void ContainerAct::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -1002,7 +994,7 @@ void efx::ContainerAct::create((efx::Arg*))
  * Address:	803B63B0
  * Size:	0001B0
  */
-void efx::WarpZone::setRateLOD((int, bool))
+void WarpZone::setRateLOD(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1138,7 +1130,7 @@ void efx::WarpZone::setRateLOD((int, bool))
  * Address:	803B6560
  * Size:	00009C
  */
-void efx::Container::__dt(void)
+Container::~Container(void)
 {
 	/*
 	.loc_0x0:
@@ -1193,7 +1185,7 @@ void efx::Container::__dt(void)
  * Address:	803B65FC
  * Size:	00009C
  */
-void efx::TPelkira_ver01::__dt(void)
+TPelkira_ver01::~TPelkira_ver01(void)
 {
 	/*
 	.loc_0x0:
@@ -1248,21 +1240,21 @@ void efx::TPelkira_ver01::__dt(void)
  * Address:	803B6698
  * Size:	000004
  */
-void efx::TOtakaraAp::forceKill(void) { }
+void TOtakaraAp::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803B669C
  * Size:	000004
  */
-void efx::TOtakaraAp::fade(void) { }
+void TOtakaraAp::fade(void) { }
 
 /*
  * --INFO--
  * Address:	803B66A0
  * Size:	000008
  */
-void @4 @efx::TPelkira_ver01::__dt(void)
+@4 @efx::TPelkira_ver01::~TPelkira_ver01(void)
 {
 	/*
 	.loc_0x0:
@@ -1276,7 +1268,7 @@ void @4 @efx::TPelkira_ver01::__dt(void)
  * Address:	803B66A8
  * Size:	000008
  */
-void @4 @efx::Container::__dt(void)
+@4 @efx::Container::~Container(void)
 {
 	/*
 	.loc_0x0:
@@ -1284,3 +1276,4 @@ void @4 @efx::Container::__dt(void)
 	  b         -0x14C
 	*/
 }
+} // namespace efx

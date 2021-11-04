@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802D3924
  * Size:	000008
  */
-void Game::OniKurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void OniKurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::OniKurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	802D392C
  * Size:	000008
  */
-void Game::OniKurage::ProperAnimator::getAnimator(int)
+void OniKurage::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::OniKurage::ProperAnimator::getAnimator(int)
  * Address:	802D3934
  * Size:	00005C
  */
-void Game::OniKurage::ProperAnimator::~ProperAnimator()
+OniKurage::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::OniKurage::ProperAnimator::~ProperAnimator()
  * Address:	802D3990
  * Size:	000008
  */
-void Game::OniKurage::ProperAnimator::getAnimator()
+void OniKurage::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::OniKurage::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

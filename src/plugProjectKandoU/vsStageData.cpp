@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000088
  */
-void Game::ChallengeGame::StageData::__ct(void)
+ChallengeGame::StageData::StageData(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Game::ChallengeGame::StageData::__ct(void)
  * Address:	8022D68C
  * Size:	000238
  */
-void Game::ChallengeGame::StageData::read((Stream&))
+void ChallengeGame::StageData::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -201,7 +193,7 @@ void Game::ChallengeGame::StageData::read((Stream&))
  * Address:	........
  * Size:	0001DC
  */
-void Game::ChallengeGame::StageData::write((Stream&))
+void ChallengeGame::StageData::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +203,7 @@ void Game::ChallengeGame::StageData::write((Stream&))
  * Address:	8022D8C4
  * Size:	0000B4
  */
-void Game::ChallengeGame::StageList::__ct(void)
+ChallengeGame::StageList::StageList(void)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +260,7 @@ void Game::ChallengeGame::StageList::__ct(void)
  * Address:	8022D978
  * Size:	000060
  */
-void Game::ChallengeGame::StageData::__dt(void)
+ChallengeGame::StageData::~StageData(void)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +298,7 @@ void Game::ChallengeGame::StageData::__dt(void)
  * Address:	8022D9D8
  * Size:	00010C
  */
-void Game::ChallengeGame::StageList::read((Stream&))
+void ChallengeGame::StageList::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -397,7 +389,7 @@ void Game::ChallengeGame::StageList::read((Stream&))
  * Address:	........
  * Size:	0000A0
  */
-void Game::ChallengeGame::StageList::write((Stream&))
+void ChallengeGame::StageList::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -407,7 +399,7 @@ void Game::ChallengeGame::StageList::write((Stream&))
  * Address:	8022DAE4
  * Size:	000084
  */
-void Game::ChallengeGame::StageList::getStageData((int))
+void ChallengeGame::StageList::getStageData(int)
 {
 	/*
 	.loc_0x0:
@@ -456,7 +448,7 @@ void Game::ChallengeGame::StageList::getStageData((int))
  * Address:	........
  * Size:	000090
  */
-void Game::VsGame::StageData::__ct(void)
+VsGame::StageData::StageData(void)
 {
 	// UNUSED FUNCTION
 }
@@ -466,7 +458,7 @@ void Game::VsGame::StageData::__ct(void)
  * Address:	........
  * Size:	000284
  */
-void Game::VsGame::StageData::read((Stream&))
+void VsGame::StageData::read(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -476,7 +468,7 @@ void Game::VsGame::StageData::read((Stream&))
  * Address:	........
  * Size:	00019C
  */
-void Game::VsGame::StageData::write((Stream&))
+void VsGame::StageData::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -486,7 +478,7 @@ void Game::VsGame::StageData::write((Stream&))
  * Address:	8022DB68
  * Size:	0000BC
  */
-void Game::VsGame::StageList::__ct(void)
+VsGame::StageList::StageList(void)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +537,7 @@ void Game::VsGame::StageList::__ct(void)
  * Address:	8022DC24
  * Size:	000060
  */
-void Game::VsGame::StageData::__dt(void)
+VsGame::StageData::~StageData(void)
 {
 	/*
 	.loc_0x0:
@@ -583,7 +575,7 @@ void Game::VsGame::StageData::__dt(void)
  * Address:	8022DC84
  * Size:	000350
  */
-void Game::VsGame::StageList::read((Stream&))
+void VsGame::StageList::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -831,7 +823,7 @@ void Game::VsGame::StageList::read((Stream&))
  * Address:	........
  * Size:	0001F8
  */
-void Game::VsGame::StageList::write((Stream&))
+void VsGame::StageList::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
@@ -841,7 +833,7 @@ void Game::VsGame::StageList::write((Stream&))
  * Address:	8022DFD4
  * Size:	000084
  */
-void Game::VsGame::StageList::getStageData((int))
+void VsGame::StageList::getStageData(int)
 {
 	/*
 	.loc_0x0:
@@ -890,7 +882,7 @@ void Game::VsGame::StageList::getStageData((int))
  * Address:	8022E058
  * Size:	000084
  */
-void Game::VsGame::StageList::__dt(void)
+VsGame::StageList::~StageList(void)
 {
 	/*
 	.loc_0x0:
@@ -939,7 +931,7 @@ void Game::VsGame::StageList::__dt(void)
  * Address:	8022E0DC
  * Size:	000084
  */
-void Game::ChallengeGame::StageList::__dt(void)
+ChallengeGame::StageList::~StageList(void)
 {
 	/*
 	.loc_0x0:
@@ -982,6 +974,8 @@ void Game::ChallengeGame::StageList::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

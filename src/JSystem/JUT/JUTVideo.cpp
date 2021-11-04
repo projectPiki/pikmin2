@@ -77,7 +77,7 @@ void JUTVideo::destroyManager()
  * Address:	800337E4
  * Size:	0000F4
  */
-void JUTVideo::JUTVideo(const _GXRenderModeObj*)
+JUTVideo::JUTVideo(const _GXRenderModeObj*)
 {
 	/*
 	.loc_0x0:
@@ -150,7 +150,7 @@ void JUTVideo::JUTVideo(const _GXRenderModeObj*)
  * Address:	800338D8
  * Size:	000068
  */
-void JUTVideo::~JUTVideo()
+JUTVideo::~JUTVideo()
 {
 	/*
 	.loc_0x0:

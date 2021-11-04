@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/PelletConfig.h"
 #include "JSystem/JUTException.h"
 #include "PrimTagParm.h"

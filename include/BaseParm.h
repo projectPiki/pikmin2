@@ -18,13 +18,12 @@ struct BaseParm {
 };
 
 template <typename T> struct Parm : public BaseParm {
-	inline Parm(Parameters* parameters, ulong id, char* comment, T value, T min, T max)
-		: BaseParm(parameters, id, comment)
-		, m_value(value)
-		, m_min(min)
-		, m_max(max)
-	{
-	};
+	inline Parm(Parameters* parameters, ulong id, char* comment, T value, T min,
+	            T max)
+	    : BaseParm(parameters, id, comment)
+	    , m_value(value)
+	    , m_min(min)
+	    , m_max(max) {};
 	// Parm(Parameters*, ulong, char*);
 	virtual int size();
 	virtual void write(Stream&);

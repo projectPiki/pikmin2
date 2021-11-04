@@ -45,7 +45,7 @@ namespace Morimura {
  * Address:	803491C8
  * Size:	000084
  */
-void TTestBase::TTestBase(char*)
+TTestBase::TTestBase(char*)
 {
 	/*
 	.loc_0x0:
@@ -90,7 +90,7 @@ void TTestBase::TTestBase(char*)
  * Address:	8034924C
  * Size:	000020
  */
-void TTestBase::doStart((Screen::StartSceneArg const*))
+void TTestBase::doStart(Screen::StartSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -110,7 +110,7 @@ void TTestBase::doStart((Screen::StartSceneArg const*))
  * Address:	8034926C
  * Size:	000010
  */
-void TTestBase::doEnd((Screen::EndSceneArg const*))
+void TTestBase::doEnd(Screen::EndSceneArg const*)
 {
 	/*
 	.loc_0x0:
@@ -267,7 +267,7 @@ void TTestBase::doUpdateFadeout(void)
  * Address:	803493F0
  * Size:	000008
  */
-void @24 @Morimura::TTestBase::__dt(void)
+@24 @Morimura::TTestBase::~TTestBase(void)
 {
 	/*
 	.loc_0x0:

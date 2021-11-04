@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80272BC4
  * Size:	000138
  */
-void Game::Sarai::Obj::Obj()
+Sarai::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,14 +103,14 @@ void Game::Sarai::Obj::Obj()
  * Address:	80272CFC
  * Size:	000004
  */
-void Game::Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	80272D00
  * Size:	000078
  */
-void Game::Sarai::Obj::onInit(Game::CreatureInitArg*)
+void Sarai::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -150,7 +152,7 @@ void Game::Sarai::Obj::onInit(Game::CreatureInitArg*)
  * Address:	80272D78
  * Size:	000048
  */
-void Game::Sarai::Obj::doUpdate()
+void Sarai::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::Sarai::Obj::doUpdate()
  * Address:	80272DC0
  * Size:	00004C
  */
-void Game::Sarai::Obj::setFSM(Game::Sarai::FSM*)
+void Sarai::Obj::setFSM(Game::Sarai::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -211,14 +213,14 @@ void Game::Sarai::Obj::setFSM(Game::Sarai::FSM*)
  * Address:	80272E0C
  * Size:	000004
  */
-void Game::Sarai::Obj::doDirectDraw(Graphics&) { }
+void Sarai::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80272E10
  * Size:	000020
  */
-void Game::Sarai::Obj::doDebugDraw(Graphics&)
+void Sarai::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +240,7 @@ void Game::Sarai::Obj::doDebugDraw(Graphics&)
  * Address:	80272E30
  * Size:	000140
  */
-void Game::Sarai::Obj::getShadowParam(Game::ShadowParam&)
+void Sarai::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +342,7 @@ void Game::Sarai::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80272F70
  * Size:	000034
  */
-void Game::Sarai::Obj::doStartStoneState()
+void Sarai::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -365,7 +367,7 @@ void Game::Sarai::Obj::doStartStoneState()
  * Address:	80272FA4
  * Size:	00005C
  */
-void Game::Sarai::Obj::doFinishStoneState()
+void Sarai::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -402,7 +404,7 @@ void Game::Sarai::Obj::doFinishStoneState()
  * Address:	80273000
  * Size:	000028
  */
-void Game::Sarai::Obj::startCarcassMotion()
+void Sarai::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -424,7 +426,7 @@ void Game::Sarai::Obj::startCarcassMotion()
  * Address:	80273028
  * Size:	0000A8
  */
-void Game::Sarai::Obj::initMouthSlots()
+void Sarai::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -482,7 +484,7 @@ void Game::Sarai::Obj::initMouthSlots()
  * Address:	802730D0
  * Size:	000108
  */
-void Game::Sarai::Obj::setHeightVelocity()
+void Sarai::Obj::setHeightVelocity()
 {
 	/*
 	.loc_0x0:
@@ -568,7 +570,7 @@ void Game::Sarai::Obj::setHeightVelocity()
  * Address:	802731D8
  * Size:	000230
  */
-void Game::Sarai::Obj::setRandTarget()
+void Sarai::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -732,7 +734,7 @@ void Game::Sarai::Obj::setRandTarget()
  * Address:	80273408
  * Size:	000294
  */
-void Game::Sarai::Obj::fallMeckGround()
+void Sarai::Obj::fallMeckGround()
 {
 	/*
 	.loc_0x0:
@@ -927,7 +929,7 @@ void Game::Sarai::Obj::fallMeckGround()
  * Address:	8027369C
  * Size:	00007C
  */
-void Game::Sarai::Obj::getCatchTargetNum()
+void Sarai::Obj::getCatchTargetNum()
 {
 	/*
 	.loc_0x0:
@@ -976,7 +978,7 @@ void Game::Sarai::Obj::getCatchTargetNum()
  * Address:	80273718
  * Size:	000144
  */
-void Game::Sarai::Obj::getNextStateOnHeight()
+void Sarai::Obj::getNextStateOnHeight()
 {
 	/*
 	.loc_0x0:
@@ -1083,7 +1085,7 @@ void Game::Sarai::Obj::getNextStateOnHeight()
  * Address:	8027385C
  * Size:	0000B0
  */
-void Game::Sarai::Obj::flickStickTarget()
+void Sarai::Obj::flickStickTarget()
 {
 	/*
 	.loc_0x0:
@@ -1145,7 +1147,7 @@ void Game::Sarai::Obj::flickStickTarget()
  * Address:	8027390C
  * Size:	000080
  */
-void Game::Sarai::Obj::getStickPikminNum()
+void Sarai::Obj::getStickPikminNum()
 {
 	/*
 	.loc_0x0:
@@ -1195,7 +1197,7 @@ void Game::Sarai::Obj::getStickPikminNum()
  * Address:	8027398C
  * Size:	0003D0
  */
-void Game::Sarai::Obj::getAttackableTarget()
+void Sarai::Obj::getAttackableTarget()
 {
 	/*
 	.loc_0x0:
@@ -1473,7 +1475,7 @@ void Game::Sarai::Obj::getAttackableTarget()
  * Address:	80273D5C
  * Size:	000024
  */
-void Game::Sarai::Obj::catchTarget()
+void Sarai::Obj::catchTarget()
 {
 	/*
 	.loc_0x0:
@@ -1494,7 +1496,7 @@ void Game::Sarai::Obj::catchTarget()
  * Address:	80273D80
  * Size:	000044
  */
-void Game::Sarai::Obj::createDownEffect()
+void Sarai::Obj::createDownEffect()
 {
 	/*
 	.loc_0x0:
@@ -1523,7 +1525,7 @@ void Game::Sarai::Obj::createDownEffect()
  * Address:	80273DC4
  * Size:	000008
  */
-void Game::Sarai::Obj::getDownSmokeScale()
+void Sarai::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1537,21 +1539,21 @@ void Game::Sarai::Obj::getDownSmokeScale()
  * Address:	80273DCC
  * Size:	000004
  */
-void Game::Sarai::Obj::inWaterCallback(Game::WaterBox*) { }
+void Sarai::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80273DD0
  * Size:	000004
  */
-void Game::Sarai::Obj::outWaterCallback() { }
+void Sarai::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	80273DD4
  * Size:	000008
  */
-void Game::Sarai::Obj::getMouthSlots()
+void Sarai::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -1565,4 +1567,5 @@ void Game::Sarai::Obj::getMouthSlots()
  * Address:	80273DDC
  * Size:	000008
  */
-u32 Game::Sarai::Obj::getEnemyTypeID() { return 0x17; }
+u32 Sarai::Obj::getEnemyTypeID() { return 0x17; }
+} // namespace Game

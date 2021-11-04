@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800A4B48
  * Size:	00002C
  */
-void JASDSPChannel::JASDSPChannel()
+JASDSPChannel::JASDSPChannel()
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800A8840
  * Size:	000060
  */
-void JASTaskThread::JASTaskThread(int, int, unsigned long)
+JASTaskThread::JASTaskThread(int, int, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -41,7 +41,7 @@ void JASTaskThread::JASTaskThread(int, int, unsigned long)
  * Address:	800A88A0
  * Size:	000128
  */
-void JASTaskThread::~JASTaskThread()
+JASTaskThread::~JASTaskThread()
 {
 	/*
 	.loc_0x0:

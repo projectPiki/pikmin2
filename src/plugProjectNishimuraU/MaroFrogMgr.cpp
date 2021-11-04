@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8026152C
  * Size:	000050
  */
-void Game::MaroFrog::Mgr::Mgr(int, unsigned char)
+MaroFrog::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::MaroFrog::Mgr::Mgr(int, unsigned char)
  * Address:	8026157C
  * Size:	000048
  */
-void Game::MaroFrog::Mgr::doAlloc()
+void MaroFrog::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -69,7 +71,7 @@ void Game::MaroFrog::Mgr::doAlloc()
  * Address:	802615C4
  * Size:	000060
  */
-void Game::MaroFrog::Mgr::createObj(int)
+void MaroFrog::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ void Game::MaroFrog::Mgr::createObj(int)
  * Address:	80261624
  * Size:	0000EC
  */
-void Game::MaroFrog::Obj::~Obj()
+MaroFrog::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +182,7 @@ void Game::MaroFrog::Obj::~Obj()
  * Address:	80261710
  * Size:	000010
  */
-void Game::MaroFrog::Mgr::getEnemy(int)
+void MaroFrog::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -196,7 +198,7 @@ void Game::MaroFrog::Mgr::getEnemy(int)
  * Address:	80261720
  * Size:	0000B0
  */
-void Game::MaroFrog::Mgr::~Mgr()
+MaroFrog::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -256,14 +258,14 @@ void Game::MaroFrog::Mgr::~Mgr()
  * Address:	802617D0
  * Size:	000008
  */
-u32 Game::MaroFrog::Mgr::getEnemyTypeID() { return 0x12; }
+u32 MaroFrog::Mgr::getEnemyTypeID() { return 0x12; }
 
 /*
  * --INFO--
  * Address:	802617D8
  * Size:	000008
  */
-void Game::MaroFrog::Mgr::@4 @__dt()
+MaroFrog::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -271,3 +273,4 @@ void Game::MaroFrog::Mgr::@4 @__dt()
 	  b         -0xBC
 	*/
 }
+} // namespace Game

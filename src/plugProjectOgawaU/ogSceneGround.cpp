@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	8030DA00
  * Size:	00000C
  */
-void og::newScreen::initGround(void)
+void newScreen::initGround(void)
 {
 	/*
 	.loc_0x0:
@@ -20,7 +22,7 @@ void og::newScreen::initGround(void)
  * Address:	8030DA0C
  * Size:	000054
  */
-void og::newScreen::Ground::__ct(void)
+newScreen::Ground::Ground(void)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +55,7 @@ void og::newScreen::Ground::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::Ground::__dt(void)
+newScreen::Ground::~Ground(void)
 {
 	// UNUSED FUNCTION
 }
@@ -63,14 +65,14 @@ void og::newScreen::Ground::__dt(void)
  * Address:	8030DA60
  * Size:	000004
  */
-void og::newScreen::Ground::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::Ground::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	8030DA64
  * Size:	0000C0
  */
-void og::newScreen::Ground::doCreateObj((JKRArchive*))
+void newScreen::Ground::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +138,7 @@ void og::newScreen::Ground::doCreateObj((JKRArchive*))
  * Address:	8030DB24
  * Size:	00004C
  */
-void og::newScreen::Ground::doStart((Screen::StartSceneArg*))
+void newScreen::Ground::doStart(Screen::StartSceneArg*)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +169,7 @@ void og::newScreen::Ground::doStart((Screen::StartSceneArg*))
  * Address:	8030DB70
  * Size:	000310
  */
-void og::newScreen::Ground::doUpdateActive(void)
+void newScreen::Ground::doUpdateActive(void)
 {
 	/*
 	.loc_0x0:
@@ -397,7 +399,7 @@ void og::newScreen::Ground::doUpdateActive(void)
  * Address:	8030DE80
  * Size:	00000C
  */
-void og::newScreen::Ground::getResName( const
+void newScreen::Ground::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -412,17 +414,14 @@ void og::newScreen::Ground::getResName( const
  * Address:	8030DE8C
  * Size:	000008
  */
-u32  og::newScreen::Ground::getSceneType(void)
-{
-	return 0x2710;
-}
+u32 newScreen::Ground::getSceneType(void) { return 0x2710; }
 
 /*
  * --INFO--
  * Address:	8030DE94
  * Size:	00000C
  */
-void og::newScreen::Ground::getOwnerID(void)
+void newScreen::Ground::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -437,7 +436,7 @@ void og::newScreen::Ground::getOwnerID(void)
  * Address:	8030DEA0
  * Size:	000010
  */
-void og::newScreen::Ground::getMemberID(void)
+void newScreen::Ground::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -453,7 +452,5 @@ void og::newScreen::Ground::getMemberID(void)
  * Address:	8030DEB0
  * Size:	000008
  */
-u32  og::newScreen::Ground::isDrawInDemo( const
-{
-	return 0x0;
-}
+u32 newScreen::Ground::isDrawInDemo() const { return 0x0; }
+} // namespace og

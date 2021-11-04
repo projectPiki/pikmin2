@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803A53C8
  * Size:	000050
  */
-void Game::BlackMan::Mgr::__ct((int, unsigned char))
+BlackMan::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +39,7 @@ void Game::BlackMan::Mgr::__ct((int, unsigned char))
  * Address:	803A5418
  * Size:	000048
  */
-void Game::BlackMan::Mgr::doAlloc(void)
+void BlackMan::Mgr::doAlloc(void)
 {
 	/*
 	.loc_0x0:
@@ -81,7 +73,7 @@ void Game::BlackMan::Mgr::doAlloc(void)
  * Address:	803A5460
  * Size:	0000EC
  */
-void Game::BlackMan::Parms::__ct(void)
+BlackMan::Parms::Parms(void)
 {
 	/*
 	.loc_0x0:
@@ -154,7 +146,7 @@ void Game::BlackMan::Parms::__ct(void)
  * Address:	803A554C
  * Size:	000368
  */
-void Game::BlackMan::Parms::ProperParms::__ct(void)
+BlackMan::Parms::ProperParms::ProperParms(void)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +378,7 @@ void Game::BlackMan::Parms::ProperParms::__ct(void)
  * Address:	803A58B4
  * Size:	000020
  */
-void Game::BlackMan::Mgr::birth((Game::EnemyBirthArg&))
+void BlackMan::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -406,7 +398,7 @@ void Game::BlackMan::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	803A58D4
  * Size:	000094
  */
-void Game::BlackMan::Mgr::loadModelData(void)
+void BlackMan::Mgr::loadModelData(void)
 {
 	/*
 	.loc_0x0:
@@ -461,7 +453,7 @@ void Game::BlackMan::Mgr::loadModelData(void)
  * Address:	803A5968
  * Size:	0000BC
  */
-void Game::BlackMan::Mgr::loadTexData(void)
+void BlackMan::Mgr::loadTexData(void)
 {
 	/*
 	.loc_0x0:
@@ -526,7 +518,7 @@ void Game::BlackMan::Mgr::loadTexData(void)
  * Address:	803A5A24
  * Size:	00002C
  */
-void Game::BlackMan::Mgr::doLoadBmd((void*))
+void BlackMan::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +541,7 @@ void Game::BlackMan::Mgr::doLoadBmd((void*))
  * Address:	803A5A50
  * Size:	000124
  */
-void Game::BlackMan::Mgr::createModel(void)
+void BlackMan::Mgr::createModel(void)
 {
 	/*
 	.loc_0x0:
@@ -644,7 +636,7 @@ void Game::BlackMan::Mgr::createModel(void)
  * Address:	803A5B74
  * Size:	0000B0
  */
-void Game::BlackMan::Mgr::__dt(void)
+BlackMan::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -704,14 +696,14 @@ void Game::BlackMan::Mgr::__dt(void)
  * Address:	803A5C24
  * Size:	000008
  */
-u32 Game::BlackMan::Mgr::getEnemyTypeID(void) { return 0x63; }
+u32 BlackMan::Mgr::getEnemyTypeID(void) { return 0x63; }
 
 /*
  * --INFO--
  * Address:	803A5C2C
  * Size:	000060
  */
-void Game::BlackMan::Mgr::createObj((int))
+void BlackMan::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -747,7 +739,7 @@ void Game::BlackMan::Mgr::createObj((int))
  * Address:	803A5C8C
  * Size:	0000BC
  */
-void Game::BlackMan::Obj::__dt(void)
+BlackMan::Obj::~Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -810,7 +802,7 @@ void Game::BlackMan::Obj::__dt(void)
  * Address:	803A5D48
  * Size:	000010
  */
-void Game::BlackMan::Mgr::getEnemy((int))
+void BlackMan::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -826,7 +818,7 @@ void Game::BlackMan::Mgr::getEnemy((int))
  * Address:	803A5D58
  * Size:	000050
  */
-void Game::BlackMan::Parms::read((Stream&))
+void BlackMan::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -858,7 +850,7 @@ void Game::BlackMan::Parms::read((Stream&))
  * Address:	803A5DA8
  * Size:	000008
  */
-void @4 @Game::BlackMan::Mgr::__dt(void)
+@4 @Game::BlackMan::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -866,3 +858,4 @@ void @4 @Game::BlackMan::Mgr::__dt(void)
 	  b         -0x238
 	*/
 }
+} // namespace Game

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace PSGame {
+
 /*
  * --INFO--
  * Address:	8033F158
  * Size:	000210
  */
-void PSGame::SeMgr::SeMgr()
+SeMgr::SeMgr()
 {
 	/*
 	.loc_0x0:
@@ -171,7 +173,7 @@ void PSGame::SeMgr::SeMgr()
  * Address:	8033F368
  * Size:	000120
  */
-void PSGame::SeMgr::playMessageVoice(unsigned long, bool)
+void SeMgr::playMessageVoice(unsigned long, bool)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +277,7 @@ void PSGame::SeMgr::playMessageVoice(unsigned long, bool)
  * Address:	8033F488
  * Size:	00003C
  */
-void PSGame::SeMgr::stopMessageVoice()
+void SeMgr::stopMessageVoice()
 {
 	/*
 	.loc_0x0:
@@ -304,7 +306,7 @@ void PSGame::SeMgr::stopMessageVoice()
  * Address:	8033F4C4
  * Size:	000050
  */
-void PSGame::Rappa::Rappa()
+Rappa::Rappa()
 {
 	/*
 	.loc_0x0:
@@ -336,7 +338,7 @@ void PSGame::Rappa::Rappa()
  * Address:	8033F514
  * Size:	0000A0
  */
-void PSGame::Rappa::init(unsigned short)
+void Rappa::init(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -392,13 +394,10 @@ void PSGame::Rappa::init(unsigned short)
  * Address:	8033F5B4
  * Size:	000008
  */
-void PSGame::Rappa::setId(unsigned long)
+void Rappa::setId(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x18(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x18(r3)
+	_18 = a1;
 }
 
 /*
@@ -406,7 +405,7 @@ void PSGame::Rappa::setId(unsigned long)
  * Address:	8033F5BC
  * Size:	000098
  */
-void PSGame::Rappa::~Rappa()
+Rappa::~Rappa()
 {
 	/*
 	.loc_0x0:
@@ -464,7 +463,7 @@ void PSGame::Rappa::~Rappa()
  * Address:	8033F654
  * Size:	000170
  */
-void PSGame::Rappa::playRappa(bool, float, float, JAInter::Object*)
+void Rappa::playRappa(bool, float, float, JAInter::Object*)
 {
 	/*
 	.loc_0x0:
@@ -592,7 +591,7 @@ void PSGame::Rappa::playRappa(bool, float, float, JAInter::Object*)
  * Address:	8033F7C4
  * Size:	00003C
  */
-void PSGame::Rappa::syncCpu_WaitChk(JASTrack*)
+void Rappa::syncCpu_WaitChk(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -619,7 +618,7 @@ void PSGame::Rappa::syncCpu_WaitChk(JASTrack*)
  * Address:	8033F800
  * Size:	000008
  */
-void PSGame::Rappa::syncCpu_TblNo(JASTrack*)
+void Rappa::syncCpu_TblNo(JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -633,7 +632,7 @@ void PSGame::Rappa::syncCpu_TblNo(JASTrack*)
  * Address:	8033F808
  * Size:	000078
  */
-void PSGame::SetSe::SetSe(const char*, short, short)
+SetSe::SetSe(const char*, short, short)
 {
 	/*
 	.loc_0x0:
@@ -677,7 +676,7 @@ void PSGame::SetSe::SetSe(const char*, short, short)
  * Address:	8033F880
  * Size:	000038
  */
-void PSGame::SetSe::exec()
+void SetSe::exec()
 {
 	/*
 	.loc_0x0:
@@ -705,7 +704,7 @@ void PSGame::SetSe::exec()
  * Address:	8033F8B8
  * Size:	0000B8
  */
-void PSGame::SetSe::startSound(JAInter::Object*, unsigned long, unsigned long)
+void SetSe::startSound(JAInter::Object*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -769,7 +768,7 @@ void PSGame::SetSe::startSound(JAInter::Object*, unsigned long, unsigned long)
  * Address:	8033F970
  * Size:	0000A0
  */
-void PSGame::SetSe::playSystemSe(unsigned long, unsigned long)
+void SetSe::playSystemSe(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -827,7 +826,7 @@ void PSGame::SetSe::playSystemSe(unsigned long, unsigned long)
  * Address:	8033FA10
  * Size:	000084
  */
-void PSGame::SetSe::startCounter(unsigned long)
+void SetSe::startCounter(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -872,7 +871,7 @@ void PSGame::SetSe::startCounter(unsigned long)
  * Address:	8033FA94
  * Size:	00000C
  */
-void PSGame::RandId::RandId()
+RandId::RandId()
 {
 	/*
 	.loc_0x0:
@@ -887,8 +886,8 @@ void PSGame::RandId::RandId()
  * Address:	8033FAA0
  * Size:	0001E8
  */
-void PSGame::RandId::startSound(JAInter::Object*, unsigned long, unsigned long,
-                                unsigned long)
+void RandId::startSound(JAInter::Object*, unsigned long, unsigned long,
+                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1044,8 +1043,8 @@ void PSGame::RandId::startSound(JAInter::Object*, unsigned long, unsigned long,
  * Address:	8033FC88
  * Size:	0001B8
  */
-void PSGame::RandId::playSystemSe(unsigned long, JAISound**, unsigned long,
-                                  unsigned long)
+void RandId::playSystemSe(unsigned long, JAISound**, unsigned long,
+                          unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1187,7 +1186,7 @@ void PSGame::RandId::playSystemSe(unsigned long, JAISound**, unsigned long,
  * Address:	8033FE40
  * Size:	000074
  */
-void PSGame::EnvSe_Pan::setPanAndDolby(JAISound*)
+void EnvSe_Pan::setPanAndDolby(JAISound*)
 {
 	/*
 	.loc_0x0:
@@ -1228,7 +1227,7 @@ void PSGame::EnvSe_Pan::setPanAndDolby(JAISound*)
  * Address:	8033FEB4
  * Size:	000060
  */
-void PSGame::EnvSe_Perspective::EnvSe_Perspective(unsigned long, float, Vec)
+EnvSe_Perspective::EnvSe_Perspective(unsigned long, float, Vec)
 {
 	/*
 	.loc_0x0:
@@ -1264,7 +1263,7 @@ void PSGame::EnvSe_Perspective::EnvSe_Perspective(unsigned long, float, Vec)
  * Address:	8033FF14
  * Size:	00004C
  */
-void PSGame::EnvSe_Perspective::play()
+void EnvSe_Perspective::play()
 {
 	/*
 	.loc_0x0:
@@ -1295,8 +1294,7 @@ void PSGame::EnvSe_Perspective::play()
  * Address:	8033FF60
  * Size:	000088
  */
-void PSGame::EnvSe_AutoPan::EnvSe_AutoPan(unsigned long, float, float, float,
-                                          float, float)
+EnvSe_AutoPan::EnvSe_AutoPan(unsigned long, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1342,7 +1340,7 @@ void PSGame::EnvSe_AutoPan::EnvSe_AutoPan(unsigned long, float, float, float,
  * Address:	8033FFE8
  * Size:	00000C
  */
-void PSGame::EnvSe_AutoPan::setDirection(bool, bool)
+void EnvSe_AutoPan::setDirection(bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -1357,7 +1355,7 @@ void PSGame::EnvSe_AutoPan::setDirection(bool, bool)
  * Address:	8033FFF4
  * Size:	00011C
  */
-void PSGame::EnvSe_AutoPan::setPanAndDolby(JAISound*)
+void EnvSe_AutoPan::setPanAndDolby(JAISound*)
 {
 	/*
 	.loc_0x0:
@@ -1448,8 +1446,7 @@ void PSGame::EnvSe_AutoPan::setPanAndDolby(JAISound*)
  * Address:	80340110
  * Size:	00021C
  */
-void PSGame::Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(
-    JGeometry::TBox3<float>)
+Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3<float>)
 {
 	/*
 	.loc_0x0:
@@ -1622,7 +1619,7 @@ void PSGame::Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(
  * Address:	8034032C
  * Size:	0002D0
  */
-void PSGame::Builder_EvnSe_Perspective::build(float, PSSystem::EnvSeMgr*)
+void Builder_EvnSe_Perspective::build(float, PSSystem::EnvSeMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1838,7 +1835,7 @@ void PSGame::Builder_EvnSe_Perspective::build(float, PSSystem::EnvSeMgr*)
  * Address:	803405FC
  * Size:	0000AC
  */
-void PSGame::Builder_EvnSe_Perspective::newSeObj(unsigned long, float, Vec)
+void Builder_EvnSe_Perspective::newSeObj(unsigned long, float, Vec)
 {
 	/*
 	.loc_0x0:
@@ -1895,7 +1892,7 @@ void PSGame::Builder_EvnSe_Perspective::newSeObj(unsigned long, float, Vec)
  * Address:	803406A8
  * Size:	0000C8
  */
-void PSGame::Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
+Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
 {
 	/*
 	.loc_0x0:
@@ -1962,12 +1959,16 @@ void PSGame::Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
 	*/
 }
 
+} // namespace PSGame
+
+namespace PSSystem {
+
 /*
  * --INFO--
  * Address:	80340770
  * Size:	000050
  */
-void PSSystem::SingletonBase<PSGame::SeMgr>::~SingletonBase()
+void SingletonBase<PSGame::SeMgr>::~SingletonBase()
 {
 	/*
 	.loc_0x0:
@@ -1996,19 +1997,27 @@ void PSSystem::SingletonBase<PSGame::SeMgr>::~SingletonBase()
 	*/
 }
 
+namespace PSGame {
+
+} // namespace PSGame
+
 /*
  * --INFO--
  * Address:	803407C0
  * Size:	000004
  */
-void PSGame::Builder_EvnSe_Perspective::onBuild(PSSystem::EnvSeBase*) { }
+void Builder_EvnSe_Perspective::onBuild(PSSystem::EnvSeBase*) { }
+
+} // namespace PSSystem
+
+namespace PSSystem {
 
 /*
  * --INFO--
  * Address:	803407C4
  * Size:	00000C
  */
-void PSSystem::EnvSeBase::getCastType()
+void EnvSeBase::getCastType()
 {
 	/*
 	.loc_0x0:
@@ -2023,14 +2032,18 @@ void PSSystem::EnvSeBase::getCastType()
  * Address:	803407D0
  * Size:	000004
  */
-void PSSystem::EnvSeBase::setPanAndDolby(JAISound*) { }
+void EnvSeBase::setPanAndDolby(JAISound*) { }
+
+namespace PSGame {
+
+} // namespace PSGame
 
 /*
  * --INFO--
  * Address:	803407D4
  * Size:	000064
  */
-void PSGame::SeMgr::~SeMgr()
+SeMgr::~SeMgr()
 {
 	/*
 	.loc_0x0:
@@ -2065,3 +2078,4 @@ void PSGame::SeMgr::~SeMgr()
 	  blr
 	*/
 }
+} // namespace PSSystem

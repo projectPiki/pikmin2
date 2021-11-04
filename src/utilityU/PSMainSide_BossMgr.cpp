@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace PSM {
 
 /*
  * --INFO--
  * Address:	8046C6B8
  * Size:	0001D8
  */
-void PSM::BossBgmFader::TypedProc::update()
+void BossBgmFader::TypedProc::update()
 {
 	/*
 	.loc_0x0:
@@ -161,7 +163,7 @@ void PSM::BossBgmFader::TypedProc::update()
  * Address:	8046C890
  * Size:	00003C
  */
-void PSM::BossBgmFader::TypedProc_MidBoss::update()
+void BossBgmFader::TypedProc_MidBoss::update()
 {
 	/*
 	.loc_0x0:
@@ -190,7 +192,7 @@ void PSM::BossBgmFader::TypedProc_MidBoss::update()
  * Address:	8046C8CC
  * Size:	0000EC
  */
-void PSM::BossBgmFader::Mgr::Mgr()
+BossBgmFader::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -263,7 +265,7 @@ void PSM::BossBgmFader::Mgr::Mgr()
  * Address:	8046C9B8
  * Size:	000024
  */
-void PSM::BossBgmFader::Mgr::appendTarget(JSULink<PSM::EnemyBoss>*)
+void BossBgmFader::Mgr::appendTarget(JSULink<PSM::EnemyBoss>*)
 {
 	/*
 	.loc_0x0:
@@ -284,7 +286,7 @@ void PSM::BossBgmFader::Mgr::appendTarget(JSULink<PSM::EnemyBoss>*)
  * Address:	8046C9DC
  * Size:	000768
  */
-void PSM::BossBgmFader::Mgr::exec()
+void BossBgmFader::Mgr::exec()
 {
 	/*
 	.loc_0x0:
@@ -870,3 +872,4 @@ void PSM::BossBgmFader::Mgr::exec()
 	  blr
 	*/
 }
+} // namespace PSM

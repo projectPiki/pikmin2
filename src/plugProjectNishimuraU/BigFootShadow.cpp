@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802C7810
  * Size:	00020C
  */
-void Game::BigFoot::BigFootShadowMgr::BigFootShadowMgr(Game::BigFoot::Obj*)
+BigFoot::BigFootShadowMgr::BigFootShadowMgr(Game::BigFoot::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +168,7 @@ void Game::BigFoot::BigFootShadowMgr::BigFootShadowMgr(Game::BigFoot::Obj*)
  * Address:	802C7A1C
  * Size:	00014C
  */
-void Game::BigFoot::BigFootShadowMgr::init()
+void BigFoot::BigFootShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -261,7 +263,7 @@ void Game::BigFoot::BigFootShadowMgr::init()
  * Address:	802C7B68
  * Size:	000018
  */
-void Game::BigFoot::BigFootShadowMgr::setJointPosPtr(int, int, Vector3<float>*)
+void BigFoot::BigFootShadowMgr::setJointPosPtr(int, int, Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -279,7 +281,7 @@ void Game::BigFoot::BigFootShadowMgr::setJointPosPtr(int, int, Vector3<float>*)
  * Address:	802C7B80
  * Size:	000370
  */
-void Game::BigFoot::BigFootShadowMgr::update()
+void BigFoot::BigFootShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -521,3 +523,4 @@ void Game::BigFoot::BigFootShadowMgr::update()
 	  blr
 	*/
 }
+} // namespace Game

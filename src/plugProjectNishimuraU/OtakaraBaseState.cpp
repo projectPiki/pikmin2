@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802B37A8
  * Size:	0004D4
  */
-void Game::OtakaraBase::FSM::init(Game::EnemyBase*)
+void OtakaraBase::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -354,7 +356,7 @@ void Game::OtakaraBase::FSM::init(Game::EnemyBase*)
  * Address:	802B3C7C
  * Size:	00005C
  */
-void Game::OtakaraBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +391,7 @@ void Game::OtakaraBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B3CD8
  * Size:	000044
  */
-void Game::OtakaraBase::StateDead::exec(Game::EnemyBase*)
+void OtakaraBase::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -420,14 +422,14 @@ void Game::OtakaraBase::StateDead::exec(Game::EnemyBase*)
  * Address:	802B3D1C
  * Size:	000004
  */
-void Game::OtakaraBase::StateDead::cleanup(Game::EnemyBase*) { }
+void OtakaraBase::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802B3D20
  * Size:	00007C
  */
-void Game::OtakaraBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -470,14 +472,14 @@ void Game::OtakaraBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B3D9C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::startChargeEffect() { }
+void OtakaraBase::Obj::startChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802B3DA0
  * Size:	000290
  */
-void Game::OtakaraBase::StateFlick::exec(Game::EnemyBase*)
+void OtakaraBase::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -669,21 +671,21 @@ void Game::OtakaraBase::StateFlick::exec(Game::EnemyBase*)
  * Address:	802B4030
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::createDisChargeEffect() { }
+void OtakaraBase::Obj::createDisChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802B4034
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::finishChargeEffect() { }
+void OtakaraBase::Obj::finishChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802B4038
  * Size:	000024
  */
-void Game::OtakaraBase::StateFlick::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -704,7 +706,7 @@ void Game::OtakaraBase::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802B405C
  * Size:	000050
  */
-void Game::OtakaraBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -736,7 +738,7 @@ void Game::OtakaraBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B40AC
  * Size:	0001CC
  */
-void Game::OtakaraBase::StateWait::exec(Game::EnemyBase*)
+void OtakaraBase::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -873,14 +875,14 @@ void Game::OtakaraBase::StateWait::exec(Game::EnemyBase*)
  * Address:	802B4278
  * Size:	000004
  */
-void Game::OtakaraBase::StateWait::cleanup(Game::EnemyBase*) { }
+void OtakaraBase::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802B427C
  * Size:	000048
  */
-void Game::OtakaraBase::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -910,7 +912,7 @@ void Game::OtakaraBase::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B42C4
  * Size:	000244
  */
-void Game::OtakaraBase::StateMove::exec(Game::EnemyBase*)
+void OtakaraBase::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1079,7 +1081,7 @@ void Game::OtakaraBase::StateMove::exec(Game::EnemyBase*)
  * Address:	802B4508
  * Size:	000024
  */
-void Game::OtakaraBase::StateMove::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1100,7 +1102,7 @@ void Game::OtakaraBase::StateMove::cleanup(Game::EnemyBase*)
  * Address:	802B452C
  * Size:	000058
  */
-void Game::OtakaraBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1134,7 +1136,7 @@ void Game::OtakaraBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B4584
  * Size:	000264
  */
-void Game::OtakaraBase::StateTurn::exec(Game::EnemyBase*)
+void OtakaraBase::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1313,7 +1315,7 @@ void Game::OtakaraBase::StateTurn::exec(Game::EnemyBase*)
  * Address:	802B47E8
  * Size:	000024
  */
-void Game::OtakaraBase::StateTurn::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1334,7 +1336,7 @@ void Game::OtakaraBase::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	802B480C
  * Size:	000050
  */
-void Game::OtakaraBase::StateTake::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateTake::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1366,7 +1368,7 @@ void Game::OtakaraBase::StateTake::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B485C
  * Size:	000154
  */
-void Game::OtakaraBase::StateTake::exec(Game::EnemyBase*)
+void OtakaraBase::StateTake::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1473,7 +1475,7 @@ void Game::OtakaraBase::StateTake::exec(Game::EnemyBase*)
  * Address:	802B49B0
  * Size:	000024
  */
-void Game::OtakaraBase::StateTake::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateTake::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1494,7 +1496,7 @@ void Game::OtakaraBase::StateTake::cleanup(Game::EnemyBase*)
  * Address:	802B49D4
  * Size:	000048
  */
-void Game::OtakaraBase::StateItemWait::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateItemWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1524,7 +1526,7 @@ void Game::OtakaraBase::StateItemWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B4A1C
  * Size:	0001D8
  */
-void Game::OtakaraBase::StateItemWait::exec(Game::EnemyBase*)
+void OtakaraBase::StateItemWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1666,14 +1668,14 @@ void Game::OtakaraBase::StateItemWait::exec(Game::EnemyBase*)
  * Address:	802B4BF4
  * Size:	000004
  */
-void Game::OtakaraBase::StateItemWait::cleanup(Game::EnemyBase*) { }
+void OtakaraBase::StateItemWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802B4BF8
  * Size:	000048
  */
-void Game::OtakaraBase::StateItemMove::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateItemMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1703,7 +1705,7 @@ void Game::OtakaraBase::StateItemMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B4C40
  * Size:	000260
  */
-void Game::OtakaraBase::StateItemMove::exec(Game::EnemyBase*)
+void OtakaraBase::StateItemMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1881,7 +1883,7 @@ void Game::OtakaraBase::StateItemMove::exec(Game::EnemyBase*)
  * Address:	802B4EA0
  * Size:	000024
  */
-void Game::OtakaraBase::StateItemMove::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateItemMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1902,7 +1904,7 @@ void Game::OtakaraBase::StateItemMove::cleanup(Game::EnemyBase*)
  * Address:	802B4EC4
  * Size:	000058
  */
-void Game::OtakaraBase::StateItemTurn::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateItemTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1936,7 +1938,7 @@ void Game::OtakaraBase::StateItemTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B4F1C
  * Size:	000270
  */
-void Game::OtakaraBase::StateItemTurn::exec(Game::EnemyBase*)
+void OtakaraBase::StateItemTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2120,7 +2122,7 @@ void Game::OtakaraBase::StateItemTurn::exec(Game::EnemyBase*)
  * Address:	802B518C
  * Size:	000024
  */
-void Game::OtakaraBase::StateItemTurn::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateItemTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2141,7 +2143,7 @@ void Game::OtakaraBase::StateItemTurn::cleanup(Game::EnemyBase*)
  * Address:	802B51B0
  * Size:	00007C
  */
-void Game::OtakaraBase::StateItemFlick::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateItemFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2184,7 +2186,7 @@ void Game::OtakaraBase::StateItemFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B522C
  * Size:	000254
  */
-void Game::OtakaraBase::StateItemFlick::exec(Game::EnemyBase*)
+void OtakaraBase::StateItemFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2359,7 +2361,7 @@ void Game::OtakaraBase::StateItemFlick::exec(Game::EnemyBase*)
  * Address:	802B5480
  * Size:	000024
  */
-void Game::OtakaraBase::StateItemFlick::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateItemFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2380,7 +2382,7 @@ void Game::OtakaraBase::StateItemFlick::cleanup(Game::EnemyBase*)
  * Address:	802B54A4
  * Size:	00005C
  */
-void Game::OtakaraBase::StateItemDrop::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateItemDrop::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2415,7 +2417,7 @@ void Game::OtakaraBase::StateItemDrop::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B5500
  * Size:	0001F8
  */
-void Game::OtakaraBase::StateItemDrop::exec(Game::EnemyBase*)
+void OtakaraBase::StateItemDrop::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2565,7 +2567,7 @@ void Game::OtakaraBase::StateItemDrop::exec(Game::EnemyBase*)
  * Address:	802B56F8
  * Size:	00002C
  */
-void Game::OtakaraBase::StateItemDrop::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateItemDrop::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2588,7 +2590,7 @@ void Game::OtakaraBase::StateItemDrop::cleanup(Game::EnemyBase*)
  * Address:	802B5724
  * Size:	000048
  */
-void Game::OtakaraBase::StateBombWait::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateBombWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2618,7 +2620,7 @@ void Game::OtakaraBase::StateBombWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B576C
  * Size:	0001C0
  */
-void Game::OtakaraBase::StateBombWait::exec(Game::EnemyBase*)
+void OtakaraBase::StateBombWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2752,14 +2754,14 @@ void Game::OtakaraBase::StateBombWait::exec(Game::EnemyBase*)
  * Address:	802B592C
  * Size:	000004
  */
-void Game::OtakaraBase::StateBombWait::cleanup(Game::EnemyBase*) { }
+void OtakaraBase::StateBombWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802B5930
  * Size:	000048
  */
-void Game::OtakaraBase::StateBombMove::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateBombMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2789,7 +2791,7 @@ void Game::OtakaraBase::StateBombMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B5978
  * Size:	0001E8
  */
-void Game::OtakaraBase::StateBombMove::exec(Game::EnemyBase*)
+void OtakaraBase::StateBombMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2933,7 +2935,7 @@ void Game::OtakaraBase::StateBombMove::exec(Game::EnemyBase*)
  * Address:	802B5B60
  * Size:	000024
  */
-void Game::OtakaraBase::StateBombMove::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateBombMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2954,7 +2956,7 @@ void Game::OtakaraBase::StateBombMove::cleanup(Game::EnemyBase*)
  * Address:	802B5B84
  * Size:	000058
  */
-void Game::OtakaraBase::StateBombTurn::init(Game::EnemyBase*, Game::StateArg*)
+void OtakaraBase::StateBombTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2988,7 +2990,7 @@ void Game::OtakaraBase::StateBombTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B5BDC
  * Size:	000224
  */
-void Game::OtakaraBase::StateBombTurn::exec(Game::EnemyBase*)
+void OtakaraBase::StateBombTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3149,7 +3151,7 @@ void Game::OtakaraBase::StateBombTurn::exec(Game::EnemyBase*)
  * Address:	802B5E00
  * Size:	000024
  */
-void Game::OtakaraBase::StateBombTurn::cleanup(Game::EnemyBase*)
+void OtakaraBase::StateBombTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3164,3 +3166,4 @@ void Game::OtakaraBase::StateBombTurn::cleanup(Game::EnemyBase*)
 	  blr
 	*/
 }
+} // namespace Game

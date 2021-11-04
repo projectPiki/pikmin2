@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80281E9C
  * Size:	000008
  */
-void Game::Mar::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Mar::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Mar::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80281EA4
  * Size:	000008
  */
-void Game::Mar::ProperAnimator::getAnimator(int)
+void Mar::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Mar::ProperAnimator::getAnimator(int)
  * Address:	80281EAC
  * Size:	00005C
  */
-void Game::Mar::ProperAnimator::~ProperAnimator()
+Mar::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Mar::ProperAnimator::~ProperAnimator()
  * Address:	80281F08
  * Size:	000008
  */
-void Game::Mar::ProperAnimator::getAnimator()
+void Mar::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Mar::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

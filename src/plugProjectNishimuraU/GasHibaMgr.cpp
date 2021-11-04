@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8026CC80
  * Size:	000064
  */
-void Game::GasHiba::Mgr::Mgr(int, unsigned char)
+GasHiba::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -42,7 +44,7 @@ void Game::GasHiba::Mgr::Mgr(int, unsigned char)
  * Address:	8026CCE4
  * Size:	000048
  */
-void Game::GasHiba::Mgr::doAlloc()
+void GasHiba::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -76,7 +78,7 @@ void Game::GasHiba::Mgr::doAlloc()
  * Address:	8026CD2C
  * Size:	0001CC
  */
-void Game::GasHiba::Parms::Parms()
+GasHiba::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -203,7 +205,7 @@ void Game::GasHiba::Parms::Parms()
  * Address:	8026CEF8
  * Size:	000060
  */
-void Game::GasHiba::Mgr::createObj(int)
+void GasHiba::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +241,7 @@ void Game::GasHiba::Mgr::createObj(int)
  * Address:	8026CF58
  * Size:	0000BC
  */
-void Game::GasHiba::Obj::~Obj()
+GasHiba::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -302,7 +304,7 @@ void Game::GasHiba::Obj::~Obj()
  * Address:	8026D014
  * Size:	000010
  */
-void Game::GasHiba::Mgr::getEnemy(int)
+void GasHiba::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +320,7 @@ void Game::GasHiba::Mgr::getEnemy(int)
  * Address:	8026D024
  * Size:	000050
  */
-void Game::GasHiba::Parms::read(Stream&)
+void GasHiba::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +352,7 @@ void Game::GasHiba::Parms::read(Stream&)
  * Address:	8026D074
  * Size:	0000C8
  */
-void Game::GasHiba::Mgr::~Mgr()
+GasHiba::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -416,14 +418,14 @@ void Game::GasHiba::Mgr::~Mgr()
  * Address:	8026D13C
  * Size:	000008
  */
-u32 Game::GasHiba::Mgr::getEnemyTypeID() { return 0x15; }
+u32 GasHiba::Mgr::getEnemyTypeID() { return 0x15; }
 
 /*
  * --INFO--
  * Address:	8026D144
  * Size:	000008
  */
-void Game::GasHiba::Mgr::@4 @__dt()
+GasHiba::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -431,3 +433,4 @@ void Game::GasHiba::Mgr::@4 @__dt()
 	  b         -0xD4
 	*/
 }
+} // namespace Game

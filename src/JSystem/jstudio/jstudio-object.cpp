@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace JStudio {
+
 /*
  * --INFO--
  * Address:	8000D068
  * Size:	000048
  */
-void JStudio::TVariableValue::TOutput::__dt(void)
+TVariableValue::TOutput::~TOutput(void)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void JStudio::TVariableValue::TOutput::__dt(void)
  * Address:	........
  * Size:	000064
  */
-void JStudio::TVariableValue::update((double, JStudio::TAdaptor*))
+void TVariableValue::update(double, JStudio::TAdaptor*)
 {
 	// UNUSED FUNCTION
 }
@@ -47,8 +49,7 @@ void JStudio::TVariableValue::update((double, JStudio::TAdaptor*))
  * Address:	8000D0B0
  * Size:	000014
  */
-void JStudio::TVariableValue::update_immediate_((JStudio::TVariableValue*,
-                                                 double))
+void TVariableValue::update_immediate_(JStudio::TVariableValue*, double)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +66,7 @@ void JStudio::TVariableValue::update_immediate_((JStudio::TVariableValue*,
  * Address:	8000D0C4
  * Size:	00003C
  */
-void JStudio::TVariableValue::update_time_((JStudio::TVariableValue*, double))
+void TVariableValue::update_time_(JStudio::TVariableValue*, double)
 {
 	/*
 	.loc_0x0:
@@ -92,8 +93,7 @@ void JStudio::TVariableValue::update_time_((JStudio::TVariableValue*, double))
  * Address:	8000D100
  * Size:	000064
  */
-void JStudio::TVariableValue::update_functionValue_((JStudio::TVariableValue*,
-                                                     double))
+void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +130,7 @@ void JStudio::TVariableValue::update_functionValue_((JStudio::TVariableValue*,
  * Address:	8000D164
  * Size:	00005C
  */
-void JStudio::TVariableValue::TOutput_none_::__dt(void)
+TVariableValue::TOutput_none_::~TOutput_none_(void)
 {
 	/*
 	.loc_0x0:
@@ -169,8 +169,7 @@ void JStudio::TVariableValue::TOutput_none_::__dt(void)
  * Address:	8000D1C0
  * Size:	000004
  */
-void JStudio::TVariableValue::TOutput_none_::operator()(
-    const(float, JStudio::TAdaptor*))
+void TVariableValue::TOutput_none_::operator()(const(float, JStudio::TAdaptor*))
 {
 }
 
@@ -179,7 +178,7 @@ void JStudio::TVariableValue::TOutput_none_::operator()(
  * Address:	........
  * Size:	000048
  */
-void JStudio::TAdaptor::__dt(void)
+TAdaptor::~TAdaptor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -189,40 +188,36 @@ void JStudio::TAdaptor::__dt(void)
  * Address:	8000D1C4
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_prepare((JStudio::TObject const*)) { }
+void TAdaptor::adaptor_do_prepare(JStudio::TObject const*) { }
 
 /*
  * --INFO--
  * Address:	8000D1C8
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_begin((JStudio::TObject const*)) { }
+void TAdaptor::adaptor_do_begin(JStudio::TObject const*) { }
 
 /*
  * --INFO--
  * Address:	8000D1CC
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_end((JStudio::TObject const*)) { }
+void TAdaptor::adaptor_do_end(JStudio::TObject const*) { }
 
 /*
  * --INFO--
  * Address:	8000D1D0
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_update((JStudio::TObject const*,
-                                           unsigned long))
-{
-}
+void TAdaptor::adaptor_do_update(JStudio::TObject const*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	8000D1D4
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_data((JStudio::TObject const*, void const*,
-                                         unsigned long, void const*,
-                                         unsigned long))
+void TAdaptor::adaptor_do_data(JStudio::TObject const*, void const*,
+                               unsigned long, void const*, unsigned long)
 {
 }
 
@@ -231,9 +226,9 @@ void JStudio::TAdaptor::adaptor_do_data((JStudio::TObject const*, void const*,
  * Address:	8000D1D8
  * Size:	0000A0
  */
-void JStudio::TAdaptor::adaptor_setVariableValue(
-    (JStudio::TObject*, unsigned long, JStudio::data::TEOperationData,
-     void const*, unsigned long))
+void TAdaptor::adaptor_setVariableValue((JStudio::TObject*, unsigned long,
+                                         JStudio::data::TEOperationData,
+                                         void const*, unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -289,9 +284,10 @@ void JStudio::TAdaptor::adaptor_setVariableValue(
  * Address:	........
  * Size:	0000EC
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_n(
-    (JStudio::TObject*, unsigned long const*, unsigned long,
-     JStudio::data::TEOperationData, void const*, unsigned long))
+void TAdaptor::adaptor_setVariableValue_n((JStudio::TObject*,
+                                           unsigned long const*, unsigned long,
+                                           JStudio::data::TEOperationData,
+                                           void const*, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -301,7 +297,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue_n(
  * Address:	8000D278
  * Size:	000044
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_immediate(
+void TAdaptor::adaptor_setVariableValue_immediate(
     (JStudio::TAdaptor::TSetVariableValue_immediate const*))
 {
 	/*
@@ -335,8 +331,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue_immediate(
  * Address:	8000D2BC
  * Size:	000070
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_Vec((unsigned long const*,
-                                                      Vec const&))
+void TAdaptor::adaptor_setVariableValue_Vec(unsigned long const*, Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -376,8 +371,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue_Vec((unsigned long const*,
  * Address:	8000D32C
  * Size:	000038
  */
-void JStudio::TAdaptor::adaptor_getVariableValue_Vec(
-    const(Vec*, unsigned long const*))
+void TAdaptor::adaptor_getVariableValue_Vec(const(Vec*, unsigned long const*))
 {
 	/*
 	.loc_0x0:
@@ -403,8 +397,7 @@ void JStudio::TAdaptor::adaptor_getVariableValue_Vec(
  * Address:	........
  * Size:	000174
  */
-void JStudio::TAdaptor::adaptor_updateVariableValue_Vec((unsigned long const*,
-                                                         Vec const&))
+void TAdaptor::adaptor_updateVariableValue_Vec(unsigned long const*, Vec const&)
 {
 	// UNUSED FUNCTION
 }
@@ -414,8 +407,8 @@ void JStudio::TAdaptor::adaptor_updateVariableValue_Vec((unsigned long const*,
  * Address:	8000D364
  * Size:	0000E0
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_GXColor((unsigned long const*,
-                                                          _GXColor const&))
+void TAdaptor::adaptor_setVariableValue_GXColor(unsigned long const*,
+                                                _GXColor const&)
 {
 	/*
 	.loc_0x0:
@@ -483,8 +476,8 @@ void JStudio::TAdaptor::adaptor_setVariableValue_GXColor((unsigned long const*,
  * Address:	8000D444
  * Size:	00014C
  */
-void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(
-    const(_GXColor*, unsigned long const*))
+void TAdaptor::adaptor_getVariableValue_GXColor(const(_GXColor*,
+                                                      unsigned long const*))
 {
 	/*
 	.loc_0x0:
@@ -603,8 +596,8 @@ void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(
  * Address:	........
  * Size:	000238
  */
-void JStudio::TAdaptor::adaptor_updateVariableValue_GXColor(
-    (unsigned long const*, _GXColor const&))
+void TAdaptor::adaptor_updateVariableValue_GXColor((unsigned long const*,
+                                                    _GXColor const&))
 {
 	// UNUSED FUNCTION
 }
@@ -614,7 +607,7 @@ void JStudio::TAdaptor::adaptor_updateVariableValue_GXColor(
  * Address:	........
  * Size:	00009C
  */
-void JStudio::TAdaptor::adaptor_updateVariableValue(void)
+void TAdaptor::adaptor_updateVariableValue(void)
 {
 	// UNUSED FUNCTION
 }
@@ -624,8 +617,7 @@ void JStudio::TAdaptor::adaptor_updateVariableValue(void)
  * Address:	........
  * Size:	0000C4
  */
-void JStudio::TAdaptor::adaptor_updateVariableValue((JStudio::TObject*,
-                                                     unsigned long))
+void TAdaptor::adaptor_updateVariableValue(JStudio::TObject*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -635,9 +627,9 @@ void JStudio::TAdaptor::adaptor_updateVariableValue((JStudio::TObject*,
  * Address:	8000D590
  * Size:	000018
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_VOID_(
-    (JStudio::TAdaptor*, JStudio::TObject*, unsigned long, void const*,
-     unsigned long))
+void TAdaptor::adaptor_setVariableValue_VOID_((JStudio::TAdaptor*,
+                                               JStudio::TObject*, unsigned long,
+                                               void const*, unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -655,9 +647,10 @@ void JStudio::TAdaptor::adaptor_setVariableValue_VOID_(
  * Address:	8000D5A8
  * Size:	00002C
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_IMMEDIATE_(
-    (JStudio::TAdaptor*, JStudio::TObject*, unsigned long, void const*,
-     unsigned long))
+void TAdaptor::adaptor_setVariableValue_IMMEDIATE_((JStudio::TAdaptor*,
+                                                    JStudio::TObject*,
+                                                    unsigned long, void const*,
+                                                    unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -680,9 +673,9 @@ void JStudio::TAdaptor::adaptor_setVariableValue_IMMEDIATE_(
  * Address:	8000D5D4
  * Size:	00002C
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_TIME_(
-    (JStudio::TAdaptor*, JStudio::TObject*, unsigned long, void const*,
-     unsigned long))
+void TAdaptor::adaptor_setVariableValue_TIME_((JStudio::TAdaptor*,
+                                               JStudio::TObject*, unsigned long,
+                                               void const*, unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -705,9 +698,10 @@ void JStudio::TAdaptor::adaptor_setVariableValue_TIME_(
  * Address:	8000D600
  * Size:	000070
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_FVR_NAME_(
-    (JStudio::TAdaptor*, JStudio::TObject*, unsigned long, void const*,
-     unsigned long))
+void TAdaptor::adaptor_setVariableValue_FVR_NAME_((JStudio::TAdaptor*,
+                                                   JStudio::TObject*,
+                                                   unsigned long, void const*,
+                                                   unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -751,9 +745,10 @@ void JStudio::TAdaptor::adaptor_setVariableValue_FVR_NAME_(
  * Address:	8000D670
  * Size:	00006C
  */
-void JStudio::TAdaptor::adaptor_setVariableValue_FVR_INDEX_(
-    (JStudio::TAdaptor*, JStudio::TObject*, unsigned long, void const*,
-     unsigned long))
+void TAdaptor::adaptor_setVariableValue_FVR_INDEX_((JStudio::TAdaptor*,
+                                                    JStudio::TObject*,
+                                                    unsigned long, void const*,
+                                                    unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -796,7 +791,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue_FVR_INDEX_(
  * Address:	........
  * Size:	000084
  */
-void JStudio::TObject::__dt(void)
+TObject::~TObject(void)
 {
 	// UNUSED FUNCTION
 }
@@ -806,7 +801,7 @@ void JStudio::TObject::__dt(void)
  * Address:	........
  * Size:	0000EC
  */
-void JStudio::TObject::forward_value((unsigned long))
+void TObject::forward_value(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -816,7 +811,7 @@ void JStudio::TObject::forward_value((unsigned long))
  * Address:	8000D6DC
  * Size:	00003C
  */
-void JStudio::TObject::do_begin(void)
+void TObject::do_begin(void)
 {
 	/*
 	.loc_0x0:
@@ -845,7 +840,7 @@ void JStudio::TObject::do_begin(void)
  * Address:	8000D718
  * Size:	00003C
  */
-void JStudio::TObject::do_end(void)
+void TObject::do_end(void)
 {
 	/*
 	.loc_0x0:
@@ -874,7 +869,7 @@ void JStudio::TObject::do_end(void)
  * Address:	8000D754
  * Size:	0000EC
  */
-void JStudio::TObject::do_wait((unsigned long))
+void TObject::do_wait(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -955,8 +950,7 @@ void JStudio::TObject::do_wait((unsigned long))
  * Address:	8000D840
  * Size:	00005C
  */
-void JStudio::TObject::do_data((void const*, unsigned long, void const*,
-                                unsigned long))
+void TObject::do_data(void const*, unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -993,8 +987,8 @@ void JStudio::TObject::do_data((void const*, unsigned long, void const*,
  * Address:	........
  * Size:	00004C
  */
-void JStudio::TObject::__ct((JStudio::data::TE32Block, void const*,
-                             unsigned long, JStudio::TAdaptor*))
+TObject::TObject(JStudio::data::TE32Block, void const*, unsigned long,
+                 JStudio::TAdaptor*)
 {
 	// UNUSED FUNCTION
 }
@@ -1004,8 +998,8 @@ void JStudio::TObject::__ct((JStudio::data::TE32Block, void const*,
  * Address:	........
  * Size:	00004C
  */
-void JStudio::TObject::__ct((JStudio::stb::data::TParse_TBlock_object const&,
-                             JStudio::TAdaptor*))
+TObject::TObject(JStudio::stb::data::TParse_TBlock_object const&,
+                 JStudio::TAdaptor*)
 {
 	// UNUSED FUNCTION
 }
@@ -1015,7 +1009,7 @@ void JStudio::TObject::__ct((JStudio::stb::data::TParse_TBlock_object const&,
  * Address:	8000D89C
  * Size:	00005C
  */
-void JStudio::TAdaptor_actor::__dt(void)
+TAdaptor_actor::~TAdaptor_actor(void)
 {
 	/*
 	.loc_0x0:
@@ -1054,8 +1048,8 @@ void JStudio::TAdaptor_actor::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_actor::__ct((void const*, unsigned long,
-                                   JStudio::TAdaptor_actor*))
+TObject_actor::TObject_actor(void const*, unsigned long,
+                             JStudio::TAdaptor_actor*)
 {
 	// UNUSED FUNCTION
 }
@@ -1065,8 +1059,8 @@ void JStudio::TObject_actor::__ct((void const*, unsigned long,
  * Address:	8000D8F8
  * Size:	000058
  */
-void JStudio::TObject_actor::__ct(
-    (JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor_actor*))
+TObject_actor::TObject_actor((JStudio::stb::data::TParse_TBlock_object const&,
+                              JStudio::TAdaptor_actor*))
 {
 	/*
 	.loc_0x0:
@@ -1100,8 +1094,7 @@ void JStudio::TObject_actor::__ct(
  * Address:	8000D950
  * Size:	000484
  */
-void JStudio::TObject_actor::do_paragraph((unsigned long, void const*,
-                                           unsigned long))
+void TObject_actor::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1442,7 +1435,7 @@ void JStudio::TObject_actor::do_paragraph((unsigned long, void const*,
  * Address:	8000DDD4
  * Size:	00005C
  */
-void JStudio::TAdaptor_ambientLight::__dt(void)
+TAdaptor_ambientLight::~TAdaptor_ambientLight(void)
 {
 	/*
 	.loc_0x0:
@@ -1481,8 +1474,8 @@ void JStudio::TAdaptor_ambientLight::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_ambientLight::__ct((void const*, unsigned long,
-                                          JStudio::TAdaptor_ambientLight*))
+TObject_ambientLight::TObject_ambientLight((void const*, unsigned long,
+                                            JStudio::TAdaptor_ambientLight*))
 {
 	// UNUSED FUNCTION
 }
@@ -1492,7 +1485,7 @@ void JStudio::TObject_ambientLight::__ct((void const*, unsigned long,
  * Address:	8000DE30
  * Size:	000058
  */
-void JStudio::TObject_ambientLight::__ct(
+TObject_ambientLight::TObject_ambientLight(
     (JStudio::stb::data::TParse_TBlock_object const&,
      JStudio::TAdaptor_ambientLight*))
 {
@@ -1528,8 +1521,8 @@ void JStudio::TObject_ambientLight::__ct(
  * Address:	8000DE88
  * Size:	0001DC
  */
-void JStudio::TObject_ambientLight::do_paragraph((unsigned long, void const*,
-                                                  unsigned long))
+void TObject_ambientLight::do_paragraph(unsigned long, void const*,
+                                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1698,7 +1691,7 @@ void JStudio::TObject_ambientLight::do_paragraph((unsigned long, void const*,
  * Address:	8000E064
  * Size:	00005C
  */
-void JStudio::TAdaptor_camera::__dt(void)
+TAdaptor_camera::~TAdaptor_camera(void)
 {
 	/*
 	.loc_0x0:
@@ -1737,8 +1730,8 @@ void JStudio::TAdaptor_camera::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_camera::__ct((void const*, unsigned long,
-                                    JStudio::TAdaptor_camera*))
+TObject_camera::TObject_camera(void const*, unsigned long,
+                               JStudio::TAdaptor_camera*)
 {
 	// UNUSED FUNCTION
 }
@@ -1748,8 +1741,8 @@ void JStudio::TObject_camera::__ct((void const*, unsigned long,
  * Address:	8000E0C0
  * Size:	000058
  */
-void JStudio::TObject_camera::__ct((
-    JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor_camera*))
+TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const&,
+                               JStudio::TAdaptor_camera*)
 {
 	/*
 	.loc_0x0:
@@ -1783,8 +1776,7 @@ void JStudio::TObject_camera::__ct((
  * Address:	8000E118
  * Size:	0003F8
  */
-void JStudio::TObject_camera::do_paragraph((unsigned long, void const*,
-                                            unsigned long))
+void TObject_camera::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2090,7 +2082,7 @@ void JStudio::TObject_camera::do_paragraph((unsigned long, void const*,
  * Address:	8000E510
  * Size:	00005C
  */
-void JStudio::TAdaptor_fog::__dt(void)
+TAdaptor_fog::~TAdaptor_fog(void)
 {
 	/*
 	.loc_0x0:
@@ -2129,8 +2121,7 @@ void JStudio::TAdaptor_fog::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_fog::__ct((void const*, unsigned long,
-                                 JStudio::TAdaptor_fog*))
+TObject_fog::TObject_fog(void const*, unsigned long, JStudio::TAdaptor_fog*)
 {
 	// UNUSED FUNCTION
 }
@@ -2140,8 +2131,8 @@ void JStudio::TObject_fog::__ct((void const*, unsigned long,
  * Address:	8000E56C
  * Size:	000058
  */
-void JStudio::TObject_fog::__ct(
-    (JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor_fog*))
+TObject_fog::TObject_fog((JStudio::stb::data::TParse_TBlock_object const&,
+                          JStudio::TAdaptor_fog*))
 {
 	/*
 	.loc_0x0:
@@ -2175,8 +2166,7 @@ void JStudio::TObject_fog::__ct(
  * Address:	8000E5C4
  * Size:	0001E8
  */
-void JStudio::TObject_fog::do_paragraph((unsigned long, void const*,
-                                         unsigned long))
+void TObject_fog::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2334,7 +2324,7 @@ void JStudio::TObject_fog::do_paragraph((unsigned long, void const*,
  * Address:	8000E7AC
  * Size:	00005C
  */
-void JStudio::TAdaptor_light::__dt(void)
+TAdaptor_light::~TAdaptor_light(void)
 {
 	/*
 	.loc_0x0:
@@ -2373,8 +2363,8 @@ void JStudio::TAdaptor_light::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_light::__ct((void const*, unsigned long,
-                                   JStudio::TAdaptor_light*))
+TObject_light::TObject_light(void const*, unsigned long,
+                             JStudio::TAdaptor_light*)
 {
 	// UNUSED FUNCTION
 }
@@ -2384,8 +2374,8 @@ void JStudio::TObject_light::__ct((void const*, unsigned long,
  * Address:	8000E808
  * Size:	000058
  */
-void JStudio::TObject_light::__ct(
-    (JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor_light*))
+TObject_light::TObject_light((JStudio::stb::data::TParse_TBlock_object const&,
+                              JStudio::TAdaptor_light*))
 {
 	/*
 	.loc_0x0:
@@ -2419,8 +2409,7 @@ void JStudio::TObject_light::__ct(
  * Address:	8000E860
  * Size:	000370
  */
-void JStudio::TObject_light::do_paragraph((unsigned long, void const*,
-                                           unsigned long))
+void TObject_light::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2692,7 +2681,7 @@ void JStudio::TObject_light::do_paragraph((unsigned long, void const*,
  * Address:	8000EBD0
  * Size:	00005C
  */
-void JStudio::TAdaptor_message::__dt(void)
+TAdaptor_message::~TAdaptor_message(void)
 {
 	/*
 	.loc_0x0:
@@ -2731,8 +2720,8 @@ void JStudio::TAdaptor_message::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_message::__ct((void const*, unsigned long,
-                                     JStudio::TAdaptor_message*))
+TObject_message::TObject_message(void const*, unsigned long,
+                                 JStudio::TAdaptor_message*)
 {
 	// UNUSED FUNCTION
 }
@@ -2742,7 +2731,7 @@ void JStudio::TObject_message::__ct((void const*, unsigned long,
  * Address:	8000EC2C
  * Size:	000058
  */
-void JStudio::TObject_message::__ct(
+TObject_message::TObject_message(
     (JStudio::stb::data::TParse_TBlock_object const&,
      JStudio::TAdaptor_message*))
 {
@@ -2778,8 +2767,7 @@ void JStudio::TObject_message::__ct(
  * Address:	8000EC84
  * Size:	000090
  */
-void JStudio::TObject_message::do_paragraph((unsigned long, void const*,
-                                             unsigned long))
+void TObject_message::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2833,7 +2821,7 @@ void JStudio::TObject_message::do_paragraph((unsigned long, void const*,
  * Address:	8000ED14
  * Size:	00005C
  */
-void JStudio::TAdaptor_particle::__dt(void)
+TAdaptor_particle::~TAdaptor_particle(void)
 {
 	/*
 	.loc_0x0:
@@ -2872,8 +2860,8 @@ void JStudio::TAdaptor_particle::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_particle::__ct((void const*, unsigned long,
-                                      JStudio::TAdaptor_particle*))
+TObject_particle::TObject_particle(void const*, unsigned long,
+                                   JStudio::TAdaptor_particle*)
 {
 	// UNUSED FUNCTION
 }
@@ -2883,7 +2871,7 @@ void JStudio::TObject_particle::__ct((void const*, unsigned long,
  * Address:	8000ED70
  * Size:	000058
  */
-void JStudio::TObject_particle::__ct(
+TObject_particle::TObject_particle(
     (JStudio::stb::data::TParse_TBlock_object const&,
      JStudio::TAdaptor_particle*))
 {
@@ -2919,8 +2907,7 @@ void JStudio::TObject_particle::__ct(
  * Address:	8000EDC8
  * Size:	000458
  */
-void JStudio::TObject_particle::do_paragraph((unsigned long, void const*,
-                                              unsigned long))
+void TObject_particle::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3250,7 +3237,7 @@ void JStudio::TObject_particle::do_paragraph((unsigned long, void const*,
  * Address:	8000F220
  * Size:	00005C
  */
-void JStudio::TAdaptor_sound::__dt(void)
+TAdaptor_sound::~TAdaptor_sound(void)
 {
 	/*
 	.loc_0x0:
@@ -3289,8 +3276,8 @@ void JStudio::TAdaptor_sound::__dt(void)
  * Address:	........
  * Size:	00006C
  */
-void JStudio::TObject_sound::__ct((void const*, unsigned long,
-                                   JStudio::TAdaptor_sound*))
+TObject_sound::TObject_sound(void const*, unsigned long,
+                             JStudio::TAdaptor_sound*)
 {
 	// UNUSED FUNCTION
 }
@@ -3300,8 +3287,8 @@ void JStudio::TObject_sound::__ct((void const*, unsigned long,
  * Address:	8000F27C
  * Size:	000058
  */
-void JStudio::TObject_sound::__ct(
-    (JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor_sound*))
+TObject_sound::TObject_sound((JStudio::stb::data::TParse_TBlock_object const&,
+                              JStudio::TAdaptor_sound*))
 {
 	/*
 	.loc_0x0:
@@ -3335,8 +3322,7 @@ void JStudio::TObject_sound::__ct(
  * Address:	8000F2D4
  * Size:	0003F8
  */
-void JStudio::TObject_sound::do_paragraph((unsigned long, void const*,
-                                           unsigned long))
+void TObject_sound::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3642,7 +3628,7 @@ void JStudio::TObject_sound::do_paragraph((unsigned long, void const*,
  * Address:	8000F6CC
  * Size:	000094
  */
-void JStudio::TObject_sound::__dt(void)
+TObject_sound::~TObject_sound(void)
 {
 	/*
 	.loc_0x0:
@@ -3697,7 +3683,7 @@ void JStudio::TObject_sound::__dt(void)
  * Address:	8000F760
  * Size:	000094
  */
-void JStudio::TObject_particle::__dt(void)
+TObject_particle::~TObject_particle(void)
 {
 	/*
 	.loc_0x0:
@@ -3752,7 +3738,7 @@ void JStudio::TObject_particle::__dt(void)
  * Address:	8000F7F4
  * Size:	000094
  */
-void JStudio::TObject_message::__dt(void)
+TObject_message::~TObject_message(void)
 {
 	/*
 	.loc_0x0:
@@ -3807,7 +3793,7 @@ void JStudio::TObject_message::__dt(void)
  * Address:	8000F888
  * Size:	000094
  */
-void JStudio::TObject_light::__dt(void)
+TObject_light::~TObject_light(void)
 {
 	/*
 	.loc_0x0:
@@ -3862,7 +3848,7 @@ void JStudio::TObject_light::__dt(void)
  * Address:	8000F91C
  * Size:	000094
  */
-void JStudio::TObject_fog::__dt(void)
+TObject_fog::~TObject_fog(void)
 {
 	/*
 	.loc_0x0:
@@ -3917,7 +3903,7 @@ void JStudio::TObject_fog::__dt(void)
  * Address:	8000F9B0
  * Size:	000094
  */
-void JStudio::TObject_camera::__dt(void)
+TObject_camera::~TObject_camera(void)
 {
 	/*
 	.loc_0x0:
@@ -3972,7 +3958,7 @@ void JStudio::TObject_camera::__dt(void)
  * Address:	8000FA44
  * Size:	000094
  */
-void JStudio::TObject_ambientLight::__dt(void)
+TObject_ambientLight::~TObject_ambientLight(void)
 {
 	/*
 	.loc_0x0:
@@ -4027,7 +4013,7 @@ void JStudio::TObject_ambientLight::__dt(void)
  * Address:	8000FAD8
  * Size:	000094
  */
-void JStudio::TObject_actor::__dt(void)
+TObject_actor::~TObject_actor(void)
 {
 	/*
 	.loc_0x0:
@@ -4076,6 +4062,8 @@ void JStudio::TObject_actor::__dt(void)
 	  blr
 	*/
 }
+
+} // namespace JStudio
 
 /*
  * --INFO--

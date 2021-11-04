@@ -1,75 +1,71 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace og {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000108
  */
-void og::newScreen::TitleMessageAnalyzer::__ct(void)
+newScreen::TitleMessageAnalyzer::TitleMessageAnalyzer(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8032EA58
- * Size:	000070
- */
-void P2JME::Analyzer::__dt(void)
-{
+namespace P2JME {
+
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x23A0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  subi      r0, r5, 0x34CC
-	  stw       r0, 0x0(r30)
-	  bl        -0x32699C
+	 * --INFO--
+	 * Address:	8032EA58
+	 * Size:	000070
+	 */
+	Analyzer::~Analyzer(void)
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x54
+		  lis       r4, 0x804F
+		  subi      r0, r4, 0x23A0
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x44
+		  lis       r5, 0x804F
+		  li        r4, 0
+		  subi      r0, r5, 0x34CC
+		  stw       r0, 0x0(r30)
+		  bl        -0x32699C
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x30A9F4
+		.loc_0x44:
+		  extsh.    r0, r31
+		  ble-      .loc_0x54
+		  mr        r3, r30
+		  bl        -0x30A9F4
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+		.loc_0x54:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
+	}
+
+} // namespace P2JME
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void og::newScreen::TitleMessageAnalyzer::set2ByteString((char*, int))
+void newScreen::TitleMessageAnalyzer::set2ByteString(char*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -79,7 +75,7 @@ void og::newScreen::TitleMessageAnalyzer::set2ByteString((char*, int))
  * Address:	8032EAC8
  * Size:	000228
  */
-void og::newScreen::TitleMessageAnalyzer::do_character((int))
+void newScreen::TitleMessageAnalyzer::do_character(int)
 {
 	/*
 	.loc_0x0:
@@ -255,7 +251,7 @@ void og::newScreen::TitleMessageAnalyzer::do_character((int))
  * Address:	8032ECF0
  * Size:	00028C
  */
-void og::newScreen::TitleMsg::__ct((J2DScreen*, J2DPane*, char*))
+newScreen::TitleMsg::TitleMsg(J2DScreen*, J2DPane*, char*)
 {
 	/*
 	.loc_0x0:
@@ -444,7 +440,7 @@ void og::newScreen::TitleMsg::__ct((J2DScreen*, J2DPane*, char*))
  * Address:	8032EF7C
  * Size:	000080
  */
-void og::newScreen::TitleMessageAnalyzer::__dt(void)
+newScreen::TitleMessageAnalyzer::~TitleMessageAnalyzer(void)
 {
 	/*
 	.loc_0x0:
@@ -492,7 +488,7 @@ void og::newScreen::TitleMessageAnalyzer::__dt(void)
  * Address:	8032EFFC
  * Size:	000154
  */
-void og::newScreen::TitleMsg::setFontPane((J2DPictureEx*, int))
+void newScreen::TitleMsg::setFontPane(J2DPictureEx*, int)
 {
 	/*
 	.loc_0x0:
@@ -589,8 +585,7 @@ void og::newScreen::TitleMsg::setFontPane((J2DPictureEx*, int))
  * Address:	8032F150
  * Size:	000164
  */
-void og::newScreen::TitleMsg::setCentering(
-    (og::newScreen::TitleMsg::EnumCentering))
+void newScreen::TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering)
 {
 	/*
 	.loc_0x0:
@@ -709,7 +704,7 @@ void og::newScreen::TitleMsg::setCentering(
  * Address:	........
  * Size:	000004
  */
-void og::newScreen::TitleMsg::drawMsgArea((J2DGrafContext&))
+void newScreen::TitleMsg::drawMsgArea(J2DGrafContext&)
 {
 	// UNUSED FUNCTION
 }
@@ -719,7 +714,7 @@ void og::newScreen::TitleMsg::drawMsgArea((J2DGrafContext&))
  * Address:	8032F2B4
  * Size:	0000D0
  */
-void og::newScreen::TitleMsg::setColor((JUtility::TColor&, JUtility::TColor&))
+void newScreen::TitleMsg::setColor(JUtility::TColor&, JUtility::TColor&)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +782,7 @@ void og::newScreen::TitleMsg::setColor((JUtility::TColor&, JUtility::TColor&))
  * Address:	8032F384
  * Size:	0000F0
  */
-void og::newScreen::TitleMsgDrop::__ct((J2DScreen*, J2DPane*, char*))
+newScreen::TitleMsgDrop::TitleMsgDrop(J2DScreen*, J2DPane*, char*)
 {
 	/*
 	.loc_0x0:
@@ -865,7 +860,7 @@ void og::newScreen::TitleMsgDrop::__ct((J2DScreen*, J2DPane*, char*))
  * Address:	8032F474
  * Size:	00003C
  */
-void og::newScreen::TitleMsgDrop::Motion::__dt(void)
+newScreen::TitleMsgDrop::Motion::~Motion(void)
 {
 	/*
 	.loc_0x0:
@@ -894,7 +889,7 @@ void og::newScreen::TitleMsgDrop::Motion::__dt(void)
  * Address:	8032F4B0
  * Size:	00001C
  */
-void og::newScreen::TitleMsgDrop::Motion::__ct(void)
+newScreen::TitleMsgDrop::Motion::Motion(void)
 {
 	/*
 	.loc_0x0:
@@ -913,7 +908,7 @@ void og::newScreen::TitleMsgDrop::Motion::__ct(void)
  * Address:	........
  * Size:	0000A0
  */
-void og::newScreen::TitleMsg::__dt(void)
+newScreen::TitleMsg::~TitleMsg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -923,7 +918,7 @@ void og::newScreen::TitleMsg::__dt(void)
  * Address:	8032F4CC
  * Size:	000128
  */
-void og::newScreen::TitleMsgDrop::init(void)
+void newScreen::TitleMsgDrop::init(void)
 {
 	/*
 	.loc_0x0:
@@ -1013,7 +1008,7 @@ void og::newScreen::TitleMsgDrop::init(void)
  * Address:	8032F5F4
  * Size:	000230
  */
-void og::newScreen::TitleMsgDrop::update(void)
+void newScreen::TitleMsgDrop::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1175,7 +1170,7 @@ void og::newScreen::TitleMsgDrop::update(void)
  * Address:	8032F824
  * Size:	00006C
  */
-void og::newScreen::TitleMsgDrop::end(void)
+void newScreen::TitleMsgDrop::end(void)
 {
 	/*
 	.loc_0x0:
@@ -1218,7 +1213,7 @@ void og::newScreen::TitleMsgDrop::end(void)
  * Address:	8032F890
  * Size:	00018C
  */
-void og::newScreen::TitleMsgWave::__ct((J2DScreen*, J2DPane*, char*))
+newScreen::TitleMsgWave::TitleMsgWave(J2DScreen*, J2DPane*, char*)
 {
 	/*
 	.loc_0x0:
@@ -1343,14 +1338,14 @@ void og::newScreen::TitleMsgWave::__ct((J2DScreen*, J2DPane*, char*))
  * Address:	8032FA1C
  * Size:	000004
  */
-void og::newScreen::TitleMsgWave::init(void) { }
+void newScreen::TitleMsgWave::init(void) { }
 
 /*
  * --INFO--
  * Address:	8032FA20
  * Size:	0000B0
  */
-void og::newScreen::TitleMsgWave::start(void)
+void newScreen::TitleMsgWave::start(void)
 {
 	/*
 	.loc_0x0:
@@ -1410,7 +1405,7 @@ void og::newScreen::TitleMsgWave::start(void)
  * Address:	8032FAD0
  * Size:	0002E0
  */
-void og::newScreen::TitleMsgWave::update(void)
+void newScreen::TitleMsgWave::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1618,7 +1613,7 @@ void og::newScreen::TitleMsgWave::update(void)
  * Address:	8032FDB0
  * Size:	00006C
  */
-void og::newScreen::TitleMsgWave::end(void)
+void newScreen::TitleMsgWave::end(void)
 {
 	/*
 	.loc_0x0:
@@ -1661,7 +1656,7 @@ void og::newScreen::TitleMsgWave::end(void)
  * Address:	8032FE1C
  * Size:	000014
  */
-void og::newScreen::TitleMsgWave::setParam((float, float, float, float))
+void newScreen::TitleMsgWave::setParam(float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1678,7 +1673,7 @@ void og::newScreen::TitleMsgWave::setParam((float, float, float, float))
  * Address:	8032FE30
  * Size:	0000F8
  */
-void og::newScreen::TitleMsgClash::__ct((J2DScreen*, J2DPane*, char*))
+newScreen::TitleMsgClash::TitleMsgClash(J2DScreen*, J2DPane*, char*)
 {
 	/*
 	.loc_0x0:
@@ -1758,7 +1753,7 @@ void og::newScreen::TitleMsgClash::__ct((J2DScreen*, J2DPane*, char*))
  * Address:	8032FF28
  * Size:	000014
  */
-void og::newScreen::TitleMsgClash::init(void)
+void newScreen::TitleMsgClash::init(void)
 {
 	/*
 	.loc_0x0:
@@ -1775,7 +1770,7 @@ void og::newScreen::TitleMsgClash::init(void)
  * Address:	8032FF3C
  * Size:	000214
  */
-void og::newScreen::TitleMsgClash::update(void)
+void newScreen::TitleMsgClash::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1928,7 +1923,7 @@ void og::newScreen::TitleMsgClash::update(void)
  * Address:	80330150
  * Size:	00006C
  */
-void og::newScreen::TitleMsgClash::end(void)
+void newScreen::TitleMsgClash::end(void)
 {
 	/*
 	.loc_0x0:
@@ -1971,14 +1966,14 @@ void og::newScreen::TitleMsgClash::end(void)
  * Address:	803301BC
  * Size:	000004
  */
-void og::newScreen::TitleMsg::start(void) { }
+void newScreen::TitleMsg::start(void) { }
 
 /*
  * --INFO--
  * Address:	803301C0
  * Size:	000084
  */
-void efx2d::T2DCvnameChal::__dt(void)
+efx2d::T2DCvnameChal::~T2DCvnameChal(void)
 {
 	/*
 	.loc_0x0:
@@ -2022,40 +2017,44 @@ void efx2d::T2DCvnameChal::__dt(void)
 	*/
 }
 
+} // namespace og
+
+namespace P2JME {
+
 /*
  * --INFO--
  * Address:	80330244
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagColor((void const*, unsigned long)) { return 0x1; }
+u32 Analyzer::tagColor(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8033024C
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagSize((void const*, unsigned long)) { return 0x1; }
+u32 Analyzer::tagSize(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80330254
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagRuby((void const*, unsigned long)) { return 0x1; }
+u32 Analyzer::tagRuby(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8033025C
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagFont((void const*, unsigned long)) { return 0x1; }
+u32 Analyzer::tagFont(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80330264
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagImage((unsigned short, void const*, unsigned long))
+u32 Analyzer::tagImage(unsigned short, void const*, unsigned long)
 {
 	return 0x1;
 }
@@ -2065,7 +2064,7 @@ u32 P2JME::Analyzer::tagImage((unsigned short, void const*, unsigned long))
  * Address:	8033026C
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagColorEX((unsigned short, void const*, unsigned long))
+u32 Analyzer::tagColorEX(unsigned short, void const*, unsigned long)
 {
 	return 0x1;
 }
@@ -2075,7 +2074,7 @@ u32 P2JME::Analyzer::tagColorEX((unsigned short, void const*, unsigned long))
  * Address:	80330274
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagControl((unsigned short, void const*, unsigned long))
+u32 Analyzer::tagControl(unsigned short, void const*, unsigned long)
 {
 	return 0x1;
 }
@@ -2085,7 +2084,7 @@ u32 P2JME::Analyzer::tagControl((unsigned short, void const*, unsigned long))
  * Address:	8033027C
  * Size:	000008
  */
-u32 P2JME::Analyzer::tagPosition((unsigned short, void const*, unsigned long))
+u32 Analyzer::tagPosition(unsigned short, void const*, unsigned long)
 {
 	return 0x1;
 }
@@ -2095,7 +2094,7 @@ u32 P2JME::Analyzer::tagPosition((unsigned short, void const*, unsigned long))
  * Address:	80330284
  * Size:	000008
  */
-void @8 @efx2d::T2DCvnameChal::__dt(void)
+@8 @efx2d::T2DCvnameChal::~T2DCvnameChal(void)
 {
 	/*
 	.loc_0x0:
@@ -2103,3 +2102,4 @@ void @8 @efx2d::T2DCvnameChal::__dt(void)
 	  b         -0xC8
 	*/
 }
+} // namespace P2JME

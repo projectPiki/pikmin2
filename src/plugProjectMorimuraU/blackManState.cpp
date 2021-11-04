@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803A3AF0
  * Size:	000174
  */
-void Game::BlackMan::FSM::init((Game::EnemyBase*))
+void BlackMan::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -140,7 +132,7 @@ void Game::BlackMan::FSM::init((Game::EnemyBase*))
  * Address:	803A3C64
  * Size:	00003C
  */
-void Game::BlackMan::StateWalk::__ct((int))
+BlackMan::StateWalk::StateWalk(int)
 {
 	/*
 	.loc_0x0:
@@ -167,7 +159,7 @@ void Game::BlackMan::StateWalk::__ct((int))
  * Address:	803A3CA0
  * Size:	000080
  */
-void Game::BlackMan::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -221,7 +213,7 @@ void Game::BlackMan::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A3D20
  * Size:	0001D4
  */
-void Game::BlackMan::StateWalk::exec((Game::EnemyBase*))
+void BlackMan::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +356,7 @@ void Game::BlackMan::StateWalk::exec((Game::EnemyBase*))
  * Address:	803A3EF4
  * Size:	000024
  */
-void Game::BlackMan::StateWalk::cleanup((Game::EnemyBase*))
+void BlackMan::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +377,7 @@ void Game::BlackMan::StateWalk::cleanup((Game::EnemyBase*))
  * Address:	803A3F18
  * Size:	00003C
  */
-void Game::BlackMan::StateDead::__ct((int))
+BlackMan::StateDead::StateDead(int)
 {
 	/*
 	.loc_0x0:
@@ -412,7 +404,7 @@ void Game::BlackMan::StateDead::__ct((int))
  * Address:	803A3F54
  * Size:	000064
  */
-void Game::BlackMan::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -449,7 +441,7 @@ void Game::BlackMan::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A3FB8
  * Size:	0000FC
  */
-void Game::BlackMan::StateDead::exec((Game::EnemyBase*))
+void BlackMan::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -534,7 +526,7 @@ void Game::BlackMan::StateDead::exec((Game::EnemyBase*))
  * Address:	803A40B4
  * Size:	00003C
  */
-void Game::BlackMan::StateFreeze::__ct((int))
+BlackMan::StateFreeze::StateFreeze(int)
 {
 	/*
 	.loc_0x0:
@@ -561,7 +553,7 @@ void Game::BlackMan::StateFreeze::__ct((int))
  * Address:	803A40F0
  * Size:	000090
  */
-void Game::BlackMan::StateFreeze::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateFreeze::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -613,7 +605,7 @@ void Game::BlackMan::StateFreeze::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A4180
  * Size:	0002F4
  */
-void Game::BlackMan::StateFreeze::exec((Game::EnemyBase*))
+void BlackMan::StateFreeze::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +828,7 @@ void Game::BlackMan::StateFreeze::exec((Game::EnemyBase*))
  * Address:	803A4474
  * Size:	000024
  */
-void Game::BlackMan::StateFreeze::cleanup((Game::EnemyBase*))
+void BlackMan::StateFreeze::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -857,7 +849,7 @@ void Game::BlackMan::StateFreeze::cleanup((Game::EnemyBase*))
  * Address:	803A4498
  * Size:	00003C
  */
-void Game::BlackMan::StateBend::__ct((int))
+BlackMan::StateBend::StateBend(int)
 {
 	/*
 	.loc_0x0:
@@ -884,7 +876,7 @@ void Game::BlackMan::StateBend::__ct((int))
  * Address:	803A44D4
  * Size:	000074
  */
-void Game::BlackMan::StateBend::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateBend::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -929,7 +921,7 @@ void Game::BlackMan::StateBend::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A4548
  * Size:	0001E8
  */
-void Game::BlackMan::StateBend::exec((Game::EnemyBase*))
+void BlackMan::StateBend::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1077,7 +1069,7 @@ void Game::BlackMan::StateBend::exec((Game::EnemyBase*))
  * Address:	803A4730
  * Size:	000024
  */
-void Game::BlackMan::StateBend::cleanup((Game::EnemyBase*))
+void BlackMan::StateBend::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1090,7 @@ void Game::BlackMan::StateBend::cleanup((Game::EnemyBase*))
  * Address:	803A4754
  * Size:	00003C
  */
-void Game::BlackMan::StateEscape::__ct((int))
+BlackMan::StateEscape::StateEscape(int)
 {
 	/*
 	.loc_0x0:
@@ -1125,7 +1117,7 @@ void Game::BlackMan::StateEscape::__ct((int))
  * Address:	803A4790
  * Size:	0000B0
  */
-void Game::BlackMan::StateEscape::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateEscape::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1185,7 +1177,7 @@ void Game::BlackMan::StateEscape::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A4840
  * Size:	0002B4
  */
-void Game::BlackMan::StateEscape::exec((Game::EnemyBase*))
+void BlackMan::StateEscape::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1394,7 +1386,7 @@ void Game::BlackMan::StateEscape::exec((Game::EnemyBase*))
  * Address:	803A4AF4
  * Size:	00003C
  */
-void Game::BlackMan::StateFall::__ct((int))
+BlackMan::StateFall::StateFall(int)
 {
 	/*
 	.loc_0x0:
@@ -1421,7 +1413,7 @@ void Game::BlackMan::StateFall::__ct((int))
  * Address:	803A4B30
  * Size:	00004C
  */
-void Game::BlackMan::StateFall::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1452,7 +1444,7 @@ void Game::BlackMan::StateFall::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A4B7C
  * Size:	000178
  */
-void Game::BlackMan::StateFall::exec((Game::EnemyBase*))
+void BlackMan::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1564,7 +1556,7 @@ void Game::BlackMan::StateFall::exec((Game::EnemyBase*))
  * Address:	803A4CF4
  * Size:	00003C
  */
-void Game::BlackMan::StateRecover::__ct((int))
+BlackMan::StateRecover::StateRecover(int)
 {
 	/*
 	.loc_0x0:
@@ -1591,7 +1583,7 @@ void Game::BlackMan::StateRecover::__ct((int))
  * Address:	803A4D30
  * Size:	0000C8
  */
-void Game::BlackMan::StateRecover::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1657,7 +1649,7 @@ void Game::BlackMan::StateRecover::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A4DF8
  * Size:	00016C
  */
-void Game::BlackMan::StateRecover::exec((Game::EnemyBase*))
+void BlackMan::StateRecover::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1778,7 +1770,7 @@ void Game::BlackMan::StateRecover::exec((Game::EnemyBase*))
  * Address:	803A4F64
  * Size:	00003C
  */
-void Game::BlackMan::StateFlick::__ct((int))
+BlackMan::StateFlick::StateFlick(int)
 {
 	/*
 	.loc_0x0:
@@ -1805,7 +1797,7 @@ void Game::BlackMan::StateFlick::__ct((int))
  * Address:	803A4FA0
  * Size:	000158
  */
-void Game::BlackMan::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1917,7 +1909,7 @@ void Game::BlackMan::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A50F8
  * Size:	0000B8
  */
-void Game::BlackMan::StateFlick::exec((Game::EnemyBase*))
+void BlackMan::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1981,7 +1973,7 @@ void Game::BlackMan::StateFlick::exec((Game::EnemyBase*))
  * Address:	803A51B0
  * Size:	000024
  */
-void Game::BlackMan::StateFlick::cleanup((Game::EnemyBase*))
+void BlackMan::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2002,7 +1994,7 @@ void Game::BlackMan::StateFlick::cleanup((Game::EnemyBase*))
  * Address:	803A51D4
  * Size:	00003C
  */
-void Game::BlackMan::StateTired::__ct((int))
+BlackMan::StateTired::StateTired(int)
 {
 	/*
 	.loc_0x0:
@@ -2029,7 +2021,7 @@ void Game::BlackMan::StateTired::__ct((int))
  * Address:	803A5210
  * Size:	00005C
  */
-void Game::BlackMan::StateTired::init((Game::EnemyBase*, Game::StateArg*))
+void BlackMan::StateTired::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2064,7 +2056,7 @@ void Game::BlackMan::StateTired::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803A526C
  * Size:	0000C0
  */
-void Game::BlackMan::StateTired::exec((Game::EnemyBase*))
+void BlackMan::StateTired::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2122,6 +2114,8 @@ void Game::BlackMan::StateTired::exec((Game::EnemyBase*))
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--

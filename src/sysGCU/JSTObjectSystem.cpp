@@ -1,11 +1,13 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-void Game::P2JST::_Print((char*, ...))
+void P2JST::_Print(char*, ...)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +17,7 @@ void Game::P2JST::_Print((char*, ...))
  * Address:	80430954
  * Size:	0000A0
  */
-void Game::P2JST::ObjectSystem::__ct((char const*, Game::MoviePlayer*))
+P2JST::ObjectSystem::ObjectSystem(char const*, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -62,6 +64,8 @@ void Game::P2JST::ObjectSystem::__ct((char const*, Game::MoviePlayer*))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	........
@@ -72,12 +76,14 @@ void __dt__Q27JGadget33TList_pointer<JStage::TObject*> Fv(void)
 	// UNUSED FUNCTION
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	804309F4
  * Size:	000084
  */
-void Game::P2JST::ObjectSystem::__dt(void)
+P2JST::ObjectSystem::~ObjectSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -128,7 +134,7 @@ void Game::P2JST::ObjectSystem::__dt(void)
  * Address:	80430A78
  * Size:	0000A8
  */
-void Game::P2JST::ObjectSystem::destroyObjectAll(void)
+void P2JST::ObjectSystem::destroyObjectAll(void)
 {
 	/*
 	.loc_0x0:
@@ -188,7 +194,7 @@ void Game::P2JST::ObjectSystem::destroyObjectAll(void)
  * Address:	80430B20
  * Size:	0000F4
  */
-void Game::P2JST::ObjectSystem::reset(void)
+void P2JST::ObjectSystem::reset(void)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +281,7 @@ void Game::P2JST::ObjectSystem::reset(void)
  * Address:	80430C14
  * Size:	0000AC
  */
-void Game::P2JST::ObjectSystem::entry(void)
+void P2JST::ObjectSystem::entry(void)
 {
 	/*
 	.loc_0x0:
@@ -338,7 +344,7 @@ void Game::P2JST::ObjectSystem::entry(void)
  * Address:	80430CC0
  * Size:	0000D4
  */
-void Game::P2JST::ObjectSystem::update(void)
+void P2JST::ObjectSystem::update(void)
 {
 	/*
 	.loc_0x0:
@@ -413,7 +419,7 @@ void Game::P2JST::ObjectSystem::update(void)
  * Address:	80430D94
  * Size:	0000D4
  */
-void Game::P2JST::ObjectSystem::start(void)
+void P2JST::ObjectSystem::start(void)
 {
 	/*
 	.loc_0x0:
@@ -488,7 +494,7 @@ void Game::P2JST::ObjectSystem::start(void)
  * Address:	80430E68
  * Size:	0000D4
  */
-void Game::P2JST::ObjectSystem::stop(void)
+void P2JST::ObjectSystem::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -563,7 +569,7 @@ void Game::P2JST::ObjectSystem::stop(void)
  * Address:	80430F3C
  * Size:	0000FC
  */
-void Game::P2JST::ObjectSystem::findObject(const(char const*, JStage::TEObject))
+void P2JST::ObjectSystem::findObject(const(char const*, JStage::TEObject))
 {
 	/*
 	.loc_0x0:
@@ -652,9 +658,8 @@ void Game::P2JST::ObjectSystem::findObject(const(char const*, JStage::TEObject))
  * Address:	80431038
  * Size:	000310
  */
-void Game::P2JST::ObjectSystem::JSGFindObject(const(JStage::TObject**,
-                                                    char const*,
-                                                    JStage::TEObject))
+void P2JST::ObjectSystem::JSGFindObject(const(JStage::TObject**, char const*,
+                                              JStage::TEObject))
 {
 	/*
 	.loc_0x0:
@@ -914,7 +919,7 @@ void Game::P2JST::ObjectSystem::JSGFindObject(const(JStage::TObject**,
  * Address:	80431348
  * Size:	000008
  */
-void Game::P2JST::ObjectSystem::JSGGetName( const
+void P2JST::ObjectSystem::JSGGetName() const
 {
 	/*
 	.loc_0x0:
@@ -928,13 +933,10 @@ void Game::P2JST::ObjectSystem::JSGGetName( const
  * Address:	80431350
  * Size:	000008
  */
-void Game::P2JST::ObjectSystem::JSGSetFlag( (unsigned long))
+void P2JST::ObjectSystem::JSGSetFlag(unsigned long a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x10(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x10(r3)
+	_10 = a1;
 }
 
 /*
@@ -942,7 +944,7 @@ void Game::P2JST::ObjectSystem::JSGSetFlag( (unsigned long))
  * Address:	80431358
  * Size:	000008
  */
-void Game::P2JST::ObjectSystem::JSGGetFlag( const
+void P2JST::ObjectSystem::JSGGetFlag() const
 {
 	/*
 	.loc_0x0:
@@ -956,7 +958,7 @@ void Game::P2JST::ObjectSystem::JSGGetFlag( const
  * Address:	80431360
  * Size:	000010
  */
-void Game::P2JST::ObjectSystem::JSGSetData( (unsigned long, void const *, unsigned long))
+void P2JST::ObjectSystem::JSGSetData(unsigned long, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -966,6 +968,8 @@ void Game::P2JST::ObjectSystem::JSGSetData( (unsigned long, void const *, unsign
 	  blr
 	*/
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -994,7 +998,7 @@ void __sinit_JSTObjectSystem_cpp(void)
  * Address:	80431398
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectSystem::stop(void)
+void @4 @Game::P2JST::ObjectSystem::stop(void)
 {
 	/*
 	.loc_0x0:
@@ -1008,7 +1012,7 @@ void @4@Game::P2JST::ObjectSystem::stop(void)
  * Address:	804313A0
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectSystem::start(void)
+void @4 @Game::P2JST::ObjectSystem::start(void)
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1026,7 @@ void @4@Game::P2JST::ObjectSystem::start(void)
  * Address:	804313A8
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectSystem::update(void)
+void @4 @Game::P2JST::ObjectSystem::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1036,7 +1040,7 @@ void @4@Game::P2JST::ObjectSystem::update(void)
  * Address:	804313B0
  * Size:	000008
  */
-void @4@Game::P2JST::ObjectSystem::reset(void)
+void @4 @Game::P2JST::ObjectSystem::reset(void)
 {
 	/*
 	.loc_0x0:

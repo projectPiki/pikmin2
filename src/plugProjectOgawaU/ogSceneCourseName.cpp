@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	80318050
  * Size:	00003C
  */
-void og::newScreen::CourseName::__ct(void)
+newScreen::CourseName::CourseName(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +34,7 @@ void og::newScreen::CourseName::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::CourseName::__dt(void)
+newScreen::CourseName::~CourseName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +44,7 @@ void og::newScreen::CourseName::__dt(void)
  * Address:	........
  * Size:	000098
  */
-void og::newScreen::CourseName::getCourseNum(void)
+void newScreen::CourseName::getCourseNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +54,7 @@ void og::newScreen::CourseName::getCourseNum(void)
  * Address:	8031808C
  * Size:	000128
  */
-void og::newScreen::CourseName::doUserCallBackFunc((Resource::MgrCommand*))
+void newScreen::CourseName::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	/*
 	.loc_0x0:
@@ -148,14 +150,14 @@ void og::newScreen::CourseName::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	803181B4
  * Size:	000004
  */
-void og::newScreen::CourseName::doCreateObj((JKRArchive*)) { }
+void newScreen::CourseName::doCreateObj(JKRArchive*) { }
 
 /*
  * --INFO--
  * Address:	803181B8
  * Size:	000060
  */
-void og::newScreen::CourseName::doCreateObjUserCallBackFunc((JKRArchive*))
+void newScreen::CourseName::doCreateObjUserCallBackFunc(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +195,7 @@ void og::newScreen::CourseName::doCreateObjUserCallBackFunc((JKRArchive*))
  * Address:	80318218
  * Size:	000008
  */
-void og::newScreen::CourseName::getResName( const
+void newScreen::CourseName::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -207,17 +209,14 @@ void og::newScreen::CourseName::getResName( const
  * Address:	80318220
  * Size:	000008
  */
-u32  og::newScreen::CourseName::getSceneType(void)
-{
-	return 0x271E;
-}
+u32 newScreen::CourseName::getSceneType(void) { return 0x271E; }
 
 /*
  * --INFO--
  * Address:	80318228
  * Size:	00000C
  */
-void og::newScreen::CourseName::getOwnerID(void)
+void newScreen::CourseName::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -232,7 +231,7 @@ void og::newScreen::CourseName::getOwnerID(void)
  * Address:	80318234
  * Size:	000010
  */
-void og::newScreen::CourseName::getMemberID(void)
+void newScreen::CourseName::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -242,3 +241,4 @@ void og::newScreen::CourseName::getMemberID(void)
 	  blr
 	*/
 }
+} // namespace og

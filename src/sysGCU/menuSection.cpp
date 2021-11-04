@@ -1,21 +1,11 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	804245CC
  * Size:	000048
  */
-void MenuSection::MenuSection(JFWDisplay*, JKRHeap*, bool)
+MenuSection::MenuSection(JFWDisplay*, JKRHeap*, bool)
 {
 	/*
 	.loc_0x0:
@@ -180,7 +170,7 @@ void MenuSection::runChildSection()
  * Address:	804247B0
  * Size:	000060
  */
-void MenuSection::~MenuSection()
+MenuSection::~MenuSection()
 {
 	/*
 	.loc_0x0:

@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803493F8
  * Size:	000078
  */
-void Game::Bomb::FSM::init((Game::EnemyBase*))
+void Bomb::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -63,7 +55,7 @@ void Game::Bomb::FSM::init((Game::EnemyBase*))
  * Address:	80349470
  * Size:	00003C
  */
-void Game::Bomb::StateWait::__ct((int))
+Bomb::StateWait::StateWait(int)
 {
 	/*
 	.loc_0x0:
@@ -90,7 +82,7 @@ void Game::Bomb::StateWait::__ct((int))
  * Address:	803494AC
  * Size:	00005C
  */
-void Game::Bomb::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Bomb::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +117,7 @@ void Game::Bomb::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80349508
  * Size:	000148
  */
-void Game::Bomb::StateWait::exec((Game::EnemyBase*))
+void Bomb::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -231,7 +223,7 @@ void Game::Bomb::StateWait::exec((Game::EnemyBase*))
  * Address:	80349650
  * Size:	00003C
  */
-void Game::Bomb::StateBomb::__ct((int))
+Bomb::StateBomb::StateBomb(int)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +250,7 @@ void Game::Bomb::StateBomb::__ct((int))
  * Address:	8034968C
  * Size:	000060
  */
-void Game::Bomb::StateBomb::init((Game::EnemyBase*, Game::StateArg*))
+void Bomb::StateBomb::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -294,7 +286,7 @@ void Game::Bomb::StateBomb::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	803496EC
  * Size:	0005C4
  */
-void Game::Bomb::StateBomb::exec((Game::EnemyBase*))
+void Bomb::StateBomb::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -696,12 +688,16 @@ void Game::Bomb::StateBomb::exec((Game::EnemyBase*))
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	80349CB0
  * Size:	000084
  */
-void efx::TBombrock::create((efx::Arg*))
+void TBombrock::create(efx::Arg*)
 {
 	/*
 	.loc_0x0:
@@ -748,14 +744,16 @@ void efx::TBombrock::create((efx::Arg*))
  * Address:	80349D34
  * Size:	000004
  */
-void efx::TBombrock::forceKill(void) { }
+void TBombrock::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	80349D38
  * Size:	000004
  */
-void efx::TBombrock::fade(void) { }
+void TBombrock::fade(void) { }
+
+} // namespace efx
 
 /*
  * --INFO--

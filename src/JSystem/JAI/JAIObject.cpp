@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C8
  */
-void JAInter::ObjectBase::__ct((Vec*, JKRHeap*, unsigned char))
+JAInter::ObjectBase::ObjectBase(Vec*, JKRHeap*, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void JAInter::ObjectBase::__ct((Vec*, JKRHeap*, unsigned char))
  * Address:	800B95FC
  * Size:	000074
  */
-void JAInter::ObjectBase::__dt(void)
+JAInter::ObjectBase::~ObjectBase(void)
 {
 	/*
 	.loc_0x0:
@@ -58,7 +58,7 @@ void JAInter::ObjectBase::__dt(void)
  * Address:	800B9670
  * Size:	000164
  */
-void JAInter::ObjectBase::startSound((unsigned long, unsigned long))
+void JAInter::ObjectBase::startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -175,7 +175,7 @@ void JAInter::ObjectBase::startSound((unsigned long, unsigned long))
  * Address:	800B97D4
  * Size:	000044
  */
-void JAInter::ObjectBase::handleStop((unsigned char, unsigned long))
+void JAInter::ObjectBase::handleStop(unsigned char, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -206,8 +206,8 @@ void JAInter::ObjectBase::handleStop((unsigned char, unsigned long))
  * Address:	800B9818
  * Size:	000048
  */
-void JAInter::ObjectBase::startSound((unsigned char, unsigned long,
-                                      unsigned long))
+void JAInter::ObjectBase::startSound(unsigned char, unsigned long,
+                                     unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +237,7 @@ void JAInter::ObjectBase::startSound((unsigned char, unsigned long,
  * Address:	800B9860
  * Size:	000044
  */
-void JAInter::ObjectBase::startSound((JAISound**, unsigned long, unsigned long))
+void JAInter::ObjectBase::startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -266,7 +266,7 @@ void JAInter::ObjectBase::startSound((JAISound**, unsigned long, unsigned long))
  * Address:	800B98A4
  * Size:	000060
  */
-void JAInter::ObjectBase::stopSound((unsigned long, unsigned long))
+void JAInter::ObjectBase::stopSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -454,7 +454,7 @@ void JAInter::ObjectBase::getFreeSoundHandleNo(void)
  * Address:	800B9A4C
  * Size:	000054
  */
-void JAInter::ObjectBase::getUseSoundHandlePointer((unsigned long))
+void JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -493,7 +493,7 @@ void JAInter::ObjectBase::getUseSoundHandlePointer((unsigned long))
  * Address:	800B9AA0
  * Size:	00004C
  */
-void JAInter::ObjectBase::getUseSoundHandleNo((unsigned long))
+void JAInter::ObjectBase::getUseSoundHandleNo(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -530,7 +530,7 @@ void JAInter::ObjectBase::getUseSoundHandleNo((unsigned long))
  * Address:	........
  * Size:	000038
  */
-void JAInter::ObjectBase::reserveSoundHandle((unsigned char))
+void JAInter::ObjectBase::reserveSoundHandle(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -540,7 +540,7 @@ void JAInter::ObjectBase::reserveSoundHandle((unsigned char))
  * Address:	........
  * Size:	00001C
  */
-void JAInter::ObjectBase::cancelSoundHandle((unsigned char))
+void JAInter::ObjectBase::cancelSoundHandle(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -550,7 +550,7 @@ void JAInter::ObjectBase::cancelSoundHandle((unsigned char))
  * Address:	800B9AEC
  * Size:	0000F4
  */
-void JAInter::Object::__ct((Vec*, JKRHeap*, unsigned char))
+JAInter::Object::Object(Vec*, JKRHeap*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -629,7 +629,7 @@ void JAInter::Object::__ct((Vec*, JKRHeap*, unsigned char))
  * Address:	800B9BE0
  * Size:	000084
  */
-void JAInter::Object::__dt(void)
+JAInter::Object::~Object(void)
 {
 	/*
 	.loc_0x0:
@@ -678,7 +678,7 @@ void JAInter::Object::__dt(void)
  * Address:	800B9C64
  * Size:	00021C
  */
-void JAInter::Object::startSound((unsigned long, unsigned long))
+void JAInter::Object::startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	803011F8
  * Size:	000050
  */
-void Game::NormMiniHoudai::Mgr::Mgr(int, unsigned char)
+NormMiniHoudai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -37,7 +39,7 @@ void Game::NormMiniHoudai::Mgr::Mgr(int, unsigned char)
  * Address:	80301248
  * Size:	000048
  */
-void Game::NormMiniHoudai::Mgr::doAlloc()
+void NormMiniHoudai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -71,7 +73,7 @@ void Game::NormMiniHoudai::Mgr::doAlloc()
  * Address:	80301290
  * Size:	0000DC
  */
-void Game::MiniHoudai::Parms::Parms()
+MiniHoudai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -138,7 +140,7 @@ void Game::MiniHoudai::Parms::Parms()
  * Address:	8030136C
  * Size:	000060
  */
-void Game::NormMiniHoudai::Mgr::createObj(int)
+void NormMiniHoudai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +176,7 @@ void Game::NormMiniHoudai::Mgr::createObj(int)
  * Address:	803013CC
  * Size:	0000EC
  */
-void Game::NormMiniHoudai::Obj::~Obj()
+NormMiniHoudai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -249,7 +251,7 @@ void Game::NormMiniHoudai::Obj::~Obj()
  * Address:	803014B8
  * Size:	000010
  */
-void Game::NormMiniHoudai::Mgr::getEnemy(int)
+void NormMiniHoudai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -265,14 +267,14 @@ void Game::NormMiniHoudai::Mgr::getEnemy(int)
  * Address:	803014C8
  * Size:	000008
  */
-u32 Game::NormMiniHoudai::Obj::getEnemyTypeID() { return 0x4E; }
+u32 NormMiniHoudai::Obj::getEnemyTypeID() { return 0x4E; }
 
 /*
  * --INFO--
  * Address:	803014D0
  * Size:	000050
  */
-void Game::MiniHoudai::Parms::read(Stream&)
+void MiniHoudai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -304,7 +306,7 @@ void Game::MiniHoudai::Parms::read(Stream&)
  * Address:	80301520
  * Size:	0000C8
  */
-void Game::NormMiniHoudai::Mgr::~Mgr()
+NormMiniHoudai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -370,14 +372,14 @@ void Game::NormMiniHoudai::Mgr::~Mgr()
  * Address:	803015E8
  * Size:	000008
  */
-u32 Game::NormMiniHoudai::Mgr::getEnemyTypeID() { return 0x4E; }
+u32 NormMiniHoudai::Mgr::getEnemyTypeID() { return 0x4E; }
 
 /*
  * --INFO--
  * Address:	803015F0
  * Size:	000008
  */
-void Game::NormMiniHoudai::Mgr::@4 @__dt()
+NormMiniHoudai::Mgr::@4 @~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -385,3 +387,4 @@ void Game::NormMiniHoudai::Mgr::@4 @__dt()
 	  b         -0xD4
 	*/
 }
+} // namespace Game

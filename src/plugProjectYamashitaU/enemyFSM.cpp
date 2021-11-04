@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8013070C
  * Size:	000030
  */
-void Game::EnemyFSMState::transit(Game::EnemyBase*, int, Game::StateArg*)
+void EnemyFSMState::transit(Game::EnemyBase*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +31,7 @@ void Game::EnemyFSMState::transit(Game::EnemyBase*, int, Game::StateArg*)
  * Address:	8013073C
  * Size:	00005C
  */
-void Game::EnemyStateMachine::doDirectDraw(Game::EnemyBase*, Graphics&)
+void EnemyStateMachine::doDirectDraw(Game::EnemyBase*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -64,7 +66,7 @@ void Game::EnemyStateMachine::doDirectDraw(Game::EnemyBase*, Graphics&)
  * Address:	80130798
  * Size:	000080
  */
-void Game::EnemyStateMachine::start(Game::EnemyBase*, int, Game::StateArg*)
+void EnemyStateMachine::start(Game::EnemyBase*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +110,7 @@ void Game::EnemyStateMachine::start(Game::EnemyBase*, int, Game::StateArg*)
  * Address:	80130818
  * Size:	00004C
  */
-void Game::EnemyStateMachine::exec(Game::EnemyBase*)
+void EnemyStateMachine::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -139,7 +141,7 @@ void Game::EnemyStateMachine::exec(Game::EnemyBase*)
  * Address:	80130864
  * Size:	0000A4
  */
-void Game::EnemyStateMachine::create(int)
+void EnemyStateMachine::create(int)
 {
 	/*
 	.loc_0x0:
@@ -196,7 +198,7 @@ void Game::EnemyStateMachine::create(int)
  * Address:	80130908
  * Size:	000084
  */
-void Game::EnemyStateMachine::registerState(Game::EnemyFSMState*)
+void EnemyStateMachine::registerState(Game::EnemyFSMState*)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +249,7 @@ void Game::EnemyStateMachine::registerState(Game::EnemyFSMState*)
  * Address:	8013098C
  * Size:	000070
  */
-void Game::EnemyStateMachine::getCurrID(Game::EnemyBase*)
+void EnemyStateMachine::getCurrID(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -291,7 +293,7 @@ void Game::EnemyStateMachine::getCurrID(Game::EnemyBase*)
  * Address:	801309FC
  * Size:	000070
  */
-void Game::EnemyStateMachine::getCurrName(Game::EnemyBase*)
+void EnemyStateMachine::getCurrName(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +337,7 @@ void Game::EnemyStateMachine::getCurrName(Game::EnemyBase*)
  * Address:	80130A6C
  * Size:	00011C
  */
-void Game::EnemyStateMachine::transit(Game::EnemyBase*, int, Game::StateArg*)
+void EnemyStateMachine::transit(Game::EnemyBase*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -424,8 +426,7 @@ void Game::EnemyStateMachine::transit(Game::EnemyBase*, int, Game::StateArg*)
  * Address:	80130B88
  * Size:	000008
  */
-void Game::EnemyStateMachine::setCurrState(Game::EnemyBase*,
-                                           Game::EnemyFSMState*)
+void EnemyStateMachine::setCurrState(Game::EnemyBase*, Game::EnemyFSMState*)
 {
 	/*
 	.loc_0x0:
@@ -439,7 +440,7 @@ void Game::EnemyStateMachine::setCurrState(Game::EnemyBase*,
  * Address:	80130B90
  * Size:	000008
  */
-void Game::EnemyStateMachine::getCurrState(Game::EnemyBase*)
+void EnemyStateMachine::getCurrState(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -453,4 +454,5 @@ void Game::EnemyStateMachine::getCurrState(Game::EnemyBase*)
  * Address:	80130B98
  * Size:	000004
  */
-void Game::EnemyStateMachine::init(Game::EnemyBase*) { }
+void EnemyStateMachine::init(Game::EnemyBase*) { }
+} // namespace Game

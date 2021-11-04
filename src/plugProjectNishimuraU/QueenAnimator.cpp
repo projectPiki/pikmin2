@@ -1,17 +1,16 @@
+#include "types.h"
 
+namespace Game {
 
 /*
  * --INFO--
  * Address:	80288E40
  * Size:	000008
  */
-void Game::Queen::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
+void Queen::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
-	*/
+	// Generated from stw r4, 0x20(r3)
+	_20 = a1;
 }
 
 /*
@@ -19,7 +18,7 @@ void Game::Queen::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
  * Address:	80288E48
  * Size:	000008
  */
-void Game::Queen::ProperAnimator::getAnimator(int)
+void Queen::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -33,7 +32,7 @@ void Game::Queen::ProperAnimator::getAnimator(int)
  * Address:	80288E50
  * Size:	00005C
  */
-void Game::Queen::ProperAnimator::~ProperAnimator()
+Queen::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +71,7 @@ void Game::Queen::ProperAnimator::~ProperAnimator()
  * Address:	80288EAC
  * Size:	000008
  */
-void Game::Queen::ProperAnimator::getAnimator()
+void Queen::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:
@@ -80,3 +79,4 @@ void Game::Queen::ProperAnimator::getAnimator()
 	  blr
 	*/
 }
+} // namespace Game

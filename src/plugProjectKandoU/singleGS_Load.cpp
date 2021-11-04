@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-void Game::SingleGame::_Print((char*, ...))
+void SingleGame::_Print(char*, ...)
 {
 	// UNUSED FUNCTION
 }
@@ -15,8 +17,7 @@ void Game::SingleGame::_Print((char*, ...))
  * Address:	80239E84
  * Size:	0000B4
  */
-void Game::SingleGame::LoadState::init((Game::SingleGameSection*,
-                                        Game::StateArg*))
+void SingleGame::LoadState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -77,7 +78,7 @@ void Game::SingleGame::LoadState::init((Game::SingleGameSection*,
  * Address:	........
  * Size:	000160
  */
-void Game::SingleGame::LoadState::initNext((Game::SingleGameSection*))
+void SingleGame::LoadState::initNext(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -87,7 +88,7 @@ void Game::SingleGame::LoadState::initNext((Game::SingleGameSection*))
  * Address:	80239F38
  * Size:	000238
  */
-void Game::SingleGame::LoadState::exec((Game::SingleGameSection*))
+void SingleGame::LoadState::exec(Game::SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +264,7 @@ void Game::SingleGame::LoadState::exec((Game::SingleGameSection*))
  * Address:	8023A170
  * Size:	000090
  */
-void Game::SingleGame::LoadState::draw((Game::SingleGameSection*, Graphics&))
+void SingleGame::LoadState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -313,45 +314,55 @@ void Game::SingleGame::LoadState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8023A200
  * Size:	000004
  */
-void Game::SingleGame::LoadState::cleanup((Game::SingleGameSection*)) { }
+void SingleGame::LoadState::cleanup(Game::SingleGameSection*) { }
 
-/*
- * --INFO--
- * Address:	8023A204
- * Size:	000008
- */
-u32 og::Screen::DispMemberCourseName::getSize(void) { return 0x10; }
+} // namespace Game
 
-/*
- * --INFO--
- * Address:	8023A20C
- * Size:	00000C
- */
-void og::Screen::DispMemberCourseName::getOwnerID(void)
-{
+namespace og {
+
+namespace Screen {
+
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8023A204
+	 * Size:	000008
+	 */
+	u32 DispMemberCourseName::getSize(void) { return 0x10; }
 
-/*
- * --INFO--
- * Address:	8023A218
- * Size:	000010
- */
-void og::Screen::DispMemberCourseName::getMemberID(void)
-{
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5552
-	  li        r3, 0x434F
-	  addi      r4, r4, 0x5345
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8023A20C
+	 * Size:	00000C
+	 */
+	void DispMemberCourseName::getOwnerID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r3, 0x4F
+		  addi      r3, r3, 0x4741
+		  blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8023A218
+	 * Size:	000010
+	 */
+	void DispMemberCourseName::getMemberID(void)
+	{
+		/*
+		.loc_0x0:
+		  lis       r4, 0x5552
+		  li        r3, 0x434F
+		  addi      r4, r4, 0x5345
+		  blr
+		*/
+	}
+
+} // namespace Screen
+
+} // namespace og
 
 /*
  * --INFO--

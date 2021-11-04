@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803BCD18
  * Size:	0005EC
  */
-void ebi::title::TTitleMgr::__ct(void)
+title::TTitleMgr::TTitleMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +400,7 @@ void ebi::title::TTitleMgr::__ct(void)
  * Address:	803BD304
  * Size:	000458
  */
-void ebi::title::TTitleParameters::__ct(void)
+title::TTitleParameters::TTitleParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -700,7 +692,7 @@ void ebi::title::TTitleParameters::__ct(void)
  * Address:	803BD75C
  * Size:	000070
  */
-void ebi::title::TTitleFogMgr::__dt(void)
+title::TTitleFogMgr::~TTitleFogMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -739,12 +731,14 @@ void ebi::title::TTitleFogMgr::__dt(void)
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803BD7CC
  * Size:	000060
  */
-void FogMgr::~FogMgr()
+FogMgr::~FogMgr()
 {
 	/*
 	.loc_0x0:
@@ -777,12 +771,14 @@ void FogMgr::~FogMgr()
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BD82C
  * Size:	0000E4
  */
-void ebi::title::TTitleLightMgr::__dt(void)
+title::TTitleLightMgr::~TTitleLightMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -861,7 +857,7 @@ void ebi::title::TTitleLightMgr::__dt(void)
  * Address:	803BD910
  * Size:	0000D8
  */
-void ebi::title::TTitleLightMgr::__ct(void)
+title::TTitleLightMgr::TTitleLightMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -929,7 +925,7 @@ void ebi::title::TTitleLightMgr::__ct(void)
  * Address:	803BD9E8
  * Size:	00014C
  */
-void ebi::title::TTitleLightSetting::__ct(void)
+title::TTitleLightSetting::TTitleLightSetting(void)
 {
 	/*
 	.loc_0x0:
@@ -1026,7 +1022,7 @@ void ebi::title::TTitleLightSetting::__ct(void)
  * Address:	803BDB34
  * Size:	000228
  */
-void ebi::title::TTitleLightSetting::TSpecParms::__ct(void)
+title::TTitleLightSetting::TSpecParms::TSpecParms(void)
 {
 	/*
 	.loc_0x0:
@@ -1178,7 +1174,7 @@ void ebi::title::TTitleLightSetting::TSpecParms::__ct(void)
  * Address:	803BDD5C
  * Size:	000350
  */
-void ebi::title::TTitleLightSetting::TMainParms::__ct(void)
+title::TTitleLightSetting::TMainParms::TMainParms(void)
 {
 	/*
 	.loc_0x0:
@@ -1399,12 +1395,14 @@ void ebi::title::TTitleLightSetting::TMainParms::__ct(void)
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803BE0AC
  * Size:	000060
  */
-void LightObj::~LightObj()
+LightObj::~LightObj()
 {
 	/*
 	.loc_0x0:
@@ -1437,12 +1435,14 @@ void LightObj::~LightObj()
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BE10C
  * Size:	0000D0
  */
-void ebi::title::TTitleCameraMgr::__dt(void)
+title::TTitleCameraMgr::~TTitleCameraMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1505,12 +1505,14 @@ void ebi::title::TTitleCameraMgr::__dt(void)
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803BE1DC
  * Size:	000060
  */
-void Viewport::~Viewport()
+Viewport::~Viewport()
 {
 	/*
 	.loc_0x0:
@@ -1543,12 +1545,14 @@ void Viewport::~Viewport()
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BE23C
  * Size:	000060
  */
-void ebi::title::TCoordMgr::__dt(void)
+title::TCoordMgr::~TCoordMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1586,7 +1590,7 @@ void ebi::title::TCoordMgr::__dt(void)
  * Address:	803BE29C
  * Size:	000060
  */
-void ebi::title::Chappy::TMgr::__dt(void)
+title::Chappy::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1624,7 +1628,7 @@ void ebi::title::Chappy::TMgr::__dt(void)
  * Address:	803BE2FC
  * Size:	000060
  */
-void ebi::title::Kogane::TMgr::__dt(void)
+title::Kogane::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1662,7 +1666,7 @@ void ebi::title::Kogane::TMgr::__dt(void)
  * Address:	803BE35C
  * Size:	000084
  */
-void ebi::title::Pikmin::TMgr::__dt(void)
+title::Pikmin::TMgr::~TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -1711,7 +1715,7 @@ void ebi::title::Pikmin::TMgr::__dt(void)
  * Address:	........
  * Size:	000074
  */
-void ebi::title::TBlackPlane::__dt(void)
+title::TBlackPlane::~TBlackPlane(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1721,7 +1725,7 @@ void ebi::title::TBlackPlane::__dt(void)
  * Address:	........
  * Size:	000060
  */
-void ebi::title::TBGEnemyBase::__dt(void)
+title::TBGEnemyBase::~TBGEnemyBase(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1731,17 +1735,19 @@ void ebi::title::TBGEnemyBase::__dt(void)
  * Address:	........
  * Size:	000074
  */
-void ebi::title::TMapBase::__dt(void)
+title::TMapBase::~TMapBase(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace ebi
 
 /*
  * --INFO--
  * Address:	803BE3E0
  * Size:	000048
  */
-void J3DFrameCtrl::~J3DFrameCtrl()
+J3DFrameCtrl::~J3DFrameCtrl()
 {
 	/*
 	.loc_0x0:
@@ -1768,12 +1774,14 @@ void J3DFrameCtrl::~J3DFrameCtrl()
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BE428
  * Size:	00034C
  */
-void ebi::title::TTitleMgr::__dt(void)
+title::TTitleMgr::~TTitleMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2030,7 +2038,7 @@ void ebi::title::TTitleMgr::__dt(void)
  * Address:	803BE774
  * Size:	000024
  */
-void ebi::title::TTitleMgr::globalInstance(void)
+void title::TTitleMgr::globalInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -2053,7 +2061,7 @@ void ebi::title::TTitleMgr::globalInstance(void)
  * Address:	803BE798
  * Size:	000048
  */
-void ebi::title::TTitleMgr::Instance(void)
+void title::TTitleMgr::Instance(void)
 {
 	/*
 	.loc_0x0:
@@ -2087,7 +2095,7 @@ void ebi::title::TTitleMgr::Instance(void)
  * Address:	803BE7E0
  * Size:	000050
  */
-void ebi::title::TTitleMgr::deleteInstance(void)
+void title::TTitleMgr::deleteInstance(void)
 {
 	/*
 	.loc_0x0:
@@ -2123,7 +2131,7 @@ void ebi::title::TTitleMgr::deleteInstance(void)
  * Address:	803BE830
  * Size:	000228
  */
-void ebi::title::TTitleMgr::init(void)
+void title::TTitleMgr::init(void)
 {
 	/*
 	.loc_0x0:
@@ -2277,7 +2285,7 @@ void ebi::title::TTitleMgr::init(void)
  * Address:	........
  * Size:	000038
  */
-void ebi::title::TTitleMgr::setDestToPiki((long))
+void title::TTitleMgr::setDestToPiki(long)
 {
 	// UNUSED FUNCTION
 }
@@ -2287,7 +2295,7 @@ void ebi::title::TTitleMgr::setDestToPiki((long))
  * Address:	........
  * Size:	000038
  */
-void ebi::title::TTitleMgr::setPosToPiki((long))
+void title::TTitleMgr::setPosToPiki(long)
 {
 	// UNUSED FUNCTION
 }
@@ -2297,7 +2305,7 @@ void ebi::title::TTitleMgr::setPosToPiki((long))
  * Address:	........
  * Size:	00003C
  */
-void ebi::title::TTitleMgr::setStartPosToPiki(void)
+void title::TTitleMgr::setStartPosToPiki(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2307,7 +2315,7 @@ void ebi::title::TTitleMgr::setStartPosToPiki(void)
  * Address:	803BEA58
  * Size:	000050
  */
-void ebi::title::TTitleMgr::setLogo(void)
+void title::TTitleMgr::setLogo(void)
 {
 	/*
 	.loc_0x0:
@@ -2339,7 +2347,7 @@ void ebi::title::TTitleMgr::setLogo(void)
  * Address:	........
  * Size:	0001D8
  */
-void ebi::title::TTitleMgr::calcBreakupDestination(void)
+void title::TTitleMgr::calcBreakupDestination(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2349,7 +2357,7 @@ void ebi::title::TTitleMgr::calcBreakupDestination(void)
  * Address:	........
  * Size:	000208
  */
-void ebi::title::TTitleMgr::calcDestination((long))
+void title::TTitleMgr::calcDestination(long)
 {
 	// UNUSED FUNCTION
 }
@@ -2359,7 +2367,7 @@ void ebi::title::TTitleMgr::calcDestination((long))
  * Address:	........
  * Size:	000084
  */
-void ebi::title::TTitleMgr::isAssemble(void)
+void title::TTitleMgr::isAssemble(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2369,7 +2377,7 @@ void ebi::title::TTitleMgr::isAssemble(void)
  * Address:	803BEAA8
  * Size:	000300
  */
-void ebi::title::TTitleMgr::loadResource(void)
+void title::TTitleMgr::loadResource(void)
 {
 	/*
 	.loc_0x0:
@@ -2613,7 +2621,7 @@ void ebi::title::TTitleMgr::loadResource(void)
  * Address:	803BEDA8
  * Size:	000040
  */
-void ebi::title::TTitleMgr::initAfterLoadRes(void)
+void title::TTitleMgr::initAfterLoadRes(void)
 {
 	/*
 	.loc_0x0:
@@ -2641,7 +2649,7 @@ void ebi::title::TTitleMgr::initAfterLoadRes(void)
  * Address:	803BEDE8
  * Size:	000044
  */
-void ebi::title::TTitleMgr::setController((Controller*))
+void title::TTitleMgr::setController(Controller*)
 {
 	/*
 	.loc_0x0:
@@ -2670,10 +2678,12 @@ void ebi::title::TTitleMgr::setController((Controller*))
  * Address:	........
  * Size:	00001C
  */
-void ebi::title::TTitleMgr::setDrawBufferToJ3DSys(void)
+void title::TTitleMgr::setDrawBufferToJ3DSys(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace ebi
 
 /*
  * --INFO--
@@ -2685,12 +2695,14 @@ void inField__Q33ebi5title9TTitleMgrFP10Vector2<float>(void)
 	// UNUSED FUNCTION
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BEE2C
  * Size:	000070
  */
-void ebi::title::TTitleMgr::inField((ebi::title::TObjBase*))
+void title::TTitleMgr::inField(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -2732,7 +2744,9 @@ void ebi::title::TTitleMgr::inField((ebi::title::TObjBase*))
  * Address:	803BEE9C
  * Size:	000008
  */
-u32 ebi::title::TObjBase::isCalc(void) { return 0x1; }
+u32 title::TObjBase::isCalc(void) { return 0x1; }
+
+} // namespace ebi
 
 /*
  * --INFO--
@@ -2744,12 +2758,14 @@ void inViewField__Q33ebi5title9TTitleMgrFP10Vector2<float> f(void)
 	// UNUSED FUNCTION
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BEEA4
  * Size:	000080
  */
-void ebi::title::TTitleMgr::inViewField((ebi::title::TObjBase*))
+void title::TTitleMgr::inViewField(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -2790,6 +2806,8 @@ void ebi::title::TTitleMgr::inViewField((ebi::title::TObjBase*))
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	........
@@ -2800,12 +2818,14 @@ void isInViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f(void)
 	// UNUSED FUNCTION
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BEF24
  * Size:	000088
  */
-void ebi::title::TTitleMgr::isInViewField((ebi::title::TObjBase*))
+void title::TTitleMgr::isInViewField(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -2850,6 +2870,8 @@ void ebi::title::TTitleMgr::isInViewField((ebi::title::TObjBase*))
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803BEFAC
@@ -2879,12 +2901,14 @@ void isOutViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f(void)
 	*/
 }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803BEFF0
  * Size:	000088
  */
-void ebi::title::TTitleMgr::isOutViewField((ebi::title::TObjBase*))
+void title::TTitleMgr::isOutViewField(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -2934,7 +2958,7 @@ void ebi::title::TTitleMgr::isOutViewField((ebi::title::TObjBase*))
  * Address:	803BF078
  * Size:	000020
  */
-void ebi::title::TTitleMgr::getPosOutOfViewField(void)
+void title::TTitleMgr::getPosOutOfViewField(void)
 {
 	/*
 	.loc_0x0:
@@ -2954,7 +2978,7 @@ void ebi::title::TTitleMgr::getPosOutOfViewField(void)
  * Address:	803BF098
  * Size:	000408
  */
-void ebi::title::TTitleMgr::start(void)
+void title::TTitleMgr::start(void)
 {
 	/*
 	.loc_0x0:
@@ -3240,7 +3264,7 @@ void ebi::title::TTitleMgr::start(void)
  * Address:	........
  * Size:	0000AC
  */
-void ebi::title::TTitleMgr::windBlow(void)
+void title::TTitleMgr::windBlow(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3250,7 +3274,7 @@ void ebi::title::TTitleMgr::windBlow(void)
  * Address:	803BF4A0
  * Size:	00020C
  */
-void ebi::title::TTitleMgr::breakup(void)
+void title::TTitleMgr::breakup(void)
 {
 	/*
 	.loc_0x0:
@@ -3401,7 +3425,7 @@ void ebi::title::TTitleMgr::breakup(void)
  * Address:	803BF6AC
  * Size:	0001A0
  */
-void ebi::title::TTitleMgr::startKogane(void)
+void title::TTitleMgr::startKogane(void)
 {
 	/*
 	.loc_0x0:
@@ -3535,7 +3559,7 @@ void ebi::title::TTitleMgr::startKogane(void)
  * Address:	803BF84C
  * Size:	0001A0
  */
-void ebi::title::TTitleMgr::startChappy(void)
+void title::TTitleMgr::startChappy(void)
 {
 	/*
 	.loc_0x0:
@@ -3669,7 +3693,7 @@ void ebi::title::TTitleMgr::startChappy(void)
  * Address:	803BF9EC
  * Size:	00023C
  */
-void ebi::title::TTitleMgr::boidToAssemble((long))
+void title::TTitleMgr::boidToAssemble(long)
 {
 	/*
 	.loc_0x0:
@@ -3836,7 +3860,7 @@ void ebi::title::TTitleMgr::boidToAssemble((long))
  * Address:	........
  * Size:	000050
  */
-void ebi::title::TTitleMgr::boid3ToAssemble(void)
+void title::TTitleMgr::boid3ToAssemble(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3846,7 +3870,7 @@ void ebi::title::TTitleMgr::boid3ToAssemble(void)
  * Address:	803BFC28
  * Size:	00001C
  */
-void ebi::title::TTitleMgr::isControllerOK(void)
+void title::TTitleMgr::isControllerOK(void)
 {
 	/*
 	.loc_0x0:
@@ -3867,7 +3891,7 @@ void ebi::title::TTitleMgr::isControllerOK(void)
  * Address:	803BFC44
  * Size:	00001C
  */
-void ebi::title::TTitleMgr::isPressStart(void)
+void title::TTitleMgr::isPressStart(void)
 {
 	/*
 	.loc_0x0:
@@ -3888,7 +3912,7 @@ void ebi::title::TTitleMgr::isPressStart(void)
  * Address:	........
  * Size:	000058
  */
-void ebi::title::TTitleMgr::isAnyKey(void)
+void title::TTitleMgr::isAnyKey(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3898,7 +3922,7 @@ void ebi::title::TTitleMgr::isAnyKey(void)
  * Address:	803BFC60
  * Size:	000124
  */
-void ebi::title::TTitleMgr::startState((ebi::title::TTitleMgr::enumState))
+void title::TTitleMgr::startState(ebi::title::TTitleMgr::enumState)
 {
 	/*
 	.loc_0x0:
@@ -3997,7 +4021,7 @@ void ebi::title::TTitleMgr::startState((ebi::title::TTitleMgr::enumState))
  * Address:	803BFD84
  * Size:	000458
  */
-void ebi::title::TTitleMgr::update(void)
+void title::TTitleMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -4357,7 +4381,7 @@ void ebi::title::TTitleMgr::update(void)
  * Address:	803C01DC
  * Size:	00034C
  */
-void ebi::title::TTitleMgr::updateState(void)
+void title::TTitleMgr::updateState(void)
 {
 	/*
 	.loc_0x0:
@@ -4606,7 +4630,7 @@ void ebi::title::TTitleMgr::updateState(void)
  * Address:	803C0528
  * Size:	00022C
  */
-void ebi::title::TTitleMgr::checkEncounter_(void)
+void title::TTitleMgr::checkEncounter_(void)
 {
 	/*
 	.loc_0x0:
@@ -4787,7 +4811,7 @@ void ebi::title::TTitleMgr::checkEncounter_(void)
  * Address:	803C0754
  * Size:	000268
  */
-void ebi::title::TTitleMgr::draw(void)
+void title::TTitleMgr::draw(void)
 {
 	/*
 	.loc_0x0:
@@ -4959,7 +4983,7 @@ void ebi::title::TTitleMgr::draw(void)
  * Address:	........
  * Size:	000004
  */
-void ebi::title::TTitleMgr::showInfo((long, long, long, long))
+void title::TTitleMgr::showInfo(long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -4969,7 +4993,7 @@ void ebi::title::TTitleMgr::showInfo((long, long, long, long))
  * Address:	803C09BC
  * Size:	00007C
  */
-void ebi::title::TTitleMgr::readTitleParam((JKRArchive*, char*))
+void title::TTitleMgr::readTitleParam(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -5016,7 +5040,7 @@ void ebi::title::TTitleMgr::readTitleParam((JKRArchive*, char*))
  * Address:	803C0A38
  * Size:	000060
  */
-void ebi::title::Pikmin::TBoidParamMgr::__dt(void)
+title::Pikmin::TBoidParamMgr::~TBoidParamMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -5054,7 +5078,7 @@ void ebi::title::Pikmin::TBoidParamMgr::__dt(void)
  * Address:	803C0A98
  * Size:	000024
  */
-void ebi::title::TTitleCameraMgr::read((Stream&))
+void title::TTitleCameraMgr::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -5070,6 +5094,8 @@ void ebi::title::TTitleCameraMgr::read((Stream&))
 	*/
 }
 
+} // namespace ebi
+
 /*
  * --INFO--
  * Address:	803C0ABC
@@ -5077,12 +5103,16 @@ void ebi::title::TTitleCameraMgr::read((Stream&))
  */
 void Camera::doUpdate() { }
 
+namespace ebi {
+
 /*
  * --INFO--
  * Address:	803C0AC0
  * Size:	000008
  */
-s32 ebi::title::TObjBase::getCreatureType(void) { return -0x1; }
+s32 title::TObjBase::getCreatureType(void) { return -0x1; }
+
+} // namespace ebi
 
 /*
  * --INFO--
@@ -5111,7 +5141,7 @@ void __sinit_ebiP2Title_cpp(void)
  * Address:	803C0AF0
  * Size:	000008
  */
-void @24 @ebi::title::TTitleMgr::__dt(void)
+@24 @ebi::title::TTitleMgr::~TTitleMgr(void)
 {
 	/*
 	.loc_0x0:

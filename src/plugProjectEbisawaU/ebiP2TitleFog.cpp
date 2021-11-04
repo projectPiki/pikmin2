@@ -1,21 +1,13 @@
+#include "types.h"
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace ebi {
 
 /*
  * --INFO--
  * Address:	803EB1A4
  * Size:	000118
  */
-void ebi::title::TTitleFogMgr::setGX((Camera&))
+void title::TTitleFogMgr::setGX(Camera&)
 {
 	/*
 	.loc_0x0:
@@ -101,7 +93,7 @@ void ebi::title::TTitleFogMgr::setGX((Camera&))
  * Address:	........
  * Size:	000040
  */
-void ebi::title::TTitleFogMgr::offGX(void)
+void title::TTitleFogMgr::offGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -111,7 +103,7 @@ void ebi::title::TTitleFogMgr::offGX(void)
  * Address:	803EB2BC
  * Size:	00007C
  */
-void ebi::title::TTitleFogMgr::loadSettingFile((JKRArchive*, char*))
+void title::TTitleFogMgr::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -152,6 +144,8 @@ void ebi::title::TTitleFogMgr::loadSettingFile((JKRArchive*, char*))
 	  blr
 	*/
 }
+
+} // namespace ebi
 
 /*
  * --INFO--

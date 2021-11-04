@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80071B20
  * Size:	000058
  */
-void J3DJointFactory::J3DJointFactory(const J3DJointBlock&)
+J3DJointFactory::J3DJointFactory(const J3DJointBlock&)
 {
 	/*
 	.loc_0x0:

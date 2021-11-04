@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8043D49C
  * Size:	00006C
  */
@@ -283,7 +273,7 @@ void ParticleMgr::createModelEffect(ModelEffectCreateArg*)
  * Address:	........
  * Size:	000178
  */
-void ParticleMgr::testCreateModelEffect(int, int, Vector3<float>&)
+void ParticleMgr::testCreateModelEffect(int, int, Vector3f&)
 {
 	// UNUSED FUNCTION
 }

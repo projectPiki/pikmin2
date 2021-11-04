@@ -1,24 +1,18 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00009C
  */
-void Game::GenPellet::__ct(void)
+GenPellet::GenPellet(void)
 {
 	// UNUSED FUNCTION
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -73,12 +67,14 @@ void makePellet()
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80202828
  * Size:	00008C
  */
-void Game::GenPellet::initialise(void)
+void GenPellet::initialise(void)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +121,7 @@ void Game::GenPellet::initialise(void)
  * Address:	802028B4
  * Size:	00006C
  */
-void Game::GenPellet::doEvent((unsigned long))
+void GenPellet::doEvent(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -163,12 +159,14 @@ void Game::GenPellet::doEvent((unsigned long))
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80202920
  * Size:	000068
  */
-void generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3<float>(void)
+void generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -201,12 +199,14 @@ void generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3<float>(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80202988
  * Size:	000050
  */
-void Game::GenPellet::getShape(void)
+void GenPellet::getShape(void)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +242,7 @@ void Game::GenPellet::getShape(void)
  * Address:	802029D8
  * Size:	000138
  */
-void Game::GenPellet::doWrite((Stream&))
+void GenPellet::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -334,7 +334,7 @@ void Game::GenPellet::doWrite((Stream&))
  * Address:	80202B10
  * Size:	000118
  */
-void Game::GenPellet::doRead((Stream&))
+void GenPellet::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -422,21 +422,21 @@ void Game::GenPellet::doRead((Stream&))
  * Address:	80202C28
  * Size:	000004
  */
-void Game::GenPellet::ramSaveParameters((Stream&)) { }
+void GenPellet::ramSaveParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80202C2C
  * Size:	000004
  */
-void Game::GenPellet::ramLoadParameters((Stream&)) { }
+void GenPellet::ramLoadParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80202C30
  * Size:	000058
  */
-void Game::GenPellet::updateUseList((Game::Generator*, int))
+void GenPellet::updateUseList(Game::Generator*, int)
 {
 	/*
 	.loc_0x0:
@@ -470,7 +470,7 @@ void Game::GenPellet::updateUseList((Game::Generator*, int))
  * Address:	80202C88
  * Size:	000078
  */
-void Game::GenPellet::generate((Game::Generator*))
+void GenPellet::generate(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -512,7 +512,7 @@ void Game::GenPellet::generate((Game::Generator*))
  * Address:	80202D00
  * Size:	000040
  */
-void Game::GenPellet::getDebugInfo((char*))
+void GenPellet::getDebugInfo(char*)
 {
 	/*
 	.loc_0x0:
@@ -540,7 +540,7 @@ void Game::GenPellet::getDebugInfo((char*))
  * Address:	80202D40
  * Size:	0000D4
  */
-void Game::GenPellet::birth((Game::GenArg*))
+void GenPellet::birth(Game::GenArg*)
 {
 	/*
 	.loc_0x0:
@@ -603,3 +603,4 @@ void Game::GenPellet::birth((Game::GenArg*))
 	  blr
 	*/
 }
+} // namespace Game

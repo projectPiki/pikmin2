@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	802698AC
  * Size:	000138
  */
-void Game::Tobi::Obj::Obj()
+Tobi::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -101,14 +103,14 @@ void Game::Tobi::Obj::Obj()
  * Address:	802699E4
  * Size:	000004
  */
-void Game::Tobi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Tobi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802699E8
  * Size:	000098
  */
-void Game::Tobi::Obj::onInit(Game::CreatureInitArg*)
+void Tobi::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -158,7 +160,7 @@ void Game::Tobi::Obj::onInit(Game::CreatureInitArg*)
  * Address:	80269A80
  * Size:	000048
  */
-void Game::Tobi::Obj::doUpdate()
+void Tobi::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -188,14 +190,14 @@ void Game::Tobi::Obj::doUpdate()
  * Address:	80269AC8
  * Size:	000004
  */
-void Game::Tobi::Obj::doDirectDraw(Graphics&) { }
+void Tobi::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80269ACC
  * Size:	000020
  */
-void Game::Tobi::Obj::doDebugDraw(Graphics&)
+void Tobi::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -215,7 +217,7 @@ void Game::Tobi::Obj::doDebugDraw(Graphics&)
  * Address:	80269AEC
  * Size:	00004C
  */
-void Game::Tobi::Obj::setFSM(Game::Tobi::FSM*)
+void Tobi::Obj::setFSM(Game::Tobi::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +248,7 @@ void Game::Tobi::Obj::setFSM(Game::Tobi::FSM*)
  * Address:	80269B38
  * Size:	0000E0
  */
-void Game::Tobi::Obj::getShadowParam(Game::ShadowParam&)
+void Tobi::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -320,7 +322,7 @@ void Game::Tobi::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	80269C18
  * Size:	0000A4
  */
-void Game::Tobi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void Tobi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -381,7 +383,7 @@ void Game::Tobi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	80269CBC
  * Size:	00002C
  */
-void Game::Tobi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void Tobi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -404,7 +406,7 @@ void Game::Tobi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	80269CE8
  * Size:	000094
  */
-void Game::Tobi::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
+void Tobi::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -457,7 +459,7 @@ void Game::Tobi::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
  * Address:	80269D7C
  * Size:	000038
  */
-void Game::Tobi::Obj::doStartStoneState()
+void Tobi::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -483,7 +485,7 @@ void Game::Tobi::Obj::doStartStoneState()
  * Address:	80269DB4
  * Size:	00005C
  */
-void Game::Tobi::Obj::doFinishStoneState()
+void Tobi::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -520,7 +522,7 @@ void Game::Tobi::Obj::doFinishStoneState()
  * Address:	80269E10
  * Size:	000038
  */
-void Game::Tobi::Obj::doStartEarthquakeFitState()
+void Tobi::Obj::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -546,7 +548,7 @@ void Game::Tobi::Obj::doStartEarthquakeFitState()
  * Address:	80269E48
  * Size:	00005C
  */
-void Game::Tobi::Obj::doFinishEarthquakeFitState()
+void Tobi::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -583,7 +585,7 @@ void Game::Tobi::Obj::doFinishEarthquakeFitState()
  * Address:	80269EA4
  * Size:	000028
  */
-void Game::Tobi::Obj::startCarcassMotion()
+void Tobi::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -605,7 +607,7 @@ void Game::Tobi::Obj::startCarcassMotion()
  * Address:	80269ECC
  * Size:	00008C
  */
-void Game::Tobi::Obj::initMouthSlots()
+void Tobi::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -656,7 +658,7 @@ void Game::Tobi::Obj::initMouthSlots()
  * Address:	80269F58
  * Size:	00007C
  */
-void Game::Tobi::Obj::lifeRecover()
+void Tobi::Obj::lifeRecover()
 {
 	/*
 	.loc_0x0:
@@ -703,7 +705,7 @@ void Game::Tobi::Obj::lifeRecover()
  * Address:	80269FD4
  * Size:	000030
  */
-void Game::Tobi::Obj::lifeIncrement()
+void Tobi::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -727,7 +729,7 @@ void Game::Tobi::Obj::lifeIncrement()
  * Address:	8026A004
  * Size:	000220
  */
-void Game::Tobi::Obj::randomFlyingTarget()
+void Tobi::Obj::randomFlyingTarget()
 {
 	/*
 	.loc_0x0:
@@ -883,7 +885,7 @@ void Game::Tobi::Obj::randomFlyingTarget()
  * Address:	8026A224
  * Size:	000024
  */
-void Game::Tobi::Obj::isFlyingLife()
+void Tobi::Obj::isFlyingLife()
 {
 	/*
 	.loc_0x0:
@@ -904,7 +906,7 @@ void Game::Tobi::Obj::isFlyingLife()
  * Address:	8026A248
  * Size:	000034
  */
-void Game::Tobi::Obj::setInWaterDamage()
+void Tobi::Obj::setInWaterDamage()
 {
 	/*
 	.loc_0x0:
@@ -931,7 +933,7 @@ void Game::Tobi::Obj::setInWaterDamage()
  * Address:	8026A27C
  * Size:	0000B4
  */
-void Game::Tobi::Obj::resetAppearCheck()
+void Tobi::Obj::resetAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -992,7 +994,7 @@ void Game::Tobi::Obj::resetAppearCheck()
  * Address:	8026A330
  * Size:	000048
  */
-void Game::Tobi::Obj::isAppearCheck()
+void Tobi::Obj::isAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -1026,7 +1028,7 @@ void Game::Tobi::Obj::isAppearCheck()
  * Address:	8026A378
  * Size:	000020
  */
-void Game::Tobi::Obj::resetBridgeSearch()
+void Tobi::Obj::resetBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -1046,7 +1048,7 @@ void Game::Tobi::Obj::resetBridgeSearch()
  * Address:	8026A398
  * Size:	000048
  */
-void Game::Tobi::Obj::setBridgeSearch()
+void Tobi::Obj::setBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -1080,7 +1082,7 @@ void Game::Tobi::Obj::setBridgeSearch()
  * Address:	8026A3E0
  * Size:	0002C0
  */
-void Game::Tobi::Obj::setNearestBridge()
+void Tobi::Obj::setNearestBridge()
 {
 	/*
 	.loc_0x0:
@@ -1292,14 +1294,14 @@ void Game::Tobi::Obj::setNearestBridge()
  * Address:	8026A6A0
  * Size:	000004
  */
-void Game::Tobi::Obj::setCullingCheck() { }
+void Tobi::Obj::setCullingCheck() { }
 
 /*
  * --INFO--
  * Address:	8026A6A4
  * Size:	0001B4
  */
-void Game::Tobi::Obj::checkBreakOrMove()
+void Tobi::Obj::checkBreakOrMove()
 {
 	/*
 	.loc_0x0:
@@ -1438,7 +1440,7 @@ void Game::Tobi::Obj::checkBreakOrMove()
  * Address:	8026A858
  * Size:	000028
  */
-void Game::Tobi::Obj::isBreakBridge()
+void Tobi::Obj::isBreakBridge()
 {
 	/*
 	.loc_0x0:
@@ -1462,7 +1464,7 @@ void Game::Tobi::Obj::isBreakBridge()
  * Address:	8026A880
  * Size:	0002A8
  */
-void Game::Tobi::Obj::moveBridgeSide()
+void Tobi::Obj::moveBridgeSide()
 {
 	/*
 	.loc_0x0:
@@ -1652,7 +1654,7 @@ void Game::Tobi::Obj::moveBridgeSide()
  * Address:	8026AB28
  * Size:	000288
  */
-void Game::Tobi::Obj::moveBridgeCentre()
+void Tobi::Obj::moveBridgeCentre()
 {
 	/*
 	.loc_0x0:
@@ -1834,7 +1836,7 @@ void Game::Tobi::Obj::moveBridgeCentre()
  * Address:	8026ADB0
  * Size:	0002F0
  */
-void Game::Tobi::Obj::moveBridgeTop()
+void Tobi::Obj::moveBridgeTop()
 {
 	/*
 	.loc_0x0:
@@ -2046,7 +2048,7 @@ void Game::Tobi::Obj::moveBridgeTop()
  * Address:	8026B0A0
  * Size:	00005C
  */
-void Game::Tobi::Obj::breakTargetBridge()
+void Tobi::Obj::breakTargetBridge()
 {
 	/*
 	.loc_0x0:
@@ -2081,7 +2083,7 @@ void Game::Tobi::Obj::breakTargetBridge()
  * Address:	8026B0FC
  * Size:	00008C
  */
-void Game::Tobi::Obj::createAppearEffect()
+void Tobi::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -2128,7 +2130,7 @@ void Game::Tobi::Obj::createAppearEffect()
  * Address:	8026B188
  * Size:	00008C
  */
-void Game::Tobi::Obj::createDisAppearEffect()
+void Tobi::Obj::createDisAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -2175,7 +2177,7 @@ void Game::Tobi::Obj::createDisAppearEffect()
  * Address:	8026B214
  * Size:	000090
  */
-void Game::Tobi::Obj::createBridgeEffect()
+void Tobi::Obj::createBridgeEffect()
 {
 	/*
 	.loc_0x0:
@@ -2223,7 +2225,7 @@ void Game::Tobi::Obj::createBridgeEffect()
  * Address:	8026B2A4
  * Size:	000090
  */
-void Game::Tobi::Obj::createEatEffect()
+void Tobi::Obj::createEatEffect()
 {
 	/*
 	.loc_0x0:
@@ -2271,7 +2273,7 @@ void Game::Tobi::Obj::createEatEffect()
  * Address:	8026B334
  * Size:	000008
  */
-void Game::Tobi::Obj::isUnderground()
+void Tobi::Obj::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -2285,7 +2287,7 @@ void Game::Tobi::Obj::isUnderground()
  * Address:	8026B33C
  * Size:	000008
  */
-void Game::Tobi::Obj::getMouthSlots()
+void Tobi::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -2299,7 +2301,7 @@ void Game::Tobi::Obj::getMouthSlots()
  * Address:	8026B344
  * Size:	000008
  */
-void Game::Tobi::Obj::getDownSmokeScale()
+void Tobi::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -2313,4 +2315,5 @@ void Game::Tobi::Obj::getDownSmokeScale()
  * Address:	8026B34C
  * Size:	000008
  */
-u32 Game::Tobi::Obj::getEnemyTypeID() { return 0xE; }
+u32 Tobi::Obj::getEnemyTypeID() { return 0xE; }
+} // namespace Game

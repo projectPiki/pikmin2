@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	803583CC
  * Size:	000050
  */
-void Game::Plants::Obj::setParameters(void)
+void Plants::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -42,12 +34,14 @@ void Game::Plants::Obj::setParameters(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	8035841C
  * Size:	000020
  */
-void birth__Q34Game6Plants3ObjFR10Vector3<float> f(void)
+void birth__Q34Game6Plants3ObjFR10Vector3f f(void)
 {
 	/*
 	.loc_0x0:
@@ -62,12 +56,14 @@ void birth__Q34Game6Plants3ObjFR10Vector3<float> f(void)
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8035843C
  * Size:	0001A8
  */
-void Game::Plants::Obj::onInit((Game::CreatureInitArg*))
+void Plants::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -191,7 +187,7 @@ void Game::Plants::Obj::onInit((Game::CreatureInitArg*))
  * Address:	803585E4
  * Size:	0000EC
  */
-void Game::Plants::Obj::__ct(void)
+Plants::Obj::Obj(void)
 {
 	/*
 	.loc_0x0:
@@ -266,7 +262,7 @@ void Game::Plants::Obj::__ct(void)
  * Address:	803586D0
  * Size:	000048
  */
-void Game::Plants::Obj::update(void)
+void Plants::Obj::update(void)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +294,7 @@ void Game::Plants::Obj::update(void)
  * Address:	80358718
  * Size:	00006C
  */
-void Game::Plants::Obj::doAnimation(void)
+void Plants::Obj::doAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -339,7 +335,7 @@ void Game::Plants::Obj::doAnimation(void)
  * Address:	80358784
  * Size:	00009C
  */
-void Game::Plants::Obj::doAnimationCullingOff(void)
+void Plants::Obj::doAnimationCullingOff(void)
 {
 	/*
 	.loc_0x0:
@@ -392,7 +388,7 @@ void Game::Plants::Obj::doAnimationCullingOff(void)
  * Address:	80358820
  * Size:	000020
  */
-void Game::Plants::Obj::doDebugDraw((Graphics&))
+void Plants::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -412,7 +408,7 @@ void Game::Plants::Obj::doDebugDraw((Graphics&))
  * Address:	80358840
  * Size:	000150
  */
-void Game::Plants::Obj::collisionCallback((Game::CollEvent&))
+void Plants::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -514,7 +510,7 @@ void Game::Plants::Obj::collisionCallback((Game::CollEvent&))
  * Address:	80358990
  * Size:	000060
  */
-void Game::Plants::Obj::earthquakeCallBack((Game::Creature*, float))
+void Plants::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -552,7 +548,7 @@ void Game::Plants::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	803589F0
  * Size:	0000A0
  */
-void Game::Plants::Obj::touched(void)
+void Plants::Obj::touched(void)
 {
 	/*
 	.loc_0x0:
@@ -606,7 +602,7 @@ void Game::Plants::Obj::touched(void)
  * Address:	80358A90
  * Size:	000040
  */
-void Game::Plants::Obj::touchedSE((Game::Navi*))
+void Plants::Obj::touchedSE(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -636,7 +632,7 @@ void Game::Plants::Obj::touchedSE((Game::Navi*))
  * Address:	80358AD0
  * Size:	000040
  */
-void Game::HikariKinoko::Obj::touchedSE((Game::Navi*))
+void HikariKinoko::Obj::touchedSE(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -666,7 +662,7 @@ void Game::HikariKinoko::Obj::touchedSE((Game::Navi*))
  * Address:	80358B10
  * Size:	000048
  */
-void Game::Watage::Obj::doEntry(void)
+void Watage::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -696,7 +692,7 @@ void Game::Watage::Obj::doEntry(void)
  * Address:	80358B58
  * Size:	000104
  */
-void Game::Watage::Obj::touched(void)
+void Watage::Obj::touched(void)
 {
 	/*
 	.loc_0x0:
@@ -775,7 +771,7 @@ void Game::Watage::Obj::touched(void)
  * Address:	80358C5C
  * Size:	000048
  */
-void Game::Nekojarashi::Obj::doEntry(void)
+void Nekojarashi::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -805,7 +801,7 @@ void Game::Nekojarashi::Obj::doEntry(void)
  * Address:	80358CA4
  * Size:	000040
  */
-void Game::DiodeRed::Obj::touchedSE((Game::Navi*))
+void DiodeRed::Obj::touchedSE(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -835,7 +831,7 @@ void Game::DiodeRed::Obj::touchedSE((Game::Navi*))
  * Address:	80358CE4
  * Size:	000048
  */
-void Game::DiodeRed::Obj::doEntry(void)
+void DiodeRed::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -865,7 +861,7 @@ void Game::DiodeRed::Obj::doEntry(void)
  * Address:	80358D2C
  * Size:	000040
  */
-void Game::DiodeGreen::Obj::touchedSE((Game::Navi*))
+void DiodeGreen::Obj::touchedSE(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -895,7 +891,7 @@ void Game::DiodeGreen::Obj::touchedSE((Game::Navi*))
  * Address:	80358D6C
  * Size:	000048
  */
-void Game::DiodeGreen::Obj::doEntry(void)
+void DiodeGreen::Obj::doEntry(void)
 {
 	/*
 	.loc_0x0:
@@ -925,7 +921,7 @@ void Game::DiodeGreen::Obj::doEntry(void)
  * Address:	80358DB4
  * Size:	000058
  */
-void Game::DiodeGreen::Obj::setParameters(void)
+void DiodeGreen::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -959,7 +955,7 @@ void Game::DiodeGreen::Obj::setParameters(void)
  * Address:	80358E0C
  * Size:	00006C
  */
-void Game::DiodeGreen::Obj::getLODCylinder((Sys::Cylinder&))
+void DiodeGreen::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -998,14 +994,14 @@ void Game::DiodeGreen::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80358E78
  * Size:	000008
  */
-u32 Game::DiodeGreen::Obj::getEnemyTypeID(void) { return 0x56; }
+u32 DiodeGreen::Obj::getEnemyTypeID(void) { return 0x56; }
 
 /*
  * --INFO--
  * Address:	80358E80
  * Size:	000058
  */
-void Game::DiodeRed::Obj::setParameters(void)
+void DiodeRed::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -1039,7 +1035,7 @@ void Game::DiodeRed::Obj::setParameters(void)
  * Address:	80358ED8
  * Size:	00006C
  */
-void Game::DiodeRed::Obj::getLODCylinder((Sys::Cylinder&))
+void DiodeRed::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -1078,14 +1074,14 @@ void Game::DiodeRed::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80358F44
  * Size:	000008
  */
-u32 Game::DiodeRed::Obj::getEnemyTypeID(void) { return 0x55; }
+u32 DiodeRed::Obj::getEnemyTypeID(void) { return 0x55; }
 
 /*
  * --INFO--
  * Address:	80358F4C
  * Size:	000058
  */
-void Game::Nekojarashi::Obj::setParameters(void)
+void Nekojarashi::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -1119,7 +1115,7 @@ void Game::Nekojarashi::Obj::setParameters(void)
  * Address:	80358FA4
  * Size:	000114
  */
-void Game::Nekojarashi::Obj::getLODCylinder((Sys::Cylinder&))
+void Nekojarashi::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -1206,21 +1202,21 @@ void Game::Nekojarashi::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	803590B8
  * Size:	000008
  */
-u32 Game::Nekojarashi::Obj::getEnemyTypeID(void) { return 0x58; }
+u32 Nekojarashi::Obj::getEnemyTypeID(void) { return 0x58; }
 
 /*
  * --INFO--
  * Address:	803590C0
  * Size:	000008
  */
-u32 Game::Watage::Obj::getEnemyTypeID(void) { return 0x51; }
+u32 Watage::Obj::getEnemyTypeID(void) { return 0x51; }
 
 /*
  * --INFO--
  * Address:	803590C8
  * Size:	000058
  */
-void Game::HikariKinoko::Obj::setParameters(void)
+void HikariKinoko::Obj::setParameters(void)
 {
 	/*
 	.loc_0x0:
@@ -1254,7 +1250,7 @@ void Game::HikariKinoko::Obj::setParameters(void)
  * Address:	80359120
  * Size:	00006C
  */
-void Game::HikariKinoko::Obj::getLODCylinder((Sys::Cylinder&))
+void HikariKinoko::Obj::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -1293,7 +1289,9 @@ void Game::HikariKinoko::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	8035918C
  * Size:	000008
  */
-u32 Game::HikariKinoko::Obj::getEnemyTypeID(void) { return 0x30; }
+u32 HikariKinoko::Obj::getEnemyTypeID(void) { return 0x30; }
+
+} // namespace Game
 
 /*
  * --INFO--

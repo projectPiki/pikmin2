@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace og {
+
 /*
  * --INFO--
  * Address:	8031A2A0
  * Size:	00003C
  */
-void og::newScreen::SpecialItem::__ct(void)
+newScreen::SpecialItem::SpecialItem(void)
 {
 	/*
 	.loc_0x0:
@@ -32,7 +34,7 @@ void og::newScreen::SpecialItem::__ct(void)
  * Address:	........
  * Size:	000074
  */
-void og::newScreen::SpecialItem::__dt(void)
+newScreen::SpecialItem::~SpecialItem(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,14 +44,14 @@ void og::newScreen::SpecialItem::__dt(void)
  * Address:	8031A2DC
  * Size:	000004
  */
-void og::newScreen::SpecialItem::doUserCallBackFunc((Resource::MgrCommand*)) { }
+void newScreen::SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
 
 /*
  * --INFO--
  * Address:	8031A2E0
  * Size:	000060
  */
-void og::newScreen::SpecialItem::doCreateObj((JKRArchive*))
+void newScreen::SpecialItem::doCreateObj(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -87,7 +89,7 @@ void og::newScreen::SpecialItem::doCreateObj((JKRArchive*))
  * Address:	8031A340
  * Size:	00004C
  */
-void og::newScreen::SpecialItem::doConfirmSetScene((Screen::SetSceneArg&))
+void newScreen::SpecialItem::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	.loc_0x0:
@@ -120,7 +122,7 @@ void og::newScreen::SpecialItem::doConfirmSetScene((Screen::SetSceneArg&))
  * Address:	8031A38C
  * Size:	00000C
  */
-void og::newScreen::SpecialItem::getResName( const
+void newScreen::SpecialItem::getResName() const
 {
 	/*
 	.loc_0x0:
@@ -135,17 +137,14 @@ void og::newScreen::SpecialItem::getResName( const
  * Address:	8031A398
  * Size:	000008
  */
-u32  og::newScreen::SpecialItem::getSceneType(void)
-{
-	return 0x2723;
-}
+u32 newScreen::SpecialItem::getSceneType(void) { return 0x2723; }
 
 /*
  * --INFO--
  * Address:	8031A3A0
  * Size:	00000C
  */
-void og::newScreen::SpecialItem::getOwnerID(void)
+void newScreen::SpecialItem::getOwnerID(void)
 {
 	/*
 	.loc_0x0:
@@ -160,7 +159,7 @@ void og::newScreen::SpecialItem::getOwnerID(void)
  * Address:	8031A3AC
  * Size:	000014
  */
-void og::newScreen::SpecialItem::getMemberID(void)
+void newScreen::SpecialItem::getMemberID(void)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +176,5 @@ void og::newScreen::SpecialItem::getMemberID(void)
  * Address:	8031A3C0
  * Size:	000008
  */
-u32  og::newScreen::SpecialItem::isUseBackupSceneInfo(void)
-{
-	return 0x1;
-}
+u32 newScreen::SpecialItem::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace og

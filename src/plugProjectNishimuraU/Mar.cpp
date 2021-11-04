@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8027F50C
  * Size:	00015C
  */
-void Game::Mar::Obj::Obj()
+Mar::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -110,14 +112,14 @@ void Game::Mar::Obj::Obj()
  * Address:	8027F668
  * Size:	000004
  */
-void Game::Mar::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Mar::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8027F66C
  * Size:	0000EC
  */
-void Game::Mar::Obj::onInit(Game::CreatureInitArg*)
+void Mar::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -188,7 +190,7 @@ void Game::Mar::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8027F758
  * Size:	000044
  */
-void Game::Mar::Obj::onKill(Game::CreatureKillArg*)
+void Mar::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +219,7 @@ void Game::Mar::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8027F79C
  * Size:	000050
  */
-void Game::Mar::Obj::doUpdate()
+void Mar::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -249,7 +251,7 @@ void Game::Mar::Obj::doUpdate()
  * Address:	8027F7EC
  * Size:	0000D4
  */
-void Game::Mar::Obj::changeMaterial()
+void Mar::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -318,7 +320,7 @@ void Game::Mar::Obj::changeMaterial()
  * Address:	8027F8C0
  * Size:	00004C
  */
-void Game::Mar::Obj::setFSM(Game::Mar::FSM*)
+void Mar::Obj::setFSM(Game::Mar::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -349,14 +351,14 @@ void Game::Mar::Obj::setFSM(Game::Mar::FSM*)
  * Address:	8027F90C
  * Size:	000004
  */
-void Game::Mar::Obj::doDirectDraw(Graphics&) { }
+void Mar::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8027F910
  * Size:	000020
  */
-void Game::Mar::Obj::doDebugDraw(Graphics&)
+void Mar::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -376,7 +378,7 @@ void Game::Mar::Obj::doDebugDraw(Graphics&)
  * Address:	8027F930
  * Size:	0000D0
  */
-void Game::Mar::Obj::getShadowParam(Game::ShadowParam&)
+void Mar::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -446,7 +448,7 @@ void Game::Mar::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8027FA00
  * Size:	00003C
  */
-void Game::Mar::Obj::doStartStoneState()
+void Mar::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -473,7 +475,7 @@ void Game::Mar::Obj::doStartStoneState()
  * Address:	8027FA3C
  * Size:	000074
  */
-void Game::Mar::Obj::doFinishStoneState()
+void Mar::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -520,7 +522,7 @@ void Game::Mar::Obj::doFinishStoneState()
  * Address:	8027FAB0
  * Size:	000034
  */
-void Game::Mar::Obj::doStartWaitingBirthTypeDrop()
+void Mar::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -545,7 +547,7 @@ void Game::Mar::Obj::doStartWaitingBirthTypeDrop()
  * Address:	8027FAE4
  * Size:	000034
  */
-void Game::Mar::Obj::doFinishWaitingBirthTypeDrop()
+void Mar::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -570,7 +572,7 @@ void Game::Mar::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8027FB18
  * Size:	000020
  */
-void Game::Mar::Obj::doStartMovie()
+void Mar::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -590,7 +592,7 @@ void Game::Mar::Obj::doStartMovie()
  * Address:	8027FB38
  * Size:	000020
  */
-void Game::Mar::Obj::doEndMovie()
+void Mar::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -610,7 +612,7 @@ void Game::Mar::Obj::doEndMovie()
  * Address:	8027FB58
  * Size:	000064
  */
-void Game::Mar::Obj::getOffsetForMapCollision()
+void Mar::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -647,7 +649,7 @@ void Game::Mar::Obj::getOffsetForMapCollision()
  * Address:	8027FBBC
  * Size:	000050
  */
-void Game::Mar::Obj::getThrowupItemPosition(Vector3<float>*)
+void Mar::Obj::getThrowupItemPosition(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -683,7 +685,7 @@ void Game::Mar::Obj::getThrowupItemPosition(Vector3<float>*)
  * Address:	8027FC0C
  * Size:	000040
  */
-void Game::Mar::Obj::getThrowupItemVelocity(Vector3<float>*)
+void Mar::Obj::getThrowupItemVelocity(Vector3f*)
 {
 	/*
 	.loc_0x0:
@@ -715,7 +717,7 @@ void Game::Mar::Obj::getThrowupItemVelocity(Vector3<float>*)
  * Address:	8027FC4C
  * Size:	000050
  */
-void Game::Mar::Obj::getHeadJointPos()
+void Mar::Obj::getHeadJointPos()
 {
 	/*
 	.loc_0x0:
@@ -747,7 +749,7 @@ void Game::Mar::Obj::getHeadJointPos()
  * Address:	8027FC9C
  * Size:	00011C
  */
-void Game::Mar::Obj::setHeightVelocity()
+void Mar::Obj::setHeightVelocity()
 {
 	/*
 	.loc_0x0:
@@ -836,7 +838,7 @@ void Game::Mar::Obj::setHeightVelocity()
  * Address:	8027FDB8
  * Size:	0001D8
  */
-void Game::Mar::Obj::setRandTarget()
+void Mar::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -972,7 +974,7 @@ void Game::Mar::Obj::setRandTarget()
  * Address:	8027FF90
  * Size:	00000C
  */
-void Game::Mar::Obj::resetShadowOffset()
+void Mar::Obj::resetShadowOffset()
 {
 	/*
 	.loc_0x0:
@@ -987,7 +989,7 @@ void Game::Mar::Obj::resetShadowOffset()
  * Address:	8027FF9C
  * Size:	00000C
  */
-void Game::Mar::Obj::setShadowOffsetMax()
+void Mar::Obj::setShadowOffsetMax()
 {
 	/*
 	.loc_0x0:
@@ -1002,7 +1004,7 @@ void Game::Mar::Obj::setShadowOffsetMax()
  * Address:	8027FFA8
  * Size:	000028
  */
-void Game::Mar::Obj::addShadowOffset()
+void Mar::Obj::addShadowOffset()
 {
 	/*
 	.loc_0x0:
@@ -1024,7 +1026,7 @@ void Game::Mar::Obj::addShadowOffset()
  * Address:	8027FFD0
  * Size:	000028
  */
-void Game::Mar::Obj::subShadowOffset()
+void Mar::Obj::subShadowOffset()
 {
 	/*
 	.loc_0x0:
@@ -1046,7 +1048,7 @@ void Game::Mar::Obj::subShadowOffset()
  * Address:	8027FFF8
  * Size:	00000C
  */
-void Game::Mar::Obj::resetShadowRadius()
+void Mar::Obj::resetShadowRadius()
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1063,7 @@ void Game::Mar::Obj::resetShadowRadius()
  * Address:	80280004
  * Size:	000030
  */
-void Game::Mar::Obj::subShadowRadius()
+void Mar::Obj::subShadowRadius()
 {
 	/*
 	.loc_0x0:
@@ -1085,7 +1087,7 @@ void Game::Mar::Obj::subShadowRadius()
  * Address:	80280034
  * Size:	000030
  */
-void Game::Mar::Obj::updateFallTimer()
+void Mar::Obj::updateFallTimer()
 {
 	/*
 	.loc_0x0:
@@ -1111,7 +1113,7 @@ void Game::Mar::Obj::updateFallTimer()
  * Address:	80280064
  * Size:	0000A4
  */
-void Game::Mar::Obj::getFlyingNextState()
+void Mar::Obj::getFlyingNextState()
 {
 	/*
 	.loc_0x0:
@@ -1176,7 +1178,7 @@ void Game::Mar::Obj::getFlyingNextState()
  * Address:	80280108
  * Size:	000038
  */
-void Game::Mar::Obj::addPitchRatio()
+void Mar::Obj::addPitchRatio()
 {
 	/*
 	.loc_0x0:
@@ -1202,7 +1204,7 @@ void Game::Mar::Obj::addPitchRatio()
  * Address:	80280140
  * Size:	0003AC
  */
-void Game::Mar::Obj::getSearchedPikmin()
+void Mar::Obj::getSearchedPikmin()
 {
 	/*
 	.loc_0x0:
@@ -1471,7 +1473,7 @@ void Game::Mar::Obj::getSearchedPikmin()
  * Address:	802804EC
  * Size:	0002F0
  */
-void Game::Mar::Obj::isTargetLost()
+void Mar::Obj::isTargetLost()
 {
 	/*
 	.loc_0x0:
@@ -1681,7 +1683,7 @@ void Game::Mar::Obj::isTargetLost()
  * Address:	802807DC
  * Size:	00038C
  */
-void Game::Mar::Obj::isAttackable()
+void Mar::Obj::isAttackable()
 {
 	/*
 	.loc_0x0:
@@ -1946,7 +1948,7 @@ void Game::Mar::Obj::isAttackable()
  * Address:	80280B68
  * Size:	0001AC
  */
-void Game::Mar::Obj::updateEmit()
+void Mar::Obj::updateEmit()
 {
 	/*
 	.loc_0x0:
@@ -2079,7 +2081,7 @@ void Game::Mar::Obj::updateEmit()
  * Address:	80280D14
  * Size:	0001E8
  */
-void Game::Mar::Obj::getAttackPosition()
+void Mar::Obj::getAttackPosition()
 {
 	/*
 	.loc_0x0:
@@ -2221,7 +2223,7 @@ void Game::Mar::Obj::getAttackPosition()
  * Address:	80280EFC
  * Size:	0008F4
  */
-void Game::Mar::Obj::windTarget()
+void Mar::Obj::windTarget()
 {
 	/*
 	.loc_0x0:
@@ -2870,7 +2872,7 @@ void Game::Mar::Obj::windTarget()
  * Address:	802817F0
  * Size:	000150
  */
-void Game::Mar::Obj::createEffect()
+void Mar::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -2974,7 +2976,7 @@ void Game::Mar::Obj::createEffect()
  * Address:	80281940
  * Size:	00004C
  */
-void Game::Mar::Obj::setupEffect()
+void Mar::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -3005,7 +3007,7 @@ void Game::Mar::Obj::setupEffect()
  * Address:	8028198C
  * Size:	00007C
  */
-void Game::Mar::Obj::startDeadEffect()
+void Mar::Obj::startDeadEffect()
 {
 	/*
 	.loc_0x0:
@@ -3048,7 +3050,7 @@ void Game::Mar::Obj::startDeadEffect()
  * Address:	80281A08
  * Size:	000034
  */
-void Game::Mar::Obj::createSuckEffect()
+void Mar::Obj::createSuckEffect()
 {
 	/*
 	.loc_0x0:
@@ -3073,7 +3075,7 @@ void Game::Mar::Obj::createSuckEffect()
  * Address:	80281A3C
  * Size:	000090
  */
-void Game::Mar::Obj::startWindEffect()
+void Mar::Obj::startWindEffect()
 {
 	/*
 	.loc_0x0:
@@ -3121,7 +3123,7 @@ void Game::Mar::Obj::startWindEffect()
  * Address:	80281ACC
  * Size:	000078
  */
-void Game::Mar::Obj::finishWindEffect()
+void Mar::Obj::finishWindEffect()
 {
 	/*
 	.loc_0x0:
@@ -3163,7 +3165,7 @@ void Game::Mar::Obj::finishWindEffect()
  * Address:	80281B44
  * Size:	000074
  */
-void Game::Mar::Obj::createDownEffect()
+void Mar::Obj::createDownEffect()
 {
 	/*
 	.loc_0x0:
@@ -3204,7 +3206,7 @@ void Game::Mar::Obj::createDownEffect()
  * Address:	80281BB8
  * Size:	000008
  */
-void Game::Mar::Obj::getDownSmokeScale()
+void Mar::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -3218,7 +3220,7 @@ void Game::Mar::Obj::getDownSmokeScale()
  * Address:	80281BC0
  * Size:	000078
  */
-void Game::Mar::Obj::effectDrawOn()
+void Mar::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -3260,7 +3262,7 @@ void Game::Mar::Obj::effectDrawOn()
  * Address:	80281C38
  * Size:	000078
  */
-void Game::Mar::Obj::effectDrawOff()
+void Mar::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -3297,12 +3299,16 @@ void Game::Mar::Obj::effectDrawOff()
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	80281CB0
  * Size:	00009C
  */
-void efx::TFusenSui::~TFusenSui()
+TFusenSui::~TFusenSui()
 {
 	/*
 	.loc_0x0:
@@ -3352,12 +3358,16 @@ void efx::TFusenSui::~TFusenSui()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80281D4C
  * Size:	0000BC
  */
-void Game::Mar::Obj::~Obj()
+Mar::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -3420,35 +3430,35 @@ void Game::Mar::Obj::~Obj()
  * Address:	80281E08
  * Size:	000004
  */
-void Game::Mar::Obj::inWaterCallback(Game::WaterBox*) { }
+void Mar::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80281E0C
  * Size:	000004
  */
-void Game::Mar::Obj::outWaterCallback() { }
+void Mar::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	80281E10
  * Size:	000004
  */
-void Game::Mar::Obj::throwupItemInDeathProcedure() { }
+void Mar::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--
  * Address:	80281E14
  * Size:	000008
  */
-u32 Game::Mar::Obj::getEnemyTypeID() { return 0x1D; }
+u32 Mar::Obj::getEnemyTypeID() { return 0x1D; }
 
 /*
  * --INFO--
  * Address:	80281E1C
  * Size:	000014
  */
-void Game::EnemyBase::@804 @12 @viewOnPelletKilled()
+void EnemyBase::@804 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -3465,7 +3475,7 @@ void Game::EnemyBase::@804 @12 @viewOnPelletKilled()
  * Address:	80281E30
  * Size:	000014
  */
-void Game::EnemyBase::@804 @12 @viewStartCarryMotion()
+void EnemyBase::@804 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -3482,7 +3492,7 @@ void Game::EnemyBase::@804 @12 @viewStartCarryMotion()
  * Address:	80281E44
  * Size:	000014
  */
-void Game::EnemyBase::@804 @12 @viewStartPreCarryMotion()
+void EnemyBase::@804 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -3499,7 +3509,7 @@ void Game::EnemyBase::@804 @12 @viewStartPreCarryMotion()
  * Address:	80281E58
  * Size:	000014
  */
-void Game::EnemyBase::@804 @12 @view_finish_carrymotion()
+void EnemyBase::@804 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -3516,7 +3526,7 @@ void Game::EnemyBase::@804 @12 @view_finish_carrymotion()
  * Address:	80281E6C
  * Size:	000014
  */
-void Game::EnemyBase::@804 @12 @view_start_carrymotion()
+void EnemyBase::@804 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -3533,7 +3543,7 @@ void Game::EnemyBase::@804 @12 @view_start_carrymotion()
  * Address:	80281E80
  * Size:	000014
  */
-void Game::EnemyBase::@804 @12 @viewGetShape()
+void EnemyBase::@804 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -3545,16 +3555,21 @@ void Game::EnemyBase::@804 @12 @viewGetShape()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80281E94
- * Size:	000008
- */
-void efx::TFusenSui::@4 @__dt()
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x1E8
-	*/
-}
+	 * --INFO--
+	 * Address:	80281E94
+	 * Size:	000008
+	 */
+	TFusenSui::@4 @~TFusenSui()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x1E8
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

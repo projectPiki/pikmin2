@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8026F258
  * Size:	000150
  */
-void Game::ElecHiba::Obj::Obj()
+ElecHiba::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -107,7 +109,7 @@ void Game::ElecHiba::Obj::Obj()
  * Address:	8026F3A8
  * Size:	000038
  */
-void Game::ElecHiba::Obj::birth(Vector3<float>&, float)
+void ElecHiba::Obj::birth(Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -133,7 +135,7 @@ void Game::ElecHiba::Obj::birth(Vector3<float>&, float)
  * Address:	8026F3E0
  * Size:	000080
  */
-void Game::ElecHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
+void ElecHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -185,7 +187,7 @@ void Game::ElecHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
  * Address:	8026F460
  * Size:	000144
  */
-void Game::ElecHiba::Obj::onInit(Game::CreatureInitArg*)
+void ElecHiba::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -284,7 +286,7 @@ void Game::ElecHiba::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8026F5A4
  * Size:	000040
  */
-void Game::ElecHiba::Obj::doUpdate()
+void ElecHiba::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -314,14 +316,14 @@ void Game::ElecHiba::Obj::doUpdate()
  * Address:	8026F5E4
  * Size:	000004
  */
-void Game::ElecHiba::Obj::doDirectDraw(Graphics&) { }
+void ElecHiba::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8026F5E8
  * Size:	000020
  */
-void Game::ElecHiba::Obj::doDebugDraw(Graphics&)
+void ElecHiba::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +343,7 @@ void Game::ElecHiba::Obj::doDebugDraw(Graphics&)
  * Address:	8026F608
  * Size:	00004C
  */
-void Game::ElecHiba::Obj::setFSM(Game::ElecHiba::FSM*)
+void ElecHiba::Obj::setFSM(Game::ElecHiba::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -372,7 +374,7 @@ void Game::ElecHiba::Obj::setFSM(Game::ElecHiba::FSM*)
  * Address:	8026F654
  * Size:	000038
  */
-void Game::ElecHiba::Obj::getShadowParam(Game::ShadowParam&)
+void ElecHiba::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +400,7 @@ void Game::ElecHiba::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8026F68C
  * Size:	0000CC
  */
-void Game::ElecHiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+void ElecHiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -471,7 +473,7 @@ void Game::ElecHiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026F758
  * Size:	000030
  */
-void Game::ElecHiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+void ElecHiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -495,7 +497,7 @@ void Game::ElecHiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026F788
  * Size:	000030
  */
-void Game::ElecHiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+void ElecHiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -519,7 +521,7 @@ void Game::ElecHiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8026F7B8
  * Size:	000034
  */
-void Game::ElecHiba::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
+void ElecHiba::Obj::bombCallBack(Game::Creature*, Vector3f&, float)
 {
 	/*
 	.loc_0x0:
@@ -544,7 +546,7 @@ void Game::ElecHiba::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
  * Address:	8026F7EC
  * Size:	000100
  */
-void Game::ElecHiba::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void ElecHiba::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -624,7 +626,7 @@ void Game::ElecHiba::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	8026F8EC
  * Size:	00004C
  */
-void Game::ElecHiba::Obj::injure()
+void ElecHiba::Obj::injure()
 {
 	/*
 	.loc_0x0:
@@ -657,7 +659,7 @@ void Game::ElecHiba::Obj::injure()
  * Address:	8026F938
  * Size:	00001C
  */
-void Game::ElecHiba::Obj::getChildObjPtr()
+void ElecHiba::Obj::getChildObjPtr()
 {
 	/*
 	.loc_0x0:
@@ -678,8 +680,7 @@ void Game::ElecHiba::Obj::getChildObjPtr()
  * Address:	8026F954
  * Size:	000170
  */
-void Game::ElecHiba::Obj::setElecHibaPosition(Game::ElecHiba::InitialParam*,
-                                              float)
+void ElecHiba::Obj::setElecHibaPosition(Game::ElecHiba::InitialParam*, float)
 {
 	/*
 	.loc_0x0:
@@ -789,7 +790,7 @@ void Game::ElecHiba::Obj::setElecHibaPosition(Game::ElecHiba::InitialParam*,
  * Address:	8026FAC4
  * Size:	0005C8
  */
-void Game::ElecHiba::Obj::interactDenkiAttack(Vector3<float>&)
+void ElecHiba::Obj::interactDenkiAttack(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -1215,7 +1216,7 @@ void Game::ElecHiba::Obj::interactDenkiAttack(Vector3<float>&)
  * Address:	8027008C
  * Size:	00004C
  */
-void Game::ElecHiba::Obj::addDamageMyself(float)
+void ElecHiba::Obj::addDamageMyself(float)
 {
 	/*
 	.loc_0x0:
@@ -1252,7 +1253,7 @@ void Game::ElecHiba::Obj::addDamageMyself(float)
  * Address:	802700D8
  * Size:	00002C
  */
-void Game::ElecHiba::Obj::damageIncrement(float)
+void ElecHiba::Obj::damageIncrement(float)
 {
 	/*
 	.loc_0x0:
@@ -1275,7 +1276,7 @@ void Game::ElecHiba::Obj::damageIncrement(float)
  * Address:	80270104
  * Size:	000024
  */
-void Game::ElecHiba::Obj::setupLodParms()
+void ElecHiba::Obj::setupLodParms()
 {
 	/*
 	.loc_0x0:
@@ -1296,7 +1297,7 @@ void Game::ElecHiba::Obj::setupLodParms()
  * Address:	80270128
  * Size:	000038
  */
-void Game::ElecHiba::Obj::updateEfxLod()
+void ElecHiba::Obj::updateEfxLod()
 {
 	/*
 	.loc_0x0:
@@ -1324,7 +1325,7 @@ void Game::ElecHiba::Obj::updateEfxLod()
  * Address:	80270160
  * Size:	0000DC
  */
-void Game::ElecHiba::Obj::createEffect(bool)
+void ElecHiba::Obj::createEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -1392,12 +1393,16 @@ void Game::ElecHiba::Obj::createEffect(bool)
 	*/
 }
 
+} // namespace Game
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	8027023C
  * Size:	00009C
  */
-void efx::TDenkipoleSign::~TDenkipoleSign()
+TDenkipoleSign::~TDenkipoleSign()
 {
 	/*
 	.loc_0x0:
@@ -1452,7 +1457,7 @@ void efx::TDenkipoleSign::~TDenkipoleSign()
  * Address:	802702D8
  * Size:	00006C
  */
-void efx::TDenkipoleSign::TDenkipoleSign()
+TDenkipoleSign::TDenkipoleSign()
 {
 	/*
 	.loc_0x0:
@@ -1491,7 +1496,7 @@ void efx::TDenkipoleSign::TDenkipoleSign()
  * Address:	80270344
  * Size:	000090
  */
-void efx::TDenkiPole::~TDenkiPole()
+TDenkiPole::~TDenkiPole()
 {
 	/*
 	.loc_0x0:
@@ -1543,7 +1548,7 @@ void efx::TDenkiPole::~TDenkiPole()
  * Address:	802703D4
  * Size:	000044
  */
-void efx::TDenkiPole::TDenkiPole()
+TDenkiPole::TDenkiPole()
 {
 	/*
 	.loc_0x0:
@@ -1567,12 +1572,16 @@ void efx::TDenkiPole::TDenkiPole()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80270418
  * Size:	000110
  */
-void Game::ElecHiba::Obj::startChargeEffect(Game::Creature*)
+void ElecHiba::Obj::startChargeEffect(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1654,7 +1663,7 @@ void Game::ElecHiba::Obj::startChargeEffect(Game::Creature*)
  * Address:	80270528
  * Size:	000038
  */
-void Game::ElecHiba::Obj::finishChargeEffect()
+void ElecHiba::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1682,7 +1691,7 @@ void Game::ElecHiba::Obj::finishChargeEffect()
  * Address:	80270560
  * Size:	000070
  */
-void Game::ElecHiba::Obj::startDisChargeEffect()
+void ElecHiba::Obj::startDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1728,7 +1737,7 @@ void Game::ElecHiba::Obj::startDisChargeEffect()
  * Address:	802705D0
  * Size:	000038
  */
-void Game::ElecHiba::Obj::finishDisChargeEffect()
+void ElecHiba::Obj::finishDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1756,7 +1765,7 @@ void Game::ElecHiba::Obj::finishDisChargeEffect()
  * Address:	80270608
  * Size:	000044
  */
-void Game::ElecHiba::Obj::generatorKill()
+void ElecHiba::Obj::generatorKill()
 {
 	/*
 	.loc_0x0:
@@ -1787,7 +1796,7 @@ void Game::ElecHiba::Obj::generatorKill()
  * Address:	8027064C
  * Size:	00006C
  */
-void Game::ElecHiba::Obj::setVersusHibaOnOff()
+void ElecHiba::Obj::setVersusHibaOnOff()
 {
 	/*
 	.loc_0x0:
@@ -1830,7 +1839,7 @@ void Game::ElecHiba::Obj::setVersusHibaOnOff()
  * Address:	802706B8
  * Size:	00002C
  */
-void Game::ElecHiba::Obj::setVersusHibaType()
+void ElecHiba::Obj::setVersusHibaType()
 {
 	/*
 	.loc_0x0:
@@ -1855,7 +1864,7 @@ void Game::ElecHiba::Obj::setVersusHibaType()
  * Address:	802706E4
  * Size:	000010
  */
-void Game::ElecHiba::Obj::resetAttrHitCount()
+void ElecHiba::Obj::resetAttrHitCount()
 {
 	/*
 	.loc_0x0:
@@ -1871,7 +1880,7 @@ void Game::ElecHiba::Obj::resetAttrHitCount()
  * Address:	802706F4
  * Size:	000070
  */
-void Game::ElecHiba::Obj::addAttrAttackCount(Game::Piki*)
+void ElecHiba::Obj::addAttrAttackCount(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1917,7 +1926,7 @@ void Game::ElecHiba::Obj::addAttrAttackCount(Game::Piki*)
  * Address:	80270764
  * Size:	000040
  */
-void Game::ElecHiba::Obj::isWaitFinish()
+void ElecHiba::Obj::isWaitFinish()
 {
 	/*
 	.loc_0x0:
@@ -1949,7 +1958,7 @@ void Game::ElecHiba::Obj::isWaitFinish()
  * Address:	802707A4
  * Size:	000058
  */
-void Game::ElecHiba::Obj::isAttackFinish()
+void ElecHiba::Obj::isAttackFinish()
 {
 	/*
 	.loc_0x0:
@@ -1984,12 +1993,16 @@ void Game::ElecHiba::Obj::isAttackFinish()
 	*/
 }
 
+} // namespace efx
+
+namespace efx {
+
 /*
  * --INFO--
  * Address:	802707FC
  * Size:	00000C
  */
-void efx::ArgDenkiHiba::getName()
+void ArgDenkiHiba::getName()
 {
 	/*
 	.loc_0x0:
@@ -1999,33 +2012,37 @@ void efx::ArgDenkiHiba::getName()
 	*/
 }
 
+namespace Game {
+
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80270808
  * Size:	000004
  */
-void Game::ElecHiba::Obj::doSimulation(float) { }
+void ElecHiba::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8027080C
  * Size:	000004
  */
-void Game::ElecHiba::Obj::inWaterCallback(Game::WaterBox*) { }
+void ElecHiba::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80270810
  * Size:	000004
  */
-void Game::ElecHiba::Obj::outWaterCallback() { }
+void ElecHiba::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	80270814
  * Size:	000008
  */
-void Game::ElecHiba::Obj::isLivingThing()
+void ElecHiba::Obj::isLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -2039,14 +2056,14 @@ void Game::ElecHiba::Obj::isLivingThing()
  * Address:	8027081C
  * Size:	000004
  */
-void Game::ElecHiba::Obj::lifeRecover() { }
+void ElecHiba::Obj::lifeRecover() { }
 
 /*
  * --INFO--
  * Address:	80270820
  * Size:	000014
  */
-void Game::EnemyBase::@772 @12 @viewOnPelletKilled()
+void EnemyBase::@772 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -2063,7 +2080,7 @@ void Game::EnemyBase::@772 @12 @viewOnPelletKilled()
  * Address:	80270834
  * Size:	000014
  */
-void Game::EnemyBase::@772 @12 @viewStartCarryMotion()
+void EnemyBase::@772 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2080,7 +2097,7 @@ void Game::EnemyBase::@772 @12 @viewStartCarryMotion()
  * Address:	80270848
  * Size:	000014
  */
-void Game::EnemyBase::@772 @12 @viewStartPreCarryMotion()
+void EnemyBase::@772 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2097,7 +2114,7 @@ void Game::EnemyBase::@772 @12 @viewStartPreCarryMotion()
  * Address:	8027085C
  * Size:	000014
  */
-void Game::EnemyBase::@772 @12 @view_finish_carrymotion()
+void EnemyBase::@772 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2114,7 +2131,7 @@ void Game::EnemyBase::@772 @12 @view_finish_carrymotion()
  * Address:	80270870
  * Size:	000014
  */
-void Game::EnemyBase::@772 @12 @view_start_carrymotion()
+void EnemyBase::@772 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2131,7 +2148,7 @@ void Game::EnemyBase::@772 @12 @view_start_carrymotion()
  * Address:	80270884
  * Size:	000014
  */
-void Game::EnemyBase::@772 @12 @viewGetShape()
+void EnemyBase::@772 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -2143,16 +2160,21 @@ void Game::EnemyBase::@772 @12 @viewGetShape()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80270898
- * Size:	000008
- */
-void efx::TDenkipoleSign::@4 @__dt()
-{
+namespace efx {
+
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x660
-	*/
-}
+	 * --INFO--
+	 * Address:	80270898
+	 * Size:	000008
+	 */
+	TDenkipoleSign::@4 @~TDenkipoleSign()
+	{
+		/*
+		.loc_0x0:
+		  subi      r3, r3, 0x4
+		  b         -0x660
+		*/
+	}
+} // namespace efx
+
+} // namespace efx

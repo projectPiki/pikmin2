@@ -1,11 +1,13 @@
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8025B1A8
  * Size:	000478
  */
-void Game::Ujib::FSM::init(Game::EnemyBase*)
+void Ujib::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -329,7 +331,7 @@ void Game::Ujib::FSM::init(Game::EnemyBase*)
  * Address:	8025B620
  * Size:	00005C
  */
-void Game::Ujib::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +366,7 @@ void Game::Ujib::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025B67C
  * Size:	000044
  */
-void Game::Ujib::StateDead::exec(Game::EnemyBase*)
+void Ujib::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -395,14 +397,14 @@ void Game::Ujib::StateDead::exec(Game::EnemyBase*)
  * Address:	8025B6C0
  * Size:	000004
  */
-void Game::Ujib::StateDead::cleanup(Game::EnemyBase*) { }
+void Ujib::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025B6C4
  * Size:	000064
  */
-void Game::Ujib::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -439,7 +441,7 @@ void Game::Ujib::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025B728
  * Size:	000044
  */
-void Game::Ujib::StatePress::exec(Game::EnemyBase*)
+void Ujib::StatePress::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -470,14 +472,14 @@ void Game::Ujib::StatePress::exec(Game::EnemyBase*)
  * Address:	8025B76C
  * Size:	000004
  */
-void Game::Ujib::StatePress::cleanup(Game::EnemyBase*) { }
+void Ujib::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025B770
  * Size:	0000BC
  */
-void Game::Ujib::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -536,7 +538,7 @@ void Game::Ujib::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025B82C
  * Size:	0000B0
  */
-void Game::Ujib::StateStay::exec(Game::EnemyBase*)
+void Ujib::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -596,7 +598,7 @@ void Game::Ujib::StateStay::exec(Game::EnemyBase*)
  * Address:	8025B8DC
  * Size:	000084
  */
-void Game::Ujib::StateStay::cleanup(Game::EnemyBase*)
+void Ujib::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -641,7 +643,7 @@ void Game::Ujib::StateStay::cleanup(Game::EnemyBase*)
  * Address:	8025B960
  * Size:	000080
  */
-void Game::Ujib::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -685,7 +687,7 @@ void Game::Ujib::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025B9E0
  * Size:	000080
  */
-void Game::Ujib::StateAppear::exec(Game::EnemyBase*)
+void Ujib::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -733,7 +735,7 @@ void Game::Ujib::StateAppear::exec(Game::EnemyBase*)
  * Address:	8025BA60
  * Size:	00003C
  */
-void Game::Ujib::StateAppear::cleanup(Game::EnemyBase*)
+void Ujib::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -760,7 +762,7 @@ void Game::Ujib::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	8025BA9C
  * Size:	00006C
  */
-void Game::Ujib::StateDive::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateDive::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -799,7 +801,7 @@ void Game::Ujib::StateDive::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025BB08
  * Size:	000050
  */
-void Game::Ujib::StateDive::exec(Game::EnemyBase*)
+void Ujib::StateDive::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -833,7 +835,7 @@ void Game::Ujib::StateDive::exec(Game::EnemyBase*)
  * Address:	8025BB58
  * Size:	00003C
  */
-void Game::Ujib::StateDive::cleanup(Game::EnemyBase*)
+void Ujib::StateDive::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -860,7 +862,7 @@ void Game::Ujib::StateDive::cleanup(Game::EnemyBase*)
  * Address:	8025BB94
  * Size:	000034
  */
-void Game::Ujib::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -885,7 +887,7 @@ void Game::Ujib::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025BBC8
  * Size:	0004C8
  */
-void Game::Ujib::StateMove::exec(Game::EnemyBase*)
+void Ujib::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1227,14 +1229,14 @@ void Game::Ujib::StateMove::exec(Game::EnemyBase*)
  * Address:	8025C090
  * Size:	000004
  */
-void Game::Ujib::StateMove::cleanup(Game::EnemyBase*) { }
+void Ujib::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025C094
  * Size:	000034
  */
-void Game::Ujib::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1259,7 +1261,7 @@ void Game::Ujib::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025C0C8
  * Size:	000130
  */
-void Game::Ujib::StateMoveSide::exec(Game::EnemyBase*)
+void Ujib::StateMoveSide::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1357,14 +1359,14 @@ void Game::Ujib::StateMoveSide::exec(Game::EnemyBase*)
  * Address:	8025C1F8
  * Size:	000004
  */
-void Game::Ujib::StateMoveSide::cleanup(Game::EnemyBase*) { }
+void Ujib::StateMoveSide::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025C1FC
  * Size:	000034
  */
-void Game::Ujib::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1389,7 +1391,7 @@ void Game::Ujib::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025C230
  * Size:	000130
  */
-void Game::Ujib::StateMoveCentre::exec(Game::EnemyBase*)
+void Ujib::StateMoveCentre::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1487,14 +1489,14 @@ void Game::Ujib::StateMoveCentre::exec(Game::EnemyBase*)
  * Address:	8025C360
  * Size:	000004
  */
-void Game::Ujib::StateMoveCentre::cleanup(Game::EnemyBase*) { }
+void Ujib::StateMoveCentre::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025C364
  * Size:	000034
  */
-void Game::Ujib::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1519,7 +1521,7 @@ void Game::Ujib::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025C398
  * Size:	000130
  */
-void Game::Ujib::StateMoveTop::exec(Game::EnemyBase*)
+void Ujib::StateMoveTop::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1617,14 +1619,14 @@ void Game::Ujib::StateMoveTop::exec(Game::EnemyBase*)
  * Address:	8025C4C8
  * Size:	000004
  */
-void Game::Ujib::StateMoveTop::cleanup(Game::EnemyBase*) { }
+void Ujib::StateMoveTop::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025C4CC
  * Size:	000034
  */
-void Game::Ujib::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1649,7 +1651,7 @@ void Game::Ujib::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025C500
  * Size:	0001DC
  */
-void Game::Ujib::StateGoHome::exec(Game::EnemyBase*)
+void Ujib::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1792,14 +1794,14 @@ void Game::Ujib::StateGoHome::exec(Game::EnemyBase*)
  * Address:	8025C6DC
  * Size:	000004
  */
-void Game::Ujib::StateGoHome::cleanup(Game::EnemyBase*) { }
+void Ujib::StateGoHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025C6E0
  * Size:	000058
  */
-void Game::Ujib::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1833,7 +1835,7 @@ void Game::Ujib::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025C738
  * Size:	000140
  */
-void Game::Ujib::StateAttack1::exec(Game::EnemyBase*)
+void Ujib::StateAttack1::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1939,14 +1941,14 @@ void Game::Ujib::StateAttack1::exec(Game::EnemyBase*)
  * Address:	8025C878
  * Size:	000004
  */
-void Game::Ujib::StateAttack1::cleanup(Game::EnemyBase*) { }
+void Ujib::StateAttack1::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8025C87C
  * Size:	000048
  */
-void Game::Ujib::StateAttack2::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateAttack2::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1976,7 +1978,7 @@ void Game::Ujib::StateAttack2::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025C8C4
  * Size:	000218
  */
-void Game::Ujib::StateAttack2::exec(Game::EnemyBase*)
+void Ujib::StateAttack2::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2140,7 +2142,7 @@ void Game::Ujib::StateAttack2::exec(Game::EnemyBase*)
  * Address:	8025CADC
  * Size:	000010
  */
-void Game::Ujib::StateAttack2::cleanup(Game::EnemyBase*)
+void Ujib::StateAttack2::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2156,7 +2158,7 @@ void Game::Ujib::StateAttack2::cleanup(Game::EnemyBase*)
  * Address:	8025CAEC
  * Size:	00003C
  */
-void Game::Ujib::StateEat::init(Game::EnemyBase*, Game::StateArg*)
+void Ujib::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2183,7 +2185,7 @@ void Game::Ujib::StateEat::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025CB28
  * Size:	0001A8
  */
-void Game::Ujib::StateEat::exec(Game::EnemyBase*)
+void Ujib::StateEat::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2313,4 +2315,5 @@ void Game::Ujib::StateEat::exec(Game::EnemyBase*)
  * Address:	8025CCD0
  * Size:	000004
  */
-void Game::Ujib::StateEat::cleanup(Game::EnemyBase*) { }
+void Ujib::StateEat::cleanup(Game::EnemyBase*) { }
+} // namespace Game

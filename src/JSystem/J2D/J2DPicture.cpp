@@ -5,7 +5,7 @@
  * Address:	80039ADC
  * Size:	0000B8
  */
-void J2DPicture::J2DPicture()
+J2DPicture::J2DPicture()
 {
 	/*
 	.loc_0x0:
@@ -63,14 +63,10 @@ void J2DPicture::J2DPicture()
  * Address:	80039B94
  * Size:	00000C
  */
-void JUtility::TColor::TColor()
+JUtility::TColor::TColor()
 {
-	/*
-	.loc_0x0:
-	  li        r0, -0x1
-	  stw       r0, 0x0(r3)
-	  blr
-	*/
+	// Generated from stw r0, 0x0(r3)
+	_00 = -1;
 }
 
 /*
@@ -85,7 +81,7 @@ void JGeometry::TVec2<short>::TVec2() { }
  * Address:	80039BA4
  * Size:	0000CC
  */
-void J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*, JKRArchive*)
+J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -148,7 +144,7 @@ void J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*, JKRArchive*)
  * Address:	80039C70
  * Size:	0005EC
  */
-void J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*, J2DMaterial*)
+J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*, J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -591,7 +587,7 @@ u32 J2DTevBlock::getTevStageNum() const { return 0x1; }
  * Address:	8003A278
  * Size:	0000E8
  */
-void J2DPicture::J2DPicture(const ResTIMG*)
+J2DPicture::J2DPicture(const ResTIMG*)
 {
 	/*
 	.loc_0x0:
@@ -712,7 +708,7 @@ void J2DPicture::insert(const ResTIMG*, unsigned char, float)
  * Address:	8003A3C4
  * Size:	0000E8
  */
-void J2DPicture::J2DPicture(const char*)
+J2DPicture::J2DPicture(const char*)
 {
 	/*
 	.loc_0x0:
@@ -833,7 +829,7 @@ void J2DPicture::insert(const char*, unsigned char, float)
  * Address:	8003A510
  * Size:	0000E8
  */
-void J2DPicture::J2DPicture(JUTTexture*)
+J2DPicture::J2DPicture(JUTTexture*)
 {
 	/*
 	.loc_0x0:
@@ -929,7 +925,7 @@ void J2DPicture::append(JUTTexture*, float)
  * Address:	8003A628
  * Size:	0000EC
  */
-void J2DPicture::J2DPicture(unsigned long long, const JGeometry::TBox2<float>&)
+J2DPicture::J2DPicture(unsigned long long, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1597,7 +1593,7 @@ void J2DPicture::initinfo()
  * Address:	8003AEE0
  * Size:	00009C
  */
-void J2DPicture::~J2DPicture()
+J2DPicture::~J2DPicture()
 {
 	/*
 	.loc_0x0:

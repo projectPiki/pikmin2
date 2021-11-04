@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Game {
 
 /*
  * --INFO--
  * Address:	801EDF74
  * Size:	000084
  */
-void Game::ItemBridge::FSM::init((Game::ItemBridge::Item*))
+void ItemBridge::FSM::init(Game::ItemBridge::Item*)
 {
 	/*
 	.loc_0x0:
@@ -62,31 +54,28 @@ void Game::ItemBridge::FSM::init((Game::ItemBridge::Item*))
  * Address:	801EDFF8
  * Size:	000004
  */
-void Game::ItemBridge::NormalState::init((Game::ItemBridge::Item*,
-                                          Game::StateArg*))
-{
-}
+void ItemBridge::NormalState::init(Game::ItemBridge::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801EDFFC
  * Size:	000004
  */
-void Game::ItemBridge::NormalState::exec((Game::ItemBridge::Item*)) { }
+void ItemBridge::NormalState::exec(Game::ItemBridge::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EE000
  * Size:	000004
  */
-void Game::ItemBridge::NormalState::cleanup((Game::ItemBridge::Item*)) { }
+void ItemBridge::NormalState::cleanup(Game::ItemBridge::Item*) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000F4
  */
-void Game::ItemBridge::Item::__ct(void)
+ItemBridge::Item::Item(void)
 {
 	// UNUSED FUNCTION
 }
@@ -96,7 +85,7 @@ void Game::ItemBridge::Item::__ct(void)
  * Address:	801EE004
  * Size:	000180
  */
-void Game::ItemBridge::Item::onInit((Game::CreatureInitArg*))
+void ItemBridge::Item::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +227,7 @@ FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg(void)
  * Address:	801EE1B8
  * Size:	000110
  */
-void Game::ItemBridge::Item::update(void)
+void ItemBridge::Item::update(void)
 {
 	/*
 	.loc_0x0:
@@ -326,7 +315,7 @@ void Game::ItemBridge::Item::update(void)
  * Address:	801EE2C8
  * Size:	0001B4
  */
-void Game::ItemBridge::Item::getLODCylinder((Sys::Cylinder&))
+void ItemBridge::Item::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -457,7 +446,7 @@ void Game::ItemBridge::Item::getLODCylinder((Sys::Cylinder&))
  * Address:	801EE47C
  * Size:	000044
  */
-void Game::ItemBridge::Item::do_updateLOD(void)
+void ItemBridge::Item::do_updateLOD(void)
 {
 	/*
 	.loc_0x0:
@@ -486,14 +475,14 @@ void Game::ItemBridge::Item::do_updateLOD(void)
  * Address:	801EE4C0
  * Size:	000004
  */
-void Game::ItemBridge::Item::doDirectDraw((Graphics&)) { }
+void ItemBridge::Item::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801EE4C4
  * Size:	000048
  */
-void Game::ItemBridge::Item::constructor(void)
+void ItemBridge::Item::constructor(void)
 {
 	/*
 	.loc_0x0:
@@ -525,7 +514,7 @@ void Game::ItemBridge::Item::constructor(void)
  * Address:	801EE50C
  * Size:	0000FC
  */
-void Game::ItemBridge::Item::doLoad((Stream&))
+void ItemBridge::Item::doLoad(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -608,7 +597,7 @@ void Game::ItemBridge::Item::doLoad((Stream&))
  * Address:	801EE608
  * Size:	000074
  */
-void Game::ItemBridge::Item::doSave((Stream&))
+void ItemBridge::Item::doSave(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -653,7 +642,7 @@ void Game::ItemBridge::Item::doSave((Stream&))
  * Address:	801EE67C
  * Size:	000090
  */
-void Game::ItemBridge::Item::onSetPosition(void)
+void ItemBridge::Item::onSetPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -701,7 +690,7 @@ void Game::ItemBridge::Item::onSetPosition(void)
  * Address:	801EE70C
  * Size:	000024
  */
-void Game::ItemBridge::Item::updateBoundSphere(void)
+void ItemBridge::Item::updateBoundSphere(void)
 {
 	/*
 	.loc_0x0:
@@ -722,7 +711,7 @@ void Game::ItemBridge::Item::updateBoundSphere(void)
  * Address:	801EE730
  * Size:	000124
  */
-void Game::ItemBridge::Item::changeMaterial(void)
+void ItemBridge::Item::changeMaterial(void)
 {
 	/*
 	.loc_0x0:
@@ -819,7 +808,7 @@ void Game::ItemBridge::Item::changeMaterial(void)
  * Address:	801EE854
  * Size:	0001A0
  */
-void Game::ItemBridge::Item::doAI(void)
+void ItemBridge::Item::doAI(void)
 {
 	/*
 	.loc_0x0:
@@ -949,7 +938,7 @@ void Game::ItemBridge::Item::doAI(void)
  * Address:	801EE9F4
  * Size:	00028C
  */
-void Game::ItemBridge::Item::setCurrStage((int))
+void ItemBridge::Item::setCurrStage(int)
 {
 	/*
 	.loc_0x0:
@@ -1160,7 +1149,7 @@ void Game::ItemBridge::Item::setCurrStage((int))
  * Address:	801EEC80
  * Size:	0001CC
  */
-void Game::ItemBridge::Item::createWayPoints(void)
+void ItemBridge::Item::createWayPoints(void)
 {
 	/*
 	.loc_0x0:
@@ -1297,7 +1286,7 @@ void Game::ItemBridge::Item::createWayPoints(void)
  * Address:	801EEE4C
  * Size:	0000E8
  */
-void Game::ItemBridge::Item::getStagePos((int))
+void ItemBridge::Item::getStagePos(int)
 {
 	/*
 	.loc_0x0:
@@ -1369,7 +1358,7 @@ void Game::ItemBridge::Item::getStagePos((int))
  * Address:	801EEF34
  * Size:	0000A0
  */
-void Game::ItemBridge::Item::getStartPos(void)
+void ItemBridge::Item::getStartPos(void)
 {
 	/*
 	.loc_0x0:
@@ -1421,7 +1410,7 @@ void Game::ItemBridge::Item::getStartPos(void)
  * Address:	801EEFD4
  * Size:	00005C
  */
-void Game::ItemBridge::Item::getStageZ((int))
+void ItemBridge::Item::getStageZ(int)
 {
 	/*
 	.loc_0x0:
@@ -1458,7 +1447,7 @@ void Game::ItemBridge::Item::getStageZ((int))
  * Address:	........
  * Size:	000008
  */
-void Game::ItemBridge::Item::getStageDepth(void)
+void ItemBridge::Item::getStageDepth(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1468,7 +1457,7 @@ void Game::ItemBridge::Item::getStageDepth(void)
  * Address:	801EF030
  * Size:	000008
  */
-void Game::ItemBridge::Item::getStageWidth(void)
+void ItemBridge::Item::getStageWidth(void)
 {
 	/*
 	.loc_0x0:
@@ -1482,7 +1471,7 @@ void Game::ItemBridge::Item::getStageWidth(void)
  * Address:	801EF038
  * Size:	0000A4
  */
-void Game::ItemBridge::Item::getBridgeZVec(void)
+void ItemBridge::Item::getBridgeZVec(void)
 {
 	/*
 	.loc_0x0:
@@ -1541,7 +1530,7 @@ void Game::ItemBridge::Item::getBridgeZVec(void)
  * Address:	801EF0DC
  * Size:	0000B8
  */
-void Game::ItemBridge::Item::getBridgeXVec(void)
+void ItemBridge::Item::getBridgeXVec(void)
 {
 	/*
 	.loc_0x0:
@@ -1600,12 +1589,14 @@ void Game::ItemBridge::Item::getBridgeXVec(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801EF194
  * Size:	0001F0
  */
-void getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<float> RfRf(void)
+void getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3f RfRf(void)
 {
 	/*
 	.loc_0x0:
@@ -1753,7 +1744,7 @@ void getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<float> RfRf(void)
  * Address:	801EF384
  * Size:	000138
  */
-void workable__Q34Game10ItemBridge4ItemFR10Vector3<float>(void)
+void workable__Q34Game10ItemBridge4ItemFR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -1857,8 +1848,7 @@ void workable__Q34Game10ItemBridge4ItemFR10Vector3<float>(void)
  * Address:	801EF4BC
  * Size:	000430
  */
-void getVectorField__Q34Game10ItemBridge4ItemFRQ23Sys6SphereR10Vector3<float>(
-    void)
+void getVectorField__Q34Game10ItemBridge4ItemFRQ23Sys6SphereR10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -2179,12 +2169,14 @@ void getVectorField__Q34Game10ItemBridge4ItemFRQ23Sys6SphereR10Vector3<float>(
 	*/
 }
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	801EF8EC
  * Size:	000148
  */
-void Game::ItemBridge::Item::getWorkDistance((Sys::Sphere&))
+void ItemBridge::Item::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -2292,7 +2284,7 @@ void Game::ItemBridge::Item::getWorkDistance((Sys::Sphere&))
  * Address:	801EFA34
  * Size:	000448
  */
-void Game::ItemBridge::Item::interactAttack((Game::InteractAttack&))
+void ItemBridge::Item::interactAttack(Game::InteractAttack&)
 {
 	/*
 	.loc_0x0:
@@ -2606,7 +2598,7 @@ void Game::ItemBridge::Item::interactAttack((Game::InteractAttack&))
  * Address:	801EFE7C
  * Size:	0000F0
  */
-void Game::ItemBridge::Item::interactBreakBridge((Game::InteractBreakBridge&))
+void ItemBridge::Item::interactBreakBridge(Game::InteractBreakBridge&)
 {
 	/*
 	.loc_0x0:
@@ -2686,7 +2678,7 @@ void Game::ItemBridge::Item::interactBreakBridge((Game::InteractBreakBridge&))
  * Address:	........
  * Size:	000008
  */
-void Game::ItemBridge::Item::getWorkRadius(void)
+void ItemBridge::Item::getWorkRadius(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2696,7 +2688,7 @@ void Game::ItemBridge::Item::getWorkRadius(void)
  * Address:	801EFF6C
  * Size:	00004C
  */
-void Game::ItemBridge::Mgr::generatorNewItemParm(void)
+void ItemBridge::Mgr::generatorNewItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -2729,7 +2721,7 @@ void Game::ItemBridge::Mgr::generatorNewItemParm(void)
  * Address:	801EFFB8
  * Size:	000088
  */
-void Game::ItemBridge::Mgr::generatorWrite((Stream&, Game::GenItemParm*))
+void ItemBridge::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -2777,8 +2769,7 @@ void Game::ItemBridge::Mgr::generatorWrite((Stream&, Game::GenItemParm*))
  * Address:	801F0040
  * Size:	000088
  */
-void Game::ItemBridge::Mgr::generatorRead((Stream&, Game::GenItemParm*,
-                                           unsigned long))
+void ItemBridge::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2830,7 +2821,7 @@ void Game::ItemBridge::Mgr::generatorRead((Stream&, Game::GenItemParm*,
  * Address:	801F00C8
  * Size:	000130
  */
-void Game::ItemBridge::Mgr::__ct(void)
+ItemBridge::Mgr::Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -2926,7 +2917,7 @@ void Game::ItemBridge::Mgr::__ct(void)
  * Address:	801F01F8
  * Size:	000024
  */
-void Game::ItemBridge::BridgeParms::read((Stream&))
+void ItemBridge::BridgeParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2947,7 +2938,7 @@ void Game::ItemBridge::BridgeParms::read((Stream&))
  * Address:	801F021C
  * Size:	0001EC
  */
-void Game::ItemBridge::BridgeParms::__ct(void)
+ItemBridge::BridgeParms::BridgeParms(void)
 {
 	/*
 	.loc_0x0:
@@ -3082,7 +3073,7 @@ void Game::ItemBridge::BridgeParms::__ct(void)
  * Address:	801F0408
  * Size:	000118
  */
-void Game::ItemBridge::Mgr::birth(void)
+void ItemBridge::Mgr::birth(void)
 {
 	/*
 	.loc_0x0:
@@ -3168,7 +3159,7 @@ void Game::ItemBridge::Mgr::birth(void)
  * Address:	801F0520
  * Size:	0000A8
  */
-void generatorBirth__Q34Game10ItemBridge3MgrFR10Vector3<float> R10Vector3<float>
+void generatorBirth__Q34Game10ItemBridge3MgrFR10Vector3f R10Vector3f
 PQ24Game11GenItemParm(void)
 {
 	/*
@@ -3225,7 +3216,7 @@ PQ24Game11GenItemParm(void)
  * Address:	801F05C8
  * Size:	000260
  */
-void Game::ItemBridge::Mgr::onLoadResources(void)
+void ItemBridge::Mgr::onLoadResources(void)
 {
 	/*
 	.loc_0x0:
@@ -3393,7 +3384,7 @@ void Game::ItemBridge::Mgr::onLoadResources(void)
  * Address:	801F0828
  * Size:	00001C
  */
-void Game::ItemBridge::BridgeInfo::__ct(void)
+ItemBridge::BridgeInfo::BridgeInfo(void)
 {
 	/*
 	.loc_0x0:
@@ -3412,7 +3403,7 @@ void Game::ItemBridge::BridgeInfo::__ct(void)
  * Address:	801F0844
  * Size:	000078
  */
-void Game::ItemBridge::Mgr::getBridgeInfo((int))
+void ItemBridge::Mgr::getBridgeInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -3458,7 +3449,7 @@ void Game::ItemBridge::Mgr::getBridgeInfo((int))
  * Address:	801F08BC
  * Size:	00020C
  */
-void Game::ItemBridge::Mgr::createBridgeInfo((int))
+void ItemBridge::Mgr::createBridgeInfo(int)
 {
 	/*
 	.loc_0x0:
@@ -3631,8 +3622,8 @@ void Game::ItemBridge::Mgr::createBridgeInfo((int))
  * Address:	801F0AC8
  * Size:	0001A0
  */
-void Game::ItemBridge::Mgr::setupPlatInstanceAttacher(
-    (Game::ItemBridge::Item*, Game::PlatInstanceAttacher&))
+void ItemBridge::Mgr::setupPlatInstanceAttacher(Game::ItemBridge::Item*,
+                                                Game::PlatInstanceAttacher&)
 {
 	/*
 	.loc_0x0:
@@ -3764,7 +3755,7 @@ void Game::ItemBridge::Mgr::setupPlatInstanceAttacher(
  * Address:	801F0C68
  * Size:	00000C
  */
-void Game::ItemBridge::BridgeInitArg::getName(void)
+void ItemBridge::BridgeInitArg::getName(void)
 {
 	/*
 	.loc_0x0:
@@ -3779,7 +3770,7 @@ void Game::ItemBridge::BridgeInitArg::getName(void)
  * Address:	801F0C74
  * Size:	000134
  */
-void Game::ItemBridge::Mgr::__dt(void)
+ItemBridge::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:
@@ -3876,7 +3867,7 @@ void Game::ItemBridge::Mgr::__dt(void)
  * Address:	801F0DA8
  * Size:	000100
  */
-void Game::ItemBridge::Mgr::doNew(void)
+void ItemBridge::Mgr::doNew(void)
 {
 	/*
 	.loc_0x0:
@@ -3956,7 +3947,7 @@ void Game::ItemBridge::Mgr::doNew(void)
  * Address:	801F0EA8
  * Size:	00000C
  */
-void Game::ItemBridge::Mgr::generatorGetID(void)
+void ItemBridge::Mgr::generatorGetID(void)
 {
 	/*
 	.loc_0x0:
@@ -3971,7 +3962,7 @@ void Game::ItemBridge::Mgr::generatorGetID(void)
  * Address:	801F0EB4
  * Size:	00000C
  */
-void Game::ItemBridge::Mgr::generatorLocalVersion(void)
+void ItemBridge::Mgr::generatorLocalVersion(void)
 {
 	/*
 	.loc_0x0:
@@ -3986,14 +3977,14 @@ void Game::ItemBridge::Mgr::generatorLocalVersion(void)
  * Address:	801F0EC0
  * Size:	000004
  */
-void Game::ItemBridge::Item::makeTrMatrix(void) { }
+void ItemBridge::Item::makeTrMatrix(void) { }
 
 /*
  * --INFO--
  * Address:	801F0EC4
  * Size:	000008
  */
-void Game::ItemBridge::Item::getCreatureName(void)
+void ItemBridge::Item::getCreatureName(void)
 {
 	/*
 	.loc_0x0:
@@ -4007,7 +3998,7 @@ void Game::ItemBridge::Item::getCreatureName(void)
  * Address:	801F0ECC
  * Size:	000008
  */
-void Game::ItemBridge::Item::getMabiki(void)
+void ItemBridge::Item::getMabiki(void)
 {
 	/*
 	.loc_0x0:
@@ -4177,6 +4168,8 @@ void init__Q24Game38StateMachine<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Item(void)
 {
 }
+
+} // namespace Game
 
 /*
  * --INFO--
@@ -4508,7 +4501,7 @@ void @376
  * Address:	801F1238
  * Size:	000008
  */
-void @48 @Game::ItemBridge::Mgr::__dt(void)
+@48 @Game::ItemBridge::Mgr::~Mgr(void)
 {
 	/*
 	.loc_0x0:

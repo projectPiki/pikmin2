@@ -1,21 +1,13 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace Sys {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void Sys::MatBaseAnimation::__ct(void)
+MatBaseAnimation::MatBaseAnimation(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +17,7 @@ void Sys::MatBaseAnimation::__ct(void)
  * Address:	80434020
  * Size:	000084
  */
-void Sys::MatBaseAnimation::attachResource((void*, J3DModelData*))
+void MatBaseAnimation::attachResource(void*, J3DModelData*)
 {
 	/*
 	.loc_0x0:
@@ -72,7 +64,7 @@ void Sys::MatBaseAnimation::attachResource((void*, J3DModelData*))
  * Address:	804340A4
  * Size:	000090
  */
-void Sys::MatBaseAnimation::getFrameMax(void)
+void MatBaseAnimation::getFrameMax(void)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +114,7 @@ void Sys::MatBaseAnimation::getFrameMax(void)
  * Address:	80434134
  * Size:	00002C
  */
-void Sys::MatTexAnimation::__ct(void)
+MatTexAnimation::MatTexAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -145,7 +137,7 @@ void Sys::MatTexAnimation::__ct(void)
  * Address:	80434160
  * Size:	000088
  */
-void Sys::MatTexAnimation::onAttachResource((void*))
+void MatTexAnimation::onAttachResource(void*)
 {
 	/*
 	.loc_0x0:
@@ -193,7 +185,7 @@ void Sys::MatTexAnimation::onAttachResource((void*))
  * Address:	804341E8
  * Size:	00002C
  */
-void Sys::MatTexAnimation::set(void)
+void MatTexAnimation::set(void)
 {
 	/*
 	.loc_0x0:
@@ -216,7 +208,7 @@ void Sys::MatTexAnimation::set(void)
  * Address:	80434214
  * Size:	00002C
  */
-void Sys::MatTexAnimation::remove(void)
+void MatTexAnimation::remove(void)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +231,7 @@ void Sys::MatTexAnimation::remove(void)
  * Address:	80434240
  * Size:	000030
  */
-void Sys::MatTevRegAnimation::__ct(void)
+MatTevRegAnimation::MatTevRegAnimation(void)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +255,7 @@ void Sys::MatTevRegAnimation::__ct(void)
  * Address:	80434270
  * Size:	00008C
  */
-void Sys::MatTevRegAnimation::onAttachResource((void*))
+void MatTevRegAnimation::onAttachResource(void*)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +304,7 @@ void Sys::MatTevRegAnimation::onAttachResource((void*))
  * Address:	804342FC
  * Size:	00002C
  */
-void Sys::MatTevRegAnimation::set(void)
+void MatTevRegAnimation::set(void)
 {
 	/*
 	.loc_0x0:
@@ -335,7 +327,7 @@ void Sys::MatTevRegAnimation::set(void)
  * Address:	80434328
  * Size:	00002C
  */
-void Sys::MatTevRegAnimation::remove(void)
+void MatTevRegAnimation::remove(void)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +350,7 @@ void Sys::MatTevRegAnimation::remove(void)
  * Address:	80434354
  * Size:	000018
  */
-void Sys::MatBaseAnimator::__ct(void)
+MatBaseAnimator::MatBaseAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -376,7 +368,7 @@ void Sys::MatBaseAnimator::__ct(void)
  * Address:	8043436C
  * Size:	000070
  */
-void Sys::MatBaseAnimator::start((Sys::MatBaseAnimation*))
+void MatBaseAnimator::start(Sys::MatBaseAnimation*)
 {
 	/*
 	.loc_0x0:
@@ -418,7 +410,7 @@ void Sys::MatBaseAnimator::start((Sys::MatBaseAnimation*))
  * Address:	........
  * Size:	00004C
  */
-void Sys::MatBaseAnimator::removeMotion(void)
+void MatBaseAnimator::removeMotion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -428,7 +420,7 @@ void Sys::MatBaseAnimator::removeMotion(void)
  * Address:	........
  * Size:	0001A4
  */
-void Sys::MatBaseAnimator::forward((float))
+void MatBaseAnimator::forward(float)
 {
 	// UNUSED FUNCTION
 }
@@ -438,7 +430,7 @@ void Sys::MatBaseAnimator::forward((float))
  * Address:	804343DC
  * Size:	000170
  */
-void Sys::MatBaseAnimator::setCurrentFrame((float))
+void MatBaseAnimator::setCurrentFrame(float)
 {
 	/*
 	.loc_0x0:
@@ -552,7 +544,7 @@ void Sys::MatBaseAnimator::setCurrentFrame((float))
  * Address:	8043454C
  * Size:	000078
  */
-void Sys::MatBaseAnimator::animate((float))
+void MatBaseAnimator::animate(float)
 {
 	/*
 	.loc_0x0:
@@ -596,14 +588,14 @@ void Sys::MatBaseAnimator::animate((float))
  * Address:	804345C4
  * Size:	000004
  */
-void Sys::MatBaseAnimator::do_animate((float)) { }
+void MatBaseAnimator::do_animate(float) { }
 
 /*
  * --INFO--
  * Address:	804345C8
  * Size:	0001B0
  */
-void Sys::MatLoopAnimator::do_animate((float))
+void MatLoopAnimator::do_animate(float)
 {
 	/*
 	.loc_0x0:
@@ -737,14 +729,10 @@ void Sys::MatLoopAnimator::do_animate((float))
  * Address:	80434778
  * Size:	00000C
  */
-void Sys::MatRepeatAnimator::onStart(void)
+void MatRepeatAnimator::onStart(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0xC(r3)
-	  blr
-	*/
+	// Generated from stb r0, 0xC(r3)
+	_0C = 1;
 }
 
 /*
@@ -752,7 +740,7 @@ void Sys::MatRepeatAnimator::onStart(void)
  * Address:	80434784
  * Size:	000328
  */
-void Sys::MatRepeatAnimator::do_animate((float))
+void MatRepeatAnimator::do_animate(float)
 {
 	/*
 	.loc_0x0:
@@ -994,14 +982,14 @@ void Sys::MatRepeatAnimator::do_animate((float))
  * Address:	80434AAC
  * Size:	000004
  */
-void Sys::MatBaseAnimator::onStart(void) { }
+void MatBaseAnimator::onStart(void) { }
 
 /*
  * --INFO--
  * Address:	80434AB0
  * Size:	000008
  */
-void Sys::MatTevRegAnimation::getAnmBase(void)
+void MatTevRegAnimation::getAnmBase(void)
 {
 	/*
 	.loc_0x0:
@@ -1015,7 +1003,7 @@ void Sys::MatTevRegAnimation::getAnmBase(void)
  * Address:	80434AB8
  * Size:	000008
  */
-void Sys::MatTexAnimation::getAnmBase(void)
+void MatTexAnimation::getAnmBase(void)
 {
 	/*
 	.loc_0x0:
@@ -1023,3 +1011,4 @@ void Sys::MatTexAnimation::getAnmBase(void)
 	  blr
 	*/
 }
+} // namespace Sys

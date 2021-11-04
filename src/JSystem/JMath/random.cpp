@@ -1,11 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80035100
  * Size:	000008
  */
-void JMath::TRandom_fast_::__ct((unsigned long))
+JMath::TRandom_fast_::TRandom_fast_(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -19,7 +19,7 @@ void JMath::TRandom_fast_::__ct((unsigned long))
  * Address:	........
  * Size:	0000C8
  */
-void JMath::TRandom_enough_::setSeed((unsigned long))
+void JMath::TRandom_enough_::setSeed(unsigned long)
 {
 	// UNUSED FUNCTION
 }

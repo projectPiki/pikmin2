@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Dolphin/os.h"
 #include "System.h"
 

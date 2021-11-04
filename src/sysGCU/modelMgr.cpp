@@ -1,22 +1,14 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
 
 /*
+namespace SysShape {
+
  * --INFO--
  * Address:	8042AB00
  * Size:	0001D8
  */
-void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<
-    SysShape::Model*>(void)
+void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<Model*>(
+    void)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +154,7 @@ void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<
  * Address:	8042ACD8
  * Size:	000084
  */
-void SysShape::ModelMgr::calcMaximumModelSize(void)
+void ModelMgr::calcMaximumModelSize(void)
 {
 	/*
 	.loc_0x0:
@@ -215,7 +207,7 @@ void SysShape::ModelMgr::calcMaximumModelSize(void)
  * Address:	8042AD5C
  * Size:	0000A0
  */
-void SysShape::ModelMgr::calcModelSize((J3DModelData*))
+void ModelMgr::calcModelSize(J3DModelData*)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +267,7 @@ void SysShape::ModelMgr::calcModelSize((J3DModelData*))
  * Address:	8042ADFC
  * Size:	0001C8
  */
-void SysShape::ModelMgr::createModel((int, int))
+void ModelMgr::createModel(int, int)
 {
 	/*
 	.loc_0x0:
@@ -425,3 +417,4 @@ void SysShape::ModelMgr::createModel((int, int))
 	  blr
 	*/
 }
+} // SysShape
