@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026CC0C
  * Size:	000008
  */
-void Game::GasHiba::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::GasHiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::GasHiba::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8026CC14
  * Size:	000008
  */
-void Game::GasHiba::ProperAnimator::getAnimator((int))
+void Game::GasHiba::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::GasHiba::ProperAnimator::getAnimator((int))
  * Address:	8026CC1C
  * Size:	00005C
  */
-void Game::GasHiba::ProperAnimator::__dt(void)
+void Game::GasHiba::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::GasHiba::ProperAnimator::__dt(void)
  * Address:	8026CC78
  * Size:	000008
  */
-void Game::GasHiba::ProperAnimator::getAnimator(void)
+void Game::GasHiba::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

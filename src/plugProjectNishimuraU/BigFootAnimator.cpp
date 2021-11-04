@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C6EE4
  * Size:	000008
  */
-void Game::BigFoot::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::BigFoot::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::BigFoot::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802C6EEC
  * Size:	000008
  */
-void Game::BigFoot::ProperAnimator::getAnimator((int))
+void Game::BigFoot::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::BigFoot::ProperAnimator::getAnimator((int))
  * Address:	802C6EF4
  * Size:	00005C
  */
-void Game::BigFoot::ProperAnimator::__dt(void)
+void Game::BigFoot::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::BigFoot::ProperAnimator::__dt(void)
  * Address:	802C6F50
  * Size:	000008
  */
-void Game::BigFoot::ProperAnimator::getAnimator(void)
+void Game::BigFoot::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

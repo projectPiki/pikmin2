@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8027C40C
  * Size:	000050
  */
-void Game::Wtank::Mgr::__ct((int, unsigned char))
+void Game::Wtank::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Wtank::Mgr::__ct((int, unsigned char))
  * Address:	8027C45C
  * Size:	000048
  */
-void Game::Wtank::Mgr::doAlloc(void)
+void Game::Wtank::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Wtank::Mgr::doAlloc(void)
  * Address:	8027C4A4
  * Size:	000058
  */
-void Game::Tank::Parms::__ct(void)
+void Game::Tank::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::Tank::Parms::__ct(void)
  * Address:	8027C4FC
  * Size:	000060
  */
-void Game::Wtank::Mgr::createObj((int))
+void Game::Wtank::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -151,7 +141,7 @@ void Game::Wtank::Mgr::createObj((int))
  * Address:	8027C55C
  * Size:	0000F0
  */
-void Game::Wtank::Obj::__dt(void)
+void Game::Wtank::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -227,7 +217,7 @@ void Game::Wtank::Obj::__dt(void)
  * Address:	8027C64C
  * Size:	000010
  */
-void Game::Wtank::Mgr::getEnemy((int))
+void Game::Wtank::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +233,7 @@ void Game::Wtank::Mgr::getEnemy((int))
  * Address:	8027C65C
  * Size:	000080
  */
-void Game::Wtank::Mgr::loadTexData(void)
+void Game::Wtank::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -291,7 +281,7 @@ void Game::Wtank::Mgr::loadTexData(void)
  * Address:	8027C6DC
  * Size:	0000C8
  */
-void Game::Wtank::Mgr::__dt(void)
+void Game::Wtank::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -357,7 +347,7 @@ void Game::Wtank::Mgr::__dt(void)
  * Address:	8027C7A4
  * Size:	000008
  */
-void Game::Wtank::Mgr::getEnemyTypeID(void)
+void Game::Wtank::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -371,7 +361,7 @@ void Game::Wtank::Mgr::getEnemyTypeID(void)
  * Address:	8027C7AC
  * Size:	000008
  */
-void Game::Wtank::Mgr::getChangeTexture(void)
+void Game::Wtank::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -385,7 +375,7 @@ void Game::Wtank::Mgr::getChangeTexture(void)
  * Address:	8027C7B4
  * Size:	000050
  */
-void Game::Tank::Parms::read((Stream&))
+void Game::Tank::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -417,7 +407,7 @@ void Game::Tank::Parms::read((Stream&))
  * Address:	8027C804
  * Size:	000008
  */
-void @4 @Game::Wtank::Mgr::__dt(void)
+void Game::Wtank::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

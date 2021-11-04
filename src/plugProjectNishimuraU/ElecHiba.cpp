@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026F258
  * Size:	000150
  */
-void Game::ElecHiba::Obj::__ct(void)
+void Game::ElecHiba::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -117,7 +107,7 @@ void Game::ElecHiba::Obj::__ct(void)
  * Address:	8026F3A8
  * Size:	000038
  */
-void birth__Q34Game8ElecHiba3ObjFR10Vector3<float> f(void)
+void Game::ElecHiba::Obj::birth(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -143,7 +133,7 @@ void birth__Q34Game8ElecHiba3ObjFR10Vector3<float> f(void)
  * Address:	8026F3E0
  * Size:	000080
  */
-void Game::ElecHiba::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::ElecHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +185,7 @@ void Game::ElecHiba::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	8026F460
  * Size:	000144
  */
-void Game::ElecHiba::Obj::onInit((Game::CreatureInitArg*))
+void Game::ElecHiba::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -294,7 +284,7 @@ void Game::ElecHiba::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8026F5A4
  * Size:	000040
  */
-void Game::ElecHiba::Obj::doUpdate(void)
+void Game::ElecHiba::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -324,7 +314,7 @@ void Game::ElecHiba::Obj::doUpdate(void)
  * Address:	8026F5E4
  * Size:	000004
  */
-void Game::ElecHiba::Obj::doDirectDraw((Graphics&))
+void Game::ElecHiba::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -337,7 +327,7 @@ void Game::ElecHiba::Obj::doDirectDraw((Graphics&))
  * Address:	8026F5E8
  * Size:	000020
  */
-void Game::ElecHiba::Obj::doDebugDraw((Graphics&))
+void Game::ElecHiba::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -357,7 +347,7 @@ void Game::ElecHiba::Obj::doDebugDraw((Graphics&))
  * Address:	8026F608
  * Size:	00004C
  */
-void Game::ElecHiba::Obj::setFSM((Game::ElecHiba::FSM*))
+void Game::ElecHiba::Obj::setFSM(Game::ElecHiba::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -388,7 +378,7 @@ void Game::ElecHiba::Obj::setFSM((Game::ElecHiba::FSM*))
  * Address:	8026F654
  * Size:	000038
  */
-void Game::ElecHiba::Obj::getShadowParam((Game::ShadowParam&))
+void Game::ElecHiba::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +404,7 @@ void Game::ElecHiba::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8026F68C
  * Size:	0000CC
  */
-void Game::ElecHiba::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::ElecHiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -487,7 +477,7 @@ void Game::ElecHiba::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026F758
  * Size:	000030
  */
-void Game::ElecHiba::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::ElecHiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -511,7 +501,7 @@ void Game::ElecHiba::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026F788
  * Size:	000030
  */
-void Game::ElecHiba::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::ElecHiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -535,8 +525,7 @@ void Game::ElecHiba::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026F7B8
  * Size:	000034
  */
-void bombCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreatureR10Vector3<float>
-f(void)
+void Game::ElecHiba::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -561,7 +550,7 @@ f(void)
  * Address:	8026F7EC
  * Size:	000100
  */
-void Game::ElecHiba::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void Game::ElecHiba::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -641,7 +630,7 @@ void Game::ElecHiba::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	8026F8EC
  * Size:	00004C
  */
-void Game::ElecHiba::Obj::injure(void)
+void Game::ElecHiba::Obj::injure()
 {
 	/*
 	.loc_0x0:
@@ -671,20 +660,10 @@ void Game::ElecHiba::Obj::injure(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void Game::ElecHiba::Obj::getParentObjPtr(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026F938
  * Size:	00001C
  */
-void Game::ElecHiba::Obj::getChildObjPtr(void)
+void Game::ElecHiba::Obj::getChildObjPtr()
 {
 	/*
 	.loc_0x0:
@@ -705,8 +684,8 @@ void Game::ElecHiba::Obj::getChildObjPtr(void)
  * Address:	8026F954
  * Size:	000170
  */
-void Game::ElecHiba::Obj::setElecHibaPosition((Game::ElecHiba::InitialParam*,
-                                               float))
+void Game::ElecHiba::Obj::setElecHibaPosition(Game::ElecHiba::InitialParam*,
+                                              float)
 {
 	/*
 	.loc_0x0:
@@ -816,7 +795,7 @@ void Game::ElecHiba::Obj::setElecHibaPosition((Game::ElecHiba::InitialParam*,
  * Address:	8026FAC4
  * Size:	0005C8
  */
-void interactDenkiAttack__Q34Game8ElecHiba3ObjFR10Vector3<float>(void)
+void Game::ElecHiba::Obj::interactDenkiAttack(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1242,7 +1221,7 @@ void interactDenkiAttack__Q34Game8ElecHiba3ObjFR10Vector3<float>(void)
  * Address:	8027008C
  * Size:	00004C
  */
-void Game::ElecHiba::Obj::addDamageMyself((float))
+void Game::ElecHiba::Obj::addDamageMyself(float)
 {
 	/*
 	.loc_0x0:
@@ -1279,7 +1258,7 @@ void Game::ElecHiba::Obj::addDamageMyself((float))
  * Address:	802700D8
  * Size:	00002C
  */
-void Game::ElecHiba::Obj::damageIncrement((float))
+void Game::ElecHiba::Obj::damageIncrement(float)
 {
 	/*
 	.loc_0x0:
@@ -1302,7 +1281,7 @@ void Game::ElecHiba::Obj::damageIncrement((float))
  * Address:	80270104
  * Size:	000024
  */
-void Game::ElecHiba::Obj::setupLodParms(void)
+void Game::ElecHiba::Obj::setupLodParms()
 {
 	/*
 	.loc_0x0:
@@ -1323,7 +1302,7 @@ void Game::ElecHiba::Obj::setupLodParms(void)
  * Address:	80270128
  * Size:	000038
  */
-void Game::ElecHiba::Obj::updateEfxLod(void)
+void Game::ElecHiba::Obj::updateEfxLod()
 {
 	/*
 	.loc_0x0:
@@ -1351,7 +1330,7 @@ void Game::ElecHiba::Obj::updateEfxLod(void)
  * Address:	80270160
  * Size:	0000DC
  */
-void Game::ElecHiba::Obj::createEffect((bool))
+void Game::ElecHiba::Obj::createEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -1424,7 +1403,7 @@ void Game::ElecHiba::Obj::createEffect((bool))
  * Address:	8027023C
  * Size:	00009C
  */
-void efx::TDenkipoleSign::__dt(void)
+void efx::TDenkipoleSign::~TDenkipoleSign()
 {
 	/*
 	.loc_0x0:
@@ -1479,7 +1458,7 @@ void efx::TDenkipoleSign::__dt(void)
  * Address:	802702D8
  * Size:	00006C
  */
-void efx::TDenkipoleSign::__ct(void)
+void efx::TDenkipoleSign::TDenkipoleSign()
 {
 	/*
 	.loc_0x0:
@@ -1518,7 +1497,7 @@ void efx::TDenkipoleSign::__ct(void)
  * Address:	80270344
  * Size:	000090
  */
-void efx::TDenkiPole::__dt(void)
+void efx::TDenkiPole::~TDenkiPole()
 {
 	/*
 	.loc_0x0:
@@ -1570,7 +1549,7 @@ void efx::TDenkiPole::__dt(void)
  * Address:	802703D4
  * Size:	000044
  */
-void efx::TDenkiPole::__ct(void)
+void efx::TDenkiPole::TDenkiPole()
 {
 	/*
 	.loc_0x0:
@@ -1596,20 +1575,10 @@ void efx::TDenkiPole::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000090
- */
-void efx::TDenkiHiba::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80270418
  * Size:	000110
  */
-void Game::ElecHiba::Obj::startChargeEffect((Game::Creature*))
+void Game::ElecHiba::Obj::startChargeEffect(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1691,7 +1660,7 @@ void Game::ElecHiba::Obj::startChargeEffect((Game::Creature*))
  * Address:	80270528
  * Size:	000038
  */
-void Game::ElecHiba::Obj::finishChargeEffect(void)
+void Game::ElecHiba::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1719,7 +1688,7 @@ void Game::ElecHiba::Obj::finishChargeEffect(void)
  * Address:	80270560
  * Size:	000070
  */
-void Game::ElecHiba::Obj::startDisChargeEffect(void)
+void Game::ElecHiba::Obj::startDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1765,7 +1734,7 @@ void Game::ElecHiba::Obj::startDisChargeEffect(void)
  * Address:	802705D0
  * Size:	000038
  */
-void Game::ElecHiba::Obj::finishDisChargeEffect(void)
+void Game::ElecHiba::Obj::finishDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1793,7 +1762,7 @@ void Game::ElecHiba::Obj::finishDisChargeEffect(void)
  * Address:	80270608
  * Size:	000044
  */
-void Game::ElecHiba::Obj::generatorKill(void)
+void Game::ElecHiba::Obj::generatorKill()
 {
 	/*
 	.loc_0x0:
@@ -1824,7 +1793,7 @@ void Game::ElecHiba::Obj::generatorKill(void)
  * Address:	8027064C
  * Size:	00006C
  */
-void Game::ElecHiba::Obj::setVersusHibaOnOff(void)
+void Game::ElecHiba::Obj::setVersusHibaOnOff()
 {
 	/*
 	.loc_0x0:
@@ -1867,7 +1836,7 @@ void Game::ElecHiba::Obj::setVersusHibaOnOff(void)
  * Address:	802706B8
  * Size:	00002C
  */
-void Game::ElecHiba::Obj::setVersusHibaType(void)
+void Game::ElecHiba::Obj::setVersusHibaType()
 {
 	/*
 	.loc_0x0:
@@ -1892,7 +1861,7 @@ void Game::ElecHiba::Obj::setVersusHibaType(void)
  * Address:	802706E4
  * Size:	000010
  */
-void Game::ElecHiba::Obj::resetAttrHitCount(void)
+void Game::ElecHiba::Obj::resetAttrHitCount()
 {
 	/*
 	.loc_0x0:
@@ -1908,7 +1877,7 @@ void Game::ElecHiba::Obj::resetAttrHitCount(void)
  * Address:	802706F4
  * Size:	000070
  */
-void Game::ElecHiba::Obj::addAttrAttackCount((Game::Piki*))
+void Game::ElecHiba::Obj::addAttrAttackCount(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -1954,7 +1923,7 @@ void Game::ElecHiba::Obj::addAttrAttackCount((Game::Piki*))
  * Address:	80270764
  * Size:	000040
  */
-void Game::ElecHiba::Obj::isWaitFinish(void)
+void Game::ElecHiba::Obj::isWaitFinish()
 {
 	/*
 	.loc_0x0:
@@ -1986,7 +1955,7 @@ void Game::ElecHiba::Obj::isWaitFinish(void)
  * Address:	802707A4
  * Size:	000058
  */
-void Game::ElecHiba::Obj::isAttackFinish(void)
+void Game::ElecHiba::Obj::isAttackFinish()
 {
 	/*
 	.loc_0x0:
@@ -2026,7 +1995,7 @@ void Game::ElecHiba::Obj::isAttackFinish(void)
  * Address:	802707FC
  * Size:	00000C
  */
-void efx::ArgDenkiHiba::getName(void)
+void efx::ArgDenkiHiba::getName()
 {
 	/*
 	.loc_0x0:
@@ -2041,7 +2010,7 @@ void efx::ArgDenkiHiba::getName(void)
  * Address:	80270808
  * Size:	000004
  */
-void Game::ElecHiba::Obj::doSimulation((float))
+void Game::ElecHiba::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -2054,7 +2023,7 @@ void Game::ElecHiba::Obj::doSimulation((float))
  * Address:	8027080C
  * Size:	000004
  */
-void Game::ElecHiba::Obj::inWaterCallback((Game::WaterBox*))
+void Game::ElecHiba::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -2067,7 +2036,7 @@ void Game::ElecHiba::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	80270810
  * Size:	000004
  */
-void Game::ElecHiba::Obj::outWaterCallback(void)
+void Game::ElecHiba::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -2080,7 +2049,7 @@ void Game::ElecHiba::Obj::outWaterCallback(void)
  * Address:	80270814
  * Size:	000008
  */
-void Game::ElecHiba::Obj::isLivingThing(void)
+void Game::ElecHiba::Obj::isLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -2094,7 +2063,7 @@ void Game::ElecHiba::Obj::isLivingThing(void)
  * Address:	8027081C
  * Size:	000004
  */
-void Game::ElecHiba::Obj::lifeRecover(void)
+void Game::ElecHiba::Obj::lifeRecover()
 {
 	/*
 	.loc_0x0:
@@ -2107,7 +2076,7 @@ void Game::ElecHiba::Obj::lifeRecover(void)
  * Address:	80270820
  * Size:	000014
  */
-void @772 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@772 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -2124,7 +2093,7 @@ void @772 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	80270834
  * Size:	000014
  */
-void @772 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@772 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2141,7 +2110,7 @@ void @772 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	80270848
  * Size:	000014
  */
-void @772 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@772 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2158,7 +2127,7 @@ void @772 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8027085C
  * Size:	000014
  */
-void @772 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@772 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2175,7 +2144,7 @@ void @772 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80270870
  * Size:	000014
  */
-void @772 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@772 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2192,7 +2161,7 @@ void @772 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80270884
  * Size:	000014
  */
-void @772 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@772 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -2209,7 +2178,7 @@ void @772 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80270898
  * Size:	000008
  */
-void @4 @efx::TDenkipoleSign::__dt(void)
+void efx::TDenkipoleSign::@4 @__dt()
 {
 	/*
 	.loc_0x0:

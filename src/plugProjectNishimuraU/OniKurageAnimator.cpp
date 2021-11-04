@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802D3924
  * Size:	000008
  */
-void Game::OniKurage::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::OniKurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::OniKurage::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802D392C
  * Size:	000008
  */
-void Game::OniKurage::ProperAnimator::getAnimator((int))
+void Game::OniKurage::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::OniKurage::ProperAnimator::getAnimator((int))
  * Address:	802D3934
  * Size:	00005C
  */
-void Game::OniKurage::ProperAnimator::__dt(void)
+void Game::OniKurage::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::OniKurage::ProperAnimator::__dt(void)
  * Address:	802D3990
  * Size:	000008
  */
-void Game::OniKurage::ProperAnimator::getAnimator(void)
+void Game::OniKurage::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

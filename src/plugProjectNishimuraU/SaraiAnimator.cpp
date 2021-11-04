@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80272490
  * Size:	000008
  */
-void Game::Sarai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Sarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Sarai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80272498
  * Size:	000008
  */
-void Game::Sarai::ProperAnimator::getAnimator((int))
+void Game::Sarai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Sarai::ProperAnimator::getAnimator((int))
  * Address:	802724A0
  * Size:	00005C
  */
-void Game::Sarai::ProperAnimator::__dt(void)
+void Game::Sarai::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Sarai::ProperAnimator::__dt(void)
  * Address:	802724FC
  * Size:	000008
  */
-void Game::Sarai::ProperAnimator::getAnimator(void)
+void Game::Sarai::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

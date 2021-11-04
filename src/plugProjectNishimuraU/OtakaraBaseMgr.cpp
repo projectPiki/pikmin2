@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B5E98
  * Size:	000050
  */
-void Game::OtakaraBase::Mgr::__ct((int, unsigned char))
+void Game::OtakaraBase::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::OtakaraBase::Mgr::__ct((int, unsigned char))
  * Address:	802B5EE8
  * Size:	0000BC
  */
-void Game::OtakaraBase::Mgr::loadModelData(void)
+void Game::OtakaraBase::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -112,7 +102,7 @@ void Game::OtakaraBase::Mgr::loadModelData(void)
  * Address:	802B5FA4
  * Size:	0000B0
  */
-void Game::OtakaraBase::Mgr::loadAnimData(void)
+void Game::OtakaraBase::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -174,7 +164,7 @@ void Game::OtakaraBase::Mgr::loadAnimData(void)
  * Address:	802B6054
  * Size:	000138
  */
-void Game::OtakaraBase::Mgr::createModel(void)
+void Game::OtakaraBase::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -274,7 +264,7 @@ void Game::OtakaraBase::Mgr::createModel(void)
  * Address:	802B618C
  * Size:	0000B0
  */
-void Game::OtakaraBase::Mgr::__dt(void)
+void Game::OtakaraBase::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +324,7 @@ void Game::OtakaraBase::Mgr::__dt(void)
  * Address:	802B623C
  * Size:	000008
  */
-void Game::OtakaraBase::Mgr::getEnemyTypeID(void)
+void Game::OtakaraBase::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -348,7 +338,7 @@ void Game::OtakaraBase::Mgr::getEnemyTypeID(void)
  * Address:	802B6244
  * Size:	000008
  */
-void @4 @Game::OtakaraBase::Mgr::__dt(void)
+void Game::OtakaraBase::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802759A4
  * Size:	000008
  */
-void Game::Tank::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Tank::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Tank::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802759AC
  * Size:	000008
  */
-void Game::Tank::ProperAnimator::getAnimator((int))
+void Game::Tank::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Tank::ProperAnimator::getAnimator((int))
  * Address:	802759B4
  * Size:	00005C
  */
-void Game::Tank::ProperAnimator::__dt(void)
+void Game::Tank::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Tank::ProperAnimator::__dt(void)
  * Address:	80275A10
  * Size:	000008
  */
-void Game::Tank::ProperAnimator::getAnimator(void)
+void Game::Tank::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

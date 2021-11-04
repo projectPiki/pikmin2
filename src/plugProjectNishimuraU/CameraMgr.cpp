@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80250988
  * Size:	000048
  */
-void Game::CameraMgr::__ct(void)
+void Game::CameraMgr::CameraMgr()
 {
 	/*
 	.loc_0x0:
@@ -45,7 +35,7 @@ void Game::CameraMgr::__ct(void)
  * Address:	802509D0
  * Size:	00012C
  */
-void Game::CameraMgr::loadResource(void)
+void Game::CameraMgr::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -144,7 +134,7 @@ void Game::CameraMgr::loadResource(void)
  * Address:	80250AFC
  * Size:	0004D0
  */
-void Game::VibrationParms::__ct(void)
+void Game::VibrationParms::VibrationParms()
 {
 	/*
 	.loc_0x0:
@@ -466,7 +456,7 @@ void Game::VibrationParms::__ct(void)
  * Address:	80250FCC
  * Size:	000E78
  */
-void Game::CameraParms::__ct(void)
+void Game::CameraParms::CameraParms()
 {
 	/*
 	.loc_0x0:
@@ -1406,7 +1396,7 @@ void Game::CameraParms::__ct(void)
  * Address:	80251E44
  * Size:	0000A8
  */
-void Game::CameraMgr::setViewport((Viewport*, int))
+void Game::CameraMgr::setViewport(Viewport*, int)
 {
 	/*
 	.loc_0x0:
@@ -1464,7 +1454,7 @@ void Game::CameraMgr::setViewport((Viewport*, int))
  * Address:	80251EEC
  * Size:	00014C
  */
-void Game::CameraMgr::init((int))
+void Game::CameraMgr::init(int)
 {
 	/*
 	.loc_0x0:
@@ -1575,7 +1565,7 @@ void Game::CameraMgr::init((int))
  * Address:	80252038
  * Size:	000094
  */
-void Game::CameraMgr::setCameraAngle((float, int))
+void Game::CameraMgr::setCameraAngle(float, int)
 {
 	/*
 	.loc_0x0:
@@ -1632,7 +1622,7 @@ void Game::CameraMgr::setCameraAngle((float, int))
  * Address:	802520CC
  * Size:	000170
  */
-void Game::CameraMgr::update(void)
+void Game::CameraMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -1748,7 +1738,7 @@ void Game::CameraMgr::update(void)
  * Address:	8025223C
  * Size:	000154
  */
-void startVibration__Q24Game9CameraMgrFiR10Vector3<float> i(void)
+void Game::CameraMgr::startVibration(int, Vector3<float>&, int)
 {
 	/*
 	.loc_0x0:
@@ -1859,7 +1849,7 @@ void startVibration__Q24Game9CameraMgrFiR10Vector3<float> i(void)
  * Address:	80252390
  * Size:	0000DC
  */
-void Game::CameraMgr::startVibration((int, int))
+void Game::CameraMgr::startVibration(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1936,7 +1926,7 @@ void Game::CameraMgr::startVibration((int, int))
  * Address:	8025246C
  * Size:	000070
  */
-void Game::CameraMgr::controllerLock((int))
+void Game::CameraMgr::controllerLock(int)
 {
 	/*
 	.loc_0x0:
@@ -1982,7 +1972,7 @@ void Game::CameraMgr::controllerLock((int))
  * Address:	802524DC
  * Size:	000070
  */
-void Game::CameraMgr::controllerUnLock((int))
+void Game::CameraMgr::controllerUnLock(int)
 {
 	/*
 	.loc_0x0:
@@ -2028,7 +2018,7 @@ void Game::CameraMgr::controllerUnLock((int))
  * Address:	8025254C
  * Size:	000090
  */
-void Game::CameraMgr::startDemoCamera((int, int))
+void Game::CameraMgr::startDemoCamera(int, int)
 {
 	/*
 	.loc_0x0:
@@ -2082,7 +2072,7 @@ void Game::CameraMgr::startDemoCamera((int, int))
  * Address:	802525DC
  * Size:	00007C
  */
-void Game::CameraMgr::finishDemoCamera((int))
+void Game::CameraMgr::finishDemoCamera(int)
 {
 	/*
 	.loc_0x0:
@@ -2131,7 +2121,7 @@ void Game::CameraMgr::finishDemoCamera((int))
  * Address:	80252658
  * Size:	000160
  */
-void changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<Game::CameraArg*>(void)
+void Game::CameraMgr::changePlayerMode(int, IDelegate1<Game::CameraArg*>*)
 {
 	/*
 	.loc_0x0:
@@ -2245,7 +2235,7 @@ void changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<Game::CameraArg*>(void)
  * Address:	802527B8
  * Size:	000058
  */
-void Game::CameraMgr::isChangePlayer(void)
+void Game::CameraMgr::isChangePlayer()
 {
 	/*
 	.loc_0x0:
@@ -2285,7 +2275,7 @@ void Game::CameraMgr::isChangePlayer(void)
  * Address:	80252810
  * Size:	000058
  */
-void Game::CameraMgr::setZukanCamera((LookAtCamera*))
+void Game::CameraMgr::setZukanCamera(LookAtCamera*)
 {
 	/*
 	.loc_0x0:
@@ -2323,7 +2313,7 @@ void Game::CameraMgr::setZukanCamera((LookAtCamera*))
  * Address:	80252868
  * Size:	000028
  */
-void Game::CameraMgr::isCameraUpdateOn(void)
+void Game::CameraMgr::isCameraUpdateOn()
 {
 	/*
 	.loc_0x0:
@@ -2347,7 +2337,7 @@ void Game::CameraMgr::isCameraUpdateOn(void)
  * Address:	80252890
  * Size:	000068
  */
-void Game::CameraMgr::isStartAndEnd((int*, int))
+void Game::CameraMgr::isStartAndEnd(int*, int)
 {
 	/*
 	.loc_0x0:
@@ -2391,7 +2381,7 @@ void Game::CameraMgr::isStartAndEnd((int*, int))
  * Address:	802528F8
  * Size:	000084
  */
-void Game::CameraMgr::isVibrationStart((int, int))
+void Game::CameraMgr::isVibrationStart(int, int)
 {
 	/*
 	.loc_0x0:
@@ -2442,7 +2432,7 @@ void Game::CameraMgr::isVibrationStart((int, int))
  * Address:	8025297C
  * Size:	0000A8
  */
-void Game::CameraMgr::readCameraParms((char*))
+void Game::CameraMgr::readCameraParms(char*)
 {
 	/*
 	.loc_0x0:
@@ -2502,7 +2492,7 @@ void Game::CameraMgr::readCameraParms((char*))
  * Address:	80252A24
  * Size:	000074
  */
-void Game::CameraMgr::readParameter((Stream&))
+void Game::CameraMgr::readParameter(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2542,20 +2532,10 @@ void Game::CameraMgr::readParameter((Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void Game::CameraMgr::writeParameter((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80252A98
  * Size:	000060
  */
-void Game::CameraMgr::__dt(void)
+void Game::CameraMgr::~CameraMgr()
 {
 	/*
 	.loc_0x0:

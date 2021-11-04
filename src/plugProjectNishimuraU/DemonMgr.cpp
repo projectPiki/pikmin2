@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028E048
  * Size:	000050
  */
-void Game::Demon::Mgr::__ct((int, unsigned char))
+void Game::Demon::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Demon::Mgr::__ct((int, unsigned char))
  * Address:	8028E098
  * Size:	000048
  */
-void Game::Demon::Mgr::doAlloc(void)
+void Game::Demon::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::Demon::Mgr::doAlloc(void)
  * Address:	8028E0E0
  * Size:	000060
  */
-void Game::Demon::Mgr::createObj((int))
+void Game::Demon::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::Demon::Mgr::createObj((int))
  * Address:	8028E140
  * Size:	0000F0
  */
-void Game::Demon::Obj::__dt(void)
+void Game::Demon::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::Demon::Obj::__dt(void)
  * Address:	8028E230
  * Size:	000010
  */
-void Game::Demon::Mgr::getEnemy((int))
+void Game::Demon::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::Demon::Mgr::getEnemy((int))
  * Address:	8028E240
  * Size:	000068
  */
-void Game::Demon::Mgr::loadModelData(void)
+void Game::Demon::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -249,7 +239,7 @@ void Game::Demon::Mgr::loadModelData(void)
  * Address:	8028E2A8
  * Size:	0000B0
  */
-void Game::Demon::Mgr::__dt(void)
+void Game::Demon::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -309,7 +299,7 @@ void Game::Demon::Mgr::__dt(void)
  * Address:	8028E358
  * Size:	000008
  */
-void Game::Demon::Mgr::getEnemyTypeID(void)
+void Game::Demon::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -323,7 +313,7 @@ void Game::Demon::Mgr::getEnemyTypeID(void)
  * Address:	8028E360
  * Size:	00002C
  */
-void Game::Demon::Mgr::doLoadBmd((void*))
+void Game::Demon::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +336,7 @@ void Game::Demon::Mgr::doLoadBmd((void*))
  * Address:	8028E38C
  * Size:	000008
  */
-void @4 @Game::Demon::Mgr::__dt(void)
+void Game::Demon::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,43 +2,33 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80284470
  * Size:	000050
  */
-void Game::Wealthy::Mgr::__ct((int, unsigned char))
+void Game::Wealthy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
 	  mflr      r0
 	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x26BEC
-	  lis       r3, 0x804D
-	  lis       r4, 0x8048
-	  subi      r5, r3, 0x706C
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  addi      r0, r4, 0x786C
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
+	  lwz       r4, 0x14(r3)
+	  bl        0x4A4
 	  lwz       r0, 0x14(r1)
+	  lwz       r3, 0x8(r3)
 	  mtlr      r0
 	  addi      r1, r1, 0x10
 	  blr
+	  stwu      r1, -0x70(r1)
+	  mflr      r0
+	  stw       r0, 0x74(r1)
+	  stmw      r16, 0x30(r1)
+	  mr        r16, r3
+	  bl        0x358C
+	  mr        r29, r3
+	  bl        -0x752F8
+	  mr        r25, r3
+	  mr        r28, r16
 	*/
 }
 
@@ -47,7 +37,7 @@ void Game::Wealthy::Mgr::__ct((int, unsigned char))
  * Address:	802844C0
  * Size:	000048
  */
-void Game::Wealthy::Mgr::doAlloc(void)
+void Game::Wealthy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Wealthy::Mgr::doAlloc(void)
  * Address:	80284508
  * Size:	000048
  */
-void Game::Kogane::Parms::__ct(void)
+void Game::Kogane::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Kogane::Parms::__ct(void)
  * Address:	80284550
  * Size:	00023C
  */
-void Game::Kogane::Parms::ProperParms::__ct(void)
+void Game::Kogane::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -270,7 +260,7 @@ void Game::Kogane::Parms::ProperParms::__ct(void)
  * Address:	8028478C
  * Size:	000060
  */
-void Game::Wealthy::Mgr::createObj((int))
+void Game::Wealthy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +296,7 @@ void Game::Wealthy::Mgr::createObj((int))
  * Address:	802847EC
  * Size:	0000F0
  */
-void Game::Wealthy::Obj::__dt(void)
+void Game::Wealthy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -382,7 +372,7 @@ void Game::Wealthy::Obj::__dt(void)
  * Address:	802848DC
  * Size:	000010
  */
-void Game::Wealthy::Mgr::getEnemy((int))
+void Game::Wealthy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +388,7 @@ void Game::Wealthy::Mgr::getEnemy((int))
  * Address:	802848EC
  * Size:	000080
  */
-void Game::Wealthy::Mgr::loadTexData(void)
+void Game::Wealthy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -446,7 +436,7 @@ void Game::Wealthy::Mgr::loadTexData(void)
  * Address:	8028496C
  * Size:	000050
  */
-void Game::Kogane::Parms::read((Stream&))
+void Game::Kogane::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +468,7 @@ void Game::Kogane::Parms::read((Stream&))
  * Address:	802849BC
  * Size:	0000C8
  */
-void Game::Wealthy::Mgr::__dt(void)
+void Game::Wealthy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -544,7 +534,7 @@ void Game::Wealthy::Mgr::__dt(void)
  * Address:	80284A84
  * Size:	000008
  */
-void Game::Wealthy::Mgr::getEnemyTypeID(void)
+void Game::Wealthy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -558,7 +548,7 @@ void Game::Wealthy::Mgr::getEnemyTypeID(void)
  * Address:	80284A8C
  * Size:	000008
  */
-void Game::Wealthy::Mgr::getChangeTexture(void)
+void Game::Wealthy::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -572,7 +562,7 @@ void Game::Wealthy::Mgr::getChangeTexture(void)
  * Address:	80284A94
  * Size:	000008
  */
-void @4 @Game::Wealthy::Mgr::__dt(void)
+void Game::Wealthy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

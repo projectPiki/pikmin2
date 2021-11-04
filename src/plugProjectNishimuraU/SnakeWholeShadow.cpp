@@ -2,173 +2,160 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802F89AC
  * Size:	00022C
  */
-void
-    makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<
-        float>
-    R10Vector3<float>(void)
+void Game::SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&,
+                                                   Vector3<float>&,
+                                                   Vector3<float>&)
 {
 	/*
 	.loc_0x0:
-	  stwu      r1, -0x40(r1)
+	  stwu      r1, -0x10(r1)
 	  mflr      r0
-	  lfs       f2, -0x1088(r2)
-	  stw       r0, 0x44(r1)
-	  lfs       f5, -0x1084(r2)
-	  stw       r31, 0x3C(r1)
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
 	  mr        r31, r4
-	  stw       r30, 0x38(r1)
+	  stw       r30, 0x8(r1)
 	  mr        r30, r3
-	  lfs       f1, 0x0(r6)
-	  lfs       f0, 0x0(r5)
-	  fsubs     f0, f1, f0
-	  stfs      f5, 0xC(r1)
-	  fmuls     f6, f2, f0
-	  stfs      f6, 0x8(r1)
-	  lfs       f1, 0x8(r6)
-	  lfs       f0, 0x8(r5)
-	  fsubs     f0, f1, f0
-	  fmuls     f4, f2, f0
-	  stfs      f4, 0x10(r1)
-	  lfs       f8, 0x10(r4)
-	  lfs       f1, 0x14(r4)
-	  lfs       f7, 0xC(r4)
-	  fmuls     f0, f4, f8
-	  fmuls     f2, f6, f1
-	  fmuls     f3, f5, f7
-	  fmsubs    f1, f5, f1, f0
-	  fmsubs    f2, f4, f7, f2
-	  fmsubs    f3, f6, f8, f3
-	  fmuls     f0, f1, f1
-	  stfs      f1, 0x20(r1)
-	  fmuls     f4, f2, f2
-	  fmuls     f6, f3, f3
-	  stfs      f2, 0x24(r1)
-	  fadds     f0, f0, f4
-	  stfs      f3, 0x28(r1)
-	  fadds     f0, f6, f0
-	  fcmpo     cr0, f0, f5
-	  ble-      .loc_0xB8
-	  fmadds    f0, f1, f1, f4
-	  fadds     f1, f6, f0
-	  fcmpo     cr0, f1, f5
-	  ble-      .loc_0xBC
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0xBC
+	  bl        -0x296B7C
+	  addi      r0, r31, 0x1
+	  mr        r31, r3
+	  mr        r3, r30
+	  rlwinm    r4,r0,0,24,31
+	  bl        -0x296B90
+	  lwz       r0, 0x14(r1)
+	  rlwimi    r3,r31,16,0,15
+	  lwz       r31, 0xC(r1)
+	  lwz       r30, 0x8(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	  stwu      r1, -0x20(r1)
+	  mflr      r0
+	  stw       r0, 0x24(r1)
+	  stw       r31, 0x1C(r1)
+	  mr        r31, r5
+	  rlwinm    r5,r4,16,16,31
+	  stw       r30, 0x18(r1)
+	  mr        r30, r4
+	  mr        r4, r31
+	  stw       r29, 0x14(r1)
+	  mr        r29, r3
+	  bl        -0x2969C4
+	  addi      r0, r31, 0x1
+	  rlwinm    r5,r30,0,16,31
+	  mr        r3, r29
+	  rlwinm    r4,r0,0,24,31
+	  bl        -0x2969D8
+	  lwz       r0, 0x24(r1)
+	  lwz       r31, 0x1C(r1)
+	  lwz       r30, 0x18(r1)
+	  lwz       r29, 0x14(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x20
+	  blr
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
+	  mr        r31, r4
+	  stw       r30, 0x8(r1)
+	  mr        r30, r3
+	  bl        -0x28C2E0
+	  lis       r4, 0x804E
+	  addi      r3, r30, 0x28
+	  subi      r0, r4, 0x5558
+	  stw       r0, 0x0(r30)
+	  bl        -0x24891C
+	  li        r0, 0
+	  addi      r3, r30, 0x44
+	  stw       r0, 0x40(r30)
+	  bl        0x520
+	  lwz       r0, 0x0(r31)
+	  li        r3, 0
+	  stw       r3, 0x48(r30)
+	  cmplwi    r0, 0
+	  bne-      .loc_0x124
+	  lis       r3, 0x8049
+	  lis       r5, 0x8049
+	  subi      r3, r3, 0x1D8
+	  li        r4, 0x8D
+	  subi      r5, r5, 0x1C8
+	  crclr     6, 0x6
+	  bl        -0x30DE4C
 
-	.loc_0xB8:
-	  fmr       f1, f5
+	.loc_0x124:
+	  lwz       r0, 0x4(r31)
+	  cmplwi    r0, 0
+	  bne-      .loc_0x14C
+	  lis       r3, 0x8049
+	  lis       r5, 0x8049
+	  subi      r3, r3, 0x1D8
+	  li        r4, 0x8E
+	  subi      r5, r5, 0x1C8
+	  crclr     6, 0x6
+	  bl        -0x30DE74
 
-	.loc_0xBC:
-	  lfs       f0, -0x1084(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xF4
-	  lfs       f0, -0x1080(r2)
-	  lfs       f2, 0x20(r1)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x28(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-
-	.loc_0xF4:
-	  lfs       f2, 0x20(r1)
-	  addi      r4, r1, 0x2C
-	  lfs       f5, 0x20(r31)
-	  lfs       f1, 0x24(r1)
-	  fmuls     f4, f2, f5
-	  lfs       f0, 0x28(r1)
-	  fmuls     f2, f1, f5
-	  lfs       f3, -0x1088(r2)
-	  fmuls     f1, f0, f5
-	  lfs       f0, -0x1084(r2)
-	  stfs      f4, 0x20(r1)
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f2, 0x24(r1)
-	  stfs      f1, 0x28(r1)
-	  lfs       f2, 0x0(r6)
-	  lfs       f1, 0x0(r5)
-	  fadds     f1, f2, f1
-	  stfs      f0, 0x30(r1)
-	  fmuls     f0, f3, f1
-	  stfs      f0, 0x2C(r1)
-	  lfs       f1, 0x8(r6)
-	  lfs       f0, 0x8(r5)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f3, f0
-	  stfs      f0, 0x34(r1)
-	  lwz       r12, 0x4(r3)
+	.loc_0x14C:
+	  mr        r3, r30
+	  li        r4, 0x2
+	  bl        -0x28BE1C
+	  lwz       r3, 0x10(r31)
+	  bl        -0x28AB78
+	  li        r3, 0x1
+	  bl        -0x28AB1C
+	  lbz       r3, -0x7AD0(r13)
+	  bl        -0x28AAF0
+	  bl        0x525C
+	  bl        0x5314
+	  lis       r3, 0x8034
+	  subi      r3, r3, 0x74E8
+	  bl        -0x2881B4
+	  lwz       r4, 0x0(r31)
+	  mr        r3, r30
+	  lwz       r5, 0x4(r31)
+	  li        r6, 0x1
+	  bl        -0x28C32C
+	  mr        r3, r30
+	  li        r4, 0x1
+	  bl        -0x28C318
+	  mr        r3, r30
+	  mr        r4, r31
+	  lwz       r12, 0x0(r30)
 	  lwz       r12, 0x28(r12)
 	  mtctr     r12
 	  bctrl
-	  lfs       f2, -0x107C(r2)
-	  lfs       f0, -0x1084(r2)
-	  fadds     f2, f2, f1
-	  lfs       f1, -0x1078(r2)
-	  stfs      f0, 0x14(r1)
-	  stfs      f2, 0x30(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f3, 0x4(r31)
-	  fcmpo     cr0, f2, f3
-	  bge-      .loc_0x1A4
-	  fsubs     f0, f3, f2
-	  stfs      f3, 0x30(r1)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x18(r1)
-
-	.loc_0x1A4:
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x10(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x20(r3)
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x14(r1)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x18(r1)
-	  stfs      f0, 0x14(r3)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f0, 0x24(r3)
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x20(r1)
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0x24(r1)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, 0x28(r1)
-	  stfs      f0, 0x28(r3)
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x2C(r1)
-	  stfs      f0, 0xC(r3)
-	  lfs       f0, 0x30(r1)
-	  stfs      f0, 0x1C(r3)
-	  lfs       f0, 0x34(r1)
-	  stfs      f0, 0x2C(r3)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r0, 0x44(r1)
+	  lfs       f0, -0x210(r2)
+	  mr        r3, r30
+	  stfs      f0, 0x20(r30)
+	  stfs      f0, 0x24(r30)
+	  lwz       r31, 0xC(r1)
+	  lwz       r30, 0x8(r1)
+	  lwz       r0, 0x14(r1)
 	  mtlr      r0
-	  addi      r1, r1, 0x40
+	  addi      r1, r1, 0x10
 	  blr
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  lis       r3, 0x8049
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
+	  subi      r31, r3, 0x1D8
+	  stw       r30, 0x8(r1)
+	  lwz       r0, -0x6780(r13)
+	  cmplwi    r0, 0
+	  bne-      .loc_0x220
+	  addi      r3, r31, 0x1C
+	  addi      r5, r31, 0x10
+	  li        r4, 0x1D3
+	  crclr     6, 0x6
+	  bl        -0x30DF48
+
+	.loc_0x220:
+	  lwz       r30, -0x6780(r13)
+	  cmplwi    r30, 0
+	  bne-      0x18
 	*/
 }
 
@@ -177,8 +164,8 @@ void
  * Address:	802F8BD8
  * Size:	00012C
  */
-void makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<
-    float>(void)
+void Game::SnakeWholeSphereShadowNode::makeShadowSRT(Game::JointShadowParm&,
+                                                     Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -267,7 +254,8 @@ void makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowPar
  * Address:	802F8D04
  * Size:	0000EC
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::__ct((Game::SnakeWhole::Obj*))
+void Game::SnakeWhole::SnakeWholeShadowMgr::SnakeWholeShadowMgr(
+    Game::SnakeWhole::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +334,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::__ct((Game::SnakeWhole::Obj*))
  * Address:	802F8DF0
  * Size:	0000C8
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::init(void)
+void Game::SnakeWhole::SnakeWholeShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -410,7 +398,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::init(void)
  * Address:	802F8EB8
  * Size:	000078
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::startJointShadow(void)
+void Game::SnakeWhole::SnakeWholeShadowMgr::startJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -456,7 +444,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::startJointShadow(void)
  * Address:	802F8F30
  * Size:	000064
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::finishJointShadow(void)
+void Game::SnakeWhole::SnakeWholeShadowMgr::finishJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -497,7 +485,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::finishJointShadow(void)
  * Address:	802F8F94
  * Size:	00025C
  */
-void Game::SnakeWhole::SnakeWholeShadowMgr::update(void)
+void Game::SnakeWhole::SnakeWholeShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -670,7 +658,7 @@ void Game::SnakeWhole::SnakeWholeShadowMgr::update(void)
  * Address:	802F91F0
  * Size:	000070
  */
-void Game::SnakeWholeSphereShadowNode::__dt(void)
+void Game::SnakeWholeSphereShadowNode::~SnakeWholeSphereShadowNode()
 {
 	/*
 	.loc_0x0:
@@ -714,7 +702,7 @@ void Game::SnakeWholeSphereShadowNode::__dt(void)
  * Address:	802F9260
  * Size:	000070
  */
-void Game::SnakeWholeTubeShadowNode::__dt(void)
+void Game::SnakeWholeTubeShadowNode::~SnakeWholeTubeShadowNode()
 {
 	/*
 	.loc_0x0:

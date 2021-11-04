@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803011F8
  * Size:	000050
  */
-void Game::NormMiniHoudai::Mgr::__ct((int, unsigned char))
+void Game::NormMiniHoudai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::NormMiniHoudai::Mgr::__ct((int, unsigned char))
  * Address:	80301248
  * Size:	000048
  */
-void Game::NormMiniHoudai::Mgr::doAlloc(void)
+void Game::NormMiniHoudai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::NormMiniHoudai::Mgr::doAlloc(void)
  * Address:	80301290
  * Size:	0000DC
  */
-void Game::MiniHoudai::Parms::__ct(void)
+void Game::MiniHoudai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -148,7 +138,7 @@ void Game::MiniHoudai::Parms::__ct(void)
  * Address:	8030136C
  * Size:	000060
  */
-void Game::NormMiniHoudai::Mgr::createObj((int))
+void Game::NormMiniHoudai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +174,7 @@ void Game::NormMiniHoudai::Mgr::createObj((int))
  * Address:	803013CC
  * Size:	0000EC
  */
-void Game::NormMiniHoudai::Obj::__dt(void)
+void Game::NormMiniHoudai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -259,7 +249,7 @@ void Game::NormMiniHoudai::Obj::__dt(void)
  * Address:	803014B8
  * Size:	000010
  */
-void Game::NormMiniHoudai::Mgr::getEnemy((int))
+void Game::NormMiniHoudai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +265,7 @@ void Game::NormMiniHoudai::Mgr::getEnemy((int))
  * Address:	803014C8
  * Size:	000008
  */
-void Game::NormMiniHoudai::Obj::getEnemyTypeID(void)
+void Game::NormMiniHoudai::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -289,7 +279,7 @@ void Game::NormMiniHoudai::Obj::getEnemyTypeID(void)
  * Address:	803014D0
  * Size:	000050
  */
-void Game::MiniHoudai::Parms::read((Stream&))
+void Game::MiniHoudai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::MiniHoudai::Parms::read((Stream&))
  * Address:	80301520
  * Size:	0000C8
  */
-void Game::NormMiniHoudai::Mgr::__dt(void)
+void Game::NormMiniHoudai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -387,7 +377,7 @@ void Game::NormMiniHoudai::Mgr::__dt(void)
  * Address:	803015E8
  * Size:	000008
  */
-void Game::NormMiniHoudai::Mgr::getEnemyTypeID(void)
+void Game::NormMiniHoudai::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -401,7 +391,7 @@ void Game::NormMiniHoudai::Mgr::getEnemyTypeID(void)
  * Address:	803015F0
  * Size:	000008
  */
-void @4 @Game::NormMiniHoudai::Mgr::__dt(void)
+void Game::NormMiniHoudai::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

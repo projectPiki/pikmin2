@@ -2,25 +2,15 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80292B28
  * Size:	000008
  */
-void Game::SnakeCrow::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::SnakeCrow::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
+	  mulli     r0, r4, 0x3
+	  lwz       r8, 0x24(r3)
 	*/
 }
 
@@ -29,7 +19,7 @@ void Game::SnakeCrow::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80292B30
  * Size:	000008
  */
-void Game::SnakeCrow::ProperAnimator::getAnimator((int))
+void Game::SnakeCrow::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::SnakeCrow::ProperAnimator::getAnimator((int))
  * Address:	80292B38
  * Size:	00005C
  */
-void Game::SnakeCrow::ProperAnimator::__dt(void)
+void Game::SnakeCrow::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::SnakeCrow::ProperAnimator::__dt(void)
  * Address:	80292B94
  * Size:	000008
  */
-void Game::SnakeCrow::ProperAnimator::getAnimator(void)
+void Game::SnakeCrow::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

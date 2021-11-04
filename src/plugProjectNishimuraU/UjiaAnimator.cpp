@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80265CA0
  * Size:	000008
  */
-void Game::Ujia::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Ujia::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Ujia::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80265CA8
  * Size:	000008
  */
-void Game::Ujia::ProperAnimator::getAnimator((int))
+void Game::Ujia::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Ujia::ProperAnimator::getAnimator((int))
  * Address:	80265CB0
  * Size:	00005C
  */
-void Game::Ujia::ProperAnimator::__dt(void)
+void Game::Ujia::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Ujia::ProperAnimator::__dt(void)
  * Address:	80265D0C
  * Size:	000008
  */
-void Game::Ujia::ProperAnimator::getAnimator(void)
+void Game::Ujia::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

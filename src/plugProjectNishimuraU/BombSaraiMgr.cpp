@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B21A4
  * Size:	000050
  */
-void Game::BombSarai::Mgr::__ct((int, unsigned char))
+void Game::BombSarai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::BombSarai::Mgr::__ct((int, unsigned char))
  * Address:	802B21F4
  * Size:	000048
  */
-void Game::BombSarai::Mgr::doAlloc(void)
+void Game::BombSarai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::BombSarai::Mgr::doAlloc(void)
  * Address:	802B223C
  * Size:	000048
  */
-void Game::BombSarai::Parms::__ct(void)
+void Game::BombSarai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::BombSarai::Parms::__ct(void)
  * Address:	802B2284
  * Size:	000278
  */
-void Game::BombSarai::Parms::ProperParms::__ct(void)
+void Game::BombSarai::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -285,7 +275,7 @@ void Game::BombSarai::Parms::ProperParms::__ct(void)
  * Address:	802B24FC
  * Size:	000060
  */
-void Game::BombSarai::Mgr::createObj((int))
+void Game::BombSarai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::BombSarai::Mgr::createObj((int))
  * Address:	802B255C
  * Size:	0000BC
  */
-void Game::BombSarai::Obj::__dt(void)
+void Game::BombSarai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -384,7 +374,7 @@ void Game::BombSarai::Obj::__dt(void)
  * Address:	802B2618
  * Size:	000010
  */
-void Game::BombSarai::Mgr::getEnemy((int))
+void Game::BombSarai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +390,7 @@ void Game::BombSarai::Mgr::getEnemy((int))
  * Address:	802B2628
  * Size:	000068
  */
-void Game::BombSarai::Mgr::loadModelData(void)
+void Game::BombSarai::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -442,7 +432,7 @@ void Game::BombSarai::Mgr::loadModelData(void)
  * Address:	802B2690
  * Size:	0000B0
  */
-void Game::BombSarai::Mgr::__dt(void)
+void Game::BombSarai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -502,7 +492,7 @@ void Game::BombSarai::Mgr::__dt(void)
  * Address:	802B2740
  * Size:	000008
  */
-void Game::BombSarai::Mgr::getEnemyTypeID(void)
+void Game::BombSarai::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -516,7 +506,7 @@ void Game::BombSarai::Mgr::getEnemyTypeID(void)
  * Address:	802B2748
  * Size:	00002C
  */
-void Game::BombSarai::Mgr::doLoadBmd((void*))
+void Game::BombSarai::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -539,7 +529,7 @@ void Game::BombSarai::Mgr::doLoadBmd((void*))
  * Address:	802B2774
  * Size:	000050
  */
-void Game::BombSarai::Parms::read((Stream&))
+void Game::BombSarai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +561,7 @@ void Game::BombSarai::Parms::read((Stream&))
  * Address:	802B27C4
  * Size:	000008
  */
-void @4 @Game::BombSarai::Mgr::__dt(void)
+void Game::BombSarai::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

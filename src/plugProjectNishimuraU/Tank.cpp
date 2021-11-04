@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80275D8C
  * Size:	000138
  */
-void Game::Tank::Obj::__ct(void)
+void Game::Tank::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::Tank::Obj::__ct(void)
  * Address:	80275EC4
  * Size:	000004
  */
-void Game::Tank::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Tank::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::Tank::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80275EC8
  * Size:	00009C
  */
-void Game::Tank::Obj::onInit((Game::CreatureInitArg*))
+void Game::Tank::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -175,7 +165,7 @@ void Game::Tank::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80275F64
  * Size:	000004
  */
-void Game::Tank::Obj::setupEffect(void)
+void Game::Tank::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -188,7 +178,7 @@ void Game::Tank::Obj::setupEffect(void)
  * Address:	80275F68
  * Size:	000050
  */
-void Game::Tank::Obj::onKill((Game::CreatureKillArg*))
+void Game::Tank::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -220,7 +210,7 @@ void Game::Tank::Obj::onKill((Game::CreatureKillArg*))
  * Address:	80275FB8
  * Size:	00004C
  */
-void Game::Tank::Obj::doUpdate(void)
+void Game::Tank::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -251,7 +241,7 @@ void Game::Tank::Obj::doUpdate(void)
  * Address:	80276004
  * Size:	000004
  */
-void Game::Tank::Obj::doDirectDraw((Graphics&))
+void Game::Tank::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -264,7 +254,7 @@ void Game::Tank::Obj::doDirectDraw((Graphics&))
  * Address:	80276008
  * Size:	000020
  */
-void Game::Tank::Obj::doDebugDraw((Graphics&))
+void Game::Tank::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -284,7 +274,7 @@ void Game::Tank::Obj::doDebugDraw((Graphics&))
  * Address:	80276028
  * Size:	00004C
  */
-void Game::Tank::Obj::setFSM((Game::Tank::FSM*))
+void Game::Tank::Obj::setFSM(Game::Tank::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -315,7 +305,7 @@ void Game::Tank::Obj::setFSM((Game::Tank::FSM*))
  * Address:	80276074
  * Size:	000090
  */
-void Game::Tank::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Tank::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -367,7 +357,7 @@ void Game::Tank::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80276104
  * Size:	000054
  */
-void Game::Tank::Obj::doStartStoneState(void)
+void Game::Tank::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -402,7 +392,7 @@ void Game::Tank::Obj::doStartStoneState(void)
  * Address:	80276158
  * Size:	00004C
  */
-void Game::Tank::Obj::doFinishStoneState(void)
+void Game::Tank::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -435,7 +425,7 @@ void Game::Tank::Obj::doFinishStoneState(void)
  * Address:	802761A4
  * Size:	000054
  */
-void Game::Tank::Obj::doStartEarthquakeFitState(void)
+void Game::Tank::Obj::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -470,7 +460,7 @@ void Game::Tank::Obj::doStartEarthquakeFitState(void)
  * Address:	802761F8
  * Size:	00004C
  */
-void Game::Tank::Obj::doFinishEarthquakeFitState(void)
+void Game::Tank::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -503,7 +493,7 @@ void Game::Tank::Obj::doFinishEarthquakeFitState(void)
  * Address:	80276244
  * Size:	000040
  */
-void Game::Tank::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::Tank::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -531,7 +521,7 @@ void Game::Tank::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	80276284
  * Size:	000004
  */
-void Game::Tank::Obj::effectDrawOff(void)
+void Game::Tank::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -544,7 +534,7 @@ void Game::Tank::Obj::effectDrawOff(void)
  * Address:	80276288
  * Size:	000040
  */
-void Game::Tank::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::Tank::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -572,7 +562,7 @@ void Game::Tank::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	802762C8
  * Size:	000004
  */
-void Game::Tank::Obj::effectDrawOn(void)
+void Game::Tank::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -585,7 +575,7 @@ void Game::Tank::Obj::effectDrawOn(void)
  * Address:	802762CC
  * Size:	000028
  */
-void Game::Tank::Obj::startCarcassMotion(void)
+void Game::Tank::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -607,7 +597,7 @@ void Game::Tank::Obj::startCarcassMotion(void)
  * Address:	802762F4
  * Size:	00002C
  */
-void Game::Tank::Obj::doStartMovie(void)
+void Game::Tank::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -630,7 +620,7 @@ void Game::Tank::Obj::doStartMovie(void)
  * Address:	80276320
  * Size:	00002C
  */
-void Game::Tank::Obj::doEndMovie(void)
+void Game::Tank::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -653,7 +643,7 @@ void Game::Tank::Obj::doEndMovie(void)
  * Address:	8027634C
  * Size:	0000C4
  */
-void Game::Tank::Obj::getOffsetForMapCollision(void)
+void Game::Tank::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -718,7 +708,7 @@ void Game::Tank::Obj::getOffsetForMapCollision(void)
  * Address:	80276410
  * Size:	000094
  */
-void Game::Tank::Obj::initWalkSmokeEffect(void)
+void Game::Tank::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -767,7 +757,7 @@ void Game::Tank::Obj::initWalkSmokeEffect(void)
  * Address:	802764A4
  * Size:	000008
  */
-void Game::Tank::Obj::getWalkSmokeEffectMgr(void)
+void Game::Tank::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -781,7 +771,7 @@ void Game::Tank::Obj::getWalkSmokeEffectMgr(void)
  * Address:	802764AC
  * Size:	000054
  */
-void getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<float>(void)
+void Game::Tank::Obj::getCommonEffectPos(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -814,7 +804,7 @@ void getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<float>(void)
  * Address:	80276500
  * Size:	000338
  */
-void Game::Tank::Obj::isAttackable((bool))
+void Game::Tank::Obj::isAttackable(bool)
 {
 	/*
 	.loc_0x0:
@@ -1060,7 +1050,7 @@ void Game::Tank::Obj::isAttackable((bool))
  * Address:	80276838
  * Size:	000004
  */
-void Game::Tank::Obj::interactCreature((Game::Creature*))
+void Game::Tank::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1073,8 +1063,7 @@ void Game::Tank::Obj::interactCreature((Game::Creature*))
  * Address:	8027683C
  * Size:	000228
  */
-void emitCollideRatio__Q34Game4Tank3ObjFR10Vector3<float> R10Vector3<float>
-f(void)
+void Game::Tank::Obj::emitCollideRatio(Vector3<float>&, Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -1238,7 +1227,7 @@ f(void)
  * Address:	80276A64
  * Size:	000004
  */
-void Game::Tank::Obj::stopEffectRadius((float))
+void Game::Tank::Obj::stopEffectRadius(float)
 {
 	/*
 	.loc_0x0:
@@ -1251,7 +1240,7 @@ void Game::Tank::Obj::stopEffectRadius((float))
  * Address:	80276A68
  * Size:	000130
  */
-void Game::Tank::Obj::updateEmit(void)
+void Game::Tank::Obj::updateEmit()
 {
 	/*
 	.loc_0x0:
@@ -1347,7 +1336,7 @@ void Game::Tank::Obj::updateEmit(void)
  * Address:	80276B98
  * Size:	000050
  */
-void Game::Tank::Obj::updateCaution(void)
+void Game::Tank::Obj::updateCaution()
 {
 	/*
 	.loc_0x0:
@@ -1383,7 +1372,7 @@ void Game::Tank::Obj::updateCaution(void)
  * Address:	80276BE8
  * Size:	000024
  */
-void Game::Tank::Obj::getViewAngle(void)
+void Game::Tank::Obj::getViewAngle()
 {
 	/*
 	.loc_0x0:
@@ -1406,7 +1395,7 @@ void Game::Tank::Obj::getViewAngle(void)
  * Address:	80276C0C
  * Size:	0000BC
  */
-void Game::Tank::Obj::__dt(void)
+void Game::Tank::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -1469,7 +1458,7 @@ void Game::Tank::Obj::__dt(void)
  * Address:	80276CC8
  * Size:	000008
  */
-void Game::Tank::Obj::getDownSmokeScale(void)
+void Game::Tank::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1483,7 +1472,7 @@ void Game::Tank::Obj::getDownSmokeScale(void)
  * Address:	80276CD0
  * Size:	000008
  */
-void Game::Tank::Obj::getEnemyTypeID(void)
+void Game::Tank::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1497,7 +1486,7 @@ void Game::Tank::Obj::getEnemyTypeID(void)
  * Address:	80276CD8
  * Size:	000004
  */
-void Game::Tank::Obj::createEffect(void)
+void Game::Tank::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1510,7 +1499,7 @@ void Game::Tank::Obj::createEffect(void)
  * Address:	80276CDC
  * Size:	000014
  */
-void @776 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@776 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1527,7 +1516,7 @@ void @776 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	80276CF0
  * Size:	000014
  */
-void @776 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@776 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1544,7 +1533,7 @@ void @776 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	80276D04
  * Size:	000014
  */
-void @776 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@776 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1561,7 +1550,7 @@ void @776 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	80276D18
  * Size:	000014
  */
-void @776 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@776 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1578,7 +1567,7 @@ void @776 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80276D2C
  * Size:	000014
  */
-void @776 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@776 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1595,7 +1584,7 @@ void @776 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80276D40
  * Size:	000014
  */
-void @776 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@776 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802A8A80
  * Size:	000038
  */
@@ -43,7 +33,7 @@ void Game::IKJointCallBack(J3DJoint*, int)
  * Address:	802A8AB8
  * Size:	00007C
  */
-void Game::IKSystemMgr::__ct(void)
+void Game::IKSystemMgr::IKSystemMgr()
 {
 	/*
 	.loc_0x0:
@@ -86,7 +76,7 @@ void Game::IKSystemMgr::__ct(void)
  * Address:	802A8B34
  * Size:	000144
  */
-void Game::IKSystemMgr::init((Game::EnemyBase*, Game::JointGroundCallBack*))
+void Game::IKSystemMgr::init(Game::EnemyBase*, Game::JointGroundCallBack*)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +171,7 @@ void Game::IKSystemMgr::init((Game::EnemyBase*, Game::JointGroundCallBack*))
  * Address:	802A8C78
  * Size:	00006C
  */
-void Game::IKSystemMgr::setupJoint((SysShape::Model*, int, char**))
+void Game::IKSystemMgr::setupJoint(SysShape::Model*, int, char**)
 {
 	/*
 	.loc_0x0:
@@ -222,7 +212,7 @@ void Game::IKSystemMgr::setupJoint((SysShape::Model*, int, char**))
  * Address:	802A8CE4
  * Size:	000038
  */
-void Game::IKSystemMgr::setupCallBack((SysShape::Model*, char*))
+void Game::IKSystemMgr::setupCallBack(SysShape::Model*, char*)
 {
 	/*
 	.loc_0x0:
@@ -248,7 +238,7 @@ void Game::IKSystemMgr::setupCallBack((SysShape::Model*, char*))
  * Address:	802A8D1C
  * Size:	000064
  */
-void Game::IKSystemMgr::setParameters((Game::IKSystemParms*))
+void Game::IKSystemMgr::setParameters(Game::IKSystemParms*)
 {
 	/*
 	.loc_0x0:
@@ -287,7 +277,7 @@ void Game::IKSystemMgr::setParameters((Game::IKSystemParms*))
  * Address:	802A8D80
  * Size:	000188
  */
-void Game::IKSystemMgr::startProgramedIK(void)
+void Game::IKSystemMgr::startProgramedIK()
 {
 	/*
 	.loc_0x0:
@@ -405,7 +395,7 @@ void Game::IKSystemMgr::startProgramedIK(void)
  * Address:	802A8F08
  * Size:	000024
  */
-void Game::IKSystemMgr::startIKMotion(void)
+void Game::IKSystemMgr::startIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -426,7 +416,7 @@ void Game::IKSystemMgr::startIKMotion(void)
  * Address:	802A8F2C
  * Size:	00000C
  */
-void Game::IKSystemMgr::finishIKMotion(void)
+void Game::IKSystemMgr::finishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -441,7 +431,7 @@ void Game::IKSystemMgr::finishIKMotion(void)
  * Address:	802A8F38
  * Size:	000014
  */
-void Game::IKSystemMgr::forceFinishIKMotion(void)
+void Game::IKSystemMgr::forceFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -458,7 +448,7 @@ void Game::IKSystemMgr::forceFinishIKMotion(void)
  * Address:	802A8F4C
  * Size:	00005C
  */
-void Game::IKSystemMgr::startBlendMotion(void)
+void Game::IKSystemMgr::startBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -495,7 +485,7 @@ void Game::IKSystemMgr::startBlendMotion(void)
  * Address:	802A8FA8
  * Size:	00005C
  */
-void Game::IKSystemMgr::finishBlendMotion(void)
+void Game::IKSystemMgr::finishBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -532,7 +522,7 @@ void Game::IKSystemMgr::finishBlendMotion(void)
  * Address:	802A9004
  * Size:	00005C
  */
-void Game::IKSystemMgr::checkJointScaleOn(void)
+void Game::IKSystemMgr::checkJointScaleOn()
 {
 	/*
 	.loc_0x0:
@@ -566,20 +556,10 @@ void Game::IKSystemMgr::checkJointScaleOn(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void Game::IKSystemMgr::checkJointScaleOff(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802A9060
  * Size:	000070
  */
-void Game::IKSystemMgr::isFinishIKMotion(void)
+void Game::IKSystemMgr::isFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -629,7 +609,7 @@ void Game::IKSystemMgr::isFinishIKMotion(void)
  * Address:	802A90D0
  * Size:	00000C
  */
-void Game::IKSystemMgr::resetAnimationCallBack(void)
+void Game::IKSystemMgr::resetAnimationCallBack()
 {
 	/*
 	.loc_0x0:
@@ -644,7 +624,7 @@ void Game::IKSystemMgr::resetAnimationCallBack(void)
  * Address:	802A90DC
  * Size:	000008
  */
-void Game::IKSystemMgr::setAnimationCallBack(void)
+void Game::IKSystemMgr::setAnimationCallBack()
 {
 	/*
 	.loc_0x0:
@@ -658,7 +638,7 @@ void Game::IKSystemMgr::setAnimationCallBack(void)
  * Address:	802A90E4
  * Size:	00007C
  */
-void Game::IKSystemMgr::doUpdate(void)
+void Game::IKSystemMgr::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -703,7 +683,7 @@ void Game::IKSystemMgr::doUpdate(void)
  * Address:	802A9160
  * Size:	00005C
  */
-void Game::IKSystemMgr::makeMatrix(void)
+void Game::IKSystemMgr::makeMatrix()
 {
 	/*
 	.loc_0x0:
@@ -740,7 +720,7 @@ void Game::IKSystemMgr::makeMatrix(void)
  * Address:	802A91BC
  * Size:	000038
  */
-void Game::IKSystemMgr::getCollisionCentre((int))
+void Game::IKSystemMgr::getCollisionCentre(int)
 {
 	/*
 	.loc_0x0:
@@ -766,7 +746,7 @@ void Game::IKSystemMgr::getCollisionCentre((int))
  * Address:	802A91F4
  * Size:	00010C
  */
-void Game::IKSystemMgr::isCollisionCheck((CollPart*))
+void Game::IKSystemMgr::isCollisionCheck(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -859,7 +839,7 @@ void Game::IKSystemMgr::isCollisionCheck((CollPart*))
  * Address:	802A9300
  * Size:	000308
  */
-void Game::IKSystemMgr::updateController(void)
+void Game::IKSystemMgr::updateController()
 {
 	/*
 	.loc_0x0:
@@ -1099,7 +1079,7 @@ void Game::IKSystemMgr::updateController(void)
  * Address:	802A9608
  * Size:	0003DC
  */
-void Game::IKSystemMgr::setNextCentrePosition(void)
+void Game::IKSystemMgr::setNextCentrePosition()
 {
 	/*
 	.loc_0x0:
@@ -1390,7 +1370,7 @@ void Game::IKSystemMgr::setNextCentrePosition(void)
  * Address:	802A99E4
  * Size:	0000FC
  */
-void Game::IKSystemMgr::calcFaceDir(void)
+void Game::IKSystemMgr::calcFaceDir()
 {
 	/*
 	.loc_0x0:
@@ -1473,7 +1453,7 @@ void Game::IKSystemMgr::calcFaceDir(void)
  * Address:	802A9AE0
  * Size:	000298
  */
-void Game::IKSystemMgr::calcCentrePosition(void)
+void Game::IKSystemMgr::calcCentrePosition()
 {
 	/*
 	.loc_0x0:
@@ -1663,7 +1643,7 @@ void Game::IKSystemMgr::calcCentrePosition(void)
  * Address:	802A9D78
  * Size:	0000E4
  */
-void Game::IKSystemMgr::calcTraceCentrePosition(void)
+void Game::IKSystemMgr::calcTraceCentrePosition()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B8F3C
  * Size:	000050
  */
-void Game::GasOtakara::Mgr::__ct((int, unsigned char))
+void Game::GasOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::GasOtakara::Mgr::__ct((int, unsigned char))
  * Address:	802B8F8C
  * Size:	000048
  */
-void Game::GasOtakara::Mgr::doAlloc(void)
+void Game::GasOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::GasOtakara::Mgr::doAlloc(void)
  * Address:	802B8FD4
  * Size:	000060
  */
-void Game::GasOtakara::Mgr::createObj((int))
+void Game::GasOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::GasOtakara::Mgr::createObj((int))
  * Address:	802B9034
  * Size:	0000F0
  */
-void Game::GasOtakara::Obj::__dt(void)
+void Game::GasOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::GasOtakara::Obj::__dt(void)
  * Address:	802B9124
  * Size:	000010
  */
-void Game::GasOtakara::Mgr::getEnemy((int))
+void Game::GasOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::GasOtakara::Mgr::getEnemy((int))
  * Address:	802B9134
  * Size:	000080
  */
-void Game::GasOtakara::Mgr::loadTexData(void)
+void Game::GasOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +245,7 @@ void Game::GasOtakara::Mgr::loadTexData(void)
  * Address:	802B91B4
  * Size:	0000C8
  */
-void Game::GasOtakara::Mgr::__dt(void)
+void Game::GasOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::GasOtakara::Mgr::__dt(void)
  * Address:	802B927C
  * Size:	000008
  */
-void Game::GasOtakara::Mgr::getEnemyTypeID(void)
+void Game::GasOtakara::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::GasOtakara::Mgr::getEnemyTypeID(void)
  * Address:	802B9284
  * Size:	000008
  */
-void Game::GasOtakara::Mgr::getChangeTexture(void)
+void Game::GasOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -349,7 +339,7 @@ void Game::GasOtakara::Mgr::getChangeTexture(void)
  * Address:	802B928C
  * Size:	000008
  */
-void @4 @Game::GasOtakara::Mgr::__dt(void)
+void Game::GasOtakara::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

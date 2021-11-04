@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80253304
  * Size:	000048
  */
-void Game::RumbleMgr::__ct(void)
+void Game::RumbleMgr::RumbleMgr()
 {
 	/*
 	.loc_0x0:
@@ -45,7 +35,7 @@ void Game::RumbleMgr::__ct(void)
  * Address:	8025334C
  * Size:	000158
  */
-void Game::RumbleMgr::loadResource(void)
+void Game::RumbleMgr::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -151,7 +141,7 @@ void Game::RumbleMgr::loadResource(void)
  * Address:	802534A4
  * Size:	000108
  */
-void Game::RumbleMgr::init(void)
+void Game::RumbleMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -239,7 +229,7 @@ void Game::RumbleMgr::init(void)
  * Address:	802535AC
  * Size:	0001D4
  */
-void Game::RumbleMgr::update(void)
+void Game::RumbleMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -390,7 +380,7 @@ void Game::RumbleMgr::update(void)
  * Address:	80253780
  * Size:	0001A4
  */
-void startRumble__Q24Game9RumbleMgrFiR10Vector3<float> i(void)
+void Game::RumbleMgr::startRumble(int, Vector3<float>&, int)
 {
 	/*
 	.loc_0x0:
@@ -525,7 +515,7 @@ void startRumble__Q24Game9RumbleMgrFiR10Vector3<float> i(void)
  * Address:	80253924
  * Size:	0000B8
  */
-void Game::RumbleMgr::startRumble((int, int))
+void Game::RumbleMgr::startRumble(int, int)
 {
 	/*
 	.loc_0x0:
@@ -591,7 +581,7 @@ void Game::RumbleMgr::startRumble((int, int))
  * Address:	802539DC
  * Size:	000094
  */
-void Game::RumbleMgr::stopRumble((int, int))
+void Game::RumbleMgr::stopRumble(int, int)
 {
 	/*
 	.loc_0x0:
@@ -646,7 +636,7 @@ void Game::RumbleMgr::stopRumble((int, int))
  * Address:	80253A70
  * Size:	000088
  */
-void Game::RumbleMgr::stopRumble((int))
+void Game::RumbleMgr::stopRumble(int)
 {
 	/*
 	.loc_0x0:
@@ -698,7 +688,7 @@ void Game::RumbleMgr::stopRumble((int))
  * Address:	80253AF8
  * Size:	00007C
  */
-void Game::RumbleMgr::isRumbleUpdateOn(void)
+void Game::RumbleMgr::isRumbleUpdateOn()
 {
 	/*
 	.loc_0x0:
@@ -747,7 +737,7 @@ void Game::RumbleMgr::isRumbleUpdateOn(void)
  * Address:	80253B74
  * Size:	00005C
  */
-void setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<float>(void)
+void Game::RumbleMgr::setZukanRumble(Controller*, Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -786,7 +776,7 @@ void setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<float>(void)
  * Address:	80253BD0
  * Size:	000068
  */
-void Game::RumbleMgr::isStartAndEnd((int*, int))
+void Game::RumbleMgr::isStartAndEnd(int*, int)
 {
 	/*
 	.loc_0x0:
@@ -830,7 +820,7 @@ void Game::RumbleMgr::isStartAndEnd((int*, int))
  * Address:	80253C38
  * Size:	0000C0
  */
-void Game::RumbleMgr::readRumbleParms((char*))
+void Game::RumbleMgr::readRumbleParms(char*)
 {
 	/*
 	.loc_0x0:
@@ -896,7 +886,7 @@ void Game::RumbleMgr::readRumbleParms((char*))
  * Address:	80253CF8
  * Size:	0000C0
  */
-void Game::RumbleMgr::readRumbleData((char*))
+void Game::RumbleMgr::readRumbleData(char*)
 {
 	/*
 	.loc_0x0:
@@ -962,7 +952,7 @@ void Game::RumbleMgr::readRumbleData((char*))
  * Address:	80253DB8
  * Size:	000060
  */
-void Game::RumbleMgr::__dt(void)
+void Game::RumbleMgr::~RumbleMgr()
 {
 	/*
 	.loc_0x0:

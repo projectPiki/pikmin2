@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802FFE04
  * Size:	000050
  */
-void Game::RedKabuto::Mgr::__ct((int, unsigned char))
+void Game::RedKabuto::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::RedKabuto::Mgr::__ct((int, unsigned char))
  * Address:	802FFE54
  * Size:	000048
  */
-void Game::RedKabuto::Mgr::doAlloc(void)
+void Game::RedKabuto::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::RedKabuto::Mgr::doAlloc(void)
  * Address:	802FFE9C
  * Size:	000060
  */
-void Game::RedKabuto::Mgr::createObj((int))
+void Game::RedKabuto::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::RedKabuto::Mgr::createObj((int))
  * Address:	802FFEFC
  * Size:	0000EC
  */
-void Game::RedKabuto::Obj::__dt(void)
+void Game::RedKabuto::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -190,7 +180,7 @@ void Game::RedKabuto::Obj::__dt(void)
  * Address:	802FFFE8
  * Size:	000010
  */
-void Game::RedKabuto::Mgr::getEnemy((int))
+void Game::RedKabuto::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +196,7 @@ void Game::RedKabuto::Mgr::getEnemy((int))
  * Address:	802FFFF8
  * Size:	000080
  */
-void Game::RedKabuto::Mgr::loadTexData(void)
+void Game::RedKabuto::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -254,7 +244,7 @@ void Game::RedKabuto::Mgr::loadTexData(void)
  * Address:	80300078
  * Size:	0000C8
  */
-void Game::RedKabuto::Mgr::__dt(void)
+void Game::RedKabuto::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -320,7 +310,7 @@ void Game::RedKabuto::Mgr::__dt(void)
  * Address:	80300140
  * Size:	000008
  */
-void Game::RedKabuto::Mgr::getEnemyTypeID(void)
+void Game::RedKabuto::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -334,7 +324,7 @@ void Game::RedKabuto::Mgr::getEnemyTypeID(void)
  * Address:	80300148
  * Size:	000008
  */
-void Game::RedKabuto::Mgr::getChangeTexture(void)
+void Game::RedKabuto::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -348,7 +338,7 @@ void Game::RedKabuto::Mgr::getChangeTexture(void)
  * Address:	80300150
  * Size:	000008
  */
-void @4 @Game::RedKabuto::Mgr::__dt(void)
+void Game::RedKabuto::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

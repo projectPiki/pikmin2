@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B9AD8
  * Size:	0000A4
  */
-void Game::ElecOtakara::Obj::__ct(void)
+void Game::ElecOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -70,7 +60,7 @@ void Game::ElecOtakara::Obj::__ct(void)
  * Address:	802B9B7C
  * Size:	0001A4
  */
-void Game::ElecOtakara::Obj::changeMaterial(void)
+void Game::ElecOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::ElecOtakara::Obj::changeMaterial(void)
  * Address:	802B9D20
  * Size:	000168
  */
-void Game::ElecOtakara::Obj::interactCreature((Game::Creature*))
+void Game::ElecOtakara::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -301,7 +291,7 @@ void Game::ElecOtakara::Obj::interactCreature((Game::Creature*))
  * Address:	802B9E88
  * Size:	000060
  */
-void Game::ElecOtakara::Obj::createEffect(void)
+void Game::ElecOtakara::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -339,7 +329,7 @@ void Game::ElecOtakara::Obj::createEffect(void)
  * Address:	802B9EE8
  * Size:	000048
  */
-void Game::ElecOtakara::Obj::setupEffect(void)
+void Game::ElecOtakara::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::ElecOtakara::Obj::setupEffect(void)
  * Address:	802B9F30
  * Size:	000034
  */
-void Game::ElecOtakara::Obj::startChargeEffect(void)
+void Game::ElecOtakara::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -394,7 +384,7 @@ void Game::ElecOtakara::Obj::startChargeEffect(void)
  * Address:	802B9F64
  * Size:	000030
  */
-void Game::ElecOtakara::Obj::finishChargeEffect(void)
+void Game::ElecOtakara::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -418,7 +408,7 @@ void Game::ElecOtakara::Obj::finishChargeEffect(void)
  * Address:	802B9F94
  * Size:	000098
  */
-void Game::ElecOtakara::Obj::createDisChargeEffect(void)
+void Game::ElecOtakara::Obj::createDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -468,7 +458,7 @@ void Game::ElecOtakara::Obj::createDisChargeEffect(void)
  * Address:	802BA02C
  * Size:	000030
  */
-void Game::ElecOtakara::Obj::effectDrawOn(void)
+void Game::ElecOtakara::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -492,7 +482,7 @@ void Game::ElecOtakara::Obj::effectDrawOn(void)
  * Address:	802BA05C
  * Size:	000030
  */
-void Game::ElecOtakara::Obj::effectDrawOff(void)
+void Game::ElecOtakara::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -516,7 +506,7 @@ void Game::ElecOtakara::Obj::effectDrawOff(void)
  * Address:	802BA08C
  * Size:	000044
  */
-void Game::ElecOtakara::Obj::startDisChargeSE(void)
+void Game::ElecOtakara::Obj::startDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -545,7 +535,7 @@ void Game::ElecOtakara::Obj::startDisChargeSE(void)
  * Address:	802BA0D0
  * Size:	000008
  */
-void Game::ElecOtakara::Obj::getEnemyTypeID(void)
+void Game::ElecOtakara::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

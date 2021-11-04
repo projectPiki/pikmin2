@@ -2,25 +2,15 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BED6C
  * Size:	000008
  */
-void Game::Houdai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Houdai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  blr
+	  fneg      f2, f1
+	  lfs       f3, -0x6B04(r2)
 	*/
 }
 
@@ -29,7 +19,7 @@ void Game::Houdai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802BED74
  * Size:	000008
  */
-void Game::Houdai::ProperAnimator::getAnimator((int))
+void Game::Houdai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Houdai::ProperAnimator::getAnimator((int))
  * Address:	802BED7C
  * Size:	00005C
  */
-void Game::Houdai::ProperAnimator::__dt(void)
+void Game::Houdai::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Houdai::ProperAnimator::__dt(void)
  * Address:	802BEDD8
  * Size:	000008
  */
-void Game::Houdai::ProperAnimator::getAnimator(void)
+void Game::Houdai::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

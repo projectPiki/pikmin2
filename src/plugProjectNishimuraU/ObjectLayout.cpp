@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80250824
  * Size:	0000CC
  */
-void Game::Cave::ObjectLayout::__ct((Game::Cave::MapNode*))
+void Game::Cave::ObjectLayout::ObjectLayout(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -80,7 +70,7 @@ void Game::Cave::ObjectLayout::__ct((Game::Cave::MapNode*))
  * Address:	802508F0
  * Size:	000010
  */
-void Game::Cave::ObjectLayout::setNode((int, Game::ObjectLayoutNode*))
+void Game::Cave::ObjectLayout::setNode(int, Game::ObjectLayoutNode*)
 {
 	/*
 	.loc_0x0:
@@ -96,7 +86,7 @@ void Game::Cave::ObjectLayout::setNode((int, Game::ObjectLayoutNode*))
  * Address:	80250900
  * Size:	000048
  */
-void Game::Cave::ObjectLayout::getCount((int))
+void Game::Cave::ObjectLayout::getCount(int)
 {
 	/*
 	.loc_0x0:
@@ -130,7 +120,7 @@ void Game::Cave::ObjectLayout::getCount((int))
  * Address:	80250948
  * Size:	000040
  */
-void Game::Cave::ObjectLayout::getNode((int, int))
+void Game::Cave::ObjectLayout::getNode(int, int)
 {
 	/*
 	.loc_0x0:

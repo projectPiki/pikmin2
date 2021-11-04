@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802894D4
  * Size:	00017C
  */
-void Game::Queen::Obj::__ct(void)
+void Game::Queen::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -132,7 +122,7 @@ void Game::Queen::Obj::__ct(void)
  * Address:	80289650
  * Size:	000004
  */
-void Game::Queen::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Queen::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -145,7 +135,7 @@ void Game::Queen::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80289654
  * Size:	000100
  */
-void Game::Queen::Obj::onInit((Game::CreatureInitArg*))
+void Game::Queen::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -225,7 +215,7 @@ void Game::Queen::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80289754
  * Size:	000058
  */
-void Game::Queen::Obj::onKill((Game::CreatureKillArg*))
+void Game::Queen::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -259,7 +249,7 @@ void Game::Queen::Obj::onKill((Game::CreatureKillArg*))
  * Address:	802897AC
  * Size:	0000B8
  */
-void Game::Queen::Obj::setParameters(void)
+void Game::Queen::Obj::setParameters()
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::Queen::Obj::setParameters(void)
  * Address:	80289864
  * Size:	000050
  */
-void Game::Queen::Obj::doUpdate(void)
+void Game::Queen::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -353,7 +343,7 @@ void Game::Queen::Obj::doUpdate(void)
  * Address:	802898B4
  * Size:	000034
  */
-void Game::Queen::Obj::doUpdateCommon(void)
+void Game::Queen::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -378,7 +368,7 @@ void Game::Queen::Obj::doUpdateCommon(void)
  * Address:	802898E8
  * Size:	000054
  */
-void Game::Queen::Obj::doAnimationCullingOff(void)
+void Game::Queen::Obj::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -413,7 +403,7 @@ void Game::Queen::Obj::doAnimationCullingOff(void)
  * Address:	8028993C
  * Size:	000004
  */
-void Game::Queen::Obj::doDirectDraw((Graphics&))
+void Game::Queen::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +416,7 @@ void Game::Queen::Obj::doDirectDraw((Graphics&))
  * Address:	80289940
  * Size:	000020
  */
-void Game::Queen::Obj::doDebugDraw((Graphics&))
+void Game::Queen::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -446,7 +436,7 @@ void Game::Queen::Obj::doDebugDraw((Graphics&))
  * Address:	80289960
  * Size:	00004C
  */
-void Game::Queen::Obj::setFSM((Game::Queen::FSM*))
+void Game::Queen::Obj::setFSM(Game::Queen::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -477,7 +467,7 @@ void Game::Queen::Obj::setFSM((Game::Queen::FSM*))
  * Address:	802899AC
  * Size:	00008C
  */
-void Game::Queen::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Queen::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +514,7 @@ void Game::Queen::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80289A38
  * Size:	0000B0
  */
-void Game::Queen::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::Queen::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -588,7 +578,7 @@ void Game::Queen::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	80289AE8
  * Size:	000008
  */
-void Game::Queen::Obj::earthquakeCallBack((Game::Creature*, float))
+void Game::Queen::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -602,7 +592,7 @@ void Game::Queen::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	80289AF0
  * Size:	00004C
  */
-void Game::Queen::Obj::doStartStoneState(void)
+void Game::Queen::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -633,7 +623,7 @@ void Game::Queen::Obj::doStartStoneState(void)
  * Address:	80289B3C
  * Size:	000088
  */
-void Game::Queen::Obj::doFinishStoneState(void)
+void Game::Queen::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -683,7 +673,7 @@ void Game::Queen::Obj::doFinishStoneState(void)
  * Address:	80289BC4
  * Size:	000084
  */
-void Game::Queen::Obj::ignoreAtari((Game::Creature*))
+void Game::Queen::Obj::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -734,7 +724,7 @@ void Game::Queen::Obj::ignoreAtari((Game::Creature*))
  * Address:	80289C48
  * Size:	000028
  */
-void Game::Queen::Obj::startCarcassMotion(void)
+void Game::Queen::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -756,7 +746,7 @@ void Game::Queen::Obj::startCarcassMotion(void)
  * Address:	80289C70
  * Size:	000020
  */
-void Game::Queen::Obj::doStartMovie(void)
+void Game::Queen::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -776,7 +766,7 @@ void Game::Queen::Obj::doStartMovie(void)
  * Address:	80289C90
  * Size:	000020
  */
-void Game::Queen::Obj::doEndMovie(void)
+void Game::Queen::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -796,7 +786,7 @@ void Game::Queen::Obj::doEndMovie(void)
  * Address:	80289CB0
  * Size:	0002EC
  */
-void Game::Queen::Obj::rollingAttack(void)
+void Game::Queen::Obj::rollingAttack()
 {
 	/*
 	.loc_0x0:
@@ -1019,7 +1009,7 @@ void Game::Queen::Obj::rollingAttack(void)
  * Address:	80289F9C
  * Size:	0003A8
  */
-void Game::Queen::Obj::flickPikmin((float))
+void Game::Queen::Obj::flickPikmin(float)
 {
 	/*
 	.loc_0x0:
@@ -1289,7 +1279,7 @@ void Game::Queen::Obj::flickPikmin((float))
  * Address:	8028A344
  * Size:	0001A8
  */
-void Game::Queen::Obj::isRollingAttackLeft(void)
+void Game::Queen::Obj::isRollingAttackLeft()
 {
 	/*
 	.loc_0x0:
@@ -1419,7 +1409,7 @@ void Game::Queen::Obj::isRollingAttackLeft(void)
  * Address:	8028A4EC
  * Size:	0002D4
  */
-void Game::Queen::Obj::createCrashFallRock(void)
+void Game::Queen::Obj::createCrashFallRock()
 {
 	/*
 	.loc_0x0:
@@ -1624,7 +1614,7 @@ void Game::Queen::Obj::createCrashFallRock(void)
  * Address:	8028A7C0
  * Size:	00019C
  */
-void Game::Queen::Obj::createBabyChappy(void)
+void Game::Queen::Obj::createBabyChappy()
 {
 	/*
 	.loc_0x0:
@@ -1744,20 +1734,10 @@ void Game::Queen::Obj::createBabyChappy(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00021C
- */
-void Game::Queen::Obj::getBabyChappyCount(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028A95C
  * Size:	00004C
  */
-void isDone__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
+void Game::EnemyIterator<Game::Baby::Obj>::isDone()
 {
 	/*
 	.loc_0x0:
@@ -1788,7 +1768,7 @@ void isDone__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
  * Address:	8028A9A8
  * Size:	000274
  */
-void Game::Queen::Obj::updateCreateBaby(void)
+void Game::Queen::Obj::updateCreateBaby()
 {
 	/*
 	.loc_0x0:
@@ -1983,7 +1963,7 @@ void Game::Queen::Obj::updateCreateBaby(void)
  * Address:	8028AC1C
  * Size:	00003C
  */
-void Game::Queen::Obj::isCreateBaby(void)
+void Game::Queen::Obj::isCreateBaby()
 {
 	/*
 	.loc_0x0:
@@ -2012,7 +1992,7 @@ void Game::Queen::Obj::isCreateBaby(void)
  * Address:	8028AC58
  * Size:	000018
  */
-void Game::Queen::Obj::isHitCounterUp(void)
+void Game::Queen::Obj::isHitCounterUp()
 {
 	/*
 	.loc_0x0:
@@ -2030,7 +2010,7 @@ void Game::Queen::Obj::isHitCounterUp(void)
  * Address:	8028AC70
  * Size:	000028
  */
-void Game::Queen::Obj::resetJointShadow(void)
+void Game::Queen::Obj::resetJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -2052,7 +2032,7 @@ void Game::Queen::Obj::resetJointShadow(void)
  * Address:	8028AC98
  * Size:	000040
  */
-void Game::Queen::Obj::releaseJointShadow(void)
+void Game::Queen::Obj::releaseJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -2080,7 +2060,7 @@ void Game::Queen::Obj::releaseJointShadow(void)
  * Address:	8028ACD8
  * Size:	0000C8
  */
-void Game::Queen::Obj::startBossChargeBGM(void)
+void Game::Queen::Obj::startBossChargeBGM()
 {
 	/*
 	.loc_0x0:
@@ -2148,7 +2128,7 @@ void Game::Queen::Obj::startBossChargeBGM(void)
  * Address:	8028ADA0
  * Size:	0000DC
  */
-void Game::Queen::Obj::startBossAttackLoopBGM(void)
+void Game::Queen::Obj::startBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2223,7 +2203,7 @@ void Game::Queen::Obj::startBossAttackLoopBGM(void)
  * Address:	8028AE7C
  * Size:	0000D8
  */
-void Game::Queen::Obj::finishBossAttackLoopBGM(void)
+void Game::Queen::Obj::finishBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2297,7 +2277,7 @@ void Game::Queen::Obj::finishBossAttackLoopBGM(void)
  * Address:	8028AF54
  * Size:	0000D4
  */
-void Game::Queen::Obj::startStoneStateBossAttackLoopBGM(void)
+void Game::Queen::Obj::startStoneStateBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2370,7 +2350,7 @@ void Game::Queen::Obj::startStoneStateBossAttackLoopBGM(void)
  * Address:	8028B028
  * Size:	0000D4
  */
-void Game::Queen::Obj::finishStoneStateBossAttackLoopBGM(void)
+void Game::Queen::Obj::finishStoneStateBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -2443,7 +2423,7 @@ void Game::Queen::Obj::finishStoneStateBossAttackLoopBGM(void)
  * Address:	8028B0FC
  * Size:	0000FC
  */
-void Game::Queen::Obj::updateBossBGM(void)
+void Game::Queen::Obj::updateBossBGM()
 {
 	/*
 	.loc_0x0:
@@ -2528,7 +2508,7 @@ void Game::Queen::Obj::updateBossBGM(void)
  * Address:	8028B1F8
  * Size:	0000A8
  */
-void Game::Queen::Obj::resetMidBossAppearBGM(void)
+void Game::Queen::Obj::resetMidBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -2586,7 +2566,7 @@ void Game::Queen::Obj::resetMidBossAppearBGM(void)
  * Address:	8028B2A0
  * Size:	000080
  */
-void Game::Queen::Obj::setMidBossAppearBGM(void)
+void Game::Queen::Obj::setMidBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -2634,7 +2614,7 @@ void Game::Queen::Obj::setMidBossAppearBGM(void)
  * Address:	8028B320
  * Size:	000534
  */
-void Game::Queen::Obj::createEffect(void)
+void Game::Queen::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -3000,20 +2980,10 @@ void Game::Queen::Obj::createEffect(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChasePosYRot3::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028B854
  * Size:	000078
  */
-void Game::Queen::Obj::setupEffect(void)
+void Game::Queen::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -3055,7 +3025,7 @@ void Game::Queen::Obj::setupEffect(void)
  * Address:	8028B8CC
  * Size:	000034
  */
-void Game::Queen::Obj::createBornEffect(void)
+void Game::Queen::Obj::createBornEffect()
 {
 	/*
 	.loc_0x0:
@@ -3080,7 +3050,7 @@ void Game::Queen::Obj::createBornEffect(void)
  * Address:	8028B900
  * Size:	000080
  */
-void Game::Queen::Obj::startRollingEffect(void)
+void Game::Queen::Obj::startRollingEffect()
 {
 	/*
 	.loc_0x0:
@@ -3128,7 +3098,7 @@ void Game::Queen::Obj::startRollingEffect(void)
  * Address:	8028B980
  * Size:	0000E0
  */
-void Game::Queen::Obj::finishRollingEffect((bool))
+void Game::Queen::Obj::finishRollingEffect(bool)
 {
 	/*
 	.loc_0x0:
@@ -3206,7 +3176,7 @@ void Game::Queen::Obj::finishRollingEffect((bool))
  * Address:	8028BA60
  * Size:	000064
  */
-void Game::Queen::Obj::forceFinishRollingEffect(void)
+void Game::Queen::Obj::forceFinishRollingEffect()
 {
 	/*
 	.loc_0x0:
@@ -3243,7 +3213,7 @@ void Game::Queen::Obj::forceFinishRollingEffect(void)
  * Address:	8028BAC4
  * Size:	000034
  */
-void Game::Queen::Obj::startDamageEffect(void)
+void Game::Queen::Obj::startDamageEffect()
 {
 	/*
 	.loc_0x0:
@@ -3268,7 +3238,7 @@ void Game::Queen::Obj::startDamageEffect(void)
  * Address:	8028BAF8
  * Size:	000030
  */
-void Game::Queen::Obj::finishDamageEffect(void)
+void Game::Queen::Obj::finishDamageEffect()
 {
 	/*
 	.loc_0x0:
@@ -3292,7 +3262,7 @@ void Game::Queen::Obj::finishDamageEffect(void)
  * Address:	8028BB28
  * Size:	000034
  */
-void Game::Queen::Obj::createFlickEffect(void)
+void Game::Queen::Obj::createFlickEffect()
 {
 	/*
 	.loc_0x0:
@@ -3317,7 +3287,7 @@ void Game::Queen::Obj::createFlickEffect(void)
  * Address:	8028BB5C
  * Size:	000034
  */
-void Game::Queen::Obj::createDeadEffect(void)
+void Game::Queen::Obj::createDeadEffect()
 {
 	/*
 	.loc_0x0:
@@ -3342,7 +3312,7 @@ void Game::Queen::Obj::createDeadEffect(void)
  * Address:	8028BB90
  * Size:	000034
  */
-void Game::Queen::Obj::createWakeUpEffect(void)
+void Game::Queen::Obj::createWakeUpEffect()
 {
 	/*
 	.loc_0x0:
@@ -3367,7 +3337,7 @@ void Game::Queen::Obj::createWakeUpEffect(void)
  * Address:	8028BBC4
  * Size:	000034
  */
-void Game::Queen::Obj::startSleepEffect(void)
+void Game::Queen::Obj::startSleepEffect()
 {
 	/*
 	.loc_0x0:
@@ -3392,7 +3362,7 @@ void Game::Queen::Obj::startSleepEffect(void)
  * Address:	8028BBF8
  * Size:	000030
  */
-void Game::Queen::Obj::finishSleepEffect(void)
+void Game::Queen::Obj::finishSleepEffect()
 {
 	/*
 	.loc_0x0:
@@ -3416,7 +3386,7 @@ void Game::Queen::Obj::finishSleepEffect(void)
  * Address:	8028BC28
  * Size:	000118
  */
-void Game::Queen::Obj::effectDrawOn(void)
+void Game::Queen::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -3498,7 +3468,7 @@ void Game::Queen::Obj::effectDrawOn(void)
  * Address:	8028BD40
  * Size:	000118
  */
-void Game::Queen::Obj::effectDrawOff(void)
+void Game::Queen::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -3580,7 +3550,7 @@ void Game::Queen::Obj::effectDrawOff(void)
  * Address:	8028BE58
  * Size:	00009C
  */
-void efx::TQueenHanacho::__dt(void)
+void efx::TQueenHanacho::~TQueenHanacho()
 {
 	/*
 	.loc_0x0:
@@ -3635,7 +3605,7 @@ void efx::TQueenHanacho::__dt(void)
  * Address:	8028BEF4
  * Size:	00009C
  */
-void efx::TQueenWakeup::__dt(void)
+void efx::TQueenWakeup::~TQueenWakeup()
 {
 	/*
 	.loc_0x0:
@@ -3690,7 +3660,7 @@ void efx::TQueenWakeup::__dt(void)
  * Address:	8028BF90
  * Size:	00009C
  */
-void efx::TQueenDamage::__dt(void)
+void efx::TQueenDamage::~TQueenDamage()
 {
 	/*
 	.loc_0x0:
@@ -3745,7 +3715,7 @@ void efx::TQueenDamage::__dt(void)
  * Address:	8028C02C
  * Size:	00009C
  */
-void efx::TQueenCrashRock::__dt(void)
+void efx::TQueenCrashRock::~TQueenCrashRock()
 {
 	/*
 	.loc_0x0:
@@ -3800,7 +3770,7 @@ void efx::TQueenCrashRock::__dt(void)
  * Address:	8028C0C8
  * Size:	00009C
  */
-void efx::TQueenCrashL::__dt(void)
+void efx::TQueenCrashL::~TQueenCrashL()
 {
 	/*
 	.loc_0x0:
@@ -3855,7 +3825,7 @@ void efx::TQueenCrashL::__dt(void)
  * Address:	8028C164
  * Size:	00009C
  */
-void efx::TQueenCrashR::__dt(void)
+void efx::TQueenCrashR::~TQueenCrashR()
 {
 	/*
 	.loc_0x0:
@@ -3910,7 +3880,7 @@ void efx::TQueenCrashR::__dt(void)
  * Address:	8028C200
  * Size:	00009C
  */
-void efx::TQueenLay::__dt(void)
+void efx::TQueenLay::~TQueenLay()
 {
 	/*
 	.loc_0x0:
@@ -3965,7 +3935,7 @@ void efx::TQueenLay::__dt(void)
  * Address:	8028C29C
  * Size:	000038
  */
-void __ml__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
+void Game::EnemyIterator<Game::Baby::Obj>::operator*()
 {
 	/*
 	.loc_0x0:
@@ -3991,7 +3961,7 @@ void __ml__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
  * Address:	8028C2D4
  * Size:	0000E4
  */
-void next__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
+void Game::EnemyIterator<Game::Baby::Obj>::next()
 {
 	/*
 	.loc_0x0:
@@ -4068,7 +4038,7 @@ void next__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
  * Address:	8028C3B8
  * Size:	0000DC
  */
-void first__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
+void Game::EnemyIterator<Game::Baby::Obj>::first()
 {
 	/*
 	.loc_0x0:
@@ -4143,7 +4113,7 @@ void first__Q24Game31EnemyIterator<Game::Baby::Obj> Fv(void)
  * Address:	8028C494
  * Size:	000004
  */
-void Game::Queen::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Queen::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -4156,7 +4126,7 @@ void Game::Queen::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	8028C498
  * Size:	000004
  */
-void Game::Queen::Obj::outWaterCallback(void)
+void Game::Queen::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -4169,7 +4139,7 @@ void Game::Queen::Obj::outWaterCallback(void)
  * Address:	8028C49C
  * Size:	000008
  */
-void Game::Queen::Obj::getDamageCoeStoneState(void)
+void Game::Queen::Obj::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -4183,7 +4153,7 @@ void Game::Queen::Obj::getDamageCoeStoneState(void)
  * Address:	8028C4A4
  * Size:	000008
  */
-void Game::Queen::Obj::getEnemyTypeID(void)
+void Game::Queen::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -4219,7 +4189,7 @@ void __sinit_Queen_cpp(void)
  * Address:	8028C4D4
  * Size:	000014
  */
-void @784 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@784 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -4236,7 +4206,7 @@ void @784 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8028C4E8
  * Size:	000014
  */
-void @784 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@784 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4253,7 +4223,7 @@ void @784 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8028C4FC
  * Size:	000014
  */
-void @784 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@784 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4270,7 +4240,7 @@ void @784 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8028C510
  * Size:	000014
  */
-void @784 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@784 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -4287,7 +4257,7 @@ void @784 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8028C524
  * Size:	000014
  */
-void @784 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@784 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -4304,7 +4274,7 @@ void @784 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8028C538
  * Size:	000014
  */
-void @784 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@784 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -4321,7 +4291,7 @@ void @784 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	8028C54C
  * Size:	000008
  */
-void @4 @efx::TQueenLay::__dt(void)
+void efx::TQueenLay::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4335,7 +4305,7 @@ void @4 @efx::TQueenLay::__dt(void)
  * Address:	8028C554
  * Size:	000008
  */
-void @4 @efx::TQueenCrashR::__dt(void)
+void efx::TQueenCrashR::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4349,7 +4319,7 @@ void @4 @efx::TQueenCrashR::__dt(void)
  * Address:	8028C55C
  * Size:	000008
  */
-void @4 @efx::TQueenCrashL::__dt(void)
+void efx::TQueenCrashL::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4363,7 +4333,7 @@ void @4 @efx::TQueenCrashL::__dt(void)
  * Address:	8028C564
  * Size:	000008
  */
-void @4 @efx::TQueenCrashRock::__dt(void)
+void efx::TQueenCrashRock::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4377,7 +4347,7 @@ void @4 @efx::TQueenCrashRock::__dt(void)
  * Address:	8028C56C
  * Size:	000008
  */
-void @4 @efx::TQueenDamage::__dt(void)
+void efx::TQueenDamage::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4391,7 +4361,7 @@ void @4 @efx::TQueenDamage::__dt(void)
  * Address:	8028C574
  * Size:	000008
  */
-void @4 @efx::TQueenWakeup::__dt(void)
+void efx::TQueenWakeup::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4405,7 +4375,7 @@ void @4 @efx::TQueenWakeup::__dt(void)
  * Address:	8028C57C
  * Size:	000008
  */
-void @4 @efx::TQueenHanacho::__dt(void)
+void efx::TQueenHanacho::@4 @__dt()
 {
 	/*
 	.loc_0x0:

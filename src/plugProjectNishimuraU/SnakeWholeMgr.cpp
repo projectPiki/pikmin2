@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802CE2DC
  * Size:	000050
  */
-void Game::SnakeWhole::Mgr::__ct((int, unsigned char))
+void Game::SnakeWhole::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::SnakeWhole::Mgr::__ct((int, unsigned char))
  * Address:	802CE32C
  * Size:	000048
  */
-void Game::SnakeWhole::Mgr::doAlloc(void)
+void Game::SnakeWhole::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::SnakeWhole::Mgr::doAlloc(void)
  * Address:	802CE374
  * Size:	000154
  */
-void Game::SnakeWhole::Parms::__ct(void)
+void Game::SnakeWhole::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -178,7 +168,7 @@ void Game::SnakeWhole::Parms::__ct(void)
  * Address:	802CE4C8
  * Size:	000060
  */
-void Game::SnakeWhole::Mgr::createObj((int))
+void Game::SnakeWhole::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +204,7 @@ void Game::SnakeWhole::Mgr::createObj((int))
  * Address:	802CE528
  * Size:	0000BC
  */
-void Game::SnakeWhole::Obj::__dt(void)
+void Game::SnakeWhole::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -277,7 +267,7 @@ void Game::SnakeWhole::Obj::__dt(void)
  * Address:	802CE5E4
  * Size:	000010
  */
-void Game::SnakeWhole::Mgr::getEnemy((int))
+void Game::SnakeWhole::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +283,7 @@ void Game::SnakeWhole::Mgr::getEnemy((int))
  * Address:	802CE5F4
  * Size:	000068
  */
-void Game::SnakeWhole::Mgr::loadModelData(void)
+void Game::SnakeWhole::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::SnakeWhole::Mgr::loadModelData(void)
  * Address:	802CE65C
  * Size:	0000B0
  */
-void Game::SnakeWhole::Mgr::__dt(void)
+void Game::SnakeWhole::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -395,7 +385,7 @@ void Game::SnakeWhole::Mgr::__dt(void)
  * Address:	802CE70C
  * Size:	000008
  */
-void Game::SnakeWhole::Mgr::getEnemyTypeID(void)
+void Game::SnakeWhole::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -409,7 +399,7 @@ void Game::SnakeWhole::Mgr::getEnemyTypeID(void)
  * Address:	802CE714
  * Size:	00002C
  */
-void Game::SnakeWhole::Mgr::doLoadBmd((void*))
+void Game::SnakeWhole::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -432,7 +422,7 @@ void Game::SnakeWhole::Mgr::doLoadBmd((void*))
  * Address:	802CE740
  * Size:	000050
  */
-void Game::SnakeWhole::Parms::read((Stream&))
+void Game::SnakeWhole::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -464,7 +454,7 @@ void Game::SnakeWhole::Parms::read((Stream&))
  * Address:	802CE790
  * Size:	000008
  */
-void @4 @Game::SnakeWhole::Mgr::__dt(void)
+void Game::SnakeWhole::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

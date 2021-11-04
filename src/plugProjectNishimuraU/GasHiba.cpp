@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026D14C
  * Size:	000138
  */
-void Game::GasHiba::Obj::__ct(void)
+void Game::GasHiba::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::GasHiba::Obj::__ct(void)
  * Address:	8026D284
  * Size:	000004
  */
-void Game::GasHiba::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::GasHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::GasHiba::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	8026D288
  * Size:	000100
  */
-void Game::GasHiba::Obj::onInit((Game::CreatureInitArg*))
+void Game::GasHiba::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -200,7 +190,7 @@ void Game::GasHiba::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8026D388
  * Size:	000034
  */
-void Game::GasHiba::Obj::doUpdate(void)
+void Game::GasHiba::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -225,7 +215,7 @@ void Game::GasHiba::Obj::doUpdate(void)
  * Address:	8026D3BC
  * Size:	000004
  */
-void Game::GasHiba::Obj::doDirectDraw((Graphics&))
+void Game::GasHiba::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +228,7 @@ void Game::GasHiba::Obj::doDirectDraw((Graphics&))
  * Address:	8026D3C0
  * Size:	000020
  */
-void Game::GasHiba::Obj::doDebugDraw((Graphics&))
+void Game::GasHiba::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +248,7 @@ void Game::GasHiba::Obj::doDebugDraw((Graphics&))
  * Address:	8026D3E0
  * Size:	00004C
  */
-void Game::GasHiba::Obj::setFSM((Game::GasHiba::FSM*))
+void Game::GasHiba::Obj::setFSM(Game::GasHiba::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -289,7 +279,7 @@ void Game::GasHiba::Obj::setFSM((Game::GasHiba::FSM*))
  * Address:	8026D42C
  * Size:	000038
  */
-void Game::GasHiba::Obj::getShadowParam((Game::ShadowParam&))
+void Game::GasHiba::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -315,7 +305,7 @@ void Game::GasHiba::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8026D464
  * Size:	0000C8
  */
-void Game::GasHiba::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::GasHiba::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -381,7 +371,7 @@ void Game::GasHiba::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026D52C
  * Size:	000030
  */
-void Game::GasHiba::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::GasHiba::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -405,7 +395,7 @@ void Game::GasHiba::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026D55C
  * Size:	000030
  */
-void Game::GasHiba::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::GasHiba::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -429,8 +419,7 @@ void Game::GasHiba::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026D58C
  * Size:	000034
  */
-void bombCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreatureR10Vector3<float>
-f(void)
+void Game::GasHiba::Obj::bombCallBack(Game::Creature*, Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +444,7 @@ f(void)
  * Address:	8026D5C0
  * Size:	0001D0
  */
-void Game::GasHiba::Obj::interactGasAttack(void)
+void Game::GasHiba::Obj::interactGasAttack()
 {
 	/*
 	.loc_0x0:
@@ -591,7 +580,7 @@ void Game::GasHiba::Obj::interactGasAttack(void)
  * Address:	8026D790
  * Size:	000018
  */
-void Game::GasHiba::Obj::resetBridgeGateCheck(void)
+void Game::GasHiba::Obj::resetBridgeGateCheck()
 {
 	/*
 	.loc_0x0:
@@ -609,7 +598,7 @@ void Game::GasHiba::Obj::resetBridgeGateCheck(void)
  * Address:	8026D7A8
  * Size:	0005B0
  */
-void Game::GasHiba::Obj::setInitLivingThing(void)
+void Game::GasHiba::Obj::setInitLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -1061,7 +1050,7 @@ void Game::GasHiba::Obj::setInitLivingThing(void)
  * Address:	8026DD58
  * Size:	00009C
  */
-void Game::GasHiba::Obj::updateLivingThing(void)
+void Game::GasHiba::Obj::updateLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -1118,7 +1107,7 @@ void Game::GasHiba::Obj::updateLivingThing(void)
  * Address:	8026DDF4
  * Size:	000008
  */
-void Game::GasHiba::Obj::isLivingThing(void)
+void Game::GasHiba::Obj::isLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -1132,7 +1121,7 @@ void Game::GasHiba::Obj::isLivingThing(void)
  * Address:	8026DDFC
  * Size:	000024
  */
-void Game::GasHiba::Obj::setupLodParms(void)
+void Game::GasHiba::Obj::setupLodParms()
 {
 	/*
 	.loc_0x0:
@@ -1153,7 +1142,7 @@ void Game::GasHiba::Obj::setupLodParms(void)
  * Address:	8026DE20
  * Size:	00002C
  */
-void Game::GasHiba::Obj::updateEfxLod(void)
+void Game::GasHiba::Obj::updateEfxLod()
 {
 	/*
 	.loc_0x0:
@@ -1176,7 +1165,7 @@ void Game::GasHiba::Obj::updateEfxLod(void)
  * Address:	8026DE4C
  * Size:	00005C
  */
-void Game::GasHiba::Obj::createEffect(void)
+void Game::GasHiba::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1213,7 +1202,7 @@ void Game::GasHiba::Obj::createEffect(void)
  * Address:	8026DEA8
  * Size:	0000A0
  */
-void Game::GasHiba::Obj::startGasEffect(void)
+void Game::GasHiba::Obj::startGasEffect()
 {
 	/*
 	.loc_0x0:
@@ -1267,7 +1256,7 @@ void Game::GasHiba::Obj::startGasEffect(void)
  * Address:	8026DF48
  * Size:	000030
  */
-void Game::GasHiba::Obj::finishGasEffect(void)
+void Game::GasHiba::Obj::finishGasEffect()
 {
 	/*
 	.loc_0x0:
@@ -1291,7 +1280,7 @@ void Game::GasHiba::Obj::finishGasEffect(void)
  * Address:	8026DF78
  * Size:	000044
  */
-void Game::GasHiba::Obj::generatorKill(void)
+void Game::GasHiba::Obj::generatorKill()
 {
 	/*
 	.loc_0x0:
@@ -1322,7 +1311,7 @@ void Game::GasHiba::Obj::generatorKill(void)
  * Address:	8026DFBC
  * Size:	00000C
  */
-void efx::ArgGasuHiba::getName(void)
+void efx::ArgGasuHiba::getName()
 {
 	/*
 	.loc_0x0:
@@ -1337,7 +1326,7 @@ void efx::ArgGasuHiba::getName(void)
  * Address:	8026DFC8
  * Size:	000004
  */
-void Game::GasHiba::Obj::doSimulation((float))
+void Game::GasHiba::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1350,7 +1339,7 @@ void Game::GasHiba::Obj::doSimulation((float))
  * Address:	8026DFCC
  * Size:	000004
  */
-void Game::GasHiba::Obj::inWaterCallback((Game::WaterBox*))
+void Game::GasHiba::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1363,7 +1352,7 @@ void Game::GasHiba::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	8026DFD0
  * Size:	000004
  */
-void Game::GasHiba::Obj::outWaterCallback(void)
+void Game::GasHiba::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -1376,7 +1365,7 @@ void Game::GasHiba::Obj::outWaterCallback(void)
  * Address:	8026DFD4
  * Size:	000004
  */
-void Game::GasHiba::Obj::lifeRecover(void)
+void Game::GasHiba::Obj::lifeRecover()
 {
 	/*
 	.loc_0x0:

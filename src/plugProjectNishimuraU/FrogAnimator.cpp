@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802580AC
  * Size:	000008
  */
-void Game::Frog::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Frog::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Frog::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802580B4
  * Size:	000008
  */
-void Game::Frog::ProperAnimator::getAnimator((int))
+void Game::Frog::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Frog::ProperAnimator::getAnimator((int))
  * Address:	802580BC
  * Size:	00005C
  */
-void Game::Frog::ProperAnimator::__dt(void)
+void Game::Frog::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Frog::ProperAnimator::__dt(void)
  * Address:	80258118
  * Size:	000008
  */
-void Game::Frog::ProperAnimator::getAnimator(void)
+void Game::Frog::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

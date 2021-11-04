@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026B354
  * Size:	000128
  */
-void Game::Hiba::FSM::init((Game::EnemyBase*))
+void Game::Hiba::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +97,7 @@ void Game::Hiba::FSM::init((Game::EnemyBase*))
  * Address:	8026B47C
  * Size:	00017C
  */
-void Game::Hiba::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hiba::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +204,7 @@ void Game::Hiba::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8026B5F8
  * Size:	000008
  */
-void Game::Hiba::Obj::getEnemyTypeID(void)
+void Game::Hiba::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -228,7 +218,7 @@ void Game::Hiba::Obj::getEnemyTypeID(void)
  * Address:	8026B600
  * Size:	000004
  */
-void Game::Hiba::StateDead::exec((Game::EnemyBase*))
+void Game::Hiba::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +231,7 @@ void Game::Hiba::StateDead::exec((Game::EnemyBase*))
  * Address:	8026B604
  * Size:	000004
  */
-void Game::Hiba::StateDead::cleanup((Game::EnemyBase*))
+void Game::Hiba::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -254,7 +244,7 @@ void Game::Hiba::StateDead::cleanup((Game::EnemyBase*))
  * Address:	8026B608
  * Size:	000048
  */
-void Game::Hiba::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hiba::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -288,7 +278,7 @@ void Game::Hiba::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8026B650
  * Size:	00008C
  */
-void Game::Hiba::StateWait::exec((Game::EnemyBase*))
+void Game::Hiba::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -339,7 +329,7 @@ void Game::Hiba::StateWait::exec((Game::EnemyBase*))
  * Address:	8026B6DC
  * Size:	000004
  */
-void Game::Hiba::StateWait::cleanup((Game::EnemyBase*))
+void Game::Hiba::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -352,7 +342,7 @@ void Game::Hiba::StateWait::cleanup((Game::EnemyBase*))
  * Address:	8026B6E0
  * Size:	000048
  */
-void Game::Hiba::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hiba::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -382,7 +372,7 @@ void Game::Hiba::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8026B728
  * Size:	0000FC
  */
-void Game::Hiba::StateAttack::exec((Game::EnemyBase*))
+void Game::Hiba::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -465,7 +455,7 @@ void Game::Hiba::StateAttack::exec((Game::EnemyBase*))
  * Address:	8026B824
  * Size:	000024
  */
-void Game::Hiba::StateAttack::cleanup((Game::EnemyBase*))
+void Game::Hiba::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

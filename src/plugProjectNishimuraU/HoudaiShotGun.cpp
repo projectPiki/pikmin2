@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C394C
  * Size:	00003C
  */
-void Game::Houdai::levelRotationCallBack((J3DJoint*, int))
+void Game::Houdai::levelRotationCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -44,7 +34,7 @@ void Game::Houdai::levelRotationCallBack((J3DJoint*, int))
  * Address:	802C3988
  * Size:	00003C
  */
-void Game::Houdai::verticalRotationCallBack((J3DJoint*, int))
+void Game::Houdai::verticalRotationCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -70,60 +60,10 @@ void Game::Houdai::verticalRotationCallBack((J3DJoint*, int))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void Game::Houdai::HoudaiShotGunNode::__ct((Game::Houdai::Obj*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
- */
-void Game::Houdai::HoudaiShotGunNode::create(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void setPosition__Q34Game6Houdai17HoudaiShotGunNodeFR10Vector3<float>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void setVelocity__Q34Game6Houdai17HoudaiShotGunNodeFR10Vector3<float>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
- */
-void Game::Houdai::HoudaiShotGunNode::startShotGun(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C39C4
  * Size:	000B10
  */
-void Game::Houdai::HoudaiShotGunNode::update(void)
+void Game::Houdai::HoudaiShotGunNode::update()
 {
 	/*
 	.loc_0x0:
@@ -924,40 +864,10 @@ void Game::Houdai::HoudaiShotGunNode::update(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000030
- */
-void Game::Houdai::HoudaiShotGunNode::effectDrawOn(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void Game::Houdai::HoudaiShotGunNode::effectDrawOff(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::Houdai::HoudaiShotGunNode::doDebugDraw((Graphics&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C44D4
  * Size:	000240
  */
-void Game::Houdai::HoudaiShotGunMgr::__ct((Game::Houdai::Obj*))
+void Game::Houdai::HoudaiShotGunMgr::HoudaiShotGunMgr(Game::Houdai::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -1125,7 +1035,7 @@ void Game::Houdai::HoudaiShotGunMgr::__ct((Game::Houdai::Obj*))
  * Address:	802C4714
  * Size:	0000B4
  */
-void Game::Houdai::HoudaiShotGunMgr::setupShotGun(void)
+void Game::Houdai::HoudaiShotGunMgr::setupShotGun()
 {
 	/*
 	.loc_0x0:
@@ -1182,7 +1092,7 @@ void Game::Houdai::HoudaiShotGunMgr::setupShotGun(void)
  * Address:	802C47C8
  * Size:	00000C
  */
-void Game::Houdai::HoudaiShotGunMgr::resetCallBack(void)
+void Game::Houdai::HoudaiShotGunMgr::resetCallBack()
 {
 	/*
 	.loc_0x0:
@@ -1197,7 +1107,7 @@ void Game::Houdai::HoudaiShotGunMgr::resetCallBack(void)
  * Address:	802C47D4
  * Size:	000008
  */
-void Game::Houdai::HoudaiShotGunMgr::setCallBack(void)
+void Game::Houdai::HoudaiShotGunMgr::setCallBack()
 {
 	/*
 	.loc_0x0:
@@ -1211,7 +1121,7 @@ void Game::Houdai::HoudaiShotGunMgr::setCallBack(void)
  * Address:	802C47DC
  * Size:	000024
  */
-void Game::Houdai::HoudaiShotGunMgr::startRotation(void)
+void Game::Houdai::HoudaiShotGunMgr::startRotation()
 {
 	/*
 	.loc_0x0:
@@ -1232,7 +1142,7 @@ void Game::Houdai::HoudaiShotGunMgr::startRotation(void)
  * Address:	802C4800
  * Size:	000014
  */
-void Game::Houdai::HoudaiShotGunMgr::finishRotation(void)
+void Game::Houdai::HoudaiShotGunMgr::finishRotation()
 {
 	/*
 	.loc_0x0:
@@ -1249,7 +1159,7 @@ void Game::Houdai::HoudaiShotGunMgr::finishRotation(void)
  * Address:	802C4814
  * Size:	000008
  */
-void Game::Houdai::HoudaiShotGunMgr::isShotGunRotation(void)
+void Game::Houdai::HoudaiShotGunMgr::isShotGunRotation()
 {
 	/*
 	.loc_0x0:
@@ -1263,7 +1173,7 @@ void Game::Houdai::HoudaiShotGunMgr::isShotGunRotation(void)
  * Address:	802C481C
  * Size:	000008
  */
-void Game::Houdai::HoudaiShotGunMgr::isShotGunLockOn(void)
+void Game::Houdai::HoudaiShotGunMgr::isShotGunLockOn()
 {
 	/*
 	.loc_0x0:
@@ -1277,7 +1187,7 @@ void Game::Houdai::HoudaiShotGunMgr::isShotGunLockOn(void)
  * Address:	802C4824
  * Size:	000008
  */
-void Game::Houdai::HoudaiShotGunMgr::isFinishShotGun(void)
+void Game::Houdai::HoudaiShotGunMgr::isFinishShotGun()
 {
 	/*
 	.loc_0x0:
@@ -1291,7 +1201,7 @@ void Game::Houdai::HoudaiShotGunMgr::isFinishShotGun(void)
  * Address:	802C482C
  * Size:	00001C
  */
-void setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<float>(void)
+void Game::Houdai::HoudaiShotGunMgr::setShotGunTarget(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1310,7 +1220,7 @@ void setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<float>(void)
  * Address:	802C4848
  * Size:	0003C0
  */
-void Game::Houdai::HoudaiShotGunMgr::emitShotGun(void)
+void Game::Houdai::HoudaiShotGunMgr::emitShotGun()
 {
 	/*
 	.loc_0x0:
@@ -1582,7 +1492,7 @@ void Game::Houdai::HoudaiShotGunMgr::emitShotGun(void)
  * Address:	802C4C08
  * Size:	000084
  */
-void Game::Houdai::HoudaiShotGunMgr::doUpdate(void)
+void Game::Houdai::HoudaiShotGunMgr::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -1635,7 +1545,7 @@ void Game::Houdai::HoudaiShotGunMgr::doUpdate(void)
  * Address:	802C4C8C
  * Size:	000078
  */
-void Game::Houdai::HoudaiShotGunMgr::doUpdateCommon(void)
+void Game::Houdai::HoudaiShotGunMgr::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -1683,7 +1593,7 @@ void Game::Houdai::HoudaiShotGunMgr::doUpdateCommon(void)
  * Address:	802C4D04
  * Size:	000084
  */
-void Game::Houdai::HoudaiShotGunMgr::forceFinishShotGun(void)
+void Game::Houdai::HoudaiShotGunMgr::forceFinishShotGun()
 {
 	/*
 	.loc_0x0:
@@ -1732,7 +1642,7 @@ void Game::Houdai::HoudaiShotGunMgr::forceFinishShotGun(void)
  * Address:	802C4D88
  * Size:	000234
  */
-void Game::Houdai::HoudaiShotGunMgr::searchShotGunRotation(void)
+void Game::Houdai::HoudaiShotGunMgr::searchShotGunRotation()
 {
 	/*
 	.loc_0x0:
@@ -1917,7 +1827,7 @@ void Game::Houdai::HoudaiShotGunMgr::searchShotGunRotation(void)
  * Address:	802C4FBC
  * Size:	000178
  */
-void Game::Houdai::HoudaiShotGunMgr::returnShotGunRotation(void)
+void Game::Houdai::HoudaiShotGunMgr::returnShotGunRotation()
 {
 	/*
 	.loc_0x0:
@@ -2061,7 +1971,7 @@ void Game::Houdai::HoudaiShotGunMgr::returnShotGunRotation(void)
  * Address:	802C5134
  * Size:	000068
  */
-void Game::Houdai::HoudaiShotGunMgr::rotateLevel((J3DJoint*))
+void Game::Houdai::HoudaiShotGunMgr::rotateLevel(J3DJoint*)
 {
 	/*
 	.loc_0x0:
@@ -2101,7 +2011,7 @@ void Game::Houdai::HoudaiShotGunMgr::rotateLevel((J3DJoint*))
  * Address:	802C519C
  * Size:	000258
  */
-void Game::Houdai::HoudaiShotGunMgr::rotateVertical((J3DJoint*))
+void Game::Houdai::HoudaiShotGunMgr::rotateVertical(J3DJoint*)
 {
 	/*
 	.loc_0x0:
@@ -2286,20 +2196,10 @@ void Game::Houdai::HoudaiShotGunMgr::rotateVertical((J3DJoint*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000A8
- */
-void Game::Houdai::HoudaiShotGunMgr::startLockOnEffect(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C53F4
  * Size:	000030
  */
-void Game::Houdai::HoudaiShotGunMgr::finishLockOnEffect(void)
+void Game::Houdai::HoudaiShotGunMgr::finishLockOnEffect()
 {
 	/*
 	.loc_0x0:
@@ -2323,7 +2223,7 @@ void Game::Houdai::HoudaiShotGunMgr::finishLockOnEffect(void)
  * Address:	802C5424
  * Size:	000250
  */
-void Game::Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition(void)
+void Game::Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition()
 {
 	/*
 	.loc_0x0:
@@ -2499,7 +2399,7 @@ void Game::Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition(void)
  * Address:	802C5674
  * Size:	00009C
  */
-void Game::Houdai::HoudaiShotGunMgr::effectDrawOn(void)
+void Game::Houdai::HoudaiShotGunMgr::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -2558,7 +2458,7 @@ void Game::Houdai::HoudaiShotGunMgr::effectDrawOn(void)
  * Address:	802C5710
  * Size:	00009C
  */
-void Game::Houdai::HoudaiShotGunMgr::effectDrawOff(void)
+void Game::Houdai::HoudaiShotGunMgr::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -2617,7 +2517,7 @@ void Game::Houdai::HoudaiShotGunMgr::effectDrawOff(void)
  * Address:	802C57AC
  * Size:	000030
  */
-void Game::Houdai::HoudaiShotGunMgr::startStoneStateEffectOff(void)
+void Game::Houdai::HoudaiShotGunMgr::startStoneStateEffectOff()
 {
 	/*
 	.loc_0x0:
@@ -2641,7 +2541,7 @@ void Game::Houdai::HoudaiShotGunMgr::startStoneStateEffectOff(void)
  * Address:	802C57DC
  * Size:	000030
  */
-void Game::Houdai::HoudaiShotGunMgr::finishStoneStateEffectOn(void)
+void Game::Houdai::HoudaiShotGunMgr::finishStoneStateEffectOn()
 {
 	/*
 	.loc_0x0:
@@ -2662,20 +2562,10 @@ void Game::Houdai::HoudaiShotGunMgr::finishStoneStateEffectOn(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::Houdai::HoudaiShotGunMgr::doDebugDraw((Graphics&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C580C
  * Size:	00009C
  */
-void efx::THdamaSight::__dt(void)
+void efx::THdamaSight::~THdamaSight()
 {
 	/*
 	.loc_0x0:
@@ -2730,7 +2620,7 @@ void efx::THdamaSight::__dt(void)
  * Address:	802C58A8
  * Size:	000008
  */
-void efx::ArgDir::getName(void)
+void efx::ArgDir::getName()
 {
 	/*
 	.loc_0x0:
@@ -2744,7 +2634,7 @@ void efx::ArgDir::getName(void)
  * Address:	802C58B0
  * Size:	000060
  */
-void Game::Houdai::HoudaiShotGunNode::__dt(void)
+void Game::Houdai::HoudaiShotGunNode::~HoudaiShotGunNode()
 {
 	/*
 	.loc_0x0:
@@ -2782,7 +2672,7 @@ void Game::Houdai::HoudaiShotGunNode::__dt(void)
  * Address:	802C5910
  * Size:	000008
  */
-void @4 @efx::THdamaSight::__dt(void)
+void efx::THdamaSight::@4 @__dt()
 {
 	/*
 	.loc_0x0:

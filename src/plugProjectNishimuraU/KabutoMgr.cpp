@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802E3D68
  * Size:	000050
  */
-void Game::Kabuto::Mgr::__ct((int, unsigned char))
+void Game::Kabuto::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Kabuto::Mgr::__ct((int, unsigned char))
  * Address:	802E3DB8
  * Size:	0000E8
  */
-void Game::Kabuto::Mgr::loadModelData(void)
+void Game::Kabuto::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -127,7 +117,7 @@ void Game::Kabuto::Mgr::loadModelData(void)
  * Address:	802E3EA0
  * Size:	0000A0
  */
-void Game::Kabuto::Mgr::loadAnimData(void)
+void Game::Kabuto::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -185,7 +175,7 @@ void Game::Kabuto::Mgr::loadAnimData(void)
  * Address:	802E3F40
  * Size:	00014C
  */
-void Game::Kabuto::Mgr::createModel(void)
+void Game::Kabuto::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Game::Kabuto::Mgr::createModel(void)
  * Address:	802E408C
  * Size:	0000B0
  */
-void Game::Kabuto::Mgr::__dt(void)
+void Game::Kabuto::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -352,7 +342,7 @@ void Game::Kabuto::Mgr::__dt(void)
  * Address:	802E413C
  * Size:	000008
  */
-void Game::Kabuto::Mgr::getEnemyTypeID(void)
+void Game::Kabuto::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -366,7 +356,7 @@ void Game::Kabuto::Mgr::getEnemyTypeID(void)
  * Address:	802E4144
  * Size:	00002C
  */
-void Game::Kabuto::Mgr::doLoadBmd((void*))
+void Game::Kabuto::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +379,7 @@ void Game::Kabuto::Mgr::doLoadBmd((void*))
  * Address:	802E4170
  * Size:	000008
  */
-void @4 @Game::Kabuto::Mgr::__dt(void)
+void Game::Kabuto::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

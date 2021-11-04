@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80288E40
  * Size:	000008
  */
-void Game::Queen::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Queen::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Queen::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80288E48
  * Size:	000008
  */
-void Game::Queen::ProperAnimator::getAnimator((int))
+void Game::Queen::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Queen::ProperAnimator::getAnimator((int))
  * Address:	80288E50
  * Size:	00005C
  */
-void Game::Queen::ProperAnimator::__dt(void)
+void Game::Queen::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Queen::ProperAnimator::__dt(void)
  * Address:	80288EAC
  * Size:	000008
  */
-void Game::Queen::ProperAnimator::getAnimator(void)
+void Game::Queen::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

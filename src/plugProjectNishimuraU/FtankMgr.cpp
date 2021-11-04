@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029E12C
  * Size:	000050
  */
-void Game::Ftank::Mgr::__ct((int, unsigned char))
+void Game::Ftank::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Ftank::Mgr::__ct((int, unsigned char))
  * Address:	8029E17C
  * Size:	000048
  */
-void Game::Ftank::Mgr::doAlloc(void)
+void Game::Ftank::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::Ftank::Mgr::doAlloc(void)
  * Address:	8029E1C4
  * Size:	000060
  */
-void Game::Ftank::Mgr::createObj((int))
+void Game::Ftank::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::Ftank::Mgr::createObj((int))
  * Address:	8029E224
  * Size:	0000F0
  */
-void Game::Ftank::Obj::__dt(void)
+void Game::Ftank::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::Ftank::Obj::__dt(void)
  * Address:	8029E314
  * Size:	000010
  */
-void Game::Ftank::Mgr::getEnemy((int))
+void Game::Ftank::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::Ftank::Mgr::getEnemy((int))
  * Address:	8029E324
  * Size:	000080
  */
-void Game::Ftank::Mgr::loadTexData(void)
+void Game::Ftank::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +245,7 @@ void Game::Ftank::Mgr::loadTexData(void)
  * Address:	8029E3A4
  * Size:	0000C8
  */
-void Game::Ftank::Mgr::__dt(void)
+void Game::Ftank::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::Ftank::Mgr::__dt(void)
  * Address:	8029E46C
  * Size:	000008
  */
-void Game::Ftank::Mgr::getEnemyTypeID(void)
+void Game::Ftank::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::Ftank::Mgr::getEnemyTypeID(void)
  * Address:	8029E474
  * Size:	000008
  */
-void Game::Ftank::Mgr::getChangeTexture(void)
+void Game::Ftank::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -349,7 +339,7 @@ void Game::Ftank::Mgr::getChangeTexture(void)
  * Address:	8029E47C
  * Size:	000008
  */
-void @4 @Game::Ftank::Mgr::__dt(void)
+void Game::Ftank::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

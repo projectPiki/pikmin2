@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029EF0C
  * Size:	00005C
  */
-void Game::Cave::RandPlantUnit::__ct((Game::Cave::MapUnitGenerator*))
+void Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -56,7 +46,7 @@ void Game::Cave::RandPlantUnit::__ct((Game::Cave::MapUnitGenerator*))
  * Address:	8029EF68
  * Size:	0000DC
  */
-void Game::Cave::RandPlantUnit::setPlantSlot(void)
+void Game::Cave::RandPlantUnit::setPlantSlot()
 {
 	/*
 	.loc_0x0:
@@ -133,7 +123,7 @@ void Game::Cave::RandPlantUnit::setPlantSlot(void)
  * Address:	8029F044
  * Size:	000134
  */
-void Game::Cave::RandPlantUnit::getPlantSetMapNode((Game::Cave::BaseGen**))
+void Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +228,7 @@ void Game::Cave::RandPlantUnit::getPlantSetMapNode((Game::Cave::BaseGen**))
  * Address:	8029F178
  * Size:	000068
  */
-void Game::Cave::RandPlantUnit::getPlantUnit((Game::Cave::BaseGen*))
+void Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -284,8 +274,8 @@ void Game::Cave::RandPlantUnit::getPlantUnit((Game::Cave::BaseGen*))
  * Address:	8029F1E0
  * Size:	000048
  */
-void Game::Cave::RandPlantUnit::isPlantSet((Game::Cave::MapNode*,
-                                            Game::Cave::BaseGen*))
+void Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode*,
+                                           Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:

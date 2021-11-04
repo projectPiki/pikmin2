@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802E4178
  * Size:	00014C
  */
-void Game::Kabuto::Obj::__ct(void)
+void Game::Kabuto::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -116,7 +106,7 @@ void Game::Kabuto::Obj::__ct(void)
  * Address:	802E42C4
  * Size:	000004
  */
-void Game::Kabuto::Obj::createEffect(void)
+void Game::Kabuto::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -129,7 +119,7 @@ void Game::Kabuto::Obj::createEffect(void)
  * Address:	802E42C8
  * Size:	000004
  */
-void Game::Kabuto::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Kabuto::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -142,7 +132,7 @@ void Game::Kabuto::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802E42CC
  * Size:	000108
  */
-void Game::Kabuto::Obj::onInit((Game::CreatureInitArg*))
+void Game::Kabuto::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -226,7 +216,7 @@ void Game::Kabuto::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802E43D4
  * Size:	000004
  */
-void Game::Kabuto::Obj::setupEffect(void)
+void Game::Kabuto::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -239,7 +229,7 @@ void Game::Kabuto::Obj::setupEffect(void)
  * Address:	802E43D8
  * Size:	000044
  */
-void Game::Kabuto::Obj::doUpdate(void)
+void Game::Kabuto::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -268,7 +258,7 @@ void Game::Kabuto::Obj::doUpdate(void)
  * Address:	802E441C
  * Size:	000004
  */
-void Game::Kabuto::Obj::doDirectDraw((Graphics&))
+void Game::Kabuto::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -281,7 +271,7 @@ void Game::Kabuto::Obj::doDirectDraw((Graphics&))
  * Address:	802E4420
  * Size:	000020
  */
-void Game::Kabuto::Obj::doDebugDraw((Graphics&))
+void Game::Kabuto::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -301,7 +291,7 @@ void Game::Kabuto::Obj::doDebugDraw((Graphics&))
  * Address:	802E4440
  * Size:	00004C
  */
-void Game::Kabuto::Obj::setFSM((Game::Kabuto::FSM*))
+void Game::Kabuto::Obj::setFSM(Game::Kabuto::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -332,7 +322,7 @@ void Game::Kabuto::Obj::setFSM((Game::Kabuto::FSM*))
  * Address:	802E448C
  * Size:	0000A8
  */
-void Game::Kabuto::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Kabuto::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -390,7 +380,7 @@ void Game::Kabuto::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802E4534
  * Size:	000054
  */
-void Game::Kabuto::Obj::doStartStoneState(void)
+void Game::Kabuto::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -423,7 +413,7 @@ void Game::Kabuto::Obj::doStartStoneState(void)
  * Address:	802E4588
  * Size:	0000B0
  */
-void Game::Kabuto::Obj::doFinishStoneState(void)
+void Game::Kabuto::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -483,7 +473,7 @@ void Game::Kabuto::Obj::doFinishStoneState(void)
  * Address:	802E4638
  * Size:	000028
  */
-void Game::Kabuto::Obj::startCarcassMotion(void)
+void Game::Kabuto::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -505,7 +495,7 @@ void Game::Kabuto::Obj::startCarcassMotion(void)
  * Address:	802E4660
  * Size:	00002C
  */
-void Game::Kabuto::Obj::doStartMovie(void)
+void Game::Kabuto::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -528,7 +518,7 @@ void Game::Kabuto::Obj::doStartMovie(void)
  * Address:	802E468C
  * Size:	000004
  */
-void Game::Kabuto::Obj::effectDrawOff(void)
+void Game::Kabuto::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -541,7 +531,7 @@ void Game::Kabuto::Obj::effectDrawOff(void)
  * Address:	802E4690
  * Size:	00002C
  */
-void Game::Kabuto::Obj::doEndMovie(void)
+void Game::Kabuto::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -564,7 +554,7 @@ void Game::Kabuto::Obj::doEndMovie(void)
  * Address:	802E46BC
  * Size:	000004
  */
-void Game::Kabuto::Obj::effectDrawOn(void)
+void Game::Kabuto::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -577,7 +567,7 @@ void Game::Kabuto::Obj::effectDrawOn(void)
  * Address:	802E46C0
  * Size:	000094
  */
-void Game::Kabuto::Obj::initWalkSmokeEffect(void)
+void Game::Kabuto::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -626,7 +616,7 @@ void Game::Kabuto::Obj::initWalkSmokeEffect(void)
  * Address:	802E4754
  * Size:	000008
  */
-void Game::Kabuto::Obj::getWalkSmokeEffectMgr(void)
+void Game::Kabuto::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -640,7 +630,7 @@ void Game::Kabuto::Obj::getWalkSmokeEffectMgr(void)
  * Address:	802E475C
  * Size:	000198
  */
-void Game::Kabuto::Obj::setRandTarget(void)
+void Game::Kabuto::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -760,7 +750,7 @@ void Game::Kabuto::Obj::setRandTarget(void)
  * Address:	802E48F4
  * Size:	000058
  */
-void Game::Kabuto::Obj::getSearchedTarget(void)
+void Game::Kabuto::Obj::getSearchedTarget()
 {
 	/*
 	.loc_0x0:
@@ -796,7 +786,7 @@ void Game::Kabuto::Obj::getSearchedTarget(void)
  * Address:	802E494C
  * Size:	0002BC
  */
-void Game::Kabuto::Obj::isAttackableTarget(void)
+void Game::Kabuto::Obj::isAttackableTarget()
 {
 	/*
 	.loc_0x0:
@@ -1007,7 +997,7 @@ void Game::Kabuto::Obj::isAttackableTarget(void)
  * Address:	802E4C08
  * Size:	0000E4
  */
-void Game::Kabuto::Obj::createStoneAttack(void)
+void Game::Kabuto::Obj::createStoneAttack()
 {
 	/*
 	.loc_0x0:
@@ -1080,7 +1070,7 @@ void Game::Kabuto::Obj::createStoneAttack(void)
  * Address:	802E4CEC
  * Size:	000050
  */
-void Game::Kabuto::Obj::updateCaution(void)
+void Game::Kabuto::Obj::updateCaution()
 {
 	/*
 	.loc_0x0:
@@ -1116,7 +1106,7 @@ void Game::Kabuto::Obj::updateCaution(void)
  * Address:	802E4D3C
  * Size:	000024
  */
-void Game::Kabuto::Obj::getViewAngle(void)
+void Game::Kabuto::Obj::getViewAngle()
 {
 	/*
 	.loc_0x0:
@@ -1130,168 +1120,6 @@ void Game::Kabuto::Obj::getViewAngle(void)
 
 	.loc_0x1C:
 	  lfs       f1, 0x424(r4)
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802E4D60
- * Size:	000040
- */
-void Game::Kabuto::Obj::lifeIncrement(void)
-{
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x1594(r2)
-	  lfs       f0, -0x1584(r2)
-	  stfs      f1, 0x208(r3)
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0x1E0(r3)
-	  lfs       f1, 0x200(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x200(r3)
-	  lwz       r4, 0xC0(r3)
-	  lfs       f1, 0x200(r3)
-	  lfs       f0, 0x104(r4)
-	  fcmpo     cr0, f1, f0
-	  blelr-
-	  stfs      f0, 0x200(r3)
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802E4DA0
- * Size:	00007C
- */
-void Game::Kabuto::Obj::createRockEmitEffect(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  subi      r4, r2, 0x1510
-	  stw       r0, 0x24(r1)
-	  lwz       r3, 0x174(r3)
-	  bl        0x15A230
-	  bl        0x144AE8
-	  lis       r5, 0x804B
-	  lis       r4, 0x804E
-	  subi      r0, r5, 0x5808
-	  lis       r5, 0x804E
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x6A78
-	  lis       r4, 0x804D
-	  li        r7, 0xC2
-	  stw       r0, 0x8(r1)
-	  addi      r5, r5, 0x6A14
-	  li        r6, 0
-	  addi      r0, r4, 0x3C40
-	  stw       r5, 0x8(r1)
-	  li        r4, 0
-	  stw       r3, 0x14(r1)
-	  addi      r3, r1, 0x8
-	  sth       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  bl        0xCA4AC
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802E4E1C
- * Size:	0000BC
- */
-void Game::Kabuto::Obj::__dt(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804D
-	  addi      r0, r31, 0x2E4
-	  addi      r4, r3, 0x3C54
-	  stw       r4, 0x0(r31)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x31C
-	  stw       r3, 0x178(r31)
-	  lwz       r3, 0x17C(r31)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r31)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0x90
-	  lis       r3, 0x804B
-	  addi      r0, r31, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r31, 0x290
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r31)
-	  lwz       r5, 0x17C(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r31)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x12C6E0
-
-	.loc_0x90:
-	  extsh.    r0, r30
-	  ble-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x2C0E04
-
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802E4ED8
- * Size:	000008
- */
-void Game::Kabuto::Obj::isUnderground(void)
-{
-	/*
-	.loc_0x0:
-	  lbz       r3, 0x2E1(r3)
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802E4EE0
- * Size:	000008
- */
-void Game::Kabuto::Obj::getDownSmokeScale(void)
-{
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x1508(r2)
 	  blr
 	*/
 }

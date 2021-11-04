@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8025FA8C
  * Size:	000094
  */
-void Game::Qurione::Generator::__ct(void)
+void Game::Qurione::Generator::Generator()
 {
 	/*
 	.loc_0x0:
@@ -64,7 +54,7 @@ void Game::Qurione::Generator::__ct(void)
  * Address:	8025FB20
  * Size:	00000C
  */
-void Game::Qurione::Generator::getLatestVersion(void)
+void Game::Qurione::Generator::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::Qurione::Generator::getLatestVersion(void)
  * Address:	8025FB2C
  * Size:	000074
  */
-void Game::Qurione::Generator::doRead((Stream&))
+void Game::Qurione::Generator::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::Qurione::Generator::doRead((Stream&))
  * Address:	8025FBA0
  * Size:	000080
  */
-void Game::Qurione::Generator::doWrite((Stream&))
+void Game::Qurione::Generator::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -168,7 +158,7 @@ void Game::Qurione::Generator::doWrite((Stream&))
  * Address:	8025FC20
  * Size:	00004C
  */
-void Game::Qurione::Generator::doReadLatestVersion((Stream&))
+void Game::Qurione::Generator::doReadLatestVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +189,7 @@ void Game::Qurione::Generator::doReadLatestVersion((Stream&))
  * Address:	8025FC6C
  * Size:	000004
  */
-void Game::Qurione::Generator::doReadOldVersion((Stream&))
+void Game::Qurione::Generator::doReadOldVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -212,7 +202,7 @@ void Game::Qurione::Generator::doReadOldVersion((Stream&))
  * Address:	8025FC70
  * Size:	000050
  */
-void Game::Qurione::Mgr::__ct((int, unsigned char))
+void Game::Qurione::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -244,7 +234,7 @@ void Game::Qurione::Mgr::__ct((int, unsigned char))
  * Address:	8025FCC0
  * Size:	000048
  */
-void Game::Qurione::Mgr::doAlloc(void)
+void Game::Qurione::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -278,7 +268,7 @@ void Game::Qurione::Mgr::doAlloc(void)
  * Address:	8025FD08
  * Size:	000190
  */
-void Game::Qurione::Parms::__ct(void)
+void Game::Qurione::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -390,7 +380,7 @@ void Game::Qurione::Parms::__ct(void)
  * Address:	8025FE98
  * Size:	000060
  */
-void Game::Qurione::Mgr::createObj((int))
+void Game::Qurione::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +416,7 @@ void Game::Qurione::Mgr::createObj((int))
  * Address:	8025FEF8
  * Size:	0000BC
  */
-void Game::Qurione::Obj::__dt(void)
+void Game::Qurione::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -489,7 +479,7 @@ void Game::Qurione::Obj::__dt(void)
  * Address:	8025FFB4
  * Size:	000010
  */
-void Game::Qurione::Mgr::getEnemy((int))
+void Game::Qurione::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -505,7 +495,7 @@ void Game::Qurione::Mgr::getEnemy((int))
  * Address:	8025FFC4
  * Size:	000050
  */
-void Game::Qurione::Parms::read((Stream&))
+void Game::Qurione::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -537,7 +527,7 @@ void Game::Qurione::Parms::read((Stream&))
  * Address:	80260014
  * Size:	0000B0
  */
-void Game::Qurione::Mgr::__dt(void)
+void Game::Qurione::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -597,7 +587,7 @@ void Game::Qurione::Mgr::__dt(void)
  * Address:	802600C4
  * Size:	000008
  */
-void Game::Qurione::Mgr::getEnemyTypeID(void)
+void Game::Qurione::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -611,7 +601,7 @@ void Game::Qurione::Mgr::getEnemyTypeID(void)
  * Address:	802600CC
  * Size:	00002C
  */
-void Game::Qurione::Mgr::doLoadBmd((void*))
+void Game::Qurione::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -634,7 +624,7 @@ void Game::Qurione::Mgr::doLoadBmd((void*))
  * Address:	802600F8
  * Size:	000070
  */
-void Game::Qurione::Generator::__dt(void)
+void Game::Qurione::Generator::~Generator()
 {
 	/*
 	.loc_0x0:
@@ -678,7 +668,7 @@ void Game::Qurione::Generator::__dt(void)
  * Address:	80260168
  * Size:	000008
  */
-void Game::Qurione::Generator::getInitialParam(void)
+void Game::Qurione::Generator::getInitialParam()
 {
 	/*
 	.loc_0x0:
@@ -692,7 +682,7 @@ void Game::Qurione::Generator::getInitialParam(void)
  * Address:	80260170
  * Size:	000008
  */
-void @4 @Game::Qurione::Mgr::__dt(void)
+void Game::Qurione::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

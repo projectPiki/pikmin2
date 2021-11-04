@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8027A828
  * Size:	000008
  */
-void Game::ElecBug::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::ElecBug::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::ElecBug::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8027A830
  * Size:	000008
  */
-void Game::ElecBug::ProperAnimator::getAnimator((int))
+void Game::ElecBug::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::ElecBug::ProperAnimator::getAnimator((int))
  * Address:	8027A838
  * Size:	00005C
  */
-void Game::ElecBug::ProperAnimator::__dt(void)
+void Game::ElecBug::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::ElecBug::ProperAnimator::__dt(void)
  * Address:	8027A894
  * Size:	000008
  */
-void Game::ElecBug::ProperAnimator::getAnimator(void)
+void Game::ElecBug::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

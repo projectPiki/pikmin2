@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8024FE70
  * Size:	000074
  */
-void Game::Cave::RandGateUnit::__ct((Game::Cave::MapUnitGenerator*))
+void Game::Cave::RandGateUnit::RandGateUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -60,8 +50,8 @@ void Game::Cave::RandGateUnit::__ct((Game::Cave::MapUnitGenerator*))
  * Address:	8024FEE4
  * Size:	00000C
  */
-void Game::Cave::RandGateUnit::setManageClassPtr((Game::Cave::RandMapScore*,
-                                                  Game::Cave::RandItemUnit*))
+void Game::Cave::RandGateUnit::setManageClassPtr(Game::Cave::RandMapScore*,
+                                                 Game::Cave::RandItemUnit*)
 {
 	/*
 	.loc_0x0:
@@ -76,7 +66,7 @@ void Game::Cave::RandGateUnit::setManageClassPtr((Game::Cave::RandMapScore*,
  * Address:	8024FEF0
  * Size:	0000D8
  */
-void Game::Cave::RandGateUnit::setGateDoor(void)
+void Game::Cave::RandGateUnit::setGateDoor()
 {
 	/*
 	.loc_0x0:
@@ -152,7 +142,7 @@ void Game::Cave::RandGateUnit::setGateDoor(void)
  * Address:	8024FFC8
  * Size:	0000D4
  */
-void Game::Cave::RandGateUnit::getGateUnit(void)
+void Game::Cave::RandGateUnit::getGateUnit()
 {
 	/*
 	.loc_0x0:
@@ -229,7 +219,7 @@ void Game::Cave::RandGateUnit::getGateUnit(void)
  * Address:	8025009C
  * Size:	0000BC
  */
-void Game::Cave::RandGateUnit::getRoomNodePtr((int&))
+void Game::Cave::RandGateUnit::getRoomNodePtr(int&)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +288,7 @@ void Game::Cave::RandGateUnit::getRoomNodePtr((int&))
  * Address:	80250158
  * Size:	000160
  */
-void Game::Cave::RandGateUnit::getItemSetCapDoor((int&))
+void Game::Cave::RandGateUnit::getItemSetCapDoor(int&)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +404,7 @@ void Game::Cave::RandGateUnit::getItemSetCapDoor((int&))
  * Address:	802502B8
  * Size:	0000E4
  */
-void Game::Cave::RandGateUnit::getRoomMinScoreDoor((int&))
+void Game::Cave::RandGateUnit::getRoomMinScoreDoor(int&)
 {
 	/*
 	.loc_0x0:
@@ -497,7 +487,7 @@ void Game::Cave::RandGateUnit::getRoomMinScoreDoor((int&))
  * Address:	8025039C
  * Size:	000218
  */
-void Game::Cave::RandGateUnit::getRoomLowScoreDoor((int&))
+void Game::Cave::RandGateUnit::getRoomLowScoreDoor(int&)
 {
 	/*
 	.loc_0x0:
@@ -675,7 +665,7 @@ void Game::Cave::RandGateUnit::getRoomLowScoreDoor((int&))
  * Address:	802505B4
  * Size:	000270
  */
-void Game::Cave::RandGateUnit::getRandomScoreDoor((int&))
+void Game::Cave::RandGateUnit::getRandomScoreDoor(int&)
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802AD090
  * Size:	000008
  */
-void Game::Kurage::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Kurage::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Kurage::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802AD098
  * Size:	000008
  */
-void Game::Kurage::ProperAnimator::getAnimator((int))
+void Game::Kurage::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Kurage::ProperAnimator::getAnimator((int))
  * Address:	802AD0A0
  * Size:	00005C
  */
-void Game::Kurage::ProperAnimator::__dt(void)
+void Game::Kurage::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Kurage::ProperAnimator::__dt(void)
  * Address:	802AD0FC
  * Size:	000008
  */
-void Game::Kurage::ProperAnimator::getAnimator(void)
+void Game::Kurage::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029BBC4
  * Size:	000008
  */
-void Game::Fuefuki::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Fuefuki::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Fuefuki::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8029BBCC
  * Size:	000008
  */
-void Game::Fuefuki::ProperAnimator::getAnimator((int))
+void Game::Fuefuki::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Fuefuki::ProperAnimator::getAnimator((int))
  * Address:	8029BBD4
  * Size:	00005C
  */
-void Game::Fuefuki::ProperAnimator::__dt(void)
+void Game::Fuefuki::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Fuefuki::ProperAnimator::__dt(void)
  * Address:	8029BC30
  * Size:	000008
  */
-void Game::Fuefuki::ProperAnimator::getAnimator(void)
+void Game::Fuefuki::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

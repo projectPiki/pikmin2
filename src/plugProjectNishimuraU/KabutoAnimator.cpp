@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802E3CF4
  * Size:	000008
  */
-void Game::Kabuto::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Kabuto::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Kabuto::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802E3CFC
  * Size:	000008
  */
-void Game::Kabuto::ProperAnimator::getAnimator((int))
+void Game::Kabuto::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Kabuto::ProperAnimator::getAnimator((int))
  * Address:	802E3D04
  * Size:	00005C
  */
-void Game::Kabuto::ProperAnimator::__dt(void)
+void Game::Kabuto::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Kabuto::ProperAnimator::__dt(void)
  * Address:	802E3D60
  * Size:	000008
  */
-void Game::Kabuto::ProperAnimator::getAnimator(void)
+void Game::Kabuto::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,11 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80300E68
  * Size:	00002C
  */
-void Game::Cave::RandCapEnemyUnit::__ct((Game::Cave::MapUnitGenerator*))
+void Game::Cave::RandCapEnemyUnit::RandCapEnemyUnit(
+    Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
@@ -38,8 +29,7 @@ void Game::Cave::RandCapEnemyUnit::__ct((Game::Cave::MapUnitGenerator*))
  * Address:	80300E94
  * Size:	000008
  */
-void
-    Game::Cave::RandCapEnemyUnit::setManageClassPtr((Game::Cave::RandItemUnit*))
+void Game::Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit*)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +43,7 @@ void
  * Address:	80300E9C
  * Size:	000108
  */
-void Game::Cave::RandCapEnemyUnit::setCapEnemySlot(void)
+void Game::Cave::RandCapEnemyUnit::setCapEnemySlot()
 {
 	/*
 	.loc_0x0:
@@ -145,8 +135,8 @@ void Game::Cave::RandCapEnemyUnit::setCapEnemySlot(void)
  * Address:	80300FA4
  * Size:	0001BC
  */
-void Game::Cave::RandCapEnemyUnit::setCapCommonEnemySlot((Game::Cave::MapNode*,
-                                                          int))
+void Game::Cave::RandCapEnemyUnit::setCapCommonEnemySlot(Game::Cave::MapNode*,
+                                                         int)
 {
 	/*
 	.loc_0x0:
@@ -289,9 +279,8 @@ void Game::Cave::RandCapEnemyUnit::setCapCommonEnemySlot((Game::Cave::MapNode*,
  * Address:	80301160
  * Size:	000098
  */
-void Game::Cave::RandCapEnemyUnit::setCapEnemy((Game::Cave::MapNode*,
-                                                Game::Cave::EnemyUnit*, int,
-                                                int))
+void Game::Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*,
+                                               Game::Cave::EnemyUnit*, int, int)
 {
 	/*
 	.loc_0x0:

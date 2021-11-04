@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802785D0
  * Size:	000130
  */
-void Game::Tadpole::Obj::__ct(void)
+void Game::Tadpole::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -109,7 +99,7 @@ void Game::Tadpole::Obj::__ct(void)
  * Address:	80278700
  * Size:	000004
  */
-void Game::Tadpole::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Tadpole::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +112,7 @@ void Game::Tadpole::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80278704
  * Size:	000064
  */
-void Game::Tadpole::Obj::onInit((Game::CreatureInitArg*))
+void Game::Tadpole::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +149,7 @@ void Game::Tadpole::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80278768
  * Size:	000034
  */
-void Game::Tadpole::Obj::doUpdate(void)
+void Game::Tadpole::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -184,7 +174,7 @@ void Game::Tadpole::Obj::doUpdate(void)
  * Address:	8027879C
  * Size:	000004
  */
-void Game::Tadpole::Obj::doDirectDraw((Graphics&))
+void Game::Tadpole::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +187,7 @@ void Game::Tadpole::Obj::doDirectDraw((Graphics&))
  * Address:	802787A0
  * Size:	000020
  */
-void Game::Tadpole::Obj::doDebugDraw((Graphics&))
+void Game::Tadpole::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +207,7 @@ void Game::Tadpole::Obj::doDebugDraw((Graphics&))
  * Address:	802787C0
  * Size:	00004C
  */
-void Game::Tadpole::Obj::setFSM((Game::Tadpole::FSM*))
+void Game::Tadpole::Obj::setFSM(Game::Tadpole::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -248,7 +238,7 @@ void Game::Tadpole::Obj::setFSM((Game::Tadpole::FSM*))
  * Address:	8027880C
  * Size:	0000B0
  */
-void Game::Tadpole::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Tadpole::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -308,7 +298,7 @@ void Game::Tadpole::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802788BC
  * Size:	000068
  */
-void Game::Tadpole::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::Tadpole::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +340,7 @@ void Game::Tadpole::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	80278924
  * Size:	000028
  */
-void Game::Tadpole::Obj::startCarcassMotion(void)
+void Game::Tadpole::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -372,7 +362,7 @@ void Game::Tadpole::Obj::startCarcassMotion(void)
  * Address:	8027894C
  * Size:	0001E4
  */
-void Game::Tadpole::Obj::setRandTarget((bool))
+void Game::Tadpole::Obj::setRandTarget(bool)
 {
 	/*
 	.loc_0x0:
@@ -513,7 +503,7 @@ void Game::Tadpole::Obj::setRandTarget((bool))
  * Address:	80278B30
  * Size:	0001C8
  */
-void Game::Tadpole::Obj::getTargetPosition((Game::Creature*))
+void Game::Tadpole::Obj::getTargetPosition(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -653,7 +643,7 @@ void Game::Tadpole::Obj::getTargetPosition((Game::Creature*))
  * Address:	80278CF8
  * Size:	000188
  */
-void Game::Tadpole::Obj::createLeapEffect(void)
+void Game::Tadpole::Obj::createLeapEffect()
 {
 	/*
 	.loc_0x0:
@@ -767,7 +757,7 @@ void Game::Tadpole::Obj::createLeapEffect(void)
  * Address:	80278E80
  * Size:	000004
  */
-void Game::Tadpole::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Tadpole::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -780,7 +770,7 @@ void Game::Tadpole::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	80278E84
  * Size:	000004
  */
-void Game::Tadpole::Obj::outWaterCallback(void)
+void Game::Tadpole::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -793,7 +783,7 @@ void Game::Tadpole::Obj::outWaterCallback(void)
  * Address:	80278E88
  * Size:	000008
  */
-void Game::Tadpole::Obj::getEnemyTypeID(void)
+void Game::Tadpole::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

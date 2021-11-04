@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C5918
  * Size:	000050
  */
-void Game::LeafChappy::Mgr::__ct((int, unsigned char))
+void Game::LeafChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::LeafChappy::Mgr::__ct((int, unsigned char))
  * Address:	802C5968
  * Size:	000048
  */
-void Game::LeafChappy::Mgr::birth((Game::EnemyBirthArg&))
+void Game::LeafChappy::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::LeafChappy::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	802C59B0
  * Size:	000048
  */
-void Game::LeafChappy::Mgr::doAlloc(void)
+void Game::LeafChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::LeafChappy::Mgr::doAlloc(void)
  * Address:	802C59F8
  * Size:	000060
  */
-void Game::LeafChappy::Mgr::createObj((int))
+void Game::LeafChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +137,7 @@ void Game::LeafChappy::Mgr::createObj((int))
  * Address:	802C5A58
  * Size:	0000F0
  */
-void Game::LeafChappy::Obj::__dt(void)
+void Game::LeafChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -223,7 +213,7 @@ void Game::LeafChappy::Obj::__dt(void)
  * Address:	802C5B48
  * Size:	000010
  */
-void Game::LeafChappy::Mgr::getEnemy((int))
+void Game::LeafChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +229,7 @@ void Game::LeafChappy::Mgr::getEnemy((int))
  * Address:	802C5B58
  * Size:	0000B0
  */
-void Game::LeafChappy::Mgr::__dt(void)
+void Game::LeafChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -299,7 +289,7 @@ void Game::LeafChappy::Mgr::__dt(void)
  * Address:	802C5C08
  * Size:	000008
  */
-void Game::LeafChappy::Mgr::getEnemyTypeID(void)
+void Game::LeafChappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -313,7 +303,7 @@ void Game::LeafChappy::Mgr::getEnemyTypeID(void)
  * Address:	802C5C10
  * Size:	000008
  */
-void @4 @Game::LeafChappy::Mgr::__dt(void)
+void Game::LeafChappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

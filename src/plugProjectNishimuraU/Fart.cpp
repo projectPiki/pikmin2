@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80285448
  * Size:	000098
  */
-void Game::Fart::Obj::__ct(void)
+void Game::Fart::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -67,7 +57,7 @@ void Game::Fart::Obj::__ct(void)
  * Address:	802854E0
  * Size:	000070
  */
-void Game::Fart::Obj::doUpdateCommon(void)
+void Game::Fart::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -109,7 +99,7 @@ void Game::Fart::Obj::doUpdateCommon(void)
  * Address:	80285550
  * Size:	0001F0
  */
-void Game::Fart::Obj::changeMaterial(void)
+void Game::Fart::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -249,7 +239,7 @@ void Game::Fart::Obj::changeMaterial(void)
  * Address:	80285740
  * Size:	000020
  */
-void Game::Fart::Obj::doDebugDraw((Graphics&))
+void Game::Fart::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -269,7 +259,7 @@ void Game::Fart::Obj::doDebugDraw((Graphics&))
  * Address:	80285760
  * Size:	0001F4
  */
-void Game::Fart::Obj::interactFartGasAttack(void)
+void Game::Fart::Obj::interactFartGasAttack()
 {
 	/*
 	.loc_0x0:
@@ -416,7 +406,7 @@ void Game::Fart::Obj::interactFartGasAttack(void)
  * Address:	80285954
  * Size:	000120
  */
-void Game::Fart::Obj::createItem(void)
+void Game::Fart::Obj::createItem()
 {
 	/*
 	.loc_0x0:
@@ -522,7 +512,7 @@ void Game::Fart::Obj::createItem(void)
  * Address:	80285A74
  * Size:	0000B8
  */
-void Game::Fart::Obj::createEffect(void)
+void Game::Fart::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -582,7 +572,7 @@ void Game::Fart::Obj::createEffect(void)
  * Address:	80285B2C
  * Size:	000024
  */
-void Game::Fart::Obj::resetFartTimer(void)
+void Game::Fart::Obj::resetFartTimer()
 {
 	/*
 	.loc_0x0:
@@ -603,7 +593,7 @@ void Game::Fart::Obj::resetFartTimer(void)
  * Address:	80285B50
  * Size:	0000A8
  */
-void Game::Fart::Obj::startBodyEffect(void)
+void Game::Fart::Obj::startBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -657,7 +647,7 @@ void Game::Fart::Obj::startBodyEffect(void)
  * Address:	80285BF8
  * Size:	000030
  */
-void Game::Fart::Obj::finishBodyEffect(void)
+void Game::Fart::Obj::finishBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -681,7 +671,7 @@ void Game::Fart::Obj::finishBodyEffect(void)
  * Address:	80285C28
  * Size:	000204
  */
-void Game::Fart::Obj::createFartEffect(void)
+void Game::Fart::Obj::createFartEffect()
 {
 	/*
 	.loc_0x0:
@@ -828,7 +818,7 @@ void Game::Fart::Obj::createFartEffect(void)
  * Address:	80285E2C
  * Size:	000030
  */
-void Game::Fart::Obj::effectDrawOn(void)
+void Game::Fart::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -852,7 +842,7 @@ void Game::Fart::Obj::effectDrawOn(void)
  * Address:	80285E5C
  * Size:	000030
  */
-void Game::Fart::Obj::effectDrawOff(void)
+void Game::Fart::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -876,7 +866,7 @@ void Game::Fart::Obj::effectDrawOff(void)
  * Address:	80285E8C
  * Size:	000044
  */
-void Game::Fart::Obj::createPressSESpecial(void)
+void Game::Fart::Obj::createPressSESpecial()
 {
 	/*
 	.loc_0x0:
@@ -905,7 +895,7 @@ void Game::Fart::Obj::createPressSESpecial(void)
  * Address:	80285ED0
  * Size:	000008
  */
-void Game::Fart::Obj::getEnemyTypeID(void)
+void Game::Fart::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

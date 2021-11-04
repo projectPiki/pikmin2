@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802CE268
  * Size:	000008
  */
-void Game::SnakeWhole::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::SnakeWhole::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::SnakeWhole::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802CE270
  * Size:	000008
  */
-void Game::SnakeWhole::ProperAnimator::getAnimator((int))
+void Game::SnakeWhole::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::SnakeWhole::ProperAnimator::getAnimator((int))
  * Address:	802CE278
  * Size:	00005C
  */
-void Game::SnakeWhole::ProperAnimator::__dt(void)
+void Game::SnakeWhole::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::SnakeWhole::ProperAnimator::__dt(void)
  * Address:	802CE2D4
  * Size:	000008
  */
-void Game::SnakeWhole::ProperAnimator::getAnimator(void)
+void Game::SnakeWhole::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

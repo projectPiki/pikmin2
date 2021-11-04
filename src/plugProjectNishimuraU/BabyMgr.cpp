@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028D0C0
  * Size:	000050
  */
-void Game::Baby::Mgr::__ct((int, unsigned char))
+void Game::Baby::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Baby::Mgr::__ct((int, unsigned char))
  * Address:	8028D110
  * Size:	000048
  */
-void Game::Baby::Mgr::doAlloc(void)
+void Game::Baby::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Baby::Mgr::doAlloc(void)
  * Address:	8028D158
  * Size:	0000DC
  */
-void Game::Baby::Parms::__ct(void)
+void Game::Baby::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -148,7 +138,7 @@ void Game::Baby::Parms::__ct(void)
  * Address:	8028D234
  * Size:	000060
  */
-void Game::Baby::Mgr::createObj((int))
+void Game::Baby::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +174,7 @@ void Game::Baby::Mgr::createObj((int))
  * Address:	8028D294
  * Size:	0000BC
  */
-void Game::Baby::Obj::__dt(void)
+void Game::Baby::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -247,7 +237,7 @@ void Game::Baby::Obj::__dt(void)
  * Address:	8028D350
  * Size:	000010
  */
-void Game::Baby::Mgr::getEnemy((int))
+void Game::Baby::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -263,7 +253,7 @@ void Game::Baby::Mgr::getEnemy((int))
  * Address:	8028D360
  * Size:	000050
  */
-void Game::Baby::Parms::read((Stream&))
+void Game::Baby::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -295,7 +285,7 @@ void Game::Baby::Parms::read((Stream&))
  * Address:	8028D3B0
  * Size:	0000B0
  */
-void Game::Baby::Mgr::__dt(void)
+void Game::Baby::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -355,7 +345,7 @@ void Game::Baby::Mgr::__dt(void)
  * Address:	8028D460
  * Size:	000008
  */
-void Game::Baby::Mgr::getEnemyTypeID(void)
+void Game::Baby::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::Baby::Mgr::getEnemyTypeID(void)
  * Address:	8028D468
  * Size:	000008
  */
-void @4 @Game::Baby::Mgr::__dt(void)
+void Game::Baby::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

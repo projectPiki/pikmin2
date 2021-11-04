@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8027D2B8
  * Size:	000050
  */
-void Game::Armor::Mgr::__ct((int, unsigned char))
+void Game::Armor::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Armor::Mgr::__ct((int, unsigned char))
  * Address:	8027D308
  * Size:	000048
  */
-void Game::Armor::Mgr::doAlloc(void)
+void Game::Armor::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Armor::Mgr::doAlloc(void)
  * Address:	8027D350
  * Size:	000110
  */
-void Game::Armor::Parms::__ct(void)
+void Game::Armor::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -161,7 +151,7 @@ void Game::Armor::Parms::__ct(void)
  * Address:	8027D460
  * Size:	000060
  */
-void Game::Armor::Mgr::createObj((int))
+void Game::Armor::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +187,7 @@ void Game::Armor::Mgr::createObj((int))
  * Address:	8027D4C0
  * Size:	0000BC
  */
-void Game::Armor::Obj::__dt(void)
+void Game::Armor::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -260,7 +250,7 @@ void Game::Armor::Obj::__dt(void)
  * Address:	8027D57C
  * Size:	000010
  */
-void Game::Armor::Mgr::getEnemy((int))
+void Game::Armor::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +266,7 @@ void Game::Armor::Mgr::getEnemy((int))
  * Address:	8027D58C
  * Size:	000050
  */
-void Game::Armor::Parms::read((Stream&))
+void Game::Armor::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -308,7 +298,7 @@ void Game::Armor::Parms::read((Stream&))
  * Address:	8027D5DC
  * Size:	0000B0
  */
-void Game::Armor::Mgr::__dt(void)
+void Game::Armor::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -368,7 +358,7 @@ void Game::Armor::Mgr::__dt(void)
  * Address:	8027D68C
  * Size:	000008
  */
-void Game::Armor::Mgr::getEnemyTypeID(void)
+void Game::Armor::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -382,7 +372,7 @@ void Game::Armor::Mgr::getEnemyTypeID(void)
  * Address:	8027D694
  * Size:	000008
  */
-void @4 @Game::Armor::Mgr::__dt(void)
+void Game::Armor::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

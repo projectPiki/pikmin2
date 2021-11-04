@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026134C
  * Size:	000008
  */
-void Game::Qurione::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Qurione::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Qurione::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80261354
  * Size:	000008
  */
-void Game::Qurione::ProperAnimator::getAnimator((int))
+void Game::Qurione::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Qurione::ProperAnimator::getAnimator((int))
  * Address:	8026135C
  * Size:	00005C
  */
-void Game::Qurione::ProperAnimator::__dt(void)
+void Game::Qurione::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Qurione::ProperAnimator::__dt(void)
  * Address:	802613B8
  * Size:	000008
  */
-void Game::Qurione::ProperAnimator::getAnimator(void)
+void Game::Qurione::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

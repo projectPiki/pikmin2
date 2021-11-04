@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803019EC
  * Size:	00025C
  */
-void Game::TyreTubeShadowNode::makeShadowSRT((Game::JointShadowParm&, Matrixf*))
+void Game::TyreTubeShadowNode::makeShadowSRT(Game::JointShadowParm&, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -194,7 +184,7 @@ void Game::TyreTubeShadowNode::makeShadowSRT((Game::JointShadowParm&, Matrixf*))
  * Address:	80301C48
  * Size:	0000E4
  */
-void Game::Tyre::TyreShadowMgr::__ct((Game::Tyre::Obj*))
+void Game::Tyre::TyreShadowMgr::TyreShadowMgr(Game::Tyre::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -269,7 +259,7 @@ void Game::Tyre::TyreShadowMgr::__ct((Game::Tyre::Obj*))
  * Address:	80301D2C
  * Size:	000068
  */
-void Game::Tyre::TyreShadowMgr::init(void)
+void Game::Tyre::TyreShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -307,7 +297,7 @@ void Game::Tyre::TyreShadowMgr::init(void)
  * Address:	80301D94
  * Size:	0000B4
  */
-void Game::Tyre::TyreShadowMgr::update(void)
+void Game::Tyre::TyreShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -364,7 +354,7 @@ void Game::Tyre::TyreShadowMgr::update(void)
  * Address:	80301E48
  * Size:	000070
  */
-void Game::TyreTubeShadowNode::__dt(void)
+void Game::TyreTubeShadowNode::~TyreTubeShadowNode()
 {
 	/*
 	.loc_0x0:

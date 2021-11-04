@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8027A89C
  * Size:	000050
  */
-void Game::ElecBug::Mgr::__ct((int, unsigned char))
+void Game::ElecBug::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::ElecBug::Mgr::__ct((int, unsigned char))
  * Address:	8027A8EC
  * Size:	000048
  */
-void Game::ElecBug::Mgr::doAlloc(void)
+void Game::ElecBug::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::ElecBug::Mgr::doAlloc(void)
  * Address:	8027A934
  * Size:	000118
  */
-void Game::ElecBug::Parms::__ct(void)
+void Game::ElecBug::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -163,7 +153,7 @@ void Game::ElecBug::Parms::__ct(void)
  * Address:	8027AA4C
  * Size:	000060
  */
-void Game::ElecBug::Mgr::createObj((int))
+void Game::ElecBug::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +189,7 @@ void Game::ElecBug::Mgr::createObj((int))
  * Address:	8027AAAC
  * Size:	0000BC
  */
-void Game::ElecBug::Obj::__dt(void)
+void Game::ElecBug::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -262,7 +252,7 @@ void Game::ElecBug::Obj::__dt(void)
  * Address:	8027AB68
  * Size:	000010
  */
-void Game::ElecBug::Mgr::getEnemy((int))
+void Game::ElecBug::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -278,7 +268,7 @@ void Game::ElecBug::Mgr::getEnemy((int))
  * Address:	8027AB78
  * Size:	000050
  */
-void Game::ElecBug::Parms::read((Stream&))
+void Game::ElecBug::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -310,7 +300,7 @@ void Game::ElecBug::Parms::read((Stream&))
  * Address:	8027ABC8
  * Size:	0000B0
  */
-void Game::ElecBug::Mgr::__dt(void)
+void Game::ElecBug::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -370,7 +360,7 @@ void Game::ElecBug::Mgr::__dt(void)
  * Address:	8027AC78
  * Size:	000008
  */
-void Game::ElecBug::Mgr::getEnemyTypeID(void)
+void Game::ElecBug::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -384,7 +374,7 @@ void Game::ElecBug::Mgr::getEnemyTypeID(void)
  * Address:	8027AC80
  * Size:	000008
  */
-void @4 @Game::ElecBug::Mgr::__dt(void)
+void Game::ElecBug::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

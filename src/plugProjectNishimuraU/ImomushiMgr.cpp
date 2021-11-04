@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BBCD4
  * Size:	000050
  */
-void Game::Imomushi::Mgr::__ct((int, unsigned char))
+void Game::Imomushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Imomushi::Mgr::__ct((int, unsigned char))
  * Address:	802BBD24
  * Size:	000048
  */
-void Game::Imomushi::Mgr::doAlloc(void)
+void Game::Imomushi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Imomushi::Mgr::doAlloc(void)
  * Address:	802BBD6C
  * Size:	000190
  */
-void Game::Imomushi::Parms::__ct(void)
+void Game::Imomushi::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -193,7 +183,7 @@ void Game::Imomushi::Parms::__ct(void)
  * Address:	802BBEFC
  * Size:	000060
  */
-void Game::Imomushi::Mgr::createObj((int))
+void Game::Imomushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +219,7 @@ void Game::Imomushi::Mgr::createObj((int))
  * Address:	802BBF5C
  * Size:	0000BC
  */
-void Game::Imomushi::Obj::__dt(void)
+void Game::Imomushi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Game::Imomushi::Obj::__dt(void)
  * Address:	802BC018
  * Size:	000010
  */
-void Game::Imomushi::Mgr::getEnemy((int))
+void Game::Imomushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -308,7 +298,7 @@ void Game::Imomushi::Mgr::getEnemy((int))
  * Address:	802BC028
  * Size:	000050
  */
-void Game::Imomushi::Parms::read((Stream&))
+void Game::Imomushi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +330,7 @@ void Game::Imomushi::Parms::read((Stream&))
  * Address:	802BC078
  * Size:	0000B0
  */
-void Game::Imomushi::Mgr::__dt(void)
+void Game::Imomushi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -400,7 +390,7 @@ void Game::Imomushi::Mgr::__dt(void)
  * Address:	802BC128
  * Size:	000008
  */
-void Game::Imomushi::Mgr::getEnemyTypeID(void)
+void Game::Imomushi::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -414,7 +404,7 @@ void Game::Imomushi::Mgr::getEnemyTypeID(void)
  * Address:	802BC130
  * Size:	000008
  */
-void @4 @Game::Imomushi::Mgr::__dt(void)
+void Game::Imomushi::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BDAB0
  * Size:	000278
  */
-void Game::Houdai::FSM::init((Game::EnemyBase*))
+void Game::Houdai::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +189,7 @@ void Game::Houdai::FSM::init((Game::EnemyBase*))
  * Address:	802BDD28
  * Size:	0000BC
  */
-void Game::Houdai::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +248,7 @@ void Game::Houdai::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BDDE4
  * Size:	0000B8
  */
-void Game::Houdai::StateDead::exec((Game::EnemyBase*))
+void Game::Houdai::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +308,7 @@ void Game::Houdai::StateDead::exec((Game::EnemyBase*))
  * Address:	802BDE9C
  * Size:	000004
  */
-void Game::Houdai::StateDead::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -331,7 +321,7 @@ void Game::Houdai::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802BDEA0
  * Size:	000078
  */
-void Game::Houdai::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +363,7 @@ void Game::Houdai::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BDF18
  * Size:	0000C4
  */
-void Game::Houdai::StateStay::exec((Game::EnemyBase*))
+void Game::Houdai::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -444,7 +434,7 @@ void Game::Houdai::StateStay::exec((Game::EnemyBase*))
  * Address:	802BDFDC
  * Size:	000004
  */
-void Game::Houdai::StateStay::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -457,7 +447,7 @@ void Game::Houdai::StateStay::cleanup((Game::EnemyBase*))
  * Address:	802BDFE0
  * Size:	0000E4
  */
-void Game::Houdai::StateLand::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -526,7 +516,7 @@ void Game::Houdai::StateLand::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BE0C4
  * Size:	0002F0
  */
-void Game::Houdai::StateLand::exec((Game::EnemyBase*))
+void Game::Houdai::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -750,7 +740,7 @@ void Game::Houdai::StateLand::exec((Game::EnemyBase*))
  * Address:	802BE3B4
  * Size:	000050
  */
-void Game::Houdai::StateLand::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -782,7 +772,7 @@ void Game::Houdai::StateLand::cleanup((Game::EnemyBase*))
  * Address:	802BE404
  * Size:	000098
  */
-void Game::Houdai::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -832,7 +822,7 @@ void Game::Houdai::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BE49C
  * Size:	000118
  */
-void Game::Houdai::StateWait::exec((Game::EnemyBase*))
+void Game::Houdai::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -924,7 +914,7 @@ void Game::Houdai::StateWait::exec((Game::EnemyBase*))
  * Address:	802BE5B4
  * Size:	000004
  */
-void Game::Houdai::StateWait::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -937,7 +927,7 @@ void Game::Houdai::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802BE5B8
  * Size:	000064
  */
-void Game::Houdai::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -974,7 +964,7 @@ void Game::Houdai::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BE61C
  * Size:	0000F0
  */
-void Game::Houdai::StateFlick::exec((Game::EnemyBase*))
+void Game::Houdai::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1056,7 +1046,7 @@ void Game::Houdai::StateFlick::exec((Game::EnemyBase*))
  * Address:	802BE70C
  * Size:	000024
  */
-void Game::Houdai::StateFlick::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1077,7 +1067,7 @@ void Game::Houdai::StateFlick::cleanup((Game::EnemyBase*))
  * Address:	802BE730
  * Size:	000098
  */
-void Game::Houdai::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1127,7 +1117,7 @@ void Game::Houdai::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BE7C8
  * Size:	000100
  */
-void Game::Houdai::StateWalk::exec((Game::EnemyBase*))
+void Game::Houdai::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1211,7 +1201,7 @@ void Game::Houdai::StateWalk::exec((Game::EnemyBase*))
  * Address:	802BE8C8
  * Size:	000004
  */
-void Game::Houdai::StateWalk::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1224,7 +1214,7 @@ void Game::Houdai::StateWalk::cleanup((Game::EnemyBase*))
  * Address:	802BE8CC
  * Size:	000090
  */
-void Game::Houdai::StateShot::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Houdai::StateShot::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1272,7 +1262,7 @@ void Game::Houdai::StateShot::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BE95C
  * Size:	0003B0
  */
-void Game::Houdai::StateShot::exec((Game::EnemyBase*))
+void Game::Houdai::StateShot::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1552,7 +1542,7 @@ void Game::Houdai::StateShot::exec((Game::EnemyBase*))
  * Address:	802BED0C
  * Size:	000038
  */
-void Game::Houdai::StateShot::cleanup((Game::EnemyBase*))
+void Game::Houdai::StateShot::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

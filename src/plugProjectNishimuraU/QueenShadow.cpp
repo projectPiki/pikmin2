@@ -2,30 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void Game::Queen::QueenShadowNode::setJointInfo((SysShape::Joint*, Matrixf&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028EB68
  * Size:	0001AC
  */
-void Game::Queen::QueenShadowNode::makeShadowSRT(void)
+void Game::Queen::QueenShadowNode::makeShadowSRT()
 {
 	/*
 	.loc_0x0:
@@ -148,7 +128,7 @@ void Game::Queen::QueenShadowNode::makeShadowSRT(void)
  * Address:	8028ED14
  * Size:	0000B4
  */
-void Game::Queen::QueenShadowMgr::__ct((Game::Queen::Obj*))
+void Game::Queen::QueenShadowMgr::QueenShadowMgr(Game::Queen::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +191,7 @@ void Game::Queen::QueenShadowMgr::__ct((Game::Queen::Obj*))
  * Address:	8028EDC8
  * Size:	0002A4
  */
-void Game::Queen::QueenShadowMgr::init(void)
+void Game::Queen::QueenShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -392,7 +372,7 @@ void Game::Queen::QueenShadowMgr::init(void)
  * Address:	8028F06C
  * Size:	00005C
  */
-void Game::Queen::QueenShadowMgr::update(void)
+void Game::Queen::QueenShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -429,7 +409,7 @@ void Game::Queen::QueenShadowMgr::update(void)
  * Address:	8028F0C8
  * Size:	000070
  */
-void Game::Queen::QueenShadowNode::__dt(void)
+void Game::Queen::QueenShadowNode::~QueenShadowNode()
 {
 	/*
 	.loc_0x0:

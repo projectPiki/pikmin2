@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026B8BC
  * Size:	000064
  */
-void Game::Hiba::Mgr::__ct((int, unsigned char))
+void Game::Hiba::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +42,7 @@ void Game::Hiba::Mgr::__ct((int, unsigned char))
  * Address:	8026B920
  * Size:	0000B0
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::__dt(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::~EnemyMgrBaseAlwaysMovieActor()
 {
 	/*
 	.loc_0x0:
@@ -112,7 +102,7 @@ void Game::EnemyMgrBaseAlwaysMovieActor::__dt(void)
  * Address:	8026B9D0
  * Size:	000048
  */
-void Game::Hiba::Mgr::doAlloc(void)
+void Game::Hiba::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -146,7 +136,7 @@ void Game::Hiba::Mgr::doAlloc(void)
  * Address:	8026BA18
  * Size:	000190
  */
-void Game::Hiba::Parms::__ct(void)
+void Game::Hiba::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -258,7 +248,7 @@ void Game::Hiba::Parms::__ct(void)
  * Address:	8026BBA8
  * Size:	000060
  */
-void Game::Hiba::Mgr::createObj((int))
+void Game::Hiba::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -294,7 +284,7 @@ void Game::Hiba::Mgr::createObj((int))
  * Address:	8026BC08
  * Size:	0000BC
  */
-void Game::Hiba::Obj::__dt(void)
+void Game::Hiba::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -357,7 +347,7 @@ void Game::Hiba::Obj::__dt(void)
  * Address:	8026BCC4
  * Size:	000010
  */
-void Game::Hiba::Mgr::getEnemy((int))
+void Game::Hiba::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +363,7 @@ void Game::Hiba::Mgr::getEnemy((int))
  * Address:	8026BCD4
  * Size:	000050
  */
-void Game::Hiba::Parms::read((Stream&))
+void Game::Hiba::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -405,7 +395,7 @@ void Game::Hiba::Parms::read((Stream&))
  * Address:	8026BD24
  * Size:	0000C8
  */
-void Game::Hiba::Mgr::__dt(void)
+void Game::Hiba::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -471,7 +461,7 @@ void Game::Hiba::Mgr::__dt(void)
  * Address:	8026BDEC
  * Size:	000008
  */
-void Game::Hiba::Mgr::getEnemyTypeID(void)
+void Game::Hiba::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -485,7 +475,7 @@ void Game::Hiba::Mgr::getEnemyTypeID(void)
  * Address:	8026BDF4
  * Size:	000008
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::isAlwaysMovieActor(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::isAlwaysMovieActor()
 {
 	/*
 	.loc_0x0:
@@ -499,7 +489,7 @@ void Game::EnemyMgrBaseAlwaysMovieActor::isAlwaysMovieActor(void)
  * Address:	8026BDFC
  * Size:	000020
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::doAnimation(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -519,7 +509,7 @@ void Game::EnemyMgrBaseAlwaysMovieActor::doAnimation(void)
  * Address:	8026BE1C
  * Size:	000020
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::doEntry(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -539,7 +529,7 @@ void Game::EnemyMgrBaseAlwaysMovieActor::doEntry(void)
  * Address:	8026BE3C
  * Size:	000020
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::doSimulation((float))
+void Game::EnemyMgrBaseAlwaysMovieActor::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +549,7 @@ void Game::EnemyMgrBaseAlwaysMovieActor::doSimulation((float))
  * Address:	8026BE5C
  * Size:	000020
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::doDirectDraw((Graphics&))
+void Game::EnemyMgrBaseAlwaysMovieActor::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -579,7 +569,7 @@ void Game::EnemyMgrBaseAlwaysMovieActor::doDirectDraw((Graphics&))
  * Address:	8026BE7C
  * Size:	000008
  */
-void @4 @Game::EnemyMgrBaseAlwaysMovieActor::__dt(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -593,7 +583,7 @@ void @4 @Game::EnemyMgrBaseAlwaysMovieActor::__dt(void)
  * Address:	8026BE84
  * Size:	000008
  */
-void @4 @Game::Hiba::Mgr::__dt(void)
+void Game::Hiba::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

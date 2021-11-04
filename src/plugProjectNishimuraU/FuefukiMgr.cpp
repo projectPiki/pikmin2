@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029BC38
  * Size:	000050
  */
-void Game::Fuefuki::Mgr::__ct((int, unsigned char))
+void Game::Fuefuki::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Fuefuki::Mgr::__ct((int, unsigned char))
  * Address:	8029BC88
  * Size:	000048
  */
-void Game::Fuefuki::Mgr::doAlloc(void)
+void Game::Fuefuki::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Fuefuki::Mgr::doAlloc(void)
  * Address:	8029BCD0
  * Size:	000048
  */
-void Game::Fuefuki::Parms::__ct(void)
+void Game::Fuefuki::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Fuefuki::Parms::__ct(void)
  * Address:	8029BD18
  * Size:	000270
  */
-void Game::Fuefuki::Parms::ProperParms::__ct(void)
+void Game::Fuefuki::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -283,7 +273,7 @@ void Game::Fuefuki::Parms::ProperParms::__ct(void)
  * Address:	8029BF88
  * Size:	000060
  */
-void Game::Fuefuki::Mgr::createObj((int))
+void Game::Fuefuki::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -319,7 +309,7 @@ void Game::Fuefuki::Mgr::createObj((int))
  * Address:	8029BFE8
  * Size:	0000BC
  */
-void Game::Fuefuki::Obj::__dt(void)
+void Game::Fuefuki::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -382,7 +372,7 @@ void Game::Fuefuki::Obj::__dt(void)
  * Address:	8029C0A4
  * Size:	000010
  */
-void Game::Fuefuki::Mgr::getEnemy((int))
+void Game::Fuefuki::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +388,7 @@ void Game::Fuefuki::Mgr::getEnemy((int))
  * Address:	8029C0B4
  * Size:	000050
  */
-void Game::Fuefuki::Parms::read((Stream&))
+void Game::Fuefuki::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -430,7 +420,7 @@ void Game::Fuefuki::Parms::read((Stream&))
  * Address:	8029C104
  * Size:	0000B0
  */
-void Game::Fuefuki::Mgr::__dt(void)
+void Game::Fuefuki::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -490,7 +480,7 @@ void Game::Fuefuki::Mgr::__dt(void)
  * Address:	8029C1B4
  * Size:	000008
  */
-void Game::Fuefuki::Mgr::getEnemyTypeID(void)
+void Game::Fuefuki::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -504,7 +494,7 @@ void Game::Fuefuki::Mgr::getEnemyTypeID(void)
  * Address:	8029C1BC
  * Size:	000008
  */
-void @4 @Game::Fuefuki::Mgr::__dt(void)
+void Game::Fuefuki::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

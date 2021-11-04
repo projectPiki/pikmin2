@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802996A0
  * Size:	000154
  */
-void Game::KumaChappy::Obj::__ct(void)
+void Game::KumaChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -118,7 +108,7 @@ void Game::KumaChappy::Obj::__ct(void)
  * Address:	802997F4
  * Size:	000004
  */
-void Game::KumaChappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::KumaChappy::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +121,7 @@ void Game::KumaChappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802997F8
  * Size:	00007C
  */
-void Game::KumaChappy::Obj::onInit((Game::CreatureInitArg*))
+void Game::KumaChappy::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +164,7 @@ void Game::KumaChappy::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80299874
  * Size:	000060
  */
-void Game::KumaChappy::Obj::doUpdate(void)
+void Game::KumaChappy::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -210,7 +200,7 @@ void Game::KumaChappy::Obj::doUpdate(void)
  * Address:	802998D4
  * Size:	000004
  */
-void Game::KumaChappy::Obj::doDirectDraw((Graphics&))
+void Game::KumaChappy::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -223,7 +213,7 @@ void Game::KumaChappy::Obj::doDirectDraw((Graphics&))
  * Address:	802998D8
  * Size:	000020
  */
-void Game::KumaChappy::Obj::doDebugDraw((Graphics&))
+void Game::KumaChappy::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +233,7 @@ void Game::KumaChappy::Obj::doDebugDraw((Graphics&))
  * Address:	802998F8
  * Size:	00004C
  */
-void Game::KumaChappy::Obj::setFSM((Game::KumaChappy::FSM*))
+void Game::KumaChappy::Obj::setFSM(Game::KumaChappy::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -274,7 +264,7 @@ void Game::KumaChappy::Obj::setFSM((Game::KumaChappy::FSM*))
  * Address:	80299944
  * Size:	0000C4
  */
-void Game::KumaChappy::Obj::getShadowParam((Game::ShadowParam&))
+void Game::KumaChappy::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +331,7 @@ void Game::KumaChappy::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80299A08
  * Size:	000038
  */
-void Game::KumaChappy::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::KumaChappy::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::KumaChappy::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	80299A40
  * Size:	000028
  */
-void Game::KumaChappy::Obj::startCarcassMotion(void)
+void Game::KumaChappy::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -391,7 +381,7 @@ void Game::KumaChappy::Obj::startCarcassMotion(void)
  * Address:	80299A68
  * Size:	0000A8
  */
-void Game::KumaChappy::Obj::getOffsetForMapCollision(void)
+void Game::KumaChappy::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -449,7 +439,7 @@ void Game::KumaChappy::Obj::getOffsetForMapCollision(void)
  * Address:	80299B10
  * Size:	0000DC
  */
-void Game::KumaChappy::Obj::initMouthSlots(void)
+void Game::KumaChappy::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -520,7 +510,7 @@ void Game::KumaChappy::Obj::initMouthSlots(void)
  * Address:	80299BEC
  * Size:	000064
  */
-void Game::KumaChappy::Obj::initWalkSmokeEffect(void)
+void Game::KumaChappy::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -557,7 +547,7 @@ void Game::KumaChappy::Obj::initWalkSmokeEffect(void)
  * Address:	80299C50
  * Size:	000008
  */
-void Game::KumaChappy::Obj::getWalkSmokeEffectMgr(void)
+void Game::KumaChappy::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -571,7 +561,7 @@ void Game::KumaChappy::Obj::getWalkSmokeEffectMgr(void)
  * Address:	80299C58
  * Size:	000014
  */
-void Game::KumaChappy::Obj::doBecomeCarcass(void)
+void Game::KumaChappy::Obj::doBecomeCarcass()
 {
 	/*
 	.loc_0x0:
@@ -588,7 +578,7 @@ void Game::KumaChappy::Obj::doBecomeCarcass(void)
  * Address:	80299C6C
  * Size:	0001FC
  */
-void Game::KumaChappy::Obj::doUpdateCarcass(void)
+void Game::KumaChappy::Obj::doUpdateCarcass()
 {
 	/*
 	.loc_0x0:
@@ -733,7 +723,7 @@ void Game::KumaChappy::Obj::doUpdateCarcass(void)
  * Address:	80299E68
  * Size:	000064
  */
-void Game::KumaChappy::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void Game::KumaChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -774,7 +764,7 @@ void Game::KumaChappy::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	80299ECC
  * Size:	000024
  */
-void Game::KumaChappy::Obj::getViewAngle(void)
+void Game::KumaChappy::Obj::getViewAngle()
 {
 	/*
 	.loc_0x0:
@@ -797,7 +787,7 @@ void Game::KumaChappy::Obj::getViewAngle(void)
  * Address:	80299EF0
  * Size:	000010
  */
-void Game::KumaChappy::Obj::resetWayPoint(void)
+void Game::KumaChappy::Obj::resetWayPoint()
 {
 	/*
 	.loc_0x0:
@@ -813,7 +803,7 @@ void Game::KumaChappy::Obj::resetWayPoint(void)
  * Address:	80299F00
  * Size:	0000B0
  */
-void Game::KumaChappy::Obj::setNearestWayPoint(void)
+void Game::KumaChappy::Obj::setNearestWayPoint()
 {
 	/*
 	.loc_0x0:
@@ -873,7 +863,7 @@ void Game::KumaChappy::Obj::setNearestWayPoint(void)
  * Address:	80299FB0
  * Size:	000260
  */
-void Game::KumaChappy::Obj::setLinkWayPoint(void)
+void Game::KumaChappy::Obj::setLinkWayPoint()
 {
 	/*
 	.loc_0x0:
@@ -1053,7 +1043,7 @@ void Game::KumaChappy::Obj::setLinkWayPoint(void)
  * Address:	8029A210
  * Size:	00006C
  */
-void Game::KumaChappy::Obj::getSearchedTarget(void)
+void Game::KumaChappy::Obj::getSearchedTarget()
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1088,7 @@ void Game::KumaChappy::Obj::getSearchedTarget(void)
  * Address:	8029A27C
  * Size:	000128
  */
-void Game::KumaChappy::Obj::updateTargetDistance(void)
+void Game::KumaChappy::Obj::updateTargetDistance()
 {
 	/*
 	.loc_0x0:
@@ -1198,7 +1188,7 @@ void Game::KumaChappy::Obj::updateTargetDistance(void)
  * Address:	8029A3A4
  * Size:	0000BC
  */
-void Game::KumaChappy::Obj::updateHomePosition(void)
+void Game::KumaChappy::Obj::updateHomePosition()
 {
 	/*
 	.loc_0x0:
@@ -1263,7 +1253,7 @@ void Game::KumaChappy::Obj::updateHomePosition(void)
  * Address:	8029A460
  * Size:	000070
  */
-void Game::KumaChappy::Obj::createChappyRelation(void)
+void Game::KumaChappy::Obj::createChappyRelation()
 {
 	/*
 	.loc_0x0:
@@ -1305,7 +1295,7 @@ void Game::KumaChappy::Obj::createChappyRelation(void)
  * Address:	8029A4D0
  * Size:	00007C
  */
-void Game::KumaChappy::Obj::startEnemyRumble(void)
+void Game::KumaChappy::Obj::startEnemyRumble()
 {
 	/*
 	.loc_0x0:
@@ -1348,7 +1338,7 @@ void Game::KumaChappy::Obj::startEnemyRumble(void)
  * Address:	8029A54C
  * Size:	000060
  */
-void Game::ChappyRelation::__dt(void)
+void Game::ChappyRelation::~ChappyRelation()
 {
 	/*
 	.loc_0x0:
@@ -1386,7 +1376,7 @@ void Game::ChappyRelation::__dt(void)
  * Address:	8029A5AC
  * Size:	000008
  */
-void Game::KumaChappy::Obj::getMouthSlots(void)
+void Game::KumaChappy::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -1400,7 +1390,7 @@ void Game::KumaChappy::Obj::getMouthSlots(void)
  * Address:	8029A5B4
  * Size:	000008
  */
-void Game::KumaChappy::Obj::getDownSmokeScale(void)
+void Game::KumaChappy::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1414,7 +1404,7 @@ void Game::KumaChappy::Obj::getDownSmokeScale(void)
  * Address:	8029A5BC
  * Size:	000008
  */
-void Game::KumaChappy::Obj::getChappyRelation(void)
+void Game::KumaChappy::Obj::getChappyRelation()
 {
 	/*
 	.loc_0x0:
@@ -1428,7 +1418,7 @@ void Game::KumaChappy::Obj::getChappyRelation(void)
  * Address:	8029A5C4
  * Size:	000014
  */
-void @760 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@760 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1445,7 +1435,7 @@ void @760 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8029A5D8
  * Size:	000014
  */
-void @760 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@760 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1462,7 +1452,7 @@ void @760 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8029A5EC
  * Size:	000014
  */
-void @760 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@760 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1479,7 +1469,7 @@ void @760 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8029A600
  * Size:	000014
  */
-void @760 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@760 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1496,7 +1486,7 @@ void @760 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8029A614
  * Size:	000014
  */
-void @760 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@760 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1513,7 +1503,7 @@ void @760 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8029A628
  * Size:	000014
  */
-void @760 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@760 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

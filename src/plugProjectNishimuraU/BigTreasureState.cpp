@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802D72CC
  * Size:	00042C
  */
-void Game::BigTreasure::FSM::init((Game::EnemyBase*))
+void Game::BigTreasure::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +308,7 @@ void Game::BigTreasure::FSM::init((Game::EnemyBase*))
  * Address:	802D76F8
  * Size:	000080
  */
-void Game::BigTreasure::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +352,7 @@ void Game::BigTreasure::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D7778
  * Size:	000230
  */
-void Game::BigTreasure::StateDead::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +532,7 @@ void Game::BigTreasure::StateDead::exec((Game::EnemyBase*))
  * Address:	802D79A8
  * Size:	000004
  */
-void Game::BigTreasure::StateDead::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +545,7 @@ void Game::BigTreasure::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802D79AC
  * Size:	000080
  */
-void Game::BigTreasure::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -599,7 +589,7 @@ void Game::BigTreasure::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D7A2C
  * Size:	0000FC
  */
-void Game::BigTreasure::StateStay::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -686,7 +676,7 @@ void Game::BigTreasure::StateStay::exec((Game::EnemyBase*))
  * Address:	802D7B28
  * Size:	000004
  */
-void Game::BigTreasure::StateStay::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -699,7 +689,7 @@ void Game::BigTreasure::StateStay::cleanup((Game::EnemyBase*))
  * Address:	802D7B2C
  * Size:	0000AC
  */
-void Game::BigTreasure::StateLand::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -754,7 +744,7 @@ void Game::BigTreasure::StateLand::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D7BD8
  * Size:	000324
  */
-void Game::BigTreasure::StateLand::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -995,7 +985,7 @@ void Game::BigTreasure::StateLand::exec((Game::EnemyBase*))
  * Address:	802D7EFC
  * Size:	000030
  */
-void Game::BigTreasure::StateLand::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1019,7 +1009,7 @@ void Game::BigTreasure::StateLand::cleanup((Game::EnemyBase*))
  * Address:	802D7F2C
  * Size:	0000A0
  */
-void Game::BigTreasure::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1071,7 +1061,7 @@ void Game::BigTreasure::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D7FCC
  * Size:	000140
  */
-void Game::BigTreasure::StateWait::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1175,7 +1165,7 @@ void Game::BigTreasure::StateWait::exec((Game::EnemyBase*))
  * Address:	802D810C
  * Size:	000024
  */
-void Game::BigTreasure::StateWait::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1196,7 +1186,7 @@ void Game::BigTreasure::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802D8130
  * Size:	0000A0
  */
-void Game::BigTreasure::StateItemWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateItemWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1248,7 +1238,7 @@ void Game::BigTreasure::StateItemWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D81D0
  * Size:	000124
  */
-void Game::BigTreasure::StateItemWait::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateItemWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1345,7 +1335,7 @@ void Game::BigTreasure::StateItemWait::exec((Game::EnemyBase*))
  * Address:	802D82F4
  * Size:	000024
  */
-void Game::BigTreasure::StateItemWait::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateItemWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1366,7 +1356,7 @@ void Game::BigTreasure::StateItemWait::cleanup((Game::EnemyBase*))
  * Address:	802D8318
  * Size:	000074
  */
-void Game::BigTreasure::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1407,7 +1397,7 @@ void Game::BigTreasure::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D838C
  * Size:	0000DC
  */
-void Game::BigTreasure::StateFlick::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1482,7 +1472,7 @@ void Game::BigTreasure::StateFlick::exec((Game::EnemyBase*))
  * Address:	802D8468
  * Size:	000024
  */
-void Game::BigTreasure::StateFlick::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1503,8 +1493,7 @@ void Game::BigTreasure::StateFlick::cleanup((Game::EnemyBase*))
  * Address:	802D848C
  * Size:	000098
  */
-void Game::BigTreasure::StatePreAttack::init((Game::EnemyBase*,
-                                              Game::StateArg*))
+void Game::BigTreasure::StatePreAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1554,7 +1543,7 @@ void Game::BigTreasure::StatePreAttack::init((Game::EnemyBase*,
  * Address:	802D8524
  * Size:	00019C
  */
-void Game::BigTreasure::StatePreAttack::exec((Game::EnemyBase*))
+void Game::BigTreasure::StatePreAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1683,7 +1672,7 @@ void Game::BigTreasure::StatePreAttack::exec((Game::EnemyBase*))
  * Address:	802D86C0
  * Size:	000024
  */
-void Game::BigTreasure::StatePreAttack::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StatePreAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1704,7 +1693,7 @@ void Game::BigTreasure::StatePreAttack::cleanup((Game::EnemyBase*))
  * Address:	802D86E4
  * Size:	000078
  */
-void Game::BigTreasure::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1746,7 +1735,7 @@ void Game::BigTreasure::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D875C
  * Size:	000148
  */
-void Game::BigTreasure::StateAttack::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1852,7 +1841,7 @@ void Game::BigTreasure::StateAttack::exec((Game::EnemyBase*))
  * Address:	802D88A4
  * Size:	000040
  */
-void Game::BigTreasure::StateAttack::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1880,7 +1869,7 @@ void Game::BigTreasure::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802D88E4
  * Size:	000080
  */
-void Game::BigTreasure::StatePutItem::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StatePutItem::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1924,7 +1913,7 @@ void Game::BigTreasure::StatePutItem::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D8964
  * Size:	000128
  */
-void Game::BigTreasure::StatePutItem::exec((Game::EnemyBase*))
+void Game::BigTreasure::StatePutItem::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2020,7 +2009,7 @@ void Game::BigTreasure::StatePutItem::exec((Game::EnemyBase*))
  * Address:	802D8A8C
  * Size:	000024
  */
-void Game::BigTreasure::StatePutItem::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StatePutItem::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2041,7 +2030,7 @@ void Game::BigTreasure::StatePutItem::cleanup((Game::EnemyBase*))
  * Address:	802D8AB0
  * Size:	000074
  */
-void Game::BigTreasure::StateDropItem::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateDropItem::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2082,7 +2071,7 @@ void Game::BigTreasure::StateDropItem::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D8B24
  * Size:	0000EC
  */
-void Game::BigTreasure::StateDropItem::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateDropItem::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2161,7 +2150,7 @@ void Game::BigTreasure::StateDropItem::exec((Game::EnemyBase*))
  * Address:	802D8C10
  * Size:	000024
  */
-void Game::BigTreasure::StateDropItem::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateDropItem::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2182,7 +2171,7 @@ void Game::BigTreasure::StateDropItem::cleanup((Game::EnemyBase*))
  * Address:	802D8C34
  * Size:	0000A8
  */
-void Game::BigTreasure::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2236,7 +2225,7 @@ void Game::BigTreasure::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D8CDC
  * Size:	000144
  */
-void Game::BigTreasure::StateWalk::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2341,7 +2330,7 @@ void Game::BigTreasure::StateWalk::exec((Game::EnemyBase*))
  * Address:	802D8E20
  * Size:	000004
  */
-void Game::BigTreasure::StateWalk::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2354,7 +2343,7 @@ void Game::BigTreasure::StateWalk::cleanup((Game::EnemyBase*))
  * Address:	802D8E24
  * Size:	0000A8
  */
-void Game::BigTreasure::StateItemWalk::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BigTreasure::StateItemWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2408,7 +2397,7 @@ void Game::BigTreasure::StateItemWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802D8ECC
  * Size:	0001EC
  */
-void Game::BigTreasure::StateItemWalk::exec((Game::EnemyBase*))
+void Game::BigTreasure::StateItemWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2569,7 +2558,7 @@ void Game::BigTreasure::StateItemWalk::exec((Game::EnemyBase*))
  * Address:	802D90B8
  * Size:	000004
  */
-void Game::BigTreasure::StateItemWalk::cleanup((Game::EnemyBase*))
+void Game::BigTreasure::StateItemWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802D1634
  * Size:	000038
  */
@@ -43,7 +33,7 @@ void Game::SnakeJointCallBack(J3DJoint*, int)
  * Address:	802D166C
  * Size:	00003C
  */
-void Game::SnakeJointMgr::__ct((Game::EnemyBase*))
+void Game::SnakeJointMgr::SnakeJointMgr(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -67,20 +57,10 @@ void Game::SnakeJointMgr::__ct((Game::EnemyBase*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::SnakeJointMgr::init(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802D16A8
  * Size:	0000B8
  */
-void Game::SnakeJointMgr::setupCallBackJoint(void)
+void Game::SnakeJointMgr::setupCallBackJoint()
 {
 	/*
 	.loc_0x0:
@@ -142,7 +122,7 @@ void Game::SnakeJointMgr::setupCallBackJoint(void)
  * Address:	802D1760
  * Size:	000020
  */
-void Game::SnakeJointMgr::startModify((float, float))
+void Game::SnakeJointMgr::startModify(float, float)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +142,7 @@ void Game::SnakeJointMgr::startModify((float, float))
  * Address:	802D1780
  * Size:	00001C
  */
-void Game::SnakeJointMgr::returnModify((float))
+void Game::SnakeJointMgr::returnModify(float)
 {
 	/*
 	.loc_0x0:
@@ -181,7 +161,7 @@ void Game::SnakeJointMgr::returnModify((float))
  * Address:	802D179C
  * Size:	00000C
  */
-void Game::SnakeJointMgr::finishModify(void)
+void Game::SnakeJointMgr::finishModify()
 {
 	/*
 	.loc_0x0:
@@ -196,7 +176,7 @@ void Game::SnakeJointMgr::finishModify(void)
  * Address:	802D17A8
  * Size:	000080
  */
-void Game::SnakeJointMgr::doAnimation(void)
+void Game::SnakeJointMgr::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -244,7 +224,7 @@ void Game::SnakeJointMgr::doAnimation(void)
  * Address:	802D1828
  * Size:	00000C
  */
-void Game::SnakeJointMgr::finishAnimation(void)
+void Game::SnakeJointMgr::finishAnimation()
 {
 	/*
 	.loc_0x0:
@@ -259,7 +239,7 @@ void Game::SnakeJointMgr::finishAnimation(void)
  * Address:	802D1834
  * Size:	0002AC
  */
-void Game::SnakeJointMgr::makeMatrix(void)
+void Game::SnakeJointMgr::makeMatrix()
 {
 	/*
 	.loc_0x0:

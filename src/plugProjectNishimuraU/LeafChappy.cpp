@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C5C18
  * Size:	000098
  */
-void Game::LeafChappy::Obj::__ct(void)
+void Game::LeafChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -67,7 +57,7 @@ void Game::LeafChappy::Obj::__ct(void)
  * Address:	802C5CB0
  * Size:	0000C0
  */
-void Game::LeafChappy::Obj::doUpdate(void)
+void Game::LeafChappy::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -133,7 +123,7 @@ void Game::LeafChappy::Obj::doUpdate(void)
  * Address:	802C5D70
  * Size:	000004
  */
-void Game::LeafChappy::Obj::doDirectDraw((Graphics&))
+void Game::LeafChappy::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -146,7 +136,7 @@ void Game::LeafChappy::Obj::doDirectDraw((Graphics&))
  * Address:	802C5D74
  * Size:	0000C4
  */
-void Game::LeafChappy::Obj::getShadowParam((Game::ShadowParam&))
+void Game::LeafChappy::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -213,7 +203,7 @@ void Game::LeafChappy::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802C5E38
  * Size:	0000B4
  */
-void Game::LeafChappy::Obj::initMouthSlots(void)
+void Game::LeafChappy::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -274,7 +264,7 @@ void Game::LeafChappy::Obj::initMouthSlots(void)
  * Address:	802C5EEC
  * Size:	000064
  */
-void Game::LeafChappy::Obj::initWalkSmokeEffect(void)
+void Game::LeafChappy::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -311,7 +301,7 @@ void Game::LeafChappy::Obj::initWalkSmokeEffect(void)
  * Address:	802C5F50
  * Size:	000020
  */
-void Game::LeafChappy::Obj::doBecomeCarcass(void)
+void Game::LeafChappy::Obj::doBecomeCarcass()
 {
 	/*
 	.loc_0x0:
@@ -331,7 +321,7 @@ void Game::LeafChappy::Obj::doBecomeCarcass(void)
  * Address:	802C5F70
  * Size:	000020
  */
-void Game::LeafChappy::Obj::doUpdateCarcass(void)
+void Game::LeafChappy::Obj::doUpdateCarcass()
 {
 	/*
 	.loc_0x0:
@@ -351,7 +341,7 @@ void Game::LeafChappy::Obj::doUpdateCarcass(void)
  * Address:	802C5F90
  * Size:	000020
  */
-void Game::LeafChappy::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void Game::LeafChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -371,7 +361,7 @@ void Game::LeafChappy::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	802C5FB0
  * Size:	000244
  */
-void Game::LeafChappy::Obj::birthChildren((Game::EnemyBirthArg&))
+void Game::LeafChappy::Obj::birthChildren(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -538,7 +528,7 @@ void Game::LeafChappy::Obj::birthChildren((Game::EnemyBirthArg&))
  * Address:	802C61F4
  * Size:	00007C
  */
-void Game::LeafChappy::Obj::startEnemyRumble(void)
+void Game::LeafChappy::Obj::startEnemyRumble()
 {
 	/*
 	.loc_0x0:
@@ -581,7 +571,7 @@ void Game::LeafChappy::Obj::startEnemyRumble(void)
  * Address:	802C6270
  * Size:	000050
  */
-void Game::LeafChappy::Obj::createFootmarks(void)
+void Game::LeafChappy::Obj::createFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -615,7 +605,7 @@ void Game::LeafChappy::Obj::createFootmarks(void)
  * Address:	802C62C0
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getDownSmokeScale(void)
+void Game::LeafChappy::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -629,7 +619,7 @@ void Game::LeafChappy::Obj::getDownSmokeScale(void)
  * Address:	802C62C8
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getEnemyTypeID(void)
+void Game::LeafChappy::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -643,7 +633,7 @@ void Game::LeafChappy::Obj::getEnemyTypeID(void)
  * Address:	802C62D0
  * Size:	000004
  */
-void Game::LeafChappy::Obj::createChappyRelation(void)
+void Game::LeafChappy::Obj::createChappyRelation()
 {
 	/*
 	.loc_0x0:
@@ -656,7 +646,7 @@ void Game::LeafChappy::Obj::createChappyRelation(void)
  * Address:	802C62D4
  * Size:	000004
  */
-void Game::LeafChappy::Obj::resetChappyRelation(void)
+void Game::LeafChappy::Obj::resetChappyRelation()
 {
 	/*
 	.loc_0x0:
@@ -669,7 +659,7 @@ void Game::LeafChappy::Obj::resetChappyRelation(void)
  * Address:	802C62D8
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getChappyRelation(void)
+void Game::LeafChappy::Obj::getChappyRelation()
 {
 	/*
 	.loc_0x0:
@@ -683,7 +673,7 @@ void Game::LeafChappy::Obj::getChappyRelation(void)
  * Address:	802C62E0
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getFootmarks(void)
+void Game::LeafChappy::Obj::getFootmarks()
 {
 	/*
 	.loc_0x0:

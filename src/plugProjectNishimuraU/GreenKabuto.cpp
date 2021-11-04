@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802FFBC8
  * Size:	000090
  */
-void Game::GreenKabuto::Obj::__ct(void)
+void Game::GreenKabuto::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void Game::GreenKabuto::Obj::__ct(void)
  * Address:	802FFC58
  * Size:	0001A4
  */
-void Game::GreenKabuto::Obj::changeMaterial(void)
+void Game::GreenKabuto::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -186,7 +176,7 @@ void Game::GreenKabuto::Obj::changeMaterial(void)
  * Address:	802FFDFC
  * Size:	000008
  */
-void Game::GreenKabuto::Obj::getEnemyTypeID(void)
+void Game::GreenKabuto::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

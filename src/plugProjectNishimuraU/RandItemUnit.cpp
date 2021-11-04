@@ -2,52 +2,40 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8024E38C
  * Size:	000064
  */
-void Game::Cave::RandItemUnit::__ct((Game::Cave::MapUnitGenerator*))
+void Game::Cave::RandItemUnit::RandItemUnit(Game::Cave::MapUnitGenerator*)
 {
 	/*
 	.loc_0x0:
+	  lfs       f2, 0x8(r3)
+	  lfs       f0, -0x7A00(r2)
+	  rlwinm    r6,r0,0,16,31
 	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r4, 0x8(r3)
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x8(r3)
-	  lwz       r3, 0x8(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  bl        -0x775EC
-	  stw       r3, 0x4(r31)
-	  b         .loc_0x40
+	  mulli     r7, r6, 0xC
+	  fcmpo     cr0, f2, f0
+	  addi      r0, r6, 0x2
+	  addi      r4, r6, 0x1
+	  mulli     r6, r4, 0xC
+	  add       r4, r8, r7
+	  lhz       r10, 0x0(r4)
+	  mulli     r0, r0, 0xC
+	  add       r6, r8, r6
+	  add       r7, r8, r0
+	  bge-      .loc_0x54
+	  lhz       r0, 0x2(r4)
+	  lwz       r8, 0x10(r3)
+	  rlwinm    r0,r0,2,0,29
+	  lfsx      f0, r8, r0
+	  stfs      f0, 0x0(r5)
+	  b         0x6C
 
-	.loc_0x3C:
-	  stw       r0, 0x4(r31)
-
-	.loc_0x40:
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x10(r31)
-	  stw       r0, 0x14(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	.loc_0x54:
+	  lis       r0, 0x4330
+	  stw       r10, 0xC(r1)
+	  lfd       f1, -0x79F8(r2)
+	  stw       r0, 0x8(r1)
 	*/
 }
 
@@ -56,7 +44,7 @@ void Game::Cave::RandItemUnit::__ct((Game::Cave::MapUnitGenerator*))
  * Address:	8024E3F0
  * Size:	000008
  */
-void Game::Cave::RandItemUnit::setManageClassPtr((Game::Cave::RandMapScore*))
+void Game::Cave::RandItemUnit::setManageClassPtr(Game::Cave::RandMapScore*)
 {
 	/*
 	.loc_0x0:
@@ -70,7 +58,7 @@ void Game::Cave::RandItemUnit::setManageClassPtr((Game::Cave::RandMapScore*))
  * Address:	8024E3F8
  * Size:	000104
  */
-void Game::Cave::RandItemUnit::setItemSlot(void)
+void Game::Cave::RandItemUnit::setItemSlot()
 {
 	/*
 	.loc_0x0:
@@ -159,8 +147,8 @@ void Game::Cave::RandItemUnit::setItemSlot(void)
  * Address:	8024E4FC
  * Size:	000110
  */
-void Game::Cave::RandItemUnit::isItemSetDone((Game::Cave::MapNode*,
-                                              Game::Cave::BaseGen*))
+void Game::Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*,
+                                             Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -264,7 +252,7 @@ void Game::Cave::RandItemUnit::isItemSetDone((Game::Cave::MapNode*,
  * Address:	8024E60C
  * Size:	0000E8
  */
-void Game::Cave::RandItemUnit::isGroundCapEnemySetDone((Game::Cave::MapNode*))
+void Game::Cave::RandItemUnit::isGroundCapEnemySetDone(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +338,7 @@ void Game::Cave::RandItemUnit::isGroundCapEnemySetDone((Game::Cave::MapNode*))
  * Address:	8024E6F4
  * Size:	0000D0
  */
-void Game::Cave::RandItemUnit::isFallCapEnemySetDone((Game::Cave::MapNode*))
+void Game::Cave::RandItemUnit::isFallCapEnemySetDone(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -428,8 +416,8 @@ void Game::Cave::RandItemUnit::isFallCapEnemySetDone((Game::Cave::MapNode*))
  * Address:	8024E7C4
  * Size:	00000C
  */
-void Game::Cave::RandItemUnit::setItemDropPositionList((Game::Cave::MapNode**,
-                                                        Game::Cave::BaseGen**))
+void Game::Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**,
+                                                       Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -444,7 +432,7 @@ void Game::Cave::RandItemUnit::setItemDropPositionList((Game::Cave::MapNode**,
  * Address:	8024E7D0
  * Size:	000228
  */
-void getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<float> fi(void)
+void Game::Cave::RandItemUnit::getItemDropPosition(Vector3<float>&, float, int)
 {
 	/*
 	.loc_0x0:
@@ -614,7 +602,7 @@ void getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<float> fi(void)
  * Address:	8024E9F8
  * Size:	00038C
  */
-void Game::Cave::RandItemUnit::getItemNormalSetMapNode((Game::Cave::BaseGen**))
+void Game::Cave::RandItemUnit::getItemNormalSetMapNode(Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -913,7 +901,7 @@ void Game::Cave::RandItemUnit::getItemNormalSetMapNode((Game::Cave::BaseGen**))
  * Address:	8024ED84
  * Size:	000340
  */
-void Game::Cave::RandItemUnit::getItemHardSetMapNode((Game::Cave::BaseGen**))
+void Game::Cave::RandItemUnit::getItemHardSetMapNode(Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -1193,7 +1181,7 @@ void Game::Cave::RandItemUnit::getItemHardSetMapNode((Game::Cave::BaseGen**))
  * Address:	8024F0C4
  * Size:	000180
  */
-void Game::Cave::RandItemUnit::getItemUnit(void)
+void Game::Cave::RandItemUnit::getItemUnit()
 {
 	/*
 	.loc_0x0:
@@ -1317,7 +1305,7 @@ void Game::Cave::RandItemUnit::getItemUnit(void)
  * Address:	8024F244
  * Size:	000060
  */
-void Game::Cave::RandItemUnit::getItemSlotNum((Game::Cave::MapNode*))
+void Game::Cave::RandItemUnit::getItemSlotNum(Game::Cave::MapNode*)
 {
 	/*
 	.loc_0x0:
@@ -1361,7 +1349,7 @@ void Game::Cave::RandItemUnit::getItemSlotNum((Game::Cave::MapNode*))
  * Address:	8024F2A4
  * Size:	00005C
  */
-void Game::Cave::RandItemUnit::isItemSetHard(void)
+void Game::Cave::RandItemUnit::isItemSetHard()
 {
 	/*
 	.loc_0x0:
@@ -1406,9 +1394,9 @@ void Game::Cave::RandItemUnit::isItemSetHard(void)
  * Address:	8024F300
  * Size:	000148
  */
-void Game::Cave::RandItemUnit::getItemDropMapNode((Game::Cave::MapNode*,
-                                                   Game::Cave::MapNode**, int,
-                                                   int&))
+void Game::Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*,
+                                                  Game::Cave::MapNode**, int,
+                                                  int&)
 {
 	/*
 	.loc_0x0:
@@ -1514,8 +1502,7 @@ void Game::Cave::RandItemUnit::getItemDropMapNode((Game::Cave::MapNode*,
  * Address:	8024F448
  * Size:	000314
  */
-void Game::Cave::RandItemUnit::getItemBaseGenPosition((Game::Cave::MapNode*,
-                                                       int))
+void Game::Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -1752,9 +1739,9 @@ void Game::Cave::RandItemUnit::getItemBaseGenPosition((Game::Cave::MapNode*,
  * Address:	8024F75C
  * Size:	00018C
  */
-void Game::Cave::RandItemUnit::getItemDropList((Game::Cave::MapNode*,
-                                                Game::Cave::MapNode**,
-                                                Game::Cave::BaseGen**, int&))
+void Game::Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*,
+                                               Game::Cave::MapNode**,
+                                               Game::Cave::BaseGen**, int&)
 {
 	/*
 	.loc_0x0:
@@ -1879,9 +1866,9 @@ void Game::Cave::RandItemUnit::getItemDropList((Game::Cave::MapNode*,
  * Address:	8024F8E8
  * Size:	0002CC
  */
-void Game::Cave::RandItemUnit::getItemBaseGenPosition((Game::Cave::MapNode**,
-                                                       Game::Cave::BaseGen**,
-                                                       int, int, int))
+void Game::Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**,
+                                                      Game::Cave::BaseGen**,
+                                                      int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2108,9 +2095,9 @@ void Game::Cave::RandItemUnit::getItemBaseGenPosition((Game::Cave::MapNode**,
  * Address:	8024FBB4
  * Size:	000114
  */
-void Game::Cave::RandItemUnit::getItemDropSortingList((Game::Cave::MapNode**,
-                                                       Game::Cave::BaseGen**,
-                                                       int*, int))
+void Game::Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**,
+                                                      Game::Cave::BaseGen**,
+                                                      int*, int)
 {
 	/*
 	.loc_0x0:

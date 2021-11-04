@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802628F0
  * Size:	00009C
  */
-void Game::Rock::Generator::__ct(void)
+void Game::Rock::Generator::Generator()
 {
 	/*
 	.loc_0x0:
@@ -66,7 +56,7 @@ void Game::Rock::Generator::__ct(void)
  * Address:	8026298C
  * Size:	00000C
  */
-void Game::Rock::Generator::getLatestVersion(void)
+void Game::Rock::Generator::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Rock::Generator::getLatestVersion(void)
  * Address:	80262998
  * Size:	000074
  */
-void Game::Rock::Generator::doRead((Stream&))
+void Game::Rock::Generator::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +116,7 @@ void Game::Rock::Generator::doRead((Stream&))
  * Address:	80262A0C
  * Size:	0000A4
  */
-void Game::Rock::Generator::doWrite((Stream&))
+void Game::Rock::Generator::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -179,7 +169,7 @@ void Game::Rock::Generator::doWrite((Stream&))
  * Address:	80262AB0
  * Size:	000058
  */
-void Game::Rock::Generator::doReadLatestVersion((Stream&))
+void Game::Rock::Generator::doReadLatestVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -213,7 +203,7 @@ void Game::Rock::Generator::doReadLatestVersion((Stream&))
  * Address:	80262B08
  * Size:	000004
  */
-void Game::Rock::Generator::doReadOldVersion((Stream&))
+void Game::Rock::Generator::doReadOldVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -226,7 +216,7 @@ void Game::Rock::Generator::doReadOldVersion((Stream&))
  * Address:	80262B0C
  * Size:	000050
  */
-void Game::Rock::Mgr::__ct((int, unsigned char))
+void Game::Rock::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +248,7 @@ void Game::Rock::Mgr::__ct((int, unsigned char))
  * Address:	80262B5C
  * Size:	000048
  */
-void Game::Rock::Mgr::doAlloc(void)
+void Game::Rock::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Game::Rock::Mgr::doAlloc(void)
  * Address:	80262BA4
  * Size:	000098
  */
-void Game::Rock::Parms::__ct(void)
+void Game::Rock::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -342,7 +332,7 @@ void Game::Rock::Parms::__ct(void)
  * Address:	80262C3C
  * Size:	000160
  */
-void Game::Rock::Mgr::createObj((int))
+void Game::Rock::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -452,7 +442,7 @@ void Game::Rock::Mgr::createObj((int))
  * Address:	80262D9C
  * Size:	0000BC
  */
-void Game::Rock::Obj::__dt(void)
+void Game::Rock::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -515,7 +505,7 @@ void Game::Rock::Obj::__dt(void)
  * Address:	80262E58
  * Size:	000010
  */
-void Game::Rock::Mgr::getEnemy((int))
+void Game::Rock::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -531,7 +521,7 @@ void Game::Rock::Mgr::getEnemy((int))
  * Address:	80262E68
  * Size:	000050
  */
-void Game::Rock::Parms::read((Stream&))
+void Game::Rock::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -563,7 +553,7 @@ void Game::Rock::Parms::read((Stream&))
  * Address:	80262EB8
  * Size:	0000B0
  */
-void Game::Rock::Mgr::__dt(void)
+void Game::Rock::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -623,7 +613,7 @@ void Game::Rock::Mgr::__dt(void)
  * Address:	80262F68
  * Size:	000008
  */
-void Game::Rock::Mgr::getEnemyTypeID(void)
+void Game::Rock::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -637,7 +627,7 @@ void Game::Rock::Mgr::getEnemyTypeID(void)
  * Address:	80262F70
  * Size:	000070
  */
-void Game::Rock::Generator::__dt(void)
+void Game::Rock::Generator::~Generator()
 {
 	/*
 	.loc_0x0:
@@ -681,7 +671,7 @@ void Game::Rock::Generator::__dt(void)
  * Address:	80262FE0
  * Size:	000008
  */
-void Game::Rock::Generator::getInitialParam(void)
+void Game::Rock::Generator::getInitialParam()
 {
 	/*
 	.loc_0x0:
@@ -695,7 +685,7 @@ void Game::Rock::Generator::getInitialParam(void)
  * Address:	80262FE8
  * Size:	000008
  */
-void @4 @Game::Rock::Mgr::__dt(void)
+void Game::Rock::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802850F0
  * Size:	000050
  */
-void Game::Fart::Mgr::__ct((int, unsigned char))
+void Game::Fart::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Fart::Mgr::__ct((int, unsigned char))
  * Address:	80285140
  * Size:	000048
  */
-void Game::Fart::Mgr::doAlloc(void)
+void Game::Fart::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::Fart::Mgr::doAlloc(void)
  * Address:	80285188
  * Size:	000060
  */
-void Game::Fart::Mgr::createObj((int))
+void Game::Fart::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::Fart::Mgr::createObj((int))
  * Address:	802851E8
  * Size:	0000F0
  */
-void Game::Fart::Obj::__dt(void)
+void Game::Fart::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::Fart::Obj::__dt(void)
  * Address:	802852D8
  * Size:	000010
  */
-void Game::Fart::Mgr::getEnemy((int))
+void Game::Fart::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::Fart::Mgr::getEnemy((int))
  * Address:	802852E8
  * Size:	000080
  */
-void Game::Fart::Mgr::loadTexData(void)
+void Game::Fart::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +245,7 @@ void Game::Fart::Mgr::loadTexData(void)
  * Address:	80285368
  * Size:	0000C8
  */
-void Game::Fart::Mgr::__dt(void)
+void Game::Fart::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::Fart::Mgr::__dt(void)
  * Address:	80285430
  * Size:	000008
  */
-void Game::Fart::Mgr::getEnemyTypeID(void)
+void Game::Fart::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::Fart::Mgr::getEnemyTypeID(void)
  * Address:	80285438
  * Size:	000008
  */
-void Game::Fart::Mgr::getChangeTexture(void)
+void Game::Fart::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -349,7 +339,7 @@ void Game::Fart::Mgr::getChangeTexture(void)
  * Address:	80285440
  * Size:	000008
  */
-void @4 @Game::Fart::Mgr::__dt(void)
+void Game::Fart::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

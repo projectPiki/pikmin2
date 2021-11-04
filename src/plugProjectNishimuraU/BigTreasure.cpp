@@ -2,21 +2,11 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802DBBB4
  * Size:	000024
  */
 void Game::BigTreasure::BigTreasureGroundCallBack::invokeOnGround(
-    (int, Game::WaterBox*))
+    int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -38,7 +28,7 @@ void Game::BigTreasure::BigTreasureGroundCallBack::invokeOnGround(
  * Size:	000024
  */
 void Game::BigTreasure::BigTreasureGroundCallBack::invokeOffGround(
-    (int, Game::WaterBox*))
+    int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +49,7 @@ void Game::BigTreasure::BigTreasureGroundCallBack::invokeOffGround(
  * Address:	802DBBFC
  * Size:	00013C
  */
-void Game::BigTreasure::Obj::__ct(void)
+void Game::BigTreasure::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -156,7 +146,7 @@ void Game::BigTreasure::Obj::__ct(void)
  * Address:	802DBD38
  * Size:	000004
  */
-void Game::BigTreasure::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::BigTreasure::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -169,7 +159,7 @@ void Game::BigTreasure::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802DBD3C
  * Size:	000160
  */
-void Game::BigTreasure::Obj::onInit((Game::CreatureInitArg*))
+void Game::BigTreasure::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -273,7 +263,7 @@ void Game::BigTreasure::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802DBE9C
  * Size:	00004C
  */
-void Game::BigTreasure::Obj::onKill((Game::CreatureKillArg*))
+void Game::BigTreasure::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -304,7 +294,7 @@ void Game::BigTreasure::Obj::onKill((Game::CreatureKillArg*))
  * Address:	802DBEE8
  * Size:	00004C
  */
-void Game::BigTreasure::Obj::doUpdate(void)
+void Game::BigTreasure::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::BigTreasure::Obj::doUpdate(void)
  * Address:	802DBF34
  * Size:	00003C
  */
-void Game::BigTreasure::Obj::doUpdateCommon(void)
+void Game::BigTreasure::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -362,7 +352,7 @@ void Game::BigTreasure::Obj::doUpdateCommon(void)
  * Address:	802DBF70
  * Size:	000094
  */
-void Game::BigTreasure::Obj::doAnimationUpdateAnimator(void)
+void Game::BigTreasure::Obj::doAnimationUpdateAnimator()
 {
 	/*
 	.loc_0x0:
@@ -411,7 +401,7 @@ void Game::BigTreasure::Obj::doAnimationUpdateAnimator(void)
  * Address:	802DC004
  * Size:	000098
  */
-void Game::BigTreasure::Obj::doAnimationCullingOff(void)
+void Game::BigTreasure::Obj::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -461,7 +451,7 @@ void Game::BigTreasure::Obj::doAnimationCullingOff(void)
  * Address:	802DC09C
  * Size:	000194
  */
-void Game::BigTreasure::Obj::changeMaterial(void)
+void Game::BigTreasure::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -574,7 +564,7 @@ void Game::BigTreasure::Obj::changeMaterial(void)
  * Address:	802DC230
  * Size:	000004
  */
-void Game::BigTreasure::Obj::doDirectDraw((Graphics&))
+void Game::BigTreasure::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -587,7 +577,7 @@ void Game::BigTreasure::Obj::doDirectDraw((Graphics&))
  * Address:	802DC234
  * Size:	000020
  */
-void Game::BigTreasure::Obj::doDebugDraw((Graphics&))
+void Game::BigTreasure::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -607,7 +597,7 @@ void Game::BigTreasure::Obj::doDebugDraw((Graphics&))
  * Address:	802DC254
  * Size:	00004C
  */
-void Game::BigTreasure::Obj::setFSM((Game::BigTreasure::FSM*))
+void Game::BigTreasure::Obj::setFSM(Game::BigTreasure::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -638,7 +628,7 @@ void Game::BigTreasure::Obj::setFSM((Game::BigTreasure::FSM*))
  * Address:	802DC2A0
  * Size:	00003C
  */
-void Game::BigTreasure::Obj::getShadowParam((Game::ShadowParam&))
+void Game::BigTreasure::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -665,7 +655,7 @@ void Game::BigTreasure::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802DC2DC
  * Size:	000100
  */
-void Game::BigTreasure::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::BigTreasure::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -751,8 +741,7 @@ void Game::BigTreasure::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	802DC3DC
  * Size:	000038
  */
-void Game::BigTreasure::Obj::hipdropCallBack((Game::Creature*, float,
-                                              CollPart*))
+void Game::BigTreasure::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -778,7 +767,7 @@ void Game::BigTreasure::Obj::hipdropCallBack((Game::Creature*, float,
  * Address:	802DC414
  * Size:	000020
  */
-void Game::BigTreasure::Obj::doStartStoneState(void)
+void Game::BigTreasure::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -798,7 +787,7 @@ void Game::BigTreasure::Obj::doStartStoneState(void)
  * Address:	802DC434
  * Size:	000048
  */
-void Game::BigTreasure::Obj::doFinishStoneState(void)
+void Game::BigTreasure::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -828,7 +817,7 @@ void Game::BigTreasure::Obj::doFinishStoneState(void)
  * Address:	802DC47C
  * Size:	000020
  */
-void Game::BigTreasure::Obj::doStartMovie(void)
+void Game::BigTreasure::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -848,7 +837,7 @@ void Game::BigTreasure::Obj::doStartMovie(void)
  * Address:	802DC49C
  * Size:	000020
  */
-void Game::BigTreasure::Obj::doEndMovie(void)
+void Game::BigTreasure::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -868,7 +857,7 @@ void Game::BigTreasure::Obj::doEndMovie(void)
  * Address:	802DC4BC
  * Size:	000050
  */
-void getThrowupItemPosition__Q34Game11BigTreasure3ObjFP10Vector3<float>(void)
+void Game::BigTreasure::Obj::getThrowupItemPosition(Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -900,7 +889,7 @@ void getThrowupItemPosition__Q34Game11BigTreasure3ObjFP10Vector3<float>(void)
  * Address:	802DC50C
  * Size:	000014
  */
-void getThrowupItemVelocity__Q34Game11BigTreasure3ObjFP10Vector3<float>(void)
+void Game::BigTreasure::Obj::getThrowupItemVelocity(Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -917,7 +906,7 @@ void getThrowupItemVelocity__Q34Game11BigTreasure3ObjFP10Vector3<float>(void)
  * Address:	802DC520
  * Size:	00005C
  */
-void Game::BigTreasure::Obj::resetAttackLimitTimer(void)
+void Game::BigTreasure::Obj::resetAttackLimitTimer()
 {
 	/*
 	.loc_0x0:
@@ -952,7 +941,7 @@ void Game::BigTreasure::Obj::resetAttackLimitTimer(void)
  * Address:	802DC57C
  * Size:	000228
  */
-void Game::BigTreasure::Obj::isAttackLimitTime(void)
+void Game::BigTreasure::Obj::isAttackLimitTime()
 {
 	/*
 	.loc_0x0:
@@ -1124,7 +1113,7 @@ void Game::BigTreasure::Obj::isAttackLimitTime(void)
  * Address:	802DC7A4
  * Size:	000298
  */
-void Game::BigTreasure::Obj::getTargetPosition(void)
+void Game::BigTreasure::Obj::getTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -1314,7 +1303,7 @@ void Game::BigTreasure::Obj::getTargetPosition(void)
  * Address:	802DCA3C
  * Size:	00010C
  */
-void Game::BigTreasure::Obj::createIKSystem(void)
+void Game::BigTreasure::Obj::createIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1399,7 +1388,7 @@ void Game::BigTreasure::Obj::createIKSystem(void)
  * Address:	802DCB48
  * Size:	000124
  */
-void Game::BigTreasure::Obj::setupIKSystem(void)
+void Game::BigTreasure::Obj::setupIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1486,7 +1475,7 @@ void Game::BigTreasure::Obj::setupIKSystem(void)
  * Address:	802DCC6C
  * Size:	000084
  */
-void Game::BigTreasure::Obj::setIKParameter(void)
+void Game::BigTreasure::Obj::setIKParameter()
 {
 	/*
 	.loc_0x0:
@@ -1531,7 +1520,7 @@ void Game::BigTreasure::Obj::setIKParameter(void)
  * Address:	802DCCF0
  * Size:	000020
  */
-void setIKSystemTargetPosition__Q34Game11BigTreasure3ObjFR10Vector3<float>(void)
+void Game::BigTreasure::Obj::setIKSystemTargetPosition(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1551,7 +1540,7 @@ void setIKSystemTargetPosition__Q34Game11BigTreasure3ObjFR10Vector3<float>(void)
  * Address:	802DCD10
  * Size:	000060
  */
-void Game::BigTreasure::Obj::updateIKSystem(void)
+void Game::BigTreasure::Obj::updateIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1587,7 +1576,7 @@ void Game::BigTreasure::Obj::updateIKSystem(void)
  * Address:	802DCD70
  * Size:	000060
  */
-void Game::BigTreasure::Obj::doAnimationIKSystem(void)
+void Game::BigTreasure::Obj::doAnimationIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1623,7 +1612,7 @@ void Game::BigTreasure::Obj::doAnimationIKSystem(void)
  * Address:	802DCDD0
  * Size:	000024
  */
-void Game::BigTreasure::Obj::finishAnimationIKSystem(void)
+void Game::BigTreasure::Obj::finishAnimationIKSystem()
 {
 	/*
 	.loc_0x0:
@@ -1644,7 +1633,7 @@ void Game::BigTreasure::Obj::finishAnimationIKSystem(void)
  * Address:	802DCDF4
  * Size:	000024
  */
-void Game::BigTreasure::Obj::startProgramedIK(void)
+void Game::BigTreasure::Obj::startProgramedIK()
 {
 	/*
 	.loc_0x0:
@@ -1665,7 +1654,7 @@ void Game::BigTreasure::Obj::startProgramedIK(void)
  * Address:	802DCE18
  * Size:	000024
  */
-void Game::BigTreasure::Obj::startIKMotion(void)
+void Game::BigTreasure::Obj::startIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1686,7 +1675,7 @@ void Game::BigTreasure::Obj::startIKMotion(void)
  * Address:	802DCE3C
  * Size:	000024
  */
-void Game::BigTreasure::Obj::finishIKMotion(void)
+void Game::BigTreasure::Obj::finishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1707,7 +1696,7 @@ void Game::BigTreasure::Obj::finishIKMotion(void)
  * Address:	802DCE60
  * Size:	000024
  */
-void Game::BigTreasure::Obj::forceFinishIKMotion(void)
+void Game::BigTreasure::Obj::forceFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1728,7 +1717,7 @@ void Game::BigTreasure::Obj::forceFinishIKMotion(void)
  * Address:	802DCE84
  * Size:	000024
  */
-void Game::BigTreasure::Obj::isFinishIKMotion(void)
+void Game::BigTreasure::Obj::isFinishIKMotion()
 {
 	/*
 	.loc_0x0:
@@ -1749,7 +1738,7 @@ void Game::BigTreasure::Obj::isFinishIKMotion(void)
  * Address:	802DCEA8
  * Size:	000024
  */
-void Game::BigTreasure::Obj::startBlendMotion(void)
+void Game::BigTreasure::Obj::startBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -1770,7 +1759,7 @@ void Game::BigTreasure::Obj::startBlendMotion(void)
  * Address:	802DCECC
  * Size:	000024
  */
-void Game::BigTreasure::Obj::finishBlendMotion(void)
+void Game::BigTreasure::Obj::finishBlendMotion()
 {
 	/*
 	.loc_0x0:
@@ -1791,7 +1780,7 @@ void Game::BigTreasure::Obj::finishBlendMotion(void)
  * Address:	802DCEF0
  * Size:	000024
  */
-void Game::BigTreasure::Obj::checkJointScaleOn(void)
+void Game::BigTreasure::Obj::checkJointScaleOn()
 {
 	/*
 	.loc_0x0:
@@ -1809,20 +1798,10 @@ void Game::BigTreasure::Obj::checkJointScaleOn(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000024
- */
-void Game::BigTreasure::Obj::checkJointScaleOff(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802DCF14
  * Size:	000020
  */
-void Game::BigTreasure::Obj::getTraceCentrePosition(void)
+void Game::BigTreasure::Obj::getTraceCentrePosition()
 {
 	/*
 	.loc_0x0:
@@ -1842,7 +1821,7 @@ void Game::BigTreasure::Obj::getTraceCentrePosition(void)
  * Address:	802DCF34
  * Size:	00001C
  */
-void Game::BigTreasure::Obj::getJointPositionPtr((int, int))
+void Game::BigTreasure::Obj::getJointPositionPtr(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1861,7 +1840,7 @@ void Game::BigTreasure::Obj::getJointPositionPtr((int, int))
  * Address:	802DCF50
  * Size:	000048
  */
-void Game::BigTreasure::Obj::createShadowSystem(void)
+void Game::BigTreasure::Obj::createShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1893,7 +1872,7 @@ void Game::BigTreasure::Obj::createShadowSystem(void)
  * Address:	802DCF98
  * Size:	000080
  */
-void Game::BigTreasure::Obj::setupShadowSystem(void)
+void Game::BigTreasure::Obj::setupShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1941,7 +1920,7 @@ void Game::BigTreasure::Obj::setupShadowSystem(void)
  * Address:	802DD018
  * Size:	000024
  */
-void Game::BigTreasure::Obj::doAnimationShadowSystem(void)
+void Game::BigTreasure::Obj::doAnimationShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -1962,7 +1941,7 @@ void Game::BigTreasure::Obj::doAnimationShadowSystem(void)
  * Address:	802DD03C
  * Size:	000090
  */
-void Game::BigTreasure::Obj::setupCollision(void)
+void Game::BigTreasure::Obj::setupCollision()
 {
 	/*
 	.loc_0x0:
@@ -2011,20 +1990,10 @@ void Game::BigTreasure::Obj::setupCollision(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00013C
- */
-void Game::BigTreasure::Obj::setBigTreasureCollision(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802DD0CC
  * Size:	00035C
  */
-void Game::BigTreasure::Obj::setupTreasure(void)
+void Game::BigTreasure::Obj::setupTreasure()
 {
 	/*
 	.loc_0x0:
@@ -2267,7 +2236,7 @@ void Game::BigTreasure::Obj::setupTreasure(void)
  * Address:	802DD428
  * Size:	000168
  */
-void Game::BigTreasure::Obj::updateTreasure(void)
+void Game::BigTreasure::Obj::updateTreasure()
 {
 	/*
 	.loc_0x0:
@@ -2387,7 +2356,7 @@ void Game::BigTreasure::Obj::updateTreasure(void)
  * Address:	802DD590
  * Size:	0001C0
  */
-void Game::BigTreasure::Obj::dropTreasure(void)
+void Game::BigTreasure::Obj::dropTreasure()
 {
 	/*
 	.loc_0x0:
@@ -2527,7 +2496,7 @@ void Game::BigTreasure::Obj::dropTreasure(void)
  * Address:	802DD750
  * Size:	000088
  */
-void Game::BigTreasure::Obj::dropTreasure((int))
+void Game::BigTreasure::Obj::dropTreasure(int)
 {
 	/*
 	.loc_0x0:
@@ -2573,7 +2542,7 @@ void Game::BigTreasure::Obj::dropTreasure((int))
  * Address:	802DD7D8
  * Size:	00005C
  */
-void Game::BigTreasure::Obj::isCapturedTreasure(void)
+void Game::BigTreasure::Obj::isCapturedTreasure()
 {
 	/*
 	.loc_0x0:
@@ -2616,7 +2585,7 @@ void Game::BigTreasure::Obj::isCapturedTreasure(void)
  * Address:	802DD834
  * Size:	00001C
  */
-void Game::BigTreasure::Obj::isCapturedTreasure((int))
+void Game::BigTreasure::Obj::isCapturedTreasure(int)
 {
 	/*
 	.loc_0x0:
@@ -2635,7 +2604,7 @@ void Game::BigTreasure::Obj::isCapturedTreasure((int))
  * Address:	802DD850
  * Size:	00004C
  */
-void Game::BigTreasure::Obj::getCapturedTreasureNum(void)
+void Game::BigTreasure::Obj::getCapturedTreasureNum()
 {
 	/*
 	.loc_0x0:
@@ -2674,7 +2643,7 @@ void Game::BigTreasure::Obj::getCapturedTreasureNum(void)
  * Address:	802DD89C
  * Size:	0000A0
  */
-void Game::BigTreasure::Obj::addTreasureDamage((int, float))
+void Game::BigTreasure::Obj::addTreasureDamage(int, float)
 {
 	/*
 	.loc_0x0:
@@ -2736,7 +2705,7 @@ void Game::BigTreasure::Obj::addTreasureDamage((int, float))
  * Address:	802DD93C
  * Size:	000284
  */
-void Game::BigTreasure::Obj::flickStickCollPartPikmin((CollPart*))
+void Game::BigTreasure::Obj::flickStickCollPartPikmin(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -2927,7 +2896,7 @@ void Game::BigTreasure::Obj::flickStickCollPartPikmin((CollPart*))
  * Address:	802DDBC0
  * Size:	00006C
  */
-void Game::BigTreasure::Obj::releaseItemLoozy(void)
+void Game::BigTreasure::Obj::releaseItemLoozy()
 {
 	/*
 	.loc_0x0:
@@ -2968,7 +2937,7 @@ void Game::BigTreasure::Obj::releaseItemLoozy(void)
  * Address:	802DDC2C
  * Size:	000048
  */
-void Game::BigTreasure::Obj::createAttack(void)
+void Game::BigTreasure::Obj::createAttack()
 {
 	/*
 	.loc_0x0:
@@ -3000,7 +2969,7 @@ void Game::BigTreasure::Obj::createAttack(void)
  * Address:	802DDC74
  * Size:	000024
  */
-void Game::BigTreasure::Obj::setupAttack(void)
+void Game::BigTreasure::Obj::setupAttack()
 {
 	/*
 	.loc_0x0:
@@ -3021,7 +2990,7 @@ void Game::BigTreasure::Obj::setupAttack(void)
  * Address:	802DDC98
  * Size:	000024
  */
-void Game::BigTreasure::Obj::updateAttack(void)
+void Game::BigTreasure::Obj::updateAttack()
 {
 	/*
 	.loc_0x0:
@@ -3042,7 +3011,7 @@ void Game::BigTreasure::Obj::updateAttack(void)
  * Address:	802DDCBC
  * Size:	000074
  */
-void Game::BigTreasure::Obj::startAttack(void)
+void Game::BigTreasure::Obj::startAttack()
 {
 	/*
 	.loc_0x0:
@@ -3095,7 +3064,7 @@ void Game::BigTreasure::Obj::startAttack(void)
  * Address:	802DDD30
  * Size:	000024
  */
-void Game::BigTreasure::Obj::finishAttack(void)
+void Game::BigTreasure::Obj::finishAttack()
 {
 	/*
 	.loc_0x0:
@@ -3116,7 +3085,7 @@ void Game::BigTreasure::Obj::finishAttack(void)
  * Address:	802DDD54
  * Size:	0001A8
  */
-void Game::BigTreasure::Obj::setTreasureAttack(void)
+void Game::BigTreasure::Obj::setTreasureAttack()
 {
 	/*
 	.loc_0x0:
@@ -3250,7 +3219,7 @@ void Game::BigTreasure::Obj::setTreasureAttack(void)
  * Address:	802DDEFC
  * Size:	000048
  */
-void Game::BigTreasure::Obj::getPreAttackAnimIndex(void)
+void Game::BigTreasure::Obj::getPreAttackAnimIndex()
 {
 	/*
 	.loc_0x0:
@@ -3286,7 +3255,7 @@ void Game::BigTreasure::Obj::getPreAttackAnimIndex(void)
  * Address:	802DDF44
  * Size:	000090
  */
-void Game::BigTreasure::Obj::getAttackAnimIndex(void)
+void Game::BigTreasure::Obj::getAttackAnimIndex()
 {
 	/*
 	.loc_0x0:
@@ -3346,7 +3315,7 @@ void Game::BigTreasure::Obj::getAttackAnimIndex(void)
  * Address:	802DDFD4
  * Size:	000090
  */
-void Game::BigTreasure::Obj::getPutItemAnimIndex(void)
+void Game::BigTreasure::Obj::getPutItemAnimIndex()
 {
 	/*
 	.loc_0x0:
@@ -3406,7 +3375,7 @@ void Game::BigTreasure::Obj::getPutItemAnimIndex(void)
  * Address:	802DE064
  * Size:	000184
  */
-void Game::BigTreasure::Obj::getFireAttackAnimIndex(void)
+void Game::BigTreasure::Obj::getFireAttackAnimIndex()
 {
 	/*
 	.loc_0x0:
@@ -3533,7 +3502,7 @@ void Game::BigTreasure::Obj::getFireAttackAnimIndex(void)
  * Address:	802DE1E8
  * Size:	000098
  */
-void Game::BigTreasure::Obj::getPreAttackTimeMax(void)
+void Game::BigTreasure::Obj::getPreAttackTimeMax()
 {
 	/*
 	.loc_0x0:
@@ -3595,7 +3564,7 @@ void Game::BigTreasure::Obj::getPreAttackTimeMax(void)
  * Address:	802DE280
  * Size:	00005C
  */
-void Game::BigTreasure::Obj::getAttackTimeMax(void)
+void Game::BigTreasure::Obj::getAttackTimeMax()
 {
 	/*
 	.loc_0x0:
@@ -3638,7 +3607,7 @@ void Game::BigTreasure::Obj::getAttackTimeMax(void)
  * Address:	802DE2DC
  * Size:	000020
  */
-void Game::BigTreasure::Obj::isNormalAttack((int))
+void Game::BigTreasure::Obj::isNormalAttack(int)
 {
 	/*
 	.loc_0x0:
@@ -3658,7 +3627,7 @@ void Game::BigTreasure::Obj::isNormalAttack((int))
  * Address:	802DE2FC
  * Size:	0000B0
  */
-void Game::BigTreasure::Obj::resetMaterialColor(void)
+void Game::BigTreasure::Obj::resetMaterialColor()
 {
 	/*
 	.loc_0x0:
@@ -3724,7 +3693,7 @@ void Game::BigTreasure::Obj::resetMaterialColor(void)
  * Address:	802DE3AC
  * Size:	000038
  */
-void Game::BigTreasure::Obj::resetTargetMatBodyColor((bool))
+void Game::BigTreasure::Obj::resetTargetMatBodyColor(bool)
 {
 	/*
 	.loc_0x0:
@@ -3752,7 +3721,7 @@ void Game::BigTreasure::Obj::resetTargetMatBodyColor((bool))
  * Address:	802DE3E4
  * Size:	000024
  */
-void Game::BigTreasure::Obj::resetCurrentMatBodyColor(void)
+void Game::BigTreasure::Obj::resetCurrentMatBodyColor()
 {
 	/*
 	.loc_0x0:
@@ -3773,7 +3742,7 @@ void Game::BigTreasure::Obj::resetCurrentMatBodyColor(void)
  * Address:	802DE408
  * Size:	000058
  */
-void Game::BigTreasure::Obj::resetTargetEyeMatColor(void)
+void Game::BigTreasure::Obj::resetTargetEyeMatColor()
 {
 	/*
 	.loc_0x0:
@@ -3807,7 +3776,7 @@ void Game::BigTreasure::Obj::resetTargetEyeMatColor(void)
  * Address:	802DE460
  * Size:	000034
  */
-void Game::BigTreasure::Obj::resetCurrentMatEyeColor(void)
+void Game::BigTreasure::Obj::resetCurrentMatEyeColor()
 {
 	/*
 	.loc_0x0:
@@ -3832,7 +3801,7 @@ void Game::BigTreasure::Obj::resetCurrentMatEyeColor(void)
  * Address:	802DE494
  * Size:	00012C
  */
-void Game::BigTreasure::Obj::setMatEyeAnimSpeed(void)
+void Game::BigTreasure::Obj::setMatEyeAnimSpeed()
 {
 	/*
 	.loc_0x0:
@@ -3951,7 +3920,7 @@ void Game::BigTreasure::Obj::setMatEyeAnimSpeed(void)
  * Address:	802DE5C0
  * Size:	0004D0
  */
-void Game::BigTreasure::Obj::setAttackMaterialColor((bool))
+void Game::BigTreasure::Obj::setAttackMaterialColor(bool)
 {
 	/*
 	.loc_0x0:
@@ -4331,7 +4300,7 @@ void Game::BigTreasure::Obj::setAttackMaterialColor((bool))
  * Address:	802DEA90
  * Size:	0004C0
  */
-void Game::BigTreasure::Obj::updateMaterialColor(void)
+void Game::BigTreasure::Obj::updateMaterialColor()
 {
 	/*
 	.loc_0x0:
@@ -4795,7 +4764,7 @@ void Game::BigTreasure::Obj::updateMaterialColor(void)
  * Address:	802DEF50
  * Size:	00011C
  */
-void Game::BigTreasure::Obj::startBlendAnimation((int, bool))
+void Game::BigTreasure::Obj::startBlendAnimation(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -4892,7 +4861,7 @@ void Game::BigTreasure::Obj::startBlendAnimation((int, bool))
  * Address:	802DF06C
  * Size:	000098
  */
-void Game::BigTreasure::Obj::endBlendAnimation(void)
+void Game::BigTreasure::Obj::endBlendAnimation()
 {
 	/*
 	.loc_0x0:
@@ -4946,7 +4915,7 @@ void Game::BigTreasure::Obj::endBlendAnimation(void)
  * Address:	802DF104
  * Size:	00004C
  */
-void Game::BigTreasure::Obj::getCurrAnimationIndex(void)
+void Game::BigTreasure::Obj::getCurrAnimationIndex()
 {
 	/*
 	.loc_0x0:
@@ -4981,7 +4950,7 @@ void Game::BigTreasure::Obj::getCurrAnimationIndex(void)
  * Address:	802DF150
  * Size:	0000C8
  */
-void Game::BigTreasure::Obj::startBossChargeBGM(void)
+void Game::BigTreasure::Obj::startBossChargeBGM()
 {
 	/*
 	.loc_0x0:
@@ -5049,7 +5018,7 @@ void Game::BigTreasure::Obj::startBossChargeBGM(void)
  * Address:	802DF218
  * Size:	000120
  */
-void Game::BigTreasure::Obj::startBossAttackBGM(void)
+void Game::BigTreasure::Obj::startBossAttackBGM()
 {
 	/*
 	.loc_0x0:
@@ -5151,7 +5120,7 @@ void Game::BigTreasure::Obj::startBossAttackBGM(void)
  * Address:	802DF338
  * Size:	00016C
  */
-void Game::BigTreasure::Obj::finishBossAttackBGM(void)
+void Game::BigTreasure::Obj::finishBossAttackBGM()
 {
 	/*
 	.loc_0x0:
@@ -5282,7 +5251,7 @@ void Game::BigTreasure::Obj::finishBossAttackBGM(void)
  * Address:	802DF4A4
  * Size:	0000C8
  */
-void Game::BigTreasure::Obj::startBossFlickBGM(void)
+void Game::BigTreasure::Obj::startBossFlickBGM()
 {
 	/*
 	.loc_0x0:
@@ -5350,7 +5319,7 @@ void Game::BigTreasure::Obj::startBossFlickBGM(void)
  * Address:	802DF56C
  * Size:	0001B0
  */
-void Game::BigTreasure::Obj::startBossItemDropBGM(void)
+void Game::BigTreasure::Obj::startBossItemDropBGM()
 {
 	/*
 	.loc_0x0:
@@ -5500,7 +5469,7 @@ void Game::BigTreasure::Obj::startBossItemDropBGM(void)
  * Address:	802DF71C
  * Size:	0000FC
  */
-void Game::BigTreasure::Obj::updateBossBGM(void)
+void Game::BigTreasure::Obj::updateBossBGM()
 {
 	/*
 	.loc_0x0:
@@ -5585,7 +5554,7 @@ void Game::BigTreasure::Obj::updateBossBGM(void)
  * Address:	802DF818
  * Size:	0000BC
  */
-void Game::BigTreasure::Obj::resetBossAppearBGM(void)
+void Game::BigTreasure::Obj::resetBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -5650,7 +5619,7 @@ void Game::BigTreasure::Obj::resetBossAppearBGM(void)
  * Address:	802DF8D4
  * Size:	000164
  */
-void Game::BigTreasure::Obj::setBossAppearBGM(void)
+void Game::BigTreasure::Obj::setBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -5779,7 +5748,7 @@ void Game::BigTreasure::Obj::setBossAppearBGM(void)
  * Address:	802DFA38
  * Size:	00061C
  */
-void Game::BigTreasure::Obj::createEffect(void)
+void Game::BigTreasure::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -6209,20 +6178,10 @@ void Game::BigTreasure::Obj::createEffect(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChasePosPosLocalYScale3::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802E0054
  * Size:	000084
  */
-void efx::TChasePosPosLocalYScale::__dt(void)
+void efx::TChasePosPosLocalYScale::~TChasePosPosLocalYScale()
 {
 	/*
 	.loc_0x0:
@@ -6271,7 +6230,7 @@ void efx::TChasePosPosLocalYScale::__dt(void)
  * Address:	802E00D8
  * Size:	000220
  */
-void Game::BigTreasure::Obj::setupEffect(void)
+void Game::BigTreasure::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -6431,7 +6390,7 @@ void Game::BigTreasure::Obj::setupEffect(void)
  * Address:	802E02F8
  * Size:	0001C0
  */
-void Game::BigTreasure::Obj::createOnGroundEffect((int, Game::WaterBox*))
+void Game::BigTreasure::Obj::createOnGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -6559,7 +6518,7 @@ void Game::BigTreasure::Obj::createOnGroundEffect((int, Game::WaterBox*))
  * Address:	802E04B8
  * Size:	0000A0
  */
-void Game::BigTreasure::Obj::createOffGroundEffect((int, Game::WaterBox*))
+void Game::BigTreasure::Obj::createOffGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -6615,7 +6574,7 @@ void Game::BigTreasure::Obj::createOffGroundEffect((int, Game::WaterBox*))
  * Address:	802E0558
  * Size:	00003C
  */
-void Game::BigTreasure::Obj::startTreasurePinchSmoke((int))
+void Game::BigTreasure::Obj::startTreasurePinchSmoke(int)
 {
 	/*
 	.loc_0x0:
@@ -6642,7 +6601,7 @@ void Game::BigTreasure::Obj::startTreasurePinchSmoke((int))
  * Address:	802E0594
  * Size:	000038
  */
-void Game::BigTreasure::Obj::finishTreasurePinchSmoke((int))
+void Game::BigTreasure::Obj::finishTreasurePinchSmoke(int)
 {
 	/*
 	.loc_0x0:
@@ -6668,7 +6627,7 @@ void Game::BigTreasure::Obj::finishTreasurePinchSmoke((int))
  * Address:	802E05CC
  * Size:	0000D8
  */
-void Game::BigTreasure::Obj::createDropTreasureEffect((int))
+void Game::BigTreasure::Obj::createDropTreasureEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -6734,7 +6693,7 @@ void Game::BigTreasure::Obj::createDropTreasureEffect((int))
  * Address:	802E06A4
  * Size:	0000F0
  */
-void Game::BigTreasure::Obj::createAppearBodyEffect(void)
+void Game::BigTreasure::Obj::createAppearBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -6810,7 +6769,7 @@ void Game::BigTreasure::Obj::createAppearBodyEffect(void)
  * Address:	802E0794
  * Size:	000060
  */
-void Game::BigTreasure::Obj::createAppearLegEffect((int))
+void Game::BigTreasure::Obj::createAppearLegEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -6848,7 +6807,7 @@ void Game::BigTreasure::Obj::createAppearLegEffect((int))
  * Address:	802E07F4
  * Size:	00021C
  */
-void Game::BigTreasure::Obj::createDeadBombLegEffect((int))
+void Game::BigTreasure::Obj::createDeadBombLegEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -7003,7 +6962,7 @@ void Game::BigTreasure::Obj::createDeadBombLegEffect((int))
  * Address:	802E0A10
  * Size:	000090
  */
-void Game::BigTreasure::Obj::createDeadBombBodyEffect(void)
+void Game::BigTreasure::Obj::createDeadBombBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -7051,7 +7010,7 @@ void Game::BigTreasure::Obj::createDeadBombBodyEffect(void)
  * Address:	802E0AA0
  * Size:	000060
  */
-void Game::BigTreasure::Obj::startDeadBubbleLegEffect((int))
+void Game::BigTreasure::Obj::startDeadBubbleLegEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -7089,7 +7048,7 @@ void Game::BigTreasure::Obj::startDeadBubbleLegEffect((int))
  * Address:	802E0B00
  * Size:	00005C
  */
-void Game::BigTreasure::Obj::finishDeadBubbleLegEffect((int))
+void Game::BigTreasure::Obj::finishDeadBubbleLegEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -7126,7 +7085,7 @@ void Game::BigTreasure::Obj::finishDeadBubbleLegEffect((int))
  * Address:	802E0B5C
  * Size:	000034
  */
-void Game::BigTreasure::Obj::startDeadBubbleBodyEffect(void)
+void Game::BigTreasure::Obj::startDeadBubbleBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -7151,7 +7110,7 @@ void Game::BigTreasure::Obj::startDeadBubbleBodyEffect(void)
  * Address:	802E0B90
  * Size:	000030
  */
-void Game::BigTreasure::Obj::finishDeadBubbleBodyEffect(void)
+void Game::BigTreasure::Obj::finishDeadBubbleBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -7175,7 +7134,7 @@ void Game::BigTreasure::Obj::finishDeadBubbleBodyEffect(void)
  * Address:	802E0BC0
  * Size:	000034
  */
-void Game::BigTreasure::Obj::startDeadBubbleMouthEffect(void)
+void Game::BigTreasure::Obj::startDeadBubbleMouthEffect()
 {
 	/*
 	.loc_0x0:
@@ -7200,7 +7159,7 @@ void Game::BigTreasure::Obj::startDeadBubbleMouthEffect(void)
  * Address:	802E0BF4
  * Size:	000030
  */
-void Game::BigTreasure::Obj::finishDeadBubbleMouthEffect(void)
+void Game::BigTreasure::Obj::finishDeadBubbleMouthEffect()
 {
 	/*
 	.loc_0x0:
@@ -7224,7 +7183,7 @@ void Game::BigTreasure::Obj::finishDeadBubbleMouthEffect(void)
  * Address:	802E0C24
  * Size:	0000A0
  */
-void Game::BigTreasure::Obj::createChangeMaterialEffect(void)
+void Game::BigTreasure::Obj::createChangeMaterialEffect()
 {
 	/*
 	.loc_0x0:
@@ -7280,7 +7239,7 @@ void Game::BigTreasure::Obj::createChangeMaterialEffect(void)
  * Address:	802E0CC4
  * Size:	0000B8
  */
-void Game::BigTreasure::Obj::createDeadBombFootEffect(void)
+void Game::BigTreasure::Obj::createDeadBombFootEffect()
 {
 	/*
 	.loc_0x0:
@@ -7342,7 +7301,7 @@ void Game::BigTreasure::Obj::createDeadBombFootEffect(void)
  * Address:	802E0D7C
  * Size:	000034
  */
-void Game::BigTreasure::Obj::startShineParticleEffect(void)
+void Game::BigTreasure::Obj::startShineParticleEffect()
 {
 	/*
 	.loc_0x0:
@@ -7367,7 +7326,7 @@ void Game::BigTreasure::Obj::startShineParticleEffect(void)
  * Address:	802E0DB0
  * Size:	000030
  */
-void Game::BigTreasure::Obj::finishShineParticleEffect(void)
+void Game::BigTreasure::Obj::finishShineParticleEffect()
 {
 	/*
 	.loc_0x0:
@@ -7391,7 +7350,7 @@ void Game::BigTreasure::Obj::finishShineParticleEffect(void)
  * Address:	802E0DE0
  * Size:	0001C4
  */
-void Game::BigTreasure::Obj::effectDrawOn(void)
+void Game::BigTreasure::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -7532,7 +7491,7 @@ void Game::BigTreasure::Obj::effectDrawOn(void)
  * Address:	802E0FA4
  * Size:	0001C4
  */
-void Game::BigTreasure::Obj::effectDrawOff(void)
+void Game::BigTreasure::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -7673,7 +7632,7 @@ void Game::BigTreasure::Obj::effectDrawOff(void)
  * Address:	802E1168
  * Size:	00002C
  */
-void Game::BigTreasure::Obj::subShadowScale(void)
+void Game::BigTreasure::Obj::subShadowScale()
 {
 	/*
 	.loc_0x0:
@@ -7696,7 +7655,7 @@ void Game::BigTreasure::Obj::subShadowScale(void)
  * Address:	802E1194
  * Size:	0000FC
  */
-void Game::BigTreasure::Obj::startBigTreasureBootUpDemo(void)
+void Game::BigTreasure::Obj::startBigTreasureBootUpDemo()
 {
 	/*
 	.loc_0x0:
@@ -7775,7 +7734,7 @@ void Game::BigTreasure::Obj::startBigTreasureBootUpDemo(void)
  * Address:	802E1290
  * Size:	00009C
  */
-void efx::TOootaParticle::__dt(void)
+void efx::TOootaParticle::~TOootaParticle()
 {
 	/*
 	.loc_0x0:
@@ -7830,7 +7789,7 @@ void efx::TOootaParticle::__dt(void)
  * Address:	802E132C
  * Size:	00009C
  */
-void efx::TOootaChangeBody::__dt(void)
+void efx::TOootaChangeBody::~TOootaChangeBody()
 {
 	/*
 	.loc_0x0:
@@ -7885,7 +7844,7 @@ void efx::TOootaChangeBody::__dt(void)
  * Address:	802E13C8
  * Size:	00009C
  */
-void efx::TOootaDeadAwa::__dt(void)
+void efx::TOootaDeadAwa::~TOootaDeadAwa()
 {
 	/*
 	.loc_0x0:
@@ -7940,7 +7899,7 @@ void efx::TOootaDeadAwa::__dt(void)
  * Address:	802E1464
  * Size:	00009C
  */
-void efx::TOootaStartBody::__dt(void)
+void efx::TOootaStartBody::~TOootaStartBody()
 {
 	/*
 	.loc_0x0:
@@ -7995,7 +7954,7 @@ void efx::TOootaStartBody::__dt(void)
  * Address:	802E1500
  * Size:	00009C
  */
-void efx::TOootaChangeLeg::__dt(void)
+void efx::TOootaChangeLeg::~TOootaChangeLeg()
 {
 	/*
 	.loc_0x0:
@@ -8050,7 +8009,7 @@ void efx::TOootaChangeLeg::__dt(void)
  * Address:	802E159C
  * Size:	00009C
  */
-void efx::TOootaStartLeg::__dt(void)
+void efx::TOootaStartLeg::~TOootaStartLeg()
 {
 	/*
 	.loc_0x0:
@@ -8105,7 +8064,7 @@ void efx::TOootaStartLeg::__dt(void)
  * Address:	802E1638
  * Size:	00009C
  */
-void efx::TOootaStartOta::__dt(void)
+void efx::TOootaStartOta::~TOootaStartOta()
 {
 	/*
 	.loc_0x0:
@@ -8160,7 +8119,7 @@ void efx::TOootaStartOta::__dt(void)
  * Address:	802E16D4
  * Size:	000004
  */
-void Game::BigTreasure::Obj::inWaterCallback((Game::WaterBox*))
+void Game::BigTreasure::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -8173,7 +8132,7 @@ void Game::BigTreasure::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	802E16D8
  * Size:	000004
  */
-void Game::BigTreasure::Obj::outWaterCallback(void)
+void Game::BigTreasure::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -8186,7 +8145,7 @@ void Game::BigTreasure::Obj::outWaterCallback(void)
  * Address:	802E16DC
  * Size:	000008
  */
-void Game::BigTreasure::Obj::getDamageCoeStoneState(void)
+void Game::BigTreasure::Obj::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -8200,7 +8159,7 @@ void Game::BigTreasure::Obj::getDamageCoeStoneState(void)
  * Address:	802E16E4
  * Size:	000004
  */
-void Game::BigTreasure::Obj::throwupItemInDeathProcedure(void)
+void Game::BigTreasure::Obj::throwupItemInDeathProcedure()
 {
 	/*
 	.loc_0x0:
@@ -8213,7 +8172,7 @@ void Game::BigTreasure::Obj::throwupItemInDeathProcedure(void)
  * Address:	802E16E8
  * Size:	000008
  */
-void Game::BigTreasure::Obj::getEnemyTypeID(void)
+void Game::BigTreasure::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -8227,7 +8186,7 @@ void Game::BigTreasure::Obj::getEnemyTypeID(void)
  * Address:	802E16F0
  * Size:	00006C
  */
-void Game::BigTreasure::ProperAnimator::__dt(void)
+void Game::BigTreasure::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -8292,7 +8251,7 @@ void __sinit_BigTreasure_cpp(void)
  * Address:	802E1784
  * Size:	000014
  */
-void @1412 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@1412 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -8309,7 +8268,7 @@ void @1412 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	802E1798
  * Size:	000014
  */
-void @1412 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@1412 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -8326,7 +8285,7 @@ void @1412 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	802E17AC
  * Size:	000014
  */
-void @1412 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@1412 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -8343,7 +8302,7 @@ void @1412 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	802E17C0
  * Size:	000014
  */
-void @1412 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@1412 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -8360,7 +8319,7 @@ void @1412 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	802E17D4
  * Size:	000014
  */
-void @1412 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@1412 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -8377,7 +8336,7 @@ void @1412 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	802E17E8
  * Size:	000014
  */
-void @1412 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@1412 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -8394,7 +8353,7 @@ void @1412 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	802E17FC
  * Size:	000008
  */
-void @4 @efx::TOootaStartOta::__dt(void)
+void efx::TOootaStartOta::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8408,7 +8367,7 @@ void @4 @efx::TOootaStartOta::__dt(void)
  * Address:	802E1804
  * Size:	000008
  */
-void @4 @efx::TOootaStartLeg::__dt(void)
+void efx::TOootaStartLeg::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8422,7 +8381,7 @@ void @4 @efx::TOootaStartLeg::__dt(void)
  * Address:	802E180C
  * Size:	000008
  */
-void @4 @efx::TOootaChangeLeg::__dt(void)
+void efx::TOootaChangeLeg::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8436,7 +8395,7 @@ void @4 @efx::TOootaChangeLeg::__dt(void)
  * Address:	802E1814
  * Size:	000008
  */
-void @4 @efx::TOootaStartBody::__dt(void)
+void efx::TOootaStartBody::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8450,7 +8409,7 @@ void @4 @efx::TOootaStartBody::__dt(void)
  * Address:	802E181C
  * Size:	000008
  */
-void @4 @efx::TOootaDeadAwa::__dt(void)
+void efx::TOootaDeadAwa::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8464,7 +8423,7 @@ void @4 @efx::TOootaDeadAwa::__dt(void)
  * Address:	802E1824
  * Size:	000008
  */
-void @4 @efx::TOootaChangeBody::__dt(void)
+void efx::TOootaChangeBody::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -8478,7 +8437,7 @@ void @4 @efx::TOootaChangeBody::__dt(void)
  * Address:	802E182C
  * Size:	000008
  */
-void @4 @efx::TOootaParticle::__dt(void)
+void efx::TOootaParticle::@4 @__dt()
 {
 	/*
 	.loc_0x0:

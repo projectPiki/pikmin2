@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029C1C4
  * Size:	000058
  */
-void Game::InteractFuefukiTimerReset::actEnemy((Game::EnemyBase*))
+void Game::InteractFuefukiTimerReset::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -53,7 +43,7 @@ void Game::InteractFuefukiTimerReset::actEnemy((Game::EnemyBase*))
  * Address:	8029C21C
  * Size:	000140
  */
-void Game::Fuefuki::Obj::__ct(void)
+void Game::Fuefuki::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -151,7 +141,7 @@ void Game::Fuefuki::Obj::__ct(void)
  * Address:	8029C35C
  * Size:	000004
  */
-void Game::Fuefuki::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Fuefuki::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -164,7 +154,7 @@ void Game::Fuefuki::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	8029C360
  * Size:	000030
  */
-void birth__Q34Game7Fuefuki3ObjFR10Vector3<float> f(void)
+void Game::Fuefuki::Obj::birth(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -190,7 +180,7 @@ void birth__Q34Game7Fuefuki3ObjFR10Vector3<float> f(void)
  * Address:	8029C390
  * Size:	000088
  */
-void Game::Fuefuki::Obj::onInit((Game::CreatureInitArg*))
+void Game::Fuefuki::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -236,7 +226,7 @@ void Game::Fuefuki::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8029C418
  * Size:	000054
  */
-void Game::Fuefuki::Obj::onKill((Game::CreatureKillArg*))
+void Game::Fuefuki::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -271,7 +261,7 @@ void Game::Fuefuki::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8029C46C
  * Size:	000078
  */
-void Game::Fuefuki::Obj::doUpdate(void)
+void Game::Fuefuki::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -315,7 +305,7 @@ void Game::Fuefuki::Obj::doUpdate(void)
  * Address:	8029C4E4
  * Size:	000004
  */
-void Game::Fuefuki::Obj::doDirectDraw((Graphics&))
+void Game::Fuefuki::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -328,7 +318,7 @@ void Game::Fuefuki::Obj::doDirectDraw((Graphics&))
  * Address:	8029C4E8
  * Size:	000020
  */
-void Game::Fuefuki::Obj::doDebugDraw((Graphics&))
+void Game::Fuefuki::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -348,7 +338,7 @@ void Game::Fuefuki::Obj::doDebugDraw((Graphics&))
  * Address:	8029C508
  * Size:	00004C
  */
-void Game::Fuefuki::Obj::setFSM((Game::Fuefuki::FSM*))
+void Game::Fuefuki::Obj::setFSM(Game::Fuefuki::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +369,7 @@ void Game::Fuefuki::Obj::setFSM((Game::Fuefuki::FSM*))
  * Address:	8029C554
  * Size:	0000A4
  */
-void Game::Fuefuki::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Fuefuki::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -436,7 +426,7 @@ void Game::Fuefuki::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8029C5F8
  * Size:	000068
  */
-void Game::Fuefuki::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::Fuefuki::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -478,7 +468,7 @@ void Game::Fuefuki::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8029C660
  * Size:	000068
  */
-void Game::Fuefuki::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::Fuefuki::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -520,7 +510,7 @@ void Game::Fuefuki::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	8029C6C8
  * Size:	000044
  */
-void Game::Fuefuki::Obj::doStartStoneState(void)
+void Game::Fuefuki::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -551,7 +541,7 @@ void Game::Fuefuki::Obj::doStartStoneState(void)
  * Address:	8029C70C
  * Size:	000044
  */
-void Game::Fuefuki::Obj::doFinishStoneState(void)
+void Game::Fuefuki::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -582,7 +572,7 @@ void Game::Fuefuki::Obj::doFinishStoneState(void)
  * Address:	8029C750
  * Size:	000044
  */
-void Game::Fuefuki::Obj::doStartEarthquakeFitState(void)
+void Game::Fuefuki::Obj::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -613,7 +603,7 @@ void Game::Fuefuki::Obj::doStartEarthquakeFitState(void)
  * Address:	8029C794
  * Size:	000044
  */
-void Game::Fuefuki::Obj::doFinishEarthquakeFitState(void)
+void Game::Fuefuki::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -644,22 +634,22 @@ void Game::Fuefuki::Obj::doFinishEarthquakeFitState(void)
  * Address:	8029C7D8
  * Size:	000034
  */
-void Game::Fuefuki::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::Fuefuki::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x194E54
-	  mr        r3, r31
-	  bl        0x1050
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
+	  blr
+	  li        r3, 0x11
+	  blr
+	  lis       r4, 0x8051
+	  li        r0, -0x1
+	  lfs       f0, 0x48B0(r4)
+	  lis       r3, 0x804C
+	  stw       r0, -0x6948(r13)
+	  stfsu     f0, 0x2450(r3)
+	  stfs      f0, -0x6944(r13)
+	  stfs      f0, 0x4(r3)
+	  stfs      f0, 0x8(r3)
 	  blr
 	*/
 }
@@ -669,7 +659,7 @@ void Game::Fuefuki::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	8029C80C
  * Size:	000034
  */
-void Game::Fuefuki::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::Fuefuki::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -694,7 +684,7 @@ void Game::Fuefuki::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	8029C840
  * Size:	000028
  */
-void Game::Fuefuki::Obj::startCarcassMotion(void)
+void Game::Fuefuki::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -716,7 +706,7 @@ void Game::Fuefuki::Obj::startCarcassMotion(void)
  * Address:	8029C868
  * Size:	000020
  */
-void Game::Fuefuki::Obj::doStartMovie(void)
+void Game::Fuefuki::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -736,7 +726,7 @@ void Game::Fuefuki::Obj::doStartMovie(void)
  * Address:	8029C888
  * Size:	000020
  */
-void Game::Fuefuki::Obj::doEndMovie(void)
+void Game::Fuefuki::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -756,7 +746,7 @@ void Game::Fuefuki::Obj::doEndMovie(void)
  * Address:	8029C8A8
  * Size:	0000C0
  */
-void Game::Fuefuki::Obj::getOffsetForMapCollision(void)
+void Game::Fuefuki::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -822,7 +812,7 @@ void Game::Fuefuki::Obj::getOffsetForMapCollision(void)
  * Address:	8029C968
  * Size:	000078
  */
-void Game::Fuefuki::Obj::resetAppearTimer(void)
+void Game::Fuefuki::Obj::resetAppearTimer()
 {
 	/*
 	.loc_0x0:
@@ -864,7 +854,7 @@ void Game::Fuefuki::Obj::resetAppearTimer(void)
  * Address:	8029C9E0
  * Size:	00002C
  */
-void Game::Fuefuki::Obj::resetWhisleTimer((bool))
+void Game::Fuefuki::Obj::resetWhisleTimer(bool)
 {
 	/*
 	.loc_0x0:
@@ -889,7 +879,7 @@ void Game::Fuefuki::Obj::resetWhisleTimer((bool))
  * Address:	8029CA0C
  * Size:	000078
  */
-void Game::Fuefuki::Obj::isWhisleTimeMax(void)
+void Game::Fuefuki::Obj::isWhisleTimeMax()
 {
 	/*
 	.loc_0x0:
@@ -937,7 +927,7 @@ void Game::Fuefuki::Obj::isWhisleTimeMax(void)
  * Address:	8029CA84
  * Size:	000038
  */
-void Game::Fuefuki::Obj::startWhisle(void)
+void Game::Fuefuki::Obj::startWhisle()
 {
 	/*
 	.loc_0x0:
@@ -963,7 +953,7 @@ void Game::Fuefuki::Obj::startWhisle(void)
  * Address:	8029CABC
  * Size:	000324
  */
-void Game::Fuefuki::Obj::updateWhisle(void)
+void Game::Fuefuki::Obj::updateWhisle()
 {
 	/*
 	.loc_0x0:
@@ -1198,7 +1188,7 @@ void Game::Fuefuki::Obj::updateWhisle(void)
  * Address:	8029CDE0
  * Size:	000038
  */
-void Game::Fuefuki::Obj::finishWhisle(void)
+void Game::Fuefuki::Obj::finishWhisle()
 {
 	/*
 	.loc_0x0:
@@ -1224,7 +1214,7 @@ void Game::Fuefuki::Obj::finishWhisle(void)
  * Address:	8029CE18
  * Size:	0002A0
  */
-void Game::Fuefuki::Obj::setTargetPosition((bool))
+void Game::Fuefuki::Obj::setTargetPosition(bool)
 {
 	/*
 	.loc_0x0:
@@ -1418,7 +1408,7 @@ void Game::Fuefuki::Obj::setTargetPosition((bool))
  * Address:	8029D0B8
  * Size:	0001E0
  */
-void Game::Fuefuki::Obj::isJumpAway(void)
+void Game::Fuefuki::Obj::isJumpAway()
 {
 	/*
 	.loc_0x0:
@@ -1564,7 +1554,7 @@ void Game::Fuefuki::Obj::isJumpAway(void)
  * Address:	8029D298
  * Size:	000048
  */
-void Game::Fuefuki::Obj::isArriveTarget(void)
+void Game::Fuefuki::Obj::isArriveTarget()
 {
 	/*
 	.loc_0x0:
@@ -1598,7 +1588,7 @@ void Game::Fuefuki::Obj::isArriveTarget(void)
  * Address:	8029D2E0
  * Size:	000050
  */
-void Game::Fuefuki::Obj::createFootmarks(void)
+void Game::Fuefuki::Obj::createFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -1632,7 +1622,7 @@ void Game::Fuefuki::Obj::createFootmarks(void)
  * Address:	8029D330
  * Size:	0000BC
  */
-void Game::Fuefuki::Obj::updateFootmarks(void)
+void Game::Fuefuki::Obj::updateFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -1697,7 +1687,7 @@ void Game::Fuefuki::Obj::updateFootmarks(void)
  * Address:	8029D3EC
  * Size:	00019C
  */
-void Game::Fuefuki::Obj::createEffect(void)
+void Game::Fuefuki::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1816,7 +1806,7 @@ void Game::Fuefuki::Obj::createEffect(void)
  * Address:	8029D588
  * Size:	00009C
  */
-void Game::Fuefuki::Obj::startWhisleEffect(void)
+void Game::Fuefuki::Obj::startWhisleEffect()
 {
 	/*
 	.loc_0x0:
@@ -1867,7 +1857,7 @@ void Game::Fuefuki::Obj::startWhisleEffect(void)
  * Address:	8029D624
  * Size:	000078
  */
-void Game::Fuefuki::Obj::updateWhisleEffect((float))
+void Game::Fuefuki::Obj::updateWhisleEffect(float)
 {
 	/*
 	.loc_0x0:
@@ -1909,7 +1899,7 @@ void Game::Fuefuki::Obj::updateWhisleEffect((float))
  * Address:	8029D69C
  * Size:	000050
  */
-void Game::Fuefuki::Obj::finishWhisleEffect(void)
+void Game::Fuefuki::Obj::finishWhisleEffect()
 {
 	/*
 	.loc_0x0:
@@ -1941,7 +1931,7 @@ void Game::Fuefuki::Obj::finishWhisleEffect(void)
  * Address:	8029D6EC
  * Size:	00002C
  */
-void efx::TCursor::fade(void)
+void efx::TCursor::fade()
 {
 	/*
 	.loc_0x0:
@@ -1964,7 +1954,7 @@ void efx::TCursor::fade(void)
  * Address:	8029D718
  * Size:	000078
  */
-void Game::Fuefuki::Obj::createDownEffect((float))
+void Game::Fuefuki::Obj::createDownEffect(float)
 {
 	/*
 	.loc_0x0:
@@ -2006,7 +1996,7 @@ void Game::Fuefuki::Obj::createDownEffect((float))
  * Address:	8029D790
  * Size:	000048
  */
-void Game::Fuefuki::Obj::createEfxHamon(void)
+void Game::Fuefuki::Obj::createEfxHamon()
 {
 	/*
 	.loc_0x0:
@@ -2038,7 +2028,7 @@ void Game::Fuefuki::Obj::createEfxHamon(void)
  * Address:	8029D7D8
  * Size:	000050
  */
-void Game::Fuefuki::Obj::effectDrawOn(void)
+void Game::Fuefuki::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -2070,7 +2060,7 @@ void Game::Fuefuki::Obj::effectDrawOn(void)
  * Address:	8029D828
  * Size:	00001C
  */
-void efx::TOneEmitter::endDemoDrawOn(void)
+void efx::TOneEmitter::endDemoDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -2089,7 +2079,7 @@ void efx::TOneEmitter::endDemoDrawOn(void)
  * Address:	8029D844
  * Size:	000050
  */
-void Game::Fuefuki::Obj::effectDrawOff(void)
+void Game::Fuefuki::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -2121,7 +2111,7 @@ void Game::Fuefuki::Obj::effectDrawOff(void)
  * Address:	8029D894
  * Size:	00001C
  */
-void efx::TOneEmitter::startDemoDrawOff(void)
+void efx::TOneEmitter::startDemoDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -2140,7 +2130,7 @@ void efx::TOneEmitter::startDemoDrawOff(void)
  * Address:	8029D8B0
  * Size:	00000C
  */
-void efx::ArgCursor::getName(void)
+void efx::ArgCursor::getName()
 {
 	/*
 	.loc_0x0:
@@ -2155,7 +2145,7 @@ void efx::ArgCursor::getName(void)
  * Address:	8029D8BC
  * Size:	00009C
  */
-void efx::TFuebugOnpa::__dt(void)
+void efx::TFuebugOnpa::~TFuebugOnpa()
 {
 	/*
 	.loc_0x0:
@@ -2210,7 +2200,7 @@ void efx::TFuebugOnpa::__dt(void)
  * Address:	8029D958
  * Size:	000004
  */
-void Game::Fuefuki::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Fuefuki::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -2223,7 +2213,7 @@ void Game::Fuefuki::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	8029D95C
  * Size:	000004
  */
-void Game::Fuefuki::Obj::outWaterCallback(void)
+void Game::Fuefuki::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -2236,7 +2226,7 @@ void Game::Fuefuki::Obj::outWaterCallback(void)
  * Address:	8029D960
  * Size:	000008
  */
-void Game::Fuefuki::Obj::getEnemyTypeID(void)
+void Game::Fuefuki::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -2250,7 +2240,7 @@ void Game::Fuefuki::Obj::getEnemyTypeID(void)
  * Address:	8029D968
  * Size:	000008
  */
-void Game::Fuefuki::Obj::getFootmarks(void)
+void Game::Fuefuki::Obj::getFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -2264,7 +2254,7 @@ void Game::Fuefuki::Obj::getFootmarks(void)
  * Address:	8029D970
  * Size:	000014
  */
-void @756 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@756 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -2281,7 +2271,7 @@ void @756 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8029D984
  * Size:	000014
  */
-void @756 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@756 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2298,7 +2288,7 @@ void @756 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8029D998
  * Size:	000014
  */
-void @756 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@756 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -2315,7 +2305,7 @@ void @756 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8029D9AC
  * Size:	000014
  */
-void @756 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@756 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2332,7 +2322,7 @@ void @756 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8029D9C0
  * Size:	000014
  */
-void @756 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@756 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2349,7 +2339,7 @@ void @756 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8029D9D4
  * Size:	000014
  */
-void @756 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@756 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -2366,7 +2356,7 @@ void @756 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	8029D9E8
  * Size:	000008
  */
-void @4 @efx::TFuebugOnpa::__dt(void)
+void efx::TFuebugOnpa::@4 @__dt()
 {
 	/*
 	.loc_0x0:

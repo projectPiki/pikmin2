@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8024FCC8
  * Size:	00005C
  */
-void Game::Cave::GateNode::__ct(void)
+void Game::Cave::GateNode::GateNode()
 {
 	/*
 	.loc_0x0:
@@ -50,7 +40,7 @@ void Game::Cave::GateNode::__ct(void)
  * Address:	8024FD24
  * Size:	00009C
  */
-void Game::Cave::GateNode::__ct((Game::Cave::GateUnit*, int, int))
+void Game::Cave::GateNode::GateNode(Game::Cave::GateUnit*, int, int)
 {
 	/*
 	.loc_0x0:
@@ -101,7 +91,7 @@ void Game::Cave::GateNode::__ct((Game::Cave::GateUnit*, int, int))
  * Address:	8024FDC0
  * Size:	000020
  */
-void Game::Cave::GateNode::getObjectId(void)
+void Game::Cave::GateNode::getObjectId()
 {
 	/*
 	.loc_0x0:
@@ -123,7 +113,7 @@ void Game::Cave::GateNode::getObjectId(void)
  * Address:	8024FDE0
  * Size:	000008
  */
-void Game::Cave::GateNode::getObjectType(void)
+void Game::Cave::GateNode::getObjectType()
 {
 	/*
 	.loc_0x0:
@@ -137,7 +127,7 @@ void Game::Cave::GateNode::getObjectType(void)
  * Address:	8024FDE8
  * Size:	000008
  */
-void Game::Cave::GateNode::getBirthCount(void)
+void Game::Cave::GateNode::getBirthCount()
 {
 	/*
 	.loc_0x0:
@@ -151,7 +141,7 @@ void Game::Cave::GateNode::getBirthCount(void)
  * Address:	8024FDF0
  * Size:	000008
  */
-void Game::Cave::GateNode::getDirection(void)
+void Game::Cave::GateNode::getDirection()
 {
 	/*
 	.loc_0x0:
@@ -165,7 +155,7 @@ void Game::Cave::GateNode::getDirection(void)
  * Address:	8024FDF8
  * Size:	000008
  */
-void Game::Cave::GateNode::getBirthDoorIndex(void)
+void Game::Cave::GateNode::getBirthDoorIndex()
 {
 	/*
 	.loc_0x0:
@@ -179,7 +169,7 @@ void Game::Cave::GateNode::getBirthDoorIndex(void)
  * Address:	8024FE00
  * Size:	000070
  */
-void Game::Cave::GateNode::__dt(void)
+void Game::Cave::GateNode::~GateNode()
 {
 	/*
 	.loc_0x0:

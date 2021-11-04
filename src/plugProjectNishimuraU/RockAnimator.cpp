@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026287C
  * Size:	000008
  */
-void Game::Rock::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Rock::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Rock::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80262884
  * Size:	000008
  */
-void Game::Rock::ProperAnimator::getAnimator((int))
+void Game::Rock::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Rock::ProperAnimator::getAnimator((int))
  * Address:	8026288C
  * Size:	00005C
  */
-void Game::Rock::ProperAnimator::__dt(void)
+void Game::Rock::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Rock::ProperAnimator::__dt(void)
  * Address:	802628E8
  * Size:	000008
  */
-void Game::Rock::ProperAnimator::getAnimator(void)
+void Game::Rock::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

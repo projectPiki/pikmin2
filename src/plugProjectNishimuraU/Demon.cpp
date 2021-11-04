@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028E394
  * Size:	000090
  */
-void Game::Demon::Obj::__ct(void)
+void Game::Demon::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void Game::Demon::Obj::__ct(void)
  * Address:	8028E424
  * Size:	0003F0
  */
-void Game::Demon::Obj::getAttackableTarget(void)
+void Game::Demon::Obj::getAttackableTarget()
 {
 	/*
 	.loc_0x0:
@@ -351,7 +341,7 @@ void Game::Demon::Obj::getAttackableTarget(void)
  * Address:	8028E814
  * Size:	00033C
  */
-void Game::Demon::Obj::catchTarget(void)
+void Game::Demon::Obj::catchTarget()
 {
 	/*
 	.loc_0x0:
@@ -598,7 +588,7 @@ void Game::Demon::Obj::catchTarget(void)
  * Address:	8028EB50
  * Size:	000008
  */
-void Game::Demon::Obj::getEnemyTypeID(void)
+void Game::Demon::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -612,7 +602,7 @@ void Game::Demon::Obj::getEnemyTypeID(void)
  * Address:	8028EB58
  * Size:	000008
  */
-void Game::Demon::Obj::getStickPikminNum(void)
+void Game::Demon::Obj::getStickPikminNum()
 {
 	/*
 	.loc_0x0:
@@ -626,7 +616,7 @@ void Game::Demon::Obj::getStickPikminNum(void)
  * Address:	8028EB60
  * Size:	000008
  */
-void Game::Demon::Obj::resetAttackableTimer((float))
+void Game::Demon::Obj::resetAttackableTimer(float)
 {
 	/*
 	.loc_0x0:

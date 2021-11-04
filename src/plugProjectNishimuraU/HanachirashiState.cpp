@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029F228
  * Size:	000480
  */
-void Game::Hanachirashi::FSM::init((Game::EnemyBase*))
+void Game::Hanachirashi::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +331,7 @@ void Game::Hanachirashi::FSM::init((Game::EnemyBase*))
  * Address:	8029F6A8
  * Size:	0000AC
  */
-void Game::Hanachirashi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -400,7 +390,7 @@ void Game::Hanachirashi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8029F754
  * Size:	0000B8
  */
-void Game::Hanachirashi::StateDead::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -464,7 +454,7 @@ void Game::Hanachirashi::StateDead::exec((Game::EnemyBase*))
  * Address:	8029F80C
  * Size:	000004
  */
-void Game::Hanachirashi::StateDead::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -477,7 +467,7 @@ void Game::Hanachirashi::StateDead::cleanup((Game::EnemyBase*))
  * Address:	8029F810
  * Size:	000054
  */
-void Game::Hanachirashi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -510,7 +500,7 @@ void Game::Hanachirashi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8029F864
  * Size:	000138
  */
-void Game::Hanachirashi::StateWait::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -610,7 +600,7 @@ void Game::Hanachirashi::StateWait::exec((Game::EnemyBase*))
  * Address:	8029F99C
  * Size:	000004
  */
-void Game::Hanachirashi::StateWait::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -623,7 +613,7 @@ void Game::Hanachirashi::StateWait::cleanup((Game::EnemyBase*))
  * Address:	8029F9A0
  * Size:	00004C
  */
-void Game::Hanachirashi::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -654,7 +644,7 @@ void Game::Hanachirashi::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8029F9EC
  * Size:	0001A0
  */
-void Game::Hanachirashi::StateMove::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -782,7 +772,7 @@ void Game::Hanachirashi::StateMove::exec((Game::EnemyBase*))
  * Address:	8029FB8C
  * Size:	000004
  */
-void Game::Hanachirashi::StateMove::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -795,7 +785,7 @@ void Game::Hanachirashi::StateMove::cleanup((Game::EnemyBase*))
  * Address:	8029FB90
  * Size:	000030
  */
-void Game::Hanachirashi::StateChase::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateChase::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -819,7 +809,7 @@ void Game::Hanachirashi::StateChase::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8029FBC0
  * Size:	000530
  */
-void Game::Hanachirashi::StateChase::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateChase::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1197,7 +1187,7 @@ void Game::Hanachirashi::StateChase::exec((Game::EnemyBase*))
  * Address:	802A00F0
  * Size:	000024
  */
-void Game::Hanachirashi::StateChase::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateChase::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1218,8 +1208,8 @@ void Game::Hanachirashi::StateChase::cleanup((Game::EnemyBase*))
  * Address:	802A0114
  * Size:	000124
  */
-void Game::Hanachirashi::StateChaseInside::init((Game::EnemyBase*,
-                                                 Game::StateArg*))
+void Game::Hanachirashi::StateChaseInside::init(Game::EnemyBase*,
+                                                Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1314,7 +1304,7 @@ void Game::Hanachirashi::StateChaseInside::init((Game::EnemyBase*,
  * Address:	802A0238
  * Size:	00037C
  */
-void Game::Hanachirashi::StateChaseInside::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateChaseInside::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1569,7 +1559,7 @@ void Game::Hanachirashi::StateChaseInside::exec((Game::EnemyBase*))
  * Address:	802A05B4
  * Size:	000024
  */
-void Game::Hanachirashi::StateChaseInside::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateChaseInside::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1590,7 +1580,7 @@ void Game::Hanachirashi::StateChaseInside::cleanup((Game::EnemyBase*))
  * Address:	802A05D8
  * Size:	000090
  */
-void Game::Hanachirashi::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1638,7 +1628,7 @@ void Game::Hanachirashi::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802A0668
  * Size:	00011C
  */
-void Game::Hanachirashi::StateAttack::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1731,7 +1721,7 @@ void Game::Hanachirashi::StateAttack::exec((Game::EnemyBase*))
  * Address:	802A0784
  * Size:	000054
  */
-void Game::Hanachirashi::StateAttack::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1764,7 +1754,7 @@ void Game::Hanachirashi::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802A07D8
  * Size:	000068
  */
-void Game::Hanachirashi::StateFall::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1802,7 +1792,7 @@ void Game::Hanachirashi::StateFall::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802A0840
  * Size:	0001A4
  */
-void Game::Hanachirashi::StateFall::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1933,7 +1923,7 @@ void Game::Hanachirashi::StateFall::exec((Game::EnemyBase*))
  * Address:	802A09E4
  * Size:	000038
  */
-void Game::Hanachirashi::StateFall::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1959,7 +1949,7 @@ void Game::Hanachirashi::StateFall::cleanup((Game::EnemyBase*))
  * Address:	802A0A1C
  * Size:	000070
  */
-void Game::Hanachirashi::StateLand::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1999,7 +1989,7 @@ void Game::Hanachirashi::StateLand::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802A0A8C
  * Size:	000080
  */
-void Game::Hanachirashi::StateLand::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2047,7 +2037,7 @@ void Game::Hanachirashi::StateLand::exec((Game::EnemyBase*))
  * Address:	802A0B0C
  * Size:	000024
  */
-void Game::Hanachirashi::StateLand::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2068,7 +2058,7 @@ void Game::Hanachirashi::StateLand::cleanup((Game::EnemyBase*))
  * Address:	802A0B30
  * Size:	000068
  */
-void Game::Hanachirashi::StateGround::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateGround::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2106,7 +2096,7 @@ void Game::Hanachirashi::StateGround::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802A0B98
  * Size:	000114
  */
-void Game::Hanachirashi::StateGround::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateGround::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2197,7 +2187,7 @@ void Game::Hanachirashi::StateGround::exec((Game::EnemyBase*))
  * Address:	802A0CAC
  * Size:	000024
  */
-void Game::Hanachirashi::StateGround::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateGround::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2218,7 +2208,7 @@ void Game::Hanachirashi::StateGround::cleanup((Game::EnemyBase*))
  * Address:	802A0CD0
  * Size:	000064
  */
-void Game::Hanachirashi::StateTakeOff::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2255,7 +2245,7 @@ void Game::Hanachirashi::StateTakeOff::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802A0D34
  * Size:	0000EC
  */
-void Game::Hanachirashi::StateTakeOff::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateTakeOff::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2334,7 +2324,7 @@ void Game::Hanachirashi::StateTakeOff::exec((Game::EnemyBase*))
  * Address:	802A0E20
  * Size:	000038
  */
-void Game::Hanachirashi::StateTakeOff::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateTakeOff::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2360,8 +2350,7 @@ void Game::Hanachirashi::StateTakeOff::cleanup((Game::EnemyBase*))
  * Address:	802A0E58
  * Size:	000064
  */
-void Game::Hanachirashi::StateFlyFlick::init((Game::EnemyBase*,
-                                              Game::StateArg*))
+void Game::Hanachirashi::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2398,7 +2387,7 @@ void Game::Hanachirashi::StateFlyFlick::init((Game::EnemyBase*,
  * Address:	802A0EBC
  * Size:	0000E4
  */
-void Game::Hanachirashi::StateFlyFlick::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateFlyFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2473,7 +2462,7 @@ void Game::Hanachirashi::StateFlyFlick::exec((Game::EnemyBase*))
  * Address:	802A0FA0
  * Size:	000024
  */
-void Game::Hanachirashi::StateFlyFlick::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateFlyFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2494,8 +2483,8 @@ void Game::Hanachirashi::StateFlyFlick::cleanup((Game::EnemyBase*))
  * Address:	802A0FC4
  * Size:	000064
  */
-void Game::Hanachirashi::StateGroundFlick::init((Game::EnemyBase*,
-                                                 Game::StateArg*))
+void Game::Hanachirashi::StateGroundFlick::init(Game::EnemyBase*,
+                                                Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2532,7 +2521,7 @@ void Game::Hanachirashi::StateGroundFlick::init((Game::EnemyBase*,
  * Address:	802A1028
  * Size:	000100
  */
-void Game::Hanachirashi::StateGroundFlick::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateGroundFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2614,7 +2603,7 @@ void Game::Hanachirashi::StateGroundFlick::exec((Game::EnemyBase*))
  * Address:	802A1128
  * Size:	000024
  */
-void Game::Hanachirashi::StateGroundFlick::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateGroundFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2635,7 +2624,7 @@ void Game::Hanachirashi::StateGroundFlick::cleanup((Game::EnemyBase*))
  * Address:	802A114C
  * Size:	000068
  */
-void Game::Hanachirashi::StateLaugh::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Hanachirashi::StateLaugh::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2673,7 +2662,7 @@ void Game::Hanachirashi::StateLaugh::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802A11B4
  * Size:	0000DC
  */
-void Game::Hanachirashi::StateLaugh::exec((Game::EnemyBase*))
+void Game::Hanachirashi::StateLaugh::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2746,7 +2735,7 @@ void Game::Hanachirashi::StateLaugh::exec((Game::EnemyBase*))
  * Address:	802A1290
  * Size:	000024
  */
-void Game::Hanachirashi::StateLaugh::cleanup((Game::EnemyBase*))
+void Game::Hanachirashi::StateLaugh::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

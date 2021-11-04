@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026B848
  * Size:	000008
  */
-void Game::Hiba::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Hiba::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Hiba::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8026B850
  * Size:	000008
  */
-void Game::Hiba::ProperAnimator::getAnimator((int))
+void Game::Hiba::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Hiba::ProperAnimator::getAnimator((int))
  * Address:	8026B858
  * Size:	00005C
  */
-void Game::Hiba::ProperAnimator::__dt(void)
+void Game::Hiba::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Hiba::ProperAnimator::__dt(void)
  * Address:	8026B8B4
  * Size:	000008
  */
-void Game::Hiba::ProperAnimator::getAnimator(void)
+void Game::Hiba::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

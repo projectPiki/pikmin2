@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803006EC
  * Size:	0000A4
  */
-void Game::FixKabuto::Obj::__ct(void)
+void Game::FixKabuto::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -70,7 +60,7 @@ void Game::FixKabuto::Obj::__ct(void)
  * Address:	80300790
  * Size:	000064
  */
-void Game::FixKabuto::Obj::onKill((Game::CreatureKillArg*))
+void Game::FixKabuto::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +97,7 @@ void Game::FixKabuto::Obj::onKill((Game::CreatureKillArg*))
  * Address:	803007F4
  * Size:	0001A4
  */
-void Game::FixKabuto::Obj::changeMaterial(void)
+void Game::FixKabuto::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -228,7 +218,7 @@ void Game::FixKabuto::Obj::changeMaterial(void)
  * Address:	80300998
  * Size:	000140
  */
-void Game::FixKabuto::Obj::createEffect(void)
+void Game::FixKabuto::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -324,7 +314,7 @@ void Game::FixKabuto::Obj::createEffect(void)
  * Address:	80300AD8
  * Size:	000018
  */
-void Game::FixKabuto::Obj::setupEffect(void)
+void Game::FixKabuto::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -342,7 +332,7 @@ void Game::FixKabuto::Obj::setupEffect(void)
  * Address:	80300AF0
  * Size:	000058
  */
-void Game::FixKabuto::Obj::startRotateEffect(void)
+void Game::FixKabuto::Obj::startRotateEffect()
 {
 	/*
 	.loc_0x0:
@@ -376,7 +366,7 @@ void Game::FixKabuto::Obj::startRotateEffect(void)
  * Address:	80300B48
  * Size:	000030
  */
-void Game::FixKabuto::Obj::finishRotateEffect(void)
+void Game::FixKabuto::Obj::finishRotateEffect()
 {
 	/*
 	.loc_0x0:
@@ -400,7 +390,7 @@ void Game::FixKabuto::Obj::finishRotateEffect(void)
  * Address:	80300B78
  * Size:	000058
  */
-void Game::FixKabuto::Obj::startWaitEffect(void)
+void Game::FixKabuto::Obj::startWaitEffect()
 {
 	/*
 	.loc_0x0:
@@ -434,7 +424,7 @@ void Game::FixKabuto::Obj::startWaitEffect(void)
  * Address:	80300BD0
  * Size:	000030
  */
-void Game::FixKabuto::Obj::finishWaitEffect(void)
+void Game::FixKabuto::Obj::finishWaitEffect()
 {
 	/*
 	.loc_0x0:
@@ -458,7 +448,7 @@ void Game::FixKabuto::Obj::finishWaitEffect(void)
  * Address:	80300C00
  * Size:	000050
  */
-void Game::FixKabuto::Obj::effectDrawOn(void)
+void Game::FixKabuto::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -490,7 +480,7 @@ void Game::FixKabuto::Obj::effectDrawOn(void)
  * Address:	80300C50
  * Size:	000050
  */
-void Game::FixKabuto::Obj::effectDrawOff(void)
+void Game::FixKabuto::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -522,7 +512,7 @@ void Game::FixKabuto::Obj::effectDrawOff(void)
  * Address:	80300CA0
  * Size:	00009C
  */
-void efx::TKkabutoWait::__dt(void)
+void efx::TKkabutoWait::~TKkabutoWait()
 {
 	/*
 	.loc_0x0:
@@ -577,7 +567,7 @@ void efx::TKkabutoWait::__dt(void)
  * Address:	80300D3C
  * Size:	00009C
  */
-void efx::TKkabutoRot::__dt(void)
+void efx::TKkabutoRot::~TKkabutoRot()
 {
 	/*
 	.loc_0x0:
@@ -632,7 +622,7 @@ void efx::TKkabutoRot::__dt(void)
  * Address:	80300DD8
  * Size:	000008
  */
-void Game::FixKabuto::Obj::getEnemyTypeID(void)
+void Game::FixKabuto::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -646,7 +636,7 @@ void Game::FixKabuto::Obj::getEnemyTypeID(void)
  * Address:	80300DE0
  * Size:	000014
  */
-void @748 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@748 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -663,7 +653,7 @@ void @748 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	80300DF4
  * Size:	000014
  */
-void @748 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@748 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -680,7 +670,7 @@ void @748 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	80300E08
  * Size:	000014
  */
-void @748 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@748 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -697,7 +687,7 @@ void @748 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	80300E1C
  * Size:	000014
  */
-void @748 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@748 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -714,7 +704,7 @@ void @748 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80300E30
  * Size:	000014
  */
-void @748 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@748 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -731,7 +721,7 @@ void @748 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80300E44
  * Size:	000014
  */
-void @748 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@748 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -748,7 +738,7 @@ void @748 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80300E58
  * Size:	000008
  */
-void @4 @efx::TKkabutoRot::__dt(void)
+void efx::TKkabutoRot::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -762,7 +752,7 @@ void @4 @efx::TKkabutoRot::__dt(void)
  * Address:	80300E60
  * Size:	000008
  */
-void @4 @efx::TKkabutoWait::__dt(void)
+void efx::TKkabutoWait::@4 @__dt()
 {
 	/*
 	.loc_0x0:

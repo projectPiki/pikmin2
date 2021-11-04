@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802AB5F0
  * Size:	0003D0
  */
-void Game::Kurage::FSM::init((Game::EnemyBase*))
+void Game::Kurage::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +283,7 @@ void Game::Kurage::FSM::init((Game::EnemyBase*))
  * Address:	802AB9C0
  * Size:	0000CC
  */
-void Game::Kurage::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -360,7 +350,7 @@ void Game::Kurage::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802ABA8C
  * Size:	00014C
  */
-void Game::Kurage::StateDead::exec((Game::EnemyBase*))
+void Game::Kurage::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -463,7 +453,7 @@ void Game::Kurage::StateDead::exec((Game::EnemyBase*))
  * Address:	802ABBD8
  * Size:	000004
  */
-void Game::Kurage::StateDead::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -476,7 +466,7 @@ void Game::Kurage::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802ABBDC
  * Size:	00005C
  */
-void Game::Kurage::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -511,7 +501,7 @@ void Game::Kurage::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802ABC38
  * Size:	000174
  */
-void Game::Kurage::StateWait::exec((Game::EnemyBase*))
+void Game::Kurage::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -626,7 +616,7 @@ void Game::Kurage::StateWait::exec((Game::EnemyBase*))
  * Address:	802ABDAC
  * Size:	000004
  */
-void Game::Kurage::StateWait::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -639,7 +629,7 @@ void Game::Kurage::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802ABDB0
  * Size:	000074
  */
-void Game::Kurage::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -680,7 +670,7 @@ void Game::Kurage::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802ABE24
  * Size:	000208
  */
-void Game::Kurage::StateMove::exec((Game::EnemyBase*))
+void Game::Kurage::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -838,7 +828,7 @@ void Game::Kurage::StateMove::exec((Game::EnemyBase*))
  * Address:	802AC02C
  * Size:	000004
  */
-void Game::Kurage::StateMove::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -851,7 +841,7 @@ void Game::Kurage::StateMove::cleanup((Game::EnemyBase*))
  * Address:	802AC030
  * Size:	00006C
  */
-void Game::Kurage::StateChase::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateChase::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -890,7 +880,7 @@ void Game::Kurage::StateChase::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802AC09C
  * Size:	00015C
  */
-void Game::Kurage::StateChase::exec((Game::EnemyBase*))
+void Game::Kurage::StateChase::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1001,7 +991,7 @@ void Game::Kurage::StateChase::exec((Game::EnemyBase*))
  * Address:	802AC1F8
  * Size:	000024
  */
-void Game::Kurage::StateChase::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateChase::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1012,7 @@ void Game::Kurage::StateChase::cleanup((Game::EnemyBase*))
  * Address:	802AC21C
  * Size:	000080
  */
-void Game::Kurage::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1066,7 +1056,7 @@ void Game::Kurage::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802AC29C
  * Size:	000244
  */
-void Game::Kurage::StateAttack::exec((Game::EnemyBase*))
+void Game::Kurage::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1241,7 +1231,7 @@ void Game::Kurage::StateAttack::exec((Game::EnemyBase*))
  * Address:	802AC4E0
  * Size:	000038
  */
-void Game::Kurage::StateAttack::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1267,7 +1257,7 @@ void Game::Kurage::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802AC518
  * Size:	000068
  */
-void Game::Kurage::StateFall::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1305,7 +1295,7 @@ void Game::Kurage::StateFall::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802AC580
  * Size:	000180
  */
-void Game::Kurage::StateFall::exec((Game::EnemyBase*))
+void Game::Kurage::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1419,7 +1409,7 @@ void Game::Kurage::StateFall::exec((Game::EnemyBase*))
  * Address:	802AC700
  * Size:	000024
  */
-void Game::Kurage::StateFall::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1440,7 +1430,7 @@ void Game::Kurage::StateFall::cleanup((Game::EnemyBase*))
  * Address:	802AC724
  * Size:	0000C0
  */
-void Game::Kurage::StateLand::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1500,7 +1490,7 @@ void Game::Kurage::StateLand::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802AC7E4
  * Size:	000080
  */
-void Game::Kurage::StateLand::exec((Game::EnemyBase*))
+void Game::Kurage::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1548,7 +1538,7 @@ void Game::Kurage::StateLand::exec((Game::EnemyBase*))
  * Address:	802AC864
  * Size:	000024
  */
-void Game::Kurage::StateLand::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1569,7 +1559,7 @@ void Game::Kurage::StateLand::cleanup((Game::EnemyBase*))
  * Address:	802AC888
  * Size:	000068
  */
-void Game::Kurage::StateTakeOff::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1607,7 +1597,7 @@ void Game::Kurage::StateTakeOff::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802AC8F0
  * Size:	0000F0
  */
-void Game::Kurage::StateTakeOff::exec((Game::EnemyBase*))
+void Game::Kurage::StateTakeOff::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1687,7 +1677,7 @@ void Game::Kurage::StateTakeOff::exec((Game::EnemyBase*))
  * Address:	802AC9E0
  * Size:	000024
  */
-void Game::Kurage::StateTakeOff::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateTakeOff::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1708,7 +1698,7 @@ void Game::Kurage::StateTakeOff::cleanup((Game::EnemyBase*))
  * Address:	802ACA04
  * Size:	000060
  */
-void Game::Kurage::StateGround::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateGround::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1744,7 +1734,7 @@ void Game::Kurage::StateGround::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802ACA64
  * Size:	000114
  */
-void Game::Kurage::StateGround::exec((Game::EnemyBase*))
+void Game::Kurage::StateGround::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1835,7 +1825,7 @@ void Game::Kurage::StateGround::exec((Game::EnemyBase*))
  * Address:	802ACB78
  * Size:	000024
  */
-void Game::Kurage::StateGround::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateGround::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1856,7 +1846,7 @@ void Game::Kurage::StateGround::cleanup((Game::EnemyBase*))
  * Address:	802ACB9C
  * Size:	0000E0
  */
-void Game::Kurage::StateFlyFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1924,7 +1914,7 @@ void Game::Kurage::StateFlyFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802ACC7C
  * Size:	00017C
  */
-void Game::Kurage::StateFlyFlick::exec((Game::EnemyBase*))
+void Game::Kurage::StateFlyFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2039,7 +2029,7 @@ void Game::Kurage::StateFlyFlick::exec((Game::EnemyBase*))
  * Address:	802ACDF8
  * Size:	000024
  */
-void Game::Kurage::StateFlyFlick::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateFlyFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2060,7 +2050,7 @@ void Game::Kurage::StateFlyFlick::cleanup((Game::EnemyBase*))
  * Address:	802ACE1C
  * Size:	0000DC
  */
-void Game::Kurage::StateGroundFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Kurage::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2127,7 +2117,7 @@ void Game::Kurage::StateGroundFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802ACEF8
  * Size:	00014C
  */
-void Game::Kurage::StateGroundFlick::exec((Game::EnemyBase*))
+void Game::Kurage::StateGroundFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2230,7 +2220,7 @@ void Game::Kurage::StateGroundFlick::exec((Game::EnemyBase*))
  * Address:	802AD044
  * Size:	000024
  */
-void Game::Kurage::StateGroundFlick::cleanup((Game::EnemyBase*))
+void Game::Kurage::StateGroundFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

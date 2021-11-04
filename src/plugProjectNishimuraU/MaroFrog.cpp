@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802617E0
  * Size:	000098
  */
-void Game::MaroFrog::Obj::__ct(void)
+void Game::MaroFrog::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -67,7 +57,7 @@ void Game::MaroFrog::Obj::__ct(void)
  * Address:	80261878
  * Size:	00045C
  */
-void Game::MaroFrog::Obj::attackNaviPosition(void)
+void Game::MaroFrog::Obj::attackNaviPosition()
 {
 	/*
 	.loc_0x0:
@@ -378,7 +368,7 @@ void Game::MaroFrog::Obj::attackNaviPosition(void)
  * Address:	80261CD4
  * Size:	0000B0
  */
-void Game::MaroFrog::Obj::createEffect(void)
+void Game::MaroFrog::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -436,7 +426,7 @@ void Game::MaroFrog::Obj::createEffect(void)
  * Address:	80261D84
  * Size:	000008
  */
-void Game::MaroFrog::Obj::getEnemyTypeID(void)
+void Game::MaroFrog::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

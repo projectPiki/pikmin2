@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802CE798
  * Size:	00016C
  */
-void Game::SnakeWhole::Obj::__ct(void)
+void Game::SnakeWhole::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::SnakeWhole::Obj::__ct(void)
  * Address:	802CE904
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::SnakeWhole::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -137,7 +127,7 @@ void Game::SnakeWhole::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802CE908
  * Size:	0000CC
  */
-void Game::SnakeWhole::Obj::onInit((Game::CreatureInitArg*))
+void Game::SnakeWhole::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -200,7 +190,7 @@ void Game::SnakeWhole::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802CE9D4
  * Size:	000050
  */
-void Game::SnakeWhole::Obj::doUpdate(void)
+void Game::SnakeWhole::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -232,7 +222,7 @@ void Game::SnakeWhole::Obj::doUpdate(void)
  * Address:	802CEA24
  * Size:	000034
  */
-void Game::SnakeWhole::Obj::doUpdateCommon(void)
+void Game::SnakeWhole::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -257,7 +247,7 @@ void Game::SnakeWhole::Obj::doUpdateCommon(void)
  * Address:	802CEA58
  * Size:	000034
  */
-void Game::SnakeWhole::Obj::doAnimationUpdateAnimator(void)
+void Game::SnakeWhole::Obj::doAnimationUpdateAnimator()
 {
 	/*
 	.loc_0x0:
@@ -282,7 +272,7 @@ void Game::SnakeWhole::Obj::doAnimationUpdateAnimator(void)
  * Address:	802CEA8C
  * Size:	00003C
  */
-void Game::SnakeWhole::Obj::doAnimationCullingOff(void)
+void Game::SnakeWhole::Obj::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -309,7 +299,7 @@ void Game::SnakeWhole::Obj::doAnimationCullingOff(void)
  * Address:	802CEAC8
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::doDirectDraw((Graphics&))
+void Game::SnakeWhole::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +312,7 @@ void Game::SnakeWhole::Obj::doDirectDraw((Graphics&))
  * Address:	802CEACC
  * Size:	000020
  */
-void Game::SnakeWhole::Obj::doDebugDraw((Graphics&))
+void Game::SnakeWhole::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -342,7 +332,7 @@ void Game::SnakeWhole::Obj::doDebugDraw((Graphics&))
  * Address:	802CEAEC
  * Size:	00004C
  */
-void Game::SnakeWhole::Obj::setFSM((Game::SnakeWhole::FSM*))
+void Game::SnakeWhole::Obj::setFSM(Game::SnakeWhole::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +363,7 @@ void Game::SnakeWhole::Obj::setFSM((Game::SnakeWhole::FSM*))
  * Address:	802CEB38
  * Size:	0000B0
  */
-void Game::SnakeWhole::Obj::getShadowParam((Game::ShadowParam&))
+void Game::SnakeWhole::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -433,7 +423,7 @@ void Game::SnakeWhole::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802CEBE8
  * Size:	000098
  */
-void Game::SnakeWhole::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::SnakeWhole::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -489,7 +479,7 @@ void Game::SnakeWhole::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	802CEC80
  * Size:	000020
  */
-void Game::SnakeWhole::Obj::doStartStoneState(void)
+void Game::SnakeWhole::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -509,7 +499,7 @@ void Game::SnakeWhole::Obj::doStartStoneState(void)
  * Address:	802CECA0
  * Size:	000048
  */
-void Game::SnakeWhole::Obj::doFinishStoneState(void)
+void Game::SnakeWhole::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -539,7 +529,7 @@ void Game::SnakeWhole::Obj::doFinishStoneState(void)
  * Address:	802CECE8
  * Size:	000028
  */
-void Game::SnakeWhole::Obj::startCarcassMotion(void)
+void Game::SnakeWhole::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -561,7 +551,7 @@ void Game::SnakeWhole::Obj::startCarcassMotion(void)
  * Address:	802CED10
  * Size:	000020
  */
-void Game::SnakeWhole::Obj::doStartMovie(void)
+void Game::SnakeWhole::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -581,7 +571,7 @@ void Game::SnakeWhole::Obj::doStartMovie(void)
  * Address:	802CED30
  * Size:	000020
  */
-void Game::SnakeWhole::Obj::doEndMovie(void)
+void Game::SnakeWhole::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -601,7 +591,7 @@ void Game::SnakeWhole::Obj::doEndMovie(void)
  * Address:	802CED50
  * Size:	0000BC
  */
-void Game::SnakeWhole::Obj::initMouthSlots(void)
+void Game::SnakeWhole::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -664,7 +654,7 @@ void Game::SnakeWhole::Obj::initMouthSlots(void)
  * Address:	802CEE0C
  * Size:	000058
  */
-void getThrowupItemPosition__Q34Game10SnakeWhole3ObjFP10Vector3<float>(void)
+void Game::SnakeWhole::Obj::getThrowupItemPosition(Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -698,7 +688,7 @@ void getThrowupItemPosition__Q34Game10SnakeWhole3ObjFP10Vector3<float>(void)
  * Address:	802CEE64
  * Size:	00003C
  */
-void Game::SnakeWhole::Obj::isOutTerritory(void)
+void Game::SnakeWhole::Obj::isOutTerritory()
 {
 	/*
 	.loc_0x0:
@@ -725,7 +715,7 @@ void Game::SnakeWhole::Obj::isOutTerritory(void)
  * Address:	802CEEA0
  * Size:	00003C
  */
-void Game::SnakeWhole::Obj::isInHomeRange(void)
+void Game::SnakeWhole::Obj::isInHomeRange()
 {
 	/*
 	.loc_0x0:
@@ -752,7 +742,7 @@ void Game::SnakeWhole::Obj::isInHomeRange(void)
  * Address:	802CEEDC
  * Size:	0002AC
  */
-void setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<float>(void)
+void Game::SnakeWhole::Obj::setJumpMove(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -963,7 +953,7 @@ void setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<float>(void)
  * Address:	802CF188
  * Size:	000078
  */
-void Game::SnakeWhole::Obj::updateFace(void)
+void Game::SnakeWhole::Obj::updateFace()
 {
 	/*
 	.loc_0x0:
@@ -1009,7 +999,7 @@ void Game::SnakeWhole::Obj::updateFace(void)
  * Address:	802CF200
  * Size:	000080
  */
-void Game::SnakeWhole::Obj::updateConstraint(void)
+void Game::SnakeWhole::Obj::updateConstraint()
 {
 	/*
 	.loc_0x0:
@@ -1059,7 +1049,7 @@ void Game::SnakeWhole::Obj::updateConstraint(void)
  * Address:	802CF280
  * Size:	000530
  */
-void Game::SnakeWhole::Obj::appearNearByTarget((Game::Creature*))
+void Game::SnakeWhole::Obj::appearNearByTarget(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1429,7 +1419,7 @@ void Game::SnakeWhole::Obj::appearNearByTarget((Game::Creature*))
  * Address:	802CF7B0
  * Size:	00020C
  */
-void Game::SnakeWhole::Obj::setAttackPosition(void)
+void Game::SnakeWhole::Obj::setAttackPosition()
 {
 	/*
 	.loc_0x0:
@@ -1580,7 +1570,7 @@ void Game::SnakeWhole::Obj::setAttackPosition(void)
  * Address:	802CF9BC
  * Size:	0005F4
  */
-void Game::SnakeWhole::Obj::getAttackPiki((int))
+void Game::SnakeWhole::Obj::getAttackPiki(int)
 {
 	/*
 	.loc_0x0:
@@ -2005,7 +1995,7 @@ void Game::SnakeWhole::Obj::getAttackPiki((int))
  * Address:	802CFFB0
  * Size:	0005C8
  */
-void Game::SnakeWhole::Obj::getAttackNavi((int))
+void Game::SnakeWhole::Obj::getAttackNavi(int)
 {
 	/*
 	.loc_0x0:
@@ -2419,7 +2409,7 @@ void Game::SnakeWhole::Obj::getAttackNavi((int))
  * Address:	802D0578
  * Size:	000050
  */
-void Game::SnakeWhole::Obj::getSearchedTarget(void)
+void Game::SnakeWhole::Obj::getSearchedTarget()
 {
 	/*
 	.loc_0x0:
@@ -2455,7 +2445,7 @@ void Game::SnakeWhole::Obj::getSearchedTarget(void)
  * Address:	802D05C8
  * Size:	000068
  */
-void Game::SnakeWhole::Obj::getSwallowSlot(void)
+void Game::SnakeWhole::Obj::getSwallowSlot()
 {
 	/*
 	.loc_0x0:
@@ -2501,7 +2491,7 @@ void Game::SnakeWhole::Obj::getSwallowSlot(void)
  * Address:	802D0630
  * Size:	00006C
  */
-void Game::SnakeWhole::Obj::isSwallowPikmin(void)
+void Game::SnakeWhole::Obj::isSwallowPikmin()
 {
 	/*
 	.loc_0x0:
@@ -2548,7 +2538,7 @@ void Game::SnakeWhole::Obj::isSwallowPikmin(void)
  * Address:	802D069C
  * Size:	00024C
  */
-void Game::SnakeWhole::Obj::getStickHeadPikmin(void)
+void Game::SnakeWhole::Obj::getStickHeadPikmin()
 {
 	/*
 	.loc_0x0:
@@ -2725,7 +2715,7 @@ void Game::SnakeWhole::Obj::getStickHeadPikmin(void)
  * Address:	802D08E8
  * Size:	000048
  */
-void Game::SnakeWhole::Obj::createJointCallBack(void)
+void Game::SnakeWhole::Obj::createJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2757,7 +2747,7 @@ void Game::SnakeWhole::Obj::createJointCallBack(void)
  * Address:	802D0930
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::setupJointCallBack(void)
+void Game::SnakeWhole::Obj::setupJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2778,7 +2768,7 @@ void Game::SnakeWhole::Obj::setupJointCallBack(void)
  * Address:	802D0954
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::doAnimationJointCallBack(void)
+void Game::SnakeWhole::Obj::doAnimationJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2799,7 +2789,7 @@ void Game::SnakeWhole::Obj::doAnimationJointCallBack(void)
  * Address:	802D0978
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::finishAnimationJointCallBack(void)
+void Game::SnakeWhole::Obj::finishAnimationJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2820,7 +2810,7 @@ void Game::SnakeWhole::Obj::finishAnimationJointCallBack(void)
  * Address:	802D099C
  * Size:	0000B8
  */
-void Game::SnakeWhole::Obj::startJointCallBack(void)
+void Game::SnakeWhole::Obj::startJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2878,7 +2868,7 @@ void Game::SnakeWhole::Obj::startJointCallBack(void)
  * Address:	802D0A54
  * Size:	000088
  */
-void Game::SnakeWhole::Obj::returnJointCallBack(void)
+void Game::SnakeWhole::Obj::returnJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2924,7 +2914,7 @@ void Game::SnakeWhole::Obj::returnJointCallBack(void)
  * Address:	802D0ADC
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::finishJointCallBack(void)
+void Game::SnakeWhole::Obj::finishJointCallBack()
 {
 	/*
 	.loc_0x0:
@@ -2945,7 +2935,7 @@ void Game::SnakeWhole::Obj::finishJointCallBack(void)
  * Address:	802D0B00
  * Size:	000038
  */
-void Game::SnakeWhole::Obj::setupCollision(void)
+void Game::SnakeWhole::Obj::setupCollision()
 {
 	/*
 	.loc_0x0:
@@ -2973,7 +2963,7 @@ void Game::SnakeWhole::Obj::setupCollision(void)
  * Address:	802D0B38
  * Size:	000040
  */
-void Game::SnakeWhole::Obj::lifeIncrement(void)
+void Game::SnakeWhole::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -3001,7 +2991,7 @@ void Game::SnakeWhole::Obj::lifeIncrement(void)
  * Address:	802D0B78
  * Size:	000048
  */
-void Game::SnakeWhole::Obj::createShadowSystem(void)
+void Game::SnakeWhole::Obj::createShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -3033,7 +3023,7 @@ void Game::SnakeWhole::Obj::createShadowSystem(void)
  * Address:	802D0BC0
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::setupShadowSystem(void)
+void Game::SnakeWhole::Obj::setupShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -3054,7 +3044,7 @@ void Game::SnakeWhole::Obj::setupShadowSystem(void)
  * Address:	802D0BE4
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::doAnimationShadowSystem(void)
+void Game::SnakeWhole::Obj::doAnimationShadowSystem()
 {
 	/*
 	.loc_0x0:
@@ -3075,7 +3065,7 @@ void Game::SnakeWhole::Obj::doAnimationShadowSystem(void)
  * Address:	802D0C08
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::startJointShadow(void)
+void Game::SnakeWhole::Obj::startJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -3096,7 +3086,7 @@ void Game::SnakeWhole::Obj::startJointShadow(void)
  * Address:	802D0C2C
  * Size:	000024
  */
-void Game::SnakeWhole::Obj::finishJointShadow(void)
+void Game::SnakeWhole::Obj::finishJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -3117,7 +3107,7 @@ void Game::SnakeWhole::Obj::finishJointShadow(void)
  * Address:	802D0C50
  * Size:	000040
  */
-void Game::SnakeWhole::Obj::deleteJointShadow(void)
+void Game::SnakeWhole::Obj::deleteJointShadow()
 {
 	/*
 	.loc_0x0:
@@ -3145,7 +3135,7 @@ void Game::SnakeWhole::Obj::deleteJointShadow(void)
  * Address:	802D0C90
  * Size:	0000E0
  */
-void Game::SnakeWhole::Obj::startBossAttackBGM(void)
+void Game::SnakeWhole::Obj::startBossAttackBGM()
 {
 	/*
 	.loc_0x0:
@@ -3223,7 +3213,7 @@ void Game::SnakeWhole::Obj::startBossAttackBGM(void)
  * Address:	802D0D70
  * Size:	0000C8
  */
-void Game::SnakeWhole::Obj::startBossFlickBGM(void)
+void Game::SnakeWhole::Obj::startBossFlickBGM()
 {
 	/*
 	.loc_0x0:
@@ -3291,7 +3281,7 @@ void Game::SnakeWhole::Obj::startBossFlickBGM(void)
  * Address:	802D0E38
  * Size:	0000FC
  */
-void Game::SnakeWhole::Obj::updateBossBGM(void)
+void Game::SnakeWhole::Obj::updateBossBGM()
 {
 	/*
 	.loc_0x0:
@@ -3376,7 +3366,7 @@ void Game::SnakeWhole::Obj::updateBossBGM(void)
  * Address:	802D0F34
  * Size:	0000D0
  */
-void Game::SnakeWhole::Obj::resetBossAppearBGM(void)
+void Game::SnakeWhole::Obj::resetBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -3448,7 +3438,7 @@ void Game::SnakeWhole::Obj::resetBossAppearBGM(void)
  * Address:	802D1004
  * Size:	0000CC
  */
-void Game::SnakeWhole::Obj::setBossAppearBGM(void)
+void Game::SnakeWhole::Obj::setBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -3519,7 +3509,7 @@ void Game::SnakeWhole::Obj::setBossAppearBGM(void)
  * Address:	802D10D0
  * Size:	000068
  */
-void Game::SnakeWhole::Obj::createEffect(void)
+void Game::SnakeWhole::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -3559,7 +3549,7 @@ void Game::SnakeWhole::Obj::createEffect(void)
  * Address:	802D1138
  * Size:	000078
  */
-void Game::SnakeWhole::Obj::setupEffect(void)
+void Game::SnakeWhole::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -3601,7 +3591,7 @@ void Game::SnakeWhole::Obj::setupEffect(void)
  * Address:	802D11B0
  * Size:	0001D4
  */
-void Game::SnakeWhole::Obj::createAppearEffect((int))
+void Game::SnakeWhole::Obj::createAppearEffect(int)
 {
 	/*
 	.loc_0x0:
@@ -3740,7 +3730,7 @@ void Game::SnakeWhole::Obj::createAppearEffect((int))
  * Address:	802D1384
  * Size:	000034
  */
-void Game::SnakeWhole::Obj::createDeadStartEffect(void)
+void Game::SnakeWhole::Obj::createDeadStartEffect()
 {
 	/*
 	.loc_0x0:
@@ -3765,7 +3755,7 @@ void Game::SnakeWhole::Obj::createDeadStartEffect(void)
  * Address:	802D13B8
  * Size:	000094
  */
-void Game::SnakeWhole::Obj::createDeadFinishEffect(void)
+void Game::SnakeWhole::Obj::createDeadFinishEffect()
 {
 	/*
 	.loc_0x0:
@@ -3814,7 +3804,7 @@ void Game::SnakeWhole::Obj::createDeadFinishEffect(void)
  * Address:	802D144C
  * Size:	00003C
  */
-void Game::SnakeWhole::Obj::createWalkSmokeEffect((float))
+void Game::SnakeWhole::Obj::createWalkSmokeEffect(float)
 {
 	/*
 	.loc_0x0:
@@ -3845,7 +3835,7 @@ void Game::SnakeWhole::Obj::createWalkSmokeEffect((float))
  * Address:	802D1488
  * Size:	000030
  */
-void Game::SnakeWhole::Obj::effectDrawOn(void)
+void Game::SnakeWhole::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -3869,7 +3859,7 @@ void Game::SnakeWhole::Obj::effectDrawOn(void)
  * Address:	802D14B8
  * Size:	000030
  */
-void Game::SnakeWhole::Obj::effectDrawOff(void)
+void Game::SnakeWhole::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -3893,7 +3883,7 @@ void Game::SnakeWhole::Obj::effectDrawOff(void)
  * Address:	802D14E8
  * Size:	000048
  */
-void Game::SnakeWhole::Obj::createEfxHamon(void)
+void Game::SnakeWhole::Obj::createEfxHamon()
 {
 	/*
 	.loc_0x0:
@@ -3925,7 +3915,7 @@ void Game::SnakeWhole::Obj::createEfxHamon(void)
  * Address:	802D1530
  * Size:	000008
  */
-void Game::SnakeWhole::Obj::isUnderground(void)
+void Game::SnakeWhole::Obj::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -3939,7 +3929,7 @@ void Game::SnakeWhole::Obj::isUnderground(void)
  * Address:	802D1538
  * Size:	000058
  */
-void Game::SnakeWhole::Obj::getFitEffectPos(void)
+void Game::SnakeWhole::Obj::getFitEffectPos()
 {
 	/*
 	.loc_0x0:
@@ -3973,7 +3963,7 @@ void Game::SnakeWhole::Obj::getFitEffectPos(void)
  * Address:	802D1590
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::inWaterCallback((Game::WaterBox*))
+void Game::SnakeWhole::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -3986,7 +3976,7 @@ void Game::SnakeWhole::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	802D1594
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::outWaterCallback(void)
+void Game::SnakeWhole::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -3999,7 +3989,7 @@ void Game::SnakeWhole::Obj::outWaterCallback(void)
  * Address:	802D1598
  * Size:	000008
  */
-void Game::SnakeWhole::Obj::getDamageCoeStoneState(void)
+void Game::SnakeWhole::Obj::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -4013,7 +4003,7 @@ void Game::SnakeWhole::Obj::getDamageCoeStoneState(void)
  * Address:	802D15A0
  * Size:	000008
  */
-void Game::SnakeWhole::Obj::getMouthSlots(void)
+void Game::SnakeWhole::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -4027,7 +4017,7 @@ void Game::SnakeWhole::Obj::getMouthSlots(void)
  * Address:	802D15A8
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::throwupItemInDeathProcedure(void)
+void Game::SnakeWhole::Obj::throwupItemInDeathProcedure()
 {
 	/*
 	.loc_0x0:
@@ -4040,7 +4030,7 @@ void Game::SnakeWhole::Obj::throwupItemInDeathProcedure(void)
  * Address:	802D15AC
  * Size:	000008
  */
-void Game::SnakeWhole::Obj::getDownSmokeScale(void)
+void Game::SnakeWhole::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -4054,7 +4044,7 @@ void Game::SnakeWhole::Obj::getDownSmokeScale(void)
  * Address:	802D15B4
  * Size:	000008
  */
-void Game::SnakeWhole::Obj::getEnemyTypeID(void)
+void Game::SnakeWhole::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -4068,7 +4058,7 @@ void Game::SnakeWhole::Obj::getEnemyTypeID(void)
  * Address:	802D15BC
  * Size:	000014
  */
-void @816 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@816 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -4085,7 +4075,7 @@ void @816 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	802D15D0
  * Size:	000014
  */
-void @816 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@816 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4102,7 +4092,7 @@ void @816 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	802D15E4
  * Size:	000014
  */
-void @816 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@816 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -4119,7 +4109,7 @@ void @816 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	802D15F8
  * Size:	000014
  */
-void @816 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@816 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -4136,7 +4126,7 @@ void @816 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	802D160C
  * Size:	000014
  */
-void @816 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@816 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -4153,7 +4143,7 @@ void @816 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	802D1620
  * Size:	000014
  */
-void @816 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@816 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

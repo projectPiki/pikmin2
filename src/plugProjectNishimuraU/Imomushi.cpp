@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BC138
  * Size:	000138
  */
-void Game::Imomushi::Obj::__ct(void)
+void Game::Imomushi::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::Imomushi::Obj::__ct(void)
  * Address:	802BC270
  * Size:	000004
  */
-void Game::Imomushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Imomushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::Imomushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802BC274
  * Size:	0000E8
  */
-void Game::Imomushi::Obj::onInit((Game::CreatureInitArg*))
+void Game::Imomushi::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -198,7 +188,7 @@ void Game::Imomushi::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802BC35C
  * Size:	000044
  */
-void Game::Imomushi::Obj::onKill((Game::CreatureKillArg*))
+void Game::Imomushi::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -227,7 +217,7 @@ void Game::Imomushi::Obj::onKill((Game::CreatureKillArg*))
  * Address:	802BC3A0
  * Size:	000034
  */
-void Game::Imomushi::Obj::doUpdate(void)
+void Game::Imomushi::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -252,7 +242,7 @@ void Game::Imomushi::Obj::doUpdate(void)
  * Address:	802BC3D4
  * Size:	0004D0
  */
-void Game::Imomushi::Obj::doAnimationStick(void)
+void Game::Imomushi::Obj::doAnimationStick()
 {
 	/*
 	.loc_0x0:
@@ -618,7 +608,7 @@ void Game::Imomushi::Obj::doAnimationStick(void)
  * Address:	802BC8A4
  * Size:	000004
  */
-void Game::Imomushi::Obj::doDirectDraw((Graphics&))
+void Game::Imomushi::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -631,7 +621,7 @@ void Game::Imomushi::Obj::doDirectDraw((Graphics&))
  * Address:	802BC8A8
  * Size:	000020
  */
-void Game::Imomushi::Obj::doDebugDraw((Graphics&))
+void Game::Imomushi::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -651,7 +641,7 @@ void Game::Imomushi::Obj::doDebugDraw((Graphics&))
  * Address:	802BC8C8
  * Size:	00004C
  */
-void Game::Imomushi::Obj::setFSM((Game::Imomushi::FSM*))
+void Game::Imomushi::Obj::setFSM(Game::Imomushi::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -682,7 +672,7 @@ void Game::Imomushi::Obj::setFSM((Game::Imomushi::FSM*))
  * Address:	802BC914
  * Size:	0000D0
  */
-void Game::Imomushi::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Imomushi::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -754,7 +744,7 @@ void Game::Imomushi::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802BC9E4
  * Size:	000064
  */
-void Game::Imomushi::Obj::earthquakeCallBack((Game::Creature*, float))
+void Game::Imomushi::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -795,7 +785,7 @@ void Game::Imomushi::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	802BCA48
  * Size:	000080
  */
-void Game::Imomushi::Obj::dropCallBack((Game::Creature*))
+void Game::Imomushi::Obj::dropCallBack(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -845,7 +835,7 @@ void Game::Imomushi::Obj::dropCallBack((Game::Creature*))
  * Address:	802BCAC8
  * Size:	000034
  */
-void Game::Imomushi::Obj::doStartStoneState(void)
+void Game::Imomushi::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -870,7 +860,7 @@ void Game::Imomushi::Obj::doStartStoneState(void)
  * Address:	802BCAFC
  * Size:	00004C
  */
-void Game::Imomushi::Obj::doFinishStoneState(void)
+void Game::Imomushi::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -905,7 +895,7 @@ void Game::Imomushi::Obj::doFinishStoneState(void)
  * Address:	802BCB48
  * Size:	000034
  */
-void Game::Imomushi::Obj::doStartEarthquakeState((float))
+void Game::Imomushi::Obj::doStartEarthquakeState(float)
 {
 	/*
 	.loc_0x0:
@@ -930,7 +920,7 @@ void Game::Imomushi::Obj::doStartEarthquakeState((float))
  * Address:	802BCB7C
  * Size:	00004C
  */
-void Game::Imomushi::Obj::doFinishEarthquakeState(void)
+void Game::Imomushi::Obj::doFinishEarthquakeState()
 {
 	/*
 	.loc_0x0:
@@ -965,7 +955,7 @@ void Game::Imomushi::Obj::doFinishEarthquakeState(void)
  * Address:	802BCBC8
  * Size:	000034
  */
-void Game::Imomushi::Obj::doStartEarthquakeFitState(void)
+void Game::Imomushi::Obj::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -990,7 +980,7 @@ void Game::Imomushi::Obj::doStartEarthquakeFitState(void)
  * Address:	802BCBFC
  * Size:	00004C
  */
-void Game::Imomushi::Obj::doFinishEarthquakeFitState(void)
+void Game::Imomushi::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -1025,7 +1015,7 @@ void Game::Imomushi::Obj::doFinishEarthquakeFitState(void)
  * Address:	802BCC48
  * Size:	000028
  */
-void Game::Imomushi::Obj::startCarcassMotion(void)
+void Game::Imomushi::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -1047,7 +1037,7 @@ void Game::Imomushi::Obj::startCarcassMotion(void)
  * Address:	802BCC70
  * Size:	000020
  */
-void Game::Imomushi::Obj::doStartMovie(void)
+void Game::Imomushi::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -1067,7 +1057,7 @@ void Game::Imomushi::Obj::doStartMovie(void)
  * Address:	802BCC90
  * Size:	000020
  */
-void Game::Imomushi::Obj::doEndMovie(void)
+void Game::Imomushi::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -1087,7 +1077,7 @@ void Game::Imomushi::Obj::doEndMovie(void)
  * Address:	802BCCB0
  * Size:	000024
  */
-void Game::Imomushi::Obj::lifeIncrement(void)
+void Game::Imomushi::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -1108,7 +1098,7 @@ void Game::Imomushi::Obj::lifeIncrement(void)
  * Address:	802BCCD4
  * Size:	0000AC
  */
-void Game::Imomushi::Obj::resetZukanStateTimer(void)
+void Game::Imomushi::Obj::resetZukanStateTimer()
 {
 	/*
 	.loc_0x0:
@@ -1163,7 +1153,7 @@ void Game::Imomushi::Obj::resetZukanStateTimer(void)
  * Address:	802BCD80
  * Size:	000010
  */
-void Game::Imomushi::Obj::resetStickDiff(void)
+void Game::Imomushi::Obj::resetStickDiff()
 {
 	/*
 	.loc_0x0:
@@ -1179,7 +1169,7 @@ void Game::Imomushi::Obj::resetStickDiff(void)
  * Address:	802BCD90
  * Size:	00001C
  */
-void Game::Imomushi::Obj::setStickDiff((float, float))
+void Game::Imomushi::Obj::setStickDiff(float, float)
 {
 	/*
 	.loc_0x0:
@@ -1198,7 +1188,7 @@ void Game::Imomushi::Obj::setStickDiff((float, float))
  * Address:	802BCDAC
  * Size:	00031C
  */
-void Game::Imomushi::Obj::getRandFruitsPlant(void)
+void Game::Imomushi::Obj::getRandFruitsPlant()
 {
 	/*
 	.loc_0x0:
@@ -1435,7 +1425,7 @@ void Game::Imomushi::Obj::getRandFruitsPlant(void)
  * Address:	802BD0C8
  * Size:	0000C8
  */
-void Game::Imomushi::Obj::startClimbPlant((CollPart*))
+void Game::Imomushi::Obj::startClimbPlant(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1500,20 +1490,10 @@ void Game::Imomushi::Obj::startClimbPlant((CollPart*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void Game::Imomushi::Obj::startAttackPlant((CollPart*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BD190
  * Size:	000030
  */
-void Game::Imomushi::Obj::moveStickTube(void)
+void Game::Imomushi::Obj::moveStickTube()
 {
 	/*
 	.loc_0x0:
@@ -1537,7 +1517,7 @@ void Game::Imomushi::Obj::moveStickTube(void)
  * Address:	802BD1C0
  * Size:	0000CC
  */
-void Game::Imomushi::Obj::moveStickSphere(void)
+void Game::Imomushi::Obj::moveStickSphere()
 {
 	/*
 	.loc_0x0:
@@ -1600,7 +1580,7 @@ void Game::Imomushi::Obj::moveStickSphere(void)
  * Address:	802BD28C
  * Size:	00019C
  */
-void Game::Imomushi::Obj::eatTsuyukusa(void)
+void Game::Imomushi::Obj::eatTsuyukusa()
 {
 	/*
 	.loc_0x0:
@@ -1721,7 +1701,7 @@ void Game::Imomushi::Obj::eatTsuyukusa(void)
  * Address:	802BD428
  * Size:	000074
  */
-void Game::Imomushi::Obj::isAttackable(void)
+void Game::Imomushi::Obj::isAttackable()
 {
 	/*
 	.loc_0x0:
@@ -1766,7 +1746,7 @@ void Game::Imomushi::Obj::isAttackable(void)
  * Address:	802BD49C
  * Size:	00004C
  */
-void Game::Imomushi::Obj::isStickToFall(void)
+void Game::Imomushi::Obj::isStickToFall()
 {
 	/*
 	.loc_0x0:
@@ -1801,7 +1781,7 @@ void Game::Imomushi::Obj::isStickToFall(void)
  * Address:	802BD4E8
  * Size:	000188
  */
-void Game::Imomushi::Obj::setZukanTargetPosition(void)
+void Game::Imomushi::Obj::setZukanTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -1917,7 +1897,7 @@ void Game::Imomushi::Obj::setZukanTargetPosition(void)
  * Address:	802BD670
  * Size:	000034
  */
-void Game::Imomushi::Obj::isInZukanTargetArea(void)
+void Game::Imomushi::Obj::isInZukanTargetArea()
 {
 	/*
 	.loc_0x0:
@@ -1942,7 +1922,7 @@ void Game::Imomushi::Obj::isInZukanTargetArea(void)
  * Address:	802BD6A4
  * Size:	00013C
  */
-void Game::Imomushi::Obj::createEffect(void)
+void Game::Imomushi::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -2037,7 +2017,7 @@ void Game::Imomushi::Obj::createEffect(void)
  * Address:	802BD7E0
  * Size:	000040
  */
-void Game::Imomushi::Obj::setupEffect(void)
+void Game::Imomushi::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -2065,7 +2045,7 @@ void Game::Imomushi::Obj::setupEffect(void)
  * Address:	802BD820
  * Size:	00008C
  */
-void Game::Imomushi::Obj::createAppearEffect(void)
+void Game::Imomushi::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -2112,7 +2092,7 @@ void Game::Imomushi::Obj::createAppearEffect(void)
  * Address:	802BD8AC
  * Size:	00008C
  */
-void Game::Imomushi::Obj::createDisAppearEffect(void)
+void Game::Imomushi::Obj::createDisAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -2159,7 +2139,7 @@ void Game::Imomushi::Obj::createDisAppearEffect(void)
  * Address:	802BD938
  * Size:	000084
  */
-void Game::Imomushi::Obj::startMoveTraceEffect(void)
+void Game::Imomushi::Obj::startMoveTraceEffect()
 {
 	/*
 	.loc_0x0:
@@ -2204,7 +2184,7 @@ void Game::Imomushi::Obj::startMoveTraceEffect(void)
  * Address:	802BD9BC
  * Size:	000030
  */
-void Game::Imomushi::Obj::finishMoveTraceEffect(void)
+void Game::Imomushi::Obj::finishMoveTraceEffect()
 {
 	/*
 	.loc_0x0:
@@ -2228,7 +2208,7 @@ void Game::Imomushi::Obj::finishMoveTraceEffect(void)
  * Address:	802BD9EC
  * Size:	000050
  */
-void Game::Imomushi::Obj::effectDrawOn(void)
+void Game::Imomushi::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -2260,7 +2240,7 @@ void Game::Imomushi::Obj::effectDrawOn(void)
  * Address:	802BDA3C
  * Size:	000050
  */
-void Game::Imomushi::Obj::effectDrawOff(void)
+void Game::Imomushi::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -2292,7 +2272,7 @@ void Game::Imomushi::Obj::effectDrawOff(void)
  * Address:	802BDA8C
  * Size:	00000C
  */
-void efx::ArgImoEat::getName(void)
+void efx::ArgImoEat::getName()
 {
 	/*
 	.loc_0x0:
@@ -2307,7 +2287,7 @@ void efx::ArgImoEat::getName(void)
  * Address:	802BDA98
  * Size:	000008
  */
-void Game::Imomushi::Obj::isUnderground(void)
+void Game::Imomushi::Obj::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -2321,7 +2301,7 @@ void Game::Imomushi::Obj::isUnderground(void)
  * Address:	802BDAA0
  * Size:	000008
  */
-void Game::Imomushi::Obj::getDownSmokeScale(void)
+void Game::Imomushi::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -2335,7 +2315,7 @@ void Game::Imomushi::Obj::getDownSmokeScale(void)
  * Address:	802BDAA8
  * Size:	000008
  */
-void Game::Imomushi::Obj::getEnemyTypeID(void)
+void Game::Imomushi::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

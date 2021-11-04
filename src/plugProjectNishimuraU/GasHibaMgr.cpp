@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026CC80
  * Size:	000064
  */
-void Game::GasHiba::Mgr::__ct((int, unsigned char))
+void Game::GasHiba::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -52,7 +42,7 @@ void Game::GasHiba::Mgr::__ct((int, unsigned char))
  * Address:	8026CCE4
  * Size:	000048
  */
-void Game::GasHiba::Mgr::doAlloc(void)
+void Game::GasHiba::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -86,7 +76,7 @@ void Game::GasHiba::Mgr::doAlloc(void)
  * Address:	8026CD2C
  * Size:	0001CC
  */
-void Game::GasHiba::Parms::__ct(void)
+void Game::GasHiba::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -213,7 +203,7 @@ void Game::GasHiba::Parms::__ct(void)
  * Address:	8026CEF8
  * Size:	000060
  */
-void Game::GasHiba::Mgr::createObj((int))
+void Game::GasHiba::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +239,7 @@ void Game::GasHiba::Mgr::createObj((int))
  * Address:	8026CF58
  * Size:	0000BC
  */
-void Game::GasHiba::Obj::__dt(void)
+void Game::GasHiba::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -312,7 +302,7 @@ void Game::GasHiba::Obj::__dt(void)
  * Address:	8026D014
  * Size:	000010
  */
-void Game::GasHiba::Mgr::getEnemy((int))
+void Game::GasHiba::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -328,7 +318,7 @@ void Game::GasHiba::Mgr::getEnemy((int))
  * Address:	8026D024
  * Size:	000050
  */
-void Game::GasHiba::Parms::read((Stream&))
+void Game::GasHiba::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -360,7 +350,7 @@ void Game::GasHiba::Parms::read((Stream&))
  * Address:	8026D074
  * Size:	0000C8
  */
-void Game::GasHiba::Mgr::__dt(void)
+void Game::GasHiba::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -426,7 +416,7 @@ void Game::GasHiba::Mgr::__dt(void)
  * Address:	8026D13C
  * Size:	000008
  */
-void Game::GasHiba::Mgr::getEnemyTypeID(void)
+void Game::GasHiba::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -440,7 +430,7 @@ void Game::GasHiba::Mgr::getEnemyTypeID(void)
  * Address:	8026D144
  * Size:	000008
  */
-void @4 @Game::GasHiba::Mgr::__dt(void)
+void Game::GasHiba::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

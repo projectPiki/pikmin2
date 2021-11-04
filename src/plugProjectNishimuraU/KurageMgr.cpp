@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802AD104
  * Size:	000050
  */
-void Game::Kurage::Mgr::__ct((int, unsigned char))
+void Game::Kurage::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Kurage::Mgr::__ct((int, unsigned char))
  * Address:	802AD154
  * Size:	000048
  */
-void Game::Kurage::Mgr::doAlloc(void)
+void Game::Kurage::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Kurage::Mgr::doAlloc(void)
  * Address:	802AD19C
  * Size:	000048
  */
-void Game::Kurage::Parms::__ct(void)
+void Game::Kurage::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Kurage::Parms::__ct(void)
  * Address:	802AD1E4
  * Size:	00023C
  */
-void Game::Kurage::Parms::ProperParms::__ct(void)
+void Game::Kurage::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -270,7 +260,7 @@ void Game::Kurage::Parms::ProperParms::__ct(void)
  * Address:	802AD420
  * Size:	000060
  */
-void Game::Kurage::Mgr::createObj((int))
+void Game::Kurage::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +296,7 @@ void Game::Kurage::Mgr::createObj((int))
  * Address:	802AD480
  * Size:	0000BC
  */
-void Game::Kurage::Obj::__dt(void)
+void Game::Kurage::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::Kurage::Obj::__dt(void)
  * Address:	802AD53C
  * Size:	000010
  */
-void Game::Kurage::Mgr::getEnemy((int))
+void Game::Kurage::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +375,7 @@ void Game::Kurage::Mgr::getEnemy((int))
  * Address:	802AD54C
  * Size:	000068
  */
-void Game::Kurage::Mgr::loadModelData(void)
+void Game::Kurage::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -427,7 +417,7 @@ void Game::Kurage::Mgr::loadModelData(void)
  * Address:	802AD5B4
  * Size:	0000B0
  */
-void Game::Kurage::Mgr::__dt(void)
+void Game::Kurage::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -487,7 +477,7 @@ void Game::Kurage::Mgr::__dt(void)
  * Address:	802AD664
  * Size:	000008
  */
-void Game::Kurage::Mgr::getEnemyTypeID(void)
+void Game::Kurage::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -501,7 +491,7 @@ void Game::Kurage::Mgr::getEnemyTypeID(void)
  * Address:	802AD66C
  * Size:	00002C
  */
-void Game::Kurage::Mgr::doLoadBmd((void*))
+void Game::Kurage::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +514,7 @@ void Game::Kurage::Mgr::doLoadBmd((void*))
  * Address:	802AD698
  * Size:	000050
  */
-void Game::Kurage::Parms::read((Stream&))
+void Game::Kurage::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -556,7 +546,7 @@ void Game::Kurage::Parms::read((Stream&))
  * Address:	802AD6E8
  * Size:	000008
  */
-void @4 @Game::Kurage::Mgr::__dt(void)
+void Game::Kurage::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80276D54
  * Size:	000050
  */
-void Game::Catfish::Mgr::__ct((int, unsigned char))
+void Game::Catfish::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Catfish::Mgr::__ct((int, unsigned char))
  * Address:	80276DA4
  * Size:	000048
  */
-void Game::Catfish::Mgr::doAlloc(void)
+void Game::Catfish::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::Catfish::Mgr::doAlloc(void)
  * Address:	80276DEC
  * Size:	000060
  */
-void Game::Catfish::Mgr::createObj((int))
+void Game::Catfish::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::Catfish::Mgr::createObj((int))
  * Address:	80276E4C
  * Size:	0000EC
  */
-void Game::Catfish::Obj::__dt(void)
+void Game::Catfish::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -190,7 +180,7 @@ void Game::Catfish::Obj::__dt(void)
  * Address:	80276F38
  * Size:	000010
  */
-void Game::Catfish::Mgr::getEnemy((int))
+void Game::Catfish::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +196,7 @@ void Game::Catfish::Mgr::getEnemy((int))
  * Address:	80276F48
  * Size:	0000B0
  */
-void Game::Catfish::Mgr::__dt(void)
+void Game::Catfish::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -266,7 +256,7 @@ void Game::Catfish::Mgr::__dt(void)
  * Address:	80276FF8
  * Size:	000008
  */
-void Game::Catfish::Mgr::getEnemyTypeID(void)
+void Game::Catfish::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -280,7 +270,7 @@ void Game::Catfish::Mgr::getEnemyTypeID(void)
  * Address:	80277000
  * Size:	000008
  */
-void @4 @Game::Catfish::Mgr::__dt(void)
+void Game::Catfish::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

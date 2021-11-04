@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802AAD94
  * Size:	00020C
  */
-void Game::Damagumo::DamagumoShadowMgr::__ct((Game::Damagumo::Obj*))
+void Game::Damagumo::DamagumoShadowMgr::DamagumoShadowMgr(Game::Damagumo::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +166,7 @@ void Game::Damagumo::DamagumoShadowMgr::__ct((Game::Damagumo::Obj*))
  * Address:	802AAFA0
  * Size:	00014C
  */
-void Game::Damagumo::DamagumoShadowMgr::init(void)
+void Game::Damagumo::DamagumoShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -271,8 +261,8 @@ void Game::Damagumo::DamagumoShadowMgr::init(void)
  * Address:	802AB0EC
  * Size:	000018
  */
-void setJointPosPtr__Q34Game8Damagumo17DamagumoShadowMgrFiiP10Vector3<float>(
-    void)
+void Game::Damagumo::DamagumoShadowMgr::setJointPosPtr(int, int,
+                                                       Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -290,7 +280,7 @@ void setJointPosPtr__Q34Game8Damagumo17DamagumoShadowMgrFiiP10Vector3<float>(
  * Address:	802AB104
  * Size:	00039C
  */
-void Game::Damagumo::DamagumoShadowMgr::update(void)
+void Game::Damagumo::DamagumoShadowMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -549,7 +539,7 @@ void Game::Damagumo::DamagumoShadowMgr::update(void)
  * Address:	802AB4A0
  * Size:	000070
  */
-void Game::TubeShadowSetNode::__dt(void)
+void Game::TubeShadowSetNode::~TubeShadowSetNode()
 {
 	/*
 	.loc_0x0:
@@ -593,7 +583,7 @@ void Game::TubeShadowSetNode::__dt(void)
  * Address:	802AB510
  * Size:	000070
  */
-void Game::TubeShadowTransNode::__dt(void)
+void Game::TubeShadowTransNode::~TubeShadowTransNode()
 {
 	/*
 	.loc_0x0:
@@ -637,7 +627,7 @@ void Game::TubeShadowTransNode::__dt(void)
  * Address:	802AB580
  * Size:	000070
  */
-void Game::SphereShadowNode::__dt(void)
+void Game::SphereShadowNode::~SphereShadowNode()
 {
 	/*
 	.loc_0x0:

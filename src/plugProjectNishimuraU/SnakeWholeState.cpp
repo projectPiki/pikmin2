@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802CB94C
  * Size:	0003D0
  */
-void Game::SnakeWhole::FSM::init((Game::EnemyBase*))
+void Game::SnakeWhole::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +283,7 @@ void Game::SnakeWhole::FSM::init((Game::EnemyBase*))
  * Address:	802CBD1C
  * Size:	0000C4
  */
-void Game::SnakeWhole::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -354,7 +344,7 @@ void Game::SnakeWhole::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CBDE0
  * Size:	0001C0
  */
-void Game::SnakeWhole::StateDead::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -488,7 +478,7 @@ void Game::SnakeWhole::StateDead::exec((Game::EnemyBase*))
  * Address:	802CBFA0
  * Size:	000004
  */
-void Game::SnakeWhole::StateDead::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +491,7 @@ void Game::SnakeWhole::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802CBFA4
  * Size:	00012C
  */
-void Game::SnakeWhole::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +580,7 @@ void Game::SnakeWhole::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CC0D0
  * Size:	000618
  */
-void Game::SnakeWhole::StateStay::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1042,7 +1032,7 @@ void Game::SnakeWhole::StateStay::exec((Game::EnemyBase*))
  * Address:	802CC6E8
  * Size:	000098
  */
-void Game::SnakeWhole::StateStay::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1092,7 +1082,7 @@ void Game::SnakeWhole::StateStay::cleanup((Game::EnemyBase*))
  * Address:	802CC780
  * Size:	0000D4
  */
-void Game::SnakeWhole::StateAppear1::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateAppear1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1157,7 +1147,7 @@ void Game::SnakeWhole::StateAppear1::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CC854
  * Size:	0002F8
  */
-void Game::SnakeWhole::StateAppear1::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateAppear1::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1381,7 +1371,7 @@ void Game::SnakeWhole::StateAppear1::exec((Game::EnemyBase*))
  * Address:	802CCB4C
  * Size:	000068
  */
-void Game::SnakeWhole::StateAppear1::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateAppear1::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1421,7 +1411,7 @@ void Game::SnakeWhole::StateAppear1::cleanup((Game::EnemyBase*))
  * Address:	802CCBB4
  * Size:	0000D4
  */
-void Game::SnakeWhole::StateAppear2::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateAppear2::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1486,7 +1476,7 @@ void Game::SnakeWhole::StateAppear2::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CCC88
  * Size:	000318
  */
-void Game::SnakeWhole::StateAppear2::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateAppear2::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1720,7 +1710,7 @@ void Game::SnakeWhole::StateAppear2::exec((Game::EnemyBase*))
  * Address:	802CCFA0
  * Size:	000068
  */
-void Game::SnakeWhole::StateAppear2::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateAppear2::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1760,7 +1750,7 @@ void Game::SnakeWhole::StateAppear2::cleanup((Game::EnemyBase*))
  * Address:	802CD008
  * Size:	000064
  */
-void Game::SnakeWhole::StateDisappear::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1797,7 +1787,7 @@ void Game::SnakeWhole::StateDisappear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CD06C
  * Size:	000214
  */
-void Game::SnakeWhole::StateDisappear::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateDisappear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1952,7 +1942,7 @@ void Game::SnakeWhole::StateDisappear::exec((Game::EnemyBase*))
  * Address:	802CD280
  * Size:	000078
  */
-void Game::SnakeWhole::StateDisappear::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateDisappear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1994,7 +1984,7 @@ void Game::SnakeWhole::StateDisappear::cleanup((Game::EnemyBase*))
  * Address:	802CD2F8
  * Size:	000068
  */
-void Game::SnakeWhole::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2032,7 +2022,7 @@ void Game::SnakeWhole::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CD360
  * Size:	000198
  */
-void Game::SnakeWhole::StateWait::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2166,7 +2156,7 @@ void Game::SnakeWhole::StateWait::exec((Game::EnemyBase*))
  * Address:	802CD4F8
  * Size:	000004
  */
-void Game::SnakeWhole::StateWait::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2179,7 +2169,7 @@ void Game::SnakeWhole::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802CD4FC
  * Size:	000048
  */
-void Game::SnakeWhole::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2209,7 +2199,7 @@ void Game::SnakeWhole::StateWalk::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CD544
  * Size:	000288
  */
-void Game::SnakeWhole::StateWalk::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2409,7 +2399,7 @@ void Game::SnakeWhole::StateWalk::exec((Game::EnemyBase*))
  * Address:	802CD7CC
  * Size:	000010
  */
-void Game::SnakeWhole::StateWalk::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2425,7 +2415,7 @@ void Game::SnakeWhole::StateWalk::cleanup((Game::EnemyBase*))
  * Address:	802CD7DC
  * Size:	000048
  */
-void Game::SnakeWhole::StateHome::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2455,7 +2445,7 @@ void Game::SnakeWhole::StateHome::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CD824
  * Size:	0001A4
  */
-void Game::SnakeWhole::StateHome::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2588,7 +2578,7 @@ void Game::SnakeWhole::StateHome::exec((Game::EnemyBase*))
  * Address:	802CD9C8
  * Size:	000010
  */
-void Game::SnakeWhole::StateHome::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateHome::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2604,7 +2594,7 @@ void Game::SnakeWhole::StateHome::cleanup((Game::EnemyBase*))
  * Address:	802CD9D8
  * Size:	00004C
  */
-void Game::SnakeWhole::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2635,7 +2625,7 @@ void Game::SnakeWhole::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CDA24
  * Size:	0003D0
  */
-void Game::SnakeWhole::StateAttack::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2931,7 +2921,7 @@ void Game::SnakeWhole::StateAttack::exec((Game::EnemyBase*))
  * Address:	802CDDF4
  * Size:	000010
  */
-void Game::SnakeWhole::StateAttack::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2947,7 +2937,7 @@ void Game::SnakeWhole::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802CDE04
  * Size:	00003C
  */
-void Game::SnakeWhole::StateEat::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2974,7 +2964,7 @@ void Game::SnakeWhole::StateEat::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CDE40
  * Size:	0001F0
  */
-void Game::SnakeWhole::StateEat::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateEat::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3128,7 +3118,7 @@ void Game::SnakeWhole::StateEat::exec((Game::EnemyBase*))
  * Address:	802CE030
  * Size:	000004
  */
-void Game::SnakeWhole::StateEat::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateEat::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3141,7 +3131,7 @@ void Game::SnakeWhole::StateEat::cleanup((Game::EnemyBase*))
  * Address:	802CE034
  * Size:	000040
  */
-void Game::SnakeWhole::StateStruggle::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeWhole::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3169,7 +3159,7 @@ void Game::SnakeWhole::StateStruggle::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802CE074
  * Size:	0001C8
  */
-void Game::SnakeWhole::StateStruggle::exec((Game::EnemyBase*))
+void Game::SnakeWhole::StateStruggle::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3311,7 +3301,7 @@ void Game::SnakeWhole::StateStruggle::exec((Game::EnemyBase*))
  * Address:	802CE23C
  * Size:	000004
  */
-void Game::SnakeWhole::StateStruggle::cleanup((Game::EnemyBase*))
+void Game::SnakeWhole::StateStruggle::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

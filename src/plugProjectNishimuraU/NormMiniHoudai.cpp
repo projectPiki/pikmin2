@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	803015F8
  * Size:	000090
  */
-void Game::NormMiniHoudai::Obj::__ct(void)
+void Game::NormMiniHoudai::Obj::Obj()
 {
 	/*
 	.loc_0x0:

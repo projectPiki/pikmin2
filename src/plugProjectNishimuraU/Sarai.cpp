@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80272BC4
  * Size:	000138
  */
-void Game::Sarai::Obj::__ct(void)
+void Game::Sarai::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::Sarai::Obj::__ct(void)
  * Address:	80272CFC
  * Size:	000004
  */
-void Game::Sarai::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::Sarai::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80272D00
  * Size:	000078
  */
-void Game::Sarai::Obj::onInit((Game::CreatureInitArg*))
+void Game::Sarai::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +156,7 @@ void Game::Sarai::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80272D78
  * Size:	000048
  */
-void Game::Sarai::Obj::doUpdate(void)
+void Game::Sarai::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -196,7 +186,7 @@ void Game::Sarai::Obj::doUpdate(void)
  * Address:	80272DC0
  * Size:	00004C
  */
-void Game::Sarai::Obj::setFSM((Game::Sarai::FSM*))
+void Game::Sarai::Obj::setFSM(Game::Sarai::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -227,7 +217,7 @@ void Game::Sarai::Obj::setFSM((Game::Sarai::FSM*))
  * Address:	80272E0C
  * Size:	000004
  */
-void Game::Sarai::Obj::doDirectDraw((Graphics&))
+void Game::Sarai::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -240,7 +230,7 @@ void Game::Sarai::Obj::doDirectDraw((Graphics&))
  * Address:	80272E10
  * Size:	000020
  */
-void Game::Sarai::Obj::doDebugDraw((Graphics&))
+void Game::Sarai::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -260,7 +250,7 @@ void Game::Sarai::Obj::doDebugDraw((Graphics&))
  * Address:	80272E30
  * Size:	000140
  */
-void Game::Sarai::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Sarai::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -362,7 +352,7 @@ void Game::Sarai::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80272F70
  * Size:	000034
  */
-void Game::Sarai::Obj::doStartStoneState(void)
+void Game::Sarai::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -387,7 +377,7 @@ void Game::Sarai::Obj::doStartStoneState(void)
  * Address:	80272FA4
  * Size:	00005C
  */
-void Game::Sarai::Obj::doFinishStoneState(void)
+void Game::Sarai::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -424,7 +414,7 @@ void Game::Sarai::Obj::doFinishStoneState(void)
  * Address:	80273000
  * Size:	000028
  */
-void Game::Sarai::Obj::startCarcassMotion(void)
+void Game::Sarai::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -446,7 +436,7 @@ void Game::Sarai::Obj::startCarcassMotion(void)
  * Address:	80273028
  * Size:	0000A8
  */
-void Game::Sarai::Obj::initMouthSlots(void)
+void Game::Sarai::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -504,7 +494,7 @@ void Game::Sarai::Obj::initMouthSlots(void)
  * Address:	802730D0
  * Size:	000108
  */
-void Game::Sarai::Obj::setHeightVelocity(void)
+void Game::Sarai::Obj::setHeightVelocity()
 {
 	/*
 	.loc_0x0:
@@ -590,7 +580,7 @@ void Game::Sarai::Obj::setHeightVelocity(void)
  * Address:	802731D8
  * Size:	000230
  */
-void Game::Sarai::Obj::setRandTarget(void)
+void Game::Sarai::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -754,7 +744,7 @@ void Game::Sarai::Obj::setRandTarget(void)
  * Address:	80273408
  * Size:	000294
  */
-void Game::Sarai::Obj::fallMeckGround(void)
+void Game::Sarai::Obj::fallMeckGround()
 {
 	/*
 	.loc_0x0:
@@ -949,7 +939,7 @@ void Game::Sarai::Obj::fallMeckGround(void)
  * Address:	8027369C
  * Size:	00007C
  */
-void Game::Sarai::Obj::getCatchTargetNum(void)
+void Game::Sarai::Obj::getCatchTargetNum()
 {
 	/*
 	.loc_0x0:
@@ -998,7 +988,7 @@ void Game::Sarai::Obj::getCatchTargetNum(void)
  * Address:	80273718
  * Size:	000144
  */
-void Game::Sarai::Obj::getNextStateOnHeight(void)
+void Game::Sarai::Obj::getNextStateOnHeight()
 {
 	/*
 	.loc_0x0:
@@ -1105,7 +1095,7 @@ void Game::Sarai::Obj::getNextStateOnHeight(void)
  * Address:	8027385C
  * Size:	0000B0
  */
-void Game::Sarai::Obj::flickStickTarget(void)
+void Game::Sarai::Obj::flickStickTarget()
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1157,7 @@ void Game::Sarai::Obj::flickStickTarget(void)
  * Address:	8027390C
  * Size:	000080
  */
-void Game::Sarai::Obj::getStickPikminNum(void)
+void Game::Sarai::Obj::getStickPikminNum()
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1207,7 @@ void Game::Sarai::Obj::getStickPikminNum(void)
  * Address:	8027398C
  * Size:	0003D0
  */
-void Game::Sarai::Obj::getAttackableTarget(void)
+void Game::Sarai::Obj::getAttackableTarget()
 {
 	/*
 	.loc_0x0:
@@ -1495,7 +1485,7 @@ void Game::Sarai::Obj::getAttackableTarget(void)
  * Address:	80273D5C
  * Size:	000024
  */
-void Game::Sarai::Obj::catchTarget(void)
+void Game::Sarai::Obj::catchTarget()
 {
 	/*
 	.loc_0x0:
@@ -1516,7 +1506,7 @@ void Game::Sarai::Obj::catchTarget(void)
  * Address:	80273D80
  * Size:	000044
  */
-void Game::Sarai::Obj::createDownEffect(void)
+void Game::Sarai::Obj::createDownEffect()
 {
 	/*
 	.loc_0x0:
@@ -1545,7 +1535,7 @@ void Game::Sarai::Obj::createDownEffect(void)
  * Address:	80273DC4
  * Size:	000008
  */
-void Game::Sarai::Obj::getDownSmokeScale(void)
+void Game::Sarai::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1559,7 +1549,7 @@ void Game::Sarai::Obj::getDownSmokeScale(void)
  * Address:	80273DCC
  * Size:	000004
  */
-void Game::Sarai::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Sarai::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1572,7 +1562,7 @@ void Game::Sarai::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	80273DD0
  * Size:	000004
  */
-void Game::Sarai::Obj::outWaterCallback(void)
+void Game::Sarai::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -1585,7 +1575,7 @@ void Game::Sarai::Obj::outWaterCallback(void)
  * Address:	80273DD4
  * Size:	000008
  */
-void Game::Sarai::Obj::getMouthSlots(void)
+void Game::Sarai::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -1599,7 +1589,7 @@ void Game::Sarai::Obj::getMouthSlots(void)
  * Address:	80273DDC
  * Size:	000008
  */
-void Game::Sarai::Obj::getEnemyTypeID(void)
+void Game::Sarai::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

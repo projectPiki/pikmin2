@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802FF7CC
  * Size:	000050
  */
-void Game::GreenKabuto::Mgr::__ct((int, unsigned char))
+void Game::GreenKabuto::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::GreenKabuto::Mgr::__ct((int, unsigned char))
  * Address:	802FF81C
  * Size:	000048
  */
-void Game::GreenKabuto::Mgr::doAlloc(void)
+void Game::GreenKabuto::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::GreenKabuto::Mgr::doAlloc(void)
  * Address:	802FF864
  * Size:	000058
  */
-void Game::Kabuto::Parms::__ct(void)
+void Game::Kabuto::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::Kabuto::Parms::__ct(void)
  * Address:	802FF8BC
  * Size:	000060
  */
-void Game::GreenKabuto::Mgr::createObj((int))
+void Game::GreenKabuto::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -151,7 +141,7 @@ void Game::GreenKabuto::Mgr::createObj((int))
  * Address:	802FF91C
  * Size:	0000EC
  */
-void Game::GreenKabuto::Obj::__dt(void)
+void Game::GreenKabuto::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -226,7 +216,7 @@ void Game::GreenKabuto::Obj::__dt(void)
  * Address:	802FFA08
  * Size:	000010
  */
-void Game::GreenKabuto::Mgr::getEnemy((int))
+void Game::GreenKabuto::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -242,7 +232,7 @@ void Game::GreenKabuto::Mgr::getEnemy((int))
  * Address:	802FFA18
  * Size:	000080
  */
-void Game::GreenKabuto::Mgr::loadTexData(void)
+void Game::GreenKabuto::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -290,7 +280,7 @@ void Game::GreenKabuto::Mgr::loadTexData(void)
  * Address:	802FFA98
  * Size:	0000C8
  */
-void Game::GreenKabuto::Mgr::__dt(void)
+void Game::GreenKabuto::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -356,7 +346,7 @@ void Game::GreenKabuto::Mgr::__dt(void)
  * Address:	802FFB60
  * Size:	000008
  */
-void Game::GreenKabuto::Mgr::getEnemyTypeID(void)
+void Game::GreenKabuto::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -370,7 +360,7 @@ void Game::GreenKabuto::Mgr::getEnemyTypeID(void)
  * Address:	802FFB68
  * Size:	000008
  */
-void Game::GreenKabuto::Mgr::getChangeTexture(void)
+void Game::GreenKabuto::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -384,7 +374,7 @@ void Game::GreenKabuto::Mgr::getChangeTexture(void)
  * Address:	802FFB70
  * Size:	000050
  */
-void Game::Kabuto::Parms::read((Stream&))
+void Game::Kabuto::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -416,7 +406,7 @@ void Game::Kabuto::Parms::read((Stream&))
  * Address:	802FFBC0
  * Size:	000008
  */
-void @4 @Game::GreenKabuto::Mgr::__dt(void)
+void Game::GreenKabuto::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

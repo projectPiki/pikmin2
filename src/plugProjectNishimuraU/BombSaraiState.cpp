@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802AFC74
  * Size:	000480
  */
-void Game::BombSarai::FSM::init((Game::EnemyBase*))
+void Game::BombSarai::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -341,7 +331,7 @@ void Game::BombSarai::FSM::init((Game::EnemyBase*))
  * Address:	802B00F4
  * Size:	000094
  */
-void Game::BombSarai::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -390,7 +380,7 @@ void Game::BombSarai::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B0188
  * Size:	000134
  */
-void Game::BombSarai::StateDead::exec((Game::EnemyBase*))
+void Game::BombSarai::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -493,7 +483,7 @@ void Game::BombSarai::StateDead::exec((Game::EnemyBase*))
  * Address:	802B02BC
  * Size:	000004
  */
-void Game::BombSarai::StateDead::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -506,7 +496,7 @@ void Game::BombSarai::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802B02C0
  * Size:	0000B0
  */
-void Game::BombSarai::StateDamage::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -562,7 +552,7 @@ void Game::BombSarai::StateDamage::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B0370
  * Size:	0001B4
  */
-void Game::BombSarai::StateDamage::exec((Game::EnemyBase*))
+void Game::BombSarai::StateDamage::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -697,7 +687,7 @@ void Game::BombSarai::StateDamage::exec((Game::EnemyBase*))
  * Address:	802B0524
  * Size:	000030
  */
-void Game::BombSarai::StateDamage::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateDamage::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -721,7 +711,7 @@ void Game::BombSarai::StateDamage::cleanup((Game::EnemyBase*))
  * Address:	802B0554
  * Size:	000054
  */
-void Game::BombSarai::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -754,7 +744,7 @@ void Game::BombSarai::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B05A8
  * Size:	000148
  */
-void Game::BombSarai::StateWait::exec((Game::EnemyBase*))
+void Game::BombSarai::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -858,7 +848,7 @@ void Game::BombSarai::StateWait::exec((Game::EnemyBase*))
  * Address:	802B06F0
  * Size:	000004
  */
-void Game::BombSarai::StateWait::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -871,7 +861,7 @@ void Game::BombSarai::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802B06F4
  * Size:	000074
  */
-void Game::BombSarai::StateBombWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateBombWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -912,7 +902,7 @@ void Game::BombSarai::StateBombWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B0768
  * Size:	000454
  */
-void Game::BombSarai::StateBombWait::exec((Game::EnemyBase*))
+void Game::BombSarai::StateBombWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1221,7 +1211,7 @@ void Game::BombSarai::StateBombWait::exec((Game::EnemyBase*))
  * Address:	802B0BBC
  * Size:	000030
  */
-void Game::BombSarai::StateBombWait::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateBombWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1245,7 +1235,7 @@ void Game::BombSarai::StateBombWait::cleanup((Game::EnemyBase*))
  * Address:	802B0BEC
  * Size:	00006C
  */
-void Game::BombSarai::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1284,7 +1274,7 @@ void Game::BombSarai::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B0C58
  * Size:	0001CC
  */
-void Game::BombSarai::StateMove::exec((Game::EnemyBase*))
+void Game::BombSarai::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1427,7 +1417,7 @@ void Game::BombSarai::StateMove::exec((Game::EnemyBase*))
  * Address:	802B0E24
  * Size:	000004
  */
-void Game::BombSarai::StateMove::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1440,7 +1430,7 @@ void Game::BombSarai::StateMove::cleanup((Game::EnemyBase*))
  * Address:	802B0E28
  * Size:	000080
  */
-void Game::BombSarai::StateBombMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateBombMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1484,7 +1474,7 @@ void Game::BombSarai::StateBombMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B0EA8
  * Size:	0004E4
  */
-void Game::BombSarai::StateBombMove::exec((Game::EnemyBase*))
+void Game::BombSarai::StateBombMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1833,7 +1823,7 @@ void Game::BombSarai::StateBombMove::exec((Game::EnemyBase*))
  * Address:	802B138C
  * Size:	000030
  */
-void Game::BombSarai::StateBombMove::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateBombMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1857,7 +1847,7 @@ void Game::BombSarai::StateBombMove::cleanup((Game::EnemyBase*))
  * Address:	802B13BC
  * Size:	000080
  */
-void Game::BombSarai::StateSupply::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateSupply::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1901,7 +1891,7 @@ void Game::BombSarai::StateSupply::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B143C
  * Size:	0000AC
  */
-void Game::BombSarai::StateSupply::exec((Game::EnemyBase*))
+void Game::BombSarai::StateSupply::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1960,7 +1950,7 @@ void Game::BombSarai::StateSupply::exec((Game::EnemyBase*))
  * Address:	802B14E8
  * Size:	000038
  */
-void Game::BombSarai::StateSupply::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateSupply::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1986,7 +1976,7 @@ void Game::BombSarai::StateSupply::cleanup((Game::EnemyBase*))
  * Address:	802B1520
  * Size:	000070
  */
-void Game::BombSarai::StateRelease::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateRelease::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2026,7 +2016,7 @@ void Game::BombSarai::StateRelease::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B1590
  * Size:	000184
  */
-void Game::BombSarai::StateRelease::exec((Game::EnemyBase*))
+void Game::BombSarai::StateRelease::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2147,7 +2137,7 @@ void Game::BombSarai::StateRelease::exec((Game::EnemyBase*))
  * Address:	802B1714
  * Size:	000030
  */
-void Game::BombSarai::StateRelease::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateRelease::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2171,7 +2161,7 @@ void Game::BombSarai::StateRelease::cleanup((Game::EnemyBase*))
  * Address:	802B1744
  * Size:	0000C4
  */
-void Game::BombSarai::StateFall::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2232,7 +2222,7 @@ void Game::BombSarai::StateFall::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B1808
  * Size:	0002D8
  */
-void Game::BombSarai::StateFall::exec((Game::EnemyBase*))
+void Game::BombSarai::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2454,7 +2444,7 @@ void Game::BombSarai::StateFall::exec((Game::EnemyBase*))
  * Address:	802B1AE0
  * Size:	000030
  */
-void Game::BombSarai::StateFall::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2478,7 +2468,7 @@ void Game::BombSarai::StateFall::cleanup((Game::EnemyBase*))
  * Address:	802B1B10
  * Size:	000054
  */
-void Game::BombSarai::StateTakeOff1::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateTakeOff1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2511,7 +2501,7 @@ void Game::BombSarai::StateTakeOff1::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B1B64
  * Size:	000110
  */
-void Game::BombSarai::StateTakeOff1::exec((Game::EnemyBase*))
+void Game::BombSarai::StateTakeOff1::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2601,7 +2591,7 @@ void Game::BombSarai::StateTakeOff1::exec((Game::EnemyBase*))
  * Address:	802B1C74
  * Size:	000024
  */
-void Game::BombSarai::StateTakeOff1::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateTakeOff1::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2622,7 +2612,7 @@ void Game::BombSarai::StateTakeOff1::cleanup((Game::EnemyBase*))
  * Address:	802B1C98
  * Size:	000054
  */
-void Game::BombSarai::StateTakeOff2::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateTakeOff2::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2655,7 +2645,7 @@ void Game::BombSarai::StateTakeOff2::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B1CEC
  * Size:	000110
  */
-void Game::BombSarai::StateTakeOff2::exec((Game::EnemyBase*))
+void Game::BombSarai::StateTakeOff2::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2745,7 +2735,7 @@ void Game::BombSarai::StateTakeOff2::exec((Game::EnemyBase*))
  * Address:	802B1DFC
  * Size:	000024
  */
-void Game::BombSarai::StateTakeOff2::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateTakeOff2::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2766,7 +2756,7 @@ void Game::BombSarai::StateTakeOff2::cleanup((Game::EnemyBase*))
  * Address:	802B1E20
  * Size:	00004C
  */
-void Game::BombSarai::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2797,7 +2787,7 @@ void Game::BombSarai::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B1E6C
  * Size:	0000E0
  */
-void Game::BombSarai::StateFlick::exec((Game::EnemyBase*))
+void Game::BombSarai::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2871,7 +2861,7 @@ void Game::BombSarai::StateFlick::exec((Game::EnemyBase*))
  * Address:	802B1F4C
  * Size:	000024
  */
-void Game::BombSarai::StateFlick::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2892,7 +2882,7 @@ void Game::BombSarai::StateFlick::cleanup((Game::EnemyBase*))
  * Address:	802B1F70
  * Size:	000058
  */
-void Game::BombSarai::StateBombFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::BombSarai::StateBombFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2926,7 +2916,7 @@ void Game::BombSarai::StateBombFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802B1FC8
  * Size:	000110
  */
-void Game::BombSarai::StateBombFlick::exec((Game::EnemyBase*))
+void Game::BombSarai::StateBombFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -3014,7 +3004,7 @@ void Game::BombSarai::StateBombFlick::exec((Game::EnemyBase*))
  * Address:	802B20D8
  * Size:	000030
  */
-void Game::BombSarai::StateBombFlick::cleanup((Game::EnemyBase*))
+void Game::BombSarai::StateBombFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80292B9C
  * Size:	000050
  */
-void Game::SnakeCrow::Mgr::__ct((int, unsigned char))
+void Game::SnakeCrow::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::SnakeCrow::Mgr::__ct((int, unsigned char))
  * Address:	80292BEC
  * Size:	000048
  */
-void Game::SnakeCrow::Mgr::doAlloc(void)
+void Game::SnakeCrow::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::SnakeCrow::Mgr::doAlloc(void)
  * Address:	80292C34
  * Size:	000190
  */
-void Game::SnakeCrow::Parms::__ct(void)
+void Game::SnakeCrow::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -193,7 +183,7 @@ void Game::SnakeCrow::Parms::__ct(void)
  * Address:	80292DC4
  * Size:	000060
  */
-void Game::SnakeCrow::Mgr::createObj((int))
+void Game::SnakeCrow::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -229,7 +219,7 @@ void Game::SnakeCrow::Mgr::createObj((int))
  * Address:	80292E24
  * Size:	0000BC
  */
-void Game::SnakeCrow::Obj::__dt(void)
+void Game::SnakeCrow::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -292,7 +282,7 @@ void Game::SnakeCrow::Obj::__dt(void)
  * Address:	80292EE0
  * Size:	000010
  */
-void Game::SnakeCrow::Mgr::getEnemy((int))
+void Game::SnakeCrow::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -308,7 +298,7 @@ void Game::SnakeCrow::Mgr::getEnemy((int))
  * Address:	80292EF0
  * Size:	000068
  */
-void Game::SnakeCrow::Mgr::loadModelData(void)
+void Game::SnakeCrow::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -350,7 +340,7 @@ void Game::SnakeCrow::Mgr::loadModelData(void)
  * Address:	80292F58
  * Size:	0000B0
  */
-void Game::SnakeCrow::Mgr::__dt(void)
+void Game::SnakeCrow::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -410,7 +400,7 @@ void Game::SnakeCrow::Mgr::__dt(void)
  * Address:	80293008
  * Size:	000008
  */
-void Game::SnakeCrow::Mgr::getEnemyTypeID(void)
+void Game::SnakeCrow::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -424,7 +414,7 @@ void Game::SnakeCrow::Mgr::getEnemyTypeID(void)
  * Address:	80293010
  * Size:	00002C
  */
-void Game::SnakeCrow::Mgr::doLoadBmd((void*))
+void Game::SnakeCrow::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -447,7 +437,7 @@ void Game::SnakeCrow::Mgr::doLoadBmd((void*))
  * Address:	8029303C
  * Size:	000050
  */
-void Game::SnakeCrow::Parms::read((Stream&))
+void Game::SnakeCrow::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -479,7 +469,7 @@ void Game::SnakeCrow::Parms::read((Stream&))
  * Address:	8029308C
  * Size:	000008
  */
-void @4 @Game::SnakeCrow::Mgr::__dt(void)
+void Game::SnakeCrow::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

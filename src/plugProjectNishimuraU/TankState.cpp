@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80273DE4
  * Size:	000280
  */
-void Game::Tank::FSM::init((Game::EnemyBase*))
+void Game::Tank::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -201,7 +191,7 @@ void Game::Tank::FSM::init((Game::EnemyBase*))
  * Address:	80274064
  * Size:	000070
  */
-void Game::Tank::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +231,7 @@ void Game::Tank::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802740D4
  * Size:	000004
  */
-void Game::Tank::Obj::finishEffect(void)
+void Game::Tank::Obj::finishEffect()
 {
 	/*
 	.loc_0x0:
@@ -254,7 +244,7 @@ void Game::Tank::Obj::finishEffect(void)
  * Address:	802740D8
  * Size:	000044
  */
-void Game::Tank::StateDead::exec((Game::EnemyBase*))
+void Game::Tank::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +275,7 @@ void Game::Tank::StateDead::exec((Game::EnemyBase*))
  * Address:	8027411C
  * Size:	000004
  */
-void Game::Tank::StateDead::cleanup((Game::EnemyBase*))
+void Game::Tank::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +288,7 @@ void Game::Tank::StateDead::cleanup((Game::EnemyBase*))
  * Address:	80274120
  * Size:	000044
  */
-void Game::Tank::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -327,7 +317,7 @@ void Game::Tank::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80274164
  * Size:	000258
  */
-void Game::Tank::StateWait::exec((Game::EnemyBase*))
+void Game::Tank::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +497,7 @@ void Game::Tank::StateWait::exec((Game::EnemyBase*))
  * Address:	802743BC
  * Size:	000028
  */
-void Game::Tank::StateWait::cleanup((Game::EnemyBase*))
+void Game::Tank::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -529,7 +519,7 @@ void Game::Tank::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802743E4
  * Size:	000054
  */
-void Game::Tank::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -562,7 +552,7 @@ void Game::Tank::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80274438
  * Size:	00056C
  */
-void Game::Tank::StateMove::exec((Game::EnemyBase*))
+void Game::Tank::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -951,7 +941,7 @@ void Game::Tank::StateMove::exec((Game::EnemyBase*))
  * Address:	802749A4
  * Size:	000028
  */
-void Game::Tank::StateMove::cleanup((Game::EnemyBase*))
+void Game::Tank::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -973,7 +963,7 @@ void Game::Tank::StateMove::cleanup((Game::EnemyBase*))
  * Address:	802749CC
  * Size:	000104
  */
-void Game::Tank::StateMoveTurn::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateMoveTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1056,7 +1046,7 @@ void Game::Tank::StateMoveTurn::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80274AD0
  * Size:	000364
  */
-void Game::Tank::StateMoveTurn::exec((Game::EnemyBase*))
+void Game::Tank::StateMoveTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1307,7 +1297,7 @@ void Game::Tank::StateMoveTurn::exec((Game::EnemyBase*))
  * Address:	80274E34
  * Size:	000028
  */
-void Game::Tank::StateMoveTurn::cleanup((Game::EnemyBase*))
+void Game::Tank::StateMoveTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1329,7 +1319,7 @@ void Game::Tank::StateMoveTurn::cleanup((Game::EnemyBase*))
  * Address:	80274E5C
  * Size:	000050
  */
-void Game::Tank::StateChaseTurn::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateChaseTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1361,7 +1351,7 @@ void Game::Tank::StateChaseTurn::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80274EAC
  * Size:	0005F4
  */
-void Game::Tank::StateChaseTurn::exec((Game::EnemyBase*))
+void Game::Tank::StateChaseTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1790,7 +1780,7 @@ void Game::Tank::StateChaseTurn::exec((Game::EnemyBase*))
  * Address:	802754A0
  * Size:	00003C
  */
-void Game::Tank::StateChaseTurn::cleanup((Game::EnemyBase*))
+void Game::Tank::StateChaseTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1817,7 +1807,7 @@ void Game::Tank::StateChaseTurn::cleanup((Game::EnemyBase*))
  * Address:	802754DC
  * Size:	000084
  */
-void Game::Tank::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1862,7 +1852,7 @@ void Game::Tank::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80275560
  * Size:	000004
  */
-void Game::Tank::Obj::createChargeSE(void)
+void Game::Tank::Obj::createChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -1875,7 +1865,7 @@ void Game::Tank::Obj::createChargeSE(void)
  * Address:	80275564
  * Size:	0001E0
  */
-void Game::Tank::StateAttack::exec((Game::EnemyBase*))
+void Game::Tank::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2021,7 +2011,7 @@ void Game::Tank::StateAttack::exec((Game::EnemyBase*))
  * Address:	80275744
  * Size:	000004
  */
-void Game::Tank::Obj::startEffect(void)
+void Game::Tank::Obj::startEffect()
 {
 	/*
 	.loc_0x0:
@@ -2034,7 +2024,7 @@ void Game::Tank::Obj::startEffect(void)
  * Address:	80275748
  * Size:	000004
  */
-void Game::Tank::Obj::createDisChargeSE(void)
+void Game::Tank::Obj::createDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -2047,7 +2037,7 @@ void Game::Tank::Obj::createDisChargeSE(void)
  * Address:	8027574C
  * Size:	000058
  */
-void Game::Tank::StateAttack::cleanup((Game::EnemyBase*))
+void Game::Tank::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2081,7 +2071,7 @@ void Game::Tank::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802757A4
  * Size:	000004
  */
-void Game::Tank::Obj::startYodare(void)
+void Game::Tank::Obj::startYodare()
 {
 	/*
 	.loc_0x0:
@@ -2094,7 +2084,7 @@ void Game::Tank::Obj::startYodare(void)
  * Address:	802757A8
  * Size:	000058
  */
-void Game::Tank::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Tank::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2128,7 +2118,7 @@ void Game::Tank::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80275800
  * Size:	000180
  */
-void Game::Tank::StateFlick::exec((Game::EnemyBase*))
+void Game::Tank::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2244,7 +2234,7 @@ void Game::Tank::StateFlick::exec((Game::EnemyBase*))
  * Address:	80275980
  * Size:	000024
  */
-void Game::Tank::StateFlick::cleanup((Game::EnemyBase*))
+void Game::Tank::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

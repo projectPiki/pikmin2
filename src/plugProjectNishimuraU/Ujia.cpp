@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80266080
  * Size:	000130
  */
-void Game::Ujia::Obj::__ct(void)
+void Game::Ujia::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -109,7 +99,7 @@ void Game::Ujia::Obj::__ct(void)
  * Address:	802661B0
  * Size:	000004
  */
-void Game::Ujia::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Ujia::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -122,7 +112,7 @@ void Game::Ujia::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802661B4
  * Size:	000098
  */
-void Game::Ujia::Obj::onInit((Game::CreatureInitArg*))
+void Game::Ujia::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -172,7 +162,7 @@ void Game::Ujia::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8026624C
  * Size:	000034
  */
-void Game::Ujia::Obj::doUpdate(void)
+void Game::Ujia::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -197,7 +187,7 @@ void Game::Ujia::Obj::doUpdate(void)
  * Address:	80266280
  * Size:	000004
  */
-void Game::Ujia::Obj::doDirectDraw((Graphics&))
+void Game::Ujia::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -210,7 +200,7 @@ void Game::Ujia::Obj::doDirectDraw((Graphics&))
  * Address:	80266284
  * Size:	000020
  */
-void Game::Ujia::Obj::doDebugDraw((Graphics&))
+void Game::Ujia::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -230,7 +220,7 @@ void Game::Ujia::Obj::doDebugDraw((Graphics&))
  * Address:	802662A4
  * Size:	00004C
  */
-void Game::Ujia::Obj::setFSM((Game::Ujia::FSM*))
+void Game::Ujia::Obj::setFSM(Game::Ujia::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -261,7 +251,7 @@ void Game::Ujia::Obj::setFSM((Game::Ujia::FSM*))
  * Address:	802662F0
  * Size:	0000A8
  */
-void Game::Ujia::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Ujia::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -319,7 +309,7 @@ void Game::Ujia::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80266398
  * Size:	000094
  */
-void Game::Ujia::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::Ujia::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -372,7 +362,7 @@ void Game::Ujia::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8026642C
  * Size:	00002C
  */
-void Game::Ujia::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::Ujia::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -395,7 +385,7 @@ void Game::Ujia::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	80266458
  * Size:	000028
  */
-void Game::Ujia::Obj::startCarcassMotion(void)
+void Game::Ujia::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -417,7 +407,7 @@ void Game::Ujia::Obj::startCarcassMotion(void)
  * Address:	80266480
  * Size:	000030
  */
-void Game::Ujia::Obj::lifeIncrement(void)
+void Game::Ujia::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -441,7 +431,7 @@ void Game::Ujia::Obj::lifeIncrement(void)
  * Address:	802664B0
  * Size:	000034
  */
-void Game::Ujia::Obj::setInWaterDamage(void)
+void Game::Ujia::Obj::setInWaterDamage()
 {
 	/*
 	.loc_0x0:
@@ -468,7 +458,7 @@ void Game::Ujia::Obj::setInWaterDamage(void)
  * Address:	802664E4
  * Size:	0000B4
  */
-void Game::Ujia::Obj::resetAppearCheck(void)
+void Game::Ujia::Obj::resetAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -529,7 +519,7 @@ void Game::Ujia::Obj::resetAppearCheck(void)
  * Address:	80266598
  * Size:	000048
  */
-void Game::Ujia::Obj::isAppearCheck(void)
+void Game::Ujia::Obj::isAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -563,7 +553,7 @@ void Game::Ujia::Obj::isAppearCheck(void)
  * Address:	802665E0
  * Size:	000020
  */
-void Game::Ujia::Obj::resetBridgeSearch(void)
+void Game::Ujia::Obj::resetBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -583,7 +573,7 @@ void Game::Ujia::Obj::resetBridgeSearch(void)
  * Address:	80266600
  * Size:	000048
  */
-void Game::Ujia::Obj::setBridgeSearch(void)
+void Game::Ujia::Obj::setBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -617,7 +607,7 @@ void Game::Ujia::Obj::setBridgeSearch(void)
  * Address:	80266648
  * Size:	0002C0
  */
-void Game::Ujia::Obj::setNearestBridge(void)
+void Game::Ujia::Obj::setNearestBridge()
 {
 	/*
 	.loc_0x0:
@@ -829,7 +819,7 @@ void Game::Ujia::Obj::setNearestBridge(void)
  * Address:	80266908
  * Size:	000004
  */
-void Game::Ujia::Obj::setCullingCheck(void)
+void Game::Ujia::Obj::setCullingCheck()
 {
 	/*
 	.loc_0x0:
@@ -842,7 +832,7 @@ void Game::Ujia::Obj::setCullingCheck(void)
  * Address:	8026690C
  * Size:	0001B4
  */
-void Game::Ujia::Obj::checkBreakOrMove(void)
+void Game::Ujia::Obj::checkBreakOrMove()
 {
 	/*
 	.loc_0x0:
@@ -981,7 +971,7 @@ void Game::Ujia::Obj::checkBreakOrMove(void)
  * Address:	80266AC0
  * Size:	000028
  */
-void Game::Ujia::Obj::isBreakBridge(void)
+void Game::Ujia::Obj::isBreakBridge()
 {
 	/*
 	.loc_0x0:
@@ -1005,7 +995,7 @@ void Game::Ujia::Obj::isBreakBridge(void)
  * Address:	80266AE8
  * Size:	0002A8
  */
-void Game::Ujia::Obj::moveBridgeSide(void)
+void Game::Ujia::Obj::moveBridgeSide()
 {
 	/*
 	.loc_0x0:
@@ -1195,7 +1185,7 @@ void Game::Ujia::Obj::moveBridgeSide(void)
  * Address:	80266D90
  * Size:	000288
  */
-void Game::Ujia::Obj::moveBridgeCentre(void)
+void Game::Ujia::Obj::moveBridgeCentre()
 {
 	/*
 	.loc_0x0:
@@ -1377,7 +1367,7 @@ void Game::Ujia::Obj::moveBridgeCentre(void)
  * Address:	80267018
  * Size:	0002F0
  */
-void Game::Ujia::Obj::moveBridgeTop(void)
+void Game::Ujia::Obj::moveBridgeTop()
 {
 	/*
 	.loc_0x0:
@@ -1589,7 +1579,7 @@ void Game::Ujia::Obj::moveBridgeTop(void)
  * Address:	80267308
  * Size:	00005C
  */
-void Game::Ujia::Obj::breakTargetBridge(void)
+void Game::Ujia::Obj::breakTargetBridge()
 {
 	/*
 	.loc_0x0:
@@ -1624,7 +1614,7 @@ void Game::Ujia::Obj::breakTargetBridge(void)
  * Address:	80267364
  * Size:	00008C
  */
-void Game::Ujia::Obj::createAppearEffect(void)
+void Game::Ujia::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1671,7 +1661,7 @@ void Game::Ujia::Obj::createAppearEffect(void)
  * Address:	802673F0
  * Size:	00008C
  */
-void Game::Ujia::Obj::createDisAppearEffect(void)
+void Game::Ujia::Obj::createDisAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1718,7 +1708,7 @@ void Game::Ujia::Obj::createDisAppearEffect(void)
  * Address:	8026747C
  * Size:	000090
  */
-void Game::Ujia::Obj::createBridgeEffect(void)
+void Game::Ujia::Obj::createBridgeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1766,7 +1756,7 @@ void Game::Ujia::Obj::createBridgeEffect(void)
  * Address:	8026750C
  * Size:	000008
  */
-void Game::Ujia::Obj::isUnderground(void)
+void Game::Ujia::Obj::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -1780,7 +1770,7 @@ void Game::Ujia::Obj::isUnderground(void)
  * Address:	80267514
  * Size:	000008
  */
-void Game::Ujia::Obj::getDownSmokeScale(void)
+void Game::Ujia::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1794,7 +1784,7 @@ void Game::Ujia::Obj::getDownSmokeScale(void)
  * Address:	8026751C
  * Size:	000008
  */
-void Game::Ujia::Obj::getEnemyTypeID(void)
+void Game::Ujia::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1808,7 +1798,7 @@ void Game::Ujia::Obj::getEnemyTypeID(void)
  * Address:	80267524
  * Size:	000014
  */
-void @724 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@724 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1825,7 +1815,7 @@ void @724 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	80267538
  * Size:	000014
  */
-void @724 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@724 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1842,7 +1832,7 @@ void @724 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8026754C
  * Size:	000014
  */
-void @724 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@724 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1859,7 +1849,7 @@ void @724 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	80267560
  * Size:	000014
  */
-void @724 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@724 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1876,7 +1866,7 @@ void @724 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80267574
  * Size:	000014
  */
-void @724 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@724 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1893,7 +1883,7 @@ void @724 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80267588
  * Size:	000014
  */
-void @724 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@724 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

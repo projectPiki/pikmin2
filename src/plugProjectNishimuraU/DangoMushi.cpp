@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802FC3BC
  * Size:	000134
  */
-void Game::DangoMushi::Obj::__ct(void)
+void Game::DangoMushi::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -112,7 +102,7 @@ void Game::DangoMushi::Obj::__ct(void)
  * Address:	802FC4F0
  * Size:	000004
  */
-void Game::DangoMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::DangoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -125,7 +115,7 @@ void Game::DangoMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	802FC4F4
  * Size:	000130
  */
-void Game::DangoMushi::Obj::onInit((Game::CreatureInitArg*))
+void Game::DangoMushi::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +207,7 @@ void Game::DangoMushi::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802FC624
  * Size:	000044
  */
-void Game::DangoMushi::Obj::onKill((Game::CreatureKillArg*))
+void Game::DangoMushi::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +236,7 @@ void Game::DangoMushi::Obj::onKill((Game::CreatureKillArg*))
  * Address:	802FC668
  * Size:	000050
  */
-void Game::DangoMushi::Obj::doUpdate(void)
+void Game::DangoMushi::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -278,7 +268,7 @@ void Game::DangoMushi::Obj::doUpdate(void)
  * Address:	802FC6B8
  * Size:	000044
  */
-void Game::DangoMushi::Obj::doUpdateCommon(void)
+void Game::DangoMushi::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -307,7 +297,7 @@ void Game::DangoMushi::Obj::doUpdateCommon(void)
  * Address:	802FC6FC
  * Size:	000094
  */
-void Game::DangoMushi::Obj::doAnimationUpdateAnimator(void)
+void Game::DangoMushi::Obj::doAnimationUpdateAnimator()
 {
 	/*
 	.loc_0x0:
@@ -356,7 +346,7 @@ void Game::DangoMushi::Obj::doAnimationUpdateAnimator(void)
  * Address:	802FC790
  * Size:	0000C4
  */
-void Game::DangoMushi::Obj::changeMaterial(void)
+void Game::DangoMushi::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -421,7 +411,7 @@ void Game::DangoMushi::Obj::changeMaterial(void)
  * Address:	802FC854
  * Size:	000004
  */
-void Game::DangoMushi::Obj::doDirectDraw((Graphics&))
+void Game::DangoMushi::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -434,7 +424,7 @@ void Game::DangoMushi::Obj::doDirectDraw((Graphics&))
  * Address:	802FC858
  * Size:	000020
  */
-void Game::DangoMushi::Obj::doDebugDraw((Graphics&))
+void Game::DangoMushi::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -454,7 +444,7 @@ void Game::DangoMushi::Obj::doDebugDraw((Graphics&))
  * Address:	802FC878
  * Size:	00004C
  */
-void Game::DangoMushi::Obj::setFSM((Game::DangoMushi::FSM*))
+void Game::DangoMushi::Obj::setFSM(Game::DangoMushi::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -485,7 +475,7 @@ void Game::DangoMushi::Obj::setFSM((Game::DangoMushi::FSM*))
  * Address:	802FC8C4
  * Size:	0000B8
  */
-void Game::DangoMushi::Obj::getShadowParam((Game::ShadowParam&))
+void Game::DangoMushi::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -547,7 +537,7 @@ void Game::DangoMushi::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	802FC97C
  * Size:	000070
  */
-void Game::DangoMushi::Obj::needShadow(void)
+void Game::DangoMushi::Obj::needShadow()
 {
 	/*
 	.loc_0x0:
@@ -595,7 +585,7 @@ void Game::DangoMushi::Obj::needShadow(void)
  * Address:	802FC9EC
  * Size:	0000EC
  */
-void Game::DangoMushi::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::DangoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -674,7 +664,7 @@ void Game::DangoMushi::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	802FCAD8
  * Size:	000008
  */
-void Game::DangoMushi::Obj::earthquakeCallBack((Game::Creature*, float))
+void Game::DangoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -688,7 +678,7 @@ void Game::DangoMushi::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	802FCAE0
  * Size:	000104
  */
-void Game::DangoMushi::Obj::collisionCallback((Game::CollEvent&))
+void Game::DangoMushi::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -769,7 +759,7 @@ void Game::DangoMushi::Obj::collisionCallback((Game::CollEvent&))
  * Address:	802FCBE4
  * Size:	00010C
  */
-void Game::DangoMushi::Obj::wallCallback((Game::MoveInfo const&))
+void Game::DangoMushi::Obj::wallCallback(const Game::MoveInfo&)
 {
 	/*
 	.loc_0x0:
@@ -858,7 +848,7 @@ void Game::DangoMushi::Obj::wallCallback((Game::MoveInfo const&))
  * Address:	802FCCF0
  * Size:	000038
  */
-void Game::DangoMushi::Obj::doStartStoneState(void)
+void Game::DangoMushi::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -884,7 +874,7 @@ void Game::DangoMushi::Obj::doStartStoneState(void)
  * Address:	802FCD28
  * Size:	000074
  */
-void Game::DangoMushi::Obj::doFinishStoneState(void)
+void Game::DangoMushi::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -929,7 +919,7 @@ void Game::DangoMushi::Obj::doFinishStoneState(void)
  * Address:	802FCD9C
  * Size:	000028
  */
-void Game::DangoMushi::Obj::startCarcassMotion(void)
+void Game::DangoMushi::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -951,7 +941,7 @@ void Game::DangoMushi::Obj::startCarcassMotion(void)
  * Address:	802FCDC4
  * Size:	000020
  */
-void Game::DangoMushi::Obj::doStartMovie(void)
+void Game::DangoMushi::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -971,7 +961,7 @@ void Game::DangoMushi::Obj::doStartMovie(void)
  * Address:	802FCDE4
  * Size:	000020
  */
-void Game::DangoMushi::Obj::doEndMovie(void)
+void Game::DangoMushi::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -991,7 +981,7 @@ void Game::DangoMushi::Obj::doEndMovie(void)
  * Address:	802FCE04
  * Size:	00004C
  */
-void Game::DangoMushi::Obj::initWalkSmokeEffect(void)
+void Game::DangoMushi::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1012,7 @@ void Game::DangoMushi::Obj::initWalkSmokeEffect(void)
  * Address:	802FCE50
  * Size:	000008
  */
-void Game::DangoMushi::Obj::getWalkSmokeEffectMgr(void)
+void Game::DangoMushi::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -1036,7 +1026,7 @@ void Game::DangoMushi::Obj::getWalkSmokeEffectMgr(void)
  * Address:	802FCE58
  * Size:	000024
  */
-void getCommonEffectPos__Q34Game10DangoMushi3ObjFR10Vector3<float>(void)
+void Game::DangoMushi::Obj::getCommonEffectPos(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1057,7 +1047,7 @@ void getCommonEffectPos__Q34Game10DangoMushi3ObjFR10Vector3<float>(void)
  * Address:	802FCE7C
  * Size:	000050
  */
-void Game::DangoMushi::Obj::addShadowScale(void)
+void Game::DangoMushi::Obj::addShadowScale()
 {
 	/*
 	.loc_0x0:
@@ -1093,7 +1083,7 @@ void Game::DangoMushi::Obj::addShadowScale(void)
  * Address:	802FCECC
  * Size:	000198
  */
-void Game::DangoMushi::Obj::setRandTarget(void)
+void Game::DangoMushi::Obj::setRandTarget()
 {
 	/*
 	.loc_0x0:
@@ -1213,7 +1203,7 @@ void Game::DangoMushi::Obj::setRandTarget(void)
  * Address:	802FD064
  * Size:	000034
  */
-void Game::DangoMushi::Obj::isReachedTarget(void)
+void Game::DangoMushi::Obj::isReachedTarget()
 {
 	/*
 	.loc_0x0:
@@ -1238,7 +1228,7 @@ void Game::DangoMushi::Obj::isReachedTarget(void)
  * Address:	802FD098
  * Size:	000038
  */
-void Game::DangoMushi::Obj::getSearchedTarget(void)
+void Game::DangoMushi::Obj::getSearchedTarget()
 {
 	/*
 	.loc_0x0:
@@ -1264,7 +1254,7 @@ void Game::DangoMushi::Obj::getSearchedTarget(void)
  * Address:	802FD0D0
  * Size:	0002BC
  */
-void Game::DangoMushi::Obj::rollingMove(void)
+void Game::DangoMushi::Obj::rollingMove()
 {
 	/*
 	.loc_0x0:
@@ -1471,7 +1461,7 @@ void Game::DangoMushi::Obj::rollingMove(void)
  * Address:	802FD38C
  * Size:	0004E8
  */
-void Game::DangoMushi::Obj::createCrashEnemy(void)
+void Game::DangoMushi::Obj::createCrashEnemy()
 {
 	/*
 	.loc_0x0:
@@ -1829,7 +1819,7 @@ void Game::DangoMushi::Obj::createCrashEnemy(void)
  * Address:	802FD874
  * Size:	0000EC
  */
-void Game::DangoMushi::Obj::getFallEggNum(void)
+void Game::DangoMushi::Obj::getFallEggNum()
 {
 	/*
 	.loc_0x0:
@@ -1906,7 +1896,7 @@ void Game::DangoMushi::Obj::getFallEggNum(void)
  * Address:	802FD960
  * Size:	000104
  */
-void Game::DangoMushi::Obj::getFallPosition((int))
+void Game::DangoMushi::Obj::getFallPosition(int)
 {
 	/*
 	.loc_0x0:
@@ -1987,7 +1977,7 @@ void Game::DangoMushi::Obj::getFallPosition((int))
  * Address:	802FDA64
  * Size:	000038
  */
-void Game::DangoMushi::Obj::setupCollision(void)
+void Game::DangoMushi::Obj::setupCollision()
 {
 	/*
 	.loc_0x0:
@@ -2015,7 +2005,7 @@ void Game::DangoMushi::Obj::setupCollision(void)
  * Address:	802FDA9C
  * Size:	000444
  */
-void Game::DangoMushi::Obj::setBodyCollision((bool))
+void Game::DangoMushi::Obj::setBodyCollision(bool)
 {
 	/*
 	.loc_0x0:
@@ -2334,7 +2324,7 @@ void Game::DangoMushi::Obj::setBodyCollision((bool))
  * Address:	802FDEE0
  * Size:	0002AC
  */
-void Game::DangoMushi::Obj::flickHandCollision((Game::Creature*))
+void Game::DangoMushi::Obj::flickHandCollision(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -2535,7 +2525,7 @@ void Game::DangoMushi::Obj::flickHandCollision((Game::Creature*))
  * Address:	802FE18C
  * Size:	000058
  */
-void Game::DangoMushi::Obj::isNoDamageCollision(void)
+void Game::DangoMushi::Obj::isNoDamageCollision()
 {
 	/*
 	.loc_0x0:
@@ -2573,7 +2563,7 @@ void Game::DangoMushi::Obj::isNoDamageCollision(void)
  * Address:	802FE1E4
  * Size:	00002C
  */
-void Game::DangoMushi::Obj::resetMapCollisionSize((bool))
+void Game::DangoMushi::Obj::resetMapCollisionSize(bool)
 {
 	/*
 	.loc_0x0:
@@ -2598,7 +2588,7 @@ void Game::DangoMushi::Obj::resetMapCollisionSize((bool))
  * Address:	802FE210
  * Size:	00008C
  */
-void Game::DangoMushi::Obj::updateMapCollisionSize(void)
+void Game::DangoMushi::Obj::updateMapCollisionSize()
 {
 	/*
 	.loc_0x0:
@@ -2647,7 +2637,7 @@ void Game::DangoMushi::Obj::updateMapCollisionSize(void)
  * Address:	802FE29C
  * Size:	0003AC
  */
-void Game::DangoMushi::Obj::flickHandCollision(void)
+void Game::DangoMushi::Obj::flickHandCollision()
 {
 	/*
 	.loc_0x0:
@@ -2922,7 +2912,7 @@ void Game::DangoMushi::Obj::flickHandCollision(void)
  * Address:	802FE648
  * Size:	00011C
  */
-void Game::DangoMushi::Obj::startBlendAnimation((int, bool))
+void Game::DangoMushi::Obj::startBlendAnimation(int, bool)
 {
 	/*
 	.loc_0x0:
@@ -3019,7 +3009,7 @@ void Game::DangoMushi::Obj::startBlendAnimation((int, bool))
  * Address:	802FE764
  * Size:	000098
  */
-void Game::DangoMushi::Obj::endBlendAnimation(void)
+void Game::DangoMushi::Obj::endBlendAnimation()
 {
 	/*
 	.loc_0x0:
@@ -3070,20 +3060,10 @@ void Game::DangoMushi::Obj::endBlendAnimation(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void Game::DangoMushi::Obj::getCurrAnimationIndex(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802FE7FC
  * Size:	0000C8
  */
-void Game::DangoMushi::Obj::startBossFlickBGM(void)
+void Game::DangoMushi::Obj::startBossFlickBGM()
 {
 	/*
 	.loc_0x0:
@@ -3151,7 +3131,7 @@ void Game::DangoMushi::Obj::startBossFlickBGM(void)
  * Address:	802FE8C4
  * Size:	0000C8
  */
-void Game::DangoMushi::Obj::startBossAttackLoopBGM(void)
+void Game::DangoMushi::Obj::startBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -3219,7 +3199,7 @@ void Game::DangoMushi::Obj::startBossAttackLoopBGM(void)
  * Address:	802FE98C
  * Size:	0000C8
  */
-void Game::DangoMushi::Obj::finishBossAttackLoopBGM(void)
+void Game::DangoMushi::Obj::finishBossAttackLoopBGM()
 {
 	/*
 	.loc_0x0:
@@ -3287,7 +3267,7 @@ void Game::DangoMushi::Obj::finishBossAttackLoopBGM(void)
  * Address:	802FEA54
  * Size:	0000FC
  */
-void Game::DangoMushi::Obj::updateBossBGM(void)
+void Game::DangoMushi::Obj::updateBossBGM()
 {
 	/*
 	.loc_0x0:
@@ -3372,7 +3352,7 @@ void Game::DangoMushi::Obj::updateBossBGM(void)
  * Address:	802FEB50
  * Size:	0000BC
  */
-void Game::DangoMushi::Obj::resetBossAppearBGM(void)
+void Game::DangoMushi::Obj::resetBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -3437,7 +3417,7 @@ void Game::DangoMushi::Obj::resetBossAppearBGM(void)
  * Address:	802FEC0C
  * Size:	0000BC
  */
-void Game::DangoMushi::Obj::setBossAppearBGM(void)
+void Game::DangoMushi::Obj::setBossAppearBGM()
 {
 	/*
 	.loc_0x0:
@@ -3502,7 +3482,7 @@ void Game::DangoMushi::Obj::setBossAppearBGM(void)
  * Address:	802FECC8
  * Size:	000170
  */
-void Game::DangoMushi::Obj::createEffect(void)
+void Game::DangoMushi::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -3612,7 +3592,7 @@ void Game::DangoMushi::Obj::createEffect(void)
  * Address:	802FEE38
  * Size:	000064
  */
-void Game::DangoMushi::Obj::setupEffect(void)
+void Game::DangoMushi::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -3649,7 +3629,7 @@ void Game::DangoMushi::Obj::setupEffect(void)
  * Address:	802FEE9C
  * Size:	00007C
  */
-void Game::DangoMushi::Obj::createDeadSmokeEffect(void)
+void Game::DangoMushi::Obj::createDeadSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -3692,7 +3672,7 @@ void Game::DangoMushi::Obj::createDeadSmokeEffect(void)
  * Address:	802FEF18
  * Size:	000088
  */
-void Game::DangoMushi::Obj::createDeadBombEffect(void)
+void Game::DangoMushi::Obj::createDeadBombEffect()
 {
 	/*
 	.loc_0x0:
@@ -3738,7 +3718,7 @@ void Game::DangoMushi::Obj::createDeadBombEffect(void)
  * Address:	802FEFA0
  * Size:	0000A0
  */
-void Game::DangoMushi::Obj::createBodyTurnEffect(void)
+void Game::DangoMushi::Obj::createBodyTurnEffect()
 {
 	/*
 	.loc_0x0:
@@ -3790,7 +3770,7 @@ void Game::DangoMushi::Obj::createBodyTurnEffect(void)
  * Address:	802FF040
  * Size:	000054
  */
-void Game::DangoMushi::Obj::createWallBreakEffect(void)
+void Game::DangoMushi::Obj::createWallBreakEffect()
 {
 	/*
 	.loc_0x0:
@@ -3823,7 +3803,7 @@ void Game::DangoMushi::Obj::createWallBreakEffect(void)
  * Address:	802FF094
  * Size:	000034
  */
-void Game::DangoMushi::Obj::createFlickAttackEffect(void)
+void Game::DangoMushi::Obj::createFlickAttackEffect()
 {
 	/*
 	.loc_0x0:
@@ -3848,7 +3828,7 @@ void Game::DangoMushi::Obj::createFlickAttackEffect(void)
  * Address:	802FF0C8
  * Size:	00007C
  */
-void Game::DangoMushi::Obj::createBodyDamageEffect(void)
+void Game::DangoMushi::Obj::createBodyDamageEffect()
 {
 	/*
 	.loc_0x0:
@@ -3891,7 +3871,7 @@ void Game::DangoMushi::Obj::createBodyDamageEffect(void)
  * Address:	802FF144
  * Size:	0000CC
  */
-void createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3<float>(void)
+void Game::DangoMushi::Obj::createBodyWallCrashEffect(Vector3<float>)
 {
 	/*
 	.loc_0x0:
@@ -3954,7 +3934,7 @@ void createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3<float>(void)
  * Address:	802FF210
  * Size:	000034
  */
-void Game::DangoMushi::Obj::startRollingMoveEffect(void)
+void Game::DangoMushi::Obj::startRollingMoveEffect()
 {
 	/*
 	.loc_0x0:
@@ -3979,7 +3959,7 @@ void Game::DangoMushi::Obj::startRollingMoveEffect(void)
  * Address:	802FF244
  * Size:	000030
  */
-void Game::DangoMushi::Obj::finishRollingMoveEffect(void)
+void Game::DangoMushi::Obj::finishRollingMoveEffect()
 {
 	/*
 	.loc_0x0:
@@ -4003,7 +3983,7 @@ void Game::DangoMushi::Obj::finishRollingMoveEffect(void)
  * Address:	802FF274
  * Size:	000044
  */
-void Game::DangoMushi::Obj::createEnemyBounceEffect(void)
+void Game::DangoMushi::Obj::createEnemyBounceEffect()
 {
 	/*
 	.loc_0x0:
@@ -4032,7 +4012,7 @@ void Game::DangoMushi::Obj::createEnemyBounceEffect(void)
  * Address:	802FF2B8
  * Size:	000008
  */
-void Game::DangoMushi::Obj::getDownSmokeScale(void)
+void Game::DangoMushi::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -4046,7 +4026,7 @@ void Game::DangoMushi::Obj::getDownSmokeScale(void)
  * Address:	802FF2C0
  * Size:	0001E8
  */
-void Game::DangoMushi::Obj::createMoveHandEffect(void)
+void Game::DangoMushi::Obj::createMoveHandEffect()
 {
 	/*
 	.loc_0x0:
@@ -4198,7 +4178,7 @@ void Game::DangoMushi::Obj::createMoveHandEffect(void)
  * Address:	802FF4A8
  * Size:	000098
  */
-void Game::DangoMushi::Obj::createAppearSmokeEffect(void)
+void Game::DangoMushi::Obj::createAppearSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -4248,7 +4228,7 @@ void Game::DangoMushi::Obj::createAppearSmokeEffect(void)
  * Address:	802FF540
  * Size:	000064
  */
-void Game::DangoMushi::Obj::effectDrawOn(void)
+void Game::DangoMushi::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -4285,7 +4265,7 @@ void Game::DangoMushi::Obj::effectDrawOn(void)
  * Address:	802FF5A4
  * Size:	000064
  */
-void Game::DangoMushi::Obj::effectDrawOff(void)
+void Game::DangoMushi::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -4322,7 +4302,7 @@ void Game::DangoMushi::Obj::effectDrawOff(void)
  * Address:	802FF608
  * Size:	00009C
  */
-void efx::TDangoAttack2::__dt(void)
+void efx::TDangoAttack2::~TDangoAttack2()
 {
 	/*
 	.loc_0x0:
@@ -4377,7 +4357,7 @@ void efx::TDangoAttack2::__dt(void)
  * Address:	802FF6A4
  * Size:	00009C
  */
-void efx::TDangoWallBreak::__dt(void)
+void efx::TDangoWallBreak::~TDangoWallBreak()
 {
 	/*
 	.loc_0x0:
@@ -4432,7 +4412,7 @@ void efx::TDangoWallBreak::__dt(void)
  * Address:	802FF740
  * Size:	000008
  */
-void Game::DangoMushi::Obj::getDamageCoeStoneState(void)
+void Game::DangoMushi::Obj::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -4446,7 +4426,7 @@ void Game::DangoMushi::Obj::getDamageCoeStoneState(void)
  * Address:	802FF748
  * Size:	000008
  */
-void Game::DangoMushi::Obj::getEnemyTypeID(void)
+void Game::DangoMushi::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -4460,7 +4440,7 @@ void Game::DangoMushi::Obj::getEnemyTypeID(void)
  * Address:	802FF750
  * Size:	00006C
  */
-void Game::DangoMushi::ProperAnimator::__dt(void)
+void Game::DangoMushi::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -4503,7 +4483,7 @@ void Game::DangoMushi::ProperAnimator::__dt(void)
  * Address:	802FF7BC
  * Size:	000008
  */
-void @4 @efx::TDangoWallBreak::__dt(void)
+void efx::TDangoWallBreak::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -4517,7 +4497,7 @@ void @4 @efx::TDangoWallBreak::__dt(void)
  * Address:	802FF7C4
  * Size:	000008
  */
-void @4 @efx::TDangoAttack2::__dt(void)
+void efx::TDangoAttack2::@4 @__dt()
 {
 	/*
 	.loc_0x0:

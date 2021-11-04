@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028F138
  * Size:	000050
  */
-void Game::FireChappy::Mgr::__ct((int, unsigned char))
+void Game::FireChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::FireChappy::Mgr::__ct((int, unsigned char))
  * Address:	8028F188
  * Size:	000048
  */
-void Game::FireChappy::Mgr::doAlloc(void)
+void Game::FireChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::FireChappy::Mgr::doAlloc(void)
  * Address:	8028F1D0
  * Size:	000060
  */
-void Game::FireChappy::Mgr::createObj((int))
+void Game::FireChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::FireChappy::Mgr::createObj((int))
  * Address:	8028F230
  * Size:	0000F0
  */
-void Game::FireChappy::Obj::__dt(void)
+void Game::FireChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::FireChappy::Obj::__dt(void)
  * Address:	8028F320
  * Size:	000010
  */
-void Game::FireChappy::Mgr::getEnemy((int))
+void Game::FireChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::FireChappy::Mgr::getEnemy((int))
  * Address:	8028F330
  * Size:	000068
  */
-void Game::FireChappy::Mgr::loadModelData(void)
+void Game::FireChappy::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -249,7 +239,7 @@ void Game::FireChappy::Mgr::loadModelData(void)
  * Address:	8028F398
  * Size:	00012C
  */
-void Game::FireChappy::Mgr::loadTexData(void)
+void Game::FireChappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -348,7 +338,7 @@ void Game::FireChappy::Mgr::loadTexData(void)
  * Address:	8028F4C4
  * Size:	00007C
  */
-void Game::FireChappy::Mgr::createModel(void)
+void Game::FireChappy::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -395,7 +385,7 @@ void Game::FireChappy::Mgr::createModel(void)
  * Address:	8028F540
  * Size:	0000B0
  */
-void Game::FireChappy::Mgr::__dt(void)
+void Game::FireChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -455,7 +445,7 @@ void Game::FireChappy::Mgr::__dt(void)
  * Address:	8028F5F0
  * Size:	000008
  */
-void Game::FireChappy::Mgr::getEnemyTypeID(void)
+void Game::FireChappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -469,7 +459,7 @@ void Game::FireChappy::Mgr::getEnemyTypeID(void)
  * Address:	8028F5F8
  * Size:	00002C
  */
-void Game::FireChappy::Mgr::doLoadBmd((void*))
+void Game::FireChappy::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -492,7 +482,7 @@ void Game::FireChappy::Mgr::doLoadBmd((void*))
  * Address:	8028F624
  * Size:	000008
  */
-void @4 @Game::FireChappy::Mgr::__dt(void)
+void Game::FireChappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

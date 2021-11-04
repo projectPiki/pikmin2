@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802992B4
  * Size:	000050
  */
-void Game::KumaChappy::Mgr::__ct((int, unsigned char))
+void Game::KumaChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::KumaChappy::Mgr::__ct((int, unsigned char))
  * Address:	80299304
  * Size:	000048
  */
-void Game::KumaChappy::Mgr::doAlloc(void)
+void Game::KumaChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::KumaChappy::Mgr::doAlloc(void)
  * Address:	8029934C
  * Size:	000118
  */
-void Game::KumaChappy::Parms::__ct(void)
+void Game::KumaChappy::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -163,7 +153,7 @@ void Game::KumaChappy::Parms::__ct(void)
  * Address:	80299464
  * Size:	000060
  */
-void Game::KumaChappy::Mgr::createObj((int))
+void Game::KumaChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +189,7 @@ void Game::KumaChappy::Mgr::createObj((int))
  * Address:	802994C4
  * Size:	0000BC
  */
-void Game::KumaChappy::Obj::__dt(void)
+void Game::KumaChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -262,7 +252,7 @@ void Game::KumaChappy::Obj::__dt(void)
  * Address:	80299580
  * Size:	000010
  */
-void Game::KumaChappy::Mgr::getEnemy((int))
+void Game::KumaChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -278,7 +268,7 @@ void Game::KumaChappy::Mgr::getEnemy((int))
  * Address:	80299590
  * Size:	000050
  */
-void Game::KumaChappy::Parms::read((Stream&))
+void Game::KumaChappy::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -310,7 +300,7 @@ void Game::KumaChappy::Parms::read((Stream&))
  * Address:	802995E0
  * Size:	0000B0
  */
-void Game::KumaChappy::Mgr::__dt(void)
+void Game::KumaChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -370,7 +360,7 @@ void Game::KumaChappy::Mgr::__dt(void)
  * Address:	80299690
  * Size:	000008
  */
-void Game::KumaChappy::Mgr::getEnemyTypeID(void)
+void Game::KumaChappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -384,7 +374,7 @@ void Game::KumaChappy::Mgr::getEnemyTypeID(void)
  * Address:	80299698
  * Size:	000008
  */
-void @4 @Game::KumaChappy::Mgr::__dt(void)
+void Game::KumaChappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

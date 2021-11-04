@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BEDE0
  * Size:	000050
  */
-void Game::Houdai::Mgr::__ct((int, unsigned char))
+void Game::Houdai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Houdai::Mgr::__ct((int, unsigned char))
  * Address:	802BEE30
  * Size:	000048
  */
-void Game::Houdai::Mgr::doAlloc(void)
+void Game::Houdai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Houdai::Mgr::doAlloc(void)
  * Address:	802BEE78
  * Size:	000048
  */
-void Game::Houdai::Parms::__ct(void)
+void Game::Houdai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Houdai::Parms::__ct(void)
  * Address:	802BEEC0
  * Size:	0002EC
  */
-void Game::Houdai::Parms::ProperParms::__ct(void)
+void Game::Houdai::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -314,7 +304,7 @@ void Game::Houdai::Parms::ProperParms::__ct(void)
  * Address:	802BF1AC
  * Size:	000060
  */
-void Game::Houdai::Mgr::createObj((int))
+void Game::Houdai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -350,7 +340,7 @@ void Game::Houdai::Mgr::createObj((int))
  * Address:	802BF20C
  * Size:	0000BC
  */
-void Game::Houdai::Obj::__dt(void)
+void Game::Houdai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -413,7 +403,7 @@ void Game::Houdai::Obj::__dt(void)
  * Address:	802BF2C8
  * Size:	000010
  */
-void Game::Houdai::Mgr::getEnemy((int))
+void Game::Houdai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +419,7 @@ void Game::Houdai::Mgr::getEnemy((int))
  * Address:	802BF2D8
  * Size:	000068
  */
-void Game::Houdai::Mgr::loadModelData(void)
+void Game::Houdai::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -471,7 +461,7 @@ void Game::Houdai::Mgr::loadModelData(void)
  * Address:	802BF340
  * Size:	0000B0
  */
-void Game::Houdai::Mgr::__dt(void)
+void Game::Houdai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -531,7 +521,7 @@ void Game::Houdai::Mgr::__dt(void)
  * Address:	802BF3F0
  * Size:	000008
  */
-void Game::Houdai::Mgr::getEnemyTypeID(void)
+void Game::Houdai::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -545,7 +535,7 @@ void Game::Houdai::Mgr::getEnemyTypeID(void)
  * Address:	802BF3F8
  * Size:	00002C
  */
-void Game::Houdai::Mgr::doLoadBmd((void*))
+void Game::Houdai::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -568,7 +558,7 @@ void Game::Houdai::Mgr::doLoadBmd((void*))
  * Address:	802BF424
  * Size:	000050
  */
-void Game::Houdai::Parms::read((Stream&))
+void Game::Houdai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -600,7 +590,7 @@ void Game::Houdai::Parms::read((Stream&))
  * Address:	802BF474
  * Size:	000008
  */
-void @4 @Game::Houdai::Mgr::__dt(void)
+void Game::Houdai::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

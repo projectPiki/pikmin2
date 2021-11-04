@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028D470
  * Size:	000140
  */
-void Game::Baby::Obj::__ct(void)
+void Game::Baby::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Baby::Obj::__ct(void)
  * Address:	8028D5B0
  * Size:	000004
  */
-void Game::Baby::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Baby::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +116,7 @@ void Game::Baby::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	8028D5B4
  * Size:	0000B8
  */
-void Game::Baby::Obj::onInit((Game::CreatureInitArg*))
+void Game::Baby::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -188,7 +178,7 @@ void Game::Baby::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8028D66C
  * Size:	000048
  */
-void Game::Baby::Obj::doUpdate(void)
+void Game::Baby::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -218,7 +208,7 @@ void Game::Baby::Obj::doUpdate(void)
  * Address:	8028D6B4
  * Size:	000004
  */
-void Game::Baby::Obj::doDirectDraw((Graphics&))
+void Game::Baby::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -231,7 +221,7 @@ void Game::Baby::Obj::doDirectDraw((Graphics&))
  * Address:	8028D6B8
  * Size:	000020
  */
-void Game::Baby::Obj::doDebugDraw((Graphics&))
+void Game::Baby::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +241,7 @@ void Game::Baby::Obj::doDebugDraw((Graphics&))
  * Address:	8028D6D8
  * Size:	00004C
  */
-void Game::Baby::Obj::setFSM((Game::Baby::FSM*))
+void Game::Baby::Obj::setFSM(Game::Baby::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +272,7 @@ void Game::Baby::Obj::setFSM((Game::Baby::FSM*))
  * Address:	8028D724
  * Size:	000068
  */
-void Game::Baby::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Baby::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -324,7 +314,7 @@ void Game::Baby::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8028D78C
  * Size:	000074
  */
-void Game::Baby::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::Baby::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::Baby::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8028D800
  * Size:	000074
  */
-void Game::Baby::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::Baby::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -414,7 +404,7 @@ void Game::Baby::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	8028D874
  * Size:	000020
  */
-void Game::Baby::Obj::doStartStoneState(void)
+void Game::Baby::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -434,7 +424,7 @@ void Game::Baby::Obj::doStartStoneState(void)
  * Address:	8028D894
  * Size:	00005C
  */
-void Game::Baby::Obj::doFinishStoneState(void)
+void Game::Baby::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -471,7 +461,7 @@ void Game::Baby::Obj::doFinishStoneState(void)
  * Address:	8028D8F0
  * Size:	000034
  */
-void Game::Baby::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::Baby::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -496,7 +486,7 @@ void Game::Baby::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	8028D924
  * Size:	000034
  */
-void Game::Baby::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::Baby::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -521,7 +511,7 @@ void Game::Baby::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	8028D958
  * Size:	000020
  */
-void Game::Baby::Obj::doStartMovie(void)
+void Game::Baby::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -541,7 +531,7 @@ void Game::Baby::Obj::doStartMovie(void)
  * Address:	8028D978
  * Size:	000020
  */
-void Game::Baby::Obj::doEndMovie(void)
+void Game::Baby::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -561,7 +551,7 @@ void Game::Baby::Obj::doEndMovie(void)
  * Address:	8028D998
  * Size:	00008C
  */
-void Game::Baby::Obj::initMouthSlots(void)
+void Game::Baby::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -612,7 +602,7 @@ void Game::Baby::Obj::initMouthSlots(void)
  * Address:	8028DA24
  * Size:	00008C
  */
-void Game::Baby::Obj::getSlotPikiNum(void)
+void Game::Baby::Obj::getSlotPikiNum()
 {
 	/*
 	.loc_0x0:
@@ -665,7 +655,7 @@ void Game::Baby::Obj::getSlotPikiNum(void)
  * Address:	8028DAB0
  * Size:	000008
  */
-void Game::Baby::Obj::getMouthSlots(void)
+void Game::Baby::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -679,7 +669,7 @@ void Game::Baby::Obj::getMouthSlots(void)
  * Address:	8028DAB8
  * Size:	00001C
  */
-void Game::Baby::Obj::resetRandTargetPosition(void)
+void Game::Baby::Obj::resetRandTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -698,7 +688,7 @@ void Game::Baby::Obj::resetRandTargetPosition(void)
  * Address:	8028DAD4
  * Size:	000074
  */
-void Game::Baby::Obj::resetZukanAnimationFrame(void)
+void Game::Baby::Obj::resetZukanAnimationFrame()
 {
 	/*
 	.loc_0x0:
@@ -739,7 +729,7 @@ void Game::Baby::Obj::resetZukanAnimationFrame(void)
  * Address:	8028DB48
  * Size:	00020C
  */
-void Game::Baby::Obj::moveNoTarget(void)
+void Game::Baby::Obj::moveNoTarget()
 {
 	/*
 	.loc_0x0:
@@ -894,7 +884,7 @@ void Game::Baby::Obj::moveNoTarget(void)
  * Address:	8028DD54
  * Size:	0000F4
  */
-void Game::Baby::Obj::createHoney(void)
+void Game::Baby::Obj::createHoney()
 {
 	/*
 	.loc_0x0:
@@ -969,7 +959,7 @@ void Game::Baby::Obj::createHoney(void)
  * Address:	8028DE48
  * Size:	0000B4
  */
-void Game::Baby::Obj::createEffect(void)
+void Game::Baby::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1028,7 +1018,7 @@ void Game::Baby::Obj::createEffect(void)
  * Address:	8028DEFC
  * Size:	000004
  */
-void Game::Baby::Obj::setupEffect(void)
+void Game::Baby::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1041,7 +1031,7 @@ void Game::Baby::Obj::setupEffect(void)
  * Address:	8028DF00
  * Size:	000034
  */
-void Game::Baby::Obj::createBornEffect(void)
+void Game::Baby::Obj::createBornEffect()
 {
 	/*
 	.loc_0x0:
@@ -1066,7 +1056,7 @@ void Game::Baby::Obj::createBornEffect(void)
  * Address:	8028DF34
  * Size:	000030
  */
-void Game::Baby::Obj::effectDrawOn(void)
+void Game::Baby::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1090,7 +1080,7 @@ void Game::Baby::Obj::effectDrawOn(void)
  * Address:	8028DF64
  * Size:	000030
  */
-void Game::Baby::Obj::effectDrawOff(void)
+void Game::Baby::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1114,7 +1104,7 @@ void Game::Baby::Obj::effectDrawOff(void)
  * Address:	8028DF94
  * Size:	00009C
  */
-void efx::TBabyBorn::__dt(void)
+void efx::TBabyBorn::~TBabyBorn()
 {
 	/*
 	.loc_0x0:
@@ -1169,7 +1159,7 @@ void efx::TBabyBorn::__dt(void)
  * Address:	8028E030
  * Size:	000004
  */
-void Game::Baby::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Baby::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1182,7 +1172,7 @@ void Game::Baby::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	8028E034
  * Size:	000004
  */
-void Game::Baby::Obj::outWaterCallback(void)
+void Game::Baby::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -1195,7 +1185,7 @@ void Game::Baby::Obj::outWaterCallback(void)
  * Address:	8028E038
  * Size:	000008
  */
-void Game::Baby::Obj::getEnemyTypeID(void)
+void Game::Baby::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1209,7 +1199,7 @@ void Game::Baby::Obj::getEnemyTypeID(void)
  * Address:	8028E040
  * Size:	000008
  */
-void @4 @efx::TBabyBorn::__dt(void)
+void efx::TBabyBorn::@4 @__dt()
 {
 	/*
 	.loc_0x0:

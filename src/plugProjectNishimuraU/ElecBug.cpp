@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8027AC88
  * Size:	000138
  */
-void Game::ElecBug::Obj::__ct(void)
+void Game::ElecBug::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::ElecBug::Obj::__ct(void)
  * Address:	8027ADC0
  * Size:	000004
  */
-void Game::ElecBug::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::ElecBug::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::ElecBug::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	8027ADC4
  * Size:	0000A4
  */
-void Game::ElecBug::Obj::onInit((Game::CreatureInitArg*))
+void Game::ElecBug::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -177,7 +167,7 @@ void Game::ElecBug::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8027AE68
  * Size:	000044
  */
-void Game::ElecBug::Obj::onKill((Game::CreatureKillArg*))
+void Game::ElecBug::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +196,7 @@ void Game::ElecBug::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8027AEAC
  * Size:	000048
  */
-void Game::ElecBug::Obj::doUpdate(void)
+void Game::ElecBug::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -236,7 +226,7 @@ void Game::ElecBug::Obj::doUpdate(void)
  * Address:	8027AEF4
  * Size:	000004
  */
-void Game::ElecBug::Obj::doDirectDraw((Graphics&))
+void Game::ElecBug::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -249,7 +239,7 @@ void Game::ElecBug::Obj::doDirectDraw((Graphics&))
  * Address:	8027AEF8
  * Size:	000020
  */
-void Game::ElecBug::Obj::doDebugDraw((Graphics&))
+void Game::ElecBug::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -269,7 +259,7 @@ void Game::ElecBug::Obj::doDebugDraw((Graphics&))
  * Address:	8027AF18
  * Size:	00004C
  */
-void Game::ElecBug::Obj::setFSM((Game::ElecBug::FSM*))
+void Game::ElecBug::Obj::setFSM(Game::ElecBug::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -300,7 +290,7 @@ void Game::ElecBug::Obj::setFSM((Game::ElecBug::FSM*))
  * Address:	8027AF64
  * Size:	000080
  */
-void Game::ElecBug::Obj::getShadowParam((Game::ShadowParam&))
+void Game::ElecBug::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -344,7 +334,7 @@ void Game::ElecBug::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8027AFE4
  * Size:	0001E4
  */
-void Game::ElecBug::Obj::collisionCallback((Game::CollEvent&))
+void Game::ElecBug::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -491,7 +481,7 @@ void Game::ElecBug::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8027B1C8
  * Size:	0001BC
  */
-void Game::ElecBug::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::ElecBug::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -628,7 +618,7 @@ void Game::ElecBug::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8027B384
  * Size:	00002C
  */
-void Game::ElecBug::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::ElecBug::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -651,7 +641,7 @@ void Game::ElecBug::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	8027B3B0
  * Size:	0000C0
  */
-void Game::ElecBug::Obj::earthquakeCallBack((Game::Creature*, float))
+void Game::ElecBug::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -715,7 +705,7 @@ void Game::ElecBug::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	8027B470
  * Size:	000040
  */
-void Game::ElecBug::Obj::doStartStoneState(void)
+void Game::ElecBug::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -743,7 +733,7 @@ void Game::ElecBug::Obj::doStartStoneState(void)
  * Address:	8027B4B0
  * Size:	000040
  */
-void Game::ElecBug::Obj::doFinishStoneState(void)
+void Game::ElecBug::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -773,7 +763,7 @@ void Game::ElecBug::Obj::doFinishStoneState(void)
  * Address:	8027B4F0
  * Size:	000034
  */
-void Game::ElecBug::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::ElecBug::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -798,7 +788,7 @@ void Game::ElecBug::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	8027B524
  * Size:	000034
  */
-void Game::ElecBug::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::ElecBug::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -823,7 +813,7 @@ void Game::ElecBug::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	8027B558
  * Size:	000028
  */
-void Game::ElecBug::Obj::startCarcassMotion(void)
+void Game::ElecBug::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -845,7 +835,7 @@ void Game::ElecBug::Obj::startCarcassMotion(void)
  * Address:	8027B580
  * Size:	000020
  */
-void Game::ElecBug::Obj::doStartMovie(void)
+void Game::ElecBug::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -865,7 +855,7 @@ void Game::ElecBug::Obj::doStartMovie(void)
  * Address:	8027B5A0
  * Size:	000020
  */
-void Game::ElecBug::Obj::doEndMovie(void)
+void Game::ElecBug::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -885,7 +875,7 @@ void Game::ElecBug::Obj::doEndMovie(void)
  * Address:	8027B5C0
  * Size:	0001A4
  */
-void Game::ElecBug::Obj::setTargetPosition(void)
+void Game::ElecBug::Obj::setTargetPosition()
 {
 	/*
 	.loc_0x0:
@@ -1008,7 +998,7 @@ void Game::ElecBug::Obj::setTargetPosition(void)
  * Address:	8027B764
  * Size:	00001C
  */
-void Game::ElecBug::Obj::resetPartnerPtr(void)
+void Game::ElecBug::Obj::resetPartnerPtr()
 {
 	/*
 	.loc_0x0:
@@ -1027,7 +1017,7 @@ void Game::ElecBug::Obj::resetPartnerPtr(void)
  * Address:	8027B780
  * Size:	000070
  */
-void Game::ElecBug::Obj::isBecomeChargeState(void)
+void Game::ElecBug::Obj::isBecomeChargeState()
 {
 	/*
 	.loc_0x0:
@@ -1071,7 +1061,7 @@ void Game::ElecBug::Obj::isBecomeChargeState(void)
  * Address:	8027B7F0
  * Size:	000030
  */
-void Game::ElecBug::Obj::startChargeState((Game::ElecBug::Obj*))
+void Game::ElecBug::Obj::startChargeState(Game::ElecBug::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -1097,7 +1087,7 @@ void Game::ElecBug::Obj::startChargeState((Game::ElecBug::Obj*))
  * Address:	8027B820
  * Size:	000044
  */
-void Game::ElecBug::Obj::startChildChargeState((Game::ElecBug::Obj*))
+void Game::ElecBug::Obj::startChildChargeState(Game::ElecBug::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -1126,7 +1116,7 @@ void Game::ElecBug::Obj::startChildChargeState((Game::ElecBug::Obj*))
  * Address:	8027B864
  * Size:	000044
  */
-void Game::ElecBug::Obj::createEffect(void)
+void Game::ElecBug::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1159,7 +1149,7 @@ void Game::ElecBug::Obj::createEffect(void)
  * Address:	8027B8A8
  * Size:	000168
  */
-void efx::TDnkmsEffect::__ct(void)
+void efx::TDnkmsEffect::TDnkmsEffect()
 {
 	/*
 	.loc_0x0:
@@ -1261,7 +1251,7 @@ void efx::TDnkmsEffect::__ct(void)
  * Address:	8027BA10
  * Size:	000084
  */
-void efx::TDnkmsThunderB::__dt(void)
+void efx::TDnkmsThunderB::~TDnkmsThunderB()
 {
 	/*
 	.loc_0x0:
@@ -1310,7 +1300,7 @@ void efx::TDnkmsThunderB::__dt(void)
  * Address:	8027BA94
  * Size:	000084
  */
-void efx::TDnkmsThunderA::__dt(void)
+void efx::TDnkmsThunderA::~TDnkmsThunderA()
 {
 	/*
 	.loc_0x0:
@@ -1359,7 +1349,7 @@ void efx::TDnkmsThunderA::__dt(void)
  * Address:	8027BB18
  * Size:	00009C
  */
-void efx::TDnkmsHoudenB::__dt(void)
+void efx::TDnkmsHoudenB::~TDnkmsHoudenB()
 {
 	/*
 	.loc_0x0:
@@ -1414,7 +1404,7 @@ void efx::TDnkmsHoudenB::__dt(void)
  * Address:	8027BBB4
  * Size:	00009C
  */
-void efx::TDnkmsHoudenA::__dt(void)
+void efx::TDnkmsHoudenA::~TDnkmsHoudenA()
 {
 	/*
 	.loc_0x0:
@@ -1469,7 +1459,7 @@ void efx::TDnkmsHoudenA::__dt(void)
  * Address:	8027BC50
  * Size:	000010
  */
-void Game::ElecBug::Obj::setupEffect(void)
+void Game::ElecBug::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1485,7 +1475,7 @@ void Game::ElecBug::Obj::setupEffect(void)
  * Address:	8027BC60
  * Size:	000040
  */
-void Game::ElecBug::Obj::startChargeEffect(void)
+void Game::ElecBug::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1513,7 +1503,7 @@ void Game::ElecBug::Obj::startChargeEffect(void)
  * Address:	8027BCA0
  * Size:	0000C0
  */
-void Game::ElecBug::Obj::startDischargeEffect((Game::ElecBug::Obj*))
+void Game::ElecBug::Obj::startDischargeEffect(Game::ElecBug::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -1573,7 +1563,7 @@ void Game::ElecBug::Obj::startDischargeEffect((Game::ElecBug::Obj*))
  * Address:	8027BD60
  * Size:	0000A4
  */
-void Game::ElecBug::Obj::finishPartnerAndEffect(void)
+void Game::ElecBug::Obj::finishPartnerAndEffect()
 {
 	/*
 	.loc_0x0:
@@ -1628,7 +1618,7 @@ void Game::ElecBug::Obj::finishPartnerAndEffect(void)
  * Address:	8027BE04
  * Size:	00008C
  */
-void Game::ElecBug::Obj::effectDrawOn(void)
+void Game::ElecBug::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1675,7 +1665,7 @@ void Game::ElecBug::Obj::effectDrawOn(void)
  * Address:	8027BE90
  * Size:	00008C
  */
-void Game::ElecBug::Obj::effectDrawOff(void)
+void Game::ElecBug::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1722,7 +1712,7 @@ void Game::ElecBug::Obj::effectDrawOff(void)
  * Address:	8027BF1C
  * Size:	0004D0
  */
-void Game::ElecBug::Obj::checkInteract((Game::ElecBug::Obj*))
+void Game::ElecBug::Obj::checkInteract(Game::ElecBug::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -2080,7 +2070,7 @@ void Game::ElecBug::Obj::checkInteract((Game::ElecBug::Obj*))
  * Address:	8027C3EC
  * Size:	000008
  */
-void Game::ElecBug::Obj::getDownSmokeScale(void)
+void Game::ElecBug::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -2094,7 +2084,7 @@ void Game::ElecBug::Obj::getDownSmokeScale(void)
  * Address:	8027C3F4
  * Size:	000008
  */
-void Game::ElecBug::Obj::getEnemyTypeID(void)
+void Game::ElecBug::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -2108,7 +2098,7 @@ void Game::ElecBug::Obj::getEnemyTypeID(void)
  * Address:	8027C3FC
  * Size:	000008
  */
-void @4 @efx::TDnkmsHoudenA::__dt(void)
+void efx::TDnkmsHoudenA::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -2122,7 +2112,7 @@ void @4 @efx::TDnkmsHoudenA::__dt(void)
  * Address:	8027C404
  * Size:	000008
  */
-void @4 @efx::TDnkmsHoudenB::__dt(void)
+void efx::TDnkmsHoudenB::@4 @__dt()
 {
 	/*
 	.loc_0x0:

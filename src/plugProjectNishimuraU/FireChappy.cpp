@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8028F62C
  * Size:	0000AC
  */
-void Game::FireChappy::Obj::__ct(void)
+void Game::FireChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -72,7 +62,7 @@ void Game::FireChappy::Obj::__ct(void)
  * Address:	8028F6D8
  * Size:	000058
  */
-void Game::FireChappy::Obj::onInit((Game::CreatureInitArg*))
+void Game::FireChappy::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +96,7 @@ void Game::FireChappy::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8028F730
  * Size:	000048
  */
-void Game::FireChappy::Obj::onKill((Game::CreatureKillArg*))
+void Game::FireChappy::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -136,7 +126,7 @@ void Game::FireChappy::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8028F778
  * Size:	000004
  */
-void Game::FireChappy::Obj::doDirectDraw((Graphics&))
+void Game::FireChappy::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -149,7 +139,7 @@ void Game::FireChappy::Obj::doDirectDraw((Graphics&))
  * Address:	8028F77C
  * Size:	000020
  */
-void Game::FireChappy::Obj::doDebugDraw((Graphics&))
+void Game::FireChappy::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -169,7 +159,7 @@ void Game::FireChappy::Obj::doDebugDraw((Graphics&))
  * Address:	8028F79C
  * Size:	0000C0
  */
-void Game::FireChappy::Obj::changeMaterial(void)
+void Game::FireChappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -233,7 +223,7 @@ void Game::FireChappy::Obj::changeMaterial(void)
  * Address:	8028F85C
  * Size:	000034
  */
-void Game::FireChappy::Obj::doUpdateCommon(void)
+void Game::FireChappy::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -258,7 +248,7 @@ void Game::FireChappy::Obj::doUpdateCommon(void)
  * Address:	8028F890
  * Size:	0000A0
  */
-void Game::FireChappy::Obj::getShadowParam((Game::ShadowParam&))
+void Game::FireChappy::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -314,7 +304,7 @@ void Game::FireChappy::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8028F930
  * Size:	0000E0
  */
-void Game::FireChappy::Obj::collisionCallback((Game::CollEvent&))
+void Game::FireChappy::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -386,7 +376,7 @@ void Game::FireChappy::Obj::collisionCallback((Game::CollEvent&))
  * Address:	8028FA10
  * Size:	000034
  */
-void Game::FireChappy::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::FireChappy::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -411,7 +401,7 @@ void Game::FireChappy::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	8028FA44
  * Size:	000034
  */
-void Game::FireChappy::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::FireChappy::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -436,7 +426,7 @@ void Game::FireChappy::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	8028FA78
  * Size:	000020
  */
-void Game::FireChappy::Obj::doStartMovie(void)
+void Game::FireChappy::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -456,7 +446,7 @@ void Game::FireChappy::Obj::doStartMovie(void)
  * Address:	8028FA98
  * Size:	000020
  */
-void Game::FireChappy::Obj::doEndMovie(void)
+void Game::FireChappy::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -476,7 +466,7 @@ void Game::FireChappy::Obj::doEndMovie(void)
  * Address:	8028FAB8
  * Size:	000048
  */
-void Game::FireChappy::Obj::startFireState(void)
+void Game::FireChappy::Obj::startFireState()
 {
 	/*
 	.loc_0x0:
@@ -508,7 +498,7 @@ void Game::FireChappy::Obj::startFireState(void)
  * Address:	8028FB00
  * Size:	000094
  */
-void Game::FireChappy::Obj::finishFireState((bool))
+void Game::FireChappy::Obj::finishFireState(bool)
 {
 	/*
 	.loc_0x0:
@@ -563,7 +553,7 @@ void Game::FireChappy::Obj::finishFireState((bool))
  * Address:	8028FB94
  * Size:	00010C
  */
-void Game::FireChappy::Obj::updateFireState(void)
+void Game::FireChappy::Obj::updateFireState()
 {
 	/*
 	.loc_0x0:
@@ -648,7 +638,7 @@ void Game::FireChappy::Obj::updateFireState(void)
  * Address:	8028FCA0
  * Size:	00004C
  */
-void Game::FireChappy::Obj::createMaterialAnimation(void)
+void Game::FireChappy::Obj::createMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -679,7 +669,7 @@ void Game::FireChappy::Obj::createMaterialAnimation(void)
  * Address:	8028FCEC
  * Size:	000060
  */
-void Game::FireChappy::Obj::startMaterialAnimation(void)
+void Game::FireChappy::Obj::startMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -715,7 +705,7 @@ void Game::FireChappy::Obj::startMaterialAnimation(void)
  * Address:	8028FD4C
  * Size:	000108
  */
-void Game::FireChappy::Obj::updateMaterialAnimation(void)
+void Game::FireChappy::Obj::updateMaterialAnimation()
 {
 	/*
 	.loc_0x0:
@@ -805,7 +795,7 @@ void Game::FireChappy::Obj::updateMaterialAnimation(void)
  * Address:	8028FE54
  * Size:	00002C
  */
-void Game::FireChappy::Obj::updateEfxLod(void)
+void Game::FireChappy::Obj::updateEfxLod()
 {
 	/*
 	.loc_0x0:
@@ -828,7 +818,7 @@ void Game::FireChappy::Obj::updateEfxLod(void)
  * Address:	8028FE80
  * Size:	000288
  */
-void Game::FireChappy::Obj::createEffect(void)
+void Game::FireChappy::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1012,7 +1002,7 @@ void Game::FireChappy::Obj::createEffect(void)
  * Address:	80290108
  * Size:	000084
  */
-void Game::FireChappy::Obj::setupEffect(void)
+void Game::FireChappy::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1057,7 +1047,7 @@ void Game::FireChappy::Obj::setupEffect(void)
  * Address:	8029018C
  * Size:	000034
  */
-void Game::FireChappy::Obj::startSleepEffect(void)
+void Game::FireChappy::Obj::startSleepEffect()
 {
 	/*
 	.loc_0x0:
@@ -1082,7 +1072,7 @@ void Game::FireChappy::Obj::startSleepEffect(void)
  * Address:	802901C0
  * Size:	000030
  */
-void Game::FireChappy::Obj::finishSleepEffect(void)
+void Game::FireChappy::Obj::finishSleepEffect()
 {
 	/*
 	.loc_0x0:
@@ -1106,7 +1096,7 @@ void Game::FireChappy::Obj::finishSleepEffect(void)
  * Address:	802901F0
  * Size:	000034
  */
-void Game::FireChappy::Obj::startBodyEffect(void)
+void Game::FireChappy::Obj::startBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -1131,7 +1121,7 @@ void Game::FireChappy::Obj::startBodyEffect(void)
  * Address:	80290224
  * Size:	000030
  */
-void Game::FireChappy::Obj::finishBodyEffect(void)
+void Game::FireChappy::Obj::finishBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -1155,7 +1145,7 @@ void Game::FireChappy::Obj::finishBodyEffect(void)
  * Address:	80290254
  * Size:	000040
  */
-void Game::FireChappy::Obj::createFlickEffect(void)
+void Game::FireChappy::Obj::createFlickEffect()
 {
 	/*
 	.loc_0x0:
@@ -1185,7 +1175,7 @@ void Game::FireChappy::Obj::createFlickEffect(void)
  * Address:	80290294
  * Size:	000034
  */
-void Game::FireChappy::Obj::createDeadSmokeEffect(void)
+void Game::FireChappy::Obj::createDeadSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1210,7 +1200,7 @@ void Game::FireChappy::Obj::createDeadSmokeEffect(void)
  * Address:	802902C8
  * Size:	000034
  */
-void Game::FireChappy::Obj::createDeadSteamEffect(void)
+void Game::FireChappy::Obj::createDeadSteamEffect()
 {
 	/*
 	.loc_0x0:
@@ -1235,7 +1225,7 @@ void Game::FireChappy::Obj::createDeadSteamEffect(void)
  * Address:	802902FC
  * Size:	00008C
  */
-void Game::FireChappy::Obj::effectDrawOn(void)
+void Game::FireChappy::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1282,7 +1272,7 @@ void Game::FireChappy::Obj::effectDrawOn(void)
  * Address:	80290388
  * Size:	00008C
  */
-void Game::FireChappy::Obj::effectDrawOff(void)
+void Game::FireChappy::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1329,7 +1319,7 @@ void Game::FireChappy::Obj::effectDrawOff(void)
  * Address:	80290414
  * Size:	00009C
  */
-void efx::TYakiSteam::__dt(void)
+void efx::TYakiSteam::~TYakiSteam()
 {
 	/*
 	.loc_0x0:
@@ -1384,7 +1374,7 @@ void efx::TYakiSteam::__dt(void)
  * Address:	802904B0
  * Size:	00009C
  */
-void efx::TYakiDeadsmoke::__dt(void)
+void efx::TYakiDeadsmoke::~TYakiDeadsmoke()
 {
 	/*
 	.loc_0x0:
@@ -1439,7 +1429,7 @@ void efx::TYakiDeadsmoke::__dt(void)
  * Address:	8029054C
  * Size:	00009C
  */
-void efx::TYakiFlick::__dt(void)
+void efx::TYakiFlick::~TYakiFlick()
 {
 	/*
 	.loc_0x0:
@@ -1494,7 +1484,7 @@ void efx::TYakiFlick::__dt(void)
  * Address:	802905E8
  * Size:	00009C
  */
-void efx::THanachoY::__dt(void)
+void efx::THanachoY::~THanachoY()
 {
 	/*
 	.loc_0x0:
@@ -1549,7 +1539,7 @@ void efx::THanachoY::__dt(void)
  * Address:	80290684
  * Size:	000008
  */
-void Game::FireChappy::Obj::getEnemyTypeID(void)
+void Game::FireChappy::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1563,7 +1553,7 @@ void Game::FireChappy::Obj::getEnemyTypeID(void)
  * Address:	8029068C
  * Size:	000014
  */
-void @768 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@768 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1580,7 +1570,7 @@ void @768 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	802906A0
  * Size:	000014
  */
-void @768 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@768 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1597,7 +1587,7 @@ void @768 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	802906B4
  * Size:	000014
  */
-void @768 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@768 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1614,7 +1604,7 @@ void @768 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	802906C8
  * Size:	000014
  */
-void @768 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@768 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1631,7 +1621,7 @@ void @768 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	802906DC
  * Size:	000014
  */
-void @768 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@768 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1648,7 +1638,7 @@ void @768 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	802906F0
  * Size:	000014
  */
-void @768 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@768 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -1665,7 +1655,7 @@ void @768 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80290704
  * Size:	000008
  */
-void @4 @efx::THanachoY::__dt(void)
+void efx::THanachoY::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -1679,7 +1669,7 @@ void @4 @efx::THanachoY::__dt(void)
  * Address:	8029070C
  * Size:	000008
  */
-void @4 @efx::TYakiFlick::__dt(void)
+void efx::TYakiFlick::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -1693,7 +1683,7 @@ void @4 @efx::TYakiFlick::__dt(void)
  * Address:	80290714
  * Size:	000008
  */
-void @4 @efx::TYakiDeadsmoke::__dt(void)
+void efx::TYakiDeadsmoke::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -1707,7 +1697,7 @@ void @4 @efx::TYakiDeadsmoke::__dt(void)
  * Address:	8029071C
  * Size:	000008
  */
-void @4 @efx::TYakiSteam::__dt(void)
+void efx::TYakiSteam::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802F9624
  * Size:	000090
  */
-void Game::BombOtakara::Obj::__ct(void)
+void Game::BombOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void Game::BombOtakara::Obj::__ct(void)
  * Address:	802F96B4
  * Size:	0001A4
  */
-void Game::BombOtakara::Obj::changeMaterial(void)
+void Game::BombOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -186,7 +176,7 @@ void Game::BombOtakara::Obj::changeMaterial(void)
  * Address:	802F9858
  * Size:	0000B4
  */
-void Game::BombOtakara::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::BombOtakara::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -251,8 +241,7 @@ void Game::BombOtakara::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	802F990C
  * Size:	00002C
  */
-void Game::BombOtakara::Obj::hipdropCallBack((Game::Creature*, float,
-                                              CollPart*))
+void Game::BombOtakara::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -275,7 +264,7 @@ void Game::BombOtakara::Obj::hipdropCallBack((Game::Creature*, float,
  * Address:	802F9938
  * Size:	00007C
  */
-void Game::BombOtakara::Obj::earthquakeCallBack((Game::Creature*, float))
+void Game::BombOtakara::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -320,8 +309,8 @@ void Game::BombOtakara::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	802F99B4
  * Size:	000030
  */
-void bombCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreatureR10Vector3<float>
-f(void)
+void Game::BombOtakara::Obj::bombCallBack(Game::Creature*, Vector3<float>&,
+                                          float)
 {
 	/*
 	.loc_0x0:
@@ -345,7 +334,7 @@ f(void)
  * Address:	802F99E4
  * Size:	00007C
  */
-void Game::BombOtakara::Obj::startEscapeSE(void)
+void Game::BombOtakara::Obj::startEscapeSE()
 {
 	/*
 	.loc_0x0:
@@ -392,7 +381,7 @@ void Game::BombOtakara::Obj::startEscapeSE(void)
  * Address:	802F9A60
  * Size:	000008
  */
-void Game::BombOtakara::Obj::getEnemyTypeID(void)
+void Game::BombOtakara::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -406,7 +395,7 @@ void Game::BombOtakara::Obj::getEnemyTypeID(void)
  * Address:	802F9A68
  * Size:	000004
  */
-void Game::BombOtakara::Obj::interactCreature((Game::Creature*))
+void Game::BombOtakara::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -419,7 +408,7 @@ void Game::BombOtakara::Obj::interactCreature((Game::Creature*))
  * Address:	802F9A6C
  * Size:	000004
  */
-void Game::BombOtakara::Obj::createEffect(void)
+void Game::BombOtakara::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -432,7 +421,7 @@ void Game::BombOtakara::Obj::createEffect(void)
  * Address:	802F9A70
  * Size:	000004
  */
-void Game::BombOtakara::Obj::setupEffect(void)
+void Game::BombOtakara::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -445,7 +434,7 @@ void Game::BombOtakara::Obj::setupEffect(void)
  * Address:	802F9A74
  * Size:	000004
  */
-void Game::BombOtakara::Obj::startChargeEffect(void)
+void Game::BombOtakara::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -458,7 +447,7 @@ void Game::BombOtakara::Obj::startChargeEffect(void)
  * Address:	802F9A78
  * Size:	000004
  */
-void Game::BombOtakara::Obj::finishChargeEffect(void)
+void Game::BombOtakara::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -471,7 +460,7 @@ void Game::BombOtakara::Obj::finishChargeEffect(void)
  * Address:	802F9A7C
  * Size:	000004
  */
-void Game::BombOtakara::Obj::createDisChargeEffect(void)
+void Game::BombOtakara::Obj::createDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -484,7 +473,7 @@ void Game::BombOtakara::Obj::createDisChargeEffect(void)
  * Address:	802F9A80
  * Size:	000004
  */
-void Game::BombOtakara::Obj::effectDrawOn(void)
+void Game::BombOtakara::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -497,7 +486,7 @@ void Game::BombOtakara::Obj::effectDrawOn(void)
  * Address:	802F9A84
  * Size:	000004
  */
-void Game::BombOtakara::Obj::effectDrawOff(void)
+void Game::BombOtakara::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -510,7 +499,7 @@ void Game::BombOtakara::Obj::effectDrawOff(void)
  * Address:	802F9A88
  * Size:	000004
  */
-void Game::BombOtakara::Obj::startDisChargeSE(void)
+void Game::BombOtakara::Obj::startDisChargeSE()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80290724
  * Size:	000328
  */
-void Game::SnakeCrow::FSM::init((Game::EnemyBase*))
+void Game::SnakeCrow::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +237,7 @@ void Game::SnakeCrow::FSM::init((Game::EnemyBase*))
  * Address:	80290A4C
  * Size:	0000C4
  */
-void Game::SnakeCrow::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -308,7 +298,7 @@ void Game::SnakeCrow::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80290B10
  * Size:	000170
  */
-void Game::SnakeCrow::StateDead::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -422,7 +412,7 @@ void Game::SnakeCrow::StateDead::exec((Game::EnemyBase*))
  * Address:	80290C80
  * Size:	000004
  */
-void Game::SnakeCrow::StateDead::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -435,7 +425,7 @@ void Game::SnakeCrow::StateDead::cleanup((Game::EnemyBase*))
  * Address:	80290C84
  * Size:	000124
  */
-void Game::SnakeCrow::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +512,7 @@ void Game::SnakeCrow::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80290DA8
  * Size:	000618
  */
-void Game::SnakeCrow::StateStay::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -974,7 +964,7 @@ void Game::SnakeCrow::StateStay::exec((Game::EnemyBase*))
  * Address:	802913C0
  * Size:	000090
  */
-void Game::SnakeCrow::StateStay::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1012,7 @@ void Game::SnakeCrow::StateStay::cleanup((Game::EnemyBase*))
  * Address:	80291450
  * Size:	0000CC
  */
-void Game::SnakeCrow::StateAppear1::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateAppear1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1085,7 +1075,7 @@ void Game::SnakeCrow::StateAppear1::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8029151C
  * Size:	000158
  */
-void Game::SnakeCrow::StateAppear1::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateAppear1::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1195,7 +1185,7 @@ void Game::SnakeCrow::StateAppear1::exec((Game::EnemyBase*))
  * Address:	80291674
  * Size:	000068
  */
-void Game::SnakeCrow::StateAppear1::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateAppear1::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1235,7 +1225,7 @@ void Game::SnakeCrow::StateAppear1::cleanup((Game::EnemyBase*))
  * Address:	802916DC
  * Size:	0000CC
  */
-void Game::SnakeCrow::StateAppear2::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateAppear2::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1298,7 +1288,7 @@ void Game::SnakeCrow::StateAppear2::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802917A8
  * Size:	000234
  */
-void Game::SnakeCrow::StateAppear2::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateAppear2::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1469,7 +1459,7 @@ void Game::SnakeCrow::StateAppear2::exec((Game::EnemyBase*))
  * Address:	802919DC
  * Size:	000068
  */
-void Game::SnakeCrow::StateAppear2::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateAppear2::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1509,7 +1499,7 @@ void Game::SnakeCrow::StateAppear2::cleanup((Game::EnemyBase*))
  * Address:	80291A44
  * Size:	000140
  */
-void Game::SnakeCrow::StateDisappear::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1601,7 +1591,7 @@ void Game::SnakeCrow::StateDisappear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80291B84
  * Size:	000108
  */
-void Game::SnakeCrow::StateDisappear::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateDisappear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1685,7 +1675,7 @@ void Game::SnakeCrow::StateDisappear::exec((Game::EnemyBase*))
  * Address:	80291C8C
  * Size:	000064
  */
-void Game::SnakeCrow::StateDisappear::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateDisappear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1722,7 +1712,7 @@ void Game::SnakeCrow::StateDisappear::cleanup((Game::EnemyBase*))
  * Address:	80291CF0
  * Size:	000048
  */
-void Game::SnakeCrow::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1752,7 +1742,7 @@ void Game::SnakeCrow::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80291D38
  * Size:	0006C0
  */
-void Game::SnakeCrow::StateWait::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2238,7 +2228,7 @@ void Game::SnakeCrow::StateWait::exec((Game::EnemyBase*))
  * Address:	802923F8
  * Size:	000024
  */
-void Game::SnakeCrow::StateWait::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2259,7 +2249,7 @@ void Game::SnakeCrow::StateWait::cleanup((Game::EnemyBase*))
  * Address:	8029241C
  * Size:	00004C
  */
-void Game::SnakeCrow::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2290,7 +2280,7 @@ void Game::SnakeCrow::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80292468
  * Size:	000334
  */
-void Game::SnakeCrow::StateAttack::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2541,7 +2531,7 @@ void Game::SnakeCrow::StateAttack::exec((Game::EnemyBase*))
  * Address:	8029279C
  * Size:	000010
  */
-void Game::SnakeCrow::StateAttack::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2557,7 +2547,7 @@ void Game::SnakeCrow::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802927AC
  * Size:	00003C
  */
-void Game::SnakeCrow::StateEat::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2584,7 +2574,7 @@ void Game::SnakeCrow::StateEat::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802927E8
  * Size:	000178
  */
-void Game::SnakeCrow::StateEat::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateEat::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2704,7 +2694,7 @@ void Game::SnakeCrow::StateEat::exec((Game::EnemyBase*))
  * Address:	80292960
  * Size:	000004
  */
-void Game::SnakeCrow::StateEat::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateEat::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2717,7 +2707,7 @@ void Game::SnakeCrow::StateEat::cleanup((Game::EnemyBase*))
  * Address:	80292964
  * Size:	000040
  */
-void Game::SnakeCrow::StateStruggle::init((Game::EnemyBase*, Game::StateArg*))
+void Game::SnakeCrow::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2745,7 +2735,7 @@ void Game::SnakeCrow::StateStruggle::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802929A4
  * Size:	000158
  */
-void Game::SnakeCrow::StateStruggle::exec((Game::EnemyBase*))
+void Game::SnakeCrow::StateStruggle::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2855,7 +2845,7 @@ void Game::SnakeCrow::StateStruggle::exec((Game::EnemyBase*))
  * Address:	80292AFC
  * Size:	000004
  */
-void Game::SnakeCrow::StateStruggle::cleanup((Game::EnemyBase*))
+void Game::SnakeCrow::StateStruggle::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

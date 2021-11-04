@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BF47C
  * Size:	00027C
  */
-void Game::Houdai::HoudaiShadowMgr::__ct((Game::Houdai::Obj*))
+void Game::Houdai::HoudaiShadowMgr::HoudaiShadowMgr(Game::Houdai::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +198,7 @@ void Game::Houdai::HoudaiShadowMgr::__ct((Game::Houdai::Obj*))
  * Address:	802BF6F8
  * Size:	0001B0
  */
-void Game::Houdai::HoudaiShadowMgr::init(void)
+void Game::Houdai::HoudaiShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -328,7 +318,7 @@ void Game::Houdai::HoudaiShadowMgr::init(void)
  * Address:	802BF8A8
  * Size:	000018
  */
-void setJointPosPtr__Q34Game6Houdai15HoudaiShadowMgrFiiP10Vector3<float>(void)
+void Game::Houdai::HoudaiShadowMgr::setJointPosPtr(int, int, Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -346,7 +336,7 @@ void setJointPosPtr__Q34Game6Houdai15HoudaiShadowMgrFiiP10Vector3<float>(void)
  * Address:	802BF8C0
  * Size:	0003F0
  */
-void Game::Houdai::HoudaiShadowMgr::update(void)
+void Game::Houdai::HoudaiShadowMgr::update()
 {
 	/*
 	.loc_0x0:

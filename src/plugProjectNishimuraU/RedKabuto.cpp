@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80300158
  * Size:	000090
  */
-void Game::RedKabuto::Obj::__ct(void)
+void Game::RedKabuto::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void Game::RedKabuto::Obj::__ct(void)
  * Address:	803001E8
  * Size:	0001A4
  */
-void Game::RedKabuto::Obj::changeMaterial(void)
+void Game::RedKabuto::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -186,7 +176,7 @@ void Game::RedKabuto::Obj::changeMaterial(void)
  * Address:	8030038C
  * Size:	000008
  */
-void Game::RedKabuto::Obj::getEnemyTypeID(void)
+void Game::RedKabuto::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

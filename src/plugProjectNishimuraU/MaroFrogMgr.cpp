@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026152C
  * Size:	000050
  */
-void Game::MaroFrog::Mgr::__ct((int, unsigned char))
+void Game::MaroFrog::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::MaroFrog::Mgr::__ct((int, unsigned char))
  * Address:	8026157C
  * Size:	000048
  */
-void Game::MaroFrog::Mgr::doAlloc(void)
+void Game::MaroFrog::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::MaroFrog::Mgr::doAlloc(void)
  * Address:	802615C4
  * Size:	000060
  */
-void Game::MaroFrog::Mgr::createObj((int))
+void Game::MaroFrog::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::MaroFrog::Mgr::createObj((int))
  * Address:	80261624
  * Size:	0000EC
  */
-void Game::MaroFrog::Obj::__dt(void)
+void Game::MaroFrog::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -190,7 +180,7 @@ void Game::MaroFrog::Obj::__dt(void)
  * Address:	80261710
  * Size:	000010
  */
-void Game::MaroFrog::Mgr::getEnemy((int))
+void Game::MaroFrog::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +196,7 @@ void Game::MaroFrog::Mgr::getEnemy((int))
  * Address:	80261720
  * Size:	0000B0
  */
-void Game::MaroFrog::Mgr::__dt(void)
+void Game::MaroFrog::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -266,7 +256,7 @@ void Game::MaroFrog::Mgr::__dt(void)
  * Address:	802617D0
  * Size:	000008
  */
-void Game::MaroFrog::Mgr::getEnemyTypeID(void)
+void Game::MaroFrog::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -280,7 +270,7 @@ void Game::MaroFrog::Mgr::getEnemyTypeID(void)
  * Address:	802617D8
  * Size:	000008
  */
-void @4 @Game::MaroFrog::Mgr::__dt(void)
+void Game::MaroFrog::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80299240
  * Size:	000008
  */
-void Game::KumaChappy::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::KumaChappy::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::KumaChappy::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80299248
  * Size:	000008
  */
-void Game::KumaChappy::ProperAnimator::getAnimator((int))
+void Game::KumaChappy::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::KumaChappy::ProperAnimator::getAnimator((int))
  * Address:	80299250
  * Size:	00005C
  */
-void Game::KumaChappy::ProperAnimator::__dt(void)
+void Game::KumaChappy::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::KumaChappy::ProperAnimator::__dt(void)
  * Address:	802992AC
  * Size:	000008
  */
-void Game::KumaChappy::ProperAnimator::getAnimator(void)
+void Game::KumaChappy::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

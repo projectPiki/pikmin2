@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80272504
  * Size:	000050
  */
-void Game::Sarai::Mgr::__ct((int, unsigned char))
+void Game::Sarai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Sarai::Mgr::__ct((int, unsigned char))
  * Address:	80272554
  * Size:	000048
  */
-void Game::Sarai::Mgr::doAlloc(void)
+void Game::Sarai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Sarai::Mgr::doAlloc(void)
  * Address:	8027259C
  * Size:	000048
  */
-void Game::Sarai::Parms::__ct(void)
+void Game::Sarai::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Sarai::Parms::__ct(void)
  * Address:	802725E4
  * Size:	0003A4
  */
-void Game::Sarai::Parms::ProperParms::__ct(void)
+void Game::Sarai::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -360,7 +350,7 @@ void Game::Sarai::Parms::ProperParms::__ct(void)
  * Address:	80272988
  * Size:	000060
  */
-void Game::Sarai::Mgr::createObj((int))
+void Game::Sarai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -396,7 +386,7 @@ void Game::Sarai::Mgr::createObj((int))
  * Address:	802729E8
  * Size:	0000BC
  */
-void Game::Sarai::Obj::__dt(void)
+void Game::Sarai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -459,7 +449,7 @@ void Game::Sarai::Obj::__dt(void)
  * Address:	80272AA4
  * Size:	000010
  */
-void Game::Sarai::Mgr::getEnemy((int))
+void Game::Sarai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -475,7 +465,7 @@ void Game::Sarai::Mgr::getEnemy((int))
  * Address:	80272AB4
  * Size:	000050
  */
-void Game::Sarai::Parms::read((Stream&))
+void Game::Sarai::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -507,7 +497,7 @@ void Game::Sarai::Parms::read((Stream&))
  * Address:	80272B04
  * Size:	0000B0
  */
-void Game::Sarai::Mgr::__dt(void)
+void Game::Sarai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -567,7 +557,7 @@ void Game::Sarai::Mgr::__dt(void)
  * Address:	80272BB4
  * Size:	000008
  */
-void Game::Sarai::Mgr::getEnemyTypeID(void)
+void Game::Sarai::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -581,7 +571,7 @@ void Game::Sarai::Mgr::getEnemyTypeID(void)
  * Address:	80272BBC
  * Size:	000008
  */
-void @4 @Game::Sarai::Mgr::__dt(void)
+void Game::Sarai::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

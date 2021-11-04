@@ -2,70 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void Game::RumbleNode::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
- */
-void Game::RumbleNode::update(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void Game::RumbleNode::startRumble((int, float, Game::RumbleData*, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
- */
-void Game::RumbleNode::isSameLabel((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void Game::RumbleNode::isRumbleEnd(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80252B20
  * Size:	000158
  */
-void Game::ContRumble::__ct((int, int))
+void Game::ContRumble::ContRumble(int, int)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +113,7 @@ void Game::ContRumble::__ct((int, int))
  * Address:	80252C78
  * Size:	00008C
  */
-void Game::ContRumble::init(void)
+void Game::ContRumble::init()
 {
 	/*
 	.loc_0x0:
@@ -224,7 +164,7 @@ void Game::ContRumble::init(void)
  * Address:	80252D04
  * Size:	000290
  */
-void Game::ContRumble::update(void)
+void Game::ContRumble::update()
 {
 	/*
 	.loc_0x0:
@@ -432,7 +372,7 @@ void Game::ContRumble::update(void)
  * Address:	80252F94
  * Size:	000058
  */
-void Game::ContRumble::setController((bool))
+void Game::ContRumble::setController(bool)
 {
 	/*
 	.loc_0x0:
@@ -468,7 +408,7 @@ void Game::ContRumble::setController((bool))
  * Address:	80252FEC
  * Size:	000104
  */
-void Game::ContRumble::startRumble((int, float))
+void Game::ContRumble::startRumble(int, float)
 {
 	/*
 	.loc_0x0:
@@ -551,7 +491,7 @@ void Game::ContRumble::startRumble((int, float))
  * Address:	802530F0
  * Size:	000088
  */
-void Game::ContRumble::rumbleStop(void)
+void Game::ContRumble::rumbleStop()
 {
 	/*
 	.loc_0x0:
@@ -603,7 +543,7 @@ void Game::ContRumble::rumbleStop(void)
  * Address:	80253178
  * Size:	000090
  */
-void Game::ContRumble::rumbleStop((int))
+void Game::ContRumble::rumbleStop(int)
 {
 	/*
 	.loc_0x0:
@@ -656,20 +596,10 @@ void Game::ContRumble::rumbleStop((int))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000028
- */
-void Game::ContRumble::stopMotor(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80253208
  * Size:	00009C
  */
-void Game::ContRumble::getRumbleParameter((int, float&, float&))
+void Game::ContRumble::getRumbleParameter(int, float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -720,7 +650,7 @@ void Game::ContRumble::getRumbleParameter((int, float&, float&))
  * Address:	802532A4
  * Size:	000060
  */
-void Game::RumbleNode::__dt(void)
+void Game::RumbleNode::~RumbleNode()
 {
 	/*
 	.loc_0x0:

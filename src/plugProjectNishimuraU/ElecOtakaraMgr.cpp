@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B9780
  * Size:	000050
  */
-void Game::ElecOtakara::Mgr::__ct((int, unsigned char))
+void Game::ElecOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::ElecOtakara::Mgr::__ct((int, unsigned char))
  * Address:	802B97D0
  * Size:	000048
  */
-void Game::ElecOtakara::Mgr::doAlloc(void)
+void Game::ElecOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::ElecOtakara::Mgr::doAlloc(void)
  * Address:	802B9818
  * Size:	000060
  */
-void Game::ElecOtakara::Mgr::createObj((int))
+void Game::ElecOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::ElecOtakara::Mgr::createObj((int))
  * Address:	802B9878
  * Size:	0000F0
  */
-void Game::ElecOtakara::Obj::__dt(void)
+void Game::ElecOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::ElecOtakara::Obj::__dt(void)
  * Address:	802B9968
  * Size:	000010
  */
-void Game::ElecOtakara::Mgr::getEnemy((int))
+void Game::ElecOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::ElecOtakara::Mgr::getEnemy((int))
  * Address:	802B9978
  * Size:	000080
  */
-void Game::ElecOtakara::Mgr::loadTexData(void)
+void Game::ElecOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +245,7 @@ void Game::ElecOtakara::Mgr::loadTexData(void)
  * Address:	802B99F8
  * Size:	0000C8
  */
-void Game::ElecOtakara::Mgr::__dt(void)
+void Game::ElecOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::ElecOtakara::Mgr::__dt(void)
  * Address:	802B9AC0
  * Size:	000008
  */
-void Game::ElecOtakara::Mgr::getEnemyTypeID(void)
+void Game::ElecOtakara::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::ElecOtakara::Mgr::getEnemyTypeID(void)
  * Address:	802B9AC8
  * Size:	000008
  */
-void Game::ElecOtakara::Mgr::getChangeTexture(void)
+void Game::ElecOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -349,7 +339,7 @@ void Game::ElecOtakara::Mgr::getChangeTexture(void)
  * Address:	802B9AD0
  * Size:	000008
  */
-void @4 @Game::ElecOtakara::Mgr::__dt(void)
+void Game::ElecOtakara::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80284A9C
  * Size:	000098
  */
-void Game::Wealthy::Obj::__ct(void)
+void Game::Wealthy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -67,7 +57,7 @@ void Game::Wealthy::Obj::__ct(void)
  * Address:	80284B34
  * Size:	0001F0
  */
-void Game::Wealthy::Obj::changeMaterial(void)
+void Game::Wealthy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::Wealthy::Obj::changeMaterial(void)
  * Address:	80284D24
  * Size:	000144
  */
-void Game::Wealthy::Obj::createItem(void)
+void Game::Wealthy::Obj::createItem()
 {
 	/*
 	.loc_0x0:
@@ -324,7 +314,7 @@ void Game::Wealthy::Obj::createItem(void)
  * Address:	80284E68
  * Size:	0000B0
  */
-void Game::Wealthy::Obj::createEffect(void)
+void Game::Wealthy::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -382,7 +372,7 @@ void Game::Wealthy::Obj::createEffect(void)
  * Address:	80284F18
  * Size:	000058
  */
-void Game::Wealthy::Obj::startBodyEffect(void)
+void Game::Wealthy::Obj::startBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -416,7 +406,7 @@ void Game::Wealthy::Obj::startBodyEffect(void)
  * Address:	80284F70
  * Size:	000030
  */
-void Game::Wealthy::Obj::finishBodyEffect(void)
+void Game::Wealthy::Obj::finishBodyEffect()
 {
 	/*
 	.loc_0x0:
@@ -440,7 +430,7 @@ void Game::Wealthy::Obj::finishBodyEffect(void)
  * Address:	80284FA0
  * Size:	000030
  */
-void Game::Wealthy::Obj::effectDrawOn(void)
+void Game::Wealthy::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -464,7 +454,7 @@ void Game::Wealthy::Obj::effectDrawOn(void)
  * Address:	80284FD0
  * Size:	000030
  */
-void Game::Wealthy::Obj::effectDrawOff(void)
+void Game::Wealthy::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -488,7 +478,7 @@ void Game::Wealthy::Obj::effectDrawOff(void)
  * Address:	80285000
  * Size:	000044
  */
-void Game::Wealthy::Obj::createPressSENormal(void)
+void Game::Wealthy::Obj::createPressSENormal()
 {
 	/*
 	.loc_0x0:
@@ -517,7 +507,7 @@ void Game::Wealthy::Obj::createPressSENormal(void)
  * Address:	80285044
  * Size:	00009C
  */
-void efx::TOoganeKira::__dt(void)
+void efx::TOoganeKira::~TOoganeKira()
 {
 	/*
 	.loc_0x0:
@@ -572,7 +562,7 @@ void efx::TOoganeKira::__dt(void)
  * Address:	802850E0
  * Size:	000008
  */
-void Game::Wealthy::Obj::getEnemyTypeID(void)
+void Game::Wealthy::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -586,7 +576,7 @@ void Game::Wealthy::Obj::getEnemyTypeID(void)
  * Address:	802850E8
  * Size:	000008
  */
-void @4 @efx::TOoganeKira::__dt(void)
+void efx::TOoganeKira::@4 @__dt()
 {
 	/*
 	.loc_0x0:

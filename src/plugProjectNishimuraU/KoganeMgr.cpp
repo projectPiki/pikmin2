@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8025D898
  * Size:	000050
  */
-void Game::Kogane::Mgr::__ct((int, unsigned char))
+void Game::Kogane::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Kogane::Mgr::__ct((int, unsigned char))
  * Address:	8025D8E8
  * Size:	0000E8
  */
-void Game::Kogane::Mgr::loadModelData(void)
+void Game::Kogane::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -127,7 +117,7 @@ void Game::Kogane::Mgr::loadModelData(void)
  * Address:	8025D9D0
  * Size:	0000A0
  */
-void Game::Kogane::Mgr::loadAnimData(void)
+void Game::Kogane::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -185,7 +175,7 @@ void Game::Kogane::Mgr::loadAnimData(void)
  * Address:	8025DA70
  * Size:	000130
  */
-void Game::Kogane::Mgr::createModel(void)
+void Game::Kogane::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -283,7 +273,7 @@ void Game::Kogane::Mgr::createModel(void)
  * Address:	8025DBA0
  * Size:	0000B0
  */
-void Game::Kogane::Mgr::__dt(void)
+void Game::Kogane::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -343,7 +333,7 @@ void Game::Kogane::Mgr::__dt(void)
  * Address:	8025DC50
  * Size:	000008
  */
-void Game::Kogane::Mgr::getEnemyTypeID(void)
+void Game::Kogane::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -357,7 +347,7 @@ void Game::Kogane::Mgr::getEnemyTypeID(void)
  * Address:	8025DC58
  * Size:	00002C
  */
-void Game::Kogane::Mgr::doLoadBmd((void*))
+void Game::Kogane::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -380,7 +370,7 @@ void Game::Kogane::Mgr::doLoadBmd((void*))
  * Address:	8025DC84
  * Size:	000008
  */
-void @4 @Game::Kogane::Mgr::__dt(void)
+void Game::Kogane::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BBC60
  * Size:	000008
  */
-void Game::Imomushi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Imomushi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Imomushi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802BBC68
  * Size:	000008
  */
-void Game::Imomushi::ProperAnimator::getAnimator((int))
+void Game::Imomushi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Imomushi::ProperAnimator::getAnimator((int))
  * Address:	802BBC70
  * Size:	00005C
  */
-void Game::Imomushi::ProperAnimator::__dt(void)
+void Game::Imomushi::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Imomushi::ProperAnimator::__dt(void)
  * Address:	802BBCCC
  * Size:	000008
  */
-void Game::Imomushi::ProperAnimator::getAnimator(void)
+void Game::Imomushi::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802F9A8C
  * Size:	000320
  */
-void Game::DangoMushi::FSM::init((Game::EnemyBase*))
+void Game::DangoMushi::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -245,7 +235,7 @@ void Game::DangoMushi::FSM::init((Game::EnemyBase*))
  * Address:	802F9DAC
  * Size:	000088
  */
-void Game::DangoMushi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -295,7 +285,7 @@ void Game::DangoMushi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802F9E34
  * Size:	00013C
  */
-void Game::DangoMushi::StateDead::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -396,7 +386,7 @@ void Game::DangoMushi::StateDead::exec((Game::EnemyBase*))
  * Address:	802F9F70
  * Size:	000004
  */
-void Game::DangoMushi::StateDead::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -409,7 +399,7 @@ void Game::DangoMushi::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802F9F74
  * Size:	000094
  */
-void Game::DangoMushi::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -458,7 +448,7 @@ void Game::DangoMushi::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FA008
  * Size:	000144
  */
-void Game::DangoMushi::StateStay::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -561,7 +551,7 @@ void Game::DangoMushi::StateStay::exec((Game::EnemyBase*))
  * Address:	802FA14C
  * Size:	000004
  */
-void Game::DangoMushi::StateStay::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -574,7 +564,7 @@ void Game::DangoMushi::StateStay::cleanup((Game::EnemyBase*))
  * Address:	802FA150
  * Size:	00008C
  */
-void Game::DangoMushi::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -621,7 +611,7 @@ void Game::DangoMushi::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FA1DC
  * Size:	000400
  */
-void Game::DangoMushi::StateAppear::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -905,7 +895,7 @@ void Game::DangoMushi::StateAppear::exec((Game::EnemyBase*))
  * Address:	802FA5DC
  * Size:	000030
  */
-void Game::DangoMushi::StateAppear::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -929,7 +919,7 @@ void Game::DangoMushi::StateAppear::cleanup((Game::EnemyBase*))
  * Address:	802FA60C
  * Size:	00009C
  */
-void Game::DangoMushi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -984,7 +974,7 @@ void Game::DangoMushi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FA6A8
  * Size:	000364
  */
-void Game::DangoMushi::StateWait::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1227,7 +1217,7 @@ void Game::DangoMushi::StateWait::exec((Game::EnemyBase*))
  * Address:	802FAA0C
  * Size:	000004
  */
-void Game::DangoMushi::StateWait::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1240,7 +1230,7 @@ void Game::DangoMushi::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802FAA10
  * Size:	00005C
  */
-void Game::DangoMushi::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1275,7 +1265,7 @@ void Game::DangoMushi::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FAA6C
  * Size:	0007A8
  */
-void Game::DangoMushi::StateMove::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1811,7 +1801,7 @@ void Game::DangoMushi::StateMove::exec((Game::EnemyBase*))
  * Address:	802FB214
  * Size:	000004
  */
-void Game::DangoMushi::StateMove::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1824,7 +1814,7 @@ void Game::DangoMushi::StateMove::cleanup((Game::EnemyBase*))
  * Address:	802FB218
  * Size:	000088
  */
-void Game::DangoMushi::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1870,7 +1860,7 @@ void Game::DangoMushi::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FB2A0
  * Size:	000288
  */
-void Game::DangoMushi::StateAttack::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2064,7 +2054,7 @@ void Game::DangoMushi::StateAttack::exec((Game::EnemyBase*))
  * Address:	802FB528
  * Size:	000058
  */
-void Game::DangoMushi::StateAttack::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2098,7 +2088,7 @@ void Game::DangoMushi::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802FB580
  * Size:	0000D4
  */
-void Game::DangoMushi::StateTurn::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2163,7 +2153,7 @@ void Game::DangoMushi::StateTurn::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FB654
  * Size:	000270
  */
-void Game::DangoMushi::StateTurn::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2347,7 +2337,7 @@ void Game::DangoMushi::StateTurn::exec((Game::EnemyBase*))
  * Address:	802FB8C4
  * Size:	000068
  */
-void Game::DangoMushi::StateTurn::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2385,7 +2375,7 @@ void Game::DangoMushi::StateTurn::cleanup((Game::EnemyBase*))
  * Address:	802FB92C
  * Size:	000050
  */
-void Game::DangoMushi::StateRecover::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2417,7 +2407,7 @@ void Game::DangoMushi::StateRecover::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FB97C
  * Size:	0000FC
  */
-void Game::DangoMushi::StateRecover::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateRecover::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2498,7 +2488,7 @@ void Game::DangoMushi::StateRecover::exec((Game::EnemyBase*))
  * Address:	802FBA78
  * Size:	000004
  */
-void Game::DangoMushi::StateRecover::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateRecover::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2511,7 +2501,7 @@ void Game::DangoMushi::StateRecover::cleanup((Game::EnemyBase*))
  * Address:	802FBA7C
  * Size:	00006C
  */
-void Game::DangoMushi::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::DangoMushi::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2550,7 +2540,7 @@ void Game::DangoMushi::StateFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802FBAE8
  * Size:	0001E0
  */
-void Game::DangoMushi::StateFlick::exec((Game::EnemyBase*))
+void Game::DangoMushi::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2692,7 +2682,7 @@ void Game::DangoMushi::StateFlick::exec((Game::EnemyBase*))
  * Address:	802FBCC8
  * Size:	00002C
  */
-void Game::DangoMushi::StateFlick::cleanup((Game::EnemyBase*))
+void Game::DangoMushi::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

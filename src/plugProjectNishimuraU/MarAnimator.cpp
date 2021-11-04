@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80281E9C
  * Size:	000008
  */
-void Game::Mar::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Mar::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Mar::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80281EA4
  * Size:	000008
  */
-void Game::Mar::ProperAnimator::getAnimator((int))
+void Game::Mar::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Mar::ProperAnimator::getAnimator((int))
  * Address:	80281EAC
  * Size:	00005C
  */
-void Game::Mar::ProperAnimator::__dt(void)
+void Game::Mar::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Mar::ProperAnimator::__dt(void)
  * Address:	80281F08
  * Size:	000008
  */
-void Game::Mar::ProperAnimator::getAnimator(void)
+void Game::Mar::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

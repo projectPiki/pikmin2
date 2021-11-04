@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B7CCC
  * Size:	000050
  */
-void Game::FireOtakara::Mgr::__ct((int, unsigned char))
+void Game::FireOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::FireOtakara::Mgr::__ct((int, unsigned char))
  * Address:	802B7D1C
  * Size:	000048
  */
-void Game::FireOtakara::Mgr::doAlloc(void)
+void Game::FireOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::FireOtakara::Mgr::doAlloc(void)
  * Address:	802B7D64
  * Size:	000154
  */
-void Game::OtakaraBase::Parms::__ct(void)
+void Game::OtakaraBase::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -178,7 +168,7 @@ void Game::OtakaraBase::Parms::__ct(void)
  * Address:	802B7EB8
  * Size:	000060
  */
-void Game::FireOtakara::Mgr::createObj((int))
+void Game::FireOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +204,7 @@ void Game::FireOtakara::Mgr::createObj((int))
  * Address:	802B7F18
  * Size:	0000F0
  */
-void Game::FireOtakara::Obj::__dt(void)
+void Game::FireOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -290,7 +280,7 @@ void Game::FireOtakara::Obj::__dt(void)
  * Address:	802B8008
  * Size:	000010
  */
-void Game::FireOtakara::Mgr::getEnemy((int))
+void Game::FireOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +296,7 @@ void Game::FireOtakara::Mgr::getEnemy((int))
  * Address:	802B8018
  * Size:	000080
  */
-void Game::FireOtakara::Mgr::loadTexData(void)
+void Game::FireOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -354,7 +344,7 @@ void Game::FireOtakara::Mgr::loadTexData(void)
  * Address:	802B8098
  * Size:	0000C8
  */
-void Game::FireOtakara::Mgr::__dt(void)
+void Game::FireOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -420,7 +410,7 @@ void Game::FireOtakara::Mgr::__dt(void)
  * Address:	802B8160
  * Size:	000008
  */
-void Game::FireOtakara::Mgr::getEnemyTypeID(void)
+void Game::FireOtakara::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -434,7 +424,7 @@ void Game::FireOtakara::Mgr::getEnemyTypeID(void)
  * Address:	802B8168
  * Size:	000008
  */
-void Game::FireOtakara::Mgr::getChangeTexture(void)
+void Game::FireOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -448,7 +438,7 @@ void Game::FireOtakara::Mgr::getChangeTexture(void)
  * Address:	802B8170
  * Size:	000050
  */
-void Game::OtakaraBase::Parms::read((Stream&))
+void Game::OtakaraBase::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -480,7 +470,7 @@ void Game::OtakaraBase::Parms::read((Stream&))
  * Address:	802B81C0
  * Size:	000008
  */
-void @4 @Game::FireOtakara::Mgr::__dt(void)
+void Game::FireOtakara::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

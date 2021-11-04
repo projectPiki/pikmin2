@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80301688
  * Size:	000050
  */
-void Game::FixMiniHoudai::Mgr::__ct((int, unsigned char))
+void Game::FixMiniHoudai::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::FixMiniHoudai::Mgr::__ct((int, unsigned char))
  * Address:	803016D8
  * Size:	000048
  */
-void Game::FixMiniHoudai::Mgr::doAlloc(void)
+void Game::FixMiniHoudai::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::FixMiniHoudai::Mgr::doAlloc(void)
  * Address:	80301720
  * Size:	000060
  */
-void Game::FixMiniHoudai::Mgr::createObj((int))
+void Game::FixMiniHoudai::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::FixMiniHoudai::Mgr::createObj((int))
  * Address:	80301780
  * Size:	0000EC
  */
-void Game::FixMiniHoudai::Obj::__dt(void)
+void Game::FixMiniHoudai::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -190,7 +180,7 @@ void Game::FixMiniHoudai::Obj::__dt(void)
  * Address:	8030186C
  * Size:	000010
  */
-void Game::FixMiniHoudai::Mgr::getEnemy((int))
+void Game::FixMiniHoudai::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -206,7 +196,7 @@ void Game::FixMiniHoudai::Mgr::getEnemy((int))
  * Address:	8030187C
  * Size:	000008
  */
-void Game::FixMiniHoudai::Obj::getEnemyTypeID(void)
+void Game::FixMiniHoudai::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -220,7 +210,7 @@ void Game::FixMiniHoudai::Obj::getEnemyTypeID(void)
  * Address:	80301884
  * Size:	0000C8
  */
-void Game::FixMiniHoudai::Mgr::__dt(void)
+void Game::FixMiniHoudai::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -286,7 +276,7 @@ void Game::FixMiniHoudai::Mgr::__dt(void)
  * Address:	8030194C
  * Size:	000008
  */
-void Game::FixMiniHoudai::Mgr::getEnemyTypeID(void)
+void Game::FixMiniHoudai::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -300,7 +290,7 @@ void Game::FixMiniHoudai::Mgr::getEnemyTypeID(void)
  * Address:	80301954
  * Size:	000008
  */
-void @4 @Game::FixMiniHoudai::Mgr::__dt(void)
+void Game::FixMiniHoudai::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

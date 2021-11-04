@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80259B4C
  * Size:	000138
  */
-void Game::Ujib::Obj::__ct(void)
+void Game::Ujib::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::Ujib::Obj::__ct(void)
  * Address:	80259C84
  * Size:	000004
  */
-void Game::Ujib::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Ujib::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,48 +114,52 @@ void Game::Ujib::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80259C88
  * Size:	000098
  */
-void Game::Ujib::Obj::onInit((Game::CreatureInitArg*))
+void Game::Ujib::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
 	  mflr      r0
 	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x158244
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  rlwinm    r0,r0,0,21,19
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  bl        0x39C
-	  li        r3, 0
-	  li        r0, -0x1
-	  stb       r3, 0x2C1(r31)
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        0x480
-	  lwz       r3, 0x2BC(r31)
-	  mr        r4, r31
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1DC(r12)
-	  mtctr     r12
-	  bctrl
+	  lwz       r0, 0x2A4(r4)
+	  cmpwi     r0, 0
+	  bne-      .loc_0x38
+	  lis       r3, 0x8049
+	  lis       r5, 0x8049
+	  addi      r3, r3, 0x7118
+	  li        r4, 0x22B
+	  addi      r5, r5, 0x712C
+	  crclr     6, 0x6
+	  bl        -0x3B90E0
+	  b         .loc_0x4C
+
+	.loc_0x38:
+	  cmpwi     r0, 0x1
+	  bne-      .loc_0x4C
+	  mr        r3, r4
+	  li        r4, 0x3
+	  bl        -0x10330
+
+	.loc_0x4C:
 	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
 	  mtlr      r0
 	  addi      r1, r1, 0x10
 	  blr
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  lwz       r3, -0x6514(r13)
+	  lwz       r3, 0x5C(r3)
+	  bl        0x5F5BC
+	  lwz       r0, 0x14(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  lwz       r0, 0x2A4(r4)
+	  cmpwi     r0, 0
 	*/
 }
 
@@ -174,7 +168,7 @@ void Game::Ujib::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80259D20
  * Size:	000048
  */
-void Game::Ujib::Obj::doUpdate(void)
+void Game::Ujib::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -204,7 +198,7 @@ void Game::Ujib::Obj::doUpdate(void)
  * Address:	80259D68
  * Size:	000004
  */
-void Game::Ujib::Obj::doDirectDraw((Graphics&))
+void Game::Ujib::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -217,7 +211,7 @@ void Game::Ujib::Obj::doDirectDraw((Graphics&))
  * Address:	80259D6C
  * Size:	000020
  */
-void Game::Ujib::Obj::doDebugDraw((Graphics&))
+void Game::Ujib::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -237,7 +231,7 @@ void Game::Ujib::Obj::doDebugDraw((Graphics&))
  * Address:	80259D8C
  * Size:	00004C
  */
-void Game::Ujib::Obj::setFSM((Game::Ujib::FSM*))
+void Game::Ujib::Obj::setFSM(Game::Ujib::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +262,7 @@ void Game::Ujib::Obj::setFSM((Game::Ujib::FSM*))
  * Address:	80259DD8
  * Size:	0000A8
  */
-void Game::Ujib::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Ujib::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -326,7 +320,7 @@ void Game::Ujib::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80259E80
  * Size:	000094
  */
-void Game::Ujib::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::Ujib::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -379,7 +373,7 @@ void Game::Ujib::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	80259F14
  * Size:	00002C
  */
-void Game::Ujib::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::Ujib::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -402,7 +396,7 @@ void Game::Ujib::Obj::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	80259F40
  * Size:	000028
  */
-void Game::Ujib::Obj::startCarcassMotion(void)
+void Game::Ujib::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -424,7 +418,7 @@ void Game::Ujib::Obj::startCarcassMotion(void)
  * Address:	80259F68
  * Size:	00008C
  */
-void Game::Ujib::Obj::initMouthSlots(void)
+void Game::Ujib::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -475,7 +469,7 @@ void Game::Ujib::Obj::initMouthSlots(void)
  * Address:	80259FF4
  * Size:	000030
  */
-void Game::Ujib::Obj::lifeIncrement(void)
+void Game::Ujib::Obj::lifeIncrement()
 {
 	/*
 	.loc_0x0:
@@ -499,7 +493,7 @@ void Game::Ujib::Obj::lifeIncrement(void)
  * Address:	8025A024
  * Size:	000034
  */
-void Game::Ujib::Obj::setInWaterDamage(void)
+void Game::Ujib::Obj::setInWaterDamage()
 {
 	/*
 	.loc_0x0:
@@ -526,7 +520,7 @@ void Game::Ujib::Obj::setInWaterDamage(void)
  * Address:	8025A058
  * Size:	0000B4
  */
-void Game::Ujib::Obj::resetAppearCheck(void)
+void Game::Ujib::Obj::resetAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -587,7 +581,7 @@ void Game::Ujib::Obj::resetAppearCheck(void)
  * Address:	8025A10C
  * Size:	000048
  */
-void Game::Ujib::Obj::isAppearCheck(void)
+void Game::Ujib::Obj::isAppearCheck()
 {
 	/*
 	.loc_0x0:
@@ -621,7 +615,7 @@ void Game::Ujib::Obj::isAppearCheck(void)
  * Address:	8025A154
  * Size:	000020
  */
-void Game::Ujib::Obj::resetBridgeSearch(void)
+void Game::Ujib::Obj::resetBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -641,7 +635,7 @@ void Game::Ujib::Obj::resetBridgeSearch(void)
  * Address:	8025A174
  * Size:	000048
  */
-void Game::Ujib::Obj::setBridgeSearch(void)
+void Game::Ujib::Obj::setBridgeSearch()
 {
 	/*
 	.loc_0x0:
@@ -675,7 +669,7 @@ void Game::Ujib::Obj::setBridgeSearch(void)
  * Address:	8025A1BC
  * Size:	0002C0
  */
-void Game::Ujib::Obj::setNearestBridge(void)
+void Game::Ujib::Obj::setNearestBridge()
 {
 	/*
 	.loc_0x0:
@@ -887,7 +881,7 @@ void Game::Ujib::Obj::setNearestBridge(void)
  * Address:	8025A47C
  * Size:	000004
  */
-void Game::Ujib::Obj::setCullingCheck(void)
+void Game::Ujib::Obj::setCullingCheck()
 {
 	/*
 	.loc_0x0:
@@ -900,7 +894,7 @@ void Game::Ujib::Obj::setCullingCheck(void)
  * Address:	8025A480
  * Size:	0001B4
  */
-void Game::Ujib::Obj::checkBreakOrMove(void)
+void Game::Ujib::Obj::checkBreakOrMove()
 {
 	/*
 	.loc_0x0:
@@ -1039,7 +1033,7 @@ void Game::Ujib::Obj::checkBreakOrMove(void)
  * Address:	8025A634
  * Size:	000028
  */
-void Game::Ujib::Obj::isBreakBridge(void)
+void Game::Ujib::Obj::isBreakBridge()
 {
 	/*
 	.loc_0x0:
@@ -1063,7 +1057,7 @@ void Game::Ujib::Obj::isBreakBridge(void)
  * Address:	8025A65C
  * Size:	0002A8
  */
-void Game::Ujib::Obj::moveBridgeSide(void)
+void Game::Ujib::Obj::moveBridgeSide()
 {
 	/*
 	.loc_0x0:
@@ -1253,7 +1247,7 @@ void Game::Ujib::Obj::moveBridgeSide(void)
  * Address:	8025A904
  * Size:	000288
  */
-void Game::Ujib::Obj::moveBridgeCentre(void)
+void Game::Ujib::Obj::moveBridgeCentre()
 {
 	/*
 	.loc_0x0:
@@ -1435,7 +1429,7 @@ void Game::Ujib::Obj::moveBridgeCentre(void)
  * Address:	8025AB8C
  * Size:	0002F0
  */
-void Game::Ujib::Obj::moveBridgeTop(void)
+void Game::Ujib::Obj::moveBridgeTop()
 {
 	/*
 	.loc_0x0:
@@ -1647,7 +1641,7 @@ void Game::Ujib::Obj::moveBridgeTop(void)
  * Address:	8025AE7C
  * Size:	00005C
  */
-void Game::Ujib::Obj::breakTargetBridge(void)
+void Game::Ujib::Obj::breakTargetBridge()
 {
 	/*
 	.loc_0x0:
@@ -1682,7 +1676,7 @@ void Game::Ujib::Obj::breakTargetBridge(void)
  * Address:	8025AED8
  * Size:	00008C
  */
-void Game::Ujib::Obj::createAppearEffect(void)
+void Game::Ujib::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1729,7 +1723,7 @@ void Game::Ujib::Obj::createAppearEffect(void)
  * Address:	8025AF64
  * Size:	00008C
  */
-void Game::Ujib::Obj::createDisAppearEffect(void)
+void Game::Ujib::Obj::createDisAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1776,7 +1770,7 @@ void Game::Ujib::Obj::createDisAppearEffect(void)
  * Address:	8025AFF0
  * Size:	000090
  */
-void Game::Ujib::Obj::createBridgeEffect(void)
+void Game::Ujib::Obj::createBridgeEffect()
 {
 	/*
 	.loc_0x0:
@@ -1824,7 +1818,7 @@ void Game::Ujib::Obj::createBridgeEffect(void)
  * Address:	8025B080
  * Size:	000090
  */
-void Game::Ujib::Obj::createEatEffect(void)
+void Game::Ujib::Obj::createEatEffect()
 {
 	/*
 	.loc_0x0:
@@ -1872,7 +1866,7 @@ void Game::Ujib::Obj::createEatEffect(void)
  * Address:	8025B110
  * Size:	000008
  */
-void Game::Ujib::Obj::isUnderground(void)
+void Game::Ujib::Obj::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -1886,7 +1880,7 @@ void Game::Ujib::Obj::isUnderground(void)
  * Address:	8025B118
  * Size:	000008
  */
-void Game::Ujib::Obj::getMouthSlots(void)
+void Game::Ujib::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -1900,7 +1894,7 @@ void Game::Ujib::Obj::getMouthSlots(void)
  * Address:	8025B120
  * Size:	000008
  */
-void Game::Ujib::Obj::getDownSmokeScale(void)
+void Game::Ujib::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -1914,7 +1908,7 @@ void Game::Ujib::Obj::getDownSmokeScale(void)
  * Address:	8025B128
  * Size:	000008
  */
-void Game::Ujib::Obj::getEnemyTypeID(void)
+void Game::Ujib::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1928,7 +1922,7 @@ void Game::Ujib::Obj::getEnemyTypeID(void)
  * Address:	8025B130
  * Size:	000014
  */
-void @732 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@732 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1945,7 +1939,7 @@ void @732 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8025B144
  * Size:	000014
  */
-void @732 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@732 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1962,7 +1956,7 @@ void @732 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8025B158
  * Size:	000014
  */
-void @732 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@732 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1979,7 +1973,7 @@ void @732 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8025B16C
  * Size:	000014
  */
-void @732 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@732 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1996,7 +1990,7 @@ void @732 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8025B180
  * Size:	000014
  */
-void @732 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@732 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -2013,7 +2007,7 @@ void @732 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8025B194
  * Size:	000014
  */
-void @732 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@732 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B86E0
  * Size:	000050
  */
-void Game::WaterOtakara::Mgr::__ct((int, unsigned char))
+void Game::WaterOtakara::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::WaterOtakara::Mgr::__ct((int, unsigned char))
  * Address:	802B8730
  * Size:	000048
  */
-void Game::WaterOtakara::Mgr::doAlloc(void)
+void Game::WaterOtakara::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::WaterOtakara::Mgr::doAlloc(void)
  * Address:	802B8778
  * Size:	000060
  */
-void Game::WaterOtakara::Mgr::createObj((int))
+void Game::WaterOtakara::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::WaterOtakara::Mgr::createObj((int))
  * Address:	802B87D8
  * Size:	0000F0
  */
-void Game::WaterOtakara::Obj::__dt(void)
+void Game::WaterOtakara::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::WaterOtakara::Obj::__dt(void)
  * Address:	802B88C8
  * Size:	000010
  */
-void Game::WaterOtakara::Mgr::getEnemy((int))
+void Game::WaterOtakara::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +197,7 @@ void Game::WaterOtakara::Mgr::getEnemy((int))
  * Address:	802B88D8
  * Size:	000080
  */
-void Game::WaterOtakara::Mgr::loadTexData(void)
+void Game::WaterOtakara::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -255,7 +245,7 @@ void Game::WaterOtakara::Mgr::loadTexData(void)
  * Address:	802B8958
  * Size:	0000C8
  */
-void Game::WaterOtakara::Mgr::__dt(void)
+void Game::WaterOtakara::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -321,7 +311,7 @@ void Game::WaterOtakara::Mgr::__dt(void)
  * Address:	802B8A20
  * Size:	000008
  */
-void Game::WaterOtakara::Mgr::getEnemyTypeID(void)
+void Game::WaterOtakara::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::WaterOtakara::Mgr::getEnemyTypeID(void)
  * Address:	802B8A28
  * Size:	000008
  */
-void Game::WaterOtakara::Mgr::getChangeTexture(void)
+void Game::WaterOtakara::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -349,7 +339,7 @@ void Game::WaterOtakara::Mgr::getChangeTexture(void)
  * Address:	802B8A30
  * Size:	000008
  */
-void @4 @Game::WaterOtakara::Mgr::__dt(void)
+void Game::WaterOtakara::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

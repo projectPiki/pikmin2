@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80281F10
  * Size:	000050
  */
-void Game::Mar::Mgr::__ct((int, unsigned char))
+void Game::Mar::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Mar::Mgr::__ct((int, unsigned char))
  * Address:	80281F60
  * Size:	000048
  */
-void Game::Mar::Mgr::doAlloc(void)
+void Game::Mar::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Mar::Mgr::doAlloc(void)
  * Address:	80281FA8
  * Size:	000048
  */
-void Game::Mar::Parms::__ct(void)
+void Game::Mar::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Mar::Parms::__ct(void)
  * Address:	80281FF0
  * Size:	00023C
  */
-void Game::Mar::Parms::ProperParms::__ct(void)
+void Game::Mar::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -270,7 +260,7 @@ void Game::Mar::Parms::ProperParms::__ct(void)
  * Address:	8028222C
  * Size:	000060
  */
-void Game::Mar::Mgr::createObj((int))
+void Game::Mar::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +296,7 @@ void Game::Mar::Mgr::createObj((int))
  * Address:	8028228C
  * Size:	000010
  */
-void Game::Mar::Mgr::getEnemy((int))
+void Game::Mar::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +312,7 @@ void Game::Mar::Mgr::getEnemy((int))
  * Address:	8028229C
  * Size:	00012C
  */
-void Game::Mar::Mgr::loadTexData(void)
+void Game::Mar::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -421,7 +411,7 @@ void Game::Mar::Mgr::loadTexData(void)
  * Address:	802823C8
  * Size:	00013C
  */
-void Game::Mar::Mgr::createModel(void)
+void Game::Mar::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -522,7 +512,7 @@ void Game::Mar::Mgr::createModel(void)
  * Address:	80282504
  * Size:	0000B0
  */
-void Game::Mar::Mgr::__dt(void)
+void Game::Mar::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -582,7 +572,7 @@ void Game::Mar::Mgr::__dt(void)
  * Address:	802825B4
  * Size:	000008
  */
-void Game::Mar::Mgr::getEnemyTypeID(void)
+void Game::Mar::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -596,7 +586,7 @@ void Game::Mar::Mgr::getEnemyTypeID(void)
  * Address:	802825BC
  * Size:	000050
  */
-void Game::Mar::Parms::read((Stream&))
+void Game::Mar::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -628,7 +618,7 @@ void Game::Mar::Parms::read((Stream&))
  * Address:	8028260C
  * Size:	000008
  */
-void @4 @Game::Mar::Mgr::__dt(void)
+void Game::Mar::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8025F020
  * Size:	000008
  */
-void Game::Kogane::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Kogane::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Kogane::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8025F028
  * Size:	000008
  */
-void Game::Kogane::ProperAnimator::getAnimator((int))
+void Game::Kogane::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Kogane::ProperAnimator::getAnimator((int))
  * Address:	8025F030
  * Size:	00005C
  */
-void Game::Kogane::ProperAnimator::__dt(void)
+void Game::Kogane::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Kogane::ProperAnimator::__dt(void)
  * Address:	8025F08C
  * Size:	000008
  */
-void Game::Kogane::ProperAnimator::getAnimator(void)
+void Game::Kogane::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

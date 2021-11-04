@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802FBD1C
  * Size:	000050
  */
-void Game::DangoMushi::Mgr::__ct((int, unsigned char))
+void Game::DangoMushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::DangoMushi::Mgr::__ct((int, unsigned char))
  * Address:	802FBD6C
  * Size:	000048
  */
-void Game::DangoMushi::Mgr::doAlloc(void)
+void Game::DangoMushi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::DangoMushi::Mgr::doAlloc(void)
  * Address:	802FBDB4
  * Size:	000154
  */
-void Game::DangoMushi::Parms::__ct(void)
+void Game::DangoMushi::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -178,7 +168,7 @@ void Game::DangoMushi::Parms::__ct(void)
  * Address:	802FBF08
  * Size:	000060
  */
-void Game::DangoMushi::Mgr::createObj((int))
+void Game::DangoMushi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -214,7 +204,7 @@ void Game::DangoMushi::Mgr::createObj((int))
  * Address:	802FBF68
  * Size:	0000BC
  */
-void Game::DangoMushi::Obj::__dt(void)
+void Game::DangoMushi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -277,7 +267,7 @@ void Game::DangoMushi::Obj::__dt(void)
  * Address:	802FC024
  * Size:	000010
  */
-void Game::DangoMushi::Mgr::getEnemy((int))
+void Game::DangoMushi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +283,7 @@ void Game::DangoMushi::Mgr::getEnemy((int))
  * Address:	802FC034
  * Size:	000068
  */
-void Game::DangoMushi::Mgr::loadModelData(void)
+void Game::DangoMushi::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +325,7 @@ void Game::DangoMushi::Mgr::loadModelData(void)
  * Address:	802FC09C
  * Size:	0000B4
  */
-void Game::DangoMushi::Mgr::loadTexData(void)
+void Game::DangoMushi::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -398,7 +388,7 @@ void Game::DangoMushi::Mgr::loadTexData(void)
  * Address:	802FC150
  * Size:	000130
  */
-void Game::DangoMushi::Mgr::createModel(void)
+void Game::DangoMushi::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -496,7 +486,7 @@ void Game::DangoMushi::Mgr::createModel(void)
  * Address:	802FC280
  * Size:	0000B0
  */
-void Game::DangoMushi::Mgr::__dt(void)
+void Game::DangoMushi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -556,7 +546,7 @@ void Game::DangoMushi::Mgr::__dt(void)
  * Address:	802FC330
  * Size:	000008
  */
-void Game::DangoMushi::Mgr::getEnemyTypeID(void)
+void Game::DangoMushi::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -570,7 +560,7 @@ void Game::DangoMushi::Mgr::getEnemyTypeID(void)
  * Address:	802FC338
  * Size:	00002C
  */
-void Game::DangoMushi::Mgr::doLoadBmd((void*))
+void Game::DangoMushi::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -593,7 +583,7 @@ void Game::DangoMushi::Mgr::doLoadBmd((void*))
  * Address:	802FC364
  * Size:	000050
  */
-void Game::DangoMushi::Parms::read((Stream&))
+void Game::DangoMushi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -625,7 +615,7 @@ void Game::DangoMushi::Parms::read((Stream&))
  * Address:	802FC3B4
  * Size:	000008
  */
-void @4 @Game::DangoMushi::Mgr::__dt(void)
+void Game::DangoMushi::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

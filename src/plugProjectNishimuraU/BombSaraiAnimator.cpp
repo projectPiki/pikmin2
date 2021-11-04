@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B2130
  * Size:	000008
  */
-void Game::BombSarai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::BombSarai::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::BombSarai::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802B2138
  * Size:	000008
  */
-void Game::BombSarai::ProperAnimator::getAnimator((int))
+void Game::BombSarai::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::BombSarai::ProperAnimator::getAnimator((int))
  * Address:	802B2140
  * Size:	00005C
  */
-void Game::BombSarai::ProperAnimator::__dt(void)
+void Game::BombSarai::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::BombSarai::ProperAnimator::__dt(void)
  * Address:	802B219C
  * Size:	000008
  */
-void Game::BombSarai::ProperAnimator::getAnimator(void)
+void Game::BombSarai::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

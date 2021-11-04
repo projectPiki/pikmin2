@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802BA0D8
  * Size:	0004D4
  */
-void Game::Imomushi::FSM::init((Game::EnemyBase*))
+void Game::Imomushi::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +354,7 @@ void Game::Imomushi::FSM::init((Game::EnemyBase*))
  * Address:	802BA5AC
  * Size:	000050
  */
-void Game::Imomushi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -396,7 +386,7 @@ void Game::Imomushi::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BA5FC
  * Size:	000044
  */
-void Game::Imomushi::StateDead::exec((Game::EnemyBase*))
+void Game::Imomushi::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -427,7 +417,7 @@ void Game::Imomushi::StateDead::exec((Game::EnemyBase*))
  * Address:	802BA640
  * Size:	000004
  */
-void Game::Imomushi::StateDead::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -440,7 +430,7 @@ void Game::Imomushi::StateDead::cleanup((Game::EnemyBase*))
  * Address:	802BA644
  * Size:	00004C
  */
-void Game::Imomushi::StateFallDive::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateFallDive::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -471,7 +461,7 @@ void Game::Imomushi::StateFallDive::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BA690
  * Size:	000140
  */
-void Game::Imomushi::StateFallDive::exec((Game::EnemyBase*))
+void Game::Imomushi::StateFallDive::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +561,7 @@ void Game::Imomushi::StateFallDive::exec((Game::EnemyBase*))
  * Address:	802BA7D0
  * Size:	000004
  */
-void Game::Imomushi::StateFallDive::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateFallDive::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -584,7 +574,7 @@ void Game::Imomushi::StateFallDive::cleanup((Game::EnemyBase*))
  * Address:	802BA7D4
  * Size:	00004C
  */
-void Game::Imomushi::StateFallMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateFallMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -615,7 +605,7 @@ void Game::Imomushi::StateFallMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BA820
  * Size:	000178
  */
-void Game::Imomushi::StateFallMove::exec((Game::EnemyBase*))
+void Game::Imomushi::StateFallMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -731,7 +721,7 @@ void Game::Imomushi::StateFallMove::exec((Game::EnemyBase*))
  * Address:	802BA998
  * Size:	000004
  */
-void Game::Imomushi::StateFallMove::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateFallMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -744,7 +734,7 @@ void Game::Imomushi::StateFallMove::cleanup((Game::EnemyBase*))
  * Address:	802BA99C
  * Size:	0000C8
  */
-void Game::Imomushi::StateStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -806,7 +796,7 @@ void Game::Imomushi::StateStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BAA64
  * Size:	0000A8
  */
-void Game::Imomushi::StateStay::exec((Game::EnemyBase*))
+void Game::Imomushi::StateStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -862,7 +852,7 @@ void Game::Imomushi::StateStay::exec((Game::EnemyBase*))
  * Address:	802BAB0C
  * Size:	000090
  */
-void Game::Imomushi::StateStay::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -910,7 +900,7 @@ void Game::Imomushi::StateStay::cleanup((Game::EnemyBase*))
  * Address:	802BAB9C
  * Size:	000080
  */
-void Game::Imomushi::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -954,7 +944,7 @@ void Game::Imomushi::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BAC1C
  * Size:	0000D8
  */
-void Game::Imomushi::StateAppear::exec((Game::EnemyBase*))
+void Game::Imomushi::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1026,7 +1016,7 @@ void Game::Imomushi::StateAppear::exec((Game::EnemyBase*))
  * Address:	802BACF4
  * Size:	00003C
  */
-void Game::Imomushi::StateAppear::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1053,7 +1043,7 @@ void Game::Imomushi::StateAppear::cleanup((Game::EnemyBase*))
  * Address:	802BAD30
  * Size:	000074
  */
-void Game::Imomushi::StateDive::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateDive::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1094,7 +1084,7 @@ void Game::Imomushi::StateDive::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BADA4
  * Size:	000050
  */
-void Game::Imomushi::StateDive::exec((Game::EnemyBase*))
+void Game::Imomushi::StateDive::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1128,7 +1118,7 @@ void Game::Imomushi::StateDive::exec((Game::EnemyBase*))
  * Address:	802BADF4
  * Size:	00003C
  */
-void Game::Imomushi::StateDive::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateDive::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1155,7 +1145,7 @@ void Game::Imomushi::StateDive::cleanup((Game::EnemyBase*))
  * Address:	802BAE30
  * Size:	000048
  */
-void Game::Imomushi::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1185,7 +1175,7 @@ void Game::Imomushi::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BAE78
  * Size:	000238
  */
-void Game::Imomushi::StateMove::exec((Game::EnemyBase*))
+void Game::Imomushi::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1357,7 +1347,7 @@ void Game::Imomushi::StateMove::exec((Game::EnemyBase*))
  * Address:	802BB0B0
  * Size:	000024
  */
-void Game::Imomushi::StateMove::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1378,7 +1368,7 @@ void Game::Imomushi::StateMove::cleanup((Game::EnemyBase*))
  * Address:	802BB0D4
  * Size:	000048
  */
-void Game::Imomushi::StateGoHome::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1408,7 +1398,7 @@ void Game::Imomushi::StateGoHome::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BB11C
  * Size:	00014C
  */
-void Game::Imomushi::StateGoHome::exec((Game::EnemyBase*))
+void Game::Imomushi::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1513,7 +1503,7 @@ void Game::Imomushi::StateGoHome::exec((Game::EnemyBase*))
  * Address:	802BB268
  * Size:	000024
  */
-void Game::Imomushi::StateGoHome::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateGoHome::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1534,7 +1524,7 @@ void Game::Imomushi::StateGoHome::cleanup((Game::EnemyBase*))
  * Address:	802BB28C
  * Size:	00014C
  */
-void Game::Imomushi::StateClimb::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateClimb::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1635,7 +1625,7 @@ void Game::Imomushi::StateClimb::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BB3D8
  * Size:	000170
  */
-void Game::Imomushi::StateClimb::exec((Game::EnemyBase*))
+void Game::Imomushi::StateClimb::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1751,7 +1741,7 @@ void Game::Imomushi::StateClimb::exec((Game::EnemyBase*))
  * Address:	802BB548
  * Size:	000024
  */
-void Game::Imomushi::StateClimb::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateClimb::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1772,7 +1762,7 @@ void Game::Imomushi::StateClimb::cleanup((Game::EnemyBase*))
  * Address:	802BB56C
  * Size:	00009C
  */
-void Game::Imomushi::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1823,7 +1813,7 @@ void Game::Imomushi::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BB608
  * Size:	00015C
  */
-void Game::Imomushi::StateAttack::exec((Game::EnemyBase*))
+void Game::Imomushi::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1934,7 +1924,7 @@ void Game::Imomushi::StateAttack::exec((Game::EnemyBase*))
  * Address:	802BB764
  * Size:	000024
  */
-void Game::Imomushi::StateAttack::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1955,7 +1945,7 @@ void Game::Imomushi::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	802BB788
  * Size:	000094
  */
-void Game::Imomushi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2004,7 +1994,7 @@ void Game::Imomushi::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BB81C
  * Size:	000138
  */
-void Game::Imomushi::StateWait::exec((Game::EnemyBase*))
+void Game::Imomushi::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2104,7 +2094,7 @@ void Game::Imomushi::StateWait::exec((Game::EnemyBase*))
  * Address:	802BB954
  * Size:	000024
  */
-void Game::Imomushi::StateWait::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2125,7 +2115,7 @@ void Game::Imomushi::StateWait::cleanup((Game::EnemyBase*))
  * Address:	802BB978
  * Size:	00006C
  */
-void Game::Imomushi::StateZukanStay::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateZukanStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2164,7 +2154,7 @@ void Game::Imomushi::StateZukanStay::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BB9E4
  * Size:	000058
  */
-void Game::Imomushi::StateZukanStay::exec((Game::EnemyBase*))
+void Game::Imomushi::StateZukanStay::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2200,7 +2190,7 @@ void Game::Imomushi::StateZukanStay::exec((Game::EnemyBase*))
  * Address:	802BBA3C
  * Size:	000030
  */
-void Game::Imomushi::StateZukanStay::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateZukanStay::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2224,7 +2214,7 @@ void Game::Imomushi::StateZukanStay::cleanup((Game::EnemyBase*))
  * Address:	802BBA6C
  * Size:	00005C
  */
-void Game::Imomushi::StateZukanAppear::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateZukanAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2259,7 +2249,7 @@ void Game::Imomushi::StateZukanAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BBAC8
  * Size:	000050
  */
-void Game::Imomushi::StateZukanAppear::exec((Game::EnemyBase*))
+void Game::Imomushi::StateZukanAppear::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2293,7 +2283,7 @@ void Game::Imomushi::StateZukanAppear::exec((Game::EnemyBase*))
  * Address:	802BBB18
  * Size:	000010
  */
-void Game::Imomushi::StateZukanAppear::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateZukanAppear::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2309,7 +2299,7 @@ void Game::Imomushi::StateZukanAppear::cleanup((Game::EnemyBase*))
  * Address:	802BBB28
  * Size:	000058
  */
-void Game::Imomushi::StateZukanMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Imomushi::StateZukanMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2343,7 +2333,7 @@ void Game::Imomushi::StateZukanMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802BBB80
  * Size:	0000BC
  */
-void Game::Imomushi::StateZukanMove::exec((Game::EnemyBase*))
+void Game::Imomushi::StateZukanMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2406,7 +2396,7 @@ void Game::Imomushi::StateZukanMove::exec((Game::EnemyBase*))
  * Address:	802BBC3C
  * Size:	000024
  */
-void Game::Imomushi::StateZukanMove::cleanup((Game::EnemyBase*))
+void Game::Imomushi::StateZukanMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

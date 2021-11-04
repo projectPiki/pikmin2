@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8029DD44
  * Size:	000090
  */
-void Game::Koganemushi::Obj::__ct(void)
+void Game::Koganemushi::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void Game::Koganemushi::Obj::__ct(void)
  * Address:	8029DDD4
  * Size:	0001F0
  */
-void Game::Koganemushi::Obj::changeMaterial(void)
+void Game::Koganemushi::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -205,7 +195,7 @@ void Game::Koganemushi::Obj::changeMaterial(void)
  * Address:	8029DFC4
  * Size:	00011C
  */
-void Game::Koganemushi::Obj::createItem(void)
+void Game::Koganemushi::Obj::createItem()
 {
 	/*
 	.loc_0x0:
@@ -310,7 +300,7 @@ void Game::Koganemushi::Obj::createItem(void)
  * Address:	8029E0E0
  * Size:	000044
  */
-void Game::Koganemushi::Obj::createPressSENormal(void)
+void Game::Koganemushi::Obj::createPressSENormal()
 {
 	/*
 	.loc_0x0:
@@ -339,7 +329,7 @@ void Game::Koganemushi::Obj::createPressSENormal(void)
  * Address:	8029E124
  * Size:	000008
  */
-void Game::Koganemushi::Obj::getEnemyTypeID(void)
+void Game::Koganemushi::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

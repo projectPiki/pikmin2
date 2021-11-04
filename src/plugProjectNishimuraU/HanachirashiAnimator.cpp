@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802A12B4
  * Size:	000008
  */
-void Game::Hanachirashi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Hanachirashi::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Hanachirashi::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802A12BC
  * Size:	000008
  */
-void Game::Hanachirashi::ProperAnimator::getAnimator((int))
+void Game::Hanachirashi::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Hanachirashi::ProperAnimator::getAnimator((int))
  * Address:	802A12C4
  * Size:	00005C
  */
-void Game::Hanachirashi::ProperAnimator::__dt(void)
+void Game::Hanachirashi::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Hanachirashi::ProperAnimator::__dt(void)
  * Address:	802A1320
  * Size:	000008
  */
-void Game::Hanachirashi::ProperAnimator::getAnimator(void)
+void Game::Hanachirashi::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

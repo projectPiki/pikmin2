@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80260178
  * Size:	000154
  */
-void Game::Qurione::Obj::__ct(void)
+void Game::Qurione::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -118,7 +108,7 @@ void Game::Qurione::Obj::__ct(void)
  * Address:	802602CC
  * Size:	00005C
  */
-void birth__Q34Game7Qurione3ObjFR10Vector3<float> f(void)
+void Game::Qurione::Obj::birth(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -153,7 +143,7 @@ void birth__Q34Game7Qurione3ObjFR10Vector3<float> f(void)
  * Address:	80260328
  * Size:	00002C
  */
-void Game::Qurione::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Qurione::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +166,7 @@ void Game::Qurione::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80260354
  * Size:	0000EC
  */
-void Game::Qurione::Obj::onInit((Game::CreatureInitArg*))
+void Game::Qurione::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +237,7 @@ void Game::Qurione::Obj::onInit((Game::CreatureInitArg*))
  * Address:	80260440
  * Size:	000044
  */
-void Game::Qurione::Obj::onKill((Game::CreatureKillArg*))
+void Game::Qurione::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +266,7 @@ void Game::Qurione::Obj::onKill((Game::CreatureKillArg*))
  * Address:	80260484
  * Size:	000034
  */
-void Game::Qurione::Obj::doUpdate(void)
+void Game::Qurione::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -301,7 +291,7 @@ void Game::Qurione::Obj::doUpdate(void)
  * Address:	802604B8
  * Size:	00004C
  */
-void Game::Qurione::Obj::setFSM((Game::Qurione::FSM*))
+void Game::Qurione::Obj::setFSM(Game::Qurione::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -332,7 +322,7 @@ void Game::Qurione::Obj::setFSM((Game::Qurione::FSM*))
  * Address:	80260504
  * Size:	000004
  */
-void Game::Qurione::Obj::doDirectDraw((Graphics&))
+void Game::Qurione::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -345,7 +335,7 @@ void Game::Qurione::Obj::doDirectDraw((Graphics&))
  * Address:	80260508
  * Size:	000020
  */
-void Game::Qurione::Obj::doDebugDraw((Graphics&))
+void Game::Qurione::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -365,7 +355,7 @@ void Game::Qurione::Obj::doDebugDraw((Graphics&))
  * Address:	80260528
  * Size:	00005C
  */
-void Game::Qurione::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Qurione::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -400,8 +390,7 @@ void Game::Qurione::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80260584
  * Size:	000088
  */
-void Game::Qurione::Obj::flyCollisionCallBack((Game::Creature*, float,
-                                               CollPart*))
+void Game::Qurione::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -451,7 +440,7 @@ void Game::Qurione::Obj::flyCollisionCallBack((Game::Creature*, float,
  * Address:	8026060C
  * Size:	000034
  */
-void Game::Qurione::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::Qurione::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -476,7 +465,7 @@ void Game::Qurione::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	80260640
  * Size:	000034
  */
-void Game::Qurione::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::Qurione::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -501,7 +490,7 @@ void Game::Qurione::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	80260674
  * Size:	000020
  */
-void Game::Qurione::Obj::doStartMovie(void)
+void Game::Qurione::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -521,7 +510,7 @@ void Game::Qurione::Obj::doStartMovie(void)
  * Address:	80260694
  * Size:	000020
  */
-void Game::Qurione::Obj::doEndMovie(void)
+void Game::Qurione::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -541,7 +530,7 @@ void Game::Qurione::Obj::doEndMovie(void)
  * Address:	802606B4
  * Size:	000188
  */
-void Game::Qurione::Obj::setQurioneStartPos((float))
+void Game::Qurione::Obj::setQurioneStartPos(float)
 {
 	/*
 	.loc_0x0:
@@ -660,20 +649,10 @@ void Game::Qurione::Obj::setQurioneStartPos((float))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000EC
- */
-void Game::Qurione::Obj::setHeightVelocity(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8026083C
  * Size:	00016C
  */
-void Game::Qurione::Obj::moveFaceDir(void)
+void Game::Qurione::Obj::moveFaceDir()
 {
 	/*
 	.loc_0x0:
@@ -782,7 +761,7 @@ void Game::Qurione::Obj::moveFaceDir(void)
  * Address:	802609A8
  * Size:	000038
  */
-void Game::Qurione::Obj::addPitchRatio(void)
+void Game::Qurione::Obj::addPitchRatio()
 {
 	/*
 	.loc_0x0:
@@ -808,7 +787,7 @@ void Game::Qurione::Obj::addPitchRatio(void)
  * Address:	802609E0
  * Size:	000088
  */
-void Game::Qurione::Obj::resetUtilityTimer(void)
+void Game::Qurione::Obj::resetUtilityTimer()
 {
 	/*
 	.loc_0x0:
@@ -858,7 +837,7 @@ void Game::Qurione::Obj::resetUtilityTimer(void)
  * Address:	80260A68
  * Size:	00006C
  */
-void Game::Qurione::Obj::isAppear(void)
+void Game::Qurione::Obj::isAppear()
 {
 	/*
 	.loc_0x0:
@@ -903,7 +882,7 @@ void Game::Qurione::Obj::isAppear(void)
  * Address:	80260AD4
  * Size:	000030
  */
-void Game::Qurione::Obj::isFlyKill(void)
+void Game::Qurione::Obj::isFlyKill()
 {
 	/*
 	.loc_0x0:
@@ -931,7 +910,7 @@ void Game::Qurione::Obj::isFlyKill(void)
  * Address:	80260B04
  * Size:	0000A4
  */
-void Game::Qurione::Obj::attachItem(void)
+void Game::Qurione::Obj::attachItem()
 {
 	/*
 	.loc_0x0:
@@ -986,7 +965,7 @@ void Game::Qurione::Obj::attachItem(void)
  * Address:	80260BA8
  * Size:	00004C
  */
-void Game::Qurione::Obj::dropItem(void)
+void Game::Qurione::Obj::dropItem()
 {
 	/*
 	.loc_0x0:
@@ -1019,7 +998,7 @@ void Game::Qurione::Obj::dropItem(void)
  * Address:	80260BF4
  * Size:	00002C
  */
-void Game::Qurione::Obj::addQurioneScale(void)
+void Game::Qurione::Obj::addQurioneScale()
 {
 	/*
 	.loc_0x0:
@@ -1042,7 +1021,7 @@ void Game::Qurione::Obj::addQurioneScale(void)
  * Address:	80260C20
  * Size:	00002C
  */
-void Game::Qurione::Obj::subQurioneScale(void)
+void Game::Qurione::Obj::subQurioneScale()
 {
 	/*
 	.loc_0x0:
@@ -1065,7 +1044,7 @@ void Game::Qurione::Obj::subQurioneScale(void)
  * Address:	80260C4C
  * Size:	0001C0
  */
-void Game::Qurione::Obj::createEffect(void)
+void Game::Qurione::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1195,7 +1174,7 @@ void Game::Qurione::Obj::createEffect(void)
  * Address:	80260E0C
  * Size:	000054
  */
-void Game::Qurione::Obj::setupEffect(void)
+void Game::Qurione::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1228,7 +1207,7 @@ void Game::Qurione::Obj::setupEffect(void)
  * Address:	80260E60
  * Size:	0000A0
  */
-void Game::Qurione::Obj::createHitEffect(void)
+void Game::Qurione::Obj::createHitEffect()
 {
 	/*
 	.loc_0x0:
@@ -1280,7 +1259,7 @@ void Game::Qurione::Obj::createHitEffect(void)
  * Address:	80260F00
  * Size:	00004C
  */
-void Game::Qurione::Obj::startGlowEffect(void)
+void Game::Qurione::Obj::startGlowEffect()
 {
 	/*
 	.loc_0x0:
@@ -1311,7 +1290,7 @@ void Game::Qurione::Obj::startGlowEffect(void)
  * Address:	80260F4C
  * Size:	00002C
  */
-void Game::Qurione::Obj::setGlowEffectScale(void)
+void Game::Qurione::Obj::setGlowEffectScale()
 {
 	/*
 	.loc_0x0:
@@ -1334,7 +1313,7 @@ void Game::Qurione::Obj::setGlowEffectScale(void)
  * Address:	80260F78
  * Size:	000030
  */
-void Game::Qurione::Obj::finishGlowEffect(void)
+void Game::Qurione::Obj::finishGlowEffect()
 {
 	/*
 	.loc_0x0:
@@ -1358,7 +1337,7 @@ void Game::Qurione::Obj::finishGlowEffect(void)
  * Address:	80260FA8
  * Size:	000034
  */
-void Game::Qurione::Obj::createAppearEffect(void)
+void Game::Qurione::Obj::createAppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1383,7 +1362,7 @@ void Game::Qurione::Obj::createAppearEffect(void)
  * Address:	80260FDC
  * Size:	000034
  */
-void Game::Qurione::Obj::createDisppearEffect(void)
+void Game::Qurione::Obj::createDisppearEffect()
 {
 	/*
 	.loc_0x0:
@@ -1408,7 +1387,7 @@ void Game::Qurione::Obj::createDisppearEffect(void)
  * Address:	80261010
  * Size:	000064
  */
-void Game::Qurione::Obj::effectDrawOn(void)
+void Game::Qurione::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1445,7 +1424,7 @@ void Game::Qurione::Obj::effectDrawOn(void)
  * Address:	80261074
  * Size:	000064
  */
-void Game::Qurione::Obj::effectDrawOff(void)
+void Game::Qurione::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1482,7 +1461,7 @@ void Game::Qurione::Obj::effectDrawOff(void)
  * Address:	802610D8
  * Size:	00009C
  */
-void efx::TQuriDisap::__dt(void)
+void efx::TQuriDisap::~TQuriDisap()
 {
 	/*
 	.loc_0x0:
@@ -1537,7 +1516,7 @@ void efx::TQuriDisap::__dt(void)
  * Address:	80261174
  * Size:	00009C
  */
-void efx::TQuriApp::__dt(void)
+void efx::TQuriApp::~TQuriApp()
 {
 	/*
 	.loc_0x0:
@@ -1592,7 +1571,7 @@ void efx::TQuriApp::__dt(void)
  * Address:	80261210
  * Size:	00009C
  */
-void efx::TQuriGlow::__dt(void)
+void efx::TQuriGlow::~TQuriGlow()
 {
 	/*
 	.loc_0x0:
@@ -1647,7 +1626,7 @@ void efx::TQuriGlow::__dt(void)
  * Address:	802612AC
  * Size:	000004
  */
-void Game::Qurione::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Qurione::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1660,7 +1639,7 @@ void Game::Qurione::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	802612B0
  * Size:	000004
  */
-void Game::Qurione::Obj::outWaterCallback(void)
+void Game::Qurione::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -1673,7 +1652,7 @@ void Game::Qurione::Obj::outWaterCallback(void)
  * Address:	802612B4
  * Size:	000008
  */
-void Game::Qurione::Obj::getEnemyTypeID(void)
+void Game::Qurione::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1687,7 +1666,7 @@ void Game::Qurione::Obj::getEnemyTypeID(void)
  * Address:	802612BC
  * Size:	000014
  */
-void @764 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@764 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1704,7 +1683,7 @@ void @764 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	802612D0
  * Size:	000014
  */
-void @764 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@764 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1721,7 +1700,7 @@ void @764 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	802612E4
  * Size:	000014
  */
-void @764 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@764 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1738,7 +1717,7 @@ void @764 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	802612F8
  * Size:	000014
  */
-void @764 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@764 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1755,7 +1734,7 @@ void @764 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8026130C
  * Size:	000014
  */
-void @764 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@764 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1772,7 +1751,7 @@ void @764 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80261320
  * Size:	000014
  */
-void @764 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@764 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -1789,7 +1768,7 @@ void @764 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80261334
  * Size:	000008
  */
-void @4 @efx::TQuriGlow::__dt(void)
+void efx::TQuriGlow::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -1803,7 +1782,7 @@ void @4 @efx::TQuriGlow::__dt(void)
  * Address:	8026133C
  * Size:	000008
  */
-void @4 @efx::TQuriApp::__dt(void)
+void efx::TQuriApp::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -1817,7 +1796,7 @@ void @4 @efx::TQuriApp::__dt(void)
  * Address:	80261344
  * Size:	000008
  */
-void @4 @efx::TQuriDisap::__dt(void)
+void efx::TQuriDisap::@4 @__dt()
 {
 	/*
 	.loc_0x0:

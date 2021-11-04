@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802A1328
  * Size:	000050
  */
-void Game::Hanachirashi::Mgr::__ct((int, unsigned char))
+void Game::Hanachirashi::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Hanachirashi::Mgr::__ct((int, unsigned char))
  * Address:	802A1378
  * Size:	000048
  */
-void Game::Hanachirashi::Mgr::doAlloc(void)
+void Game::Hanachirashi::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Hanachirashi::Mgr::doAlloc(void)
  * Address:	802A13C0
  * Size:	000048
  */
-void Game::Hanachirashi::Parms::__ct(void)
+void Game::Hanachirashi::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +103,7 @@ void Game::Hanachirashi::Parms::__ct(void)
  * Address:	802A1408
  * Size:	00023C
  */
-void Game::Hanachirashi::Parms::ProperParms::__ct(void)
+void Game::Hanachirashi::Parms::ProperParms::ProperParms()
 {
 	/*
 	.loc_0x0:
@@ -270,7 +260,7 @@ void Game::Hanachirashi::Parms::ProperParms::__ct(void)
  * Address:	802A1644
  * Size:	000060
  */
-void Game::Hanachirashi::Mgr::createObj((int))
+void Game::Hanachirashi::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +296,7 @@ void Game::Hanachirashi::Mgr::createObj((int))
  * Address:	802A16A4
  * Size:	0000BC
  */
-void Game::Hanachirashi::Obj::__dt(void)
+void Game::Hanachirashi::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::Hanachirashi::Obj::__dt(void)
  * Address:	802A1760
  * Size:	000010
  */
-void Game::Hanachirashi::Mgr::getEnemy((int))
+void Game::Hanachirashi::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +375,7 @@ void Game::Hanachirashi::Mgr::getEnemy((int))
  * Address:	802A1770
  * Size:	00012C
  */
-void Game::Hanachirashi::Mgr::loadTexData(void)
+void Game::Hanachirashi::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -484,7 +474,7 @@ void Game::Hanachirashi::Mgr::loadTexData(void)
  * Address:	802A189C
  * Size:	00013C
  */
-void Game::Hanachirashi::Mgr::createModel(void)
+void Game::Hanachirashi::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -585,7 +575,7 @@ void Game::Hanachirashi::Mgr::createModel(void)
  * Address:	802A19D8
  * Size:	0000B0
  */
-void Game::Hanachirashi::Mgr::__dt(void)
+void Game::Hanachirashi::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -645,7 +635,7 @@ void Game::Hanachirashi::Mgr::__dt(void)
  * Address:	802A1A88
  * Size:	000008
  */
-void Game::Hanachirashi::Mgr::getEnemyTypeID(void)
+void Game::Hanachirashi::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -659,7 +649,7 @@ void Game::Hanachirashi::Mgr::getEnemyTypeID(void)
  * Address:	802A1A90
  * Size:	000050
  */
-void Game::Hanachirashi::Parms::read((Stream&))
+void Game::Hanachirashi::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -691,7 +681,7 @@ void Game::Hanachirashi::Parms::read((Stream&))
  * Address:	802A1AE0
  * Size:	000008
  */
-void @4 @Game::Hanachirashi::Mgr::__dt(void)
+void Game::Hanachirashi::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

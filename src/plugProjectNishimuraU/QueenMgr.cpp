@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80288EB4
  * Size:	000050
  */
-void Game::Queen::Mgr::__ct((int, unsigned char))
+void Game::Queen::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Queen::Mgr::__ct((int, unsigned char))
  * Address:	80288F04
  * Size:	000048
  */
-void Game::Queen::Mgr::doAlloc(void)
+void Game::Queen::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -81,7 +71,7 @@ void Game::Queen::Mgr::doAlloc(void)
  * Address:	80288F4C
  * Size:	000188
  */
-void Game::Queen::Parms::__ct(void)
+void Game::Queen::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::Queen::Parms::__ct(void)
  * Address:	802890D4
  * Size:	000060
  */
-void Game::Queen::Mgr::createObj((int))
+void Game::Queen::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -227,7 +217,7 @@ void Game::Queen::Mgr::createObj((int))
  * Address:	80289134
  * Size:	0000BC
  */
-void Game::Queen::Obj::__dt(void)
+void Game::Queen::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -290,7 +280,7 @@ void Game::Queen::Obj::__dt(void)
  * Address:	802891F0
  * Size:	000010
  */
-void Game::Queen::Mgr::getEnemy((int))
+void Game::Queen::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -306,7 +296,7 @@ void Game::Queen::Mgr::getEnemy((int))
  * Address:	80289200
  * Size:	000068
  */
-void Game::Queen::Mgr::loadModelData(void)
+void Game::Queen::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -348,7 +338,7 @@ void Game::Queen::Mgr::loadModelData(void)
  * Address:	80289268
  * Size:	0000B4
  */
-void Game::Queen::Mgr::loadTexData(void)
+void Game::Queen::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -411,7 +401,7 @@ void Game::Queen::Mgr::loadTexData(void)
  * Address:	8028931C
  * Size:	00007C
  */
-void Game::Queen::Mgr::createModel(void)
+void Game::Queen::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -458,7 +448,7 @@ void Game::Queen::Mgr::createModel(void)
  * Address:	80289398
  * Size:	0000B0
  */
-void Game::Queen::Mgr::__dt(void)
+void Game::Queen::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -518,7 +508,7 @@ void Game::Queen::Mgr::__dt(void)
  * Address:	80289448
  * Size:	000008
  */
-void Game::Queen::Mgr::getEnemyTypeID(void)
+void Game::Queen::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -532,7 +522,7 @@ void Game::Queen::Mgr::getEnemyTypeID(void)
  * Address:	80289450
  * Size:	00002C
  */
-void Game::Queen::Mgr::doLoadBmd((void*))
+void Game::Queen::Mgr::doLoadBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -555,7 +545,7 @@ void Game::Queen::Mgr::doLoadBmd((void*))
  * Address:	8028947C
  * Size:	000050
  */
-void Game::Queen::Parms::read((Stream&))
+void Game::Queen::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -587,7 +577,7 @@ void Game::Queen::Parms::read((Stream&))
  * Address:	802894CC
  * Size:	000008
  */
-void @4 @Game::Queen::Mgr::__dt(void)
+void Game::Queen::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

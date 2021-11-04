@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802B9294
  * Size:	0000A4
  */
-void Game::GasOtakara::Obj::__ct(void)
+void Game::GasOtakara::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -70,7 +60,7 @@ void Game::GasOtakara::Obj::__ct(void)
  * Address:	802B9338
  * Size:	0001A4
  */
-void Game::GasOtakara::Obj::changeMaterial(void)
+void Game::GasOtakara::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -191,7 +181,7 @@ void Game::GasOtakara::Obj::changeMaterial(void)
  * Address:	802B94DC
  * Size:	000060
  */
-void Game::GasOtakara::Obj::interactCreature((Game::Creature*))
+void Game::GasOtakara::Obj::interactCreature(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -227,7 +217,7 @@ void Game::GasOtakara::Obj::interactCreature((Game::Creature*))
  * Address:	802B953C
  * Size:	000060
  */
-void Game::GasOtakara::Obj::createEffect(void)
+void Game::GasOtakara::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -265,7 +255,7 @@ void Game::GasOtakara::Obj::createEffect(void)
  * Address:	802B959C
  * Size:	000048
  */
-void Game::GasOtakara::Obj::setupEffect(void)
+void Game::GasOtakara::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -295,7 +285,7 @@ void Game::GasOtakara::Obj::setupEffect(void)
  * Address:	802B95E4
  * Size:	000034
  */
-void Game::GasOtakara::Obj::startChargeEffect(void)
+void Game::GasOtakara::Obj::startChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -320,7 +310,7 @@ void Game::GasOtakara::Obj::startChargeEffect(void)
  * Address:	802B9618
  * Size:	000030
  */
-void Game::GasOtakara::Obj::finishChargeEffect(void)
+void Game::GasOtakara::Obj::finishChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -344,7 +334,7 @@ void Game::GasOtakara::Obj::finishChargeEffect(void)
  * Address:	802B9648
  * Size:	00008C
  */
-void Game::GasOtakara::Obj::createDisChargeEffect(void)
+void Game::GasOtakara::Obj::createDisChargeEffect()
 {
 	/*
 	.loc_0x0:
@@ -391,7 +381,7 @@ void Game::GasOtakara::Obj::createDisChargeEffect(void)
  * Address:	802B96D4
  * Size:	000030
  */
-void Game::GasOtakara::Obj::effectDrawOn(void)
+void Game::GasOtakara::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -415,7 +405,7 @@ void Game::GasOtakara::Obj::effectDrawOn(void)
  * Address:	802B9704
  * Size:	000030
  */
-void Game::GasOtakara::Obj::effectDrawOff(void)
+void Game::GasOtakara::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -439,7 +429,7 @@ void Game::GasOtakara::Obj::effectDrawOff(void)
  * Address:	802B9734
  * Size:	000044
  */
-void Game::GasOtakara::Obj::startDisChargeSE(void)
+void Game::GasOtakara::Obj::startDisChargeSE()
 {
 	/*
 	.loc_0x0:
@@ -468,7 +458,7 @@ void Game::GasOtakara::Obj::startDisChargeSE(void)
  * Address:	802B9778
  * Size:	000008
  */
-void Game::GasOtakara::Obj::getEnemyTypeID(void)
+void Game::GasOtakara::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80258548
  * Size:	000138
  */
-void Game::Frog::Obj::__ct(void)
+void Game::Frog::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -111,7 +101,7 @@ void Game::Frog::Obj::__ct(void)
  * Address:	80258680
  * Size:	000004
  */
-void Game::Frog::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Frog::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +114,7 @@ void Game::Frog::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	80258684
  * Size:	000078
  */
-void Game::Frog::Obj::onInit((Game::CreatureInitArg*))
+void Game::Frog::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +156,7 @@ void Game::Frog::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802586FC
  * Size:	000044
  */
-void Game::Frog::Obj::onKill((Game::CreatureKillArg*))
+void Game::Frog::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +185,7 @@ void Game::Frog::Obj::onKill((Game::CreatureKillArg*))
  * Address:	80258740
  * Size:	000044
  */
-void Game::Frog::Obj::doUpdate(void)
+void Game::Frog::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -224,7 +214,7 @@ void Game::Frog::Obj::doUpdate(void)
  * Address:	80258784
  * Size:	000280
  */
-void Game::Frog::Obj::doSimulationFlying((float))
+void Game::Frog::Obj::doSimulationFlying(float)
 {
 	/*
 	.loc_0x0:
@@ -420,7 +410,7 @@ void Game::Frog::Obj::doSimulationFlying((float))
  * Address:	80258A04
  * Size:	000004
  */
-void Game::Frog::Obj::doDirectDraw((Graphics&))
+void Game::Frog::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -433,7 +423,7 @@ void Game::Frog::Obj::doDirectDraw((Graphics&))
  * Address:	80258A08
  * Size:	000020
  */
-void Game::Frog::Obj::doDebugDraw((Graphics&))
+void Game::Frog::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -453,7 +443,7 @@ void Game::Frog::Obj::doDebugDraw((Graphics&))
  * Address:	80258A28
  * Size:	00004C
  */
-void Game::Frog::Obj::setFSM((Game::Frog::FSM*))
+void Game::Frog::Obj::setFSM(Game::Frog::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -484,7 +474,7 @@ void Game::Frog::Obj::setFSM((Game::Frog::FSM*))
  * Address:	80258A74
  * Size:	000110
  */
-void Game::Frog::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Frog::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -574,7 +564,7 @@ void Game::Frog::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80258B84
  * Size:	000104
  */
-void Game::Frog::Obj::collisionCallback((Game::CollEvent&))
+void Game::Frog::Obj::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -655,7 +645,7 @@ void Game::Frog::Obj::collisionCallback((Game::CollEvent&))
  * Address:	80258C88
  * Size:	000034
  */
-void Game::Frog::Obj::doStartStoneState(void)
+void Game::Frog::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -680,7 +670,7 @@ void Game::Frog::Obj::doStartStoneState(void)
  * Address:	80258CBC
  * Size:	000064
  */
-void Game::Frog::Obj::doFinishStoneState(void)
+void Game::Frog::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -719,7 +709,7 @@ void Game::Frog::Obj::doFinishStoneState(void)
  * Address:	80258D20
  * Size:	000034
  */
-void Game::Frog::Obj::doStartEarthquakeFitState(void)
+void Game::Frog::Obj::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -744,7 +734,7 @@ void Game::Frog::Obj::doStartEarthquakeFitState(void)
  * Address:	80258D54
  * Size:	00005C
  */
-void Game::Frog::Obj::doFinishEarthquakeFitState(void)
+void Game::Frog::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -781,7 +771,7 @@ void Game::Frog::Obj::doFinishEarthquakeFitState(void)
  * Address:	80258DB0
  * Size:	000034
  */
-void Game::Frog::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::Frog::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -806,7 +796,7 @@ void Game::Frog::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	80258DE4
  * Size:	000034
  */
-void Game::Frog::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::Frog::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -831,7 +821,7 @@ void Game::Frog::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	80258E18
  * Size:	000028
  */
-void Game::Frog::Obj::startCarcassMotion(void)
+void Game::Frog::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -853,7 +843,7 @@ void Game::Frog::Obj::startCarcassMotion(void)
  * Address:	80258E40
  * Size:	00001C
  */
-void Game::Frog::Obj::viewGetCollTreeOffset(void)
+void Game::Frog::Obj::viewGetCollTreeOffset()
 {
 	/*
 	.loc_0x0:
@@ -872,7 +862,7 @@ void Game::Frog::Obj::viewGetCollTreeOffset(void)
  * Address:	80258E5C
  * Size:	000020
  */
-void Game::Frog::Obj::doStartMovie(void)
+void Game::Frog::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -892,7 +882,7 @@ void Game::Frog::Obj::doStartMovie(void)
  * Address:	80258E7C
  * Size:	000020
  */
-void Game::Frog::Obj::doEndMovie(void)
+void Game::Frog::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -912,7 +902,7 @@ void Game::Frog::Obj::doEndMovie(void)
  * Address:	80258E9C
  * Size:	000088
  */
-void Game::Frog::Obj::getOffsetForMapCollision(void)
+void Game::Frog::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -958,7 +948,7 @@ void Game::Frog::Obj::getOffsetForMapCollision(void)
  * Address:	80258F24
  * Size:	000054
  */
-void getCommonEffectPos__Q34Game4Frog3ObjFR10Vector3<float>(void)
+void Game::Frog::Obj::getCommonEffectPos(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -991,7 +981,7 @@ void getCommonEffectPos__Q34Game4Frog3ObjFR10Vector3<float>(void)
  * Address:	80258F78
  * Size:	000050
  */
-void Game::Frog::Obj::updateCaution(void)
+void Game::Frog::Obj::updateCaution()
 {
 	/*
 	.loc_0x0:
@@ -1027,7 +1017,7 @@ void Game::Frog::Obj::updateCaution(void)
  * Address:	80258FC8
  * Size:	000024
  */
-void Game::Frog::Obj::getViewAngle(void)
+void Game::Frog::Obj::getViewAngle()
 {
 	/*
 	.loc_0x0:
@@ -1050,7 +1040,7 @@ void Game::Frog::Obj::getViewAngle(void)
  * Address:	80258FEC
  * Size:	0000D8
  */
-void Game::Frog::Obj::startJumpAttack(void)
+void Game::Frog::Obj::startJumpAttack()
 {
 	/*
 	.loc_0x0:
@@ -1124,7 +1114,7 @@ void Game::Frog::Obj::startJumpAttack(void)
  * Address:	802590C4
  * Size:	0000D8
  */
-void Game::Frog::Obj::resetHomePosition(void)
+void Game::Frog::Obj::resetHomePosition()
 {
 	/*
 	.loc_0x0:
@@ -1196,7 +1186,7 @@ void Game::Frog::Obj::resetHomePosition(void)
  * Address:	8025919C
  * Size:	00024C
  */
-void Game::Frog::Obj::pressOnGround(void)
+void Game::Frog::Obj::pressOnGround()
 {
 	/*
 	.loc_0x0:
@@ -1363,7 +1353,7 @@ void Game::Frog::Obj::pressOnGround(void)
  * Address:	802593E8
  * Size:	0000B0
  */
-void Game::Frog::Obj::createEffect(void)
+void Game::Frog::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -1421,7 +1411,7 @@ void Game::Frog::Obj::createEffect(void)
  * Address:	80259498
  * Size:	000010
  */
-void Game::Frog::Obj::setupEffect(void)
+void Game::Frog::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -1437,7 +1427,7 @@ void Game::Frog::Obj::setupEffect(void)
  * Address:	802594A8
  * Size:	000034
  */
-void Game::Frog::Obj::startJumpEffect(void)
+void Game::Frog::Obj::startJumpEffect()
 {
 	/*
 	.loc_0x0:
@@ -1462,7 +1452,7 @@ void Game::Frog::Obj::startJumpEffect(void)
  * Address:	802594DC
  * Size:	000030
  */
-void Game::Frog::Obj::finishJumpEffect(void)
+void Game::Frog::Obj::finishJumpEffect()
 {
 	/*
 	.loc_0x0:
@@ -1486,7 +1476,7 @@ void Game::Frog::Obj::finishJumpEffect(void)
  * Address:	8025950C
  * Size:	0000C0
  */
-void Game::Frog::Obj::createDownEffect((float))
+void Game::Frog::Obj::createDownEffect(float)
 {
 	/*
 	.loc_0x0:
@@ -1550,7 +1540,7 @@ void Game::Frog::Obj::createDownEffect((float))
  * Address:	802595CC
  * Size:	000030
  */
-void Game::Frog::Obj::effectDrawOn(void)
+void Game::Frog::Obj::effectDrawOn()
 {
 	/*
 	.loc_0x0:
@@ -1574,7 +1564,7 @@ void Game::Frog::Obj::effectDrawOn(void)
  * Address:	802595FC
  * Size:	000030
  */
-void Game::Frog::Obj::effectDrawOff(void)
+void Game::Frog::Obj::effectDrawOff()
 {
 	/*
 	.loc_0x0:
@@ -1598,7 +1588,7 @@ void Game::Frog::Obj::effectDrawOff(void)
  * Address:	8025962C
  * Size:	00009C
  */
-void efx::TFrogPota::__dt(void)
+void efx::TFrogPota::~TFrogPota()
 {
 	/*
 	.loc_0x0:
@@ -1653,7 +1643,7 @@ void efx::TFrogPota::__dt(void)
  * Address:	802596C8
  * Size:	000004
  */
-void efx::TSimple4::forceKill(void)
+void efx::TSimple4::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -1666,7 +1656,7 @@ void efx::TSimple4::forceKill(void)
  * Address:	802596CC
  * Size:	000004
  */
-void efx::TSimple4::fade(void)
+void efx::TSimple4::fade()
 {
 	/*
 	.loc_0x0:
@@ -1679,7 +1669,7 @@ void efx::TSimple4::fade(void)
  * Address:	802596D0
  * Size:	000004
  */
-void Game::Frog::Obj::inWaterCallback((Game::WaterBox*))
+void Game::Frog::Obj::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -1692,7 +1682,7 @@ void Game::Frog::Obj::inWaterCallback((Game::WaterBox*))
  * Address:	802596D4
  * Size:	000004
  */
-void Game::Frog::Obj::outWaterCallback(void)
+void Game::Frog::Obj::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -1705,7 +1695,7 @@ void Game::Frog::Obj::outWaterCallback(void)
  * Address:	802596D8
  * Size:	000008
  */
-void Game::Frog::Obj::getEnemyTypeID(void)
+void Game::Frog::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -1741,7 +1731,7 @@ void __sinit_Frog_cpp(void)
  * Address:	80259708
  * Size:	000014
  */
-void @736 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@736 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -1758,7 +1748,7 @@ void @736 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8025971C
  * Size:	000014
  */
-void @736 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@736 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1775,7 +1765,7 @@ void @736 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	80259730
  * Size:	000014
  */
-void @736 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@736 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -1792,7 +1782,7 @@ void @736 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	80259744
  * Size:	000014
  */
-void @736 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@736 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1809,7 +1799,7 @@ void @736 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80259758
  * Size:	000014
  */
-void @736 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@736 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -1826,7 +1816,7 @@ void @736 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8025976C
  * Size:	000014
  */
-void @736 @12 @Game::Frog::Obj::viewGetCollTreeOffset(void)
+void Game::Frog::Obj::@736 @12 @viewGetCollTreeOffset()
 {
 	/*
 	.loc_0x0:
@@ -1843,7 +1833,7 @@ void @736 @12 @Game::Frog::Obj::viewGetCollTreeOffset(void)
  * Address:	80259780
  * Size:	000014
  */
-void @736 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@736 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -1860,7 +1850,7 @@ void @736 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80259794
  * Size:	000008
  */
-void @4 @efx::TFrogPota::__dt(void)
+void efx::TFrogPota::@4 @__dt()
 {
 	/*
 	.loc_0x0:

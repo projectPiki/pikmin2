@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80255CA4
  * Size:	000224
  */
-void Game::Pom::FSM::init((Game::EnemyBase*))
+void Game::Pom::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +166,7 @@ void Game::Pom::FSM::init((Game::EnemyBase*))
  * Address:	80255EC8
  * Size:	00002C
  */
-void Game::Pom::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pom::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +189,7 @@ void Game::Pom::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80255EF4
  * Size:	00005C
  */
-void Game::Pom::StateWait::exec((Game::EnemyBase*))
+void Game::Pom::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -234,7 +224,7 @@ void Game::Pom::StateWait::exec((Game::EnemyBase*))
  * Address:	80255F50
  * Size:	000004
  */
-void Game::Pom::StateWait::cleanup((Game::EnemyBase*))
+void Game::Pom::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -247,7 +237,7 @@ void Game::Pom::StateWait::cleanup((Game::EnemyBase*))
  * Address:	80255F54
  * Size:	000060
  */
-void Game::Pom::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pom::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -283,7 +273,7 @@ void Game::Pom::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80255FB4
  * Size:	000044
  */
-void Game::Pom::StateDead::exec((Game::EnemyBase*))
+void Game::Pom::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -314,7 +304,7 @@ void Game::Pom::StateDead::exec((Game::EnemyBase*))
  * Address:	80255FF8
  * Size:	000004
  */
-void Game::Pom::StateDead::cleanup((Game::EnemyBase*))
+void Game::Pom::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -327,7 +317,7 @@ void Game::Pom::StateDead::cleanup((Game::EnemyBase*))
  * Address:	80255FFC
  * Size:	000040
  */
-void Game::Pom::StateOpen::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pom::StateOpen::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -355,7 +345,7 @@ void Game::Pom::StateOpen::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8025603C
  * Size:	0000A0
  */
-void Game::Pom::StateOpen::exec((Game::EnemyBase*))
+void Game::Pom::StateOpen::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +401,7 @@ void Game::Pom::StateOpen::exec((Game::EnemyBase*))
  * Address:	802560DC
  * Size:	000004
  */
-void Game::Pom::StateOpen::cleanup((Game::EnemyBase*))
+void Game::Pom::StateOpen::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -424,7 +414,7 @@ void Game::Pom::StateOpen::cleanup((Game::EnemyBase*))
  * Address:	802560E0
  * Size:	000040
  */
-void Game::Pom::StateClose::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pom::StateClose::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -452,7 +442,7 @@ void Game::Pom::StateClose::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80256120
  * Size:	000078
  */
-void Game::Pom::StateClose::exec((Game::EnemyBase*))
+void Game::Pom::StateClose::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -498,7 +488,7 @@ void Game::Pom::StateClose::exec((Game::EnemyBase*))
  * Address:	80256198
  * Size:	000004
  */
-void Game::Pom::StateClose::cleanup((Game::EnemyBase*))
+void Game::Pom::StateClose::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -511,7 +501,7 @@ void Game::Pom::StateClose::cleanup((Game::EnemyBase*))
  * Address:	8025619C
  * Size:	00004C
  */
-void Game::Pom::StateShot::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pom::StateShot::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +532,7 @@ void Game::Pom::StateShot::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802561E8
  * Size:	000094
  */
-void Game::Pom::StateShot::exec((Game::EnemyBase*))
+void Game::Pom::StateShot::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -597,7 +587,7 @@ void Game::Pom::StateShot::exec((Game::EnemyBase*))
  * Address:	8025627C
  * Size:	000010
  */
-void Game::Pom::StateShot::cleanup((Game::EnemyBase*))
+void Game::Pom::StateShot::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -613,7 +603,7 @@ void Game::Pom::StateShot::cleanup((Game::EnemyBase*))
  * Address:	8025628C
  * Size:	00003C
  */
-void Game::Pom::StateSwing::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pom::StateSwing::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -640,7 +630,7 @@ void Game::Pom::StateSwing::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802562C8
  * Size:	0000F8
  */
-void Game::Pom::StateSwing::exec((Game::EnemyBase*))
+void Game::Pom::StateSwing::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -722,7 +712,7 @@ void Game::Pom::StateSwing::exec((Game::EnemyBase*))
  * Address:	802563C0
  * Size:	000004
  */
-void Game::Pom::StateSwing::cleanup((Game::EnemyBase*))
+void Game::Pom::StateSwing::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

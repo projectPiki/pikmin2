@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802A5058
  * Size:	000008
  */
-void Game::Damagumo::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Damagumo::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Damagumo::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802A5060
  * Size:	000008
  */
-void Game::Damagumo::ProperAnimator::getAnimator((int))
+void Game::Damagumo::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Damagumo::ProperAnimator::getAnimator((int))
  * Address:	802A5068
  * Size:	00005C
  */
-void Game::Damagumo::ProperAnimator::__dt(void)
+void Game::Damagumo::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Damagumo::ProperAnimator::__dt(void)
  * Address:	802A50C4
  * Size:	000008
  */
-void Game::Damagumo::ProperAnimator::getAnimator(void)
+void Game::Damagumo::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80275A18
  * Size:	000050
  */
-void Game::Tank::Mgr::__ct((int, unsigned char))
+void Game::Tank::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Tank::Mgr::__ct((int, unsigned char))
  * Address:	80275A68
  * Size:	00009C
  */
-void Game::Tank::Mgr::loadModelData(void)
+void Game::Tank::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -104,7 +94,7 @@ void Game::Tank::Mgr::loadModelData(void)
  * Address:	80275B04
  * Size:	000090
  */
-void Game::Tank::Mgr::loadAnimData(void)
+void Game::Tank::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -158,7 +148,7 @@ void Game::Tank::Mgr::loadAnimData(void)
  * Address:	80275B94
  * Size:	000138
  */
-void Game::Tank::Mgr::createModel(void)
+void Game::Tank::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -258,7 +248,7 @@ void Game::Tank::Mgr::createModel(void)
  * Address:	80275CCC
  * Size:	0000B0
  */
-void Game::Tank::Mgr::__dt(void)
+void Game::Tank::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -318,7 +308,7 @@ void Game::Tank::Mgr::__dt(void)
  * Address:	80275D7C
  * Size:	000008
  */
-void Game::Tank::Mgr::getEnemyTypeID(void)
+void Game::Tank::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -332,7 +322,7 @@ void Game::Tank::Mgr::getEnemyTypeID(void)
  * Address:	80275D84
  * Size:	000008
  */
-void @4 @Game::Tank::Mgr::__dt(void)
+void Game::Tank::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

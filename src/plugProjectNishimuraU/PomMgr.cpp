@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80253E8C
  * Size:	000050
  */
-void Game::Pom::Mgr::__ct((int, unsigned char))
+void Game::Pom::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Pom::Mgr::__ct((int, unsigned char))
  * Address:	80253EDC
  * Size:	0001F4
  */
-void Game::Pom::Mgr::birth((Game::EnemyBirthArg&))
+void Game::Pom::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -200,7 +190,7 @@ void Game::Pom::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	802540D0
  * Size:	000048
  */
-void Game::Pom::Mgr::doAlloc(void)
+void Game::Pom::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -234,7 +224,7 @@ void Game::Pom::Mgr::doAlloc(void)
  * Address:	80254118
  * Size:	0001C8
  */
-void Game::Pom::Parms::__ct(void)
+void Game::Pom::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -360,7 +350,7 @@ void Game::Pom::Parms::__ct(void)
  * Address:	802542E0
  * Size:	000188
  */
-void Game::Pom::Mgr::createObj((int))
+void Game::Pom::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -480,7 +470,7 @@ void Game::Pom::Mgr::createObj((int))
  * Address:	80254468
  * Size:	0000BC
  */
-void Game::Pom::Obj::__dt(void)
+void Game::Pom::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -543,7 +533,7 @@ void Game::Pom::Obj::__dt(void)
  * Address:	80254524
  * Size:	000010
  */
-void Game::Pom::Mgr::getEnemy((int))
+void Game::Pom::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +549,7 @@ void Game::Pom::Mgr::getEnemy((int))
  * Address:	80254534
  * Size:	000138
  */
-void Game::Pom::Mgr::createModel(void)
+void Game::Pom::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -659,7 +649,7 @@ void Game::Pom::Mgr::createModel(void)
  * Address:	8025466C
  * Size:	000050
  */
-void Game::Pom::Parms::read((Stream&))
+void Game::Pom::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -691,7 +681,7 @@ void Game::Pom::Parms::read((Stream&))
  * Address:	802546BC
  * Size:	0000B0
  */
-void Game::Pom::Mgr::__dt(void)
+void Game::Pom::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -751,7 +741,7 @@ void Game::Pom::Mgr::__dt(void)
  * Address:	8025476C
  * Size:	000008
  */
-void Game::Pom::Mgr::getEnemyTypeID(void)
+void Game::Pom::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -787,7 +777,7 @@ void __sinit_PomMgr_cpp(void)
  * Address:	8025479C
  * Size:	000008
  */
-void @4 @Game::Pom::Mgr::__dt(void)
+void Game::Pom::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

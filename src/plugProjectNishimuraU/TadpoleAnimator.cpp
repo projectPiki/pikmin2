@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802781F0
  * Size:	000008
  */
-void Game::Tadpole::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::Tadpole::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::Tadpole::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	802781F8
  * Size:	000008
  */
-void Game::Tadpole::ProperAnimator::getAnimator((int))
+void Game::Tadpole::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::Tadpole::ProperAnimator::getAnimator((int))
  * Address:	80278200
  * Size:	00005C
  */
-void Game::Tadpole::ProperAnimator::__dt(void)
+void Game::Tadpole::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::Tadpole::ProperAnimator::__dt(void)
  * Address:	8027825C
  * Size:	000008
  */
-void Game::Tadpole::ProperAnimator::getAnimator(void)
+void Game::Tadpole::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

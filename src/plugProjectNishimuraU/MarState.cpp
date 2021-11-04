@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80282614
  * Size:	00042C
  */
-void Game::Mar::FSM::init((Game::EnemyBase*))
+void Game::Mar::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +308,7 @@ void Game::Mar::FSM::init((Game::EnemyBase*))
  * Address:	80282A40
  * Size:	0000AC
  */
-void Game::Mar::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -377,7 +367,7 @@ void Game::Mar::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80282AEC
  * Size:	000088
  */
-void Game::Mar::StateDead::exec((Game::EnemyBase*))
+void Game::Mar::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -427,7 +417,7 @@ void Game::Mar::StateDead::exec((Game::EnemyBase*))
  * Address:	80282B74
  * Size:	000004
  */
-void Game::Mar::StateDead::cleanup((Game::EnemyBase*))
+void Game::Mar::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -440,7 +430,7 @@ void Game::Mar::StateDead::cleanup((Game::EnemyBase*))
  * Address:	80282B78
  * Size:	000054
  */
-void Game::Mar::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -473,7 +463,7 @@ void Game::Mar::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80282BCC
  * Size:	000138
  */
-void Game::Mar::StateWait::exec((Game::EnemyBase*))
+void Game::Mar::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -573,7 +563,7 @@ void Game::Mar::StateWait::exec((Game::EnemyBase*))
  * Address:	80282D04
  * Size:	000004
  */
-void Game::Mar::StateWait::cleanup((Game::EnemyBase*))
+void Game::Mar::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -586,7 +576,7 @@ void Game::Mar::StateWait::cleanup((Game::EnemyBase*))
  * Address:	80282D08
  * Size:	00004C
  */
-void Game::Mar::StateMove::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -617,7 +607,7 @@ void Game::Mar::StateMove::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80282D54
  * Size:	0001A0
  */
-void Game::Mar::StateMove::exec((Game::EnemyBase*))
+void Game::Mar::StateMove::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -745,7 +735,7 @@ void Game::Mar::StateMove::exec((Game::EnemyBase*))
  * Address:	80282EF4
  * Size:	000004
  */
-void Game::Mar::StateMove::cleanup((Game::EnemyBase*))
+void Game::Mar::StateMove::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -758,7 +748,7 @@ void Game::Mar::StateMove::cleanup((Game::EnemyBase*))
  * Address:	80282EF8
  * Size:	000030
  */
-void Game::Mar::StateChase::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateChase::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -782,7 +772,7 @@ void Game::Mar::StateChase::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80282F28
  * Size:	000530
  */
-void Game::Mar::StateChase::exec((Game::EnemyBase*))
+void Game::Mar::StateChase::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1160,7 +1150,7 @@ void Game::Mar::StateChase::exec((Game::EnemyBase*))
  * Address:	80283458
  * Size:	000024
  */
-void Game::Mar::StateChase::cleanup((Game::EnemyBase*))
+void Game::Mar::StateChase::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1181,7 +1171,7 @@ void Game::Mar::StateChase::cleanup((Game::EnemyBase*))
  * Address:	8028347C
  * Size:	000124
  */
-void Game::Mar::StateChaseInside::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateChaseInside::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1276,7 +1266,7 @@ void Game::Mar::StateChaseInside::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802835A0
  * Size:	00037C
  */
-void Game::Mar::StateChaseInside::exec((Game::EnemyBase*))
+void Game::Mar::StateChaseInside::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1531,7 +1521,7 @@ void Game::Mar::StateChaseInside::exec((Game::EnemyBase*))
  * Address:	8028391C
  * Size:	000024
  */
-void Game::Mar::StateChaseInside::cleanup((Game::EnemyBase*))
+void Game::Mar::StateChaseInside::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1552,7 +1542,7 @@ void Game::Mar::StateChaseInside::cleanup((Game::EnemyBase*))
  * Address:	80283940
  * Size:	000088
  */
-void Game::Mar::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1598,7 +1588,7 @@ void Game::Mar::StateAttack::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802839C8
  * Size:	0000E0
  */
-void Game::Mar::StateAttack::exec((Game::EnemyBase*))
+void Game::Mar::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1674,7 +1664,7 @@ void Game::Mar::StateAttack::exec((Game::EnemyBase*))
  * Address:	80283AA8
  * Size:	000054
  */
-void Game::Mar::StateAttack::cleanup((Game::EnemyBase*))
+void Game::Mar::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1707,7 +1697,7 @@ void Game::Mar::StateAttack::cleanup((Game::EnemyBase*))
  * Address:	80283AFC
  * Size:	000068
  */
-void Game::Mar::StateFall::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1745,7 +1735,7 @@ void Game::Mar::StateFall::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80283B64
  * Size:	0001A4
  */
-void Game::Mar::StateFall::exec((Game::EnemyBase*))
+void Game::Mar::StateFall::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1876,7 +1866,7 @@ void Game::Mar::StateFall::exec((Game::EnemyBase*))
  * Address:	80283D08
  * Size:	000038
  */
-void Game::Mar::StateFall::cleanup((Game::EnemyBase*))
+void Game::Mar::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1902,7 +1892,7 @@ void Game::Mar::StateFall::cleanup((Game::EnemyBase*))
  * Address:	80283D40
  * Size:	000070
  */
-void Game::Mar::StateLand::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1942,7 +1932,7 @@ void Game::Mar::StateLand::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80283DB0
  * Size:	000080
  */
-void Game::Mar::StateLand::exec((Game::EnemyBase*))
+void Game::Mar::StateLand::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1990,7 +1980,7 @@ void Game::Mar::StateLand::exec((Game::EnemyBase*))
  * Address:	80283E30
  * Size:	000024
  */
-void Game::Mar::StateLand::cleanup((Game::EnemyBase*))
+void Game::Mar::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2011,7 +2001,7 @@ void Game::Mar::StateLand::cleanup((Game::EnemyBase*))
  * Address:	80283E54
  * Size:	000068
  */
-void Game::Mar::StateGround::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateGround::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2049,7 +2039,7 @@ void Game::Mar::StateGround::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80283EBC
  * Size:	000114
  */
-void Game::Mar::StateGround::exec((Game::EnemyBase*))
+void Game::Mar::StateGround::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2140,7 +2130,7 @@ void Game::Mar::StateGround::exec((Game::EnemyBase*))
  * Address:	80283FD0
  * Size:	000024
  */
-void Game::Mar::StateGround::cleanup((Game::EnemyBase*))
+void Game::Mar::StateGround::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2161,7 +2151,7 @@ void Game::Mar::StateGround::cleanup((Game::EnemyBase*))
  * Address:	80283FF4
  * Size:	000064
  */
-void Game::Mar::StateTakeOff::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2198,7 +2188,7 @@ void Game::Mar::StateTakeOff::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80284058
  * Size:	0000EC
  */
-void Game::Mar::StateTakeOff::exec((Game::EnemyBase*))
+void Game::Mar::StateTakeOff::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2277,7 +2267,7 @@ void Game::Mar::StateTakeOff::exec((Game::EnemyBase*))
  * Address:	80284144
  * Size:	000038
  */
-void Game::Mar::StateTakeOff::cleanup((Game::EnemyBase*))
+void Game::Mar::StateTakeOff::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2303,7 +2293,7 @@ void Game::Mar::StateTakeOff::cleanup((Game::EnemyBase*))
  * Address:	8028417C
  * Size:	000064
  */
-void Game::Mar::StateFlyFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2340,7 +2330,7 @@ void Game::Mar::StateFlyFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	802841E0
  * Size:	0000E4
  */
-void Game::Mar::StateFlyFlick::exec((Game::EnemyBase*))
+void Game::Mar::StateFlyFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2415,7 +2405,7 @@ void Game::Mar::StateFlyFlick::exec((Game::EnemyBase*))
  * Address:	802842C4
  * Size:	000024
  */
-void Game::Mar::StateFlyFlick::cleanup((Game::EnemyBase*))
+void Game::Mar::StateFlyFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2436,7 +2426,7 @@ void Game::Mar::StateFlyFlick::cleanup((Game::EnemyBase*))
  * Address:	802842E8
  * Size:	000064
  */
-void Game::Mar::StateGroundFlick::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Mar::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2473,7 +2463,7 @@ void Game::Mar::StateGroundFlick::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8028434C
  * Size:	000100
  */
-void Game::Mar::StateGroundFlick::exec((Game::EnemyBase*))
+void Game::Mar::StateGroundFlick::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2555,7 +2545,7 @@ void Game::Mar::StateGroundFlick::exec((Game::EnemyBase*))
  * Address:	8028444C
  * Size:	000024
  */
-void Game::Mar::StateGroundFlick::cleanup((Game::EnemyBase*))
+void Game::Mar::StateGroundFlick::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

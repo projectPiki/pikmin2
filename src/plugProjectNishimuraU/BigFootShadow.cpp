@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	802C7810
  * Size:	00020C
  */
-void Game::BigFoot::BigFootShadowMgr::__ct((Game::BigFoot::Obj*))
+void Game::BigFoot::BigFootShadowMgr::BigFootShadowMgr(Game::BigFoot::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +166,7 @@ void Game::BigFoot::BigFootShadowMgr::__ct((Game::BigFoot::Obj*))
  * Address:	802C7A1C
  * Size:	00014C
  */
-void Game::BigFoot::BigFootShadowMgr::init(void)
+void Game::BigFoot::BigFootShadowMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -271,7 +261,7 @@ void Game::BigFoot::BigFootShadowMgr::init(void)
  * Address:	802C7B68
  * Size:	000018
  */
-void setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3<float>(void)
+void Game::BigFoot::BigFootShadowMgr::setJointPosPtr(int, int, Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -289,7 +279,7 @@ void setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3<float>(void)
  * Address:	802C7B80
  * Size:	000370
  */
-void Game::BigFoot::BigFootShadowMgr::update(void)
+void Game::BigFoot::BigFootShadowMgr::update()
 {
 	/*
 	.loc_0x0:
