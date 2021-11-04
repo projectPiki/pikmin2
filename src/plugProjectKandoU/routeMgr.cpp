@@ -107,25 +107,6 @@ s16 WayPointIterator::operator*(void)
 
 	return m_wayPoint->_4E[m_index];
 }
-/*
-.loc_0x0:
-  lwz       r0, 0x0(r3)
-  cmpwi     r0, 0x8
-  bge-      .loc_0x20
-  lwz       r3, 0x4(r3)
-  rlwinm    r0,r0,1,0,30
-  add       r3, r3, r0
-  lha       r3, 0x3A(r3)
-  blr
-
-.loc_0x20:
-  lwz       r3, 0x4(r3)
-  rlwinm    r0,r0,1,0,30
-  add       r3, r3, r0
-  lha       r3, 0x4E(r3)
-  blr
-*/
-// }
 } // namespace Game
 
 // /*
