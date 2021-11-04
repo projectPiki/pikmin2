@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -354,13 +354,7 @@ void Game::Sarai::StateDead::exec(Game::EnemyBase*)
  * Address:	80270D24
  * Size:	000004
  */
-void Game::Sarai::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1169,13 +1163,7 @@ void Game::Sarai::StateWait::exec(Game::EnemyBase*)
  * Address:	80271628
  * Size:	000004
  */
-void Game::Sarai::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1373,13 +1361,7 @@ void Game::Sarai::StateMove::exec(Game::EnemyBase*)
  * Address:	80271890
  * Size:	000004
  */
-void Game::Sarai::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2364,10 +2346,4 @@ void Game::Sarai::StateFallMeck::cleanup(Game::EnemyBase*)
  * Address:	8027248C
  * Size:	000004
  */
-void Game::Sarai::Obj::resetAttackableTimer(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::Obj::resetAttackableTimer(float) { }

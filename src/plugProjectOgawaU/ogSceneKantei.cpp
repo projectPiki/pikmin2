@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -44,13 +44,7 @@ void og::newScreen::KanteiDemo::__dt(void)
  * Address:	80319C20
  * Size:	000004
  */
-void og::newScreen::KanteiDemo::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::KanteiDemo::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

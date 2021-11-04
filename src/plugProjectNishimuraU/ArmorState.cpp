@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -439,13 +439,7 @@ void Game::Armor::StateDead::exec(Game::EnemyBase*)
  * Address:	80286490
  * Size:	000004
  */
-void Game::Armor::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1216,13 +1210,7 @@ void Game::Armor::StateMove::exec(Game::EnemyBase*)
  * Address:	80286DD4
  * Size:	000004
  */
-void Game::Armor::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1350,13 +1338,7 @@ void Game::Armor::StateMoveSide::exec(Game::EnemyBase*)
  * Address:	80286F34
  * Size:	000004
  */
-void Game::Armor::StateMoveSide::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateMoveSide::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1484,13 +1466,7 @@ void Game::Armor::StateMoveCentre::exec(Game::EnemyBase*)
  * Address:	80287094
  * Size:	000004
  */
-void Game::Armor::StateMoveCentre::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateMoveCentre::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1618,13 +1594,7 @@ void Game::Armor::StateMoveTop::exec(Game::EnemyBase*)
  * Address:	802871F4
  * Size:	000004
  */
-void Game::Armor::StateMoveTop::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateMoveTop::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1817,13 +1787,7 @@ void Game::Armor::StateGoHome::exec(Game::EnemyBase*)
  * Address:	80287448
  * Size:	000004
  */
-void Game::Armor::StateGoHome::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateGoHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1969,13 +1933,7 @@ void Game::Armor::StateAttack1::exec(Game::EnemyBase*)
  * Address:	802875E0
  * Size:	000004
  */
-void Game::Armor::StateAttack1::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateAttack1::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2146,13 +2104,7 @@ void Game::Armor::StateAttack2::exec(Game::EnemyBase*)
  * Address:	802877DC
  * Size:	000004
  */
-void Game::Armor::StateAttack2::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateAttack2::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2242,13 +2194,7 @@ void Game::Armor::StateEat::exec(Game::EnemyBase*)
  * Address:	802878B4
  * Size:	000004
  */
-void Game::Armor::StateEat::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateEat::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2381,13 +2327,7 @@ void Game::Armor::StateFlick::exec(Game::EnemyBase*)
  * Address:	80287A38
  * Size:	000004
  */
-void Game::Armor::StateFlick::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateFlick::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2469,10 +2409,4 @@ void Game::Armor::StateFail::exec(Game::EnemyBase*)
  * Address:	80287AF8
  * Size:	000004
  */
-void Game::Armor::StateFail::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::StateFail::cleanup(Game::EnemyBase*) { }

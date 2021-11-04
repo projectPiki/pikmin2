@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -87,10 +87,6 @@ void JStage::TSystem::JSGCreateObject( (char const *, JStage::TEObject, unsigned
  */
 void JStage::TSystem::JSGDestroyObject( (JStage::TObject *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -114,8 +110,4 @@ void JStage::TSystem::JSGGetSystemData( (unsigned long))
  */
 void JStage::TSystem::JSGSetSystemData( (unsigned long, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -391,13 +391,7 @@ void ArrayContainer<MapCode::Code>::write(Stream&)
  * Address:	8041C75C
  * Size:	000004
  */
-void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&) { }
 
 /*
  * --INFO--
@@ -483,13 +477,7 @@ void ArrayContainer<MapCode::Code>::read(Stream&)
  * Address:	8041C82C
  * Size:	000004
  */
-void ArrayContainer<MapCode::Code>::readObject(Stream&, MapCode::Code&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<MapCode::Code>::readObject(Stream&, MapCode::Code&) { }
 
 /*
  * --INFO--

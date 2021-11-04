@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -25,13 +25,7 @@ void Morimura::TChallengePiki::__ct((J2DPane*, J2DPane*, J2DPane*))
  * Address:	8038C488
  * Size:	000004
  */
-void Morimura::TChallengePiki::posInfo::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Morimura::TChallengePiki::posInfo::__ct(void) { }
 
 /*
  * --INFO--
@@ -3022,13 +3016,7 @@ void Morimura::TChallengeSelectExplanationWindow::create((char const*,
  * Address:	8038E9B4
  * Size:	000004
  */
-void Morimura::TChallengeSelectExplanationWindow::screenScaleUp(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Morimura::TChallengeSelectExplanationWindow::screenScaleUp(void) { }
 
 /*
  * --INFO--

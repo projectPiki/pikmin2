@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Imomushi::Obj::Obj()
  * Address:	802BC270
  * Size:	000004
  */
-void Game::Imomushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Imomushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -608,13 +602,7 @@ void Game::Imomushi::Obj::doAnimationStick()
  * Address:	802BC8A4
  * Size:	000004
  */
-void Game::Imomushi::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Imomushi::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2314,13 +2314,7 @@ void J2DAnmVisibilityFull::~J2DAnmVisibilityFull()
  * Address:	80049378
  * Size:	000004
  */
-void J2DAnmBase::searchUpdateMaterialID(J2DScreen*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DAnmBase::searchUpdateMaterialID(J2DScreen*) { }
 
 /*
  * --INFO--

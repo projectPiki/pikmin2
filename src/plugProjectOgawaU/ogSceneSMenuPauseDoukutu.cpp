@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -60,10 +60,6 @@ void og::newScreen::SMenuPauseDoukutu::__dt(void)
 void og::newScreen::SMenuPauseDoukutu::doUserCallBackFunc(
     (Resource::MgrCommand*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -159,13 +155,7 @@ void og::newScreen::SMenuPauseDoukutu::doGetFinishState(void)
  * Address:	803236C8
  * Size:	000004
  */
-void og::newScreen::SMenuPauseDoukutu::doUpdateActive(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::SMenuPauseDoukutu::doUpdateActive(void) { }
 
 /*
  * --INFO--

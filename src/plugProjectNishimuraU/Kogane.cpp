@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -99,13 +99,7 @@ void Game::Kogane::Obj::Obj()
  * Address:	8025DDBC
  * Size:	000004
  */
-void Game::Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -204,13 +198,7 @@ void Game::Kogane::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8025DEF0
  * Size:	000004
  */
-void Game::Kogane::Obj::resetFartTimer()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::resetFartTimer() { }
 
 /*
  * --INFO--
@@ -294,13 +282,7 @@ void Game::Kogane::Obj::doUpdateCommon()
  * Address:	8025DF98
  * Size:	000004
  */
-void Game::Kogane::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -650,13 +632,7 @@ void Game::Kogane::Obj::doStartMovie()
  * Address:	8025E2E8
  * Size:	000004
  */
-void Game::Kogane::Obj::effectDrawOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
@@ -686,13 +662,7 @@ void Game::Kogane::Obj::doEndMovie()
  * Address:	8025E318
  * Size:	000004
  */
-void Game::Kogane::Obj::effectDrawOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::effectDrawOn() { }
 
 /*
  * --INFO--
@@ -1760,26 +1730,14 @@ void Game::Kogane::Obj::~Obj()
  * Address:	8025F010
  * Size:	000004
  */
-void Game::Kogane::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8025F014
  * Size:	000004
  */
-void Game::Kogane::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

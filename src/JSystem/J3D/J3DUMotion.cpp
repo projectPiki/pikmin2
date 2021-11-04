@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -414,26 +414,14 @@ void J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*,
  * Address:	80016380
  * Size:	000004
  */
-void J3DMtxCalc::setWeight(unsigned char, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DMtxCalc::setWeight(unsigned char, float) { }
 
 /*
  * --INFO--
  * Address:	80016384
  * Size:	000004
  */
-void J3DMtxCalc::setAnmTransform(unsigned char, J3DAnmTransform*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DMtxCalc::setAnmTransform(unsigned char, J3DAnmTransform*) { }
 
 /*
  * --INFO--
@@ -1230,13 +1218,7 @@ void J3DMtxCalcBlendAnmBase::setWeight(unsigned char, float)
  * Address:	80016CEC
  * Size:	000004
  */
-void J3DMtxCalc::setAnmTransform(J3DAnmTransform*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DMtxCalc::setAnmTransform(J3DAnmTransform*) { }
 
 /*
  * --INFO--

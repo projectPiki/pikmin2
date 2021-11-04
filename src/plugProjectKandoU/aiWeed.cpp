@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1105,13 +1105,7 @@ void PikiAI::ActWeed::cleanup(void)
  * Address:	8020E53C
  * Size:	000004
  */
-void PikiAI::ActWeed::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActWeed::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
 
 /*
  * --INFO--

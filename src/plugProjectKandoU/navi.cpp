@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1220,13 +1220,7 @@ void Game::Navi::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	80140518
  * Size:	000004
  */
-void Game::NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--

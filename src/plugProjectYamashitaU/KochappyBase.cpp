@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -143,12 +143,7 @@ void Game::KochappyBase::Obj::birth(Vector3<float>&, float)
  * Address:	8012DC98
  * Size:	000004
  */
-void Game::KochappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::KochappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) {
 }
 
 /*
@@ -246,13 +241,7 @@ void Game::KochappyBase::Obj::doUpdate()
  * Address:	8012DD8C
  * Size:	000004
  */
-void Game::KochappyBase::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KochappyBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -433,13 +422,7 @@ void Game::KochappyBase::Obj::doStartStoneState()
  * Address:	8012DF38
  * Size:	000004
  */
-void Game::KochappyBase::Obj::doFinishStoneState()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KochappyBase::Obj::doFinishStoneState() { }
 
 /*
  * --INFO--

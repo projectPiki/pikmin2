@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -149,13 +149,7 @@ void Game::ItemPlant::NormalState::init(Game::ItemPlant::Item*, Game::StateArg*)
  * Address:	801DCFE8
  * Size:	000004
  */
-void Game::ItemPlant::Item::startMotion(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::Item::startMotion(int) { }
 
 /*
  * --INFO--
@@ -260,13 +254,7 @@ void Game::ItemPlant::NormalState::exec(Game::ItemPlant::Item*)
  * Address:	801DD114
  * Size:	000004
  */
-void Game::ItemPlant::Item::bearFruits()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::Item::bearFruits() { }
 
 /*
  * --INFO--
@@ -298,13 +286,7 @@ void Game::FSMState<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int,
  * Address:	801DD148
  * Size:	000004
  */
-void Game::ItemPlant::NormalState::cleanup(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::NormalState::cleanup(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
@@ -402,26 +384,14 @@ void Game::ItemPlant::DamagedState::init(Game::ItemPlant::Item*,
  * Address:	801DD224
  * Size:	000004
  */
-void Game::ItemPlant::DamagedState::exec(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::DamagedState::exec(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801DD228
  * Size:	000004
  */
-void Game::ItemPlant::DamagedState::cleanup(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::DamagedState::cleanup(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
@@ -545,26 +515,14 @@ void Game::ItemPlant::GrowUpState::init(Game::ItemPlant::Item*, Game::StateArg*)
  * Address:	801DD32C
  * Size:	000004
  */
-void Game::ItemPlant::GrowUpState::exec(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::GrowUpState::exec(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801DD330
  * Size:	000004
  */
-void Game::ItemPlant::GrowUpState::cleanup(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::GrowUpState::cleanup(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
@@ -745,13 +703,7 @@ void Game::ItemPlant::KareruState::init(Game::ItemPlant::Item*, Game::StateArg*)
  * Address:	801DD500
  * Size:	000004
  */
-void Game::ItemPlant::Item::killFruits()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::Item::killFruits() { }
 
 /*
  * --INFO--
@@ -807,13 +759,7 @@ void Game::ItemPlant::KareruState::exec(Game::ItemPlant::Item*)
  * Address:	801DD590
  * Size:	000004
  */
-void Game::ItemPlant::KareruState::cleanup(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::KareruState::cleanup(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
@@ -902,13 +848,7 @@ void Game::ItemPlant::KareruState::onKeyEvent(Game::ItemPlant::Item*,
  * Address:	801DD650
  * Size:	000004
  */
-void Game::ItemPlant::KareruState::onDamage(Game::ItemPlant::Item*, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::KareruState::onDamage(Game::ItemPlant::Item*, float) { }
 
 /*
  * --INFO--
@@ -1212,10 +1152,6 @@ void Game::ItemPlant::Item::interactAttack(Game::InteractAttack&)
 void Game::ItemState<Game::ItemPlant::Item>::onDamage(Game::ItemPlant::Item*,
                                                       float)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1249,13 +1185,7 @@ void Game::ItemPlant::Item::interactFarmKarero(Game::InteractFarmKarero&)
  * Address:	801DD930
  * Size:	000004
  */
-void Game::ItemPlant::State::eventKarero(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::State::eventKarero(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
@@ -1288,13 +1218,7 @@ void Game::ItemPlant::Item::interactFarmHaero(Game::InteractFarmHaero&)
  * Address:	801DD96C
  * Size:	000004
  */
-void Game::ItemPlant::State::eventHaero(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::State::eventHaero(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
@@ -1582,13 +1506,7 @@ void Game::ItemPlant::Item::addDamage(float)
  * Address:	801DDD24
  * Size:	000004
  */
-void Game::ItemPlant::Item::dropFruit(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::Item::dropFruit(int) { }
 
 /*
  * --INFO--
@@ -5383,13 +5301,7 @@ void Game::ItemPlant::Item::changeMaterial()
  * Address:	801E0B14
  * Size:	000004
  */
-void Game::ItemPlant::Item::setColor(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPlant::Item::setColor(float) { }
 
 /*
  * --INFO--
@@ -5467,10 +5379,6 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
 void Game::ItemState<Game::ItemPlant::Item>::onKeyEvent(
     Game::ItemPlant::Item*, const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5481,10 +5389,6 @@ void Game::ItemState<Game::ItemPlant::Item>::onKeyEvent(
 void Game::ItemState<Game::ItemPlant::Item>::onBounce(Game::ItemPlant::Item*,
                                                       Sys::Triangle*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5495,10 +5399,6 @@ void Game::ItemState<Game::ItemPlant::Item>::onBounce(Game::ItemPlant::Item*,
 void Game::ItemState<Game::ItemPlant::Item>::onPlatCollision(
     Game::ItemPlant::Item*, Game::PlatEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5509,10 +5409,6 @@ void Game::ItemState<Game::ItemPlant::Item>::onPlatCollision(
 void Game::ItemState<Game::ItemPlant::Item>::onCollision(Game::ItemPlant::Item*,
                                                          Game::CollEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5523,10 +5419,6 @@ void Game::ItemState<Game::ItemPlant::Item>::onCollision(Game::ItemPlant::Item*,
 void Game::FSMState<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*,
                                                  Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5534,65 +5426,35 @@ void Game::FSMState<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*,
  * Address:	801E0B78
  * Size:	000004
  */
-void Game::FSMState<Game::ItemPlant::Item>::exec(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemPlant::Item>::exec(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B7C
  * Size:	000004
  */
-void Game::FSMState<Game::ItemPlant::Item>::cleanup(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemPlant::Item>::cleanup(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B80
  * Size:	000004
  */
-void Game::FSMState<Game::ItemPlant::Item>::resume(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemPlant::Item>::resume(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B84
  * Size:	000004
  */
-void Game::FSMState<Game::ItemPlant::Item>::restart(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemPlant::Item>::restart(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B88
  * Size:	000004
  */
-void Game::StateMachine<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::StateMachine<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--

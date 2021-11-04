@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "System.h"
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRHeap.h"
@@ -2027,10 +2029,6 @@ void System::heapStatusStart(char*, JKRHeap*)
 
 void System::heapStatusEnd(char*)
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*
@@ -2040,10 +2038,6 @@ void System::heapStatusEnd(char*)
 
 void System::heapStatusDump(bool)
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*
@@ -2053,10 +2047,6 @@ void System::heapStatusDump(bool)
 
 void System::heapStatusIndividual()
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*
@@ -2066,10 +2056,6 @@ void System::heapStatusIndividual()
 
 void System::heapStatusNormal()
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*
@@ -2318,10 +2304,6 @@ void System::endChangeCurrentHeap()
 
 void System::addGenNode(CNode*)
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*
@@ -2331,10 +2313,6 @@ void System::addGenNode(CNode*)
 
 void System::initGenNode()
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*
@@ -2344,10 +2322,6 @@ void System::initGenNode()
 
 void System::refreshGenNode()
 {
-/*
-.loc_0x0:
-  blr
-
 }
 
 /*

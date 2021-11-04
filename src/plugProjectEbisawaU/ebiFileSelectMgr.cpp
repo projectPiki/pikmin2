@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -211,10 +211,6 @@ void ebi::FileSelect::FSMState::init((ebi::FileSelect::TMgr*, Game::StateArg*))
 void ebi::FileSelect::FSMState::do_init((ebi::FileSelect::TMgr*,
                                          Game::StateArg*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -245,13 +241,7 @@ void ebi::FileSelect::FSMState::exec((ebi::FileSelect::TMgr*))
  * Address:	803E1584
  * Size:	000004
  */
-void ebi::FileSelect::FSMState::do_exec((ebi::FileSelect::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::FileSelect::FSMState::do_exec((ebi::FileSelect::TMgr*)) { }
 
 /*
  * --INFO--
@@ -1611,13 +1601,7 @@ void ebi::FileSelect::TMgr::draw(void)
  * Address:	803E2248
  * Size:	000004
  */
-void ebi::FileSelect::TMgr::showInfo(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::FileSelect::TMgr::showInfo(void) { }
 
 /*
  * --INFO--
@@ -1733,10 +1717,6 @@ void ebi::FileSelect::TMgr::getStateID(void)
 void init__Q24Game33FSMState<ebi::FileSelect::TMgr>
 FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1747,10 +1727,6 @@ FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg(void)
 void exec__Q24Game33FSMState<ebi::FileSelect::TMgr>
 FPQ33ebi10FileSelect4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1761,10 +1737,6 @@ FPQ33ebi10FileSelect4TMgr(void)
 void cleanup__Q24Game33FSMState<ebi::FileSelect::TMgr>
 FPQ33ebi10FileSelect4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1775,10 +1747,6 @@ FPQ33ebi10FileSelect4TMgr(void)
 void resume__Q24Game33FSMState<ebi::FileSelect::TMgr>
 FPQ33ebi10FileSelect4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1789,10 +1757,6 @@ FPQ33ebi10FileSelect4TMgr(void)
 void restart__Q24Game33FSMState<ebi::FileSelect::TMgr>
 FPQ33ebi10FileSelect4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1803,10 +1767,6 @@ FPQ33ebi10FileSelect4TMgr(void)
 void init__Q24Game37StateMachine<ebi::FileSelect::TMgr>
 FPQ33ebi10FileSelect4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

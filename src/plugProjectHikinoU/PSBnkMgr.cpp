@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -594,26 +594,14 @@ void PSSystem::BankMgr::~BankMgr()
  * Address:	8033DD70
  * Size:	000004
  */
-void PSSystem::BankMgr::secondLoadS()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::BankMgr::secondLoadS() { }
 
 /*
  * --INFO--
  * Address:	8033DD74
  * Size:	000004
  */
-void PSSystem::BankMgr::firstLoadS()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::BankMgr::firstLoadS() { }
 
 /*
  * --INFO--

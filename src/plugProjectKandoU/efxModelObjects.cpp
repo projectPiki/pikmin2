@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -424,36 +424,18 @@ void efx::OnyonSpot::useCylinderLOD(void)
  * Address:	80205A1C
  * Size:	000004
  */
-void ModelEffect::constructor()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ModelEffect::constructor() { }
 
 /*
  * --INFO--
  * Address:	80205A20
  * Size:	000004
  */
-void ModelEffect::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ModelEffect::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80205A24
  * Size:	000004
  */
-void ModelEffect::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ModelEffect::doDirectDraw(Graphics&) { }

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -349,13 +349,7 @@ void Game::Kogane::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	8025D1B8
  * Size:	000004
  */
-void Game::Kogane::Obj::startBodyEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::startBodyEffect() { }
 
 /*
  * --INFO--
@@ -452,13 +446,7 @@ void Game::Kogane::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025D2F4
  * Size:	000004
  */
-void Game::Kogane::Obj::finishBodyEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::finishBodyEffect() { }
 
 /*
  * --INFO--
@@ -508,13 +496,7 @@ void Game::Kogane::StateDisappear::exec(Game::EnemyBase*)
  * Address:	8025D364
  * Size:	000004
  */
-void Game::Kogane::StateDisappear::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::StateDisappear::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -560,13 +542,7 @@ void Game::Kogane::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025D3D4
  * Size:	000004
  */
-void Game::Kogane::Obj::createFartEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::createFartEffect() { }
 
 /*
  * --INFO--
@@ -671,13 +647,7 @@ void Game::Kogane::StateMove::exec(Game::EnemyBase*)
  * Address:	8025D510
  * Size:	000004
  */
-void Game::Kogane::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -782,13 +752,7 @@ void Game::Kogane::StateWait::exec(Game::EnemyBase*)
  * Address:	8025D62C
  * Size:	000004
  */
-void Game::Kogane::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -878,13 +842,7 @@ void Game::Kogane::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025D74C
  * Size:	000004
  */
-void Game::Kogane::Obj::createPressSENormal()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::createPressSENormal() { }
 
 /*
  * --INFO--
@@ -989,26 +947,14 @@ void Game::Kogane::StatePress::exec(Game::EnemyBase*)
  * Address:	8025D880
  * Size:	000004
  */
-void Game::Kogane::Obj::createItem()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::createItem() { }
 
 /*
  * --INFO--
  * Address:	8025D884
  * Size:	000004
  */
-void Game::Kogane::Obj::createPressSESpecial()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kogane::Obj::createPressSESpecial() { }
 
 /*
  * --INFO--

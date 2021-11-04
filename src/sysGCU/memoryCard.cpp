@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -515,13 +515,7 @@ void MemoryCardMgr::init()
  * Address:	80440B48
  * Size:	000004
  */
-void MemoryCardMgr::doInit()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MemoryCardMgr::doInit() { }
 
 /*
  * --INFO--

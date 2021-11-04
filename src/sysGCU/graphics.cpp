@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4165,13 +4165,7 @@ void Graphics::initGX()
  * Address:	80427F00
  * Size:	000004
  */
-void Graphics::dirtyInitGX()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::dirtyInitGX() { }
 
 /*
  * --INFO--
@@ -4214,13 +4208,7 @@ void Graphics::clearInitGX()
  * Address:	80427F64
  * Size:	000004
  */
-void Splitter::split4(float, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Splitter::split4(float, float) { }
 
 /*
  * --INFO--

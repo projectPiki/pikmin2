@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -987,13 +987,7 @@ void newScreen::Mgr::setBGMode(int)
  * Address:	80400D88
  * Size:	000004
  */
-void Screen::Mgr::drawWipe(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::Mgr::drawWipe(Graphics&) { }
 
 /*
  * --INFO--

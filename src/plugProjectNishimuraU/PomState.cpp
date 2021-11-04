@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -224,13 +224,7 @@ void Game::Pom::StateWait::exec(Game::EnemyBase*)
  * Address:	80255F50
  * Size:	000004
  */
-void Game::Pom::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -304,13 +298,7 @@ void Game::Pom::StateDead::exec(Game::EnemyBase*)
  * Address:	80255FF8
  * Size:	000004
  */
-void Game::Pom::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -401,13 +389,7 @@ void Game::Pom::StateOpen::exec(Game::EnemyBase*)
  * Address:	802560DC
  * Size:	000004
  */
-void Game::Pom::StateOpen::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::StateOpen::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -488,13 +470,7 @@ void Game::Pom::StateClose::exec(Game::EnemyBase*)
  * Address:	80256198
  * Size:	000004
  */
-void Game::Pom::StateClose::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::StateClose::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -712,10 +688,4 @@ void Game::Pom::StateSwing::exec(Game::EnemyBase*)
  * Address:	802563C0
  * Size:	000004
  */
-void Game::Pom::StateSwing::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::StateSwing::cleanup(Game::EnemyBase*) { }

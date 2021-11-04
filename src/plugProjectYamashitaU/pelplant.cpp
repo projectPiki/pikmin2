@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -571,13 +571,7 @@ void Game::Pelplant::Obj::updateLODSphereRadius(int)
  * Address:	80108980
  * Size:	000004
  */
-void Game::Pelplant::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pelplant::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -975,13 +969,7 @@ void Game::Pelplant::Obj::doAnimation()
  * Address:	80108E50
  * Size:	000004
  */
-void Game::Pelplant::Obj::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pelplant::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
@@ -2992,13 +2980,7 @@ void Game::Pelplant::Mgr::getEnemy(int)
  * Address:	8010A77C
  * Size:	000004
  */
-void Game::Pelplant::Mgr::initStoneSetting()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pelplant::Mgr::initStoneSetting() { }
 
 /*
  * --INFO--
@@ -3070,39 +3052,21 @@ void Game::EnemyMgrBase::getMaxObjects() const
  * Address:	8010A7C4
  * Size:	000004
  */
-void GenericObjectMgr::doSimpleDraw(Viewport*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void GenericObjectMgr::doSimpleDraw(Viewport*) { }
 
 /*
  * --INFO--
  * Address:	8010A7C8
  * Size:	000004
  */
-void GenericObjectMgr::loadResources()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void GenericObjectMgr::loadResources() { }
 
 /*
  * --INFO--
  * Address:	8010A7CC
  * Size:	000004
  */
-void GenericObjectMgr::resetMgr()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void GenericObjectMgr::resetMgr() { }
 
 /*
  * --INFO--

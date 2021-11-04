@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1443,13 +1443,7 @@ void Game::PanModokiBase::StateAppear::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8034DA6C
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::appearRumble(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PanModokiBase::Obj::appearRumble(void) { }
 
 /*
  * --INFO--
@@ -1648,13 +1642,7 @@ void Game::PanModokiBase::StateHide::exec((Game::EnemyBase*))
  * Address:	8034DC90
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::hideRumble(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PanModokiBase::Obj::hideRumble(void) { }
 
 /*
  * --INFO--

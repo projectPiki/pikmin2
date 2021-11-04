@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -513,13 +513,7 @@ void Game::ShijimiChou::Obj::doUpdate(void)
  * Address:	80389C8C
  * Size:	000004
  */
-void Game::ShijimiChou::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ShijimiChou::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -3728,10 +3722,6 @@ void efx::ArgChou::getName(void)
  */
 void Game::ShijimiChou::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3852,13 +3842,7 @@ void Game::ShijimiChou::Obj::getEnemyTypeID(void)
  * Address:	8038C40C
  * Size:	000004
  */
-void __sinit_shijimiChou_cpp(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void __sinit_shijimiChou_cpp(void) { }
 
 /*
  * --INFO--

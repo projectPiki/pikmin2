@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -772,13 +772,7 @@ void Resource::Mgr::dump(void)
  * Address:	804337DC
  * Size:	000004
  */
-void Resource::Mgr::drawDump((Graphics&, int, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Resource::Mgr::drawDump((Graphics&, int, int)) { }
 
 /*
  * --INFO--

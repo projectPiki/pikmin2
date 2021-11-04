@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1114,13 +1114,7 @@ void og::newScreen::ObjChallenge2P::doDraw((Graphics&))
  * Address:	8031FAB0
  * Size:	000004
  */
-void og::newScreen::ObjChallenge2P::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjChallenge2P::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -1142,13 +1136,7 @@ void og::newScreen::ObjChallenge2P::doUpdateFinish(void)
  * Address:	8031FAC0
  * Size:	000004
  */
-void og::newScreen::ObjChallenge2P::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjChallenge2P::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

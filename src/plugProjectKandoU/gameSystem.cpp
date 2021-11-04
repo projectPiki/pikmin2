@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1825,26 +1825,14 @@ void Game::GameSystem::doSimpleDraw((Viewport*))
  * Address:	801B5F40
  * Size:	000004
  */
-void Game::GameSystem::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GameSystem::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	801B5F44
  * Size:	000004
  */
-void Game::GameSystem::directDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GameSystem::directDraw((Graphics&)) { }
 
 /*
  * --INFO--

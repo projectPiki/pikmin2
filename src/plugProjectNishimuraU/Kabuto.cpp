@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -106,26 +106,14 @@ void Game::Kabuto::Obj::Obj()
  * Address:	802E42C4
  * Size:	000004
  */
-void Game::Kabuto::Obj::createEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::createEffect() { }
 
 /*
  * --INFO--
  * Address:	802E42C8
  * Size:	000004
  */
-void Game::Kabuto::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -216,13 +204,7 @@ void Game::Kabuto::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802E43D4
  * Size:	000004
  */
-void Game::Kabuto::Obj::setupEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::setupEffect() { }
 
 /*
  * --INFO--
@@ -258,13 +240,7 @@ void Game::Kabuto::Obj::doUpdate()
  * Address:	802E441C
  * Size:	000004
  */
-void Game::Kabuto::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -518,13 +494,7 @@ void Game::Kabuto::Obj::doStartMovie()
  * Address:	802E468C
  * Size:	000004
  */
-void Game::Kabuto::Obj::effectDrawOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
@@ -554,13 +524,7 @@ void Game::Kabuto::Obj::doEndMovie()
  * Address:	802E46BC
  * Size:	000004
  */
-void Game::Kabuto::Obj::effectDrawOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::effectDrawOn() { }
 
 /*
  * --INFO--

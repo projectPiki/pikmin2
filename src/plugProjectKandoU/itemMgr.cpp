@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -449,13 +449,7 @@ void Game::BaseItem::stimulate(Game::Interaction&)
  * Address:	801CC480
  * Size:	000004
  */
-void Game::BaseItem::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::doSimulation(float) { }
 
 /*
  * --INFO--
@@ -558,13 +552,7 @@ void Game::BaseItem::update()
  * Address:	801CC58C
  * Size:	000004
  */
-void Game::BaseItem::doAI()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::doAI() { }
 
 /*
  * --INFO--
@@ -980,13 +968,7 @@ void Game::CFSMItem::initFSM()
  * Address:	801CC9F4
  * Size:	000004
  */
-void Game::StateMachine<Game::CFSMItem>::init(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::StateMachine<Game::CFSMItem>::init(Game::CFSMItem*) { }
 
 /*
  * --INFO--
@@ -1098,13 +1080,7 @@ void Game::CFSMItem::bounceCallback(Sys::Triangle*)
  * Address:	801CCA9C
  * Size:	000004
  */
-void Game::CItemState::onBounce(Game::CFSMItem*, Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CItemState::onBounce(Game::CFSMItem*, Sys::Triangle*) { }
 
 /*
  * --INFO--
@@ -1142,13 +1118,7 @@ void Game::CFSMItem::collisionCallback(Game::CollEvent&)
  * Address:	801CCAE4
  * Size:	000004
  */
-void Game::CItemState::onCollision(Game::CFSMItem*, Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CItemState::onCollision(Game::CFSMItem*, Game::CollEvent&) { }
 
 /*
  * --INFO--
@@ -1186,13 +1156,7 @@ void Game::CFSMItem::platCallback(Game::PlatEvent&)
  * Address:	801CCB2C
  * Size:	000004
  */
-void Game::CItemState::onPlatCollision(Game::CFSMItem*, Game::PlatEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CItemState::onPlatCollision(Game::CFSMItem*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
@@ -1230,12 +1194,7 @@ void Game::CFSMItem::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	801CCB74
  * Size:	000004
  */
-void Game::CItemState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::CItemState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&) {
 }
 
 /*
@@ -2132,13 +2091,7 @@ void Game::BaseItemMgr::loadResources()
  * Address:	801CD41C
  * Size:	000004
  */
-void Game::BaseItemMgr::setupSoundViewerAndBas()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::setupSoundViewerAndBas() { }
 
 /*
  * --INFO--
@@ -3832,13 +3785,7 @@ void Game::ItemMgr::doSimulation(float)
  * Address:	801CE8CC
  * Size:	000004
  */
-void Game::ItemMgr::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -5184,78 +5131,42 @@ void NodeObjectMgr<Game::BaseItem>::get(void*)
  * Address:	801CF7CC
  * Size:	000004
  */
-void Game::BaseItemMgr::doAnimation()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	801CF7D0
  * Size:	000004
  */
-void Game::BaseItemMgr::doEntry()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::doEntry() { }
 
 /*
  * --INFO--
  * Address:	801CF7D4
  * Size:	000004
  */
-void Game::BaseItemMgr::doSetView(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::doSetView(int) { }
 
 /*
  * --INFO--
  * Address:	801CF7D8
  * Size:	000004
  */
-void Game::BaseItemMgr::doViewCalc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::doViewCalc() { }
 
 /*
  * --INFO--
  * Address:	801CF7DC
  * Size:	000004
  */
-void Game::BaseItemMgr::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801CF7E0
  * Size:	000004
  */
-void Game::BaseItemMgr::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -6302,13 +6213,7 @@ void Game::StateMachine<Game::CFSMItem>::exec(Game::CFSMItem*)
  * Address:	801D043C
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::exec(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::CFSMItem>::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--

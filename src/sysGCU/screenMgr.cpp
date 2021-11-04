@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1180,13 +1180,7 @@ void Screen::Mgr::draw((Graphics&))
  * Address:	80452EF4
  * Size:	000004
  */
-void Screen::Mgr::drawBG((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::Mgr::drawBG((Graphics&)) { }
 
 /*
  * --INFO--

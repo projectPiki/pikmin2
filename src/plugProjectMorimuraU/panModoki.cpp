@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1023,13 +1023,7 @@ void Game::PanModokiBase::Obj::updateCaptureMatrix(void)
  * Address:	803502D0
  * Size:	000004
  */
-void Game::PanModokiBase::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PanModokiBase::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--

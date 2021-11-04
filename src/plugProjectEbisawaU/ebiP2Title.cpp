@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -5082,13 +5082,7 @@ void ebi::title::TTitleCameraMgr::read((Stream&))
  * Address:	803C0ABC
  * Size:	000004
  */
-void Camera::doUpdate()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Camera::doUpdate() { }
 
 /*
  * --INFO--

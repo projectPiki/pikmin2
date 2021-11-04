@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Kurage::Obj::Obj()
  * Address:	802AD828
  * Size:	000004
  */
-void Game::Kurage::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kurage::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -281,13 +275,7 @@ void Game::Kurage::Obj::doUpdate()
  * Address:	802ADA28
  * Size:	000004
  */
-void Game::Kurage::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kurage::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -3112,26 +3100,14 @@ void efx::TNewkurageEye::~TNewkurageEye()
  * Address:	802AFC4C
  * Size:	000004
  */
-void Game::Kurage::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kurage::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802AFC50
  * Size:	000004
  */
-void Game::Kurage::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kurage::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

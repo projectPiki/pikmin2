@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -110,13 +110,7 @@ void Game::Mar::Obj::Obj()
  * Address:	8027F668
  * Size:	000004
  */
-void Game::Mar::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -355,13 +349,7 @@ void Game::Mar::Obj::setFSM(Game::Mar::FSM*)
  * Address:	8027F90C
  * Size:	000004
  */
-void Game::Mar::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -3432,39 +3420,21 @@ void Game::Mar::Obj::~Obj()
  * Address:	80281E08
  * Size:	000004
  */
-void Game::Mar::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80281E0C
  * Size:	000004
  */
-void Game::Mar::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	80281E10
  * Size:	000004
  */
-void Game::Mar::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

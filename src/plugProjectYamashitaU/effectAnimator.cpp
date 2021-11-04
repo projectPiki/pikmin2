@@ -1,17 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80132CB4
  * Size:	000004
  */
-void EffectAnimator::Obj::update(efx::TKechappyTest*, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void EffectAnimator::Obj::update(efx::TKechappyTest*, float) { }
 
 /*
  * --INFO--

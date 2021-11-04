@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -183,13 +183,7 @@ void Screen::Game2DMgr::draw(Graphics&)
  * Address:	803FC074
  * Size:	000004
  */
-void Screen::Game2DMgr::drawIndirect(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::Game2DMgr::drawIndirect(Graphics&) { }
 
 /*
  * --INFO--

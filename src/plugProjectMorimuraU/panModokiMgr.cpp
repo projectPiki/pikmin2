@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1039,10 +1039,6 @@ void Game::PanModoki::Obj::getEnemyTypeID(void)
  */
 void Game::PanModokiBase::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1053,10 +1049,6 @@ void Game::PanModokiBase::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 void applyImpulse__Q34Game13PanModokiBase3ObjFR10Vector3<float>
 R10Vector3<float>(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

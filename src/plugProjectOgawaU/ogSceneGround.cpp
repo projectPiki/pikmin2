@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -63,13 +63,7 @@ void og::newScreen::Ground::__dt(void)
  * Address:	8030DA60
  * Size:	000004
  */
-void og::newScreen::Ground::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::Ground::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

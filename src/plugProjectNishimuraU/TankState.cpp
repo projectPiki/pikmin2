@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -231,13 +231,7 @@ void Game::Tank::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802740D4
  * Size:	000004
  */
-void Game::Tank::Obj::finishEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::finishEffect() { }
 
 /*
  * --INFO--
@@ -275,13 +269,7 @@ void Game::Tank::StateDead::exec(Game::EnemyBase*)
  * Address:	8027411C
  * Size:	000004
  */
-void Game::Tank::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1852,13 +1840,7 @@ void Game::Tank::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80275560
  * Size:	000004
  */
-void Game::Tank::Obj::createChargeSE()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::createChargeSE() { }
 
 /*
  * --INFO--
@@ -2011,26 +1993,14 @@ void Game::Tank::StateAttack::exec(Game::EnemyBase*)
  * Address:	80275744
  * Size:	000004
  */
-void Game::Tank::Obj::startEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::startEffect() { }
 
 /*
  * --INFO--
  * Address:	80275748
  * Size:	000004
  */
-void Game::Tank::Obj::createDisChargeSE()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::createDisChargeSE() { }
 
 /*
  * --INFO--
@@ -2071,13 +2041,7 @@ void Game::Tank::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802757A4
  * Size:	000004
  */
-void Game::Tank::Obj::startYodare()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::startYodare() { }
 
 /*
  * --INFO--

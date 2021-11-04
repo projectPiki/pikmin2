@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1248,26 +1248,14 @@ void efx::TPelkira_ver01::__dt(void)
  * Address:	803B6698
  * Size:	000004
  */
-void efx::TOtakaraAp::forceKill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TOtakaraAp::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803B669C
  * Size:	000004
  */
-void efx::TOtakaraAp::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TOtakaraAp::fade(void) { }
 
 /*
  * --INFO--

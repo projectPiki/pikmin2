@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -78,13 +78,7 @@ void JUtility::TColor::TColor()
  * Address:	80039BA0
  * Size:	000004
  */
-void JGeometry::TVec2<short>::TVec2()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JGeometry::TVec2<short>::TVec2() { }
 
 /*
  * --INFO--
@@ -583,13 +577,7 @@ void J2DTevBlock::getTevKColor(unsigned long)
  * Address:	8003A264
  * Size:	000004
  */
-void J2DTevBlock::setUndeleteFlag(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setUndeleteFlag(unsigned char) { }
 
 /*
  * --INFO--
@@ -5163,10 +5151,4 @@ void J2DPicture::isUsed(const ResFONT*)
  * Address:	8003D74C
  * Size:	000004
  */
-void J2DPicture::rewriteAlpha()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPicture::rewriteAlpha() { }

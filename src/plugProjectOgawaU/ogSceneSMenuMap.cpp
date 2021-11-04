@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -229,13 +229,7 @@ void og::newScreen::SMenuMap::doCreateObj((JKRArchive*))
  * Address:	80312E14
  * Size:	000004
  */
-void og::newScreen::SMenuMap::doUpdateActive(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::SMenuMap::doUpdateActive(void) { }
 
 /*
  * --INFO--
@@ -397,10 +391,6 @@ void og::newScreen::SceneSMenuBase::doGetFinishState(void)
  */
 void Screen::SceneBase::doUserCallBackFunc( (Resource::MgrCommand *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -156,13 +156,7 @@ void Game::Houdai::Obj::Obj()
  * Address:	802BFE64
  * Size:	000004
  */
-void Game::Houdai::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -481,13 +475,7 @@ void Game::Houdai::Obj::doAnimationCullingOff()
  * Address:	802C0218
  * Size:	000004
  */
-void Game::Houdai::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -5265,26 +5253,14 @@ void efx::THdamaOnHahen2::~THdamaOnHahen2()
  * Address:	802C3858
  * Size:	000004
  */
-void Game::Houdai::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802C385C
  * Size:	000004
  */
-void Game::Houdai::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -5305,13 +5281,7 @@ void Game::Houdai::Obj::getDamageCoeStoneState()
  * Address:	802C3868
  * Size:	000004
  */
-void Game::Houdai::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

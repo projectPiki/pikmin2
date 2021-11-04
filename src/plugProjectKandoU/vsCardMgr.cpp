@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4115,13 +4115,7 @@ RQ44Game6VsGame7CardMgr11SlotMachine(void)
  * Address:	80238B08
  * Size:	000004
  */
-void LightObj::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void LightObj::update() { }
 
 /*
  * --INFO--

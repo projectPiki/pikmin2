@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -224,13 +224,7 @@ void J2DTevBlock::getTevStage(unsigned long)
  * Address:	80045124
  * Size:	000004
  */
-void J2DTevBlock::setTevOrder(unsigned long, J2DTevOrder)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevOrder(unsigned long, J2DTevOrder) { }
 
 /*
  * --INFO--
@@ -251,39 +245,21 @@ void J2DTevBlock::insertTexture(unsigned long, const ResTIMG*)
  * Address:	80045130
  * Size:	000004
  */
-void J2DTevBlock::setTevKAlphaSel(unsigned long, unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevKAlphaSel(unsigned long, unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80045134
  * Size:	000004
  */
-void J2DTevBlock::setTevKColorSel(unsigned long, unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevKColorSel(unsigned long, unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80045138
  * Size:	000004
  */
-void J2DTevBlock::setTevStageNum(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevStageNum(unsigned char) { }
 
 /*
  * --INFO--
@@ -2347,13 +2323,7 @@ void J2DWindowEx::setBlackWhite(JUtility::TColor, JUtility::TColor)
  * Address:	80046CB0
  * Size:	000004
  */
-void J2DTevBlock::setTevColor(unsigned long, J2DGXColorS10)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevColor(unsigned long, J2DGXColorS10) { }
 
 /*
  * --INFO--
@@ -3471,12 +3441,7 @@ void J2DWindowEx::animationPane(const J2DAnmTransform*)
  * Address:	800477F8
  * Size:	000004
  */
-void J2DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void J2DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const {
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -122,13 +122,7 @@ void Game::Queen::Obj::Obj()
  * Address:	80289650
  * Size:	000004
  */
-void Game::Queen::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Queen::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -403,13 +397,7 @@ void Game::Queen::Obj::doAnimationCullingOff()
  * Address:	8028993C
  * Size:	000004
  */
-void Game::Queen::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Queen::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -4113,26 +4101,14 @@ void Game::EnemyIterator<Game::Baby::Obj>::first()
  * Address:	8028C494
  * Size:	000004
  */
-void Game::Queen::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Queen::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8028C498
  * Size:	000004
  */
-void Game::Queen::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Queen::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

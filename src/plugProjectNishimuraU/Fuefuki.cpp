@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -141,13 +141,7 @@ void Game::Fuefuki::Obj::Obj()
  * Address:	8029C35C
  * Size:	000004
  */
-void Game::Fuefuki::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Fuefuki::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -305,13 +299,7 @@ void Game::Fuefuki::Obj::doUpdate()
  * Address:	8029C4E4
  * Size:	000004
  */
-void Game::Fuefuki::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Fuefuki::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -636,22 +624,9 @@ void Game::Fuefuki::Obj::doFinishEarthquakeFitState()
  */
 void Game::Fuefuki::Obj::doStartWaitingBirthTypeDrop()
 {
-	/*
-	.loc_0x0:
-	  blr
-	  li        r3, 0x11
-	  blr
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804C
-	  stw       r0, -0x6948(r13)
-	  stfsu     f0, 0x2450(r3)
-	  stfs      f0, -0x6944(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
-	*/
+	blr lis r4, 0x8051 li r0, -0x1 lfs f0, 0x48B0(r4)lis r3, 0x804C stw r0,
+	    -0x6948(r13)stfsu f0, 0x2450(r3)stfs f0, -0x6944(r13)stfs f0,
+	    0x4(r3)stfs f0, 0x8(r3)blr * /
 }
 
 /*
@@ -2200,26 +2175,14 @@ void efx::TFuebugOnpa::~TFuebugOnpa()
  * Address:	8029D958
  * Size:	000004
  */
-void Game::Fuefuki::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Fuefuki::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8029D95C
  * Size:	000004
  */
-void Game::Fuefuki::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Fuefuki::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

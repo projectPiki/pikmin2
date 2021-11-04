@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -552,13 +552,7 @@ void Morimura::THiScore::__ct(void)
  * Address:	8037D0B8
  * Size:	000004
  */
-void Vector2<float>::Vector2()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Vector2<float>::Vector2() { }
 
 /*
  * --INFO--
@@ -4847,10 +4841,6 @@ void Morimura::THiScore::getIdMax(void)
  */
 void Morimura::TScrollList::setShortenIndex( (int, int, bool))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4860,10 +4850,6 @@ void Morimura::TScrollList::setShortenIndex( (int, int, bool))
  */
 void Morimura::TScrollList::doUpdateIn(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4873,10 +4859,6 @@ void Morimura::TScrollList::doUpdateIn(void)
  */
 void Morimura::TScrollList::doUpdateOut(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

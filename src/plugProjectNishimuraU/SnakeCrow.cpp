@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -143,13 +143,7 @@ void Game::SnakeCrow::Obj::constructor()
  * Address:	80293244
  * Size:	000004
  */
-void Game::SnakeCrow::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -410,13 +404,7 @@ void Game::SnakeCrow::Obj::doAnimationCullingOff()
  * Address:	802934E8
  * Size:	000004
  */
-void Game::SnakeCrow::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -3875,26 +3863,14 @@ void efx::THebiRot::~THebiRot()
  * Address:	80295D54
  * Size:	000004
  */
-void Game::SnakeCrow::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80295D58
  * Size:	000004
  */
-void Game::SnakeCrow::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -3929,13 +3905,7 @@ void Game::SnakeCrow::Obj::getMouthSlots()
  * Address:	80295D6C
  * Size:	000004
  */
-void Game::SnakeCrow::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

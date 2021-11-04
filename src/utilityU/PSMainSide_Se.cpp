@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -593,13 +593,7 @@ void PSM::WorldMapRocket::stateChange(PSM::WorldMapRocket::rocketState)
  * Address:	8046D8CC
  * Size:	000004
  */
-void PSM::PikiHumming::PikiHumming()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::PikiHumming::PikiHumming() { }
 
 /*
  * --INFO--

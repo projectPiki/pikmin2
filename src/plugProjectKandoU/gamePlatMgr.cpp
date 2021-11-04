@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/PlatInstance.h"
 
 namespace Game {
@@ -1377,10 +1379,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::constructor(void)
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2265,10 +2263,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatMgr::doDirectDraw((Graphics&))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2530,10 +2524,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::checkCollision((Game::CellObject*))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2543,10 +2533,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::doAnimation(void)
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2556,10 +2542,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::doEntry(void)
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2569,10 +2551,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::doSetView((int))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2582,10 +2560,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::doViewCalc(void)
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2595,10 +2569,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::doSimulation((float))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -2608,10 +2578,6 @@ void PlatInstance::setCollision(bool flag)
 //  */
 // void Game::PlatInstance::doDirectDraw((Graphics&))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*

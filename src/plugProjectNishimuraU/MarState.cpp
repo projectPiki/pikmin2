@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -417,13 +417,7 @@ void Game::Mar::StateDead::exec(Game::EnemyBase*)
  * Address:	80282B74
  * Size:	000004
  */
-void Game::Mar::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -563,13 +557,7 @@ void Game::Mar::StateWait::exec(Game::EnemyBase*)
  * Address:	80282D04
  * Size:	000004
  */
-void Game::Mar::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -735,13 +723,7 @@ void Game::Mar::StateMove::exec(Game::EnemyBase*)
  * Address:	80282EF4
  * Size:	000004
  */
-void Game::Mar::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Mar::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

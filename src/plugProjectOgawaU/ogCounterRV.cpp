@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1384,13 +1384,7 @@ void og::Screen::CallBack_CounterRV::update(void)
  * Address:	8030C52C
  * Size:	000004
  */
-void og::Screen::CallBack_CounterRV::draw((Graphics&, J2DGrafContext&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Screen::CallBack_CounterRV::draw((Graphics&, J2DGrafContext&)) { }
 
 /*
  * --INFO--

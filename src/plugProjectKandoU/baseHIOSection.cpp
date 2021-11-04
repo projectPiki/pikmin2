@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -348,13 +348,7 @@ void Game::BaseHIOSection::initHIO((Game::HIORootNode*))
  * Address:	80164FA4
  * Size:	000004
  */
-void Game::BaseHIOSection::createScreenRootNode(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseHIOSection::createScreenRootNode(void) { }
 
 /*
  * --INFO--
@@ -396,13 +390,7 @@ void Game::BaseHIOSection::addGenNode((CNode*))
  * Address:	80164FD4
  * Size:	000004
  */
-void Game::BaseHIOSection::refreshHIO(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseHIOSection::refreshHIO(void) { }
 
 /*
  * --INFO--

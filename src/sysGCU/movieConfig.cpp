@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -69,13 +69,7 @@ void Game::MovieConfig::TParms::__dt(void)
  * Address:	804318A0
  * Size:	000004
  */
-void Game::MovieConfig::dump(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MovieConfig::dump(void) { }
 
 /*
  * --INFO--

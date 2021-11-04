@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -562,13 +562,7 @@ void JUTVideo::setRenderMode(const _GXRenderModeObj*)
  * Address:	80033CE8
  * Size:	000004
  */
-void JUTVideo::waitRetraceIfNeed()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JUTVideo::waitRetraceIfNeed() { }
 
 /*
  * --INFO--

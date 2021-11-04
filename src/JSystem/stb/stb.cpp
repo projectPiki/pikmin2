@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -306,26 +306,14 @@ void JStudio::stb::TObject::forward((unsigned long))
  * Address:	80010568
  * Size:	000004
  */
-void JStudio::stb::TObject::do_begin(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::stb::TObject::do_begin(void) { }
 
 /*
  * --INFO--
  * Address:	8001056C
  * Size:	000004
  */
-void JStudio::stb::TObject::do_end(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::stb::TObject::do_end(void) { }
 
 /*
  * --INFO--
@@ -335,10 +323,6 @@ void JStudio::stb::TObject::do_end(void)
 void JStudio::stb::TObject::do_paragraph((unsigned long, void const*,
                                           unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -346,13 +330,7 @@ void JStudio::stb::TObject::do_paragraph((unsigned long, void const*,
  * Address:	80010574
  * Size:	000004
  */
-void JStudio::stb::TObject::do_wait((unsigned long))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::stb::TObject::do_wait((unsigned long)) { }
 
 /*
  * --INFO--
@@ -362,10 +340,6 @@ void JStudio::stb::TObject::do_wait((unsigned long))
 void JStudio::stb::TObject::do_data((void const*, unsigned long, void const*,
                                      unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

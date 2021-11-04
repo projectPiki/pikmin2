@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -86,13 +86,7 @@ void P2JME::TSequenceProcessor::do_begin((void const*, char const*))
  * Address:	804378FC
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::do_end(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TSequenceProcessor::do_end(void) { }
 
 /*
  * --INFO--
@@ -388,13 +382,7 @@ void P2JME::TSequenceProcessor::do_isReady(void)
  * Address:	80437B84
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doFastForwardSE(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TSequenceProcessor::doFastForwardSE(void) { }
 
 /*
  * --INFO--
@@ -430,13 +418,7 @@ void P2JME::TSequenceProcessor::do_jump((void const*, char const*))
  * Address:	80437B9C
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::do_branch_query((unsigned short))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TSequenceProcessor::do_branch_query((unsigned short)) { }
 
 /*
  * --INFO--
@@ -536,26 +518,14 @@ void P2JME::TSequenceProcessor::do_character((int))
  * Address:	80437C5C
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doCharacterSE((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TSequenceProcessor::doCharacterSE((int)) { }
 
 /*
  * --INFO--
  * Address:	80437C60
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doCharacterSEStart(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TSequenceProcessor::doCharacterSEStart(void) { }
 
 /*
  * --INFO--
@@ -687,13 +657,7 @@ void P2JME::TSequenceProcessor::setAbtnWait(void)
  * Address:	80437DA4
  * Size:	000004
  */
-void P2JME::TSequenceProcessor::doCharacterSEEnd(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TSequenceProcessor::doCharacterSEEnd(void) { }
 
 /*
  * --INFO--

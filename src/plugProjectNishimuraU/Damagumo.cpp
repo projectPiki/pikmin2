@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -183,13 +183,7 @@ void Game::Damagumo::Obj::constructor()
  * Address:	802A598C
  * Size:	000004
  */
-void Game::Damagumo::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Damagumo::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -396,13 +390,7 @@ void Game::Damagumo::Obj::doAnimationCullingOff()
  * Address:	802A5BE0
  * Size:	000004
  */
-void Game::Damagumo::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Damagumo::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -4321,26 +4309,14 @@ void Game::ConditionNotStickClient::satisfy(Game::Piki*)
  * Address:	802A897C
  * Size:	000004
  */
-void Game::Damagumo::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Damagumo::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802A8980
  * Size:	000004
  */
-void Game::Damagumo::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Damagumo::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -4361,13 +4337,7 @@ void Game::Damagumo::Obj::getDamageCoeStoneState()
  * Address:	802A898C
  * Size:	000004
  */
-void Game::Damagumo::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Damagumo::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

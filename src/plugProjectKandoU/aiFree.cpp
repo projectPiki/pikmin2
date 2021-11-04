@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -384,13 +384,7 @@ void PikiAI::ActFree::cleanup(void)
  * Address:	801A03B4
  * Size:	000004
  */
-void PikiAI::ActFree::onKeyEvent((SysShape::KeyEvent const&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActFree::onKeyEvent((SysShape::KeyEvent const&)) { }
 
 /*
  * --INFO--

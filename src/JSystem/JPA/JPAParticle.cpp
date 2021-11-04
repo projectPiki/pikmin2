@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1334,13 +1334,7 @@ void JPABaseParticle::calc_p(JPAEmitterWorkData*)
  * Address:	80095284
  * Size:	000004
  */
-void JPAParticleCallBack::execute(JPABaseEmitter*, JPABaseParticle*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAParticleCallBack::execute(JPABaseEmitter*, JPABaseParticle*) { }
 
 /*
  * --INFO--

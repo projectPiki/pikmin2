@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1534,13 +1534,7 @@ void ebi::title::Kogane::TAnimFolder::getAnimRes((long))
  * Address:	803E85AC
  * Size:	000004
  */
-void ebi::E3DAnimRes::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::E3DAnimRes::__ct(void) { }
 
 /*
  * --INFO--

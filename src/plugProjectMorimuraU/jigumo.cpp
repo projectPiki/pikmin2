@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -794,13 +794,7 @@ void Game::Jigumo::Obj::doUpdate(void)
  * Address:	80369874
  * Size:	000004
  */
-void Game::Jigumo::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Jigumo::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -4117,13 +4111,7 @@ void Game::Jigumo::Obj::mouthScaleMtxCalc(void)
  * Address:	8036C088
  * Size:	000004
  */
-void Game::Jigumo::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Jigumo::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--

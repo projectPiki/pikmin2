@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -479,13 +479,7 @@ void PikiAI::ActBore::exec(void)
  * Address:	8023189C
  * Size:	000004
  */
-void PikiAI::ActBore::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBore::cleanup(void) { }
 
 /*
  * --INFO--
@@ -954,13 +948,7 @@ void PikiAI::ActRest::exec(void)
  * Address:	80231DC0
  * Size:	000004
  */
-void PikiAI::ActRest::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActRest::cleanup(void) { }
 
 /*
  * --INFO--
@@ -1326,13 +1314,7 @@ void PikiAI::ActOneshot::exec(void)
  * Address:	802321C0
  * Size:	000004
  */
-void PikiAI::ActOneshot::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActOneshot::cleanup(void) { }
 
 /*
  * --INFO--

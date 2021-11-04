@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -126,13 +126,7 @@ void Game::FireChappy::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8028F778
  * Size:	000004
  */
-void Game::FireChappy::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FireChappy::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

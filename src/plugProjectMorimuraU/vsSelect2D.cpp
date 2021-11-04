@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -259,13 +259,7 @@ void Morimura::TVsSelectExplanationWindow::create((char const*, unsigned long))
  * Address:	80399B7C
  * Size:	000004
  */
-void Morimura::TVsSelectExplanationWindow::screenScaleUp(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Morimura::TVsSelectExplanationWindow::screenScaleUp(void) { }
 
 /*
  * --INFO--
@@ -282,13 +276,7 @@ void Morimura::TVsPiki::__ct((J2DPane*, J2DPane*, J2DPane*))
  * Address:	80399B80
  * Size:	000004
  */
-void Morimura::TVsPiki::posInfo::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Morimura::TVsPiki::posInfo::__ct(void) { }
 
 /*
  * --INFO--

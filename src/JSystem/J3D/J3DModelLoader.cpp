@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -517,10 +517,6 @@ void J3DModelLoader::load(const void*, unsigned long)
 void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*,
                                       unsigned long)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -528,13 +524,7 @@ void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*,
  * Address:	8006FE64
  * Size:	000004
  */
-void J3DModelLoader::readMaterial(const J3DMaterialBlock*, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DModelLoader::readMaterial(const J3DMaterialBlock*, unsigned long) { }
 
 /*
  * --INFO--
@@ -658,10 +648,6 @@ void J3DModelLoader::loadMaterialTable(const void*)
 void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*,
                                            unsigned long)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -671,10 +657,6 @@ void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*,
  */
 void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, unsigned long)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

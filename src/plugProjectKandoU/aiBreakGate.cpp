@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -720,39 +720,21 @@ void PikiAI::ActBreakGate::platCallback(Game::Piki*, Game::PlatEvent&)
  * Address:	801D0D8C
  * Size:	000004
  */
-void PikiAI::ActBreakGate::collisionCallback(Game::Piki*, Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBreakGate::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801D0D90
  * Size:	000004
  */
-void PikiAI::ActBreakGate::bounceCallback(Game::Piki*, Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBreakGate::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801D0D94
  * Size:	000004
  */
-void PikiAI::ActBreakGate::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBreakGate::onKeyEvent(const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--

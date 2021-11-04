@@ -130,10 +130,6 @@ namespace Space {
 	//  */
 	// void SceneBase::doSetBackupScene((SetSceneArg&))
 	// {
-	// 	/*
-	// 	.loc_0x0:
-	// 	  blr
-	// 	*/
 	// }
 
 	// /*

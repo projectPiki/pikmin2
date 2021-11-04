@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2719,13 +2719,7 @@ void JPAFieldBase::~JPAFieldBase()
  * Address:	80093700
  * Size:	000004
  */
-void JPAFieldBase::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAFieldBase::prepare(JPAEmitterWorkData*, JPAFieldBlock*) { }
 
 /*
  * --INFO--

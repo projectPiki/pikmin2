@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -268,13 +268,7 @@ void Game::ChappyBase::Mgr::getEnemyTypeID()
  * Address:	8012A944
  * Size:	000004
  */
-void Game::EnemyMgrBase::doAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyMgrBase::doAlloc() { }
 
 /*
  * --INFO--

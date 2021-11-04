@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -509,26 +509,14 @@ void Game::Bomb::Obj::doUpdate(void)
  * Address:	8034A7F4
  * Size:	000004
  */
-void Game::Bomb::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Bomb::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	8034A7F8
  * Size:	000004
  */
-void Game::Bomb::Obj::doDebugDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Bomb::Obj::doDebugDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -1604,13 +1592,7 @@ void efx::TBombrockLight::__dt(void)
  * Address:	8034B328
  * Size:	000004
  */
-void Game::Bomb::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Bomb::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--

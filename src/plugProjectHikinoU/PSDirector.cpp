@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -577,13 +577,7 @@ void PSSystem::DirectorBase::directOffInner()
  * Address:	8034351C
  * Size:	000004
  */
-void PSSystem::DirectorBase::doUpdateRequest()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorBase::doUpdateRequest() { }
 
 /*
  * --INFO--
@@ -1449,91 +1443,49 @@ void PSSystem::DirectorCopyActor::exec(PSSystem::DirectorBase*)
  * Address:	80343EC8
  * Size:	000004
  */
-void PSSystem::DirectorBase::underDirection()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorBase::underDirection() { }
 
 /*
  * --INFO--
  * Address:	80343ECC
  * Size:	000004
  */
-void PSSystem::DirectorBase::execInner()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorBase::execInner() { }
 
 /*
  * --INFO--
  * Address:	80343ED0
  * Size:	000004
  */
-void PSSystem::DirectorBase::onPlayInit(JASTrack*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorBase::onPlayInit(JASTrack*) { }
 
 /*
  * --INFO--
  * Address:	80343ED4
  * Size:	000004
  */
-void PSSystem::DirectorBase::onDirectOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorBase::onDirectOn() { }
 
 /*
  * --INFO--
  * Address:	80343ED8
  * Size:	000004
  */
-void PSSystem::DirectorBase::onDirectOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorBase::onDirectOff() { }
 
 /*
  * --INFO--
  * Address:	80343EDC
  * Size:	000004
  */
-void PSSystem::DirectorCopyActor::onUpdateFromSlaveD()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorCopyActor::onUpdateFromSlaveD() { }
 
 /*
  * --INFO--
  * Address:	80343EE0
  * Size:	000004
  */
-void PSSystem::DirectorCopyActor::onUpdateFromMasterD()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::DirectorCopyActor::onUpdateFromMasterD() { }
 
 /*
  * --INFO--
@@ -1666,13 +1618,7 @@ void PSSystem::OneShotDirector::~OneShotDirector()
  * Address:	80344024
  * Size:	000004
  */
-void PSSystem::OneShotDirector::directOffTrack(PSSystem::SeqTrackBase&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::OneShotDirector::directOffTrack(PSSystem::SeqTrackBase&) { }
 
 /*
  * --INFO--

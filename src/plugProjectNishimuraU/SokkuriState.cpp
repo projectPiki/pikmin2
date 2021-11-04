@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -326,13 +326,7 @@ void Game::Sokkuri::StateDead::exec((Game::EnemyBase*))
  * Address:	802EFE18
  * Size:	000004
  */
-void Game::Sokkuri::StateDead::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StateDead::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -419,13 +413,7 @@ void Game::Sokkuri::StatePress::exec((Game::EnemyBase*))
  * Address:	802EFEEC
  * Size:	000004
  */
-void Game::Sokkuri::StatePress::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StatePress::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -693,13 +681,7 @@ void Game::Sokkuri::StateAppear::exec((Game::EnemyBase*))
  * Address:	802F01E4
  * Size:	000004
  */
-void Game::Sokkuri::StateAppear::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StateAppear::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -803,13 +785,7 @@ void Game::Sokkuri::StateDisappear::exec((Game::EnemyBase*))
  * Address:	802F02F4
  * Size:	000004
  */
-void Game::Sokkuri::StateDisappear::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StateDisappear::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -963,13 +939,7 @@ void Game::Sokkuri::StateWait::exec((Game::EnemyBase*))
  * Address:	802F04B4
  * Size:	000004
  */
-void Game::Sokkuri::StateWait::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StateWait::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -1183,13 +1153,7 @@ void Game::Sokkuri::StateMoveGround::exec((Game::EnemyBase*))
  * Address:	802F074C
  * Size:	000004
  */
-void Game::Sokkuri::StateMoveGround::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StateMoveGround::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -1374,13 +1338,7 @@ void Game::Sokkuri::StateMoveWater::exec((Game::EnemyBase*))
  * Address:	802F0978
  * Size:	000004
  */
-void Game::Sokkuri::StateMoveWater::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::StateMoveWater::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--

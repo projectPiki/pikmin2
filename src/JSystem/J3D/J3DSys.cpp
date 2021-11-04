@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1271,13 +1271,7 @@ void J3DSys::reinitPixelProc()
  * Address:	8005EB54
  * Size:	000004
  */
-void J3DSys::ErrorReport(J3DErrType) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DSys::ErrorReport(J3DErrType) const { }
 
 /*
  * --INFO--

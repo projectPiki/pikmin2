@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -653,13 +653,7 @@ void Game::ItemPikihead::BuryState::exec(Game::ItemPikihead::Item*)
  * Address:	801D9280
  * Size:	000004
  */
-void Game::ItemPikihead::BuryState::cleanup(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::BuryState::cleanup(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
@@ -772,13 +766,7 @@ void Game::ItemPikihead::TaneState::exec(Game::ItemPikihead::Item*)
  * Address:	801D9384
  * Size:	000004
  */
-void Game::ItemPikihead::TaneState::cleanup(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::TaneState::cleanup(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
@@ -838,26 +826,14 @@ void Game::ItemPikihead::HatugaState::init(Game::ItemPikihead::Item*,
  * Address:	801D93EC
  * Size:	000004
  */
-void Game::ItemPikihead::HatugaState::exec(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::HatugaState::exec(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
  * Address:	801D93F0
  * Size:	000004
  */
-void Game::ItemPikihead::HatugaState::cleanup(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::HatugaState::cleanup(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
@@ -1111,26 +1087,14 @@ void Game::ItemPikihead::GrowState::init(Game::ItemPikihead::Item*,
  * Address:	801D9658
  * Size:	000004
  */
-void Game::ItemPikihead::GrowState::exec(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::GrowState::exec(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
  * Address:	801D965C
  * Size:	000004
  */
-void Game::ItemPikihead::GrowState::cleanup(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::GrowState::cleanup(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
@@ -1305,13 +1269,7 @@ void Game::ItemPikihead::SioreState::exec(Game::ItemPikihead::Item*)
  * Address:	801D9840
  * Size:	000004
  */
-void Game::ItemPikihead::SioreState::cleanup(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::SioreState::cleanup(Game::ItemPikihead::Item*) { }
 
 /*
  * --INFO--
@@ -1788,10 +1746,6 @@ void Game::FixedSizeItemMgr<Game::ItemPikihead::Item>::kill(
 void Game::FSMState<Game::ItemPikihead::Item>::cleanup(
     Game::ItemPikihead::Item*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2309,10 +2263,6 @@ void Game::ItemPikihead::Item::onKeyEvent(const SysShape::KeyEvent&)
 void Game::ItemPikihead::State::onKeyEvent(Game::ItemPikihead::Item*,
                                            const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2362,13 +2312,7 @@ void Game::ItemPikihead::Item::getLODSphere(Sys::Sphere&)
  * Address:	801DA418
  * Size:	000004
  */
-void Game::ItemPikihead::Item::onSetPosition()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemPikihead::Item::onSetPosition() { }
 
 /*
  * --INFO--
@@ -3498,10 +3442,6 @@ void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM,
 void Game::FixedSizeItemMgr<Game::ItemPikihead::Item>::onCreateModel(
     SysShape::Model*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3904,10 +3844,6 @@ void Game::FSMItem<
 void Game::ItemState<Game::ItemPikihead::Item>::onDamage(
     Game::ItemPikihead::Item*, float)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3918,10 +3854,6 @@ void Game::ItemState<Game::ItemPikihead::Item>::onDamage(
 void Game::ItemState<Game::ItemPikihead::Item>::onKeyEvent(
     Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3932,10 +3864,6 @@ void Game::ItemState<Game::ItemPikihead::Item>::onKeyEvent(
 void Game::ItemState<Game::ItemPikihead::Item>::onBounce(
     Game::ItemPikihead::Item*, Sys::Triangle*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3946,10 +3874,6 @@ void Game::ItemState<Game::ItemPikihead::Item>::onBounce(
 void Game::ItemState<Game::ItemPikihead::Item>::onPlatCollision(
     Game::ItemPikihead::Item*, Game::PlatEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3960,10 +3884,6 @@ void Game::ItemState<Game::ItemPikihead::Item>::onPlatCollision(
 void Game::ItemState<Game::ItemPikihead::Item>::onCollision(
     Game::ItemPikihead::Item*, Game::CollEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3974,10 +3894,6 @@ void Game::ItemState<Game::ItemPikihead::Item>::onCollision(
 void Game::FSMState<Game::ItemPikihead::Item>::init(Game::ItemPikihead::Item*,
                                                     Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3987,10 +3903,6 @@ void Game::FSMState<Game::ItemPikihead::Item>::init(Game::ItemPikihead::Item*,
  */
 void Game::FSMState<Game::ItemPikihead::Item>::exec(Game::ItemPikihead::Item*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4000,10 +3912,6 @@ void Game::FSMState<Game::ItemPikihead::Item>::exec(Game::ItemPikihead::Item*)
  */
 void Game::FSMState<Game::ItemPikihead::Item>::resume(Game::ItemPikihead::Item*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4014,10 +3922,6 @@ void Game::FSMState<Game::ItemPikihead::Item>::resume(Game::ItemPikihead::Item*)
 void Game::FSMState<Game::ItemPikihead::Item>::restart(
     Game::ItemPikihead::Item*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4028,10 +3932,6 @@ void Game::FSMState<Game::ItemPikihead::Item>::restart(
 void Game::StateMachine<Game::ItemPikihead::Item>::init(
     Game::ItemPikihead::Item*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4642,13 +4542,7 @@ void MonoObjectMgr<Game::ItemPikihead::Item>::clearMgr()
  * Address:	801DBA34
  * Size:	000004
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::ItemPikihead::Item>::onAlloc() { }
 
 /*
  * --INFO--

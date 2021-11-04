@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -114,13 +114,7 @@ void Game::SnakeWhole::Obj::Obj()
  * Address:	802CE904
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -299,13 +293,7 @@ void Game::SnakeWhole::Obj::doAnimationCullingOff()
  * Address:	802CEAC8
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -3963,26 +3951,14 @@ void Game::SnakeWhole::Obj::getFitEffectPos()
  * Address:	802D1590
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802D1594
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -4017,13 +3993,7 @@ void Game::SnakeWhole::Obj::getMouthSlots()
  * Address:	802D15A8
  * Size:	000004
  */
-void Game::SnakeWhole::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

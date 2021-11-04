@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Tank::Obj::Obj()
  * Address:	80275EC4
  * Size:	000004
  */
-void Game::Tank::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -165,13 +159,7 @@ void Game::Tank::Obj::onInit(Game::CreatureInitArg*)
  * Address:	80275F64
  * Size:	000004
  */
-void Game::Tank::Obj::setupEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::setupEffect() { }
 
 /*
  * --INFO--
@@ -241,13 +229,7 @@ void Game::Tank::Obj::doUpdate()
  * Address:	80276004
  * Size:	000004
  */
-void Game::Tank::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -521,13 +503,7 @@ void Game::Tank::Obj::doStartWaitingBirthTypeDrop()
  * Address:	80276284
  * Size:	000004
  */
-void Game::Tank::Obj::effectDrawOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
@@ -562,13 +538,7 @@ void Game::Tank::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802762C8
  * Size:	000004
  */
-void Game::Tank::Obj::effectDrawOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::effectDrawOn() { }
 
 /*
  * --INFO--
@@ -1050,13 +1020,7 @@ void Game::Tank::Obj::isAttackable(bool)
  * Address:	80276838
  * Size:	000004
  */
-void Game::Tank::Obj::interactCreature(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::interactCreature(Game::Creature*) { }
 
 /*
  * --INFO--
@@ -1227,13 +1191,7 @@ void Game::Tank::Obj::emitCollideRatio(Vector3<float>&, Vector3<float>&, float)
  * Address:	80276A64
  * Size:	000004
  */
-void Game::Tank::Obj::stopEffectRadius(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::stopEffectRadius(float) { }
 
 /*
  * --INFO--
@@ -1486,13 +1444,7 @@ void Game::Tank::Obj::getEnemyTypeID()
  * Address:	80276CD8
  * Size:	000004
  */
-void Game::Tank::Obj::createEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tank::Obj::createEffect() { }
 
 /*
  * --INFO--

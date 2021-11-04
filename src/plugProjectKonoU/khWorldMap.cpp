@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -7664,13 +7664,7 @@ void kh::Screen::WorldMap::~WorldMap()
  * Address:	803F8344
  * Size:	000004
  */
-void Game::WorldMap::Base::draw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::draw(Graphics&) { }
 
 /*
  * --INFO--
@@ -7790,13 +7784,7 @@ void kh::Screen::khUtilFadePaneWM::~khUtilFadePaneWM()
  * Address:	803F8484
  * Size:	000004
  */
-void kh::Screen::khUtilFadePane::fadein_finish()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void kh::Screen::khUtilFadePane::fadein_finish() { }
 
 /*
  * --INFO--
@@ -7953,13 +7941,7 @@ void __sinit_khWorldMap_cpp(void)
  * Address:	803F8678
  * Size:	000004
  */
-void JGeometry::TVec2<float>::TVec2()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JGeometry::TVec2<float>::TVec2() { }
 
 /*
  * --INFO--

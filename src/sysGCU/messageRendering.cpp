@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -5334,10 +5334,4 @@ void P2JME::TRenderingProcessor::__dt(void)
  * Address:	8043D328
  * Size:	000004
  */
-void P2JME::TRenderingProcessorBase::do_character((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TRenderingProcessorBase::do_character((int)) { }

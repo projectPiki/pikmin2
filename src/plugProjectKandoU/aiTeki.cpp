@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -948,13 +948,7 @@ void PikiAI::ActTeki::test_2(void)
  * Address:	802134A0
  * Size:	000004
  */
-void PikiAI::ActTeki::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActTeki::cleanup(void) { }
 
 /*
  * --INFO--
@@ -1035,13 +1029,7 @@ void PikiAI::ActTeki::collisionCallback((Game::Piki*, Game::CollEvent&))
  * Address:	8021358C
  * Size:	000004
  */
-void PikiAI::ActTeki::onKeyEvent((SysShape::KeyEvent const&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActTeki::onKeyEvent((SysShape::KeyEvent const&)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1338,13 +1338,7 @@ void onSetPosition__Q24Game11DynCreatureFR10Vector3<float>(void)
  * Address:	801A8DFC
  * Size:	000004
  */
-void Game::DynCreature::onSetPosition(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynCreature::onSetPosition(void) { }
 
 /*
  * --INFO--
@@ -2184,13 +2178,7 @@ void MonoObjectMgr<Game::DynParticle>::clearMgr()
  * Address:	801A9578
  * Size:	000004
  */
-void MonoObjectMgr<Game::DynParticle>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::DynParticle>::onAlloc() { }
 
 /*
  * --INFO--
@@ -3259,78 +3247,42 @@ void ObjectMgr<Game::DynParticle>::doAnimation()
  * Address:	801AA208
  * Size:	000004
  */
-void Game::DynParticle::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	801AA20C
  * Size:	000004
  */
-void Game::DynParticle::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::doSimulation((float)) { }
 
 /*
  * --INFO--
  * Address:	801AA210
  * Size:	000004
  */
-void Game::DynParticle::doViewCalc(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	801AA214
  * Size:	000004
  */
-void Game::DynParticle::doSetView((unsigned long))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::doSetView((unsigned long)) { }
 
 /*
  * --INFO--
  * Address:	801AA218
  * Size:	000004
  */
-void Game::DynParticle::doEntry(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	801AA21C
  * Size:	000004
  */
-void Game::DynParticle::doAnimation(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::doAnimation(void) { }
 
 /*
  * --INFO--
@@ -3459,13 +3411,7 @@ void MonoObjectMgr<Game::DynParticle>::alloc(int)
  * Address:	801AA3A8
  * Size:	000004
  */
-void Game::DynParticle::constructor(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DynParticle::constructor(void) { }
 
 /*
  * --INFO--

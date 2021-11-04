@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4097,10 +4097,6 @@ void Screen::SceneArgBase::getSceneType( const
  */
 void og::newScreen::ObjSMenuMap::doUpdateCancelAction(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

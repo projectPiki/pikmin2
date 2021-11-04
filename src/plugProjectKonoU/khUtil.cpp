@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -792,13 +792,7 @@ void kh::Screen::khUtilFadePane::update()
  * Address:	8040BD14
  * Size:	000004
  */
-void kh::Screen::khUtilFadePane::fadeout_finish()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void kh::Screen::khUtilFadePane::fadeout_finish() { }
 
 /*
  * --INFO--
@@ -1213,10 +1207,4 @@ void kh::Screen::khUtilColorAnm::update()
  * Address:	8040C1E4
  * Size:	000004
  */
-void kh::Screen::khUtilColorAnm::do_update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void kh::Screen::khUtilColorAnm::do_update() { }

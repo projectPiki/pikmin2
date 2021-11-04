@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -471,13 +471,7 @@ void ArrayContainer<Vector3<float>>::read(Stream&)
  * Address:	80133B78
  * Size:	000004
  */
-void ArrayContainer<Vector3<float>>::readObject(Stream&, Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<Vector3<float>>::readObject(Stream&, Vector3<float>&) { }
 
 /*
  * --INFO--
@@ -6545,13 +6539,7 @@ void CollPart::getTube(Sys::Tube&)
  * Address:	80138330
  * Size:	000004
  */
-void CollPart::draw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::draw(Graphics&) { }
 
 /*
  * --INFO--
@@ -8007,91 +7995,49 @@ void CollPart::isMouth()
  * Address:	801393F8
  * Size:	000004
  */
-void CollPart::constructor()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::constructor() { }
 
 /*
  * --INFO--
  * Address:	801393FC
  * Size:	000004
  */
-void CollPart::doAnimation()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	80139400
  * Size:	000004
  */
-void CollPart::doEntry()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::doEntry() { }
 
 /*
  * --INFO--
  * Address:	80139404
  * Size:	000004
  */
-void CollPart::doSetView(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::doSetView(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80139408
  * Size:	000004
  */
-void CollPart::doViewCalc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::doViewCalc() { }
 
 /*
  * --INFO--
  * Address:	8013940C
  * Size:	000004
  */
-void CollPart::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80139410
  * Size:	000004
  */
-void CollPart::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CollPart::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -8408,13 +8354,7 @@ void ArrayContainer<int>::read(Stream&)
  * Address:	8013974C
  * Size:	000004
  */
-void ArrayContainer<int>::readObject(Stream&, int&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<int>::readObject(Stream&, int&) { }
 
 /*
  * --INFO--
@@ -8674,13 +8614,7 @@ void MonoObjectMgr<CollPart>::getEmptyIndex()
  * Address:	8013997C
  * Size:	000004
  */
-void ArrayContainer<Vector3<float>>::writeObject(Stream&, Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<Vector3<float>>::writeObject(Stream&, Vector3<float>&) { }
 
 /*
  * --INFO--
@@ -8844,13 +8778,7 @@ void ArrayContainer<Vector3<float>>::getTo()
  * Address:	80139A94
  * Size:	000004
  */
-void ArrayContainer<int>::writeObject(Stream&, int&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<int>::writeObject(Stream&, int&) { }
 
 /*
  * --INFO--

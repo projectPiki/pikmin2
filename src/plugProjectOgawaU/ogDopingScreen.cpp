@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -981,52 +981,28 @@ void og::Screen::DopingCheck::startGetEff_Down(void)
  * Address:	80304168
  * Size:	000004
  */
-void efx2d::TSimple2::kill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx2d::TSimple2::kill(void) { }
 
 /*
  * --INFO--
  * Address:	8030416C
  * Size:	000004
  */
-void efx2d::TSimple2::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx2d::TSimple2::fade(void) { }
 
 /*
  * --INFO--
  * Address:	80304170
  * Size:	000004
  */
-void efx2d::TSimple1::kill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx2d::TSimple1::kill(void) { }
 
 /*
  * --INFO--
  * Address:	80304174
  * Size:	000004
  */
-void efx2d::TSimple1::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx2d::TSimple1::fade(void) { }
 
 /*
  * --INFO--

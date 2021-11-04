@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2059,13 +2059,7 @@ void og::newScreen::ObjAnaDemo::doEnd((Screen::EndSceneArg const*))
  * Address:	8031E820
  * Size:	000004
  */
-void og::newScreen::ObjAnaDemo::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjAnaDemo::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--

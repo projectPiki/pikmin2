@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1858,13 +1858,7 @@ void Game::MapMgr::update(void)
  * Address:	80163A48
  * Size:	000004
  */
-void Game::MapMgr::do_update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapMgr::do_update(void) { }
 
 /*
  * --INFO--
@@ -2003,13 +1997,7 @@ void MapCollision::createTriangles(Sys::CreateTriangleArg&)
  * Address:	80163B6C
  * Size:	000004
  */
-void Sys::TriDivider::createTriangles((Sys::CreateTriangleArg&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Sys::TriDivider::createTriangles((Sys::CreateTriangleArg&)) { }
 
 /*
  * --INFO--
@@ -2516,26 +2504,14 @@ void Game::MapMgr::frozenable(void)
  * Address:	801640F8
  * Size:	000004
  */
-void Game::MapMgr::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapMgr::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	801640FC
  * Size:	000004
  */
-void Game::MapMgr::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapMgr::doSimulation((float)) { }
 
 /*
  * --INFO--
@@ -2556,13 +2532,7 @@ void Game::MapMgr::findRayIntersection((Sys::RayIntersectInfo&))
  * Address:	80164108
  * Size:	000004
  */
-void Game::MapMgr::createTriangles((Sys::CreateTriangleArg&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapMgr::createTriangles((Sys::CreateTriangleArg&)) { }
 
 /*
  * --INFO--
@@ -2718,13 +2688,7 @@ void ObjectMgr<Game::WaterBox>::doViewCalc()
  * Address:	801642F0
  * Size:	000004
  */
-void Game::WaterBox::doViewCalc(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::doViewCalc(void) { }
 
 /*
  * --INFO--
@@ -2915,13 +2879,7 @@ void ObjectMgr<Game::WaterBox>::doSetView(int)
  * Address:	80164534
  * Size:	000004
  */
-void Game::WaterBox::doSetView((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::doSetView((int)) { }
 
 /*
  * --INFO--
@@ -3077,13 +3035,7 @@ void ObjectMgr<Game::WaterBox>::doEntry()
  * Address:	8016471C
  * Size:	000004
  */
-void Game::WaterBox::doEntry(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::doEntry(void) { }
 
 /*
  * --INFO--
@@ -3239,13 +3191,7 @@ void ObjectMgr<Game::WaterBox>::doAnimation()
  * Address:	80164904
  * Size:	000004
  */
-void Game::WaterBox::doAnimation(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::doAnimation(void) { }
 
 /*
  * --INFO--

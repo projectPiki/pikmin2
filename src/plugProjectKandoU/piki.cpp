@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1192,13 +1192,7 @@ void Game::Piki::onKill((Game::CreatureKillArg*))
  * Address:	80148494
  * Size:	000004
  */
-void PikiAI::Action::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::cleanup(void) { }
 
 /*
  * --INFO--
@@ -1447,13 +1441,7 @@ void Game::Piki::isAlive(void)
  * Address:	80148748
  * Size:	000004
  */
-void Game::Piki::on_movie_begin((bool))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Piki::on_movie_begin((bool)) { }
 
 /*
  * --INFO--
@@ -1513,13 +1501,7 @@ void Game::Piki::getCreatureID(void)
  * Address:	801487B8
  * Size:	000004
  */
-void Game::Piki::movieUserCommand((unsigned long, Game::MoviePlayer*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Piki::movieUserCommand((unsigned long, Game::MoviePlayer*)) { }
 
 /*
  * --INFO--
@@ -2136,13 +2118,7 @@ void Game::Piki::outWaterCallback(void)
  * Address:	80148D80
  * Size:	000004
  */
-void Game::PikiState::outWaterCallback((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::outWaterCallback((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -2310,13 +2286,7 @@ void Game::Piki::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80148F30
  * Size:	000004
  */
-void Game::PikiState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&)) { }
 
 /*
  * --INFO--
@@ -3158,13 +3128,7 @@ void Game::Piki::getPelletCarryPower(void)
  * Address:	80149768
  * Size:	000004
  */
-void Game::Piki::onStickStartSelf((Game::Creature*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Piki::onStickStartSelf((Game::Creature*)) { }
 
 /*
  * --INFO--
@@ -3352,13 +3316,7 @@ void Game::Piki::bounceCallback((Sys::Triangle*))
  * Address:	80149980
  * Size:	000004
  */
-void PikiAI::Action::bounceCallback((Game::Piki*, Sys::Triangle*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
 
 /*
  * --INFO--
@@ -3379,13 +3337,7 @@ void Game::PikiState::aiActive(void)
  * Address:	8014998C
  * Size:	000004
  */
-void Game::PikiState::bounceCallback((Game::Piki*, Sys::Triangle*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
 
 /*
  * --INFO--
@@ -3448,26 +3400,14 @@ void wallCallback__Q24Game4PikiFR10Vector3<float>(void)
  * Address:	80149A30
  * Size:	000004
  */
-void wallCallback__Q26PikiAI6ActionFR10Vector3<float>(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void wallCallback__Q26PikiAI6ActionFR10Vector3<float>(void) { }
 
 /*
  * --INFO--
  * Address:	80149A34
  * Size:	000004
  */
-void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<float>(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<float>(void) { }
 
 /*
  * --INFO--
@@ -3533,26 +3473,14 @@ void Game::Piki::collisionCallback((Game::CollEvent&))
  * Address:	80149AE4
  * Size:	000004
  */
-void PikiAI::Action::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
 
 /*
  * --INFO--
  * Address:	80149AE8
  * Size:	000004
  */
-void Game::PikiState::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
 
 /*
  * --INFO--
@@ -3671,26 +3599,14 @@ void Game::Piki::platCallback((Game::PlatEvent&))
  * Address:	80149C64
  * Size:	000004
  */
-void PikiAI::Action::platCallback((Game::Piki*, Game::PlatEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::platCallback((Game::Piki*, Game::PlatEvent&)) { }
 
 /*
  * --INFO--
  * Address:	80149C68
  * Size:	000004
  */
-void Game::PikiState::platCallback((Game::Piki*, Game::PlatEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::platCallback((Game::Piki*, Game::PlatEvent&)) { }
 
 /*
  * --INFO--
@@ -4574,13 +4490,7 @@ void Game::Piki::doAnimation(void)
  * Address:	8014A594
  * Size:	000004
  */
-void Game::Piki::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Piki::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -5098,13 +5008,7 @@ void MonoObjectMgr<Game::Piki>::kill(Game::Piki*)
  * Address:	8014AB34
  * Size:	000004
  */
-void init__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void init__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki(void) { }
 
 /*
  * --INFO--
@@ -5171,10 +5075,6 @@ FPQ24Game4PikiiPQ24Game8StateArg(void)
  */
 void init__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5182,13 +5082,7 @@ void init__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiPQ24Game8StateArg(void)
  * Address:	8014ABD8
  * Size:	000004
  */
-void cleanup__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void cleanup__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
 
 /*
  * --INFO--
@@ -5223,13 +5117,7 @@ void exec__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki(void)
  * Address:	8014AC14
  * Size:	000004
  */
-void exec__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void exec__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
 
 /*
  * --INFO--

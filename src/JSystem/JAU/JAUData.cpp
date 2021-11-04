@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -296,13 +296,7 @@ void JADUtility::PrmSetBase::__dt(void)
  * Address:	800BA7D0
  * Size:	000004
  */
-void JADUtility::PrmSetBase::appendAfter(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JADUtility::PrmSetBase::appendAfter(void) { }
 
 /*
  * --INFO--
@@ -311,10 +305,6 @@ void JADUtility::PrmSetBase::appendAfter(void)
  */
 void JADUtility::PrmSetBase::afterRemovingChildButton((JADUtility::PrmSetBase*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -324,10 +314,6 @@ void JADUtility::PrmSetBase::afterRemovingChildButton((JADUtility::PrmSetBase*))
  */
 void JADUtility::PrmSetBase::afterRemovingThisButton((JADUtility::PrmSetBase*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -349,13 +335,7 @@ void JADUtility::PrmSetBase::getEraseLink(void)
  * Address:	800BA7E4
  * Size:	000004
  */
-void JADUtility::PrmSetBase::afterGetFromFree(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JADUtility::PrmSetBase::afterGetFromFree(void) { }
 
 /*
  * --INFO--
@@ -365,10 +345,6 @@ void JADUtility::PrmSetBase::afterGetFromFree(void)
 void beforeRemovingChild__Q210JADUtility36NodeTree<JADUtility::PrmSetBase>
 FPQ210JADUtility10PrmSetBase(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -379,10 +355,6 @@ FPQ210JADUtility10PrmSetBase(void)
 void beforeRemovingThis__Q210JADUtility36NodeTree<JADUtility::PrmSetBase>
 FPQ210JADUtility10PrmSetBase(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -393,10 +365,6 @@ FPQ210JADUtility10PrmSetBase(void)
 void afterRemovingChildButton__Q210JADUtility36NodeTree<JADUtility::PrmSetBase>
 FPQ210JADUtility10PrmSetBase(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -407,8 +375,4 @@ FPQ210JADUtility10PrmSetBase(void)
 void afterRemovingThisButton__Q210JADUtility36NodeTree<JADUtility::PrmSetBase>
 FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Frog::Obj::Obj()
  * Address:	80258680
  * Size:	000004
  */
-void Game::Frog::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -410,13 +404,7 @@ void Game::Frog::Obj::doSimulationFlying(float)
  * Address:	80258A04
  * Size:	000004
  */
-void Game::Frog::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1643,52 +1631,28 @@ void efx::TFrogPota::~TFrogPota()
  * Address:	802596C8
  * Size:	000004
  */
-void efx::TSimple4::forceKill()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple4::forceKill() { }
 
 /*
  * --INFO--
  * Address:	802596CC
  * Size:	000004
  */
-void efx::TSimple4::fade()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple4::fade() { }
 
 /*
  * --INFO--
  * Address:	802596D0
  * Size:	000004
  */
-void Game::Frog::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802596D4
  * Size:	000004
  */
-void Game::Frog::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -103,13 +103,7 @@ void Game::OniKurage::Obj::Obj()
  * Address:	802D40C4
  * Size:	000004
  */
-void Game::OniKurage::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -312,13 +306,7 @@ void Game::OniKurage::Obj::doUpdateCommon()
  * Address:	802D4308
  * Size:	000004
  */
-void Game::OniKurage::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -4263,26 +4251,14 @@ void efx::TKurageEye::~TKurageEye()
  * Address:	802D726C
  * Size:	000004
  */
-void Game::OniKurage::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802D7270
  * Size:	000004
  */
-void Game::OniKurage::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

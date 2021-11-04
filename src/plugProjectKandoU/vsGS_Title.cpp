@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1304,10 +1304,6 @@ void Morimura::DispMemberChallengeSelect::getMemberID(void)
 void resume__Q24Game32FSMState<Game::VsGameSection>
 FPQ24Game13VsGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1318,10 +1314,6 @@ FPQ24Game13VsGameSection(void)
 void restart__Q24Game32FSMState<Game::VsGameSection>
 FPQ24Game13VsGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

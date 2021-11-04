@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -483,26 +483,14 @@ void Game::KochappyBase::Obj::getMouthSlots()
  * Address:	8010F864
  * Size:	000004
  */
-void Game::KochappyBase::Obj::resetEnemyNonStone()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KochappyBase::Obj::resetEnemyNonStone() { }
 
 /*
  * --INFO--
  * Address:	8010F868
  * Size:	000004
  */
-void Game::KochappyBase::Obj::setEnemyNonStone()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KochappyBase::Obj::setEnemyNonStone() { }
 
 /*
  * --INFO--

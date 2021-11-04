@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Hiba::Obj::Obj()
  * Address:	8026BFC4
  * Size:	000004
  */
-void Game::Hiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -213,13 +207,7 @@ void Game::Hiba::Obj::doUpdate()
  * Address:	8026C0F4
  * Size:	000004
  */
-void Game::Hiba::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hiba::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -731,39 +719,21 @@ void Game::Hiba::Obj::generatorKill()
  * Address:	8026C5FC
  * Size:	000004
  */
-void Game::Hiba::Obj::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hiba::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8026C600
  * Size:	000004
  */
-void Game::Hiba::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hiba::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8026C604
  * Size:	000004
  */
-void Game::Hiba::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hiba::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -784,13 +754,7 @@ void Game::Hiba::Obj::isLivingThing()
  * Address:	8026C610
  * Size:	000004
  */
-void Game::Hiba::Obj::lifeRecover()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hiba::Obj::lifeRecover() { }
 
 /*
  * --INFO--

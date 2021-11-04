@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2415,23 +2415,11 @@ void J2DScreen::clearAnmTransform()
  * Address:	80040F6C
  * Size:	000004
  */
-void J2DScreen::setAnimationVF(J2DAnmVisibilityFull*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DScreen::setAnimationVF(J2DAnmVisibilityFull*) { }
 
 /*
  * --INFO--
  * Address:	80040F70
  * Size:	000004
  */
-void J2DScreen::setAnimationVC(J2DAnmVtxColor*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DScreen::setAnimationVC(J2DAnmVtxColor*) { }

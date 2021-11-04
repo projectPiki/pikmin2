@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -412,13 +412,7 @@ void Game::SnakeCrow::StateDead::exec(Game::EnemyBase*)
  * Address:	80290C80
  * Size:	000004
  */
-void Game::SnakeCrow::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2694,13 +2688,7 @@ void Game::SnakeCrow::StateEat::exec(Game::EnemyBase*)
  * Address:	80292960
  * Size:	000004
  */
-void Game::SnakeCrow::StateEat::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::StateEat::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2845,13 +2833,7 @@ void Game::SnakeCrow::StateStruggle::exec(Game::EnemyBase*)
  * Address:	80292AFC
  * Size:	000004
  */
-void Game::SnakeCrow::StateStruggle::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeCrow::StateStruggle::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

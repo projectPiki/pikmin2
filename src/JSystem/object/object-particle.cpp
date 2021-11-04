@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -287,10 +287,6 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(
 void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(
     const JStudio::TObject*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1046,49 +1042,25 @@ void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(unsigned long)
  * Address:	80006210
  * Size:	000004
  */
-void JPAEmitterCallBack::executeAfter(JPABaseEmitter*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAEmitterCallBack::executeAfter(JPABaseEmitter*) { }
 
 /*
  * --INFO--
  * Address:	80006214
  * Size:	000004
  */
-void JPAEmitterCallBack::draw(JPABaseEmitter*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAEmitterCallBack::draw(JPABaseEmitter*) { }
 
 /*
  * --INFO--
  * Address:	80006218
  * Size:	000004
  */
-void JPAEmitterCallBack::drawAfter(JPABaseEmitter*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAEmitterCallBack::drawAfter(JPABaseEmitter*) { }
 
 /*
  * --INFO--
  * Address:	8000621C
  * Size:	000004
  */
-void JPAEmitterCallBack::execute(JPABaseEmitter*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAEmitterCallBack::execute(JPABaseEmitter*) { }

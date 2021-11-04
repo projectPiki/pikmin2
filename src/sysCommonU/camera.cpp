@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1218,13 +1218,7 @@ void Camera::update()
  * Address:	8041AEDC
  * Size:	000004
  */
-void Camera::updateMatrix()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Camera::updateMatrix() { }
 
 /*
  * --INFO--

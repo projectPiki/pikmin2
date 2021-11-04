@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -78,13 +78,7 @@ void WipeBase::start(float)
  * Address:	8042BDA8
  * Size:	000004
  */
-void WipeBase::on_start()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void WipeBase::on_start() { }
 
 /*
  * --INFO--
@@ -173,13 +167,7 @@ void WipeBase::draw()
  * Address:	8042BE84
  * Size:	000004
  */
-void WipeBase::do_draw(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void WipeBase::do_draw(float) { }
 
 /*
  * --INFO--
@@ -403,13 +391,7 @@ void WipeOutFader::WipeOutFader()
  * Address:	8042C0EC
  * Size:	000004
  */
-void WipeOutFader::on_start()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void WipeOutFader::on_start() { }
 
 /*
  * --INFO--

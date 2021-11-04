@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -549,13 +549,7 @@ void Game::TamagoMushi::Obj::doAnimationCullingOff(void)
  * Address:	8036F238
  * Size:	000004
  */
-void Game::TamagoMushi::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::TamagoMushi::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -2711,10 +2705,6 @@ void Game::TamagoMushi::Obj::createAppearEffect(void)
  */
 void Game::TamagoMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

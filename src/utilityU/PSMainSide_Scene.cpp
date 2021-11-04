@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -180,26 +180,14 @@ void PSM::SceneBase::pauseOff_2D()
  * Address:	804677B4
  * Size:	000004
  */
-void PSM::SceneBase::pauseOn_Demo()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::SceneBase::pauseOn_Demo() { }
 
 /*
  * --INFO--
  * Address:	804677B8
  * Size:	000004
  */
-void PSM::SceneBase::pauseOff_Demo()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::SceneBase::pauseOff_Demo() { }
 
 /*
  * --INFO--
@@ -3007,13 +2995,7 @@ void PSM::Scene_Game::pauseOn_Demo()
  * Address:	80469888
  * Size:	000004
  */
-void PSM::Scene_Game::pauseOff_Demo()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::Scene_Game::pauseOff_Demo() { }
 
 /*
  * --INFO--

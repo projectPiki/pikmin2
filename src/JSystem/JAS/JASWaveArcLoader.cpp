@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -664,10 +664,4 @@ void JASWaveArc::setFileName(const char*)
  * Address:	8009C02C
  * Size:	000004
  */
-void JASDisposer::onDispose()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JASDisposer::onDispose() { }

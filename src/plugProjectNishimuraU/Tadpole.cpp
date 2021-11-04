@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -99,13 +99,7 @@ void Game::Tadpole::Obj::Obj()
  * Address:	80278700
  * Size:	000004
  */
-void Game::Tadpole::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -174,13 +168,7 @@ void Game::Tadpole::Obj::doUpdate()
  * Address:	8027879C
  * Size:	000004
  */
-void Game::Tadpole::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -757,26 +745,14 @@ void Game::Tadpole::Obj::createLeapEffect()
  * Address:	80278E80
  * Size:	000004
  */
-void Game::Tadpole::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80278E84
  * Size:	000004
  */
-void Game::Tadpole::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

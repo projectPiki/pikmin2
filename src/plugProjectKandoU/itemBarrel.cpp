@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -126,26 +126,14 @@ void Game::ItemBarrel::NormalState::init((Game::ItemBarrel::Item*,
  * Address:	801F7AB0
  * Size:	000004
  */
-void Game::ItemBarrel::NormalState::exec((Game::ItemBarrel::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::NormalState::exec((Game::ItemBarrel::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F7AB4
  * Size:	000004
  */
-void Game::ItemBarrel::NormalState::cleanup((Game::ItemBarrel::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::NormalState::cleanup((Game::ItemBarrel::Item*)) { }
 
 /*
  * --INFO--
@@ -219,10 +207,6 @@ FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg(void)
 void Game::ItemBarrel::NormalState::onKeyEvent((Game::ItemBarrel::Item*,
                                                 SysShape::KeyEvent const&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -339,39 +323,21 @@ void Game::ItemBarrel::DeadState::init((Game::ItemBarrel::Item*,
  * Address:	801F7CC0
  * Size:	000004
  */
-void Game::ItemBarrel::DeadState::exec((Game::ItemBarrel::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::DeadState::exec((Game::ItemBarrel::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F7CC4
  * Size:	000004
  */
-void Game::ItemBarrel::DeadState::cleanup((Game::ItemBarrel::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::DeadState::cleanup((Game::ItemBarrel::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F7CC8
  * Size:	000004
  */
-void Game::ItemBarrel::DeadState::onDamage((Game::ItemBarrel::Item*, float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::DeadState::onDamage((Game::ItemBarrel::Item*, float)) { }
 
 /*
  * --INFO--
@@ -478,10 +444,6 @@ void Game::ItemBarrel::DeadState::onKeyEvent((Game::ItemBarrel::Item*,
 void Game::ItemBarrel::DamagedState::init((Game::ItemBarrel::Item*,
                                            Game::StateArg*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -489,26 +451,14 @@ void Game::ItemBarrel::DamagedState::init((Game::ItemBarrel::Item*,
  * Address:	801F7E18
  * Size:	000004
  */
-void Game::ItemBarrel::DamagedState::exec((Game::ItemBarrel::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::DamagedState::exec((Game::ItemBarrel::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F7E1C
  * Size:	000004
  */
-void Game::ItemBarrel::DamagedState::cleanup((Game::ItemBarrel::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::DamagedState::cleanup((Game::ItemBarrel::Item*)) { }
 
 /*
  * --INFO--
@@ -534,10 +484,6 @@ void Game::ItemBarrel::DamagedState::onDamage((Game::ItemBarrel::Item*, float))
 void Game::ItemBarrel::DamagedState::onKeyEvent((Game::ItemBarrel::Item*,
                                                  SysShape::KeyEvent const&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1265,13 +1211,7 @@ void Game::ItemBarrel::Item::interactAttack((Game::InteractAttack&))
  * Address:	801F85E4
  * Size:	000004
  */
-void Game::ItemBarrel::State::onDamage((Game::ItemBarrel::Item*, float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBarrel::State::onDamage((Game::ItemBarrel::Item*, float)) { }
 
 /*
  * --INFO--
@@ -1935,10 +1875,6 @@ Fv(void)
 void onDamage__Q24Game35ItemState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1949,10 +1885,6 @@ FPQ34Game10ItemBarrel4Itemf(void)
 void onKeyEvent__Q24Game35ItemState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1963,10 +1895,6 @@ FPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent(void)
 void onBounce__Q24Game35ItemState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1977,10 +1905,6 @@ FPQ34Game10ItemBarrel4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game35ItemState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1991,10 +1915,6 @@ FPQ34Game10ItemBarrel4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game35ItemState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2005,10 +1925,6 @@ FPQ34Game10ItemBarrel4ItemRQ24Game9CollEvent(void)
 void init__Q24Game34FSMState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2019,10 +1935,6 @@ FPQ34Game10ItemBarrel4ItemPQ24Game8StateArg(void)
 void exec__Q24Game34FSMState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2033,10 +1945,6 @@ FPQ34Game10ItemBarrel4Item(void)
 void cleanup__Q24Game34FSMState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2047,10 +1955,6 @@ FPQ34Game10ItemBarrel4Item(void)
 void resume__Q24Game34FSMState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2061,10 +1965,6 @@ FPQ34Game10ItemBarrel4Item(void)
 void restart__Q24Game34FSMState<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2075,10 +1975,6 @@ FPQ34Game10ItemBarrel4Item(void)
 void init__Q24Game38StateMachine<Game::ItemBarrel::Item>
 FPQ34Game10ItemBarrel4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

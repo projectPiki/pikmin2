@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -59,10 +59,6 @@ void JStage::TActor::JSGFGetType( const
  */
 void JStage::TActor::JSGGetTranslation( const(Vec *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -72,10 +68,6 @@ void JStage::TActor::JSGGetTranslation( const(Vec *))
  */
 void JStage::TActor::JSGSetTranslation( (Vec const &))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -85,10 +77,6 @@ void JStage::TActor::JSGSetTranslation( (Vec const &))
  */
 void JStage::TActor::JSGGetScaling( const(Vec *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -98,10 +86,6 @@ void JStage::TActor::JSGGetScaling( const(Vec *))
  */
 void JStage::TActor::JSGSetScaling( (Vec const &))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -111,10 +95,6 @@ void JStage::TActor::JSGSetScaling( (Vec const &))
  */
 void JStage::TActor::JSGGetRotation( const(Vec *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -124,10 +104,6 @@ void JStage::TActor::JSGGetRotation( const(Vec *))
  */
 void JStage::TActor::JSGSetRotation( (Vec const &))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -151,10 +127,6 @@ void JStage::TActor::JSGGetShape( const
  */
 void JStage::TActor::JSGSetShape( (unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -178,10 +150,6 @@ void JStage::TActor::JSGGetAnimation( const
  */
 void JStage::TActor::JSGSetAnimation( (unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -205,10 +173,6 @@ void JStage::TActor::JSGGetAnimationFrame( const
  */
 void JStage::TActor::JSGSetAnimationFrame( (float))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -246,10 +210,6 @@ void JStage::TActor::JSGGetAnimationTransition( const
  */
 void JStage::TActor::JSGSetAnimationTransition( (float))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -273,10 +233,6 @@ void JStage::TActor::JSGGetTextureAnimation( const
  */
 void JStage::TActor::JSGSetTextureAnimation( (unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -300,10 +256,6 @@ void JStage::TActor::JSGGetTextureAnimationFrame( const
  */
 void JStage::TActor::JSGSetTextureAnimationFrame( (float))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

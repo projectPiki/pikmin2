@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2038,10 +2038,6 @@ void efx::TKoganeDive::create((efx::Arg*))
  */
 void efx::TParticleCallBack_TankFire::init((JPABaseEmitter*, JPABaseParticle*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

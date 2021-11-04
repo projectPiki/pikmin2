@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -117,10 +117,6 @@ void Game::KumaKochappy::Obj::__ct(void)
  */
 void Game::KumaKochappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -226,13 +222,7 @@ void Game::KumaKochappy::Obj::doUpdate(void)
  * Address:	802E7294
  * Size:	000004
  */
-void Game::KumaKochappy::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KumaKochappy::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -395,114 +395,60 @@ void Game::BombOtakara::Obj::getEnemyTypeID()
  * Address:	802F9A68
  * Size:	000004
  */
-void Game::BombOtakara::Obj::interactCreature(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::interactCreature(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	802F9A6C
  * Size:	000004
  */
-void Game::BombOtakara::Obj::createEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::createEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A70
  * Size:	000004
  */
-void Game::BombOtakara::Obj::setupEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::setupEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A74
  * Size:	000004
  */
-void Game::BombOtakara::Obj::startChargeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::startChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A78
  * Size:	000004
  */
-void Game::BombOtakara::Obj::finishChargeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::finishChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A7C
  * Size:	000004
  */
-void Game::BombOtakara::Obj::createDisChargeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::createDisChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F9A80
  * Size:	000004
  */
-void Game::BombOtakara::Obj::effectDrawOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::effectDrawOn() { }
 
 /*
  * --INFO--
  * Address:	802F9A84
  * Size:	000004
  */
-void Game::BombOtakara::Obj::effectDrawOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
  * Address:	802F9A88
  * Size:	000004
  */
-void Game::BombOtakara::Obj::startDisChargeSE()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombOtakara::Obj::startDisChargeSE() { }

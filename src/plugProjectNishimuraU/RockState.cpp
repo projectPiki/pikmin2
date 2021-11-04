@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -950,13 +950,7 @@ void Game::Rock::StateDead::exec(Game::EnemyBase*)
  * Address:	80262850
  * Size:	000004
  */
-void Game::Rock::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Rock::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

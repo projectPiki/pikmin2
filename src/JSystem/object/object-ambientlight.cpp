@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -105,10 +105,6 @@ void JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight()
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare(
     const JStudio::TObject*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1509,13 +1509,7 @@ void ParticleMgr::draw2d()
  * Address:	803BBE5C
  * Size:	000004
  */
-void ModelEffectDataRoot::loadResources()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ModelEffectDataRoot::loadResources() { }
 
 /*
  * --INFO--

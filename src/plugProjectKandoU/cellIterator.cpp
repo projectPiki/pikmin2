@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -672,10 +672,4 @@ void Game::CellIterator::calcExtent(void)
  * Address:	8022EA90
  * Size:	000004
  */
-void Game::CellIterator::dump(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CellIterator::dump(void) { }

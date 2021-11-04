@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -417,13 +417,7 @@ void Game::Imomushi::StateDead::exec(Game::EnemyBase*)
  * Address:	802BA640
  * Size:	000004
  */
-void Game::Imomushi::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Imomushi::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -561,13 +555,7 @@ void Game::Imomushi::StateFallDive::exec(Game::EnemyBase*)
  * Address:	802BA7D0
  * Size:	000004
  */
-void Game::Imomushi::StateFallDive::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Imomushi::StateFallDive::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -721,13 +709,7 @@ void Game::Imomushi::StateFallMove::exec(Game::EnemyBase*)
  * Address:	802BA998
  * Size:	000004
  */
-void Game::Imomushi::StateFallMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Imomushi::StateFallMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

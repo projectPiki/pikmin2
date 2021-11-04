@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -610,39 +610,21 @@ void PikiAI::ActBridge::platCallback((Game::Piki*, Game::PlatEvent&))
  * Address:	8021293C
  * Size:	000004
  */
-void PikiAI::ActBridge::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBridge::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
 
 /*
  * --INFO--
  * Address:	80212940
  * Size:	000004
  */
-void PikiAI::ActBridge::bounceCallback((Game::Piki*, Sys::Triangle*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBridge::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
 
 /*
  * --INFO--
  * Address:	80212944
  * Size:	000004
  */
-void PikiAI::ActBridge::onKeyEvent((SysShape::KeyEvent const&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBridge::onKeyEvent((SysShape::KeyEvent const&)) { }
 
 /*
  * --INFO--

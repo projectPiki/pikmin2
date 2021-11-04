@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1195,26 +1195,14 @@ void ebi::Omake::TMgr::getStateID(void)
  * Address:	803EF8F4
  * Size:	000004
  */
-void ebi::Omake::FSMState::do_init((ebi::Omake::TMgr*, Game::StateArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Omake::FSMState::do_init((ebi::Omake::TMgr*, Game::StateArg*)) { }
 
 /*
  * --INFO--
  * Address:	803EF8F8
  * Size:	000004
  */
-void ebi::Omake::FSMState::do_exec((ebi::Omake::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Omake::FSMState::do_exec((ebi::Omake::TMgr*)) { }
 
 /*
  * --INFO--
@@ -1840,10 +1828,6 @@ void ebi::Screen::TOmake::__dt(void)
 void init__Q24Game27FSMState<ebi::Omake::TMgr>
 FPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1851,65 +1835,35 @@ FPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
  * Address:	803F00C8
  * Size:	000004
  */
-void exec__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void exec__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803F00CC
  * Size:	000004
  */
-void cleanup__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void cleanup__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803F00D0
  * Size:	000004
  */
-void resume__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void resume__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803F00D4
  * Size:	000004
  */
-void restart__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void restart__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803F00D8
  * Size:	000004
  */
-void init__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void init__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) { }
 
 /*
  * --INFO--

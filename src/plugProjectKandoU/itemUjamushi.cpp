@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -5421,13 +5421,7 @@ void Iterator<Game::ItemUjamushi::Item>::isDone()
  * Address:	80209DF4
  * Size:	000004
  */
-void Game::ItemUjamushi::Mgr::onLoadResources(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemUjamushi::Mgr::onLoadResources(void) { }
 
 /*
  * --INFO--
@@ -5607,13 +5601,7 @@ FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
  * Address:	80209F74
  * Size:	000004
  */
-void Game::ItemUjamushi::WaitState::cleanup((Game::ItemUjamushi::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemUjamushi::WaitState::cleanup((Game::ItemUjamushi::Item*)) { }
 
 /*
  * --INFO--
@@ -5690,26 +5678,14 @@ void Game::ItemUjamushi::ActiveState::init((Game::ItemUjamushi::Item*,
  * Address:	8020A03C
  * Size:	000004
  */
-void Game::ItemUjamushi::ActiveState::exec((Game::ItemUjamushi::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemUjamushi::ActiveState::exec((Game::ItemUjamushi::Item*)) { }
 
 /*
  * --INFO--
  * Address:	8020A040
  * Size:	000004
  */
-void Game::ItemUjamushi::ActiveState::cleanup((Game::ItemUjamushi::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemUjamushi::ActiveState::cleanup((Game::ItemUjamushi::Item*)) { }
 
 /*
  * --INFO--
@@ -5806,13 +5782,7 @@ void Game::ItemUjamushi::DigState::exec((Game::ItemUjamushi::Item*))
  * Address:	8020A130
  * Size:	000004
  */
-void Game::ItemUjamushi::DigState::cleanup((Game::ItemUjamushi::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemUjamushi::DigState::cleanup((Game::ItemUjamushi::Item*)) { }
 
 /*
  * --INFO--
@@ -6630,13 +6600,7 @@ void Game::ItemUjamushi::Item::getFlockMgr(void)
  * Address:	8020A9F0
  * Size:	000004
  */
-void Game::ItemUjamushi::Item::makeTrMatrix(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemUjamushi::Item::makeTrMatrix(void) { }
 
 /*
  * --INFO--
@@ -6968,13 +6932,7 @@ void ObjectMgr<Game::ItemUjamushi::Uja>::~ObjectMgr()
  * Address:	8020AD38
  * Size:	000004
  */
-void Game::BaseFlockMgr::do_update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseFlockMgr::do_update(void) { }
 
 /*
  * --INFO--
@@ -7039,13 +6997,7 @@ void Game::TFlock::getRadius(void)
  * Address:	8020AD94
  * Size:	000004
  */
-void Game::TFlock::constructor(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::TFlock::constructor(void) { }
 
 /*
  * --INFO--
@@ -7462,10 +7414,6 @@ FR8Graphics(void)
 void onDamage__Q24Game37ItemState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7476,10 +7424,6 @@ FPQ34Game12ItemUjamushi4Itemf(void)
 void onKeyEvent__Q24Game37ItemState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7490,10 +7434,6 @@ FPQ34Game12ItemUjamushi4ItemRCQ28SysShape8KeyEvent(void)
 void onBounce__Q24Game37ItemState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7504,10 +7444,6 @@ FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game37ItemState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7518,10 +7454,6 @@ FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game37ItemState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7532,10 +7464,6 @@ FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent(void)
 void init__Q24Game36FSMState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7546,10 +7474,6 @@ FPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void)
 void exec__Q24Game36FSMState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7560,10 +7484,6 @@ FPQ34Game12ItemUjamushi4Item(void)
 void cleanup__Q24Game36FSMState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7574,10 +7494,6 @@ FPQ34Game12ItemUjamushi4Item(void)
 void resume__Q24Game36FSMState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7588,10 +7504,6 @@ FPQ34Game12ItemUjamushi4Item(void)
 void restart__Q24Game36FSMState<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7602,10 +7514,6 @@ FPQ34Game12ItemUjamushi4Item(void)
 void init__Q24Game40StateMachine<Game::ItemUjamushi::Item>
 FPQ34Game12ItemUjamushi4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -8198,13 +8106,7 @@ void MonoObjectMgr<Game::ItemUjamushi::Uja>::clearMgr()
  * Address:	8020B5A0
  * Size:	000004
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::ItemUjamushi::Uja>::onAlloc() { }
 
 /*
  * --INFO--

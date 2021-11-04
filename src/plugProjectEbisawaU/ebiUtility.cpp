@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -418,23 +418,11 @@ void ebi::EUTDebug_Wait()
  * Address:	803C1EB4
  * Size:	000004
  */
-void ebi::EUTDebug_Tag64ToName(unsigned long long, char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::EUTDebug_Tag64ToName(unsigned long long, char*) { }
 
 /*
  * --INFO--
  * Address:	803C1EB8
  * Size:	000004
  */
-void ebi::EUTDebug_Tag32ToName(unsigned long, char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::EUTDebug_Tag32ToName(unsigned long, char*) { }

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -502,26 +502,14 @@ void PikiAI::Brain::exec(void)
  * Address:	80196F7C
  * Size:	000004
  */
-void PikiAI::Action::emotion_fail(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::emotion_fail(void) { }
 
 /*
  * --INFO--
  * Address:	80196F80
  * Size:	000004
  */
-void PikiAI::Action::emotion_success(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::emotion_success(void) { }
 
 /*
  * --INFO--
@@ -664,13 +652,7 @@ void PikiAI::Action::applicable(void)
  * Address:	8019709C
  * Size:	000004
  */
-void PikiAI::Action::init((PikiAI::ActionArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::init((PikiAI::ActionArg*)) { }
 
 /*
  * --INFO--
@@ -839,13 +821,7 @@ void PikiAI::Brain::searchOrima(void)
  * Address:	801972B0
  * Size:	000004
  */
-void PikiAI::Action::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::Action::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--

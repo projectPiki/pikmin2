@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -422,26 +422,14 @@ void Game::GenPellet::doRead((Stream&))
  * Address:	80202C28
  * Size:	000004
  */
-void Game::GenPellet::ramSaveParameters((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenPellet::ramSaveParameters((Stream&)) { }
 
 /*
  * --INFO--
  * Address:	80202C2C
  * Size:	000004
  */
-void Game::GenPellet::ramLoadParameters((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenPellet::ramLoadParameters((Stream&)) { }
 
 /*
  * --INFO--

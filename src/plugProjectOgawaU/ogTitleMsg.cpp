@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1343,13 +1343,7 @@ void og::newScreen::TitleMsgWave::__ct((J2DScreen*, J2DPane*, char*))
  * Address:	8032FA1C
  * Size:	000004
  */
-void og::newScreen::TitleMsgWave::init(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::TitleMsgWave::init(void) { }
 
 /*
  * --INFO--
@@ -1977,13 +1971,7 @@ void og::newScreen::TitleMsgClash::end(void)
  * Address:	803301BC
  * Size:	000004
  */
-void og::newScreen::TitleMsg::start(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::TitleMsg::start(void) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -789,13 +789,7 @@ void Game::ItemGate::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	801C7F20
  * Size:	000004
  */
-void Game::GateState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
@@ -897,13 +891,7 @@ void Game::ItemGate::interactAttack(Game::InteractAttack&)
  * Address:	801C8040
  * Size:	000004
  */
-void Game::GateState::onDamage(Game::ItemGate*, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateState::onDamage(Game::ItemGate*, float) { }
 
 /*
  * --INFO--
@@ -2772,39 +2760,21 @@ void Game::ItemGateMgr::getCaveID(char*)
  * Address:	801C977C
  * Size:	000004
  */
-void Game::GateWaitState::init(Game::ItemGate*, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateWaitState::init(Game::ItemGate*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801C9780
  * Size:	000004
  */
-void Game::GateWaitState::exec(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateWaitState::exec(Game::ItemGate*) { }
 
 /*
  * --INFO--
  * Address:	801C9784
  * Size:	000004
  */
-void Game::GateWaitState::cleanup(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateWaitState::cleanup(Game::ItemGate*) { }
 
 /*
  * --INFO--
@@ -2866,10 +2836,6 @@ void Game::FSMState<Game::ItemGate>::transit(Game::ItemGate*, int,
  */
 void Game::GateWaitState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2982,13 +2948,7 @@ void Game::GateDamagedState::exec(Game::ItemGate*)
  * Address:	801C9918
  * Size:	000004
  */
-void Game::GateDamagedState::cleanup(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateDamagedState::cleanup(Game::ItemGate*) { }
 
 /*
  * --INFO--
@@ -3198,26 +3158,14 @@ void Game::ItemGate::getFaceDir()
  * Address:	801C9B64
  * Size:	000004
  */
-void Game::GateDownState::exec(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateDownState::exec(Game::ItemGate*) { }
 
 /*
  * --INFO--
  * Address:	801C9B68
  * Size:	000004
  */
-void Game::GateDownState::cleanup(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GateDownState::cleanup(Game::ItemGate*) { }
 
 /*
  * --INFO--
@@ -4329,26 +4277,14 @@ void Game::ItemGate::getMabiki()
  * Address:	801CA6EC
  * Size:	000004
  */
-void Game::ItemGate::makeTrMatrix()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemGate::makeTrMatrix() { }
 
 /*
  * --INFO--
  * Address:	801CA6F0
  * Size:	000004
  */
-void Game::BaseItem::do_doAnimation()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::do_doAnimation() { }
 
 /*
  * --INFO--
@@ -4394,13 +4330,7 @@ void Game::BaseItem::getCreatureName()
  * Address:	801CA730
  * Size:	000004
  */
-void Game::BaseItem::changeMaterial()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::changeMaterial() { }
 
 /*
  * --INFO--
@@ -4974,13 +4904,7 @@ void Game::FSMItem<Game::ItemGate, Game::GateFSM, Game::GateState>::onKeyEvent(
  * Address:	801CAD5C
  * Size:	000004
  */
-void Game::ItemState<Game::ItemGate>::onDamage(Game::ItemGate*, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemState<Game::ItemGate>::onDamage(Game::ItemGate*, float) { }
 
 /*
  * --INFO--
@@ -4990,10 +4914,6 @@ void Game::ItemState<Game::ItemGate>::onDamage(Game::ItemGate*, float)
 void Game::ItemState<Game::ItemGate>::onKeyEvent(Game::ItemGate*,
                                                  const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5003,10 +4923,6 @@ void Game::ItemState<Game::ItemGate>::onKeyEvent(Game::ItemGate*,
  */
 void Game::ItemState<Game::ItemGate>::onBounce(Game::ItemGate*, Sys::Triangle*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5017,10 +4933,6 @@ void Game::ItemState<Game::ItemGate>::onBounce(Game::ItemGate*, Sys::Triangle*)
 void Game::ItemState<Game::ItemGate>::onPlatCollision(Game::ItemGate*,
                                                       Game::PlatEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5031,10 +4943,6 @@ void Game::ItemState<Game::ItemGate>::onPlatCollision(Game::ItemGate*,
 void Game::ItemState<Game::ItemGate>::onCollision(Game::ItemGate*,
                                                   Game::CollEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5042,78 +4950,42 @@ void Game::ItemState<Game::ItemGate>::onCollision(Game::ItemGate*,
  * Address:	801CAD70
  * Size:	000004
  */
-void Game::FSMState<Game::ItemGate>::init(Game::ItemGate*, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemGate>::init(Game::ItemGate*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801CAD74
  * Size:	000004
  */
-void Game::FSMState<Game::ItemGate>::exec(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemGate>::exec(Game::ItemGate*) { }
 
 /*
  * --INFO--
  * Address:	801CAD78
  * Size:	000004
  */
-void Game::FSMState<Game::ItemGate>::cleanup(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemGate>::cleanup(Game::ItemGate*) { }
 
 /*
  * --INFO--
  * Address:	801CAD7C
  * Size:	000004
  */
-void Game::FSMState<Game::ItemGate>::resume(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemGate>::resume(Game::ItemGate*) { }
 
 /*
  * --INFO--
  * Address:	801CAD80
  * Size:	000004
  */
-void Game::FSMState<Game::ItemGate>::restart(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemGate>::restart(Game::ItemGate*) { }
 
 /*
  * --INFO--
  * Address:	801CAD84
  * Size:	000004
  */
-void Game::StateMachine<Game::ItemGate>::init(Game::ItemGate*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::StateMachine<Game::ItemGate>::init(Game::ItemGate*) { }
 
 /*
  * --INFO--

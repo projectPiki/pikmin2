@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -367,13 +367,7 @@ void getMaxObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv(void)
  * Address:	8020F584
  * Size:	000004
  */
-void Game::ItemWeed::WeedMgr::do_update_boundSphere(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemWeed::WeedMgr::do_update_boundSphere(void) { }
 
 /*
  * --INFO--
@@ -1427,13 +1421,7 @@ void Game::ItemWeed::Mgr::doSimpleDraw((Viewport*))
  * Address:	802101F0
  * Size:	000004
  */
-void Game::ItemWeed::Mgr::onLoadResources(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemWeed::Mgr::onLoadResources(void) { }
 
 /*
  * --INFO--
@@ -1497,10 +1485,6 @@ void Game::ItemWeed::Mgr::getCaveID((char*))
  */
 void Game::ItemWeed::WaitState::init((Game::ItemWeed::Item*, Game::StateArg*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1508,26 +1492,14 @@ void Game::ItemWeed::WaitState::init((Game::ItemWeed::Item*, Game::StateArg*))
  * Address:	8021024C
  * Size:	000004
  */
-void Game::ItemWeed::WaitState::exec((Game::ItemWeed::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemWeed::WaitState::exec((Game::ItemWeed::Item*)) { }
 
 /*
  * --INFO--
  * Address:	80210250
  * Size:	000004
  */
-void Game::ItemWeed::WaitState::cleanup((Game::ItemWeed::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemWeed::WaitState::cleanup((Game::ItemWeed::Item*)) { }
 
 /*
  * --INFO--
@@ -2089,13 +2061,7 @@ void Game::ItemWeed::Item::getFlockMgr(void)
  * Address:	80210870
  * Size:	000004
  */
-void Game::ItemWeed::Item::makeTrMatrix(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemWeed::Item::makeTrMatrix(void) { }
 
 /*
  * --INFO--
@@ -2367,10 +2333,6 @@ void killFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPQ24Game6TFlock(void)
 void onDamage__Q24Game32ItemState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2381,10 +2343,6 @@ FPQ34Game8ItemWeed4Itemf(void)
 void onKeyEvent__Q24Game32ItemState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2395,10 +2353,6 @@ FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent(void)
 void onBounce__Q24Game32ItemState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2409,10 +2363,6 @@ FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game32ItemState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2423,10 +2373,6 @@ FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game32ItemState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2437,10 +2383,6 @@ FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent(void)
 void init__Q24Game31FSMState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2450,10 +2392,6 @@ FPQ34Game8ItemWeed4ItemPQ24Game8StateArg(void)
  */
 void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2464,10 +2402,6 @@ void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void)
 void cleanup__Q24Game31FSMState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2478,10 +2412,6 @@ FPQ34Game8ItemWeed4Item(void)
 void resume__Q24Game31FSMState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2492,10 +2422,6 @@ FPQ34Game8ItemWeed4Item(void)
 void restart__Q24Game31FSMState<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2531,10 +2457,6 @@ FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
 void init__Q24Game35StateMachine<Game::ItemWeed::Item>
 FPQ34Game8ItemWeed4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3016,13 +2938,7 @@ void MonoObjectMgr<Game::ItemWeed::Weed>::clearMgr()
  * Address:	80210EF8
  * Size:	000004
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::ItemWeed::Weed>::onAlloc() { }
 
 /*
  * --INFO--

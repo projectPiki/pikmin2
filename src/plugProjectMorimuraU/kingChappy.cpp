@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1691,13 +1691,7 @@ void Game::KingChappy::Obj::doUpdate(void)
  * Address:	8035E2C0
  * Size:	000004
  */
-void Game::KingChappy::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KingChappy::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -6905,12 +6899,7 @@ void Game::KingChappy::ProperAnimator::__dt(void)
  * Address:	803623F8
  * Size:	000004
  */
-void Game::KingChappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::KingChappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) {
 }
 
 /*
@@ -6921,10 +6910,6 @@ void Game::KingChappy::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3<float>
 R10Vector3<float>(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

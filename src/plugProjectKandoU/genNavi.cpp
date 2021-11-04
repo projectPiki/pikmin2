@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -122,26 +122,14 @@ void Game::GenObjectNavi::initialise(void)
  * Address:	801ACB4C
  * Size:	000004
  */
-void Game::GenObjectNavi::ramSaveParameters((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObjectNavi::ramSaveParameters((Stream&)) { }
 
 /*
  * --INFO--
  * Address:	801ACB50
  * Size:	000004
  */
-void Game::GenObjectNavi::ramLoadParameters((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObjectNavi::ramLoadParameters((Stream&)) { }
 
 /*
  * --INFO--

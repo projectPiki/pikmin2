@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -299,39 +299,21 @@ void Game::Catfish::Obj::createDownEffect()
  * Address:	802772E8
  * Size:	000004
  */
-void Game::Catfish::Obj::changeMaterial()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Catfish::Obj::changeMaterial() { }
 
 /*
  * --INFO--
  * Address:	802772EC
  * Size:	000004
  */
-void Game::Catfish::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Catfish::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802772F0
  * Size:	000004
  */
-void Game::Catfish::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Catfish::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

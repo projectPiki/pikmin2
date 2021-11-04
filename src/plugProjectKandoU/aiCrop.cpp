@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1014,26 +1014,14 @@ void PikiAI::ActCrop::cleanup()
  * Address:	801E4B74
  * Size:	000004
  */
-void PikiAI::ActCrop::collisionCallback(Game::Piki*, Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActCrop::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E4B78
  * Size:	000004
  */
-void PikiAI::ActCrop::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActCrop::onKeyEvent(const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--

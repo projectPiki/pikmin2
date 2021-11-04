@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2376,13 +2376,7 @@ void JAISe::setSeDistanceFxmix(unsigned char)
  * Address:	800B4F24
  * Size:	000004
  */
-void JAISe::setSeDistanceFir(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JAISe::setSeDistanceFir(unsigned char) { }
 
 /*
  * --INFO--
@@ -3570,13 +3564,7 @@ void JAInter::LinkSound::getSound(void)
  * Address:	800B57E8
  * Size:	000004
  */
-void JAISound::onGet()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JAISound::onGet() { }
 
 /*
  * --INFO--
@@ -3623,13 +3611,7 @@ void JAInter::LinkSound::releaseSound((JAISound*))
  * Address:	800B5854
  * Size:	000004
  */
-void JAISound::onRelease()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JAISound::onRelease() { }
 
 /*
  * --INFO--
@@ -4462,13 +4444,7 @@ void JAIStream::getDolbyU7(unsigned char)
  * Address:	800B6018
  * Size:	000004
  */
-void JAIStream::setPortData(unsigned char, unsigned short)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JAIStream::setPortData(unsigned char, unsigned short) { }
 
 /*
  * --INFO--
@@ -4490,13 +4466,7 @@ void JAIStream::getPortData(unsigned char)
  * Address:	800B6028
  * Size:	000004
  */
-void JAISound::setTempoProportion(float, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JAISound::setTempoProportion(float, unsigned long) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -172,10 +172,6 @@ void JStudio::TVariableValue::TOutput_none_::__dt(void)
 void JStudio::TVariableValue::TOutput_none_::operator()(
     const(float, JStudio::TAdaptor*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -193,39 +189,21 @@ void JStudio::TAdaptor::__dt(void)
  * Address:	8000D1C4
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_prepare((JStudio::TObject const*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::TAdaptor::adaptor_do_prepare((JStudio::TObject const*)) { }
 
 /*
  * --INFO--
  * Address:	8000D1C8
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_begin((JStudio::TObject const*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::TAdaptor::adaptor_do_begin((JStudio::TObject const*)) { }
 
 /*
  * --INFO--
  * Address:	8000D1CC
  * Size:	000004
  */
-void JStudio::TAdaptor::adaptor_do_end((JStudio::TObject const*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::TAdaptor::adaptor_do_end((JStudio::TObject const*)) { }
 
 /*
  * --INFO--
@@ -235,10 +213,6 @@ void JStudio::TAdaptor::adaptor_do_end((JStudio::TObject const*))
 void JStudio::TAdaptor::adaptor_do_update((JStudio::TObject const*,
                                            unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -250,10 +224,6 @@ void JStudio::TAdaptor::adaptor_do_data((JStudio::TObject const*, void const*,
                                          unsigned long, void const*,
                                          unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

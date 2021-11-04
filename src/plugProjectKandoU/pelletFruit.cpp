@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -906,10 +906,6 @@ void
 void onCreateModel__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
 FPQ28SysShape5Model(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1668,13 +1664,7 @@ void MonoObjectMgr<Game::PelletFruit::Object>::clearMgr()
  * Address:	801FEA60
  * Size:	000004
  */
-void MonoObjectMgr<Game::PelletFruit::Object>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::PelletFruit::Object>::onAlloc() { }
 
 /*
  * --INFO--

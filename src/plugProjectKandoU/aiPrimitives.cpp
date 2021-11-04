@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -179,13 +179,7 @@ void PikiAI::ActGotoPos::exec(void)
  * Address:	801974AC
  * Size:	000004
  */
-void PikiAI::ActGotoPos::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActGotoPos::cleanup(void) { }
 
 /*
  * --INFO--
@@ -1547,13 +1541,7 @@ void PikiAI::ActGotoSlot::exec(void)
  * Address:	801985D4
  * Size:	000004
  */
-void PikiAI::ActGotoSlot::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActGotoSlot::cleanup(void) { }
 
 /*
  * --INFO--
@@ -6965,13 +6953,7 @@ void PikiAI::ActClimb::exec(void)
  * Address:	8019C99C
  * Size:	000004
  */
-void PikiAI::ActClimb::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActClimb::cleanup(void) { }
 
 /*
  * --INFO--
@@ -7186,13 +7168,7 @@ void PikiAI::ActGather::exec(void)
  * Address:	8019CC10
  * Size:	000004
  */
-void PikiAI::ActGather::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActGather::cleanup(void) { }
 
 /*
  * --INFO--
@@ -7310,13 +7286,7 @@ void PikiAI::ActFollowVectorField::exec(void)
  * Address:	8019CD30
  * Size:	000004
  */
-void PikiAI::ActFollowVectorField::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActFollowVectorField::cleanup(void) { }
 
 /*
  * --INFO--

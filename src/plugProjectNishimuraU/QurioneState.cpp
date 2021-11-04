@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -686,13 +686,7 @@ void Game::Qurione::StateMove::exec(Game::EnemyBase*)
  * Address:	8025F8A0
  * Size:	000004
  */
-void Game::Qurione::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Qurione::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -886,10 +880,4 @@ void Game::Qurione::StateDead::exec(Game::EnemyBase*)
  * Address:	8025FA88
  * Size:	000004
  */
-void Game::Qurione::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Qurione::StateDead::cleanup(Game::EnemyBase*) { }

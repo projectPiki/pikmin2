@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1281,13 +1281,7 @@ void Game::BaseGameSection::ZoomCamera::__dt(void)
  * Address:	8023C538
  * Size:	000004
  */
-void LookAtCamera::startVibration(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void LookAtCamera::startVibration(int) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -325,13 +325,7 @@ void Game::Egg::Obj::doUpdate(void)
  * Address:	8034BEB0
  * Size:	000004
  */
-void Game::Egg::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Egg::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -1179,13 +1173,7 @@ void Game::Egg::Obj::genItem(void)
  * Address:	8034C8A0
  * Size:	000004
  */
-void Game::Egg::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Egg::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--

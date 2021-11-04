@@ -1,17 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80008A80
  * Size:	000004
  */
-void JStudio::functionvalue::extrapolateParameter_raw(double, double)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::functionvalue::extrapolateParameter_raw(double, double) { }
 
 /*
  * --INFO--
@@ -299,13 +293,7 @@ void JStudio::TFunctionValue_composite::initialize()
  * Address:	80008CC8
  * Size:	000004
  */
-void JStudio::TFunctionValue_composite::prepare()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::TFunctionValue_composite::prepare() { }
 
 /*
  * --INFO--
@@ -896,13 +884,7 @@ void JStudio::TFunctionValue_constant::initialize()
  * Address:	8000926C
  * Size:	000004
  */
-void JStudio::TFunctionValue_constant::prepare()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JStudio::TFunctionValue_constant::prepare() { }
 
 /*
  * --INFO--

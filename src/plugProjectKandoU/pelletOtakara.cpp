@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1534,10 +1534,6 @@ void Game::PelletOtakara::Object::getBedamaColor(void)
 void onCreateModel__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
 FPQ28SysShape5Model(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2299,13 +2295,7 @@ void MonoObjectMgr<Game::PelletOtakara::Object>::clearMgr()
  * Address:	802015DC
  * Size:	000004
  */
-void MonoObjectMgr<Game::PelletOtakara::Object>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::PelletOtakara::Object>::onAlloc() { }
 
 /*
  * --INFO--

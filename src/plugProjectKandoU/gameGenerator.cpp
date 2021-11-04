@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -84,13 +84,7 @@ void Game::GenBase::write((Stream&))
  * Address:	801AA740
  * Size:	000004
  */
-void Game::GenBase::doWrite((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenBase::doWrite((Stream&)) { }
 
 /*
  * --INFO--
@@ -157,13 +151,7 @@ void Game::GenBase::read((Stream&))
  * Address:	801AA784
  * Size:	000004
  */
-void Game::GenBase::doRead((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenBase::doRead((Stream&)) { }
 
 /*
  * --INFO--
@@ -384,13 +372,7 @@ void Game::Generator::updateUseList(void)
  * Address:	801AA980
  * Size:	000004
  */
-void Game::GenObject::updateUseList((Game::Generator*, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObject::updateUseList((Game::Generator*, int)) { }
 
 /*
  * --INFO--
@@ -2713,13 +2695,7 @@ void Game::GeneratorMgr::__dt(void)
  * Address:	801AC384
  * Size:	000004
  */
-void Game::GenObject::render((Graphics&, Game::Generator*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObject::render((Graphics&, Game::Generator*)) { }
 
 /*
  * --INFO--
@@ -2740,26 +2716,14 @@ void Game::GenBase::getShape(void)
  * Address:	801AC390
  * Size:	000004
  */
-void Game::GenBase::update((Game::Generator*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenBase::update((Game::Generator*)) { }
 
 /*
  * --INFO--
  * Address:	801AC394
  * Size:	000004
  */
-void Game::GenBase::render((Graphics&, Game::Generator*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenBase::render((Graphics&, Game::Generator*)) { }
 
 /*
  * --INFO--

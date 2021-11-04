@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -305,13 +305,7 @@ void Game::SingleGame::EndingState::dvdload(void)
  * Address:	80232A24
  * Size:	000004
  */
-void Game::SingleGame::EndingState::do_dvdload(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGame::EndingState::do_dvdload(void) { }
 
 /*
  * --INFO--

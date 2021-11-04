@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -52,12 +52,7 @@ void og::newScreen::SMenuPauseVS::__dt(void)
  * Address:	80329D38
  * Size:	000004
  */
-void og::newScreen::SMenuPauseVS::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void og::newScreen::SMenuPauseVS::doUserCallBackFunc((Resource::MgrCommand*)) {
 }
 
 /*
@@ -157,13 +152,7 @@ void og::newScreen::SMenuPauseVS::doGetFinishState(void)
  * Address:	80329E3C
  * Size:	000004
  */
-void og::newScreen::SMenuPauseVS::doUpdateActive(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::SMenuPauseVS::doUpdateActive(void) { }
 
 /*
  * --INFO--

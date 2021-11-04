@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1168,13 +1168,7 @@ void BootSection::~BootSection()
  * Address:	80448138
  * Size:	000004
  */
-void BootSection::init()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void BootSection::init() { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3086,13 +3086,7 @@ void Game::NaviMgr::draw2d((J2DGrafContext&))
  * Address:	8015BA20
  * Size:	000004
  */
-void Game::NaviMgr::setupSoundViewerAndBas(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviMgr::setupSoundViewerAndBas(void) { }
 
 /*
  * --INFO--

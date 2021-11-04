@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1762,13 +1762,7 @@ void Game::ObjectLayoutNode::getDirection(void)
  * Address:	801B76E0
  * Size:	000004
  */
-void Game::ObjectLayoutNode::getBirthPosition((float&, float&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ObjectLayoutNode::getBirthPosition((float&, float&)) { }
 
 /*
  * --INFO--
@@ -1805,13 +1799,7 @@ void Game::MapRoom::createDoorInfo((Game::MapUnitInterface*))
  * Address:	801B76E4
  * Size:	000004
  */
-void Game::RoomDoorInfo::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::RoomDoorInfo::__ct(void) { }
 
 /*
  * --INFO--
@@ -2190,26 +2178,14 @@ void Game::MapRoom::doViewCalc(void)
  * Address:	801B7AF8
  * Size:	000004
  */
-void Game::MapRoom::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapRoom::doSimulation((float)) { }
 
 /*
  * --INFO--
  * Address:	801B7AFC
  * Size:	000004
  */
-void Game::MapRoom::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapRoom::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -4806,13 +4782,7 @@ void Game::RoomMapMgr::getBoundBox((BoundBox&))
  * Address:	801B9B9C
  * Size:	000004
  */
-void Game::RoomMapMgr::drawCollision((Graphics&, Sys::Sphere&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::RoomMapMgr::drawCollision((Graphics&, Sys::Sphere&)) { }
 
 /*
  * --INFO--
@@ -10351,13 +10321,7 @@ void Game::RoomMapMgr::doViewCalc(void)
  * Address:	801BE474
  * Size:	000004
  */
-void Game::RoomMapMgr::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::RoomMapMgr::doSimulation((float)) { }
 
 /*
  * --INFO--
@@ -10608,26 +10572,14 @@ void Game::Door::__dt(void)
  * Address:	801BE738
  * Size:	000004
  */
-void Game::PartsView::constructor(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PartsView::constructor(void) { }
 
 /*
  * --INFO--
  * Address:	801BE73C
  * Size:	000004
  */
-void Game::PartsView::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PartsView::doSimulation((float)) { }
 
 /*
  * --INFO--
@@ -10989,13 +10941,7 @@ void Game::MapRoom::getPosition(void)
  * Address:	801BEA8C
  * Size:	000004
  */
-void Game::MapRoom::constructor(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapRoom::constructor(void) { }
 
 /*
  * --INFO--
@@ -11299,91 +11245,49 @@ void Game::MapUnitMgr::__dt(void)
  * Address:	801BED8C
  * Size:	000004
  */
-void Game::MapUnit::constructor(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::constructor(void) { }
 
 /*
  * --INFO--
  * Address:	801BED90
  * Size:	000004
  */
-void Game::MapUnit::doAnimation(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::doAnimation(void) { }
 
 /*
  * --INFO--
  * Address:	801BED94
  * Size:	000004
  */
-void Game::MapUnit::doEntry(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	801BED98
  * Size:	000004
  */
-void Game::MapUnit::doSetView((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::doSetView((int)) { }
 
 /*
  * --INFO--
  * Address:	801BED9C
  * Size:	000004
  */
-void Game::MapUnit::doViewCalc(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	801BEDA0
  * Size:	000004
  */
-void Game::MapUnit::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::doSimulation((float)) { }
 
 /*
  * --INFO--
  * Address:	801BEDA4
  * Size:	000004
  */
-void Game::MapUnit::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapUnit::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -12002,13 +11906,7 @@ void MonoObjectMgr<Game::MapRoom>::clearMgr()
  * Address:	801BF2A8
  * Size:	000004
  */
-void MonoObjectMgr<Game::MapRoom>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::MapRoom>::onAlloc() { }
 
 /*
  * --INFO--

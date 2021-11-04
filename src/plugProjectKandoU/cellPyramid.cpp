@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "cellPyramid.h"
 #include "BaseParm.h"
 
@@ -756,13 +758,7 @@ void Cell::resolveCollision()
  * Address:	80156D44
  * Size:	000004
  */
-void CellPyramid::initFrame()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CellPyramid::initFrame() { }
 
 /*
  * --INFO--

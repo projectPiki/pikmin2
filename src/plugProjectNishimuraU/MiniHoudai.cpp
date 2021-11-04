@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -115,12 +115,7 @@ void Game::MiniHoudai::Obj::__ct(void)
  * Address:	802EC140
  * Size:	000004
  */
-void Game::MiniHoudai::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::MiniHoudai::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) {
 }
 
 /*
@@ -308,13 +303,7 @@ void Game::MiniHoudai::Obj::doAnimationCullingOff(void)
  * Address:	802EC31C
  * Size:	000004
  */
-void Game::MiniHoudai::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--

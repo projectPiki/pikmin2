@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -99,13 +99,7 @@ void Game::OtakaraBase::Obj::Obj()
  * Address:	802B637C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -209,13 +203,7 @@ void Game::OtakaraBase::Obj::getEnemyTypeID()
  * Address:	802B648C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::setupEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::setupEffect() { }
 
 /*
  * --INFO--
@@ -362,13 +350,7 @@ void Game::OtakaraBase::Obj::doUpdateCommon()
  * Address:	802B6610
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::startDisChargeSE()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::startDisChargeSE() { }
 
 /*
  * --INFO--
@@ -422,13 +404,7 @@ void Game::OtakaraBase::Obj::doAnimationCullingOff()
  * Address:	802B6690
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -926,13 +902,7 @@ void Game::OtakaraBase::Obj::doStartWaitingBirthTypeDrop()
  * Address:	802B6B34
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::effectDrawOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::effectDrawOff() { }
 
 /*
  * --INFO--
@@ -978,13 +948,7 @@ void Game::OtakaraBase::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802B6B9C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::effectDrawOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::effectDrawOn() { }
 
 /*
  * --INFO--
@@ -1989,13 +1953,7 @@ void Game::OtakaraBase::Obj::attackTarget()
  * Address:	802B7778
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::interactCreature(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::interactCreature(Game::Creature*) { }
 
 /*
  * --INFO--
@@ -2487,10 +2445,4 @@ void Game::OtakaraBase::Obj::getCellRadius()
  * Address:	802B7CC8
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::createEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::createEffect() { }

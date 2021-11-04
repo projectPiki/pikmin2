@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -660,13 +660,7 @@ void Game::KochappyBase::StateDead::exec(Game::EnemyBase*)
  * Address:	8010FFE8
  * Size:	000004
  */
-void Game::KochappyBase::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KochappyBase::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2888,13 +2882,7 @@ void Game::KochappyBase::StateTurnToHome::exec(Game::EnemyBase*)
  * Address:	80111CA4
  * Size:	000004
  */
-void Game::KochappyBase::StateTurnToHome::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KochappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -3369,13 +3357,7 @@ void Game::KochappyBase::StateDemo::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80112280
  * Size:	000004
  */
-void Game::BaseGameSection::enableTimer(float, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::enableTimer(float, unsigned long) { }
 
 /*
  * --INFO--

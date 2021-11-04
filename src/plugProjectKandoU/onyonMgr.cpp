@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2820,13 +2820,7 @@ void Game::Onyon::onInit((Game::CreatureInitArg*))
  * Address:	8017703C
  * Size:	000004
  */
-void Game::Onyon::onKill((Game::CreatureKillArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Onyon::onKill((Game::CreatureKillArg*)) { }
 
 /*
  * --INFO--
@@ -6655,13 +6649,7 @@ PQ24Game11GenItemParm(void)
  * Address:	80179E7C
  * Size:	000004
  */
-void Game::ItemOnyon::Mgr::setupSoundViewerAndBas(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemOnyon::Mgr::setupSoundViewerAndBas(void) { }
 
 /*
  * --INFO--
@@ -7331,13 +7319,7 @@ void Game::ItemOnyon::Mgr::initDependency(void)
  * Address:	8017A61C
  * Size:	000004
  */
-void Game::BaseItem::initDependency(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::initDependency(void) { }
 
 /*
  * --INFO--
@@ -9650,39 +9632,21 @@ void Game::ItemOnyon::Mgr::doDirectDraw((Graphics&))
  * Address:	8017C164
  * Size:	000004
  */
-void Game::BaseItemMgr::killAll(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::killAll(void) { }
 
 /*
  * --INFO--
  * Address:	8017C168
  * Size:	000004
  */
-void Game::BaseItemMgr::setup((Game::BaseItem*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::setup((Game::BaseItem*)) { }
 
 /*
  * --INFO--
  * Address:	8017C16C
  * Size:	000004
  */
-void Game::BaseItemMgr::onLoadResources(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::onLoadResources(void) { }
 
 /*
  * --INFO--
@@ -9703,13 +9667,7 @@ void Game::BaseItemMgr::loadEverytime(void)
  * Address:	8017C178
  * Size:	000004
  */
-void Game::BaseItemMgr::onUpdateUseList((Game::GenItemParm*, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::onUpdateUseList((Game::GenItemParm*, int)) { }
 
 /*
  * --INFO--
@@ -9937,13 +9895,7 @@ void Game::BaseItem::getCreatureID(void)
  * Address:	8017C280
  * Size:	000004
  */
-void Game::BaseItem::do_setLODParm((Game::AILODParm&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::do_setLODParm((Game::AILODParm&)) { }
 
 /*
  * --INFO--
@@ -10118,52 +10070,28 @@ void Game::BaseItem::getWorkDistance((Sys::Sphere&))
  * Address:	8017C2E4
  * Size:	000004
  */
-void Game::BaseItem::bounceCallback((Sys::Triangle*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::bounceCallback((Sys::Triangle*)) { }
 
 /*
  * --INFO--
  * Address:	8017C2E8
  * Size:	000004
  */
-void Game::BaseItem::collisionCallback((Game::CollEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::collisionCallback((Game::CollEvent&)) { }
 
 /*
  * --INFO--
  * Address:	8017C2EC
  * Size:	000004
  */
-void Game::BaseItem::platCallback((Game::PlatEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::platCallback((Game::PlatEvent&)) { }
 
 /*
  * --INFO--
  * Address:	8017C2F0
  * Size:	000004
  */
-void Game::BaseItem::updateBoundSphere(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::updateBoundSphere(void) { }
 
 /*
  * --INFO--
@@ -10220,13 +10148,7 @@ void onSetPosition__Q24Game8BaseItemFR10Vector3<float>(void)
  * Address:	8017C35C
  * Size:	000004
  */
-void Game::BaseItem::onSetPosition(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItem::onSetPosition(void) { }
 
 /*
  * --INFO--
@@ -10434,13 +10356,7 @@ void efx::TPodOpenA::__dt(void)
  * Address:	8017C564
  * Size:	000004
  */
-void efx::TForever::doExecuteEmitterOperation((JPABaseEmitter*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TForever::doExecuteEmitterOperation((JPABaseEmitter*)) { }
 
 /*
  * --INFO--

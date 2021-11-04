@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -257,10 +257,6 @@ FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
  */
 void Game::ItemBigFountain::AppearState::cleanup((Game::ItemBigFountain::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -315,10 +311,6 @@ void Game::ItemBigFountain::CloseState::exec((Game::ItemBigFountain::Item*))
  */
 void Game::ItemBigFountain::CloseState::cleanup((Game::ItemBigFountain::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -383,10 +375,6 @@ void Game::ItemBigFountain::WaitState::exec((Game::ItemBigFountain::Item*))
  */
 void Game::ItemBigFountain::WaitState::cleanup((Game::ItemBigFountain::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -579,12 +567,7 @@ void Game::ItemBigFountain::OutState::exec((Game::ItemBigFountain::Item*))
  * Address:	801EC71C
  * Size:	000004
  */
-void Game::ItemBigFountain::OutState::cleanup((Game::ItemBigFountain::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::ItemBigFountain::OutState::cleanup((Game::ItemBigFountain::Item*)) {
 }
 
 /*
@@ -1553,13 +1536,7 @@ void Game::ItemBigFountain::Item::updateBoundSphere(void)
  * Address:	801ED264
  * Size:	000004
  */
-void Game::ItemBigFountain::Item::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBigFountain::Item::doSimulation((float)) { }
 
 /*
  * --INFO--
@@ -1702,10 +1679,6 @@ void Game::ItemBigFountain::Item::interactAttack((Game::InteractAttack&))
 void Game::ItemBigFountain::State::onDamage((Game::ItemBigFountain::Item*,
                                              float))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1860,10 +1833,6 @@ void Game::ItemBigFountain::Item::onKeyEvent((SysShape::KeyEvent const&))
 void onKeyEvent__Q24Game40ItemState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2535,10 +2504,6 @@ FRCQ28SysShape8KeyEvent(void)
 void onDamage__Q24Game40ItemState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2549,10 +2514,6 @@ FPQ34Game15ItemBigFountain4Itemf(void)
 void onBounce__Q24Game40ItemState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2563,10 +2524,6 @@ FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game40ItemState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2577,10 +2534,6 @@ FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game40ItemState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2591,10 +2544,6 @@ FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent(void)
 void init__Q24Game39FSMState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2605,10 +2554,6 @@ FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
 void exec__Q24Game39FSMState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2619,10 +2564,6 @@ FPQ34Game15ItemBigFountain4Item(void)
 void cleanup__Q24Game39FSMState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2633,10 +2574,6 @@ FPQ34Game15ItemBigFountain4Item(void)
 void resume__Q24Game39FSMState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2647,10 +2584,6 @@ FPQ34Game15ItemBigFountain4Item(void)
 void restart__Q24Game39FSMState<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2661,10 +2594,6 @@ FPQ34Game15ItemBigFountain4Item(void)
 void init__Q24Game43StateMachine<Game::ItemBigFountain::Item>
 FPQ34Game15ItemBigFountain4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

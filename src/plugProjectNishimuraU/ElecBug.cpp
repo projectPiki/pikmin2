@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::ElecBug::Obj::Obj()
  * Address:	8027ADC0
  * Size:	000004
  */
-void Game::ElecBug::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -226,13 +220,7 @@ void Game::ElecBug::Obj::doUpdate()
  * Address:	8027AEF4
  * Size:	000004
  */
-void Game::ElecBug::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

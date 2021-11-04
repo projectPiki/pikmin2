@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -419,26 +419,14 @@ void JMessage::TProcessor::toMessageCode_messageID(unsigned long, unsigned long,
  * Address:	80007134
  * Size:	000004
  */
-void JMessage::TProcessor::do_reset()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TProcessor::do_reset() { }
 
 /*
  * --INFO--
  * Address:	80007138
  * Size:	000004
  */
-void JMessage::TProcessor::do_character(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TProcessor::do_character(int) { }
 
 /*
  * --INFO--
@@ -474,39 +462,21 @@ void JMessage::TProcessor::do_systemTagCode(unsigned short, const void*,
  * Address:	8000714C
  * Size:	000004
  */
-void JMessage::TProcessor::do_select_begin(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TProcessor::do_select_begin(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80007150
  * Size:	000004
  */
-void JMessage::TProcessor::do_select_end()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TProcessor::do_select_end() { }
 
 /*
  * --INFO--
  * Address:	80007154
  * Size:	000004
  */
-void JMessage::TProcessor::do_select_separate()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TProcessor::do_select_separate() { }
 
 /*
  * --INFO--
@@ -1579,26 +1549,14 @@ void JMessage::TSequenceProcessor::on_branch(const void*, const char*)
  * Address:	80007CB8
  * Size:	000004
  */
-void JMessage::TSequenceProcessor::do_begin(const void*, const char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TSequenceProcessor::do_begin(const void*, const char*) { }
 
 /*
  * --INFO--
  * Address:	80007CBC
  * Size:	000004
  */
-void JMessage::TSequenceProcessor::do_end()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TSequenceProcessor::do_end() { }
 
 /*
  * --INFO--
@@ -1633,26 +1591,14 @@ void JMessage::TSequenceProcessor::do_jump_isReady()
  * Address:	80007CD0
  * Size:	000004
  */
-void JMessage::TSequenceProcessor::do_jump(const void*, const char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TSequenceProcessor::do_jump(const void*, const char*) { }
 
 /*
  * --INFO--
  * Address:	80007CD4
  * Size:	000004
  */
-void JMessage::TSequenceProcessor::do_branch_query(unsigned short)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TSequenceProcessor::do_branch_query(unsigned short) { }
 
 /*
  * --INFO--
@@ -1673,13 +1619,7 @@ void JMessage::TSequenceProcessor::do_branch_queryResult()
  * Address:	80007CE0
  * Size:	000004
  */
-void JMessage::TSequenceProcessor::do_branch(const void*, const char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TSequenceProcessor::do_branch(const void*, const char*) { }
 
 /*
  * --INFO--
@@ -2297,39 +2237,21 @@ void JMessage::TRenderingProcessor::process(const char*)
  * Address:	800082CC
  * Size:	000004
  */
-void JMessage::TRenderingProcessor::do_begin(const void*, const char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TRenderingProcessor::do_begin(const void*, const char*) { }
 
 /*
  * --INFO--
  * Address:	800082D0
  * Size:	000004
  */
-void JMessage::TRenderingProcessor::do_end()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TRenderingProcessor::do_end() { }
 
 /*
  * --INFO--
  * Address:	800082D4
  * Size:	000004
  */
-void JMessage::TRenderingProcessor::do_reset_(const char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JMessage::TRenderingProcessor::do_reset_(const char*) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -146,13 +146,7 @@ void Game::BigTreasure::Obj::Obj()
  * Address:	802DBD38
  * Size:	000004
  */
-void Game::BigTreasure::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -564,13 +558,7 @@ void Game::BigTreasure::Obj::changeMaterial()
  * Address:	802DC230
  * Size:	000004
  */
-void Game::BigTreasure::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -8119,26 +8107,14 @@ void efx::TOootaStartOta::~TOootaStartOta()
  * Address:	802E16D4
  * Size:	000004
  */
-void Game::BigTreasure::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802E16D8
  * Size:	000004
  */
-void Game::BigTreasure::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -8159,13 +8135,7 @@ void Game::BigTreasure::Obj::getDamageCoeStoneState()
  * Address:	802E16E4
  * Size:	000004
  */
-void Game::BigTreasure::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

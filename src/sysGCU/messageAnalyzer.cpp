@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -32,13 +32,7 @@ void P2JME::Analyzer::__ct((JMessage::TReference const*))
  * Address:	80456104
  * Size:	000004
  */
-void P2JME::Analyzer::do_character((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::Analyzer::do_character((int)) { }
 
 /*
  * --INFO--

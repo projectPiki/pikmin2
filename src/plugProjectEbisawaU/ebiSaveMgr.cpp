@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -279,13 +279,7 @@ void ebi::Save::FSMState::init((ebi::Save::TMgr*, Game::StateArg*))
  * Address:	803DB508
  * Size:	000004
  */
-void ebi::Save::FSMState::do_init((ebi::Save::TMgr*, Game::StateArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Save::FSMState::do_init((ebi::Save::TMgr*, Game::StateArg*)) { }
 
 /*
  * --INFO--
@@ -315,13 +309,7 @@ void ebi::Save::FSMState::exec((ebi::Save::TMgr*))
  * Address:	803DB538
  * Size:	000004
  */
-void ebi::Save::FSMState::do_exec((ebi::Save::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Save::FSMState::do_exec((ebi::Save::TMgr*)) { }
 
 /*
  * --INFO--
@@ -2747,10 +2735,6 @@ void ebi::Save::TMgr::getStateID(void)
 void init__Q24Game26FSMState<ebi::Save::TMgr>
 FPQ33ebi4Save4TMgrPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2758,65 +2742,35 @@ FPQ33ebi4Save4TMgrPQ24Game8StateArg(void)
  * Address:	803DCED8
  * Size:	000004
  */
-void exec__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void exec__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803DCEDC
  * Size:	000004
  */
-void cleanup__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void cleanup__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803DCEE0
  * Size:	000004
  */
-void resume__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void resume__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803DCEE4
  * Size:	000004
  */
-void restart__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void restart__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803DCEE8
  * Size:	000004
  */
-void init__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void init__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -671,10 +671,6 @@ void Game::ItemDownFloor::Item::onKeyEvent((SysShape::KeyEvent const&))
 void Game::ItemDownFloor::State::onKeyEvent((Game::ItemDownFloor::Item*,
                                              SysShape::KeyEvent const&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1400,13 +1396,7 @@ void Game::ItemDownFloor::Item::startUpMotion(void)
  * Address:	801F5DE0
  * Size:	000004
  */
-void Game::ItemDownFloor::Item::changeMaterial(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::Item::changeMaterial(void) { }
 
 /*
  * --INFO--
@@ -1782,13 +1772,7 @@ void Game::ItemDownFloor::Item::platCallback((Game::PlatEvent&))
  * Address:	801F6248
  * Size:	000004
  */
-void Game::ItemDownFloor::State::onPlat((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::State::onPlat((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -2120,13 +2104,7 @@ void Game::ItemDownFloor::Mgr::setupPlatform((Game::ItemDownFloor::Item*))
  * Address:	801F6680
  * Size:	000004
  */
-void Game::ItemDownFloor::Mgr::onLoadResources(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::Mgr::onLoadResources(void) { }
 
 /*
  * --INFO--
@@ -2445,13 +2423,7 @@ FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg(void)
  * Address:	801F69E4
  * Size:	000004
  */
-void Game::ItemDownFloor::WaitState::cleanup((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::WaitState::cleanup((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -2461,10 +2433,6 @@ void Game::ItemDownFloor::WaitState::cleanup((Game::ItemDownFloor::Item*))
 void Game::ItemDownFloor::WaitState::onKeyEvent((Game::ItemDownFloor::Item*,
                                                  SysShape::KeyEvent const&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2598,12 +2566,7 @@ void Game::ItemDownFloor::DamagedState::exec((Game::ItemDownFloor::Item*))
  * Address:	801F6B28
  * Size:	000004
  */
-void Game::ItemDownFloor::DamagedState::cleanup((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::ItemDownFloor::DamagedState::cleanup((Game::ItemDownFloor::Item*)) {
 }
 
 /*
@@ -2627,13 +2590,7 @@ void Game::ItemDownFloor::DamagedState::onKeyEvent((Game::ItemDownFloor::Item*,
  * Address:	801F6B38
  * Size:	000004
  */
-void Game::ItemDownFloor::DamagedState::onPlat((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DamagedState::onPlat((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -2696,26 +2653,14 @@ void Game::ItemDownFloor::DownState::init((Game::ItemDownFloor::Item*,
  * Address:	801F6BD8
  * Size:	000004
  */
-void Game::ItemDownFloor::DownState::exec((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DownState::exec((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F6BDC
  * Size:	000004
  */
-void Game::ItemDownFloor::DownState::cleanup((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DownState::cleanup((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -2883,13 +2828,7 @@ void Game::ItemDownFloor::DownState::onKeyEvent((Game::ItemDownFloor::Item*,
  * Address:	801F6E00
  * Size:	000004
  */
-void Game::ItemDownFloor::DownState::onPlat((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DownState::onPlat((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -2918,26 +2857,14 @@ void Game::ItemDownFloor::UpState::init((Game::ItemDownFloor::Item*,
  * Address:	801F6E28
  * Size:	000004
  */
-void Game::ItemDownFloor::UpState::exec((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::UpState::exec((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F6E2C
  * Size:	000004
  */
-void Game::ItemDownFloor::UpState::cleanup((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::UpState::cleanup((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -2972,13 +2899,7 @@ void Game::ItemDownFloor::UpState::onKeyEvent((Game::ItemDownFloor::Item*,
  * Address:	801F6E6C
  * Size:	000004
  */
-void Game::ItemDownFloor::UpState::onPlat((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::UpState::onPlat((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -3550,13 +3471,7 @@ void Game::ItemDownFloor::Mgr::generatorLocalVersion(void)
  * Address:	801F752C
  * Size:	000004
  */
-void Game::ItemDownFloor::Item::makeTrMatrix(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::Item::makeTrMatrix(void) { }
 
 /*
  * --INFO--
@@ -3622,10 +3537,6 @@ Fv(void)
 void Game::ItemDownFloor::DeadState::init((Game::ItemDownFloor::Item*,
                                            Game::StateArg*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3633,39 +3544,21 @@ void Game::ItemDownFloor::DeadState::init((Game::ItemDownFloor::Item*,
  * Address:	801F757C
  * Size:	000004
  */
-void Game::ItemDownFloor::DeadState::exec((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DeadState::exec((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F7580
  * Size:	000004
  */
-void Game::ItemDownFloor::DeadState::cleanup((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DeadState::cleanup((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F7584
  * Size:	000004
  */
-void Game::ItemDownFloor::DeadState::onPlat((Game::ItemDownFloor::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemDownFloor::DeadState::onPlat((Game::ItemDownFloor::Item*)) { }
 
 /*
  * --INFO--
@@ -3709,10 +3602,6 @@ FRCQ28SysShape8KeyEvent(void)
 void onDamage__Q24Game38ItemState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3723,10 +3612,6 @@ FPQ34Game13ItemDownFloor4Itemf(void)
 void onKeyEvent__Q24Game38ItemState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3737,10 +3622,6 @@ FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
 void onBounce__Q24Game38ItemState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3751,10 +3632,6 @@ FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game38ItemState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3765,10 +3642,6 @@ FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game38ItemState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3779,10 +3652,6 @@ FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent(void)
 void init__Q24Game37FSMState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3793,10 +3662,6 @@ FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
 void exec__Q24Game37FSMState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3807,10 +3672,6 @@ FPQ34Game13ItemDownFloor4Item(void)
 void cleanup__Q24Game37FSMState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3821,10 +3682,6 @@ FPQ34Game13ItemDownFloor4Item(void)
 void resume__Q24Game37FSMState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3835,10 +3692,6 @@ FPQ34Game13ItemDownFloor4Item(void)
 void restart__Q24Game37FSMState<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3849,10 +3702,6 @@ FPQ34Game13ItemDownFloor4Item(void)
 void init__Q24Game41StateMachine<Game::ItemDownFloor::Item>
 FPQ34Game13ItemDownFloor4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::BombSarai::Obj::Obj()
  * Address:	802B2904
  * Size:	000004
  */
-void Game::BombSarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -253,13 +247,7 @@ void Game::BombSarai::Obj::doUpdate()
  * Address:	802B2A94
  * Size:	000004
  */
-void Game::BombSarai::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1468,26 +1456,14 @@ void efx::TBsaraiSupli::~TBsaraiSupli()
  * Address:	802B3788
  * Size:	000004
  */
-void Game::BombSarai::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802B378C
  * Size:	000004
  */
-void Game::BombSarai::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

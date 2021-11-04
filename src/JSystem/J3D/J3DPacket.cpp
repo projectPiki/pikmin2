@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -328,13 +328,7 @@ void J3DPacket::addChildPacket(J3DPacket*)
  * Address:	8005FB18
  * Size:	000004
  */
-void J3DPacket::draw()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPacket::draw() { }
 
 /*
  * --INFO--

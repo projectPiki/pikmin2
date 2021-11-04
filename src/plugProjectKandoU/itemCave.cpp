@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -77,10 +77,6 @@ void Game::ItemCave::FSM::init(Game::ItemCave::Item*)
  */
 void Game::ItemCave::NormalState::init(Game::ItemCave::Item*, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -88,65 +84,35 @@ void Game::ItemCave::NormalState::init(Game::ItemCave::Item*, Game::StateArg*)
  * Address:	801EA094
  * Size:	000004
  */
-void Game::ItemCave::NormalState::exec(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemCave::NormalState::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA098
  * Size:	000004
  */
-void Game::ItemCave::NormalState::cleanup(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemCave::NormalState::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA09C
  * Size:	000004
  */
-void Game::ItemCave::OpenState::init(Game::ItemCave::Item*, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemCave::OpenState::init(Game::ItemCave::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801EA0A0
  * Size:	000004
  */
-void Game::ItemCave::OpenState::exec(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemCave::OpenState::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EA0A4
  * Size:	000004
  */
-void Game::ItemCave::OpenState::cleanup(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemCave::OpenState::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
@@ -2554,10 +2520,6 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
 void Game::ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*,
                                                      float)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2568,10 +2530,6 @@ void Game::ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*,
 void Game::ItemState<Game::ItemCave::Item>::onKeyEvent(
     Game::ItemCave::Item*, const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2582,10 +2540,6 @@ void Game::ItemState<Game::ItemCave::Item>::onKeyEvent(
 void Game::ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*,
                                                      Sys::Triangle*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2596,10 +2550,6 @@ void Game::ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*,
 void Game::ItemState<Game::ItemCave::Item>::onPlatCollision(
     Game::ItemCave::Item*, Game::PlatEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2610,10 +2560,6 @@ void Game::ItemState<Game::ItemCave::Item>::onPlatCollision(
 void Game::ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*,
                                                         Game::CollEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2624,10 +2570,6 @@ void Game::ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*,
 void Game::FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*,
                                                 Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2635,52 +2577,28 @@ void Game::FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*,
  * Address:	801EBE38
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::exec(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemCave::Item>::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE3C
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::cleanup(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemCave::Item>::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE40
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::resume(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemCave::Item>::resume(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE44
  * Size:	000004
  */
-void Game::FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
@@ -2712,13 +2630,7 @@ void Game::FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
  * Address:	801EBE78
  * Size:	000004
  */
-void Game::StateMachine<Game::ItemCave::Item>::init(Game::ItemCave::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::StateMachine<Game::ItemCave::Item>::init(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--

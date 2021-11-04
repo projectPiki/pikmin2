@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1505,13 +1505,7 @@ void PSSystem::SeqBase::exec(void)
  * Address:	80331D84
  * Size:	000004
  */
-void PSSystem::SeqBase::onPlayingFrame(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::SeqBase::onPlayingFrame(void) { }
 
 /*
  * --INFO--
@@ -1980,13 +1974,7 @@ void PSSystem::StreamBgm::__ct((unsigned long, JAInter::SoundInfo const&))
  * Address:	80332318
  * Size:	000004
  */
-void PSSystem::StreamBgm::init(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::StreamBgm::init(void) { }
 
 /*
  * --INFO--
@@ -4809,13 +4797,7 @@ void @472 @PSSystem::StreamSound::stopInner((unsigned long))
  * Address:	80334070
  * Size:	000004
  */
-void PSSystem::SeqBase::seqLoadAfter(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::SeqBase::seqLoadAfter(void) { }
 
 /*
  * --INFO--
@@ -4906,13 +4888,7 @@ void PSSystem::DirectedBgm::__dt(void)
  * Address:	8033414C
  * Size:	000004
  */
-void PSSystem::JumpBgmSeq::onJump((unsigned short))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::JumpBgmSeq::onJump((unsigned short)) { }
 
 /*
  * --INFO--
@@ -5018,13 +4994,7 @@ void PSSystem::StreamBgm::getHandleP(void)
  * Address:	8033418C
  * Size:	000004
  */
-void PSSystem::StreamBgm::scene1st((PSSystem::TaskChecker*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::StreamBgm::scene1st((PSSystem::TaskChecker*)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -248,13 +248,7 @@ void ebi::Option::FSMState::init((ebi::Option::TMgr*, Game::StateArg*))
  * Address:	803CEBFC
  * Size:	000004
  */
-void ebi::Option::FSMState::do_init((ebi::Option::TMgr*, Game::StateArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Option::FSMState::do_init((ebi::Option::TMgr*, Game::StateArg*)) { }
 
 /*
  * --INFO--
@@ -284,13 +278,7 @@ void ebi::Option::FSMState::exec((ebi::Option::TMgr*))
  * Address:	803CEC2C
  * Size:	000004
  */
-void ebi::Option::FSMState::do_exec((ebi::Option::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Option::FSMState::do_exec((ebi::Option::TMgr*)) { }
 
 /*
  * --INFO--
@@ -2458,13 +2446,7 @@ void ebi::E2DCallBack_Base::update(void)
  * Address:	803D0478
  * Size:	000004
  */
-void ebi::E2DCallBack_Base::do_update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::E2DCallBack_Base::do_update(void) { }
 
 /*
  * --INFO--
@@ -2499,13 +2481,7 @@ void ebi::E2DCallBack_Base::draw((Graphics&, J2DGrafContext&))
  * Address:	803D04B4
  * Size:	000004
  */
-void ebi::E2DCallBack_Base::do_draw((Graphics&, J2DGrafContext&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::E2DCallBack_Base::do_draw((Graphics&, J2DGrafContext&)) { }
 
 /*
  * --INFO--
@@ -2515,10 +2491,6 @@ void ebi::E2DCallBack_Base::do_draw((Graphics&, J2DGrafContext&))
 void init__Q24Game28FSMState<ebi::Option::TMgr>
 FPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2526,25 +2498,14 @@ FPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
  * Address:	803D04BC
  * Size:	000004
  */
-void exec__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void exec__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803D04C0
  * Size:	000004
  */
-void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void) {
 }
 
 /*
@@ -2552,25 +2513,14 @@ void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
  * Address:	803D04C4
  * Size:	000004
  */
-void resume__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void resume__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void) { }
 
 /*
  * --INFO--
  * Address:	803D04C8
  * Size:	000004
  */
-void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void) {
 }
 
 /*
@@ -2580,10 +2530,6 @@ void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
  */
 void init__Q24Game32StateMachine<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

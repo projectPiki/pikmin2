@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -189,13 +189,7 @@ void Game::Qurione::Generator::doReadLatestVersion(Stream&)
  * Address:	8025FC6C
  * Size:	000004
  */
-void Game::Qurione::Generator::doReadOldVersion(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Qurione::Generator::doReadOldVersion(Stream&) { }
 
 /*
  * --INFO--

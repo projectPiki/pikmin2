@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -183,13 +183,7 @@ void Game::P2JST::ObjectCamera::reset(void)
  * Address:	8042F8E4
  * Size:	000004
  */
-void Game::P2JST::ObjectCamera::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::P2JST::ObjectCamera::update(void) { }
 
 /*
  * --INFO--

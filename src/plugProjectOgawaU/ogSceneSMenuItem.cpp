@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -112,13 +112,7 @@ void og::newScreen::SMenuItem::doSetBackupScene((Screen::SetSceneArg&))
  * Address:	80314010
  * Size:	000004
  */
-void og::newScreen::SMenuItem::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::SMenuItem::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--
@@ -163,13 +157,7 @@ void og::newScreen::SMenuItem::doCreateObj((JKRArchive*))
  * Address:	80314074
  * Size:	000004
  */
-void og::newScreen::SMenuItem::doUpdateActive(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::SMenuItem::doUpdateActive(void) { }
 
 /*
  * --INFO--

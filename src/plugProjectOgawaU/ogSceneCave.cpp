@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -42,13 +42,7 @@ void og::newScreen::Cave::__dt(void)
  * Address:	8031CCCC
  * Size:	000004
  */
-void og::newScreen::Cave::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::Cave::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

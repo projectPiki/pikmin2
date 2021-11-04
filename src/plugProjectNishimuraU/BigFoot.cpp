@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -156,13 +156,7 @@ void Game::BigFoot::Obj::Obj()
  * Address:	802C80A4
  * Size:	000004
  */
-void Game::BigFoot::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -403,13 +397,7 @@ void Game::BigFoot::Obj::doAnimationCullingOff()
  * Address:	802C8350
  * Size:	000004
  */
-void Game::BigFoot::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -4905,26 +4893,14 @@ void efx::TOdamaHahen::~TOdamaHahen()
  * Address:	802CB858
  * Size:	000004
  */
-void Game::BigFoot::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802CB85C
  * Size:	000004
  */
-void Game::BigFoot::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -4945,13 +4921,7 @@ void Game::BigFoot::Obj::getDamageCoeStoneState()
  * Address:	802CB868
  * Size:	000004
  */
-void Game::BigFoot::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

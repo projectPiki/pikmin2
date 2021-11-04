@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -774,13 +774,7 @@ void og::Sound::setKanteiExit(void)
  * Address:	8030CF8C
  * Size:	000004
  */
-void og::Sound::setFloorTitle(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Sound::setFloorTitle(void) { }
 
 /*
  * --INFO--
@@ -833,13 +827,7 @@ void og::Sound::setBdamaGet(void)
  * Address:	8030CFE8
  * Size:	000004
  */
-void og::Sound::setNaviChange((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Sound::setNaviChange((int)) { }
 
 /*
  * --INFO--

@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/generalEnemyMgr.h"
 
 /*
@@ -4528,13 +4530,7 @@ void Game::EnemyMgrNode::getMatrixLoadType()
  * Address:	8010F25C
  * Size:	000004
  */
-void GenericObjectMgr::doEntry()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void GenericObjectMgr::doEntry() { }
 
 /*
  * --INFO--

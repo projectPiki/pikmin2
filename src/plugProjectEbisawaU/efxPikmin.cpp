@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3975,13 +3975,7 @@ void efx::TPkEffectTane::killGlow1_(void)
  * Address:	803B8FFC
  * Size:	000004
  */
-void efx::TFueactCircle::executeAfter((JPABaseEmitter*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TFueactCircle::executeAfter((JPABaseEmitter*)) { }
 
 /*
  * --INFO--

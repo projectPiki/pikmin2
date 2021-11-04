@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -757,10 +757,6 @@ void ebi::CardError::FSMState::init((ebi::CardError::TMgr*, Game::StateArg*))
  */
 void ebi::CardError::FSMState::do_init((ebi::CardError::TMgr*, Game::StateArg*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -791,13 +787,7 @@ void ebi::CardError::FSMState::exec((ebi::CardError::TMgr*))
  * Address:	803D1B8C
  * Size:	000004
  */
-void ebi::CardError::FSMState::do_exec((ebi::CardError::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::CardError::FSMState::do_exec((ebi::CardError::TMgr*)) { }
 
 /*
  * --INFO--
@@ -3098,10 +3088,6 @@ void ebi::CardError::TMgr::getStateID(void)
 void init__Q24Game31FSMState<ebi::CardError::TMgr>
 FPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3111,10 +3097,6 @@ FPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
  */
 void exec__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3125,10 +3107,6 @@ void exec__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void)
 void cleanup__Q24Game31FSMState<ebi::CardError::TMgr>
 FPQ33ebi9CardError4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3139,10 +3117,6 @@ FPQ33ebi9CardError4TMgr(void)
 void resume__Q24Game31FSMState<ebi::CardError::TMgr>
 FPQ33ebi9CardError4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3153,10 +3127,6 @@ FPQ33ebi9CardError4TMgr(void)
 void restart__Q24Game31FSMState<ebi::CardError::TMgr>
 FPQ33ebi9CardError4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3167,10 +3137,6 @@ FPQ33ebi9CardError4TMgr(void)
 void init__Q24Game35StateMachine<ebi::CardError::TMgr>
 FPQ33ebi9CardError4TMgr(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

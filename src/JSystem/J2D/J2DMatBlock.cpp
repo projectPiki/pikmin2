@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -669,13 +669,7 @@ void J2DTevSwapModeTable::J2DTevSwapModeTable()
  * Address:	8004A2C0
  * Size:	000004
  */
-void J2DGXColorS10::J2DGXColorS10()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DGXColorS10::J2DGXColorS10() { }
 
 /*
  * --INFO--
@@ -9882,52 +9876,28 @@ void J2DIndTexCoordScale::~J2DIndTexCoordScale()
  * Address:	8005107C
  * Size:	000004
  */
-void J2DIndBlock::initialize()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlock::initialize() { }
 
 /*
  * --INFO--
  * Address:	80051080
  * Size:	000004
  */
-void J2DIndBlock::setGX()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlock::setGX() { }
 
 /*
  * --INFO--
  * Address:	80051084
  * Size:	000004
  */
-void J2DIndBlock::setIndTexStageNum(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlock::setIndTexStageNum(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80051088
  * Size:	000004
  */
-void J2DIndBlock::setIndTexOrder(unsigned long, J2DIndTexOrder)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlock::setIndTexOrder(unsigned long, J2DIndTexOrder) { }
 
 /*
  * --INFO--
@@ -9948,13 +9918,7 @@ void J2DIndBlock::getIndTexOrder(unsigned long)
  * Address:	80051094
  * Size:	000004
  */
-void J2DIndBlock::setIndTexMtx(unsigned long, J2DIndTexMtx)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlock::setIndTexMtx(unsigned long, J2DIndTexMtx) { }
 
 /*
  * --INFO--
@@ -9975,13 +9939,7 @@ void J2DIndBlock::getIndTexMtx(unsigned long)
  * Address:	800510A0
  * Size:	000004
  */
-void J2DIndBlock::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlock::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale) { }
 
 /*
  * --INFO--
@@ -12479,13 +12437,7 @@ void J2DTevBlock1::getTevKAlphaSel(unsigned long)
  * Address:	80051CA8
  * Size:	000004
  */
-void J2DTevBlock1::setTevStageNum(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock1::setTevStageNum(unsigned char) { }
 
 /*
  * --INFO--
@@ -12756,65 +12708,35 @@ void J2DTevBlock1::setFontUndeleteFlag()
  * Address:	80051E1C
  * Size:	000004
  */
-void J2DTevBlock::initialize()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::initialize() { }
 
 /*
  * --INFO--
  * Address:	80051E20
  * Size:	000004
  */
-void J2DTevBlock::setGX()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setGX() { }
 
 /*
  * --INFO--
  * Address:	80051E24
  * Size:	000004
  */
-void J2DTevBlock::loadTexture(_GXTexMapID, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::loadTexture(_GXTexMapID, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80051E28
  * Size:	000004
  */
-void J2DTevBlock::setFontNo(unsigned short)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setFontNo(unsigned short) { }
 
 /*
  * --INFO--
  * Address:	80051E2C
  * Size:	000004
  */
-void J2DTevBlock::setTevKColor(unsigned long, JUtility::TColor)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevKColor(unsigned long, JUtility::TColor) { }
 
 /*
  * --INFO--
@@ -12849,52 +12771,28 @@ void J2DTevBlock::getTevKAlphaSel(unsigned long)
  * Address:	80051E40
  * Size:	000004
  */
-void J2DTevBlock::setTevStage(unsigned long, J2DTevStage)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevStage(unsigned long, J2DTevStage) { }
 
 /*
  * --INFO--
  * Address:	80051E44
  * Size:	000004
  */
-void J2DTevBlock::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo) { }
 
 /*
  * --INFO--
  * Address:	80051E48
  * Size:	000004
  */
-void J2DTevBlock::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable) { }
 
 /*
  * --INFO--
  * Address:	80051E4C
  * Size:	000004
  */
-void J2DTevBlock::setIndTevStage(unsigned long, J2DIndTevStage)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setIndTevStage(unsigned long, J2DIndTevStage) { }
 
 /*
  * --INFO--
@@ -13041,10 +12939,4 @@ void J2DTevBlock::prepareTexture(unsigned char)
  * Address:	80051EA0
  * Size:	000004
  */
-void J2DTevBlock::shiftDeleteFlag(unsigned char, bool)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::shiftDeleteFlag(unsigned char, bool) { }

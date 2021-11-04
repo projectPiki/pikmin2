@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1662,26 +1662,14 @@ void J2DMaterial::animation()
  * Address:	80053278
  * Size:	000004
  */
-void J2DAnmColor::getColor(unsigned short, _GXColor*) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DAnmColor::getColor(unsigned short, _GXColor*) const { }
 
 /*
  * --INFO--
  * Address:	8005327C
  * Size:	000004
  */
-void J2DIndBlockNull::setGX()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DIndBlockNull::setGX() { }
 
 /*
  * --INFO--

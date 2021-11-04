@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -425,13 +425,7 @@ void Game::YellowChappy::Obj::doStartMovie()
  * Address:	8012C848
  * Size:	000004
  */
-void Game::YellowChappy::Obj::doEndMovie()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::YellowChappy::Obj::doEndMovie() { }
 
 /*
  * --INFO--
@@ -688,26 +682,14 @@ void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8012CB94
  * Size:	000004
  */
-void efx::TSimple1::forceKill()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple1::forceKill() { }
 
 /*
  * --INFO--
  * Address:	8012CB98
  * Size:	000004
  */
-void efx::TSimple1::fade()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple1::fade() { }
 
 /*
  * --INFO--

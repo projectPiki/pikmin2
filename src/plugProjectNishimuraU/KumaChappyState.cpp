@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -339,13 +339,7 @@ void Game::KumaChappy::Obj::getEnemyTypeID()
  * Address:	80296240
  * Size:	000004
  */
-void Game::KumaChappy::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KumaChappy::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1138,13 +1132,7 @@ void Game::KumaChappy::StateLost::exec(Game::EnemyBase*)
  * Address:	80296D04
  * Size:	000004
  */
-void Game::KumaChappy::StateLost::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KumaChappy::StateLost::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

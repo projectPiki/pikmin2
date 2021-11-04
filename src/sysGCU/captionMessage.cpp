@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -653,52 +653,28 @@ void P2JME::Caption::TSequenceProcessor::do_isReady(void)
  * Address:	804516C8
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doResetAbtnWaitSE(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::Caption::TSequenceProcessor::doResetAbtnWaitSE(void) { }
 
 /*
  * --INFO--
  * Address:	804516CC
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doCharacterSE((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::Caption::TSequenceProcessor::doCharacterSE((int)) { }
 
 /*
  * --INFO--
  * Address:	804516D0
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doCharacterSEStart(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::Caption::TSequenceProcessor::doCharacterSEStart(void) { }
 
 /*
  * --INFO--
  * Address:	804516D4
  * Size:	000004
  */
-void P2JME::Caption::TSequenceProcessor::doCharacterSEEnd(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::Caption::TSequenceProcessor::doCharacterSEEnd(void) { }
 
 /*
  * --INFO--

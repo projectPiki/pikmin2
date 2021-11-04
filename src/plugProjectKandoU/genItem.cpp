@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -357,13 +357,7 @@ void Game::GenItem::doWrite((Stream&))
  * Address:	801AD0F8
  * Size:	000004
  */
-void Game::BaseItemMgr::generatorWrite((Stream&, Game::GenItemParm*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseItemMgr::generatorWrite((Stream&, Game::GenItemParm*)) { }
 
 /*
  * --INFO--
@@ -490,10 +484,6 @@ void Game::GenItem::doRead((Stream&))
 void Game::BaseItemMgr::generatorRead((Stream&, Game::GenItemParm*,
                                        unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -501,26 +491,14 @@ void Game::BaseItemMgr::generatorRead((Stream&, Game::GenItemParm*,
  * Address:	801AD254
  * Size:	000004
  */
-void Game::GenItem::ramSaveParameters((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenItem::ramSaveParameters((Stream&)) { }
 
 /*
  * --INFO--
  * Address:	801AD258
  * Size:	000004
  */
-void Game::GenItem::ramLoadParameters((Stream&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenItem::ramLoadParameters((Stream&)) { }
 
 /*
  * --INFO--

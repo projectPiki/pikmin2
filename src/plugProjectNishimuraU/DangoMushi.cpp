@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -102,13 +102,7 @@ void Game::DangoMushi::Obj::Obj()
  * Address:	802FC4F0
  * Size:	000004
  */
-void Game::DangoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -411,13 +405,7 @@ void Game::DangoMushi::Obj::changeMaterial()
  * Address:	802FC854
  * Size:	000004
  */
-void Game::DangoMushi::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

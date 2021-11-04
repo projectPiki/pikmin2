@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -5448,10 +5448,6 @@ void PSSystem::SceneMgr::exec(void)
  */
 void PSSystem::Scene::init(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -382,13 +382,7 @@ void Screen::ObjBase::doUpdateFadein(void)
  * Address:	8032CC88
  * Size:	000004
  */
-void Screen::ObjBase::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::ObjBase::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -409,26 +403,14 @@ void Screen::ObjBase::doUpdate(void)
  * Address:	8032CC94
  * Size:	000004
  */
-void Screen::ObjBase::doUpdateFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::ObjBase::doUpdateFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8032CC98
  * Size:	000004
  */
-void Screen::ObjBase::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::ObjBase::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

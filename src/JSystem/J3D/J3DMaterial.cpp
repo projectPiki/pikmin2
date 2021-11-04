@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -257,13 +257,7 @@ void J3DColorChan::J3DColorChan()
  * Address:	800617F0
  * Size:	000004
  */
-void J3DGXColor::J3DGXColor()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DGXColor::J3DGXColor() { }
 
 /*
  * --INFO--
@@ -770,13 +764,7 @@ void J3DTevSwapModeTable::J3DTevSwapModeTable()
  * Address:	80061DEC
  * Size:	000004
  */
-void J3DGXColorS10::J3DGXColorS10()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DGXColorS10::J3DGXColorS10() { }
 
 /*
  * --INFO--
@@ -1864,13 +1852,7 @@ void J3DPEBlock::countDLSize()
  * Address:	800628CC
  * Size:	000004
  */
-void J3DColorBlock::load()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::load() { }
 
 /*
  * --INFO--
@@ -1919,13 +1901,7 @@ void J3DColorBlock::getColorChanNum() const
  * Address:	800628E8
  * Size:	000004
  */
-void J3DTevBlock::load()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock::load() { }
 
 /*
  * --INFO--
@@ -2466,26 +2442,14 @@ void J3DMaterial::patch()
  * Address:	8006300C
  * Size:	000004
  */
-void J3DColorBlock::patch()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::patch() { }
 
 /*
  * --INFO--
  * Address:	80063010
  * Size:	000004
  */
-void J3DTevBlock::patch()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock::patch() { }
 
 /*
  * --INFO--
@@ -2635,26 +2599,14 @@ void J3DMaterial::diff(unsigned long)
  * Address:	80063210
  * Size:	000004
  */
-void J3DColorBlock::diff(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::diff(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80063214
  * Size:	000004
  */
-void J3DPEBlock::diff(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::diff(unsigned long) { }
 
 /*
  * --INFO--
@@ -2959,65 +2911,35 @@ void J3DTexGenBlock::getTexCoord(unsigned long)
  * Address:	800635A0
  * Size:	000004
  */
-void J3DPEBlock::reset(J3DPEBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::reset(J3DPEBlock*) { }
 
 /*
  * --INFO--
  * Address:	800635A4
  * Size:	000004
  */
-void J3DIndBlock::reset(J3DIndBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::reset(J3DIndBlock*) { }
 
 /*
  * --INFO--
  * Address:	800635A8
  * Size:	000004
  */
-void J3DTevBlock::reset(J3DTevBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock::reset(J3DTevBlock*) { }
 
 /*
  * --INFO--
  * Address:	800635AC
  * Size:	000004
  */
-void J3DTexGenBlock::reset(J3DTexGenBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::reset(J3DTexGenBlock*) { }
 
 /*
  * --INFO--
  * Address:	800635B0
  * Size:	000004
  */
-void J3DColorBlock::reset(J3DColorBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::reset(J3DColorBlock*) { }
 
 /*
  * --INFO--
@@ -3261,26 +3183,14 @@ void J3DPatchedMaterial::initialize()
  * Address:	80063830
  * Size:	000004
  */
-void J3DPatchedMaterial::makeDisplayList()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPatchedMaterial::makeDisplayList() { }
 
 /*
  * --INFO--
  * Address:	80063834
  * Size:	000004
  */
-void J3DPatchedMaterial::makeSharedDisplayList()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPatchedMaterial::makeSharedDisplayList() { }
 
 /*
  * --INFO--
@@ -3336,26 +3246,14 @@ void J3DPatchedMaterial::loadSharedDL()
  * Address:	80063894
  * Size:	000004
  */
-void J3DPatchedMaterial::reset()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPatchedMaterial::reset() { }
 
 /*
  * --INFO--
  * Address:	80063898
  * Size:	000004
  */
-void J3DPatchedMaterial::change()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPatchedMaterial::change() { }
 
 /*
  * --INFO--
@@ -3394,26 +3292,14 @@ void J3DLockedMaterial::initialize()
  * Address:	800638EC
  * Size:	000004
  */
-void J3DLockedMaterial::makeDisplayList()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::makeDisplayList() { }
 
 /*
  * --INFO--
  * Address:	800638F0
  * Size:	000004
  */
-void J3DLockedMaterial::makeSharedDisplayList()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::makeSharedDisplayList() { }
 
 /*
  * --INFO--
@@ -3469,130 +3355,70 @@ void J3DLockedMaterial::loadSharedDL()
  * Address:	80063950
  * Size:	000004
  */
-void J3DLockedMaterial::patch()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::patch() { }
 
 /*
  * --INFO--
  * Address:	80063954
  * Size:	000004
  */
-void J3DLockedMaterial::diff(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::diff(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80063958
  * Size:	000004
  */
-void J3DLockedMaterial::calc(const float (*)[4])
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::calc(const float (*)[4]) { }
 
 /*
  * --INFO--
  * Address:	8006395C
  * Size:	000004
  */
-void J3DLockedMaterial::reset()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::reset() { }
 
 /*
  * --INFO--
  * Address:	80063960
  * Size:	000004
  */
-void J3DLockedMaterial::change()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DLockedMaterial::change() { }
 
 /*
  * --INFO--
  * Address:	80063964
  * Size:	000004
  */
-void J3DPEBlock::patch()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::patch() { }
 
 /*
  * --INFO--
  * Address:	80063968
  * Size:	000004
  */
-void J3DPEBlock::diffFog()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::diffFog() { }
 
 /*
  * --INFO--
  * Address:	8006396C
  * Size:	000004
  */
-void J3DPEBlock::diffBlend()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::diffBlend() { }
 
 /*
  * --INFO--
  * Address:	80063970
  * Size:	000004
  */
-void J3DPEBlock::setFog(J3DFog*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setFog(J3DFog*) { }
 
 /*
  * --INFO--
  * Address:	80063974
  * Size:	000004
  */
-void J3DPEBlock::setFog(J3DFog)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setFog(J3DFog) { }
 
 /*
  * --INFO--
@@ -3613,26 +3439,14 @@ void J3DPEBlock::getFog()
  * Address:	80063980
  * Size:	000004
  */
-void J3DPEBlock::setAlphaComp(const J3DAlphaComp&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setAlphaComp(const J3DAlphaComp&) { }
 
 /*
  * --INFO--
  * Address:	80063984
  * Size:	000004
  */
-void J3DPEBlock::setAlphaComp(const J3DAlphaComp*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setAlphaComp(const J3DAlphaComp*) { }
 
 /*
  * --INFO--
@@ -3653,26 +3467,14 @@ void J3DPEBlock::getAlphaComp()
  * Address:	80063990
  * Size:	000004
  */
-void J3DPEBlock::setBlend(const J3DBlend&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setBlend(const J3DBlend&) { }
 
 /*
  * --INFO--
  * Address:	80063994
  * Size:	000004
  */
-void J3DPEBlock::setBlend(const J3DBlend*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setBlend(const J3DBlend*) { }
 
 /*
  * --INFO--
@@ -3693,26 +3495,14 @@ void J3DPEBlock::getBlend()
  * Address:	800639A0
  * Size:	000004
  */
-void J3DPEBlock::setZMode(J3DZMode)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setZMode(J3DZMode) { }
 
 /*
  * --INFO--
  * Address:	800639A4
  * Size:	000004
  */
-void J3DPEBlock::setZMode(const J3DZMode*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setZMode(const J3DZMode*) { }
 
 /*
  * --INFO--
@@ -3733,26 +3523,14 @@ void J3DPEBlock::getZMode()
  * Address:	800639B0
  * Size:	000004
  */
-void J3DPEBlock::setZCompLoc(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setZCompLoc(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	800639B4
  * Size:	000004
  */
-void J3DPEBlock::setZCompLoc(const unsigned char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setZCompLoc(const unsigned char*) { }
 
 /*
  * --INFO--
@@ -3773,26 +3551,14 @@ void J3DPEBlock::getZCompLoc() const
  * Address:	800639C0
  * Size:	000004
  */
-void J3DPEBlock::setDither(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setDither(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	800639C4
  * Size:	000004
  */
-void J3DPEBlock::setDither(const unsigned char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setDither(const unsigned char*) { }
 
 /*
  * --INFO--
@@ -3827,52 +3593,28 @@ void J3DPEBlock::getFogOffset() const
  * Address:	800639D8
  * Size:	000004
  */
-void J3DPEBlock::setFogOffset(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DPEBlock::setFogOffset(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	800639DC
  * Size:	000004
  */
-void J3DIndBlockNull::diff(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlockNull::diff(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	800639E0
  * Size:	000004
  */
-void J3DIndBlockNull::load()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlockNull::load() { }
 
 /*
  * --INFO--
  * Address:	800639E4
  * Size:	000004
  */
-void J3DIndBlockNull::reset(J3DIndBlock*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlockNull::reset(J3DIndBlock*) { }
 
 /*
  * --INFO--
@@ -3933,39 +3675,21 @@ void J3DIndBlockNull::~J3DIndBlockNull()
  * Address:	80063A50
  * Size:	000004
  */
-void J3DIndBlock::setIndTexStageNum(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::setIndTexStageNum(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80063A54
  * Size:	000004
  */
-void J3DIndBlock::setIndTexOrder(unsigned long, const J3DIndTexOrder*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::setIndTexOrder(unsigned long, const J3DIndTexOrder*) { }
 
 /*
  * --INFO--
  * Address:	80063A58
  * Size:	000004
  */
-void J3DIndBlock::setIndTexOrder(unsigned long, J3DIndTexOrder)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::setIndTexOrder(unsigned long, J3DIndTexOrder) { }
 
 /*
  * --INFO--
@@ -3986,26 +3710,14 @@ void J3DIndBlock::getIndTexOrder(unsigned long)
  * Address:	80063A64
  * Size:	000004
  */
-void J3DIndBlock::setIndTexMtx(unsigned long, J3DIndTexMtx)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::setIndTexMtx(unsigned long, J3DIndTexMtx) { }
 
 /*
  * --INFO--
  * Address:	80063A68
  * Size:	000004
  */
-void J3DIndBlock::setIndTexMtx(unsigned long, const J3DIndTexMtx*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::setIndTexMtx(unsigned long, const J3DIndTexMtx*) { }
 
 /*
  * --INFO--
@@ -4026,13 +3738,7 @@ void J3DIndBlock::getIndTexMtx(unsigned long)
  * Address:	80063A74
  * Size:	000004
  */
-void J3DIndBlock::setIndTexCoordScale(unsigned long, J3DIndTexCoordScale)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DIndBlock::setIndTexCoordScale(unsigned long, J3DIndTexCoordScale) { }
 
 /*
  * --INFO--
@@ -4041,10 +3747,6 @@ void J3DIndBlock::setIndTexCoordScale(unsigned long, J3DIndTexCoordScale)
  */
 void J3DIndBlock::setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4066,52 +3768,28 @@ void J3DIndBlock::getIndTexCoordScale(unsigned long)
  * Address:	80063A84
  * Size:	000004
  */
-void J3DTexGenBlock::setTexGenNum(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setTexGenNum(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80063A88
  * Size:	000004
  */
-void J3DTexGenBlock::setTexGenNum(const unsigned long*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setTexGenNum(const unsigned long*) { }
 
 /*
  * --INFO--
  * Address:	80063A8C
  * Size:	000004
  */
-void J3DTexGenBlock::setTexCoord(unsigned long, const J3DTexCoord*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setTexCoord(unsigned long, const J3DTexCoord*) { }
 
 /*
  * --INFO--
  * Address:	80063A90
  * Size:	000004
  */
-void J3DTexGenBlock::setTexMtx(unsigned long, J3DTexMtx*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setTexMtx(unsigned long, J3DTexMtx*) { }
 
 /*
  * --INFO--
@@ -4132,26 +3810,14 @@ void J3DTexGenBlock::getTexMtx(unsigned long)
  * Address:	80063A9C
  * Size:	000004
  */
-void J3DTexGenBlock::setNBTScale(J3DNBTScale)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setNBTScale(J3DNBTScale) { }
 
 /*
  * --INFO--
  * Address:	80063AA0
  * Size:	000004
  */
-void J3DTexGenBlock::setNBTScale(const J3DNBTScale*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setNBTScale(const J3DNBTScale*) { }
 
 /*
  * --INFO--
@@ -4172,91 +3838,49 @@ void J3DTexGenBlock::getTexMtxOffset() const
  * Address:	80063AAC
  * Size:	000004
  */
-void J3DTexGenBlock::setTexMtxOffset(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlock::setTexMtxOffset(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80063AB0
  * Size:	000004
  */
-void J3DColorBlock::patchMatColor()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::patchMatColor() { }
 
 /*
  * --INFO--
  * Address:	80063AB4
  * Size:	000004
  */
-void J3DColorBlock::patchLight()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::patchLight() { }
 
 /*
  * --INFO--
  * Address:	80063AB8
  * Size:	000004
  */
-void J3DColorBlock::diffMatColor()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::diffMatColor() { }
 
 /*
  * --INFO--
  * Address:	80063ABC
  * Size:	000004
  */
-void J3DColorBlock::diffLight()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::diffLight() { }
 
 /*
  * --INFO--
  * Address:	80063AC0
  * Size:	000004
  */
-void J3DColorBlock::setMatColor(unsigned long, J3DGXColor)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setMatColor(unsigned long, J3DGXColor) { }
 
 /*
  * --INFO--
  * Address:	80063AC4
  * Size:	000004
  */
-void J3DColorBlock::setMatColor(unsigned long, const J3DGXColor*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setMatColor(unsigned long, const J3DGXColor*) { }
 
 /*
  * --INFO--
@@ -4277,26 +3901,14 @@ void J3DColorBlock::getMatColor(unsigned long)
  * Address:	80063AD0
  * Size:	000004
  */
-void J3DColorBlock::setAmbColor(unsigned long, J3DGXColor)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setAmbColor(unsigned long, J3DGXColor) { }
 
 /*
  * --INFO--
  * Address:	80063AD4
  * Size:	000004
  */
-void J3DColorBlock::setAmbColor(unsigned long, const J3DGXColor*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setAmbColor(unsigned long, const J3DGXColor*) { }
 
 /*
  * --INFO--
@@ -4317,52 +3929,28 @@ void J3DColorBlock::getAmbColor(unsigned long)
  * Address:	80063AE0
  * Size:	000004
  */
-void J3DColorBlock::setColorChanNum(const unsigned char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setColorChanNum(const unsigned char*) { }
 
 /*
  * --INFO--
  * Address:	80063AE4
  * Size:	000004
  */
-void J3DColorBlock::setColorChanNum(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setColorChanNum(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80063AE8
  * Size:	000004
  */
-void J3DColorBlock::setColorChan(unsigned long, const J3DColorChan*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setColorChan(unsigned long, const J3DColorChan*) { }
 
 /*
  * --INFO--
  * Address:	80063AEC
  * Size:	000004
  */
-void J3DColorBlock::setColorChan(unsigned long, const J3DColorChan&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setColorChan(unsigned long, const J3DColorChan&) { }
 
 /*
  * --INFO--
@@ -4383,13 +3971,7 @@ void J3DColorBlock::getColorChan(unsigned long)
  * Address:	80063AF8
  * Size:	000004
  */
-void J3DColorBlock::setLight(unsigned long, J3DLightObj*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setLight(unsigned long, J3DLightObj*) { }
 
 /*
  * --INFO--
@@ -4410,26 +3992,14 @@ void J3DColorBlock::getLight(unsigned long)
  * Address:	80063B04
  * Size:	000004
  */
-void J3DColorBlock::setCullMode(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setCullMode(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80063B08
  * Size:	000004
  */
-void J3DColorBlock::setCullMode(const unsigned char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setCullMode(const unsigned char*) { }
 
 /*
  * --INFO--
@@ -4464,23 +4034,11 @@ void J3DColorBlock::getColorChanOffset() const
  * Address:	80063B1C
  * Size:	000004
  */
-void J3DColorBlock::setMatColorOffset(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setMatColorOffset(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80063B20
  * Size:	000004
  */
-void J3DColorBlock::setColorChanOffset(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DColorBlock::setColorChanOffset(unsigned long) { }

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -42,13 +42,7 @@ void og::newScreen::SpecialItem::__dt(void)
  * Address:	8031A2DC
  * Size:	000004
  */
-void og::newScreen::SpecialItem::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::SpecialItem::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -748,26 +748,14 @@ void efx::TBombrock::create((efx::Arg*))
  * Address:	80349D34
  * Size:	000004
  */
-void efx::TBombrock::forceKill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TBombrock::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	80349D38
  * Size:	000004
  */
-void efx::TBombrock::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TBombrock::fade(void) { }
 
 /*
  * --INFO--

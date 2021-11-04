@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -335,26 +335,14 @@ void Game::Farm::FarmMgr::doViewCalc()
  * Address:	80124340
  * Size:	000004
  */
-void Game::Farm::FarmMgr::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Farm::FarmMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80124344
  * Size:	000004
  */
-void Game::Farm::FarmMgr::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Farm::FarmMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

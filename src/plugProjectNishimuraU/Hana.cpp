@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -70,13 +70,7 @@ void Game::Hana::Obj::__ct(void)
  * Address:	802F31DC
  * Size:	000004
  */
-void Game::Hana::Obj::createEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::createEffect(void) { }
 
 /*
  * --INFO--
@@ -120,26 +114,14 @@ void Game::Hana::Obj::onInit((Game::CreatureInitArg*))
  * Address:	802F3244
  * Size:	000004
  */
-void Game::Hana::Obj::setupEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::setupEffect(void) { }
 
 /*
  * --INFO--
  * Address:	802F3248
  * Size:	000004
  */
-void Game::Hana::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -747,13 +729,7 @@ void Game::ConditionNotStickSlot::satisfy((Game::Piki*))
  * Address:	802F3948
  * Size:	000004
  */
-void Game::Hana::Obj::changeMaterial(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::changeMaterial(void) { }
 
 /*
  * --INFO--
@@ -774,13 +750,7 @@ void Game::Hana::Obj::isUnderground(void)
  * Address:	802F3954
  * Size:	000004
  */
-void Game::Hana::Obj::initWalkSmokeEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::initWalkSmokeEffect(void) { }
 
 /*
  * --INFO--
@@ -829,52 +799,28 @@ void Game::Hana::Obj::getEnemyTypeID(void)
  * Address:	802F3970
  * Size:	000004
  */
-void Game::Hana::Obj::setAnimationSpeed((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::setAnimationSpeed((float)) { }
 
 /*
  * --INFO--
  * Address:	802F3974
  * Size:	000004
  */
-void Game::Hana::Obj::flickAttackFail(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::flickAttackFail(void) { }
 
 /*
  * --INFO--
  * Address:	802F3978
  * Size:	000004
  */
-void Game::Hana::Obj::startSleepEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::startSleepEffect(void) { }
 
 /*
  * --INFO--
  * Address:	802F397C
  * Size:	000004
  */
-void Game::Hana::Obj::finishSleepEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hana::Obj::finishSleepEffect(void) { }
 
 /*
  * --INFO--

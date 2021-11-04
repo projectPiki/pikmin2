@@ -904,13 +904,7 @@ void CarryInfo::drawNumberPrim(Graphics&, float, float, int, Color4&, float)
  * Address:	8011BBC8
  * Size:	000004
  */
-void CarryInfoList::init()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CarryInfoList::init() { }
 
 /*
  * --INFO--
@@ -1855,13 +1849,7 @@ void InfoMgrBase::~InfoMgrBase()
  * Address:	8011C5EC
  * Size:	000004
  */
-void InfoListBase<CarryInfoOwner, CarryInfoList>::init()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void InfoListBase<CarryInfoOwner, CarryInfoList>::init() { }
 
 /*
  * --INFO--
@@ -2144,26 +2132,14 @@ void InfoMgr<CarryInfoOwner, CarryInfoList>::search(CarryInfoList*,
  * Address:	8011C894
  * Size:	000004
  */
-void InfoListBase<CarryInfoOwner, CarryInfoList>::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void InfoListBase<CarryInfoOwner, CarryInfoList>::update() { }
 
 /*
  * --INFO--
  * Address:	8011C898
  * Size:	000004
  */
-void InfoListBase<CarryInfoOwner, CarryInfoList>::draw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void InfoListBase<CarryInfoOwner, CarryInfoList>::draw(Graphics&) { }
 
 /*
  * --INFO--

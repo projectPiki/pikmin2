@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2336,26 +2336,14 @@ void PSM::GroundDirector_Cave::~GroundDirector_Cave()
  * Address:	80470E94
  * Size:	000004
  */
-void PSM::GroundDirector_Cave::directOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::GroundDirector_Cave::directOn() { }
 
 /*
  * --INFO--
  * Address:	80470E98
  * Size:	000004
  */
-void PSM::GroundDirector_Cave::directOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::GroundDirector_Cave::directOff() { }
 
 /*
  * --INFO--

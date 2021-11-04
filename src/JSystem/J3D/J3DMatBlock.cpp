@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -5941,13 +5941,7 @@ void J3DTevBlock1::patchTexNo()
  * Address:	8007BF48
  * Size:	000004
  */
-void J3DTevBlock1::patchTevReg()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock1::patchTevReg() { }
 
 /*
  * --INFO--
@@ -7227,13 +7221,7 @@ void J3DTevBlock1::diffTexNo()
  * Address:	8007CE20
  * Size:	000004
  */
-void J3DTevBlock1::diffTevReg()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock1::diffTevReg() { }
 
 /*
  * --INFO--
@@ -14290,13 +14278,7 @@ void J3DTevBlock16::~J3DTevBlock16()
  * Address:	80081F70
  * Size:	000004
  */
-void J3DTevBlock4::ptrToIndex()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock4::ptrToIndex() { }
 
 /*
  * --INFO--
@@ -15047,13 +15029,7 @@ void J3DTevBlock4::~J3DTevBlock4()
  * Address:	800823D0
  * Size:	000004
  */
-void J3DTevBlock2::ptrToIndex()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock2::ptrToIndex() { }
 
 /*
  * --INFO--
@@ -15804,13 +15780,7 @@ void J3DTevBlock2::~J3DTevBlock2()
  * Address:	80082830
  * Size:	000004
  */
-void J3DTevBlock1::ptrToIndex()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock1::ptrToIndex() { }
 
 /*
  * --INFO--
@@ -15996,26 +15966,14 @@ void J3DTevBlock1::getTevOrder(unsigned long)
  * Address:	80082970
  * Size:	000004
  */
-void J3DTevBlock1::setTevStageNum(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock1::setTevStageNum(unsigned char) { }
 
 /*
  * --INFO--
  * Address:	80082974
  * Size:	000004
  */
-void J3DTevBlock1::setTevStageNum(const unsigned char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock1::setTevStageNum(const unsigned char*) { }
 
 /*
  * --INFO--
@@ -16211,13 +16169,7 @@ void J3DTevBlock1::~J3DTevBlock1()
  * Address:	80082AAC
  * Size:	000004
  */
-void J3DTevBlockPatched::load()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlockPatched::load() { }
 
 /*
  * --INFO--
@@ -17190,13 +17142,7 @@ void J3DTexGenBlock4::~J3DTexGenBlock4()
  * Address:	80083058
  * Size:	000004
  */
-void J3DTexGenBlockPatched::load()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTexGenBlockPatched::load() { }
 
 /*
  * --INFO--

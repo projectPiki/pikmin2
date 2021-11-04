@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -313,13 +313,7 @@ void Game::SingleGame::LoadState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8023A200
  * Size:	000004
  */
-void Game::SingleGame::LoadState::cleanup((Game::SingleGameSection*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGame::LoadState::cleanup((Game::SingleGameSection*)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -845,13 +845,7 @@ void og::newScreen::ObjSMenuBase::setYajiName((unsigned long long,
  * Address:	80316B78
  * Size:	000004
  */
-void og::newScreen::ObjSMenuBase::loop(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSMenuBase::loop(void) { }
 
 /*
  * --INFO--
@@ -1584,13 +1578,7 @@ void Screen::ObjBase::doEnd((Screen::EndSceneArg const*))
  * Address:	803173A4
  * Size:	000004
  */
-void Screen::ObjBase::doCreate((JKRArchive*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::ObjBase::doCreate((JKRArchive*)) { }
 
 /*
  * --INFO--

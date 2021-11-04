@@ -6,11 +6,6 @@
  * Size:	000008
  */
 BOOL TRKReleaseMutex(void) { return FALSE; }
-/*
-.loc_0x0:
-  li        r3, 0
-  blr
-*/
 
 /*
  * --INFO--
@@ -18,11 +13,6 @@ BOOL TRKReleaseMutex(void) { return FALSE; }
  * Size:	000008
  */
 BOOL TRKAcquireMutex(void) { return FALSE; }
-/*
-.loc_0x0:
-  li        r3, 0
-  blr
-*/
 
 /*
  * --INFO--
@@ -30,8 +20,3 @@ BOOL TRKAcquireMutex(void) { return FALSE; }
  * Size:	000008
  */
 BOOL TRKInitializeMutex(void) { return FALSE; }
-/*
-.loc_0x0:
-  li        r3, 0
-  blr
-*/

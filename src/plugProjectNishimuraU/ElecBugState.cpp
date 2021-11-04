@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -328,13 +328,7 @@ void Game::ElecBug::StateDead::exec(Game::EnemyBase*)
  * Address:	802792B4
  * Size:	000004
  */
-void Game::ElecBug::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -428,13 +422,7 @@ void Game::ElecBug::StateWait::exec(Game::EnemyBase*)
  * Address:	802793A4
  * Size:	000004
  */
-void Game::ElecBug::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -628,13 +616,7 @@ void Game::ElecBug::StateTurn::exec(Game::EnemyBase*)
  * Address:	80279604
  * Size:	000004
  */
-void Game::ElecBug::StateTurn::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::StateTurn::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -769,13 +751,7 @@ void Game::ElecBug::StateMove::exec(Game::EnemyBase*)
  * Address:	80279780
  * Size:	000004
  */
-void Game::ElecBug::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2010,13 +1986,7 @@ void Game::ElecBug::StateReturn::exec(Game::EnemyBase*)
  * Address:	8027A62C
  * Size:	000004
  */
-void Game::ElecBug::StateReturn::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecBug::StateReturn::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

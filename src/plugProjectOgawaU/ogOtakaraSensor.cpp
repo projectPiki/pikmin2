@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1440,36 +1440,18 @@ void og::Screen::OtakaraSensor::calcReaction(void)
  * Address:	8032EA4C
  * Size:	000004
  */
-void og::Screen::OtakaraSensor::draw((J2DGrafContext&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Screen::OtakaraSensor::draw((J2DGrafContext&)) { }
 
 /*
  * --INFO--
  * Address:	8032EA50
  * Size:	000004
  */
-void efx2d::TSimple3::kill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx2d::TSimple3::kill(void) { }
 
 /*
  * --INFO--
  * Address:	8032EA54
  * Size:	000004
  */
-void efx2d::TSimple3::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx2d::TSimple3::fade(void) { }

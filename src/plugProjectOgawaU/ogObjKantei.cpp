@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1673,13 +1673,7 @@ void og::newScreen::ObjKantei::doEnd((Screen::EndSceneArg const*))
  * Address:	803197BC
  * Size:	000004
  */
-void og::newScreen::ObjKantei::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjKantei::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -1716,13 +1710,7 @@ void og::newScreen::ObjKantei::doUpdateFinish(void)
  * Address:	80319800
  * Size:	000004
  */
-void og::newScreen::ObjKantei::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjKantei::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

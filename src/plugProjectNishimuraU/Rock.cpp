@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -405,13 +405,7 @@ void Game::Rock::Obj::setFSM(Game::Rock::FSM*)
  * Address:	80263468
  * Size:	000004
  */
-void Game::Rock::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Rock::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--

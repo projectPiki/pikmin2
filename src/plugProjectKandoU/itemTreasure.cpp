@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -78,26 +78,14 @@ void Game::ItemTreasure::NormalState::init((Game::ItemTreasure::Item*,
  * Address:	801F31FC
  * Size:	000004
  */
-void Game::ItemTreasure::NormalState::exec((Game::ItemTreasure::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemTreasure::NormalState::exec((Game::ItemTreasure::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801F3200
  * Size:	000004
  */
-void Game::ItemTreasure::NormalState::cleanup((Game::ItemTreasure::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemTreasure::NormalState::cleanup((Game::ItemTreasure::Item*)) { }
 
 /*
  * --INFO--
@@ -1291,13 +1279,7 @@ void Game::ItemTreasure::Item::interactAttack((Game::InteractAttack&))
  * Address:	801F3FFC
  * Size:	000004
  */
-void Game::ItemTreasure::State::onDamage((Game::ItemTreasure::Item*, float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemTreasure::State::onDamage((Game::ItemTreasure::Item*, float)) { }
 
 /*
  * --INFO--
@@ -1869,13 +1851,7 @@ void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3<float>
  * Address:	801F46D0
  * Size:	000004
  */
-void Game::ItemTreasure::Mgr::onLoadResources(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemTreasure::Mgr::onLoadResources(void) { }
 
 /*
  * --INFO--
@@ -2153,10 +2129,6 @@ Fv(void)
 void onDamage__Q24Game37ItemState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2167,10 +2139,6 @@ FPQ34Game12ItemTreasure4Itemf(void)
 void onKeyEvent__Q24Game37ItemState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2181,10 +2149,6 @@ FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent(void)
 void onBounce__Q24Game37ItemState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2195,10 +2159,6 @@ FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game37ItemState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2209,10 +2169,6 @@ FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game37ItemState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2223,10 +2179,6 @@ FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent(void)
 void init__Q24Game36FSMState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2237,10 +2189,6 @@ FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg(void)
 void exec__Q24Game36FSMState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2251,10 +2199,6 @@ FPQ34Game12ItemTreasure4Item(void)
 void cleanup__Q24Game36FSMState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2265,10 +2209,6 @@ FPQ34Game12ItemTreasure4Item(void)
 void resume__Q24Game36FSMState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2279,10 +2219,6 @@ FPQ34Game12ItemTreasure4Item(void)
 void restart__Q24Game36FSMState<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2318,10 +2254,6 @@ FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
 void init__Q24Game40StateMachine<Game::ItemTreasure::Item>
 FPQ34Game12ItemTreasure4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

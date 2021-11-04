@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -388,88 +388,46 @@ void Graphics::~Graphics()
  * Address:	8030F300
  * Size:	000004
  */
-void Graphics::doJ3DDrawInit()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DDrawInit() { }
 
 /*
  * --INFO--
  * Address:	8030F304
  * Size:	000004
  */
-void Graphics::doJ3DDraw(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DDraw(int) { }
 
 /*
  * --INFO--
  * Address:	8030F308
  * Size:	000004
  */
-void Graphics::doJ3DFrameInit()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DFrameInit() { }
 
 /*
  * --INFO--
  * Address:	8030F30C
  * Size:	000004
  */
-void Graphics::doJ3DAnimation()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DAnimation() { }
 
 /*
  * --INFO--
  * Address:	8030F310
  * Size:	000004
  */
-void Graphics::doJ3DUpdateInit()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DUpdateInit() { }
 
 /*
  * --INFO--
  * Address:	8030F314
  * Size:	000004
  */
-void Graphics::doJ3DSetView(int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DSetView(int) { }
 
 /*
  * --INFO--
  * Address:	8030F318
  * Size:	000004
  */
-void Graphics::doJ3DViewCalc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Graphics::doJ3DViewCalc() { }

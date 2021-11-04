@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -349,13 +349,7 @@ void Game::Ujia::StateDead::exec(Game::EnemyBase*)
  * Address:	80264B90
  * Size:	000004
  */
-void Game::Ujia::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -430,13 +424,7 @@ void Game::Ujia::StatePress::exec(Game::EnemyBase*)
  * Address:	80264C3C
  * Size:	000004
  */
-void Game::Ujia::StatePress::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1229,13 +1217,7 @@ void Game::Ujia::StateMove::exec(Game::EnemyBase*)
  * Address:	802655E0
  * Size:	000004
  */
-void Game::Ujia::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1348,13 +1330,7 @@ void Game::Ujia::StateMoveSide::exec(Game::EnemyBase*)
  * Address:	8026570C
  * Size:	000004
  */
-void Game::Ujia::StateMoveSide::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateMoveSide::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1467,13 +1443,7 @@ void Game::Ujia::StateMoveCentre::exec(Game::EnemyBase*)
  * Address:	80265838
  * Size:	000004
  */
-void Game::Ujia::StateMoveCentre::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateMoveCentre::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1586,13 +1556,7 @@ void Game::Ujia::StateMoveTop::exec(Game::EnemyBase*)
  * Address:	80265964
  * Size:	000004
  */
-void Game::Ujia::StateMoveTop::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateMoveTop::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1748,13 +1712,7 @@ void Game::Ujia::StateGoHome::exec(Game::EnemyBase*)
  * Address:	80265B34
  * Size:	000004
  */
-void Game::Ujia::StateGoHome::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateGoHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1886,10 +1844,4 @@ void Game::Ujia::StateAttack1::exec(Game::EnemyBase*)
  * Address:	80265C9C
  * Size:	000004
  */
-void Game::Ujia::StateAttack1::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::StateAttack1::cleanup(Game::EnemyBase*) { }

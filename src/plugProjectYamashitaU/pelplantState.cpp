@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -759,13 +759,7 @@ void Game::Pelplant::StateWait::exec(Game::EnemyBase*)
  * Address:	8010B3C0
  * Size:	000004
  */
-void Game::Pelplant::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pelplant::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1051,13 +1045,7 @@ void Game::Pelplant::StateGrow::exec(Game::EnemyBase*)
  * Address:	8010B748
  * Size:	000004
  */
-void Game::Pelplant::StateGrow::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pelplant::StateGrow::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1340,62 +1328,32 @@ void Game::Pelplant::StateDead::exec(Game::EnemyBase*)
  * Address:	8010B9EC
  * Size:	000004
  */
-void Game::Pelplant::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pelplant::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8010B9F0
  * Size:	000004
  */
-void efx::TSimple3::forceKill()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple3::forceKill() { }
 
 /*
  * --INFO--
  * Address:	8010B9F4
  * Size:	000004
  */
-void efx::TSimple3::fade()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple3::fade() { }
 
 /*
  * --INFO--
  * Address:	8010B9F8
  * Size:	000004
  */
-void efx::TSimple2::forceKill()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple2::forceKill() { }
 
 /*
  * --INFO--
  * Address:	8010B9FC
  * Size:	000004
  */
-void efx::TSimple2::fade()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple2::fade() { }

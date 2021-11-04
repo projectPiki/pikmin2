@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -65,10 +65,6 @@ void Game::ItemBridge::FSM::init((Game::ItemBridge::Item*))
 void Game::ItemBridge::NormalState::init((Game::ItemBridge::Item*,
                                           Game::StateArg*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -76,26 +72,14 @@ void Game::ItemBridge::NormalState::init((Game::ItemBridge::Item*,
  * Address:	801EDFFC
  * Size:	000004
  */
-void Game::ItemBridge::NormalState::exec((Game::ItemBridge::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBridge::NormalState::exec((Game::ItemBridge::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801EE000
  * Size:	000004
  */
-void Game::ItemBridge::NormalState::cleanup((Game::ItemBridge::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBridge::NormalState::cleanup((Game::ItemBridge::Item*)) { }
 
 /*
  * --INFO--
@@ -502,13 +486,7 @@ void Game::ItemBridge::Item::do_updateLOD(void)
  * Address:	801EE4C0
  * Size:	000004
  */
-void Game::ItemBridge::Item::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBridge::Item::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -4008,13 +3986,7 @@ void Game::ItemBridge::Mgr::generatorLocalVersion(void)
  * Address:	801F0EC0
  * Size:	000004
  */
-void Game::ItemBridge::Item::makeTrMatrix(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemBridge::Item::makeTrMatrix(void) { }
 
 /*
  * --INFO--
@@ -4079,10 +4051,6 @@ Fv(void)
 void onDamage__Q24Game35ItemState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Itemf(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4093,10 +4061,6 @@ FPQ34Game10ItemBridge4Itemf(void)
 void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4107,10 +4071,6 @@ FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent(void)
 void onBounce__Q24Game35ItemState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4ItemPQ23Sys8Triangle(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4121,10 +4081,6 @@ FPQ34Game10ItemBridge4ItemPQ23Sys8Triangle(void)
 void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4135,10 +4091,6 @@ FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent(void)
 void onCollision__Q24Game35ItemState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4ItemRQ24Game9CollEvent(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4149,10 +4101,6 @@ FPQ34Game10ItemBridge4ItemRQ24Game9CollEvent(void)
 void init__Q24Game34FSMState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4ItemPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4163,10 +4111,6 @@ FPQ34Game10ItemBridge4ItemPQ24Game8StateArg(void)
 void exec__Q24Game34FSMState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4177,10 +4121,6 @@ FPQ34Game10ItemBridge4Item(void)
 void cleanup__Q24Game34FSMState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4191,10 +4131,6 @@ FPQ34Game10ItemBridge4Item(void)
 void resume__Q24Game34FSMState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4205,10 +4141,6 @@ FPQ34Game10ItemBridge4Item(void)
 void restart__Q24Game34FSMState<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4244,10 +4176,6 @@ FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg(void)
 void init__Q24Game38StateMachine<Game::ItemBridge::Item>
 FPQ34Game10ItemBridge4Item(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

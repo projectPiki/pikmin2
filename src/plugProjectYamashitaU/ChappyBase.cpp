@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -139,13 +139,7 @@ void Game::ChappyBase::Obj::birth(Vector3<float>&, float)
  * Address:	8012AAF0
  * Size:	000004
  */
-void Game::ChappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -221,13 +215,7 @@ void Game::ChappyBase::Obj::doUpdate()
  * Address:	8012ABA8
  * Size:	000004
  */
-void Game::ChappyBase::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -492,13 +480,7 @@ void Game::ChappyBase::Obj::doStartStoneState()
  * Address:	8012AE74
  * Size:	000004
  */
-void Game::ChappyBase::Obj::doFinishStoneState()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::doFinishStoneState() { }
 
 /*
  * --INFO--
@@ -1389,13 +1371,7 @@ void efx::THanachoN::~THanachoN()
  * Address:	8012B870
  * Size:	000004
  */
-void efx::TSync::doExecuteAfter(JPABaseEmitter*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSync::doExecuteAfter(JPABaseEmitter*) { }
 
 /*
  * --INFO--

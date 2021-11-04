@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -758,10 +758,6 @@ void P2JME::Window::TRenderingProcessor::doDrawCommon((float, float, Matrixf*,
 void P2JME::Window::TRenderingProcessor::doGetDrawInfo(
     (P2JME::Window::DrawInfo*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

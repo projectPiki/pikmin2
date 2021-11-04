@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -298,13 +298,7 @@ void Game::LimitGenInfo::__dt(void)
  * Address:	801AD58C
  * Size:	000004
  */
-void Game::CourseInfo::dump(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CourseInfo::dump(void) { }
 
 /*
  * --INFO--

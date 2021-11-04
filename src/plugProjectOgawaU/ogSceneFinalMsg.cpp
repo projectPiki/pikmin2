@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -52,13 +52,7 @@ void og::newScreen::FinalMsg::__dt(void)
  * Address:	80325924
  * Size:	000004
  */
-void og::newScreen::FinalMsg::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::FinalMsg::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

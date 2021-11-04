@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -259,13 +259,7 @@ void Game::EnemyBlendAnimatorBase::animate(float)
  * Address:	8012E324
  * Size:	000004
  */
-void SysShape::BlendLinearFun::getValue(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void SysShape::BlendLinearFun::getValue(float) { }
 
 /*
  * --INFO--

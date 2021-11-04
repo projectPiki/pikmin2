@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -314,13 +314,7 @@ void Game::ElecHiba::Obj::doUpdate()
  * Address:	8026F5E4
  * Size:	000004
  */
-void Game::ElecHiba::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecHiba::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -2010,39 +2004,21 @@ void efx::ArgDenkiHiba::getName()
  * Address:	80270808
  * Size:	000004
  */
-void Game::ElecHiba::Obj::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecHiba::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8027080C
  * Size:	000004
  */
-void Game::ElecHiba::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecHiba::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80270810
  * Size:	000004
  */
-void Game::ElecHiba::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecHiba::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -2063,13 +2039,7 @@ void Game::ElecHiba::Obj::isLivingThing()
  * Address:	8027081C
  * Size:	000004
  */
-void Game::ElecHiba::Obj::lifeRecover()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecHiba::Obj::lifeRecover() { }
 
 /*
  * --INFO--

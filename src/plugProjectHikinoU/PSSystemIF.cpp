@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -571,13 +571,7 @@ void PSSystem::SysIF::setConfigVol_Bgm(float)
  * Address:	8033897C
  * Size:	000004
  */
-void PSSystem::FxMgr::FxMgr()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::FxMgr::FxMgr() { }
 
 /*
  * --INFO--

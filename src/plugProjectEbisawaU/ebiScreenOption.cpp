@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3060,10 +3060,4 @@ void ebi::Screen::TOption::getName(void)
  * Address:	803CD6D4
  * Size:	000004
  */
-void ebi::Screen::TScreenBase::doKillScreen(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Screen::TScreenBase::doKillScreen(void) { }

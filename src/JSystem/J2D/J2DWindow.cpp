@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3145,10 +3145,4 @@ void J2DWindow::isUsed(const ResFONT*)
  * Address:	80044E30
  * Size:	000004
  */
-void J2DWindow::rewriteAlpha()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DWindow::rewriteAlpha() { }

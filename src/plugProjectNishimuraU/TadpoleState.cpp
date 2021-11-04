@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -239,13 +239,7 @@ void Game::Tadpole::StateDead::exec(Game::EnemyBase*)
  * Address:	802775E4
  * Size:	000004
  */
-void Game::Tadpole::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -391,13 +385,7 @@ void Game::Tadpole::StateWait::exec(Game::EnemyBase*)
  * Address:	8027778C
  * Size:	000004
  */
-void Game::Tadpole::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -593,13 +581,7 @@ void Game::Tadpole::StateMove::exec(Game::EnemyBase*)
  * Address:	802779F4
  * Size:	000004
  */
-void Game::Tadpole::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tadpole::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

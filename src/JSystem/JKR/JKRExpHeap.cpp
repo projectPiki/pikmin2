@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1043,13 +1043,7 @@ void JKRExpHeap::do_freeTail()
  * Address:	800209D0
  * Size:	000004
  */
-void JKRExpHeap::do_fillFreeArea()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JKRExpHeap::do_fillFreeArea() { }
 
 /*
  * --INFO--

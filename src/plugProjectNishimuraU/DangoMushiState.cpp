@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -386,13 +386,7 @@ void Game::DangoMushi::StateDead::exec(Game::EnemyBase*)
  * Address:	802F9F70
  * Size:	000004
  */
-void Game::DangoMushi::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -551,13 +545,7 @@ void Game::DangoMushi::StateStay::exec(Game::EnemyBase*)
  * Address:	802FA14C
  * Size:	000004
  */
-void Game::DangoMushi::StateStay::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1217,13 +1205,7 @@ void Game::DangoMushi::StateWait::exec(Game::EnemyBase*)
  * Address:	802FAA0C
  * Size:	000004
  */
-void Game::DangoMushi::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1801,13 +1783,7 @@ void Game::DangoMushi::StateMove::exec(Game::EnemyBase*)
  * Address:	802FB214
  * Size:	000004
  */
-void Game::DangoMushi::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2488,13 +2464,7 @@ void Game::DangoMushi::StateRecover::exec(Game::EnemyBase*)
  * Address:	802FBA78
  * Size:	000004
  */
-void Game::DangoMushi::StateRecover::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::DangoMushi::StateRecover::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

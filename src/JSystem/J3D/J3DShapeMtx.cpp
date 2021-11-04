@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1752,13 +1752,7 @@ void J3DShapeMtxYBBoardConcatView::getType() const
  * Address:	800875BC
  * Size:	000004
  */
-void J3DShapeMtxConcatView::loadNrmMtx(int, unsigned short) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DShapeMtxConcatView::loadNrmMtx(int, unsigned short) const { }
 
 /*
  * --INFO--
@@ -1911,13 +1905,7 @@ void J3DShapeMtxMultiConcatView::getUseMtxIndex(unsigned short) const
  * Address:	800876C8
  * Size:	000004
  */
-void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short) const { }
 
 /*
  * --INFO--

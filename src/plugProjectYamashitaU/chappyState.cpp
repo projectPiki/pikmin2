@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -542,13 +542,7 @@ void Game::ChappyBase::StateDead::exec(Game::EnemyBase*)
  * Address:	80116C34
  * Size:	000004
  */
-void Game::ChappyBase::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2462,12 +2456,7 @@ void Game::ChappyBase::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	801184F4
  * Size:	000004
  */
-void Game::ChappyBase::StateAttack::doDirectDraw(Game::EnemyBase*, Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::ChappyBase::StateAttack::doDirectDraw(Game::EnemyBase*, Graphics&) {
 }
 
 /*
@@ -3402,13 +3391,7 @@ void Game::ChappyBase::StateTurnToHome::exec(Game::EnemyBase*)
  * Address:	801190B4
  * Size:	000004
  */
-void Game::ChappyBase::StateTurnToHome::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

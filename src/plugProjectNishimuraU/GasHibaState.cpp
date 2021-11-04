@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -218,26 +218,14 @@ void Game::GasHiba::Obj::getEnemyTypeID()
  * Address:	8026C938
  * Size:	000004
  */
-void Game::GasHiba::StateDead::exec(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::StateDead::exec(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	8026C93C
  * Size:	000004
  */
-void Game::GasHiba::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -343,13 +331,7 @@ void Game::GasHiba::StateWait::exec(Game::EnemyBase*)
  * Address:	8026CA4C
  * Size:	000004
  */
-void Game::GasHiba::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

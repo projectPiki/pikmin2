@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -208,13 +208,7 @@ void Game::Baby::StateDead::exec(Game::EnemyBase*)
  * Address:	8028C7F0
  * Size:	000004
  */
-void Game::Baby::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -319,13 +313,7 @@ void Game::Baby::StatePress::exec(Game::EnemyBase*)
  * Address:	8028C914
  * Size:	000004
  */
-void Game::Baby::StatePress::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -432,13 +420,7 @@ void Game::Baby::StateBorn::exec(Game::EnemyBase*)
  * Address:	8028CA30
  * Size:	000004
  */
-void Game::Baby::StateBorn::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::StateBorn::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -782,13 +764,7 @@ void Game::Baby::StateMove::exec(Game::EnemyBase*)
  * Address:	8028CED0
  * Size:	000004
  */
-void Game::Baby::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

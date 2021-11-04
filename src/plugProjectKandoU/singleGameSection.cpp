@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -417,13 +417,7 @@ void Game::SingleGame::FSM::draw((Game::SingleGameSection*, Graphics&))
  * Address:	80152524
  * Size:	000004
  */
-void Game::SingleGame::State::draw((Game::SingleGameSection*, Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGame::State::draw((Game::SingleGameSection*, Graphics&)) { }
 
 /*
  * --INFO--
@@ -993,13 +987,7 @@ void Game::SingleGameSection::section_fadeout(void)
  * Address:	80152B50
  * Size:	000004
  */
-void Game::SingleGame::State::on_section_fadeout((Game::SingleGameSection*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGame::State::on_section_fadeout((Game::SingleGameSection*)) { }
 
 /*
  * --INFO--
@@ -1241,10 +1229,6 @@ void Game::SingleGameSection::doUpdate(void)
 void Game::SingleGame::State::on_demo_timer((Game::SingleGameSection*,
                                              unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1811,26 +1795,14 @@ void Game::SingleGameSection::gmOrimaDown((int))
  * Address:	80153460
  * Size:	000004
  */
-void Game::SingleGame::State::onOrimaDown((Game::SingleGameSection*, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGame::State::onOrimaDown((Game::SingleGameSection*, int)) { }
 
 /*
  * --INFO--
  * Address:	80153464
  * Size:	000004
  */
-void Game::SingleGameSection::gmPikminZero(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGameSection::gmPikminZero(void) { }
 
 /*
  * --INFO--
@@ -1947,10 +1919,6 @@ void Game::SingleGame::State::onMovieStart((Game::SingleGameSection*,
                                             Game::MovieConfig*, unsigned long,
                                             unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2002,10 +1970,6 @@ void Game::SingleGame::State::onMovieDone((Game::SingleGameSection*,
                                            Game::MovieConfig*, unsigned long,
                                            unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2050,12 +2014,7 @@ void Game::SingleGameSection::onMovieCommand((int))
  * Address:	80153624
  * Size:	000004
  */
-void Game::SingleGame::State::onMovieCommand((Game::SingleGameSection*, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::SingleGame::State::onMovieCommand((Game::SingleGameSection*, int)) {
 }
 
 /*
@@ -2550,10 +2509,6 @@ void Game::SingleGameSection::playMovie_helloPikmin((Game::Piki*))
  */
 void Game::SingleGameSection::playMovie_firstexperience((int, Game::Creature*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3643,10 +3598,6 @@ void Game::SingleGameSection::goNextFloor((Game::ItemHole::Item*))
 void Game::SingleGame::State::onNextFloor((Game::SingleGameSection*,
                                            Game::ItemHole::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3698,10 +3649,6 @@ void Game::SingleGameSection::goCave((Game::ItemCave::Item*))
 void Game::SingleGame::State::onHoleIn((Game::SingleGameSection*,
                                         Game::ItemCave::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3742,10 +3689,6 @@ void Game::SingleGameSection::goMainMap((Game::ItemBigFountain::Item*))
 void Game::SingleGame::State::onFountainReturn((Game::SingleGameSection*,
                                                 Game::ItemBigFountain::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -4935,13 +4878,7 @@ void Game::SingleGameSection::updateMainMapScreen(void)
  * Address:	80155A78
  * Size:	000004
  */
-void Game::SingleGameSection::drawMainMapScreen(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGameSection::drawMainMapScreen(void) { }
 
 /*
  * --INFO--
@@ -5310,13 +5247,7 @@ void Game::SingleGameSection::getCurrFloor(void)
  * Address:	80155F5C
  * Size:	000004
  */
-void Game::SingleGameSection::drawCaveScreen(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SingleGameSection::drawCaveScreen(void) { }
 
 /*
  * --INFO--
@@ -5447,13 +5378,7 @@ void og::Screen::DispMemberCave::getMemberID(void)
  * Address:	80156060
  * Size:	000004
  */
-void og::Screen::DispMemberBase::doSetSubMemberAll(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Screen::DispMemberBase::doSetSubMemberAll(void) { }
 
 /*
  * --INFO--
@@ -6023,10 +5948,6 @@ void Game::SingleGameSection::getCaveFilename(void)
 void init__Q24Game36FSMState<Game::SingleGameSection>
 FPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -6037,10 +5958,6 @@ FPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
 void exec__Q24Game36FSMState<Game::SingleGameSection>
 FPQ24Game17SingleGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -6051,10 +5968,6 @@ FPQ24Game17SingleGameSection(void)
 void cleanup__Q24Game36FSMState<Game::SingleGameSection>
 FPQ24Game17SingleGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -6065,10 +5978,6 @@ FPQ24Game17SingleGameSection(void)
 void resume__Q24Game36FSMState<Game::SingleGameSection>
 FPQ24Game17SingleGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -6079,10 +5988,6 @@ FPQ24Game17SingleGameSection(void)
 void restart__Q24Game36FSMState<Game::SingleGameSection>
 FPQ24Game17SingleGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -6093,10 +5998,6 @@ FPQ24Game17SingleGameSection(void)
 void init__Q24Game40StateMachine<Game::SingleGameSection>
 FPQ24Game17SingleGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

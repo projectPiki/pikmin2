@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -352,10 +352,6 @@ void JASSimpleWaveBank::TWaveHandle::getWavePtr( const
  */
 void JASWaveArc::onLoadDone()
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -365,8 +361,4 @@ void JASWaveArc::onLoadDone()
  */
 void JASWaveArc::onEraseDone()
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }

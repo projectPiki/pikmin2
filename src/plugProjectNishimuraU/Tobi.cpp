@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Tobi::Obj::Obj()
  * Address:	802699E4
  * Size:	000004
  */
-void Game::Tobi::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -194,13 +188,7 @@ void Game::Tobi::Obj::doUpdate()
  * Address:	80269AC8
  * Size:	000004
  */
-void Game::Tobi::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1304,13 +1292,7 @@ void Game::Tobi::Obj::setNearestBridge()
  * Address:	8026A6A0
  * Size:	000004
  */
-void Game::Tobi::Obj::setCullingCheck()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::Obj::setCullingCheck() { }
 
 /*
  * --INFO--

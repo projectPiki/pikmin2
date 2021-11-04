@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -42,13 +42,7 @@ void og::newScreen::Challenge1P::__dt(void)
  * Address:	80328C6C
  * Size:	000004
  */
-void og::newScreen::Challenge1P::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::Challenge1P::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

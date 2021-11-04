@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -454,13 +454,7 @@ void Game::Hanachirashi::StateDead::exec(Game::EnemyBase*)
  * Address:	8029F80C
  * Size:	000004
  */
-void Game::Hanachirashi::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -600,13 +594,7 @@ void Game::Hanachirashi::StateWait::exec(Game::EnemyBase*)
  * Address:	8029F99C
  * Size:	000004
  */
-void Game::Hanachirashi::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -772,13 +760,7 @@ void Game::Hanachirashi::StateMove::exec(Game::EnemyBase*)
  * Address:	8029FB8C
  * Size:	000004
  */
-void Game::Hanachirashi::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

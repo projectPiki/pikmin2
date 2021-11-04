@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -403,13 +403,7 @@ void J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long,
  * Address:	800414E0
  * Size:	000004
  */
-void J2DTevBlock::setFontUndeleteFlag()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setFontUndeleteFlag() { }
 
 /*
  * --INFO--
@@ -1843,10 +1837,4 @@ void J2DTextBox::isUsed(const ResTIMG*)
  * Address:	80042540
  * Size:	000004
  */
-void J2DTextBox::rewriteAlpha()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTextBox::rewriteAlpha() { }

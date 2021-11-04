@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::GasHiba::Obj::Obj()
  * Address:	8026D284
  * Size:	000004
  */
-void Game::GasHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -215,13 +209,7 @@ void Game::GasHiba::Obj::doUpdate()
  * Address:	8026D3BC
  * Size:	000004
  */
-void Game::GasHiba::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1326,49 +1314,25 @@ void efx::ArgGasuHiba::getName()
  * Address:	8026DFC8
  * Size:	000004
  */
-void Game::GasHiba::Obj::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	8026DFCC
  * Size:	000004
  */
-void Game::GasHiba::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8026DFD0
  * Size:	000004
  */
-void Game::GasHiba::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8026DFD4
  * Size:	000004
  */
-void Game::GasHiba::Obj::lifeRecover()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GasHiba::Obj::lifeRecover() { }

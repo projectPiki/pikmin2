@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -109,13 +109,7 @@ void Game::Sokkuri::Obj::__ct(void)
  * Address:	802F1394
  * Size:	000004
  */
-void Game::Sokkuri::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--
@@ -194,13 +188,7 @@ void Game::Sokkuri::Obj::doUpdate(void)
  * Address:	802F1458
  * Size:	000004
  */
-void Game::Sokkuri::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sokkuri::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--

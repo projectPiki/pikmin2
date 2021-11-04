@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -322,13 +322,7 @@ void Game::Qurione::Obj::setFSM(Game::Qurione::FSM*)
  * Address:	80260504
  * Size:	000004
  */
-void Game::Qurione::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Qurione::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1626,26 +1620,14 @@ void efx::TQuriGlow::~TQuriGlow()
  * Address:	802612AC
  * Size:	000004
  */
-void Game::Qurione::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Qurione::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802612B0
  * Size:	000004
  */
-void Game::Qurione::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Qurione::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

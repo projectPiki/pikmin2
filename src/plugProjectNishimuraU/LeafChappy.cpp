@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -123,13 +123,7 @@ void Game::LeafChappy::Obj::doUpdate()
  * Address:	802C5D70
  * Size:	000004
  */
-void Game::LeafChappy::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::LeafChappy::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -633,26 +627,14 @@ void Game::LeafChappy::Obj::getEnemyTypeID()
  * Address:	802C62D0
  * Size:	000004
  */
-void Game::LeafChappy::Obj::createChappyRelation()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::LeafChappy::Obj::createChappyRelation() { }
 
 /*
  * --INFO--
  * Address:	802C62D4
  * Size:	000004
  */
-void Game::LeafChappy::Obj::resetChappyRelation()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::LeafChappy::Obj::resetChappyRelation() { }
 
 /*
  * --INFO--

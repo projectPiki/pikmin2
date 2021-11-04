@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -84,13 +84,7 @@ void Game::P2JST::ObjectSpecialActor::reset(void)
  * Address:	804374B4
  * Size:	000004
  */
-void Game::P2JST::ObjectSpecialActor::stop(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::P2JST::ObjectSpecialActor::stop(void) { }
 
 /*
  * --INFO--
@@ -338,10 +332,6 @@ void Game::P2JST::ObjectSpecialActor::JSGSetAnimation((unsigned long))
 void Game::P2JST::ObjectSpecialActor::parseUserData_((unsigned long,
                                                       void const*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -99,13 +99,7 @@ void Game::Ujia::Obj::Obj()
  * Address:	802661B0
  * Size:	000004
  */
-void Game::Ujia::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -187,13 +181,7 @@ void Game::Ujia::Obj::doUpdate()
  * Address:	80266280
  * Size:	000004
  */
-void Game::Ujia::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -819,13 +807,7 @@ void Game::Ujia::Obj::setNearestBridge()
  * Address:	80266908
  * Size:	000004
  */
-void Game::Ujia::Obj::setCullingCheck()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujia::Obj::setCullingCheck() { }
 
 /*
  * --INFO--

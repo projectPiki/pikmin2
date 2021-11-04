@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -866,52 +866,28 @@ void PikiAI::ActRescue::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8023988C
  * Size:	000004
  */
-void PikiAI::ActRescue::emotion_success(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActRescue::emotion_success(void) { }
 
 /*
  * --INFO--
  * Address:	80239890
  * Size:	000004
  */
-void PikiAI::ActRescue::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActRescue::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	80239894
  * Size:	000004
  */
-void PikiAI::ActRescue::cleanup(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActRescue::cleanup(void) { }
 
 /*
  * --INFO--
  * Address:	80239898
  * Size:	000004
  */
-void PikiAI::ActRescue::collisionCallback((Game::Piki*, Game::CollEvent&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActRescue::collisionCallback((Game::Piki*, Game::CollEvent&)) { }
 
 /*
  * --INFO--

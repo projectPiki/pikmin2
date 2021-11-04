@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -494,13 +494,7 @@ void Game::OniKurage::StateDead::exec(Game::EnemyBase*)
  * Address:	802D215C
  * Size:	000004
  */
-void Game::OniKurage::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -646,13 +640,7 @@ void Game::OniKurage::StateWait::exec(Game::EnemyBase*)
  * Address:	802D2304
  * Size:	000004
  */
-void Game::OniKurage::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -847,13 +835,7 @@ void Game::OniKurage::StateMove::exec(Game::EnemyBase*)
  * Address:	802D2558
  * Size:	000004
  */
-void Game::OniKurage::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OniKurage::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

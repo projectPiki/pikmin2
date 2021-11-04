@@ -1,3 +1,4 @@
+#include "types.h"
 
 /*
  * --INFO--
@@ -4419,13 +4420,7 @@ void ArrayContainer<Sys::Triangle>::write(Stream&)
  * Address:	80419198
  * Size:	000004
  */
-void ArrayContainer<Sys::Triangle>::writeObject(Stream&, Sys::Triangle&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<Sys::Triangle>::writeObject(Stream&, Sys::Triangle&) { }
 
 /*
  * --INFO--
@@ -4668,13 +4663,7 @@ void ArrayContainer<Sys::Triangle>::read(Stream&)
  * Address:	80419494
  * Size:	000004
  */
-void ArrayContainer<Sys::Triangle>::readObject(Stream&, Sys::Triangle&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<Sys::Triangle>::readObject(Stream&, Sys::Triangle&) { }
 
 /*
  * --INFO--
@@ -5078,10 +5067,6 @@ void Sys::TriIndexList::makeCovarianceMatrix(Sys::VertexTable&,
 void Sys::TriIndexList::draw((Graphics&, Sys::VertexTable&, Sys::TriangleTable&,
                               bool))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -438,13 +438,7 @@ void Game::VsGame::LoadState::draw((Game::VsGameSection*, Graphics&))
  * Address:	8022D60C
  * Size:	000004
  */
-void Game::VsGame::LoadState::cleanup((Game::VsGameSection*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGame::LoadState::cleanup((Game::VsGameSection*)) { }
 
 /*
  * --INFO--

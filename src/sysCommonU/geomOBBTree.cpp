@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4090,13 +4090,7 @@ void Sys::OBBTree::findTriLists((Sys::Sphere&))
  * Address:	8041FF9C
  * Size:	000004
  */
-void Sys::OBBTree::getBoundBox((BoundBox&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Sys::OBBTree::getBoundBox((BoundBox&)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -634,52 +634,28 @@ void Game::CylinderBase::getCylinderType((Game::ShadowParam&, int))
  * Address:	8023E15C
  * Size:	000004
  */
-void Game::CylinderBase::setFilterTextureID((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CylinderBase::setFilterTextureID((int)) { }
 
 /*
  * --INFO--
  * Address:	8023E160
  * Size:	000004
  */
-void Game::CylinderBase::drawInit(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CylinderBase::drawInit(void) { }
 
 /*
  * --INFO--
  * Address:	8023E164
  * Size:	000004
  */
-void Game::CylinderBase::drawCylinder((Matrixf&, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CylinderBase::drawCylinder((Matrixf&, int)) { }
 
 /*
  * --INFO--
  * Address:	8023E168
  * Size:	000004
  */
-void Game::CylinderBase::drawFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CylinderBase::drawFinish(void) { }
 
 /*
  * --INFO--
@@ -2124,13 +2100,7 @@ void Game::ShadowCylinder3::drawScreenFilter(void)
  * Address:	8023F3C4
  * Size:	000004
  */
-void Game::ShadowCylinder3::setFilterTextureID((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ShadowCylinder3::setFilterTextureID((int)) { }
 
 /*
  * --INFO--

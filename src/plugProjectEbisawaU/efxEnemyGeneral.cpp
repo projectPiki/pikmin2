@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2880,78 +2880,42 @@ void efx::TEnemyHamon::getLimitDepth_(void)
  * Address:	803C9CE0
  * Size:	000004
  */
-void efx::TEnemyApsmoke::forceKill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TEnemyApsmoke::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CE4
  * Size:	000004
  */
-void efx::TEnemyApsmoke::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TEnemyApsmoke::fade(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CE8
  * Size:	000004
  */
-void efx::TEnemyBomb::forceKill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TEnemyBomb::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CEC
  * Size:	000004
  */
-void efx::TEnemyBomb::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TEnemyBomb::fade(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CF0
  * Size:	000004
  */
-void efx::TEnemyWalkSmoke::forceKill(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TEnemyWalkSmoke::forceKill(void) { }
 
 /*
  * --INFO--
  * Address:	803C9CF4
  * Size:	000004
  */
-void efx::TEnemyWalkSmoke::fade(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TEnemyWalkSmoke::fade(void) { }
 
 /*
  * --INFO--

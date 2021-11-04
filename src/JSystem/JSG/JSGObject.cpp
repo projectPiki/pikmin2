@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -53,10 +53,6 @@ void JStage::TObject::JSGGetName( const
  */
 void JStage::TObject::JSGUpdate(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -80,10 +76,6 @@ void JStage::TObject::JSGGetFlag( const
  */
 void JStage::TObject::JSGSetFlag( (unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -107,10 +99,6 @@ void JStage::TObject::JSGGetData( const(unsigned long, void *, unsigned long))
  */
 void JStage::TObject::JSGSetData( (unsigned long, void const *, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -120,10 +108,6 @@ void JStage::TObject::JSGSetData( (unsigned long, void const *, unsigned long))
  */
 void JStage::TObject::JSGGetParent( const(JStage::TObject **, unsigned long *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -133,10 +117,6 @@ void JStage::TObject::JSGGetParent( const(JStage::TObject **, unsigned long *))
  */
 void JStage::TObject::JSGSetParent( (JStage::TObject *, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -146,10 +126,6 @@ void JStage::TObject::JSGSetParent( (JStage::TObject *, unsigned long))
  */
 void JStage::TObject::JSGSetRelation( (bool, JStage::TObject *, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

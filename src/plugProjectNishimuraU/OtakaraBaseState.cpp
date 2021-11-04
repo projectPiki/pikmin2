@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -420,13 +420,7 @@ void Game::OtakaraBase::StateDead::exec(Game::EnemyBase*)
  * Address:	802B3D1C
  * Size:	000004
  */
-void Game::OtakaraBase::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -476,13 +470,7 @@ void Game::OtakaraBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802B3D9C
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::startChargeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::startChargeEffect() { }
 
 /*
  * --INFO--
@@ -681,26 +669,14 @@ void Game::OtakaraBase::StateFlick::exec(Game::EnemyBase*)
  * Address:	802B4030
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::createDisChargeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::createDisChargeEffect() { }
 
 /*
  * --INFO--
  * Address:	802B4034
  * Size:	000004
  */
-void Game::OtakaraBase::Obj::finishChargeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::Obj::finishChargeEffect() { }
 
 /*
  * --INFO--
@@ -897,13 +873,7 @@ void Game::OtakaraBase::StateWait::exec(Game::EnemyBase*)
  * Address:	802B4278
  * Size:	000004
  */
-void Game::OtakaraBase::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1696,13 +1666,7 @@ void Game::OtakaraBase::StateItemWait::exec(Game::EnemyBase*)
  * Address:	802B4BF4
  * Size:	000004
  */
-void Game::OtakaraBase::StateItemWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::StateItemWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2788,13 +2752,7 @@ void Game::OtakaraBase::StateBombWait::exec(Game::EnemyBase*)
  * Address:	802B592C
  * Size:	000004
  */
-void Game::OtakaraBase::StateBombWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::OtakaraBase::StateBombWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,13 +15,7 @@ void og::Screen::CallBack_DrawAfter::__ct((P2DScreen::Mgr*, unsigned long long))
  * Address:	8032D684
  * Size:	000004
  */
-void og::Screen::CallBack_DrawAfter::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Screen::CallBack_DrawAfter::update(void) { }
 
 /*
  * --INFO--

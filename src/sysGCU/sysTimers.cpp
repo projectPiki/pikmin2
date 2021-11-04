@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -314,26 +314,14 @@ void SysTimers::remove(TimerInf*)
  * Address:	8042AAF8
  * Size:	000004
  */
-void SysTimers::_start(char*, bool)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void SysTimers::_start(char*, bool) { }
 
 /*
  * --INFO--
  * Address:	8042AAFC
  * Size:	000004
  */
-void SysTimers::_stop(char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void SysTimers::_stop(char*) { }
 
 /*
  * --INFO--

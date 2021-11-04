@@ -1,3 +1,4 @@
+#include "types.h"
 
 #include "PikiAI.h"
 #include "Game/Piki.h"
@@ -420,10 +421,6 @@ void PikiAI::ActBattle::emotion_success(void)
 //  */
 // void PikiAI::ActBattle::collisionCallback((Game::Piki*, Game::CollEvent&))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*

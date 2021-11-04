@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1233,10 +1233,6 @@ void efx::TKchDeadHana::setGlobalScale((float))
  */
 void efx::TParticleCallBack_KchYodare::init((JPABaseEmitter*, JPABaseParticle*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

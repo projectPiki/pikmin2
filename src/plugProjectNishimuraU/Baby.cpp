@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -103,13 +103,7 @@ void Game::Baby::Obj::Obj()
  * Address:	8028D5B0
  * Size:	000004
  */
-void Game::Baby::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -208,13 +202,7 @@ void Game::Baby::Obj::doUpdate()
  * Address:	8028D6B4
  * Size:	000004
  */
-void Game::Baby::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1018,13 +1006,7 @@ void Game::Baby::Obj::createEffect()
  * Address:	8028DEFC
  * Size:	000004
  */
-void Game::Baby::Obj::setupEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::Obj::setupEffect() { }
 
 /*
  * --INFO--
@@ -1159,26 +1141,14 @@ void efx::TBabyBorn::~TBabyBorn()
  * Address:	8028E030
  * Size:	000004
  */
-void Game::Baby::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8028E034
  * Size:	000004
  */
-void Game::Baby::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Baby::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

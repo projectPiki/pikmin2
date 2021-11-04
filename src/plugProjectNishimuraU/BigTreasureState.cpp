@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -532,13 +532,7 @@ void Game::BigTreasure::StateDead::exec(Game::EnemyBase*)
  * Address:	802D79A8
  * Size:	000004
  */
-void Game::BigTreasure::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -676,13 +670,7 @@ void Game::BigTreasure::StateStay::exec(Game::EnemyBase*)
  * Address:	802D7B28
  * Size:	000004
  */
-void Game::BigTreasure::StateStay::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2330,13 +2318,7 @@ void Game::BigTreasure::StateWalk::exec(Game::EnemyBase*)
  * Address:	802D8E20
  * Size:	000004
  */
-void Game::BigTreasure::StateWalk::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::StateWalk::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2558,13 +2540,7 @@ void Game::BigTreasure::StateItemWalk::exec(Game::EnemyBase*)
  * Address:	802D90B8
  * Size:	000004
  */
-void Game::BigTreasure::StateItemWalk::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigTreasure::StateItemWalk::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

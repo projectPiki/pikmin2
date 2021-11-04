@@ -531,10 +531,6 @@ bool WayPointIterator::isDone()
 //  */
 // void Game::WayPoint::directDraw((Graphics&))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*
@@ -544,10 +540,6 @@ bool WayPointIterator::isDone()
 //  */
 // void Game::WayPoint::directDraw_Simple((Graphics&))
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  blr
-// 	*/
 // }
 
 // /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -909,13 +909,7 @@ void Game::BaseGameSection::init(void)
  * Address:	8014B840
  * Size:	000004
  */
-void Game::BaseGameSection::onInit(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onInit(void) { }
 
 /*
  * --INFO--
@@ -949,13 +943,7 @@ void Game::BaseGameSection::drawInit((Graphics&, Section::EDrawInitMode))
  * Address:	8014B878
  * Size:	000004
  */
-void Game::BaseGameSection::section_fadeout(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::section_fadeout(void) { }
 
 /*
  * --INFO--
@@ -1246,13 +1234,7 @@ void Game::BaseGameSection::doUpdate(void)
  * Address:	8014BC24
  * Size:	000004
  */
-void Game::BaseGameSection::onUpdate(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onUpdate(void) { }
 
 /*
  * --INFO--
@@ -1373,13 +1355,7 @@ void Game::BaseGameSection::doDraw((Graphics&))
  * Address:	8014BD98
  * Size:	000004
  */
-void Game::BaseGameSection::pre2dDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::pre2dDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -1434,10 +1410,6 @@ void Game::BaseGameSection::movieDone((Game::MovieConfig*, unsigned long,
 void Game::BaseGameSection::onMovieDone((Game::MovieConfig*, unsigned long,
                                          unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3439,13 +3411,7 @@ void Game::BaseGameSection::pmTogglePlayer(void)
  * Address:	8014D910
  * Size:	000004
  */
-void Game::BaseGameSection::onTogglePlayer(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onTogglePlayer(void) { }
 
 /*
  * --INFO--
@@ -3462,13 +3428,7 @@ void Game::BaseGameSection::pmPlayerJoin(void)
  * Address:	8014D914
  * Size:	000004
  */
-void Game::BaseGameSection::onPlayerJoin(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onPlayerJoin(void) { }
 
 /*
  * --INFO--
@@ -3677,13 +3637,7 @@ void Game::BaseGameSection::setPlayerMode((int))
  * Address:	8014DBD0
  * Size:	000004
  */
-void Splitter::split2(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Splitter::split2(float) { }
 
 /*
  * --INFO--
@@ -3989,13 +3943,7 @@ void Game::BaseGameSection::setCamController(void)
  * Address:	8014DF98
  * Size:	000004
  */
-void Game::BaseGameSection::on_setCamController((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::on_setCamController((int)) { }
 
 /*
  * --INFO--
@@ -5447,13 +5395,7 @@ void Game::BaseGameSection::draw_Ogawa2D((Graphics&))
  * Address:	8014F1D8
  * Size:	000004
  */
-void Game::BaseGameSection::test_draw_treasure_detector(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::test_draw_treasure_detector(void) { }
 
 /*
  * --INFO--
@@ -6578,13 +6520,7 @@ void Game::BaseGameSection::doDirectDrawPost((Graphics&, Viewport*))
  * Address:	8014FD9C
  * Size:	000004
  */
-void Game::BaseGameSection::doDirectDraw((Graphics&, Viewport*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::doDirectDraw((Graphics&, Viewport*)) { }
 
 /*
  * --INFO--
@@ -6601,13 +6537,7 @@ void Game::BaseGameSection::startHeap(void)
  * Address:	8014FDA0
  * Size:	000004
  */
-void Game::BaseGameSection::onStartHeap(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onStartHeap(void) { }
 
 /*
  * --INFO--
@@ -6850,13 +6780,7 @@ void Controller::~Controller()
  * Address:	801500AC
  * Size:	000004
  */
-void Game::BaseGameSection::onClearHeap(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onClearHeap(void) { }
 
 /*
  * --INFO--
@@ -8373,13 +8297,7 @@ void Game::BaseGameSection::setupFloatMemory(void)
  * Address:	801513D0
  * Size:	000004
  */
-void Game::BaseGameSection::onSetSoundScene(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onSetSoundScene(void) { }
 
 /*
  * --INFO--
@@ -8457,13 +8375,7 @@ void Game::BaseGameSection::getCaveFilename(void)
  * Address:	80151400
  * Size:	000004
  */
-void Game::BaseGameSection::onSetupFloatMemory(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::onSetupFloatMemory(void) { }
 
 /*
  * --INFO--
@@ -8609,13 +8521,7 @@ void Game::BaseGameSection::postSetupFloatMemory(void)
  * Address:	80151530
  * Size:	000004
  */
-void Game::MapMgr::setupJUTTextures(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MapMgr::setupJUTTextures(void) { }
 
 /*
  * --INFO--
@@ -8778,13 +8684,7 @@ void Game::BaseGameSection::createFallPikminSound(void)
  * Address:	80151734
  * Size:	000004
  */
-void Game::BaseGameSection::captureRadarmap((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::captureRadarmap((Graphics&)) { }
 
 /*
  * --INFO--
@@ -8911,26 +8811,14 @@ void ArrayContainer<Plane>::~ArrayContainer()
  * Address:	80151840
  * Size:	000004
  */
-void CullPlane::readObject(Stream&, Plane&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CullPlane::readObject(Stream&, Plane&) { }
 
 /*
  * --INFO--
  * Address:	80151844
  * Size:	000004
  */
-void CullPlane::writeObject(Stream&, Plane&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void CullPlane::writeObject(Stream&, Plane&) { }
 
 /*
  * --INFO--
@@ -9005,65 +8893,35 @@ void Game::BaseGameSection::forceFinish(void)
  * Address:	801518E8
  * Size:	000004
  */
-void Game::BaseGameSection::addChallengeScore((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::addChallengeScore((int)) { }
 
 /*
  * --INFO--
  * Address:	801518EC
  * Size:	000004
  */
-void Game::BaseGameSection::startMainBgm(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::startMainBgm(void) { }
 
 /*
  * --INFO--
  * Address:	801518F0
  * Size:	000004
  */
-void Game::BaseGameSection::goNextFloor((Game::ItemHole::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::goNextFloor((Game::ItemHole::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801518F4
  * Size:	000004
  */
-void Game::BaseGameSection::goCave((Game::ItemCave::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::goCave((Game::ItemCave::Item*)) { }
 
 /*
  * --INFO--
  * Address:	801518F8
  * Size:	000004
  */
-void Game::BaseGameSection::goMainMap((Game::ItemBigFountain::Item*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::goMainMap((Game::ItemBigFountain::Item*)) { }
 
 /*
  * --INFO--
@@ -9113,25 +8971,14 @@ void Game::BaseGameSection::openContainerWindow(void)
  * Address:	80151918
  * Size:	000004
  */
-void Game::BaseGameSection::closeContainerWindow(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::closeContainerWindow(void) { }
 
 /*
  * --INFO--
  * Address:	8015191C
  * Size:	000004
  */
-void Game::BaseGameSection::playMovie_firstexperience((int, Game::Creature*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::BaseGameSection::playMovie_firstexperience((int, Game::Creature*)) {
 }
 
 /*
@@ -9139,39 +8986,21 @@ void Game::BaseGameSection::playMovie_firstexperience((int, Game::Creature*))
  * Address:	80151920
  * Size:	000004
  */
-void Game::BaseGameSection::playMovie_bootup((Game::Onyon*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::playMovie_bootup((Game::Onyon*)) { }
 
 /*
  * --INFO--
  * Address:	80151924
  * Size:	000004
  */
-void Game::BaseGameSection::playMovie_helloPikmin((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::playMovie_helloPikmin((Game::Piki*)) { }
 
 /*
  * --INFO--
  * Address:	80151928
  * Size:	000004
  */
-void Game::BaseGameSection::disableTimer((unsigned long))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::disableTimer((unsigned long)) { }
 
 /*
  * --INFO--
@@ -9181,10 +9010,6 @@ void Game::BaseGameSection::disableTimer((unsigned long))
 void Game::BaseGameSection::onMovieStart((Game::MovieConfig*, unsigned long,
                                           unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -9192,52 +9017,28 @@ void Game::BaseGameSection::onMovieStart((Game::MovieConfig*, unsigned long,
  * Address:	80151930
  * Size:	000004
  */
-void Game::BaseGameSection::gmOrimaDown((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::gmOrimaDown((int)) { }
 
 /*
  * --INFO--
  * Address:	80151934
  * Size:	000004
  */
-void Game::BaseGameSection::gmPikminZero(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BaseGameSection::gmPikminZero(void) { }
 
 /*
  * --INFO--
  * Address:	80151938
  * Size:	000004
  */
-void Section::drawInit(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Section::drawInit(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8015193C
  * Size:	000004
  */
-void Section::doExit()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Section::doExit() { }
 
 /*
  * --INFO--
@@ -9258,26 +9059,14 @@ void Section::forceReset()
  * Address:	80151948
  * Size:	000004
  */
-void Section::getCurrentSection()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Section::getCurrentSection() { }
 
 /*
  * --INFO--
  * Address:	8015194C
  * Size:	000004
  */
-void Section::doLoadingStart()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Section::doLoadingStart() { }
 
 /*
  * --INFO--
@@ -9312,26 +9101,14 @@ void Section::isFinishable()
  * Address:	80151960
  * Size:	000004
  */
-void ArrayContainer<Plane>::writeObject(Stream&, Plane&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<Plane>::writeObject(Stream&, Plane&) { }
 
 /*
  * --INFO--
  * Address:	80151964
  * Size:	000004
  */
-void ArrayContainer<Plane>::readObject(Stream&, Plane&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ArrayContainer<Plane>::readObject(Stream&, Plane&) { }
 
 /*
  * --INFO--
@@ -9954,13 +9731,7 @@ void MonoObjectMgr<Game::Navi>::alloc(int)
  * Address:	80151EBC
  * Size:	000004
  */
-void MonoObjectMgr<Game::Navi>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::Navi>::onAlloc() { }
 
 /*
  * --INFO--
@@ -10089,13 +9860,7 @@ void MonoObjectMgr<Game::Piki>::alloc(int)
  * Address:	80152048
  * Size:	000004
  */
-void MonoObjectMgr<Game::Piki>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::Piki>::onAlloc() { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1280,13 +1280,7 @@ void og::newScreen::ObjFloor::doCreate((JKRArchive*))
  * Address:	8031B27C
  * Size:	000004
  */
-void og::newScreen::TitleMsg::init(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::TitleMsg::init(void) { }
 
 /*
  * --INFO--
@@ -1723,26 +1717,14 @@ void og::newScreen::ObjFloor::commonUpdate(void)
  * Address:	8031B818
  * Size:	000004
  */
-void og::newScreen::TitleMsg::end(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::TitleMsg::end(void) { }
 
 /*
  * --INFO--
  * Address:	8031B81C
  * Size:	000004
  */
-void og::newScreen::TitleMsg::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::TitleMsg::update(void) { }
 
 /*
  * --INFO--
@@ -1935,13 +1917,7 @@ void og::newScreen::ObjFloor::doEnd((Screen::EndSceneArg const*))
  * Address:	8031BA20
  * Size:	000004
  */
-void og::newScreen::ObjFloor::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjFloor::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -1972,13 +1948,7 @@ void og::newScreen::ObjFloor::doUpdateFinish(void)
  * Address:	8031BA54
  * Size:	000004
  */
-void og::newScreen::ObjFloor::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjFloor::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

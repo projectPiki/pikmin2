@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1949,52 +1949,28 @@ void Game::Zenmai::Obj::getEnemyTypeID(void)
  * Address:	80354F24
  * Size:	000004
  */
-void Game::Plants::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Plants::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--
  * Address:	80354F28
  * Size:	000004
  */
-void Game::Plants::Obj::doUpdate(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Plants::Obj::doUpdate(void) { }
 
 /*
  * --INFO--
  * Address:	80354F2C
  * Size:	000004
  */
-void Game::Plants::Obj::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Plants::Obj::doSimulation((float)) { }
 
 /*
  * --INFO--
  * Address:	80354F30
  * Size:	000004
  */
-void Game::Plants::Obj::doUpdateCommon(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Plants::Obj::doUpdateCommon(void) { }
 
 /*
  * --INFO--

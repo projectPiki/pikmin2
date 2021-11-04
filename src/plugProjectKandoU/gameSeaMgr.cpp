@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1277,13 +1277,7 @@ void Game::AABBWaterBox::globalise((Game::AABBWaterBox*, Matrixf&))
  * Address:	801AF34C
  * Size:	000004
  */
-void Game::AABBWaterBox::directDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::AABBWaterBox::directDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -1740,10 +1734,6 @@ void Game::SeaMgr::addWaterBox((Game::WaterBox*))
  */
 void Game::WaterBox::attachModel((J3DModelData*, Sys::MatTexAnimation*, float))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2586,78 +2576,42 @@ void Game::AABBWaterBox::getSeaHeightPtr(void)
  * Address:	801B02A8
  * Size:	000004
  */
-void Game::WaterBox::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::doSimulation((float)) { }
 
 /*
  * --INFO--
  * Address:	801B02AC
  * Size:	000004
  */
-void Game::WaterBox::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	801B02B0
  * Size:	000004
  */
-void Game::WaterBox::startDown((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::startDown((float)) { }
 
 /*
  * --INFO--
  * Address:	801B02B4
  * Size:	000004
  */
-void Game::WaterBox::startUp((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::startUp((float)) { }
 
 /*
  * --INFO--
  * Address:	801B02B8
  * Size:	000004
  */
-void Game::WaterBox::directDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::directDraw((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	801B02BC
  * Size:	000004
  */
-void Game::WaterBox::calcMatrix(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WaterBox::calcMatrix(void) { }
 
 /*
  * --INFO--

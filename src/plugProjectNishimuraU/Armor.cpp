@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -103,13 +103,7 @@ void Game::Armor::Obj::Obj()
  * Address:	8027D7DC
  * Size:	000004
  */
-void Game::Armor::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -196,13 +190,7 @@ void Game::Armor::Obj::doUpdate()
  * Address:	8027D8C0
  * Size:	000004
  */
-void Game::Armor::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1427,13 +1415,7 @@ void Game::Armor::Obj::setNearestBridge()
  * Address:	8027E6A4
  * Size:	000004
  */
-void Game::Armor::Obj::setCullingCheck()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Armor::Obj::setCullingCheck() { }
 
 /*
  * --INFO--

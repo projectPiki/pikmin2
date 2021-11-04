@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -6042,13 +6042,7 @@ void PSAutoBgm::Conductor::getEraseLink()
  * Address:	8033D46C
  * Size:	000004
  */
-void PSSystem::SeqTrackRoot::onBeatTop()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::SeqTrackRoot::onBeatTop() { }
 
 /*
  * --INFO--

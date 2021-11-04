@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Pom::Obj::Obj()
  * Address:	802548DC
  * Size:	000004
  */
-void Game::Pom::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -333,13 +327,7 @@ void Game::Pom::Obj::changeMaterial()
  * Address:	80254B8C
  * Size:	000004
  */
-void Game::Pom::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1763,26 +1751,14 @@ void Game::Pom::Obj::createPomDeadEffect()
  * Address:	80255C84
  * Size:	000004
  */
-void Game::Pom::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80255C88
  * Size:	000004
  */
-void Game::Pom::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Pom::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

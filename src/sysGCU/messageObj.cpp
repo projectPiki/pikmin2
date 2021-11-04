@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -458,13 +458,7 @@ void P2JME::TControl::update(void)
  * Address:	80438ED8
  * Size:	000004
  */
-void P2JME::TRenderingProcessor::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2JME::TRenderingProcessor::update(void) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1793,13 +1793,7 @@ void Morimura::TChallengeResult::__ct(void)
  * Address:	80394600
  * Size:	000004
  */
-void Morimura::TChallengeResult::VectorUnit::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Morimura::TChallengeResult::VectorUnit::__ct(void) { }
 
 /*
  * --INFO--
@@ -7724,10 +7718,6 @@ void Morimura::TChallengeResultScene::getResName( const
  */
 void Morimura::TChallengeResultScene::doCreateObj( (JKRArchive *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

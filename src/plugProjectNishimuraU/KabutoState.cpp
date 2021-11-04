@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -387,13 +387,7 @@ void Game::Kabuto::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E1D54
  * Size:	000004
  */
-void Game::Kabuto::Obj::finishWaitEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::finishWaitEffect() { }
 
 /*
  * --INFO--
@@ -445,13 +439,7 @@ void Game::Kabuto::StateDead::exec(Game::EnemyBase*)
  * Address:	802E1DA4
  * Size:	000004
  */
-void Game::Kabuto::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2218,13 +2206,7 @@ void Game::Kabuto::StateFixWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E3328
  * Size:	000004
  */
-void Game::Kabuto::Obj::startWaitEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::startWaitEffect() { }
 
 /*
  * --INFO--
@@ -2386,13 +2368,7 @@ void Game::Kabuto::StateFixWait::exec(Game::EnemyBase*)
  * Address:	802E3530
  * Size:	000004
  */
-void Game::Kabuto::StateFixWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::StateFixWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2437,13 +2413,7 @@ void Game::Kabuto::StateFixTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E359C
  * Size:	000004
  */
-void Game::Kabuto::Obj::startRotateEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::startRotateEffect() { }
 
 /*
  * --INFO--
@@ -2668,13 +2638,7 @@ void Game::Kabuto::StateFixTurn::cleanup(Game::EnemyBase*)
  * Address:	802E3860
  * Size:	000004
  */
-void Game::Kabuto::Obj::finishRotateEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::Obj::finishRotateEffect() { }
 
 /*
  * --INFO--
@@ -2897,13 +2861,7 @@ void Game::Kabuto::StateFixAttack::exec(Game::EnemyBase*)
  * Address:	802E3B2C
  * Size:	000004
  */
-void Game::Kabuto::StateFixAttack::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::StateFixAttack::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -3052,10 +3010,4 @@ void Game::Kabuto::StateFixFlick::exec(Game::EnemyBase*)
  * Address:	802E3CF0
  * Size:	000004
  */
-void Game::Kabuto::StateFixFlick::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Kabuto::StateFixFlick::cleanup(Game::EnemyBase*) { }

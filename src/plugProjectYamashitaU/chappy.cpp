@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -537,52 +537,28 @@ void Game::ChappyBase::Obj::setAnimationSpeed(float)
  * Address:	801165B8
  * Size:	000004
  */
-void Game::ChappyBase::Obj::resetUnderGround()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::resetUnderGround() { }
 
 /*
  * --INFO--
  * Address:	801165BC
  * Size:	000004
  */
-void Game::ChappyBase::Obj::setUnderGround()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::setUnderGround() { }
 
 /*
  * --INFO--
  * Address:	801165C0
  * Size:	000004
  */
-void Game::ChappyBase::Obj::createFlickEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::createFlickEffect() { }
 
 /*
  * --INFO--
  * Address:	801165C4
  * Size:	000004
  */
-void Game::ChappyBase::Obj::createSmokeEffect()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ChappyBase::Obj::createSmokeEffect() { }
 
 /*
  * --INFO--

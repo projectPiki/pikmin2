@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -414,13 +414,7 @@ void Game::MiniHoudai::StateDead::exec((Game::EnemyBase*))
  * Address:	802E8488
  * Size:	000004
  */
-void Game::MiniHoudai::StateDead::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::StateDead::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -1129,13 +1123,7 @@ void Game::MiniHoudai::StateLost::exec((Game::EnemyBase*))
  * Address:	802E8DF4
  * Size:	000004
  */
-void Game::MiniHoudai::StateLost::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::StateLost::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -2940,13 +2928,7 @@ void Game::MiniHoudai::StateTurnHome::exec((Game::EnemyBase*))
  * Address:	802EA608
  * Size:	000004
  */
-void Game::MiniHoudai::StateTurnHome::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::StateTurnHome::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -3244,13 +3226,7 @@ void Game::MiniHoudai::StateTurnPath::exec((Game::EnemyBase*))
  * Address:	802EA9E0
  * Size:	000004
  */
-void Game::MiniHoudai::StateTurnPath::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::StateTurnPath::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -4310,13 +4286,7 @@ void Game::MiniHoudai::StateWalkHome::exec((Game::EnemyBase*))
  * Address:	802EB7D8
  * Size:	000004
  */
-void Game::MiniHoudai::StateWalkHome::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::StateWalkHome::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -4691,13 +4661,7 @@ void Game::MiniHoudai::StateWalkPath::exec((Game::EnemyBase*))
  * Address:	802EBCB4
  * Size:	000004
  */
-void Game::MiniHoudai::StateWalkPath::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::MiniHoudai::StateWalkPath::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -42,13 +42,7 @@ void og::newScreen::UfoMenu::__dt(void)
  * Address:	80324930
  * Size:	000004
  */
-void og::newScreen::UfoMenu::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::UfoMenu::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

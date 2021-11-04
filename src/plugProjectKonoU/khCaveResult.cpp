@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3932,13 +3932,7 @@ void kh::Screen::SceneCaveResult::getMemberID()
  * Address:	803FB970
  * Size:	000004
  */
-void kh::Screen::SceneCaveResult::doCreateObj(JKRArchive*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void kh::Screen::SceneCaveResult::doCreateObj(JKRArchive*) { }
 
 /*
  * --INFO--

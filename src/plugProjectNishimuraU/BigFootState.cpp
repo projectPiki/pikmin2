@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -284,13 +284,7 @@ void Game::BigFoot::StateDead::exec(Game::EnemyBase*)
  * Address:	802C666C
  * Size:	000004
  */
-void Game::BigFoot::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -408,13 +402,7 @@ void Game::BigFoot::StateStay::exec(Game::EnemyBase*)
  * Address:	802C67AC
  * Size:	000004
  */
-void Game::BigFoot::StateStay::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -750,13 +738,7 @@ void Game::BigFoot::StateWait::exec(Game::EnemyBase*)
  * Address:	802C6B9C
  * Size:	000004
  */
-void Game::BigFoot::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BigFoot::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

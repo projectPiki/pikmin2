@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -238,13 +238,7 @@ void Game::Farm::Farm::loadResource(unsigned long, void*)
  * Address:	801237E4
  * Size:	000004
  */
-void Game::Farm::Farm::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Farm::Farm::update() { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -908,13 +908,7 @@ void og::newScreen::ObjCave::doUpdateFadein(void)
  * Address:	8031CB2C
  * Size:	000004
  */
-void og::newScreen::ObjCave::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjCave::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -981,13 +975,7 @@ void og::newScreen::ObjCave::doUpdateFadeout(void)
  * Address:	8031CBB8
  * Size:	000004
  */
-void og::newScreen::ObjCave::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjCave::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -199,117 +199,63 @@ void Game::Nest::Obj::setHouseType((int))
  * Address:	8036CC9C
  * Size:	000004
  */
-void Game::Nest::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--
  * Address:	8036CCA0
  * Size:	000004
  */
-void Game::Nest::Obj::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::update(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCA4
  * Size:	000004
  */
-void Game::Nest::Obj::doUpdate(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doUpdate(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCA8
  * Size:	000004
  */
-void Game::Nest::Obj::doSimulation((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doSimulation((float)) { }
 
 /*
  * --INFO--
  * Address:	8036CCAC
  * Size:	000004
  */
-void Game::Nest::Obj::doAnimationCullingOn(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doAnimationCullingOn(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCB0
  * Size:	000004
  */
-void Game::Nest::Obj::doAnimationCullingOff(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doAnimationCullingOff(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCB4
  * Size:	000004
  */
-void Game::Nest::Obj::doUpdateCommon(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doUpdateCommon(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCB8
  * Size:	000004
  */
-void Game::Nest::Obj::doEntry(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doEntry(void) { }
 
 /*
  * --INFO--
  * Address:	8036CCBC
  * Size:	000004
  */
-void Game::Nest::Obj::doViewCalc(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Obj::doViewCalc(void) { }
 
 /*
  * --INFO--

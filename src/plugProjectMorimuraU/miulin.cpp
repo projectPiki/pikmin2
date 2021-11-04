@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -327,13 +327,7 @@ void Game::Miulin::Obj::doUpdate(void)
  * Address:	803647E4
  * Size:	000004
  */
-void Game::Miulin::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Miulin::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -2248,13 +2242,7 @@ void attackEffect__Q34Game6Miulin3ObjFR10Vector3<float>(void)
  * Address:	80365FC0
  * Size:	000004
  */
-void Game::Miulin::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Miulin::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--
@@ -2263,10 +2251,6 @@ void Game::Miulin::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  */
 void applyImpulse__Q34Game6Miulin3ObjFR10Vector3<float> R10Vector3<float>(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -794,13 +794,7 @@ void PSM::Creature::startSoundInner(PSM::StartSoundArg&)
  * Address:	8045D7A0
  * Size:	000004
  */
-void PSM::Creature::onPlayingSe(unsigned long, JAISound*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::Creature::onPlayingSe(unsigned long, JAISound*) { }
 
 /*
  * --INFO--
@@ -1768,13 +1762,7 @@ void PSM::CreatureAnime::onCalcTurnOn()
  * Address:	8045E2C4
  * Size:	000004
  */
-void PSM::CreatureAnime::onCalcTurnOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::CreatureAnime::onCalcTurnOff() { }
 
 /*
  * --INFO--
@@ -5590,13 +5578,7 @@ void PSM::OtakaraEventLink::getListDirectorActor()
  * Address:	80460F0C
  * Size:	000004
  */
-void PSM::OtakaraEventLink::eventFinish()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::OtakaraEventLink::eventFinish() { }
 
 /*
  * --INFO--
@@ -8848,39 +8830,21 @@ void PSM::SceneBase::isDemoScene()
  * Address:	804633B4
  * Size:	000004
  */
-void PSM::EnemyBoss::onDisappear()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyBoss::onDisappear() { }
 
 /*
  * --INFO--
  * Address:	804633B8
  * Size:	000004
  */
-void PSM::EnemyBoss::onAppear()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyBoss::onAppear() { }
 
 /*
  * --INFO--
  * Address:	804633BC
  * Size:	000004
  */
-void PSM::EnemyBoss::onAppear1st()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyBoss::onAppear1st() { }
 
 /*
  * --INFO--
@@ -9783,78 +9747,42 @@ void PSM::EnemyNotAggressive::getCastType()
  * Address:	80463D70
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::updateKehai()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyNotAggressive::updateKehai() { }
 
 /*
  * --INFO--
  * Address:	80463D74
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::updateBattle()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyNotAggressive::updateBattle() { }
 
 /*
  * --INFO--
  * Address:	80463D78
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::battleOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyNotAggressive::battleOff() { }
 
 /*
  * --INFO--
  * Address:	80463D7C
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::battleOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyNotAggressive::battleOn() { }
 
 /*
  * --INFO--
  * Address:	80463D80
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::kehaiOff()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyNotAggressive::kehaiOff() { }
 
 /*
  * --INFO--
  * Address:	80463D84
  * Size:	000004
  */
-void PSM::EnemyNotAggressive::kehaiOn()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::EnemyNotAggressive::kehaiOn() { }
 
 /*
  * --INFO--

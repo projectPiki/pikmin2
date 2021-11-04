@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2980,13 +2980,7 @@ void J3DAnmColor::getKind() const
  * Address:	80069938
  * Size:	000004
  */
-void J3DAnmColor::getColor(unsigned short, _GXColor*) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DAnmColor::getColor(unsigned short, _GXColor*) const { }
 
 /*
  * --INFO--
@@ -3168,12 +3162,7 @@ void J3DAnmVtxColor::getKind() const
  * Address:	80069AA0
  * Size:	000004
  */
-void J3DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void J3DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const {
 }
 
 /*

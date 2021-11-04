@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1279,13 +1279,7 @@ void og::newScreen::ObjSMenuItem::doUpdateFadeout(void)
  * Address:	80313ED0
  * Size:	000004
  */
-void og::newScreen::ObjSMenuItem::doUpdateCancelAction(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSMenuItem::doUpdateCancelAction(void) { }
 
 /*
  * --INFO--

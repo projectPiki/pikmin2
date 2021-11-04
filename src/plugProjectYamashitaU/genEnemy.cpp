@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -149,26 +149,14 @@ void Game::GenObjectEnemy::initialise()
  * Address:	80124910
  * Size:	000004
  */
-void Game::GenObjectEnemy::ramSaveParameters(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObjectEnemy::ramSaveParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80124914
  * Size:	000004
  */
-void Game::GenObjectEnemy::ramLoadParameters(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObjectEnemy::ramLoadParameters(Stream&) { }
 
 /*
  * --INFO--
@@ -880,13 +868,7 @@ void Game::GenObjectEnemy::doWrite(Stream&)
  * Address:	801252C4
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::doWrite(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyGeneratorBase::doWrite(Stream&) { }
 
 /*
  * --INFO--
@@ -1049,13 +1031,7 @@ void Game::GenObjectEnemy::doRead(Stream&)
  * Address:	801254B8
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::doRead(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyGeneratorBase::doRead(Stream&) { }
 
 /*
  * --INFO--
@@ -2821,13 +2797,7 @@ void Game::GenObjectEnemy::render(Graphics&, Game::Generator*)
  * Address:	80126B58
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::draw(Graphics&, Game::Generator*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyGeneratorBase::draw(Graphics&, Game::Generator*) { }
 
 /*
  * --INFO--
@@ -2900,13 +2870,7 @@ void Game::GenArg::getName()
  * Address:	80126BCC
  * Size:	000004
  */
-void Game::GenObject::update(Game::Generator*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObject::update(Game::Generator*) { }
 
 /*
  * --INFO--
@@ -2935,23 +2899,11 @@ void Game::GenObject::generatorMakeMatrix(Matrixf&, Vector3<float>&)
  * Address:	80126BF8
  * Size:	000004
  */
-void Game::GenObject::getDebugInfo(char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenObject::getDebugInfo(char*) { }
 
 /*
  * --INFO--
  * Address:	80126BFC
  * Size:	000004
  */
-void Game::GenBase::doEvent(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::GenBase::doEvent(unsigned long) { }

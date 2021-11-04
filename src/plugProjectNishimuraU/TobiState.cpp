@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -423,13 +423,7 @@ void Game::Tobi::StateDead::exec(Game::EnemyBase*)
  * Address:	80267B1C
  * Size:	000004
  */
-void Game::Tobi::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -507,13 +501,7 @@ void Game::Tobi::StatePress::exec(Game::EnemyBase*)
  * Address:	80267BD4
  * Size:	000004
  */
-void Game::Tobi::StatePress::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StatePress::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1280,13 +1268,7 @@ void Game::Tobi::StateMove::exec(Game::EnemyBase*)
  * Address:	80268518
  * Size:	000004
  */
-void Game::Tobi::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1426,13 +1408,7 @@ void Game::Tobi::StateMoveSide::exec(Game::EnemyBase*)
  * Address:	802686A0
  * Size:	000004
  */
-void Game::Tobi::StateMoveSide::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateMoveSide::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1572,13 +1548,7 @@ void Game::Tobi::StateMoveCentre::exec(Game::EnemyBase*)
  * Address:	80268828
  * Size:	000004
  */
-void Game::Tobi::StateMoveCentre::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateMoveCentre::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1718,13 +1688,7 @@ void Game::Tobi::StateMoveTop::exec(Game::EnemyBase*)
  * Address:	802689B0
  * Size:	000004
  */
-void Game::Tobi::StateMoveTop::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateMoveTop::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1909,13 +1873,7 @@ void Game::Tobi::StateGoHome::exec(Game::EnemyBase*)
  * Address:	80268BE4
  * Size:	000004
  */
-void Game::Tobi::StateGoHome::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateGoHome::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2230,13 +2188,7 @@ void Game::Tobi::StateAttack1::exec(Game::EnemyBase*)
  * Address:	80268F78
  * Size:	000004
  */
-void Game::Tobi::StateAttack1::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateAttack1::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2610,10 +2562,4 @@ void Game::Tobi::StateEat::exec(Game::EnemyBase*)
  * Address:	802693D0
  * Size:	000004
  */
-void Game::Tobi::StateEat::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tobi::StateEat::cleanup(Game::EnemyBase*) { }

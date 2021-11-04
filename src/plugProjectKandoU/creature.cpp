@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -196,26 +196,14 @@ void Game::Creature::init(Game::CreatureInitArg*)
  * Address:	8013B0E8
  * Size:	000004
  */
-void Game::Creature::onInitPost(Game::CreatureInitArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::onInitPost(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
  * Address:	8013B0EC
  * Size:	000004
  */
-void Game::Creature::onInit(Game::CreatureInitArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::onInit(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
@@ -281,13 +269,7 @@ void Game::Creature::kill(Game::CreatureKillArg*)
  * Address:	8013B1A4
  * Size:	000004
  */
-void Game::Creature::onKill(Game::CreatureKillArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::onKill(Game::CreatureKillArg*) { }
 
 /*
  * --INFO--
@@ -360,13 +342,7 @@ void Game::Creature::setPosition(Vector3<float>&, bool)
  * Address:	8013B270
  * Size:	000004
  */
-void Game::Creature::onSetPositionPost(Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::onSetPositionPost(Vector3<float>&) { }
 
 /*
  * --INFO--
@@ -945,13 +921,7 @@ void Game::Creature::doAnimation()
  * Address:	8013B8AC
  * Size:	000004
  */
-void Game::Creature::doEntry()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::doEntry() { }
 
 /*
  * --INFO--
@@ -1323,26 +1293,14 @@ void Game::Creature::checkWater(Game::WaterBox*, Sys::Sphere&)
  * Address:	8013BC1C
  * Size:	000004
  */
-void Game::Creature::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8013BC20
  * Size:	000004
  */
-void Game::Creature::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::outWaterCallback() { }
 
 /*
  * --INFO--
@@ -2521,13 +2479,7 @@ void Game::Creature::resolveOneColl(CollPart*, CollPart*, Vector3<float>&)
  * Address:	8013CB8C
  * Size:	000004
  */
-void Game::Creature::collisionCallback(Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::collisionCallback(Game::CollEvent&) { }
 
 /*
  * --INFO--
@@ -2559,26 +2511,14 @@ void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3<float>&>::invoke(
  * Address:	8013CBC0
  * Size:	000004
  */
-void Game::Creature::constructor()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::constructor() { }
 
 /*
  * --INFO--
  * Address:	8013CBC4
  * Size:	000004
  */
-void Game::Creature::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::doSimulation(float) { }
 
 /*
  * --INFO--
@@ -2692,39 +2632,21 @@ void Game::Creature::getLODSphere(Sys::Sphere&)
  * Address:	8013CC24
  * Size:	000004
  */
-void Game::Creature::onStickStart(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::onStickStart(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	8013CC28
  * Size:	000004
  */
-void Game::Creature::onStickEnd(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Creature::onStickEnd(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	8013CC2C
  * Size:	000004
  */
-void Game::CellObject::checkCollision(Game::CellObject*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CellObject::checkCollision(Game::CellObject*) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -881,13 +881,7 @@ void og::newScreen::ObjChallenge1P::doUpdateFadein(void)
  * Address:	803288C8
  * Size:	000004
  */
-void og::newScreen::ObjChallenge1P::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjChallenge1P::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -1071,13 +1065,7 @@ void og::newScreen::ObjChallenge1P::doUpdateFadeout(void)
  * Address:	80328B08
  * Size:	000004
  */
-void og::newScreen::ObjChallenge1P::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjChallenge1P::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

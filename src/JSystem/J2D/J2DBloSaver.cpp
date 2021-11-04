@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -20,13 +20,7 @@ void J2DTevBlock::getTexNo(unsigned long) const
  * Address:	800494F0
  * Size:	000004
  */
-void J2DTevBlock::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTevBlock::setTexNo(unsigned long, unsigned short) { }
 
 /*
  * --INFO--

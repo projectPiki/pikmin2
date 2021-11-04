@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1411,13 +1411,7 @@ void og::Screen::CallBack_LifeGauge::__dt(void)
  * Address:	8030726C
  * Size:	000004
  */
-void P2DScreen::CallBackNode::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2DScreen::CallBackNode::update(void) { }
 
 /*
  * --INFO--

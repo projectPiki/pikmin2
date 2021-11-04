@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -453,10 +453,4 @@ void Game::EnemyStateMachine::getCurrState(Game::EnemyBase*)
  * Address:	80130B98
  * Size:	000004
  */
-void Game::EnemyStateMachine::init(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyStateMachine::init(Game::EnemyBase*) { }

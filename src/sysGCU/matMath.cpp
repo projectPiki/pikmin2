@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -282,13 +282,7 @@ void Matrixf::makeNaturalPosture(Vector3<float>&, float)
  * Address:	804282D4
  * Size:	000004
  */
-void Matrixf::print(char*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Matrixf::print(char*) { }
 
 /*
  * --INFO--

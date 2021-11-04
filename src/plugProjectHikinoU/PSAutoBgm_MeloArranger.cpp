@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -142,26 +142,14 @@ void PSAutoBgm::MeloArrMgr::isToAvoid(PSAutoBgm::MeloArrArg&)
  * Address:	8033F010
  * Size:	000004
  */
-void PSAutoBgm::MeloArrBase::post(PSAutoBgm::MeloArrArg&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSAutoBgm::MeloArrBase::post(PSAutoBgm::MeloArrArg&) { }
 
 /*
  * --INFO--
  * Address:	8033F014
  * Size:	000004
  */
-void PSAutoBgm::MeloArrBase::pre(PSAutoBgm::MeloArrArg&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSAutoBgm::MeloArrBase::pre(PSAutoBgm::MeloArrArg&) { }
 
 /*
  * --INFO--

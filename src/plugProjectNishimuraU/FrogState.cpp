@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -358,13 +358,7 @@ void Game::Frog::Obj::getDownSmokeScale()
  * Address:	80256828
  * Size:	000004
  */
-void Game::Frog::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -725,26 +719,14 @@ void Game::Frog::StateWait::exec(Game::EnemyBase*)
  * Address:	80256D0C
  * Size:	000004
  */
-void Game::Frog::Obj::attackNaviPosition()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::Obj::attackNaviPosition() { }
 
 /*
  * --INFO--
  * Address:	80256D10
  * Size:	000004
  */
-void Game::Frog::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Frog::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1615,26 +1615,14 @@ void J2DPane::draw(float, float, const J2DGrafContext*, bool, bool)
  * Address:	80037F30
  * Size:	000004
  */
-void J2DPane::drawSelf(float, float, float (*)[3][4])
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::drawSelf(float, float, float (*)[3][4]) { }
 
 /*
  * --INFO--
  * Address:	80037F34
  * Size:	000004
  */
-void J2DPane::rewriteAlpha()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::rewriteAlpha() { }
 
 /*
  * --INFO--
@@ -3715,78 +3703,42 @@ void J2DPane::setAnimation(J2DAnmBase*)
  * Address:	800395DC
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmTevRegKey*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::setAnimation(J2DAnmTevRegKey*) { }
 
 /*
  * --INFO--
  * Address:	800395E0
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmVisibilityFull*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::setAnimation(J2DAnmVisibilityFull*) { }
 
 /*
  * --INFO--
  * Address:	800395E4
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmTexPattern*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::setAnimation(J2DAnmTexPattern*) { }
 
 /*
  * --INFO--
  * Address:	800395E8
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmTextureSRTKey*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::setAnimation(J2DAnmTextureSRTKey*) { }
 
 /*
  * --INFO--
  * Address:	800395EC
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmVtxColor*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::setAnimation(J2DAnmVtxColor*) { }
 
 /*
  * --INFO--
  * Address:	800395F0
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmColor*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::setAnimation(J2DAnmColor*) { }
 
 /*
  * --INFO--
@@ -4226,13 +4178,7 @@ void J2DPane::updateTransform(const J2DAnmTransform*)
  * Address:	80039A60
  * Size:	000004
  */
-void J2DAnmTransform::getTransform(unsigned short, J3DTransformInfo*) const
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DAnmTransform::getTransform(unsigned short, J3DTransformInfo*) const { }
 
 /*
  * --INFO--
@@ -4298,26 +4244,14 @@ void J2DPane::setConnectParent(bool)
  * Address:	80039AB8
  * Size:	000004
  */
-void J2DPane::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::update() { }
 
 /*
  * --INFO--
  * Address:	80039ABC
  * Size:	000004
  */
-void J2DPane::drawSelf(float, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DPane::drawSelf(float, float) { }
 
 /*
  * --INFO--

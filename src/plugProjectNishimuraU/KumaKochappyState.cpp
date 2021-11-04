@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -263,13 +263,7 @@ void Game::KumaKochappy::StateDead::exec((Game::EnemyBase*))
  * Address:	802E51F8
  * Size:	000004
  */
-void Game::KumaKochappy::StateDead::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KumaKochappy::StateDead::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -341,13 +335,7 @@ void Game::KumaKochappy::StatePress::exec((Game::EnemyBase*))
  * Address:	802E5298
  * Size:	000004
  */
-void Game::KumaKochappy::StatePress::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KumaKochappy::StatePress::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--
@@ -1443,13 +1431,7 @@ void Game::KumaKochappy::StateFlick::exec((Game::EnemyBase*))
  * Address:	802E6130
  * Size:	000004
  */
-void Game::KumaKochappy::StateFlick::cleanup((Game::EnemyBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::KumaKochappy::StateFlick::cleanup((Game::EnemyBase*)) { }
 
 /*
  * --INFO--

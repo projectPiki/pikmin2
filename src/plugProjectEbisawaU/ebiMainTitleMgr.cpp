@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1318,13 +1318,7 @@ void ebi::Screen::TTitleMenu::__dt(void)
  * Address:	803EB164
  * Size:	000004
  */
-void ebi::Screen::TTitleMenu_Object_Icon::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ebi::Screen::TTitleMenu_Object_Icon::__ct(void) { }
 
 /*
  * --INFO--

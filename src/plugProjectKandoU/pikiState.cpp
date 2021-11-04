@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,13 +15,7 @@ void _Print(char*, ...)
  * Address:	80189378
  * Size:	000004
  */
-void Game::PikiState::dump(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::dump(void) { }
 
 /*
  * --INFO--
@@ -1032,13 +1026,7 @@ void Game::PikiWalkState::exec((Game::Piki*))
  * Address:	8018A0E4
  * Size:	000004
  */
-void Game::PikiWalkState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiWalkState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -1094,13 +1082,7 @@ void Game::PikiDemoWaitState::exec((Game::Piki*))
  * Address:	8018A14C
  * Size:	000004
  */
-void Game::PikiDemoWaitState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDemoWaitState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -1571,10 +1553,6 @@ void Game::PikiCarrotState::bounceCallback((Game::Piki*, Sys::Triangle*))
  */
 void Game::PikiCarrotState::collisionCallback((Game::Piki*, Game::CollEvent&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2044,13 +2022,7 @@ void Game::PikiHoleinState::exec((Game::Piki*))
  * Address:	8018AD20
  * Size:	000004
  */
-void Game::PikiHoleinState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiHoleinState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -2328,13 +2300,7 @@ void Game::PikiFountainonState::exec((Game::Piki*))
  * Address:	8018B0B8
  * Size:	000004
  */
-void Game::PikiFountainonState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiFountainonState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -3139,13 +3105,7 @@ void Game::PikiDopeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	8018BA04
  * Size:	000004
  */
-void Game::PikiDopeState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDopeState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -4264,26 +4224,14 @@ void Game::PikiPanicState::onFlute((Game::Piki*, Game::Navi*))
  * Address:	8018C760
  * Size:	000004
  */
-void Game::PikiDeadState::init((Game::Piki*, Game::StateArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDeadState::init((Game::Piki*, Game::StateArg*)) { }
 
 /*
  * --INFO--
  * Address:	8018C764
  * Size:	000004
  */
-void Game::PikiDeadState::exec((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDeadState::exec((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -4440,13 +4388,7 @@ void Game::PikiDyingState::exec((Game::Piki*))
  * Address:	8018C908
  * Size:	000004
  */
-void Game::PikiDyingState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDyingState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -4665,13 +4607,7 @@ void Game::PikiDenkiDyingState::exec((Game::Piki*))
  * Address:	8018CB4C
  * Size:	000004
  */
-void Game::PikiDenkiDyingState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDenkiDyingState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -4925,13 +4861,7 @@ void Game::PikiLookAtState::init((Game::Piki*, Game::StateArg*))
  * Address:	8018CDFC
  * Size:	000004
  */
-void Game::PikiLookAtState::onFlute((Game::Piki*, Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiLookAtState::onFlute((Game::Piki*, Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -5084,13 +5014,7 @@ void Game::PikiLookAtState::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	8018CFA8
  * Size:	000004
  */
-void Game::PikiLookAtState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiLookAtState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -5489,13 +5413,7 @@ void Game::PikiAutoNukiState::onKeyEvent((Game::Piki*,
  * Address:	8018D4D0
  * Size:	000004
  */
-void Game::PikiAutoNukiState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiAutoNukiState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -5708,13 +5626,7 @@ void Game::PikiGoHangState::cleanup((Game::Piki*))
  * Address:	8018D734
  * Size:	000004
  */
-void Game::PikiHangedState::onKeyEvent((SysShape::KeyEvent const&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiHangedState::onKeyEvent((SysShape::KeyEvent const&)) { }
 
 /*
  * --INFO--
@@ -5897,13 +5809,7 @@ void Game::PikiHangedState::ignoreAtari((Game::Piki*, Game::Creature*))
  * Address:	8018D908
  * Size:	000004
  */
-void Game::PikiWaterHangedState::onKeyEvent((SysShape::KeyEvent const&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiWaterHangedState::onKeyEvent((SysShape::KeyEvent const&)) { }
 
 /*
  * --INFO--
@@ -6452,10 +6358,6 @@ void Game::PikiHipDropState::cleanup((Game::Piki*))
 void Game::PikiHipDropState::onKeyEvent((Game::Piki*,
                                          SysShape::KeyEvent const&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -6942,13 +6844,7 @@ void Game::PikiFallMeckState::exec((Game::Piki*))
  * Address:	8018E548
  * Size:	000004
  */
-void Game::PikiFallMeckState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiFallMeckState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -6957,10 +6853,6 @@ void Game::PikiFallMeckState::cleanup((Game::Piki*))
  */
 void Game::PikiFallMeckState::collisionCallback((Game::Piki*, Game::CollEvent&))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -7970,26 +7862,14 @@ void Game::PikiSuikomiState::cleanup((Game::Piki*))
  * Address:	8018F1B4
  * Size:	000004
  */
-void Game::PikiFlyingState::stopEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiFlyingState::stopEffect(void) { }
 
 /*
  * --INFO--
  * Address:	8018F1B8
  * Size:	000004
  */
-void Game::PikiFlyingState::restartEffect(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiFlyingState::restartEffect(void) { }
 
 /*
  * --INFO--
@@ -9395,13 +9275,7 @@ void Game::PikiBlowState::exec((Game::Piki*))
  * Address:	80190360
  * Size:	000004
  */
-void Game::PikiBlowState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiBlowState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -10121,13 +9995,7 @@ void Game::PikiKokeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	80190B3C
  * Size:	000004
  */
-void Game::PikiKokeState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiKokeState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -10906,13 +10774,7 @@ void Game::PikiDrownState::exec((Game::Piki*))
  * Address:	801914E8
  * Size:	000004
  */
-void Game::PikiDrownState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiDrownState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -11333,13 +11195,7 @@ void Game::PikiEmotionState::exec((Game::Piki*))
  * Address:	80191A0C
  * Size:	000004
  */
-void Game::PikiEmotionState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiEmotionState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -11737,13 +11593,7 @@ void Game::PikiAbsorbState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	80191EC0
  * Size:	000004
  */
-void Game::PikiAbsorbState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiAbsorbState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -11998,13 +11848,7 @@ void Game::PikiGrowupState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	801921BC
  * Size:	000004
  */
-void Game::PikiGrowupState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiGrowupState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -12663,13 +12507,7 @@ void Game::PikiEscapeState::onKeyEvent((Game::Piki*, SysShape::KeyEvent const&))
  * Address:	80192998
  * Size:	000004
  */
-void Game::PikiEscapeState::cleanup((Game::Piki*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiEscapeState::cleanup((Game::Piki*)) { }
 
 /*
  * --INFO--
@@ -12732,13 +12570,7 @@ void Game::PikiState::pressable(void)
  * Address:	801929BC
  * Size:	000004
  */
-void Game::PikiState::onFlute((Game::Piki*, Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiState::onFlute((Game::Piki*, Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -13348,26 +13180,14 @@ void Game::PikiWalkState::throwable(void)
  * Address:	80192B1C
  * Size:	000004
  */
-void resume__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void resume__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
 
 /*
  * --INFO--
  * Address:	80192B20
  * Size:	000004
  */
-void restart__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void restart__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
 
 /*
  * --INFO--

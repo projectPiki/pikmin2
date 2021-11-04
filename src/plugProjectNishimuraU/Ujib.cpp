@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Ujib::Obj::Obj()
  * Address:	80259C84
  * Size:	000004
  */
-void Game::Ujib::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujib::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -198,13 +192,7 @@ void Game::Ujib::Obj::doUpdate()
  * Address:	80259D68
  * Size:	000004
  */
-void Game::Ujib::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujib::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -881,13 +869,7 @@ void Game::Ujib::Obj::setNearestBridge()
  * Address:	8025A47C
  * Size:	000004
  */
-void Game::Ujib::Obj::setCullingCheck()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Ujib::Obj::setCullingCheck() { }
 
 /*
  * --INFO--

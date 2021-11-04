@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -710,13 +710,7 @@ void LightMgr::drawDebugInfo(Graphics&)
  * Address:	8042BCE0
  * Size:	000004
  */
-void LightMgr::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void LightMgr::update() { }
 
 /*
  * --INFO--

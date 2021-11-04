@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -618,13 +618,7 @@ void Game::Tyre::Obj::doAnimationCullingOff(void)
  * Address:	803ACA3C
  * Size:	000004
  */
-void Game::Tyre::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tyre::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -3012,13 +3006,7 @@ void efx::TKageTyresmoke::__dt(void)
  * Address:	803AE7F4
  * Size:	000004
  */
-void Game::Tyre::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Tyre::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--

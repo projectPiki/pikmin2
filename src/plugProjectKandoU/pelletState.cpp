@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -216,39 +216,21 @@ void Game::PelletFSM::init((Game::Pellet*))
  * Address:	801A45BC
  * Size:	000004
  */
-void Game::PelletNormalState::init((Game::Pellet*, Game::StateArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletNormalState::init((Game::Pellet*, Game::StateArg*)) { }
 
 /*
  * --INFO--
  * Address:	801A45C0
  * Size:	000004
  */
-void Game::PelletNormalState::exec((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletNormalState::exec((Game::Pellet*)) { }
 
 /*
  * --INFO--
  * Address:	801A45C4
  * Size:	000004
  */
-void Game::PelletNormalState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletNormalState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -363,13 +345,7 @@ FPQ24Game6PelletiPQ24Game8StateArg(void)
  * Address:	801A46D4
  * Size:	000004
  */
-void Game::PelletGoalWaitState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletGoalWaitState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -2626,13 +2602,7 @@ void Game::PelletGoalState::exec((Game::Pellet*))
  * Address:	801A65F8
  * Size:	000004
  */
-void Game::PelletGoalState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletGoalState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -2900,13 +2870,7 @@ void Game::PelletAppearState::exec((Game::Pellet*))
  * Address:	801A6980
  * Size:	000004
  */
-void Game::PelletAppearState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletAppearState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -3182,26 +3146,14 @@ void Game::PelletBuryState::init((Game::Pellet*, Game::StateArg*))
  * Address:	801A6CC8
  * Size:	000004
  */
-void Game::PelletBuryState::exec((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletBuryState::exec((Game::Pellet*)) { }
 
 /*
  * --INFO--
  * Address:	801A6CCC
  * Size:	000004
  */
-void Game::PelletBuryState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletBuryState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -3285,13 +3237,7 @@ void Game::PelletZukanState::exec((Game::Pellet*))
  * Address:	801A6D9C
  * Size:	000004
  */
-void Game::PelletZukanState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletZukanState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -3319,26 +3265,14 @@ void Game::PelletUpState::init((Game::Pellet*, Game::StateArg*))
  * Address:	801A6DC4
  * Size:	000004
  */
-void Game::PelletUpState::exec((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletUpState::exec((Game::Pellet*)) { }
 
 /*
  * --INFO--
  * Address:	801A6DC8
  * Size:	000004
  */
-void Game::PelletUpState::cleanup((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletUpState::cleanup((Game::Pellet*)) { }
 
 /*
  * --INFO--
@@ -4723,26 +4657,14 @@ void Game::PelletNormalState::isPickable(void)
  * Address:	801A7E24
  * Size:	000004
  */
-void resume__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void resume__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
 
 /*
  * --INFO--
  * Address:	801A7E28
  * Size:	000004
  */
-void restart__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void restart__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
 
 /*
  * --INFO--

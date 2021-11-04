@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2881,13 +2881,7 @@ void Game::GameLightEventNode::GameLightEventNode()
  * Address:	8011F348
  * Size:	000004
  */
-void Vector3<float>::Vector3()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Vector3<float>::Vector3() { }
 
 /*
  * --INFO--

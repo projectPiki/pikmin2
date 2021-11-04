@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -403,13 +403,7 @@ void Game::ShadowMgr::loadResource(void)
  * Address:	80241654
  * Size:	000004
  */
-void Game::ShadowMgr::init(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ShadowMgr::init(void) { }
 
 /*
  * --INFO--

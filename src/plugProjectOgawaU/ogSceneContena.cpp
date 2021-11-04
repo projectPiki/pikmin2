@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -44,13 +44,7 @@ void og::newScreen::Contena::__dt(void)
  * Address:	80321F4C
  * Size:	000004
  */
-void og::newScreen::Contena::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::Contena::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

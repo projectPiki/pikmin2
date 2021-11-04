@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -443,10 +443,6 @@ void Game::FSMState<Game::EnemyStone::DrawInfo>::transit(
  */
 void Game::EnemyStone::FSMStateExpansion::cleanup(Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -663,13 +659,7 @@ void Game::EnemyStone::FSMStateFit::exec(Game::EnemyStone::DrawInfo*)
  * Address:	80128A04
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateFit::cleanup(Game::EnemyStone::DrawInfo*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyStone::FSMStateFit::cleanup(Game::EnemyStone::DrawInfo*) { }
 
 /*
  * --INFO--
@@ -970,13 +960,7 @@ void Game::EnemyStone::FSMStateShake::exec(Game::EnemyStone::DrawInfo*)
  * Address:	80128D80
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateShake::cleanup(Game::EnemyStone::DrawInfo*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyStone::FSMStateShake::cleanup(Game::EnemyStone::DrawInfo*) { }
 
 /*
  * --INFO--
@@ -1439,10 +1423,6 @@ void Game::EnemyStone::FSMStateDisappear::init(Game::EnemyStone::DrawInfo*,
  */
 void Game::EnemyStone::FSMStateDisappear::cleanup(Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1450,13 +1430,7 @@ void Game::EnemyStone::FSMStateDisappear::cleanup(Game::EnemyStone::DrawInfo*)
  * Address:	801292F0
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateDisappear::exec(Game::EnemyStone::DrawInfo*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::EnemyStone::FSMStateDisappear::exec(Game::EnemyStone::DrawInfo*) { }
 
 /*
  * --INFO--
@@ -2088,10 +2062,6 @@ void Game::EnemyStone::DrawInfo::dead(Game::EnemyBase*)
 void Game::FSMState<Game::EnemyStone::DrawInfo>::init(
     Game::EnemyStone::DrawInfo*, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2102,10 +2072,6 @@ void Game::FSMState<Game::EnemyStone::DrawInfo>::init(
 void Game::FSMState<Game::EnemyStone::DrawInfo>::exec(
     Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2116,10 +2082,6 @@ void Game::FSMState<Game::EnemyStone::DrawInfo>::exec(
 void Game::FSMState<Game::EnemyStone::DrawInfo>::cleanup(
     Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2130,10 +2092,6 @@ void Game::FSMState<Game::EnemyStone::DrawInfo>::cleanup(
 void Game::FSMState<Game::EnemyStone::DrawInfo>::resume(
     Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2144,10 +2102,6 @@ void Game::FSMState<Game::EnemyStone::DrawInfo>::resume(
 void Game::FSMState<Game::EnemyStone::DrawInfo>::restart(
     Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2158,10 +2112,6 @@ void Game::FSMState<Game::EnemyStone::DrawInfo>::restart(
 void Game::StateMachine<Game::EnemyStone::DrawInfo>::init(
     Game::EnemyStone::DrawInfo*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

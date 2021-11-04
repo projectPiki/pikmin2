@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,13 +15,7 @@ void _Print(char*, ...)
  * Address:	8017D44C
  * Size:	000004
  */
-void Game::NaviState::draw2d((J2DGrafContext&, int&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviState::draw2d((J2DGrafContext&, int&)) { }
 
 /*
  * --INFO--
@@ -1615,13 +1609,7 @@ void Game::NaviStuckState::exec((Game::Navi*))
  * Address:	8017E84C
  * Size:	000004
  */
-void Game::NaviStuckState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviStuckState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -2178,13 +2166,7 @@ void Game::NaviState::needYChangeMotion(void)
  * Address:	8017EF68
  * Size:	000004
  */
-void Game::NaviWalkState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviWalkState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -3680,13 +3662,7 @@ void Game::NaviChangeState::exec((Game::Navi*))
  * Address:	80180160
  * Size:	000004
  */
-void Game::NaviChangeState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviChangeState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -4663,13 +4639,7 @@ void Game::NaviFollowState::exec((Game::Navi*))
  * Address:	80180DE4
  * Size:	000004
  */
-void Game::NaviFollowState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviFollowState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -5395,13 +5365,7 @@ void Game::NaviPunchState::exec((Game::Navi*))
  * Address:	8018171C
  * Size:	000004
  */
-void Game::NaviPunchState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviPunchState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -7634,13 +7598,7 @@ void Game::NaviDopeState::exec((Game::Navi*))
  * Address:	80183278
  * Size:	000004
  */
-void Game::NaviDopeState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviDopeState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -8168,13 +8126,7 @@ void Game::NaviFallMeckState::exec((Game::Navi*))
  * Address:	80183898
  * Size:	000004
  */
-void Game::NaviFallMeckState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviFallMeckState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -8596,13 +8548,7 @@ void Game::NaviFlickState::exec((Game::Navi*))
  * Address:	80183DE4
  * Size:	000004
  */
-void Game::NaviFlickState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviFlickState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -8912,13 +8858,7 @@ void Game::NaviKokeDamageState::exec((Game::Navi*))
  * Address:	80184184
  * Size:	000004
  */
-void Game::NaviKokeDamageState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviKokeDamageState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -10851,13 +10791,7 @@ void Game::NaviDeadState::exec((Game::Navi*))
  * Address:	80185898
  * Size:	000004
  */
-void Game::NaviDeadState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviDeadState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -11192,13 +11126,7 @@ void Game::NaviThrowWaitState::__ct(void)
  * Address:	80185C54
  * Size:	000004
  */
-void Game::NaviThrowWaitState::draw2d((J2DGrafContext&, int&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviThrowWaitState::draw2d((J2DGrafContext&, int&)) { }
 
 /*
  * --INFO--
@@ -13202,13 +13130,7 @@ void Game::NaviThrowState::exec((Game::Navi*))
  * Address:	80187634
  * Size:	000004
  */
-void Game::NaviThrowState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviThrowState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -13908,13 +13830,7 @@ void Game::NaviDemo_UfoState::exec((Game::Navi*))
  * Address:	80187E94
  * Size:	000004
  */
-void Game::NaviDemo_UfoState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviDemo_UfoState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -14707,13 +14623,7 @@ void Game::NaviDemo_HoleInState::onKeyEvent((Game::Navi*,
  * Address:	8018888C
  * Size:	000004
  */
-void Game::NaviDemo_HoleInState::cleanup((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviDemo_HoleInState::cleanup((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -14987,13 +14897,7 @@ void Game::NaviDemo_HoleInState::execHesitate((Game::Navi*))
  * Address:	80188BD4
  * Size:	000004
  */
-void Game::NaviDemo_HoleInState::initFall((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::NaviDemo_HoleInState::initFall((Game::Navi*)) { }
 
 /*
  * --INFO--
@@ -15911,26 +15815,14 @@ void Game::NaviStuckState::vsUsableY(void)
  * Address:	801891BC
  * Size:	000004
  */
-void resume__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void resume__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi(void) { }
 
 /*
  * --INFO--
  * Address:	801891C0
  * Size:	000004
  */
-void restart__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void restart__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi(void) { }
 
 /*
  * --INFO--

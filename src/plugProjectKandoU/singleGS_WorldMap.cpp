@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -317,13 +317,7 @@ void Game::SingleGame::SelectState::initNext((Game::SingleGameSection*))
  * Address:	8021BD28
  * Size:	000004
  */
-void Game::WorldMap::Base::init((Game::WorldMap::InitArg&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::init((Game::WorldMap::InitArg&)) { }
 
 /*
  * --INFO--
@@ -571,13 +565,7 @@ void Game::SingleGame::SelectState::dvdload(void)
  * Address:	8021C038
  * Size:	000004
  */
-void Game::WorldMap::Base::loadResource(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::loadResource(void) { }
 
 /*
  * --INFO--
@@ -801,13 +789,7 @@ void Game::SingleGame::SelectState::exec((Game::SingleGameSection*))
  * Address:	8021C2E8
  * Size:	000004
  */
-void Game::WorldMap::Base::update((Game::WorldMap::UpdateArg&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::update((Game::WorldMap::UpdateArg&)) { }
 
 /*
  * --INFO--
@@ -1008,52 +990,28 @@ void Game::SingleGame::SelectState::draw((Game::SingleGameSection*, Graphics&))
  * Address:	8021C5BC
  * Size:	000004
  */
-void Game::WorldMap::Base::draw4th((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::draw4th((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	8021C5C0
  * Size:	000004
  */
-void Game::WorldMap::Base::draw3rd((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::draw3rd((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	8021C5C4
  * Size:	000004
  */
-void Game::WorldMap::Base::draw2nd((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::draw2nd((Graphics&)) { }
 
 /*
  * --INFO--
  * Address:	8021C5C8
  * Size:	000004
  */
-void Game::WorldMap::Base::draw1st((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::WorldMap::Base::draw1st((Graphics&)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -75,13 +75,7 @@ void og::newScreen::AnaDemo::__dt(void)
  * Address:	8031EAD8
  * Size:	000004
  */
-void og::newScreen::AnaDemo::doUserCallBackFunc((Resource::MgrCommand*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::AnaDemo::doUserCallBackFunc((Resource::MgrCommand*)) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -308,13 +308,7 @@ void Game::Houdai::StateDead::exec(Game::EnemyBase*)
  * Address:	802BDE9C
  * Size:	000004
  */
-void Game::Houdai::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -434,13 +428,7 @@ void Game::Houdai::StateStay::exec(Game::EnemyBase*)
  * Address:	802BDFDC
  * Size:	000004
  */
-void Game::Houdai::StateStay::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -914,13 +902,7 @@ void Game::Houdai::StateWait::exec(Game::EnemyBase*)
  * Address:	802BE5B4
  * Size:	000004
  */
-void Game::Houdai::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1201,13 +1183,7 @@ void Game::Houdai::StateWalk::exec(Game::EnemyBase*)
  * Address:	802BE8C8
  * Size:	000004
  */
-void Game::Houdai::StateWalk::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Houdai::StateWalk::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1364,13 +1364,7 @@ void Game::UmiMushi::Obj::doAnimationCullingOn(void)
  * Address:	80384204
  * Size:	000004
  */
-void Game::UmiMushi::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::UmiMushi::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -5514,13 +5508,7 @@ void efx::TUmiEat::__dt(void)
  * Address:	80387644
  * Size:	000004
  */
-void Game::UmiMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::UmiMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--
@@ -5530,10 +5518,6 @@ void Game::UmiMushi::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
 void applyImpulse__Q34Game8UmiMushi3ObjFR10Vector3<float>
 R10Vector3<float>(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

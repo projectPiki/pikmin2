@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2463,10 +2463,6 @@ void Game::SingleGame::GameState::onHoleIn((Game::SingleGameSection*,
 void Game::SingleGame::GameState::onMovieCommand((Game::SingleGameSection*,
                                                   int))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

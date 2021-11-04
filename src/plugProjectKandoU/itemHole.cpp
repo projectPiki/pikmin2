@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -127,26 +127,14 @@ void Game::ItemHole::NormalState::init(Game::CFSMItem*, Game::StateArg*)
  * Address:	801D18A8
  * Size:	000004
  */
-void Game::ItemHole::NormalState::exec(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemHole::NormalState::exec(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D18AC
  * Size:	000004
  */
-void Game::ItemHole::NormalState::cleanup(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemHole::NormalState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
@@ -297,13 +285,7 @@ void Game::FSMState<Game::CFSMItem>::transit(Game::CFSMItem*, int,
  * Address:	801D1A54
  * Size:	000004
  */
-void Game::ItemHole::AppearState::cleanup(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemHole::AppearState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
@@ -354,13 +336,7 @@ void Game::ItemHole::CloseState::exec(Game::CFSMItem*)
  * Address:	801D1AA8
  * Size:	000004
  */
-void Game::ItemHole::CloseState::cleanup(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemHole::CloseState::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
@@ -1815,13 +1791,7 @@ void Game::ItemHole::Item::getCreatureName()
  * Address:	801D2B8C
  * Size:	000004
  */
-void Game::CItemState::onDamage(Game::CFSMItem*, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::CItemState::onDamage(Game::CFSMItem*, float) { }
 
 /*
  * --INFO--
@@ -1842,52 +1812,28 @@ void Game::ItemHole::NormalState::canRide()
  * Address:	801D2B98
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::init(Game::CFSMItem*, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::CFSMItem>::init(Game::CFSMItem*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801D2B9C
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::cleanup(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::CFSMItem>::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA0
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::resume(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::CFSMItem>::resume(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA4
  * Size:	000004
  */
-void Game::FSMState<Game::CFSMItem>::restart(Game::CFSMItem*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::CFSMItem>::restart(Game::CFSMItem*) { }
 
 /*
  * --INFO--

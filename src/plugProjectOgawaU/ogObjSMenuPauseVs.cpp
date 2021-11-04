@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1068,52 +1068,28 @@ void og::newScreen::ObjSMenuPauseVS::out_L(void)
  * Address:	80329CE4
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateRAction(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSMenuPauseVS::doUpdateRAction(void) { }
 
 /*
  * --INFO--
  * Address:	80329CE8
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::doUpdateLAction(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSMenuPauseVS::doUpdateLAction(void) { }
 
 /*
  * --INFO--
  * Address:	80329CEC
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::in_R(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSMenuPauseVS::in_R(void) { }
 
 /*
  * --INFO--
  * Address:	80329CF0
  * Size:	000004
  */
-void og::newScreen::ObjSMenuPauseVS::out_R(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSMenuPauseVS::out_R(void) { }
 
 /*
  * --INFO--

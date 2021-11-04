@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -660,26 +660,14 @@ void PikiAI::ActBreakRock::collisionCallback(Game::Piki*, Game::CollEvent&)
  * Address:	801E3E34
  * Size:	000004
  */
-void PikiAI::ActBreakRock::bounceCallback(Game::Piki*, Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBreakRock::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801E3E38
  * Size:	000004
  */
-void PikiAI::ActBreakRock::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActBreakRock::onKeyEvent(const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--

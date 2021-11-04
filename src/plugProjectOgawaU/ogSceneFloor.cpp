@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -155,13 +155,7 @@ void og::newScreen::Floor::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	8031BFD8
  * Size:	000004
  */
-void og::newScreen::Floor::doCreateObj((JKRArchive*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::Floor::doCreateObj((JKRArchive*)) { }
 
 /*
  * --INFO--

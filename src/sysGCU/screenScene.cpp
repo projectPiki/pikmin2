@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -370,13 +370,7 @@ void Screen::SceneBase::updateActive(void)
  * Address:	80451B84
  * Size:	000004
  */
-void Screen::SceneBase::doUpdateActive(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Screen::SceneBase::doUpdateActive(void) { }
 
 /*
  * --INFO--
@@ -1127,10 +1121,6 @@ void Screen::SceneBase::setColorBG( (unsigned char, unsigned char, unsigned char
  */
 void Screen::Mgr::setColorBG( (JUtility::TColor &))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1150,10 +1140,6 @@ void Screen::SceneBase::setBGMode( (int))
  */
 void Screen::Mgr::setBGMode( (int))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

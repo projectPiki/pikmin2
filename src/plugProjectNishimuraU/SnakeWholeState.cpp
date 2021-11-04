@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -478,13 +478,7 @@ void Game::SnakeWhole::StateDead::exec(Game::EnemyBase*)
  * Address:	802CBFA0
  * Size:	000004
  */
-void Game::SnakeWhole::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -2156,13 +2150,7 @@ void Game::SnakeWhole::StateWait::exec(Game::EnemyBase*)
  * Address:	802CD4F8
  * Size:	000004
  */
-void Game::SnakeWhole::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -3118,13 +3106,7 @@ void Game::SnakeWhole::StateEat::exec(Game::EnemyBase*)
  * Address:	802CE030
  * Size:	000004
  */
-void Game::SnakeWhole::StateEat::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::StateEat::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -3301,13 +3283,7 @@ void Game::SnakeWhole::StateStruggle::exec(Game::EnemyBase*)
  * Address:	802CE23C
  * Size:	000004
  */
-void Game::SnakeWhole::StateStruggle::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::SnakeWhole::StateStruggle::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

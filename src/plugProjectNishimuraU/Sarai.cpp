@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -101,13 +101,7 @@ void Game::Sarai::Obj::Obj()
  * Address:	80272CFC
  * Size:	000004
  */
-void Game::Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -217,13 +211,7 @@ void Game::Sarai::Obj::setFSM(Game::Sarai::FSM*)
  * Address:	80272E0C
  * Size:	000004
  */
-void Game::Sarai::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -1549,26 +1537,14 @@ void Game::Sarai::Obj::getDownSmokeScale()
  * Address:	80273DCC
  * Size:	000004
  */
-void Game::Sarai::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	80273DD0
  * Size:	000004
  */
-void Game::Sarai::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Sarai::Obj::outWaterCallback() { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3867,13 +3867,7 @@ void PSM::ExiteDirector::~ExiteDirector()
  * Address:	804595B0
  * Size:	000004
  */
-void PSM::ActorDirector_Scaled::onSetMinDistObj(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::ActorDirector_Scaled::onSetMinDistObj(Game::Creature*) { }
 
 /*
  * --INFO--

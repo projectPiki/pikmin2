@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -99,13 +99,7 @@ void Game::VsGame::FSM::draw((Game::VsGameSection*, Graphics&))
  * Address:	801C0EC8
  * Size:	000004
  */
-void Game::VsGame::State::draw((Game::VsGameSection*, Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGame::State::draw((Game::VsGameSection*, Graphics&)) { }
 
 /*
  * --INFO--
@@ -344,13 +338,7 @@ void Game::VsGameSection::section_fadeout(void)
  * Address:	801C1144
  * Size:	000004
  */
-void Game::VsGame::State::on_section_fadeout((Game::VsGameSection*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGame::State::on_section_fadeout((Game::VsGameSection*)) { }
 
 /*
  * --INFO--
@@ -775,13 +763,7 @@ void Game::VsGameSection::pre2dDraw((Graphics&))
  * Address:	801C1614
  * Size:	000004
  */
-void Game::VsGame::State::pre2dDraw((Graphics&, Game::VsGameSection*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGame::State::pre2dDraw((Graphics&, Game::VsGameSection*)) { }
 
 /*
  * --INFO--
@@ -1341,26 +1323,14 @@ void Game::VsGameSection::gmOrimaDown((int))
  * Address:	801C1C54
  * Size:	000004
  */
-void Game::VsGame::State::onOrimaDown((Game::VsGameSection*, int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGame::State::onOrimaDown((Game::VsGameSection*, int)) { }
 
 /*
  * --INFO--
  * Address:	801C1C58
  * Size:	000004
  */
-void Game::VsGameSection::gmPikminZero(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGameSection::gmPikminZero(void) { }
 
 /*
  * --INFO--
@@ -1397,10 +1367,6 @@ void Game::VsGameSection::goNextFloor((Game::ItemHole::Item*))
 void Game::VsGame::State::onNextFloor((Game::VsGameSection*,
                                        Game::ItemHole::Item*))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2018,10 +1984,6 @@ void Game::VsGame::State::onMovieStart((Game::VsGameSection*,
                                         Game::MovieConfig*, unsigned long,
                                         unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2068,10 +2030,6 @@ void Game::VsGameSection::onMovieDone((Game::MovieConfig*, unsigned long,
 void Game::VsGame::State::onMovieDone((Game::VsGameSection*, Game::MovieConfig*,
                                        unsigned long, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2885,12 +2843,7 @@ void Game::GameMessageVsBattleFinished::actVs((Game::VsGameSection*))
  * Address:	801C2EC8
  * Size:	000004
  */
-void Game::VsGame::State::onBattleFinished((Game::VsGameSection*, int, bool))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::VsGame::State::onBattleFinished((Game::VsGameSection*, int, bool)) {
 }
 
 /*
@@ -2934,10 +2887,6 @@ void Game::GameMessageVsRedOrSuckStart::actVs((Game::VsGameSection*))
 void Game::VsGame::State::onRedOrBlueSuckStart((Game::VsGameSection*, int,
                                                 bool))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5258,10 +5207,6 @@ void Game::VsGameSection::getVsEditNumber(void)
 void init__Q24Game36StateMachine<Game::VsGameSection>
 FPQ24Game13VsGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5367,10 +5312,6 @@ FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
 void init__Q24Game32FSMState<Game::VsGameSection>
 FPQ24Game13VsGameSectionPQ24Game8StateArg(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5381,10 +5322,6 @@ FPQ24Game13VsGameSectionPQ24Game8StateArg(void)
 void cleanup__Q24Game32FSMState<Game::VsGameSection>
 FPQ24Game13VsGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -5475,10 +5412,6 @@ FPQ24Game13VsGameSection(void)
  */
 void exec__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

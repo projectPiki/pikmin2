@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,13 +15,7 @@ void _Print(char*, ...)
  * Address:	80202E14
  * Size:	000004
  */
-void Game::PelletItem::Object::do_onInit((Game::CreatureInitArg*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PelletItem::Object::do_onInit((Game::CreatureInitArg*)) { }
 
 /*
  * --INFO--
@@ -1004,10 +998,6 @@ void Game::PelletItem::Object::getKind(void)
 void onCreateModel__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object>
 FPQ28SysShape5Model(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1765,13 +1755,7 @@ void MonoObjectMgr<Game::PelletItem::Object>::clearMgr()
  * Address:	80203EF4
  * Size:	000004
  */
-void MonoObjectMgr<Game::PelletItem::Object>::onAlloc()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void MonoObjectMgr<Game::PelletItem::Object>::onAlloc() { }
 
 /*
  * --INFO--

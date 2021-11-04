@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -596,13 +596,7 @@ void Sys::MatBaseAnimator::animate((float))
  * Address:	804345C4
  * Size:	000004
  */
-void Sys::MatBaseAnimator::do_animate((float))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Sys::MatBaseAnimator::do_animate((float)) { }
 
 /*
  * --INFO--
@@ -1000,13 +994,7 @@ void Sys::MatRepeatAnimator::do_animate((float))
  * Address:	80434AAC
  * Size:	000004
  */
-void Sys::MatBaseAnimator::onStart(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Sys::MatBaseAnimator::onStart(void) { }
 
 /*
  * --INFO--

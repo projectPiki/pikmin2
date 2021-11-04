@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -228,13 +228,7 @@ void J3DTevBlock::getTevColor(unsigned long)
  * Address:	8006A360
  * Size:	000004
  */
-void J3DTevBlock::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J3DTevBlock::setTexNo(unsigned long, unsigned short) { }
 
 /*
  * --INFO--

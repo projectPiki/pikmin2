@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -433,13 +433,7 @@ void ModelEffect::doAnimation()
  * Address:	8043D8FC
  * Size:	000004
  */
-void ModelEffect::getLODCylinder(Sys::Cylinder&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ModelEffect::getLODCylinder(Sys::Cylinder&) { }
 
 /*
  * --INFO--
@@ -516,13 +510,7 @@ void ModelEffect::doEntry()
  * Address:	8043D9A0
  * Size:	000004
  */
-void ModelEffect::changeMaterial()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void ModelEffect::changeMaterial() { }
 
 /*
  * --INFO--

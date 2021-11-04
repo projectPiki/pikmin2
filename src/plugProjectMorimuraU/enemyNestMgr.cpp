@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -678,13 +678,7 @@ void Game::Nest::Mgr::__dt(void)
  * Address:	8036C968
  * Size:	000004
  */
-void Game::Nest::Mgr::loadAnimData(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Nest::Mgr::loadAnimData(void) { }
 
 /*
  * --INFO--
@@ -790,13 +784,7 @@ void Game::Nest::Obj::__dt(void)
  * Address:	8036CA88
  * Size:	000004
  */
-void __sinit_enemyNestMgr_cpp(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void __sinit_enemyNestMgr_cpp(void) { }
 
 /*
  * --INFO--

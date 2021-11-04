@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -49,13 +49,7 @@ void PSM::SeSound::makeSeSound()
  * Address:	80470F84
  * Size:	000004
  */
-void PSM::SeSound::onGet()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSM::SeSound::onGet() { }
 
 /*
  * --INFO--

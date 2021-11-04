@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2586,13 +2586,7 @@ void Game::PlayCamera::__dt(void)
  * Address:	80241234
  * Size:	000004
  */
-void Game::PlayCamera::startVibration((int))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PlayCamera::startVibration((int)) { }
 
 /*
  * --INFO--

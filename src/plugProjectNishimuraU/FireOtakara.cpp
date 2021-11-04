@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -467,26 +467,14 @@ void Game::FireOtakara::Obj::startDisChargeSE()
  * Address:	802B86D0
  * Size:	000004
  */
-void efx::TSimple5::forceKill()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple5::forceKill() { }
 
 /*
  * --INFO--
  * Address:	802B86D4
  * Size:	000004
  */
-void efx::TSimple5::fade()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void efx::TSimple5::fade() { }
 
 /*
  * --INFO--

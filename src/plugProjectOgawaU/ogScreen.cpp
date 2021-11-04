@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2160,39 +2160,21 @@ void og::Screen::drawPaneFrame((J2DGrafContext&, J2DPane*, JUtility::TColor&))
  * Address:	803035A0
  * Size:	000004
  */
-void P2DScreen::Node::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2DScreen::Node::update(void) { }
 
 /*
  * --INFO--
  * Address:	803035A4
  * Size:	000004
  */
-void P2DScreen::Node::draw((Graphics&, J2DGrafContext&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2DScreen::Node::draw((Graphics&, J2DGrafContext&)) { }
 
 /*
  * --INFO--
  * Address:	803035A8
  * Size:	000004
  */
-void P2DScreen::Node::doInit(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void P2DScreen::Node::doInit(void) { }
 
 /*
  * --INFO--

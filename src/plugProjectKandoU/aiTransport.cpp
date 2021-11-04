@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -262,13 +262,7 @@ void PikiAI::ActTransport::emotion_success(void)
  * Address:	801A1C08
  * Size:	000004
  */
-void PikiAI::ActTransport::emotion_fail(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PikiAI::ActTransport::emotion_fail(void) { }
 
 /*
  * --INFO--

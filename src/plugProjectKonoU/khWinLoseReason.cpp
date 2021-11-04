@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -84,13 +84,7 @@ void kh::Screen::ObjWinLoseReason::doUpdate()
  * Address:	804107E8
  * Size:	000004
  */
-void kh::Screen::ObjWinLoseReason::doDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void kh::Screen::ObjWinLoseReason::doDraw(Graphics&) { }
 
 /*
  * --INFO--

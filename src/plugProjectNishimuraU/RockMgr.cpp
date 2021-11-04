@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -203,13 +203,7 @@ void Game::Rock::Generator::doReadLatestVersion(Stream&)
  * Address:	80262B08
  * Size:	000004
  */
-void Game::Rock::Generator::doReadOldVersion(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Rock::Generator::doReadOldVersion(Stream&) { }
 
 /*
  * --INFO--

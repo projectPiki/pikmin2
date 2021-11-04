@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -483,13 +483,7 @@ void Game::BombSarai::StateDead::exec(Game::EnemyBase*)
  * Address:	802B02BC
  * Size:	000004
  */
-void Game::BombSarai::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -848,13 +842,7 @@ void Game::BombSarai::StateWait::exec(Game::EnemyBase*)
  * Address:	802B06F0
  * Size:	000004
  */
-void Game::BombSarai::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::StateWait::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1417,13 +1405,7 @@ void Game::BombSarai::StateMove::exec(Game::EnemyBase*)
  * Address:	802B0E24
  * Size:	000004
  */
-void Game::BombSarai::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BombSarai::StateMove::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -105,13 +105,7 @@ void TreasureLight::Mgr::Mgr()
  * Address:	801329BC
  * Size:	000004
  */
-void TreasureLight::Mgr::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void TreasureLight::Mgr::update() { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -302,13 +302,7 @@ void Game::Fuefuki::StateDead::exec(Game::EnemyBase*)
  * Address:	8029AA00
  * Size:	000004
  */
-void Game::Fuefuki::StateDead::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Fuefuki::StateDead::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -404,13 +398,7 @@ void Game::Fuefuki::StateStay::exec(Game::EnemyBase*)
  * Address:	8029AB00
  * Size:	000004
  */
-void Game::Fuefuki::StateStay::cleanup(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Fuefuki::StateStay::cleanup(Game::EnemyBase*) { }
 
 /*
  * --INFO--

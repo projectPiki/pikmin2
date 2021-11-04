@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -594,13 +594,7 @@ void og::newScreen::ObjCourseName::doEnd((Screen::EndSceneArg const*))
  * Address:	80317B28
  * Size:	000004
  */
-void og::newScreen::ObjCourseName::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjCourseName::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -622,13 +616,7 @@ void og::newScreen::ObjCourseName::doUpdateFinish(void)
  * Address:	80317B38
  * Size:	000004
  */
-void og::newScreen::ObjCourseName::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjCourseName::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

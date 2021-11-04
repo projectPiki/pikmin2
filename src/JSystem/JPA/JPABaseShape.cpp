@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1720,13 +1720,7 @@ void JPALoadPosMtxCam(JPAEmitterWorkData*)
  * Address:	8008C320
  * Size:	000004
  */
-void noLoadPrj(const JPAEmitterWorkData*, const float (*)[4])
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void noLoadPrj(const JPAEmitterWorkData*, const float (*)[4]) { }
 
 /*
  * --INFO--
@@ -4713,13 +4707,7 @@ void JPADrawParticleCallBack(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008E968
  * Size:	000004
  */
-void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle*) { }
 
 /*
  * --INFO--

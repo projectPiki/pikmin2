@@ -1,17 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	80027DC0
  * Size:	000004
  */
-void JUTAssertion::create()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JUTAssertion::create() { }
 
 /*
  * --INFO--

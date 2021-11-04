@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -139,13 +139,7 @@ void Game::PartsView::__ct((Game::MapUnit*, unsigned char*))
  * Address:	8023247C
  * Size:	000004
  */
-void Game::PartsView::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PartsView::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -195,13 +189,7 @@ void Game::PartsView::doAnimation(void)
  * Address:	802324F4
  * Size:	000004
  */
-void Game::PartsView::doEntry(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PartsView::doEntry(void) { }
 
 /*
  * --INFO--

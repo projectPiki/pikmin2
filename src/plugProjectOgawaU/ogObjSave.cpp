@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -328,26 +328,14 @@ void og::newScreen::ObjSave::doEnd((Screen::EndSceneArg const*))
  * Address:	80324D60
  * Size:	000004
  */
-void og::newScreen::ObjSave::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSave::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	80324D64
  * Size:	000004
  */
-void og::newScreen::ObjSave::doUpdateFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjSave::doUpdateFinish(void) { }
 
 /*
  * --INFO--

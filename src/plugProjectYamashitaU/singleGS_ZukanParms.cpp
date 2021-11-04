@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -133,13 +133,7 @@ void Game::IllustratedBook::ColorSetting::ColorSetting()
  * Address:	80130D6C
  * Size:	000004
  */
-void Color4::Color4()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Color4::Color4() { }
 
 /*
  * --INFO--

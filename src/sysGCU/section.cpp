@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -15,13 +15,7 @@ void _Print(char*, ...)
  * Address:	80423770
  * Size:	000004
  */
-void Section::init()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Section::init() { }
 
 /*
  * --INFO--

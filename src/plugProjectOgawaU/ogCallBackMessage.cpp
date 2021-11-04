@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -799,10 +799,4 @@ void og::Screen::CallBack_MessageAndShadow::__dt(void)
  * Address:	80309E24
  * Size:	000004
  */
-void og::Screen::CallBack_Message::update(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::Screen::CallBack_Message::update(void) { }

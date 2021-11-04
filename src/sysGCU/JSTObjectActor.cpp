@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1237,10 +1237,6 @@ void Game::P2JST::ObjectActor::JSGGetAnimationFrameMax( const
  */
 void Game::P2JST::ObjectActor::JSGSetAnimationFrame( (float))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1264,10 +1260,6 @@ void Game::P2JST::ObjectActor::JSGGetAnimationFrame( const
  */
 void Game::P2JST::ObjectActor::stop(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1277,10 +1269,6 @@ void Game::P2JST::ObjectActor::stop(void)
  */
 void Game::P2JST::ObjectActor::start(void)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -1290,10 +1278,6 @@ void Game::P2JST::ObjectActor::start(void)
  */
 void Game::P2JST::ObjectBase::parseUserData_( (unsigned long, void const *))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*

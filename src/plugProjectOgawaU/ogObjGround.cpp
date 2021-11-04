@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -794,13 +794,7 @@ void og::newScreen::ObjGround::doUpdateFadein(void)
  * Address:	8030E844
  * Size:	000004
  */
-void og::newScreen::ObjGround::doUpdateFadeinFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjGround::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
@@ -867,13 +861,7 @@ void og::newScreen::ObjGround::doUpdateFadeout(void)
  * Address:	8030E8D0
  * Size:	000004
  */
-void og::newScreen::ObjGround::doUpdateFadeoutFinish(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::ObjGround::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--

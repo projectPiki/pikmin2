@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1054,13 +1054,7 @@ void Game::FakePiki::updateLookCreature()
  * Address:	8013D820
  * Size:	000004
  */
-void Game::FakePiki::do_updateLookCreature()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::do_updateLookCreature() { }
 
 /*
  * --INFO--
@@ -2277,13 +2271,7 @@ void Game::FakePiki::inWater()
  * Address:	8013E7A4
  * Size:	000004
  */
-void Game::FakePiki::wallCallback(Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::wallCallback(Vector3<float>&) { }
 
 /*
  * --INFO--
@@ -2392,13 +2380,7 @@ void Game::FakePiki::doEntry()
  * Address:	8013E880
  * Size:	000004
  */
-void Game::FakePiki::doColorChange()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::doColorChange() { }
 
 /*
  * --INFO--
@@ -3448,26 +3430,14 @@ void Game::FakePiki::isPikmin()
  * Address:	8013F4E8
  * Size:	000004
  */
-void Game::FakePiki::doDebugDL()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::doDebugDL() { }
 
 /*
  * --INFO--
  * Address:	8013F4EC
  * Size:	000004
  */
-void Game::FakePiki::update()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::update() { }
 
 /*
  * --INFO--
@@ -3631,39 +3601,21 @@ void Game::FakePiki::wasZikatu()
  * Address:	8013F5E4
  * Size:	000004
  */
-void Game::FakePiki::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	8013F5E8
  * Size:	000004
  */
-void Game::FakePiki::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	8013F5EC
  * Size:	000004
  */
-void Game::FakePiki::onSetPosition()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::onSetPosition() { }
 
 /*
  * --INFO--
@@ -3798,13 +3750,7 @@ void Game::FakePiki::isWalking()
  * Address:	8013F6A0
  * Size:	000004
  */
-void Game::FakePiki::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FakePiki::onKeyEvent(const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--

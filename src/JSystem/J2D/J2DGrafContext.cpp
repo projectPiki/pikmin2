@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -862,10 +862,4 @@ void J2DGrafContext::getGrafType() const
  * Address:	80036AEC
  * Size:	000004
  */
-void J2DGrafContext::setLookat()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DGrafContext::setLookat() { }

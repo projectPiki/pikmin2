@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3226,13 +3226,7 @@ void Game::PikiMgr::doEntry(void)
  * Address:	8015F848
  * Size:	000004
  */
-void Game::PikiMgr::setupSoundViewerAndBas(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiMgr::setupSoundViewerAndBas(void) { }
 
 /*
  * --INFO--
@@ -5194,13 +5188,7 @@ void Game::PikiMgr::getMatrixLoadType(void)
  * Address:	801610AC
  * Size:	000004
  */
-void Game::PikiMgr::loadResources(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::PikiMgr::loadResources(void) { }
 
 /*
  * --INFO--

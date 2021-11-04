@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -572,13 +572,7 @@ void JKRSolidHeap::do_freeTail()
  * Address:	8002537C
  * Size:	000004
  */
-void JKRSolidHeap::do_fillFreeArea()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void JKRSolidHeap::do_fillFreeArea() { }
 
 /*
  * --INFO--

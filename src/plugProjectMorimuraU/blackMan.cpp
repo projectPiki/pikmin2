@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1616,13 +1616,7 @@ void Game::BlackMan::Obj::doUpdate(void)
  * Address:	803A730C
  * Size:	000004
  */
-void Game::BlackMan::Obj::doDirectDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BlackMan::Obj::doDirectDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -5949,13 +5943,7 @@ void Game::BlackMan::Obj::moveRestart(void)
  * Address:	803AA9C0
  * Size:	000004
  */
-void Game::BlackMan::Obj::escape(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BlackMan::Obj::escape(void) { }
 
 /*
  * --INFO--
@@ -7191,26 +7179,14 @@ void efx::TKageMove::__dt(void)
  * Address:	803AB718
  * Size:	000004
  */
-void Game::BlackMan::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BlackMan::Obj::setInitialSetting((Game::EnemyInitialParamBase*)) { }
 
 /*
  * --INFO--
  * Address:	803AB71C
  * Size:	000004
  */
-void Game::BlackMan::Obj::throwupItemInDeathProcedure(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::BlackMan::Obj::throwupItemInDeathProcedure(void) { }
 
 /*
  * --INFO--

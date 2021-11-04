@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -173,13 +173,7 @@ void Game::ElecHiba::Generator::doReadLatestVersion(Stream&)
  * Address:	8026EBA8
  * Size:	000004
  */
-void Game::ElecHiba::Generator::doReadOldVersion(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ElecHiba::Generator::doReadOldVersion(Stream&) { }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2001,13 +2001,7 @@ void PSSystem::SingletonBase<PSGame::SeMgr>::~SingletonBase()
  * Address:	803407C0
  * Size:	000004
  */
-void PSGame::Builder_EvnSe_Perspective::onBuild(PSSystem::EnvSeBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSGame::Builder_EvnSe_Perspective::onBuild(PSSystem::EnvSeBase*) { }
 
 /*
  * --INFO--
@@ -2029,13 +2023,7 @@ void PSSystem::EnvSeBase::getCastType()
  * Address:	803407D0
  * Size:	000004
  */
-void PSSystem::EnvSeBase::setPanAndDolby(JAISound*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void PSSystem::EnvSeBase::setPanAndDolby(JAISound*) { }
 
 /*
  * --INFO--

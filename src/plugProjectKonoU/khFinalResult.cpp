@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -3394,13 +3394,7 @@ void kh::Screen::SceneFinalResult::getMemberID()
  * Address:	8040F014
  * Size:	000004
  */
-void kh::Screen::SceneFinalResult::doCreateObj(JKRArchive*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void kh::Screen::SceneFinalResult::doCreateObj(JKRArchive*) { }
 
 /*
  * --INFO--

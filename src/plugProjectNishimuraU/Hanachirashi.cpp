@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -110,12 +110,7 @@ void Game::Hanachirashi::Obj::Obj()
  * Address:	802A1C44
  * Size:	000004
  */
-void Game::Hanachirashi::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
+void Game::Hanachirashi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) {
 }
 
 /*
@@ -357,13 +352,7 @@ void Game::Hanachirashi::Obj::setFSM(Game::Hanachirashi::FSM*)
  * Address:	802A1EF0
  * Size:	000004
  */
-void Game::Hanachirashi::Obj::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -3373,39 +3362,21 @@ void Game::Hanachirashi::Obj::effectDrawOff()
  * Address:	802A4370
  * Size:	000004
  */
-void Game::Hanachirashi::Obj::inWaterCallback(Game::WaterBox*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802A4374
  * Size:	000004
  */
-void Game::Hanachirashi::Obj::outWaterCallback()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802A4378
  * Size:	000004
  */
-void Game::Hanachirashi::Obj::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::Hanachirashi::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--

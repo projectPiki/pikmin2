@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4040,13 +4040,7 @@ void Game::VsGame::GameState::update_GameChallenge((Game::VsGameSection*))
  * Address:	8022C70C
  * Size:	000004
  */
-void Game::VsGame::GameState::drawStatus((Graphics&, Game::VsGameSection*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::VsGame::GameState::drawStatus((Graphics&, Game::VsGameSection*)) { }
 
 /*
  * --INFO--

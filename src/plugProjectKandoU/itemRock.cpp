@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -202,13 +202,7 @@ void Game::FSMState<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
  * Address:	801E10B4
  * Size:	000004
  */
-void Game::ItemRock::NormalState::cleanup(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemRock::NormalState::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
@@ -389,26 +383,14 @@ void Game::ItemRock::DownState::init(Game::ItemRock::Item*, Game::StateArg*)
  * Address:	801E12B4
  * Size:	000004
  */
-void Game::ItemRock::DownState::exec(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemRock::DownState::exec(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E12B8
  * Size:	000004
  */
-void Game::ItemRock::DownState::cleanup(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemRock::DownState::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
@@ -540,26 +522,14 @@ void Game::ItemRock::UpState::init(Game::ItemRock::Item*, Game::StateArg*)
  * Address:	801E1414
  * Size:	000004
  */
-void Game::ItemRock::UpState::exec(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemRock::UpState::exec(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E1418
  * Size:	000004
  */
-void Game::ItemRock::UpState::cleanup(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemRock::UpState::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
@@ -951,10 +921,6 @@ void Game::ItemRock::Item::onKeyEvent(const SysShape::KeyEvent&)
 void Game::ItemState<Game::ItemRock::Item>::onKeyEvent(
     Game::ItemRock::Item*, const SysShape::KeyEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -2375,13 +2341,7 @@ void Game::ItemRock::Item::interactAttack(Game::InteractAttack&)
  * Address:	801E28F4
  * Size:	000004
  */
-void Game::ItemRock::State::onDamage(Game::ItemRock::Item*, float)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::ItemRock::State::onDamage(Game::ItemRock::Item*, float) { }
 
 /*
  * --INFO--
@@ -3302,10 +3262,6 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
 void Game::ItemState<Game::ItemRock::Item>::onDamage(Game::ItemRock::Item*,
                                                      float)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3316,10 +3272,6 @@ void Game::ItemState<Game::ItemRock::Item>::onDamage(Game::ItemRock::Item*,
 void Game::ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*,
                                                      Sys::Triangle*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3330,10 +3282,6 @@ void Game::ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*,
 void Game::ItemState<Game::ItemRock::Item>::onPlatCollision(
     Game::ItemRock::Item*, Game::PlatEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3344,10 +3292,6 @@ void Game::ItemState<Game::ItemRock::Item>::onPlatCollision(
 void Game::ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*,
                                                         Game::CollEvent&)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3358,10 +3302,6 @@ void Game::ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*,
 void Game::FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*,
                                                 Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -3369,65 +3309,35 @@ void Game::FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*,
  * Address:	801E33EC
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::exec(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemRock::Item>::exec(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33F0
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::cleanup(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemRock::Item>::cleanup(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33F4
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::resume(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemRock::Item>::resume(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33F8
  * Size:	000004
  */
-void Game::FSMState<Game::ItemRock::Item>::restart(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::FSMState<Game::ItemRock::Item>::restart(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E33FC
  * Size:	000004
  */
-void Game::StateMachine<Game::ItemRock::Item>::init(Game::ItemRock::Item*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Game::StateMachine<Game::ItemRock::Item>::init(Game::ItemRock::Item*) { }
 
 /*
  * --INFO--

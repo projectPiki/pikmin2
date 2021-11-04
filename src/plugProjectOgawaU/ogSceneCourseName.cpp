@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -148,13 +148,7 @@ void og::newScreen::CourseName::doUserCallBackFunc((Resource::MgrCommand*))
  * Address:	803181B4
  * Size:	000004
  */
-void og::newScreen::CourseName::doCreateObj((JKRArchive*))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void og::newScreen::CourseName::doCreateObj((JKRArchive*)) { }
 
 /*
  * --INFO--

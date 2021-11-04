@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2848,13 +2848,7 @@ void Morimura::TZukanBase::doDraw((Graphics&))
  * Address:	8037327C
  * Size:	000004
  */
-void Morimura::TZukanBase::doDemoDraw((Graphics&))
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Morimura::TZukanBase::doDemoDraw((Graphics&)) { }
 
 /*
  * --INFO--
@@ -14990,10 +14984,6 @@ void Morimura::TZukanBase::doUpdateFadeout(void)
  */
 void Morimura::TScrollList::changeTextTevBlock( (int))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
@@ -15003,10 +14993,6 @@ void Morimura::TScrollList::changeTextTevBlock( (int))
  */
 void Morimura::TScrollList::setPaneCharacter( (int))
 {
-	/*
-	.loc_0x0:
-	  blr
-	*/
 }
 
 /*
