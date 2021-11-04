@@ -5,27 +5,21 @@
  * Address:	800CFD68
  * Size:	000004
  */
-void DBClose(void)
-{
-	return;
-}
+void DBClose(void) { return; }
 
 /*
  * --INFO--
  * Address:	800CFD6C
  * Size:	000004
  */
-void DBOpen(void)
-{
-	return;
-}
+void DBOpen(void) { return; }
 //
 ///*
 // * --INFO--
 // * Address:	800CFD70
 // * Size:	000260
 // */
-//void DBWrite(void)
+// void DBWrite(void)
 //{
 ///*
 //.loc_0x0:
@@ -217,7 +211,7 @@ void DBOpen(void)
 // * Address:	800CFFD0
 // * Size:	00008C
 // */
-//void DBRead(void)
+// void DBRead(void)
 //{
 ///*
 //.loc_0x0:
@@ -268,7 +262,7 @@ void DBOpen(void)
 // * Address:	800D005C
 // * Size:	00009C
 // */
-//void DBQueryData(void)
+// void DBQueryData(void)
 //{
 ///*
 //.loc_0x0:
@@ -323,7 +317,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	000150
 // */
-//void CheckMailBox(void)
+// void CheckMailBox(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -333,7 +327,7 @@ void DBOpen(void)
 // * Address:	800D00F8
 // * Size:	000054
 // */
-//void DBInitInterrupts(void)
+// void DBInitInterrupts(void)
 //{
 ///*
 //.loc_0x0:
@@ -366,7 +360,7 @@ void DBOpen(void)
 // * Address:	800D014C
 // * Size:	000078
 // */
-//void DBInitComm(void)
+// void DBInitComm(void)
 //{
 ///*
 //.loc_0x0:
@@ -408,7 +402,7 @@ void DBOpen(void)
 // * Address:	800D01C4
 // * Size:	000040
 // */
-//void DBGHandler(void)
+// void DBGHandler(void)
 //{
 ///*
 //.loc_0x0:
@@ -423,7 +417,7 @@ void DBOpen(void)
 //  beq-      .loc_0x30
 //  mtlr      r12
 //  extsh     r3, r3
-//  blrl      
+//  blrl
 //
 //.loc_0x30:
 //  lwz       r0, 0xC(r1)
@@ -438,7 +432,7 @@ void DBOpen(void)
 // * Address:	800D0204
 // * Size:	00003C
 // */
-//void MWCallback(void)
+// void MWCallback(void)
 //{
 ///*
 //.loc_0x0:
@@ -452,7 +446,7 @@ void DBOpen(void)
 //  beq-      .loc_0x2C
 //  mtlr      r12
 //  li        r3, 0
-//  blrl      
+//  blrl
 //
 //.loc_0x2C:
 //  lwz       r0, 0xC(r1)
@@ -467,7 +461,7 @@ void DBOpen(void)
 // * Address:	800D0240
 // * Size:	0000AC
 // */
-//void DBGReadStatus(void)
+// void DBGReadStatus(void)
 //{
 ///*
 //.loc_0x0:
@@ -526,7 +520,7 @@ void DBOpen(void)
 // * Address:	800D02EC
 // * Size:	0000DC
 // */
-//void DBGWrite(void)
+// void DBGWrite(void)
 //{
 ///*
 //.loc_0x0:
@@ -601,7 +595,7 @@ void DBOpen(void)
 // * Address:	800D03C8
 // * Size:	0000DC
 // */
-//void DBGRead(void)
+// void DBGRead(void)
 //{
 ///*
 //.loc_0x0:
@@ -676,7 +670,7 @@ void DBOpen(void)
 // * Address:	800D04A4
 // * Size:	0000AC
 // */
-//void DBGReadMailbox(void)
+// void DBGReadMailbox(void)
 //{
 ///*
 //.loc_0x0:
@@ -726,7 +720,7 @@ void DBOpen(void)
 //  lwz       r0, 0x3C(r1)
 //  addi      r1, r1, 0x38
 //  mtlr      r0
-//  blr       
+//  blr
 //
 //.loc_0xAC:
 //*/
@@ -737,7 +731,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	00008C
 // */
-//void DBGWriteMailbox(void)
+// void DBGWriteMailbox(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -747,7 +741,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	0000AC
 // */
-//void DBGCheckID(void)
+// void DBGCheckID(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -757,7 +751,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	000018
 // */
-//void DBGEXIClearInterrupts(void)
+// void DBGEXIClearInterrupts(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -767,7 +761,7 @@ void DBOpen(void)
 // * Address:	800D0550
 // * Size:	000298
 // */
-//void DBGEXIImm(void)
+// void DBGEXIImm(void)
 //{
 ///*
 //.loc_0x0:
@@ -969,7 +963,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	00001C
 // */
-//void DBGEXISync(void)
+// void DBGEXISync(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -979,7 +973,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	00001C
 // */
-//void DBGEXIDeselect(void)
+// void DBGEXIDeselect(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -989,7 +983,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	000028
 // */
-//void DBGEXISelect(void)
+// void DBGEXISelect(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -999,7 +993,7 @@ void DBOpen(void)
 // * Address:	........
 // * Size:	000034
 // */
-//void DBGEXIInit(void)
+// void DBGEXIInit(void)
 //{
 //	// UNUSED FUNCTION
 //}

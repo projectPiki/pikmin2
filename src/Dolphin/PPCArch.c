@@ -7,11 +7,11 @@
  */
 void PPCMfmsr(void)
 {
-/*
-.loc_0x0:
-  mfmsr     r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mfmsr     r3
+	  blr
+	*/
 }
 
 /*
@@ -21,11 +21,11 @@ void PPCMfmsr(void)
  */
 void PPCMtmsr(void)
 {
-/*
-.loc_0x0:
-  mtmsr     r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtmsr     r3
+	  blr
+	*/
 }
 
 /*
@@ -65,11 +65,11 @@ void PPCAndCMsr(void)
  */
 void PPCMfhid0(void)
 {
-/*
-.loc_0x0:
-  mfspr     r3, 0x3F0
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mfspr     r3, 0x3F0
+	  blr
+	*/
 }
 
 /*
@@ -79,11 +79,11 @@ void PPCMfhid0(void)
  */
 void PPCMthid0(void)
 {
-/*
-.loc_0x0:
-  mtspr     1008, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     1008, r3
+	  blr
+	*/
 }
 
 /*
@@ -103,11 +103,11 @@ void PPCMfhid1(void)
  */
 void PPCMfl2cr(void)
 {
-/*
-.loc_0x0:
-  mfspr     r3, 0x3F9
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mfspr     r3, 0x3F9
+	  blr
+	*/
 }
 
 /*
@@ -117,11 +117,11 @@ void PPCMfl2cr(void)
  */
 void PPCMtl2cr(void)
 {
-/*
-.loc_0x0:
-  mtspr     1017, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     1017, r3
+	  blr
+	*/
 }
 
 /*
@@ -131,11 +131,11 @@ void PPCMtl2cr(void)
  */
 void PPCMtdec(void)
 {
-/*
-.loc_0x0:
-  mtdec     r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtdec     r3
+	  blr
+	*/
 }
 
 /*
@@ -155,11 +155,11 @@ void PPCMfdec(void)
  */
 void PPCSync(void)
 {
-/*
-.loc_0x0:
-  sc        
-  blr
-*/
+	/*
+	.loc_0x0:
+	  sc
+	  blr
+	*/
 }
 
 /*
@@ -179,16 +179,16 @@ void PPCEieio(void)
  */
 void PPCHalt(void)
 {
-/*
-.loc_0x0:
-  sync      
+	/*
+	.loc_0x0:
+	  sync
 
-.loc_0x4:
-  nop       
-  li        r3, 0
-  nop       
-  b         .loc_0x4
-*/
+	.loc_0x4:
+	  nop
+	  li        r3, 0
+	  nop
+	  b         .loc_0x4
+	*/
 }
 
 /*
@@ -208,11 +208,11 @@ void PPCMfmmcr0(void)
  */
 void PPCMtmmcr0(void)
 {
-/*
-.loc_0x0:
-  mtspr     952, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     952, r3
+	  blr
+	*/
 }
 
 /*
@@ -232,11 +232,11 @@ void PPCMfmmcr1(void)
  */
 void PPCMtmmcr1(void)
 {
-/*
-.loc_0x0:
-  mtspr     956, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     956, r3
+	  blr
+	*/
 }
 
 /*
@@ -256,11 +256,11 @@ void PPCMfpmc1(void)
  */
 void PPCMtpmc1(void)
 {
-/*
-.loc_0x0:
-  mtspr     953, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     953, r3
+	  blr
+	*/
 }
 
 /*
@@ -280,11 +280,11 @@ void PPCMfpmc2(void)
  */
 void PPCMtpmc2(void)
 {
-/*
-.loc_0x0:
-  mtspr     954, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     954, r3
+	  blr
+	*/
 }
 
 /*
@@ -304,11 +304,11 @@ void PPCMfpmc3(void)
  */
 void PPCMtpmc3(void)
 {
-/*
-.loc_0x0:
-  mtspr     957, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     957, r3
+	  blr
+	*/
 }
 
 /*
@@ -328,11 +328,11 @@ void PPCMfpmc4(void)
  */
 void PPCMtpmc4(void)
 {
-/*
-.loc_0x0:
-  mtspr     958, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     958, r3
+	  blr
+	*/
 }
 
 /*
@@ -362,17 +362,17 @@ void PPCMtsia(void)
  */
 void PPCMffpscr(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x18(r1)
-  stfd      f31, 0x10(r1)
-  mffs      f31
-  stfd      f31, 0x8(r1)
-  lwz       r3, 0xC(r1)
-  lfd       f31, 0x10(r1)
-  addi      r1, r1, 0x18
-  blr
-*/
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x18(r1)
+	  stfd      f31, 0x10(r1)
+	  mffs      f31
+	  stfd      f31, 0x8(r1)
+	  lwz       r3, 0xC(r1)
+	  lfd       f31, 0x10(r1)
+	  addi      r1, r1, 0x18
+	  blr
+	*/
 }
 
 /*
@@ -382,19 +382,19 @@ void PPCMffpscr(void)
  */
 void PPCMtfpscr(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  stfd      f31, 0x18(r1)
-  li        r4, 0
-  stw       r4, 0x10(r1)
-  stw       r3, 0x14(r1)
-  lfd       f31, 0x10(r1)
-  mtfsf     255, f31
-  lfd       f31, 0x18(r1)
-  addi      r1, r1, 0x20
-  blr
-*/
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x20(r1)
+	  stfd      f31, 0x18(r1)
+	  li        r4, 0
+	  stw       r4, 0x10(r1)
+	  stw       r3, 0x14(r1)
+	  lfd       f31, 0x10(r1)
+	  mtfsf     255, f31
+	  lfd       f31, 0x18(r1)
+	  addi      r1, r1, 0x20
+	  blr
+	*/
 }
 
 /*
@@ -404,11 +404,11 @@ void PPCMtfpscr(void)
  */
 void PPCMfhid2(void)
 {
-/*
-.loc_0x0:
-  mfspr     r3, 0x398
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mfspr     r3, 0x398
+	  blr
+	*/
 }
 
 /*
@@ -418,11 +418,11 @@ void PPCMfhid2(void)
  */
 void PPCMthid2(void)
 {
-/*
-.loc_0x0:
-  mtspr     920, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     920, r3
+	  blr
+	*/
 }
 
 /*
@@ -442,11 +442,11 @@ void PPCMfwpar(void)
  */
 void PPCMtwpar(void)
 {
-/*
-.loc_0x0:
-  mtspr     921, r3
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtspr     921, r3
+	  blr
+	*/
 }
 
 /*
@@ -516,19 +516,19 @@ void PPCEnableSpeculation(void)
  */
 void PPCDisableSpeculation(void)
 {
-/*
-.loc_0x0:
-  mflr      r0
-  stw       r0, 0x4(r1)
-  stwu      r1, -0x8(r1)
-  bl        -0xE0
-  ori       r3, r3, 0x200
-  bl        -0xE0
-  lwz       r0, 0xC(r1)
-  addi      r1, r1, 0x8
-  mtlr      r0
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mflr      r0
+	  stw       r0, 0x4(r1)
+	  stwu      r1, -0x8(r1)
+	  bl        -0xE0
+	  ori       r3, r3, 0x200
+	  bl        -0xE0
+	  lwz       r0, 0xC(r1)
+	  addi      r1, r1, 0x8
+	  mtlr      r0
+	  blr
+	*/
 }
 
 /*
@@ -548,9 +548,9 @@ void PPCSetFpIEEEMode(void)
  */
 void PPCSetFpNonIEEEMode(void)
 {
-/*
-.loc_0x0:
-  mtfsb1    29
-  blr
-*/
+	/*
+	.loc_0x0:
+	  mtfsb1    29
+	  blr
+	*/
 }

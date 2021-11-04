@@ -1,7 +1,8 @@
 #include "types.h"
 #include "Dolphin/os.h"
 
-inline static void InitDefaultHeap() {
+inline static void InitDefaultHeap()
+{
 	void* arenaLo;
 	void* arenaHi;
 
@@ -26,10 +27,9 @@ inline static void InitDefaultHeap() {
  * Address:	800C23A8
  * Size:	0000B8
  */
-__declspec(weak) extern void	__sys_free(void* ptr)
+__declspec(weak) extern void __sys_free(void* ptr)
 {
-	if (__OSCurrHeap == -1)
-	{
+	if (__OSCurrHeap == -1) {
 		InitDefaultHeap();
 	}
 	OSFreeToHeap(__OSCurrHeap, ptr);

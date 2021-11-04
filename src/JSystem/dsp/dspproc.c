@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000024
  */
-void DSPSendCommands(unsigned long *, unsigned long)
+void DSPSendCommands(unsigned long*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -27,27 +27,27 @@ void DSPReleaseHalt3(unsigned long, unsigned short)
  */
 void DSPReleaseHalt2(unsigned long)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  mr        r31, r3
-  bl        -0x4C7C
-  mr        r0, r3
-  addi      r3, r1, 0x8
-  rlwimi    r0,r31,16,0,15
-  li        r4, 0
-  stw       r0, 0x8(r1)
-  li        r5, 0
-  bl        0x270
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x20(r1)
+	  mflr      r0
+	  stw       r0, 0x24(r1)
+	  stw       r31, 0x1C(r1)
+	  mr        r31, r3
+	  bl        -0x4C7C
+	  mr        r0, r3
+	  addi      r3, r1, 0x8
+	  rlwimi    r0,r31,16,0,15
+	  li        r4, 0
+	  stw       r0, 0x8(r1)
+	  li        r5, 0
+	  bl        0x270
+	  lwz       r0, 0x24(r1)
+	  lwz       r31, 0x1C(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x20
+	  blr
+	*/
 }
 
 /*
@@ -137,12 +137,12 @@ void DsaveBuffer(unsigned short, unsigned long, unsigned long)
  */
 void setup_callback(unsigned short)
 {
-/*
-.loc_0x0:
-  li        r0, 0
-  stw       r0, -0x74D0(r13)
-  blr
-*/
+	/*
+	.loc_0x0:
+	  li        r0, 0
+	  stw       r0, -0x74D0(r13)
+	  blr
+	*/
 }
 
 /*
@@ -150,38 +150,39 @@ void setup_callback(unsigned short)
  * Address:	800AA7E0
  * Size:	000064
  */
-void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long, unsigned long)
+void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long,
+                 unsigned long)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  li        r8, 0x1
-  stw       r0, 0x24(r1)
-  rlwinm    r0,r3,0,16,31
-  oris      r9, r0, 0x8100
-  lis       r3, 0x800B
-  stw       r4, 0xC(r1)
-  subi      r0, r3, 0x5840
-  addi      r3, r1, 0x8
-  li        r4, 0x5
-  stw       r5, 0x10(r1)
-  mr        r5, r0
-  stw       r9, 0x8(r1)
-  stw       r6, 0x14(r1)
-  stw       r7, 0x18(r1)
-  stw       r8, -0x74D0(r13)
-  bl        0x1DC
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x20(r1)
+	  mflr      r0
+	  li        r8, 0x1
+	  stw       r0, 0x24(r1)
+	  rlwinm    r0,r3,0,16,31
+	  oris      r9, r0, 0x8100
+	  lis       r3, 0x800B
+	  stw       r4, 0xC(r1)
+	  subi      r0, r3, 0x5840
+	  addi      r3, r1, 0x8
+	  li        r4, 0x5
+	  stw       r5, 0x10(r1)
+	  mr        r5, r0
+	  stw       r9, 0x8(r1)
+	  stw       r6, 0x14(r1)
+	  stw       r7, 0x18(r1)
+	  stw       r8, -0x74D0(r13)
+	  bl        0x1DC
 
-.loc_0x48:
-  lwz       r0, -0x74D0(r13)
-  cmpwi     r0, 0
-  bne+      .loc_0x48
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+	.loc_0x48:
+	  lwz       r0, -0x74D0(r13)
+	  cmpwi     r0, 0
+	  bne+      .loc_0x48
+	  lwz       r0, 0x24(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x20
+	  blr
+	*/
 }
 
 /*
@@ -191,18 +192,18 @@ void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long, uns
  */
 void DsetMixerLevel(float)
 {
-/*
-.loc_0x0:
-  lfs       f0, -0x7490(r2)
-  stwu      r1, -0x10(r1)
-  fmuls     f0, f0, f1
-  fctiwz    f0, f0
-  stfd      f0, 0x8(r1)
-  lwz       r0, 0xC(r1)
-  sth       r0, -0x7EC8(r13)
-  addi      r1, r1, 0x10
-  blr
-*/
+	/*
+	.loc_0x0:
+	  lfs       f0, -0x7490(r2)
+	  stwu      r1, -0x10(r1)
+	  fmuls     f0, f0, f1
+	  fctiwz    f0, f0
+	  stfd      f0, 0x8(r1)
+	  lwz       r0, 0xC(r1)
+	  sth       r0, -0x7EC8(r13)
+	  addi      r1, r1, 0x10
+	  blr
+	*/
 }
 
 /*
@@ -212,27 +213,27 @@ void DsetMixerLevel(float)
  */
 void DsyncFrame(unsigned long, unsigned long, unsigned long)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  rlwinm    r3,r3,16,8,15
-  stw       r0, 0x24(r1)
-  oris      r3, r3, 0x8200
-  lhz       r0, -0x7EC8(r13)
-  stw       r4, 0xC(r1)
-  li        r4, 0x3
-  or        r0, r3, r0
-  addi      r3, r1, 0x8
-  stw       r5, 0x10(r1)
-  li        r5, 0
-  stw       r0, 0x8(r1)
-  bl        0x12C
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x20(r1)
+	  mflr      r0
+	  rlwinm    r3,r3,16,8,15
+	  stw       r0, 0x24(r1)
+	  oris      r3, r3, 0x8200
+	  lhz       r0, -0x7EC8(r13)
+	  stw       r4, 0xC(r1)
+	  li        r4, 0x3
+	  or        r0, r3, r0
+	  addi      r3, r1, 0x8
+	  stw       r5, 0x10(r1)
+	  li        r5, 0
+	  stw       r0, 0x8(r1)
+	  bl        0x12C
+	  lwz       r0, 0x24(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x20
+	  blr
+	*/
 }
 
 /*
@@ -260,7 +261,7 @@ void DwaitFrame()
  * Address:	........
  * Size:	00003C
  */
-void DiplSec(unsigned long, void (*) (unsigned short))
+void DiplSec(unsigned long, void (*)(unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -270,7 +271,7 @@ void DiplSec(unsigned long, void (*) (unsigned short))
  * Address:	........
  * Size:	00003C
  */
-void DagbSec(unsigned long, void (*) (unsigned short))
+void DagbSec(unsigned long, void (*)(unsigned short))
 {
 	// UNUSED FUNCTION
 }

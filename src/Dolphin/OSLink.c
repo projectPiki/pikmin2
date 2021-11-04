@@ -97,15 +97,15 @@ void OSUnlink(void)
  */
 void __OSModuleInit(void)
 {
-/*
-.loc_0x0:
-  lis       r4, 0x8000
-  li        r0, 0
-  stw       r0, 0x30CC(r4)
-  stw       r0, 0x30C8(r4)
-  stw       r0, 0x30D0(r4)
-  blr
-*/
+	/*
+	.loc_0x0:
+	  lis       r4, 0x8000
+	  li        r0, 0
+	  stw       r0, 0x30CC(r4)
+	  stw       r0, 0x30C8(r4)
+	  stw       r0, 0x30D0(r4)
+	  blr
+	*/
 }
 
 /*

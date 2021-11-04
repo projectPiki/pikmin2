@@ -80,7 +80,7 @@ char* strrchr(const char* str, int chr)
 {
 	const uchar* p = (uchar*)str - 1;
 	const uchar* q = 0;
-	ulong c = (chr & 0xFF);
+	ulong c        = (chr & 0xFF);
 	ulong ch;
 
 	while (ch = *++p)
@@ -194,7 +194,7 @@ int strcmp(const char* str1, const char* str2)
 
 	l1 = *(int*)left;
 	r1 = *(int*)right;
-	x = l1 + K2;
+	x  = l1 + K2;
 	if (x & K1) {
 		goto adjust;
 	}
@@ -252,11 +252,13 @@ char* strcat(char* dst, const char* src)
 	const uchar* p = (uchar*)src - 1;
 	uchar* q       = (uchar*)dst - 1;
 
-	while (*++q);
+	while (*++q)
+		;
 
 	q--;
 
-	while (*++q = *++p);
+	while (*++q = *++p)
+		;
 
 	return (dst);
 }
@@ -322,7 +324,7 @@ char*(strcpy)(char* dst, const char* src)
 
 	do {
 		*(++((int*)(destb))) = w;
-		w = *(++((int*)(fromb)));
+		w                    = *(++((int*)(fromb)));
 
 		t = w + K2;
 		t &= K1;
@@ -339,7 +341,7 @@ bytecopy:
 		if ((*(++destb) = *(++fromb)) == 0)
 			return dst;
 	} while (1);
-	
+
 	return dst;
 }
 
@@ -351,7 +353,7 @@ bytecopy:
 size_t(strlen)(const char* str)
 {
 	size_t len = -1;
-	uchar* p = (uchar*)str - 1;
+	uchar* p   = (uchar*)str - 1;
 
 	do
 		len++;

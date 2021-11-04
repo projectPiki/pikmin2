@@ -14,12 +14,13 @@ void TRKInitializeEndian(void)
  * Address:	800BB6B0
  * Size:	000028
  */
-//extern char lbl_804796C8[27];
+// extern char lbl_804796C8[27];
 extern void TRK_board_display(char*);
 void TRKNubWelcome(void)
 {
 
-	TRK_board_display("MetroTRK for GAMECUBE v2.6"); //"MetroTRK for GAMECUBE v2.6"
+	TRK_board_display(
+	    "MetroTRK for GAMECUBE v2.6"); //"MetroTRK for GAMECUBE v2.6"
 	return;
 }
 
@@ -34,7 +35,6 @@ unsigned int TRKTerminateNub(void)
 
 	TRKTerminateSerialHandler();
 	return 0;
-
 }
 
 /*
@@ -42,7 +42,7 @@ unsigned int TRKTerminateNub(void)
  * Address:	800BB6FC
  * Size:	00014C
  */
-//void TRKInitializeNub(void)
+// void TRKInitializeNub(void)
 //{
 /*
 .loc_0x0:

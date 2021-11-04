@@ -16,7 +16,7 @@ def launch_no_console(command, args):
 def format_folders(folder_to_iter):
     for dirpath, dirname, files in os.walk(folder_to_iter):
         for name in files:
-            if name.lower().endswith(".h") or name.lower().endswith(".cpp"):
+            if name.lower().endswith(".h") or name.lower().endswith(".cpp") or name.lower().endswith(".c"):
                 relative_path = os.path.join(dirpath, name)
                 print(relative_path, end="\t")
                 launch_no_console("clang-format.exe", [relative_path, "-style=file", "-i"])

@@ -657,56 +657,56 @@ void _stricmp(void)
  */
 void stricmp(void)
 {
-/*
-.loc_0x0:
-  lbz       r0, 0x0(r3)
-  addi      r3, r3, 0x1
-  extsb     r0, r0
-  cmpwi     r0, -0x1
-  bne-      .loc_0x1C
-  li        r5, -0x1
-  b         .loc_0x2C
+	/*
+	.loc_0x0:
+	  lbz       r0, 0x0(r3)
+	  addi      r3, r3, 0x1
+	  extsb     r0, r0
+	  cmpwi     r0, -0x1
+	  bne-      .loc_0x1C
+	  li        r5, -0x1
+	  b         .loc_0x2C
 
-.loc_0x1C:
-  lis       r5, 0x804A
-  rlwinm    r0,r0,0,24,31
-  addi      r5, r5, 0x6CF0
-  lbzx      r5, r5, r0
+	.loc_0x1C:
+	  lis       r5, 0x804A
+	  rlwinm    r0,r0,0,24,31
+	  addi      r5, r5, 0x6CF0
+	  lbzx      r5, r5, r0
 
-.loc_0x2C:
-  lbz       r0, 0x0(r4)
-  extsb     r6, r5
-  addi      r4, r4, 0x1
-  extsb     r0, r0
-  cmpwi     r0, -0x1
-  bne-      .loc_0x4C
-  li        r0, -0x1
-  b         .loc_0x5C
+	.loc_0x2C:
+	  lbz       r0, 0x0(r4)
+	  extsb     r6, r5
+	  addi      r4, r4, 0x1
+	  extsb     r0, r0
+	  cmpwi     r0, -0x1
+	  bne-      .loc_0x4C
+	  li        r0, -0x1
+	  b         .loc_0x5C
 
-.loc_0x4C:
-  lis       r5, 0x804A
-  rlwinm    r0,r0,0,24,31
-  addi      r5, r5, 0x6CF0
-  lbzx      r0, r5, r0
+	.loc_0x4C:
+	  lis       r5, 0x804A
+	  rlwinm    r0,r0,0,24,31
+	  addi      r5, r5, 0x6CF0
+	  lbzx      r0, r5, r0
 
-.loc_0x5C:
-  extsb     r0, r0
-  cmpw      r6, r0
-  bge-      .loc_0x70
-  li        r3, -0x1
-  blr       
+	.loc_0x5C:
+	  extsb     r0, r0
+	  cmpw      r6, r0
+	  bge-      .loc_0x70
+	  li        r3, -0x1
+	  blr
 
-.loc_0x70:
-  ble-      .loc_0x7C
-  li        r3, 0x1
-  blr       
+	.loc_0x70:
+	  ble-      .loc_0x7C
+	  li        r3, 0x1
+	  blr
 
-.loc_0x7C:
-  extsb.    r0, r6
-  bne+      .loc_0x0
-  li        r3, 0
-  blr
-*/
+	.loc_0x7C:
+	  extsb.    r0, r6
+	  bne+      .loc_0x0
+	  li        r3, 0
+	  blr
+	*/
 }
 
 /*
