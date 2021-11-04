@@ -1,40 +1,31 @@
 #include "types.h"
 #include "CNode.h"
 #include "Vector3.h"
+#include "JSystem/JKR/JKRDisposer.h"
 
 namespace Game {
 
 // NOT 100% SURE
-struct WayPoint : public CNode /*, public JKRDisposer*/ {
-	s8 _18[0x1C];    // _18
-	s8 m_flags;      // _34
-	s8 _35;          // _35
-	s16 m_index;     // _36
-	s16 m_numLinks;  // _38
-	s16 m_link;      // _3A
-	s16 _3C;         // _3C
-	s16 _3E;         // _3E
-	s16 _40;         // _40
-	s16 _42;         // _42
-	s16 _44;         // _44
-	s16 _46;         // _46
-	s16 _48;         // _48
-	Vector3f _4C;    // _4C
-	f32 _58;         // _58
-	s16 m_toLinkCnt; // _5C
-	s16 _5E;         // _5E
-	s16 _60;         // _60
-	s16 _62;         // _62
-	s16 _64;         // _64
-	s16 _66;         // _66
-	s16 _68;         // _68
-	s16 _6A;         // _6A
-	s16 _6C;         // _6C
-	s8 _6E;          // _6E
+struct WayPoint : public JKRDisposer, public CNode {
+	u8 _30[0xA];
+	s16* _3A;
+	u32 _3C;
+	s16 _3E;
+	s16 _40;
+	s16 _42;
+	s16 _44;
+	s16 _46;
+	s16 _48;
+	s16 _4A;
+	s16* _4C;
+	s16 _4E;
 };
+int a = sizeof(WayPoint);
 
 struct WayPointIterator {
 	WayPointIterator(WayPoint*, bool);
+
+	s16 operator*();
 
 	void first();
 	void forward();
@@ -100,34 +91,39 @@ bool WayPointIterator::isDone()
 
 	return false;
 }
-} // namespace Game
 
-// /*
-//  * --INFO--
-//  * Address:	801725C4
-//  * Size:	000034
-//  */
-// void Game::WayPointIterator::operator*(void)
+/*
+ * --INFO--
+ * Address:	801725C4
+ * Size:	000034
+ */
+// s16 WayPointIterator::operator*(void)
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  lwz       r0, 0x0(r3)
-// 	  cmpwi     r0, 0x8
-// 	  bge-      .loc_0x20
-// 	  lwz       r3, 0x4(r3)
-// 	  rlwinm    r0,r0,1,0,30
-// 	  add       r3, r3, r0
-// 	  lha       r3, 0x3A(r3)
-// 	  blr
+// 	if (m_index < 8) {
+// 		return _04->_4C[m_index];
+// 	}
 
-// 	.loc_0x20:
-// 	  lwz       r3, 0x4(r3)
-// 	  rlwinm    r0,r0,1,0,30
-// 	  add       r3, r3, r0
-// 	  lha       r3, 0x4E(r3)
-// 	  blr
-// 	*/
+// 	return _04->_3A[m_index];
+/*
+.loc_0x0:
+  lwz       r0, 0x0(r3)
+  cmpwi     r0, 0x8
+  bge-      .loc_0x20
+  lwz       r3, 0x4(r3)
+  rlwinm    r0,r0,1,0,30
+  add       r3, r3, r0
+  lha       r3, 0x3A(r3)
+  blr
+
+.loc_0x20:
+  lwz       r3, 0x4(r3)
+  rlwinm    r0,r0,1,0,30
+  add       r3, r3, r0
+  lha       r3, 0x4E(r3)
+  blr
+*/
 // }
+} // namespace Game
 
 // /*
 //  * --INFO--
