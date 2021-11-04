@@ -129,7 +129,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_Zenmai         = 90,  // Fiddlehead
     EnemyID_KareOoinu_s    = 91,  // Figwort (brown small)
     EnemyID_KareOoinu_l    = 92,  // Figwort (brown large)
-    EnemyID_EBombOtakara    = 93,  // Volatile Dweevil
+    EnemyID_BombOtakara    = 93,  // Volatile Dweevil
     EnemyID_DangoMushi     = 94,  // Segmented Crawbster
     EnemyID_Rkabuto        = 95,  // Decorated Cannon Beetle
     EnemyID_Fkabuto        = 96,  // Armored Cannon Beetle Larva (burrowed)
