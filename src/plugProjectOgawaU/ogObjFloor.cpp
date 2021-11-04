@@ -166,435 +166,185 @@ void newScreen::ObjFloor::isVS(void)
  * Address:	8031A55C
  * Size:	000460
  */
-void newScreen::ObjFloor::setCaveMsgID(unsigned long, char*)
+void newScreen::ObjFloor::setCaveMsgID(unsigned long caveid, char* buffer)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r7, 0x635F
-	  stw       r0, 0x14(r1)
-	  addi      r0, r7, 0x3237
-	  cmpw      r4, r0
-	  beq-      .loc_0x3C8
-	  bge-      .loc_0x148
-	  addi      r0, r7, 0x3132
-	  cmpw      r4, r0
-	  beq-      .loc_0x350
-	  bge-      .loc_0xC0
-	  addi      r0, r7, 0x3035
-	  cmpw      r4, r0
-	  beq-      .loc_0x318
-	  bge-      .loc_0x88
-	  addi      r0, r7, 0x3031
-	  cmpw      r4, r0
-	  beq-      .loc_0x2F8
-	  bge-      .loc_0x74
-	  lis       r3, 0x5F75
-	  addi      r0, r3, 0x6E69
-	  cmpw      r4, r0
-	  beq-      .loc_0x430
-	  blt-      .loc_0x438
-	  addi      r0, r7, 0x3030
-	  cmpw      r4, r0
-	  bge-      .loc_0x2F0
-	  b         .loc_0x438
-
-	.loc_0x74:
-	  addi      r0, r7, 0x3033
-	  cmpw      r4, r0
-	  beq-      .loc_0x308
-	  bge-      .loc_0x310
-	  b         .loc_0x300
-
-	.loc_0x88:
-	  addi      r0, r7, 0x3039
-	  cmpw      r4, r0
-	  beq-      .loc_0x338
-	  bge-      .loc_0xAC
-	  addi      r0, r7, 0x3037
-	  cmpw      r4, r0
-	  beq-      .loc_0x328
-	  bge-      .loc_0x330
-	  b         .loc_0x320
-
-	.loc_0xAC:
-	  addi      r0, r7, 0x3130
-	  cmpw      r4, r0
-	  beq-      .loc_0x340
-	  bge-      .loc_0x348
-	  b         .loc_0x438
-
-	.loc_0xC0:
-	  addi      r0, r7, 0x3230
-	  cmpw      r4, r0
-	  beq-      .loc_0x390
-	  bge-      .loc_0x114
-	  addi      r0, r7, 0x3137
-	  cmpw      r4, r0
-	  beq-      .loc_0x378
-	  bge-      .loc_0x100
-	  addi      r0, r7, 0x3135
-	  cmpw      r4, r0
-	  beq-      .loc_0x368
-	  bge-      .loc_0x370
-	  addi      r0, r7, 0x3134
-	  cmpw      r4, r0
-	  bge-      .loc_0x360
-	  b         .loc_0x358
-
-	.loc_0x100:
-	  addi      r0, r7, 0x3139
-	  cmpw      r4, r0
-	  beq-      .loc_0x388
-	  bge-      .loc_0x438
-	  b         .loc_0x380
-
-	.loc_0x114:
-	  addi      r0, r7, 0x3234
-	  cmpw      r4, r0
-	  beq-      .loc_0x3B0
-	  bge-      .loc_0x138
-	  addi      r0, r7, 0x3232
-	  cmpw      r4, r0
-	  beq-      .loc_0x3A0
-	  bge-      .loc_0x3A8
-	  b         .loc_0x398
-
-	.loc_0x138:
-	  addi      r0, r7, 0x3236
-	  cmpw      r4, r0
-	  bge-      .loc_0x3C0
-	  b         .loc_0x3B8
-
-	.loc_0x148:
-	  lis       r6, 0x7673
-	  addi      r0, r6, 0x3030
-	  cmpw      r4, r0
-	  beq-      .loc_0x3E0
-	  bge-      .loc_0x1F4
-	  lis       r6, 0x6C5F
-	  addi      r0, r6, 0x3031
-	  cmpw      r4, r0
-	  beq-      .loc_0x2D8
-	  bge-      .loc_0x1B8
-	  lis       r3, 0x665F
-	  addi      r0, r3, 0x3032
-	  cmpw      r4, r0
-	  beq-      .loc_0x2A0
-	  bge-      .loc_0x1A4
-	  addi      r0, r7, 0x3239
-	  cmpw      r4, r0
-	  beq-      .loc_0x3D8
-	  blt-      .loc_0x3D0
-	  addi      r0, r3, 0x3031
-	  cmpw      r4, r0
-	  bge-      .loc_0x298
-	  b         .loc_0x438
-
-	.loc_0x1A4:
-	  addi      r0, r3, 0x3034
-	  cmpw      r4, r0
-	  beq-      .loc_0x2B0
-	  bge-      .loc_0x438
-	  b         .loc_0x2A8
-
-	.loc_0x1B8:
-	  lis       r3, 0x745F
-	  addi      r0, r3, 0x3031
-	  cmpw      r4, r0
-	  beq-      .loc_0x280
-	  bge-      .loc_0x1E0
-	  addi      r0, r6, 0x3033
-	  cmpw      r4, r0
-	  beq-      .loc_0x2E8
-	  bge-      .loc_0x438
-	  b         .loc_0x2E0
-
-	.loc_0x1E0:
-	  addi      r0, r3, 0x3033
-	  cmpw      r4, r0
-	  beq-      .loc_0x290
-	  bge-      .loc_0x438
-	  b         .loc_0x288
-
-	.loc_0x1F4:
-	  addi      r0, r6, 0x3038
-	  cmpw      r4, r0
-	  beq-      .loc_0x420
-	  bge-      .loc_0x23C
-	  addi      r0, r6, 0x3034
-	  cmpw      r4, r0
-	  beq-      .loc_0x400
-	  bge-      .loc_0x228
-	  addi      r0, r6, 0x3032
-	  cmpw      r4, r0
-	  beq-      .loc_0x3F0
-	  bge-      .loc_0x3F8
-	  b         .loc_0x3E8
-
-	.loc_0x228:
-	  addi      r0, r6, 0x3036
-	  cmpw      r4, r0
-	  beq-      .loc_0x410
-	  bge-      .loc_0x418
-	  b         .loc_0x408
-
-	.loc_0x23C:
-	  lis       r3, 0x795F
-	  addi      r0, r3, 0x3032
-	  cmpw      r4, r0
-	  beq-      .loc_0x2C0
-	  bge-      .loc_0x26C
-	  addi      r0, r3, 0x3031
-	  cmpw      r4, r0
-	  bge-      .loc_0x2B8
-	  addi      r0, r6, 0x303A
-	  cmpw      r4, r0
-	  bge-      .loc_0x438
-	  b         .loc_0x428
-
-	.loc_0x26C:
-	  addi      r0, r3, 0x3034
-	  cmpw      r4, r0
-	  beq-      .loc_0x2D0
-	  bge-      .loc_0x438
-	  b         .loc_0x2C8
-
-	.loc_0x280:
-	  subi      r0, r2, 0x9BC
-	  b         .loc_0x43C
-
-	.loc_0x288:
-	  subi      r0, r2, 0x9B4
-	  b         .loc_0x43C
-
-	.loc_0x290:
-	  subi      r0, r2, 0x9AC
-	  b         .loc_0x43C
-
-	.loc_0x298:
-	  subi      r0, r2, 0x9A4
-	  b         .loc_0x43C
-
-	.loc_0x2A0:
-	  subi      r0, r2, 0x99C
-	  b         .loc_0x43C
-
-	.loc_0x2A8:
-	  subi      r0, r2, 0x994
-	  b         .loc_0x43C
-
-	.loc_0x2B0:
-	  subi      r0, r2, 0x98C
-	  b         .loc_0x43C
-
-	.loc_0x2B8:
-	  subi      r0, r2, 0x984
-	  b         .loc_0x43C
-
-	.loc_0x2C0:
-	  subi      r0, r2, 0x97C
-	  b         .loc_0x43C
-
-	.loc_0x2C8:
-	  subi      r0, r2, 0x974
-	  b         .loc_0x43C
-
-	.loc_0x2D0:
-	  subi      r0, r2, 0x96C
-	  b         .loc_0x43C
-
-	.loc_0x2D8:
-	  subi      r0, r2, 0x964
-	  b         .loc_0x43C
-
-	.loc_0x2E0:
-	  subi      r0, r2, 0x95C
-	  b         .loc_0x43C
-
-	.loc_0x2E8:
-	  subi      r0, r2, 0x954
-	  b         .loc_0x43C
-
-	.loc_0x2F0:
-	  subi      r0, r2, 0x94C
-	  b         .loc_0x43C
-
-	.loc_0x2F8:
-	  subi      r0, r2, 0x944
-	  b         .loc_0x43C
-
-	.loc_0x300:
-	  subi      r0, r2, 0x93C
-	  b         .loc_0x43C
-
-	.loc_0x308:
-	  subi      r0, r2, 0x934
-	  b         .loc_0x43C
-
-	.loc_0x310:
-	  subi      r0, r2, 0x92C
-	  b         .loc_0x43C
-
-	.loc_0x318:
-	  subi      r0, r2, 0x924
-	  b         .loc_0x43C
-
-	.loc_0x320:
-	  subi      r0, r2, 0x91C
-	  b         .loc_0x43C
-
-	.loc_0x328:
-	  subi      r0, r2, 0x914
-	  b         .loc_0x43C
-
-	.loc_0x330:
-	  subi      r0, r2, 0x90C
-	  b         .loc_0x43C
-
-	.loc_0x338:
-	  subi      r0, r2, 0x904
-	  b         .loc_0x43C
-
-	.loc_0x340:
-	  subi      r0, r2, 0x8FC
-	  b         .loc_0x43C
-
-	.loc_0x348:
-	  subi      r0, r2, 0x8F4
-	  b         .loc_0x43C
-
-	.loc_0x350:
-	  subi      r0, r2, 0x8EC
-	  b         .loc_0x43C
-
-	.loc_0x358:
-	  subi      r0, r2, 0x8E4
-	  b         .loc_0x43C
-
-	.loc_0x360:
-	  subi      r0, r2, 0x8DC
-	  b         .loc_0x43C
-
-	.loc_0x368:
-	  subi      r0, r2, 0x8D4
-	  b         .loc_0x43C
-
-	.loc_0x370:
-	  subi      r0, r2, 0x8CC
-	  b         .loc_0x43C
-
-	.loc_0x378:
-	  subi      r0, r2, 0x8C4
-	  b         .loc_0x43C
-
-	.loc_0x380:
-	  subi      r0, r2, 0x8BC
-	  b         .loc_0x43C
-
-	.loc_0x388:
-	  subi      r0, r2, 0x8B4
-	  b         .loc_0x43C
-
-	.loc_0x390:
-	  subi      r0, r2, 0x8AC
-	  b         .loc_0x43C
-
-	.loc_0x398:
-	  subi      r0, r2, 0x8A4
-	  b         .loc_0x43C
-
-	.loc_0x3A0:
-	  subi      r0, r2, 0x89C
-	  b         .loc_0x43C
-
-	.loc_0x3A8:
-	  subi      r0, r2, 0x894
-	  b         .loc_0x43C
-
-	.loc_0x3B0:
-	  subi      r0, r2, 0x88C
-	  b         .loc_0x43C
-
-	.loc_0x3B8:
-	  subi      r0, r2, 0x884
-	  b         .loc_0x43C
-
-	.loc_0x3C0:
-	  subi      r0, r2, 0x87C
-	  b         .loc_0x43C
-
-	.loc_0x3C8:
-	  subi      r0, r2, 0x874
-	  b         .loc_0x43C
-
-	.loc_0x3D0:
-	  subi      r0, r2, 0x86C
-	  b         .loc_0x43C
-
-	.loc_0x3D8:
-	  subi      r0, r2, 0x864
-	  b         .loc_0x43C
-
-	.loc_0x3E0:
-	  subi      r0, r2, 0x85C
-	  b         .loc_0x43C
-
-	.loc_0x3E8:
-	  subi      r0, r2, 0x854
-	  b         .loc_0x43C
-
-	.loc_0x3F0:
-	  subi      r0, r2, 0x84C
-	  b         .loc_0x43C
-
-	.loc_0x3F8:
-	  subi      r0, r2, 0x844
-	  b         .loc_0x43C
-
-	.loc_0x400:
-	  subi      r0, r2, 0x83C
-	  b         .loc_0x43C
-
-	.loc_0x408:
-	  subi      r0, r2, 0x834
-	  b         .loc_0x43C
-
-	.loc_0x410:
-	  subi      r0, r2, 0x82C
-	  b         .loc_0x43C
-
-	.loc_0x418:
-	  subi      r0, r2, 0x824
-	  b         .loc_0x43C
-
-	.loc_0x420:
-	  subi      r0, r2, 0x81C
-	  b         .loc_0x43C
-
-	.loc_0x428:
-	  subi      r0, r2, 0x814
-	  b         .loc_0x43C
-
-	.loc_0x430:
-	  subi      r0, r2, 0x80C
-	  b         .loc_0x43C
-
-	.loc_0x438:
-	  subi      r0, r2, 0x9BC
-
-	.loc_0x43C:
-	  mr        r3, r5
-	  mr        r5, r0
-	  subi      r4, r2, 0x804
-	  crclr     6, 0x6
-	  bl        -0x253570
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	char* cave_msg;
+	switch (caveid) {
+	case 't_01': // tutorial
+		cave_msg = "8395_00";
+		break;
+	case 't_02':
+		cave_msg = "8399_00";
+		break;
+	case 't_03':
+		cave_msg = "8400_00";
+		break;
+	case 'f_01': // forest
+		cave_msg = "8396_00";
+		break;
+	case 'f_02':
+		cave_msg = "8398_00";
+		break;
+	case 'f_03':
+		cave_msg = "8401_00";
+		break;
+	case 'f_04':
+		cave_msg = "8410_00";
+		break;
+	case 'y_01': // yakushima
+		cave_msg = "8397_00";
+		break;
+	case 'y_02':
+		cave_msg = "8402_00";
+		break;
+	case 'y_03':
+		cave_msg = "8403_00";
+		break;
+	case 'y_04':
+		cave_msg = "8411_00";
+		break;
+	case 'l_01': // last
+		cave_msg = "8412_00";
+		break;
+	case 'l_02':
+		cave_msg = "8413_00";
+		break;
+	case 'l_03':
+		cave_msg = "8414_00";
+		break;
+	case 'c_00': // challenge mode stages
+		cave_msg = "4900_00";
+		break;
+	case 'c_01':
+		cave_msg = "4901_00";
+		break;
+	case 'c_02':
+		cave_msg = "4902_00";
+		break;
+	case 'c_03':
+		cave_msg = "4903_00";
+		break;
+	case 'c_04':
+		cave_msg = "4904_00";
+		break;
+	case 'c_05':
+		cave_msg = "4905_00";
+		break;
+	case 'c_06':
+		cave_msg = "4906_00";
+		break;
+	case 'c_07':
+		cave_msg = "4907_00";
+		break;
+	case 'c_08':
+		cave_msg = "4908_00";
+		break;
+	case 'c_09':
+		cave_msg = "4909_00";
+		break;
+	case 'c_10':
+		cave_msg = "4910_00";
+		break;
+	case 'c_11':
+		cave_msg = "4911_00";
+		break;
+	case 'c_12':
+		cave_msg = "4912_00";
+		break;
+	case 'c_13':
+		cave_msg = "4913_00";
+		break;
+	case 'c_14':
+		cave_msg = "4914_00";
+		break;
+	case 'c_15':
+		cave_msg = "4915_00";
+		break;
+	case 'c_16':
+		cave_msg = "4916_00";
+		break;
+	case 'c_17':
+		cave_msg = "4917_00";
+		break;
+	case 'c_18':
+		cave_msg = "4918_00";
+		break;
+	case 'c_19':
+		cave_msg = "4919_00";
+		break;
+	case 'c_20':
+		cave_msg = "4920_00";
+		break;
+	case 'c_21':
+		cave_msg = "4921_00";
+		break;
+	case 'c_22':
+		cave_msg = "4922_00";
+		break;
+	case 'c_23':
+		cave_msg = "4923_00";
+		break;
+	case 'c_24':
+		cave_msg = "4924_00";
+		break;
+	case 'c_25':
+		cave_msg = "4925_00";
+		break;
+	case 'c_26':
+		cave_msg = "4926_00";
+		break;
+	case 'c_27':
+		cave_msg = "4927_00";
+		break;
+	case 'c_28':
+		cave_msg = "4928_00";
+		break;
+	case 'c_29':
+		cave_msg = "4929_00";
+		break;
+	case 'vs00': // 2pbattle stages begin here
+		cave_msg = "4770_00";
+		break;
+	case 'vs01':
+		cave_msg = "4771_00";
+		break;
+	case 'vs02':
+		cave_msg = "4772_00";
+		break;
+	case 'vs03':
+		cave_msg = "4773_00";
+		break;
+	case 'vs04':
+		cave_msg = "4774_00";
+		break;
+	case 'vs05':
+		cave_msg = "4775_00";
+		break;
+	case 'vs06':
+		cave_msg = "4776_00";
+		break;
+	case 'vs07':
+		cave_msg = "4777_00";
+		break;
+	case 'vs08':
+		cave_msg = "4778_00";
+		break;
+	case 'vs09':
+		cave_msg = "4779_00";
+		break;
+	case 'vs10':
+		cave_msg = "4800_00";
+		break;
+	case 'vs11':
+		cave_msg = "4801_00";
+		break;
+	case '_uni': // vestigial test id
+		cave_msg = "9996_00";
+		break;
+	default:
+		cave_msg = "8395_00";
+	}
+	sprintf(buffer, "%s", cave_msg);
 }
 
 /*
