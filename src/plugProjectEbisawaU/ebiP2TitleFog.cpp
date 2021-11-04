@@ -2,12 +2,14 @@
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803EB1A4
  * Size:	000118
  */
-void title::TTitleFogMgr::setGX(Camera&)
+void TTitleFogMgr::setGX(Camera&)
 {
 	/*
 	.loc_0x0:
@@ -93,7 +95,7 @@ void title::TTitleFogMgr::setGX(Camera&)
  * Address:	........
  * Size:	000040
  */
-void title::TTitleFogMgr::offGX(void)
+void TTitleFogMgr::offGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -103,7 +105,7 @@ void title::TTitleFogMgr::offGX(void)
  * Address:	803EB2BC
  * Size:	00007C
  */
-void title::TTitleFogMgr::loadSettingFile(JKRArchive*, char*)
+void TTitleFogMgr::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -146,6 +148,8 @@ void title::TTitleFogMgr::loadSettingFile(JKRArchive*, char*)
 }
 
 } // namespace ebi
+
+} // title
 
 /*
  * --INFO--

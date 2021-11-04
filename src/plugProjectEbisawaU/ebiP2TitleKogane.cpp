@@ -2,12 +2,14 @@
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803E7358
  * Size:	000148
  */
-title::Kogane::TMgr::TMgr(void)
+Kogane::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -105,7 +107,7 @@ title::Kogane::TMgr::TMgr(void)
  * Address:	803E74A0
  * Size:	000050
  */
-void title::Kogane::TMgr::setArchive(JKRArchive*)
+void Kogane::TMgr::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -137,7 +139,7 @@ void title::Kogane::TMgr::setArchive(JKRArchive*)
  * Address:	803E74F0
  * Size:	000028
  */
-void title::Kogane::TMgr::initUnit(void)
+void Kogane::TMgr::initUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +161,7 @@ void title::Kogane::TMgr::initUnit(void)
  * Address:	........
  * Size:	000078
  */
-void title::Kogane::TAnimFolder::load(J3DModelData*, JKRArchive*)
+void Kogane::TAnimFolder::load(J3DModelData*, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
@@ -169,7 +171,7 @@ void title::Kogane::TAnimFolder::load(J3DModelData*, JKRArchive*)
  * Address:	803E7518
  * Size:	000068
  */
-title::Kogane::TAnimator::TAnimator(void)
+Kogane::TAnimator::TAnimator(void)
 {
 	/*
 	.loc_0x0:
@@ -207,7 +209,7 @@ title::Kogane::TAnimator::TAnimator(void)
  * Address:	803E7580
  * Size:	00011C
  */
-void title::Kogane::TAnimator::setArchive(JKRArchive*)
+void Kogane::TAnimator::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -296,7 +298,7 @@ void title::Kogane::TAnimator::setArchive(JKRArchive*)
  * Address:	........
  * Size:	000078
  */
-void title::Kogane::TAnimator::newJ3DModel(void)
+void Kogane::TAnimator::newJ3DModel(void)
 {
 	// UNUSED FUNCTION
 }
@@ -306,7 +308,7 @@ void title::Kogane::TAnimator::newJ3DModel(void)
  * Address:	803E769C
  * Size:	000008
  */
-void title::Kogane::TUnit::setController(Controller* a1)
+void Kogane::TUnit::setController(Controller* a1)
 {
 	// Generated from stw r4, 0x44(r3)
 	_44 = a1;
@@ -317,7 +319,7 @@ void title::Kogane::TUnit::setController(Controller* a1)
  * Address:	803E76A4
  * Size:	0000F4
  */
-void title::Kogane::TUnit::init(ebi::title::Kogane::TMgr*)
+void Kogane::TUnit::init(ebi::title::Kogane::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -424,7 +426,7 @@ R10Vector2<float>(void)
  * Address:	803E77E4
  * Size:	000030
  */
-void title::Kogane::TUnit::goHome(void)
+void Kogane::TUnit::goHome(void)
 {
 	/*
 	.loc_0x0:
@@ -450,7 +452,7 @@ void title::Kogane::TUnit::goHome(void)
  * Address:	803E7814
  * Size:	000024
  */
-void title::Kogane::TUnit::outOfCalc(void)
+void Kogane::TUnit::outOfCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -471,7 +473,7 @@ void title::Kogane::TUnit::outOfCalc(void)
  * Address:	803E7838
  * Size:	000014
  */
-void title::Kogane::TUnit::isCalc(void)
+void Kogane::TUnit::isCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -488,7 +490,7 @@ void title::Kogane::TUnit::isCalc(void)
  * Address:	803E784C
  * Size:	000014
  */
-void title::Kogane::TUnit::isController(void)
+void Kogane::TUnit::isController(void)
 {
 	/*
 	.loc_0x0:
@@ -505,7 +507,7 @@ void title::Kogane::TUnit::isController(void)
  * Address:	803E7860
  * Size:	0002D0
  */
-void title::Kogane::TUnit::startState(ebi::title::Kogane::TUnit::enumState)
+void Kogane::TUnit::startState(ebi::title::Kogane::TUnit::enumState)
 {
 	/*
 	.loc_0x0:
@@ -711,7 +713,7 @@ void title::Kogane::TUnit::startState(ebi::title::Kogane::TUnit::enumState)
  * Address:	803E7B30
  * Size:	000734
  */
-void title::Kogane::TUnit::update(void)
+void Kogane::TUnit::update(void)
 {
 	/*
 	.loc_0x0:
@@ -1274,7 +1276,7 @@ void title::Kogane::TUnit::update(void)
  * Address:	803E8264
  * Size:	00032C
  */
-title::Kogane::TParam::TParam(void)
+Kogane::TParam::TParam(void)
 {
 	/*
 	.loc_0x0:
@@ -1491,14 +1493,14 @@ title::Kogane::TParam::TParam(void)
  * Address:	803E8590
  * Size:	000008
  */
-u32 title::Kogane::TUnit::getCreatureType(void) { return 0x5; }
+u32 Kogane::TUnit::getCreatureType(void) { return 0x5; }
 
 /*
  * --INFO--
  * Address:	803E8598
  * Size:	000014
  */
-void title::Kogane::TAnimFolder::getAnimRes(long)
+void Kogane::TAnimFolder::getAnimRes(long)
 {
 	/*
 	.loc_0x0:
@@ -1518,6 +1520,8 @@ void title::Kogane::TAnimFolder::getAnimRes(long)
 E3DAnimRes::E3DAnimRes(void) { }
 
 } // namespace ebi
+
+} // title
 
 /*
  * --INFO--

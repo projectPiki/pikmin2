@@ -7,12 +7,14 @@ namespace title {
 
 	namespace ebi {
 
+namespace title {
+
 		/*
 		 * --INFO--
 		 * Address:	803E396C
 		 * Size:	0001A4
 		 */
-		void title::TCoordMgr::TCoordMgr(void)
+void TCoordMgr::TCoordMgr(void)
 		{
 			/*
 			.loc_0x0:
@@ -129,7 +131,7 @@ namespace title {
 		 * Address:	........
 		 * Size:	000090
 		 */
-		void title::TCoordMgr::getDestPos(long)
+void TCoordMgr::getDestPos(long)
 		{
 			// UNUSED FUNCTION
 		}
@@ -139,7 +141,7 @@ namespace title {
 		 * Address:	803E3B10
 		 * Size:	000118
 		 */
-		void title::TCoordMgr::copyCoordinate(Vector2<float>*)
+void TCoordMgr::copyCoordinate(Vector2<float>*)
 		{
 			/*
 			.loc_0x0:
@@ -241,7 +243,7 @@ namespace title {
 		 * Address:	803E3C28
 		 * Size:	00007C
 		 */
-		void title::TCoordMgr::readCoordinate(JKRArchive*, char*)
+void TCoordMgr::readCoordinate(JKRArchive*, char*)
 		{
 			/*
 			.loc_0x0:
@@ -290,7 +292,7 @@ namespace title {
 		 * Address:	803E3CA4
 		 * Size:	000144
 		 */
-		void title::TCoordMgr::readCoordinate(Stream&)
+void TCoordMgr::readCoordinate(Stream&)
 		{
 			/*
 			.loc_0x0:
@@ -400,3 +402,5 @@ namespace title {
 	} // namespace ebi
 } // namespace title
 } // namespace ebi
+} // title
+

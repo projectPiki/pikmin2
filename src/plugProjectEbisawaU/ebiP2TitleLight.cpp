@@ -2,12 +2,14 @@
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803C1F58
  * Size:	000094
  */
-void title::TTitleLightMgr::loadSettingFile(JKRArchive*, char*)
+void TTitleLightMgr::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +62,7 @@ void title::TTitleLightMgr::loadSettingFile(JKRArchive*, char*)
  * Address:	803C1FEC
  * Size:	00017C
  */
-void title::TTitleLightMgr::setParam_(void)
+void TTitleLightMgr::setParam_(void)
 {
 	/*
 	.loc_0x0:
@@ -179,7 +181,7 @@ void title::TTitleLightMgr::setParam_(void)
  * Address:	803C2168
  * Size:	000020
  */
-void title::TTitleLightMgr::update(void)
+void TTitleLightMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +201,7 @@ void title::TTitleLightMgr::update(void)
  * Address:	803C2188
  * Size:	000094
  */
-void title::TTitleLightMgr::setCameraMtx(float (*)[4])
+void TTitleLightMgr::setCameraMtx(float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -248,6 +250,8 @@ void title::TTitleLightMgr::setCameraMtx(float (*)[4])
 }
 
 } // namespace ebi
+
+} // title
 
 /*
  * --INFO--

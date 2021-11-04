@@ -13,12 +13,14 @@ void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float>
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803C0AF8
  * Size:	000088
  */
-void title::TParamBase::loadSettingFile(JKRArchive*, char*)
+void TParamBase::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -70,7 +72,7 @@ void title::TParamBase::loadSettingFile(JKRArchive*, char*)
  * Address:	803C0B80
  * Size:	0000B0
  */
-void title::TObjBase::calcModelBaseMtx_(void)
+void TObjBase::calcModelBaseMtx_(void)
 {
 	/*
 	.loc_0x0:
@@ -123,6 +125,8 @@ void title::TObjBase::calcModelBaseMtx_(void)
 
 } // namespace ebi
 
+} // title
+
 /*
  * --INFO--
  * Address:	........
@@ -135,12 +139,14 @@ void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float> f(void)
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803C0C30
  * Size:	000094
  */
-void title::TObjBase::pushOut(ebi::title::TObjBase*)
+void TObjBase::pushOut(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -191,7 +197,7 @@ void title::TObjBase::pushOut(ebi::title::TObjBase*)
  * Address:	803C0CC4
  * Size:	000220
  */
-void title::TMapBase::setArchive(JKRArchive*)
+void TMapBase::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -347,7 +353,7 @@ void title::TMapBase::setArchive(JKRArchive*)
  * Address:	803C0EE4
  * Size:	000048
  */
-void title::TMapBase::startWind(float)
+void TMapBase::startWind(float)
 {
 	/*
 	.loc_0x0:
@@ -377,7 +383,7 @@ void title::TMapBase::startWind(float)
  * Address:	803C0F2C
  * Size:	00027C
  */
-void title::TMapBase::update(void)
+void TMapBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -568,7 +574,7 @@ void title::TMapBase::update(void)
  * Address:	803C11A8
  * Size:	000150
  */
-void title::TBGEnemyBase::setArchive(JKRArchive*)
+void TBGEnemyBase::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -670,7 +676,7 @@ void title::TBGEnemyBase::setArchive(JKRArchive*)
  * Address:	803C12F8
  * Size:	00005C
  */
-void title::TBGEnemyBase::start(void)
+void TBGEnemyBase::start(void)
 {
 	/*
 	.loc_0x0:
@@ -705,7 +711,7 @@ void title::TBGEnemyBase::start(void)
  * Address:	803C1354
  * Size:	000124
  */
-void title::TBGEnemyBase::update(void)
+void TBGEnemyBase::update(void)
 {
 	/*
 	.loc_0x0:
@@ -790,7 +796,7 @@ void title::TBGEnemyBase::update(void)
  * Address:	803C1478
  * Size:	0002D8
  */
-void title::TBlackPlane::setArchive(JKRArchive*)
+void TBlackPlane::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -998,7 +1004,7 @@ void title::TBlackPlane::setArchive(JKRArchive*)
  * Address:	803C1750
  * Size:	0000A0
  */
-void title::TBlackPlane::start(void)
+void TBlackPlane::start(void)
 {
 	/*
 	.loc_0x0:
@@ -1050,7 +1056,7 @@ void title::TBlackPlane::start(void)
  * Address:	803C17F0
  * Size:	000110
  */
-void title::TBlackPlane::updateBeforeCamera(void)
+void TBlackPlane::updateBeforeCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -1130,7 +1136,7 @@ void title::TBlackPlane::updateBeforeCamera(void)
  * Address:	803C1900
  * Size:	000050
  */
-void title::TBlackPlane::updateAfterCamera(void)
+void TBlackPlane::updateAfterCamera(void)
 {
 	/*
 	.loc_0x0:
@@ -1162,7 +1168,7 @@ void title::TBlackPlane::updateAfterCamera(void)
  * Address:	803C1950
  * Size:	00004C
  */
-void title::TBlackPlane::setLogo(void)
+void TBlackPlane::setLogo(void)
 {
 	/*
 	.loc_0x0:
@@ -1193,7 +1199,7 @@ void title::TBlackPlane::setLogo(void)
  * Address:	803C199C
  * Size:	000078
  */
-void title::TBlackPlane::getCameraPos(void)
+void TBlackPlane::getCameraPos(void)
 {
 	/*
 	.loc_0x0:
@@ -1231,6 +1237,8 @@ void title::TBlackPlane::getCameraPos(void)
 }
 
 } // namespace ebi
+
+} // title
 
 /*
  * --INFO--

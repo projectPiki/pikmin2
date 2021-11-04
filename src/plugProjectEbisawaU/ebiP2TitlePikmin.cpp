@@ -2,12 +2,14 @@
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000D4
  */
-title::Pikmin::TBoidParamMgr::TBoidParamMgr(void)
+Pikmin::TBoidParamMgr::TBoidParamMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -17,7 +19,7 @@ title::Pikmin::TBoidParamMgr::TBoidParamMgr(void)
  * Address:	........
  * Size:	00004C
  */
-void title::Pikmin::TBoidParamMgr::startState(
+void Pikmin::TBoidParamMgr::startState(
     (ebi::title::Pikmin::TBoidParamMgr::enumState, float))
 {
 	// UNUSED FUNCTION
@@ -28,7 +30,7 @@ void title::Pikmin::TBoidParamMgr::startState(
  * Address:	........
  * Size:	000130
  */
-void title::Pikmin::TBoidParamMgr::update(void)
+void Pikmin::TBoidParamMgr::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -38,7 +40,7 @@ void title::Pikmin::TBoidParamMgr::update(void)
  * Address:	........
  * Size:	00002C
  */
-title::Pikmin::TAnimator::TAnimator(void)
+Pikmin::TAnimator::TAnimator(void)
 {
 	// UNUSED FUNCTION
 }
@@ -48,7 +50,7 @@ title::Pikmin::TAnimator::TAnimator(void)
  * Address:	803E3DE8
  * Size:	0002D8
  */
-void title::Pikmin::TAnimator::setArchive(JKRArchive*)
+void Pikmin::TAnimator::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -256,7 +258,7 @@ void title::Pikmin::TAnimator::setArchive(JKRArchive*)
  * Address:	........
  * Size:	000020
  */
-void title::Pikmin::TAnimator::setAnmWait(J3DModel*, float)
+void Pikmin::TAnimator::setAnmWait(J3DModel*, float)
 {
 	// UNUSED FUNCTION
 }
@@ -266,7 +268,7 @@ void title::Pikmin::TAnimator::setAnmWait(J3DModel*, float)
  * Address:	........
  * Size:	0000A4
  */
-void title::Pikmin::TAnimator::setAnmWave(J3DModel*, float, float, float)
+void Pikmin::TAnimator::setAnmWave(J3DModel*, float, float, float)
 {
 	// UNUSED FUNCTION
 }
@@ -276,7 +278,7 @@ void title::Pikmin::TAnimator::setAnmWave(J3DModel*, float, float, float)
  * Address:	........
  * Size:	000218
  */
-void title::Pikmin::TAnimator::newJ3DModel(long)
+void Pikmin::TAnimator::newJ3DModel(long)
 {
 	// UNUSED FUNCTION
 }
@@ -286,7 +288,7 @@ void title::Pikmin::TAnimator::newJ3DModel(long)
  * Address:	803E40C0
  * Size:	000198
  */
-title::Pikmin::TMgr::TMgr(void)
+Pikmin::TMgr::TMgr(void)
 {
 	/*
 	.loc_0x0:
@@ -402,7 +404,7 @@ title::Pikmin::TMgr::TMgr(void)
  * Address:	803E4258
  * Size:	000074
  */
-title::Pikmin::TUnit::~TUnit(void)
+Pikmin::TUnit::~TUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -449,7 +451,7 @@ title::Pikmin::TUnit::~TUnit(void)
  * Address:	803E42CC
  * Size:	0000D8
  */
-void title::Pikmin::TMgr::setArchive(JKRArchive*)
+void Pikmin::TMgr::setArchive(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -519,7 +521,7 @@ void title::Pikmin::TMgr::setArchive(JKRArchive*)
  * Address:	803E43A4
  * Size:	00011C
  */
-void title::Pikmin::TMgr::initUnit(void)
+void Pikmin::TMgr::initUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -612,7 +614,7 @@ void title::Pikmin::TMgr::initUnit(void)
  * Address:	803E44C0
  * Size:	0001A8
  */
-void title::Pikmin::TMgr::update(void)
+void Pikmin::TMgr::update(void)
 {
 	/*
 	.loc_0x0:
@@ -736,6 +738,8 @@ void title::Pikmin::TMgr::update(void)
 }
 
 } // namespace ebi
+
+} // title
 
 /*
  * --INFO--
@@ -953,12 +957,14 @@ void setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<float>(void)
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803E4930
  * Size:	0000C0
  */
-void title::Pikmin::TMgr::forceArriveDest(void)
+void Pikmin::TMgr::forceArriveDest(void)
 {
 	/*
 	.loc_0x0:
@@ -1022,7 +1028,7 @@ void title::Pikmin::TMgr::forceArriveDest(void)
  * Address:	803E49F0
  * Size:	000088
  */
-void title::Pikmin::TMgr::assemble(void)
+void Pikmin::TMgr::assemble(void)
 {
 	/*
 	.loc_0x0:
@@ -1070,7 +1076,7 @@ void title::Pikmin::TMgr::assemble(void)
  * Address:	803E4A78
  * Size:	000088
  */
-void title::Pikmin::TMgr::quickAssemble(void)
+void Pikmin::TMgr::quickAssemble(void)
 {
 	/*
 	.loc_0x0:
@@ -1118,7 +1124,7 @@ void title::Pikmin::TMgr::quickAssemble(void)
  * Address:	803E4B00
  * Size:	000090
  */
-void title::Pikmin::TMgr::startBoid1(float)
+void Pikmin::TMgr::startBoid1(float)
 {
 	/*
 	.loc_0x0:
@@ -1168,7 +1174,7 @@ void title::Pikmin::TMgr::startBoid1(float)
  * Address:	803E4B90
  * Size:	000090
  */
-void title::Pikmin::TMgr::startBoid2(float)
+void Pikmin::TMgr::startBoid2(float)
 {
 	/*
 	.loc_0x0:
@@ -1218,7 +1224,7 @@ void title::Pikmin::TMgr::startBoid2(float)
  * Address:	803E4C20
  * Size:	000090
  */
-void title::Pikmin::TMgr::startBoid3(float)
+void Pikmin::TMgr::startBoid3(float)
 {
 	/*
 	.loc_0x0:
@@ -1268,7 +1274,7 @@ void title::Pikmin::TMgr::startBoid3(float)
  * Address:	803E4CB0
  * Size:	00009C
  */
-void title::Pikmin::TMgr::startWindBlow(ebi::EGEBox2f&)
+void Pikmin::TMgr::startWindBlow(ebi::EGEBox2f&)
 {
 	/*
 	.loc_0x0:
@@ -1323,7 +1329,7 @@ void title::Pikmin::TMgr::startWindBlow(ebi::EGEBox2f&)
  * Address:	803E4D4C
  * Size:	0000AC
  */
-void title::Pikmin::TMgr::startDemo(void)
+void Pikmin::TMgr::startDemo(void)
 {
 	/*
 	.loc_0x0:
@@ -1382,7 +1388,7 @@ void title::Pikmin::TMgr::startDemo(void)
  * Address:	803E4DF8
  * Size:	00006C
  */
-void title::Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase*)
+void Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase*)
 {
 	/*
 	.loc_0x0:
@@ -1423,7 +1429,7 @@ void title::Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase*)
  * Address:	803E4E64
  * Size:	0003B8
  */
-void title::Pikmin::TMgr::updateCalcBoid_(void)
+void Pikmin::TMgr::updateCalcBoid_(void)
 {
 	/*
 	.loc_0x0:
@@ -1711,7 +1717,7 @@ void title::Pikmin::TMgr::updateCalcBoid_(void)
  * Address:	803E521C
  * Size:	000070
  */
-void title::Pikmin::TMgr::isAssemble(void)
+void Pikmin::TMgr::isAssemble(void)
 {
 	/*
 	.loc_0x0:
@@ -1757,7 +1763,7 @@ void title::Pikmin::TMgr::isAssemble(void)
  * Address:	803E528C
  * Size:	000010
  */
-void title::Pikmin::TMgr::getUnit(long)
+void Pikmin::TMgr::getUnit(long)
 {
 	/*
 	.loc_0x0:
@@ -1773,7 +1779,7 @@ void title::Pikmin::TMgr::getUnit(long)
  * Address:	803E529C
  * Size:	000360
  */
-void title::Pikmin::TUnit::init(ebi::title::Pikmin::TMgr*, long)
+void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr*, long)
 {
 	/*
 	.loc_0x0:
@@ -2027,7 +2033,7 @@ void title::Pikmin::TUnit::init(ebi::title::Pikmin::TMgr*, long)
  * Address:	803E55FC
  * Size:	000098
  */
-void title::Pikmin::TUnit::goDestination(void)
+void Pikmin::TUnit::goDestination(void)
 {
 	/*
 	.loc_0x0:
@@ -2087,7 +2093,7 @@ void title::Pikmin::TUnit::goDestination(void)
  * Address:	........
  * Size:	000028
  */
-void title::Pikmin::TUnit::chaseKogane(ebi::title::TObjBase*)
+void Pikmin::TUnit::chaseKogane(ebi::title::TObjBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -2097,7 +2103,7 @@ void title::Pikmin::TUnit::chaseKogane(ebi::title::TObjBase*)
  * Address:	803E5694
  * Size:	00006C
  */
-void title::Pikmin::TUnit::beAttacked(void)
+void Pikmin::TUnit::beAttacked(void)
 {
 	/*
 	.loc_0x0:
@@ -2140,7 +2146,7 @@ void title::Pikmin::TUnit::beAttacked(void)
  * Address:	803E5700
  * Size:	00000C
  */
-void title::Pikmin::TUnit::alive(void)
+void Pikmin::TUnit::alive(void)
 {
 	// Generated from stb r0, 0x94(r3)
 	_94 = 0;
@@ -2151,7 +2157,7 @@ void title::Pikmin::TUnit::alive(void)
  * Address:	803E570C
  * Size:	000014
  */
-void title::Pikmin::TUnit::isCalc(void)
+void Pikmin::TUnit::isCalc(void)
 {
 	/*
 	.loc_0x0:
@@ -2168,7 +2174,7 @@ void title::Pikmin::TUnit::isCalc(void)
  * Address:	803E5720
  * Size:	000024
  */
-void title::Pikmin::TUnit::isAssemble(void)
+void Pikmin::TUnit::isAssemble(void)
 {
 	/*
 	.loc_0x0:
@@ -2193,7 +2199,7 @@ void title::Pikmin::TUnit::isAssemble(void)
  * Address:	803E5744
  * Size:	000024
  */
-void title::Pikmin::TUnit::isWalk(void)
+void Pikmin::TUnit::isWalk(void)
 {
 	/*
 	.loc_0x0:
@@ -2218,7 +2224,7 @@ void title::Pikmin::TUnit::isWalk(void)
  * Address:	........
  * Size:	000014
  */
-void title::Pikmin::TUnit::isBoid(void)
+void Pikmin::TUnit::isBoid(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2228,7 +2234,7 @@ void title::Pikmin::TUnit::isBoid(void)
  * Address:	803E5768
  * Size:	000150
  */
-void title::Pikmin::TUnit::startState(ebi::title::Pikmin::TUnit::enumState)
+void Pikmin::TUnit::startState(ebi::title::Pikmin::TUnit::enumState)
 {
 	/*
 	.loc_0x0:
@@ -2338,7 +2344,7 @@ void title::Pikmin::TUnit::startState(ebi::title::Pikmin::TUnit::enumState)
  * Address:	803E58B8
  * Size:	000DD4
  */
-void title::Pikmin::TUnit::update(void)
+void Pikmin::TUnit::update(void)
 {
 	/*
 	.loc_0x0:
@@ -3380,6 +3386,8 @@ void title::Pikmin::TUnit::update(void)
 
 } // namespace ebi
 
+} // title
+
 /*
  * --INFO--
  * Address:	803E668C
@@ -3554,12 +3562,14 @@ void updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<float>(void)
 
 namespace ebi {
 
+namespace title {
+
 /*
  * --INFO--
  * Address:	803E688C
  * Size:	000350
  */
-void title::Pikmin::TUnit::updateEnemyReaction_(void)
+void Pikmin::TUnit::updateEnemyReaction_(void)
 {
 	/*
 	.loc_0x0:
@@ -3819,7 +3829,7 @@ void title::Pikmin::TUnit::updateEnemyReaction_(void)
  * Address:	803E6BDC
  * Size:	000238
  */
-title::Pikmin::TBoidParam::TBoidParam(void)
+Pikmin::TBoidParam::TBoidParam(void)
 {
 	/*
 	.loc_0x0:
@@ -3975,7 +3985,7 @@ title::Pikmin::TBoidParam::TBoidParam(void)
  * Address:	803E6E14
  * Size:	0000FC
  */
-title::Pikmin::TUnit::TUnit(void)
+Pikmin::TUnit::TUnit(void)
 {
 	/*
 	.loc_0x0:
@@ -4050,7 +4060,7 @@ title::Pikmin::TUnit::TUnit(void)
  * Address:	803E6F10
  * Size:	000418
  */
-title::Pikmin::TParam::TParam(void)
+Pikmin::TParam::TParam(void)
 {
 	/*
 	.loc_0x0:
@@ -4326,9 +4336,11 @@ title::Pikmin::TParam::TParam(void)
  * Address:	803E7328
  * Size:	000008
  */
-u32 title::Pikmin::TUnit::getCreatureType(void) { return 0x0; }
+u32 Pikmin::TUnit::getCreatureType(void) { return 0x0; }
 
 } // namespace ebi
+
+} // title
 
 /*
  * --INFO--
