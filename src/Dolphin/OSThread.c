@@ -1,17 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800F1858
  * Size:	000004
  */
-void DefaultSwitchThreadCallback(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void DefaultSwitchThreadCallback(void) { }
 
 /*
  * --INFO--

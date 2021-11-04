@@ -262,56 +262,28 @@ void Game::Nest::Obj::doViewCalc(void) { }
  * Address:	8036CCC0
  * Size:	000008
  */
-void Game::Nest::Obj::isLivingThing(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Nest::Obj::isLivingThing(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8036CCC8
  * Size:	000008
  */
-void Game::Nest::Obj::ignoreAtari((Game::Creature*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Nest::Obj::ignoreAtari((Game::Creature*)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8036CCD0
  * Size:	000008
  */
-void Game::Nest::Obj::needShadow(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Nest::Obj::needShadow(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8036CCD8
  * Size:	000008
  */
-void Game::Nest::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x53
-	  blr
-	*/
-}
+u32 Game::Nest::Obj::getEnemyTypeID(void) { return 0x53; }
 
 /*
  * --INFO--

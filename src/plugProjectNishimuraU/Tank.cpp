@@ -1430,14 +1430,7 @@ void Game::Tank::Obj::getDownSmokeScale()
  * Address:	80276CD0
  * Size:	000008
  */
-void Game::Tank::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x18
-	  blr
-	*/
-}
+u32 Game::Tank::Obj::getEnemyTypeID() { return 0x18; }
 
 /*
  * --INFO--

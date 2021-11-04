@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -6,10 +6,6 @@
  * Size:	000004
  */
 void __end_critical_region(void) { return; }
-/*
-.loc_0x0:
-  blr
-*/
 
 /*
  * --INFO--
@@ -17,10 +13,6 @@ void __end_critical_region(void) { return; }
  * Size:	000004
  */
 void __begin_critical_region(void) { return; }
-/*
-.loc_0x0:
-  blr
-*/
 
 /*
  * --INFO--
@@ -28,10 +20,6 @@ void __begin_critical_region(void) { return; }
  * Size:	000004
  */
 void __kill_critical_regions(void) { return; }
-/*
-.loc_0x0:
-  blr
-*/
 
 /*
  * --INFO--

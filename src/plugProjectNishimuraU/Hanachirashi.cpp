@@ -3383,14 +3383,7 @@ void Game::Hanachirashi::Obj::throwupItemInDeathProcedure() { }
  * Address:	802A437C
  * Size:	000008
  */
-void Game::Hanachirashi::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x37
-	  blr
-	*/
-}
+u32 Game::Hanachirashi::Obj::getEnemyTypeID() { return 0x37; }
 
 /*
  * --INFO--

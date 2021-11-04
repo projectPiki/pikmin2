@@ -5887,14 +5887,7 @@ void Game::OoPanModoki::Obj::getDownSmokeScale(void)
  * Address:	80353D1C
  * Size:	000008
  */
-void Game::OoPanModoki::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 Game::OoPanModoki::Obj::getEnemyTypeID(void) { return 0x28; }
 
 /*
  * --INFO--

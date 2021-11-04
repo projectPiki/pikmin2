@@ -1155,14 +1155,7 @@ void MemoryCardMgr::cardProc(void*)
  * Address:	80441310
  * Size:	000008
  */
-void MemoryCardMgr::doCardProc(void*, MemoryCardMgrCommand*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 MemoryCardMgr::doCardProc(void*, MemoryCardMgrCommand*) { return 0x1; }
 
 /*
  * --INFO--
@@ -1586,14 +1579,7 @@ void MemoryCardMgr::writeHeader(MemoryCardMgr::ECardSlot, const char*)
  * Address:	80441840
  * Size:	000008
  */
-void MemoryCardMgr::getHeaderSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2000
-	  blr
-	*/
-}
+u32 MemoryCardMgr::getHeaderSize() { return 0x2000; }
 
 /*
  * --INFO--
@@ -3022,11 +3008,4 @@ void MemoryCardMgr::~MemoryCardMgr()
  * Address:	804428A4
  * Size:	000008
  */
-void MemoryCardMgrCommand::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x20
-	  blr
-	*/
-}
+u32 MemoryCardMgrCommand::getClassSize() { return 0x20; }

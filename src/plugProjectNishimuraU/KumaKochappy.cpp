@@ -1415,11 +1415,4 @@ void Game::KumaKochappy::Obj::getDownSmokeScale(void)
  * Address:	802E7F44
  * Size:	000008
  */
-void Game::KumaKochappy::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4C
-	  blr
-	*/
-}
+u32 Game::KumaKochappy::Obj::getEnemyTypeID(void) { return 0x4C; }

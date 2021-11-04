@@ -474,14 +474,7 @@ void Game::Generator::loadCreature((Stream&))
  * Address:	801AAA70
  * Size:	000008
  */
-void Game::GenObject::generate((Game::Generator*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::GenObject::generate((Game::Generator*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -2702,14 +2695,7 @@ void Game::GenObject::render((Graphics&, Game::Generator*)) { }
  * Address:	801AC388
  * Size:	000008
  */
-void Game::GenBase::getShape(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::GenBase::getShape(void) { return 0x0; }
 
 /*
  * --INFO--

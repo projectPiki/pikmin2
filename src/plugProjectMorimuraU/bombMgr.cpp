@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -257,14 +257,7 @@ void Game::Bomb::Mgr::__dt(void)
  * Address:	8034A090
  * Size:	000008
  */
-void Game::Bomb::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x24
-	  blr
-	*/
-}
+u32 Game::Bomb::Mgr::getEnemyTypeID(void) { return 0x24; }
 
 /*
  * --INFO--

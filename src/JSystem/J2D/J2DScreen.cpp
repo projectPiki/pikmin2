@@ -2316,14 +2316,7 @@ void J2DScreen::setAnimation(J2DAnmVisibilityFull*)
  * Address:	80040ED0
  * Size:	000008
  */
-void J2DScreen::getTypeID() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 J2DScreen::getTypeID() const { return 0x8; }
 
 /*
  * --INFO--

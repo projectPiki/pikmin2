@@ -254,14 +254,7 @@ void Game::ChappyBase::Mgr::createModel()
  * Address:	8012A93C
  * Size:	000008
  */
-void Game::ChappyBase::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 Game::ChappyBase::Mgr::getEnemyTypeID() { return 0x2; }
 
 /*
  * --INFO--

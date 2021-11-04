@@ -5527,28 +5527,14 @@ void Container<Game::ItemPikihead::Item>::getObject(void*)
  * Address:	801DC638
  * Size:	000008
  */
-void Container<Game::ItemPikihead::Item>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemPikihead::Item>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801DC640
  * Size:	000008
  */
-void Container<Game::ItemPikihead::Item>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemPikihead::Item>::getTo() { return 0x0; }
 
 /*
  * --INFO--

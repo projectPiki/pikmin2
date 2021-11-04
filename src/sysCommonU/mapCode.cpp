@@ -663,14 +663,7 @@ void ArrayContainer<MapCode::Code>::getNext(void*)
  * Address:	8041C96C
  * Size:	000008
  */
-void ArrayContainer<MapCode::Code>::getStart()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ArrayContainer<MapCode::Code>::getStart() { return 0x0; }
 
 /*
  * --INFO--
@@ -743,25 +736,11 @@ void Container<MapCode::Code>::getObject(void*)
  * Address:	8041C9BC
  * Size:	000008
  */
-void Container<MapCode::Code>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<MapCode::Code>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8041C9C4
  * Size:	000008
  */
-void Container<MapCode::Code>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<MapCode::Code>::getTo() { return 0x0; }

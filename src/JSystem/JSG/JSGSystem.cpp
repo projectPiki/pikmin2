@@ -43,13 +43,9 @@ void JStage::TSystem::__dt(void)
  * Address:	800987CC
  * Size:	000008
  */
-void JStage::TSystem::JSGFGetType( const
+u32  JStage::TSystem::JSGFGetType( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -57,13 +53,9 @@ void JStage::TSystem::JSGFGetType( const
  * Address:	800987D4
  * Size:	000008
  */
-void JStage::TSystem::JSGFindObject( const(JStage::TObject **, char const *, JStage::TEObject))
+u32  JStage::TSystem::JSGFindObject( const(JStage::TObject **, char const *, JStage::TEObject))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -71,13 +63,9 @@ void JStage::TSystem::JSGFindObject( const(JStage::TObject **, char const *, JSt
  * Address:	800987DC
  * Size:	000008
  */
-void JStage::TSystem::JSGCreateObject( (char const *, JStage::TEObject, unsigned long))
+u32  JStage::TSystem::JSGCreateObject( (char const *, JStage::TEObject, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -94,13 +82,9 @@ void JStage::TSystem::JSGDestroyObject( (JStage::TObject *))
  * Address:	800987E8
  * Size:	000008
  */
-void JStage::TSystem::JSGGetSystemData( (unsigned long))
+u32  JStage::TSystem::JSGGetSystemData( (unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

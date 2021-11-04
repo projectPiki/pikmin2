@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -169,14 +169,7 @@ void JKRAramStream::run()
  * Address:	8001A0B0
  * Size:	000008
  */
-void JKRAramStream::readFromAram()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 JKRAramStream::readFromAram() { return 0x1; }
 
 /*
  * --INFO--

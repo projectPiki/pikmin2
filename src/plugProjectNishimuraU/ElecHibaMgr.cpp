@@ -641,14 +641,7 @@ void Game::ElecHiba::Mgr::~Mgr()
  * Address:	8026F120
  * Size:	000008
  */
-void Game::ElecHiba::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x16
-	  blr
-	*/
-}
+u32 Game::ElecHiba::Mgr::getEnemyTypeID() { return 0x16; }
 
 /*
  * --INFO--

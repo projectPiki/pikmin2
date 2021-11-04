@@ -1193,14 +1193,7 @@ void Game::ItemHole::Item::canRide()
  * Address:	801D2528
  * Size:	000008
  */
-void Game::ItemHole::State::canRide()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemHole::State::canRide() { return 0x0; }
 
 /*
  * --INFO--
@@ -1224,14 +1217,7 @@ void Game::ItemHole::Item::do_setLODParm(Game::AILODParm&)
  * Address:	801D2544
  * Size:	000008
  */
-void Game::ItemHole::Item::sound_culling()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemHole::Item::sound_culling() { return 0x0; }
 
 /*
  * --INFO--
@@ -1798,14 +1784,7 @@ void Game::CItemState::onDamage(Game::CFSMItem*, float) { }
  * Address:	801D2B90
  * Size:	000008
  */
-void Game::ItemHole::NormalState::canRide()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::ItemHole::NormalState::canRide() { return 0x1; }
 
 /*
  * --INFO--

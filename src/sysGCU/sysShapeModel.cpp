@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1489,14 +1489,7 @@ void SysShape::Model::isMtxImmediate(void)
  * Address:	8043F120
  * Size:	000008
  */
-void SysShape::Model::isModel(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 SysShape::Model::isModel(void) { return 0x1; }
 
 /*
  * --INFO--

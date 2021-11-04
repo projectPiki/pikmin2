@@ -2674,14 +2674,7 @@ void Game::StateMachine<Game::ItemCave::Item>::create(int)
  * Address:	801EBEE0
  * Size:	000008
  */
-void Parm<unsigned char>::size()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Parm<unsigned char>::size() { return 0x1; }
 
 /*
  * --INFO--

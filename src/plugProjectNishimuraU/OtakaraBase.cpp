@@ -189,14 +189,7 @@ void Game::OtakaraBase::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802B6484
  * Size:	000008
  */
-void Game::OtakaraBase::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3B
-	  blr
-	*/
-}
+u32 Game::OtakaraBase::Obj::getEnemyTypeID() { return 0x3B; }
 
 /*
  * --INFO--

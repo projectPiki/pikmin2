@@ -157,13 +157,9 @@ void og::newScreen::FinalMsg::getResName( const
  * Address:	80325A10
  * Size:	000008
  */
-void og::newScreen::FinalMsg::getSceneType(void)
+u32  og::newScreen::FinalMsg::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2726
-	  blr
-	*/
+	return 0x2726;
 }
 
 /*
@@ -203,11 +199,7 @@ void og::newScreen::FinalMsg::getMemberID(void)
  * Address:	80325A38
  * Size:	000008
  */
-void og::newScreen::FinalMsg::isUseBackupSceneInfo(void)
+u32  og::newScreen::FinalMsg::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }

@@ -8490,13 +8490,9 @@ void Morimura::TChallengeSelectScene::getResName( const
  * Address:	80393244
  * Size:	000008
  */
-void Morimura::TChallengeSelectScene::getSceneType(void)
+u32  Morimura::TChallengeSelectScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2737
-	  blr
-	*/
+	return 0x2737;
 }
 
 /*

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -895,11 +895,4 @@ void Game::Fart::Obj::createPressSESpecial()
  * Address:	80285ED0
  * Size:	000008
  */
-void Game::Fart::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xB
-	  blr
-	*/
-}
+u32 Game::Fart::Obj::getEnemyTypeID() { return 0xB; }

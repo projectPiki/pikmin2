@@ -208,11 +208,7 @@ void P2JME::TSequenceProcessor::do_tag((unsigned long, void const*,
 void P2JME::TSequenceProcessor::do_systemTagCode((unsigned short, void const*,
                                                   unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -389,14 +385,7 @@ void P2JME::TSequenceProcessor::doFastForwardSE(void) { }
  * Address:	80437B88
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::do_jump_isReady(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 P2JME::TSequenceProcessor::do_jump_isReady(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -425,14 +414,7 @@ void P2JME::TSequenceProcessor::do_branch_query((unsigned short)) { }
  * Address:	80437BA0
  * Size:	000008
  */
-void P2JME::TSequenceProcessor::do_branch_queryResult(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 P2JME::TSequenceProcessor::do_branch_queryResult(void) { return -0x1; }
 
 /*
  * --INFO--

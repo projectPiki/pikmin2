@@ -3441,14 +3441,7 @@ void Game::Mar::Obj::throwupItemInDeathProcedure() { }
  * Address:	80281E14
  * Size:	000008
  */
-void Game::Mar::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1D
-	  blr
-	*/
-}
+u32 Game::Mar::Obj::getEnemyTypeID() { return 0x1D; }
 
 /*
  * --INFO--

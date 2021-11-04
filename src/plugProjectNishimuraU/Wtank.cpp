@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -964,14 +964,7 @@ void efx::TOneEmitterSimple::forceKill()
  * Address:	8027D220
  * Size:	000008
  */
-void Game::Wtank::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x19
-	  blr
-	*/
-}
+u32 Game::Wtank::Obj::getEnemyTypeID() { return 0x19; }
 
 /*
  * --INFO--

@@ -1567,14 +1567,7 @@ void Game::ItemBigFountain::Item::canRide(void)
  * Address:	801ED298
  * Size:	000008
  */
-void Game::ItemBigFountain::State::canRide(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemBigFountain::State::canRide(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2396,14 +2389,7 @@ void Game::ItemBigFountain::Mgr::generatorGetID(void)
  * Address:	801EDBD4
  * Size:	000008
  */
-void Game::ItemBigFountain::Item::sound_culling(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemBigFountain::Item::sound_culling(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2453,14 +2439,7 @@ Fv(void)
  * Address:	801EDC1C
  * Size:	000008
  */
-void Game::ItemBigFountain::OutState::canRide(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::ItemBigFountain::OutState::canRide(void) { return 0x1; }
 
 /*
  * --INFO--

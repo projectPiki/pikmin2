@@ -4706,13 +4706,9 @@ void Morimura::THiScoreScene::doCreateObj( (JKRArchive *))
  * Address:	80380818
  * Size:	000008
  */
-void Morimura::THiScoreScene::getSceneType(void)
+u32  Morimura::THiScoreScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2736
-	  blr
-	*/
+	return 0x2736;
 }
 
 /*
@@ -4751,13 +4747,9 @@ void Morimura::THiScoreScene::getMemberID(void)
  * Address:	8038083C
  * Size:	000008
  */
-void Morimura::DispMemberHighScore::getSize(void)
+u32  Morimura::DispMemberHighScore::getSize(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
+	return 0x10;
 }
 
 /*
@@ -4825,13 +4817,9 @@ void Morimura::THiScore::getDispMemberBase(void)
  * Address:	80380894
  * Size:	000008
  */
-void Morimura::THiScore::getIdMax(void)
+u32  Morimura::THiScore::getIdMax(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
+	return 0x10;
 }
 
 /*

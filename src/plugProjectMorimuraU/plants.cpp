@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -998,14 +998,7 @@ void Game::DiodeGreen::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80358E78
  * Size:	000008
  */
-void Game::DiodeGreen::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x56
-	  blr
-	*/
-}
+u32 Game::DiodeGreen::Obj::getEnemyTypeID(void) { return 0x56; }
 
 /*
  * --INFO--
@@ -1085,14 +1078,7 @@ void Game::DiodeRed::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80358F44
  * Size:	000008
  */
-void Game::DiodeRed::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x55
-	  blr
-	*/
-}
+u32 Game::DiodeRed::Obj::getEnemyTypeID(void) { return 0x55; }
 
 /*
  * --INFO--
@@ -1220,28 +1206,14 @@ void Game::Nekojarashi::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	803590B8
  * Size:	000008
  */
-void Game::Nekojarashi::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x58
-	  blr
-	*/
-}
+u32 Game::Nekojarashi::Obj::getEnemyTypeID(void) { return 0x58; }
 
 /*
  * --INFO--
  * Address:	803590C0
  * Size:	000008
  */
-void Game::Watage::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x51
-	  blr
-	*/
-}
+u32 Game::Watage::Obj::getEnemyTypeID(void) { return 0x51; }
 
 /*
  * --INFO--
@@ -1321,14 +1293,7 @@ void Game::HikariKinoko::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	8035918C
  * Size:	000008
  */
-void Game::HikariKinoko::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x30
-	  blr
-	*/
-}
+u32 Game::HikariKinoko::Obj::getEnemyTypeID(void) { return 0x30; }
 
 /*
  * --INFO--

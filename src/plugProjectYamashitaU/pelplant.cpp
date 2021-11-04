@@ -2851,14 +2851,7 @@ void Game::Pelplant::Mgr::~Mgr()
  * Address:	8010A648
  * Size:	000008
  */
-void Game::Pelplant::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Pelplant::Mgr::getEnemyTypeID() { return 0x0; }
 
 /*
  * --INFO--
@@ -3073,42 +3066,21 @@ void GenericObjectMgr::resetMgr() { }
  * Address:	8010A7D0
  * Size:	000008
  */
-void GenericObjectMgr::pausable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 GenericObjectMgr::pausable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8010A7D8
  * Size:	000008
  */
-void GenericObjectMgr::frozenable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 GenericObjectMgr::frozenable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8010A7E0
  * Size:	000008
  */
-void GenericObjectMgr::getMatrixLoadType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 GenericObjectMgr::getMatrixLoadType() { return 0x0; }
 
 /*
  * --INFO--
@@ -3421,42 +3393,21 @@ void Game::EnemyBlendAnimatorBase::getTypeID()
  * Address:	8010AA78
  * Size:	000008
  */
-void Game::Pelplant::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Pelplant::Obj::getEnemyTypeID() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8010AA80
  * Size:	000008
  */
-void Parm<int>::size()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 Parm<int>::size() { return 0x4; }
 
 /*
  * --INFO--
  * Address:	8010AA88
  * Size:	000008
  */
-void Parm<float>::size()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 Parm<float>::size() { return 0x4; }
 
 /*
  * --INFO--

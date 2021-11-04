@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2518,14 +2518,7 @@ void PikiAI::ActFormation::platCallback((Game::Piki*, Game::PlatEvent&))
  * Address:	8019EE34
  * Size:	000008
  */
-void PikiAI::ActFormation::resumable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::ActFormation::resumable(void) { return 0x1; }
 
 /*
  * --INFO--

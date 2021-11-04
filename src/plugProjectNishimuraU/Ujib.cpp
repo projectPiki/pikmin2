@@ -1890,14 +1890,7 @@ void Game::Ujib::Obj::getDownSmokeScale()
  * Address:	8025B128
  * Size:	000008
  */
-void Game::Ujib::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xD
-	  blr
-	*/
-}
+u32 Game::Ujib::Obj::getEnemyTypeID() { return 0xD; }
 
 /*
  * --INFO--

@@ -355,14 +355,7 @@ void Game::BaseHIOSection::createScreenRootNode(void) { }
  * Address:	80164FA8
  * Size:	000008
  */
-void Game::BaseHIOSection::doUpdate(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::BaseHIOSection::doUpdate(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -453,14 +446,7 @@ void Section::drawInit(Graphics&, Section::EDrawInitMode)
  * Address:	80165058
  * Size:	000008
  */
-void Section::forceFinish()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Section::forceFinish() { return 0x0; }
 
 /*
  * --INFO--

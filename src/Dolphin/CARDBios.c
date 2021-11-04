@@ -1,17 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800D466C
  * Size:	000004
  */
-void __CARDDefaultApiCallback(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void __CARDDefaultApiCallback(void) { }
 
 /*
  * --INFO--

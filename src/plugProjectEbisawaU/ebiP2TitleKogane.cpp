@@ -1503,14 +1503,7 @@ void ebi::title::Kogane::TParam::__ct(void)
  * Address:	803E8590
  * Size:	000008
  */
-void ebi::title::Kogane::TUnit::getCreatureType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5
-	  blr
-	*/
-}
+u32 ebi::title::Kogane::TUnit::getCreatureType(void) { return 0x5; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -309,14 +309,7 @@ void Game::Hana::Mgr::__dt(void)
  * Address:	802F30FC
  * Size:	000008
  */
-void Game::Hana::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x54
-	  blr
-	*/
-}
+u32 Game::Hana::Mgr::getEnemyTypeID(void) { return 0x54; }
 
 /*
  * --INFO--

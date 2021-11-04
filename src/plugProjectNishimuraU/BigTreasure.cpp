@@ -8142,14 +8142,7 @@ void Game::BigTreasure::Obj::throwupItemInDeathProcedure() { }
  * Address:	802E16E8
  * Size:	000008
  */
-void Game::BigTreasure::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x49
-	  blr
-	*/
-}
+u32 Game::BigTreasure::Obj::getEnemyTypeID() { return 0x49; }
 
 /*
  * --INFO--

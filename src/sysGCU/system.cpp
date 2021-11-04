@@ -2013,13 +2013,9 @@ void System::changeRenderMode(System::ERenderMode)
 * Address:	8042335C
 * Size:	000008
 
-void System::heapStatusStart(char*, JKRHeap*)
+u32  System::heapStatusStart(char*, JKRHeap*)
 {
-/*
-.loc_0x0:
-  li        r3, 0
-  blr
-
+    return 0x0;
 }
 
 /*
@@ -2393,13 +2389,9 @@ void System::forceFinishSection()
 * Address:	804235CC
 * Size:	000008
 
-void ISectionMgr::getCurrentSection()
+u32  ISectionMgr::getCurrentSection()
 {
-/*
-.loc_0x0:
-  li        r3, 0
-  blr
-
+    return 0x0;
 }
 
 /*

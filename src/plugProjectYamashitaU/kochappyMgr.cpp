@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -309,14 +309,7 @@ void Game::Kochappy::Mgr::~Mgr()
  * Address:	80112624
  * Size:	000008
  */
-void Game::Kochappy::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Kochappy::Mgr::getEnemyTypeID() { return 0x1; }
 
 /*
  * --INFO--

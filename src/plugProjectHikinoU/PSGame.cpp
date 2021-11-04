@@ -5390,13 +5390,9 @@ void @28@PSGame::ConductorList::__dt(void)
  * Address:	803381EC
  * Size:	000008
  */
-void PSGame::SceneInfo::isCaveFloor(void)
+u32  PSGame::SceneInfo::isCaveFloor(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -5404,13 +5400,9 @@ void PSGame::SceneInfo::isCaveFloor(void)
  * Address:	803381F4
  * Size:	000008
  */
-void PSGame::PikSceneMgr::curSceneIsBigBossFloor(void)
+u32  PSGame::PikSceneMgr::curSceneIsBigBossFloor(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

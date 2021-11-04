@@ -70,14 +70,7 @@ void kh::Screen::ObjWinLoseReason::doCreate(JKRArchive*)
  * Address:	804107E0
  * Size:	000008
  */
-void kh::Screen::ObjWinLoseReason::doUpdate()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 kh::Screen::ObjWinLoseReason::doUpdate() { return 0x0; }
 
 /*
  * --INFO--
@@ -687,28 +680,14 @@ void kh::Screen::SceneWinLoseReason::getResName() const
  * Address:	80410ECC
  * Size:	000008
  */
-void kh::Screen::SceneWinLoseReason::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E29
-	  blr
-	*/
-}
+u32 kh::Screen::SceneWinLoseReason::getSceneType() { return 0x4E29; }
 
 /*
  * --INFO--
  * Address:	80410ED4
  * Size:	000008
  */
-void kh::Screen::SceneWinLoseReason::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneWinLoseReason::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

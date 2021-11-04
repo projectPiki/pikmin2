@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -310,14 +310,7 @@ void Game::Koganemushi::Mgr::~Mgr()
  * Address:	8029DD2C
  * Size:	000008
  */
-void Game::Koganemushi::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x9
-	  blr
-	*/
-}
+u32 Game::Koganemushi::Mgr::getEnemyTypeID() { return 0x9; }
 
 /*
  * --INFO--

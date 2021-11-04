@@ -7253,11 +7253,7 @@ void Game::BlackMan::Obj::updateEfxHamon(void)
 void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3<float>
 f(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -7265,14 +7261,7 @@ f(void)
  * Address:	803AB794
  * Size:	000008
  */
-void Game::BlackMan::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x63
-	  blr
-	*/
-}
+u32 Game::BlackMan::Obj::getEnemyTypeID(void) { return 0x63; }
 
 /*
  * --INFO--

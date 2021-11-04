@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -306,14 +306,7 @@ void Game::Tyre::Mgr::__dt(void)
  * Address:	803AC164
  * Size:	000008
  */
-void Game::Tyre::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x62
-	  blr
-	*/
-}
+u32 Game::Tyre::Mgr::getEnemyTypeID(void) { return 0x62; }
 
 /*
  * --INFO--

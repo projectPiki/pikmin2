@@ -204,14 +204,7 @@ void Game::Hiba::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026B5F8
  * Size:	000008
  */
-void Game::Hiba::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14
-	  blr
-	*/
-}
+u32 Game::Hiba::Obj::getEnemyTypeID() { return 0x14; }
 
 /*
  * --INFO--

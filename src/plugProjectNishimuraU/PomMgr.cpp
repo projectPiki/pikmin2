@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -741,14 +741,7 @@ void Game::Pom::Mgr::~Mgr()
  * Address:	8025476C
  * Size:	000008
  */
-void Game::Pom::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x52
-	  blr
-	*/
-}
+u32 Game::Pom::Mgr::getEnemyTypeID() { return 0x52; }
 
 /*
  * --INFO--

@@ -865,42 +865,21 @@ void kh::Screen::ScenePayDept::getResName() const
  * Address:	8040FBD4
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::isUseBackupSceneInfo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 kh::Screen::ScenePayDept::isUseBackupSceneInfo() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8040FBDC
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E27
-	  blr
-	*/
-}
+u32 kh::Screen::ScenePayDept::getSceneType() { return 0x4E27; }
 
 /*
  * --INFO--
  * Address:	8040FBE4
  * Size:	000008
  */
-void kh::Screen::ScenePayDept::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::ScenePayDept::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -990,28 +969,14 @@ void kh::Screen::ObjPayDept::~ObjPayDept()
  * Address:	8040FCB0
  * Size:	000008
  */
-void kh::Screen::DispPayDept::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 kh::Screen::DispPayDept::getSize() { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8040FCB8
  * Size:	000008
  */
-void kh::Screen::DispPayDept::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispPayDept::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

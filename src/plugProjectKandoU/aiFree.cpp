@@ -479,14 +479,7 @@ void PikiAI::GatherActionArg::getName(void)
  * Address:	801A04B0
  * Size:	000008
  */
-void PikiAI::ActFree::getNextAIType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 PikiAI::ActFree::getNextAIType(void) { return 0x2; }
 
 /*
  * --INFO--

@@ -2257,28 +2257,14 @@ void Container<Game::DynParticle>::getObject(void*)
  * Address:	801A95F4
  * Size:	000008
  */
-void Container<Game::DynParticle>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::DynParticle>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801A95FC
  * Size:	000008
  */
-void Container<Game::DynParticle>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::DynParticle>::getTo() { return 0x0; }
 
 /*
  * --INFO--

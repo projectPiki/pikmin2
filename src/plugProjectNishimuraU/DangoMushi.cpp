@@ -652,13 +652,9 @@ void Game::DangoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	802FCAD8
  * Size:	000008
  */
-void Game::DangoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
+u32 Game::DangoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -4414,14 +4410,7 @@ void Game::DangoMushi::Obj::getDamageCoeStoneState()
  * Address:	802FF748
  * Size:	000008
  */
-void Game::DangoMushi::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5E
-	  blr
-	*/
-}
+u32 Game::DangoMushi::Obj::getEnemyTypeID() { return 0x5E; }
 
 /*
  * --INFO--

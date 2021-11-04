@@ -410,14 +410,7 @@ void efx::OnyonSpotData::__dt(void)
  * Address:	80205A14
  * Size:	000008
  */
-void efx::OnyonSpot::useCylinderLOD(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 efx::OnyonSpot::useCylinderLOD(void) { return 0x1; }
 
 /*
  * --INFO--

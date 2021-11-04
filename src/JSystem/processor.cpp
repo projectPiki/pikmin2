@@ -37,14 +37,7 @@ void JMessage::TReference::~TReference()
  * Address:	80006D54
  * Size:	000008
  */
-void JMessage::TReference::do_word(unsigned long) const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JMessage::TReference::do_word(unsigned long) const { return 0x0; }
 
 /*
  * --INFO--
@@ -433,13 +426,9 @@ void JMessage::TProcessor::do_character(int) { }
  * Address:	8000713C
  * Size:	000008
  */
-void JMessage::TProcessor::do_tag(unsigned long, const void*, unsigned long)
+u32 JMessage::TProcessor::do_tag(unsigned long, const void*, unsigned long)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -450,11 +439,7 @@ void JMessage::TProcessor::do_tag(unsigned long, const void*, unsigned long)
 void JMessage::TProcessor::do_systemTagCode(unsigned short, const void*,
                                             unsigned long)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -520,14 +505,7 @@ void JMessage::TProcessor::reset_(const char*)
  * Address:	800071BC
  * Size:	000008
  */
-void JMessage::TProcessor::do_setBegin_isReady_() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 JMessage::TProcessor::do_setBegin_isReady_() const { return 0x1; }
 
 /*
  * --INFO--
@@ -1563,28 +1541,14 @@ void JMessage::TSequenceProcessor::do_end() { }
  * Address:	80007CC0
  * Size:	000008
  */
-void JMessage::TSequenceProcessor::do_isReady()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 JMessage::TSequenceProcessor::do_isReady() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80007CC8
  * Size:	000008
  */
-void JMessage::TSequenceProcessor::do_jump_isReady()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 JMessage::TSequenceProcessor::do_jump_isReady() { return 0x1; }
 
 /*
  * --INFO--
@@ -1605,14 +1569,7 @@ void JMessage::TSequenceProcessor::do_branch_query(unsigned short) { }
  * Address:	80007CD8
  * Size:	000008
  */
-void JMessage::TSequenceProcessor::do_branch_queryResult()
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x2
-	  blr
-	*/
-}
+s32 JMessage::TSequenceProcessor::do_branch_queryResult() { return -0x2; }
 
 /*
  * --INFO--

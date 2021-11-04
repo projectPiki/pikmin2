@@ -325,14 +325,7 @@ void Game::KumaChappy::StateDead::exec(Game::EnemyBase*)
  * Address:	80296238
  * Size:	000008
  */
-void Game::KumaChappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x23
-	  blr
-	*/
-}
+u32 Game::KumaChappy::Obj::getEnemyTypeID() { return 0x23; }
 
 /*
  * --INFO--

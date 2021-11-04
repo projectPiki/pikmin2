@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -268,11 +268,4 @@ void J2DPerspGraph::~J2DPerspGraph()
  * Address:	8003606C
  * Size:	000008
  */
-void J2DPerspGraph::getGrafType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 J2DPerspGraph::getGrafType() const { return 0x2; }

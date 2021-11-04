@@ -1396,13 +1396,9 @@ void Game::ShijimiChou::Obj::doStartStoneState(void)
  * Address:	8038A730
  * Size:	000008
  */
-void Game::ShijimiChou::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+u32 Game::ShijimiChou::Obj::damageCallBack((Game::Creature*, float, CollPart*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -3785,13 +3781,9 @@ void Game::ShijimiChou::Obj::ignoreAtari((Game::Creature*))
  * Address:	8038C3EC
  * Size:	000008
  */
-void Game::ShijimiChou::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+u32 Game::ShijimiChou::Obj::pressCallBack((Game::Creature*, float, CollPart*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -3802,11 +3794,7 @@ void Game::ShijimiChou::Obj::pressCallBack((Game::Creature*, float, CollPart*))
 void Game::ShijimiChou::Obj::hipdropCallBack((Game::Creature*, float,
                                               CollPart*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -3814,13 +3802,9 @@ void Game::ShijimiChou::Obj::hipdropCallBack((Game::Creature*, float,
  * Address:	8038C3FC
  * Size:	000008
  */
-void Game::ShijimiChou::Obj::earthquakeCallBack((Game::Creature*, float))
+u32 Game::ShijimiChou::Obj::earthquakeCallBack((Game::Creature*, float))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -3828,14 +3812,7 @@ void Game::ShijimiChou::Obj::earthquakeCallBack((Game::Creature*, float))
  * Address:	8038C404
  * Size:	000008
  */
-void Game::ShijimiChou::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4D
-	  blr
-	*/
-}
+u32 Game::ShijimiChou::Obj::getEnemyTypeID(void) { return 0x4D; }
 
 /*
  * --INFO--

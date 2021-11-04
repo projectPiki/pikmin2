@@ -2027,69 +2027,37 @@ void efx2d::T2DCvnameChal::__dt(void)
  * Address:	80330244
  * Size:	000008
  */
-void P2JME::Analyzer::tagColor((void const*, unsigned long))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::Analyzer::tagColor((void const*, unsigned long)) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8033024C
  * Size:	000008
  */
-void P2JME::Analyzer::tagSize((void const*, unsigned long))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::Analyzer::tagSize((void const*, unsigned long)) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80330254
  * Size:	000008
  */
-void P2JME::Analyzer::tagRuby((void const*, unsigned long))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::Analyzer::tagRuby((void const*, unsigned long)) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8033025C
  * Size:	000008
  */
-void P2JME::Analyzer::tagFont((void const*, unsigned long))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::Analyzer::tagFont((void const*, unsigned long)) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80330264
  * Size:	000008
  */
-void P2JME::Analyzer::tagImage((unsigned short, void const*, unsigned long))
+u32 P2JME::Analyzer::tagImage((unsigned short, void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -2097,13 +2065,9 @@ void P2JME::Analyzer::tagImage((unsigned short, void const*, unsigned long))
  * Address:	8033026C
  * Size:	000008
  */
-void P2JME::Analyzer::tagColorEX((unsigned short, void const*, unsigned long))
+u32 P2JME::Analyzer::tagColorEX((unsigned short, void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -2111,13 +2075,9 @@ void P2JME::Analyzer::tagColorEX((unsigned short, void const*, unsigned long))
  * Address:	80330274
  * Size:	000008
  */
-void P2JME::Analyzer::tagControl((unsigned short, void const*, unsigned long))
+u32 P2JME::Analyzer::tagControl((unsigned short, void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -2125,13 +2085,9 @@ void P2JME::Analyzer::tagControl((unsigned short, void const*, unsigned long))
  * Address:	8033027C
  * Size:	000008
  */
-void P2JME::Analyzer::tagPosition((unsigned short, void const*, unsigned long))
+u32 P2JME::Analyzer::tagPosition((unsigned short, void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

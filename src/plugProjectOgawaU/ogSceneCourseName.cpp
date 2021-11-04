@@ -207,13 +207,9 @@ void og::newScreen::CourseName::getResName( const
  * Address:	80318220
  * Size:	000008
  */
-void og::newScreen::CourseName::getSceneType(void)
+u32  og::newScreen::CourseName::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x271E
-	  blr
-	*/
+	return 0x271E;
 }
 
 /*

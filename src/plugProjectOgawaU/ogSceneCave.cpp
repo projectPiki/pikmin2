@@ -108,13 +108,9 @@ void og::newScreen::Cave::getResName( const
  * Address:	8031CD54
  * Size:	000008
  */
-void og::newScreen::Cave::getSceneType(void)
+u32  og::newScreen::Cave::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2711
-	  blr
-	*/
+	return 0x2711;
 }
 
 /*
@@ -153,11 +149,7 @@ void og::newScreen::Cave::getMemberID(void)
  * Address:	8031CD78
  * Size:	000008
  */
-void og::newScreen::Cave::isDrawInDemo( const
+u32  og::newScreen::Cave::isDrawInDemo( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }

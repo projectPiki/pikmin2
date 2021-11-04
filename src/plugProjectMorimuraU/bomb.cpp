@@ -1231,13 +1231,9 @@ void bombCallBack__Q34Game4Bomb3ObjFPQ24Game8CreatureR10Vector3<float> f(void)
  * Address:	8034AFB4
  * Size:	000008
  */
-void Game::Bomb::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+u32 Game::Bomb::Obj::pressCallBack((Game::Creature*, float, CollPart*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -1665,14 +1661,7 @@ void Game::Bomb::Obj::isUnderground(void)
  * Address:	8034B3B4
  * Size:	000008
  */
-void Game::Bomb::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x24
-	  blr
-	*/
-}
+u32 Game::Bomb::Obj::getEnemyTypeID(void) { return 0x24; }
 
 /*
  * --INFO--

@@ -4014,14 +4014,7 @@ void Game::SnakeWhole::Obj::getDownSmokeScale()
  * Address:	802D15B4
  * Size:	000008
  */
-void Game::SnakeWhole::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x46
-	  blr
-	*/
-}
+u32 Game::SnakeWhole::Obj::getEnemyTypeID() { return 0x46; }
 
 /*
  * --INFO--

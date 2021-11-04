@@ -4895,14 +4895,7 @@ void PSSystem::JumpBgmSeq::onJump((unsigned short)) { }
  * Address:	80334150
  * Size:	000008
  */
-void PSSystem::JumpBgmSeq::getCastType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 PSSystem::JumpBgmSeq::getCastType(void) { return 0x4; }
 
 /*
  * --INFO--
@@ -4923,14 +4916,7 @@ void PSSystem::BgmSeq::getSeqType(void)
  * Address:	80334160
  * Size:	000008
  */
-void PSSystem::DirectedBgm::getCastType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 PSSystem::DirectedBgm::getCastType(void) { return 0x2; }
 
 /*
  * --INFO--
@@ -4952,14 +4938,7 @@ void PSSystem::SeSeq::getSeqType(void)
  * Address:	80334174
  * Size:	000008
  */
-void PSSystem::SeSeq::getCastType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5
-	  blr
-	*/
-}
+u32 PSSystem::SeSeq::getCastType(void) { return 0x5; }
 
 /*
  * --INFO--
@@ -5001,70 +4980,35 @@ void PSSystem::StreamBgm::scene1st((PSSystem::TaskChecker*)) { }
  * Address:	80334190
  * Size:	000008
  */
-void PSSystem::StreamBgm::getSeqType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSSystem::StreamBgm::getSeqType(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80334198
  * Size:	000008
  */
-void PSSystem::StreamBgm::getCastType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSSystem::StreamBgm::getCastType(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	803341A0
  * Size:	000008
  */
-void PSSystem::BgmSeq::getCastType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSSystem::BgmSeq::getCastType(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803341A8
  * Size:	000008
  */
-void PSSystem::StreamDataList::read((Stream&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSSystem::StreamDataList::read((Stream&)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803341B0
  * Size:	000008
  */
-void PSSystem::SeqDataList::read((Stream&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSSystem::SeqDataList::read((Stream&)) { return 0x0; }
 
 /*
  * --INFO--
@@ -5090,14 +5034,7 @@ void PSSystem::TriangleTableModTask::getTgtWithTable((unsigned char))
  * Address:	803341D4
  * Size:	000008
  */
-void PSSystem::TriangleTableModTask::getTableIdxNum(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 PSSystem::TriangleTableModTask::getTableIdxNum(void) { return 0x28; }
 
 /*
  * --INFO--

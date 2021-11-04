@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -358,14 +358,7 @@ void JKRThread::start(void*)
  * Address:	80025A3C
  * Size:	000008
  */
-void JKRThread::run()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JKRThread::run() { return 0x0; }
 
 /*
  * --INFO--

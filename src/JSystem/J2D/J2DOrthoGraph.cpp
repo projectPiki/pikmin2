@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -729,14 +729,7 @@ void J2DDrawFrame(const JGeometry::TBox2<float>&, JUtility::TColor,
  * Address:	80035D78
  * Size:	000008
  */
-void J2DOrthoGraph::getGrafType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 J2DOrthoGraph::getGrafType() const { return 0x1; }
 
 /*
  * --INFO--

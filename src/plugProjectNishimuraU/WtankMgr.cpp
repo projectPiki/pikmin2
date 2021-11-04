@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -347,14 +347,7 @@ void Game::Wtank::Mgr::~Mgr()
  * Address:	8027C7A4
  * Size:	000008
  */
-void Game::Wtank::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x19
-	  blr
-	*/
-}
+u32 Game::Wtank::Mgr::getEnemyTypeID() { return 0x19; }
 
 /*
  * --INFO--

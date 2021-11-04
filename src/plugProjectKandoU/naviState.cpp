@@ -2152,14 +2152,7 @@ void Game::NaviWalkState::exec((Game::Navi*))
  * Address:	8017EF60
  * Size:	000008
  */
-void Game::NaviState::needYChangeMotion(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviState::needYChangeMotion(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -5849,14 +5842,7 @@ void Game::NaviPathMoveState::execMove((Game::Navi*))
  * Address:	80181C84
  * Size:	000008
  */
-void Game::NaviPathMoveState::execMoveGoal((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviPathMoveState::execMoveGoal((Game::Navi*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -14904,14 +14890,7 @@ void Game::NaviDemo_HoleInState::initFall((Game::Navi*)) { }
  * Address:	80188BD8
  * Size:	000008
  */
-void Game::NaviDemo_HoleInState::execFall((Game::Navi*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviDemo_HoleInState::execFall((Game::Navi*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -15240,210 +15219,105 @@ void Game::NaviPressedState::cleanup((Game::Navi*))
  * Address:	80189010
  * Size:	000008
  */
-void Game::NaviPressedState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviPressedState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189018
  * Size:	000008
  */
-void Game::NaviPressedState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviPressedState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189020
  * Size:	000008
  */
-void Game::NaviPressedState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviPressedState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189028
  * Size:	000008
  */
-void Game::NaviState::callable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189030
  * Size:	000008
  */
-void Game::NaviState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189038
  * Size:	000008
  */
-void Game::NaviPelletState::callable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviPelletState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189040
  * Size:	000008
  */
-void Game::NaviDeadState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviDeadState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189048
  * Size:	000008
  */
-void Game::NaviDeadState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviDeadState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189050
  * Size:	000008
  */
-void Game::NaviDeadState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviDeadState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189058
  * Size:	000008
  */
-void Game::NaviDamagedState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviDamagedState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189060
  * Size:	000008
  */
-void Game::NaviDamagedState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviDamagedState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189068
  * Size:	000008
  */
-void Game::NaviAbsorbState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviAbsorbState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189070
  * Size:	000008
  */
-void Game::NaviAbsorbState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviAbsorbState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189078
  * Size:	000008
  */
-void Game::NaviAbsorbState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviAbsorbState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189080
  * Size:	000008
  */
-void og::Screen::DispMemberContena::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x38
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberContena::getSize(void) { return 0x38; }
 
 /*
  * --INFO--
@@ -15482,14 +15356,7 @@ void og::Screen::DispMemberContena::getMemberID(void)
  * Address:	801890A8
  * Size:	000008
  */
-void og::Screen::DispMemberUfoMenu::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberUfoMenu::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
@@ -15528,14 +15395,7 @@ void og::Screen::DispMemberUfoMenu::getMemberID(void)
  * Address:	801890D0
  * Size:	000008
  */
-void og::Screen::DispMemberUfoGroup::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8C
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberUfoGroup::getSize(void) { return 0x8C; }
 
 /*
  * --INFO--
@@ -15604,112 +15464,56 @@ void og::Screen::DispMemberUfoGroup::doSetSubMemberAll(void)
  * Address:	80189140
  * Size:	000008
  */
-void Game::NaviContainerState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviContainerState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189148
  * Size:	000008
  */
-void Game::NaviSaraiExitState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviSaraiExitState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189150
  * Size:	000008
  */
-void Game::NaviSaraiState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviSaraiState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189158
  * Size:	000008
  */
-void Game::NaviKokeDamageState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviKokeDamageState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189160
  * Size:	000008
  */
-void Game::NaviKokeDamageState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviKokeDamageState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189168
  * Size:	000008
  */
-void Game::NaviFlickState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviFlickState::pressable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189170
  * Size:	000008
  */
-void Game::NaviFlickState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviFlickState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189178
  * Size:	000008
  */
-void Game::NaviFallMeckState::pressable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviFallMeckState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -15731,84 +15535,42 @@ void efx::ArgDopingSmoke::getName(void)
  * Address:	8018918C
  * Size:	000008
  */
-void Game::NaviDopeState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviDopeState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189194
  * Size:	000008
  */
-void Game::NaviNukuState::invincible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviNukuState::invincible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8018919C
  * Size:	000008
  */
-void Game::NaviFollowState::needYChangeMotion(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviFollowState::needYChangeMotion(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891A4
  * Size:	000008
  */
-void Game::NaviWalkState::callable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviWalkState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891AC
  * Size:	000008
  */
-void Game::NaviWalkState::needYChangeMotion(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::NaviWalkState::needYChangeMotion(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891B4
  * Size:	000008
  */
-void Game::NaviStuckState::vsUsableY(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviStuckState::vsUsableY(void) { return 0x0; }
 
 /*
  * --INFO--

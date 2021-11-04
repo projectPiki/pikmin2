@@ -1520,14 +1520,7 @@ void Game::VsGameSection::openCaveMoreMenu((Game::ItemHole::Item*, Controller*))
  * Address:	801C1E74
  * Size:	000008
  */
-void Game::VsGame::State::goingToCave((Game::VsGameSection*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::VsGame::State::goingToCave((Game::VsGameSection*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -3452,14 +3445,7 @@ void Game::GameMessageVsUseCard::actVs((Game::VsGameSection*))
  * Address:	801C3514
  * Size:	000008
  */
-void Game::VsGame::State::isCardUsable((Game::VsGameSection*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::VsGame::State::isCardUsable((Game::VsGameSection*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -5134,28 +5120,14 @@ void Game::VsGameSection::getGetCherryCount((int))
  * Address:	801C49B8
  * Size:	000008
  */
-void Game::VsGameSection::challengeDisablePelplant(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::VsGameSection::challengeDisablePelplant(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C49C0
  * Size:	000008
  */
-void Game::VsGameSection::player2enabled(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::VsGameSection::player2enabled(void) { return 0x1; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -385,14 +385,7 @@ void Game::Jigumo::Mgr::doLoadBmd((void*))
  * Address:	80368D14
  * Size:	000008
  */
-void Game::Jigumo::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3F
-	  blr
-	*/
-}
+u32 Game::Jigumo::Mgr::getEnemyTypeID(void) { return 0x3F; }
 
 /*
  * --INFO--

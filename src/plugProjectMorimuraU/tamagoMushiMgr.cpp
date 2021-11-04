@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1232,14 +1232,7 @@ void Game::TamagoMushi::Mgr::__dt(void)
  * Address:	8036E8B8
  * Size:	000008
  */
-void Game::TamagoMushi::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x44
-	  blr
-	*/
-}
+u32 Game::TamagoMushi::Mgr::getEnemyTypeID(void) { return 0x44; }
 
 /*
  * --INFO--

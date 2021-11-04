@@ -536,14 +536,7 @@ void Game::OoPanModoki::Mgr::__dt(void)
  * Address:	8034EF8C
  * Size:	000008
  */
-void Game::OoPanModoki::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 Game::OoPanModoki::Mgr::getEnemyTypeID(void) { return 0x28; }
 
 /*
  * --INFO--
@@ -737,14 +730,7 @@ void Game::PanModoki::Mgr::__dt(void)
  * Address:	8034F1A0
  * Size:	000008
  */
-void Game::PanModoki::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x26
-	  blr
-	*/
-}
+u32 Game::PanModoki::Mgr::getEnemyTypeID(void) { return 0x26; }
 
 /*
  * --INFO--
@@ -1023,14 +1009,7 @@ void Game::PanModoki::Obj::getDownSmokeScale(void)
  * Address:	8034F470
  * Size:	000008
  */
-void Game::PanModoki::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x26
-	  blr
-	*/
-}
+u32 Game::PanModoki::Obj::getEnemyTypeID(void) { return 0x26; }
 
 /*
  * --INFO--

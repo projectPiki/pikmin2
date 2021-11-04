@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -375,14 +375,7 @@ void Game::Frog::Mgr::~Mgr()
  * Address:	80258538
  * Size:	000008
  */
-void Game::Frog::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x11
-	  blr
-	*/
-}
+u32 Game::Frog::Mgr::getEnemyTypeID() { return 0x11; }
 
 /*
  * --INFO--

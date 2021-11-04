@@ -320,14 +320,7 @@ void Game::Catfish::Obj::outWaterCallback() { }
  * Address:	802772F4
  * Size:	000008
  */
-void Game::Catfish::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1A
-	  blr
-	*/
-}
+u32 Game::Catfish::Obj::getEnemyTypeID() { return 0x1A; }
 
 /*
  * --INFO--

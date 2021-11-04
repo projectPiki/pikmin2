@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -85,13 +85,7 @@ void usr_putchar(void)
  * Address:	800BC380
  * Size:	000004
  */
-void usr_put_initialize(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void usr_put_initialize(void) { }
 
 /*
  * --INFO--

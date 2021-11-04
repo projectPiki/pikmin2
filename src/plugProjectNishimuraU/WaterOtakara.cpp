@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -464,11 +464,4 @@ void Game::WaterOtakara::Obj::startDisChargeSE()
  * Address:	802B8F34
  * Size:	000008
  */
-void Game::WaterOtakara::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3C
-	  blr
-	*/
-}
+u32 Game::WaterOtakara::Obj::getEnemyTypeID() { return 0x3C; }

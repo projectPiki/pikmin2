@@ -1093,28 +1093,14 @@ void Morimura::TPikminDownScene::doCreateObj(JKRArchive*)
  * Address:	80400E78
  * Size:	000008
  */
-void Morimura::TPikminDownScene::isUseBackupSceneInfo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Morimura::TPikminDownScene::isUseBackupSceneInfo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80400E80
  * Size:	000008
  */
-void Morimura::TPikminDownScene::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x272F
-	  blr
-	*/
-}
+u32 Morimura::TPikminDownScene::getSceneType() { return 0x272F; }
 
 /*
  * --INFO--
@@ -1214,14 +1200,7 @@ void Morimura::TPresidentDownScene::doCreateObj(JKRArchive*)
  * Address:	80400F34
  * Size:	000008
  */
-void Morimura::TPresidentDownScene::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2732
-	  blr
-	*/
-}
+u32 Morimura::TPresidentDownScene::getSceneType() { return 0x2732; }
 
 /*
  * --INFO--
@@ -1356,14 +1335,7 @@ void Morimura::TLujiDownScene::doCreateObj(JKRArchive*)
  * Address:	80401034
  * Size:	000008
  */
-void Morimura::TLujiDownScene::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2731
-	  blr
-	*/
-}
+u32 Morimura::TLujiDownScene::getSceneType() { return 0x2731; }
 
 /*
  * --INFO--
@@ -1463,14 +1435,7 @@ void Morimura::TOrimaDownScene::doCreateObj(JKRArchive*)
  * Address:	804010E8
  * Size:	000008
  */
-void Morimura::TOrimaDownScene::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2730
-	  blr
-	*/
-}
+u32 Morimura::TOrimaDownScene::getSceneType() { return 0x2730; }
 
 /*
  * --INFO--
@@ -1570,28 +1535,14 @@ void Morimura::TGameOverScene::doCreateObj(JKRArchive*)
  * Address:	8040119C
  * Size:	000008
  */
-void Morimura::TGameOverScene::isUseBackupSceneInfo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Morimura::TGameOverScene::isUseBackupSceneInfo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	804011A4
  * Size:	000008
  */
-void Morimura::TGameOverScene::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x272F
-	  blr
-	*/
-}
+u32 Morimura::TGameOverScene::getSceneType() { return 0x272F; }
 
 /*
  * --INFO--
@@ -1685,14 +1636,7 @@ void Morimura::THurryUpScene::doCreateObj(JKRArchive*)
  * Address:	80401240
  * Size:	000008
  */
-void Morimura::THurryUpScene::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x272E
-	  blr
-	*/
-}
+u32 Morimura::THurryUpScene::getSceneType() { return 0x272E; }
 
 /*
  * --INFO--

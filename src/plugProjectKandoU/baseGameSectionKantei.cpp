@@ -1288,14 +1288,7 @@ void LookAtCamera::startVibration(int) { }
  * Address:	8023C53C
  * Size:	000008
  */
-void og::Screen::DispMemberSpecialItem::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSpecialItem::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
@@ -1334,14 +1327,7 @@ void og::Screen::DispMemberSpecialItem::getMemberID(void)
  * Address:	8023C564
  * Size:	000008
  */
-void og::Screen::DispMemberKantei::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x40
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberKantei::getSize(void) { return 0x40; }
 
 /*
  * --INFO--

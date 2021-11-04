@@ -4047,14 +4047,7 @@ void Game::VsGame::GameState::drawStatus((Graphics&, Game::VsGameSection*)) { }
  * Address:	8022C710
  * Size:	000008
  */
-void og::Screen::DispMemberVs::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x74
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberVs::getSize(void) { return 0x74; }
 
 /*
  * --INFO--
@@ -4091,14 +4084,7 @@ void og::Screen::DispMemberVs::getMemberID(void)
  * Address:	8022C730
  * Size:	000008
  */
-void og::Screen::DispMemberChallenge1P::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x78
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberChallenge1P::getSize(void) { return 0x78; }
 
 /*
  * --INFO--
@@ -4136,28 +4122,14 @@ void og::Screen::DispMemberChallenge1P::getMemberID(void)
  * Address:	8022C754
  * Size:	000008
  */
-void kh::Screen::DispWinLoseReason::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 kh::Screen::DispWinLoseReason::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8022C75C
  * Size:	000008
  */
-void kh::Screen::DispWinLoseReason::getOwnerID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispWinLoseReason::getOwnerID(void) { return 0x4B48; }
 
 /*
  * --INFO--
@@ -4180,28 +4152,14 @@ void kh::Screen::DispWinLoseReason::getMemberID(void)
  * Address:	8022C774
  * Size:	000008
  */
-void kh::Screen::DispWinLose::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 kh::Screen::DispWinLose::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8022C77C
  * Size:	000008
  */
-void kh::Screen::DispWinLose::getOwnerID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispWinLose::getOwnerID(void) { return 0x4B48; }
 
 /*
  * --INFO--
@@ -4225,14 +4183,7 @@ void kh::Screen::DispWinLose::getMemberID(void)
  * Address:	8022C798
  * Size:	000008
  */
-void og::Screen::DispMemberChallenge2P::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x78
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberChallenge2P::getSize(void) { return 0x78; }
 
 /*
  * --INFO--

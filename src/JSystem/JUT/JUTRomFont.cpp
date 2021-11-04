@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -778,14 +778,7 @@ void JUTRomFont::getLeading() const
  * Address:	80032F08
  * Size:	000008
  */
-void JUTRomFont::getResFont() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JUTRomFont::getResFont() const { return 0x0; }
 
 /*
  * --INFO--

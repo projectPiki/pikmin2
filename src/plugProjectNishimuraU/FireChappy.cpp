@@ -1533,14 +1533,7 @@ void efx::THanachoY::~THanachoY()
  * Address:	80290684
  * Size:	000008
  */
-void Game::FireChappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x21
-	  blr
-	*/
-}
+u32 Game::FireChappy::Obj::getEnemyTypeID() { return 0x21; }
 
 /*
  * --INFO--

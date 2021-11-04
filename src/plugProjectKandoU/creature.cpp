@@ -1520,14 +1520,7 @@ void Game::Creature::updateCell()
  * Address:	8013BEE0
  * Size:	000008
  */
-void Game::Creature::getCreatureID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::Creature::getCreatureID() { return -0x1; }
 
 /*
  * --INFO--
@@ -2525,56 +2518,28 @@ void Game::Creature::doSimulation(float) { }
  * Address:	8013CBC8
  * Size:	000008
  */
-void Game::Creature::inWater()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::inWater() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBD0
  * Size:	000008
  */
-void Game::Creature::isFlying()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::isFlying() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBD8
  * Size:	000008
  */
-void Game::Creature::getPSCreature()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::getPSCreature() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CBE0
  * Size:	000008
  */
-void Game::Creature::getSound_PosPtr()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::getSound_PosPtr() { return 0x0; }
 
 /*
  * --INFO--
@@ -2653,28 +2618,14 @@ void Game::CellObject::checkCollision(Game::CellObject*) { }
  * Address:	8013CC30
  * Size:	000008
  */
-void Game::CellObject::isPiki()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::CellObject::isPiki() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013CC38
  * Size:	000008
  */
-void Game::CellObject::isNavi()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::CellObject::isNavi() { return 0x0; }
 
 /*
  * --INFO--

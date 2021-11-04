@@ -3912,14 +3912,7 @@ void Game::SnakeCrow::Obj::throwupItemInDeathProcedure() { }
  * Address:	80295D70
  * Size:	000008
  */
-void Game::SnakeCrow::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x22
-	  blr
-	*/
-}
+u32 Game::SnakeCrow::Obj::getEnemyTypeID() { return 0x22; }
 
 /*
  * --INFO--

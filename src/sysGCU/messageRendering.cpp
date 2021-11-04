@@ -164,13 +164,9 @@ void P2JME::TRenderingProcessorBase::do_tag((unsigned long, void const*,
  * Address:	804393A0
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagFont((void const*, unsigned long))
+u32 P2JME::TRenderingProcessorBase::tagFont((void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -178,13 +174,9 @@ void P2JME::TRenderingProcessorBase::tagFont((void const*, unsigned long))
  * Address:	804393A8
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagRuby((void const*, unsigned long))
+u32 P2JME::TRenderingProcessorBase::tagRuby((void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -192,13 +184,9 @@ void P2JME::TRenderingProcessorBase::tagRuby((void const*, unsigned long))
  * Address:	804393B0
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagSize((void const*, unsigned long))
+u32 P2JME::TRenderingProcessorBase::tagSize((void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -206,13 +194,9 @@ void P2JME::TRenderingProcessorBase::tagSize((void const*, unsigned long))
  * Address:	804393B8
  * Size:	000008
  */
-void P2JME::TRenderingProcessorBase::tagColor((void const*, unsigned long))
+u32 P2JME::TRenderingProcessorBase::tagColor((void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -223,11 +207,7 @@ void P2JME::TRenderingProcessorBase::tagColor((void const*, unsigned long))
 void P2JME::TRenderingProcessorBase::tagPosition((unsigned short, void const*,
                                                   unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -238,11 +218,7 @@ void P2JME::TRenderingProcessorBase::tagPosition((unsigned short, void const*,
 void P2JME::TRenderingProcessorBase::tagControl((unsigned short, void const*,
                                                  unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -253,11 +229,7 @@ void P2JME::TRenderingProcessorBase::tagControl((unsigned short, void const*,
 void P2JME::TRenderingProcessorBase::tagColorEX((unsigned short, void const*,
                                                  unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -268,11 +240,7 @@ void P2JME::TRenderingProcessorBase::tagColorEX((unsigned short, void const*,
 void P2JME::TRenderingProcessorBase::tagImage((unsigned short, void const*,
                                                unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -1455,11 +1423,7 @@ void P2JME::TRenderingProcessor::do_tag((unsigned long, void const*,
 void P2JME::TRenderingProcessor::do_systemTagCode((unsigned short, void const*,
                                                    unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -1630,13 +1594,9 @@ void P2JME::TRenderingProcessor::tagRuby((void const*, unsigned long))
  * Address:	8043A410
  * Size:	000008
  */
-void P2JME::TRenderingProcessor::tagFont((void const*, unsigned long))
+u32 P2JME::TRenderingProcessor::tagFont((void const*, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

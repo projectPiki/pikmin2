@@ -313,14 +313,7 @@ void Game::ElecHiba::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026E420
  * Size:	000008
  */
-void Game::ElecHiba::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x16
-	  blr
-	*/
-}
+u32 Game::ElecHiba::Obj::getEnemyTypeID() { return 0x16; }
 
 /*
  * --INFO--

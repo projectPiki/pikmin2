@@ -2587,14 +2587,7 @@ void Game::Armor::Obj::getDownSmokeScale()
  * Address:	8027F4FC
  * Size:	000008
  */
-void Game::Armor::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xF
-	  blr
-	*/
-}
+u32 Game::Armor::Obj::getEnemyTypeID() { return 0xF; }
 
 /*
  * --INFO--

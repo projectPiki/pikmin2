@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -55,13 +55,7 @@ void TRKLoadContext(void)
  * Address:	800C04EC
  * Size:	000004
  */
-void TRKUARTInterruptHandler(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void TRKUARTInterruptHandler(void) { }
 
 /*
  * --INFO--

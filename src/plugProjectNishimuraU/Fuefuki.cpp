@@ -2189,14 +2189,7 @@ void Game::Fuefuki::Obj::outWaterCallback() { }
  * Address:	8029D960
  * Size:	000008
  */
-void Game::Fuefuki::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x29
-	  blr
-	*/
-}
+u32 Game::Fuefuki::Obj::getEnemyTypeID() { return 0x29; }
 
 /*
  * --INFO--

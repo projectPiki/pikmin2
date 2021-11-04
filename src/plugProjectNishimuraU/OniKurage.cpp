@@ -4279,14 +4279,7 @@ void Game::OniKurage::Obj::getMouthSlots()
  * Address:	802D727C
  * Size:	000008
  */
-void Game::OniKurage::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x48
-	  blr
-	*/
-}
+u32 Game::OniKurage::Obj::getEnemyTypeID() { return 0x48; }
 
 /*
  * --INFO--

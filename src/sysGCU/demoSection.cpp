@@ -1,3 +1,4 @@
+#include "types.h"
 
 /*
  * --INFO--
@@ -593,14 +594,7 @@ void Demo::HIORootNode::__dt(void)
  * Address:	8044D28C
  * Size:	000008
  */
-void Demo::Section::forceReset(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Demo::Section::forceReset(void) { return 0x0; }
 
 /*
  * --INFO--

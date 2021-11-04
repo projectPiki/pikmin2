@@ -1825,14 +1825,7 @@ void Game::Pellet::isPickable(void)
  * Address:	80166CA4
  * Size:	000008
  */
-void Game::PelletState::isPickable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletState::isPickable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -5403,14 +5396,7 @@ void Game::Pellet::do_update(void) { }
  * Address:	801699B0
  * Size:	000008
  */
-void PSM::Scene_Game::isCave(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::Scene_Game::isCave(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -9681,13 +9667,9 @@ void Game::BasePelletMgr::generatorNewPelletParm(void)
  * Address:	8016C960
  * Size:	000008
  */
-void Game::BasePelletMgr::generatorGetShape((Game::GenPelletParm*))
+u32 Game::BasePelletMgr::generatorGetShape((Game::GenPelletParm*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -13933,11 +13915,7 @@ void Iterator<Game::PelletOtakara::Object>::first()
 void generatorBirth__Q24Game13BasePelletMgrFR10Vector3<float> R10Vector3<float>
 PQ24Game13GenPelletParm(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -14590,14 +14568,7 @@ void Game::Pellet::inWater(void)
  * Address:	80170094
  * Size:	000008
  */
-void Game::Pellet::getBedamaColor(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::Pellet::getBedamaColor(void) { return -0x1; }
 
 /*
  * --INFO--
@@ -14632,14 +14603,7 @@ void Game::Pellet::getFaceDir(void)
  * Address:	801700AC
  * Size:	000008
  */
-void Game::Pellet::deferPikiCollision(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Pellet::deferPikiCollision(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -14716,14 +14680,7 @@ void PSM::EventBase::__dt(void)
  * Address:	80170174
  * Size:	000008
  */
-void PSM::CreatureObj::getCastType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::CreatureObj::getCastType(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -14833,14 +14790,7 @@ void NodeObjectMgr<GenericObjectMgr>::getStart()
  * Address:	801701C8
  * Size:	000008
  */
-void NodeObjectMgr<GenericObjectMgr>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<GenericObjectMgr>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -16331,28 +16281,14 @@ void Container<GenericObjectMgr>::getObject(void*)
  * Address:	80171200
  * Size:	000008
  */
-void Container<GenericObjectMgr>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<GenericObjectMgr>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80171208
  * Size:	000008
  */
-void Container<GenericObjectMgr>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<GenericObjectMgr>::getTo() { return 0x0; }
 
 /*
  * --INFO--
@@ -16382,28 +16318,14 @@ void Container<CollPart>::getObject(void*)
  * Address:	8017123C
  * Size:	000008
  */
-void Container<CollPart>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<CollPart>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80171244
  * Size:	000008
  */
-void Container<CollPart>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<CollPart>::getTo() { return 0x0; }
 
 /*
  * --INFO--

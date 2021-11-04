@@ -394,14 +394,7 @@ void Game::Kabuto::Obj::finishWaitEffect() { }
  * Address:	802E1D58
  * Size:	000008
  */
-void Game::Kabuto::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B
-	  blr
-	*/
-}
+u32 Game::Kabuto::Obj::getEnemyTypeID() { return 0x4B; }
 
 /*
  * --INFO--

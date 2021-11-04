@@ -1484,14 +1484,7 @@ void Game::BombSarai::Obj::getDownSmokeScale()
  * Address:	802B3798
  * Size:	000008
  */
-void Game::BombSarai::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3A
-	  blr
-	*/
-}
+u32 Game::BombSarai::Obj::getEnemyTypeID() { return 0x3A; }
 
 /*
  * --INFO--

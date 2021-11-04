@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -374,14 +374,7 @@ void JSUTreeIterator<CoreNode>::operator!=(const JSUTree<CoreNode>*) const
  * Address:	8042B240
  * Size:	000008
  */
-void JSUTree<CoreNode>::getEndChild() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JSUTree<CoreNode>::getEndChild() const { return 0x0; }
 
 /*
  * --INFO--

@@ -5006,14 +5006,7 @@ void Game::TNodeItemMgr::getEnd()
  * Address:	801CF728
  * Size:	000008
  */
-void NodeObjectMgr<Game::BaseItem>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::BaseItem>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -6157,28 +6150,14 @@ void Container<Game::BaseItem>::getObject(void*)
  * Address:	801D03F4
  * Size:	000008
  */
-void Container<Game::BaseItem>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::BaseItem>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D03FC
  * Size:	000008
  */
-void Container<Game::BaseItem>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::BaseItem>::getTo() { return 0x0; }
 
 /*
  * --INFO--

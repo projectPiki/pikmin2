@@ -7329,28 +7329,14 @@ void BaseGameAllocCallback(unsigned long, int, JKRHeap*, void*)
  * Address:	80150700
  * Size:	000008
  */
-void Game::BaseGameSection::enableAllocHalt(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::enableAllocHalt(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80150708
  * Size:	000008
  */
-void Game::BaseGameSection::disableAllocHalt(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::disableAllocHalt(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -8304,42 +8290,21 @@ void Game::BaseGameSection::onSetSoundScene(void) { }
  * Address:	801513D4
  * Size:	000008
  */
-void Game::BaseGameSection::getCurrFloor(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::BaseGameSection::getCurrFloor(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	801513DC
  * Size:	000008
  */
-void Game::BaseGameSection::challengeDisablePelplant(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::challengeDisablePelplant(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801513E4
  * Size:	000008
  */
-void Game::BaseGameSection::getVsEditNumber(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x2
-	  blr
-	*/
-}
+s32 Game::BaseGameSection::getVsEditNumber(void) { return -0x2; }
 
 /*
  * --INFO--
@@ -8382,14 +8347,7 @@ void Game::BaseGameSection::onSetupFloatMemory(void) { }
  * Address:	80151404
  * Size:	000008
  */
-void Game::BaseGameSection::isDevelopSection(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::isDevelopSection(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -8943,28 +8901,14 @@ void Game::BaseGameSection::getCaveID(void)
  * Address:	80151908
  * Size:	000008
  */
-void Game::BaseGameSection::getCurrentCourseInfo(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::getCurrentCourseInfo(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80151910
  * Size:	000008
  */
-void Game::BaseGameSection::openContainerWindow(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::openContainerWindow(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -9045,14 +8989,7 @@ void Section::doExit() { }
  * Address:	80151940
  * Size:	000008
  */
-void Section::forceReset()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Section::forceReset() { return 0x1; }
 
 /*
  * --INFO--
@@ -9073,28 +9010,14 @@ void Section::doLoadingStart() { }
  * Address:	80151950
  * Size:	000008
  */
-void Section::doLoading()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Section::doLoading() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80151958
  * Size:	000008
  */
-void Section::isFinishable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Section::isFinishable() { return 0x1; }
 
 /*
  * --INFO--
@@ -9268,14 +9191,7 @@ void ArrayContainer<Plane>::getNext(void*)
  * Address:	80151ACC
  * Size:	000008
  */
-void ArrayContainer<Plane>::getStart()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ArrayContainer<Plane>::getStart() { return 0x0; }
 
 /*
  * --INFO--
@@ -9349,28 +9265,14 @@ void Container<Plane>::getObject(void*)
  * Address:	80151B20
  * Size:	000008
  */
-void Container<Plane>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Plane>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80151B28
  * Size:	000008
  */
-void Container<Plane>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Plane>::getTo() { return 0x0; }
 
 /*
  * --INFO--

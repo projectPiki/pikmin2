@@ -321,14 +321,7 @@ void JADUtility::PrmSetBase::afterRemovingThisButton((JADUtility::PrmSetBase*))
  * Address:	800BA7DC
  * Size:	000008
  */
-void JADUtility::PrmSetBase::getEraseLink(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JADUtility::PrmSetBase::getEraseLink(void) { return 0x0; }
 
 /*
  * --INFO--

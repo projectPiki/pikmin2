@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -270,13 +270,9 @@ void Screen::ObjBase::getOwner( const
  * Address:	8030D964
  * Size:	000008
  */
-void Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
+u32  Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -284,13 +280,9 @@ void Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
  * Address:	8030D96C
  * Size:	000008
  */
-void Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
+u32  Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -298,13 +290,9 @@ void Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
  * Address:	8030D974
  * Size:	000008
  */
-void Screen::ObjBase::doConfirmEndScene( (Screen::EndSceneArg *&))
+u32  Screen::ObjBase::doConfirmEndScene( (Screen::EndSceneArg *&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

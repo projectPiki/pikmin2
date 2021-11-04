@@ -766,14 +766,7 @@ void Game::PelletFruit::Mgr::getMgrName(void)
  * Address:	801FE2D4
  * Size:	000008
  */
-void Game::PelletFruit::Mgr::getMgrID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 Game::PelletFruit::Mgr::getMgrID(void) { return 0x2; }
 
 /*
  * --INFO--
@@ -830,14 +823,7 @@ void ObjectMgr<Game::PelletFruit::Object>::~ObjectMgr()
  * Address:	801FE364
  * Size:	000008
  */
-void Game::PelletFruit::Object::getKind(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 Game::PelletFruit::Object::getKind(void) { return 0x2; }
 
 /*
  * --INFO--
@@ -1743,28 +1729,14 @@ void Container<Game::PelletFruit::Object>::getObject(void*)
  * Address:	801FEADC
  * Size:	000008
  */
-void Container<Game::PelletFruit::Object>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletFruit::Object>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801FEAE4
  * Size:	000008
  */
-void Container<Game::PelletFruit::Object>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletFruit::Object>::getTo() { return 0x0; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -714,14 +714,7 @@ void Game::VsGame::ResultState::cleanup((Game::VsGameSection*))
  * Address:	8022D068
  * Size:	000008
  */
-void Morimura::DispMemberChallengeResult::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14
-	  blr
-	*/
-}
+u32 Morimura::DispMemberChallengeResult::getSize(void) { return 0x14; }
 
 /*
  * --INFO--

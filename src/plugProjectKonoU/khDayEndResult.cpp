@@ -10166,28 +10166,14 @@ void kh::Screen::SceneDayEndResultMail::getResName() const
  * Address:	8040AE34
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultMail::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E25
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultMail::getSceneType() { return 0x4E25; }
 
 /*
  * --INFO--
  * Address:	8040AE3C
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultMail::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultMail::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -10454,14 +10440,7 @@ void kh::Screen::ObjDayEndResultMail::getFadeoutDownMaxFrm() const
  * Address:	8040B00C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultMail::getStarWTagNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x12
-	  blr
-	*/
-}
+u32 kh::Screen::ObjDayEndResultMail::getStarWTagNum() const { return 0x12; }
 
 /*
  * --INFO--
@@ -10496,56 +10475,28 @@ void kh::Screen::ObjDayEndResultMail::getPStarWMaxFrm() const
  * Address:	8040B024
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultItem::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultItem::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8040B02C
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultItem::getSceneType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E23
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultItem::getSceneType() const { return 0x4E23; }
 
 /*
  * --INFO--
  * Address:	8040B034
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultMail::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultMail::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8040B03C
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultMail::getSceneType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E25
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultMail::getSceneType() const { return 0x4E25; }
 
 /*
  * --INFO--
@@ -10729,14 +10680,7 @@ void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMaxFrm() const
  * Address:	8040B148
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultIncP::getStarWTagNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x13
-	  blr
-	*/
-}
+u32 kh::Screen::ObjDayEndResultIncP::getStarWTagNum() const { return 0x13; }
 
 /*
  * --INFO--
@@ -10771,42 +10715,21 @@ void kh::Screen::ObjDayEndResultIncP::getPStarWMaxFrm() const
  * Address:	8040B160
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultIncP::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultIncP::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8040B168
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultIncP::getSceneType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E24
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultIncP::getSceneType() const { return 0x4E24; }
 
 /*
  * --INFO--
  * Address:	8040B170
  * Size:	000008
  */
-void kh::Screen::SArgDayEndResultBase::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 kh::Screen::SArgDayEndResultBase::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
@@ -10990,14 +10913,7 @@ void kh::Screen::ObjDayEndResultItem::getFadeoutDownMaxFrm() const
  * Address:	8040B27C
  * Size:	000008
  */
-void kh::Screen::ObjDayEndResultItem::getStarWTagNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xF
-	  blr
-	*/
-}
+u32 kh::Screen::ObjDayEndResultItem::getStarWTagNum() const { return 0xF; }
 
 /*
  * --INFO--
@@ -11032,28 +10948,14 @@ void kh::Screen::ObjDayEndResultItem::getPStarWMaxFrm() const
  * Address:	8040B294
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultMail::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x24
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultMail::getSize() { return 0x24; }
 
 /*
  * --INFO--
  * Address:	8040B29C
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultMail::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultMail::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -11077,28 +10979,14 @@ void kh::Screen::DispDayEndResultMail::getMemberID()
  * Address:	8040B2B8
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultIncP::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultIncP::getSize() { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8040B2C0
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultIncP::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultIncP::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -11122,28 +11010,14 @@ void kh::Screen::DispDayEndResultIncP::getMemberID()
  * Address:	8040B2DC
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultItem::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x24
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultItem::getSize() { return 0x24; }
 
 /*
  * --INFO--
  * Address:	8040B2E4
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultItem::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultItem::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

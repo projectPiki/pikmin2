@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -683,13 +683,9 @@ void P2JME::IllustratedBook::TRenderingProcessor::__dt(void)
  * Address:	80455670
  * Size:	000008
  */
-void P2JME::IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
+u32 P2JME::IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -745,11 +741,4 @@ void P2JME::IllustratedBook::TSequenceProcessor::__dt(void)
  * Address:	804556F8
  * Size:	000008
  */
-void P2JME::TSeqProcNoSeq::do_isReady(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::TSeqProcNoSeq::do_isReady(void) { return 0x1; }

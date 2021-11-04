@@ -1565,11 +1565,4 @@ void Game::Sarai::Obj::getMouthSlots()
  * Address:	80273DDC
  * Size:	000008
  */
-void Game::Sarai::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x17
-	  blr
-	*/
-}
+u32 Game::Sarai::Obj::getEnemyTypeID() { return 0x17; }

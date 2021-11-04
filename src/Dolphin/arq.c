@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -105,13 +105,7 @@ void __ARQServiceQueueLo(void)
  * Address:	800D42BC
  * Size:	000004
  */
-void __ARQCallbackHack(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void __ARQCallbackHack(void) { }
 
 /*
  * --INFO--

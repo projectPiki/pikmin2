@@ -2303,11 +2303,4 @@ void Game::Imomushi::Obj::getDownSmokeScale()
  * Address:	802BDAA8
  * Size:	000008
  */
-void Game::Imomushi::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x41
-	  blr
-	*/
-}
+u32 Game::Imomushi::Obj::getEnemyTypeID() { return 0x41; }

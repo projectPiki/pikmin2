@@ -2490,14 +2490,7 @@ void Game::ShapeMapMgr::getBoundBox((BoundBox&))
  * Address:	801640F0
  * Size:	000008
  */
-void Game::MapMgr::frozenable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::MapMgr::frozenable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2518,14 +2511,7 @@ void Game::MapMgr::doSimulation((float)) { }
  * Address:	80164100
  * Size:	000008
  */
-void Game::MapMgr::findRayIntersection((Sys::RayIntersectInfo&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::MapMgr::findRayIntersection((Sys::RayIntersectInfo&)) { return 0x0; }
 
 /*
  * --INFO--

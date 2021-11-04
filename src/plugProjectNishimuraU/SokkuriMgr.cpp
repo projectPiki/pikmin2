@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -516,14 +516,7 @@ void Game::Sokkuri::Mgr::__dt(void)
  * Address:	802F11D8
  * Size:	000008
  */
-void Game::Sokkuri::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4F
-	  blr
-	*/
-}
+u32 Game::Sokkuri::Mgr::getEnemyTypeID(void) { return 0x4F; }
 
 /*
  * --INFO--

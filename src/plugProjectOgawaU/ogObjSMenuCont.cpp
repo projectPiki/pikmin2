@@ -598,13 +598,9 @@ void og::newScreen::ObjSMenuCont::doStart((Screen::StartSceneArg const*))
  * Address:	80330C8C
  * Size:	000008
  */
-void og::newScreen::ObjSMenuCont::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjSMenuCont::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

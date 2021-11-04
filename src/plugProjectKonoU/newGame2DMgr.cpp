@@ -5987,98 +5987,49 @@ void Screen::Game2DMgr::checkDayEnd(float) const
  * Address:	80400168
  * Size:	000008
  */
-void Screen::EndSceneArg::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 Screen::EndSceneArg::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80400170
  * Size:	000008
  */
-void og::newScreen::SArgChallenge1P::getSceneType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2727
-	  blr
-	*/
-}
+u32 og::newScreen::SArgChallenge1P::getSceneType() const { return 0x2727; }
 
 /*
  * --INFO--
  * Address:	80400178
  * Size:	000008
  */
-void og::newScreen::SArgChallenge1P::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 og::newScreen::SArgChallenge1P::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80400180
  * Size:	000008
  */
-void og::newScreen::SArgChallenge2P::getSceneType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2724
-	  blr
-	*/
-}
+u32 og::newScreen::SArgChallenge2P::getSceneType() const { return 0x2724; }
 
 /*
  * --INFO--
  * Address:	80400188
  * Size:	000008
  */
-void og::newScreen::SArgChallenge2P::getClassSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 og::newScreen::SArgChallenge2P::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80400190
  * Size:	000008
  */
-void kh::Screen::DispReadyGo::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14
-	  blr
-	*/
-}
+u32 kh::Screen::DispReadyGo::getSize() { return 0x14; }
 
 /*
  * --INFO--
  * Address:	80400198
  * Size:	000008
  */
-void kh::Screen::DispReadyGo::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispReadyGo::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -6102,28 +6053,14 @@ void kh::Screen::DispReadyGo::getMemberID()
  * Address:	804001B4
  * Size:	000008
  */
-void kh::Screen::DispFinalFloor::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 kh::Screen::DispFinalFloor::getSize() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	804001BC
  * Size:	000008
  */
-void kh::Screen::DispFinalFloor::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispFinalFloor::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

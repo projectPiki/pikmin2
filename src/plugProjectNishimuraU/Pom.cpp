@@ -1765,14 +1765,7 @@ void Game::Pom::Obj::outWaterCallback() { }
  * Address:	80255C8C
  * Size:	000008
  */
-void Game::Pom::Obj::isLivingThing()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Pom::Obj::isLivingThing() { return 0x0; }
 
 /*
  * --INFO--

@@ -2490,14 +2490,7 @@ void JSUTreeIterator<J2DPane>::operator!=(const JSUTree<J2DPane>*) const
  * Address:	800388F0
  * Size:	000008
  */
-void JSUTree<J2DPane>::getEndChild() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JSUTree<J2DPane>::getEndChild() const { return 0x0; }
 
 /*
  * --INFO--
@@ -4185,14 +4178,7 @@ void J2DAnmTransform::getTransform(unsigned short, J3DTransformInfo*) const { }
  * Address:	80039A64
  * Size:	000008
  */
-void J2DPane::getTypeID() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 J2DPane::getTypeID() const { return 0x10; }
 
 /*
  * --INFO--

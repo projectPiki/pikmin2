@@ -607,14 +607,7 @@ void Game::Rock::Mgr::~Mgr()
  * Address:	80262F68
  * Size:	000008
  */
-void Game::Rock::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x13
-	  blr
-	*/
-}
+u32 Game::Rock::Mgr::getEnemyTypeID() { return 0x13; }
 
 /*
  * --INFO--

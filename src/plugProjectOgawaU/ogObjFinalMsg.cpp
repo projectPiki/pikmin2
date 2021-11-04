@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -631,13 +631,9 @@ void og::newScreen::ObjFinalMsg::doStart((Screen::StartSceneArg const*))
  * Address:	8032567C
  * Size:	000008
  */
-void og::newScreen::ObjFinalMsg::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjFinalMsg::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

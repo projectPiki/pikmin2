@@ -613,14 +613,7 @@ void Game::LeafChappy::Obj::getDownSmokeScale()
  * Address:	802C62C8
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x43
-	  blr
-	*/
-}
+u32 Game::LeafChappy::Obj::getEnemyTypeID() { return 0x43; }
 
 /*
  * --INFO--
@@ -641,14 +634,7 @@ void Game::LeafChappy::Obj::resetChappyRelation() { }
  * Address:	802C62D8
  * Size:	000008
  */
-void Game::LeafChappy::Obj::getChappyRelation()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::LeafChappy::Obj::getChappyRelation() { return 0x0; }
 
 /*
  * --INFO--

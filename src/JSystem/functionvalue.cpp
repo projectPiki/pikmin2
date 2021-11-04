@@ -226,14 +226,7 @@ void JStudio::TFunctionValue_composite::TFunctionValue_composite()
  * Address:	80008C54
  * Size:	000008
  */
-void JStudio::TFunctionValue_composite::getType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 JStudio::TFunctionValue_composite::getType() const { return 0x1; }
 
 /*
  * --INFO--
@@ -837,14 +830,7 @@ void JStudio::TFunctionValue_constant::TFunctionValue_constant()
  * Address:	80009240
  * Size:	000008
  */
-void JStudio::TFunctionValue_constant::getType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 JStudio::TFunctionValue_constant::getType() const { return 0x2; }
 
 /*
  * --INFO--
@@ -946,14 +932,7 @@ void JStudio::TFunctionValue_transition::TFunctionValue_transition()
  * Address:	800092EC
  * Size:	000008
  */
-void JStudio::TFunctionValue_transition::getType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
-}
+u32 JStudio::TFunctionValue_transition::getType() const { return 0x3; }
 
 /*
  * --INFO--
@@ -1326,14 +1305,7 @@ void JStudio::TFunctionValue_list::TFunctionValue_list()
  * Address:	800096DC
  * Size:	000008
  */
-void JStudio::TFunctionValue_list::getType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 JStudio::TFunctionValue_list::getType() const { return 0x4; }
 
 /*
  * --INFO--
@@ -2133,14 +2105,7 @@ void JStudio::TFunctionValue_list_parameter::TFunctionValue_list_parameter()
  * Address:	80009FB0
  * Size:	000008
  */
-void JStudio::TFunctionValue_list_parameter::getType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5
-	  blr
-	*/
-}
+u32 JStudio::TFunctionValue_list_parameter::getType() const { return 0x5; }
 
 /*
  * --INFO--
@@ -3324,14 +3289,7 @@ void JStudio::TFunctionValue_hermite::TFunctionValue_hermite()
  * Address:	8000ACF8
  * Size:	000008
  */
-void JStudio::TFunctionValue_hermite::getType() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x6
-	  blr
-	*/
-}
+u32 JStudio::TFunctionValue_hermite::getType() const { return 0x6; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1648,14 +1648,7 @@ void PikiAI::StickAttackActionArg::getName(void)
  * Address:	801A18F8
  * Size:	000008
  */
-void PikiAI::ActAttack::getNextAIType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::ActAttack::getNextAIType(void) { return 0x1; }
 
 /*
  * --INFO--

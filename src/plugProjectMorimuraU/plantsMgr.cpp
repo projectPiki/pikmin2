@@ -1594,14 +1594,7 @@ void Game::Zenmai::Mgr::__dt(void)
  * Address:	80354BA0
  * Size:	000008
  */
-void Game::Zenmai::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5A
-	  blr
-	*/
-}
+u32 Game::Zenmai::Mgr::getEnemyTypeID(void) { return 0x5A; }
 
 /*
  * --INFO--
@@ -1935,14 +1928,7 @@ void Game::Zenmai::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80354F1C
  * Size:	000008
  */
-void Game::Zenmai::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5A
-	  blr
-	*/
-}
+u32 Game::Zenmai::Obj::getEnemyTypeID(void) { return 0x5A; }
 
 /*
  * --INFO--
@@ -1977,14 +1963,7 @@ void Game::Plants::Obj::doUpdateCommon(void) { }
  * Address:	80354F34
  * Size:	000008
  */
-void Game::Plants::Obj::isLivingThing(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Plants::Obj::isLivingThing(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2092,14 +2071,7 @@ void Game::Chiyogami::Mgr::__dt(void)
  * Address:	80355050
  * Size:	000008
  */
-void Game::Chiyogami::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x59
-	  blr
-	*/
-}
+u32 Game::Chiyogami::Mgr::getEnemyTypeID(void) { return 0x59; }
 
 /*
  * --INFO--
@@ -2370,14 +2342,7 @@ void Game::Chiyogami::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80355310
  * Size:	000008
  */
-void Game::Chiyogami::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x59
-	  blr
-	*/
-}
+u32 Game::Chiyogami::Obj::getEnemyTypeID(void) { return 0x59; }
 
 /*
  * --INFO--
@@ -2450,14 +2415,7 @@ void Game::Nekojarashi::Mgr::__dt(void)
  * Address:	803553E0
  * Size:	000008
  */
-void Game::Nekojarashi::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x58
-	  blr
-	*/
-}
+u32 Game::Nekojarashi::Mgr::getEnemyTypeID(void) { return 0x58; }
 
 /*
  * --INFO--
@@ -2730,14 +2688,7 @@ void Game::Margaret::Mgr::__dt(void)
  * Address:	803556C8
  * Size:	000008
  */
-void Game::Margaret::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x57
-	  blr
-	*/
-}
+u32 Game::Margaret::Mgr::getEnemyTypeID(void) { return 0x57; }
 
 /*
  * --INFO--
@@ -2944,14 +2895,7 @@ void Game::Margaret::Mgr::getEnemy((int))
  * Address:	803558E8
  * Size:	000008
  */
-void Game::Margaret::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x57
-	  blr
-	*/
-}
+u32 Game::Margaret::Obj::getEnemyTypeID(void) { return 0x57; }
 
 /*
  * --INFO--
@@ -3024,14 +2968,7 @@ void Game::DiodeGreen::Mgr::__dt(void)
  * Address:	803559B8
  * Size:	000008
  */
-void Game::DiodeGreen::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x56
-	  blr
-	*/
-}
+u32 Game::DiodeGreen::Mgr::getEnemyTypeID(void) { return 0x56; }
 
 /*
  * --INFO--
@@ -3371,14 +3308,7 @@ void Game::DiodeRed::Mgr::__dt(void)
  * Address:	80355D5C
  * Size:	000008
  */
-void Game::DiodeRed::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x55
-	  blr
-	*/
-}
+u32 Game::DiodeRed::Mgr::getEnemyTypeID(void) { return 0x55; }
 
 /*
  * --INFO--
@@ -3718,14 +3648,7 @@ void Game::Watage::Mgr::__dt(void)
  * Address:	80356100
  * Size:	000008
  */
-void Game::Watage::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x51
-	  blr
-	*/
-}
+u32 Game::Watage::Mgr::getEnemyTypeID(void) { return 0x51; }
 
 /*
  * --INFO--
@@ -3998,14 +3921,7 @@ void Game::Tukushi::Mgr::__dt(void)
  * Address:	803563E8
  * Size:	000008
  */
-void Game::Tukushi::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x50
-	  blr
-	*/
-}
+u32 Game::Tukushi::Mgr::getEnemyTypeID(void) { return 0x50; }
 
 /*
  * --INFO--
@@ -4276,14 +4192,7 @@ void Game::Tukushi::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	803566A8
  * Size:	000008
  */
-void Game::Tukushi::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x50
-	  blr
-	*/
-}
+u32 Game::Tukushi::Obj::getEnemyTypeID(void) { return 0x50; }
 
 /*
  * --INFO--
@@ -4356,14 +4265,7 @@ void Game::Wakame_l::Mgr::__dt(void)
  * Address:	80356778
  * Size:	000008
  */
-void Game::Wakame_l::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x34
-	  blr
-	*/
-}
+u32 Game::Wakame_l::Mgr::getEnemyTypeID(void) { return 0x34; }
 
 /*
  * --INFO--
@@ -4634,14 +4536,7 @@ void Game::Wakame_l::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80356A38
  * Size:	000008
  */
-void Game::Wakame_l::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x34
-	  blr
-	*/
-}
+u32 Game::Wakame_l::Obj::getEnemyTypeID(void) { return 0x34; }
 
 /*
  * --INFO--
@@ -4714,14 +4609,7 @@ void Game::Wakame_s::Mgr::__dt(void)
  * Address:	80356B08
  * Size:	000008
  */
-void Game::Wakame_s::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x33
-	  blr
-	*/
-}
+u32 Game::Wakame_s::Mgr::getEnemyTypeID(void) { return 0x33; }
 
 /*
  * --INFO--
@@ -4992,14 +4880,7 @@ void Game::Wakame_s::Obj::getLODCylinder((Sys::Cylinder&))
  * Address:	80356DC8
  * Size:	000008
  */
-void Game::Wakame_s::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x33
-	  blr
-	*/
-}
+u32 Game::Wakame_s::Obj::getEnemyTypeID(void) { return 0x33; }
 
 /*
  * --INFO--
@@ -5072,14 +4953,7 @@ void Game::KareOoinu_l::Mgr::__dt(void)
  * Address:	80356E98
  * Size:	000008
  */
-void Game::KareOoinu_l::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5C
-	  blr
-	*/
-}
+u32 Game::KareOoinu_l::Mgr::getEnemyTypeID(void) { return 0x5C; }
 
 /*
  * --INFO--
@@ -5286,14 +5160,7 @@ void Game::KareOoinu_l::Mgr::getEnemy((int))
  * Address:	803570B8
  * Size:	000008
  */
-void Game::KareOoinu_l::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5C
-	  blr
-	*/
-}
+u32 Game::KareOoinu_l::Obj::getEnemyTypeID(void) { return 0x5C; }
 
 /*
  * --INFO--
@@ -5366,14 +5233,7 @@ void Game::Ooinu_l::Mgr::__dt(void)
  * Address:	80357188
  * Size:	000008
  */
-void Game::Ooinu_l::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x32
-	  blr
-	*/
-}
+u32 Game::Ooinu_l::Mgr::getEnemyTypeID(void) { return 0x32; }
 
 /*
  * --INFO--
@@ -5580,14 +5440,7 @@ void Game::Ooinu_l::Mgr::getEnemy((int))
  * Address:	803573A8
  * Size:	000008
  */
-void Game::Ooinu_l::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x32
-	  blr
-	*/
-}
+u32 Game::Ooinu_l::Obj::getEnemyTypeID(void) { return 0x32; }
 
 /*
  * --INFO--
@@ -5660,14 +5513,7 @@ void Game::KareOoinu_s::Mgr::__dt(void)
  * Address:	80357478
  * Size:	000008
  */
-void Game::KareOoinu_s::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5B
-	  blr
-	*/
-}
+u32 Game::KareOoinu_s::Mgr::getEnemyTypeID(void) { return 0x5B; }
 
 /*
  * --INFO--
@@ -5874,14 +5720,7 @@ void Game::KareOoinu_s::Mgr::getEnemy((int))
  * Address:	80357698
  * Size:	000008
  */
-void Game::KareOoinu_s::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5B
-	  blr
-	*/
-}
+u32 Game::KareOoinu_s::Obj::getEnemyTypeID(void) { return 0x5B; }
 
 /*
  * --INFO--
@@ -5954,14 +5793,7 @@ void Game::Ooinu_s::Mgr::__dt(void)
  * Address:	80357768
  * Size:	000008
  */
-void Game::Ooinu_s::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x31
-	  blr
-	*/
-}
+u32 Game::Ooinu_s::Mgr::getEnemyTypeID(void) { return 0x31; }
 
 /*
  * --INFO--
@@ -6168,14 +6000,7 @@ void Game::Ooinu_s::Mgr::getEnemy((int))
  * Address:	80357988
  * Size:	000008
  */
-void Game::Ooinu_s::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x31
-	  blr
-	*/
-}
+u32 Game::Ooinu_s::Obj::getEnemyTypeID(void) { return 0x31; }
 
 /*
  * --INFO--
@@ -6248,14 +6073,7 @@ void Game::HikariKinoko::Mgr::__dt(void)
  * Address:	80357A58
  * Size:	000008
  */
-void Game::HikariKinoko::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x30
-	  blr
-	*/
-}
+u32 Game::HikariKinoko::Mgr::getEnemyTypeID(void) { return 0x30; }
 
 /*
  * --INFO--
@@ -6528,14 +6346,7 @@ void Game::Clover::Mgr::__dt(void)
  * Address:	80357D40
  * Size:	000008
  */
-void Game::Clover::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2F
-	  blr
-	*/
-}
+u32 Game::Clover::Mgr::getEnemyTypeID(void) { return 0x2F; }
 
 /*
  * --INFO--
@@ -6742,14 +6553,7 @@ void Game::Clover::Mgr::getEnemy((int))
  * Address:	80357F60
  * Size:	000008
  */
-void Game::Clover::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2F
-	  blr
-	*/
-}
+u32 Game::Clover::Obj::getEnemyTypeID(void) { return 0x2F; }
 
 /*
  * --INFO--
@@ -6822,14 +6626,7 @@ void Game::Tanpopo::Mgr::__dt(void)
  * Address:	80358030
  * Size:	000008
  */
-void Game::Tanpopo::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2E
-	  blr
-	*/
-}
+u32 Game::Tanpopo::Mgr::getEnemyTypeID(void) { return 0x2E; }
 
 /*
  * --INFO--
@@ -7036,14 +6833,7 @@ void Game::Tanpopo::Mgr::getEnemy((int))
  * Address:	80358250
  * Size:	000008
  */
-void Game::Tanpopo::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2E
-	  blr
-	*/
-}
+u32 Game::Tanpopo::Obj::getEnemyTypeID(void) { return 0x2E; }
 
 /*
  * --INFO--

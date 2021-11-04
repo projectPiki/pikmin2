@@ -440,14 +440,7 @@ void ModelEffect::getLODCylinder(Sys::Cylinder&) { }
  * Address:	8043D900
  * Size:	000008
  */
-void ModelEffect::useCylinderLOD()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ModelEffect::useCylinderLOD() { return 0x0; }
 
 /*
  * --INFO--

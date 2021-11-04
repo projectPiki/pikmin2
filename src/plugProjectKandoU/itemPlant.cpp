@@ -5308,42 +5308,21 @@ void Game::ItemPlant::Item::setColor(float) { }
  * Address:	801E0B18
  * Size:	000008
  */
-void Game::ItemPlant::Item::hasFruits()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemPlant::Item::hasFruits() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801E0B20
  * Size:	000008
  */
-void Game::ItemPlant::Item::getFruitsNum()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemPlant::Item::getFruitsNum() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801E0B28
  * Size:	000008
  */
-void Game::ItemPlant::Item::getNearestFruit(Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemPlant::Item::getNearestFruit(Vector3<float>&) { return 0x0; }
 
 /*
  * --INFO--

@@ -52,14 +52,7 @@ void init__Q34Game8ItemWeed4WeedFPQ34Game8ItemWeed7WeedMgrR10Vector3<float>(
  * Address:	8020F2B8
  * Size:	000008
  */
-void Game::ItemWeed::Weed::damaged((float))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::ItemWeed::Weed::damaged((float)) { return 0x1; }
 
 /*
  * --INFO--
@@ -3017,28 +3010,14 @@ void Container<Game::ItemWeed::Weed>::getObject(void*)
  * Address:	80210F74
  * Size:	000008
  */
-void Container<Game::ItemWeed::Weed>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemWeed::Weed>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80210F7C
  * Size:	000008
  */
-void Container<Game::ItemWeed::Weed>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemWeed::Weed>::getTo() { return 0x0; }
 
 /*
  * --INFO--

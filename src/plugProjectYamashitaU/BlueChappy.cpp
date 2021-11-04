@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -292,11 +292,4 @@ void Game::BlueChappy::Obj::changeMaterial()
  * Address:	8012BFE8
  * Size:	000008
  */
-void Game::BlueChappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2A
-	  blr
-	*/
-}
+u32 Game::BlueChappy::Obj::getEnemyTypeID() { return 0x2A; }

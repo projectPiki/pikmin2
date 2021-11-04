@@ -604,14 +604,7 @@ void Game::Nest::Mgr::initObjects(void)
  * Address:	8036C8B0
  * Size:	000008
  */
-void Game::Nest::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x53
-	  blr
-	*/
-}
+u32 Game::Nest::Mgr::getEnemyTypeID(void) { return 0x53; }
 
 /*
  * --INFO--

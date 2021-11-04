@@ -1,18 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800BC0C8
  * Size:	000008
  */
-void TRKTerminateSerialHandler(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 TRKTerminateSerialHandler(void) { return 0x0; }
 
 /*
  * --INFO--

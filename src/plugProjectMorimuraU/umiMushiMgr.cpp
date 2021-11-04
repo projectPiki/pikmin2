@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -796,14 +796,7 @@ void Game::UmiMushi::Mgr::doLoadBmd((void*))
  * Address:	80383090
  * Size:	000008
  */
-void Game::UmiMushi::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x64
-	  blr
-	*/
-}
+u32 Game::UmiMushi::Mgr::getEnemyTypeID(void) { return 0x64; }
 
 /*
  * --INFO--

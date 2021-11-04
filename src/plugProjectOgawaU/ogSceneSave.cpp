@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -172,13 +172,9 @@ void og::newScreen::Save::getResName( const
  * Address:	80324F08
  * Size:	000008
  */
-void og::newScreen::Save::getSceneType(void)
+u32  og::newScreen::Save::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2725
-	  blr
-	*/
+	return 0x2725;
 }
 
 /*

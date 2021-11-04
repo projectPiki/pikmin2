@@ -902,14 +902,7 @@ void Game::PelletItem::Mgr::getMgrName(void)
  * Address:	802037F8
  * Size:	000008
  */
-void Game::PelletItem::Mgr::getMgrID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 Game::PelletItem::Mgr::getMgrID(void) { return 0x4; }
 
 /*
  * --INFO--
@@ -981,14 +974,7 @@ void ObjectMgr<Game::PelletItem::Object>::~ObjectMgr()
  * Address:	80203894
  * Size:	000008
  */
-void Game::PelletItem::Object::getKind(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 Game::PelletItem::Object::getKind(void) { return 0x4; }
 
 /*
  * --INFO--
@@ -1834,28 +1820,14 @@ void Container<Game::PelletItem::Object>::getObject(void*)
  * Address:	80203F70
  * Size:	000008
  */
-void Container<Game::PelletItem::Object>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletItem::Object>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80203F78
  * Size:	000008
  */
-void Container<Game::PelletItem::Object>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletItem::Object>::getTo() { return 0x0; }
 
 /*
  * --INFO--

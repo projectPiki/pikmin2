@@ -832,11 +832,7 @@ void Game::Pellet::getPosition()
 void Game::EnemyBaseFSM::BirthTypeDropEarthquakeState::
     isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -3831,14 +3827,7 @@ void Game::EnemyBase::setCarcassArg(Game::PelletViewArg&)
  * Address:	80101EDC
  * Size:	000008
  */
-void Game::EnemyBase::doBecomeCarcass()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::EnemyBase::doBecomeCarcass() { return 0x1; }
 
 /*
  * --INFO--
@@ -5171,14 +5160,7 @@ void Game::EnemyBase::doFinishStoneState() { }
  * Address:	80102F0C
  * Size:	000008
  */
-void Game::EnemyBase::getWalkSmokeEffectMgr()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::EnemyBase::getWalkSmokeEffectMgr() { return 0x0; }
 
 /*
  * --INFO--
@@ -7458,14 +7440,7 @@ void Game::MapMgr::constraintBoundBox(Sys::Sphere&) { }
  * Address:	80104A18
  * Size:	000008
  */
-void Game::MapMgr::hasHiddenCollision()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::MapMgr::hasHiddenCollision() { return 0x0; }
 
 /*
  * --INFO--
@@ -8351,28 +8326,14 @@ void Game::EnemyBase::stimulate(Game::Interaction&)
  * Address:	80105380
  * Size:	000008
  */
-void Game::Interaction::actEnemy(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actEnemy(Game::EnemyBase*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80105388
  * Size:	000008
  */
-void Game::Interaction::actCommon(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actCommon(Game::Creature*) { return 0x1; }
 
 /*
  * --INFO--
@@ -8769,14 +8730,7 @@ void Game::EnemyBase::deathProcedure()
  * Address:	80105818
  * Size:	000008
  */
-void PSM::EnemyBase::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 PSM::EnemyBase::getCastType() { return 0x2; }
 
 /*
  * --INFO--
@@ -9548,13 +9502,9 @@ void Game::EnemyBase::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	801060B4
  * Size:	000008
  */
-void Game::EnemyBase::pressCallBack(Game::Creature*, float, CollPart*)
+u32 Game::EnemyBase::pressCallBack(Game::Creature*, float, CollPart*)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -9562,13 +9512,9 @@ void Game::EnemyBase::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	801060BC
  * Size:	000008
  */
-void Game::EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*)
+u32 Game::EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -9746,14 +9692,7 @@ void Game::EnemyBase::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8010630C
  * Size:	000008
  */
-void Game::EnemyBase::dropCallBack(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::EnemyBase::dropCallBack(Game::Creature*) { return 0x0; }
 
 /*
  * --INFO--
@@ -9993,28 +9932,14 @@ void Game::EnemyBase::dopeCallBack(Game::Creature*, int)
  * Address:	801065B8
  * Size:	000008
  */
-void Game::EnemyBase::doDopeCallBack(Game::Creature*, int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::EnemyBase::doDopeCallBack(Game::Creature*, int) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801065C0
  * Size:	000008
  */
-void Game::EnemyBase::farmCallBack(Game::Creature*, float)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::EnemyBase::farmCallBack(Game::Creature*, float) { return 0x0; }
 
 /*
  * --INFO--
@@ -10699,14 +10624,7 @@ void Game::EnemyBase::updateWaterBox()
  * Address:	80106CE8
  * Size:	000008
  */
-void Game::WaterBox::inWater(Sys::Sphere&)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::WaterBox::inWater(Sys::Sphere&) { return 0x0; }
 
 /*
  * --INFO--
@@ -11472,14 +11390,7 @@ void Game::EnemyBase::needShadow()
  * Address:	801074BC
  * Size:	000008
  */
-void Game::EnemyMgrBase::isAlwaysMovieActor()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::EnemyMgrBase::isAlwaysMovieActor() { return 0x0; }
 
 /*
  * --INFO--
@@ -12246,14 +12157,7 @@ void PSM::EnemyHekoi::~EnemyHekoi()
  * Address:	80107C04
  * Size:	000008
  */
-void PSM::EnemyHekoi::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
-}
+u32 PSM::EnemyHekoi::getCastType() { return 0x3; }
 
 /*
  * --INFO--
@@ -12352,70 +12256,35 @@ void Game::ItemHoney::InitArg::getName()
  * Address:	80107C5C
  * Size:	000008
  */
-void Game::Interaction::actPiki(Game::Piki*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actPiki(Game::Piki*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80107C64
  * Size:	000008
  */
-void Game::Interaction::actNavi(Game::Navi*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actNavi(Game::Navi*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80107C6C
  * Size:	000008
  */
-void Game::Interaction::actPellet(Game::Pellet*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actPellet(Game::Pellet*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80107C74
  * Size:	000008
  */
-void Game::Interaction::actOnyon(Game::Onyon*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actOnyon(Game::Onyon*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80107C7C
  * Size:	000008
  */
-void Game::Interaction::actItem(Game::BaseItem*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Interaction::actItem(Game::BaseItem*) { return 0x1; }
 
 /*
  * --INFO--
@@ -12584,14 +12453,7 @@ void Game::EnemyBase::getVelocityAt(Vector3<float>&, Vector3<float>&)
  * Address:	80107D9C
  * Size:	000008
  */
-void Game::EnemyBase::isTeki()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::EnemyBase::isTeki() { return 0x1; }
 
 /*
  * --INFO--
@@ -12662,14 +12524,7 @@ void Game::EnemyBase::getEfxHamonPos(Vector3<float>*)
  * Address:	80107DE4
  * Size:	000008
  */
-void Game::EnemyBase::getMouthSlots()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::EnemyBase::getMouthSlots() { return 0x0; }
 
 /*
  * --INFO--
@@ -12826,14 +12681,7 @@ void Game::PelletView::viewGetBaseScale()
  * Address:	80107EBC
  * Size:	000008
  */
-void Game::PelletView::viewGetCollTreeJointIndex()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletView::viewGetCollTreeJointIndex() { return 0x0; }
 
 /*
  * --INFO--
@@ -12881,14 +12729,7 @@ void Game::Creature::onInitPosition(Vector3<float>&) { }
  * Address:	80107EF0
  * Size:	000008
  */
-void Game::Creature::getFlockMgr()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::getFlockMgr() { return 0x0; }
 
 /*
  * --INFO--
@@ -13048,42 +12889,21 @@ void Game::Creature::setMovieMotion(bool)
  * Address:	80107FAC
  * Size:	000008
  */
-void Game::Creature::isBuried()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::isBuried() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80107FB4
  * Size:	000008
  */
-void Game::Creature::isUnderground()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::isUnderground() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80107FBC
  * Size:	000008
  */
-void Game::Creature::isLivingThing()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Creature::isLivingThing() { return 0x1; }
 
 /*
  * --INFO--
@@ -13213,14 +13033,7 @@ void Game::Creature::movieSetFaceDir(float) { }
  * Address:	80108028
  * Size:	000008
  */
-void Game::Creature::movieGotoPosition(Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Creature::movieGotoPosition(Vector3<float>&) { return 0x1; }
 
 /*
  * --INFO--
@@ -13255,28 +13068,14 @@ void Game::Creature::endPick(bool) { }
  * Address:	80108040
  * Size:	000008
  */
-void Game::Creature::getMabiki()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::getMabiki() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80108048
  * Size:	000008
  */
-void Game::Creature::getFootmarks()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::getFootmarks() { return 0x0; }
 
 /*
  * --INFO--
@@ -13297,56 +13096,28 @@ void Game::Creature::onStickEndSelf(Game::Creature*) { }
  * Address:	80108058
  * Size:	000008
  */
-void Game::Creature::isSlotFree(short)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::isSlotFree(short) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80108060
  * Size:	000008
  */
-void Game::Creature::getFreeStickSlot()
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::Creature::getFreeStickSlot() { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80108068
  * Size:	000008
  */
-void Game::Creature::getNearFreeStickSlot(Vector3<float>&)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::Creature::getNearFreeStickSlot(Vector3<float>&) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	80108070
  * Size:	000008
  */
-void Game::Creature::getRandomFreeStickSlot()
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::Creature::getRandomFreeStickSlot() { return -0x1; }
 
 /*
  * --INFO--
@@ -13388,14 +13159,7 @@ void Game::Creature::getAngularEffect(Vector3<float>&, Vector3<float>&)
  * Address:	8010808C
  * Size:	000008
  */
-void Game::Creature::ignoreAtari(Game::Creature*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::ignoreAtari(Game::Creature*) { return 0x0; }
 
 /*
  * --INFO--
@@ -13454,28 +13218,14 @@ void Game::Creature::getGoalPos()
  * Address:	80108104
  * Size:	000008
  */
-void Game::Creature::isSuckReady()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Creature::isSuckReady() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8010810C
  * Size:	000008
  */
-void Game::Creature::isSuckArriveWait()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::isSuckArriveWait() { return 0x0; }
 
 /*
  * --INFO--
@@ -13517,14 +13267,7 @@ void Game::Creature::collisionUpdatable()
  * Address:	80108140
  * Size:	000008
  */
-void Game::CellObject::deferPikiCollision()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::CellObject::deferPikiCollision() { return 0x0; }
 
 /*
  * --INFO--

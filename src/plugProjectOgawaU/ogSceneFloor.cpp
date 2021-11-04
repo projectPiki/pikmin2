@@ -176,13 +176,9 @@ void og::newScreen::Floor::getResName( const
  * Address:	8031BFE4
  * Size:	000008
  */
-void og::newScreen::Floor::getSceneType(void)
+u32  og::newScreen::Floor::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2713
-	  blr
-	*/
+	return 0x2713;
 }
 
 /*

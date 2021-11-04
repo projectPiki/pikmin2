@@ -3388,42 +3388,21 @@ void Game::FakePiki::updateStomach()
  * Address:	8013F4D0
  * Size:	000008
  */
-void Game::FakePiki::debugShapeDL(char*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::FakePiki::debugShapeDL(char*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8013F4D8
  * Size:	000008
  */
-void Game::FakePiki::getDownfloorMass()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::FakePiki::getDownfloorMass() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8013F4E0
  * Size:	000008
  */
-void Game::FakePiki::isPikmin()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::FakePiki::isPikmin() { return 0x1; }
 
 /*
  * --INFO--
@@ -3736,14 +3715,7 @@ void Game::FakePiki::getSound_PosPtr()
  * Address:	8013F698
  * Size:	000008
  */
-void Game::FakePiki::isWalking()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::FakePiki::isWalking() { return 0x0; }
 
 /*
  * --INFO--

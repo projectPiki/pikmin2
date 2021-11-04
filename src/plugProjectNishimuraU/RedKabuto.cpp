@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -176,11 +176,4 @@ void Game::RedKabuto::Obj::changeMaterial()
  * Address:	8030038C
  * Size:	000008
  */
-void Game::RedKabuto::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5F
-	  blr
-	*/
-}
+u32 Game::RedKabuto::Obj::getEnemyTypeID() { return 0x5F; }

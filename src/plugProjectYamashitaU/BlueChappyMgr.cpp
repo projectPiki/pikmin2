@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -174,14 +174,7 @@ void Game::BlueChappy::Mgr::~Mgr()
  * Address:	8012BA78
  * Size:	000008
  */
-void Game::BlueChappy::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2A
-	  blr
-	*/
-}
+u32 Game::BlueChappy::Mgr::getEnemyTypeID() { return 0x2A; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -557,14 +557,7 @@ void Game::Sarai::Mgr::~Mgr()
  * Address:	80272BB4
  * Size:	000008
  */
-void Game::Sarai::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x17
-	  blr
-	*/
-}
+u32 Game::Sarai::Mgr::getEnemyTypeID() { return 0x17; }
 
 /*
  * --INFO--

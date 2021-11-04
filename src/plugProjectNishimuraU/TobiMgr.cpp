@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -390,14 +390,7 @@ void Game::Tobi::Mgr::~Mgr()
  * Address:	8026989C
  * Size:	000008
  */
-void Game::Tobi::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xE
-	  blr
-	*/
-}
+u32 Game::Tobi::Mgr::getEnemyTypeID() { return 0xE; }
 
 /*
  * --INFO--

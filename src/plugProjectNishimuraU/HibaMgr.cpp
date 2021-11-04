@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -461,28 +461,14 @@ void Game::Hiba::Mgr::~Mgr()
  * Address:	8026BDEC
  * Size:	000008
  */
-void Game::Hiba::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14
-	  blr
-	*/
-}
+u32 Game::Hiba::Mgr::getEnemyTypeID() { return 0x14; }
 
 /*
  * --INFO--
  * Address:	8026BDF4
  * Size:	000008
  */
-void Game::EnemyMgrBaseAlwaysMovieActor::isAlwaysMovieActor()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::EnemyMgrBaseAlwaysMovieActor::isAlwaysMovieActor() { return 0x1; }
 
 /*
  * --INFO--

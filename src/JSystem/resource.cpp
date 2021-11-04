@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -373,28 +373,14 @@ void JMessage::TResourceContainer::TResourceContainer()
  * Address:	80006758
  * Size:	000008
  */
-void JUTFont::isLeadByte_1Byte(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JUTFont::isLeadByte_1Byte(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80006760
  * Size:	000008
  */
-void JUTFont::isLeadByte_2Byte(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 JUTFont::isLeadByte_2Byte(int) { return 0x1; }
 
 /*
  * --INFO--

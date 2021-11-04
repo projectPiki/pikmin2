@@ -200,28 +200,14 @@ void J3DMaterialAnm::calc(J3DMaterial*) const
  * Address:	8006A350
  * Size:	000008
  */
-void J3DTevBlock::getTevKColor(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevKColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006A358
  * Size:	000008
  */
-void J3DTevBlock::getTevColor(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--

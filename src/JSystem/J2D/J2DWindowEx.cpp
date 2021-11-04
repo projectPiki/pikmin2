@@ -210,14 +210,7 @@ void J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long,
  * Address:	8004511C
  * Size:	000008
  */
-void J2DTevBlock::getTevStage(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::getTevStage(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -231,14 +224,7 @@ void J2DTevBlock::setTevOrder(unsigned long, J2DTevOrder) { }
  * Address:	80045128
  * Size:	000008
  */
-void J2DTevBlock::insertTexture(unsigned long, const ResTIMG*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::insertTexture(unsigned long, const ResTIMG*) { return 0x0; }
 
 /*
  * --INFO--

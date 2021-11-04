@@ -412,13 +412,9 @@ void og::newScreen::Ground::getResName( const
  * Address:	8030DE8C
  * Size:	000008
  */
-void og::newScreen::Ground::getSceneType(void)
+u32  og::newScreen::Ground::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2710
-	  blr
-	*/
+	return 0x2710;
 }
 
 /*
@@ -457,11 +453,7 @@ void og::newScreen::Ground::getMemberID(void)
  * Address:	8030DEB0
  * Size:	000008
  */
-void og::newScreen::Ground::isDrawInDemo( const
+u32  og::newScreen::Ground::isDrawInDemo( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }

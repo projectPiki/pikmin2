@@ -2045,13 +2045,9 @@ void og::newScreen::ObjAnaDemo::doStart((Screen::StartSceneArg const*))
  * Address:	8031E818
  * Size:	000008
  */
-void og::newScreen::ObjAnaDemo::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjAnaDemo::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

@@ -271,14 +271,7 @@ void birth__Q34Game6Jigumo3ObjFR10Vector3<float> f(void)
  * Address:	803691C0
  * Size:	000008
  */
-void Game::Jigumo::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3F
-	  blr
-	*/
-}
+u32 Game::Jigumo::Obj::getEnemyTypeID(void) { return 0x3F; }
 
 /*
  * --INFO--
@@ -1842,14 +1835,7 @@ void Game::Jigumo::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8036A49C
  * Size:	000008
  */
-void Game::Jigumo::Obj::isLivingThing(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Jigumo::Obj::isLivingThing(void) { return 0x1; }
 
 /*
  * --INFO--

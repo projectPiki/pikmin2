@@ -165,13 +165,9 @@ void og::newScreen::UfoMenu::getResName( const
  * Address:	80324A24
  * Size:	000008
  */
-void og::newScreen::UfoMenu::getSceneType(void)
+u32  og::newScreen::UfoMenu::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2719
-	  blr
-	*/
+	return 0x2719;
 }
 
 /*
@@ -211,11 +207,7 @@ void og::newScreen::UfoMenu::getMemberID(void)
  * Address:	80324A4C
  * Size:	000008
  */
-void og::newScreen::UfoMenu::isUseBackupSceneInfo(void)
+u32  og::newScreen::UfoMenu::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }

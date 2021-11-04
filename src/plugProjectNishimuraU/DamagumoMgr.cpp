@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -560,14 +560,7 @@ void Game::Damagumo::Mgr::~Mgr()
  * Address:	802A5718
  * Size:	000008
  */
-void Game::Damagumo::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x38
-	  blr
-	*/
-}
+u32 Game::Damagumo::Mgr::getEnemyTypeID() { return 0x38; }
 
 /*
  * --INFO--

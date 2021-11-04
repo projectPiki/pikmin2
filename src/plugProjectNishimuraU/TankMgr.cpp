@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -308,14 +308,7 @@ void Game::Tank::Mgr::~Mgr()
  * Address:	80275D7C
  * Size:	000008
  */
-void Game::Tank::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x18
-	  blr
-	*/
-}
+u32 Game::Tank::Mgr::getEnemyTypeID() { return 0x18; }
 
 /*
  * --INFO--

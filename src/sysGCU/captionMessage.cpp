@@ -639,14 +639,7 @@ void P2JME::Caption::TSequenceProcessor::__dt(void)
  * Address:	804516C0
  * Size:	000008
  */
-void P2JME::Caption::TSequenceProcessor::do_isReady(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::Caption::TSequenceProcessor::do_isReady(void) { return 0x1; }
 
 /*
  * --INFO--

@@ -3350,28 +3350,14 @@ void kh::Screen::SceneFinalResult::getResName() const
  * Address:	8040EFF4
  * Size:	000008
  */
-void kh::Screen::SceneFinalResult::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E26
-	  blr
-	*/
-}
+u32 kh::Screen::SceneFinalResult::getSceneType() { return 0x4E26; }
 
 /*
  * --INFO--
  * Address:	8040EFFC
  * Size:	000008
  */
-void kh::Screen::SceneFinalResult::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneFinalResult::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -3460,28 +3446,14 @@ void kh::Screen::ObjFinalResult::~ObjFinalResult()
  * Address:	8040F0C4
  * Size:	000008
  */
-void kh::Screen::DispFinalResult::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x18
-	  blr
-	*/
-}
+u32 kh::Screen::DispFinalResult::getSize() { return 0x18; }
 
 /*
  * --INFO--
  * Address:	8040F0CC
  * Size:	000008
  */
-void kh::Screen::DispFinalResult::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispFinalResult::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

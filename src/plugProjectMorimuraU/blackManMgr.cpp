@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -704,14 +704,7 @@ void Game::BlackMan::Mgr::__dt(void)
  * Address:	803A5C24
  * Size:	000008
  */
-void Game::BlackMan::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x63
-	  blr
-	*/
-}
+u32 Game::BlackMan::Mgr::getEnemyTypeID(void) { return 0x63; }
 
 /*
  * --INFO--

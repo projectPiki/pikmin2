@@ -757,14 +757,7 @@ void Game::Hana::Obj::initWalkSmokeEffect(void) { }
  * Address:	802F3958
  * Size:	000008
  */
-void Game::Hana::Obj::getWalkSmokeEffectMgr(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Hana::Obj::getWalkSmokeEffectMgr(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -785,14 +778,7 @@ void Game::Hana::Obj::getDownSmokeScale(void)
  * Address:	802F3968
  * Size:	000008
  */
-void Game::Hana::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x54
-	  blr
-	*/
-}
+u32 Game::Hana::Obj::getEnemyTypeID(void) { return 0x54; }
 
 /*
  * --INFO--

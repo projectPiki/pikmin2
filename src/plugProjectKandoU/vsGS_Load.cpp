@@ -445,14 +445,7 @@ void Game::VsGame::LoadState::cleanup((Game::VsGameSection*)) { }
  * Address:	8022D610
  * Size:	000008
  */
-void og::Screen::DispMemberFloor::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberFloor::getSize(void) { return 0x14; }
 
 /*
  * --INFO--

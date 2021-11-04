@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -112,11 +112,7 @@ void og::newScreen::WorldMapInfoWindow0::doCreateObj((JKRArchive*))
 void og::newScreen::WorldMapInfoWindow0::doConfirmSetScene(
     (Screen::SetSceneArg&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -178,13 +174,9 @@ void og::newScreen::WorldMapInfoWindow0::getResName( const
  * Address:	8032BBFC
  * Size:	000008
  */
-void og::newScreen::WorldMapInfoWindow0::getSceneType(void)
+u32  og::newScreen::WorldMapInfoWindow0::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2729
-	  blr
-	*/
+	return 0x2729;
 }
 
 /*
@@ -209,13 +201,9 @@ void og::newScreen::WorldMapInfoWindow0::getMemberID(void)
  * Address:	8032BC18
  * Size:	000008
  */
-void og::newScreen::WorldMapInfoWindow0::isUseBackupSceneInfo(void)
+u32  og::newScreen::WorldMapInfoWindow0::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

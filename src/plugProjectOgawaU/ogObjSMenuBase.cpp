@@ -1550,28 +1550,14 @@ void og::newScreen::ObjSMenuBase::doUpdateFadeoutFinish(void)
  * Address:	80317394
  * Size:	000008
  */
-void Screen::ObjBase::doStart((Screen::StartSceneArg const*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Screen::ObjBase::doStart((Screen::StartSceneArg const*)) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8031739C
  * Size:	000008
  */
-void Screen::ObjBase::doEnd((Screen::EndSceneArg const*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Screen::ObjBase::doEnd((Screen::EndSceneArg const*)) { return 0x1; }
 
 /*
  * --INFO--
@@ -1585,14 +1571,7 @@ void Screen::ObjBase::doCreate((JKRArchive*)) { }
  * Address:	803173A8
  * Size:	000008
  */
-void Screen::ObjBase::doUpdateFadeout(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Screen::ObjBase::doUpdateFadeout(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -1613,13 +1592,9 @@ void og::newScreen::StartSceneArgSMenu::getSceneType( const
  * Address:	803173B8
  * Size:	000008
  */
-void getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu>Fv(void)
+u32  getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu>Fv(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
+	return 0xC;
 }
 
 /*

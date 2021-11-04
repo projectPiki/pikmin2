@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2305,13 +2305,9 @@ void Morimura::TCountDownScene::getResName( const
  * Address:	80345ED0
  * Size:	000008
  */
-void Morimura::TCountDownScene::getSceneType(void)
+u32  Morimura::TCountDownScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x272D
-	  blr
-	*/
+	return 0x272D;
 }
 
 /*

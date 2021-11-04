@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1001,28 +1001,14 @@ void Game::SingleGame::MainResultState::cleanup((Game::SingleGameSection*))
  * Address:	8021AB2C
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultTitl::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultTitl::getSize(void) { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8021AB34
  * Size:	000008
  */
-void kh::Screen::DispDayEndResultTitl::getOwnerID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResultTitl::getOwnerID(void) { return 0x4B48; }
 
 /*
  * --INFO--
@@ -1046,28 +1032,14 @@ void kh::Screen::DispDayEndResultTitl::getMemberID(void)
  * Address:	8021AB50
  * Size:	000008
  */
-void kh::Screen::DispDayEndResult::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x68
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResult::getSize(void) { return 0x68; }
 
 /*
  * --INFO--
  * Address:	8021AB58
  * Size:	000008
  */
-void kh::Screen::DispDayEndResult::getOwnerID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispDayEndResult::getOwnerID(void) { return 0x4B48; }
 
 /*
  * --INFO--

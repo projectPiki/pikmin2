@@ -4100,9 +4100,5 @@ void Sys::OBBTree::getBoundBox((BoundBox&)) { }
 void Sys::TriDivider::do_clone((Matrixf&, Sys::VertexTable*,
                                 Sys::TriangleTable*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }

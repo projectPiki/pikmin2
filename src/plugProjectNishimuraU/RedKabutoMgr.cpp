@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -310,14 +310,7 @@ void Game::RedKabuto::Mgr::~Mgr()
  * Address:	80300140
  * Size:	000008
  */
-void Game::RedKabuto::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5F
-	  blr
-	*/
-}
+u32 Game::RedKabuto::Mgr::getEnemyTypeID() { return 0x5F; }
 
 /*
  * --INFO--

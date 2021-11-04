@@ -1532,14 +1532,7 @@ void ModelEffectDataRoot::getID()
  * Address:	803BBE70
  * Size:	000008
  */
-void ModelEffectDataRoot::onCreate(ModelEffectCreateArg*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ModelEffectDataRoot::onCreate(ModelEffectCreateArg*) { return 0x0; }
 
 /*
  * --INFO--
@@ -1588,14 +1581,7 @@ void NodeObjectMgr<ModelEffect>::getStart()
  * Address:	803BBE90
  * Size:	000008
  */
-void NodeObjectMgr<ModelEffect>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<ModelEffect>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -1643,28 +1629,14 @@ void Container<ModelEffect>::getObject(void*)
  * Address:	803BBEDC
  * Size:	000008
  */
-void Container<ModelEffect>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<ModelEffect>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	803BBEE4
  * Size:	000008
  */
-void Container<ModelEffect>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<ModelEffect>::getTo() { return 0x0; }
 
 /*
  * --INFO--

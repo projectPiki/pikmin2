@@ -2719,13 +2719,9 @@ void J3DModelLoader::modifyMaterial(unsigned long)
  * Address:	800717C8
  * Size:	000008
  */
-void J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, unsigned long)
+u32 J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, unsigned long)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -2736,11 +2732,7 @@ void J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, unsigned long)
 void J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*,
                                            unsigned long)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

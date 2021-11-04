@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -272,14 +272,7 @@ void Game::Egg::Mgr::__dt(void)
  * Address:	8034B9A4
  * Size:	000008
  */
-void Game::Egg::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x25
-	  blr
-	*/
-}
+u32 Game::Egg::Mgr::getEnemyTypeID(void) { return 0x25; }
 
 /*
  * --INFO--

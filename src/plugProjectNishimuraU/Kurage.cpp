@@ -3114,14 +3114,7 @@ void Game::Kurage::Obj::outWaterCallback() { }
  * Address:	802AFC54
  * Size:	000008
  */
-void Game::Kurage::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x39
-	  blr
-	*/
-}
+u32 Game::Kurage::Obj::getEnemyTypeID() { return 0x39; }
 
 /*
  * --INFO--

@@ -217,11 +217,7 @@ void og::newScreen::AnaDemo::getMemberID(void)
  * Address:	8031EBE0
  * Size:	000008
  */
-void og::newScreen::AnaDemo::isUseBackupSceneInfo(void)
+u32  og::newScreen::AnaDemo::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }

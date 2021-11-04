@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -714,14 +714,7 @@ void Game::KingChappy::Mgr::__dt(void)
  * Address:	8035CB6C
  * Size:	000008
  */
-void Game::KingChappy::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x35
-	  blr
-	*/
-}
+u32 Game::KingChappy::Mgr::getEnemyTypeID(void) { return 0x35; }
 
 /*
  * --INFO--

@@ -5074,14 +5074,7 @@ void JADUtility::PrmSetRc<PSAutoBgm::Track>::getChildNum()
  * Address:	8033CB1C
  * Size:	000008
  */
-void JADUtility::PrmSetRc<PSAutoBgm::Track>::getPrmObjHeap()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JADUtility::PrmSetRc<PSAutoBgm::Track>::getPrmObjHeap() { return 0x0; }
 
 /*
  * --INFO--
@@ -5102,14 +5095,7 @@ void JADUtility::PrmSetRc<PSAutoBgm::Module>::getChildNum()
  * Address:	8033CB2C
  * Size:	000008
  */
-void JADUtility::PrmSetRc<PSAutoBgm::Module>::getPrmObjHeap()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JADUtility::PrmSetRc<PSAutoBgm::Module>::getPrmObjHeap() { return 0x0; }
 
 /*
  * --INFO--
@@ -5638,28 +5624,14 @@ void JADUtility::PrmSetRc<PSAutoBgm::Track>::PrmSetRc()
  * Address:	8033D0DC
  * Size:	000008
  */
-void PSAutoBgm::CycleBase::avoidCheck()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSAutoBgm::CycleBase::avoidCheck() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8033D0E4
  * Size:	000008
  */
-void PSAutoBgm::CycleBase::getCycleType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSAutoBgm::CycleBase::getCycleType() { return 0x1; }
 
 /*
  * --INFO--
@@ -5832,14 +5804,7 @@ void PSAutoBgm::AutoBgm::~AutoBgm()
  * Address:	8033D2E4
  * Size:	000008
  */
-void PSAutoBgm::AutoBgm::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
-}
+u32 PSAutoBgm::AutoBgm::getCastType() { return 0x3; }
 
 /*
  * --INFO--
@@ -6014,14 +5979,7 @@ void PSAutoBgm::ConductorMgr::getDataHeap()
  * Address:	8033D45C
  * Size:	000008
  */
-void PSAutoBgm::OnCycle::getCycleType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSAutoBgm::OnCycle::getCycleType() { return 0x0; }
 
 /*
  * --INFO--

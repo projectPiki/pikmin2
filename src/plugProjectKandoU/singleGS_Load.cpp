@@ -320,14 +320,7 @@ void Game::SingleGame::LoadState::cleanup((Game::SingleGameSection*)) { }
  * Address:	8023A204
  * Size:	000008
  */
-void og::Screen::DispMemberCourseName::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberCourseName::getSize(void) { return 0x10; }
 
 /*
  * --INFO--

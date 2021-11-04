@@ -3107,14 +3107,7 @@ void Game::NaviMgr::getMgrName(void)
  * Address:	8015BA2C
  * Size:	000008
  */
-void Game::NaviMgr::frozenable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::NaviMgr::frozenable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -4706,28 +4699,14 @@ void Container<Game::Navi>::getObject(void*)
  * Address:	8015CBC8
  * Size:	000008
  */
-void Container<Game::Navi>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Navi>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8015CBD0
  * Size:	000008
  */
-void Container<Game::Navi>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Navi>::getTo() { return 0x0; }
 
 /*
  * --INFO--

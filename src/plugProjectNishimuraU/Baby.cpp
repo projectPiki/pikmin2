@@ -1155,14 +1155,7 @@ void Game::Baby::Obj::outWaterCallback() { }
  * Address:	8028E038
  * Size:	000008
  */
-void Game::Baby::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1F
-	  blr
-	*/
-}
+u32 Game::Baby::Obj::getEnemyTypeID() { return 0x1F; }
 
 /*
  * --INFO--

@@ -4364,14 +4364,7 @@ void Game::ItemUjamushi::Item::updateBoundSphere(void)
  * Address:	80209050
  * Size:	000008
  */
-void Game::ItemUjamushi::Item::isCollisionFlick(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemUjamushi::Item::isCollisionFlick(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -6795,14 +6788,7 @@ void Game::BaseFlockMgr::isWeed((int))
  * Address:	8020ABF4
  * Size:	000008
  */
-void Game::TFlock::isWeed(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::TFlock::isWeed(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -6868,14 +6854,7 @@ void Game::BaseFlockMgr::fear((int))
  * Address:	8020ACA8
  * Size:	000008
  */
-void Game::TFlock::fear(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::TFlock::fear(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -7004,28 +6983,14 @@ void Game::TFlock::constructor(void) { }
  * Address:	8020AD98
  * Size:	000008
  */
-void Game::TFlock::isVisible(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::TFlock::isVisible(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8020ADA0
  * Size:	000008
  */
-void Game::TFlock::damaged((float))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::TFlock::damaged((float)) { return 0x1; }
 
 /*
  * --INFO--
@@ -7600,14 +7565,7 @@ void NodeObjectMgr<Game::ItemUjamushi::Item>::getStart()
  * Address:	8020B1E0
  * Size:	000008
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::ItemUjamushi::Item>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -9961,28 +9919,14 @@ void Container<Game::ItemUjamushi::Item>::getObject(void*)
  * Address:	8020CC9C
  * Size:	000008
  */
-void Container<Game::ItemUjamushi::Item>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemUjamushi::Item>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020CCA4
  * Size:	000008
  */
-void Container<Game::ItemUjamushi::Item>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemUjamushi::Item>::getTo() { return 0x0; }
 
 /*
  * --INFO--
@@ -10012,28 +9956,14 @@ void Container<Game::ItemUjamushi::Uja>::getObject(void*)
  * Address:	8020CCD8
  * Size:	000008
  */
-void Container<Game::ItemUjamushi::Uja>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemUjamushi::Uja>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020CCE0
  * Size:	000008
  */
-void Container<Game::ItemUjamushi::Uja>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemUjamushi::Uja>::getTo() { return 0x0; }
 
 /*
  * --INFO--

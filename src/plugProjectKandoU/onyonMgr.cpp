@@ -1555,14 +1555,7 @@ void Game::InteractSuckArrive::actOnyon((Game::Onyon*))
  * Address:	80175FE8
  * Size:	000008
  */
-void Game::Onyon::needShadow(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Onyon::needShadow(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -9653,14 +9646,7 @@ void Game::BaseItemMgr::onLoadResources(void) { }
  * Address:	8017C170
  * Size:	000008
  */
-void Game::BaseItemMgr::loadEverytime(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::BaseItemMgr::loadEverytime(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -9697,14 +9683,7 @@ void Game::ItemOnyon::Mgr::getEnd(void)
  * Address:	8017C1A8
  * Size:	000008
  */
-void NodeObjectMgr<Game::Onyon>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::Onyon>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -9822,14 +9801,7 @@ void NodeObjectMgr<Game::Onyon>::get(void*)
  * Address:	8017C24C
  * Size:	000008
  */
-void Game::GenItemParm::getShapeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::GenItemParm::getShapeID(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -9881,14 +9853,7 @@ void Game::Onyon::getCreatureName(void)
  * Address:	8017C278
  * Size:	000008
  */
-void Game::BaseItem::getCreatureID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::BaseItem::getCreatureID(void) { return -0x1; }
 
 /*
  * --INFO--
@@ -9916,27 +9881,16 @@ void Game::BaseItem::getMapCollisionRadius(void)
  * Address:	8017C28C
  * Size:	000008
  */
-void Game::BaseItem::interactAttack((Game::InteractAttack&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseItem::interactAttack((Game::InteractAttack&)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C294
  * Size:	000008
  */
-void Game::BaseItem::interactBreakBridge((Game::InteractBreakBridge&))
+u32 Game::BaseItem::interactBreakBridge((Game::InteractBreakBridge&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -9944,27 +9898,16 @@ void Game::BaseItem::interactBreakBridge((Game::InteractBreakBridge&))
  * Address:	8017C29C
  * Size:	000008
  */
-void Game::BaseItem::interactEat((Game::InteractEat&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseItem::interactEat((Game::InteractEat&)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2A4
  * Size:	000008
  */
-void Game::BaseItem::interactFlockAttack((Game::InteractFlockAttack&))
+u32 Game::BaseItem::interactFlockAttack((Game::InteractFlockAttack&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -9972,41 +9915,23 @@ void Game::BaseItem::interactFlockAttack((Game::InteractFlockAttack&))
  * Address:	8017C2AC
  * Size:	000008
  */
-void Game::BaseItem::interactAbsorb((Game::InteractAbsorb&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseItem::interactAbsorb((Game::InteractAbsorb&)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2B4
  * Size:	000008
  */
-void Game::BaseItem::interactFue((Game::InteractFue&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseItem::interactFue((Game::InteractFue&)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2BC
  * Size:	000008
  */
-void Game::BaseItem::interactFarmKarero((Game::InteractFarmKarero&))
+u32 Game::BaseItem::interactFarmKarero((Game::InteractFarmKarero&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -10014,13 +9939,9 @@ void Game::BaseItem::interactFarmKarero((Game::InteractFarmKarero&))
  * Address:	8017C2C4
  * Size:	000008
  */
-void Game::BaseItem::interactFarmHaero((Game::InteractFarmHaero&))
+u32 Game::BaseItem::interactFarmHaero((Game::InteractFarmHaero&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -10028,27 +9949,16 @@ void Game::BaseItem::interactFarmHaero((Game::InteractFarmHaero&))
  * Address:	8017C2CC
  * Size:	000008
  */
-void Game::BaseItem::interactGotKey((Game::InteractGotKey&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseItem::interactGotKey((Game::InteractGotKey&)) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2D4
  * Size:	000008
  */
-void getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<float>(void)
+u32 getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<float>(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -11505,28 +11415,14 @@ void Container<Game::Onyon>::getObject(void*)
  * Address:	8017D320
  * Size:	000008
  */
-void Container<Game::Onyon>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Onyon>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017D328
  * Size:	000008
  */
-void Container<Game::Onyon>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Onyon>::getTo() { return 0x0; }
 
 /*
  * --INFO--

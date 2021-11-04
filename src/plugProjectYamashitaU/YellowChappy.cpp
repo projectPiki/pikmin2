@@ -696,14 +696,7 @@ void efx::TSimple1::fade() { }
  * Address:	8012CB9C
  * Size:	000008
  */
-void Game::YellowChappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2B
-	  blr
-	*/
-}
+u32 Game::YellowChappy::Obj::getEnemyTypeID() { return 0x2B; }
 
 /*
  * --INFO--

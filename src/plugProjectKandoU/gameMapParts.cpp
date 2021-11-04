@@ -1158,14 +1158,7 @@ void Game::MapRoom::countEnemys(void)
  * Address:	801B6F08
  * Size:	000008
  */
-void Game::ObjectLayoutNode::getExtraCode(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ObjectLayoutNode::getExtraCode(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -1720,28 +1713,14 @@ void Game::MapRoom::placeObjects((Game::Cave::FloorInfo*, bool))
  * Address:	801B76C8
  * Size:	000008
  */
-void Game::ObjectLayoutNode::getBirthDoorIndex(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::ObjectLayoutNode::getBirthDoorIndex(void) { return -0x1; }
 
 /*
  * --INFO--
  * Address:	801B76D0
  * Size:	000008
  */
-void Game::ObjectLayoutNode::isFixedBattery(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ObjectLayoutNode::isFixedBattery(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -10509,14 +10488,7 @@ void getStartPosition__Q24Game10RoomMapMgrFR10Vector3<float> i(void)
  * Address:	801BE6AC
  * Size:	000008
  */
-void Game::RoomMapMgr::getDemoMatrix(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::RoomMapMgr::getDemoMatrix(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -10908,14 +10880,7 @@ void Game::MapRoom::getObjType(void)
  * Address:	801BEA68
  * Size:	000008
  */
-void Game::MapRoom::collisionUpdatable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::MapRoom::collisionUpdatable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -11374,14 +11339,7 @@ void NodeObjectMgr<Game::MapUnit>::getStart()
  * Address:	801BEE20
  * Size:	000008
  */
-void NodeObjectMgr<Game::MapUnit>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::MapUnit>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -13797,28 +13755,14 @@ void Container<Game::MapRoom>::getObject(void*)
  * Address:	801C0A34
  * Size:	000008
  */
-void Container<Game::MapRoom>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::MapRoom>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C0A3C
  * Size:	000008
  */
-void Container<Game::MapRoom>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::MapRoom>::getTo() { return 0x0; }
 
 /*
  * --INFO--
@@ -13848,28 +13792,14 @@ void Container<Game::MapUnit>::getObject(void*)
  * Address:	801C0A70
  * Size:	000008
  */
-void Container<Game::MapUnit>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::MapUnit>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C0A78
  * Size:	000008
  */
-void Container<Game::MapUnit>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::MapUnit>::getTo() { return 0x0; }
 
 /*
  * --INFO--

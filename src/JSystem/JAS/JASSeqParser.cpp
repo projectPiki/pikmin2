@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1023,28 +1023,14 @@ void JASSeqParser::cmdSyncCPU(JASTrack*, unsigned long*)
  * Address:	8009D3B8
  * Size:	000008
  */
-void JASSeqParser::cmdFlushAll(JASTrack*, unsigned long*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JASSeqParser::cmdFlushAll(JASTrack*, unsigned long*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8009D3C0
  * Size:	000008
  */
-void JASSeqParser::cmdFlushRelease(JASTrack*, unsigned long*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JASSeqParser::cmdFlushRelease(JASTrack*, unsigned long*) { return 0x0; }
 
 /*
  * --INFO--
@@ -1099,28 +1085,14 @@ void JASSeqParser::cmdTempo(JASTrack*, unsigned long*)
  * Address:	8009D428
  * Size:	000008
  */
-void JASSeqParser::cmdFinish(JASTrack*, unsigned long*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
-}
+u32 JASSeqParser::cmdFinish(JASTrack*, unsigned long*) { return 0x3; }
 
 /*
  * --INFO--
  * Address:	8009D430
  * Size:	000008
  */
-void JASSeqParser::cmdNop(JASTrack*, unsigned long*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JASSeqParser::cmdNop(JASTrack*, unsigned long*) { return 0x0; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1173,28 +1173,14 @@ void TRKDoCPUType(void)
  * Address:	800BD394
  * Size:	000008
  */
-void TRKDoSupportMask(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 TRKDoSupportMask(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800BD39C
  * Size:	000008
  */
-void TRKDoVersions(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 TRKDoVersions(void) { return 0x0; }
 
 /*
  * --INFO--

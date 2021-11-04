@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -546,14 +546,7 @@ void Game::DangoMushi::Mgr::~Mgr()
  * Address:	802FC330
  * Size:	000008
  */
-void Game::DangoMushi::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5E
-	  blr
-	*/
-}
+u32 Game::DangoMushi::Mgr::getEnemyTypeID() { return 0x5E; }
 
 /*
  * --INFO--

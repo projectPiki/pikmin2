@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -464,14 +464,7 @@ void JKRDvdFile::readData(void*, long, long)
  * Address:	8001D5C4
  * Size:	000008
  */
-void JKRDvdFile::writeData(const void*, long, long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 JKRDvdFile::writeData(const void*, long, long) { return -0x1; }
 
 /*
  * --INFO--

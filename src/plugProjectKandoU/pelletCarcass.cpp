@@ -462,14 +462,7 @@ void Game::PelletCarcass::Mgr::__dt(void)
  * Address:	801FBE40
  * Size:	000008
  */
-void Game::PelletCarcass::Mgr::createShape((int, int))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletCarcass::Mgr::createShape((int, int)) { return 0x0; }
 
 /*
  * --INFO--
@@ -490,14 +483,7 @@ void Game::PelletCarcass::Mgr::getMgrName(void)
  * Address:	801FBE50
  * Size:	000008
  */
-void Game::PelletCarcass::Mgr::getMgrID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PelletCarcass::Mgr::getMgrID(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -1456,28 +1442,14 @@ void Container<Game::PelletCarcass::Object>::getObject(void*)
  * Address:	801FC650
  * Size:	000008
  */
-void Container<Game::PelletCarcass::Object>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletCarcass::Object>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801FC658
  * Size:	000008
  */
-void Container<Game::PelletCarcass::Object>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletCarcass::Object>::getTo() { return 0x0; }
 
 /*
  * --INFO--
@@ -3119,14 +3091,7 @@ void Game::PelletCarcass::Object::__ct(void)
  * Address:	801FD918
  * Size:	000008
  */
-void Game::PelletCarcass::Object::getKind(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PelletCarcass::Object::getKind(void) { return 0x1; }
 
 /*
  * --INFO--

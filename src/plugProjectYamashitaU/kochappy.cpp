@@ -435,14 +435,7 @@ void Game::Kochappy::Obj::~Obj()
  * Address:	8010F834
  * Size:	000008
  */
-void Game::Kochappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Kochappy::Obj::getEnemyTypeID() { return 0x1; }
 
 /*
  * --INFO--

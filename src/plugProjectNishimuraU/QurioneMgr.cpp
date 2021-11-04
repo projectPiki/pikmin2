@@ -581,14 +581,7 @@ void Game::Qurione::Mgr::~Mgr()
  * Address:	802600C4
  * Size:	000008
  */
-void Game::Qurione::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 Game::Qurione::Mgr::getEnemyTypeID() { return 0x10; }
 
 /*
  * --INFO--

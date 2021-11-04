@@ -2258,14 +2258,7 @@ void applyImpulse__Q34Game6Miulin3ObjFR10Vector3<float> R10Vector3<float>(void)
  * Address:	80365FC8
  * Size:	000008
  */
-void Game::Miulin::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x36
-	  blr
-	*/
-}
+u32 Game::Miulin::Obj::getEnemyTypeID(void) { return 0x36; }
 
 /*
  * --INFO--

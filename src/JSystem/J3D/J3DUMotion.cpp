@@ -1225,28 +1225,14 @@ void J3DMtxCalc::setAnmTransform(J3DAnmTransform*) { }
  * Address:	80016CF0
  * Size:	000008
  */
-void J3DMtxCalc::getAnmTransform(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DMtxCalc::getAnmTransform(unsigned char) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80016CF8
  * Size:	000008
  */
-void J3DMtxCalc::getAnmTransform()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DMtxCalc::getAnmTransform() { return 0x0; }
 
 /*
  * --INFO--

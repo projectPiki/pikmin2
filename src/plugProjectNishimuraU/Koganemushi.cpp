@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -329,11 +329,4 @@ void Game::Koganemushi::Obj::createPressSENormal()
  * Address:	8029E124
  * Size:	000008
  */
-void Game::Koganemushi::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x9
-	  blr
-	*/
-}
+u32 Game::Koganemushi::Obj::getEnemyTypeID() { return 0x9; }

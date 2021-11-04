@@ -566,14 +566,7 @@ void Game::Queen::Obj::damageCallBack(Game::Creature*, float, CollPart*)
  * Address:	80289AE8
  * Size:	000008
  */
-void Game::Queen::Obj::earthquakeCallBack(Game::Creature*, float)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Queen::Obj::earthquakeCallBack(Game::Creature*, float) { return 0x0; }
 
 /*
  * --INFO--
@@ -4129,14 +4122,7 @@ void Game::Queen::Obj::getDamageCoeStoneState()
  * Address:	8028C4A4
  * Size:	000008
  */
-void Game::Queen::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1E
-	  blr
-	*/
-}
+u32 Game::Queen::Obj::getEnemyTypeID() { return 0x1E; }
 
 /*
  * --INFO--

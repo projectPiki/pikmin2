@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -311,14 +311,7 @@ void Game::Fart::Mgr::~Mgr()
  * Address:	80285430
  * Size:	000008
  */
-void Game::Fart::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xB
-	  blr
-	*/
-}
+u32 Game::Fart::Mgr::getEnemyTypeID() { return 0xB; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -551,11 +551,4 @@ void PSM::ObjCalc_2PGame::~ObjCalc_2PGame()
  * Address:	80472EDC
  * Size:	000008
  */
-void PSM::ObjCalc_2PGame::is1PGame()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::ObjCalc_2PGame::is1PGame() { return 0x0; }

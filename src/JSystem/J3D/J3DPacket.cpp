@@ -292,14 +292,7 @@ void J3DDisplayListObj::endPatch()
  * Address:	8005FAF0
  * Size:	000008
  */
-void J3DPacket::entry(J3DDrawBuffer*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 J3DPacket::entry(J3DDrawBuffer*) { return 0x1; }
 
 /*
  * --INFO--
@@ -1078,28 +1071,14 @@ void J3DShapePacket::calcDifferedBufferSize(unsigned long)
  * Address:	800602C8
  * Size:	000008
  */
-void J3DTevBlock::getTevStageNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevStageNum() const { return 0x1; }
 
 /*
  * --INFO--
  * Address:	800602D0
  * Size:	000008
  */
-void J3DTexGenBlock::getTexGenNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTexGenBlock::getTexGenNum() const { return 0x0; }
 
 /*
  * --INFO--

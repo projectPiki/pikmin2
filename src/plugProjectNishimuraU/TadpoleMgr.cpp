@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -328,14 +328,7 @@ void Game::Tadpole::Mgr::~Mgr()
  * Address:	802785C0
  * Size:	000008
  */
-void Game::Tadpole::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1B
-	  blr
-	*/
-}
+u32 Game::Tadpole::Mgr::getEnemyTypeID() { return 0x1B; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1028,13 +1028,9 @@ void og::newScreen::ObjUfoMenu::doStart((Screen::StartSceneArg const*))
  * Address:	80324504
  * Size:	000008
  */
-void og::newScreen::ObjUfoMenu::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjUfoMenu::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

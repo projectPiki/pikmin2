@@ -1634,14 +1634,7 @@ void Game::Qurione::Obj::outWaterCallback() { }
  * Address:	802612B4
  * Size:	000008
  */
-void Game::Qurione::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 Game::Qurione::Obj::getEnemyTypeID() { return 0x10; }
 
 /*
  * --INFO--

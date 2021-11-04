@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -690,14 +690,7 @@ void Game::BigFoot::Mgr::~Mgr()
  * Address:	802C7784
  * Size:	000008
  */
-void Game::BigFoot::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x45
-	  blr
-	*/
-}
+u32 Game::BigFoot::Mgr::getEnemyTypeID() { return 0x45; }
 
 /*
  * --INFO--

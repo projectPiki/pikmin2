@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -179,14 +179,7 @@ void Game::BlueKochappy::Mgr::getChangeTexture()
  * Address:	8012CDCC
  * Size:	000008
  */
-void Game::BlueKochappy::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2C
-	  blr
-	*/
-}
+u32 Game::BlueKochappy::Mgr::getEnemyTypeID() { return 0x2C; }
 
 /*
  * --INFO--

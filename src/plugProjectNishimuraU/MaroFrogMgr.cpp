@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -256,14 +256,7 @@ void Game::MaroFrog::Mgr::~Mgr()
  * Address:	802617D0
  * Size:	000008
  */
-void Game::MaroFrog::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x12
-	  blr
-	*/
-}
+u32 Game::MaroFrog::Mgr::getEnemyTypeID() { return 0x12; }
 
 /*
  * --INFO--

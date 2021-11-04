@@ -410,14 +410,7 @@ void J2DTevBlock::setFontUndeleteFlag() { }
  * Address:	800414E4
  * Size:	000008
  */
-void J2DTevBlock::getFont()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::getFont() { return 0x0; }
 
 /*
  * --INFO--
@@ -1685,14 +1678,7 @@ void J2DTextBox::isUsed(const ResFONT*)
  * Address:	80042460
  * Size:	000008
  */
-void J2DTextBox::getTypeID() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x13
-	  blr
-	*/
-}
+u32 J2DTextBox::getTypeID() const { return 0x13; }
 
 /*
  * --INFO--
@@ -1803,14 +1789,7 @@ void J2DTextBox::getWhite() const
  * Address:	80042518
  * Size:	000008
  */
-void J2DTextBox::getMaterial() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTextBox::getMaterial() const { return 0x0; }
 
 /*
  * --INFO--

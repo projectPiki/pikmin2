@@ -2743,11 +2743,4 @@ void Game::TamagoMushi::Obj::getDownSmokeScale(void)
  * Address:	80370C00
  * Size:	000008
  */
-void Game::TamagoMushi::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x44
-	  blr
-	*/
-}
+u32 Game::TamagoMushi::Obj::getEnemyTypeID(void) { return 0x44; }

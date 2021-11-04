@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -269,14 +269,7 @@ void ddh_cc_read(void)
  * Address:	800C0ED8
  * Size:	000008
  */
-void ddh_cc_close(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ddh_cc_close(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -306,14 +299,7 @@ void ddh_cc_open(void)
  * Address:	800C0F04
  * Size:	000008
  */
-void ddh_cc_shutdown(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ddh_cc_shutdown(void) { return 0x0; }
 
 /*
  * --INFO--

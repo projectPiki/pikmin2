@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1330,14 +1330,7 @@ void Game::Rigid::resolveCollision(int, Vector3<float>&, Vector3<float>&, float)
  * Address:	8013AE74
  * Size:	000008
  */
-void Parm<bool>::size()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Parm<bool>::size() { return 0x1; }
 
 /*
  * --INFO--

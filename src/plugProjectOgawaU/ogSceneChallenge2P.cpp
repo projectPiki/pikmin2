@@ -234,13 +234,9 @@ void og::newScreen::Challenge2P::getResName( const
  * Address:	8031FF18
  * Size:	000008
  */
-void og::newScreen::Challenge2P::getSceneType(void)
+u32  og::newScreen::Challenge2P::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2724
-	  blr
-	*/
+	return 0x2724;
 }
 
 /*
@@ -279,11 +275,7 @@ void og::newScreen::Challenge2P::getMemberID(void)
  * Address:	8031FF3C
  * Size:	000008
  */
-void og::newScreen::Challenge2P::isDrawInDemo( const
+u32  og::newScreen::Challenge2P::isDrawInDemo( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }

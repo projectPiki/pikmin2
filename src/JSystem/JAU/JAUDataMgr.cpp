@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -181,14 +181,7 @@ void JADUtility::DataLoadMgrNode::load((JADUtility::DataLoadMgrNode::ObjStatus,
  * Address:	800BA97C
  * Size:	000008
  */
-void JADUtility::DataLoadMgrNode::isTempBuffaMode(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 JADUtility::DataLoadMgrNode::isTempBuffaMode(void) { return 0x0; }
 
 /*
  * --INFO--

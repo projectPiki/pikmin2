@@ -198,11 +198,7 @@ void og::newScreen::Contena::getMemberID(void)
  * Address:	80322084
  * Size:	000008
  */
-void og::newScreen::Contena::isUseBackupSceneInfo(void)
+u32  og::newScreen::Contena::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }

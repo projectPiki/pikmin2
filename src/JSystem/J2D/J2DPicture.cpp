@@ -563,14 +563,7 @@ void J2DPicture::J2DPicture(J2DPane*, JSURandomInputStream*, J2DMaterial*)
  * Address:	8003A25C
  * Size:	000008
  */
-void J2DTevBlock::getTevKColor(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::getTevKColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -584,28 +577,14 @@ void J2DTevBlock::setUndeleteFlag(unsigned char) { }
  * Address:	8003A268
  * Size:	000008
  */
-void J2DTevBlock::getTevColor(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::getTevColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8003A270
  * Size:	000008
  */
-void J2DTevBlock::getTevStageNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 J2DTevBlock::getTevStageNum() const { return 0x1; }
 
 /*
  * --INFO--
@@ -4641,14 +4620,7 @@ void J2DPicture::getTlutID(const ResTIMG*, unsigned char)
  * Address:	8003D324
  * Size:	000008
  */
-void J2DPicture::getTypeID() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x12
-	  blr
-	*/
-}
+u32 J2DPicture::getTypeID() const { return 0x12; }
 
 /*
  * --INFO--
@@ -5117,14 +5089,7 @@ void J2DPicture::getWhite() const
  * Address:	8003D724
  * Size:	000008
  */
-void J2DPicture::getMaterial() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DPicture::getMaterial() const { return 0x0; }
 
 /*
  * --INFO--

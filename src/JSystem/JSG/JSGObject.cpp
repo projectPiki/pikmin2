@@ -37,13 +37,9 @@ void JStage::TObject::__dt(void)
  * Address:	8009891C
  * Size:	000008
  */
-void JStage::TObject::JSGGetName( const
+u32  JStage::TObject::JSGGetName( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -60,13 +56,9 @@ void JStage::TObject::JSGUpdate(void)
  * Address:	80098928
  * Size:	000008
  */
-void JStage::TObject::JSGGetFlag( const
+u32  JStage::TObject::JSGGetFlag( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -83,13 +75,9 @@ void JStage::TObject::JSGSetFlag( (unsigned long))
  * Address:	80098934
  * Size:	000008
  */
-void JStage::TObject::JSGGetData( const(unsigned long, void *, unsigned long))
+u32  JStage::TObject::JSGGetData( const(unsigned long, void *, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -133,13 +121,9 @@ void JStage::TObject::JSGSetRelation( (bool, JStage::TObject *, unsigned long))
  * Address:	8009894C
  * Size:	000008
  */
-void JStage::TObject::JSGFindNodeID( const(char const *))
+s32  JStage::TObject::JSGFindNodeID( const(char const *))
 {
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
+	return -0x1;
 }
 
 /*

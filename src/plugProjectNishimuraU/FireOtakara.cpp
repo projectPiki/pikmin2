@@ -481,11 +481,4 @@ void efx::TSimple5::fade() { }
  * Address:	802B86D8
  * Size:	000008
  */
-void Game::FireOtakara::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3B
-	  blr
-	*/
-}
+u32 Game::FireOtakara::Obj::getEnemyTypeID() { return 0x3B; }

@@ -108,13 +108,9 @@ void og::newScreen::Vs::getResName( const
  * Address:	80327D20
  * Size:	000008
  */
-void og::newScreen::Vs::getSceneType(void)
+u32  og::newScreen::Vs::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2712
-	  blr
-	*/
+	return 0x2712;
 }
 
 /*
@@ -152,11 +148,7 @@ void og::newScreen::Vs::getMemberID(void)
  * Address:	80327D40
  * Size:	000008
  */
-void og::newScreen::Vs::isDrawInDemo( const
+u32  og::newScreen::Vs::isDrawInDemo( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -676,14 +676,7 @@ void Game::InteractBubble::actNavi(Game::Navi*)
  * Address:	801D85F0
  * Size:	000008
  */
-void Game::InteractGas::actNavi(Game::Navi*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::InteractGas::actNavi(Game::Navi*) { return 0x0; }
 
 /*
  * --INFO--

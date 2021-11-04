@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2231,14 +2231,7 @@ void Game::Cave::FixObjNode::__dt(void)
  * Address:	8024E13C
  * Size:	000008
  */
-void Game::Cave::FixObjNode::getObjectId(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Cave::FixObjNode::getObjectId(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -2259,14 +2252,7 @@ void Game::Cave::FixObjNode::getObjectType(void)
  * Address:	8024E14C
  * Size:	000008
  */
-void Game::Cave::FixObjNode::getBirthCount(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Cave::FixObjNode::getBirthCount(void) { return 0x1; }
 
 /*
  * --INFO--

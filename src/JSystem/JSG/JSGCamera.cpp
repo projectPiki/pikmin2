@@ -43,13 +43,9 @@ void JStage::TCamera::__dt(void)
  * Address:	80098854
  * Size:	000008
  */
-void JStage::TCamera::JSGFGetType( const
+u32  JStage::TCamera::JSGFGetType( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
+	return 0x3;
 }
 
 /*
@@ -57,13 +53,9 @@ void JStage::TCamera::JSGFGetType( const
  * Address:	8009885C
  * Size:	000008
  */
-void JStage::TCamera::JSGGetProjectionType( const
+u32  JStage::TCamera::JSGGetProjectionType( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -191,13 +183,9 @@ void JStage::TCamera::JSGSetProjectionField( (float const *))
  * Address:	800988A4
  * Size:	000008
  */
-void JStage::TCamera::JSGGetViewType( const
+u32  JStage::TCamera::JSGGetViewType( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

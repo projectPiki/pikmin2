@@ -7725,13 +7725,9 @@ void Morimura::TChallengeResultScene::doCreateObj( (JKRArchive *))
  * Address:	803996AC
  * Size:	000008
  */
-void Morimura::TChallengeResultScene::getSceneType(void)
+u32  Morimura::TChallengeResultScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2738
-	  blr
-	*/
+	return 0x2738;
 }
 
 /*

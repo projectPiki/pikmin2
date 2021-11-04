@@ -5288,14 +5288,7 @@ void Game::Houdai::Obj::throwupItemInDeathProcedure() { }
  * Address:	802C386C
  * Size:	000008
  */
-void Game::Houdai::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x42
-	  blr
-	*/
-}
+u32 Game::Houdai::Obj::getEnemyTypeID() { return 0x42; }
 
 /*
  * --INFO--

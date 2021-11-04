@@ -4790,14 +4790,7 @@ void Game::SingleGame::GameState::cleanup((Game::SingleGameSection*))
  * Address:	80217598
  * Size:	000008
  */
-void og::Screen::DispMemberSave::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSave::getSize(void) { return 0xC; }
 
 /*
  * --INFO--
@@ -4835,14 +4828,7 @@ void og::Screen::DispMemberSave::getMemberID(void)
  * Address:	802175BC
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuCont::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuCont::getSize(void) { return 0x8; }
 
 /*
  * --INFO--
@@ -4881,14 +4867,7 @@ void og::Screen::DispMemberSMenuCont::getMemberID(void)
  * Address:	802175E4
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuPauseVS::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuPauseVS::getSize(void) { return 0xC; }
 
 /*
  * --INFO--
@@ -4927,14 +4906,7 @@ void og::Screen::DispMemberSMenuPauseVS::getMemberID(void)
  * Address:	8021760C
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuMap::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4C
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuMap::getSize(void) { return 0x4C; }
 
 /*
  * --INFO--
@@ -4972,14 +4944,7 @@ void og::Screen::DispMemberSMenuMap::getMemberID(void)
  * Address:	80217630
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuItem::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuItem::getSize(void) { return 0x28; }
 
 /*
  * --INFO--
@@ -5018,14 +4983,7 @@ void og::Screen::DispMemberSMenuItem::getMemberID(void)
  * Address:	80217658
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuPauseDoukutu::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x18
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuPauseDoukutu::getSize(void) { return 0x18; }
 
 /*
  * --INFO--
@@ -5064,14 +5022,7 @@ void og::Screen::DispMemberSMenuPauseDoukutu::getMemberID(void)
  * Address:	80217680
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuPause::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuPause::getSize(void) { return 0x14; }
 
 /*
  * --INFO--
@@ -5110,14 +5061,7 @@ void og::Screen::DispMemberSMenuPause::getMemberID(void)
  * Address:	802176A8
  * Size:	000008
  */
-void og::Screen::DispMemberSMenuAll::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC4
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberSMenuAll::getSize(void) { return 0xC4; }
 
 /*
  * --INFO--

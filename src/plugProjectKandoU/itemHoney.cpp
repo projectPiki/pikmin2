@@ -1353,14 +1353,7 @@ void Game::ItemHoney::Item::absorbable()
  * Address:	801D3B0C
  * Size:	000008
  */
-void Game::ItemHoney::State::absorbable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ItemHoney::State::absorbable() { return 0x0; }
 
 /*
  * --INFO--
@@ -1498,11 +1491,7 @@ void Game::ItemHoney::Item::interactAbsorb(Game::InteractAbsorb&)
 void Game::ItemHoney::State::interactAbsorb(Game::CFSMItem*,
                                             Game::InteractAbsorb&)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -2285,14 +2274,7 @@ void Game::ItemHoney::Item::getCreatureName()
  * Address:	801D4450
  * Size:	000008
  */
-void Game::ItemHoney::TouchState::absorbable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::ItemHoney::TouchState::absorbable() { return 0x1; }
 
 /*
  * --INFO--
@@ -2302,11 +2284,7 @@ void Game::ItemHoney::TouchState::absorbable()
 void Game::ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*,
                                                   Game::InteractAbsorb&)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -2314,28 +2292,14 @@ void Game::ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*,
  * Address:	801D4460
  * Size:	000008
  */
-void Game::ItemHoney::ShrinkState::absorbable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::ItemHoney::ShrinkState::absorbable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801D4468
  * Size:	000008
  */
-void Game::ItemHoney::WaitState::absorbable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::ItemHoney::WaitState::absorbable() { return 0x1; }
 
 /*
  * --INFO--
@@ -3187,28 +3151,14 @@ void Container<Game::ItemHoney::Item>::getObject(void*)
  * Address:	801D4B40
  * Size:	000008
  */
-void Container<Game::ItemHoney::Item>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemHoney::Item>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D4B48
  * Size:	000008
  */
-void Container<Game::ItemHoney::Item>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemHoney::Item>::getTo() { return 0x0; }
 
 /*
  * --INFO--

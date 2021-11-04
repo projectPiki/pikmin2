@@ -3888,28 +3888,14 @@ void kh::Screen::SceneCaveResult::getResName() const
  * Address:	803FB950
  * Size:	000008
  */
-void kh::Screen::SceneCaveResult::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E20
-	  blr
-	*/
-}
+u32 kh::Screen::SceneCaveResult::getSceneType() { return 0x4E20; }
 
 /*
  * --INFO--
  * Address:	803FB958
  * Size:	000008
  */
-void kh::Screen::SceneCaveResult::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneCaveResult::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -3998,28 +3984,14 @@ void kh::Screen::ObjCaveResult::~ObjCaveResult()
  * Address:	803FBA20
  * Size:	000008
  */
-void kh::Screen::DispCaveResult::getSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x38
-	  blr
-	*/
-}
+u32 kh::Screen::DispCaveResult::getSize() { return 0x38; }
 
 /*
  * --INFO--
  * Address:	803FBA28
  * Size:	000008
  */
-void kh::Screen::DispCaveResult::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::DispCaveResult::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

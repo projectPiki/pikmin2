@@ -914,14 +914,7 @@ void WPFindCond::satisfy(Game::WayPoint*)
  * Address:	802398BC
  * Size:	000008
  */
-void PikiAI::ActRescue::getNextAIType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::ActRescue::getNextAIType(void) { return 0x1; }
 
 /*
  * --INFO--

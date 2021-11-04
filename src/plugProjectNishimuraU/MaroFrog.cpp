@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -426,11 +426,4 @@ void Game::MaroFrog::Obj::createEffect()
  * Address:	80261D84
  * Size:	000008
  */
-void Game::MaroFrog::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x12
-	  blr
-	*/
-}
+u32 Game::MaroFrog::Obj::getEnemyTypeID() { return 0x12; }

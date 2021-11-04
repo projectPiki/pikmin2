@@ -106,13 +106,9 @@ void og::newScreen::KanteiDemo::getResName( const
  * Address:	80319C98
  * Size:	000008
  */
-void og::newScreen::KanteiDemo::getSceneType(void)
+u32  og::newScreen::KanteiDemo::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2722
-	  blr
-	*/
+	return 0x2722;
 }
 
 /*
@@ -151,11 +147,7 @@ void og::newScreen::KanteiDemo::getMemberID(void)
  * Address:	80319CBC
  * Size:	000008
  */
-void og::newScreen::KanteiDemo::isUseBackupSceneInfo(void)
+u32  og::newScreen::KanteiDemo::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }

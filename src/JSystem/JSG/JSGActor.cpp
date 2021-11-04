@@ -43,13 +43,9 @@ void JStage::TActor::__dt(void)
  * Address:	800989F0
  * Size:	000008
  */
-void JStage::TActor::JSGFGetType( const
+u32  JStage::TActor::JSGFGetType( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
+	return 0x2;
 }
 
 /*
@@ -111,13 +107,9 @@ void JStage::TActor::JSGSetRotation( (Vec const &))
  * Address:	80098A10
  * Size:	000008
  */
-void JStage::TActor::JSGGetShape( const
+s32  JStage::TActor::JSGGetShape( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
+	return -0x1;
 }
 
 /*
@@ -134,13 +126,9 @@ void JStage::TActor::JSGSetShape( (unsigned long))
  * Address:	80098A1C
  * Size:	000008
  */
-void JStage::TActor::JSGGetAnimation( const
+s32  JStage::TActor::JSGGetAnimation( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
+	return -0x1;
 }
 
 /*
@@ -217,13 +205,9 @@ void JStage::TActor::JSGSetAnimationTransition( (float))
  * Address:	80098A48
  * Size:	000008
  */
-void JStage::TActor::JSGGetTextureAnimation( const
+s32  JStage::TActor::JSGGetTextureAnimation( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
+	return -0x1;
 }
 
 /*

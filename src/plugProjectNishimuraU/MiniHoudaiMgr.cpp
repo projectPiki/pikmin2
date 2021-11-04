@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -237,14 +237,7 @@ void Game::MiniHoudai::Mgr::__dt(void)
  * Address:	802EBFBC
  * Size:	000008
  */
-void Game::MiniHoudai::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E
-	  blr
-	*/
-}
+u32 Game::MiniHoudai::Mgr::getEnemyTypeID(void) { return 0x4E; }
 
 /*
  * --INFO--

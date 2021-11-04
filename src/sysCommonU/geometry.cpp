@@ -5708,14 +5708,7 @@ void ArrayContainer<Sys::Triangle>::getNext(void*)
  * Address:	80419FCC
  * Size:	000008
  */
-void ArrayContainer<Sys::Triangle>::getStart()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ArrayContainer<Sys::Triangle>::getStart() { return 0x0; }
 
 /*
  * --INFO--
@@ -5789,25 +5782,11 @@ void Container<Sys::Triangle>::getObject(void*)
  * Address:	8041A020
  * Size:	000008
  */
-void Container<Sys::Triangle>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Sys::Triangle>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8041A028
  * Size:	000008
  */
-void Container<Sys::Triangle>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Sys::Triangle>::getTo() { return 0x0; }

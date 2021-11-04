@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -477,14 +477,7 @@ void Game::Kurage::Mgr::~Mgr()
  * Address:	802AD664
  * Size:	000008
  */
-void Game::Kurage::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x39
-	  blr
-	*/
-}
+u32 Game::Kurage::Mgr::getEnemyTypeID() { return 0x39; }
 
 /*
  * --INFO--

@@ -1187,14 +1187,7 @@ void Screen::Mgr::drawBG((Graphics&)) { }
  * Address:	80452EF8
  * Size:	000008
  */
-void Screen::Mgr::doGetSceneBase((long))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Screen::Mgr::doGetSceneBase((long)) { return 0x0; }
 
 /*
  * --INFO--

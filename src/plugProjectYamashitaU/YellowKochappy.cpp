@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -309,11 +309,4 @@ void Game::YellowKochappy::Obj::~Obj()
  * Address:	8012D5DC
  * Size:	000008
  */
-void Game::YellowKochappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2D
-	  blr
-	*/
-}
+u32 Game::YellowKochappy::Obj::getEnemyTypeID() { return 0x2D; }

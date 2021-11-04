@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4331,14 +4331,7 @@ void ebi::title::Pikmin::TParam::__ct(void)
  * Address:	803E7328
  * Size:	000008
  */
-void ebi::title::Pikmin::TUnit::getCreatureType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ebi::title::Pikmin::TUnit::getCreatureType(void) { return 0x0; }
 
 /*
  * --INFO--

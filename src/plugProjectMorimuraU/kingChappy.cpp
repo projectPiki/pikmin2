@@ -7085,14 +7085,7 @@ void Game::KingChappy::Obj::eatWhitePikminCallBack((Game::Creature*, float))
  * Address:	80362530
  * Size:	000008
  */
-void Game::KingChappy::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x35
-	  blr
-	*/
-}
+u32 Game::KingChappy::Obj::getEnemyTypeID(void) { return 0x35; }
 
 /*
  * --INFO--

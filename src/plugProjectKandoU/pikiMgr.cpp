@@ -2478,14 +2478,7 @@ void Game::PikiMgr::createModel((int, int))
  * Address:	8015EF78
  * Size:	000008
  */
-void Game::PikiMgr::createLeafModel((int, int))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PikiMgr::createLeafModel((int, int)) { return 0x0; }
 
 /*
  * --INFO--
@@ -5174,14 +5167,7 @@ void Game::PikiMgr::getMgrName(void)
  * Address:	801610A4
  * Size:	000008
  */
-void Game::PikiMgr::getMatrixLoadType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PikiMgr::getMatrixLoadType(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -6775,28 +6761,14 @@ void Container<Game::Piki>::getObject(void*)
  * Address:	80162230
  * Size:	000008
  */
-void Container<Game::Piki>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Piki>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80162238
  * Size:	000008
  */
-void Container<Game::Piki>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Piki>::getTo() { return 0x0; }
 
 /*
  * --INFO--

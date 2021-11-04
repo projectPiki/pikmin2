@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2456,14 +2456,7 @@ void J3DAnmVisibilityFull::~J3DAnmVisibilityFull()
  * Address:	800741CC
  * Size:	000008
  */
-void J3DAnmVisibilityFull::getKind() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x6
-	  blr
-	*/
-}
+u32 J3DAnmVisibilityFull::getKind() const { return 0x6; }
 
 /*
  * --INFO--
@@ -2517,14 +2510,7 @@ void J3DAnmTexPattern::~J3DAnmTexPattern()
  * Address:	80074248
  * Size:	000008
  */
-void J3DAnmTexPattern::getKind() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 J3DAnmTexPattern::getKind() const { return 0x2; }
 
 /*
  * --INFO--
@@ -2585,14 +2571,7 @@ void J3DAnmTevRegKey::~J3DAnmTevRegKey()
  * Address:	800742D8
  * Size:	000008
  */
-void J3DAnmTevRegKey::getKind() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5
-	  blr
-	*/
-}
+u32 J3DAnmTevRegKey::getKind() const { return 0x5; }
 
 /*
  * --INFO--
@@ -2653,14 +2632,7 @@ void J3DAnmTextureSRTKey::~J3DAnmTextureSRTKey()
  * Address:	80074368
  * Size:	000008
  */
-void J3DAnmTextureSRTKey::getKind() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 J3DAnmTextureSRTKey::getKind() const { return 0x4; }
 
 /*
  * --INFO--
@@ -2710,14 +2682,7 @@ void J3DAnmTransformKey::~J3DAnmTransformKey()
  * Address:	800743DC
  * Size:	000008
  */
-void J3DAnmTransformKey::getKind() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 J3DAnmTransformKey::getKind() const { return 0x8; }
 
 /*
  * --INFO--

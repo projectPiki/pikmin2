@@ -737,238 +737,119 @@ void J3DPEBlockFull::initialize()
  * Address:	80077A58
  * Size:	000008
  */
-void J3DColorBlockLightOff::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x22
-	  blr
-	*/
-}
+u32 J3DColorBlockLightOff::countDLSize() { return 0x22; }
 
 /*
  * --INFO--
  * Address:	80077A60
  * Size:	000008
  */
-void J3DColorBlockAmbientOn::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2F
-	  blr
-	*/
-}
+u32 J3DColorBlockAmbientOn::countDLSize() { return 0x2F; }
 
 /*
  * --INFO--
  * Address:	80077A68
  * Size:	000008
  */
-void J3DColorBlockLightOn::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x26F
-	  blr
-	*/
-}
+u32 J3DColorBlockLightOn::countDLSize() { return 0x26F; }
 
 /*
  * --INFO--
  * Address:	80077A70
  * Size:	000008
  */
-void J3DTexGenBlockPatched::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1A8
-	  blr
-	*/
-}
+u32 J3DTexGenBlockPatched::countDLSize() { return 0x1A8; }
 
 /*
  * --INFO--
  * Address:	80077A78
  * Size:	000008
  */
-void J3DTexGenBlock4::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xFE
-	  blr
-	*/
-}
+u32 J3DTexGenBlock4::countDLSize() { return 0xFE; }
 
 /*
  * --INFO--
  * Address:	80077A80
  * Size:	000008
  */
-void J3DTexGenBlockBasic::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1F2
-	  blr
-	*/
-}
+u32 J3DTexGenBlockBasic::countDLSize() { return 0x1F2; }
 
 /*
  * --INFO--
  * Address:	80077A88
  * Size:	000008
  */
-void J3DTevBlockPatched::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x230
-	  blr
-	*/
-}
+u32 J3DTevBlockPatched::countDLSize() { return 0x230; }
 
 /*
  * --INFO--
  * Address:	80077A90
  * Size:	000008
  */
-void J3DTevBlock1::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x69
-	  blr
-	*/
-}
+u32 J3DTevBlock1::countDLSize() { return 0x69; }
 
 /*
  * --INFO--
  * Address:	80077A98
  * Size:	000008
  */
-void J3DTevBlock2::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x14F
-	  blr
-	*/
-}
+u32 J3DTevBlock2::countDLSize() { return 0x14F; }
 
 /*
  * --INFO--
  * Address:	80077AA0
  * Size:	000008
  */
-void J3DTevBlock4::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x244
-	  blr
-	*/
-}
+u32 J3DTevBlock4::countDLSize() { return 0x244; }
 
 /*
  * --INFO--
  * Address:	80077AA8
  * Size:	000008
  */
-void J3DTevBlock16::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3E8
-	  blr
-	*/
-}
+u32 J3DTevBlock16::countDLSize() { return 0x3E8; }
 
 /*
  * --INFO--
  * Address:	80077AB0
  * Size:	000008
  */
-void J3DIndBlockFull::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8C
-	  blr
-	*/
-}
+u32 J3DIndBlockFull::countDLSize() { return 0x8C; }
 
 /*
  * --INFO--
  * Address:	80077AB8
  * Size:	000008
  */
-void J3DPEBlockOpa::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1E
-	  blr
-	*/
-}
+u32 J3DPEBlockOpa::countDLSize() { return 0x1E; }
 
 /*
  * --INFO--
  * Address:	80077AC0
  * Size:	000008
  */
-void J3DPEBlockTexEdge::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1E
-	  blr
-	*/
-}
+u32 J3DPEBlockTexEdge::countDLSize() { return 0x1E; }
 
 /*
  * --INFO--
  * Address:	80077AC8
  * Size:	000008
  */
-void J3DPEBlockXlu::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1E
-	  blr
-	*/
-}
+u32 J3DPEBlockXlu::countDLSize() { return 0x1E; }
 
 /*
  * --INFO--
  * Address:	80077AD0
  * Size:	000008
  */
-void J3DPEBlockFogOff::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1E
-	  blr
-	*/
-}
+u32 J3DPEBlockFogOff::countDLSize() { return 0x1E; }
 
 /*
  * --INFO--
  * Address:	80077AD8
  * Size:	000008
  */
-void J3DPEBlockFull::countDLSize()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x55
-	  blr
-	*/
-}
+u32 J3DPEBlockFull::countDLSize() { return 0x55; }
 
 /*
  * --INFO--
@@ -15980,14 +15861,7 @@ void J3DTevBlock1::setTevStageNum(const unsigned char*) { }
  * Address:	80082978
  * Size:	000008
  */
-void J3DTevBlock1::getTevStageNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 J3DTevBlock1::getTevStageNum() const { return 0x1; }
 
 /*
  * --INFO--

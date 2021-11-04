@@ -1209,14 +1209,7 @@ void Game::VsGame::TitleState::cleanup((Game::VsGameSection*))
  * Address:	802291F4
  * Size:	000008
  */
-void Morimura::DispMemberVsSelect::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x38
-	  blr
-	*/
-}
+u32 Morimura::DispMemberVsSelect::getSize(void) { return 0x38; }
 
 /*
  * --INFO--
@@ -1255,14 +1248,7 @@ void Morimura::DispMemberVsSelect::getMemberID(void)
  * Address:	8022921C
  * Size:	000008
  */
-void Morimura::DispMemberChallengeSelect::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x24
-	  blr
-	*/
-}
+u32 Morimura::DispMemberChallengeSelect::getSize(void) { return 0x24; }
 
 /*
  * --INFO--

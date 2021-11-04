@@ -368,14 +368,7 @@ void og::newScreen::ObjChallengeBase::setSubLevel((unsigned long))
  * Address:	8032CC80
  * Size:	000008
  */
-void Screen::ObjBase::doUpdateFadein(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Screen::ObjBase::doUpdateFadein(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -389,14 +382,7 @@ void Screen::ObjBase::doUpdateFadeinFinish(void) { }
  * Address:	8032CC8C
  * Size:	000008
  */
-void Screen::ObjBase::doUpdate(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Screen::ObjBase::doUpdate(void) { return 0x0; }
 
 /*
  * --INFO--

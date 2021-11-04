@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "Game/MemoryCard/Player.h"
 #include "Game/MemoryCard/PlayerFileInfo.h"
 #include "Game/MemoryCard/Resource.h"
@@ -5587,13 +5589,9 @@ void Game::MemoryCard::Mgr::doCheckCardStat((CARDStat*))
 * Address:	80446BEC
 * Size:	000008
 
-void Game::MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
+u32  Game::MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
 {
-/*
-.loc_0x0:
-  li        r3, 0xC
-  blr
-
+    return 0xC;
 }
 
 /*
@@ -5601,13 +5599,9 @@ void Game::MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
 * Address:	80446BF4
 * Size:	000008
 
-void Game::MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
+u32  Game::MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
 {
-/*
-.loc_0x0:
-  li        r3, 0xC
-  blr
-
+    return 0xC;
 }
 
 /*
@@ -5615,13 +5609,9 @@ void Game::MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
 * Address:	80446BFC
 * Size:	000008
 
-void Game::MemoryCard::MgrCommandPlayerNo::getClassSize(void)
+u32  Game::MemoryCard::MgrCommandPlayerNo::getClassSize(void)
 {
-/*
-.loc_0x0:
-  li        r3, 0xC
-  blr
-
+    return 0xC;
 }
 
 /*
@@ -5668,12 +5658,8 @@ void Game::MemoryCard::Mgr::__dt(void)
 * Address:	80446C60
 * Size:	000008
 
-void Game::MemoryCard::Mgr::getHeaderSize(void)
+u32  Game::MemoryCard::Mgr::getHeaderSize(void)
 {
-/*
-.loc_0x0:
-  li        r3, 0x2000
-  blr
-
+    return 0x2000;
 }
 */

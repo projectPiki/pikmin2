@@ -1304,11 +1304,4 @@ void Game::Sokkuri::Obj::getDownSmokeScale(void)
  * Address:	802F2038
  * Size:	000008
  */
-void Game::Sokkuri::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4F
-	  blr
-	*/
-}
+u32 Game::Sokkuri::Obj::getEnemyTypeID(void) { return 0x4F; }

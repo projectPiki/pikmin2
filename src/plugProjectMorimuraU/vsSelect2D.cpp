@@ -8907,13 +8907,9 @@ void Morimura::TVsSelectScene::getResName( const
  * Address:	803A0E74
  * Size:	000008
  */
-void Morimura::TVsSelectScene::getSceneType(void)
+u32  Morimura::TVsSelectScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2739
-	  blr
-	*/
+	return 0x2739;
 }
 
 /*

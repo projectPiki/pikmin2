@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -201,14 +201,7 @@ void Game::YellowChappy::Mgr::~Mgr()
  * Address:	8012C1F8
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2B
-	  blr
-	*/
-}
+u32 Game::YellowChappy::Mgr::getEnemyTypeID() { return 0x2B; }
 
 /*
  * --INFO--

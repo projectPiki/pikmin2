@@ -4928,14 +4928,7 @@ void Game::BigFoot::Obj::throwupItemInDeathProcedure() { }
  * Address:	802CB86C
  * Size:	000008
  */
-void Game::BigFoot::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x45
-	  blr
-	*/
-}
+u32 Game::BigFoot::Obj::getEnemyTypeID() { return 0x45; }
 
 /*
  * --INFO--

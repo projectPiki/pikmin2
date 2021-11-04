@@ -1037,14 +1037,7 @@ void Game::SingleGame::EndingState::cleanup((Game::SingleGameSection*))
  * Address:	80233404
  * Size:	000008
  */
-void og::Screen::DispMemberFinalMessage::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberFinalMessage::getSize(void) { return 0xC; }
 
 /*
  * --INFO--

@@ -27,28 +27,14 @@ void J2DTevBlock::setTexNo(unsigned long, unsigned short) { }
  * Address:	800494F4
  * Size:	000008
  */
-void J2DTevBlock::getTevSwapModeTable(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::getTevSwapModeTable(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800494FC
  * Size:	000008
  */
-void J2DTevBlock::getTevOrder(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DTevBlock::getTevOrder(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -70,14 +56,7 @@ void J2DTevBlock::getFontNo() const
  * Address:	80049510
  * Size:	000008
  */
-void J2DIndBlock::getIndTexStageNum() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DIndBlock::getIndTexStageNum() const { return 0x0; }
 
 /*
  * --INFO--

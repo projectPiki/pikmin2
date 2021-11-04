@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -833,14 +833,7 @@ void Game::EnemyMgrBase::birth(Game::EnemyBirthArg&)
  * Address:	8012F54C
  * Size:	000008
  */
-void Game::EnemyMgrBase::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 Game::EnemyMgrBase::getEnemyTypeID() { return -0x1; }
 
 /*
  * --INFO--

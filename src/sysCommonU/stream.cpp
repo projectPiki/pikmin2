@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -65,14 +65,7 @@ void Stream::skipSpace()
  * Address:	80413DEC
  * Size:	000008
  */
-void Stream::eof()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Stream::eof() { return 0x0; }
 
 /*
  * --INFO--
@@ -2663,11 +2656,4 @@ void RamStream::eof()
  * Address:	80415A9C
  * Size:	000008
  */
-void Stream::getPending()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Stream::getPending() { return 0x0; }

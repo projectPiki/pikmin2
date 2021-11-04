@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -311,14 +311,7 @@ void Game::WaterOtakara::Mgr::~Mgr()
  * Address:	802B8A20
  * Size:	000008
  */
-void Game::WaterOtakara::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3C
-	  blr
-	*/
-}
+u32 Game::WaterOtakara::Mgr::getEnemyTypeID() { return 0x3C; }
 
 /*
  * --INFO--

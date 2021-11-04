@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1254,14 +1254,7 @@ void DVDReadDir(void)
  * Address:	800DCD20
  * Size:	000008
  */
-void DVDCloseDir(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 DVDCloseDir(void) { return 0x1; }
 
 /*
  * --INFO--

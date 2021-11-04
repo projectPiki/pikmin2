@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -4329,14 +4329,7 @@ void PSM::Scene_Cave::isPollutUp()
  * Address:	80467620
  * Size:	000008
  */
-void PSM::SceneBase::getEnvSe()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::SceneBase::getEnvSe() { return 0x0; }
 
 /*
  * --INFO--

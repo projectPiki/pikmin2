@@ -1766,14 +1766,7 @@ void Game::Ujia::Obj::getDownSmokeScale()
  * Address:	8026751C
  * Size:	000008
  */
-void Game::Ujia::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 Game::Ujia::Obj::getEnemyTypeID() { return 0xC; }
 
 /*
  * --INFO--

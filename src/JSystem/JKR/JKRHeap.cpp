@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JSU/JSUTree.h"
 #include "JSystem/JSU/JSUTreeIterator.h"
@@ -716,11 +718,7 @@ uchar JKRHeap::changeGroupID(uchar newGroupID)
 u8 JKRHeap::do_changeGroupID(uchar newGroupID)
 {
 	return 0;
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -755,11 +753,7 @@ uchar JKRHeap::getCurrentGroupId()
 uchar JKRHeap::do_getCurrentGroupId()
 {
 	return 0;
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

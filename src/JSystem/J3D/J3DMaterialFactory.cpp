@@ -1119,14 +1119,7 @@ void J3DTevBlock::setTevKColor(unsigned long, J3DGXColor) { }
  * Address:	8006D15C
  * Size:	000008
  */
-void J3DTevBlock::getTevStage(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevStage(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -4320,14 +4313,7 @@ void J3DTevBlock::setTevOrder(unsigned long, const J3DTevOrder*) { }
  * Address:	8006F56C
  * Size:	000008
  */
-void J3DTevBlock::getTevOrder(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevOrder(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -4355,14 +4341,7 @@ void J3DTevBlock::setTevKColorSel(unsigned long, const unsigned char*) { }
  * Address:	8006F580
  * Size:	000008
  */
-void J3DTevBlock::getTevKColorSel(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevKColorSel(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -4376,14 +4355,7 @@ void J3DTevBlock::setTevKAlphaSel(unsigned long, const unsigned char*) { }
  * Address:	8006F58C
  * Size:	000008
  */
-void J3DTevBlock::getTevKAlphaSel(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevKAlphaSel(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -4429,14 +4401,7 @@ void J3DTevBlock::setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*)
  * Address:	8006F5A8
  * Size:	000008
  */
-void J3DTevBlock::getTevSwapModeTable(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevSwapModeTable(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -4450,42 +4415,21 @@ void J3DTevBlock::setIndTevStage(unsigned long, const J3DIndTevStage*) { }
  * Address:	8006F5B4
  * Size:	000008
  */
-void J3DTevBlock::getIndTevStage(unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getIndTevStage(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006F5BC
  * Size:	000008
  */
-void J3DTevBlock::getTexNoOffset() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTexNoOffset() const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006F5C4
  * Size:	000008
  */
-void J3DTevBlock::getTevRegOffset() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J3DTevBlock::getTevRegOffset() const { return 0x0; }
 
 /*
  * --INFO--

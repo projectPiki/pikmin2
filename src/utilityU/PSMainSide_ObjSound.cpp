@@ -8802,28 +8802,14 @@ void PSM::Cluster::~Cluster()
  * Address:	804633A4
  * Size:	000008
  */
-void PSM::SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804633AC
  * Size:	000008
  */
-void PSM::SceneBase::isDemoScene()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::SceneBase::isDemoScene() { return 0x0; }
 
 /*
  * --INFO--
@@ -8851,14 +8837,7 @@ void PSM::EnemyBoss::onAppear1st() { }
  * Address:	804633C0
  * Size:	000008
  */
-void PSM::Navi::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xF
-	  blr
-	*/
-}
+u32 PSM::Navi::getCastType() { return 0xF; }
 
 /*
  * --INFO--
@@ -8939,14 +8918,7 @@ void PSM::Piki::~Piki()
  * Address:	804634B0
  * Size:	000008
  */
-void PSM::Piki::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xE
-	  blr
-	*/
-}
+u32 PSM::Piki::getCastType() { return 0xE; }
 
 /*
  * --INFO--
@@ -9061,14 +9033,7 @@ void PSM::PelletItem::~PelletItem()
  * Address:	80463620
  * Size:	000008
  */
-void PSM::PelletItem::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xD
-	  blr
-	*/
-}
+u32 PSM::PelletItem::getCastType() { return 0xD; }
 
 /*
  * --INFO--
@@ -9183,28 +9148,14 @@ void PSM::PelletOtakara::~PelletOtakara()
  * Address:	80463790
  * Size:	000008
  */
-void PSM::PelletOtakara::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 PSM::PelletOtakara::getCastType() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	80463798
  * Size:	000008
  */
-void PSM::Otakara::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xB
-	  blr
-	*/
-}
+u32 PSM::Otakara::getCastType() { return 0xB; }
 
 /*
  * --INFO--
@@ -9311,28 +9262,14 @@ void PSM::WorkItem::~WorkItem()
  * Address:	804638E8
  * Size:	000008
  */
-void PSM::WorkItem::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xA
-	  blr
-	*/
-}
+u32 PSM::WorkItem::getCastType() { return 0xA; }
 
 /*
  * --INFO--
  * Address:	804638F0
  * Size:	000008
  */
-void PSM::OtakaraEventLink_2PBattle::is2PBattle()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::OtakaraEventLink_2PBattle::is2PBattle() { return 0x1; }
 
 /*
  * --INFO--
@@ -9473,56 +9410,28 @@ void PSM::Enemy_SpecialChappy::~Enemy_SpecialChappy()
  * Address:	80463AB8
  * Size:	000008
  */
-void PSM::EnemyBig::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x8
-	  blr
-	*/
-}
+u32 PSM::EnemyBig::getCastType() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80463AC0
  * Size:	000008
  */
-void PSM::EnemyBigBoss::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x7
-	  blr
-	*/
-}
+u32 PSM::EnemyBigBoss::getCastType() { return 0x7; }
 
 /*
  * --INFO--
  * Address:	80463AC8
  * Size:	000008
  */
-void PSM::EnemyMidBoss::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x6
-	  blr
-	*/
-}
+u32 PSM::EnemyMidBoss::getCastType() { return 0x6; }
 
 /*
  * --INFO--
  * Address:	80463AD0
  * Size:	000008
  */
-void PSM::EnemyBoss::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+u32 PSM::EnemyBoss::getCastType() { return 0x4; }
 
 /*
  * --INFO--
@@ -9733,14 +9642,7 @@ void PSM::EnemyNotAggressive::~EnemyNotAggressive()
  * Address:	80463D68
  * Size:	000008
  */
-void PSM::EnemyNotAggressive::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x9
-	  blr
-	*/
-}
+u32 PSM::EnemyNotAggressive::getCastType() { return 0x9; }
 
 /*
  * --INFO--
@@ -9789,14 +9691,7 @@ void PSM::EnemyNotAggressive::kehaiOn() { }
  * Address:	80463D88
  * Size:	000008
  */
-void PSM::CreatureAnime::getCastType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::CreatureAnime::getCastType() { return 0x1; }
 
 /*
  * --INFO--

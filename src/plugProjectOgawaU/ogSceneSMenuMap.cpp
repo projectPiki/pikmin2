@@ -316,13 +316,9 @@ void og::newScreen::SMenuMap::getResName( const
  * Address:	80312E98
  * Size:	000008
  */
-void og::newScreen::SMenuMap::getSceneType(void)
+u32  og::newScreen::SMenuMap::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x271D
-	  blr
-	*/
+	return 0x271D;
 }
 
 /*
@@ -361,13 +357,9 @@ void og::newScreen::SMenuMap::getMemberID(void)
  * Address:	80312EBC
  * Size:	000008
  */
-void og::newScreen::SMenuMap::isUseBackupSceneInfo(void)
+u32  og::newScreen::SMenuMap::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

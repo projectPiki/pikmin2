@@ -1659,14 +1659,7 @@ void Game::Frog::Obj::outWaterCallback() { }
  * Address:	802596D8
  * Size:	000008
  */
-void Game::Frog::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x11
-	  blr
-	*/
-}
+u32 Game::Frog::Obj::getEnemyTypeID() { return 0x11; }
 
 /*
  * --INFO--

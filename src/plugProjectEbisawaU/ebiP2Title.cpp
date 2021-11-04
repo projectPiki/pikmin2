@@ -2732,14 +2732,7 @@ void ebi::title::TTitleMgr::inField((ebi::title::TObjBase*))
  * Address:	803BEE9C
  * Size:	000008
  */
-void ebi::title::TObjBase::isCalc(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 ebi::title::TObjBase::isCalc(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -5089,14 +5082,7 @@ void Camera::doUpdate() { }
  * Address:	803C0AC0
  * Size:	000008
  */
-void ebi::title::TObjBase::getCreatureType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 ebi::title::TObjBase::getCreatureType(void) { return -0x1; }
 
 /*
  * --INFO--

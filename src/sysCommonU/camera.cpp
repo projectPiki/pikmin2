@@ -1022,14 +1022,7 @@ void Camera::getPositionPtr()
  * Address:	8041AD04
  * Size:	000008
  */
-void Camera::on_getPositionPtr()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Camera::on_getPositionPtr() { return 0x0; }
 
 /*
  * --INFO--

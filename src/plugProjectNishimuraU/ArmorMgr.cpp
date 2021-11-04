@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -358,14 +358,7 @@ void Game::Armor::Mgr::~Mgr()
  * Address:	8027D68C
  * Size:	000008
  */
-void Game::Armor::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xF
-	  blr
-	*/
-}
+u32 Game::Armor::Mgr::getEnemyTypeID() { return 0xF; }
 
 /*
  * --INFO--

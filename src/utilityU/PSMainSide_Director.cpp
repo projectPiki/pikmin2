@@ -3874,28 +3874,14 @@ void PSM::ActorDirector_Scaled::onSetMinDistObj(Game::Creature*) { }
  * Address:	804595B4
  * Size:	000008
  */
-void PSM::ObjCalcBase::is1PGame()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::ObjCalcBase::is1PGame() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804595BC
  * Size:	000008
  */
-void PSM::OtakaraEventLink::is2PBattle()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::OtakaraEventLink::is2PBattle() { return 0x0; }
 
 /*
  * --INFO--

@@ -1028,14 +1028,7 @@ void PikiAI::ActCrop::onKeyEvent(const SysShape::KeyEvent&) { }
  * Address:	801E4B7C
  * Size:	000008
  */
-void PikiAI::ActCrop::getNextAIType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::ActCrop::getNextAIType() { return 0x1; }
 
 /*
  * --INFO--

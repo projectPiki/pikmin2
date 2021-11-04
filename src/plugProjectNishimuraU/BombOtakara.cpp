@@ -381,14 +381,7 @@ void Game::BombOtakara::Obj::startEscapeSE()
  * Address:	802F9A60
  * Size:	000008
  */
-void Game::BombOtakara::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5D
-	  blr
-	*/
-}
+u32 Game::BombOtakara::Obj::getEnemyTypeID() { return 0x5D; }
 
 /*
  * --INFO--

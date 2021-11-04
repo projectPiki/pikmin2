@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -713,42 +713,21 @@ void kh::Screen::SceneReadyGo::getResName() const
  * Address:	80401B38
  * Size:	000008
  */
-void kh::Screen::SceneReadyGo::isUseBackupSceneInfo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 kh::Screen::SceneReadyGo::isUseBackupSceneInfo() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80401B40
  * Size:	000008
  */
-void kh::Screen::SceneReadyGo::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E21
-	  blr
-	*/
-}
+u32 kh::Screen::SceneReadyGo::getSceneType() { return 0x4E21; }
 
 /*
  * --INFO--
  * Address:	80401B48
  * Size:	000008
  */
-void kh::Screen::SceneReadyGo::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneReadyGo::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

@@ -964,28 +964,14 @@ void BallFader::~BallFader()
  * Address:	8042C578
  * Size:	000008
  */
-void WipeBase::isWhite()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 WipeBase::isWhite() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8042C580
  * Size:	000008
  */
-void WipeBase::isBlack()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 WipeBase::isBlack() { return 0x0; }
 
 /*
  * --INFO--

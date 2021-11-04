@@ -4344,14 +4344,7 @@ void Game::Damagumo::Obj::throwupItemInDeathProcedure() { }
  * Address:	802A8990
  * Size:	000008
  */
-void Game::Damagumo::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x38
-	  blr
-	*/
-}
+u32 Game::Damagumo::Obj::getEnemyTypeID() { return 0x38; }
 
 /*
  * --INFO--

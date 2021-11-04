@@ -179,13 +179,9 @@ void og::newScreen::SMenuCont::getResName( const
  * Address:	80330628
  * Size:	000008
  */
-void og::newScreen::SMenuCont::getSceneType(void)
+u32  og::newScreen::SMenuCont::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x272B
-	  blr
-	*/
+	return 0x272B;
 }
 
 /*
@@ -225,11 +221,7 @@ void og::newScreen::SMenuCont::getMemberID(void)
  * Address:	80330650
  * Size:	000008
  */
-void og::newScreen::SMenuCont::isUseBackupSceneInfo(void)
+u32  og::newScreen::SMenuCont::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }

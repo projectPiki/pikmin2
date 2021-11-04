@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -59,14 +59,7 @@ void Game::CPlate::getNext((void*))
  * Address:	80195044
  * Size:	000008
  */
-void Game::CPlate::getStart(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::CPlate::getStart(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -1950,25 +1943,11 @@ void Container<Game::Creature>::getObject(void*)
  * Address:	80196660
  * Size:	000008
  */
-void Container<Game::Creature>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Creature>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80196668
  * Size:	000008
  */
-void Container<Game::Creature>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::Creature>::getTo() { return 0x0; }

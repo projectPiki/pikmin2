@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -731,13 +731,9 @@ void
  * Address:	803229E8
  * Size:	000008
  */
-void og::newScreen::ObjSMenuPauseDoukutu::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjSMenuPauseDoukutu::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

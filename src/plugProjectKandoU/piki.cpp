@@ -1389,14 +1389,7 @@ void Game::Piki::update(void)
  * Address:	801486E8
  * Size:	000008
  */
-void Game::PikiState::dead(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PikiState::dead(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -1610,14 +1603,7 @@ void movieSetTranslation__Q24Game4PikiFR10Vector3<float> f(void)
  * Address:	801488C4
  * Size:	000008
  */
-void movieGotoPosition__Q24Game4PikiFR10Vector3<float>(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 movieGotoPosition__Q24Game4PikiFR10Vector3<float>(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -1861,14 +1847,7 @@ void Game::Piki::canVsBattle(void)
  * Address:	80148ADC
  * Size:	000008
  */
-void Game::PikiState::battleOK(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PikiState::battleOK(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2786,14 +2765,7 @@ void Game::Piki::isThrowable(void)
  * Address:	80149470
  * Size:	000008
  */
-void Game::PikiState::throwable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PikiState::throwable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -3323,14 +3295,7 @@ void PikiAI::Action::bounceCallback((Game::Piki*, Sys::Triangle*)) { }
  * Address:	80149984
  * Size:	000008
  */
-void Game::PikiState::aiActive(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PikiState::aiActive(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -3647,14 +3612,7 @@ void Game::Piki::ignoreAtari((Game::Creature*))
  * Address:	80149CBC
  * Size:	000008
  */
-void Game::PikiState::ignoreAtari((Game::Piki*, Game::Creature*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PikiState::ignoreAtari((Game::Piki*, Game::Creature*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -4943,14 +4901,7 @@ void Game::Piki::setTekiKillID((int))
  * Address:	8014AAD0
  * Size:	000008
  */
-void Game::Piki::deferPikiCollision(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Piki::deferPikiCollision(void) { return 0x1; }
 
 /*
  * --INFO--

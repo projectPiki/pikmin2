@@ -485,13 +485,9 @@ void Game::Egg::Obj::doAnimationCullingOff(void)
  * Address:	8034C048
  * Size:	000008
  */
-void Game::Egg::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+u32 Game::Egg::Obj::pressCallBack((Game::Creature*, float, CollPart*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -1196,14 +1192,7 @@ void Game::Egg::Obj::isLivingThing(void)
  * Address:	8034C8B4
  * Size:	000008
  */
-void Game::Egg::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x25
-	  blr
-	*/
-}
+u32 Game::Egg::Obj::getEnemyTypeID(void) { return 0x25; }
 
 /*
  * --INFO--

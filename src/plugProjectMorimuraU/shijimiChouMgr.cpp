@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1306,14 +1306,7 @@ void Game::ShijimiChou::Mgr::__dt(void)
  * Address:	803894B8
  * Size:	000008
  */
-void Game::ShijimiChou::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4D
-	  blr
-	*/
-}
+u32 Game::ShijimiChou::Mgr::getEnemyTypeID(void) { return 0x4D; }
 
 /*
  * --INFO--

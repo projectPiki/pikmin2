@@ -3828,14 +3828,7 @@ void Game::MiniHoudai::StateWalk::exec((Game::EnemyBase*))
  * Address:	802EB200
  * Size:	000008
  */
-void Game::MiniHoudai::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E
-	  blr
-	*/
-}
+u32 Game::MiniHoudai::Obj::getEnemyTypeID(void) { return 0x4E; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -182,28 +182,14 @@ void kh::Screen::SceneDayEndResultTitl::getResName() const
  * Address:	803FBCD8
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultTitl::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E2A
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultTitl::getSceneType() { return 0x4E2A; }
 
 /*
  * --INFO--
  * Address:	803FBCE0
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultTitl::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultTitl::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -278,28 +264,14 @@ void kh::Screen::SceneWinLose::getResName() const
  * Address:	803FBD60
  * Size:	000008
  */
-void kh::Screen::SceneWinLose::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E28
-	  blr
-	*/
-}
+u32 kh::Screen::SceneWinLose::getSceneType() { return 0x4E28; }
 
 /*
  * --INFO--
  * Address:	803FBD68
  * Size:	000008
  */
-void kh::Screen::SceneWinLose::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneWinLose::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -374,28 +346,14 @@ void kh::Screen::SceneDayEndResultIncP::getResName() const
  * Address:	803FBDE8
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultIncP::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E24
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultIncP::getSceneType() { return 0x4E24; }
 
 /*
  * --INFO--
  * Address:	803FBDF0
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultIncP::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultIncP::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
@@ -470,28 +428,14 @@ void kh::Screen::SceneDayEndResultItem::getResName() const
  * Address:	803FBE70
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultItem::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E23
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultItem::getSceneType() { return 0x4E23; }
 
 /*
  * --INFO--
  * Address:	803FBE78
  * Size:	000008
  */
-void kh::Screen::SceneDayEndResultItem::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneDayEndResultItem::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

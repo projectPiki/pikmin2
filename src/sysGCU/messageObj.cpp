@@ -256,14 +256,7 @@ void P2JME::TControl::init(void)
  * Address:	80438CD8
  * Size:	000008
  */
-void P2JME::TControl::onInit(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 P2JME::TControl::onInit(void) { return 0x1; }
 
 /*
  * --INFO--

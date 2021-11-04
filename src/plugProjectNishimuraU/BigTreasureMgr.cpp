@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1455,14 +1455,7 @@ void Game::BigTreasure::Mgr::~Mgr()
  * Address:	802DA53C
  * Size:	000008
  */
-void Game::BigTreasure::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x49
-	  blr
-	*/
-}
+u32 Game::BigTreasure::Mgr::getEnemyTypeID() { return 0x49; }
 
 /*
  * --INFO--

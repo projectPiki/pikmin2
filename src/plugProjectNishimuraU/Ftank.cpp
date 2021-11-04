@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -951,14 +951,7 @@ void Game::Ftank::Obj::createDisChargeSE()
  * Address:	8029EEF4
  * Size:	000008
  */
-void Game::Ftank::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x18
-	  blr
-	*/
-}
+u32 Game::Ftank::Obj::getEnemyTypeID() { return 0x18; }
 
 /*
  * --INFO--

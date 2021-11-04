@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -310,14 +310,7 @@ void Game::BombOtakara::Mgr::~Mgr()
  * Address:	802F960C
  * Size:	000008
  */
-void Game::BombOtakara::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x5D
-	  blr
-	*/
-}
+u32 Game::BombOtakara::Mgr::getEnemyTypeID() { return 0x5D; }
 
 /*
  * --INFO--

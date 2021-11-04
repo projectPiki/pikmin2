@@ -2072,14 +2072,7 @@ void Game::ElecBug::Obj::getDownSmokeScale()
  * Address:	8027C3F4
  * Size:	000008
  */
-void Game::ElecBug::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1C
-	  blr
-	*/
-}
+u32 Game::ElecBug::Obj::getEnemyTypeID() { return 0x1C; }
 
 /*
  * --INFO--

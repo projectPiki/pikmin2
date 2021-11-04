@@ -1744,11 +1744,4 @@ void Game::Kogane::Obj::outWaterCallback() { }
  * Address:	8025F018
  * Size:	000008
  */
-void Game::Kogane::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x9
-	  blr
-	*/
-}
+u32 Game::Kogane::Obj::getEnemyTypeID() { return 0x9; }

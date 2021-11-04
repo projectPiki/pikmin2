@@ -4535,14 +4535,7 @@ void Game::PelletReturnState::execMove((Game::Pellet*))
  * Address:	801A7DE4
  * Size:	000008
  */
-void Game::PelletReturnState::execMoveGoal((Game::Pellet*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletReturnState::execMoveGoal((Game::Pellet*)) { return 0x0; }
 
 /*
  * --INFO--
@@ -4559,98 +4552,49 @@ void Game::PelletReturnState::getWayPont((int))
  * Address:	801A7DEC
  * Size:	000008
  */
-void Game::PelletState::isBuried(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletState::isBuried(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801A7DF4
  * Size:	000008
  */
-void Game::PelletState::appeared(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PelletState::appeared(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801A7DFC
  * Size:	000008
  */
-void Game::PelletUpState::isBuried(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PelletUpState::isBuried(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801A7E04
  * Size:	000008
  */
-void Game::PelletBuryState::isBuried(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PelletBuryState::isBuried(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801A7E0C
  * Size:	000008
  */
-void Game::PelletScaleAppearState::appeared(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletScaleAppearState::appeared(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801A7E14
  * Size:	000008
  */
-void Game::PelletAppearState::appeared(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::PelletAppearState::appeared(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801A7E1C
  * Size:	000008
  */
-void Game::PelletNormalState::isPickable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::PelletNormalState::isPickable(void) { return 0x1; }
 
 /*
  * --INFO--

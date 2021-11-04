@@ -2085,14 +2085,7 @@ void Game::ItemTreasure::Item::DummyShape::getMatrix((int))
  * Address:	801F4940
  * Size:	000008
  */
-void SysShape::MtxObject::isModel(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 SysShape::MtxObject::isModel(void) { return 0x0; }
 
 /*
  * --INFO--

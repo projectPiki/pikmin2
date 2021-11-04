@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -328,14 +328,7 @@ void Game::Ujia::Mgr::~Mgr()
  * Address:	80266070
  * Size:	000008
  */
-void Game::Ujia::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xC
-	  blr
-	*/
-}
+u32 Game::Ujia::Mgr::getEnemyTypeID() { return 0xC; }
 
 /*
  * --INFO--

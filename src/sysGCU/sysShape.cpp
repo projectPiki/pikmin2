@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -171,14 +171,7 @@ void SysShape::Animator::startExAnim((SysShape::AnimInfo*))
  * Address:	80428DB8
  * Size:	000008
  */
-void SysShape::Animator::assertValid((SysShape::Model*))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 SysShape::Animator::assertValid((SysShape::Model*)) { return 0x1; }
 
 /*
  * --INFO--

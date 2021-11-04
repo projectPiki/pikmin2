@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -490,13 +490,7 @@ void GXSetTevIndRepeat(void)
  * Address:	800E8424
  * Size:	000004
  */
-void __GXUpdateBPMask(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void __GXUpdateBPMask(void) { }
 
 /*
  * --INFO--

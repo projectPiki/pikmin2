@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -162,14 +162,7 @@ void Game::Cave::ItemNode::getObjectId(void)
  * Address:	8024E2F0
  * Size:	000008
  */
-void Game::Cave::ItemNode::getObjectType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Cave::ItemNode::getObjectType(void) { return 0x1; }
 
 /*
  * --INFO--

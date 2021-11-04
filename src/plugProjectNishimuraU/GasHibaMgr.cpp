@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -416,14 +416,7 @@ void Game::GasHiba::Mgr::~Mgr()
  * Address:	8026D13C
  * Size:	000008
  */
-void Game::GasHiba::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x15
-	  blr
-	*/
-}
+u32 Game::GasHiba::Mgr::getEnemyTypeID() { return 0x15; }
 
 /*
  * --INFO--

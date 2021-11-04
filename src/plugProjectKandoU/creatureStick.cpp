@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1376,14 +1376,7 @@ void Game::Stickers::getNext((void*))
  * Address:	8019FE68
  * Size:	000008
  */
-void Game::Stickers::getStart(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Stickers::getStart(void) { return 0x0; }
 
 /*
  * --INFO--

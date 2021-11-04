@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -534,14 +534,7 @@ void Game::Wealthy::Mgr::~Mgr()
  * Address:	80284A84
  * Size:	000008
  */
-void Game::Wealthy::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xA
-	  blr
-	*/
-}
+u32 Game::Wealthy::Mgr::getEnemyTypeID() { return 0xA; }
 
 /*
  * --INFO--

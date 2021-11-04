@@ -204,14 +204,7 @@ void Game::GasHiba::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026C930
  * Size:	000008
  */
-void Game::GasHiba::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x15
-	  blr
-	*/
-}
+u32 Game::GasHiba::Obj::getEnemyTypeID() { return 0x15; }
 
 /*
  * --INFO--

@@ -1,17 +1,11 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800DCD28
  * Size:	000004
  */
-void defaultOptionalCommandChecker(void)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void defaultOptionalCommandChecker(void) { }
 
 /*
  * --INFO--

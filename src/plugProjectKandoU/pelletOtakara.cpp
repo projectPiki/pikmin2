@@ -1423,14 +1423,7 @@ void Game::PelletOtakara::Mgr::getMgrName(void)
  * Address:	80200ED4
  * Size:	000008
  */
-void Game::PelletOtakara::Mgr::getMgrID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
-}
+u32 Game::PelletOtakara::Mgr::getMgrID(void) { return 0x3; }
 
 /*
  * --INFO--
@@ -1502,14 +1495,7 @@ void ObjectMgr<Game::PelletOtakara::Object>::~ObjectMgr()
  * Address:	80200F70
  * Size:	000008
  */
-void Game::PelletOtakara::Object::getKind(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3
-	  blr
-	*/
-}
+u32 Game::PelletOtakara::Object::getKind(void) { return 0x3; }
 
 /*
  * --INFO--
@@ -2374,28 +2360,14 @@ void Container<Game::PelletOtakara::Object>::getObject(void*)
  * Address:	80201658
  * Size:	000008
  */
-void Container<Game::PelletOtakara::Object>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletOtakara::Object>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80201660
  * Size:	000008
  */
-void Container<Game::PelletOtakara::Object>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PelletOtakara::Object>::getTo() { return 0x0; }
 
 /*
  * --INFO--

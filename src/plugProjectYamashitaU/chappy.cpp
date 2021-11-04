@@ -489,14 +489,7 @@ void Game::Chappy::Obj::~Obj()
  * Address:	80116588
  * Size:	000008
  */
-void Game::Chappy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 Game::Chappy::Obj::getEnemyTypeID() { return 0x2; }
 
 /*
  * --INFO--

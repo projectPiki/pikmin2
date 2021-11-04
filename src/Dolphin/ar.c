@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -276,14 +276,7 @@ void ARSetSize(void)
  * Address:	800D2910
  * Size:	000008
  */
-void ARGetBaseAddress(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4000
-	  blr
-	*/
-}
+u32 ARGetBaseAddress(void) { return 0x4000; }
 
 /*
  * --INFO--

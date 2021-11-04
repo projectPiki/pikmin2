@@ -2313,11 +2313,4 @@ void Game::Tobi::Obj::getDownSmokeScale()
  * Address:	8026B34C
  * Size:	000008
  */
-void Game::Tobi::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xE
-	  blr
-	*/
-}
+u32 Game::Tobi::Obj::getEnemyTypeID() { return 0xE; }

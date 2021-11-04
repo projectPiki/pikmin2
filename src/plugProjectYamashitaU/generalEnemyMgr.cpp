@@ -4516,14 +4516,7 @@ void Game::GeneralEnemyMgr::~GeneralEnemyMgr()
  * Address:	8010F254
  * Size:	000008
  */
-void Game::EnemyMgrNode::getMatrixLoadType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::EnemyMgrNode::getMatrixLoadType() { return 0x1; }
 
 /*
  * --INFO--

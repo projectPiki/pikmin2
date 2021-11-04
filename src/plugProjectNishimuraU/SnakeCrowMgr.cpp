@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -400,14 +400,7 @@ void Game::SnakeCrow::Mgr::~Mgr()
  * Address:	80293008
  * Size:	000008
  */
-void Game::SnakeCrow::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x22
-	  blr
-	*/
-}
+u32 Game::SnakeCrow::Mgr::getEnemyTypeID() { return 0x22; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -360,14 +360,7 @@ void Game::ElecBug::Mgr::~Mgr()
  * Address:	8027AC78
  * Size:	000008
  */
-void Game::ElecBug::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1C
-	  blr
-	*/
-}
+u32 Game::ElecBug::Mgr::getEnemyTypeID() { return 0x1C; }
 
 /*
  * --INFO--

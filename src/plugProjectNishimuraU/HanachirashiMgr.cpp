@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -635,14 +635,7 @@ void Game::Hanachirashi::Mgr::~Mgr()
  * Address:	802A1A88
  * Size:	000008
  */
-void Game::Hanachirashi::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x37
-	  blr
-	*/
-}
+u32 Game::Hanachirashi::Mgr::getEnemyTypeID() { return 0x37; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -111,11 +111,4 @@ void TRKDispatchMessage(void)
  * Address:	800BC57C
  * Size:	000008
  */
-void TRKInitializeDispatcher(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 TRKInitializeDispatcher(void) { return 0x0; }

@@ -1036,14 +1036,7 @@ void PikiAI::ActTeki::onKeyEvent((SysShape::KeyEvent const&)) { }
  * Address:	80213590
  * Size:	000008
  */
-void PikiAI::ActTeki::getNextAIType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::ActTeki::getNextAIType(void) { return 0x1; }
 
 /*
  * --INFO--

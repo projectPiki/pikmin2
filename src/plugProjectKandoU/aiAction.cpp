@@ -516,28 +516,14 @@ void PikiAI::Action::emotion_success(void) { }
  * Address:	80196F84
  * Size:	000008
  */
-void PikiAI::Action::getNextAIType(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PikiAI::Action::getNextAIType(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80196F8C
  * Size:	000008
  */
-void PikiAI::Action::exec(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::Action::exec(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -638,14 +624,7 @@ void PikiAI::Brain::start((int, PikiAI::ActionArg*))
  * Address:	80197094
  * Size:	000008
  */
-void PikiAI::Action::applicable(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PikiAI::Action::applicable(void) { return 0x1; }
 
 /*
  * --INFO--

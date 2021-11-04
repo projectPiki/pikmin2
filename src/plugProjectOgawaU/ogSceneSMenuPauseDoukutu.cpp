@@ -217,13 +217,9 @@ void og::newScreen::SMenuPauseDoukutu::getResName( const
  * Address:	80323740
  * Size:	000008
  */
-void og::newScreen::SMenuPauseDoukutu::getSceneType(void)
+u32  og::newScreen::SMenuPauseDoukutu::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x271B
-	  blr
-	*/
+	return 0x271B;
 }
 
 /*
@@ -263,13 +259,9 @@ void og::newScreen::SMenuPauseDoukutu::getMemberID(void)
  * Address:	80323768
  * Size:	000008
  */
-void og::newScreen::SMenuPauseDoukutu::isUseBackupSceneInfo(void)
+u32  og::newScreen::SMenuPauseDoukutu::isUseBackupSceneInfo(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

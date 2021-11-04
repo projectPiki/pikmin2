@@ -199,14 +199,7 @@ void Game::Farm::FarmMgr::doAnimation()
  * Address:	80124228
  * Size:	000008
  */
-void Game::Creature::getJAIObject()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::getJAIObject() { return 0x0; }
 
 /*
  * --INFO--

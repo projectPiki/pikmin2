@@ -3364,14 +3364,7 @@ void Game::BaseGameSection::enableTimer(float, unsigned long) { }
  * Address:	80112284
  * Size:	000008
  */
-void Game::BaseGameSection::getTimerType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::BaseGameSection::getTimerType() { return 0x0; }
 
 /*
  * --INFO--

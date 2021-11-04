@@ -1090,11 +1090,7 @@ void JStudio::stb::TFactory::__dt(void)
 void JStudio::stb::TFactory::create(
     (JStudio::stb::data::TParse_TBlock_object const&))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*
@@ -1299,11 +1295,7 @@ void JStudio::stb::TParse::parseBlock_next((void const**, unsigned long*,
 void JStudio::stb::TParse::parseHeader(
     (JStudio::stb::data::TParse_THeader const&, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

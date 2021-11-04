@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -790,42 +790,21 @@ void kh::Screen::SceneFinalFloor::getResName() const
  * Address:	80402664
  * Size:	000008
  */
-void kh::Screen::SceneFinalFloor::isUseBackupSceneInfo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 kh::Screen::SceneFinalFloor::isUseBackupSceneInfo() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8040266C
  * Size:	000008
  */
-void kh::Screen::SceneFinalFloor::getSceneType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4E22
-	  blr
-	*/
-}
+u32 kh::Screen::SceneFinalFloor::getSceneType() { return 0x4E22; }
 
 /*
  * --INFO--
  * Address:	80402674
  * Size:	000008
  */
-void kh::Screen::SceneFinalFloor::getOwnerID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4B48
-	  blr
-	*/
-}
+u32 kh::Screen::SceneFinalFloor::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--

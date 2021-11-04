@@ -3687,14 +3687,7 @@ void BootSection::setModeEpilepsy()
  * Address:	80449FDC
  * Size:	000008
  */
-void BootSection::forceReset()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 BootSection::forceReset() { return 0x0; }
 
 /*
  * --INFO--

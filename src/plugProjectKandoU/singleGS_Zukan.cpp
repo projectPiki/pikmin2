@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -7445,14 +7445,7 @@ void Game::SingleGame::ZukanState::cleanup((Game::SingleGameSection*))
  * Address:	802271A4
  * Size:	000008
  */
-void Morimura::DispMemberZukanItem::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x20
-	  blr
-	*/
-}
+u32 Morimura::DispMemberZukanItem::getSize(void) { return 0x20; }
 
 /*
  * --INFO--
@@ -7490,14 +7483,7 @@ void Morimura::DispMemberZukanItem::getMemberID(void)
  * Address:	802271C8
  * Size:	000008
  */
-void Morimura::DispMemberZukanEnemy::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x20
-	  blr
-	*/
-}
+u32 Morimura::DispMemberZukanEnemy::getSize(void) { return 0x20; }
 
 /*
  * --INFO--
@@ -7650,14 +7636,7 @@ void Camera::getTargetDistance()
  * Address:	802272E8
  * Size:	000008
  */
-void Camera::isSpecialCamera()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Camera::isSpecialCamera() { return 0x0; }
 
 /*
  * --INFO--

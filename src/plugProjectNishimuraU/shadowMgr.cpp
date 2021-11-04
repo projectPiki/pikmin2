@@ -1660,14 +1660,7 @@ void Game::ShadowMgr::getCreature((int))
  * Address:	80242260
  * Size:	000008
  */
-void Game::ShadowMgr::getFirst(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::ShadowMgr::getFirst(void) { return 0x0; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -508,14 +508,7 @@ void Game::Queen::Mgr::~Mgr()
  * Address:	80289448
  * Size:	000008
  */
-void Game::Queen::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1E
-	  blr
-	*/
-}
+u32 Game::Queen::Mgr::getEnemyTypeID() { return 0x1E; }
 
 /*
  * --INFO--

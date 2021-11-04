@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -303,14 +303,7 @@ void Game::Miulin::Mgr::__dt(void)
  * Address:	803642C8
  * Size:	000008
  */
-void Game::Miulin::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x36
-	  blr
-	*/
-}
+u32 Game::Miulin::Mgr::getEnemyTypeID(void) { return 0x36; }
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -588,14 +588,7 @@ void Game::Demon::Obj::catchTarget()
  * Address:	8028EB50
  * Size:	000008
  */
-void Game::Demon::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x20
-	  blr
-	*/
-}
+u32 Game::Demon::Obj::getEnemyTypeID() { return 0x20; }
 
 /*
  * --INFO--

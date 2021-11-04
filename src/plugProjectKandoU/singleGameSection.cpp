@@ -189,14 +189,7 @@ void Game::SingleGameSection::startMainBgm(void)
  * Address:	8015227C
  * Size:	000008
  */
-void PSM::SceneBase::isGameScene(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::SceneBase::isGameScene(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -5333,14 +5326,7 @@ void Game::SingleGameSection::clearCaveOtakaraEarningsAndDrops(void)
  * Address:	8015603C
  * Size:	000008
  */
-void og::Screen::DispMemberCave::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x64
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberCave::getSize(void) { return 0x64; }
 
 /*
  * --INFO--
@@ -5385,14 +5371,7 @@ void og::Screen::DispMemberBase::doSetSubMemberAll(void) { }
  * Address:	80156064
  * Size:	000008
  */
-void og::Screen::DispMemberHurryUp::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberHurryUp::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
@@ -5431,14 +5410,7 @@ void og::Screen::DispMemberHurryUp::getMemberID(void)
  * Address:	8015608C
  * Size:	000008
  */
-void og::Screen::DispMemberDayEndCount::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberDayEndCount::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
@@ -5477,14 +5449,7 @@ void og::Screen::DispMemberDayEndCount::getMemberID(void)
  * Address:	801560B4
  * Size:	000008
  */
-void og::Screen::DispMemberGround::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x88
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberGround::getSize(void) { return 0x88; }
 
 /*
  * --INFO--
@@ -5537,14 +5502,7 @@ void Game::PikiInitArg::getName(void)
  * Address:	801560E4
  * Size:	000008
  */
-void og::Screen::DispMemberKanketuMenu::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberKanketuMenu::getSize(void) { return 0x28; }
 
 /*
  * --INFO--
@@ -5583,14 +5541,7 @@ void og::Screen::DispMemberKanketuMenu::getMemberID(void)
  * Address:	8015610C
  * Size:	000008
  */
-void og::Screen::DispMemberCaveMore::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberCaveMore::getSize(void) { return 0x28; }
 
 /*
  * --INFO--
@@ -5629,14 +5580,7 @@ void og::Screen::DispMemberCaveMore::getMemberID(void)
  * Address:	80156134
  * Size:	000008
  */
-void og::Screen::DispMemberAnaDemo::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x24
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberAnaDemo::getSize(void) { return 0x24; }
 
 /*
  * --INFO--
@@ -5855,14 +5799,7 @@ void efx::TTutorialSnow::__dt(void)
  * Address:	8015633C
  * Size:	000008
  */
-void PSGame::CaveFloorInfo::isCaveFloor(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSGame::CaveFloorInfo::isCaveFloor(void) { return 0x1; }
 
 /*
  * --INFO--
@@ -5903,14 +5840,7 @@ void PSGame::CaveFloorInfo::isRelaxFloor(void)
  * Address:	8015636C
  * Size:	000008
  */
-void Game::SingleGameSection::isDevelopSection(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::SingleGameSection::isDevelopSection(void) { return 0x0; }
 
 /*
  * --INFO--

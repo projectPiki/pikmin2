@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -562,14 +562,7 @@ void efx::TOoganeKira::~TOoganeKira()
  * Address:	802850E0
  * Size:	000008
  */
-void Game::Wealthy::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0xA
-	  blr
-	*/
-}
+u32 Game::Wealthy::Obj::getEnemyTypeID() { return 0xA; }
 
 /*
  * --INFO--

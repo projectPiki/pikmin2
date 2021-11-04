@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -333,14 +333,7 @@ void Game::Kogane::Mgr::~Mgr()
  * Address:	8025DC50
  * Size:	000008
  */
-void Game::Kogane::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x9
-	  blr
-	*/
-}
+u32 Game::Kogane::Mgr::getEnemyTypeID() { return 0x9; }
 
 /*
  * --INFO--

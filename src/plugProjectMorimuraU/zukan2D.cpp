@@ -2099,14 +2099,7 @@ void Morimura::TZukanBase::doUpdate(void)
  * Address:	803728A0
  * Size:	000008
  */
-void Morimura::TScrollList::isListShow((int))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Morimura::TScrollList::isListShow((int)) { return 0x1; }
 
 /*
  * --INFO--
@@ -6683,14 +6676,7 @@ void Morimura::TScaleUpCounter::init((J2DScreen*, unsigned long long,
  * Address:	80376330
  * Size:	000008
  */
-void Morimura::TEnemyZukan::getIdMax(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x51
-	  blr
-	*/
-}
+u32 Morimura::TEnemyZukan::getIdMax(void) { return 0x51; }
 
 /*
  * --INFO--
@@ -14855,13 +14841,9 @@ void Morimura::TDItemScene::getResName( const
  * Address:	8037C748
  * Size:	000008
  */
-void Morimura::TDItemScene::getSceneType(void)
+u32  Morimura::TDItemScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2735
-	  blr
-	*/
+	return 0x2735;
 }
 
 /*
@@ -15015,13 +14997,9 @@ void Morimura::TDEnemyScene::getResName( const
  * Address:	8037C7F8
  * Size:	000008
  */
-void Morimura::TDEnemyScene::getSceneType(void)
+u32  Morimura::TDEnemyScene::getSceneType(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x2734
-	  blr
-	*/
+	return 0x2734;
 }
 
 /*
@@ -15103,13 +15081,9 @@ void Morimura::TEnemyZukan::getDispDataZukan(void)
  * Address:	8037C858
  * Size:	000008
  */
-void Morimura::TZukanBase::getCategoryColorId( (int))
+u32  Morimura::TZukanBase::getCategoryColorId( (int))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

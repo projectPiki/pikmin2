@@ -7981,14 +7981,7 @@ void AgeCollPart::~AgeCollPart()
  * Address:	801393F0
  * Size:	000008
  */
-void CollPart::isMouth()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 CollPart::isMouth() { return 0x0; }
 
 /*
  * --INFO--
@@ -8088,14 +8081,7 @@ void CollPartFactory::~CollPartFactory()
  * Address:	80139484
  * Size:	000008
  */
-void MouthCollPart::isMouth()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 MouthCollPart::isMouth() { return 0x1; }
 
 /*
  * --INFO--
@@ -8720,14 +8706,7 @@ void ArrayContainer<Vector3<float>>::getNext(void*)
  * Address:	80139A6C
  * Size:	000008
  */
-void ArrayContainer<Vector3<float>>::getStart()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ArrayContainer<Vector3<float>>::getStart() { return 0x0; }
 
 /*
  * --INFO--
@@ -8923,14 +8902,7 @@ void ArrayContainer<int>::getNext(void*)
  * Address:	80139BC0
  * Size:	000008
  */
-void ArrayContainer<int>::getStart()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 ArrayContainer<int>::getStart() { return 0x0; }
 
 /*
  * --INFO--
@@ -9004,28 +8976,14 @@ void Container<Vector3<float>>::getObject(void*)
  * Address:	80139C14
  * Size:	000008
  */
-void Container<Vector3<float>>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Vector3<float>>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80139C1C
  * Size:	000008
  */
-void Container<Vector3<float>>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Vector3<float>>::getTo() { return 0x0; }
 
 /*
  * --INFO--
@@ -9055,25 +9013,11 @@ void Container<int>::getObject(void*)
  * Address:	80139C50
  * Size:	000008
  */
-void Container<int>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<int>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80139C58
  * Size:	000008
  */
-void Container<int>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<int>::getTo() { return 0x0; }

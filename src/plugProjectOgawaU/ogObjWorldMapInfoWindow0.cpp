@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -645,14 +645,7 @@ void og::newScreen::ObjWorldMapInfoWindow0::__dt(void)
  * Address:	8032BA74
  * Size:	000008
  */
-void og::Screen::DispMemberWorldMapInfoWin0::getSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x28
-	  blr
-	*/
-}
+u32 og::Screen::DispMemberWorldMapInfoWin0::getSize(void) { return 0x28; }
 
 /*
  * --INFO--

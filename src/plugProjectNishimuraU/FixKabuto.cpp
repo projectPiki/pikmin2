@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -622,14 +622,7 @@ void efx::TKkabutoRot::~TKkabutoRot()
  * Address:	80300DD8
  * Size:	000008
  */
-void Game::FixKabuto::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x60
-	  blr
-	*/
-}
+u32 Game::FixKabuto::Obj::getEnemyTypeID() { return 0x60; }
 
 /*
  * --INFO--

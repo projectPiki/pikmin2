@@ -3893,13 +3893,9 @@ void og::newScreen::ObjSMenuMap::doStart((Screen::StartSceneArg const*))
  * Address:	803129B0
  * Size:	000008
  */
-void og::newScreen::ObjSMenuMap::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjSMenuMap::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*
@@ -4053,14 +4049,7 @@ void og::newScreen::ObjSMenuMap::out_R(void)
  * Address:	80312AB0
  * Size:	000008
  */
-void Screen::SetSceneArg::getClassSize(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x10
-	  blr
-	*/
-}
+u32 Screen::SetSceneArg::getClassSize(void) { return 0x10; }
 
 /*
  * --INFO--
@@ -4081,13 +4070,9 @@ void Screen::SetSceneArg::getSceneType( const
  * Address:	80312AC0
  * Size:	000008
  */
-void Screen::SceneArgBase::getSceneType( const
+u32  Screen::SceneArgBase::getSceneType( const
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

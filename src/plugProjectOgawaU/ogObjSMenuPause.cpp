@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -1148,13 +1148,9 @@ void og::newScreen::ObjSMenuPause::doStart((Screen::StartSceneArg const*))
  * Address:	80314F9C
  * Size:	000008
  */
-void og::newScreen::ObjSMenuPause::doEnd((Screen::EndSceneArg const*))
+u32 og::newScreen::ObjSMenuPause::doEnd((Screen::EndSceneArg const*))
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
+	return 0x1;
 }
 
 /*

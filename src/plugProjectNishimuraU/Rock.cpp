@@ -2057,14 +2057,7 @@ void efx::TRockRun::~TRockRun()
  * Address:	80264690
  * Size:	000008
  */
-void Game::Rock::Obj::isLivingThing()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Rock::Obj::isLivingThing() { return 0x0; }
 
 /*
  * --INFO--

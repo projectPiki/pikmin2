@@ -2910,14 +2910,7 @@ void J2DWindow::isUsed(const ResTIMG*)
  * Address:	80044CCC
  * Size:	000008
  */
-void J2DWindow::getTypeID() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x11
-	  blr
-	*/
-}
+u32 J2DWindow::getTypeID() const { return 0x11; }
 
 /*
  * --INFO--
@@ -3097,28 +3090,14 @@ void J2DWindow::getMaterial(J2DWindow::TMaterial&) const
  * Address:	80044E00
  * Size:	000008
  */
-void J2DWindow::getFrameMaterial(unsigned char) const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DWindow::getFrameMaterial(unsigned char) const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80044E08
  * Size:	000008
  */
-void J2DWindow::getContentsMaterial() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 J2DWindow::getContentsMaterial() const { return 0x0; }
 
 /*
  * --INFO--

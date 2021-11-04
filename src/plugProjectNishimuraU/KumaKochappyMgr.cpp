@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -338,14 +338,7 @@ void Game::KumaKochappy::Mgr::__dt(void)
  * Address:	802E7040
  * Size:	000008
  */
-void Game::KumaKochappy::Mgr::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4C
-	  blr
-	*/
-}
+u32 Game::KumaKochappy::Mgr::getEnemyTypeID(void) { return 0x4C; }
 
 /*
  * --INFO--

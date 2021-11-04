@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -797,14 +797,7 @@ void Game::EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float,
  * Address:	80113114
  * Size:	000008
  */
-void Game::Creature::stimulate(Game::Interaction&)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::Creature::stimulate(Game::Interaction&) { return 0x0; }
 
 /*
  * --INFO--

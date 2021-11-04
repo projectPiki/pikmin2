@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -458,11 +458,4 @@ void Game::GasOtakara::Obj::startDisChargeSE()
  * Address:	802B9778
  * Size:	000008
  */
-void Game::GasOtakara::Obj::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x3D
-	  blr
-	*/
-}
+u32 Game::GasOtakara::Obj::getEnemyTypeID() { return 0x3D; }

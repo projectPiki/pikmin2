@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -2994,14 +2994,7 @@ void TitleDummy::Section::__dt(void)
  * Address:	8044C420
  * Size:	000008
  */
-void Title::Section::forceReset(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Title::Section::forceReset(void) { return 0x0; }
 
 /*
  * --INFO--

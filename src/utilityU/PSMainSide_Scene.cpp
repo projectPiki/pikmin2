@@ -6516,14 +6516,7 @@ void PSM::Scene_Demo::~Scene_Demo()
  * Address:	8046C0C0
  * Size:	000008
  */
-void PSM::Scene_Cave::isCave()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::Scene_Cave::isCave() { return 0x1; }
 
 /*
  * --INFO--
@@ -6544,28 +6537,14 @@ void PSM::Scene_Cave::getPollutUpTimer() const
  * Address:	8046C0D0
  * Size:	000008
  */
-void PSM::Scene_Game::isDemoScene()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::Scene_Game::isDemoScene() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8046C0D8
  * Size:	000008
  */
-void PSM::Scene_Game::isGameScene()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::Scene_Game::isGameScene() { return 0x1; }
 
 /*
  * --INFO--
@@ -6728,56 +6707,28 @@ void PSM::Scene_Ground::getPollutUpTimer() const
  * Address:	8046C278
  * Size:	000008
  */
-void PSM::Scene_Game::isBossFloor()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::Scene_Game::isBossFloor() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8046C280
  * Size:	000008
  */
-void PSM::Scene_Game::isPollutUp()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 PSM::Scene_Game::isPollutUp() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8046C288
  * Size:	000008
  */
-void PSM::Scene_Game::getPollutUpTimer() const
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+s32 PSM::Scene_Game::getPollutUpTimer() const { return -0x1; }
 
 /*
  * --INFO--
  * Address:	8046C290
  * Size:	000008
  */
-void PSM::Scene_Demo::isDemoScene()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 PSM::Scene_Demo::isDemoScene() { return 0x1; }
 
 /*
  * --INFO--

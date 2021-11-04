@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -256,14 +256,7 @@ void Game::Catfish::Mgr::~Mgr()
  * Address:	80276FF8
  * Size:	000008
  */
-void Game::Catfish::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1A
-	  blr
-	*/
-}
+u32 Game::Catfish::Mgr::getEnemyTypeID() { return 0x1A; }
 
 /*
  * --INFO--

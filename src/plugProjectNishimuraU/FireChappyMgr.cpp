@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -445,14 +445,7 @@ void Game::FireChappy::Mgr::~Mgr()
  * Address:	8028F5F0
  * Size:	000008
  */
-void Game::FireChappy::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x21
-	  blr
-	*/
-}
+u32 Game::FireChappy::Mgr::getEnemyTypeID() { return 0x21; }
 
 /*
  * --INFO--

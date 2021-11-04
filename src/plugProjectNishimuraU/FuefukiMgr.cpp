@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -480,14 +480,7 @@ void Game::Fuefuki::Mgr::~Mgr()
  * Address:	8029C1B4
  * Size:	000008
  */
-void Game::Fuefuki::Mgr::getEnemyTypeID()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x29
-	  blr
-	*/
-}
+u32 Game::Fuefuki::Mgr::getEnemyTypeID() { return 0x29; }
 
 /*
  * --INFO--

@@ -2842,14 +2842,7 @@ void Game::EnemyGeneratorBase::~EnemyGeneratorBase()
  * Address:	80126BBC
  * Size:	000008
  */
-void Game::EnemyGeneratorBase::getInitialParam()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::EnemyGeneratorBase::getInitialParam() { return 0x0; }
 
 /*
  * --INFO--

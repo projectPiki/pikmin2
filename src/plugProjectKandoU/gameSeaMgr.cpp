@@ -2071,14 +2071,7 @@ void Game::SeaMgr::findWater2d((Sys::Sphere&))
  * Address:	801AFC94
  * Size:	000008
  */
-void Game::WaterBox::inWater2d((Sys::Sphere&))
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Game::WaterBox::inWater2d((Sys::Sphere&)) { return 0x0; }
 
 /*
  * --INFO--
@@ -2660,14 +2653,7 @@ void NodeObjectMgr<Game::WaterBox>::getStart()
  * Address:	801B02D8
  * Size:	000008
  */
-void NodeObjectMgr<Game::WaterBox>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::WaterBox>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -3058,28 +3044,14 @@ void Container<Game::WaterBox>::getObject(void*)
  * Address:	801B0750
  * Size:	000008
  */
-void Container<Game::WaterBox>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::WaterBox>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801B0758
  * Size:	000008
  */
-void Container<Game::WaterBox>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::WaterBox>::getTo() { return 0x0; }
 
 /*
  * --INFO--

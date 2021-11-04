@@ -2000,14 +2000,7 @@ void Game::Tyre::Obj::rearRollMtxCalc(void)
  * Address:	803ADB44
  * Size:	000008
  */
-void Game::Tyre::Obj::getEnemyTypeID(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x62
-	  blr
-	*/
-}
+u32 Game::Tyre::Obj::getEnemyTypeID(void) { return 0x62; }
 
 /*
  * --INFO--
@@ -3027,13 +3020,9 @@ void Game::Tyre::Obj::isUnderground(void)
  * Address:	803AE800
  * Size:	000008
  */
-void bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<float> f(void)
+u32 bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<float> f(void)
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
+	return 0x0;
 }
 
 /*

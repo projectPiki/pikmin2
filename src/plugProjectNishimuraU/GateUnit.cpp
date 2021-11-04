@@ -1,4 +1,4 @@
-
+#include "types.h"
 
 /*
  * --INFO--
@@ -113,28 +113,14 @@ void Game::Cave::GateNode::getObjectId()
  * Address:	8024FDE0
  * Size:	000008
  */
-void Game::Cave::GateNode::getObjectType()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x2
-	  blr
-	*/
-}
+u32 Game::Cave::GateNode::getObjectType() { return 0x2; }
 
 /*
  * --INFO--
  * Address:	8024FDE8
  * Size:	000008
  */
-void Game::Cave::GateNode::getBirthCount()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+u32 Game::Cave::GateNode::getBirthCount() { return 0x1; }
 
 /*
  * --INFO--

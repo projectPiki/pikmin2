@@ -5099,14 +5099,7 @@ void NodeObjectMgr<Game::ItemGate>::getStart()
  * Address:	801CAE3C
  * Size:	000008
  */
-void NodeObjectMgr<Game::ItemGate>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::ItemGate>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -6097,28 +6090,14 @@ void Container<Game::ItemGate>::getObject(void*)
  * Address:	801CBA54
  * Size:	000008
  */
-void Container<Game::ItemGate>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemGate>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801CBA5C
  * Size:	000008
  */
-void Container<Game::ItemGate>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::ItemGate>::getTo() { return 0x0; }
 
 /*
  * --INFO--
