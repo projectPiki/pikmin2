@@ -1291,7 +1291,7 @@ void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
  * Size:	000008
  */
 void stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
-                               unsigned long)
+                              unsigned long)
 {
 	return 0x1;
 }
@@ -1302,7 +1302,7 @@ void stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
  * Size:	000038
  */
 void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
-                                    unsigned long)
+                                   unsigned long)
 {
 	/*
 	.loc_0x0:

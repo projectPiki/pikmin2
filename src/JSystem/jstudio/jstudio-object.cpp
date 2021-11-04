@@ -227,8 +227,8 @@ void TAdaptor::adaptor_do_data(JStudio::TObject const*, void const*,
  * Size:	0000A0
  */
 void TAdaptor::adaptor_setVariableValue(JStudio::TObject*, unsigned long,
-                                         JStudio::data::TEOperationData,
-                                         void const*, unsigned long)
+                                        JStudio::data::TEOperationData,
+                                        void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -285,9 +285,9 @@ void TAdaptor::adaptor_setVariableValue(JStudio::TObject*, unsigned long,
  * Size:	0000EC
  */
 void TAdaptor::adaptor_setVariableValue_n(JStudio::TObject*,
-                                           unsigned long const*, unsigned long,
-                                           JStudio::data::TEOperationData,
-                                           void const*, unsigned long)
+                                          unsigned long const*, unsigned long,
+                                          JStudio::data::TEOperationData,
+                                          void const*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -597,7 +597,7 @@ void TAdaptor::adaptor_getVariableValue_GXColor(const(_GXColor*,
  * Size:	000238
  */
 void TAdaptor::adaptor_updateVariableValue_GXColor(unsigned long const*,
-                                                    _GXColor const&)
+                                                   _GXColor const&)
 {
 	// UNUSED FUNCTION
 }
@@ -628,8 +628,8 @@ void TAdaptor::adaptor_updateVariableValue(JStudio::TObject*, unsigned long)
  * Size:	000018
  */
 void TAdaptor::adaptor_setVariableValue_VOID_(JStudio::TAdaptor*,
-                                               JStudio::TObject*, unsigned long,
-                                               void const*, unsigned long)
+                                              JStudio::TObject*, unsigned long,
+                                              void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -648,9 +648,9 @@ void TAdaptor::adaptor_setVariableValue_VOID_(JStudio::TAdaptor*,
  * Size:	00002C
  */
 void TAdaptor::adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor*,
-                                                    JStudio::TObject*,
-                                                    unsigned long, void const*,
-                                                    unsigned long)
+                                                   JStudio::TObject*,
+                                                   unsigned long, void const*,
+                                                   unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -674,8 +674,8 @@ void TAdaptor::adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor*,
  * Size:	00002C
  */
 void TAdaptor::adaptor_setVariableValue_TIME_(JStudio::TAdaptor*,
-                                               JStudio::TObject*, unsigned long,
-                                               void const*, unsigned long)
+                                              JStudio::TObject*, unsigned long,
+                                              void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -699,9 +699,9 @@ void TAdaptor::adaptor_setVariableValue_TIME_(JStudio::TAdaptor*,
  * Size:	000070
  */
 void TAdaptor::adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor*,
-                                                   JStudio::TObject*,
-                                                   unsigned long, void const*,
-                                                   unsigned long)
+                                                  JStudio::TObject*,
+                                                  unsigned long, void const*,
+                                                  unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -746,9 +746,9 @@ void TAdaptor::adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor*,
  * Size:	00006C
  */
 void TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor*,
-                                                    JStudio::TObject*,
-                                                    unsigned long, void const*,
-                                                    unsigned long)
+                                                   JStudio::TObject*,
+                                                   unsigned long, void const*,
+                                                   unsigned long)
 {
 	/*
 	.loc_0x0:

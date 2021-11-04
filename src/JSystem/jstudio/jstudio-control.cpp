@@ -521,7 +521,7 @@ void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
  * Size:	000044
  */
 void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
-                               unsigned long)
+                              unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -559,7 +559,7 @@ void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
  * Size:	000060
  */
 void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&,
-                                    unsigned long)
+                                   unsigned long)
 {
 	/*
 	.loc_0x0:
