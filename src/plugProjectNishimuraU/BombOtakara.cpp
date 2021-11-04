@@ -384,7 +384,7 @@ void BombOtakara::Obj::startEscapeSE()
  * Address:	802F9A60
  * Size:	000008
  */
-int BombOtakara::Obj::getEnemyTypeID() { return ENEMYID_BombOtakara; }
+EEnemyTypeID BombOtakara::Obj::getEnemyTypeID() { return EnemyID_BombOtakara; }
 
 /*
  * --INFO--
