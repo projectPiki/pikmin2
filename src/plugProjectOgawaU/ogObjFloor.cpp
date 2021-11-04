@@ -332,12 +332,6 @@ void newScreen::ObjFloor::setCaveMsgID(unsigned long caveid, char* buffer)
 	case 'vs09':
 		cave_msg = "4779_00";
 		break;
-	case 'vs10':
-		cave_msg = "4800_00";
-		break;
-	case 'vs11':
-		cave_msg = "4801_00";
-		break;
 	case '_uni': // vestigial test id
 		cave_msg = "9996_00";
 		break;
