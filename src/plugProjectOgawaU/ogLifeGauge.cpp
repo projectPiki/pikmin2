@@ -1243,7 +1243,7 @@ namespace Screen {
 	 * Address:	803070C0
 	 * Size:	00002C
 	 */
-	void NaviLifeGauge::setType((og::Screen::CallBack_LifeGauge::LifeGaugeType))
+	void NaviLifeGauge::setType(og::Screen::CallBack_LifeGauge::LifeGaugeType)
 	{
 		/*
 		.loc_0x0:

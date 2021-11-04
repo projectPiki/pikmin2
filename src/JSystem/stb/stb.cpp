@@ -1088,7 +1088,7 @@ stb::TFactory::~TFactory(void)
  * Address:	80010C50
  * Size:	000008
  */
-void stb::TFactory::create((JStudio::stb::data::TParse_TBlock_object const&))
+void stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
 {
 	return 0x0;
 }
@@ -1290,8 +1290,8 @@ void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
  * Address:	80010E30
  * Size:	000008
  */
-void stb::TParse::parseHeader((JStudio::stb::data::TParse_THeader const&,
-                               unsigned long))
+void stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
+                               unsigned long)
 {
 	return 0x1;
 }
@@ -1301,8 +1301,8 @@ void stb::TParse::parseHeader((JStudio::stb::data::TParse_THeader const&,
  * Address:	80010E38
  * Size:	000038
  */
-void stb::TParse::parseBlock_block((JStudio::stb::data::TParse_TBlock const&,
-                                    unsigned long))
+void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
+                                    unsigned long)
 {
 	/*
 	.loc_0x0:
