@@ -16,4 +16,11 @@ struct BoundBox {
 	Vector3f m_max;
 };
 
+struct BoundBox2d {
+	float _00;
+	float _04;
+	float _08;
+	float _0C;
+};
+
 #endif

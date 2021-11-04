@@ -5,8 +5,8 @@
 
 namespace Sys {
 struct Sphere {
-	Vector3<float> m_position; // _00
-	float m_radius;            // _0C
+	Vector3f m_position; // _00
+	float m_radius;      // _0C
 };
 } // namespace Sys
 

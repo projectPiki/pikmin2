@@ -2,6 +2,12 @@
 
 #include "cellPyramid.h"
 #include "BaseParm.h"
+#include "CellMgrParms.h"
+#include "Dolphin/math.h"
+#include "fdlibm.h"
+#include "JSystem/JUTException.h"
+
+// #pragma auto_inline on
 
 /*
  * --INFO--
@@ -24,6 +30,42 @@ namespace Game {
 void CellPyramid::mapSearch(Sys::Sphere& sphere,
                             IDelegate1<CellObject*>* delegate)
 {
+	int layerIndex;
+	Rect<int> rect;
+	int x;
+	int y;
+	calcExtent(sphere, layerIndex, rect);
+	// m_passID = ((0x4000000 < m_passID) ? 0 : m_passID+1);
+	m_passID += 1;
+	if (0x4000000 <= m_passID) {
+		m_passID = 0;
+	}
+	// CellLayer* layers = m_layers;
+	for (x = rect.p1.x; x <= rect.p2.x; ++x) {
+		for (y = rect.p1.y; y <= rect.p2.y; ++y) {
+			Cell* cell = m_layers[layerIndex](x, y);
+			if (cell != nullptr) {
+				cell->mapSearch(delegate, m_passID);
+			}
+		}
+	}
+	/*
+	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
+		if (leg->m_object->_A4 != p2) {
+			leg->m_object->_A4 = p2;
+			delegate->invoke(leg->m_object);
+		}
+	}
+	for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
+		cell->mapSearchUp(delegate, p2);
+	}
+	for (int cellIndex = 0; cellIndex < 4; cellIndex++) {
+		if (_00[cellIndex] != nullptr) {
+			_00[cellIndex]->mapSearchDown(delegate, p2);
+		}
+	}
+
+	*/
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -97,60 +139,22 @@ void CellPyramid::mapSearch(Sys::Sphere& sphere,
  */
 void CellObject::exitCell()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0x1
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x5C
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x5C
-	  li        r30, 0
-
-	.loc_0x5C:
-	  mr        r29, r28
-	  li        r28, 0
-	  li        r31, 0
-
-	.loc_0x68:
-	  lwz       r3, 0x5C(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  mr        r5, r30
-	  addi      r4, r29, 0x54
-	  bl        0x11B0
-	  stw       r31, 0x5C(r29)
-
-	.loc_0x84:
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x14
-	  cmpwi     r28, 0x4
-	  blt+      .loc_0x68
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	bool bVar3 = (isPiki() || isNavi());
+	// int cellLegIndex = 0;
+	// for (CellLeg* leg = m_cellLegs.arrayView; cellLegIndex < 4; cellLegIndex++, leg++) {
+	// 	Cell* cell = leg->m_cell;
+	// 	if (cell) {
+	// 		cell->exit(leg, bVar3);
+	// 		leg->m_cell = nullptr;
+	// 	}
+	// }
+	for (int cellLegIndex = 0; cellLegIndex < 4; cellLegIndex++) {
+		Cell* cell = m_cellLegs.arrayView[cellLegIndex].m_cell;
+		if (cell != nullptr) {
+			cell->exit(&m_cellLegs.arrayView[cellLegIndex], bVar3);
+			m_cellLegs.arrayView[cellLegIndex].m_cell = nullptr;
+		}
+	}
 }
 
 /*
@@ -160,24 +164,18 @@ void CellObject::exitCell()
  */
 Cell::Cell()
 {
-	/*
-	.loc_0x0:
-	  li        r4, 0
-	  li        r0, -0x1
-	  stw       r4, 0xC(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r4, 0x1C(r3)
-	  stw       r4, 0x10(r3)
-	  sth       r4, 0x14(r3)
-	  sth       r4, 0x16(r3)
-	  sth       r4, 0x18(r3)
-	  stw       r4, 0x24(r3)
-	  stw       r4, 0x20(r3)
-	  sth       r0, 0x28(r3)
-	  blr
-	*/
+	_00[3] = nullptr;
+	_00[2] = nullptr;
+	_00[1] = nullptr;
+	_00[0] = nullptr;
+	_1C = nullptr;
+	_10 = nullptr;
+	_14 = 0;
+	_16 = 0;
+	_18 = 0;
+	_24 = nullptr;
+	_20 = nullptr;
+	_28 = -1;
 }
 
 /*
@@ -185,9 +183,10 @@ Cell::Cell()
  * Address:	........
  * Size:	000010
  */
-void Cell::clear()
+inline void Cell::clear()
 {
-	// UNUSED FUNCTION
+	_1C = nullptr;
+	_18 = 0;
 }
 
 /*
@@ -196,291 +195,44 @@ void Cell::clear()
  * Size:	0000C4
  */
 // void mapSearch__Q24Game4CellFP32IDelegate1<CellObject*> Ul()
-void Cell::mapSearch(IDelegate1<CellObject*>* delegate, ulong p2)
+void Cell::mapSearch(IDelegate1<CellObject*>* delegate, ulong passID)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  lwz       r31, 0x1C(r3)
-	  b         .loc_0x54
-
-	.loc_0x24:
-	  lwz       r3, 0xC(r31)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r29
-	  beq-      .loc_0x50
-	  stw       r29, 0xA4(r3)
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r4, 0xC(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x50:
-	  lwz       r31, 0x0(r31)
-
-	.loc_0x54:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x24
-	  lwz       r31, 0x10(r27)
-	  b         .loc_0x78
-
-	.loc_0x64:
-	  mr        r3, r31
-	  mr        r4, r28
-	  mr        r5, r29
-	  bl        .loc_0xC4
-	  lwz       r31, 0x10(r31)
-
-	.loc_0x78:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x64
-	  li        r30, 0
-	  mr        r31, r27
-
-	.loc_0x88:
-	  lwz       r3, 0x0(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA0
-	  mr        r4, r28
-	  mr        r5, r29
-	  bl        0x260
-
-	.loc_0xA0:
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0x4
-	  blt+      .loc_0x88
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xC4:
-	*/
+	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
+		if (leg->m_object->m_passID != passID) {
+			leg->m_object->m_passID = passID;
+			delegate->invoke(leg->m_object);
+		}
+	}
+	for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
+		cell->mapSearchUp(delegate, passID);
+	}
+	for (int cellIndex = 0; cellIndex < 4; cellIndex++) {
+		if (_00[cellIndex] != nullptr) {
+			_00[cellIndex]->mapSearchDown(delegate, passID);
+		}
+	}
 }
 
 /*
+ * This and mapSearchDown get recursively inlined a few times for stack efficiency.
+ * Quite beautiful, really.
+ *
  * --INFO--
  * Address:	80156840
  * Size:	000238
  */
 // void mapSearchUp__Q24Game4CellFP32IDelegate1<CellObject*> Ul()
-void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, ulong p2)
+inline void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, ulong passID)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r24, 0x10(r1)
-	  mr        r25, r3
-	  mr        r29, r4
-	  mr        r30, r5
-	  lwz       r24, 0x1C(r3)
-	  b         .loc_0x54
-
-	.loc_0x24:
-	  lwz       r3, 0xC(r24)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x50
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r24)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x50:
-	  lwz       r24, 0x0(r24)
-
-	.loc_0x54:
-	  cmplwi    r24, 0
-	  bne+      .loc_0x24
-	  lwz       r31, 0x10(r25)
-	  b         .loc_0x21C
-
-	.loc_0x64:
-	  lwz       r28, 0x1C(r31)
-	  b         .loc_0x9C
-
-	.loc_0x6C:
-	  lwz       r3, 0xC(r28)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x98
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r28)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x98:
-	  lwz       r28, 0x0(r28)
-
-	.loc_0x9C:
-	  cmplwi    r28, 0
-	  bne+      .loc_0x6C
-	  lwz       r28, 0x10(r31)
-	  b         .loc_0x210
-
-	.loc_0xAC:
-	  lwz       r27, 0x1C(r28)
-	  b         .loc_0xE4
-
-	.loc_0xB4:
-	  lwz       r3, 0xC(r27)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0xE0
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xE0:
-	  lwz       r27, 0x0(r27)
-
-	.loc_0xE4:
-	  cmplwi    r27, 0
-	  bne+      .loc_0xB4
-	  lwz       r27, 0x10(r28)
-	  b         .loc_0x204
-
-	.loc_0xF4:
-	  lwz       r26, 0x1C(r27)
-	  b         .loc_0x12C
-
-	.loc_0xFC:
-	  lwz       r3, 0xC(r26)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x128
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r26)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x128:
-	  lwz       r26, 0x0(r26)
-
-	.loc_0x12C:
-	  cmplwi    r26, 0
-	  bne+      .loc_0xFC
-	  lwz       r26, 0x10(r27)
-	  b         .loc_0x1F8
-
-	.loc_0x13C:
-	  lwz       r25, 0x1C(r26)
-	  b         .loc_0x174
-
-	.loc_0x144:
-	  lwz       r3, 0xC(r25)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x170
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r25)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x170:
-	  lwz       r25, 0x0(r25)
-
-	.loc_0x174:
-	  cmplwi    r25, 0
-	  bne+      .loc_0x144
-	  lwz       r25, 0x10(r26)
-	  b         .loc_0x1EC
-
-	.loc_0x184:
-	  lwz       r24, 0x1C(r25)
-	  b         .loc_0x1BC
-
-	.loc_0x18C:
-	  lwz       r3, 0xC(r24)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x1B8
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r24)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x1B8:
-	  lwz       r24, 0x0(r24)
-
-	.loc_0x1BC:
-	  cmplwi    r24, 0
-	  bne+      .loc_0x18C
-	  lwz       r24, 0x10(r25)
-	  b         .loc_0x1E0
-
-	.loc_0x1CC:
-	  mr        r3, r24
-	  mr        r4, r29
-	  mr        r5, r30
-	  bl        .loc_0x0
-	  lwz       r24, 0x10(r24)
-
-	.loc_0x1E0:
-	  cmplwi    r24, 0
-	  bne+      .loc_0x1CC
-	  lwz       r25, 0x10(r25)
-
-	.loc_0x1EC:
-	  cmplwi    r25, 0
-	  bne+      .loc_0x184
-	  lwz       r26, 0x10(r26)
-
-	.loc_0x1F8:
-	  cmplwi    r26, 0
-	  bne+      .loc_0x13C
-	  lwz       r27, 0x10(r27)
-
-	.loc_0x204:
-	  cmplwi    r27, 0
-	  bne+      .loc_0xF4
-	  lwz       r28, 0x10(r28)
-
-	.loc_0x210:
-	  cmplwi    r28, 0
-	  bne+      .loc_0xAC
-	  lwz       r31, 0x10(r31)
-
-	.loc_0x21C:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x64
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
+		if (leg->m_object->m_passID != passID) {
+			leg->m_object->m_passID = passID;
+			delegate->invoke(leg->m_object);
+		}
+	}
+	for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
+		cell->mapSearchUp(delegate, passID);
+	}
 }
 
 /*
@@ -489,240 +241,41 @@ void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, ulong p2)
  * Size:	000280
  */
 // void mapSearchDown__Q24Game4CellFP32IDelegate1<CellObject*> Ul()
-void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, ulong p2)
+void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, ulong passID)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r18, 0x8(r1)
-	  mr        r19, r3
-	  mr        r29, r4
-	  mr        r30, r5
-	  lwz       r18, 0x1C(r3)
-	  b         .loc_0x54
-
-	.loc_0x24:
-	  lwz       r3, 0xC(r18)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x50
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r18)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x50:
-	  lwz       r18, 0x0(r18)
-
-	.loc_0x54:
-	  cmplwi    r18, 0
-	  bne+      .loc_0x24
-	  li        r31, 0
-	  mr        r18, r19
-
-	.loc_0x64:
-	  lwz       r23, 0x0(r18)
-	  cmplwi    r23, 0
-	  beq-      .loc_0x25C
-	  lwz       r19, 0x1C(r23)
-	  b         .loc_0xA8
-
-	.loc_0x78:
-	  lwz       r3, 0xC(r19)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0xA4
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r19)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xA4:
-	  lwz       r19, 0x0(r19)
-
-	.loc_0xA8:
-	  cmplwi    r19, 0
-	  bne+      .loc_0x78
-	  li        r28, 0
-
-	.loc_0xB4:
-	  lwz       r22, 0x0(r23)
-	  cmplwi    r22, 0
-	  beq-      .loc_0x24C
-	  lwz       r19, 0x1C(r22)
-	  b         .loc_0xF8
-
-	.loc_0xC8:
-	  lwz       r3, 0xC(r19)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0xF4
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r19)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xF4:
-	  lwz       r19, 0x0(r19)
-
-	.loc_0xF8:
-	  cmplwi    r19, 0
-	  bne+      .loc_0xC8
-	  li        r27, 0
-
-	.loc_0x104:
-	  lwz       r21, 0x0(r22)
-	  cmplwi    r21, 0
-	  beq-      .loc_0x23C
-	  lwz       r19, 0x1C(r21)
-	  b         .loc_0x148
-
-	.loc_0x118:
-	  lwz       r3, 0xC(r19)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x144
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r19)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x144:
-	  lwz       r19, 0x0(r19)
-
-	.loc_0x148:
-	  cmplwi    r19, 0
-	  bne+      .loc_0x118
-	  li        r26, 0
-
-	.loc_0x154:
-	  lwz       r20, 0x0(r21)
-	  cmplwi    r20, 0
-	  beq-      .loc_0x22C
-	  lwz       r19, 0x1C(r20)
-	  b         .loc_0x198
-
-	.loc_0x168:
-	  lwz       r3, 0xC(r19)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x194
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r19)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x194:
-	  lwz       r19, 0x0(r19)
-
-	.loc_0x198:
-	  cmplwi    r19, 0
-	  bne+      .loc_0x168
-	  li        r25, 0
-
-	.loc_0x1A4:
-	  lwz       r19, 0x0(r20)
-	  cmplwi    r19, 0
-	  beq-      .loc_0x21C
-	  lwz       r24, 0x1C(r19)
-	  b         .loc_0x1E8
-
-	.loc_0x1B8:
-	  lwz       r3, 0xC(r24)
-	  lwz       r0, 0xA4(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x1E4
-	  stw       r30, 0xA4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0xC(r24)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x1E4:
-	  lwz       r24, 0x0(r24)
-
-	.loc_0x1E8:
-	  cmplwi    r24, 0
-	  bne+      .loc_0x1B8
-	  li        r24, 0
-
-	.loc_0x1F4:
-	  lwz       r3, 0x0(r19)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20C
-	  mr        r4, r29
-	  mr        r5, r30
-	  bl        .loc_0x0
-
-	.loc_0x20C:
-	  addi      r24, r24, 0x1
-	  addi      r19, r19, 0x4
-	  cmpwi     r24, 0x4
-	  blt+      .loc_0x1F4
-
-	.loc_0x21C:
-	  addi      r25, r25, 0x1
-	  addi      r20, r20, 0x4
-	  cmpwi     r25, 0x4
-	  blt+      .loc_0x1A4
-
-	.loc_0x22C:
-	  addi      r26, r26, 0x1
-	  addi      r21, r21, 0x4
-	  cmpwi     r26, 0x4
-	  blt+      .loc_0x154
-
-	.loc_0x23C:
-	  addi      r27, r27, 0x1
-	  addi      r22, r22, 0x4
-	  cmpwi     r27, 0x4
-	  blt+      .loc_0x104
-
-	.loc_0x24C:
-	  addi      r28, r28, 0x1
-	  addi      r23, r23, 0x4
-	  cmpwi     r28, 0x4
-	  blt+      .loc_0xB4
-
-	.loc_0x25C:
-	  addi      r31, r31, 0x1
-	  addi      r18, r18, 0x4
-	  cmpwi     r31, 0x4
-	  blt+      .loc_0x64
-	  lmw       r18, 0x8(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
+		if (leg->m_object->m_passID != passID) {
+			leg->m_object->m_passID = passID;
+			delegate->invoke(leg->m_object);
+		}
+	}
+	for (int cellIndex = 0; cellIndex < 4; cellIndex++) {
+		if (_00[cellIndex] != nullptr) {
+			_00[cellIndex]->mapSearchDown(delegate, passID);
+		}
+	}
 }
 
 /*
+ * TODO: I suspect inlining happens like this...
+ *
  * --INFO--
  * Address:	80156CF8
  * Size:	00004C
  */
 void Cell::resolveCollision()
 {
+	delete &CellMgrParms::mInstance->disposer;
+	// if (CellMgrParms::getInstance()->m_p000()) {
+	// 	resolveCollision_3();
+	// } else {
+	// 	(CellMgrParms::getInstance()->m_p001()) ? resolveCollision_1() : resolveCollision_2();
+	// }
+	if (CellMgrParms::mInstance->m_p000.m_value) {
+		resolveCollision_3();
+	} else {
+		(CellMgrParms::mInstance->m_p001.m_value) ? resolveCollision_1() : resolveCollision_2();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -758,16 +311,18 @@ void Cell::resolveCollision()
  * Address:	80156D44
  * Size:	000004
  */
-void CellPyramid::initFrame() { }
+inline void CellPyramid::initFrame()
+{
+}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void CellPyramid::getCheckCount()
+inline uint CellPyramid::getCheckCount()
 {
-	// UNUSED FUNCTION
+	return m_passID;
 }
 
 /*
@@ -775,7 +330,7 @@ void CellPyramid::getCheckCount()
  * Address:	........
  * Size:	000018
  */
-void Cell::dump()
+inline void Cell::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -786,10 +341,10 @@ void Cell::dump()
  * Size:	00002C
  */
 // void Cell::hasLeg((CellLeg*))
-bool Cell::hasLeg(CellLeg&)
-{
-	// UNUSED FUNCTION
-}
+// bool Cell::hasLeg(CellLeg&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -797,9 +352,14 @@ bool Cell::hasLeg(CellLeg&)
  * Size:	0000B8
  */
 // void CellObject::calcCollisionDistance((CellObject*))
-void CellObject::calcCollisionDistance(CellObject*)
+inline float CellObject::calcCollisionDistance(CellObject* them)
 {
 	// UNUSED FUNCTION
+	Sys::Sphere ourBounds;
+	Sys::Sphere theirBounds;
+	getBoundingSphere(ourBounds);
+	them->getBoundingSphere(theirBounds);
+	return ourBounds.m_position.distance(theirBounds.m_position) - (ourBounds.m_radius + theirBounds.m_radius);
 }
 
 /*
@@ -807,8 +367,10 @@ void CellObject::calcCollisionDistance(CellObject*)
  * Address:	80156D48
  * Size:	0000D0
  */
-void CellObject::updateCollisionBuffer(CellObject*)
+void CellObject::updateCollisionBuffer(CellObject* them)
 {
+	// float distance = ;
+	m_collisionBuffer.insert(them, calcCollisionDistance(them));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -875,27 +437,24 @@ void CellObject::updateCollisionBuffer(CellObject*)
  * Address:	........
  * Size:	000080
  */
-void CellObject::resolveUsingBuffer()
+inline void CellObject::resolveUsingBuffer()
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * __ct__Q24Game15CollisionBufferFv
+ *
  * --INFO--
  * Address:	80156E18
  * Size:	000018
  */
 CollisionBuffer::CollisionBuffer()
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x0(r3)
-	  blr
-	*/
+	m_cellObject = nullptr;
+	m_collNodes = nullptr;
+	_04 = 0;
+	_00 = 0;
 }
 
 /*
@@ -903,17 +462,17 @@ CollisionBuffer::CollisionBuffer()
  * Address:	........
  * Size:	000014
  */
-bool CollisionBuffer::isAvailable()
-{
-	// UNUSED FUNCTION
-}
+//inline bool CollisionBuffer::isAvailable()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void CollisionBuffer::init(CellObject*, CollNode*, int)
+inline void CollisionBuffer::init(CellObject*, CollNode*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -923,55 +482,25 @@ void CollisionBuffer::init(CellObject*, CollNode*, int)
  * Address:	80156E30
  * Size:	00006C
  */
-void CollisionBuffer::alloc(CellObject*, int)
+void CollisionBuffer::alloc(CellObject* object, int p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stw       r4, 0xC(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  lwz       r31, 0x0(r3)
-	  rlwinm    r3,r31,3,0,28
-	  addi      r3, r3, 0x10
-	  bl        -0x132EB8
-	  lis       r4, 0x8015
-	  mr        r7, r31
-	  addi      r4, r4, 0x6E9C
-	  li        r5, 0
-	  li        r6, 0x8
-	  bl        -0x9548C
-	  stw       r3, 0x8(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_cellObject = object;
+	_00 = p2;
+	_04 = 0;
+	m_collNodes = new CollNode[_00];
 }
 
 /*
+ * __ct__Q24Game8CollNodeFv
+ *
  * --INFO--
  * Address:	80156E9C
  * Size:	000014
  */
 CollNode::CollNode()
+	: m_cellObject(nullptr)
+	, _04(0.0f)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  lfs       f0, -0x5D38(r2)
-	  stw       r0, 0x0(r3)
-	  stfs      f0, 0x4(r3)
-	  blr
-	*/
 }
 
 /*
@@ -979,9 +508,13 @@ CollNode::CollNode()
  * Address:	........
  * Size:	000044
  */
-void CollisionBuffer::clear()
+inline void CollisionBuffer::clear()
 {
-	// UNUSED FUNCTION
+	_04 = 0;
+	for (int nodeIndex = 0; nodeIndex < _00; nodeIndex++) {
+		m_collNodes[nodeIndex].m_cellObject = nullptr;
+		m_collNodes[nodeIndex]._04 = 100000.0f;
+	}
 }
 
 /*
@@ -989,65 +522,16 @@ void CollisionBuffer::clear()
  * Address:	80156EB0
  * Size:	0000B8
  */
-void CollisionBuffer::insert(CellObject*, float)
+void CollisionBuffer::insert(CellObject* newObject, float p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x14(r1)
-	  mr        r31, r4
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  lwz       r3, 0xC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x9C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x8C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x78
-	  fmr       f1, f31
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        .loc_0xB8
-	  b         .loc_0x9C
-
-	.loc_0x78:
-	  fmr       f1, f31
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x15C
-	  b         .loc_0x9C
-
-	.loc_0x8C:
-	  fmr       f1, f31
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x270
-
-	.loc_0x9C:
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xB8:
-	*/
+	CellObject* object = m_cellObject;
+	if (object != nullptr) {
+		if (object->deferPikiCollision()) {
+			(newObject->isPiki()) ? pikiInsertPiki(newObject, p2) : pikiInsertOther(newObject, p2);
+		} else {
+			insertSort(newObject, p2);
+		}
+	}
 }
 
 /*
@@ -1333,8 +817,14 @@ void CollisionBuffer::insertSort(CellObject*, float)
  * Address:	801572B0
  * Size:	000044
  */
-void CollisionBuffer::findIndex(CellObject*)
+int CollisionBuffer::findIndex(CellObject* object)
 {
+	for (int i = _04, index = 0; 0 < i; ++index, --i) {
+		if (m_collNodes[index].m_cellObject == object) {
+			return index;
+		}
+	}
+	return -1;
 	/*
 	.loc_0x0:
 	  lwz       r0, 0x4(r3)
@@ -1368,18 +858,68 @@ void CollisionBuffer::findIndex(CellObject*)
  * Address:	........
  * Size:	0000A4
  */
-void CellLayer::resolveCollision()
+inline void CellLayer::resolveCollision()
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < m_sizeX * m_sizeY; ++i) {
+		m_cells[i].resolveCollision();
+	}
 }
 
 /*
+ * resolveCollision__Q24Game11CellPyramidFv
+ *
  * --INFO--
  * Address:	801572F4
  * Size:	000244
  */
 void CellPyramid::resolveCollision()
 {
+	if (0x3ffffff < ++m_passID) {
+		m_passID = 0;
+	}
+	switch (sOptResolveColl) {
+	case 3:
+		SweepCallback callback;
+		ResolveArg arg;
+		arg.m_callback = &callback;
+		resolve(arg);
+		break;
+	case 0:
+		for (int i = 0; i < m_layerCount; i++) {
+			m_layers[i].resolveCollision();
+		}
+		break;
+	case 1:
+		if (true) {
+			CellLayer* layer = &m_layers[m_layerCount-1];
+			for (int i = 0; i < layer->m_sizeX * layer->m_sizeY; i++) {
+				Cell* cell = &layer->m_cells[i];
+				if (cell->_18 != 0) {
+					cell->rec_resolveColl();
+				}
+			}
+		}
+		break;
+	case 2:
+		if (sSpeedUpResolveColl) {
+			for (int i = 0; i < m_layerCount; i++) {
+				for (Cell* cell = m_layers[i].m_cell._20; cell != nullptr; cell = cell->_20) {
+					if (cell->_18 != 0) {
+						cell->resolveCollision_3();
+					}
+				}
+			}
+		} else {
+			for (int i = 0; i < m_layerCount; i++) {
+				for (Cell* cell = m_layers[i].m_cell._20; cell != nullptr; cell = cell->_20) {
+					if (cell->_18 != 0) {
+						cell->resolveCollision_1();
+					}
+				}
+			}
+		}
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -1587,12 +1127,20 @@ void CellPyramid::resolveCollision()
 }
 
 /*
+ * The inlining on this function is fascinating.
+ *
  * --INFO--
  * Address:	80157538
  * Size:	000294
  */
-void Cell::rec_resolveColl()
+inline void Cell::rec_resolveColl()
 {
+	for (int i = 0; i < 4; i++) {
+		if ((_00[i] != nullptr) && (1 < _00[i]->_18)) {
+			_00[i]->rec_resolveColl();
+		}
+		resolveCollision();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1812,13 +1360,15 @@ void Cell::rec_resolveColl()
 }
 } // namespace Game
 
+
 /*
  * --INFO--
  * Address:	801577CC
  * Size:	000008
  */
-template <> void Parm<bool>::operator()()
+inline bool Parm<bool>::operator()()
 {
+	return m_value;
 	/*
 	.loc_0x0:
 	  addi      r3, r3, 0x18
@@ -1831,14 +1381,11 @@ template <> void Parm<bool>::operator()()
  * Address:	801577D4
  * Size:	000008
  */
-void CellMgrParms::getInstance()
+inline CellMgrParms* CellMgrParms::getInstance()
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x69F8(r13)
-	  blr
-	*/
+	return mInstance;
 }
+
 
 namespace Game {
 /*
@@ -1846,9 +1393,17 @@ namespace Game {
  * Address:	........
  * Size:	000064
  */
-void Cell::clearAllCollBuffer()
+inline void Cell::clearAllCollBuffer()
 {
 	// UNUSED FUNCTION
+	if (_1C != nullptr) {
+		for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
+			CellObject* object = leg->m_object;
+			if (object != nullptr) {
+				object->m_collisionBuffer.clear();
+			}
+		}
+	}
 }
 
 /*
@@ -1856,13 +1411,17 @@ void Cell::clearAllCollBuffer()
  * Address:	........
  * Size:	00009C
  */
-void CellLayer::clearAllCollBuffer()
+inline void CellLayer::clearAllCollBuffer()
 {
 	// UNUSED FUNCTION
+	for (int i = 0; i < m_sizeX * m_sizeY; i++) {
+		m_cells[i].clearAllCollBuffer();
+	}
 }
 
 /*
  * This probably calls (CellLayer|Cell)::clearAllCollBuffer.
+ * clearAllCollBuffer__Q24Game11CellPyramidFv
  *
  * --INFO--
  * Address:	801577DC
@@ -1870,6 +1429,9 @@ void CellLayer::clearAllCollBuffer()
  */
 void CellPyramid::clearAllCollBuffer()
 {
+	for (int layerIndex = 0; layerIndex < m_layerCount; layerIndex++) {
+		m_layers[layerIndex].clearAllCollBuffer();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1955,7 +1517,7 @@ void CellPyramid::clearAllCollBuffer()
  * Address:	........
  * Size:	000094
  */
-void Cell::appendList()
+inline void Cell::appendList()
 {
 	// UNUSED FUNCTION
 }
@@ -1965,129 +1527,60 @@ void Cell::appendList()
  * Address:	........
  * Size:	000084
  */
-void Cell::remove()
+inline void Cell::remove()
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * exit_
  * --INFO--
  * Address:	801578B8
  * Size:	000158
  */
-void Cell::exit(CellLeg*, bool)
+inline void Cell::exit(CellLeg* aLeg, bool p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x1C(r3)
-	  cmplw     r0, r4
-	  bne-      .loc_0x3C
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x1C(r31)
-	  lwz       r3, 0x1C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  li        r0, 0
-	  stw       r0, 0x4(r3)
-
-	.loc_0x3C:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x78
-	  lhz       r3, 0x14(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x14(r31)
-	  lwz       r5, 0x10(r31)
-	  b         .loc_0x70
-
-	.loc_0x60:
-	  lhz       r3, 0x16(r5)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x16(r5)
-	  lwz       r5, 0x10(r5)
-
-	.loc_0x70:
-	  cmplwi    r5, 0
-	  bne+      .loc_0x60
-
-	.loc_0x78:
-	  lhz       r3, 0x18(r31)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x18(r31)
-	  lwz       r5, 0x10(r31)
-	  b         .loc_0x9C
-
-	.loc_0x8C:
-	  lhz       r3, 0x18(r5)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x18(r5)
-	  lwz       r5, 0x10(r5)
-
-	.loc_0x9C:
-	  cmplwi    r5, 0
-	  bne+      .loc_0x8C
-	  lwz       r3, 0x4(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB8
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r3)
-
-	.loc_0xB8:
-	  lwz       r3, 0x0(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  lwz       r0, 0x4(r4)
-	  stw       r0, 0x4(r3)
-
-	.loc_0xCC:
-	  li        r0, 0
-	  stw       r0, 0x4(r4)
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x1C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x144
-	  lwz       r0, -0x6D28(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x144
-	  bne-      .loc_0x110
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3014
-	  li        r4, 0x312
-	  subi      r5, r5, 0x3004
-	  crclr     6, 0x6
-	  bl        -0x12D384
-
-	.loc_0x110:
-	  lwz       r3, 0x24(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x138
-	  lwz       r0, 0x20(r31)
-	  stw       r0, 0x20(r3)
-	  lwz       r3, 0x20(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x138
-	  lwz       r0, 0x24(r31)
-	  stw       r0, 0x24(r3)
-
-	.loc_0x138:
-	  li        r0, 0
-	  stw       r0, 0x24(r31)
-	  stw       r0, 0x20(r31)
-
-	.loc_0x144:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (_1C == aLeg) {
+		_1C = aLeg->m_next;
+		if (_1C != nullptr) {
+			_1C->m_prev = nullptr;
+		}
+	}
+	if ((p2) && (_14 != 0)) {
+		_14--;
+		for (Cell* iCell = _10; iCell != nullptr; iCell = iCell->_10) {
+			iCell->_16--;
+		}
+	}
+	_18--;
+	for (Cell* iCell = _10; iCell != nullptr; iCell = iCell->_10) {
+		iCell->_18--;
+	}
+	CellLeg* leg = aLeg->m_prev;
+	if (leg != nullptr) {
+		leg->m_next = aLeg->m_next;
+	}
+	leg = aLeg->m_next;
+	if (leg != nullptr) {
+		leg->m_prev = aLeg->m_prev;
+	}
+	aLeg->m_prev = nullptr;
+	aLeg->m_next = nullptr;
+	if ((_1C == nullptr) &&
+			(Cell::sCurrCellMgr != nullptr)) {
+// #ifdef MATCHING
+#line 786
+// #endif
+		P2ASSERT(Cell::sCurrCellMgr != nullptr);
+		if (_24 != nullptr) {
+			_24->_20 = _20;
+			if (_20 != nullptr) {
+				_20->_24 = _24;
+			}
+		}
+		_24 = nullptr;
+		_20 = nullptr;
+	}
 }
 
 /*
@@ -2095,8 +1588,15 @@ void Cell::exit(CellLeg*, bool)
  * Address:	80157A10
  * Size:	0002EC
  */
-void Cell::entry(CellLeg*, bool)
+void Cell::entry(CellLeg* leg, bool p2)
 {
+// #ifdef MATCHING
+#line 836
+// #endif
+	P2ASSERT(leg != nullptr);
+	if (leg->m_cell != nullptr) {
+		leg->m_cell->exit(leg, p2);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -2348,9 +1848,15 @@ void Cell::entry(CellLeg*, bool)
  * Address:	........
  * Size:	000058
  */
-void CellLayer::clear()
+inline void CellLayer::clear()
 {
 	// UNUSED FUNCTION
+	m_cell._20 = nullptr;
+	m_cell._24 = nullptr;
+	for (int i = 0; i < m_sizeX * m_sizeY; i++) {
+		m_cells[i].clear();
+		m_cells[i]._28 = _06;
+	}
 }
 
 /*
@@ -2358,7 +1864,7 @@ void CellLayer::clear()
  * Address:	........
  * Size:	0000D0
  */
-void CellLayer::createBottom(int, int)
+inline void CellLayer::createBottom(int, int)
 {
 	// UNUSED FUNCTION
 }
@@ -2368,8 +1874,9 @@ void CellLayer::createBottom(int, int)
  * Address:	80157CFC
  * Size:	000048
  */
-void CellLayer::operator()(int, int)
+Cell* CellLayer::operator()(int x, int y)
 {
+	return ((((-1 < x) && (-1 < y)) && (x < m_sizeX)) && (y < m_sizeY)) ? &m_cells[x + y*m_sizeX] : nullptr;
 	/*
 	.loc_0x0:
 	  cmpwi     r4, 0
@@ -2863,7 +2370,7 @@ void CellLayer::pileup(CellLayer&)
  * Size:	000004
  */
 // void drawCell__Q24Game9CellLayerFR8GraphicsR10Vector3<float> iif()
-void CellLayer::drawCell(Graphics&, Vector3<float>&, int, int, float) const
+inline void CellLayer::drawCell(Graphics&, Vector3<float>&, int, int, float) const
 {
 	// UNUSED FUNCTION
 }
@@ -2874,6 +2381,8 @@ void CellLayer::drawCell(Graphics&, Vector3<float>&, int, int, float) const
  * Size:	00003C
  */
 CellPyramid::CellPyramid()
+	: m_layerCount(0)
+	, m_memoryUsageMaybe(0)
 {
 	/*
 	.loc_0x0:
@@ -2896,61 +2405,22 @@ CellPyramid::CellPyramid()
 }
 
 /*
+ * clear__Q24Game11CellPyramidFv
+ *
  * --INFO--
  * Address:	801582F8
  * Size:	000098
  */
 void CellPyramid::clear()
 {
-	/*
-	.loc_0x0:
-	  li        r11, 0
-	  li        r10, 0
-	  b         .loc_0x70
-
-	.loc_0xC:
-	  lwz       r0, 0x30(r3)
-	  li        r6, 0
-	  mr        r7, r6
-	  add       r8, r0, r10
-	  mr        r9, r6
-	  stw       r6, 0x2C(r8)
-	  stw       r6, 0x30(r8)
-	  b         .loc_0x54
-
-	.loc_0x2C:
-	  lwz       r4, 0x8(r8)
-	  addi      r0, r9, 0x28
-	  addi      r7, r7, 0x1
-	  add       r4, r4, r9
-	  addi      r9, r9, 0x2C
-	  stw       r6, 0x1C(r4)
-	  sth       r6, 0x18(r4)
-	  lhz       r5, 0x6(r8)
-	  lwz       r4, 0x8(r8)
-	  sthx      r5, r4, r0
-
-	.loc_0x54:
-	  lhz       r4, 0x0(r8)
-	  lhz       r0, 0x2(r8)
-	  mullw     r0, r4, r0
-	  cmpw      r7, r0
-	  blt+      .loc_0x2C
-	  addi      r10, r10, 0x38
-	  addi      r11, r11, 0x1
-
-	.loc_0x70:
-	  lwz       r0, 0x2C(r3)
-	  cmpw      r11, r0
-	  blt+      .loc_0xC
-	  li        r0, 0
-	  stw       r0, 0x44(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r0, 0x18(r3)
-	  blr
-	*/
+	for (int i = 0; i < m_layerCount; i++) {
+		m_layers[i].clear();
+	}
+	m_passID = 0;
+	_08 = 0;
+	_04 = 0;
+	_1C = 0;
+	_18 = 0;
 }
 
 /*
@@ -2959,7 +2429,7 @@ void CellPyramid::clear()
  * Size:	000190
  */
 // void calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<int>()
-void CellPyramid::calcExtent(Sys::Sphere&, int&, Rect<int>&) const
+void CellPyramid::calcExtent(Sys::Sphere&, int&, Recti&) const
 {
 	/*
 	.loc_0x0:
@@ -3075,8 +2545,14 @@ void CellPyramid::calcExtent(Sys::Sphere&, int&, Rect<int>&) const
  * Address:	80158520
  * Size:	000034
  */
-void CellPyramid::entry(CellObject*, Sys::Sphere&)
+void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere)
 {
+	int unusedInt;
+	Rect<int> unusedRect;
+
+	Cell::sCurrCellMgr = this;
+	entry(object, sphere, unusedInt, unusedRect);
+	Cell::sCurrCellMgr = nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -3097,6 +2573,10 @@ void CellPyramid::entry(CellObject*, Sys::Sphere&)
 	*/
 }
 
+#define MAX(v1, v2) (((v1) > (v2)) ? (v1) : (v2))
+
+// TODO: Finish this. It's pretty much one big ol' usage of inlined functions.
+#ifdef NOPE
 /*
  * --INFO--
  * Address:	80158554
@@ -3104,8 +2584,136 @@ void CellPyramid::entry(CellObject*, Sys::Sphere&)
  */
 // void entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<
 //     int>()
-void CellPyramid::entry(CellObject&, Sys::Sphere&, int&, Rect<int>&)
+void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3, Recti& param_4)
 {
+	Cell::sCurrCellMgr = this;
+	float dVar19 = log10(param_2.m_radius * 2.0f * _38);
+	float dVar18 = log10(2.0f);
+	float dVar17 = (dVar19 / dVar18);
+	// if (dVar17 < 0.0) {
+	// 	dVar17 = 0.0;
+	// }
+	int iVar9 = (int)ceil(MAX(dVar17, 0.0f));
+	if (m_layerCount <= iVar9) {
+		iVar9 = m_layerCount - 1;
+	}
+	float fVar10 = param_2.m_radius;
+	float fVar11 = (param_2.m_position).x;
+	float fVar1 = (param_2.m_position).z;
+	float fVar2 = _40;
+	float fVar3 = _3C;
+	float fVar4 = 1.0f / ((m_layers[iVar9]._04) * _34); // <--- SHORT_TO_FLOAT
+	param_4.p1.x = (int)(((fVar11 - fVar10) - fVar2) * fVar4);
+	param_4.p1.y = (int)(((fVar1 - fVar10) - fVar3) * fVar4);
+	param_4.p2.x = (int)(((fVar11 + fVar10) - fVar2) * fVar4);
+	param_4.p2.y = (int)(((fVar1 + fVar10) - fVar3) * fVar4);
+	param_3 = iVar9;
+	iVar9 = param_3;
+	if ((iVar9 < 0) || (m_layerCount <= iVar9)) {
+// #ifdef MATCHING
+#line 1206
+// #endif
+		JUTException::panic_f(__FILE__, __LINE__, "illegal layerLevel %d : out of bounds 0〜%d\n", iVar9, m_layerCount);
+	}
+	int iVar12 = 0;
+	bool bVar5 = false;
+	CellLayer* layer = &m_layers[iVar9];
+	bool bVar7 = param_1->isPiki();
+	if ((bVar7 != false) || (bVar7 = param_1->isNavi(), bVar7 != false)) {
+		iVar12 = 1;
+		bVar5 = true;
+	}
+	iVar9 = 0;
+	for (iVar9 = 0; iVar9 < 4; iVar9++) {
+		Cell* cell = param_1->m_cellLegs.arrayView[iVar9].m_cell;
+		if (cell != nullptr) {
+			cell->exit(&param_1->m_cellLegs.arrayView[iVar9], bVar5);
+// 			if (cell->_1C == &param_1.m_cellLegs.arrayView[iVar9]) {
+// 				cell->_1C = param_1.m_cellLegs.arrayView[iVar9].m_next;
+// 				if (cell->_1C != nullptr) {
+// 					cell->_1C->m_prev = nullptr;
+// 				}
+// 			}
+// 			if ((bVar5) && (cell->_14 != 0)) {
+// 				cell->_14--;
+// 				for (Cell* iCell = cell->_10; iCell != nullptr; iCell = iCell->_10) {
+// 					iCell->_16--;
+// 				}
+// 			}
+// 			cell->_18--;
+// 			for (Cell* iCell = cell->_10; iCell != nullptr; iCell = iCell->_10) {
+// 				iCell->_18--;
+// 			}
+// 			CellLeg* leg = param_1.m_cellLegs.arrayView[iVar9].m_prev;
+// 			if (leg != nullptr) {
+// 				leg->m_next = param_1.m_cellLegs.arrayView[iVar9].m_next;
+// 			}
+// 			leg = param_1.m_cellLegs.arrayView[iVar9].m_next;
+// 			if (leg != nullptr) {
+// 				leg->m_prev = param_1.m_cellLegs.arrayView[iVar9].m_prev;
+// 			}
+// 			param_1.m_cellLegs.arrayView[iVar9].m_prev = nullptr;
+// 			param_1.m_cellLegs.arrayView[iVar9].m_next = nullptr;
+// 			if ((cell->_1C == nullptr) &&
+// 				 (Cell::sCurrCellMgr != nullptr)) {
+// 				if (Cell::sCurrCellMgr == nullptr) {
+// // #ifdef MATCHING
+// // HMM... why is this so much earlier...
+// #line 786
+// // #endif
+// 					P2ASSERT(Cell::sCurrCellMgr != nullptr);
+// 				}
+// 				if (cell->_24 != nullptr) {
+// 					cell->_24->_20 = cell->_20;
+// 					if (cell->_20 != nullptr) {
+// 						cell->_20->_24 = cell->_24;
+// 					}
+// 				}
+// 				cell->_24 = nullptr;
+// 				cell->_20 = nullptr;
+// 			}
+			param_1->m_cellLegs.arrayView[iVar9].m_cell = nullptr;
+		}
+	}
+	iVar9 = 0;
+	if (10 < ((param_4.p2.x - param_4.p1.x) * (param_4.p2.y - param_4.p1.y))) {
+// #ifdef MATCHING
+#line 1405
+// #endif
+		JUTException::panic_f(__FILE__,__LINE__,"Cell Inf-Loop かもしれない\n");
+	}
+	for (int cellX = param_4.p1.x; cellX <= param_4.p2.x; cellX++) {
+		for (int cellY = param_4.p1.y; cellY <= param_4.p2.y; cellY++) {
+			Cell* cell;
+			if ((((cellX < 0) || (cellY < 0)) ||
+					(layer->m_sizeX <= cellX)) ||
+				 (layer->m_sizeY <= cellY)) {
+				cell = nullptr;
+			}
+			else {
+				cell = &layer->m_cells[cellX + (cellY * layer->m_sizeX)];
+			}
+			if (cell != nullptr) {
+				if (3 < iVar9) goto LAB_801589e8;
+				cell->entry(param_1.m_cellLegs.arrayView,SUB41((uint)-iVar12 >> 0x1f,0));
+				for (pCVar6 = cell->_1C; pCVar6 != (CellLeg *)0x0; pCVar6 = pCVar6->pNext) {
+					if (pCVar6 == param_1->m_cellLegs) {
+						bVar5 = true;
+						goto LAB_80158994;
+					}
+				}
+				bVar5 = false;
+LAB_80158994:
+				if (!bVar5) {
+										/* WARNING: Subroutine does not return */
+					JUTException::panic_f("cellPyramid.cpp",0x59f,"leg entry failed !!!!!!!!!!\n");
+				}
+			}
+			param_1 = (CellObject *)&(param_1->sweepPruneObject).minX.flags;
+			param_1 = (CellObject *)&(param_1->sweepPruneObject).minX.flags;
+			iVar9 += 1;
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -3481,6 +3089,8 @@ void CellPyramid::entry(CellObject&, Sys::Sphere&, int&, Rect<int>&)
 	*/
 }
 
+#endif
+
 /*
  * --INFO--
  * Address:	80158A0C
@@ -3726,7 +3336,7 @@ CellLayer::CellLayer()
  * Address:	........
  * Size:	000004
  */
-void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
+inline void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
@@ -3737,7 +3347,7 @@ void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
  * Size:	000068
  */
 // void assertExtent__Q24Game9CellLayerFR7Rect<int>()
-void CellLayer::assertExtent(Rect<int>&) const
+inline void CellLayer::assertExtent(Recti&) const
 {
 	// UNUSED FUNCTION
 }
@@ -3748,7 +3358,7 @@ void CellLayer::assertExtent(Rect<int>&) const
  * Size:	000040
  */
 // void checkPoint__Q24Game9CellLayerFR10Vector2<int>()
-void CellLayer::checkPoint(Vector2<int>&) const
+inline void CellLayer::checkPoint(Vector2<int>&) const
 {
 	// UNUSED FUNCTION
 }
@@ -3873,7 +3483,7 @@ void CellPyramid::getPikiCount(int, Rect<int>&) const
  * Size:	000004
  */
 // void drawCell__Q24Game11CellPyramidFR8GraphicsiR7Rect<int> f()
-void CellPyramid::drawCell(Graphics&, int, Rect<int>&, float) const
+inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, float) const
 {
 	// UNUSED FUNCTION
 }
@@ -3883,7 +3493,7 @@ void CellPyramid::drawCell(Graphics&, int, Rect<int>&, float) const
  * Address:	........
  * Size:	000004
  */
-void CellPyramid::drawCell(Graphics&, int)
+inline void CellPyramid::drawCell(Graphics&, int)
 {
 	// UNUSED FUNCTION
 }
@@ -3893,7 +3503,7 @@ void CellPyramid::drawCell(Graphics&, int)
  * Address:	........
  * Size:	000004
  */
-void CellPyramid::drawCell(Graphics&)
+inline void CellPyramid::drawCell(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -3903,7 +3513,7 @@ void CellPyramid::drawCell(Graphics&)
  * Address:	........
  * Size:	000088
  */
-void CellPyramid::dumpCount(int&, int&)
+inline void CellPyramid::dumpCount(int&, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -4297,3 +3907,5 @@ void SweepCallback::invoke(SweepPrune::Object*, SweepPrune::Object*)
 	  blr
 	*/
 }
+
+// #pragma auto_inline reset

@@ -1,4 +1,8 @@
+#include "CellMgrParms.h"
 
+#pragma text_encoding "SHIFT_JIS"
+
+CellMgrParms* CellMgrParms::mInstance;
 
 /*
  * --INFO--
@@ -15,9 +19,14 @@ void _Print(char*, ...)
  * Address:	........
  * Size:	00015C
  */
-void CellMgrParms::CellMgrParms()
+inline CellMgrParms::CellMgrParms()
+	: Parameters(&m_end, nullptr, "CellMgr")
+	, JKRDisposer()
+	, m_p000(this, 0x70303030, "バッファを使う", false, false, true)
+	, m_p001(this, 0x70303031, "マジックナンバー", true, false, true)
+	, m_p002(this, 0x70303032, "G-Half", false, false, true)
+	, m_p003(this, 0x70303033, "UpdateMgr", false, false, true)
 {
-	// UNUSED FUNCTION
 }
 
 /*
@@ -25,8 +34,9 @@ void CellMgrParms::CellMgrParms()
  * Address:	8022E188
  * Size:	000074
  */
-void CellMgrParms::~CellMgrParms()
+CellMgrParms::~CellMgrParms()
 {
+	mInstance = nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -70,6 +80,9 @@ void CellMgrParms::~CellMgrParms()
  */
 void CellMgrParms::globalInstance()
 {
+	if (mInstance == nullptr) {
+		mInstance = new CellMgrParms();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -169,16 +182,4 @@ void CellMgrParms::globalInstance()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8022E364
- * Size:	000008
- */
-void CellMgrParms::@12 @__dt()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x1E0
-	*/
-}
+#pragma text_encoding reset

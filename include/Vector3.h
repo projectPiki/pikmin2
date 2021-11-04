@@ -1,13 +1,13 @@
 #ifndef _VECTOR3_H
 #define _VECTOR3_H
 
-#include "Stream.h"
+#include "stream.h"
 
 template <typename T> struct Vector3 {
 	T x, y, z;
 
 	void operator=(const Vector3<T>&);
-	void distance(Vector3<T>&);
+	float distance(Vector3<T>&);
 	void length() const;
 	void normalise();
 

@@ -2,9 +2,11 @@
 #define _RECT_H
 
 #include "types.h"
+#include "Vector2.h"
 
 template <typename T> struct Rect {
-	T x1, x2, y1, y2;
+	Vector2<T> p1; // _00 /* topLeft */
+	Vector2<T> p2; // _08 /* bottomRight */
 };
 
 typedef Rect<int> Recti;
