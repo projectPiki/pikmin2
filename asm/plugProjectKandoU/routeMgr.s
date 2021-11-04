@@ -193,23 +193,6 @@ lbl_80518A24:
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
-.global __ml__Q24Game16WayPointIteratorFv
-__ml__Q24Game16WayPointIteratorFv:
-/* 801725C4 0016F504  80 03 00 00 */	lwz r0, 0(r3)
-/* 801725C8 0016F508  2C 00 00 08 */	cmpwi r0, 8
-/* 801725CC 0016F50C  40 80 00 18 */	bge lbl_801725E4
-/* 801725D0 0016F510  80 63 00 04 */	lwz r3, 4(r3)
-/* 801725D4 0016F514  54 00 08 3C */	slwi r0, r0, 1
-/* 801725D8 0016F518  7C 63 02 14 */	add r3, r3, r0
-/* 801725DC 0016F51C  A8 63 00 3A */	lha r3, 0x3a(r3)
-/* 801725E0 0016F520  4E 80 00 20 */	blr 
-lbl_801725E4:
-/* 801725E4 0016F524  80 63 00 04 */	lwz r3, 4(r3)
-/* 801725E8 0016F528  54 00 08 3C */	slwi r0, r0, 1
-/* 801725EC 0016F52C  7C 63 02 14 */	add r3, r3, r0
-/* 801725F0 0016F530  A8 63 00 4E */	lha r3, 0x4e(r3)
-/* 801725F4 0016F534  4E 80 00 20 */	blr 
-
 .global forward__Q24Game16WayPointIteratorFv
 forward__Q24Game16WayPointIteratorFv:
 /* 801725F8 0016F538  80 83 00 00 */	lwz r4, 0(r3)

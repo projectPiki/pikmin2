@@ -5,22 +5,24 @@
 
 namespace Game {
 
+enum WayPointFlags {
+	WPF_Unset  = 0,
+	WPF_Open   = 1,
+	WPF_Water  = 2,
+	WPF_Bridge = 4
+};
+
 // NOT 100% SURE
 struct WayPoint : public JKRDisposer, public CNode {
-	u8 _30[0xA];
-	s16* _3A;
-	u32 _3C;
-	s16 _3E;
-	s16 _40;
-	s16 _42;
-	s16 _44;
-	s16 _46;
-	s16 _48;
-	s16 _4A;
-	s16* _4C;
-	s16 _4E;
+	u32 _30; // _30
+
+	u8 m_flags; // _34
+	u8 _35[3];  // _35, padding to 38
+
+	s16 _38;     // _38
+	s16 _3A[10]; // _3A
+	s16 _4E[1];  // _4E
 };
-int a = sizeof(WayPoint);
 
 struct WayPointIterator {
 	WayPointIterator(WayPoint*, bool);
@@ -32,9 +34,9 @@ struct WayPointIterator {
 	void next();
 	bool isDone();
 
-	s32 m_index;   // _00
-	WayPoint* _04; // _04
-	bool _08;      // _08
+	s32 m_index;          // _00
+	WayPoint* m_wayPoint; // _04
+	bool _08;             // _08
 };
 
 } // namespace Game
@@ -46,7 +48,7 @@ namespace Game {
  * Size:	000014
  */
 WayPointIterator::WayPointIterator(WayPoint* wp, bool r5)
-    : _04(wp)
+    : m_wayPoint(wp)
     , _08(r5)
 {
 	m_index = 0;
@@ -97,13 +99,14 @@ bool WayPointIterator::isDone()
  * Address:	801725C4
  * Size:	000034
  */
-// s16 WayPointIterator::operator*(void)
-// {
-// 	if (m_index < 8) {
-// 		return _04->_4C[m_index];
-// 	}
+s16 WayPointIterator::operator*(void)
+{
+	if (m_index < 8) {
+		return m_wayPoint->_3A[m_index];
+	}
 
-// 	return _04->_3A[m_index];
+	return m_wayPoint->_4E[m_index];
+}
 /*
 .loc_0x0:
   lwz       r0, 0x0(r3)
