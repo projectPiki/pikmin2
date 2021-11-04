@@ -5,7 +5,7 @@
  * Address:	80470F0C
  * Size:	000078
  */
-void PSM::SeSound::makeSeSound(void)
+void PSM::SeSound::makeSeSound()
 {
 	/*
 	.loc_0x0:
@@ -46,30 +46,10 @@ void PSM::SeSound::makeSeSound(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void JAISe::~JAISe()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void PSM::SeSound::psACos((float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80470F84
  * Size:	000004
  */
-void PSM::SeSound::onGet(void)
+void PSM::SeSound::onGet()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +62,7 @@ void PSM::SeSound::onGet(void)
  * Address:	80470F88
  * Size:	0000A4
  */
-void PSM::SeSound::onRelease(void)
+void PSM::SeSound::onRelease()
 {
 	/*
 	.loc_0x0:
@@ -141,9 +121,9 @@ void PSM::SeSound::onRelease(void)
  * Address:	8047102C
  * Size:	000154
  */
-void PSM::SeSound::initParameter((void*, JAInter::Actor*, unsigned long,
-                                  unsigned long, unsigned char,
-                                  JAInter::SoundInfo*))
+void PSM::SeSound::initParameter(void*, JAInter::Actor*, unsigned long,
+                                 unsigned long, unsigned char,
+                                 JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -258,7 +238,7 @@ void PSM::SeSound::initParameter((void*, JAInter::Actor*, unsigned long,
  * Address:	80471180
  * Size:	0002D8
  */
-void PSM::SeSound::setDistanceVolumeCommon((float, unsigned char))
+void PSM::SeSound::setDistanceVolumeCommon(float, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -492,7 +472,7 @@ void PSM::SeSound::setDistanceVolumeCommon((float, unsigned char))
  * Address:	80471458
  * Size:	000044
  */
-void PSM::SeSound::specializePerspCalc((PSGame::SoundTable::SePerspInfo const&))
+void PSM::SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo&)
 {
 	/*
 	.loc_0x0:
@@ -521,7 +501,7 @@ void PSM::SeSound::specializePerspCalc((PSGame::SoundTable::SePerspInfo const&))
  * Address:	8047149C
  * Size:	00006C
  */
-void PSM::SeSound::calcVolumeSpecialized((float))
+void PSM::SeSound::calcVolumeSpecialized(float)
 {
 	/*
 	.loc_0x0:
@@ -562,7 +542,7 @@ void PSM::SeSound::calcVolumeSpecialized((float))
  * Address:	80471508
  * Size:	00008C
  */
-void PSM::SeSound::calcVolume((float, unsigned char, unsigned char))
+void PSM::SeSound::calcVolume(float, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -611,7 +591,7 @@ void PSM::SeSound::calcVolume((float, unsigned char, unsigned char))
  * Address:	80471594
  * Size:	0000B8
  */
-void PSM::SeSound::setSeDistancePan((unsigned char))
+void PSM::SeSound::setSeDistancePan(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -677,7 +657,7 @@ void PSM::SeSound::setSeDistancePan((unsigned char))
  * Address:	8047164C
  * Size:	0000C8
  */
-void PSM::SeSound::calcPan((Vec const&, float))
+void PSM::SeSound::calcPan(const Vec&, float)
 {
 	/*
 	.loc_0x0:
@@ -753,7 +733,7 @@ void PSM::SeSound::calcPan((Vec const&, float))
  * Address:	80471714
  * Size:	000088
  */
-void PSM::SeSound::setSeDistanceDolby((unsigned char))
+void PSM::SeSound::setSeDistanceDolby(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -805,7 +785,7 @@ void PSM::SeSound::setSeDistanceDolby((unsigned char))
  * Address:	8047179C
  * Size:	00010C
  */
-void PSM::SeSound::calcDolby((Vec const&, float))
+void PSM::SeSound::calcDolby(const Vec&, float)
 {
 	/*
 	.loc_0x0:

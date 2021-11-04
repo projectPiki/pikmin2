@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void PSM::BossBgmFader::TypedProc::__ct((float, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8046C6B8
  * Size:	0001D8
  */
-void PSM::BossBgmFader::TypedProc::update(void)
+void PSM::BossBgmFader::TypedProc::update()
 {
 	/*
 	.loc_0x0:
@@ -168,50 +158,10 @@ void PSM::BossBgmFader::TypedProc::update(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void PSM::BossBgmFader::TypedProc::endUpdate(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void PSM::BossBgmFader::TypedProc::getBossFadeVolume(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void PSM::BossBgmFader::TypedProc_MidBoss::__ct((float, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void PSM::BossBgmFader::TypedProc::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8046C890
  * Size:	00003C
  */
-void PSM::BossBgmFader::TypedProc_MidBoss::update(void)
+void PSM::BossBgmFader::TypedProc_MidBoss::update()
 {
 	/*
 	.loc_0x0:
@@ -240,7 +190,7 @@ void PSM::BossBgmFader::TypedProc_MidBoss::update(void)
  * Address:	8046C8CC
  * Size:	0000EC
  */
-void PSM::BossBgmFader::Mgr::__ct(void)
+void PSM::BossBgmFader::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -310,20 +260,10 @@ void PSM::BossBgmFader::Mgr::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void PSM::BossBgmFader::TypedProc_MidBoss::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8046C9B8
  * Size:	000024
  */
-void appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<PSM::EnemyBoss>(void)
+void PSM::BossBgmFader::Mgr::appendTarget(JSULink<PSM::EnemyBoss>*)
 {
 	/*
 	.loc_0x0:
@@ -344,7 +284,7 @@ void appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<PSM::EnemyBoss>(void)
  * Address:	8046C9DC
  * Size:	000768
  */
-void PSM::BossBgmFader::Mgr::exec(void)
+void PSM::BossBgmFader::Mgr::exec()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void PSM::THPDinamicsProc::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804724A0
  * Size:	000070
  */
-void PSM::THPDinamicsProc::setSetting((PSM::THP_ID))
+void PSM::THPDinamicsProc::setSetting(PSM::THP_ID)
 {
 	/*
 	.loc_0x0:
@@ -59,7 +49,7 @@ void PSM::THPDinamicsProc::setSetting((PSM::THP_ID))
  * Address:	80472510
  * Size:	000110
  */
-void PSM::THPDinamicsProc::setSetting((PSM::THPDemoDinamics*))
+void PSM::THPDinamicsProc::setSetting(PSM::THPDemoDinamics*)
 {
 	/*
 	.loc_0x0:
@@ -148,20 +138,10 @@ void PSM::THPDinamicsProc::setSetting((PSM::THPDemoDinamics*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000128
- */
-void PSM::THPDinamicsProc::complessor((float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80472620
  * Size:	000130
  */
-void PSM::THPDinamicsProc::dinamics((float))
+void PSM::THPDinamicsProc::dinamics(float)
 {
 	/*
 	.loc_0x0:
@@ -266,20 +246,10 @@ void PSM::THPDinamicsProc::dinamics((float))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000084
- */
-void PSM::CreaturePrm::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80472750
  * Size:	000064
  */
-void PSM::CreaturePrm::__dt(void)
+void PSM::CreaturePrm::~CreaturePrm()
 {
 	/*
 	.loc_0x0:
@@ -320,7 +290,7 @@ void PSM::CreaturePrm::__dt(void)
  * Address:	804727B4
  * Size:	000050
  */
-void __dt__Q28PSSystem34SingletonBase<PSM::CreaturePrm> Fv(void)
+void PSSystem::SingletonBase<PSM::CreaturePrm>::~SingletonBase()
 {
 	/*
 	.loc_0x0:

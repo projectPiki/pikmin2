@@ -2,83 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000078
- */
-void PSM::DemoInitiator::equalSet((char const*, char const*, unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void PSM::DemoInitiator::equalSetStream((char const*, unsigned long,
-                                         unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void PSM::DemoInitiator::equalSetEx((char const*, bool, char const*,
-                                     unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void PSM::DemoInitiator::equalSetExStream((char const*, bool, unsigned long,
-                                           unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void PSM::DemoInitiator::is((char const*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void PSM::DemoInitiator::numberSet((char const*, char const*, unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void PSM::DemoInitiator::setDefault((char const*, unsigned char, unsigned long))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80463FE8
  * Size:	00005C
  */
-void PSM::Demo::__ct(void)
+void PSM::Demo::Demo()
 {
 	/*
 	.loc_0x0:
@@ -113,7 +40,7 @@ void PSM::Demo::__ct(void)
  * Address:	80464044
  * Size:	00020C
  */
-void PSM::Demo::init((Vec*, Vec*, float (*)[4], PSM::DemoArg))
+void PSM::Demo::init(Vec*, Vec*, float (*)[4], PSM::DemoArg)
 {
 	/*
 	.loc_0x0:
@@ -276,7 +203,7 @@ void PSM::Demo::init((Vec*, Vec*, float (*)[4], PSM::DemoArg))
  * Address:	80464250
  * Size:	0000EC
  */
-void PSM::Demo::demo1stLoadSync(void)
+void PSM::Demo::demo1stLoadSync()
 {
 	/*
 	.loc_0x0:
@@ -357,7 +284,7 @@ void PSM::Demo::demo1stLoadSync(void)
  * Address:	8046433C
  * Size:	000048
  */
-void PSM::Demo::initDemoScene((PSM::DemoArg&, PSM::Scene_Demo*))
+void PSM::Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +316,7 @@ void PSM::Demo::initDemoScene((PSM::DemoArg&, PSM::Scene_Demo*))
  * Address:	80464384
  * Size:	001DA4
  */
-void PSM::Demo::initiate((PSM::DemoArg, unsigned char*))
+void PSM::Demo::initiate(PSM::DemoArg, unsigned char*)
 {
 	/*
 	.loc_0x0:
@@ -2706,7 +2633,7 @@ void PSM::Demo::initiate((PSM::DemoArg, unsigned char*))
  * Address:	80466128
  * Size:	000184
  */
-void PSM::Demo::__dt(void)
+void PSM::Demo::~Demo()
 {
 	/*
 	.loc_0x0:
@@ -2830,20 +2757,10 @@ void PSM::Demo::__dt(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000124
- */
-void PSM::Demo::becomeDemoCamera(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804662AC
  * Size:	0006C0
  */
-void PSM::Demo::onDemoTop(void)
+void PSM::Demo::onDemoTop()
 {
 	/*
 	.loc_0x0:
@@ -3367,7 +3284,7 @@ void PSM::Demo::onDemoTop(void)
  * Address:	8046696C
  * Size:	000104
  */
-void PSM::Demo::becomeSceneCamera(void)
+void PSM::Demo::becomeSceneCamera()
 {
 	/*
 	.loc_0x0:
@@ -3454,7 +3371,7 @@ void PSM::Demo::becomeSceneCamera(void)
  * Address:	80466A70
  * Size:	0000FC
  */
-void PSM::Demo::onDemoFadeoutStart((unsigned long))
+void PSM::Demo::onDemoFadeoutStart(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3539,7 +3456,7 @@ void PSM::Demo::onDemoFadeoutStart((unsigned long))
  * Address:	80466B6C
  * Size:	000664
  */
-void PSM::Demo::onDemoEnd(void)
+void PSM::Demo::onDemoEnd()
 {
 	/*
 	.loc_0x0:
@@ -4038,7 +3955,7 @@ void PSM::Demo::onDemoEnd(void)
  * Address:	804671D0
  * Size:	000268
  */
-void PSM::Demo::onMessageEnd((int))
+void PSM::Demo::onMessageEnd(int)
 {
 	/*
 	.loc_0x0:
@@ -4394,7 +4311,7 @@ void PSMGetGameSceneA()
  * Address:	80467608
  * Size:	000018
  */
-void PSM::Scene_Cave::isPollutUp(void)
+void PSM::Scene_Cave::isPollutUp()
 {
 	/*
 	.loc_0x0:
@@ -4412,7 +4329,7 @@ void PSM::Scene_Cave::isPollutUp(void)
  * Address:	80467620
  * Size:	000008
  */
-void PSM::SceneBase::getEnvSe(void)
+void PSM::SceneBase::getEnvSe()
 {
 	/*
 	.loc_0x0:
@@ -4426,7 +4343,7 @@ void PSM::SceneBase::getEnvSe(void)
  * Address:	80467628
  * Size:	000008
  */
-void PSM::ObjCalcBase::setMode((PSM::ObjCalcBase::Mode))
+void PSM::ObjCalcBase::setMode(PSM::ObjCalcBase::Mode)
 {
 	/*
 	.loc_0x0:

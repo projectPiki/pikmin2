@@ -5,7 +5,7 @@
  * Address:	804718D0
  * Size:	0000A8
  */
-void PSM::BgmTrackMapFile::__ct((bool))
+void PSM::BgmTrackMapFile::BgmTrackMapFile(bool)
 {
 	/*
 	.loc_0x0:
@@ -60,20 +60,10 @@ void PSM::BgmTrackMapFile::__ct((bool))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000060
- */
-void PSM::BgmTrackMapFile::loadNReadTrackMap((char const*, char const*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80471978
  * Size:	00077C
  */
-void PSM::BgmTrackMapFile::readTrackMap((char const*))
+void PSM::BgmTrackMapFile::readTrackMap(const char*)
 {
 	/*
 	.loc_0x0:
@@ -615,20 +605,10 @@ void PSM::BgmTrackMapFile::readTrackMap((char const*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000D4
- */
-void PSM::BgmTrackMapFile::getTrackMapA((char const*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804720F4
  * Size:	000294
  */
-void PSM::BgmTrackMapFile::read((Stream&))
+void PSM::BgmTrackMapFile::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -839,7 +819,7 @@ void PSM::BgmTrackMapFile::read((Stream&))
  * Address:	80472388
  * Size:	000110
  */
-void PSM::BgmTrackMap::__ct(void)
+void PSM::BgmTrackMap::BgmTrackMap()
 {
 	/*
 	.loc_0x0:
@@ -923,7 +903,7 @@ void PSM::BgmTrackMap::__ct(void)
  * Address:	80472498
  * Size:	000008
  */
-void @28 @PSM::BgmTrackMapFile::__dt(void)
+void PSM::BgmTrackMapFile::@28 @__dt()
 {
 	/*
 	.loc_0x0:

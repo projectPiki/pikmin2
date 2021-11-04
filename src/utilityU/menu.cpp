@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80456184
  * Size:	00012C
  */
@@ -101,66 +91,6 @@ void Menu::Menu(JUTGamePad*, JUTFont*, bool)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSUList<Menu::MenuItem>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Menu::enterOption()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void Menu::enterMenu(Menu*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void Menu::exitMenu(Menu*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void Menu::open()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void Menu::close()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804562B0
  * Size:	0000C0
  */
@@ -225,16 +155,6 @@ void Menu::addOption(int, char*, IDelegate1<Menu&>*, bool)
 
 	.loc_0xC0:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void Menu::addMenu(Menu*, int, char*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -306,36 +226,6 @@ void Menu::addKeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void Menu::nextCurrOption()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void Menu::prevCurrOption()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000168
- */
-void Menu::checkNewOption()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -628,21 +518,11 @@ void Menu::doUpdate(bool)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000560
- */
-void Menu::draw(Graphics&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804567D8
  * Size:	000068
  */
-void __ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<Menu&>(
-    void)
+void Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
+                              IDelegate1<Menu&>*)
 {
 	/*
 	.loc_0x0:
@@ -677,20 +557,10 @@ void __ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<Menu&>(
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<Menu::KeyEvent>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80456840
  * Size:	000080
  */
-void Menu::MenuItem::__ct((Menu::MenuItem::cTypeFlag, int, char*))
+void Menu::MenuItem::MenuItem(Menu::MenuItem::cTypeFlag, int, char*)
 {
 	/*
 	.loc_0x0:
@@ -731,30 +601,10 @@ void Menu::MenuItem::__ct((Menu::MenuItem::cTypeFlag, int, char*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<Menu::MenuItem>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSUList<Menu::KeyEvent>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	804568C0
  * Size:	00001C
  */
-void Menu::MenuItem::getNext(void)
+void Menu::MenuItem::getNext()
 {
 	/*
 	.loc_0x0:
@@ -775,7 +625,7 @@ void Menu::MenuItem::getNext(void)
  * Address:	804568DC
  * Size:	00001C
  */
-void Menu::MenuItem::getPrev(void)
+void Menu::MenuItem::getPrev()
 {
 	/*
 	.loc_0x0:
@@ -796,7 +646,7 @@ void Menu::MenuItem::getPrev(void)
  * Address:	804568F8
  * Size:	000200
  */
-void Menu::MenuItem::checkEvents((Menu*, int))
+void Menu::MenuItem::checkEvents(Menu*, int)
 {
 	/*
 	.loc_0x0:
@@ -945,14 +795,4 @@ void Menu::MenuItem::checkEvents((Menu*, int))
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void Menu::getCurrentMenuItemNo()
-{
-	// UNUSED FUNCTION
 }

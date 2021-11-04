@@ -5,7 +5,7 @@
  * Address:	804728A4
  * Size:	000060
  */
-void PSM::ObjCalc_SingleGame::newInstance_SingleGame(void)
+void PSM::ObjCalc_SingleGame::newInstance_SingleGame()
 {
 	/*
 	.loc_0x0:
@@ -43,7 +43,7 @@ void PSM::ObjCalc_SingleGame::newInstance_SingleGame(void)
  * Address:	80472904
  * Size:	000008
  */
-void PSM::ObjCalc_SingleGame::getPlayerNo((PSM::Creature*))
+void PSM::ObjCalc_SingleGame::getPlayerNo(PSM::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -57,7 +57,7 @@ void PSM::ObjCalc_SingleGame::getPlayerNo((PSM::Creature*))
  * Address:	8047290C
  * Size:	000008
  */
-void PSM::ObjCalc_SingleGame::getPlayerNo((Vec&))
+void PSM::ObjCalc_SingleGame::getPlayerNo(Vec&)
 {
 	/*
 	.loc_0x0:
@@ -71,7 +71,7 @@ void PSM::ObjCalc_SingleGame::getPlayerNo((Vec&))
  * Address:	80472914
  * Size:	00005C
  */
-void PSM::ObjCalc_2PGame::newInstance_2PGame(void)
+void PSM::ObjCalc_2PGame::newInstance_2PGame()
 {
 	/*
 	.loc_0x0:
@@ -108,7 +108,7 @@ void PSM::ObjCalc_2PGame::newInstance_2PGame(void)
  * Address:	80472970
  * Size:	0003BC
  */
-void PSM::ObjCalc_2PGame::getPlayerNo((Vec&))
+void PSM::ObjCalc_2PGame::getPlayerNo(Vec&)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +389,7 @@ void PSM::ObjCalc_2PGame::getPlayerNo((Vec&))
  * Address:	80472D2C
  * Size:	0000C8
  */
-void PSM::ObjCalc_2PGame::getPlayerNo((PSM::Creature*))
+void PSM::ObjCalc_2PGame::getPlayerNo(PSM::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -461,7 +461,7 @@ void PSM::ObjCalc_2PGame::getPlayerNo((PSM::Creature*))
  * Address:	80472DF4
  * Size:	000074
  */
-void PSM::ObjCalc_SingleGame::__dt(void)
+void PSM::ObjCalc_SingleGame::~ObjCalc_SingleGame()
 {
 	/*
 	.loc_0x0:
@@ -506,7 +506,7 @@ void PSM::ObjCalc_SingleGame::__dt(void)
  * Address:	80472E68
  * Size:	000074
  */
-void PSM::ObjCalc_2PGame::__dt(void)
+void PSM::ObjCalc_2PGame::~ObjCalc_2PGame()
 {
 	/*
 	.loc_0x0:
@@ -551,4 +551,11 @@ void PSM::ObjCalc_2PGame::__dt(void)
  * Address:	80472EDC
  * Size:	000008
  */
-void PSM::ObjCalc_2PGame::is1PGame(void) { return 0; }
+void PSM::ObjCalc_2PGame::is1PGame()
+{
+	/*
+	.loc_0x0:
+	  li        r3, 0
+	  blr
+	*/
+}
