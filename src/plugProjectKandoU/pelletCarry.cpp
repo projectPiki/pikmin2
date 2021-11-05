@@ -18,7 +18,7 @@ PelletCarry::PelletCarry() { reset(); }
  */
 void PelletCarry::reset()
 {
-	m_state         = PelletCarry_Idle;
+	m_state         = PCS_Idle;
 	m_position.x    = 0.0f;
 	m_position.y    = 0.0f;
 	m_position.z    = 0.0f;
@@ -33,7 +33,7 @@ void PelletCarry::reset()
  */
 bool PelletCarry::pull(u16 state, Vector3f& newPos, f32 carryAmt)
 {
-	if (m_state == PelletCarry_Idle || m_state == state) {
+	if (m_state == PCS_Idle || m_state == state) {
 		m_state         = state;
 		m_position.x    = newPos.x;
 		m_position.y    = newPos.y;
@@ -62,7 +62,7 @@ bool PelletCarry::pull(u16 state, Vector3f& newPos, f32 carryAmt)
  */
 bool PelletCarry::pullable(u16 state, f32 carryAmt)
 {
-	if (m_state == PelletCarry_Idle || m_state == state) {
+	if (m_state == PCS_Idle || m_state == state) {
 		return true;
 	}
 
@@ -80,7 +80,7 @@ void PelletCarry::giveup(u16 state)
 		return;
 	}
 
-	m_state         = PelletCarry_Idle;
+	m_state         = PCS_Idle;
 	m_position.x    = 0.0f;
 	m_position.y    = 0.0f;
 	m_position.z    = 0.0f;
@@ -93,9 +93,9 @@ void PelletCarry::giveup(u16 state)
  * Size:	000064
  */
 bool PelletCarry::frameWork(Vector3f& newPos)
-// work done in a frame (pellet displacement)
 {
-	if (m_state != PelletCarry_Idle) {
+	// Work done in a frame
+	if (m_state != PCS_Idle) {
 		if (m_timer > 0.0f) {
 			m_timer -= sys->m_secondsPerFrame;
 			newPos.x = 0.0f;

@@ -6,7 +6,12 @@
 
 namespace ebi {
 namespace Screen {
-	enum UpdateState { US_Finish = 0, US_Open = 1, US_Wait = 2, US_Close = 3 };
+	enum UpdateState {
+		TSB_US_Finish = 0,
+		TSB_US_Open   = 1,
+		TSB_US_Wait   = 2,
+		TSB_US_Close  = 3
+	};
 
 	struct ArgOpen {
 		virtual char* getName(void) { return "ArgOpen"; }

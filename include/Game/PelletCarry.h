@@ -6,9 +6,10 @@
 
 namespace Game {
 enum PelletCarryState {
-	PelletCarry_Idle = 0xFFFF,
-	PelletCarry_Unk1 = 1,
-	PelletCarry_Unk2 = 2
+	PCS_Idle = 0xFFFF,
+
+	PCS_Unk1 = 1,
+	PCS_Unk2,
 };
 
 struct PelletCarry {
