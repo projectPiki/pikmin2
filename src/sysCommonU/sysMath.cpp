@@ -8,10 +8,20 @@ extern const float lbl_8052026C; // 325.9493
 extern const float lbl_80520270; // 0.0
 extern const float lbl_80520274; // -1.0
 extern const float lbl_80520278; // 1.0
+extern const float lbl_8052027C; // 3.1415926 OR PI
+extern const float lbl_80520280; // 1023.5
+extern const float lbl_80520284; // 1.5707964 OR HALF PI
+extern const float lbl_80520288; // 0.5
+extern const float lbl_8052028C; // 1.5
+extern const float lbl_80520290; // -1.5
 extern const float lbl_80520294; // 2.0
+extern const float lbl_80520298; // 4.5
+extern const float lbl_8052029C; // 5.0
+extern const float lbl_805202A0; // -4.5
+extern const float lbl_805202A4; // 4.0
 extern const float lbl_805202A8; // 6.2831855 OR TAU / 2Pi
 extern const float lbl_805202AC; // 0.0099999998 OR 0.01
-extern const float lbl_8052027C; // 3.1415926 OR PI
+extern const double lbl_805202B0; // 0.0
 
 // FROM ANOTHER FILE.. WTF?
 extern const float lbl_805201B0;
@@ -108,18 +118,18 @@ asm void CRSplineTangent(float, Vector3f*)
      stwu      r1, -0x20(r1)
      stfd      f31, 0x10(r1)
      psq_st    f31,0x18(r1),0,0
-     lfs       f0, 0x1F34(r2)
+     lfs       f0, lbl_80520294
      fmuls     f10, f1, f1
-     lfs       f2, 0x1F3C(r2)
+     lfs       f2, lbl_8052029C
      fmuls     f5, f0, f1
-     lfs       f6, 0x1F30(r2)
-     lfs       f0, 0x1F44(r2)
+     lfs       f6, lbl_80520290
+     lfs       f0, lbl_805202A4
      fmuls     f3, f2, f1
-     lfs       f4, 0x1F38(r2)
+     lfs       f4, lbl_80520298
      fmadds    f5, f6, f10, f5
-     lfs       f7, 0x1F28(r2)
+     lfs       f7, lbl_80520288
      fmuls     f0, f0, f1
-     lfs       f2, 0x1F40(r2)
+     lfs       f2, lbl_805202A0
      fmsubs    f12, f4, f10, f3
      fsubs     f11, f5, f7
      fmadds    f6, f2, f10, f0
@@ -130,7 +140,7 @@ asm void CRSplineTangent(float, Vector3f*)
      fmuls     f2, f0, f12
      lfs       f4, 0x10(r4)
      fadds     f13, f7, f6
-     lfs       f8, 0x1F2C(r2)
+     lfs       f8, lbl_8052028C
      fmuls     f6, f5, f11
      lfs       f0, 0x18(r4)
      fmuls     f5, f4, f12
