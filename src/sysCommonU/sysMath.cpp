@@ -3,24 +3,24 @@
 #include "sysMath.h"
 #include "Vector3.h"
 
-extern const float lbl_80520268; //-325.9493
-extern const float lbl_8052026C; // 325.9493
-extern const float lbl_80520270; // 0.0
-extern const float lbl_80520274; // -1.0
-extern const float lbl_80520278; // 1.0
-extern const float lbl_8052027C; // 3.1415926 OR PI
-extern const float lbl_80520280; // 1023.5
-extern const float lbl_80520284; // 1.5707964 OR HALF PI
-extern const float lbl_80520288; // 0.5
-extern const float lbl_8052028C; // 1.5
-extern const float lbl_80520290; // -1.5
-extern const float lbl_80520294; // 2.0
-extern const float lbl_80520298; // 4.5
-extern const float lbl_8052029C; // 5.0
-extern const float lbl_805202A0; // -4.5
-extern const float lbl_805202A4; // 4.0
-extern const float lbl_805202A8; // 6.2831855 OR TAU / 2Pi
-extern const float lbl_805202AC; // 0.0099999998 OR 0.01
+extern const float lbl_80520268;  //-325.9493
+extern const float lbl_8052026C;  // 325.9493
+extern const float lbl_80520270;  // 0.0
+extern const float lbl_80520274;  // -1.0
+extern const float lbl_80520278;  // 1.0
+extern const float lbl_8052027C;  // 3.1415926 OR PI
+extern const float lbl_80520280;  // 1023.5
+extern const float lbl_80520284;  // 1.5707964 OR HALF PI
+extern const float lbl_80520288;  // 0.5
+extern const float lbl_8052028C;  // 1.5
+extern const float lbl_80520290;  // -1.5
+extern const float lbl_80520294;  // 2.0
+extern const float lbl_80520298;  // 4.5
+extern const float lbl_8052029C;  // 5.0
+extern const float lbl_805202A0;  // -4.5
+extern const float lbl_805202A4;  // 4.0
+extern const float lbl_805202A8;  // 6.2831855 OR TAU / 2Pi
+extern const float lbl_805202AC;  // 0.0099999998 OR 0.01
 extern const double lbl_805202B0; // 0.0
 
 // FROM ANOTHER FILE.. WTF?

@@ -8,9 +8,6 @@ namespace ebi {
 namespace title {
 	// Is Camera really parent class ?
 	struct TTitleCameraMgr : public Camera {
-		u8 gap4[36];    // _04
-		float float28;  // _28
-		u8 gap2C[328];  // _2C
 		float float174; // _174
 		float float178; // _178
 		float float17C; // _17C
