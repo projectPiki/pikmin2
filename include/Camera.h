@@ -8,8 +8,9 @@ struct Sphere;
 } // namespace Sys
 
 struct Camera {
-	u8 _00[0xB4];
-	f32 _B4[4][4];
+	u32 _00; // _00
+	// u8 _00[0xB4];
+	// f32 _B4[4][4];
 
 	Camera();
 	~Camera();
