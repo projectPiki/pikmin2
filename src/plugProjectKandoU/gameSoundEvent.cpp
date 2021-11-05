@@ -4,18 +4,17 @@
 #include "Game/TSoundEvent.h"
 
 namespace Game {
-
 /*
  * --INFO--
  * Address:	8022EBCC
  * Size:	00001C
  */
 TSoundEvent::TSoundEvent()
-    : m_state(0)
+    : m_state(TSE_Inactive)
 {
-	m_state = 0;
-	_08     = 0;
-	_04     = 30;
+	m_state    = TSE_Inactive;
+	m_timer    = 0;
+	m_duration = 30;
 }
 
 /*
@@ -25,18 +24,18 @@ TSoundEvent::TSoundEvent()
  */
 u32 TSoundEvent::event()
 {
-	_08 = Game::gameSystem->_50;
-	if (!(m_state & 1)) {
-		m_state |= 1;
-		return 1;
+	m_timer = Game::gameSystem->m_frameTimer;
+	if (!(m_state & TSE_Active)) {
+		m_state |= TSE_Active;
+		return TSE_Active;
 	}
 
-	if (m_state & 2) {
-		m_state &= ~2;
-		return 3;
+	if (m_state & TSE_ApplyTransition) {
+		m_state &= ~TSE_ApplyTransition;
+		return TSE_Apply;
 	}
 
-	return 0;
+	return TSE_Inactive;
 }
 
 /*
@@ -44,7 +43,7 @@ u32 TSoundEvent::event()
  * Address:	8022EC30
  * Size:	000010
  */
-void TSoundEvent::finish(void) { m_state |= Finish; }
+void TSoundEvent::finish(void) { m_state |= TSE_Finish; }
 
 /*
  * --INFO--
@@ -53,12 +52,16 @@ void TSoundEvent::finish(void) { m_state |= Finish; }
  */
 u32 TSoundEvent::update()
 {
-	if (!(m_state & Finish) && Game::gameSystem->calcFrameDist(_08) > _04
-	    && m_state & 1 && !(m_state & 2)) {
-		m_state |= 2;
-		return 2;
+	// Checks if the event isn't finished, has gone over the duration of the
+	// event, is active and hasn't been applied yet, and then changes the state
+	// to transition to apply the event.
+	if (!(m_state & TSE_Finish)
+	    && Game::gameSystem->calcFrameDist(m_timer) > m_duration
+	    && m_state & TSE_Active && !(m_state & TSE_ApplyTransition)) {
+		m_state |= TSE_ApplyTransition;
+		return TSE_ApplyTransition;
 	}
 
-	return 0;
+	return TSE_Inactive;
 }
 } // namespace Game
