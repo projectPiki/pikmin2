@@ -4,7 +4,6 @@
 #include "types.h"
 #include "CNode.h"
 #include "Game/GenericObjectMgr.h"
-// #include "Game/EnemyStone.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "Game/enemyInfo.h"
 
@@ -38,6 +37,9 @@ struct GeneralEnemyMgr : public GenericObjectMgr {
 	// TODO: replace with proper type
 	// EnemyStone::Mgr m_stoneMgr; // _58
 	u8 m_stoneMgr[0x38]; // _58
+
+	static int mTotalCount;
+	static int mCullCount;
 };
 
 static GeneralEnemyMgr* generalEnemyMgr;
