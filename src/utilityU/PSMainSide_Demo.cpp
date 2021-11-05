@@ -319,6 +319,8 @@ void Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
  * Size:	001DA4
  */
 void Demo::initiate(PSM::DemoArg, unsigned char*)
+// clang-format off
+//
 //{
 // #include "demoInitiate.h"
 // #include "defines.h"
@@ -1280,8 +1282,9 @@ void Demo::initiate(PSM::DemoArg, unsigned char*)
 //												if (isSongChosen) {
 //													m(this, /*this->func*/ 0x24,
 //													  void*)
-//													    =
-//PSChangeBgm_ChallengeGame; 												} else { 													if (demo_name
+//													    = PSChangeBgm_ChallengeGame;
+//												} else {
+//													if (demo_name
 //													    == (char*)0x0) {
 //														isSongChosen = false;
 //													} else {
@@ -1339,19 +1342,26 @@ void Demo::initiate(PSM::DemoArg, unsigned char*)
 //																	m(this,
 //																	  /*this->soundID*/
 //																	  0x1c,
-//																	  unsigned
-//int) 																	    = PSSE_PL_DAYEND_KAISAN_LUI; 																} else { 																	if (((int) 																	         demo_arg 																	     < 1)
+//																	  unsigned int)
+//																	    = PSSE_PL_DAYEND_KAISAN_LUI;
+//																} else {
+//																	if (((int)
+//																	         demo_arg
+//																	     < 1)
 //																	    || (2
-//																	        <
-//(int) 																	            demo_arg)) { 																		m(this,
+//																	        < (int)
+//																	            demo_arg)) {
+//																		m(this,
 //																		  /*this->soundID*/
 //																		  0x1c,
-//																		  unsigned
-//int) 																		    = PSSE_PL_DAYEND_KAISAN_ORI; 																	} else { 																		m(this,
+//																		  unsigned int)
+//																		    = PSSE_PL_DAYEND_KAISAN_ORI;
+//																	} else {
+//																		m(this,
 //																		  /*this->soundID*/
 //																		  0x1c,
-//																		  unsigned
-//int) 																		    = PSSE_PL_DAYEND_KAISAN_SHA;
+//																		  unsigned int)
+//																		    = PSSE_PL_DAYEND_KAISAN_SHA;
 //																	}
 //																}
 //															}
@@ -1452,6 +1462,7 @@ void Demo::initiate(PSM::DemoArg, unsigned char*)
 //		// OSReport("real volume thing is value: %d\n", audio_info.volume);
 //		return seq;
 //	}
+// clang-format on
 /*
 .loc_0x0:
   stwu      r1, -0x70(r1)
