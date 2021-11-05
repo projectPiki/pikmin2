@@ -1,93 +1,65 @@
 #include "types.h"
+#include "Camera.h"
+#include "Dolphin/gx.h"
+#include "System.h"
 
 namespace ebi {
 
 namespace title {
+
+	struct TTitleFogMgr {
+		void setGX(Camera&);
+
+		u8 _00[36];
+		s32* _24;
+		u8 _28[36];
+		u8 _4C;
+		u8 _4D[27];
+		f32 _68;
+		u8 _6C[36];
+		f32 _90;
+		u8 _94[36];
+		s32 _B8;
+		u8 _BC[36];
+		s32 _E0;
+		u8 _E4[36];
+		s32 _108;
+		u8 _10C[36];
+		s32 _130;
+	};
 
 	/*
 	 * --INFO--
 	 * Address:	803EB1A4
 	 * Size:	000118
 	 */
-	void TTitleFogMgr::setGX(Camera&)
+	// TODO: non-matching!
+	void TTitleFogMgr::setGX(Camera& camera)
 	{
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x60(r1)
-		  mflr      r0
-		  stw       r0, 0x64(r1)
-		  stfd      f31, 0x50(r1)
-		  psq_st    f31,0x58(r1),0,0
-		  stfd      f30, 0x40(r1)
-		  psq_st    f30,0x48(r1),0,0
-		  stfd      f29, 0x30(r1)
-		  psq_st    f29,0x38(r1),0,0
-		  stw       r31, 0x2C(r1)
-		  lbz       r0, 0x4C(r3)
-		  mr        r31, r4
-		  cmplwi    r0, 0
-		  beq-      .loc_0xC8
-		  lwz       r6, 0xB8(r3)
-		  lwz       r5, 0xE0(r3)
-		  lwz       r4, 0x108(r3)
-		  lwz       r0, 0x130(r3)
-		  stb       r6, 0x8(r1)
-		  lfs       f30, 0x68(r3)
-		  lfs       f29, 0x90(r3)
-		  mr        r3, r31
-		  stb       r5, 0x9(r1)
-		  stb       r4, 0xA(r1)
-		  stb       r0, 0xB(r1)
-		  lwz       r0, 0x8(r1)
-		  stw       r0, 0x10(r1)
-		  bl        0x2FB18
-		  fmr       f31, f1
-		  mr        r3, r31
-		  bl        0x2FAF0
-		  fmr       f3, f1
-		  addi      r4, r1, 0x10
-		  fmr       f1, f30
-		  li        r3, 0x2
-		  fmr       f2, f29
-		  fmr       f4, f31
-		  bl        -0x302658
-		  bl        0x37FE8
-		  lhz       r4, 0x4(r3)
-		  addi      r3, r1, 0x14
-		  addi      r5, r31, 0xB4
-		  bl        -0x302448
-		  bl        0x37FD4
-		  lhz       r0, 0x4(r3)
-		  addi      r5, r1, 0x14
-		  li        r3, 0x1
-		  rlwinm    r4,r0,31,17,31
-		  bl        -0x3022B0
-		  b         .loc_0xEC
+		if (_4C) {
+			struct {
+				s8 _00;
+				s8 _01;
+				s8 _02;
+				s8 _03;
+			} v16Obj;
 
-		.loc_0xC8:
-		  lfs       f1, 0x1AD0(r2)
-		  addi      r4, r1, 0xC
-		  lwz       r0, 0x24(r3)
-		  li        r3, 0
-		  fmr       f2, f1
-		  fmr       f3, f1
-		  stw       r0, 0xC(r1)
-		  fmr       f4, f1
-		  bl        -0x3026AC
+			v16Obj._03 = _B8;
+			v16Obj._01 = _E0;
+			v16Obj._02 = _108;
+			v16Obj._00 = _130;
 
-		.loc_0xEC:
-		  psq_l     f31,0x58(r1),0,0
-		  lfd       f31, 0x50(r1)
-		  psq_l     f30,0x48(r1),0,0
-		  lfd       f30, 0x40(r1)
-		  psq_l     f29,0x38(r1),0,0
-		  lfd       f29, 0x30(r1)
-		  lwz       r0, 0x64(r1)
-		  lwz       r31, 0x2C(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x60
-		  blr
-		*/
+			GXSetFog(GX_FOG_LINEAR, (void*)&v16Obj, _68, _90, camera.getNear(),
+			         camera.getFar());
+
+			GXFogAdjTable table;
+			GXInitFogAdjTable(&table, System::getRenderModeObj()->fbWidth,
+			                  camera._B4);
+			GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->fbWidth >> 1,
+			                 &table);
+		} else {
+			GXSetFog(GX_FOG_NONE, _24, 0.0f, 0.0f, 0.0f, 0.0f);
+		}
 	}
 
 	/*

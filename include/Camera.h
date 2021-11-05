@@ -8,7 +8,8 @@ struct Sphere;
 } // namespace Sys
 
 struct Camera {
-	u32 _00; // _00
+	u8 _00[0xB4];
+	f32 _B4[4][4];
 
 	Camera();
 	~Camera();
@@ -17,10 +18,10 @@ struct Camera {
 	void calcScreenSize(Sys::Sphere&);
 	void copyFrom(Camera*);
 	void doUpdate();
-	void getFar();
+	float getFar();
 	void getLookAtPosition_();
 	void getLookAtPosition();
-	void getNear();
+	float getNear();
 	void getPosition();
 	void getPositionPtr();
 	void getSoundMatrixPtr();
