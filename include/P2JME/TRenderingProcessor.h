@@ -13,10 +13,10 @@ struct TRenderingProcessor : public JMessage::TRenderingProcessor {
 	void setFont(JUTFont*); // TODO: code is _4C = arg1
 	void preProcID(unsigned int, unsigned int);
 
-	u8 _00[0x4C]; // _00
-	JUTFont* _4C; // _4C
-	JUTFont* _50; // _50
-	u8 _54[0xBC]; // _54
+	u8 _00[0x4C];       // _00
+	JUTFont* _4C;       // _4C
+	JUTFont* m_jmeFont; // _50
+	u8 _54[0xBC];       // _54
 };
 } // namespace P2JME
 

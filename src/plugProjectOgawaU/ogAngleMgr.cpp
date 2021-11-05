@@ -5,7 +5,6 @@
 
 namespace og {
 namespace Screen {
-
 	/*
 	 * --INFO--
 	 * Address:	8033028C
@@ -13,12 +12,12 @@ namespace Screen {
 	 */
 	AngleMgr::AngleMgr()
 	{
-		_00          = 0.0f;
-		_04          = 0.0f;
-		_08          = 0.0f;
-		m_interpRate = 0.3f;
-		m_scale      = 1.0f;
-		m_state      = AGM_Start;
+		m_currentAngle = 0.0f;
+		m_angleStep    = 0.0f;
+		m_targetAngle  = 0.0f;
+		m_interpRate   = 0.3f;
+		m_scale        = 1.0f;
+		m_state        = AGM_Start;
 	}
 
 	/*
@@ -26,11 +25,11 @@ namespace Screen {
 	 * Address:	803302B8
 	 * Size:	000010
 	 */
-	void AngleMgr::init(float f1, float f2, float f3)
+	void AngleMgr::init(float curAngle, float interpRate, float scale)
 	{
-		_00          = f1;
-		m_interpRate = f2;
-		m_scale      = f3;
+		m_currentAngle = curAngle;
+		m_interpRate   = interpRate;
+		m_scale        = scale;
 	}
 
 	/*
@@ -38,25 +37,25 @@ namespace Screen {
 	 * Address:	803302C8
 	 * Size:	000080
 	 */
-	void AngleMgr::chase(float f1, float f2)
+	void AngleMgr::chase(float target, float step)
 	{
-		// Wrap _08 angle to (0, TAU)
-		_08 = f1;
-		while (_08 < 0.0f) {
-			_08 += TAU;
+		// Wrap to (0, TAU)
+		m_targetAngle = target;
+		while (m_targetAngle < 0.0f) {
+			m_targetAngle += TAU;
 		}
 
-		while (_08 > TAU) {
-			_08 -= TAU;
+		while (m_targetAngle > TAU) {
+			m_targetAngle -= TAU;
 		}
 
-		// Wrap _04 angle to (-HALF_PI, HALF_PI)
-		_04 = f2;
-		if (_04 > HALF_PI) {
-			_04 = HALF_PI;
+		// Wrap to (-HALF_PI, HALF_PI)
+		m_angleStep = step;
+		if (m_angleStep > HALF_PI) {
+			m_angleStep = HALF_PI;
 		}
-		if (_04 < -HALF_PI) {
-			_04 = -HALF_PI;
+		if (m_angleStep < -HALF_PI) {
+			m_angleStep = -HALF_PI;
 		}
 
 		m_state = AGM_Chase;
@@ -70,43 +69,48 @@ namespace Screen {
 	float AngleMgr::calc()
 	{
 		if (m_state == AGM_Chase) {
-			_00 += _04;
+			m_currentAngle += m_angleStep;
 
-			if (_00 < 0.0f) {
-				_00 += TAU;
-			} else if (_00 >= TAU) {
-				_00 = (_00 - TAU);
+			if (m_currentAngle < 0.0f) {
+				m_currentAngle += TAU;
+			} else if (m_currentAngle >= TAU) {
+				m_currentAngle = (m_currentAngle - TAU);
 			}
 
-			f32 f1 = (_08 - _00);
-			if (FABS(f1) > PI) {
-				f32 f2 = TAU - FABS(f1);
-				if (f1 > 0.0f) {
-					if ((_04 > 0.0f) && (f2 > FABS(_04 * m_scale))) {
-						_04 = (-_04 * m_interpRate);
+			f32 distance = m_targetAngle - m_currentAngle;
+			if (FABS(distance) > PI) {
+				// TODO: figure out what f2 is!
+				f32 f2 = TAU - FABS(distance);
+				if (distance > 0.0f) {
+					if ((m_angleStep > 0.0f)
+					    && (f2 > FABS(m_angleStep * m_scale))) {
+						m_angleStep = (-m_angleStep * m_interpRate);
 					}
-				} else if ((_04 < 0.0f) && (f2 > FABS(_04 * m_scale))) {
-					_04 = (-_04 * m_interpRate);
+				} else if ((m_angleStep < 0.0f)
+				           && (f2 > FABS(m_angleStep * m_scale))) {
+					m_angleStep = (-m_angleStep * m_interpRate);
 				}
 			} else {
-				f32 f2 = FABS(f1);
-				if (f1 > 0.0f) {
-					if ((_04 < 0.0f) && (f2 > FABS(_04 * m_scale))) {
-						_04 = (-_04 * m_interpRate);
+				f32 f2 = FABS(distance);
+				if (distance > 0.0f) {
+					if ((m_angleStep < 0.0f)
+					    && (f2 > FABS(m_angleStep * m_scale))) {
+						m_angleStep = (-m_angleStep * m_interpRate);
 					}
-				} else if ((_04 > 0.0f) && (f2 > FABS(_04 * m_scale))) {
-					_04 = (-_04 * m_interpRate);
+				} else if ((m_angleStep > 0.0f)
+				           && (f2 > FABS(m_angleStep * m_scale))) {
+					m_angleStep = (-m_angleStep * m_interpRate);
 				}
 			}
 
-			if (FABS(_04) < 0.001f) {
-				m_state = AGM_Finish;
-				_00     = _08;
-				_04     = 0.0f;
+			if (FABS(m_angleStep) < 0.001f) {
+				m_state        = AGM_Finish;
+				m_currentAngle = m_targetAngle;
+				m_angleStep    = 0.0f;
 			}
 		}
 
-		return _00;
+		return m_currentAngle;
 	}
 } // namespace Screen
 } // namespace og
