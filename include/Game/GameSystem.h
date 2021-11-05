@@ -6,6 +6,7 @@
 namespace Game {
 struct GameSystem {
 	s32 calcFrameDist(int);
+	void startFadeout(float);
 
 	u8 _00[0x50]; // _00
 	u32 _50;      // _50
