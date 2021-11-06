@@ -510,7 +510,7 @@ namespace title {
 	 * Address:	803E8AFC
 	 * Size:	000318
 	 */
-	void Chappy::TUnit::startAIState_((ebi::title::Chappy::TUnit::enumAIState))
+	void Chappy::TUnit::startAIState_(ebi::title::Chappy::TUnit::enumAIState)
 	{
 		/*
 		.loc_0x0:
