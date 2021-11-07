@@ -4,26 +4,19 @@
 
 void __check_pad3(void)
 {
-    if ((Pad3Button & 0x0eef) == 0x0eef)
-    {
-        OSResetSystem(OS_RESET_RESTART, 0, FALSE);
-    }
+	if ((Pad3Button & 0x0eef) == 0x0eef) {
+		OSResetSystem(OS_RESET_RESTART, 0, FALSE);
+	}
 	return;
 }
 
+void __set_debug_bba(void) { Debug_BBA = 1; }
 
-void __set_debug_bba(void)
-{
-    Debug_BBA = 1;
-}
+u8 __get_debug_bba(void) { return Debug_BBA; }
 
-u8 __get_debug_bba(void)
-{
-    return Debug_BBA;
-}
+// clang-format off
 
-
-asm void __start(void)
+__declspec (weak) asm void __start(void)
 {
     nofralloc
 	bl __init_registers
@@ -181,7 +174,10 @@ asm static void __init_registers(void)
 __declspec(section ".init") extern __rom_copy_info _rom_copy_info[];
 __declspec(section ".init") extern __bss_init_info _bss_init_info[];
 
-inline static void __copy_rom_section(void* dst, const void* src, unsigned long size)
+// clang-format on
+
+inline static void __copy_rom_section(void* dst, const void* src,
+                                      unsigned long size)
 {
 	if (size && (dst != src)) {
 		memcpy(dst, src, size);
@@ -199,20 +195,22 @@ inline static void __init_bss_section(void* dst, unsigned long size)
 #pragma scheduling off
 void __init_data(void)
 {
-    __rom_copy_info *dci;
-    __bss_init_info *bii;
+	__rom_copy_info* dci;
+	__bss_init_info* bii;
 
-    dci = _rom_copy_info;
-    while (TRUE) {
-        if (dci->size == 0) break;
+	dci = _rom_copy_info;
+	while (TRUE) {
+		if (dci->size == 0)
+			break;
 		__copy_rom_section(dci->addr, dci->rom, dci->size);
-        dci++;
-    }
+		dci++;
+	}
 
-    bii = _bss_init_info;
-    while (TRUE) {
-		if (bii->size == 0) break;
+	bii = _bss_init_info;
+	while (TRUE) {
+		if (bii->size == 0)
+			break;
 		__init_bss_section(bii->addr, bii->size);
-        bii++;
-    }
+		bii++;
+	}
 }
