@@ -54,7 +54,7 @@ r"(\w{1,2})\s+"\
 r"(?P<Symbol>[0-9A-Za-z_<>$@.*]*)\s*"\
 r"(?P<Object>\S*)"
 
-REGEX_TO_USE = MW_WII_SYMBOL_REGEX
+REGEX_TO_USE = MW_GC_SYMBOL_REGEX
 
 TEXT_SECTIONS = ["init", "text"]
 DATA_SECTIONS = [
