@@ -1,0 +1,14 @@
+#ifndef _EFX_TENEMYAPSMOKE_H
+#define _EFX_TENEMYAPSMOKE_H
+
+namespace efx {
+struct TEnemyApsmoke {
+	virtual void create(Arg*); // _00
+	virtual void forceKill();  // _04
+	virtual void fade();       // _08
+
+	// _00 VTBL
+};
+} // namespace efx
+
+#endif
