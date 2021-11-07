@@ -9,8 +9,6 @@ endif
 # Files
 #-------------------------------------------------------------------------------
 
-TARGET_COL := gc
-
 NAME := pikmin2
 VERSION := usa
 #VERSION := usa.demo
@@ -92,10 +90,6 @@ CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -r
 # for postprocess.py
 # PROCFLAGS := -fsymbol-fixup
 
-# elf2dol needs to know these in order to calculate sbss correctly.
-SDATA_PDHR := 9
-SBSS_PDHR := 10
-
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
 
 #-------------------------------------------------------------------------------
@@ -119,7 +113,7 @@ $(LDSCRIPT): ldscript.lcf
 	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
 $(DOL): $(ELF) | tools
-	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
+	$(ELF2DOL) $< $@
 	$(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 	$(PYTHON) calcprogress.py $@
 	./$(READMEGEN)
