@@ -39,7 +39,6 @@ S_FILES := $(wildcard asm/*.s)
 C_FILES := $(wildcard src/*.c)
 CPP_FILES := $(wildcard src/*.cpp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
-PATCHLINKER := patch_linker.sh
 READMEGEN := tools/UpdateReadme.exe
 
 # Outputs

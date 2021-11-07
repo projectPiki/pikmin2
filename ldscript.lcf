@@ -30,15 +30,15 @@ GROUP: {
     _size_extab = SIZEOF(._extab);
     _size_extabindex = SIZEOF(._exidx);
     _size_text = SIZEOF(.text);
-    _size_ctors = SIZEOF(.ctors); /* unlike the other sections, we can use this size symbol as-is. */
+    _size_ctors = SIZEOF(.ctors);
     _size_dtors = SIZEOF(.dtors);
     _size_rodata = SIZEOF(.rodata);
     _size_data = SIZEOF(.data);
-    _size_sdata = SIZEOF(.sdata); /* unlike the other sections, we can use this size symbol as-is. */
+    _size_sdata = SIZEOF(.sdata);
     _size_sdata2 = SIZEOF(.sdata2);
     _size_bss = SIZEOF(.bss);
     _size_sbss = SIZEOF(.sbss);
-    _size_sbss2 = SIZEOF(.sbss2); /* unlike the other sections, we can use this size symbol as-is. */
+    _size_sbss2 = SIZEOF(.sbss2);
 }
 
 FORCEFILES {
