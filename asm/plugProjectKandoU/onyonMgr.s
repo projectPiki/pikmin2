@@ -1077,7 +1077,7 @@ lbl_80518B50:
 lbl_80518B58:
 	.float 128000.0
 
-.section .sbss2 # 0x80520e40 - 0x80520ED8
+.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
 .global lbl_80520E60
 lbl_80520E60:
 	.skip 0x4

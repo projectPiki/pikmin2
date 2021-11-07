@@ -54,3 +54,10 @@ GROUP: {
     _size_sbss_reduced = _size_sbss-0x1C;
     _size_sdata2_reduced = _size_sdata2-0x10;
 }
+
+FORCEFILES {
+    __init_cpp_exceptions.o
+    ebiP2TitleCamera.o
+    ctors.o
+    dtors.o
+}

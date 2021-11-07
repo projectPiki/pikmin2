@@ -29,8 +29,8 @@ exit:
 /* 800C2484 000BF3C4  38 60 00 00 */	li r3, 0
 /* 800C2488 000BF3C8  48 00 3D D1 */	bl __end_critical_region
 /* 800C248C 000BF3CC  4B FF F2 2D */	bl __destroy_global_chain
-/* 800C2490 000BF3D0  3C 60 80 47 */	lis r3, __destroy_global_chain_reference@ha
-/* 800C2494 000BF3D4  38 03 32 C0 */	addi r0, r3, __destroy_global_chain_reference@l
+/* 800C2490 000BF3D0  3C 60 80 47 */	lis r3, _dtors@ha
+/* 800C2494 000BF3D4  38 03 32 C0 */	addi r0, r3, _dtors@l
 /* 800C2498 000BF3D8  7C 1F 03 78 */	mr r31, r0
 /* 800C249C 000BF3DC  48 00 00 10 */	b lbl_800C24AC
 lbl_800C24A0:
