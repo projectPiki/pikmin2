@@ -160,7 +160,7 @@ __vt__Q23PSM11CreaturePrm:
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global sInsReal__3PSM
 sInsReal__3PSM:
-	.skip 0x20
+	.skip 0x1C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
@@ -181,7 +181,7 @@ sBoss_DistMax__3PSM:
 .balign 0x8
 .global sTHPDinamicsProc__3PSM
 sTHPDinamicsProc__3PSM:
-	.skip 0x20
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8

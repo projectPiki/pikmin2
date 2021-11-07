@@ -425,8 +425,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/GBA.o\
 	$(BUILD_DIR)/asm/Dolphin/GBARead.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAWrite.o\
-	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o\
-	$(BUILD_DIR)/asm/Dolphin/init_tables.o\
+	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o
 
 YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
