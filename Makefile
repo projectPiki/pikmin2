@@ -9,8 +9,6 @@ endif
 # Files
 #-------------------------------------------------------------------------------
 
-TARGET_COL := gc
-
 NAME := pikmin2
 VERSION := usa
 #VERSION := usa.demo
@@ -60,7 +58,7 @@ O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM) $(DOLPHIN)\
 #-------------------------------------------------------------------------------
 
 MWCC_VERSION := 2.6
-MWLD_VERSION := 2.7e
+MWLD_VERSION := 2.6
 
 # Programs
 ifeq ($(WINDOWS),1)
@@ -69,7 +67,7 @@ ifeq ($(WINDOWS),1)
   OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy.exe
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
 else
-  WINE := wine
+  WINE ?= wine
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
@@ -78,7 +76,7 @@ CC      = $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
-PYTHON  := python
+PYTHON  := python3
 
 # POSTPROC := tools/postprocess.py
 
@@ -91,10 +89,6 @@ CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -r
 
 # for postprocess.py
 # PROCFLAGS := -fsymbol-fixup
-
-# elf2dol needs to know these in order to calculate sbss correctly.
-SDATA_PDHR := 9
-SBSS_PDHR := 10
 
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
 
@@ -119,7 +113,7 @@ $(LDSCRIPT): ldscript.lcf
 	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
 $(DOL): $(ELF) | tools
-	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
+	$(ELF2DOL) $< $@
 	$(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 	$(PYTHON) calcprogress.py $@
 	./$(READMEGEN)
@@ -132,7 +126,6 @@ tools:
 	$(MAKE) -C tools
 
 $(ELF): $(O_FILES) $(LDSCRIPT)
-	./$(PATCHLINKER) $(LD) 117
 	@echo $(O_FILES) > build/o_files
 	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
 # The Metrowerks linker doesn't generate physical addresses in the ELF program headers. This fixes it somehow.

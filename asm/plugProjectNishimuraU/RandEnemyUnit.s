@@ -79,7 +79,7 @@ lbl_8051A7D0:
 lbl_8051A7D4:
 	.float 0.5
 
-.section .sbss2 # 0x80520e40 - 0x80520ED8
+.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
 .global lbl_80520E90
 lbl_80520E90:
 	.skip 0x4

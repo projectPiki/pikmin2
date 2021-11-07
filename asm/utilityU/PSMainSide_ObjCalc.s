@@ -22,10 +22,7 @@ lbl_8049E1E0:
 	.4byte 0x82A682C8
 	.4byte 0x82A28350
 	.4byte 0x815B8358
-	.4byte 0x32000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+    .byte 0x32, 0x00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -47,12 +44,6 @@ __vt__Q23PSM18ObjCalc_SingleGame:
 	.4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
 	.4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
 	.4byte is1PGame__Q23PSM11ObjCalcBaseFv
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
@@ -62,10 +53,6 @@ lbl_80520E28:
 .global lbl_80520E2C
 lbl_80520E2C:
 	.float 1000000.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv
@@ -520,10 +507,3 @@ lbl_80472EC4:
 is1PGame__Q23PSM14ObjCalc_2PGameFv:
 /* 80472EDC 0046FE1C  38 60 00 00 */	li r3, 0
 /* 80472EE0 0046FE20  4E 80 00 20 */	blr 
-/* 80472EE4 0046FE24  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 80472EE8 0046FE28  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 80472EEC 0046FE2C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 80472EF0 0046FE30  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 80472EF4 0046FE34  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 80472EF8 0046FE38  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 80472EFC 0046FE3C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */

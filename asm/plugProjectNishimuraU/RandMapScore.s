@@ -82,7 +82,7 @@ lbl_8051A830:
 lbl_8051A834:
 	.4byte 0x43160000
 
-.section .sbss2 # 0x80520e40 - 0x80520ED8
+.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
 .global lbl_80520EA8
 lbl_80520EA8:
 	.skip 0x4

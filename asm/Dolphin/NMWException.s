@@ -28,7 +28,6 @@
 	.4byte 0x00000000
 	.4byte 0x82000008
 	.4byte __dt__26__partial_array_destructorFv
-	.skip 0x18
 
 .section ._exidx, "a"  # 0x80005660 - 0x800056C0
 .global lbl_80005660
@@ -54,7 +53,7 @@ lbl_8000569C:
 	.4byte lbl_8000569C
 	.4byte __destroy_new_array
 	.4byte 0x000003AC
-	.skip 0x14
+	.skip 0x10
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __destroy_new_array
