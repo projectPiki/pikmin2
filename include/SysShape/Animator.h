@@ -7,14 +7,15 @@ struct AnimInfo;
 struct MotionListener;
 
 struct BaseAnimator {
-	virtual void getCalc() = 0;
+	virtual void getCalc()      = 0; // _00
+	virtual void animate(float) = 0; // _04
 };
 
 struct Animator : public BaseAnimator {
 	Animator();
 
-	virtual void getCalc();
-	virtual void animate(float);
+	virtual void getCalc();      // _00
+	virtual void animate(float); // _04
 
 	void assertValid(SysShape::Model*);
 	void setCurrFrame(float);
