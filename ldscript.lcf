@@ -39,20 +39,6 @@ GROUP: {
     _size_bss = SIZEOF(.bss);
     _size_sbss = SIZEOF(.sbss);
     _size_sbss2 = SIZEOF(.sbss2); /* unlike the other sections, we can use this size symbol as-is. */
-    
-    /* Sizes, but reduced to match lbl_80005544 entries in .init. */
-    /* TODO: Figure out why they're reduced with seemingly */
-    /* random offsets? Perhaps it's padding. */
-    _size_init_reduced = _size_init-0x18;
-    _size_extab_reduced = _size_extab-0x18;
-    _size_extabindex_reduced = _size_extabindex-0x4;
-    _size_text_reduced = _size_text-0x1C;
-    _size_dtors_reduced = _size_dtors-0x10;
-    _size_rodata_reduced = _size_rodata-0xE;
-    _size_data_reduced = _size_data-0x18;
-    _size_bss_reduced = _size_bss-0x4;
-    _size_sbss_reduced = _size_sbss-0x1C;
-    _size_sdata2_reduced = _size_sdata2-0x10;
 }
 
 FORCEFILES {
