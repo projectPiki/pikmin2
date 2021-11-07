@@ -60,7 +60,7 @@ O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM) $(DOLPHIN)\
 #-------------------------------------------------------------------------------
 
 MWCC_VERSION := 2.6
-MWLD_VERSION := 2.7e
+MWLD_VERSION := 2.6
 
 # Programs
 ifeq ($(WINDOWS),1)
@@ -69,7 +69,7 @@ ifeq ($(WINDOWS),1)
   OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy.exe
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
 else
-  WINE := wine
+  WINE ?= wine
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
@@ -78,7 +78,7 @@ CC      = $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
-PYTHON  := python
+PYTHON  := python3
 
 # POSTPROC := tools/postprocess.py
 
@@ -132,7 +132,6 @@ tools:
 	$(MAKE) -C tools
 
 $(ELF): $(O_FILES) $(LDSCRIPT)
-	./$(PATCHLINKER) $(LD) 117
 	@echo $(O_FILES) > build/o_files
 	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
 # The Metrowerks linker doesn't generate physical addresses in the ELF program headers. This fixes it somehow.

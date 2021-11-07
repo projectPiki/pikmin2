@@ -48,8 +48,8 @@ __init_cpp:
 /* 800F2FD8 000EFF18  90 01 00 04 */	stw r0, 4(r1)
 /* 800F2FDC 000EFF1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800F2FE0 000EFF20  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 800F2FE4 000EFF24  3C 60 80 47 */	lis r3, __init_cpp_exceptions_reference@ha
-/* 800F2FE8 000EFF28  38 03 2F 00 */	addi r0, r3, __init_cpp_exceptions_reference@l
+/* 800F2FE4 000EFF24  3C 60 80 47 */	lis r3, _ctors@ha
+/* 800F2FE8 000EFF28  38 03 2F 00 */	addi r0, r3, _ctors@l
 /* 800F2FEC 000EFF2C  7C 1F 03 78 */	mr r31, r0
 /* 800F2FF0 000EFF30  48 00 00 04 */	b lbl_800F2FF4
 lbl_800F2FF4:
