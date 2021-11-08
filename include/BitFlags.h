@@ -1,7 +1,7 @@
 #ifndef _BITFLAGS_H
 #define _BITFLAGS_H
 
-#include "Stream.h"
+#include "stream.h"
 #include "types.h"
 
 // TODO
