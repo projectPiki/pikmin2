@@ -35,8 +35,8 @@ struct CollisionBuffer {
 	void insertSort(CellObject*, float);
 	int findIndex(CellObject*);
 
-	int _00;                  // _00
-	int _04;                  // _04
+	int m_nodeCount;          // _00 /* total node count? */
+	int m_usedNodeCount;      // _04 /* used node count? */
 	CollNode* m_collNodes;    // _08
 	CellObject* m_cellObject; // _0C
 };
@@ -85,7 +85,7 @@ struct Cell {
 };
 
 struct CellObject : public TPositionObject {
-	virtual u8 checkCollision(void*);
+	virtual void checkCollision(CellObject*);
 	virtual void getBoundingSphere(Sys::Sphere&);
 	virtual bool collisionUpdatable();
 	virtual bool isPiki();
@@ -95,7 +95,7 @@ struct CellObject : public TPositionObject {
 	virtual u8 getObjType();
 
 	void exitCell();
-	inline float calcCollisionDistance(CellObject*);
+	float calcCollisionDistance(CellObject*);
 	void updateCollisionBuffer(CellObject*);
 	void resolveUsingBuffer();
 
@@ -147,7 +147,7 @@ struct CellPyramid : public SweepPrune::World {
 	void entry(CellObject*, Sys::Sphere&, int&, Recti&);
 	void create(BoundBox2d&, float);
 	void drawCell(Graphics&, Sys::Sphere&);
-	void getPikiCount(int, Recti&) const;
+	int getPikiCount(int, Recti&) const;
 	void drawCell(Graphics&, int, Recti&, float) const;
 	void drawCell(Graphics&, int);
 	void drawCell(Graphics&);
@@ -169,6 +169,7 @@ struct CellPyramid : public SweepPrune::World {
 
 	static u8 sOptResolveColl;
 	static u8 sSpeedUpResolveColl;
+	static bool disableAICulling;
 };
 } // namespace Game
 

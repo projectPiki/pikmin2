@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/os.h"
 
 #include "CellMgrParms.h"
 
@@ -6,7 +7,32 @@
 
 CellMgrParms* CellMgrParms::mInstance;
 
+// struct temp : CellMgrParms {
+// 	void* m_end;
+// };
+
 /*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+void _Print(char* name, ...)
+{
+	OSReport("CellMgrParms");
+}
+
+inline _CellParms::_CellParms(Parameters* p)
+	: m_p000(p, 0x70303030, "?¿½o?¿½b?¿½t?¿½@?¿½?¿½?¿½g?¿½?¿½", false, false, true)
+	, m_p001(p, 0x70303031, "?¿½}?¿½W?¿½b?¿½N?¿½i?¿½?¿½?¿½o?¿½[", true, false, true)
+	, m_p002(p, 0x70303032, "G-Half", false, false, true)
+	, m_p003(p, 0x70303033, "UpdateMgr", false, false, true)
+{}
+
+/*
+ * __ct__
+ * TODO: This should be 87 (decimal) instructions long.
+ *       Currently it is only 85.
+ *
  * --INFO--
  * Address:	........
  * Size:	00015C
@@ -14,12 +40,26 @@ CellMgrParms* CellMgrParms::mInstance;
 inline CellMgrParms::CellMgrParms()
     : Parameters(&m_end, nullptr, "CellMgr")
     , JKRDisposer()
-    , m_p000(this, 0x70303030, "ï¿½oï¿½bï¿½tï¿½@ï¿½ï¿½ï¿½gï¿½ï¿½", false, false, true)
-    , m_p001(this, 0x70303031, "ï¿½}ï¿½Wï¿½bï¿½Nï¿½iï¿½ï¿½ï¿½oï¿½[", true, false, true)
-    , m_p002(this, 0x70303032, "G-Half", false, false, true)
-    , m_p003(this, 0x70303033, "UpdateMgr", false, false, true)
-{
-}
+	, _CellParms(this)
+	// , _CellParms {
+	// 	.m_p000 = Parm<bool>(this, 0x70303030, "?¿½o?¿½b?¿½t?¿½@?¿½?¿½?¿½g?¿½?¿½", false, false, true),
+	// 	.m_p001 = Parm<bool>(this, 0x70303031, "?¿½}?¿½W?¿½b?¿½N?¿½i?¿½?¿½?¿½o?¿½[", true, false, true),
+	// 	.m_p002 = Parm<bool>(this, 0x70303032, "G-Half", false, false, true),
+	// 	.m_p003 = Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
+	// }
+	{}
+	// , parms(this)
+	// : _CellMgrParms(m_end)
+    // : _CellMgrParms() {
+    // 	Parameters {
+    //     &m_end, nullptr, "CellMgr"
+    // 	}
+    // 	, JKRDisposer()
+    //     , Parm<bool>(this, 0x70303030, "?¿½o?¿½b?¿½t?¿½@?¿½?¿½?¿½g?¿½?¿½", false, false, true)
+    //     , Parm<bool>(this, 0x70303031, "?¿½}?¿½W?¿½b?¿½N?¿½i?¿½?¿½?¿½o?¿½[", true, false, true)
+    //     , Parm<bool>(this, 0x70303032, "G-Half", false, false, true)
+    //     , Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
+    // }
 
 /*
  * --INFO--

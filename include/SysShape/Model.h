@@ -1,6 +1,8 @@
 #ifndef _SYSSHAPE_MODEL_H
 #define _SYSSHAPE_MODEL_H
 
+#include "SysShape/MtxObject.h"
+
 namespace Sys {
 struct Sphere;
 } // namespace Sys
@@ -8,7 +10,7 @@ struct Sphere;
 namespace SysShape {
 struct Joint;
 
-struct Model {
+struct Model : MtxObject {
 	Model(struct J3DModelData*, unsigned long, unsigned long);
 
 	void clearAnimatorAll();

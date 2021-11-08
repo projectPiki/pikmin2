@@ -1,4 +1,15 @@
+#include "CNode.h"
+#include "CollInfo.h"
+#include "JSystem/JUTException.h"
+#include "Sys/OBB.h"
+#include "Sys/OBBTree.h"
+#include "Sys/GridDivider.h"
+#include "Sys/TriIndexList.h"
 #include "types.h"
+#include "Platform.h"
+#include "PlatAttacher.h"
+#include "mapCode.h"
+#include "Matrixf.h"
 
 /*
  * --INFO--
@@ -6,6 +17,8 @@
  * Size:	000044
  */
 Platform::Platform()
+    : CNode()
+    , m_triDivider(nullptr)
 {
 	/*
 	.loc_0x0:
@@ -34,8 +47,9 @@ Platform::Platform()
  * Address:	801336EC
  * Size:	000008
  */
-void Platform::getTriDivider()
+Sys::OBBTree* Platform::getTriDivider()
 {
+	return m_triDivider;
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x18(r3)
@@ -48,8 +62,11 @@ void Platform::getTriDivider()
  * Address:	801336F4
  * Size:	00003C
  */
-void Platform::setMapCodeAll(MapCode::Code&)
+void Platform::setMapCodeAll(MapCode::Code& code)
 {
+	for (int i = 0; i < m_triDivider->m_triangleTable->m_endIndex; i++) {
+		m_triDivider->m_triangleTable->m_objects[i].m_code = code;
+	}
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x18(r3)
@@ -79,7 +96,7 @@ void Platform::setMapCodeAll(MapCode::Code&)
  * Address:	80133730
  * Size:	000084
  */
-void Platform::clone(Matrixf&)
+void Platform::clone(Matrixf& matrix)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +428,7 @@ void PlatAttacher::read(Stream&)
  * Address:	80133AC8
  * Size:	0000B0
  */
-void ArrayContainer<Vector3f>::read(Stream&)
+template <> void ArrayContainer<Vector3f>::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -471,14 +488,14 @@ void ArrayContainer<Vector3f>::read(Stream&)
  * Address:	80133B78
  * Size:	000004
  */
-void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
+template<> void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80133B7C
  * Size:	000068
  */
-void ArrayContainer<Vector3f>::alloc(int)
+template<> void ArrayContainer<Vector3f>::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -516,7 +533,7 @@ void ArrayContainer<Vector3f>::alloc(int)
  * Address:	80133BE4
  * Size:	000080
  */
-void ArrayContainer<Vector3f>::~ArrayContainer()
+template<> ArrayContainer<Vector3f>::~ArrayContainer()
 {
 	/*
 	.loc_0x0:
@@ -564,7 +581,7 @@ void ArrayContainer<Vector3f>::~ArrayContainer()
  * Address:	80133C64
  * Size:	000070
  */
-void Container<Vector3f>::~Container()
+template<> Container<Vector3f>::~Container()
 {
 	/*
 	.loc_0x0:
@@ -608,8 +625,9 @@ void Container<Vector3f>::~Container()
  * Address:	80133CD4
  * Size:	000008
  */
-void PlatAttacher::getNumShapes()
+int PlatAttacher::getNumShapes()
 {
+	return m_numShapes;
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x0(r3)
@@ -622,8 +640,13 @@ void PlatAttacher::getNumShapes()
  * Address:	80133CDC
  * Size:	00007C
  */
-void PlatAttacher::getJointIndex(int)
+ushort PlatAttacher::getJointIndex(int i)
 {
+// #ifdef MATCHING
+// #line 311 // Will be 312 on assert line
+// #endif
+	P2ASSERTLINE(312, (-1 < i) && (m_numShapes < i));
+	return m_jointIndices[i];
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -669,8 +692,11 @@ void PlatAttacher::getJointIndex(int)
  * Address:	80133D58
  * Size:	00007C
  */
-void PlatAttacher::getPlatform(int)
+Platform* PlatAttacher::getPlatform(int i)
 {
+	// Only 6 lines difference from the previous assert!
+	P2ASSERTLINE(318, (-1 < i) && (m_numShapes < i));
+	return &m_platforms[i];
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1371,7 +1397,7 @@ void CollTree::releaseRec(CollPart*)
  * Address:	80134540
  * Size:	000008
  */
-void CollPart::getChild()
+CollPart* CollPart::getChild()
 {
 	/*
 	.loc_0x0:
@@ -1385,7 +1411,7 @@ void CollPart::getChild()
  * Address:	80134548
  * Size:	000008
  */
-void CollPart::getNext()
+CollPart* CollPart::getNext()
 {
 	/*
 	.loc_0x0:
@@ -1908,7 +1934,7 @@ void CollTree::checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**,
  * Address:	80134B90
  * Size:	000010
  */
-void CollPart::isLeaf()
+bool CollPart::isLeaf()
 {
 	/*
 	.loc_0x0:
@@ -1924,7 +1950,7 @@ void CollPart::isLeaf()
  * Address:	80134BA0
  * Size:	000030
  */
-void CollPart::isPrim()
+bool CollPart::isPrim()
 {
 	/*
 	.loc_0x0:
@@ -2672,7 +2698,7 @@ Sphere::Sphere(Vector3f&, float)
  * Address:	80135510
  * Size:	000010
  */
-void CollPart::isSphere()
+bool CollPart::isSphere()
 {
 	/*
 	.loc_0x0:
@@ -2688,7 +2714,7 @@ void CollPart::isSphere()
  * Address:	80135520
  * Size:	00001C
  */
-void Vector3f::Vector3(const Vector3f&)
+Vector3f::Vector3(const Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2707,7 +2733,7 @@ void Vector3f::Vector3(const Vector3f&)
  * Address:	8013553C
  * Size:	000014
  */
-void CollPart::isTubeTree()
+bool CollPart::isTubeTree()
 {
 	/*
 	.loc_0x0:
@@ -2724,7 +2750,7 @@ void CollPart::isTubeTree()
  * Address:	80135550
  * Size:	000014
  */
-void CollPart::isTube()
+bool CollPart::isTube()
 {
 	/*
 	.loc_0x0:
@@ -3501,7 +3527,7 @@ void CollPart::attachModel(SysShape::MtxObject*)
  * Address:	80135E44
  * Size:	000034
  */
-void CollTree::getCollPart(unsigned long)
+CollPart* CollTree::getCollPart(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3532,7 +3558,7 @@ void CollTree::getCollPart(unsigned long)
  * Address:	80135E78
  * Size:	000640
  */
-void CollPart::getCollPart(unsigned long)
+CollPart* CollPart::getCollPart(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4545,7 +4571,7 @@ void CollTree::findCollPart(FindCollPartArg&)
  * Address:	80136B1C
  * Size:	000124
  */
-void CollTree::getRandomCollPart()
+CollPart* CollTree::getRandomCollPart()
 {
 	/*
 	.loc_0x0:
@@ -4780,7 +4806,7 @@ void CollPart::init(SysShape::MtxObject*)
  * Address:	80136DB0
  * Size:	000030
  */
-void CollPart::isStickable()
+bool CollPart::isStickable()
 {
 	/*
 	.loc_0x0:
@@ -6948,7 +6974,7 @@ void MouthSlots::setup(int, SysShape::Model*, char*)
  * Address:	80138778
  * Size:	00007C
  */
-void MouthSlots::getSlot(int)
+MouthCollPart* MouthSlots::getSlot(int)
 {
 	/*
 	.loc_0x0:
@@ -7464,7 +7490,7 @@ void CollPart::clone(SysShape::MtxObject*, CollPartMgr*)
  * Address:	80138DE0
  * Size:	000020
  */
-void CollPart::getChildCount()
+int CollPart::getChildCount()
 {
 	/*
 	.loc_0x0:
@@ -7761,10 +7787,10 @@ void CollPart::addChild(CollPart*)
  * Address:	8013917C
  * Size:	000008
  */
-void CNode::setName(char* a1)
+void CNode::setName(char* name)
 {
 	// Generated from stw r4, 0x14(r3)
-	_14 = a1;
+	m_name = name;
 }
 
 /*
@@ -7772,7 +7798,7 @@ void CNode::setName(char* a1)
  * Address:	80139184
  * Size:	000024
  */
-void Stream::readU16()
+u16 Stream::readU16()
 {
 	/*
 	.loc_0x0:
@@ -7985,7 +8011,7 @@ AgeCollPart::~AgeCollPart()
  * Address:	801393F0
  * Size:	000008
  */
-u32 CollPart::isMouth() { return 0x0; }
+bool CollPart::isMouth() { return false; }
 
 /*
  * --INFO--
@@ -8085,7 +8111,7 @@ CollPartFactory::~CollPartFactory()
  * Address:	80139484
  * Size:	000008
  */
-u32 MouthCollPart::isMouth() { return 0x1; }
+bool MouthCollPart::isMouth() { return true; }
 
 namespace Sys {
 
@@ -8165,7 +8191,7 @@ OBB::~OBB()
  * Address:	80139560
  * Size:	000070
  */
-void Container<int>::~Container()
+template<> Container<int>::~Container()
 {
 	/*
 	.loc_0x0:
@@ -8209,7 +8235,7 @@ void Container<int>::~Container()
  * Address:	801395D0
  * Size:	000080
  */
-void ArrayContainer<int>::~ArrayContainer()
+template<> ArrayContainer<int>::~ArrayContainer()
 {
 	/*
 	.loc_0x0:
@@ -8257,7 +8283,7 @@ void ArrayContainer<int>::~ArrayContainer()
  * Address:	80139650
  * Size:	00004C
  */
-void ArrayContainer<int>::alloc(int)
+template<> void ArrayContainer<int>::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -8288,7 +8314,7 @@ void ArrayContainer<int>::alloc(int)
  * Address:	8013969C
  * Size:	0000B0
  */
-void ArrayContainer<int>::read(Stream&)
+template<> void ArrayContainer<int>::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -8348,7 +8374,7 @@ void ArrayContainer<int>::read(Stream&)
  * Address:	8013974C
  * Size:	000004
  */
-void ArrayContainer<int>::readObject(Stream&, int&) { }
+template<> void ArrayContainer<int>::readObject(Stream&, int&) { }
 
 namespace Sys {
 
@@ -8458,7 +8484,7 @@ IndexList::~IndexList()
  * Address:	8013983C
  * Size:	000010
  */
-void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
+template<> void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
 {
 	/*
 	.loc_0x0:
@@ -8474,7 +8500,7 @@ void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
  * Address:	8013984C
  * Size:	000040
  */
-void ArrayContainer<Vector3f>::addOne(Vector3f&)
+template<> void ArrayContainer<Vector3f>::addOne(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -8502,7 +8528,7 @@ void ArrayContainer<Vector3f>::addOne(Vector3f&)
  * Address:	8013988C
  * Size:	000060
  */
-void MonoObjectMgr<CollPart>::birth()
+template<> void MonoObjectMgr<CollPart>::birth()
 {
 	/*
 	.loc_0x0:
@@ -8542,7 +8568,7 @@ void MonoObjectMgr<CollPart>::birth()
  * Address:	801398EC
  * Size:	000054
  */
-void MonoObjectMgr<CollPart>::kill(CollPart*)
+template<> void MonoObjectMgr<CollPart>::kill(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -8579,7 +8605,7 @@ void MonoObjectMgr<CollPart>::kill(CollPart*)
  * Address:	80139940
  * Size:	00003C
  */
-void MonoObjectMgr<CollPart>::getEmptyIndex()
+template<> void MonoObjectMgr<CollPart>::getEmptyIndex()
 {
 	/*
 	.loc_0x0:
@@ -8612,14 +8638,14 @@ void MonoObjectMgr<CollPart>::getEmptyIndex()
  * Address:	8013997C
  * Size:	000004
  */
-void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
+template<> void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80139980
  * Size:	0000D4
  */
-void ArrayContainer<Vector3f>::write(Stream&)
+template<> void ArrayContainer<Vector3f>::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -8688,7 +8714,7 @@ void ArrayContainer<Vector3f>::write(Stream&)
  * Address:	80139A54
  * Size:	000010
  */
-void ArrayContainer<Vector3f>::get(void*)
+template<> void ArrayContainer<Vector3f>::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -8704,7 +8730,7 @@ void ArrayContainer<Vector3f>::get(void*)
  * Address:	80139A64
  * Size:	000008
  */
-void ArrayContainer<Vector3f>::getNext(void*)
+template<> void ArrayContainer<Vector3f>::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -8718,14 +8744,14 @@ void ArrayContainer<Vector3f>::getNext(void*)
  * Address:	80139A6C
  * Size:	000008
  */
-u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
+template<> u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80139A74
  * Size:	000008
  */
-void ArrayContainer<Vector3f>::getEnd()
+template<> void ArrayContainer<Vector3f>::getEnd()
 {
 	/*
 	.loc_0x0:

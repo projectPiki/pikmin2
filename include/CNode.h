@@ -16,7 +16,7 @@ struct CNode {
 	void concat(CNode*);
 	void del();
 
-	void setName();
+	void setName(char*);
 
 	// _00 vtbl
 	CNode* _04;   // _04

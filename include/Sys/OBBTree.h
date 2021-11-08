@@ -2,6 +2,10 @@
 #define _SYS_OBBTREE_H
 
 #include "Vector3.h"
+#include "Sys/TriDivider.h"
+#include "Sys/OBB.h"
+#include "Sys/TriangleTable.h"
+#include "Sys/Sphere.h"
 
 namespace Game {
 struct MoveInfo;
@@ -10,27 +14,14 @@ struct CurrTriInfo;
 
 namespace Sys {
 struct VertexTable;
-struct TriangleTable;
 struct RayIntersectInfo;
-struct Sphere;
-
-struct OBBTree {
+struct OBBTree : TriDivider {
 	OBBTree();
-	~OBBTree();
+	virtual ~OBBTree();
 
-	void clone(struct Matrixf&);
-	void construct(Sys::VertexTable*, Sys::TriangleTable*, int, int);
-	void findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&);
-	void findTriLists(Sys::Sphere&);
-	void getBoundBox(struct BoundBox&);
-	void getCurrTri(Game::CurrTriInfo&);
-	void getMinY(Vector3f&);
-	void read(Stream&);
-	void readWithoutVerts(Stream&, Sys::VertexTable&);
-	void traceMove_global(Game::MoveInfo&, float);
-	void traceMove_new_global(Game::MoveInfo&, float);
-	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float);
-	void traceMove(Matrixf&, Matrixf&, Game::MoveInfo&, float);
+	VertexTable*   m_vertexTable;    // _18
+	TriangleTable* m_triangleTable;  // _1C
+	OBB            m_obb;            // _20
 };
 } // namespace Sys
 

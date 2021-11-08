@@ -2,10 +2,9 @@
 #define _MONOOBJECTMGR_H
 
 #include "types.h"
+#include "ObjectMgr.h"
 
-template <typename T> struct MonoObjectMgr : public CNode {
-	s8 _18;            // _18
-	u32* _1C;          // _1C
+template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 	int m_activeCount; // _20
 	int m_max;         // _24
 	T** m_array;       // _28

@@ -5,9 +5,11 @@
 
 template <typename T> struct Vector3 {
 	T x, y, z;
+	inline Vector3() {};
+	Vector3(const Vector3<T>&);
 
 	void operator=(const Vector3<T>&);
-	float distance(Vector3<T>&);
+	inline T distance(Vector3<T>&);
 	void length() const;
 	void normalise();
 

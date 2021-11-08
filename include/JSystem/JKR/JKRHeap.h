@@ -17,7 +17,7 @@ struct JKRHeap : public JKRDisposer {
 		static bool isVerbose();
 		TState(const JKRHeap*, ulong, bool);
 		bool isCompareOnDestructed() const;
-		JKRHeap* getHeap() const;
+		const JKRHeap* getHeap() const;
 		u32 getId() const;
 
 		struct TLocation {
@@ -93,7 +93,7 @@ struct JKRHeap : public JKRDisposer {
 	virtual void state_register(TState*, ulong) const;
 	virtual bool state_compare(const TState&, const TState&) const;
 	static void state_dumpDifference(const TState&, const TState&);
-	void state_dump(const TState&) const;
+	void state_dump(const TState*) const;
 
 	OSMutexObject m_mutex; // _18
 	void* m_startAddress;  // _30
