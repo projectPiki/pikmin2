@@ -10,6 +10,10 @@
  * ====================================================
  */
 
+#ifdef __cplusplus
+extern "C" {
+#endif // ifdef __cplusplus
+
 /* Sometimes it's necessary to define __LITTLE_ENDIAN explicitly
    but these catch some common cases. */
 
@@ -30,11 +34,12 @@
 #define __LOp(x) *(1 + (int*)x)
 #endif
 
-#ifdef __STDC__
+// TODO: should __STDC__ actually be defined?
+// #ifdef __STDC__
 #define __P(p) p
-#else
-#define __P(p) ()
-#endif
+// #else
+// #define __P(p) ()
+// #endif
 
 /*
  * ANSI/POSIX
@@ -213,3 +218,7 @@ extern double __kernel_sin __P((double, double, int));
 extern double __kernel_cos __P((double, double));
 extern double __kernel_tan __P((double, double, int));
 extern int __kernel_rem_pio2 __P((double*, double*, int, int, int, const int*));
+
+#ifdef __cplusplus
+};
+#endif // ifdef __cplusplus
