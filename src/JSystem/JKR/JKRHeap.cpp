@@ -8,7 +8,7 @@
 
 // TODO: This is stupid-hacky. Fix pls.
 typedef void Destructor(void*, short);
-#define INVOKE_VIRT_DTOR(o, v) ((*(Destructor***)(o)[2])(o), (v))
+#define INVOKE_VIRT_DTOR(o, v) (((*(Destructor***)(o))[2])((o), (v)))
 
 /*
  * __ct__
@@ -25,7 +25,7 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
 	OSInitMutex(&m_mutex);
 	m_heapSize     = size;
 	m_startAddress = startPtr;
-	m_endAddress   = (u8*)startPtr + size);
+	m_endAddress   = (u8*)startPtr + size;
 
 	if (parentHeap != nullptr) {
 		JSUPtrLink* pJVar1 = _40.m_head;
@@ -44,11 +44,10 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
 		becomeCurrentHeap();
 	}
 	_68 = shouldSetErrorHandlerMaybe;
-	if (_68)
-		&&(JKRHeap::mErrorHandler == nullptr)
-		{
-			JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
-		}
+	if ((_68)&&(JKRHeap::mErrorHandler == nullptr))
+	{
+		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
+	}
 	m_fillFlag      = JKRHeap::sDefaultFillFlag;
 	m_fillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
 	_69             = 0;
@@ -259,12 +258,12 @@ bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize,
 	bool sanityCheck = (arenaLo != arenaHi);
 	if (sanityCheck) {
 		OSInitAlloc(arenaLo, arenaHi, numHeaps);
-		u8* userRamEnd   = (u8*)(ulong)arenaHi & ~0x1f);
-		u8* userRamStart = (u8*)((ulong)arenaLo + 0x1f) & ~0x1f);
+		u8* userRamEnd   = (u8*)((ulong)arenaHi & ~0x1f);
+		u8* userRamStart = (u8*)(((ulong)arenaLo + 0x1f) & ~0x1f);
 		// TODO: Remove hardcoding of start of memory?
 		mCodeStart = (u8*)0x80000000;
 		// TODO: Remove hardcoding of what I've called OS::PhysicalMemorySize.
-		mMemorySize   = *(u32*)0x80000028);
+		mMemorySize   = *(u32*)0x80000028;
 		mCodeEnd      = userRamStart;
 		mUserRamStart = userRamStart;
 		mUserRamEnd   = userRamEnd;
@@ -471,8 +470,9 @@ void* JKRHeap::alloc(ulong byteCount, int padding)
  */
 void JKRHeap::free(void* memory, JKRHeap* heap)
 {
-	if (heap)
-		|| (heap = findFromRoot(memory), heap) { heap->free(memory); }
+	if ((heap) || (heap = findFromRoot(memory), heap)) {
+		heap->free(memory);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -536,7 +536,7 @@ void JKRHeap::callAllDisposer()
 	JSUPtrLink* link;
 	while (link = _5C.m_head, link != nullptr) {
 		// delete (JKRHeap*)link->m_value);
-		INVOKE_VIRT_DTOR(JKRHeap*)link->m_value, -1);
+		INVOKE_VIRT_DTOR((JKRHeap*)link->m_value, -1);
 	}
 	/*
 	.loc_0x0:
@@ -858,8 +858,9 @@ JKRHeap* JKRHeap::findFromRoot(void* memory)
  */
 JKRHeap* JKRHeap::find(void* memory) const
 {
-	if (memory < m_startAddress)
-		|| (m_endAddress <= memory) { return nullptr; }
+	if ((memory < m_startAddress) || (m_endAddress <= memory)) {
+		return nullptr;
+	}
 	if (_40.m_linkCount != 0) {
 		JSUPtrLink* pJVar12 = _40.m_head;
 		if (pJVar12) {
@@ -1227,12 +1228,10 @@ u32 JKRHeap::dispose(void* memory, ulong p2)
 	JSUPtrLink* link3;
 	while (link2 = link1, link2 != nullptr) {
 		void* value = link2->m_value;
-		if (value < memory) || ((u8*)memory + p2) <= value)
-			{
-				link1 = link2->m_next;
-				link3 = link2;
-			}
-		else {
+		if ((value < memory) || ((u8*)memory + p2) <= value) {
+			link1 = link2->m_next;
+			link3 = link2;
+		} else {
 			INVOKE_VIRT_DTOR(value, -1);
 			link1 = (link3) ? link3->m_next : _5C.m_head;
 		}
@@ -2264,7 +2263,7 @@ JKRHeap::TState::TLocation::TLocation()
  * Size:	000020
  */
 JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, ulong p2, bool p3)
-    : m_heap(heap) ? heap : JKRHeap::sCurrentHeap)
+    : m_heap((heap) ? heap : JKRHeap::sCurrentHeap)
     , _04(p2)
     , _08(p3)
 {
@@ -2290,7 +2289,7 @@ JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, ulong p2, bool p3)
  * Address:	80024608
  * Size:	000008
  */
-JKRHeap* JKRHeap::TState::getHeap() const { return m_heap; }
+const JKRHeap* JKRHeap::TState::getHeap() const { return m_heap; }
 
 /*
  * --INFO--
@@ -2344,7 +2343,7 @@ void JKRHeap::state_dumpDifference(const JKRHeap::TState&,
  * Address:	80024638
  * Size:	000004
  */
-void JKRHeap::state_dump(const JKRHeap::TState&) const { }
+void JKRHeap::state_dump(const JKRHeap::TState*) const { }
 
 /*
  * --INFO--
