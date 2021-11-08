@@ -115,7 +115,9 @@ $(LDSCRIPT): ldscript.lcf
 $(DOL): $(ELF) | tools
 	$(ELF2DOL) $< $@
 	$(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
+ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(PYTHON) calcprogress.py $@
+endif
 	./$(READMEGEN)
 
 clean:
