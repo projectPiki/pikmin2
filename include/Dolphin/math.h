@@ -7,6 +7,11 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#ifndef __MWERKS__
+// Get clangd to shut up about __fabs being undefined.
+#define __fabs(x) (x)
+#endif
+
 #define FABS(x) (float)__fabs(x)
 
 #define TAU     6.2831855f
