@@ -208,72 +208,98 @@ extern float lbl_805201D4; // 0.0
  * Address:	80411858
  * Size:	0000F4
  */
-asm void CRSplineTangent(float, Vector3f*)
-{
-	// clang-format off
-	nofralloc
-     stwu      r1, -0x20(r1)
-     stfd      f31, 0x10(r1)
-     psq_st    f31,0x18(r1),0,0
-     lfs       f0, lbl_80520294
-     fmuls     f10, f1, f1
-     lfs       f2, lbl_8052029C
-     fmuls     f5, f0, f1
-     lfs       f6, lbl_80520290
-     lfs       f0, lbl_805202A4
-     fmuls     f3, f2, f1
-     lfs       f4, lbl_80520298
-     fmadds    f5, f6, f10, f5
-     lfs       f7, lbl_80520288
-     fmuls     f0, f0, f1
-     lfs       f2, lbl_805202A0
-     fmsubs    f12, f4, f10, f3
-     fsubs     f11, f5, f7
-     fmadds    f6, f2, f10, f0
-     lfs       f2, 0x0(r4)
-     lfs       f0, 0xC(r4)
-     lfs       f5, 0x4(r4)
-     fmuls     f3, f2, f11
-     fmuls     f2, f0, f12
-     lfs       f4, 0x10(r4)
-     fadds     f13, f7, f6
-     lfs       f8, lbl_8052028C
-     fmuls     f6, f5, f11
-     lfs       f0, 0x18(r4)
-     fmuls     f5, f4, f12
-     lfs       f9, 0x8(r4)
-     lfs       f7, 0x14(r4)
-     fmsubs    f31, f8, f10, f1
-     lfs       f4, 0x1C(r4)
-     fadds     f2, f3, f2
-     fmuls     f1, f0, f13
-     lfs       f0, 0x24(r4)
-     lfs       f8, 0x20(r4)
-     fmuls     f10, f9, f11
-     fmuls     f9, f7, f12
-     lfs       f3, 0x28(r4)
-     lfs       f7, 0x2C(r4)
-     fadds     f5, f6, f5
-     fmuls     f4, f4, f13
-     fadds     f1, f2, f1
-     fmuls     f0, f0, f31
-     fadds     f9, f10, f9
-     fmuls     f6, f8, f13
-     fadds     f0, f1, f0
-     fadds     f2, f5, f4
-     fmuls     f1, f3, f31
-     fadds     f3, f9, f6
-     stfs      f0, 0x0(r3)
-     fmuls     f0, f7, f31
-     fadds     f1, f2, f1
-     fadds     f0, f3, f0
-     stfs      f1, 0x4(r3)
-     stfs      f0, 0x8(r3)
-     psq_l     f31,0x18(r1),0,0
-     lfd       f31, 0x10(r1)
-     addi      r1, r1, 0x20
-     blr
-	// clang-format on
+// asm void CRSplineTangent(float, Vector3f*)
+// {
+// 	// clang-format off
+// 	nofralloc
+//      stwu      r1, -0x20(r1)
+//      stfd      f31, 0x10(r1)
+//      psq_st    f31,0x18(r1),0,0
+//      lfs       f0, lbl_80520294
+//      fmuls     f10, f1, f1
+//      lfs       f2, lbl_8052029C
+//      fmuls     f5, f0, f1
+//      lfs       f6, lbl_80520290
+//      lfs       f0, lbl_805202A4
+//      fmuls     f3, f2, f1
+//      lfs       f4, lbl_80520298
+//      fmadds    f5, f6, f10, f5
+//      lfs       f7, lbl_80520288
+//      fmuls     f0, f0, f1
+//      lfs       f2, lbl_805202A0
+//      fmsubs    f12, f4, f10, f3
+//      fsubs     f11, f5, f7
+//      fmadds    f6, f2, f10, f0
+//      lfs       f2, 0x0(r4)
+//      lfs       f0, 0xC(r4)
+//      lfs       f5, 0x4(r4)
+//      fmuls     f3, f2, f11
+//      fmuls     f2, f0, f12
+//      lfs       f4, 0x10(r4)
+//      fadds     f13, f7, f6
+//      lfs       f8, lbl_8052028C
+//      fmuls     f6, f5, f11
+//      lfs       f0, 0x18(r4)
+//      fmuls     f5, f4, f12
+//      lfs       f9, 0x8(r4)
+//      lfs       f7, 0x14(r4)
+//      fmsubs    f31, f8, f10, f1
+//      lfs       f4, 0x1C(r4)
+//      fadds     f2, f3, f2
+//      fmuls     f1, f0, f13
+//      lfs       f0, 0x24(r4)
+//      lfs       f8, 0x20(r4)
+//      fmuls     f10, f9, f11
+//      fmuls     f9, f7, f12
+//      lfs       f3, 0x28(r4)
+//      lfs       f7, 0x2C(r4)
+//      fadds     f5, f6, f5
+//      fmuls     f4, f4, f13
+//      fadds     f1, f2, f1
+//      fmuls     f0, f0, f31
+//      fadds     f9, f10, f9
+//      fmuls     f6, f8, f13
+//      fadds     f0, f1, f0
+//      fadds     f2, f5, f4
+//      fmuls     f1, f3, f31
+//      fadds     f3, f9, f6
+//      stfs      f0, 0x0(r3)
+//      fmuls     f0, f7, f31
+//      fadds     f1, f2, f1
+//      fadds     f0, f3, f0
+//      stfs      f1, 0x4(r3)
+//      stfs      f0, 0x8(r3)
+//      psq_l     f31,0x18(r1),0,0
+//      lfd       f31, 0x10(r1)
+//      addi      r1, r1, 0x20
+//      blr
+// 	// clang-format on
+// }
+
+vector3f *CRSplineTangent(float time, vector3f *output, vector3f *points[4]) {
+	// No idea if I did the array correctly, and I am not going for a perfect match.
+
+	// Calculates the slope of the tangent line to a Catmull-Rom spline defined by the four points at the given time.
+	// output argument should be a pointer to a vector; needs to be initialized ahead of time.
+
+	// Calculate the coefficients to multiply by each point.
+	float A = lbl_80520290*time*time + lbl_80520294*time - lbl_80520288;
+	float B = lbl_80520298*time*time - lbl_8052029C*time;
+	float C = lbl_805202A0*time*time + lbl_805202A4*time + lbl_80520288;
+	float D = lbl_8052028C*time*time - time
+
+	// Multiply the coeficcients by the control points component-wise
+	output->x = points[0]->x*A + points[1]->x*B + points[2]->x*C + points[3]->x*D;
+	output->y = points[0]->y*A + points[1]->y*B + points[2]->y*C + points[3]->y*D;
+	output->z = points[0]->z*A + points[1]->z*B + points[2]->z*C + points[3]->z*D;
+
+	return output;
+
+	/*
+	 * time should be in register f1
+	 * pointer to output should be r3
+	 * pointer to points array should be r4
+	 */
 }
 
 #include "BoundBox.h"
