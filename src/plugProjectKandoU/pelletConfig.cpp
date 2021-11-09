@@ -1,6 +1,6 @@
 #include "types.h"
 
-#include "Game/PelletConfig.h"
+#include "Game/pelletConfig.h"
 #include "JSystem/JUTException.h"
 #include "PrimTagParm.h"
 #include "Dolphin/string.h"
