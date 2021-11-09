@@ -1,82 +1,36 @@
-#include "types.h"
+#include "Game/Jigumo_ProperAnimator.h"
 
 namespace Game {
-
-/*
- * --INFO--
- * Address:	80368858
- * Size:	000008
- */
-void Jigumo::ProperAnimator::setAnimMgr(SysShape::AnimMgr* a1)
-{
-	// Generated from stw r4, 0x20(r3)
-	_20 = a1;
-}
-
-/*
- * --INFO--
- * Address:	80368860
- * Size:	000008
- */
-void Jigumo::ProperAnimator::getAnimator(int)
-{
+namespace Jigumo {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8034B63C
+	 * Size:	000008
+	 */
+	void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr)
+	{
+		m_animator.m_animMgr = mgr;
+	}
 
-/*
- * --INFO--
- * Address:	80368868
- * Size:	00005C
- */
-Jigumo::ProperAnimator::~ProperAnimator(void)
-{
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x2B40
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x23A8
-	  stw       r0, 0x0(r31)
+	 * --INFO--
+	 * Address:	8034B644
+	 * Size:	000008
+	 */
+	Animator& ProperAnimator::getAnimator(int) { return m_animator; }
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x3447F4
-
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803688C4
- * Size:	000008
- */
-void Jigumo::ProperAnimator::getAnimator(void)
-{
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x10
-	  blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8034B64C
+	 * Size:	00005C
+	 */
+	ProperAnimator::~ProperAnimator() { }
+
+	/*
+	 * --INFO--
+	 * Address:	8034B6A8
+	 * Size:	000008
+	 */
+	Animator& ProperAnimator::getAnimator(void) { return m_animator; }
+} // namespace Jigumo
 } // namespace Game
