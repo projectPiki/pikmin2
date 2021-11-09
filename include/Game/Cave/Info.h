@@ -22,16 +22,16 @@ namespace Cave {
 		 * Game::Cave::RandMapMgr::getStartPosition)
 		 */
 		enum Type {
-			TekiA__Easy = 0,
-			TekiB__Hard,
-			Treasure__Item,
-			Unused3,
-			HoleOrGeyser,
-			Seam__Door,
-			Plant,
-			Start,
-			TekiF__Special,
-			Alcove
+			BGT_TekiA__Easy = 0,
+			BGT_TekiB__Hard,
+			BGT_Treasure__Item,
+			BGT_Unused3,
+			BGT_HoleOrGeyser,
+			BGT_Seam__Door,
+			BGT_Plant,
+			BGT_Start,
+			BGT_TekiF__Special,
+			BGT_Alcove
 		};
 #pragma enumsalwaysint reset
 		BaseGen();
@@ -49,17 +49,18 @@ namespace Cave {
 
 	struct TekiInfo : CNode {
 		enum DropMode {
-			NoDrop = 0,
-			DropOnPikminOrLeader,
-			DropOnPikmin,
-			DropOnLeader,
-			DropOnCarryingPikmin,
-			DropFromPurpleEarthquake
+			DM_NoDrop = 0,
+			DM_DropOnPikminOrLeader,
+			DM_DropOnPikmin,
+			DM_DropOnLeader,
+			DM_DropOnCarryingPikmin,
+			DM_DropFromPurpleEarthquake
 		};
+		TekiInfo();
 		virtual ~TekiInfo();
 		virtual void read(Stream&);
 
-		EEnemyTypeID m_enemyID;                             // _18
+		int m_enemyID;                                     // _18
 		int m_weight;                                       // _1C
 		BaseGen::Type m_type;                               // _20
 		DropMode m_dropMode;                                // _24
@@ -85,6 +86,10 @@ namespace Cave {
 	};
 
 	struct CapInfo : CNode {
+		inline CapInfo()
+			: m_doesNotHaveTeki(true)
+			, m_tekiInfo(nullptr)
+			{}
 		TekiInfo* getTekiInfo();
 		virtual ~CapInfo();
 		virtual void read(Stream&);
@@ -96,7 +101,7 @@ namespace Cave {
 
 	struct FloorInfo : CNode {
 		struct Parms : Parameters {
-			Parms();
+			Parms(short);
 
 			Parm<int> m_floorIndex1;       // _00C  /* f000 */
 			Parm<int> m_floorIndex2;       // _034  /* f001 */

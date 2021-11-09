@@ -4,7 +4,10 @@
 #include "CNode.h"
 #include "stream.h"
 
+// TODO: GenericContainer?
 template <typename T> struct Container : public CNode {
+	inline Container()
+		: _18(0) {}
 	virtual ~Container();
 
 	// Wrapper for ::get().
@@ -28,6 +31,12 @@ template <typename T> struct Container : public CNode {
 };
 
 template <typename T> struct ArrayContainer : public Container<T> {
+	inline ArrayContainer<T>() {
+		this->_18 = 1;
+		m_count = 0;
+		m_endIndex = 0;
+		m_objects = nullptr;
+	}
 	virtual void writeObject(Stream&, T&);
 	virtual void readObject(Stream&, T&);
 	virtual void write(Stream&);
@@ -37,7 +46,7 @@ template <typename T> struct ArrayContainer : public Container<T> {
 	virtual void setArray(T*, int);
 
 	int m_endIndex; // _1C
-	int _20;        // _20
+	int m_count;    // _20
 	T*  m_objects;  // _24
 };
 
