@@ -127,10 +127,10 @@ extern const float lbl_805201B0;
 
 float pikmin2_sinf(float x)
 {
-	if (x < lbl_80520270) {
-		return -JMath::sincosTable_[((int)(x * lbl_80520268) & 0x7ffU) * 2];
+	if (x < 0.0f) {
+		return -JMath::sincosTable_[((int)(x * -325.9493f) & 0x7ffU) * 2];
 	}
-	return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2];
+	return JMath::sincosTable_[((int)(x * 325.9493f) & 0x7ffU) * 2];
 }
 
 /*
@@ -140,10 +140,10 @@ float pikmin2_sinf(float x)
  */
 float pikmin2_cosf(float x)
 {
-	if (x < lbl_80520270) {
+	if (x < 0.0f) {
 		x = -x;
 	}
-	return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2 + 1];
+	return JMath::sincosTable_[((int)(x * 325.9493f) & 0x7ffU) * 2 + 1];
 }
 
 /*
@@ -163,12 +163,12 @@ float pikmin2_atan2f(float x, float y)
  */
 float pikmin2_sqrtf(float x)
 {
-	if (!(x > lbl_80520270)) { // if x <= 0
+	if (!(x > 0.0f)) { // if x <= 0
 		return x;
 	}
 
 	register float reg1 = x;
-	register float reg2 = lbl_80520270;
+	register float reg2 = 0.0f;
 	register float result;
 
 	asm {
@@ -194,7 +194,7 @@ float qdist2(float x1, float y1, float x2, float y2)
 	float ydiff = (y2 - y1);
 
 	float dist = ((xdiff * xdiff) + (ydiff * ydiff));
-	if (dist > lbl_80520270) {
+	if (dist > 0.0f) {
 		volatile float calcDist = dist * (__frsqrte(dist));
 		dist                    = calcDist;
 	}
@@ -215,18 +215,18 @@ extern float lbl_805201D4; // 0.0
 //      stwu      r1, -0x20(r1)
 //      stfd      f31, 0x10(r1)
 //      psq_st    f31,0x18(r1),0,0
-//      lfs       f0, lbl_80520294
+//      lfs       f0, 2.0f
 //      fmuls     f10, f1, f1
-//      lfs       f2, lbl_8052029C
+//      lfs       f2, 5.0f
 //      fmuls     f5, f0, f1
-//      lfs       f6, lbl_80520290
-//      lfs       f0, lbl_805202A4
+//      lfs       f6, -1.5f
+//      lfs       f0, 4.0f
 //      fmuls     f3, f2, f1
-//      lfs       f4, lbl_80520298
+//      lfs       f4, 4.5f
 //      fmadds    f5, f6, f10, f5
-//      lfs       f7, lbl_80520288
+//      lfs       f7, 0.5f
 //      fmuls     f0, f0, f1
-//      lfs       f2, lbl_805202A0
+//      lfs       f2, -4.5f
 //      fmsubs    f12, f4, f10, f3
 //      fsubs     f11, f5, f7
 //      fmadds    f6, f2, f10, f0
@@ -237,7 +237,7 @@ extern float lbl_805201D4; // 0.0
 //      fmuls     f2, f0, f12
 //      lfs       f4, 0x10(r4)
 //      fadds     f13, f7, f6
-//      lfs       f8, lbl_8052028C
+//      lfs       f8, 1.5f
 //      fmuls     f6, f5, f11
 //      lfs       f0, 0x18(r4)
 //      fmuls     f5, f4, f12
@@ -286,11 +286,12 @@ Vector3f* CRSplineTangent(float time, Vector3f* output, Vector3f* points[4])
 	// to a vector; needs to be initialized ahead of time.
 
 	// Calculate the coefficients to multiply by each point.
-	float A = lbl_80520290 * time * time + lbl_80520294 * time - lbl_80520288;
-	float B = lbl_80520298 * time * time - lbl_8052029C * time;
-	float C = lbl_805202A0 * time * time + lbl_805202A4 * time + lbl_80520288;
-	float D = lbl_8052028C * time * time - time;
+	
 	// clang-format off
+	float A = -1.5f * time * time + 2.0f * time - 0.5f;
+	float B =  4.5f * time * time - 5.0f * time;
+	float C = -4.5f * time * time + 4.0f * time + 0.5f;
+	float D =  1.5f * time * time - time;
 	// Multiply the coefficients by the control points component-wise
 	output->x = points[0]->x*A + points[1]->x*B + points[2]->x*C + points[3]->x*D;
 	output->y = points[0]->y*A + points[1]->y*B + points[2]->y*C + points[3]->y*D;
@@ -407,13 +408,13 @@ void Color4::read(Stream& stream)
 float roundAng(float angle)
 {
 	// if < 0, add 2PI
-	if (angle < lbl_80520270) {
-		angle += lbl_805202A8;
+	if (angle < 0.0f) {
+		angle += 6.2831855f;
 	}
 
 	// if > 2PI, subtract it
-	if (angle >= lbl_805202A8) {
-		angle -= lbl_805202A8;
+	if (angle >= 6.2831855f) {
+		angle -= 6.2831855f;
 	}
 
 	return angle;
@@ -429,13 +430,13 @@ asm float angDist(float, float)
 	// clang-format off
 	nofralloc
 		fsubs f2, f1, f2
-		lfs f0, lbl_80520270
+		lfs f0, 0.0f
 		fcmpo cr0, f2, f0
 		bge lbl_80411C14
-		lfs f0, lbl_805202A8
+		lfs f0, 6.2831855f
 		fadds f2, f2, f0
 	lbl_80411C14:
-		lfs f0, lbl_805202A8
+		lfs f0, 6.2831855f
 		fcmpo cr0, f2, f0
 		cror 2, 1, 2
 		bne lbl_80411C28
@@ -446,14 +447,14 @@ asm float angDist(float, float)
 		fcmpo cr0, f2, f0
 		cror 2, 1, 2
 		bnelr 
-		lfs f1, lbl_805202A8
-		lfs f0, lbl_80520270
+		lfs f1, 6.2831855f
+		lfs f0, 0.0f
 		fsubs f2, f1, f2
 		fcmpo cr0, f2, f0
 		bge lbl_80411C54
 		fadds f2, f2, f1
 	lbl_80411C54:
-		lfs f0, lbl_805202A8
+		lfs f0, 6.2831855f
 		fcmpo cr0, f2, f0
 		cror 2, 1, 2
 		bne lbl_80411C68
@@ -483,15 +484,15 @@ void Matrix3f::makeIdentity()
 	// lbl_80520278 = 1
 	m_matrix[0][0] = lbl_80520278;
 
-	m_matrix[0][1] = lbl_80520270;
-	m_matrix[0][2] = lbl_80520270;
-	m_matrix[1][0] = lbl_80520270;
+	m_matrix[0][1] = 0.0f;
+	m_matrix[0][2] = 0.0f;
+	m_matrix[1][0] = 0.0f;
 
 	m_matrix[1][1] = lbl_80520278;
 
-	m_matrix[1][2] = lbl_80520270;
-	m_matrix[2][0] = lbl_80520270;
-	m_matrix[2][1] = lbl_80520270;
+	m_matrix[1][2] = 0.0f;
+	m_matrix[2][0] = 0.0f;
+	m_matrix[2][1] = 0.0f;
 
 	m_matrix[2][2] = lbl_80520278;
 }
@@ -510,9 +511,9 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 		lfs f2, lbl_80520278
 		stmw r16, 0x150(r1)
 		addi r17, r1, 0x128
-		lfs f1, lbl_80520270
+		lfs f1, 0.0f
 		li r18, 0
-		lfs f0, lbl_805202AC
+		lfs f0, 0.01f
 		lwz r6, 0(r3)
 		lwz r0, 4(r3)
 		stw r6, 0(r4)
@@ -543,7 +544,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 	lbl_80411D28:
 		li r0, 3
 		mr r6, r4
-		lfs f2, lbl_80520270
+		lfs f2, 0.0f
 		li r3, 0
 		mtctr r0
 	lbl_80411D3C:
@@ -572,7 +573,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 		frsp f1, f1
 		fcmpo cr0, f1, f0
 		bge lbl_80411DF4
-		lfs f1, lbl_80520270
+		lfs f1, 0.0f
 		fcmpu cr0, f1, f2
 		beq lbl_80411DEC
 		li r0, 3
@@ -637,7 +638,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 		stw r29, 0x128(r1)
 		lfs f3, lbl_80520294
 		stw r20, 0x12c(r1)
-		lfs f2, lbl_80520270
+		lfs f2, 0.0f
 		stw r12, 0x130(r1)
 		stw r11, 0x134(r1)
 		stw r10, 0x138(r1)
@@ -678,7 +679,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 		fdivs f3, f2, f1
 	lbl_80411F04:
 		lfs f2, lbl_80520278
-		lfs f1, lbl_80520270
+		lfs f1, 0.0f
 		fmadds f4, f3, f3, f2
 		fcmpo cr0, f4, f1
 		ble lbl_80411F20
@@ -687,7 +688,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 	lbl_80411F20:
 		lfs f2, lbl_80520278
 		add r9, r30, r23
-		lfs f8, lbl_80520270
+		lfs f8, 0.0f
 		add r10, r30, r21
 		fdivs f4, f2, f4
 		stfs f2, 0x128(r1)
@@ -777,7 +778,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 		lwz r0, 0x70(r1)
 		lfs f1, 0x140(r1)
 		stw r8, 0x18(r5)
-		lfs f8, lbl_80520270
+		lfs f8, 0.0f
 		stfs f3, 0xe0(r1)
 		lfs f3, 0x12c(r1)
 		stfs f2, 0xe4(r1)
@@ -873,7 +874,7 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 		lwz r9, 0x48(r1)
 		lwz r0, 0x4c(r1)
 		stw r31, 0x98(r1)
-		lfs f8, lbl_80520270
+		lfs f8, 0.0f
 		stw r30, 0x9c(r1)
 		stw r29, 0xa0(r1)
 		stw r20, 0xa4(r1)
@@ -1001,11 +1002,11 @@ asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
  */
 Quat::Quat()
 {
-	w = lbl_80520270;
+	w = 0.0f;
 
-	x = lbl_80520270;
-	y = lbl_80520270;
-	z = lbl_80520270;
+	x = 0.0f;
+	y = 0.0f;
+	z = 0.0f;
 }
 
 /*
