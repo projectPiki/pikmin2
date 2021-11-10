@@ -276,23 +276,26 @@ extern float lbl_805201D4; // 0.0
 // 	// clang-format on
 // }
 
-vector3f *CRSplineTangent(float time, vector3f *output, vector3f *points[4]) {
-	// No idea if I did the array correctly, and I am not going for a perfect match.
+Vector3f* CRSplineTangent(float time, Vector3f* output, Vector3f* points[4])
+{
+	// No idea if I did the array correctly, and I am not going for a perfect
+	// match.
 
-	// Calculates the slope of the tangent line to a Catmull-Rom spline defined by the four points at the given time.
-	// output argument should be a pointer to a vector; needs to be initialized ahead of time.
+	// Calculates the slope of the tangent line to a Catmull-Rom spline defined
+	// by the four points at the given time. output argument should be a pointer
+	// to a vector; needs to be initialized ahead of time.
 
 	// Calculate the coefficients to multiply by each point.
-	float A = lbl_80520290*time*time + lbl_80520294*time - lbl_80520288;
-	float B = lbl_80520298*time*time - lbl_8052029C*time;
-	float C = lbl_805202A0*time*time + lbl_805202A4*time + lbl_80520288;
-	float D = lbl_8052028C*time*time - time
-
-	// Multiply the coeficcients by the control points component-wise
+	float A = lbl_80520290 * time * time + lbl_80520294 * time - lbl_80520288;
+	float B = lbl_80520298 * time * time - lbl_8052029C * time;
+	float C = lbl_805202A0 * time * time + lbl_805202A4 * time + lbl_80520288;
+	float D = lbl_8052028C * time * time - time;
+	// clang-format off
+	// Multiply the coefficients by the control points component-wise
 	output->x = points[0]->x*A + points[1]->x*B + points[2]->x*C + points[3]->x*D;
 	output->y = points[0]->y*A + points[1]->y*B + points[2]->y*C + points[3]->y*D;
 	output->z = points[0]->z*A + points[1]->z*B + points[2]->z*C + points[3]->z*D;
-
+	// clang-format on
 	return output;
 
 	/*
