@@ -1,17 +1,28 @@
+#define OS_MODULE_LIST_ADDR 0x800030C8
+#define OS_STRING_TABLE_ADDR 0x800030D0
+#define OS_BASE_CACHED 0x80003000
+
 /*
  * --INFO--
  * Address:	800EF4A4
  * Size:	000018
  */
-// clang-format off
-asm void __OSModuleInit(void)
+struct OSModuleQueue { /* Relocatable Module Queue @ 800030c8 */
+    int* pFirst;
+    int* pLast;
+};
+
+struct OSModuleQueue __OSModuleInfoList: (OS_BASE_CACHED | OS_MODULE_LIST_ADDR);
+const void* __OSStringTable: (OS_BASE_CACHED | OS_STRING_TABLE_ADDR);
+
+/*
+ * --INFO--
+ * Address:	801F979C
+ * Size:	000018
+ */
+void __OSModuleInit(void)
 {
-	nofralloc
-	  lis       r4, 0x8000
-	  li        r0, 0
-	  stw       r0, 0x30CC(r4)
-	  stw       r0, 0x30C8(r4)
-	  stw       r0, 0x30D0(r4)
-	  blr
+	__OSModuleInfoList.pLast = 0;
+	__OSModuleInfoList.pFirst = 0;
+	__OSStringTable = 0;
 }
-// clang-format on

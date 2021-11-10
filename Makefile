@@ -96,6 +96,7 @@ CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -r
 
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.0
+$(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.0
 
 #-------------------------------------------------------------------------------
 # Recipes
