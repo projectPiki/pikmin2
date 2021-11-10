@@ -2,6 +2,22 @@
 
 namespace Game {
 
+struct VsGameSection;
+struct StateArg;
+
+struct VsGame {
+
+	struct GameState {
+		virtual void init(Game::VsGameSection*, Game::StateArg*);
+		virtual void exec(Game::VsGameSection*);
+		virtual void cleanup(VsGameSection*);
+		// WTF are these symbols?
+	};
+
+	struct VSState {
+	};
+};
+
 /*
  * --INFO--
  * Address:	8022EA94

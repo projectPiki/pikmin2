@@ -1,4 +1,4 @@
-#include "Game/Miulin_ProperAnimator.h"
+#include "Game/Miulin.h"
 
 namespace Game {
 namespace Miulin {
@@ -17,7 +17,7 @@ namespace Miulin {
 	 * Address:	8034B644
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int) { return m_animator; }
 
 	/*
 	 * --INFO--
@@ -31,6 +31,6 @@ namespace Miulin {
 	 * Address:	8034B6A8
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(void) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(void) { return m_animator; }
 } // namespace Miulin
 } // namespace Game

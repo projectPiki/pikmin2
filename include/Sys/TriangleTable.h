@@ -7,7 +7,6 @@
 
 namespace Sys {
 struct TriangleTable : public ArrayContainer<Sys::Triangle> {
-
 };
 } // namespace Sys
 

@@ -1,56 +1,11 @@
-#include "Game/enemyInfo.h"
 #include "types.h"
+
 #include "Game/Cave/Info.h"
 #include "Dolphin/string.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/PelletMgr.h"
-#include "Game/itemGate.h"
-#include "JSystem/JUTException.h"
 
-// auto_inline is required, because CNode::getChildCount is inlined by FloorInfo::getItemInfoNum!
 #pragma auto_inline on
-
-namespace {
-// const char *alpha1;
-static char const* enum_floor_alpha_types[] = {
-	"土",
-	"メタル",
-	"コンクリーツ",
-	"タイル",
-	nullptr,
-	nullptr
-};
-static char const* enum_floor_beta_types[] = {
-	"通常",
-	"ボス",
-	"やすらぎ"
-};
-static char const* enum_floor_hidden[] = {
-	"なし",
-	"あり"
-};
-// const char* alpha1 = "土";
-// const char* alpha2 = "メタル";
-// const char* alpha3 = "コンクリーツ";
-// const char* alpha4 = "タイル";
-// static char const* enum_floor_alpha_types[] = {
-// 	alpha1,
-// 	alpha2,
-// 	alpha3,
-// 	alpha4,
-// 	nullptr,
-// 	nullptr
-// };
-// static char const* enum_floor_beta_types[] = {
-// 	"通常",
-// 	"ボス",
-// 	"やすらぎ"
-// };
-// static char const* enum_floor_hidden[] = {
-// 	"なし",
-// 	"あり"
-// };
-}
 
 namespace Game {
 namespace Cave {
@@ -70,12 +25,10 @@ namespace Cave {
 		m_angle      = 0.0f;
 		m_minimum    = 1;
 		m_maximum    = 1;
-		m_spawnType  = BGT_TekiA__Easy;
+		m_spawnType  = TekiA__Easy;
 	}
 
 	/*
-	 * read__Q34Game4Cave7BaseGenFR6Stream
-	 *
 	 * --INFO--
 	 * Address:	801D6114
 	 * Size:	0000F4
@@ -116,16 +69,18 @@ namespace Cave {
 		char* inputString = stream.readString(nullptr, 0);
 		if (*inputString == '$') {
 			char rawDropMode = inputString[1];
-			if ((rawDropMode < '1') || (rawDropMode > '9')) {
-				inputString++;
-				m_dropMode = DM_DropOnPikminOrLeader;
-			}
+			if (rawDropMode < '1')
+				|| ('9' < rawDropMode)
+				{
+					inputString++;
+					m_dropMode = DropOnPikminOrLeader;
+				}
 			else {
 				inputString += 2;
 				m_dropMode = DropMode(rawDropMode - '0');
 			}
 		} else {
-			m_dropMode = DM_NoDrop;
+			m_dropMode = NoDrop;
 		}
 		buffer1[0]   = '\0';
 		char* _s2    = buffer2;
@@ -143,7 +98,7 @@ namespace Cave {
 				uVar9    = stream.readInt();
 				m_weight = uVar9;
 				m_type   = (BaseGen::Type)stream.readInt();
-				pcVar7   = generalEnemyMgr->getEnemyName((EEnemyTypeID)m_enemyID, 4);
+				pcVar7   = generalEnemyMgr->getEnemyName(m_enemyID, 4);
 				m_name   = pcVar7;
 				return;
 			}
@@ -311,35 +266,106 @@ namespace Cave {
 	}
 
 	/*
-	 * read__Q34Game4Cave8ItemInfoFR6Stream
-	 *
 	 * --INFO--
 	 * Address:	801D63B4
 	 * Size:	0000A8
 	 */
-	void ItemInfo::read(Stream& stream)
+	void ItemInfo::read(Stream&)
 	{
-		char* name = stream.readString(nullptr, 0);
-		m_caveID = Game::pelletMgr->getCaveID(name);
-		JUT_ASSERTLINE(659, (m_caveID != -1), "変なペレットネームです!\n");
-		m_weight = stream.readInt();
-		m_name = name;
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  li        r5, 0
+		  stw       r0, 0x24(r1)
+		  stw       r31, 0x1C(r1)
+		  stw       r30, 0x18(r1)
+		  mr        r30, r4
+		  li        r4, 0
+		  stw       r29, 0x14(r1)
+		  mr        r29, r3
+		  mr        r3, r30
+		  bl        0x23ECF4
+		  mr        r0, r3
+		  lwz       r3, -0x6CE0(r13)
+		  mr        r31, r0
+		  lwz       r12, 0x0(r3)
+		  mr        r4, r31
+		  lwz       r12, 0x88(r12)
+		  mtctr     r12
+		  bctrl
+		  stw       r3, 0x18(r29)
+		  lwz       r0, 0x18(r29)
+		  cmpwi     r0, -0x1
+		  bne-      .loc_0x7C
+		  lis       r3, 0x8048
+		  lis       r5, 0x8048
+		  addi      r3, r3, 0x64C
+		  li        r4, 0x293
+		  addi      r5, r5, 0x660
+		  crclr     6, 0x6
+		  bl        -0x1ABDEC
+
+		.loc_0x7C:
+		  mr        r3, r30
+		  bl        0x23E65C
+		  stw       r3, 0x1C(r29)
+		  stw       r31, 0x14(r29)
+		  lwz       r0, 0x24(r1)
+		  lwz       r31, 0x1C(r1)
+		  lwz       r30, 0x18(r1)
+		  lwz       r29, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
 	}
 
 	/*
-	 * read__Q34Game4Cave8GateInfoFR6Stream
-	 *
 	 * --INFO--
 	 * Address:	801D645C
 	 * Size:	00008C
 	 */
-	void GateInfo::read(Stream& stream)
+	void GateInfo::read(Stream&)
 	{
-		char* name = stream.readString(nullptr, 0);
-		m_caveID = Game::itemGateMgr->getCaveID(name);
-		m_life = stream.readFloat();
-		m_weight = stream.readInt();
-		m_name = name;
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  li        r5, 0
+		  stw       r0, 0x24(r1)
+		  stw       r31, 0x1C(r1)
+		  stw       r30, 0x18(r1)
+		  mr        r30, r4
+		  li        r4, 0
+		  stw       r29, 0x14(r1)
+		  mr        r29, r3
+		  mr        r3, r30
+		  bl        0x23EC4C
+		  mr        r0, r3
+		  lwz       r3, -0x6BD0(r13)
+		  mr        r31, r0
+		  lwz       r12, 0x0(r3)
+		  mr        r4, r31
+		  lwz       r12, 0x78(r12)
+		  mtctr     r12
+		  bctrl
+		  stw       r3, 0x18(r29)
+		  mr        r3, r30
+		  bl        0x23E8F8
+		  stfs      f1, 0x1C(r29)
+		  mr        r3, r30
+		  bl        0x23E5D0
+		  stw       r3, 0x20(r29)
+		  stw       r31, 0x14(r29)
+		  lwz       r0, 0x24(r1)
+		  lwz       r31, 0x1C(r1)
+		  lwz       r30, 0x18(r1)
+		  lwz       r29, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
 	}
 
 	/*
@@ -352,22 +378,15 @@ namespace Cave {
 		return (!m_doesNotHaveTeki ? m_tekiInfo : nullptr);
 	}
 
+#ifdef NOPE
+
 	/*
-	 * read__Q34Game4Cave7CapInfoFR6Stream
-	 *
 	 * --INFO--
 	 * Address:	801D6504
 	 * Size:	0000C8
 	 */
-	void CapInfo::read(Stream& stream)
+	void CapInfo::read(Stream&)
 	{
-		m_doesNotHaveTeki = (bool)stream.readByte();
-		if (!m_doesNotHaveTeki) {
-			m_tekiInfo = new TekiInfo();
-			m_tekiInfo->_0C = m_tekiInfo;
-			TekiInfo* tekiInfo = getTekiInfo();
-			tekiInfo->read(stream);
-		}
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -432,19 +451,11 @@ namespace Cave {
 	}
 
 	/*
-	 * __ct__Q34Game4Cave9FloorInfoFv
-	 *
 	 * --INFO--
 	 * Address:	801D65CC
 	 * Size:	000174
 	 */
 	FloorInfo::FloorInfo()
-		: CNode()
-		, m_parms(1)
-		, m_tekiInfo()
-		, m_itemInfo()
-		, m_gateInfo()
-		, m_capInfo()
 	{
 		/*
 		.loc_0x0:
@@ -542,16 +553,6 @@ namespace Cave {
 		  addi      r1, r1, 0x20
 		  blr
 		*/
-	}
-
-	inline TekiInfo::TekiInfo()
-		: CNode()
-		, m_otakaraItemCode(0)
-		, m_enemyID(EnemyID_Pelplant)
-		, m_weight(1)
-		, m_type(BaseGen::BGT_TekiA__Easy)
-		, m_dropMode(DM_NoDrop)
-	{
 	}
 
 	/*
@@ -707,33 +708,11 @@ namespace Cave {
 	}
 
 	/*
-	 * __ct__Q44Game4Cave9FloorInfo5Parms
-	 *
 	 * --INFO--
 	 * Address:	801D68C0
 	 * Size:	000410
 	 */
-	FloorInfo::Parms::Parms(short p1)
-		: Parameters((p1 != 0) ? &m_end : nullptr, nullptr, "FloorInfo")
-		, m_floorIndex1(this, 0x66303030, "階はじめ", 0, 0, 127)
-		, m_floorIndex2(this, 0x66303031, "階おわり", 1, 0, 127)
-		, m_tekiMax(this, 0x66303032, "敵最大数", 0, 0, 128)
-		, m_itemMax(this, 0x66303033, "アイテム最大数", 0, 0, 128)
-		, m_gateMax(this, 0x66303034, "ゲート最大数", 0, 0, 32)
-		, m_capMax(this, 0x66303134, "キャップ最大数", 0, 0, 128)
-		, m_roomCount(this, 0x66303035, "ルーム数", 4, 1, 15)
-		, m_routeRatio(this, 'f006', "ルートの割合", 0.0f, 0.0f, 1.0f)
-		, m_hasEscapeFountain(this, 'f007', "帰還噴水(1=あり)", 0, 0, 1)
-		, m_caveUnitFile(this, "units.txt", 64, 'f008', "使用ユニット")
-		, m_lightingFile(this, "light.ini", 64, 'f009', "使用ライト")
-		, m_vrBox(this, "test", 64, 'f00A', "VRBOX")
-		, m_isHoleClogged(this, 'f010', "階段を壊す岩で隠す(0=オフ 1=オン)", 0, 0, 1)
-		, m_floorAlphaType(this, (char**)enum_floor_alpha_types, 0, 6, 'f011', "α属性")
-		, m_floorBetaType(this, (char**)enum_floor_beta_types, 0, 3, 'f012', "β属性")
-		, m_floorHidden(this, (char**)enum_floor_hidden, 0, 2, 'f013', "隠し床")
-		, m_version(this, 'f015', "Version", 0, 0, 10000)
-		, m_waterwraithTimer(this, 'f016', "BlackManTimer", 0.0f, 0.0f, 10000.0f)
-		, m_glitchySeesaw(this, 'f017', "沈む壁", 0, 0, 1)
+	FloorInfo::Parms::Parms()
 	{
 		/*
 		.loc_0x0:
@@ -1009,7 +988,6 @@ namespace Cave {
 	 */
 	bool FloorInfo::hasHiddenCollision()
 	{
-		return (bool)m_parms.m_floorHidden.m_value;
 		/*
 		.loc_0x0:
 		  lwz       r0, 0x274(r3)
@@ -1027,7 +1005,11 @@ namespace Cave {
 	 */
 	int FloorInfo::getTekiMax()
 	{
-		return m_parms.m_tekiMax.m_value;
+		/*
+		.loc_0x0:
+		  lwz       r3, 0x8C(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1037,20 +1019,29 @@ namespace Cave {
 	 */
 	int FloorInfo::getTekiInfoNum()
 	{
-		return m_tekiInfo.getChildCount();
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  lwzu      r12, 0x2FC(r3)
+		  lwz       r12, 0xC(r12)
+		  mtctr     r12
+		  bctrl
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
 	}
 
 	/*
-	 * getTekiInfo__Q34Game4Cave9FloorInfoFi
-	 *
 	 * --INFO--
 	 * Address:	801D6D18
 	 * Size:	000094
 	 */
-	TekiInfo* FloorInfo::getTekiInfo(int index)
+	TekiInfo* FloorInfo::getTekiInfo(int)
 	{
-		P2ASSERTLINE(904, (-1 < index)&&(index <= m_tekiInfo.getChildCount()));
-		return (TekiInfo*)m_tekiInfo.getChildAt(index);
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -1104,11 +1095,22 @@ namespace Cave {
 	 */
 	int FloorInfo::getTekiWeightSum()
 	{
-		int sum = 0;
-		for (TekiInfo* node = (TekiInfo*)m_tekiInfo._10; node != nullptr; node = (TekiInfo*)node->_04) {
-			sum += node->m_weight;
-		}
-		return sum;
+		/*
+		.loc_0x0:
+		  lwz       r4, 0x30C(r3)
+		  li        r3, 0
+		  b         .loc_0x18
+
+		.loc_0xC:
+		  lwz       r0, 0x1C(r4)
+		  lwz       r4, 0x4(r4)
+		  add       r3, r3, r0
+
+		.loc_0x18:
+		  cmplwi    r4, 0
+		  bne+      .loc_0xC
+		  blr
+		*/
 	}
 
 	/*
@@ -1118,7 +1120,11 @@ namespace Cave {
 	 */
 	int FloorInfo::getItemMax()
 	{
-		return m_parms.m_itemMax.m_value;
+		/*
+		.loc_0x0:
+		  lwz       r3, 0xB4(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1128,7 +1134,20 @@ namespace Cave {
 	 */
 	int FloorInfo::getItemInfoNum()
 	{
-		return m_itemInfo.getChildCount();
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  lwzu      r12, 0x324(r3)
+		  lwz       r12, 0xC(r12)
+		  mtctr     r12
+		  bctrl
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
 	}
 
 	/*
@@ -1136,10 +1155,8 @@ namespace Cave {
 	 * Address:	801D6E04
 	 * Size:	000094
 	 */
-	ItemInfo* FloorInfo::getItemInfo(int index)
+	ItemInfo* FloorInfo::getItemInfo(int)
 	{
-		P2ASSERTLINE(929, (-1 < index)&&(index <= m_itemInfo.getChildCount()));
-		return (ItemInfo*)m_itemInfo.getChildAt(index);
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -1193,11 +1210,22 @@ namespace Cave {
 	 */
 	int FloorInfo::getItemWeightSum()
 	{
-		int sum = 0;
-		for (ItemInfo* node = (ItemInfo*)m_itemInfo._10; node != nullptr; node = (ItemInfo*)node->_04) {
-			sum += node->m_weight;
-		}
-		return sum;
+		/*
+		.loc_0x0:
+		  lwz       r4, 0x334(r3)
+		  li        r3, 0
+		  b         .loc_0x18
+
+		.loc_0xC:
+		  lwz       r0, 0x1C(r4)
+		  lwz       r4, 0x4(r4)
+		  add       r3, r3, r0
+
+		.loc_0x18:
+		  cmplwi    r4, 0
+		  bne+      .loc_0xC
+		  blr
+		*/
 	}
 
 	/*
@@ -1207,7 +1235,11 @@ namespace Cave {
 	 */
 	int FloorInfo::getGateMax()
 	{
-		return m_parms.m_gateMax.m_value;
+		/*
+		.loc_0x0:
+		  lwz       r3, 0xDC(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1217,7 +1249,20 @@ namespace Cave {
 	 */
 	int FloorInfo::getGateInfoNum()
 	{
-		return m_gateInfo.getChildCount();
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  lwzu      r12, 0x344(r3)
+		  lwz       r12, 0xC(r12)
+		  mtctr     r12
+		  bctrl
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
 	}
 
 	/*
@@ -1225,10 +1270,8 @@ namespace Cave {
 	 * Address:	801D6EF0
 	 * Size:	000094
 	 */
-	GateInfo* FloorInfo::getGateInfo(int index)
+	GateInfo* FloorInfo::getGateInfo(int)
 	{
-		P2ASSERTLINE(954, (-1 < index)&&(index <= m_gateInfo.getChildCount()));
-		return (GateInfo*)m_gateInfo.getChildAt(index);
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -1282,11 +1325,22 @@ namespace Cave {
 	 */
 	int FloorInfo::getGateWeightSum()
 	{
-		int sum = 0;
-		for (GateInfo* node = (GateInfo*)m_gateInfo._10; node != nullptr; node = (GateInfo*)node->_04) {
-			sum += node->m_weight;
-		}
-		return sum;
+		/*
+		.loc_0x0:
+		  lwz       r4, 0x354(r3)
+		  li        r3, 0
+		  b         .loc_0x18
+
+		.loc_0xC:
+		  lwz       r0, 0x20(r4)
+		  lwz       r4, 0x4(r4)
+		  add       r3, r3, r0
+
+		.loc_0x18:
+		  cmplwi    r4, 0
+		  bne+      .loc_0xC
+		  blr
+		*/
 	}
 
 	/*
@@ -1296,7 +1350,11 @@ namespace Cave {
 	 */
 	int FloorInfo::getCapMax()
 	{
-		return m_parms.m_capMax.m_value;
+		/*
+		.loc_0x0:
+		  lwz       r3, 0x104(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1306,7 +1364,20 @@ namespace Cave {
 	 */
 	int FloorInfo::getCapInfoNum()
 	{
-		return m_capInfo.getChildCount();
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  lwzu      r12, 0x368(r3)
+		  lwz       r12, 0xC(r12)
+		  mtctr     r12
+		  bctrl
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
 	}
 
 	/*
@@ -1314,10 +1385,8 @@ namespace Cave {
 	 * Address:	801D6FDC
 	 * Size:	000094
 	 */
-	CapInfo* FloorInfo::getCapInfo(int index)
+	CapInfo* FloorInfo::getCapInfo(int)
 	{
-		P2ASSERTLINE(979, (-1 < index)&&(index <= m_capInfo.getChildCount()));
-		return (CapInfo*)m_capInfo.getChildAt(index);
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -1371,7 +1440,11 @@ namespace Cave {
 	 */
 	int FloorInfo::getRoomNum()
 	{
-		return m_parms.m_roomCount.m_value;
+		/*
+		.loc_0x0:
+		  lwz       r3, 0x12C(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1381,7 +1454,11 @@ namespace Cave {
 	 */
 	float FloorInfo::getRouteRatio()
 	{
-		return m_parms.m_routeRatio.m_value;
+		/*
+		.loc_0x0:
+		  lfs       f1, 0x154(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1389,13 +1466,8 @@ namespace Cave {
 	 * Address:	801D7080
 	 * Size:	000044
 	 */
-	bool FloorInfo::hasEscapeFountain(int index)
+	bool FloorInfo::hasEscapeFountain(int)
 	{
-		if (index == -1) {
-			return (bool)m_parms.m_hasEscapeFountain.m_value;
-		}
-		return ((bool)m_parms.m_hasEscapeFountain.m_value
-			&& index == m_parms.m_floorIndex2.m_value);
 		/*
 		.loc_0x0:
 		  lwz       r0, 0x17C(r3)
@@ -1429,7 +1501,6 @@ namespace Cave {
 	 */
 	bool FloorInfo::useKaidanBarrel()
 	{
-		return (bool)m_parms.m_isHoleClogged.m_value;
 		/*
 		.loc_0x0:
 		  lwz       r0, 0x204(r3)
@@ -1441,38 +1512,12 @@ namespace Cave {
 	}
 
 	/*
-	 * read__Q34Game4Cave9FloorInfoFR6Stream
-	 *
 	 * --INFO--
 	 * Address:	801D70D8
 	 * Size:	000224
 	 */
-	void FloorInfo::read(Stream& input)
+	void FloorInfo::read(Stream&)
 	{
-		m_parms.read(input);
-
-		for (int count = input.readInt(), i = 0; i < count; i++) {
-			TekiInfo* node = new TekiInfo();
-			node->read(input);
-			m_tekiInfo.add(node);
-		}
-		for (int count = input.readInt(), i = 0; i < count; i++) {
-			ItemInfo* node = new ItemInfo();
-			node->read(input);
-			m_itemInfo.add(node);
-		}
-		for (int count = input.readInt(), i = 0; i < count; i++) {
-			GateInfo* node = new GateInfo();
-			node->read(input);
-			m_gateInfo.add(node);
-		}
-		if (m_parms.m_version.m_value >= 1) {
-			for (int count = input.readInt(), i = 0; i < count; i++) {
-				CapInfo* node = new CapInfo();
-				node->read(input);
-				m_capInfo.add(node);
-			}
-		}
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -1791,13 +1836,35 @@ namespace Cave {
 	 */
 	void CaveInfo::disablePelplant()
 	{
-		for (FloorInfo* floor = (FloorInfo*)m_floorInfo._10; floor != nullptr; floor = (FloorInfo*)floor->_04) {
-			for (TekiInfo* teki = (TekiInfo*)floor->m_tekiInfo._10; teki != nullptr; teki = (TekiInfo*)teki->_04) {
-				if (teki->m_enemyID == (int)EnemyID_Pelplant) {
-					teki->m_weight = 0;
-				}
-			}
-		}
+		/*
+		.loc_0x0:
+		  lwz       r4, 0x60(r3)
+		  li        r0, 0
+		  b         .loc_0x34
+
+		.loc_0xC:
+		  lwz       r5, 0x30C(r4)
+		  b         .loc_0x28
+
+		.loc_0x14:
+		  lwz       r3, 0x18(r5)
+		  cmpwi     r3, 0
+		  bne-      .loc_0x24
+		  stw       r0, 0x1C(r5)
+
+		.loc_0x24:
+		  lwz       r5, 0x4(r5)
+
+		.loc_0x28:
+		  cmplwi    r5, 0
+		  bne+      .loc_0x14
+		  lwz       r4, 0x4(r4)
+
+		.loc_0x34:
+		  cmplwi    r4, 0
+		  bne+      .loc_0xC
+		  blr
+		*/
 	}
 
 	/*
@@ -1807,7 +1874,11 @@ namespace Cave {
 	 */
 	int CaveInfo::getFloorMax()
 	{
-		return m_parms.m_floorMax.m_value;
+		/*
+		.loc_0x0:
+		  lwz       r3, 0x3C(r3)
+		  blr
+		*/
 	}
 
 	/*
@@ -1922,20 +1993,57 @@ namespace Cave {
 	}
 
 	/*
-	 * read__Q34Game4Cave8CaveInfoFR6Stream
-	 *
 	 * --INFO--
 	 * Address:	801D7624
 	 * Size:	000090
 	 */
-	void CaveInfo::read(Stream& input)
+	void CaveInfo::read(Stream&)
 	{
-		m_parms.read(input);
-		for (int count = input.readInt(), i = 0; i < count; i++) {
-			FloorInfo* node = new FloorInfo();
-			node->read(input);
-			m_floorInfo.add(node);
-		}
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x20(r1)
+		  mflr      r0
+		  stw       r0, 0x24(r1)
+		  stmw      r27, 0xC(r1)
+		  mr        r27, r3
+		  mr        r28, r4
+		  addi      r3, r27, 0x18
+		  bl        0x23C1B4
+		  mr        r3, r28
+		  bl        0x23D448
+		  mr        r31, r3
+		  li        r29, 0
+		  b         .loc_0x74
+
+		.loc_0x34:
+		  li        r3, 0x388
+		  bl        -0x1B37B8
+		  mr.       r30, r3
+		  beq-      .loc_0x4C
+		  bl        -0x109C
+		  mr        r30, r3
+
+		.loc_0x4C:
+		  mr        r3, r30
+		  mr        r4, r28
+		  lwz       r12, 0x0(r30)
+		  lwz       r12, 0x10(r12)
+		  mtctr     r12
+		  bctrl
+		  mr        r4, r30
+		  addi      r3, r27, 0x50
+		  bl        0x239D78
+		  addi      r29, r29, 0x1
+
+		.loc_0x74:
+		  cmpw      r29, r31
+		  blt+      .loc_0x34
+		  lmw       r27, 0xC(r1)
+		  lwz       r0, 0x24(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x20
+		  blr
+		*/
 	}
 
 	/*
@@ -2060,6 +2168,7 @@ namespace Cave {
 		  blr
 		*/
 	}
+#endif
 } // namespace Cave
 } // namespace Game
 

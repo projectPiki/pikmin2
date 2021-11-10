@@ -1,5 +1,3 @@
-#include "types.h"
-
 #include "JSystem/J3D/J3DShape.h"
 #include "Dolphin/gx.h"
 

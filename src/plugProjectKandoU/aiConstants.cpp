@@ -6,6 +6,7 @@
 #include "stream.h"
 
 namespace Game {
+AIConstants* _aiConstants;
 
 /*
  * --INFO--
@@ -18,10 +19,9 @@ AIConstants::AIConstants()
     , m_dopeCount(this, "dopecount")
     , m_debt(this, "debt")
     , m_cameraAngle(this, "camera_angle")
-
 {
-	m_debt.m_data        = 10000;
 	m_dopeCount.m_data   = 2;
+	m_debt.m_data        = 10000;
 	m_cameraAngle.m_data = 180.0f;
 
 	void* handle = JKRDvdRipper::loadToMainRAM(
@@ -30,11 +30,8 @@ AIConstants::AIConstants()
 
 	if (handle) {
 		RamStream stream(handle, -1);
-		stream.m_isTextMode = 1;
-		stream.m_tabCount   = 0;
-
+		stream.resetPosition(true, 1);
 		this->read(stream);
-
 		delete[] handle;
 	}
 }

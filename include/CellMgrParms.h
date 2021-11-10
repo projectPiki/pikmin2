@@ -11,10 +11,11 @@
 // 	inline _CellMgrParms(void* end)
 // 		: Parameters(&end, nullptr, "CellMgr")
 //     	, JKRDisposer()
-//         , m_p000(this, 0x70303030, "�ｿｽo�ｿｽb�ｿｽt�ｿｽ@�ｿｽ�ｿｽ�ｿｽg�ｿｽ�ｿｽ", false, false, true)
-//         , m_p001(this, 0x70303031, "�ｿｽ}�ｿｽW�ｿｽb�ｿｽN�ｿｽi�ｿｽ�ｿｽ�ｿｽo�ｿｽ[", true, false, true)
-//         , m_p002(this, 0x70303032, "G-Half", false, false, true)
-//         , m_p003(this, 0x70303033, "UpdateMgr", false, false, true)
+//         , m_p000(this, 0x70303030, "�ｿｽo�ｿｽb�ｿｽt�ｿｽ@�ｿｽ�ｿｽ�ｿｽg�ｿｽ�ｿｽ", false,
+//         false, true) , m_p001(this, 0x70303031,
+//         "�ｿｽ}�ｿｽW�ｿｽb�ｿｽN�ｿｽi�ｿｽ�ｿｽ�ｿｽo�ｿｽ[", true, false, true) ,
+//         m_p002(this, 0x70303032, "G-Half", false, false, true) , m_p003(this,
+//         0x70303033, "UpdateMgr", false, false, true)
 // 	{}
 // 	// 00-0C: Parameters
 // 	// 0C-24: JKRDisposer
@@ -35,7 +36,6 @@
 // 	static CellMgrParms* getInstance();
 // 	void globalInstance();
 
-
 // 	// __vt  // _94
 // 	void* m_end; // _98
 
@@ -45,10 +45,11 @@
 struct _CellParms {
 	// inline _CellParms();
 	inline _CellParms(Parameters* parameters);
-	// 	: m_p000(parameters, 0x70303030, "�ｿｽo�ｿｽb�ｿｽt�ｿｽ@�ｿｽ�ｿｽ�ｿｽg�ｿｽ�ｿｽ", false, false, true)
-	// 	, m_p001(parameters, 0x70303031, "�ｿｽ}�ｿｽW�ｿｽb�ｿｽN�ｿｽi�ｿｽ�ｿｽ�ｿｽo�ｿｽ[", true, false, true)
-	// 	, m_p002(parameters, 0x70303032, "G-Half", false, false, true)
-	// 	, m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
+	// 	: m_p000(parameters, 0x70303030, "�ｿｽo�ｿｽb�ｿｽt�ｿｽ@�ｿｽ�ｿｽ�ｿｽg�ｿｽ�ｿｽ",
+	// false, false, true) 	, m_p001(parameters, 0x70303031,
+	// "�ｿｽ}�ｿｽW�ｿｽb�ｿｽN�ｿｽi�ｿｽ�ｿｽ�ｿｽo�ｿｽ[", true, false, true) 	,
+	// m_p002(parameters, 0x70303032, "G-Half", false, false, true) 	,
+	// m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
 	// {}
 
 	Parm<bool> m_p000; // _24
@@ -72,16 +73,17 @@ public:
 	// JKRDisposer m_disposer;
 	// struct Parms {
 	// 	inline Parms(Parameters* parameters)
-	// 		: m_p000(parameters, 0x70303030, "�ｿｽo�ｿｽb�ｿｽt�ｿｽ@�ｿｽ�ｿｽ�ｿｽg�ｿｽ�ｿｽ", false, false, true)
-	// 		, m_p001(parameters, 0x70303031, "�ｿｽ}�ｿｽW�ｿｽb�ｿｽN�ｿｽi�ｿｽ�ｿｽ�ｿｽo�ｿｽ[", true, false, true)
-	// 		, m_p002(parameters, 0x70303032, "G-Half", false, false, true)
-	// 		, m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
+	// 		: m_p000(parameters, 0x70303030, "�ｿｽo�ｿｽb�ｿｽt�ｿｽ@�ｿｽ�ｿｽ�ｿｽg�ｿｽ�ｿｽ",
+	// false, false, true) 		, m_p001(parameters, 0x70303031,
+	// "�ｿｽ}�ｿｽW�ｿｽb�ｿｽN�ｿｽi�ｿｽ�ｿｽ�ｿｽo�ｿｽ[", true, false, true) 		,
+	// m_p002(parameters, 0x70303032, "G-Half", false, false, true) 		,
+	// m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
 	// 	{}
 
-		// Parm<bool> m_p000; // _24
-		// Parm<bool> m_p001; // _40
-		// Parm<bool> m_p002; // _5C  /* G-Half */
-		// Parm<bool> m_p003; // _78  /* UpdateMgr */
+	// Parm<bool> m_p000; // _24
+	// Parm<bool> m_p001; // _40
+	// Parm<bool> m_p002; // _5C  /* G-Half */
+	// Parm<bool> m_p003; // _78  /* UpdateMgr */
 	// } parms;
 	// __vt  // _94
 	void* m_end; // _98

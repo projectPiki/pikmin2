@@ -9,8 +9,8 @@ struct Tube {
 
 	Vector3f _00; // _00
 	Vector3f _0C; // _0C
-	float    _18; // _18
-	float    _1C; // _1C
+	float _18;    // _18
+	float _1C;    // _1C
 };
 } // namespace Sys
 

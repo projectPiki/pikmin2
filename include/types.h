@@ -52,4 +52,8 @@ typedef int BOOL;
 #define nullptr 0
 #endif // ifndef nullptr
 
+// Rounds to nearest multiple of 20 upwards and downwards
+#define RoundUp20B(x)   (((u32)(x) + 0x1F) & ~(0x1F))
+#define RoundDown20B(x) (((u32)(x)) & ~(0x1F))
+
 #endif

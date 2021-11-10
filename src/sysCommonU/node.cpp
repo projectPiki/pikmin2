@@ -1,8 +1,6 @@
-#include "types.h"
-
 #include "Node.h"
 #include "CNode.h"
-#include "JSystem/JUTException.h"
+#include "JSystem/JUT/JUTFont.h"
 
 extern const char lbl_804995F0[12]; // node.cpp
 extern const char lbl_8049962C[28]; // %d child (realchild = %d)!\n

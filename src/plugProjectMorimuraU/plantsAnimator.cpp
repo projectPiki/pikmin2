@@ -1,4 +1,4 @@
-#include "Game/Plants_ProperAnimator.h"
+#include "Game/Plants.h"
 
 namespace Game {
 namespace Plants {
@@ -17,7 +17,7 @@ namespace Plants {
 	 * Address:	8034B644
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int) { return m_animator; }
 
 	/*
 	 * --INFO--
@@ -31,6 +31,6 @@ namespace Plants {
 	 * Address:	8034B6A8
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(void) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(void) { return m_animator; }
 } // namespace Plants
 } // namespace Game

@@ -488,14 +488,14 @@ template <> void ArrayContainer<Vector3f>::read(Stream&)
  * Address:	80133B78
  * Size:	000004
  */
-template<> void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
+template <> void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80133B7C
  * Size:	000068
  */
-template<> void ArrayContainer<Vector3f>::alloc(int)
+template <> void ArrayContainer<Vector3f>::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -533,7 +533,7 @@ template<> void ArrayContainer<Vector3f>::alloc(int)
  * Address:	80133BE4
  * Size:	000080
  */
-template<> ArrayContainer<Vector3f>::~ArrayContainer()
+template <> ArrayContainer<Vector3f>::~ArrayContainer()
 {
 	/*
 	.loc_0x0:
@@ -581,7 +581,7 @@ template<> ArrayContainer<Vector3f>::~ArrayContainer()
  * Address:	80133C64
  * Size:	000070
  */
-template<> Container<Vector3f>::~Container()
+template <> Container<Vector3f>::~Container()
 {
 	/*
 	.loc_0x0:
@@ -642,9 +642,9 @@ int PlatAttacher::getNumShapes()
  */
 ushort PlatAttacher::getJointIndex(int i)
 {
-// #ifdef MATCHING
-// #line 311 // Will be 312 on assert line
-// #endif
+	// #ifdef MATCHING
+	// #line 311 // Will be 312 on assert line
+	// #endif
 	P2ASSERTLINE(312, (-1 < i) && (m_numShapes < i));
 	return m_jointIndices[i];
 	/*
@@ -8191,7 +8191,7 @@ OBB::~OBB()
  * Address:	80139560
  * Size:	000070
  */
-template<> Container<int>::~Container()
+template <> Container<int>::~Container()
 {
 	/*
 	.loc_0x0:
@@ -8235,7 +8235,7 @@ template<> Container<int>::~Container()
  * Address:	801395D0
  * Size:	000080
  */
-template<> ArrayContainer<int>::~ArrayContainer()
+template <> ArrayContainer<int>::~ArrayContainer()
 {
 	/*
 	.loc_0x0:
@@ -8283,7 +8283,7 @@ template<> ArrayContainer<int>::~ArrayContainer()
  * Address:	80139650
  * Size:	00004C
  */
-template<> void ArrayContainer<int>::alloc(int)
+template <> void ArrayContainer<int>::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -8314,7 +8314,7 @@ template<> void ArrayContainer<int>::alloc(int)
  * Address:	8013969C
  * Size:	0000B0
  */
-template<> void ArrayContainer<int>::read(Stream&)
+template <> void ArrayContainer<int>::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -8374,7 +8374,7 @@ template<> void ArrayContainer<int>::read(Stream&)
  * Address:	8013974C
  * Size:	000004
  */
-template<> void ArrayContainer<int>::readObject(Stream&, int&) { }
+template <> void ArrayContainer<int>::readObject(Stream&, int&) { }
 
 namespace Sys {
 
@@ -8484,7 +8484,7 @@ IndexList::~IndexList()
  * Address:	8013983C
  * Size:	000010
  */
-template<> void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
+template <> void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
 {
 	/*
 	.loc_0x0:
@@ -8500,7 +8500,7 @@ template<> void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
  * Address:	8013984C
  * Size:	000040
  */
-template<> void ArrayContainer<Vector3f>::addOne(Vector3f&)
+template <> void ArrayContainer<Vector3f>::addOne(Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -8528,7 +8528,7 @@ template<> void ArrayContainer<Vector3f>::addOne(Vector3f&)
  * Address:	8013988C
  * Size:	000060
  */
-template<> void MonoObjectMgr<CollPart>::birth()
+template <> void MonoObjectMgr<CollPart>::birth()
 {
 	/*
 	.loc_0x0:
@@ -8568,7 +8568,7 @@ template<> void MonoObjectMgr<CollPart>::birth()
  * Address:	801398EC
  * Size:	000054
  */
-template<> void MonoObjectMgr<CollPart>::kill(CollPart*)
+template <> void MonoObjectMgr<CollPart>::kill(CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -8605,7 +8605,7 @@ template<> void MonoObjectMgr<CollPart>::kill(CollPart*)
  * Address:	80139940
  * Size:	00003C
  */
-template<> void MonoObjectMgr<CollPart>::getEmptyIndex()
+template <> void MonoObjectMgr<CollPart>::getEmptyIndex()
 {
 	/*
 	.loc_0x0:
@@ -8638,14 +8638,14 @@ template<> void MonoObjectMgr<CollPart>::getEmptyIndex()
  * Address:	8013997C
  * Size:	000004
  */
-template<> void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
+template <> void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80139980
  * Size:	0000D4
  */
-template<> void ArrayContainer<Vector3f>::write(Stream&)
+template <> void ArrayContainer<Vector3f>::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -8714,7 +8714,7 @@ template<> void ArrayContainer<Vector3f>::write(Stream&)
  * Address:	80139A54
  * Size:	000010
  */
-template<> void ArrayContainer<Vector3f>::get(void*)
+template <> void ArrayContainer<Vector3f>::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -8730,7 +8730,7 @@ template<> void ArrayContainer<Vector3f>::get(void*)
  * Address:	80139A64
  * Size:	000008
  */
-template<> void ArrayContainer<Vector3f>::getNext(void*)
+template <> void ArrayContainer<Vector3f>::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -8744,14 +8744,14 @@ template<> void ArrayContainer<Vector3f>::getNext(void*)
  * Address:	80139A6C
  * Size:	000008
  */
-template<> u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
+template <> u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80139A74
  * Size:	000008
  */
-template<> void ArrayContainer<Vector3f>::getEnd()
+template <> void ArrayContainer<Vector3f>::getEnd()
 {
 	/*
 	.loc_0x0:

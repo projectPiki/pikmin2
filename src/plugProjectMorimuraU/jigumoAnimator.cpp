@@ -1,4 +1,4 @@
-#include "Game/Jigumo_ProperAnimator.h"
+#include "Game/Jigumo.h"
 
 namespace Game {
 namespace Jigumo {
@@ -17,7 +17,7 @@ namespace Jigumo {
 	 * Address:	8034B644
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int) { return m_animator; }
 
 	/*
 	 * --INFO--
@@ -31,6 +31,6 @@ namespace Jigumo {
 	 * Address:	8034B6A8
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(void) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(void) { return m_animator; }
 } // namespace Jigumo
 } // namespace Game

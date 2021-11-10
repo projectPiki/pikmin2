@@ -1,8 +1,9 @@
 #ifndef _NODE_H
 #define _NODE_H
 
-#include "Graphics.h"
 #include "types.h"
+
+struct Graphics;
 
 struct Node {
 	f32 m_radius;     // _00

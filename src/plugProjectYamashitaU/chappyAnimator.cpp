@@ -19,7 +19,10 @@ namespace ChappyBase {
 	 * Address:	80119718
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int idx) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int idx)
+	{
+		return m_animator;
+	}
 
 	/*
 	 * --INFO--
@@ -33,6 +36,6 @@ namespace ChappyBase {
 	 * Address:	8011977C
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator() { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator() { return m_animator; }
 } // namespace ChappyBase
 } // namespace Game

@@ -1,7 +1,5 @@
-#include "types.h"
-
 #include "P2JME/SimpleMessage.h"
-#include "JSystem/JMessage.h"
+#include "JSystem/JUT/JUTFont.h"
 
 namespace P2JME {
 

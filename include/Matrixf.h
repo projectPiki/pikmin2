@@ -9,7 +9,9 @@ struct Matrixf {
 	void getTranslation(Vector3f&);
 	void operator()(int, int);
 
+	void makeSRT(Vector3f&, Vector3f&, Vector3f&);
+
 	f32 m_matrix[3][4];
 };
-
+// sizeof is 48
 #endif

@@ -7,7 +7,7 @@
 #include "mapCode.h"
 
 namespace Sys {
-struct Triangle { // PlaceHolder Structure
+struct Triangle {             // PlaceHolder Structure
 	int m_vertices[3];        // _00
 	Vector3f m_normalVector;  // _0C
 	float m_distNormal;       // _18

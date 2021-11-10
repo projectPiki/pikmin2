@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRDISPOSER_H
-#define _JSYSTEM_JKRDISPOSER_H
+#ifndef _JSYSTEM_JKR_JKRDISPOSER_H
+#define _JSYSTEM_JKR_JKRDISPOSER_H
 
 #include "types.h"
 #include "JSystem/JSU/JSUPtrLink.h"
@@ -11,7 +11,7 @@ struct JKRDisposer {
 	virtual ~JKRDisposer();
 
 	// _00 vtbl
-	JKRHeap* p_heap;   // _04
+	JKRHeap* m_heap;   // _04
 	JSUPtrLink m_link; // _08
 };
 

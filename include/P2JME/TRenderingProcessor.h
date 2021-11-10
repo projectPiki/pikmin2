@@ -1,9 +1,11 @@
 #ifndef _P2JME_TRENDERINGPROCESSOR_H
 #define _P2JME_TRENDERINGPROCESSOR_H
 
-#include "JSystem/JMessage.h"
-#include "JSystem/JUTFont.h"
+#include "JSystem/JMessage/TProcessor.h"
+#include "JSystem/JMessage/TReference.h"
 #include "types.h"
+
+struct JUTFont;
 
 namespace P2JME {
 struct TRenderingProcessor : public JMessage::TRenderingProcessor {

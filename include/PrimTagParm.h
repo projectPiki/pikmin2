@@ -8,8 +8,8 @@
 #include "types.h"
 
 template <typename T> struct PrimTagParm : public TagParm {
-	PrimTagParm(struct TagParameters* a, char* b)
-	    : TagParm(a, b)
+	PrimTagParm(struct TagParameters* a, char* name)
+	    : TagParm(a, name)
 	{
 	}
 

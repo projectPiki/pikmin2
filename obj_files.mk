@@ -9,7 +9,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/control.o\
 	$(BUILD_DIR)/asm/JSystem/resource.o\
-	$(BUILD_DIR)/asm/JSystem/data.o\
+	$(BUILD_DIR)/src/JSystem/data.o\
 	$(BUILD_DIR)/asm/JSystem/processor.o\
 	$(BUILD_DIR)/asm/JSystem/control.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb-data-parse.o\
@@ -37,7 +37,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/control.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DUDL.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMotion.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DUShadow.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DUShadow.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMtxCache.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAram.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramArchive.o\
@@ -57,7 +57,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRExpHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRFileCache.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRFileFinder.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRFile.o\
+	$(BUILD_DIR)/src/JSystem/JKR/JKRFile.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRFileLoader.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRMemArchive.o\
@@ -108,6 +108,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DWindowEx.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DAnmLoader.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DBloSaver.o\
+	$(BUILD_DIR)/src/JSystem/J2D/J2DManage.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DManage.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DMatBlock.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DMaterial.o\
@@ -176,14 +177,14 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBNKParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASDrumSet.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASInstEffect.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASInstEffect.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASInstRand.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASInstSense.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASSimpleWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveArcLoader.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveBank.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveBankMgr.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASBank.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASTrackPort.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASOuterParam.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASPlayer_impl.o\
@@ -286,7 +287,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/critical_regions.gamecube.o\
 	$(BUILD_DIR)/src/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
-	$(BUILD_DIR)/asm/Dolphin/errno.o\
+	$(BUILD_DIR)/src/Dolphin/errno.o\
 	$(BUILD_DIR)/asm/Dolphin/file_io.o\
 	$(BUILD_DIR)/asm/Dolphin/FILE_POS.o\
 	$(BUILD_DIR)/asm/Dolphin/locale.o\
@@ -401,7 +402,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/OSError.o\
 	$(BUILD_DIR)/asm/Dolphin/OSFont.o\
 	$(BUILD_DIR)/asm/Dolphin/OSInterrupt.o\
-	$(BUILD_DIR)/asm/Dolphin/OSLink.o\
+	$(BUILD_DIR)/src/Dolphin/OSLink.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMessage.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMemory.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMutex.o\
@@ -453,13 +454,13 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/timeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantGenerator.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractActions.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAnimatorBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractActions.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyAnimatorBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoenInfo.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoenInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneDrawInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneObj.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyParmsBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyParmsBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/walkSmokeEffect.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBaseMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBase.o\
@@ -513,7 +514,6 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiFormation.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/creatureStick.o\
-	$(BUILD_DIR)/src/plugProjectKandoU/interactBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/interactBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiFree.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiAttack.o\
@@ -560,7 +560,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameGeneratorCache.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemTreasure.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemDownFloor.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/kandoLib.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/kandoLib.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBarrel.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletNumber.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletCarcass.o\
@@ -622,7 +622,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/vsFifo.o\
 
 NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
@@ -973,7 +973,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiAnimator.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsMgr.o\
@@ -1085,7 +1085,7 @@ KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khPayDept.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khMailSaveData.o\
 
 BOOTUP:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\

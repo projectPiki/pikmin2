@@ -1,4 +1,4 @@
-#include "Game/Tyre_ProperAnimator.h"
+#include "Game/Tyre.h"
 
 namespace Game {
 namespace Tyre {
@@ -17,7 +17,7 @@ namespace Tyre {
 	 * Address:	8034B644
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int) { return m_animator; }
 
 	/*
 	 * --INFO--
@@ -31,6 +31,6 @@ namespace Tyre {
 	 * Address:	8034B6A8
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(void) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(void) { return m_animator; }
 } // namespace Tyre
 } // namespace Game

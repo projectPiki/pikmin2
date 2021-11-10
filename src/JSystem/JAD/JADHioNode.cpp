@@ -1,6 +1,4 @@
-#include "types.h"
-
-#include "JSystem/JADHioNode.h"
+#include "JSystem/JAD/JADHioNode.h"
 
 /*
  * --INFO--

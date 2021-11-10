@@ -45,6 +45,14 @@ struct RamStream : Stream {
 	void write(void*, int);
 	bool eof();
 
+	inline void resetPosition(bool a1, int a2)
+	{
+		m_isTextMode = a1;
+		if (m_isTextMode == a2) {
+			m_tabCount = 0;
+		}
+	}
+
 	void* _418; // _418
 	int bounds; // _41C
 };

@@ -7,13 +7,10 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+// OS logging
 void OSReport(const char*, ...);
 void OSPanic(const char* file, int line, const char* message, ...);
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
-
-// Rounds up and down to multiples of 20
-#define RoundUpTo20(x)   (((u32)(x) + 0x1F) & ~(0x1F))
-#define RoundDownTo20(x) (((u32)(x)) & ~(0x1F))
 
 // TODO: fill these structs
 typedef struct OSContext {
@@ -70,6 +67,13 @@ extern BOOL OSTryLockMutex(OSMutexObject*);
 extern void OSInitCond(OSThreadQueue*);
 extern u32 OSWaitCond(OSThreadQueue*, OSMutexObject*);
 extern void OSSignalCond(OSThreadQueue*);
+
+// OSLink
+void __OSModuleInit(void);
+
+// targsupp
+extern void func_800BFA40(void);
+extern void func_800BFA50(void);
 
 #ifdef __cplusplus
 };

@@ -19,7 +19,10 @@ namespace KochappyBase {
 	 * Address:	8010F2B0
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int idx) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int idx)
+	{
+		return m_animator;
+	}
 
 	/*
 	 * --INFO--
@@ -33,6 +36,6 @@ namespace KochappyBase {
 	 * Address:	8010F314
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator() { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator() { return m_animator; }
 } // namespace KochappyBase
 } // namespace Game

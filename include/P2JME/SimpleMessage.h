@@ -1,9 +1,10 @@
 #ifndef _P2JME_SIMPLEMESSAGE_H
 #define _P2JME_SIMPLEMESSAGE_H
 
-#include "Graphics.h"
-#include "JSystem/JUTFont.h"
 #include "P2JME/TRenderingProcessor.h"
+#include "Graphics.h"
+
+struct JUTFont;
 
 // TODO: split off
 struct Mgr {

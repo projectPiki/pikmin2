@@ -19,9 +19,9 @@ struct OBBTree : TriDivider {
 	OBBTree();
 	virtual ~OBBTree();
 
-	VertexTable*   m_vertexTable;    // _18
-	TriangleTable* m_triangleTable;  // _1C
-	OBB            m_obb;            // _20
+	VertexTable* m_vertexTable;     // _18
+	TriangleTable* m_triangleTable; // _1C
+	OBB m_obb;                      // _20
 };
 } // namespace Sys
 

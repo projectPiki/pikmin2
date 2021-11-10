@@ -7,6 +7,16 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#include "Dolphin/vi.h"
+
+typedef u8 GXBool;
+
+/********************************/
+#define GX_TRUE    ((GXBool)1)
+#define GX_FALSE   ((GXBool)0)
+#define GX_ENABLE  ((GXBool)1)
+#define GX_DISABLE ((GXBool)0)
+
 // Names are guessed
 typedef enum _SDK_GXFogType {
 	GX_FOG_NONE       = 0,
@@ -87,43 +97,6 @@ typedef enum _SDK_GXPixelFmt {
 	GX_PF_YUV420
 } GXPixelFmt;
 
-typedef enum { VI_XFBMODE_SF = 0, VI_XFBMODE_DF } VIXFBMode;
-
-#define VI_DISPLAY_PIX_SZ 2
-
-#define VI_INTERLACE     0
-#define VI_NON_INTERLACE 1
-#define VI_PROGRESSIVE   2
-
-#define VI_NTSC      0
-#define VI_PAL       1
-#define VI_MPAL      2
-#define VI_DEBUG     3
-#define VI_DEBUG_PAL 4
-#define VI_EURGB60   5
-
-#define VI_TVMODE(FMT, INT) (((FMT) << 2) + (INT))
-
-typedef enum {
-	VI_TVMODE_NTSC_INT  = VI_TVMODE(VI_NTSC, VI_INTERLACE),
-	VI_TVMODE_NTSC_DS   = VI_TVMODE(VI_NTSC, VI_NON_INTERLACE),
-	VI_TVMODE_NTSC_PROG = VI_TVMODE(VI_NTSC, VI_PROGRESSIVE),
-
-	VI_TVMODE_PAL_INT = VI_TVMODE(VI_PAL, VI_INTERLACE),
-	VI_TVMODE_PAL_DS  = VI_TVMODE(VI_PAL, VI_NON_INTERLACE),
-
-	VI_TVMODE_EURGB60_INT = VI_TVMODE(VI_EURGB60, VI_INTERLACE),
-	VI_TVMODE_EURGB60_DS  = VI_TVMODE(VI_EURGB60, VI_NON_INTERLACE),
-
-	VI_TVMODE_MPAL_INT = VI_TVMODE(VI_MPAL, VI_INTERLACE),
-	VI_TVMODE_MPAL_DS  = VI_TVMODE(VI_MPAL, VI_NON_INTERLACE),
-
-	VI_TVMODE_DEBUG_INT = VI_TVMODE(VI_DEBUG, VI_INTERLACE),
-
-	VI_TVMODE_DEBUG_PAL_INT = VI_TVMODE(VI_DEBUG_PAL, VI_INTERLACE),
-	VI_TVMODE_DEBUG_PAL_DS  = VI_TVMODE(VI_DEBUG_PAL, VI_NON_INTERLACE)
-} VITVMode;
-
 typedef struct _GXRenderModeObj {
 	VITVMode viTVmode;
 	u16 fbWidth;
@@ -165,21 +138,40 @@ void GXSetFog(GXFogType type, void* data, float, float, float nearz,
 
 void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4]);
 
-void GXSetFogRangeAdj(BOOL enable, u16 center, GXFogAdjTable* table);
+void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table);
 
 void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor,
                     GXBlendFactor dst_factor, GXLogicOp op);
 
-void GXSetColorUpdate(BOOL update_enable);
-void GXSetAlphaUpdate(BOOL update_enable);
-void GXSetZMode(BOOL compare_enable, GXCompare func, BOOL update_enable);
+void GXSetColorUpdate(GXBool update_enable);
+void GXSetAlphaUpdate(GXBool update_enable);
+void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable);
 
-void GXSetZCompLoc(BOOL before_tex);
+void GXSetZCompLoc(GXBool before_tex);
 void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt);
-void GXSetDither(BOOL dither);
-void GXSetDstAlpha(BOOL enable, u8 alpha);
-void GXSetFieldMask(BOOL odd_mask, BOOL even_mask);
-void GXSetFieldMode(BOOL field_mode, BOOL half_aspect_ratio);
+void GXSetDither(GXBool dither);
+void GXSetDstAlpha(GXBool enable, u8 alpha);
+void GXSetFieldMask(GXBool odd_mask, GXBool even_mask);
+void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio);
+
+#define GX_FIFO_OBJ_SIZE 128
+
+typedef struct {
+	u8 pad[GX_FIFO_OBJ_SIZE];
+} GXFifoObj;
+
+void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size);
+void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr);
+void GXInitFifoLimits(GXFifoObj* fifo, u32 hiWaterMark, u32 loWaterMark);
+void GXSaveCPUFifo(GXFifoObj* fifo);
+
+void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle,
+                   GXBool* cmdIdle, GXBool* brkpt);
+
+void GXSetCPUFifo(GXFifoObj* fifo);
+void GXSetGPFifo(GXFifoObj* fifo);
+void GXSaveCPUFifo(GXFifoObj* fifo);
+void GXSaveGPFifo(GXFifoObj* fifo);
 
 #ifdef __cplusplus
 };

@@ -44,8 +44,7 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
 		becomeCurrentHeap();
 	}
 	_68 = shouldSetErrorHandlerMaybe;
-	if ((_68)&&(JKRHeap::mErrorHandler == nullptr))
-	{
+	if ((_68) && (JKRHeap::mErrorHandler == nullptr)) {
 		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
 	}
 	m_fillFlag      = JKRHeap::sDefaultFillFlag;

@@ -2,45 +2,38 @@
 #define _GAME_ENEMYANIMATORBASE_H
 
 #include "types.h"
-
-namespace SysShape {
-struct AnimMgr;
-struct AnimInfo;
-struct MotionListener;
-struct KeyEvent;
-} // namespace SysShape
-
+#include "SysShape/Animator.h"
 namespace Game {
-struct Animator {
-	u32 _00;                              // _00
-	SysShape::MotionListener* m_listener; // _04
-	f32 m_timer;                          // _08
-	SysShape::AnimInfo* m_animInfo;       // _0C
-	SysShape::AnimMgr* m_animMgr;         // _10
-	SysShape::KeyEvent* m_curAnimKey;     // _14
-	u8 m_flags;                           // _18
-};
-
 struct EnemyAnimatorBase {
 	EnemyAnimatorBase();
-	virtual ~EnemyAnimatorBase() { }
+	virtual ~EnemyAnimatorBase() { }                  // _04
+	virtual void setAnimMgr(SysShape::AnimMgr*)  = 0; // _08
+	virtual SysShape::Animator& getAnimator()    = 0; // _0C
+	virtual SysShape::Animator& getAnimator(int) = 0; // _10
+	virtual void animate(float);                      // _14
+	virtual void animate(int, float);                 // _18
+	virtual void resetAnimSpeed();                    // _1C
+	virtual void getTypeID();                         // _20
 
-	virtual void setAnimMgr(SysShape::AnimMgr*) = 0;
-	virtual Animator& getAnimator()             = 0;
-	virtual Animator& getAnimator(int)          = 0;
-	virtual void animate(float);
-	virtual void animate(int, float);
-	virtual void resetAnimSpeed();
-	virtual void getTypeID();
+	inline void reset()
+	{
+		m_flags.byteView.a = 0;
+		m_flags.byteView.b = 0;
+		m_flags.byteView.c = 0;
+		m_flags.byteView.d = 0;
+	}
+
+	static const f32 defaultAnimSpeed;
 
 	// _00, VTBL
-	f32 m_animSpeed;     // _04
-	f32 _08;             // _08
-	u8 m_flags;          // _0C
-	u8 _0D;              // _0D
-	u8 _0E;              // _0E
-	u8 _0F;              // _0F
-	Animator m_animator; // _10
+	f32 m_animSpeed; // _04
+	f32 _08;         // _08
+	union {
+		struct {
+			u8 a, b, c, d;
+		} byteView;
+		u32 m_flags; // _0C
+	} m_flags;
 };
 } // namespace Game
 

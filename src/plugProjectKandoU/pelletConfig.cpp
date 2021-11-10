@@ -1,9 +1,7 @@
-#include "types.h"
-
-#include "Game/pelletConfig.h"
-#include "JSystem/JUTException.h"
-#include "PrimTagParm.h"
+#include "JSystem/JUT/JUTException.h"
+#include "Game/PelletConfig.h"
 #include "Dolphin/string.h"
+#include "PrimTagParm.h"
 
 namespace Game {
 

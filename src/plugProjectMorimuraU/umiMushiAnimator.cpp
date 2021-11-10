@@ -1,4 +1,4 @@
-#include "Game/UmiMushi_ProperAnimator.h"
+#include "Game/UmiMushi.h"
 
 namespace Game {
 namespace UmiMushi {
@@ -17,7 +17,7 @@ namespace UmiMushi {
 	 * Address:	8034B644
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(int) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(int) { return m_animator; }
 
 	/*
 	 * --INFO--
@@ -31,6 +31,6 @@ namespace UmiMushi {
 	 * Address:	8034B6A8
 	 * Size:	000008
 	 */
-	Animator& ProperAnimator::getAnimator(void) { return m_animator; }
+	SysShape::Animator& ProperAnimator::getAnimator(void) { return m_animator; }
 } // namespace UmiMushi
 } // namespace Game

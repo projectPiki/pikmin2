@@ -71,15 +71,18 @@ When compiling the project, this patch is automatically applied, if it fails to 
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/tagparams.cpp">sysCommonU/tagparams.cpp</a>
 - utilityU
 - plugProjectKonoU
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKonoU/khMailSaveData.cpp">plugProjectKonoU/khMailSaveData.cpp</a>
 - plugProjectOgawaU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectOgawaU/ogAngleMgr.cpp">plugProjectOgawaU/ogAngleMgr.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectOgawaU/ogLib2D.cpp">plugProjectOgawaU/ogLib2D.cpp</a>
 - plugProjectKandoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gameSoundEvent.cpp">plugProjectKandoU/gameSoundEvent.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/kandoLib.cpp">plugProjectKandoU/kandoLib.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/objectTypes.cpp">plugProjectKandoU/objectTypes.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/pelletCarry.cpp">plugProjectKandoU/pelletCarry.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/pelletConfig.cpp">plugProjectKandoU/pelletConfig.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/vsCoinOtakaraName.cpp">plugProjectKandoU/vsCoinOtakaraName.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/vsFifo.cpp">plugProjectKandoU/vsFifo.cpp</a>
 - plugProjectHikinoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectHikinoU/PSCreatureMgr.cpp">plugProjectHikinoU/PSCreatureMgr.cpp</a>
 - plugProjectEbisawaU
@@ -90,6 +93,7 @@ When compiling the project, this patch is automatically applied, if it fails to 
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/eggAnimator.cpp">plugProjectMorimuraU/eggAnimator.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/jigumoAnimator.cpp">plugProjectMorimuraU/jigumoAnimator.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/miulinAnimator.cpp">plugProjectMorimuraU/miulinAnimator.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiAnimator.cpp">plugProjectMorimuraU/panModokiAnimator.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/plantsAnimator.cpp">plugProjectMorimuraU/plantsAnimator.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouAnimator.cpp">plugProjectMorimuraU/shijimiChouAnimator.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiAnimator.cpp">plugProjectMorimuraU/tamagoMushiAnimator.cpp</a>
@@ -98,15 +102,25 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectNishimuraU
 - plugProjectYamashitaU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/chappyAnimator.cpp">plugProjectYamashitaU/chappyAnimator.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAnimatorBase.cpp">plugProjectYamashitaU/enemyAnimatorBase.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInfo.cpp">plugProjectYamashitaU/enemyInfo.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInteractActions.cpp">plugProjectYamashitaU/enemyInteractActions.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyParmsBase.cpp">plugProjectYamashitaU/enemyParmsBase.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyPelletInfo.cpp">plugProjectYamashitaU/enemyPelletInfo.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoenInfo.cpp">plugProjectYamashitaU/enemyStoenInfo.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyAnimator.cpp">plugProjectYamashitaU/kochappyAnimator.cpp</a>
 - JSystem
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/data.cpp">JSystem/data.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DBinaryFormat.cpp">JSystem/J3D/J3DBinaryFormat.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DModelSaver.cpp">JSystem/J3D/J3DModelSaver.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DShapeDraw.cpp">JSystem/J3D/J3DShapeDraw.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DUDL.cpp">JSystem/J3D/J3DUDL.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J3D/J3DUShadow.cpp">JSystem/J3D/J3DUShadow.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAD/JADHioNode.cpp">JSystem/JAD/JADHioNode.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAS/JASBank.cpp">JSystem/JAS/JASBank.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAS/JASInstEffect.cpp">JSystem/JAS/JASInstEffect.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAS/JASWaveBank.cpp">JSystem/JAS/JASWaveBank.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JKR/JKRFile.cpp">JSystem/JKR/JKRFile.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JUT/JUTFontData_Ascfont_fix12.cpp">JSystem/JUT/JUTFontData_Ascfont_fix12.cpp</a>
 ### WIP
 - sysBootupU
@@ -123,7 +137,6 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectKandoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/aiBattle.cpp">plugProjectKandoU/aiBattle.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp">plugProjectKandoU/gamePlatMgr.cpp</a>
-	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/interactBattle.cpp">plugProjectKandoU/interactBattle.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/routeMgr.cpp">plugProjectKandoU/routeMgr.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/updateMgr.cpp">plugProjectKandoU/updateMgr.cpp</a>
 - plugProjectHikinoU
@@ -134,4 +147,5 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - plugProjectYamashitaU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">plugProjectYamashitaU/carryInfoMgr.cpp</a>
 - JSystem
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/J2D/J2DManage.cpp">JSystem/J2D/J2DManage.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAL/JALCalc.cpp">JSystem/JAL/JALCalc.cpp</a>

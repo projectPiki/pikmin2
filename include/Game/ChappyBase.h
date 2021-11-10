@@ -7,10 +7,11 @@ namespace Game {
 namespace ChappyBase {
 	struct ProperAnimator : public EnemyAnimatorBase {
 		virtual ~ProperAnimator();
-
 		virtual void setAnimMgr(SysShape::AnimMgr*);
-		virtual Animator& getAnimator();
-		virtual Animator& getAnimator(int);
+		virtual SysShape::Animator& getAnimator();
+		virtual SysShape::Animator& getAnimator(int);
+
+		SysShape::Animator m_animator; // _10
 	};
 } // namespace ChappyBase
 } // namespace Game
