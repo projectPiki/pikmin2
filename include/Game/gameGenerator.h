@@ -12,10 +12,10 @@ struct Creature;
 struct GeneratorMgr;
 
 struct Generator : public CNode {
-	virtual void doAnimation();   // _08
-	virtual void doEntry();       // _0C
-	virtual void doSetView(int);  // _10
-	virtual void doViewCalc();    // _14
+	virtual void doAnimation();  // _08
+	virtual void doEntry();      // _0C
+	virtual void doSetView(int); // _10
+	virtual void doViewCalc();   // _14
 
 	u32* _18;                  // _18
 	u32 _1C;                   // _1C /* Initialized to '____' */
@@ -42,10 +42,10 @@ struct Generator : public CNode {
 };
 
 struct GeneratorMgr : public CNode {
-	virtual void doAnimation();   // _08
-	virtual void doEntry();       // _0C
-	virtual void doSetView(int);  // _10
-	virtual void doViewCalc();    // _14
+	virtual void doAnimation();  // _08
+	virtual void doEntry();      // _0C
+	virtual void doSetView(int); // _10
+	virtual void doViewCalc();   // _14
 
 	// TODO: Data members
 };

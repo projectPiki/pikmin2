@@ -12,8 +12,7 @@ struct JUTException {
 	static OSMessageQueue sMessageQueue;
 };
 
-#define JUT_PANIC(...) \
-	JUTException::panic_f(__FILE__, __LINE__, __VA_ARGS__)
+#define JUT_PANIC(...) JUTException::panic_f(__FILE__, __LINE__, __VA_ARGS__)
 
 #define JUT_ASSERT(cond, string_ref) \
 	if (!(cond))                     \
@@ -30,7 +29,7 @@ struct JUTException {
 #endif
 
 #define JUT_ASSERTLINE(line, cond, string_ref) \
-	if (!(cond)) \
+	if (!(cond))                               \
 	JUT_PANICLINE(line, string_ref)
 
 #define P2ASSERTLINE(line, cond) JUT_ASSERTLINE(line, cond, "P2Assert")

@@ -103,8 +103,8 @@ void MapCode::Code::read(Stream&)
 void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
 {
 	m_attribute = attribute;
-	m_slipCode = slipCode;
-	m_isBald = isBald;
+	m_slipCode  = slipCode;
+	m_isBald    = isBald;
 	/*
 	.loc_0x0:
 	  rlwinm    r6,r6,0,24,31
@@ -125,7 +125,7 @@ void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
  * Size:	00007C
  */
 MapCode::Mgr::Mgr()
-	: m_codeArray()
+    : m_codeArray()
 {
 	/*
 	.loc_0x0:
@@ -164,7 +164,7 @@ MapCode::Mgr::Mgr()
 }
 
 inline MapCode::Mgr::CodeArray::CodeArray()
-	: ArrayContainer<MapCode::Code>()
+    : ArrayContainer<MapCode::Code>()
 {
 }
 
@@ -340,7 +340,7 @@ void MapCode::Mgr::write(Stream& stream)
  * Address:	8041C678
  * Size:	0000E4
  */
-template<> void ArrayContainer<MapCode::Code>::write(Stream& stream)
+template <> void ArrayContainer<MapCode::Code>::write(Stream& stream)
 {
 	stream.textBeginGroup(m_name);
 	stream.textWriteTab(stream.m_tabCount);
@@ -422,7 +422,10 @@ template<> void ArrayContainer<MapCode::Code>::write(Stream& stream)
  * Address:	8041C75C
  * Size:	000004
  */
-template<> void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&) { }
+template <>
+void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&)
+{
+}
 
 /*
  * --INFO--
@@ -453,7 +456,7 @@ void MapCode::Mgr::read(Stream& stream)
  * Address:	8041C78C
  * Size:	0000A0
  */
-template<> void ArrayContainer<MapCode::Code>::read(Stream& stream)
+template <> void ArrayContainer<MapCode::Code>::read(Stream& stream)
 {
 	m_count = stream.readInt();
 	alloc(m_count);
@@ -524,8 +527,8 @@ void ArrayContainer<MapCode::Code>::readObject(Stream&, MapCode::Code&) { }
  */
 void ArrayContainer<MapCode::Code>::alloc(int count)
 {
-	m_objects = new MapCode::Code[count];
-	m_count = count;
+	m_objects  = new MapCode::Code[count];
+	m_count    = count;
 	m_endIndex = 0;
 	/*
 	.loc_0x0:
@@ -642,7 +645,7 @@ void MapCode::Mgr::CodeArray::readObject(Stream& stream, MapCode::Code& object)
  * Address:	8041C920
  * Size:	000028
  */
-template<> void ArrayContainer<MapCode::Code>::addOne(MapCode::Code& object)
+template <> void ArrayContainer<MapCode::Code>::addOne(MapCode::Code& object)
 {
 	if (m_count <= m_endIndex) {
 		return;
@@ -668,10 +671,11 @@ template<> void ArrayContainer<MapCode::Code>::addOne(MapCode::Code& object)
  * Address:	8041C948
  * Size:	000010
  */
-template<> void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, int count)
+template <>
+void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, int count)
 {
-	m_objects = objects;
-	m_count = count;
+	m_objects  = objects;
+	m_count    = count;
 	m_endIndex = count;
 	/*
 	.loc_0x0:
@@ -687,7 +691,7 @@ template<> void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, 
  * Address:	8041C958
  * Size:	00000C
  */
-template<> MapCode::Code* ArrayContainer<MapCode::Code>::get(void* index)
+template <> MapCode::Code* ArrayContainer<MapCode::Code>::get(void* index)
 {
 	return &m_objects[(ulong)index];
 	/*
@@ -703,7 +707,7 @@ template<> MapCode::Code* ArrayContainer<MapCode::Code>::get(void* index)
  * Address:	8041C964
  * Size:	000008
  */
-template<> int ArrayContainer<MapCode::Code>::getNext(void* index)
+template <> int ArrayContainer<MapCode::Code>::getNext(void* index)
 {
 	return ((ulong)index) + 1;
 
@@ -719,14 +723,14 @@ template<> int ArrayContainer<MapCode::Code>::getNext(void* index)
  * Address:	8041C96C
  * Size:	000008
  */
-template<> u32 ArrayContainer<MapCode::Code>::getStart() { return 0x0; }
+template <> u32 ArrayContainer<MapCode::Code>::getStart() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8041C974
  * Size:	000008
  */
-template<> int ArrayContainer<MapCode::Code>::getEnd()
+template <> int ArrayContainer<MapCode::Code>::getEnd()
 {
 	return m_endIndex;
 	/*
@@ -741,7 +745,7 @@ template<> int ArrayContainer<MapCode::Code>::getEnd()
  * Address:	8041C97C
  * Size:	00000C
  */
-template<> MapCode::Code* ArrayContainer<MapCode::Code>::getAt(int index)
+template <> MapCode::Code* ArrayContainer<MapCode::Code>::getAt(int index)
 {
 	return &m_objects[index];
 	/*
@@ -757,7 +761,7 @@ template<> MapCode::Code* ArrayContainer<MapCode::Code>::getAt(int index)
  * Address:	8041C988
  * Size:	000008
  */
-template<> int ArrayContainer<MapCode::Code>::getTo()
+template <> int ArrayContainer<MapCode::Code>::getTo()
 {
 	return m_count;
 	/*
@@ -772,7 +776,7 @@ template<> int ArrayContainer<MapCode::Code>::getTo()
  * Address:	8041C990
  * Size:	00002C
  */
-template<> MapCode::Code* Container<MapCode::Code>::getObject(void* index)
+template <> MapCode::Code* Container<MapCode::Code>::getObject(void* index)
 {
 	return get((ulong)index);
 	/*
@@ -796,11 +800,11 @@ template<> MapCode::Code* Container<MapCode::Code>::getObject(void* index)
  * Address:	8041C9BC
  * Size:	000008
  */
-template<> u32 Container<MapCode::Code>::getAt(int) { return 0x0; }
+template <> u32 Container<MapCode::Code>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8041C9C4
  * Size:	000008
  */
-template<> u32 Container<MapCode::Code>::getTo() { return 0x0; }
+template <> u32 Container<MapCode::Code>::getTo() { return 0x0; }

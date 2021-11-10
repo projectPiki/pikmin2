@@ -6,7 +6,7 @@
 namespace Game {
 struct ItemGateMgr : public BaseItemMgr {
 	virtual char* getCaveName(int); // _6C
-	virtual int   getCaveID(char*); // _70
+	virtual int getCaveID(char*);   // _70
 };
 
 extern ItemGateMgr* itemGateMgr;

@@ -16,17 +16,17 @@ CellMgrParms* CellMgrParms::mInstance;
  * Address:	........
  * Size:	0000E4
  */
-void _Print(char* name, ...)
-{
-	OSReport("CellMgrParms");
-}
+void _Print(char* name, ...) { OSReport("CellMgrParms"); }
 
 inline _CellParms::_CellParms(Parameters* p)
-	: m_p000(p, 0x70303030, "?申o?申b?申t?申@?申?申?申g?申?申", false, false, true)
-	, m_p001(p, 0x70303031, "?申}?申W?申b?申N?申i?申?申?申o?申[", true, false, true)
-	, m_p002(p, 0x70303032, "G-Half", false, false, true)
-	, m_p003(p, 0x70303033, "UpdateMgr", false, false, true)
-{}
+    : m_p000(p, 0x70303030, "?申o?申b?申t?申@?申?申?申g?申?申", false, false,
+             true)
+    , m_p001(p, 0x70303031, "?申}?申W?申b?申N?申i?申?申?申o?申[", true, false,
+             true)
+    , m_p002(p, 0x70303032, "G-Half", false, false, true)
+    , m_p003(p, 0x70303033, "UpdateMgr", false, false, true)
+{
+}
 
 /*
  * __ct__
@@ -40,26 +40,29 @@ inline _CellParms::_CellParms(Parameters* p)
 inline CellMgrParms::CellMgrParms()
     : Parameters(&m_end, nullptr, "CellMgr")
     , JKRDisposer()
-	, _CellParms(this)
-	// , _CellParms {
-	// 	.m_p000 = Parm<bool>(this, 0x70303030, "?申o?申b?申t?申@?申?申?申g?申?申", false, false, true),
-	// 	.m_p001 = Parm<bool>(this, 0x70303031, "?申}?申W?申b?申N?申i?申?申?申o?申[", true, false, true),
-	// 	.m_p002 = Parm<bool>(this, 0x70303032, "G-Half", false, false, true),
-	// 	.m_p003 = Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
-	// }
-	{}
-	// , parms(this)
-	// : _CellMgrParms(m_end)
-    // : _CellMgrParms() {
-    // 	Parameters {
-    //     &m_end, nullptr, "CellMgr"
-    // 	}
-    // 	, JKRDisposer()
-    //     , Parm<bool>(this, 0x70303030, "?申o?申b?申t?申@?申?申?申g?申?申", false, false, true)
-    //     , Parm<bool>(this, 0x70303031, "?申}?申W?申b?申N?申i?申?申?申o?申[", true, false, true)
-    //     , Parm<bool>(this, 0x70303032, "G-Half", false, false, true)
-    //     , Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
-    // }
+    , _CellParms(this)
+// , _CellParms {
+// 	.m_p000 = Parm<bool>(this, 0x70303030, "?申o?申b?申t?申@?申?申?申g?申?申",
+// false, false, true), 	.m_p001 = Parm<bool>(this, 0x70303031,
+// "?申}?申W?申b?申N?申i?申?申?申o?申[", true, false, true), 	.m_p002 =
+// Parm<bool>(this, 0x70303032, "G-Half", false, false, true), 	.m_p003 =
+// Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
+// }
+{
+}
+// , parms(this)
+// : _CellMgrParms(m_end)
+// : _CellMgrParms() {
+// 	Parameters {
+//     &m_end, nullptr, "CellMgr"
+// 	}
+// 	, JKRDisposer()
+//     , Parm<bool>(this, 0x70303030, "?申o?申b?申t?申@?申?申?申g?申?申", false,
+//     false, true) , Parm<bool>(this, 0x70303031,
+//     "?申}?申W?申b?申N?申i?申?申?申o?申[", true, false, true) ,
+//     Parm<bool>(this, 0x70303032, "G-Half", false, false, true) ,
+//     Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
+// }
 
 /*
  * --INFO--
