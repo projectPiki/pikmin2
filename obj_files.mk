@@ -1101,6 +1101,7 @@ COMMON:=\
 	$(BUILD_DIR)/asm/sysCommonU/parameters.o\
 	$(BUILD_DIR)/asm/sysCommonU/stream.o\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
+	$(BUILD_DIR)/src/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
 	$(BUILD_DIR)/src/sysCommonU/tagparams_jank.o\

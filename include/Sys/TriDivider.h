@@ -17,19 +17,20 @@ struct Sphere;
 struct CreateTriangleArg;
 struct TriIndexList;
 
-struct TriDivider : CNode {
+struct TriDivider : public CNode {
 	virtual ~TriDivider();
 
-	virtual void clone(struct Matrixf&);
-	void construct(Sys::VertexTable*, Sys::TriangleTable*, int, int);
-	virtual void createTriangles(CreateTriangleArg*);
-	virtual void* do_clone(Matrixf*, VertexTable*, TriangleTable*);
-	void findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&);
-	virtual TriIndexList* findTriLists(Sys::Sphere&);
-	virtual void getBoundBox(struct BoundBox&);
-	virtual void getCurrTri(Game::CurrTriInfo&);
 	virtual float getMinY(Vector3f&);
+	virtual TriIndexList* findTriLists(Sys::Sphere&);
 	virtual void read(Stream&);
+	virtual void getCurrTri(Game::CurrTriInfo&);
+	virtual void createTriangles(CreateTriangleArg*);
+	virtual void getBoundBox(struct BoundBox&);
+	virtual void* clone(struct Matrixf&);
+	virtual void* do_clone(Matrixf*, VertexTable*, TriangleTable*);
+
+	void construct(Sys::VertexTable*, Sys::TriangleTable*, int, int);
+	void findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&);
 	void readWithoutVerts(Stream&, Sys::VertexTable&);
 	void traceMove_global(Game::MoveInfo&, float);
 	void traceMove_new_global(Game::MoveInfo&, float);
